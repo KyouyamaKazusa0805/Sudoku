@@ -104,7 +104,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 		}
 
 		int digit = trueCandidates[0] % 9;
-		if ((map & CandMaps[digit]) is not { Count: not 0 } elimMap)
+		if ((map & CandidatesMap[digit]) is not { Count: not 0 } elimMap)
 		{
 			return null;
 		}
@@ -159,7 +159,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 		foreach (int house in map.CoveredHouses)
 		{
 			var houseMap = HouseMaps[house];
-			if ((houseMap & EmptyMap) - map is not { Count: not 0 } otherCellsMap)
+			if ((houseMap & EmptyCells) - map is not { Count: not 0 } otherCellsMap)
 			{
 				continue;
 			}
@@ -175,7 +175,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 						continue;
 					}
 
-					if (((houseMap - cells - map) & EmptyMap) is not { Count: not 0 } elimMap)
+					if (((houseMap - cells - map) & EmptyCells) is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}
@@ -270,7 +270,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 			for (int conjuagtePairDigit = 0; conjuagtePairDigit < 9; conjuagtePairDigit++)
 			{
 				// Check whether forms a conjugate pair.
-				short mask = (HouseMaps[house] & CandMaps[conjuagtePairDigit]) / house;
+				short mask = (HouseMaps[house] & CandidatesMap[conjuagtePairDigit]) / house;
 				if (PopCount((uint)mask) != 2)
 				{
 					continue;
@@ -417,7 +417,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 		int cand1 = trueCandidates[0], cand2 = trueCandidates[1];
 		int c1 = cand1 / 9, c2 = cand2 / 9, d1 = cand1 % 9, d2 = cand2 % 9;
 		short mask = (short)(1 << d1 | 1 << d2);
-		foreach (int cell in (PeerMaps[c1] ^ PeerMaps[c2]) & BivalueMap)
+		foreach (int cell in (PeerMaps[c1] ^ PeerMaps[c2]) & BivalueCells)
 		{
 			if (grid.GetCandidates(cell) != mask)
 			{

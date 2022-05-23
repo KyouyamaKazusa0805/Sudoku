@@ -19,7 +19,7 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 			{
 				// Check the empty rectangle occupies more than 2 cells.
 				// and the structure forms an empty rectangle.
-				var erMap = CandMaps[digit] & HouseMaps[block];
+				var erMap = CandidatesMap[digit] & HouseMaps[block];
 				if (erMap.Count < 2
 					|| !IEmptyRectangleStepSearcher.IsEmptyRectangle(erMap, block, out int row, out int column))
 				{
@@ -29,7 +29,7 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 				// Search for conjugate pair.
 				for (int i = 0; i < 12; i++)
 				{
-					var linkMap = CandMaps[digit] & HouseMaps[LinkIds[block, i]];
+					var linkMap = CandidatesMap[digit] & HouseMaps[LinkIds[block, i]];
 					if (linkMap.Count != 2)
 					{
 						continue;
@@ -45,7 +45,7 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 
 					int t = (linkMap - HouseMaps[i < 6 ? column : row])[0];
 					int elimHouse = i < 6 ? t % 9 + 18 : t / 9 + 9;
-					var elimCellMap = CandMaps[digit] & HouseMaps[elimHouse] & HouseMaps[i < 6 ? row : column];
+					var elimCellMap = CandidatesMap[digit] & HouseMaps[elimHouse] & HouseMaps[i < 6 ? row : column];
 					if (elimCellMap is not [var elimCell, ..])
 					{
 						continue;
@@ -59,7 +59,7 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 					// Gather all highlight candidates.
 					var candidateOffsets = new List<CandidateViewNode>();
 					var cpCells = new List<int>(2);
-					foreach (int cell in HouseMaps[block] & CandMaps[digit])
+					foreach (int cell in HouseMaps[block] & CandidatesMap[digit])
 					{
 						candidateOffsets.Add(new(1, cell * 9 + digit));
 					}

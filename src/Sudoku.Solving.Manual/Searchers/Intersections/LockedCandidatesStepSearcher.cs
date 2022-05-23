@@ -52,7 +52,7 @@ public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandida
 		{
 			// If the cells C doesn't contain any empty cells,
 			// the location won't contain any locked candidates.
-			if ((EmptyMap & c) is [])
+			if ((EmptyCells & c) is [])
 			{
 				continue;
 			}
@@ -75,9 +75,9 @@ public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandida
 			{
 				// Check whether the digit contains any eliminations.
 				Cells elimMap;
-				(r[0], r[1], elimMap) = (a & CandMaps[digit]) is []
-					? (baseSet, coverSet, b & CandMaps[digit])
-					: (coverSet, baseSet, a & CandMaps[digit]);
+				(r[0], r[1], elimMap) = (a & CandidatesMap[digit]) is []
+					? (baseSet, coverSet, b & CandidatesMap[digit])
+					: (coverSet, baseSet, a & CandidatesMap[digit]);
 				if (elimMap is [])
 				{
 					continue;
@@ -85,7 +85,7 @@ public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandida
 
 				// Gather the information, such as the type of the locked candidates, the located house, etc..
 				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (int cell in c & CandMaps[digit])
+				foreach (int cell in c & CandidatesMap[digit])
 				{
 					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}

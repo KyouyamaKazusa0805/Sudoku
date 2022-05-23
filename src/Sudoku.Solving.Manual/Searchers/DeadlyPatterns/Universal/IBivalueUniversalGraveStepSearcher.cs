@@ -42,7 +42,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 		// If the number of that is greater than the specified number,
 		// here will return the default list directly.
 		int multivalueCellsCount = 0;
-		foreach (int value in EmptyMap)
+		foreach (int value in EmptyCells)
 		{
 			switch (PopCount((uint)grid.GetCandidates(value)))
 			{
@@ -57,7 +57,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 		// Store all bivalue cells and construct the relations.
 		var span = (stackalloc int[3]);
 		var stack = new Cells[multivalueCellsCount + 1, 9];
-		foreach (int cell in BivalueMap)
+		foreach (int cell in BivalueCells)
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
@@ -85,7 +85,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 		// The comments will help you to understand the processing.
 		Unsafe.SkipInit(out short mask);
 		short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
-		int[] multivalueCells = (EmptyMap - BivalueMap).ToArray();
+		int[] multivalueCells = (EmptyCells - BivalueCells).ToArray();
 		for (int i = 0, length = multivalueCells.Length; i < length; i++)
 		{
 			// eg. { 2, 4, 6 } (42)
@@ -163,7 +163,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 						// Take the cell that doesn't contain in the map above.
 						// Here, the cell is the "true candidate cell".
 						ref var map = ref resultMap[digit];
-						map = CandMaps[digit] - stack[currentIndex, digit];
+						map = CandidatesMap[digit] - stack[currentIndex, digit];
 						foreach (int cell in map)
 						{
 							result.Add(cell * 9 + digit);

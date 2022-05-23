@@ -14,15 +14,15 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		using ValueList<Cells> rbList = new(3), cbList = new(3);
-		foreach (int pivot in EmptyMap)
+		foreach (int pivot in EmptyCells)
 		{
 			int r = pivot.ToHouseIndex(HouseType.Row);
 			int c = pivot.ToHouseIndex(HouseType.Column);
 			int b = pivot.ToHouseIndex(HouseType.Block);
 			var rbMap = HouseMaps[r] & HouseMaps[b];
 			var cbMap = HouseMaps[c] & HouseMaps[b];
-			var rbEmptyMap = rbMap & EmptyMap;
-			var cbEmptyMap = cbMap & EmptyMap;
+			var rbEmptyMap = rbMap & EmptyCells;
+			var cbEmptyMap = cbMap & EmptyCells;
 			if (rbEmptyMap.Count < 2 || cbEmptyMap.Count < 2)
 			{
 				// The intersection needs at least two cells.
@@ -54,9 +54,9 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 					}
 
 					// Get all maps to use later.
-					var blockMap = HouseMaps[b] - rbCurrentMap - cbCurrentMap & EmptyMap;
-					var rowMap = HouseMaps[r] - HouseMaps[b] & EmptyMap;
-					var columnMap = HouseMaps[c] - HouseMaps[b] & EmptyMap;
+					var blockMap = HouseMaps[b] - rbCurrentMap - cbCurrentMap & EmptyCells;
+					var rowMap = HouseMaps[r] - HouseMaps[b] & EmptyCells;
+					var columnMap = HouseMaps[c] - HouseMaps[b] & EmptyCells;
 
 					// Iterate on the number of the cells that should be selected in block.
 					for (int i = 1, count = blockMap.Count; i < count; i++)
@@ -69,7 +69,7 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 							// Get the elimination map in the block.
 							foreach (int digit in blockMask)
 							{
-								elimMapBlock |= CandMaps[digit];
+								elimMapBlock |= CandidatesMap[digit];
 							}
 							elimMapBlock &= blockMap - selectedBlockCells;
 
@@ -82,7 +82,7 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 
 									foreach (int digit in rowMask)
 									{
-										elimMapRow |= CandMaps[digit];
+										elimMapRow |= CandidatesMap[digit];
 									}
 									elimMapRow &= HouseMaps[r] - rbCurrentMap - selectedRowCells;
 
@@ -95,7 +95,7 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 
 											foreach (int digit in columnMask)
 											{
-												elimMapColumn |= CandMaps[digit];
+												elimMapColumn |= CandidatesMap[digit];
 											}
 											elimMapColumn &= HouseMaps[c] - cbCurrentMap - selectedColumnCells;
 
@@ -138,21 +138,21 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 												var conclusions = new List<Conclusion>();
 												foreach (int digit in blockMask)
 												{
-													foreach (int cell in elimMapBlock & CandMaps[digit])
+													foreach (int cell in elimMapBlock & CandidatesMap[digit])
 													{
 														conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 													}
 												}
 												foreach (int digit in rowMask)
 												{
-													foreach (int cell in elimMapRow & CandMaps[digit])
+													foreach (int cell in elimMapRow & CandidatesMap[digit])
 													{
 														conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 													}
 												}
 												foreach (int digit in columnMask)
 												{
-													foreach (int cell in elimMapColumn & CandMaps[digit])
+													foreach (int cell in elimMapColumn & CandidatesMap[digit])
 													{
 														conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 													}
@@ -165,21 +165,21 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 												var candidateOffsets = new List<CandidateViewNode>();
 												foreach (int digit in rowMask)
 												{
-													foreach (int cell in (selectedRowCells | rbCurrentMap) & CandMaps[digit])
+													foreach (int cell in (selectedRowCells | rbCurrentMap) & CandidatesMap[digit])
 													{
 														candidateOffsets.Add(new(0, cell * 9 + digit));
 													}
 												}
 												foreach (int digit in columnMask)
 												{
-													foreach (int cell in (selectedColumnCells | cbCurrentMap) & CandMaps[digit])
+													foreach (int cell in (selectedColumnCells | cbCurrentMap) & CandidatesMap[digit])
 													{
 														candidateOffsets.Add(new(1, cell * 9 + digit));
 													}
 												}
 												foreach (int digit in blockMask)
 												{
-													foreach (int cell in (selectedBlockCells | rbCurrentMap | cbCurrentMap) & CandMaps[digit])
+													foreach (int cell in (selectedBlockCells | rbCurrentMap | cbCurrentMap) & CandidatesMap[digit])
 													{
 														candidateOffsets.Add(new(2, cell * 9 + digit));
 													}

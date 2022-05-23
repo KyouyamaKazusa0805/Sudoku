@@ -33,7 +33,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 
 		for (int digit = 0; digit < 9; digit++)
 		{
-			if (ValueMaps[digit].Count > 5)
+			if (ValuesMap[digit].Count > 5)
 			{
 				continue;
 			}
@@ -41,7 +41,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 			// Gather.
 			for (int house = 9; house < 27; house++)
 			{
-				if ((HouseMaps[house] & CandMaps[digit]) is not [])
+				if ((HouseMaps[house] & CandidatesMap[digit]) is not [])
 				{
 #pragma warning disable CA2014
 					if (house < 18)
@@ -133,9 +133,9 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 				// 'baseLine' is the map that contains all base set cells.
 				var baseLine = size switch
 				{
-					2 => CandMaps[digit] & (HouseMaps[bs[0]] | HouseMaps[bs[1]]),
-					3 => CandMaps[digit] & (HouseMaps[bs[0]] | HouseMaps[bs[1]] | HouseMaps[bs[2]]),
-					4 => CandMaps[digit] & (
+					2 => CandidatesMap[digit] & (HouseMaps[bs[0]] | HouseMaps[bs[1]]),
+					3 => CandidatesMap[digit] & (HouseMaps[bs[0]] | HouseMaps[bs[1]] | HouseMaps[bs[2]]),
+					4 => CandidatesMap[digit] & (
 						HouseMaps[bs[0]] | HouseMaps[bs[1]] | HouseMaps[bs[2]] | HouseMaps[bs[3]]
 					),
 					_ => throw new NotSupportedException("The specified size isn't supported.")
@@ -147,9 +147,9 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 					// 'coverLine' is the map that contains all cover set cells.
 					var coverLine = size switch
 					{
-						2 => CandMaps[digit] & (HouseMaps[cs[0]] | HouseMaps[cs[1]]),
-						3 => CandMaps[digit] & (HouseMaps[cs[0]] | HouseMaps[cs[1]] | HouseMaps[cs[2]]),
-						4 => CandMaps[digit] & (
+						2 => CandidatesMap[digit] & (HouseMaps[cs[0]] | HouseMaps[cs[1]]),
+						3 => CandidatesMap[digit] & (HouseMaps[cs[0]] | HouseMaps[cs[1]] | HouseMaps[cs[2]]),
+						4 => CandidatesMap[digit] & (
 							HouseMaps[cs[0]] | HouseMaps[cs[1]] | HouseMaps[cs[2]] | HouseMaps[cs[3]]
 						),
 						_ => throw new NotSupportedException("The specified size isn't supported.")
@@ -279,7 +279,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 					case null:
 					{
 						bool flag = false;
-						foreach (int c in ValueMaps[digit])
+						foreach (int c in ValuesMap[digit])
 						{
 							if (HouseMaps[c.ToHouseIndex(searchRow ? HouseType.Column : HouseType.Row)].Contains(cell))
 							{
@@ -314,7 +314,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 			}
 		}
 
-		foreach (int cell in ValueMaps[digit])
+		foreach (int cell in ValuesMap[digit])
 		{
 			cellOffsets.Add(new(2, cell));
 		}

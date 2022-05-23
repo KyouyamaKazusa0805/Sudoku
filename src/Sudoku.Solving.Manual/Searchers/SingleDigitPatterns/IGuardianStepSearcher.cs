@@ -59,7 +59,7 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 			tempMap |= HouseMaps[coveredHouse];
 		}
 
-		tempMap &= CandMaps[digit];
+		tempMap &= CandidatesMap[digit];
 		tempMap |= guardians;
 
 		return tempMap - cell1 - cell2;

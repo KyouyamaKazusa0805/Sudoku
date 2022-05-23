@@ -20,7 +20,7 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 	{
 		// The grid with possible W-Wing structure should contain
 		// at least two empty cells (start and end cell).
-		if (BivalueMap.Count < 2)
+		if (BivalueCells.Count < 2)
 		{
 			return null;
 		}
@@ -28,7 +28,7 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 		// Iterate on each cells.
 		for (int c1 = 0; c1 < 72; c1++)
 		{
-			if (!BivalueMap.Contains(c1))
+			if (!BivalueCells.Contains(c1))
 			{
 				// The cell isn't a bi-value cell.
 				continue;
@@ -36,7 +36,7 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 
 			// Iterate on each cells which are not peers in 'c1'.
 			var digits = grid.GetCandidates(c1).GetAllSets();
-			foreach (int c2 in BivalueMap - new Cells(c1))
+			foreach (int c2 in BivalueCells - new Cells(c1))
 			{
 				if (c2 < c1)
 				{
@@ -51,7 +51,7 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 				}
 
 				var intersection = PeerMaps[c1] & PeerMaps[c2];
-				if ((EmptyMap & intersection) is [])
+				if ((EmptyCells & intersection) is [])
 				{
 					// The structure doesn't contain any possible eliminations.
 					continue;
@@ -76,7 +76,7 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 					foreach (int digit in digits)
 					{
 						// Now search for conjugate pair.
-						if ((CandMaps[digit] & HouseMaps[house]) is not [var a, var b] conjugate)
+						if ((CandidatesMap[digit] & HouseMaps[house]) is not [var a, var b] conjugate)
 						{
 							// The current house doesn't contain the conjugate pair of this digit.
 							continue;
@@ -95,7 +95,7 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 
 						// Check for eliminations.
 						int anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
-						if ((CandMaps[anotherDigit] & !(Cells.Empty + c1 + c2)) is not { Count: not 0 } elimMap)
+						if ((CandidatesMap[anotherDigit] & !(Cells.Empty + c1 + c2)) is not { Count: not 0 } elimMap)
 						{
 							continue;
 						}

@@ -41,10 +41,10 @@ public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSea
 		// Iterate on the size.
 		// Note that the greatest size is determined by two factors: the size that you specified
 		// and the number of bi-value cells in the grid.
-		for (int size = 3, count = Min(MaxSize, BivalueMap.Count); size <= count; size++)
+		for (int size = 3, count = Min(MaxSize, BivalueCells.Count); size <= count; size++)
 		{
 			// Iterate on each pivot cell.
-			foreach (int pivot in EmptyMap)
+			foreach (int pivot in EmptyCells)
 			{
 				short mask = grid.GetCandidates(pivot);
 				int candsCount = PopCount((uint)mask);
@@ -54,7 +54,7 @@ public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSea
 					continue;
 				}
 
-				var map = PeerMaps[pivot] & BivalueMap;
+				var map = PeerMaps[pivot] & BivalueCells;
 				if (map.Count < size - 1)
 				{
 					// Bivalue cells are not enough.
@@ -110,7 +110,7 @@ public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSea
 					// The pattern should be "az, bz, cz, dz, ... , abcd(z)".
 					int zDigit = TrailingZeroCount(maskToCheck);
 					var petals = new Cells(cells);
-					if ((petals + pivot & CandMaps[zDigit]).Count != (isIncomplete ? size - 1 : size))
+					if ((petals + pivot & CandidatesMap[zDigit]).Count != (isIncomplete ? size - 1 : size))
 					{
 						continue;
 					}
@@ -121,7 +121,7 @@ public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSea
 					{
 						elimMap &= PeerMaps[pivot];
 					}
-					elimMap &= CandMaps[zDigit];
+					elimMap &= CandidatesMap[zDigit];
 					if (elimMap is [])
 					{
 						continue;

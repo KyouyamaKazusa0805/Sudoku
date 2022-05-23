@@ -23,15 +23,15 @@ public interface IAlmostLockedSetsStepSearcher : IStepSearcher
 	{
 		// Get all bi-value-cell ALSes.
 		var result = new List<AlmostLockedSet>();
-		foreach (int cell in BivalueMap)
+		foreach (int cell in BivalueCells)
 		{
-			result.Add(new(grid.GetCandidates(cell), Cells.Empty + cell, PeerMaps[cell] & EmptyMap));
+			result.Add(new(grid.GetCandidates(cell), Cells.Empty + cell, PeerMaps[cell] & EmptyCells));
 		}
 
 		// Get all non-bi-value-cell ALSes.
 		for (int houseIndex = 0; houseIndex < 27; houseIndex++)
 		{
-			if ((HouseMaps[houseIndex] & EmptyMap) is not { Count: >= 3 } tempMap)
+			if ((HouseMaps[houseIndex] & EmptyCells) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
@@ -65,7 +65,7 @@ public interface IAlmostLockedSetsStepSearcher : IStepSearcher
 							digitsMask,
 							map,
 							houseIndex < 9 && coveredLine is >= 9 and not InvalidFirstSet
-								? ((HouseMaps[houseIndex] | HouseMaps[coveredLine]) & EmptyMap) - map
+								? ((HouseMaps[houseIndex] | HouseMaps[coveredLine]) & EmptyCells) - map
 								: tempMap - map
 						)
 					);

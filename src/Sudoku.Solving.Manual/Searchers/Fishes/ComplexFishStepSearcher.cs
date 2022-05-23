@@ -144,7 +144,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 				{
 					// Try to assume the digit is true in the current cell,
 					// and we can get a map of all possible cells that can be filled with the digit.
-					var possibleMap = CandMaps[digit] - new Cells(cell);
+					var possibleMap = CandidatesMap[digit] - new Cells(cell);
 
 					// Get the table of all possible houses that contains that digit.
 					var baseTable = possibleMap.Houses.GetAllSets();
@@ -267,7 +267,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 								currentCoverSets[i++] = coverSet;
 								usedInCoverSets |= 1 << coverSet;
 							}
-							actualBaseMap &= CandMaps[digit];
+							actualBaseMap &= CandidatesMap[digit];
 
 							// Now iterate on three different house types, to check the final house
 							// that is the elimination lies in.
@@ -372,18 +372,18 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 										tempMap |= HouseMaps[baseSets[j]];
 									}
 								}
-								endofins &= CandMaps[digit];
+								endofins &= CandidatesMap[digit];
 
 								// Add the new house into the cover sets map.
 								var nowCoverMap = coverMap | HouseMaps[houseIndex];
 
 								// Collect all exo-fins, in order to get all eliminations.
 								var exofins = actualBaseMap - nowCoverMap - endofins;
-								var elimMap = nowCoverMap - actualBaseMap & CandMaps[digit];
+								var elimMap = nowCoverMap - actualBaseMap & CandidatesMap[digit];
 								var fins = exofins | endofins;
 								if (fins is not [])
 								{
-									elimMap &= !fins & CandMaps[digit];
+									elimMap &= !fins & CandidatesMap[digit];
 								}
 
 								// Check whether the elimination exists.

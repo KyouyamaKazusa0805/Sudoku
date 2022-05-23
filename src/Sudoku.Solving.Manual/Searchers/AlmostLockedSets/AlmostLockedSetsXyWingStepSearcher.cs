@@ -42,7 +42,7 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 					short rccMask = 0;
 					foreach (int digit in mask)
 					{
-						if ((map & CandMaps[digit]).InOneHouse)
+						if ((map & CandidatesMap[digit]).InOneHouse)
 						{
 							rccMask |= (short)(1 << digit);
 						}
@@ -118,7 +118,7 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in digitsMask)
 						{
-							var elimMap = (aMap | bMap) % CandMaps[digit] - (aMap | bMap | cMap);
+							var elimMap = (aMap | bMap) % CandidatesMap[digit] - (aMap | bMap | cMap);
 							if (elimMap is [])
 							{
 								continue;

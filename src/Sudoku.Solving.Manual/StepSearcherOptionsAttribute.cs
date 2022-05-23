@@ -21,7 +21,7 @@ public sealed class StepSearcherOptionsAttribute : Attribute
 	/// </para>
 	/// <para>
 	/// If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-	/// properties such as <see cref="CandMaps"/> in its method
+	/// properties such as <see cref="CandidatesMap"/> in its method
 	/// <see cref="IStepSearcher.GetAll(ICollection{Step}, in Grid, bool)"/>.
 	/// </para>
 	/// <para><i>The default value is <see langword="false"/>.</i></para>
@@ -30,11 +30,11 @@ public sealed class StepSearcherOptionsAttribute : Attribute
 	/// <para>
 	/// All disallowed properties are:
 	/// <list type="bullet">
-	/// <item><see cref="DigitMaps"/></item>
-	/// <item><see cref="ValueMaps"/></item>
-	/// <item><see cref="CandMaps"/></item>
-	/// <item><see cref="BivalueMap"/></item>
-	/// <item><see cref="EmptyMap"/></item>
+	/// <item><see cref="DigitsMap"/></item>
+	/// <item><see cref="ValuesMap"/></item>
+	/// <item><see cref="CandidatesMap"/></item>
+	/// <item><see cref="BivalueCells"/></item>
+	/// <item><see cref="EmptyCells"/></item>
 	/// </list>
 	/// The disallowed method is:
 	/// <list type="bullet">

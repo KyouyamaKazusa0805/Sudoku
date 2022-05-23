@@ -31,8 +31,8 @@
             which means you can also call the property by <see cref="T:Sudoku.Concepts.Collections.Grid"/>. Of course, some of them
             doesn't contain the same one in <see cref="T:Sudoku.Concepts.Collections.Grid"/>, but you can find a same property whose
             execution logic (handling logic) is totally same.
-            For example, <see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyMap"/> is same as <see cref="P:Sudoku.Concepts.Collections.Grid.EmptyCells"/>. The difference
-            between them is that you shouldn't use <see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyMap"/> until you have called
+            For example, <see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyCells"/> is same as <see cref="P:Sudoku.Concepts.Collections.Grid.EmptyCells"/>. The difference
+            between them is that you shouldn't use <see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyCells"/> until you have called
             <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>, while <see cref="P:Sudoku.Concepts.Collections.Grid.EmptyCells"/> can be used
             everywhere, because it isn't an instant property (which means the calculation begins
             when you called them, i.e. lazy ones; in contrast, some properties only store values directly,
@@ -44,9 +44,9 @@
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
             <seealso cref="T:Sudoku.Concepts.Collections.Grid"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyMap">
+        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyCells">
             <summary>
-            The empty cells map.
+            <inheritdoc cref="P:Sudoku.Concepts.Collections.Grid.EmptyCells"/>
             </summary>
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
@@ -56,9 +56,9 @@
             <seealso cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.BivalueMap">
+        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.BivalueCells">
             <summary>
-            The bi-value cells map.
+            <inheritdoc cref="P:Sudoku.Concepts.Collections.Grid.BivalueCells"/>
             </summary>
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
@@ -68,9 +68,9 @@
             <seealso cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.CandMaps">
+        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.CandidatesMap">
             <summary>
-            The candidate maps.
+            <inheritdoc cref="P:Sudoku.Concepts.Collections.Grid.CandidatesMap"/>
             </summary>
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
@@ -80,9 +80,9 @@
             <seealso cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.DigitMaps">
+        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.DigitsMap">
             <summary>
-            The digit maps.
+            <inheritdoc cref="P:Sudoku.Concepts.Collections.Grid.DigitsMap"/>
             </summary>
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
@@ -92,9 +92,9 @@
             <seealso cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.ValueMaps">
+        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.ValuesMap">
             <summary>
-            The value maps.
+            <inheritdoc cref="P:Sudoku.Concepts.Collections.Grid.ValuesMap"/>
             </summary>
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
@@ -3554,7 +3554,7 @@
             </para>
             <para>
             If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-            properties such as <see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.CandMaps"/> in its method
+            properties such as <see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.CandidatesMap"/> in its method
             <see cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)"/>.
             </para>
             <para><i>The default value is <see langword="false"/>.</i></para>
@@ -3563,11 +3563,11 @@
             <para>
             All disallowed properties are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.DigitMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.ValueMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.CandMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.BivalueMap"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyMap"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.DigitsMap"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.ValuesMap"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.CandidatesMap"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.BivalueCells"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyCells"/></item>
             </list>
             The disallowed method is:
             <list type="bullet">

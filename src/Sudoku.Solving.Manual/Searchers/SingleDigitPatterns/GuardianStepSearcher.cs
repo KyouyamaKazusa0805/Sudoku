@@ -39,7 +39,7 @@ public sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 			{
 				var loops = new List<(Cells, Cells, IEnumerable<LinkViewNode>)>();
 				var tempLoop = new List<int>();
-				var globalMap = CandMaps[digit] - new Cells(elimination);
+				var globalMap = CandidatesMap[digit] - new Cells(elimination);
 				foreach (int cell in globalMap)
 				{
 					var loopMap = Cells.Empty;
@@ -54,7 +54,7 @@ public sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 
 					foreach (var (map, guardians, links) in loops)
 					{
-						if ((!guardians & CandMaps[digit]) is not { Count: not 0 } elimMap)
+						if ((!guardians & CandidatesMap[digit]) is not { Count: not 0 } elimMap)
 						{
 							continue;
 						}

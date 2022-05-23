@@ -34,7 +34,7 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 			// Naked subsets.
 			for (int house = 0; house < 27; house++)
 			{
-				if ((HouseMaps[house] & EmptyMap) is not { Count: >= 2 } currentEmptyMap)
+				if ((HouseMaps[house] & EmptyCells) is not { Count: >= 2 } currentEmptyMap)
 				{
 					continue;
 				}
@@ -53,7 +53,7 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					var conclusions = new List<Conclusion>(18);
 					foreach (int digit in mask)
 					{
-						var map = cells % CandMaps[digit];
+						var map = cells % CandidatesMap[digit];
 						flagMask |= (short)(map.InOneHouse ? 0 : 1 << digit);
 
 						foreach (int cell in map)
@@ -97,7 +97,7 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 			// Hidden subsets.
 			for (int house = 0; house < 27; house++)
 			{
-				var traversingMap = HouseMaps[house] - EmptyMap;
+				var traversingMap = HouseMaps[house] - EmptyCells;
 				if (traversingMap.Count >= 8)
 				{
 					// No available digit (Or hidden single).
@@ -118,7 +118,7 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					{
 						tempMask &= (short)~(1 << digit);
 						digitsMask |= (short)(1 << digit);
-						map |= HouseMaps[house] & CandMaps[digit];
+						map |= HouseMaps[house] & CandidatesMap[digit];
 					}
 					if (map.Count != size)
 					{
@@ -129,7 +129,7 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					var conclusions = new List<Conclusion>();
 					foreach (int digit in tempMask)
 					{
-						foreach (int cell in map & CandMaps[digit])
+						foreach (int cell in map & CandidatesMap[digit])
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
@@ -143,7 +143,7 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int digit in digits)
 					{
-						foreach (int cell in map & CandMaps[digit])
+						foreach (int cell in map & CandidatesMap[digit])
 						{
 							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}

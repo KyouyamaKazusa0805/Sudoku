@@ -32,7 +32,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 		var tempGrid = grid;
 		for (int digit = 0; digit < 9; digit++)
 		{
-			foreach (int cell in CandMaps[digit])
+			foreach (int cell in CandidatesMap[digit])
 			{
 				_tempConclusions.Add(new(ConclusionType.Assignment, cell, digit));
 				var (candList, mask) = RecordUndoInfo(tempGrid, cell, digit);
@@ -163,7 +163,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 	private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(in Grid grid, int cell, int digit)
 	{
 		var list = new List<int>();
-		foreach (int c in PeerMaps[cell] & CandMaps[digit])
+		foreach (int c in PeerMaps[cell] & CandidatesMap[digit])
 		{
 			list.Add(c * 9 + digit);
 		}

@@ -205,10 +205,10 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 				linkHouse[6] = cells[12].ToHouseIndex(HouseType.Column);
 				linkHouse[7] = cells[14].ToHouseIndex(HouseType.Block);
 				var conclusions = new List<Conclusion>();
-				var map = cells & EmptyMap;
+				var map = cells & EmptyCells;
 				for (k = 0; k < 8; k++)
 				{
-					if ((HouseMaps[linkHouse[k]] & EmptyMap) - map is not { Count: not 0 } elimMap)
+					if ((HouseMaps[linkHouse[k]] & EmptyCells) - map is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}

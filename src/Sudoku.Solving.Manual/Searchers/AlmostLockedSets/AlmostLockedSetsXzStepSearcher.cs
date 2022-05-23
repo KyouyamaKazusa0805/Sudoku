@@ -63,7 +63,7 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 				int nh = 0;
 				foreach (int digit in xzMask)
 				{
-					if ((map & CandMaps[digit]).AllSetsAreInOneHouse(out houseIndex))
+					if ((map & CandidatesMap[digit]).AllSetsAreInOneHouse(out houseIndex))
 					{
 						// 'digit' is the RCC digit.
 						rccMask |= (short)(1 << digit);
@@ -87,7 +87,7 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 				var conclusions = new List<Conclusion>();
 				foreach (int elimDigit in z)
 				{
-					if (map % CandMaps[elimDigit] is not { Count: not 0 } elimMap)
+					if (map % CandidatesMap[elimDigit] is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}
@@ -106,12 +106,12 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 					isDoublyLinked = true;
 					foreach (int elimDigit in z & ~rccMask)
 					{
-						if ((CandMaps[elimDigit] & map1) is not { Count: not 0 } zMap)
+						if ((CandidatesMap[elimDigit] & map1) is not { Count: not 0 } zMap)
 						{
 							continue;
 						}
 
-						if ((!zMap & CandMaps[elimDigit] & map2) is not { Count: not 0 } elimMap)
+						if ((!zMap & CandidatesMap[elimDigit] & map2) is not { Count: not 0 } elimMap)
 						{
 							continue;
 						}
@@ -123,7 +123,7 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 					int k = 0;
 					foreach (int digit in rccMask)
 					{
-						foreach (int cell in (HouseMaps[house[k]] & CandMaps[digit]) - map)
+						foreach (int cell in (HouseMaps[house[k]] & CandidatesMap[digit]) - map)
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
@@ -133,10 +133,10 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 
 					// Possible eliminations.
 					var tempMap = map;
-					tempMap = CandMaps[TrailingZeroCount(mask1)];
+					tempMap = CandidatesMap[TrailingZeroCount(mask1)];
 					foreach (int digit in mask1.SkipSetBit(1))
 					{
-						tempMap |= CandMaps[digit];
+						tempMap |= CandidatesMap[digit];
 					}
 					tempMap &= possibleElimMap1;
 					foreach (int cell in tempMap)
@@ -146,10 +146,10 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
 					}
-					tempMap = CandMaps[TrailingZeroCount(mask2)];
+					tempMap = CandidatesMap[TrailingZeroCount(mask2)];
 					foreach (int digit in mask2.SkipSetBit(1))
 					{
-						tempMap |= CandMaps[digit];
+						tempMap |= CandidatesMap[digit];
 					}
 					tempMap &= possibleElimMap2;
 					foreach (int cell in tempMap)

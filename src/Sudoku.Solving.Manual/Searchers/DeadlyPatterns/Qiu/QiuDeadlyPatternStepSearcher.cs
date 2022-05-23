@@ -93,7 +93,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 			}
 
 			// To check whether both two pair cells are empty.
-			if (!EmptyMap.Contains(pairFirst) || !EmptyMap.Contains(pairSecond))
+			if (!EmptyCells.Contains(pairFirst) || !EmptyCells.Contains(pairSecond))
 			{
 				continue;
 			}
@@ -121,7 +121,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 					bool flag = false;
 					int[] offsets = map.ToArray();
 					int c1 = offsets[0], c2 = offsets[1];
-					if (!EmptyMap.Contains(c1))
+					if (!EmptyCells.Contains(c1))
 					{
 						int d1 = grid[c1];
 						distinctionMask ^= (short)(1 << d1);
@@ -129,7 +129,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 
 						flag = true;
 					}
-					if (!EmptyMap.Contains(c2))
+					if (!EmptyCells.Contains(c2))
 					{
 						int d2 = grid[c2];
 						distinctionMask ^= (short)(1 << d2);
@@ -159,7 +159,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 					var tempMap = Cells.Empty;
 					foreach (int digit in digits)
 					{
-						tempMap |= CandMaps[digit];
+						tempMap |= CandidatesMap[digit];
 					}
 					var appearingMap = tempMap & square;
 					if (appearingMap.Count != 4)
@@ -170,7 +170,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 					bool flag = false;
 					foreach (int digit in digits)
 					{
-						if ((square & CandMaps[digit]) is [])
+						if ((square & CandidatesMap[digit]) is [])
 						{
 							flag = true;
 							break;
@@ -231,7 +231,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		}
 
 		int extraDigit = TrailingZeroCount(otherDigitsMask);
-		var map = pair & CandMaps[extraDigit];
+		var map = pair & CandidatesMap[extraDigit];
 		if (map is not [var elimCell])
 		{
 			return null;
@@ -260,7 +260,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int digit in comparer)
 		{
-			foreach (int cell in square & CandMaps[digit])
+			foreach (int cell in square & CandidatesMap[digit])
 			{
 				candidateOffsets.Add(new(1, cell * 9 + digit));
 			}
@@ -304,8 +304,8 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		}
 
 		int extraDigit = TrailingZeroCount(otherDigitsMask);
-		var map = pair & CandMaps[extraDigit];
-		if ((!map & CandMaps[extraDigit]) is not { Count: not 0 } elimMap)
+		var map = pair & CandidatesMap[extraDigit];
+		if ((!map & CandidatesMap[extraDigit]) is not { Count: not 0 } elimMap)
 		{
 			return null;
 		}
@@ -326,7 +326,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int digit in comparer)
 		{
-			foreach (int cell in square & CandMaps[digit])
+			foreach (int cell in square & CandidatesMap[digit])
 			{
 				candidateOffsets.Add(new(1, cell * 9 + digit));
 			}
@@ -368,7 +368,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 	{
 		foreach (int houseIndex in pair.CoveredHouses)
 		{
-			var allCellsMap = (HouseMaps[houseIndex] & EmptyMap) - pair;
+			var allCellsMap = (HouseMaps[houseIndex] & EmptyCells) - pair;
 			for (
 				int size = PopCount((uint)otherDigitsMask) - 1, length = allCellsMap.Count;
 				size < length;
@@ -386,7 +386,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 					var conclusions = new List<Conclusion>();
 					foreach (int digit in mask)
 					{
-						foreach (int cell in allCellsMap - cells & CandMaps[digit])
+						foreach (int cell in allCellsMap - cells & CandidatesMap[digit])
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
@@ -406,7 +406,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int digit in comparer)
 					{
-						foreach (int cell in square & CandMaps[digit])
+						foreach (int cell in square & CandidatesMap[digit])
 						{
 							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
@@ -462,7 +462,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		{
 			foreach (int digit in comparer)
 			{
-				if ((CandMaps[digit] & HouseMaps[houseIndex]) != pair)
+				if ((CandidatesMap[digit] & HouseMaps[houseIndex]) != pair)
 				{
 					continue;
 				}
@@ -471,8 +471,8 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 				bool flag = false;
 				foreach (int d in otherDigitsMask)
 				{
-					if ((ValueMaps[d] & HouseMaps[houseIndex]) is not []
-						|| (HouseMaps[houseIndex] & CandMaps[d]) != square)
+					if ((ValuesMap[d] & HouseMaps[houseIndex]) is not []
+						|| (HouseMaps[houseIndex] & CandidatesMap[d]) != square)
 					{
 						flag = true;
 						break;
@@ -484,7 +484,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 				}
 
 				int elimDigit = TrailingZeroCount(comparer & ~(1 << digit));
-				var elimMap = pair & CandMaps[elimDigit];
+				var elimMap = pair & CandidatesMap[elimDigit];
 				if (elimMap is [])
 				{
 					continue;
@@ -506,7 +506,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (int d in comparer)
 				{
-					foreach (int cell in square & CandMaps[d])
+					foreach (int cell in square & CandidatesMap[d])
 					{
 						candidateOffsets.Add(new(1, cell * 9 + d));
 					}
@@ -547,20 +547,20 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 	{
 		// Firstly, we should check the cells in the block that the square cells lying on.
 		int block = TrailingZeroCount(square.BlockMask);
-		var otherCellsMap = (HouseMaps[block] & EmptyMap) - square;
+		var otherCellsMap = (HouseMaps[block] & EmptyCells) - square;
 		var tempMap = Cells.Empty;
 		var pairDigits = comparer.GetAllSets();
 
 		bool flag = false;
 		foreach (int digit in pairDigits)
 		{
-			if ((ValueMaps[digit] & HouseMaps[block]) is not [])
+			if ((ValuesMap[digit] & HouseMaps[block]) is not [])
 			{
 				flag = true;
 				break;
 			}
 
-			tempMap |= CandMaps[digit];
+			tempMap |= CandidatesMap[digit];
 		}
 		if (flag)
 		{
@@ -614,7 +614,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int d in comparer)
 		{
-			foreach (int cell in square & CandMaps[d])
+			foreach (int cell in square & CandidatesMap[d])
 			{
 				candidateOffsets.Add(new(1, cell * 9 + d));
 			}

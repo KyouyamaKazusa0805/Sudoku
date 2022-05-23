@@ -289,7 +289,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// <returns>A <see cref="bool"/> value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static bool IsConjugatePair(int digit, in Cells map, int houseIndex)
-		=> (HouseMaps[houseIndex] & CandMaps[digit]) == map;
+		=> (HouseMaps[houseIndex] & CandidatesMap[digit]) == map;
 
 	/// <summary>
 	/// Check whether the highlight UR candidates is incomplete.
@@ -482,7 +482,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 		// Type 2 or 5 found. Now check elimination.
 		int extraDigit = TrailingZeroCount(extraMask);
-		if ((!(Cells.Empty + corner1 + corner2) & CandMaps[extraDigit]) is not { Count: not 0 } elimMap)
+		if ((!(Cells.Empty + corner1 + corner2) & CandidatesMap[extraDigit]) is not { Count: not 0 } elimMap)
 		{
 			return;
 		}
@@ -584,12 +584,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		short otherDigitsMask = (short)(mask ^ comparer);
 		foreach (int houseIndex in otherCellsMap.CoveredHouses)
 		{
-			if (((ValueMaps[d1] | ValueMaps[d2]) & HouseMaps[houseIndex]) is not [])
+			if (((ValuesMap[d1] | ValuesMap[d2]) & HouseMaps[houseIndex]) is not [])
 			{
 				return;
 			}
 
-			var iterationMap = (HouseMaps[houseIndex] & EmptyMap) - otherCellsMap;
+			var iterationMap = (HouseMaps[houseIndex] & EmptyCells) - otherCellsMap;
 			for (int size = PopCount((uint)otherDigitsMask) - 1, count = iterationMap.Count; size < count; size++)
 			{
 				foreach (var iteratedCells in iterationMap & size)
@@ -604,7 +604,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					var conclusions = new List<Conclusion>(16);
 					foreach (int digit in tempMask)
 					{
-						foreach (int cell in (iterationMap - iteratedCells) & CandMaps[digit])
+						foreach (int cell in (iterationMap - iteratedCells) & CandidatesMap[digit])
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
@@ -725,7 +725,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				// Yes, Type 4 found.
 				// Now check elimination.
 				int elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
-				if ((otherCellsMap & CandMaps[elimDigit]) is not { Count: not 0 } elimMap)
+				if ((otherCellsMap & CandidatesMap[elimDigit]) is not { Count: not 0 } elimMap)
 				{
 					continue;
 				}
@@ -831,7 +831,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 		// Type 5 found. Now check elimination.
 		int extraDigit = TrailingZeroCount(extraMask);
-		var cellsThatContainsExtraDigit = otherCellsMap & CandMaps[extraDigit];
+		var cellsThatContainsExtraDigit = otherCellsMap & CandidatesMap[extraDigit];
 
 		// Degenerated to type 1.
 		if (cellsThatContainsExtraDigit.Count == 1)
@@ -839,7 +839,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			return;
 		}
 
-		if ((!cellsThatContainsExtraDigit & CandMaps[extraDigit]) is not { Count: not 0 } elimMap)
+		if ((!cellsThatContainsExtraDigit & CandidatesMap[extraDigit]) is not { Count: not 0 } elimMap)
 		{
 			return;
 		}
@@ -949,7 +949,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			}
 
 			// Check eliminations.
-			if ((otherCellsMap & CandMaps[digit]) is not { Count: not 0 } elimMap)
+			if ((otherCellsMap & CandidatesMap[digit]) is not { Count: not 0 } elimMap)
 			{
 				return;
 			}
@@ -2553,7 +2553,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				return;
 			}
 
-			var map = (PeerMaps[otherCell1] | PeerMaps[otherCell2]) & BivalueMap;
+			var map = (PeerMaps[otherCell1] | PeerMaps[otherCell2]) & BivalueCells;
 			if (map.Count < size)
 			{
 				return;
@@ -2597,7 +2597,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						{
 							int cell = combinationCells[cellIndex];
 							int extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
-							if (!(testMap & CandMaps[extraDigit]).Contains(cell))
+							if (!(testMap & CandidatesMap[extraDigit]).Contains(cell))
 							{
 								flag = false;
 								break;
@@ -2610,7 +2610,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 						// Now check eliminations.
 						int elimDigit = TrailingZeroCount(m);
-						if ((!(Cells.Empty + c1 + c2) & CandMaps[elimDigit]) is not { Count: not 0 } elimMap)
+						if ((!(Cells.Empty + c1 + c2) & CandidatesMap[elimDigit]) is not { Count: not 0 } elimMap)
 						{
 							continue;
 						}
@@ -2700,7 +2700,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								{
 									int cell = combinationCells[cellIndex];
 									int extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
-									if (!(testMap & CandMaps[extraDigit]).Contains(cell))
+									if (!(testMap & CandidatesMap[extraDigit]).Contains(cell))
 									{
 										flag = false;
 										break;
@@ -2713,7 +2713,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 								// Now check eliminations.
 								int elimDigit = TrailingZeroCount(m);
-								var elimMap = !(Cells.Empty + c1 + c2 + c3) & CandMaps[elimDigit];
+								var elimMap = !(Cells.Empty + c1 + c2 + c3) & CandidatesMap[elimDigit];
 								if (elimMap is [])
 								{
 									continue;
@@ -2806,7 +2806,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 									{
 										int cell = combinationCells[cellIndex];
 										int extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
-										if (!(testMap & CandMaps[extraDigit]).Contains(cell))
+										if (!(testMap & CandidatesMap[extraDigit]).Contains(cell))
 										{
 											flag = false;
 											break;
@@ -2819,7 +2819,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 									// Now check eliminations.
 									int elimDigit = TrailingZeroCount(m);
-									var elimMap = !(Cells.Empty + c1 + c2 + c3 + c4) & CandMaps[elimDigit];
+									var elimMap = !(Cells.Empty + c1 + c2 + c3 + c4) & CandidatesMap[elimDigit];
 									if (elimMap is [])
 									{
 										continue;
@@ -2971,7 +2971,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			bool cannibalMode = cannibalModeCases[caseIndex];
 			foreach (byte otherBlock in d)
 			{
-				var emptyCellsInInterMap = HouseMaps[otherBlock] & HouseMaps[line] & EmptyMap;
+				var emptyCellsInInterMap = HouseMaps[otherBlock] & HouseMaps[line] & EmptyCells;
 				if (emptyCellsInInterMap.Count < 2)
 				{
 					// The intersection needs at least two empty cells.
@@ -3011,8 +3011,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						continue;
 					}
 
-					var blockMap = (b | c - currentInterMap) & EmptyMap;
-					var lineMap = (a & EmptyMap) - otherCellsMap;
+					var blockMap = (b | c - currentInterMap) & EmptyCells;
+					var lineMap = (a & EmptyCells) - otherCellsMap;
 
 					// Iterate on the number of the cells that should be selected in block.
 					for (int i = 1; i <= blockMap.Count - 1; i++)
@@ -3046,13 +3046,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							// Get the elimination map in the block.
 							foreach (int digit in blockMask)
 							{
-								elimMapBlock |= CandMaps[digit];
+								elimMapBlock |= CandidatesMap[digit];
 							}
 							elimMapBlock &= blockMap - currentBlockMap;
 
 							foreach (int digit in otherDigitsMask)
 							{
-								elimMapLine |= CandMaps[digit];
+								elimMapLine |= CandidatesMap[digit];
 							}
 							elimMapLine &= lineMap - currentInterMap;
 
@@ -3099,7 +3099,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					cannibalMode
 						? currentBlockMap | currentLineMap
 						: currentInterMap
-				) % CandMaps[digitIsolated] & EmptyMap;
+				) % CandidatesMap[digitIsolated] & EmptyCells;
 			}
 
 			if (currentInterMap.Count + i + j + 1 == PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
@@ -3264,7 +3264,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			foreach (int targetCell in cells)
 			{
 				int block = targetCell.ToHouseIndex(HouseType.Block);
-				var bivalueCellsToCheck = (PeerMaps[targetCell] & HouseMaps[block] & BivalueMap) - cells;
+				var bivalueCellsToCheck = (PeerMaps[targetCell] & HouseMaps[block] & BivalueCells) - cells;
 				if (bivalueCellsToCheck is [])
 				{
 					continue;
@@ -3560,8 +3560,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				continue;
 			}
 
-			var guardian1 = houseCells - cells & CandMaps[d1];
-			var guardian2 = houseCells - cells & CandMaps[d2];
+			var guardian1 = houseCells - cells & CandidatesMap[d1];
+			var guardian2 = houseCells - cells & CandidatesMap[d2];
 			if (!(guardian1 is [] ^ guardian2 is []))
 			{
 				// Only one digit can contain guardians.
@@ -3570,13 +3570,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 			int guardianDigit = -1;
 			Cells? targetElimMap = null, targetGuardianMap = null;
-			if (guardian1 is not [] && (!guardian1 & CandMaps[d1]) is { Count: not 0 } a)
+			if (guardian1 is not [] && (!guardian1 & CandidatesMap[d1]) is { Count: not 0 } a)
 			{
 				targetElimMap = a;
 				guardianDigit = d1;
 				targetGuardianMap = guardian1;
 			}
-			else if (guardian2 is not [] && (!guardian2 & CandMaps[d2]) is { Count: not 0 } b)
+			else if (guardian2 is not [] && (!guardian2 & CandidatesMap[d2]) is { Count: not 0 } b)
 			{
 				targetElimMap = b;
 				guardianDigit = d2;
@@ -3683,7 +3683,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		// Get the base digit ('a') and the other digit ('b').
 		// Here 'b' is the digit that we should check the possible hidden single.
 		int baseDigit = grid[corner1], otherDigit = baseDigit == d1 ? d2 : d1;
-		var cellsThatTwoOtherCellsBothCanSee = !otherCellsMap & CandMaps[otherDigit];
+		var cellsThatTwoOtherCellsBothCanSee = !otherCellsMap & CandidatesMap[otherDigit];
 
 		// Iterate on two cases (because we holds two other cells,
 		// and both those two cells may contain possible elimination).
@@ -3704,13 +3704,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					continue;
 				}
 
-				var otherCells = HouseMaps[houseIndex] & CandMaps[otherDigit] & PeerMaps[anotherCell];
+				var otherCells = HouseMaps[houseIndex] & CandidatesMap[otherDigit] & PeerMaps[anotherCell];
 				int sameHouses = (otherCells + anotherCell).CoveredHouses;
 				foreach (int sameHouse in sameHouses)
 				{
 					// Check whether all possible positions of the digit 'b' in this house only
 					// lies in the given cells above ('cellsThatTwoOtherCellsBothCanSee').
-					if ((HouseMaps[sameHouse] - anotherCell & CandMaps[otherDigit]) != otherCells)
+					if ((HouseMaps[sameHouse] - anotherCell & CandidatesMap[otherDigit]) != otherCells)
 					{
 						continue;
 					}

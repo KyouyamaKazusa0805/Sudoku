@@ -28,7 +28,7 @@ public sealed unsafe partial class TemplateStepSearcher : ITemplateStepSearcher
 			if (!TemplateDeleteOnly)
 			{
 				// Check template sets.
-				if ((distributedMapsByDigit[digit] & CandMaps[digit]) is not { Count: not 0 } templateSetMap)
+				if ((distributedMapsByDigit[digit] & CandidatesMap[digit]) is not { Count: not 0 } templateSetMap)
 				{
 					continue;
 				}
@@ -61,7 +61,7 @@ public sealed unsafe partial class TemplateStepSearcher : ITemplateStepSearcher
 			}
 
 			// Then check template deletes.
-			if (CandMaps[digit] - distributedMapsByDigit[digit] is not { Count: not 0 } templateDeleteMap)
+			if (CandidatesMap[digit] - distributedMapsByDigit[digit] is not { Count: not 0 } templateDeleteMap)
 			{
 				continue;
 			}

@@ -14,15 +14,15 @@ public sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		for (int i = 0, length = BivalueMap.Count, iterationLength = length - 1; i < iterationLength; i++)
+		for (int i = 0, length = BivalueCells.Count, iterationLength = length - 1; i < iterationLength; i++)
 		{
-			int c1 = BivalueMap[i];
+			int c1 = BivalueCells[i];
 
 			short mask = grid.GetCandidates(c1);
 			int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
 			for (int j = i + 1; j < length; j++)
 			{
-				int c2 = BivalueMap[j];
+				int c2 = BivalueCells[j];
 
 				// Check the candidates that cell holds is totally same with 'c1'.
 				if (grid.GetCandidates(c2) != mask)
@@ -51,7 +51,7 @@ public sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
 					int block = interCell.ToHouseIndex(HouseType.Block);
 					var houseMap = HouseMaps[block];
 					var checkingMap = houseMap - unionMap & houseMap;
-					if ((checkingMap & CandMaps[d1]) is not [] || (checkingMap & CandMaps[d2]) is not [])
+					if ((checkingMap & CandidatesMap[d1]) is not [] || (checkingMap & CandidatesMap[d2]) is not [])
 					{
 						continue;
 					}

@@ -28,8 +28,8 @@ namespace Sudoku.Solving.Manual.Buffers;
 /// which means you can also call the property by <see cref="Grid"/>. Of course, some of them
 /// doesn't contain the same one in <see cref="Grid"/>, but you can find a same property whose
 /// execution logic (handling logic) is totally same.
-/// For example, <see cref="EmptyMap"/> is same as <see cref="Grid.EmptyCells"/>. The difference
-/// between them is that you shouldn't use <see cref="EmptyMap"/> until you have called
+/// For example, <see cref="EmptyCells"/> is same as <see cref="Grid.EmptyCells"/>. The difference
+/// between them is that you shouldn't use <see cref="EmptyCells"/> until you have called
 /// <see cref="InitializeMaps"/>, while <see cref="Grid.EmptyCells"/> can be used
 /// everywhere, because it isn't an instant property (which means the calculation begins
 /// when you called them, i.e. lazy ones; in contrast, some properties only store values directly,
@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Buffers;
 internal static class FastProperties
 {
 	/// <summary>
-	/// The empty cells map.
+	/// <inheritdoc cref="Grid.EmptyCells"/>
 	/// </summary>
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
@@ -52,10 +52,10 @@ internal static class FastProperties
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
-	public static Cells EmptyMap { get; private set; }
+	public static Cells EmptyCells { get; private set; }
 
 	/// <summary>
-	/// The bi-value cells map.
+	/// <inheritdoc cref="Grid.BivalueCells"/>
 	/// </summary>
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
@@ -64,10 +64,10 @@ internal static class FastProperties
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
-	public static Cells BivalueMap { get; private set; }
+	public static Cells BivalueCells { get; private set; }
 
 	/// <summary>
-	/// The candidate maps.
+	/// <inheritdoc cref="Grid.CandidatesMap"/>
 	/// </summary>
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
@@ -76,10 +76,10 @@ internal static class FastProperties
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
-	public static Cells[] CandMaps { get; private set; }
+	public static Cells[] CandidatesMap { get; private set; }
 
 	/// <summary>
-	/// The digit maps.
+	/// <inheritdoc cref="Grid.DigitsMap"/>
 	/// </summary>
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
@@ -88,10 +88,10 @@ internal static class FastProperties
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
-	public static Cells[] DigitMaps { get; private set; }
+	public static Cells[] DigitsMap { get; private set; }
 
 	/// <summary>
-	/// The value maps.
+	/// <inheritdoc cref="Grid.ValuesMap"/>
 	/// </summary>
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
@@ -100,7 +100,7 @@ internal static class FastProperties
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
-	public static Cells[] ValueMaps { get; private set; }
+	public static Cells[] ValuesMap { get; private set; }
 
 
 	/// <summary>
@@ -108,8 +108,13 @@ internal static class FastProperties
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[MemberNotNull(nameof(CandMaps), nameof(DigitMaps), nameof(ValueMaps))]
+	[MemberNotNull(nameof(CandidatesMap), nameof(DigitsMap), nameof(ValuesMap))]
 	public static void InitializeMaps(in Grid grid)
-		=> (EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = (
-			grid.EmptyCells, grid.BivalueCells, grid.CandidatesMap, grid.DigitsMap, grid.ValuesMap);
+		=> (EmptyCells, BivalueCells, CandidatesMap, DigitsMap, ValuesMap) = (
+			grid.EmptyCells,
+			grid.BivalueCells,
+			grid.CandidatesMap,
+			grid.DigitsMap,
+			grid.ValuesMap
+		);
 }

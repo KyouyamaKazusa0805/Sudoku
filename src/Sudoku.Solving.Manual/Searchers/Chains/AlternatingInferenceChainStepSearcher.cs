@@ -731,14 +731,14 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		{
 			for (byte digit = 0; digit < 9; digit++)
 			{
-				if ((ValueMaps[digit] & HouseMaps[house]) is not [])
+				if ((ValuesMap[digit] & HouseMaps[house]) is not [])
 				{
 					// The current house contains the current digit,
 					// which is not allowed in searching for strong and weak inferences.
 					continue;
 				}
 
-				var emptyCells = HouseMaps[house] & CandMaps[digit];
+				var emptyCells = HouseMaps[house] & CandidatesMap[digit];
 				short blockMask = emptyCells.BlockMask;
 				switch (PopCount((uint)blockMask))
 				{
@@ -846,14 +846,14 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		{
 			for (byte digit = 0; digit < 9; digit++)
 			{
-				if ((ValueMaps[digit] & HouseMaps[house]) is not [])
+				if ((ValuesMap[digit] & HouseMaps[house]) is not [])
 				{
 					// The current house contains the current digit,
 					// which is not allowed in searching for strong and weak inferences.
 					continue;
 				}
 
-				var emptyCells = HouseMaps[house] & CandMaps[digit];
+				var emptyCells = HouseMaps[house] & CandidatesMap[digit];
 				int houseMask = emptyCells.RowMask << 9 | emptyCells.ColumnMask << 18;
 				switch (PopCount((uint)houseMask))
 				{
@@ -950,10 +950,10 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		// Iterate on each cell, to get all strong relations.
 		if (NodeTypes.Flags(SoleCell))
 		{
-			foreach (int cell in EmptyMap)
+			foreach (int cell in EmptyCells)
 			{
 				short mask = grid.GetCandidates(cell);
-				if (BivalueMap.Contains(cell))
+				if (BivalueCells.Contains(cell))
 				{
 					// Both strong and weak inferences.
 					int d1 = TrailingZeroCount(mask);

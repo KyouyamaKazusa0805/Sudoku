@@ -42,7 +42,7 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 				result[digit] |= map;
 			}
 
-			result[digit] = CandMaps[digit] - result[digit];
+			result[digit] = CandidatesMap[digit] - result[digit];
 		}
 
 		return result;

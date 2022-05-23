@@ -73,7 +73,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 		var linkForEachDigit = stackalloc Cells[9];
 		for (int globalIndex = 0, iterationCount = Patterns.Count; globalIndex < iterationCount; globalIndex++)
 		{
-			Cells pattern = Patterns[globalIndex], map = EmptyMap & pattern;
+			Cells pattern = Patterns[globalIndex], map = EmptyCells & pattern;
 			if (pattern.Count < 12 && pattern.Count - map.Count > 1 || pattern.Count - map.Count > 2)
 			{
 				continue;
@@ -83,7 +83,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 			for (int digit = 0; digit < 9; digit++)
 			{
 				var pMap = linkForEachDigit + digit;
-				*pMap = CandMaps[digit] & map;
+				*pMap = CandidatesMap[digit] & map;
 				n += MathExtensions.Min(
 					PopCount((uint)pMap->RowMask),
 					PopCount((uint)pMap->ColumnMask),
@@ -114,7 +114,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 						{
 							int house = i + 9;
 							linkForEachHouse[house] |= q;
-							elimMap |= !(CandMaps[digit] & HouseMaps[house] & map);
+							elimMap |= !(CandidatesMap[digit] & HouseMaps[house] & map);
 						}
 					}
 					if (PopCount(cMask) == temp)
@@ -124,7 +124,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 						{
 							int house = i + 18;
 							linkForEachHouse[house] |= q;
-							elimMap |= !(CandMaps[digit] & HouseMaps[house] & map);
+							elimMap |= !(CandidatesMap[digit] & HouseMaps[house] & map);
 						}
 					}
 					if (PopCount(bMask) == temp)
@@ -133,11 +133,11 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 						foreach (int i in bMask)
 						{
 							linkForEachHouse[i] |= q;
-							elimMap |= !(CandMaps[digit] & HouseMaps[i] & map);
+							elimMap |= !(CandidatesMap[digit] & HouseMaps[i] & map);
 						}
 					}
 
-					elimMap &= CandMaps[digit];
+					elimMap &= CandidatesMap[digit];
 					if (elimMap is [])
 					{
 						continue;

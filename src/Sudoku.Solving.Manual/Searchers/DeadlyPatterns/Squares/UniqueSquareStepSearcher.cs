@@ -68,7 +68,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 	{
 		foreach (var pattern in Patterns)
 		{
-			if ((EmptyMap & pattern) != pattern)
+			if ((EmptyCells & pattern) != pattern)
 			{
 				continue;
 			}
@@ -112,7 +112,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			}
 
 			int extraDigit = TrailingZeroCount(mask & ~digitsMask);
-			var extraDigitMap = CandMaps[extraDigit] & pattern;
+			var extraDigitMap = CandidatesMap[extraDigit] & pattern;
 			if (extraDigitMap is not [var elimCell])
 			{
 				continue;
@@ -134,7 +134,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (int digit in digits)
 			{
-				foreach (int cell in pattern - elimCell & CandMaps[digit])
+				foreach (int cell in pattern - elimCell & CandidatesMap[digit])
 				{
 					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
@@ -174,7 +174,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			}
 
 			int extraDigit = TrailingZeroCount(mask & ~digitsMask);
-			if (pattern % CandMaps[extraDigit] is not { Count: not 0 } elimMap)
+			if (pattern % CandidatesMap[extraDigit] is not { Count: not 0 } elimMap)
 			{
 				continue;
 			}
@@ -188,12 +188,12 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (int digit in digits)
 			{
-				foreach (int cell in CandMaps[digit] & pattern)
+				foreach (int cell in CandidatesMap[digit] & pattern)
 				{
 					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
 			}
-			foreach (int cell in CandMaps[extraDigit] & pattern)
+			foreach (int cell in CandidatesMap[extraDigit] & pattern)
 			{
 				candidateOffsets.Add(new(1, cell * 9 + extraDigit));
 			}
@@ -231,7 +231,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			var tempMap = Cells.Empty;
 			foreach (int digit in extraDigitsMask)
 			{
-				tempMap |= CandMaps[digit];
+				tempMap |= CandidatesMap[digit];
 			}
 			if (tempMap.InOneHouse)
 			{
@@ -240,7 +240,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 
 			foreach (int house in tempMap.CoveredHouses)
 			{
-				var allCells = (HouseMaps[house] & EmptyMap) - pattern;
+				var allCells = (HouseMaps[house] & EmptyCells) - pattern;
 				for (int size = PopCount((uint)extraDigitsMask) - 1, count = allCells.Count; size < count; size++)
 				{
 					foreach (var cells in allCells & size)
@@ -255,7 +255,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in tempMask)
 						{
-							foreach (int cell in (allCells - cells) & CandMaps[digit])
+							foreach (int cell in (allCells - cells) & CandidatesMap[digit])
 							{
 								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}
@@ -319,7 +319,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			var tempMap = Cells.Empty;
 			foreach (int digit in extraDigitsMask)
 			{
-				tempMap |= CandMaps[digit];
+				tempMap |= CandidatesMap[digit];
 			}
 			if (tempMap.InOneHouse)
 			{
@@ -332,7 +332,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 				var compareMap = HouseMaps[house] & pattern;
 				foreach (int digit in digits)
 				{
-					if ((compareMap | HouseMaps[house] & CandMaps[digit]) == compareMap)
+					if ((compareMap | HouseMaps[house] & CandidatesMap[digit]) == compareMap)
 					{
 						switch (count++)
 						{
@@ -356,7 +356,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 				var conclusions = new List<Conclusion>();
 				foreach (int digit in otherDigitsMask)
 				{
-					foreach (int cell in compareMap & CandMaps[digit])
+					foreach (int cell in compareMap & CandidatesMap[digit])
 					{
 						conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 					}
@@ -374,11 +374,11 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 				}
-				foreach (int cell in compareMap & CandMaps[d1])
+				foreach (int cell in compareMap & CandidatesMap[d1])
 				{
 					candidateOffsets.Add(new(1, cell * 9 + d1));
 				}
-				foreach (int cell in compareMap & CandMaps[d2])
+				foreach (int cell in compareMap & CandidatesMap[d2])
 				{
 					candidateOffsets.Add(new(1, cell * 9 + d2));
 				}

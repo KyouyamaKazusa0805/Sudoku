@@ -18,7 +18,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		if (BivalueMap.Count < 5)
+		if (BivalueCells.Count < 5)
 		{
 			return null;
 		}
@@ -31,7 +31,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
 		IOrderedEnumerable<UniqueLoopStep> resultList = default!;
-		foreach (int cell in BivalueMap)
+		foreach (int cell in BivalueCells)
 		{
 			short mask = grid.GetCandidates(cell);
 			int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
@@ -53,7 +53,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 			short comparer = (short)(1 << d1 | 1 << d2);
 			foreach (var (currentLoop, links) in loops)
 			{
-				var extraCellsMap = currentLoop - BivalueMap;
+				var extraCellsMap = currentLoop - BivalueCells;
 				switch (extraCellsMap.Count)
 				{
 					case 0:
@@ -198,7 +198,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 		}
 
 		int extraDigit = TrailingZeroCount(mask);
-		var elimMap = extraCellsMap % CandMaps[extraDigit];
+		var elimMap = extraCellsMap % CandidatesMap[extraDigit];
 		if (elimMap is [])
 		{
 			goto ReturnNull;
@@ -274,12 +274,12 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 		short otherDigitsMask = (short)(m & ~comparer);
 		foreach (int houseIndex in extraCellsMap.CoveredHouses)
 		{
-			if (((ValueMaps[d1] | ValueMaps[d2]) & HouseMaps[houseIndex]) is not [])
+			if (((ValuesMap[d1] | ValuesMap[d2]) & HouseMaps[houseIndex]) is not [])
 			{
 				continue;
 			}
 
-			var otherCells = (HouseMaps[houseIndex] & EmptyMap) - loop;
+			var otherCells = (HouseMaps[houseIndex] & EmptyCells) - loop;
 			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Count; size < count; size++)
 			{
 				foreach (int[] cells in otherCells & size)
@@ -290,7 +290,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 						continue;
 					}
 
-					if ((HouseMaps[houseIndex] & EmptyMap) - cells - loop is not { Count: not 0 } elimMap)
+					if ((HouseMaps[houseIndex] & EmptyCells) - cells - loop is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}
@@ -298,7 +298,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 					var conclusions = new List<Conclusion>();
 					foreach (int digit in mask)
 					{
-						foreach (int cell in elimMap & CandMaps[digit])
+						foreach (int cell in elimMap & CandidatesMap[digit])
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
@@ -382,7 +382,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 			for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
 				var (digit, otherDigit) = digitPairs[digitPairIndex];
-				var map = HouseMaps[houseIndex] & CandMaps[digit];
+				var map = HouseMaps[houseIndex] & CandidatesMap[digit];
 				if (map != (HouseMaps[houseIndex] & loop))
 				{
 					continue;

@@ -26,7 +26,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
-				if ((c & EmptyMap) is not [])
+				if ((c & EmptyCells) is not [])
 				{
 					if (GetAll(accumulator, grid, size, baseSet, coverSet, a, b, c, onlyFindOne) is { } step1)
 					{
@@ -84,7 +84,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 		in Cells a, in Cells b, in Cells c, bool onlyFindOne)
 	{
 		// Iterate on each cell combination.
-		foreach (var cells in a & EmptyMap & size - 1)
+		foreach (var cells in a & EmptyCells & size - 1)
 		{
 			// Gather the mask. The cell combination must contain the specified number of digits.
 			short mask = grid.GetDigitsUnion(cells);
@@ -97,7 +97,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 			bool isOverlapped = false;
 			foreach (int digit in mask)
 			{
-				if ((ValueMaps[digit] & HouseMaps[coverSet]) is not [])
+				if ((ValuesMap[digit] & HouseMaps[coverSet]) is not [])
 				{
 					isOverlapped = true;
 					break;
@@ -113,7 +113,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 			short ahsMask = 0;
 			foreach (int digit in mask)
 			{
-				ahsMask |= (HouseMaps[coverSet] & CandMaps[digit] & b) / coverSet;
+				ahsMask |= (HouseMaps[coverSet] & CandidatesMap[digit] & b) / coverSet;
 			}
 			if (PopCount((uint)ahsMask) != size - 1)
 			{
@@ -143,7 +143,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 			}
 			foreach (int digit in Grid.MaxCandidatesMask & ~mask)
 			{
-				foreach (int ahsCell in ahsCells & CandMaps[digit])
+				foreach (int ahsCell in ahsCells & CandidatesMap[digit])
 				{
 					conclusions.Add(new(ConclusionType.Elimination, ahsCell, digit));
 				}
@@ -159,7 +159,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (int digit in mask)
 			{
-				foreach (int cell in cells & CandMaps[digit])
+				foreach (int cell in cells & CandidatesMap[digit])
 				{
 					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
@@ -179,7 +179,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 				}
 			}
 
-			var map = (cells | ahsCells) - EmptyMap;
+			var map = (cells | ahsCells) - EmptyCells;
 			var valueCells = new List<CellViewNode>(map.Count);
 			foreach (int cell in map)
 			{

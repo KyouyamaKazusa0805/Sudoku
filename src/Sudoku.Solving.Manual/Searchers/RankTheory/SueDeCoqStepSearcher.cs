@@ -19,7 +19,7 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 		//
 		//     abcd abcd | ab
 		//     cd        |
-		if (EmptyMap.Count < 4)
+		if (EmptyCells.Count < 4)
 		{
 			return null;
 		}
@@ -32,7 +32,7 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 			bool cannibalMode = cannibalModeCases[caseIndex];
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
-				var emptyCellsInInterMap = c & EmptyMap;
+				var emptyCellsInInterMap = c & EmptyCells;
 				if (emptyCellsInInterMap.Count < 2)
 				{
 					// The intersection needs at least two empty cells.
@@ -70,8 +70,8 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 						continue;
 					}
 
-					var blockMap = (b | c - currentInterMap) & EmptyMap;
-					var lineMap = a & EmptyMap;
+					var blockMap = (b | c - currentInterMap) & EmptyCells;
+					var lineMap = a & EmptyCells;
 
 					// Iterate on the number of the cells that should be selected in block.
 					for (int i = 1, count = blockMap.Count; i < count; i++)
@@ -85,7 +85,7 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 							// Get the elimination map in the block.
 							foreach (int digit in blockMask)
 							{
-								elimMapBlock |= CandMaps[digit];
+								elimMapBlock |= CandidatesMap[digit];
 							}
 							elimMapBlock &= blockMap - currentBlockMap;
 
@@ -101,7 +101,7 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 									// Get the elimination map in the line.
 									foreach (int digit in lineMask)
 									{
-										elimMapLine |= CandMaps[digit];
+										elimMapLine |= CandidatesMap[digit];
 									}
 									elimMapLine &= lineMap - currentLineMap;
 
@@ -129,7 +129,7 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 											cannibalMode
 												? (currentBlockMap | currentLineMap)
 												: currentInterMap
-										) % CandMaps[digitIsolated] & EmptyMap;
+										) % CandidatesMap[digitIsolated] & EmptyCells;
 									}
 
 									if (currentInterMap.Count + i + j == PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)

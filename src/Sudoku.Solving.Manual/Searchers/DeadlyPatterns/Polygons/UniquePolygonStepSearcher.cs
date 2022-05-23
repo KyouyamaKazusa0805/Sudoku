@@ -217,15 +217,15 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		if (EmptyMap.Count < 7)
+		if (EmptyCells.Count < 7)
 		{
 			return null;
 		}
 
-		for (int i = 0, end = EmptyMap.Count == 7 ? BdpTemplatesSize3Count : BdpTemplatesSize4Count; i < end; i++)
+		for (int i = 0, end = EmptyCells.Count == 7 ? BdpTemplatesSize3Count : BdpTemplatesSize4Count; i < end; i++)
 		{
 			var pattern = Patterns[i];
-			if ((EmptyMap & pattern.Map) != pattern.Map)
+			if ((EmptyCells & pattern.Map) != pattern.Map)
 			{
 				// The pattern contains non-empty cells.
 				continue;
@@ -283,7 +283,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 			}
 
 			int otherDigit = TrailingZeroCount(orMask & ~tempMask);
-			var mapContainingThatDigit = map & CandMaps[otherDigit];
+			var mapContainingThatDigit = map & CandidatesMap[otherDigit];
 			if (mapContainingThatDigit is not [var elimCell])
 			{
 				continue;
@@ -353,8 +353,8 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 			}
 
 			int otherDigit = TrailingZeroCount(orMask & ~tempMask);
-			var mapContainingThatDigit = map & CandMaps[otherDigit];
-			if (((!mapContainingThatDigit - map) & CandMaps[otherDigit]) is not { Count: not 0 } elimMap)
+			var mapContainingThatDigit = map & CandidatesMap[otherDigit];
+			if (((!mapContainingThatDigit - map) & CandidatesMap[otherDigit]) is not { Count: not 0 } elimMap)
 			{
 				continue;
 			}
@@ -417,7 +417,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 				}
 
 				// Iterate on the cells by the specified size.
-				var iterationCellsMap = (HouseMaps[houseIndex] - currentMap) & EmptyMap;
+				var iterationCellsMap = (HouseMaps[houseIndex] - currentMap) & EmptyCells;
 				short otherDigitsMask = (short)(orMask & ~tempMask);
 				for (int size = PopCount((uint)otherDigitsMask) - 1, count = iterationCellsMap.Count; size < count; size++)
 				{
@@ -435,7 +435,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in comparer)
 						{
-							if ((iterationCellsMap & CandMaps[digit]) is not { Count: not 0 } cells)
+							if ((iterationCellsMap & CandidatesMap[digit]) is not { Count: not 0 } cells)
 							{
 								continue;
 							}
@@ -533,14 +533,14 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 					bool flag = false;
 					foreach (int digit in combination)
 					{
-						if ((ValueMaps[digit] & HouseMaps[houseIndex]) is not [])
+						if ((ValuesMap[digit] & HouseMaps[houseIndex]) is not [])
 						{
 							flag = true;
 							break;
 						}
 
 						combinationMask |= (short)(1 << digit);
-						combinationMap |= CandMaps[digit] & HouseMaps[houseIndex];
+						combinationMap |= CandidatesMap[digit] & HouseMaps[houseIndex];
 					}
 					if (flag)
 					{
@@ -560,7 +560,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 					var possibleCandMaps = Cells.Empty;
 					foreach (int finalDigit in finalDigits)
 					{
-						possibleCandMaps |= CandMaps[finalDigit];
+						possibleCandMaps |= CandidatesMap[finalDigit];
 					}
 					if ((combinationMap & possibleCandMaps) is not { Count: not 0 } elimMap)
 					{

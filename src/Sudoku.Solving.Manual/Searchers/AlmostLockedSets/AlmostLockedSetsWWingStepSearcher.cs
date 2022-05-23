@@ -21,7 +21,7 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 		{
 			for (int houseIndex = 0; houseIndex < 27; houseIndex++)
 			{
-				if ((HouseMaps[houseIndex] & CandMaps[digit]) is { Count: 2 } temp)
+				if ((HouseMaps[houseIndex] & CandidatesMap[digit]) is { Count: 2 } temp)
 				{
 					(conjugatePairs[digit] ??= new List<Conjugate>()).Add(new(temp, digit));
 				}
@@ -69,7 +69,7 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 						continue;
 					}
 
-					Cells p1 = map1 % CandMaps[x], p2 = map2 % CandMaps[x];
+					Cells p1 = map1 % CandidatesMap[x], p2 = map2 % CandidatesMap[x];
 					if (p1 is [] || p2 is [])
 					{
 						// At least one of two ALSes can't see the node of the conjugate pair.
@@ -102,7 +102,7 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 							// Iterate on each digit as the digit 'w'.
 							foreach (int w in mask & ~(1 << x))
 							{
-								if ((map1 | map2) % CandMaps[w] is not { Count: not 0 } tempMap)
+								if ((map1 | map2) % CandidatesMap[w] is not { Count: not 0 } tempMap)
 								{
 									continue;
 								}

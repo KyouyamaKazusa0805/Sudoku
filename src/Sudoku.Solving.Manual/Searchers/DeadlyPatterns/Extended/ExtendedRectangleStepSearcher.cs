@@ -143,7 +143,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 	{
 		foreach (var (allCellsMap, pairs, size) in PatternInfos)
 		{
-			if ((EmptyMap & allCellsMap) != allCellsMap)
+			if ((EmptyCells & allCellsMap) != allCellsMap)
 			{
 				continue;
 			}
@@ -203,7 +203,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 				// Possible type 1 or 2 found.
 				// Now check extra cells.
 				int extraDigit = TrailingZeroCount(extraDigits);
-				var extraCellsMap = allCellsMap & CandMaps[extraDigit];
+				var extraCellsMap = allCellsMap & CandidatesMap[extraDigit];
 				if (extraCellsMap is [])
 				{
 					continue;
@@ -333,7 +333,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap, in Cells extraCells,
 		short normalDigits, int extraDigit, bool onlyFindOne)
 	{
-		if ((!extraCells & CandMaps[extraDigit]) is not { Count: not 0 } elimMap)
+		if ((!extraCells & CandidatesMap[extraDigit]) is not { Count: not 0 } elimMap)
 		{
 			goto ReturnNull;
 		}
@@ -382,7 +382,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 	{
 		foreach (int houseIndex in extraCellsMap.CoveredHouses)
 		{
-			var otherCells = (HouseMaps[houseIndex] & EmptyMap) - allCellsMap;
+			var otherCells = (HouseMaps[houseIndex] & EmptyCells) - allCellsMap;
 			for (int size = 1, length = otherCells.Count; size < length; size++)
 			{
 				foreach (var cells in otherCells & size)
@@ -393,7 +393,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 						continue;
 					}
 
-					var elimMap = (HouseMaps[houseIndex] & EmptyMap) - allCellsMap - cells;
+					var elimMap = (HouseMaps[houseIndex] & EmptyCells) - allCellsMap - cells;
 					if (elimMap is [])
 					{
 						continue;
@@ -402,7 +402,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 					var conclusions = new List<Conclusion>();
 					foreach (int digit in mask)
 					{
-						foreach (int cell in elimMap & CandMaps[digit])
+						foreach (int cell in elimMap & CandidatesMap[digit])
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
@@ -540,7 +540,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 					foreach (int houseIndex in extraCellsMap.CoveredHouses)
 					{
 						var map = HouseMaps[houseIndex] & extraCellsMap;
-						if (map != extraCellsMap || map != (CandMaps[conjugateDigit] & HouseMaps[houseIndex]))
+						if (map != extraCellsMap || map != (CandidatesMap[conjugateDigit] & HouseMaps[houseIndex]))
 						{
 							continue;
 						}
@@ -549,7 +549,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in elimDigits)
 						{
-							foreach (int cell in extraCellsMap & CandMaps[digit])
+							foreach (int cell in extraCellsMap & CandidatesMap[digit])
 							{
 								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}

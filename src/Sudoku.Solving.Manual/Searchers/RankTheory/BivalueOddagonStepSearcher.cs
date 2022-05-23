@@ -16,7 +16,7 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		if (BivalueMap.Count < 4)
+		if (BivalueCells.Count < 4)
 		{
 			return null;
 		}
@@ -29,7 +29,7 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
 		IOrderedEnumerable<BivalueOddagonStep> resultList = default!;
-		foreach (int cell in BivalueMap)
+		foreach (int cell in BivalueCells)
 		{
 			short mask = grid.GetCandidates(cell);
 			int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
@@ -51,7 +51,7 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 			short comparer = (short)(1 << d1 | 1 << d2);
 			foreach (var (currentLoop, links) in loops)
 			{
-				var extraCellsMap = currentLoop - BivalueMap;
+				var extraCellsMap = currentLoop - BivalueCells;
 				switch (extraCellsMap.Count)
 				{
 					case 0:
@@ -182,7 +182,7 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 		}
 
 		int extraDigit = TrailingZeroCount(mask);
-		if (extraCellsMap % CandMaps[extraDigit] is not { Count: not 0 } elimMap)
+		if (extraCellsMap % CandidatesMap[extraDigit] is not { Count: not 0 } elimMap)
 		{
 			goto ReturnNull;
 		}
@@ -245,12 +245,12 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 		short otherDigitsMask = (short)(m & ~comparer);
 		foreach (int house in extraCellsMap.CoveredHouses)
 		{
-			if (((ValueMaps[d1] | ValueMaps[d2]) & HouseMaps[house]) is not [])
+			if (((ValuesMap[d1] | ValuesMap[d2]) & HouseMaps[house]) is not [])
 			{
 				goto ReturnNull;
 			}
 
-			var otherCells = (HouseMaps[house] & EmptyMap) - loop;
+			var otherCells = (HouseMaps[house] & EmptyCells) - loop;
 			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Count; size < count; size++)
 			{
 				foreach (var cells in otherCells & size)
@@ -261,7 +261,7 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 						continue;
 					}
 
-					if ((HouseMaps[house] & EmptyMap) - cells - loop is not { Count: not 0 } elimMap)
+					if ((HouseMaps[house] & EmptyCells) - cells - loop is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}
@@ -269,7 +269,7 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 					var conclusions = new List<Conclusion>(16);
 					foreach (int digit in mask)
 					{
-						foreach (int cell in elimMap & CandMaps[digit])
+						foreach (int cell in elimMap & CandidatesMap[digit])
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
