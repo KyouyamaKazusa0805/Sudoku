@@ -1,5 +1,5 @@
 ﻿// Configures the log level.
-Log.LogLevel = LogLevel.Info;
+Logging.LogLevel = LogLevel.Info;
 
 // Outputs the copyright information.
 Console.WriteLine($"{StringResource.Get("__ProjectCopyrightStatement")!}\r\n");
@@ -356,12 +356,15 @@ static async void PrintQueryAsync(Sender sender, string message)
 
 	(string Id, int ExperiencePoint)? pair = null;
 	var sb = new StringBuilder();
-	for (int rankingOrder = 0, i = 0, rankingPairsLength = rankingPairs.Length; i < rankingPairsLength; i++)
+	for (int order = 0, i = 0, length = rankingPairs.Length; i < Min(length, 10); i++)
 	{
 		var (id, exp) = rankingPairs[i];
+		if (await sender.GetMemberAsync(new() { Id = id }) is not { Nickname: var nickname })
+		{
+			// If failed to searched for, the returning value will be null.
+			continue;
+		}
 
-		var member = await sender.GetMemberAsync(new() { Id = id });
-		string nickname = member?.Nickname ?? $"<{id}>";
 		string expText = StringResource.Get("ExperiencePointText")!;
 		string comma = StringResource.Get("Comma")!;
 		string colon = StringResource.Get("Colon")!;
@@ -370,7 +373,7 @@ static async void PrintQueryAsync(Sender sender, string message)
 
 		// Special case: if the current user has a same experience point value with the former one,
 		// we should treat him/her as same ranking value as the former one.
-		int finalRankingOrder = pair is (_, var formerExp) && formerExp == exp ? rankingOrder : ++rankingOrder;
+		int finalRankingOrder = pair is (_, var formerExp) && formerExp == exp ? order : ++order;
 		sb.AppendLine($"{di} {finalRankingOrder} {ming}{colon}{nickname}{comma}{exp} {expText}");
 
 		pair = (id, exp);
