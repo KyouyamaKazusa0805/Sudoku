@@ -178,7 +178,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								}
 							}
 
-							switch ((c1, c2))
+							switch (c1, c2)
 							{
 								// Diagonal type.
 								case (0, 3):

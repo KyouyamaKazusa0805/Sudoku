@@ -78,7 +78,7 @@ static async void PlaySudokuAsync(Sender sender, string message)
 	timer.Close();
 
 	// Checks the result.
-	switch ((_timeLast, _playersJoined))
+	switch (_timeLast, _playersJoined)
 	{
 		case ( <= 0, { Count: < 2 }):
 		{

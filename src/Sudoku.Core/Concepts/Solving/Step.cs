@@ -113,7 +113,7 @@ public abstract record class Step(ImmutableArray<Conclusion> Conclusions, Immuta
 		int formatCount = 0;
 		for (int i = 0, iterationLength = length - 1; i < iterationLength; i++)
 		{
-			switch ((format[i], format[i + 1]))
+			switch (format[i], format[i + 1])
 			{
 				case ('{', '}'):
 				{

@@ -822,7 +822,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 								: new LockedCandidatesNode(digit, node2Cells)
 						);
 
-						switch ((node1, node2))
+						switch (node1, node2)
 						{
 							case (SoleCandidateNode a, SoleCandidateNode b)
 							when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
@@ -882,7 +882,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 						
 						void internalAdd(Node node1, Node node2)
 						{
-							switch ((node1, node2))
+							switch (node1, node2)
 							{
 								case (SoleCandidateNode a, SoleCandidateNode b)
 								when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):

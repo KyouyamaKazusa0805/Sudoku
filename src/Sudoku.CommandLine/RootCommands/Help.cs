@@ -154,14 +154,9 @@ public sealed class Help : IExecutable
 				where rootCommandAttribute is not null
 				select (Type: rootCommandAttribute, L1: l1, L2: l2))
 			{
-				switch ((l1, l2))
+				switch (l1, l2)
 				{
-#pragma warning disable IDE0055
-					case (
-						{ Notation: var notation, Description: var description, IsRequired: var isRequired },
-						null
-					):
-#pragma warning restore IDE0055
+					case ({ Notation: var notation, Description: var description, IsRequired: var isRequired }, null):
 					{
 						// l1 is not null
 						singleArguments.Add(
