@@ -17,7 +17,7 @@ public static class JsonSerializerOptionsExtensions
 	/// </typeparam>
 	/// <param name="this">The options to check the existence of the converter.</param>
 	/// <returns>
-	/// The converter that supports the givent type, or the <typeparamref name="TConverter"/>
+	/// The converter that supports the given type, or the <typeparamref name="TConverter"/>
 	/// will be used when the property <see cref="JsonSerializerOptions.Converters"/>
 	/// doesn't contain any valid converters.
 	/// </returns>

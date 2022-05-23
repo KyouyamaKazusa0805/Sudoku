@@ -5346,6 +5346,18 @@
             <param name="digit">The digit.</param>
             <returns>The conclusions.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.JsonConverter">
+            <summary>
+            Defines a type that is used as a JSON converter that can convert a <see cref="T:System.String"/> into
+            an <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain"/> instance, or vice versa.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.Chain">
             <summary>
             Defines a chain.

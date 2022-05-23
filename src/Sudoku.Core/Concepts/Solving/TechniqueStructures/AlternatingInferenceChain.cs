@@ -27,7 +27,8 @@
 /// </item>
 /// </list>
 /// </summary>
-public sealed class AlternatingInferenceChain : Chain
+[JsonConverter(typeof(JsonConverter))]
+public sealed partial class AlternatingInferenceChain : Chain
 {
 	/// <summary>
 	/// Initializes an <see cref="AlternatingInferenceChain"/> instance via the specified nodes
