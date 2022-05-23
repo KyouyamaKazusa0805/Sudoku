@@ -896,12 +896,6 @@
             via the corresponding ID value specified as the index.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.XEnabled">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.YEnabled">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.DepthFirstSearching">
             <inheritdoc/>
             <remarks>
@@ -916,12 +910,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.NodeTypes">
             <inheritdoc/>
-            <remarks>
-            The default value is <c>
-            <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.SoleCell"/> | <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.SoleDigit"/>
-            | <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.LockedCandidates"/>
-            </c>.
-            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -994,17 +982,6 @@
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher">
             <summary>
             Defines a step searcher that searches for alternating inference chain steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.XEnabled">
-            <summary>
-            Indicates whether the step searcher will check on strong inferences between same-digit node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.YEnabled">
-            <summary>
-            Indicates whether the step searcher will check on strong inferences between sole candidate nodes
-            in a same cell.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.DepthFirstSearching">
@@ -3899,32 +3876,32 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep">
             <summary>
-            Provides with a step that is a <b>Alternating Inference Chain</b> technique.
+            Provides with a step that is an <b>Alternating Inference Chain</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Chain">Indicates the whole chain.</param>
-            <param name="XEnabled"><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.XEnabled"/></param>
-            <param name="YEnabled"><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.YEnabled"/></param>
+            <param name="XEnabled">Indicates whether the X-chain is enabled.</param>
+            <param name="YEnabled">Indicates whether the Y-chain is enabled.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain,System.Boolean,System.Boolean)">
             <summary>
-            Provides with a step that is a <b>Alternating Inference Chain</b> technique.
+            Provides with a step that is an <b>Alternating Inference Chain</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Chain">Indicates the whole chain.</param>
-            <param name="XEnabled"><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.XEnabled"/></param>
-            <param name="YEnabled"><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.YEnabled"/></param>
+            <param name="XEnabled">Indicates whether the X-chain is enabled.</param>
+            <param name="YEnabled">Indicates whether the Y-chain is enabled.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Chain">
             <summary>Indicates the whole chain.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.XEnabled">
-            <summary><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.XEnabled"/></summary>
+            <summary>Indicates whether the X-chain is enabled.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.YEnabled">
-            <summary><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.YEnabled"/></summary>
+            <summary>Indicates whether the Y-chain is enabled.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Difficulty">
             <inheritdoc/>

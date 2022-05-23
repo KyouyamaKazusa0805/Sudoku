@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Searchers;
+﻿using static Sudoku.Runtime.AnalysisServices.SearcherNodeTypes;
+
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with an <b>Alternating Inference Chain</b> step searcher.
@@ -29,8 +31,9 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-[SeparatedStepSearcher(0, nameof(XEnabled), true, nameof(YEnabled), false)]
-[SeparatedStepSearcher(1, nameof(XEnabled), true, nameof(YEnabled), true)]
+[SeparatedStepSearcher(0, nameof(NodeTypes), SoleDigit)]
+[SeparatedStepSearcher(1, nameof(NodeTypes), SoleDigit | SoleCell)]
+[SeparatedStepSearcher(2, nameof(NodeTypes), SoleDigit | SoleCell | LockedCandidates)]
 public sealed partial class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
 	/// <summary>
@@ -110,12 +113,6 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 
 	/// <inheritdoc/>
-	public bool XEnabled { get; init; }
-
-	/// <inheritdoc/>
-	public bool YEnabled { get; init; }
-
-	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
@@ -128,15 +125,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	public int MaxCapacity { get; set; } = 3000;
 
 	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>
-	/// <see cref="SearcherNodeTypes.SoleCell"/> | <see cref="SearcherNodeTypes.SoleDigit"/>
-	/// | <see cref="SearcherNodeTypes.LockedCandidates"/>
-	/// </c>.
-	/// </remarks>
-	public SearcherNodeTypes NodeTypes { get; set; } =
-		SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell
-			| SearcherNodeTypes.LockedCandidates;
+	public SearcherNodeTypes NodeTypes { get; init; }
 
 
 	/// <inheritdoc/>
@@ -195,8 +184,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							+ IChainStepSearcher.GetViewOnLinks(chain)
 					),
 					chain,
-					XEnabled,
-					YEnabled
+					NodeTypes.Flags(SoleDigit),
+					NodeTypes.Flags(SoleCell)
 				);
 
 				if (onlyFindOne)
@@ -250,6 +239,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// );
 	/// </code>
 	/// </param>
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private void PrintInferences(Dictionary<int, HashSet<int>?> inferences, Action<string> outputHandler)
 	{
 		const string separator = ", ";
@@ -365,6 +355,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// </summary>
 	/// <param name="chainIds">The IDs.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private string PrintChainData(int[] chainIds)
 		=> string.Join(" -> ", from id in chainIds select _nodeLookup[id]!.ToString());
 	#endregion
@@ -770,8 +761,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 						switch (node1, node2)
 						{
-							case (SoleCandidateNode a, SoleCandidateNode b)
-							when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
+							case (SoleCandidateNode a, SoleCandidateNode b) when NodeTypes.Flags(SoleDigit):
 							{
 								ConstructInference(a, b, _strongInferences);
 								ConstructInference(b, a, _strongInferences);
@@ -780,7 +770,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 								break;
 							}
-							case var _ when NodeTypes.Flags(SearcherNodeTypes.LockedCandidates):
+							case var _ when NodeTypes.Flags(LockedCandidates):
 							{
 								ConstructInference(node1, node2, _strongInferences);
 								ConstructInference(node2, node1, _strongInferences);
@@ -830,15 +820,14 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 						{
 							switch (node1, node2)
 							{
-								case (SoleCandidateNode a, SoleCandidateNode b)
-								when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
+								case (SoleCandidateNode a, SoleCandidateNode b) when NodeTypes.Flags(SoleDigit):
 								{
 									ConstructInference(a, b, _weakInferences);
 									ConstructInference(b, a, _weakInferences);
 
 									break;
 								}
-								case var _ when NodeTypes.Flags(SearcherNodeTypes.LockedCandidates):
+								case var _ when NodeTypes.Flags(LockedCandidates):
 								{
 									// TODO: Separate and enumerate all combinations on a locked candidates node.
 									ConstructInference(node1, node2, _weakInferences);
@@ -887,8 +876,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 						switch (node1, node2)
 						{
-							case (SoleCandidateNode a, SoleCandidateNode b)
-							when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
+							case (SoleCandidateNode a, SoleCandidateNode b) when NodeTypes.Flags(SoleDigit):
 							{
 								ConstructInference(a, b, _strongInferences);
 								ConstructInference(b, a, _strongInferences);
@@ -897,7 +885,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 								break;
 							}
-							case var _ when NodeTypes.Flags(SearcherNodeTypes.LockedCandidates):
+							case var _ when NodeTypes.Flags(LockedCandidates):
 							{
 								ConstructInference(node1, node2, _strongInferences);
 								ConstructInference(node2, node1, _strongInferences);
@@ -934,15 +922,14 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 								switch (node1, node2)
 								{
-									case (SoleCandidateNode a, SoleCandidateNode b)
-									when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
+									case (SoleCandidateNode a, SoleCandidateNode b) when NodeTypes.Flags(SoleDigit):
 									{
 										ConstructInference(a, b, _weakInferences);
 										ConstructInference(b, a, _weakInferences);
 
 										break;
 									}
-									case var _ when NodeTypes.Flags(SearcherNodeTypes.LockedCandidates):
+									case var _ when NodeTypes.Flags(LockedCandidates):
 									{
 										// TODO: Separate and enumerate all combinations on a locked candidates node.
 										ConstructInference(node1, node2, _weakInferences);
@@ -961,7 +948,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		}
 
 		// Iterate on each cell, to get all strong relations.
-		if (NodeTypes.Flags(SearcherNodeTypes.SoleCell))
+		if (NodeTypes.Flags(SoleCell))
 		{
 			foreach (int cell in EmptyMap)
 			{

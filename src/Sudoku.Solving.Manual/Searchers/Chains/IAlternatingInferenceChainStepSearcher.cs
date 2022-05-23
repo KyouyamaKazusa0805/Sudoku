@@ -6,17 +6,6 @@
 public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 {
 	/// <summary>
-	/// Indicates whether the step searcher will check on strong inferences between same-digit node.
-	/// </summary>
-	bool XEnabled { get; init; }
-
-	/// <summary>
-	/// Indicates whether the step searcher will check on strong inferences between sole candidate nodes
-	/// in a same cell.
-	/// </summary>
-	bool YEnabled { get; init; }
-
-	/// <summary>
 	/// Indicates whether the searcher uses DFS algorithm to search for chains.
 	/// </summary>
 	bool DepthFirstSearching { get; set; }
@@ -89,5 +78,5 @@ public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 	/// Other typed inferences are being considered, such as an XYZ-Wing node, etc.
 	/// </para>
 	/// </summary>
-	SearcherNodeTypes NodeTypes { get; set; }
+	SearcherNodeTypes NodeTypes { get; init; }
 }
