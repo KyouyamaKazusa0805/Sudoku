@@ -188,7 +188,7 @@ partial class BotClient
 			string f(Match m) => messageMentions?.Find(u => predicate(u, m))?.UserName.Insert(0, "@") ?? m.Value;
 			string msgContent = Regex.Replace(messageContent, """<@!\d+>""", f);
 			string senderMaster = (bot.Guilds.TryGetValue(guildId, out var guild) ? guild.Name : null) ?? creatorUserName;
-			Log.Info($"[{senderMaster}][{messageCreator.UserName}] {msgContent.Replace("\xA0", " ")}");
+			Logging.Info($"[{senderMaster}][{messageCreator.UserName}] {msgContent.Replace("\xA0", " ")}");
 		}
 
 		void forEachLoopHandler(Command cmd, ParallelLoopState state, long i)

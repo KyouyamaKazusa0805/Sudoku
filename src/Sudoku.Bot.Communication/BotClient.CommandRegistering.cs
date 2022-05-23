@@ -36,14 +36,14 @@ partial class BotClient
 		if (Commands.ContainsKey(commandName))
 		{
 			string existsText = StringResource.Get("CommandAlreadyExists")!;
-			Log.Warn($"[CommandManager] {commandText} {commandName} {existsText}");
+			Logging.Warn($"[CommandManager] {commandText} {commandName} {existsText}");
 		}
 		else
 		{
 			Commands[commandName] = command;
 
 			string registeredSuccessfully = StringResource.Get("CommandRegisteredSuccessfully")!;
-			Log.Info($"[CommandManager] {commandText} {commandName} {registeredSuccessfully}");
+			Logging.Info($"[CommandManager] {commandText} {commandName} {registeredSuccessfully}");
 		}
 	}
 
@@ -60,18 +60,18 @@ partial class BotClient
 			if (Commands.Remove(commandName, out _))
 			{
 				string removedSuccessfully = StringResource.Get("CommandRemovedSuccessfully")!;
-				Log.Info($"[CommandManager] {commandText} {commandName} {removedSuccessfully}");
+				Logging.Info($"[CommandManager] {commandText} {commandName} {removedSuccessfully}");
 			}
 			else
 			{
 				string removedFailed = StringResource.Get("CommandRemovedFailed")!;
-				Log.Warn($"[CommandManager] {commandText} {commandName} {removedFailed}");
+				Logging.Warn($"[CommandManager] {commandText} {commandName} {removedFailed}");
 			}
 		}
 		else
 		{
 			string notExistsText = StringResource.Get("CommandNotExist")!;
-			Log.Warn($"[CommandManager] {commandText} {commandName} {notExistsText}");
+			Logging.Warn($"[CommandManager] {commandText} {commandName} {notExistsText}");
 		}
 	}
 }

@@ -46,7 +46,7 @@ internal static class BotHttpClient
 		if (FreezeUrl.TryGetValue(reqUrl, out var freezeTime) && freezeTime.EndTime > DateTime.Now)
 		{
 			string text = StringResource.Get("RequestUrlFailedDueToBeingFrozen")!;
-			Log.Warn($"[HttpSend] {text}{reqUrl}");
+			Logging.Warn($"[HttpSend] {text}{reqUrl}");
 
 			return null;
 		}

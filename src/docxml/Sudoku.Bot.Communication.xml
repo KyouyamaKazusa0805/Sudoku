@@ -1860,22 +1860,47 @@
         <member name="M:Sudoku.Bot.Communication.JsonConverters.RemindTypeNumberConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Models.RemindType,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Log">
+        <member name="T:Sudoku.Bot.Communication.LogEntry">
+            <summary>
+            The log data.
+            </summary>
+            <param name="Level">The report level of the log.</param>
+            <param name="Message">The message content.</param>
+            <param name="TimeStamp">The timestamp.</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.LogEntry.#ctor(Sudoku.Bot.Communication.LogLevel,System.String,System.String)">
+            <summary>
+            The log data.
+            </summary>
+            <param name="Level">The report level of the log.</param>
+            <param name="Message">The message content.</param>
+            <param name="TimeStamp">The timestamp.</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.LogEntry.Level">
+            <summary>The report level of the log.</summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.LogEntry.Message">
+            <summary>The message content.</summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.LogEntry.TimeStamp">
+            <summary>The timestamp.</summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Logging">
             <summary>
             Defines a <see langword="static class"/> type that holds the <see langword="static"/> operations on logging.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Log.LogQueue">
+        <member name="F:Sudoku.Bot.Communication.Logging.LogQueue">
             <summary>
             Indicates the output queue.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Log._isWorking">
+        <member name="F:Sudoku.Bot.Communication.Logging._isWorking">
             <summary>
             Indicates whether the bot is now working.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Log.TimeFormatter">
+        <member name="P:Sudoku.Bot.Communication.Logging.TimeFormatter">
             <summary>
             Indicates the formatter for the formatting on a date time.
             The default value is <c>"HH:mm:ss.f"</c>, where:
@@ -1905,75 +1930,50 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Log.LogLevel">
+        <member name="P:Sudoku.Bot.Communication.Logging.LogLevel">
             <summary>
             Indicates which level the log is will be displayed.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Log.TimeStamp">
+        <member name="P:Sudoku.Bot.Communication.Logging.TimeStamp">
             <summary>
             Indicates the timestamp.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.Log.LogTo">
+        <member name="E:Sudoku.Bot.Communication.Logging.LogTo">
             <summary>
             Indicates the event that is triggered when a log is going to be output.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Log.Print(Sudoku.Bot.Communication.LogEntry)">
+        <member name="M:Sudoku.Bot.Communication.Logging.Print(Sudoku.Bot.Communication.LogEntry)">
             <summary>
             To print the log.
             </summary>
             <param name="logItem">The item to log.</param>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Log.Debug(System.String)">
+        <member name="M:Sudoku.Bot.Communication.Logging.Debug(System.String)">
             <summary>
             To print the debug information.
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Log.Info(System.String)">
+        <member name="M:Sudoku.Bot.Communication.Logging.Info(System.String)">
             <summary>
             To print the normal information.
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Log.Warn(System.String)">
+        <member name="M:Sudoku.Bot.Communication.Logging.Warn(System.String)">
             <summary>
             To print the warning information.
             </summary>
             <param name="message">The message.</param>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Log.Error(System.String)">
+        <member name="M:Sudoku.Bot.Communication.Logging.Error(System.String)">
             <summary>
             To print the error information.
             </summary>
             <param name="message">The message.</param>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.LogEntry">
-            <summary>
-            The log data.
-            </summary>
-            <param name="Level">The report level of the log.</param>
-            <param name="Message">The message content.</param>
-            <param name="TimeStamp">The timestamp.</param>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.LogEntry.#ctor(Sudoku.Bot.Communication.LogLevel,System.String,System.String)">
-            <summary>
-            The log data.
-            </summary>
-            <param name="Level">The report level of the log.</param>
-            <param name="Message">The message content.</param>
-            <param name="TimeStamp">The timestamp.</param>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.LogEntry.Level">
-            <summary>The report level of the log.</summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.LogEntry.Message">
-            <summary>The message content.</summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.LogEntry.TimeStamp">
-            <summary>The timestamp.</summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.LogLevel">
             <summary>

@@ -51,7 +51,7 @@ public sealed class HttpLoggingHandler : DelegatingHandler
 		if (cancellationToken.IsCancellationRequested)
 		{
 			string requestIsCancelled = StringResource.Get("RequestCancelled")!;
-			Log.Error($"{requestContent}\n{requestIsCancelled}");
+			Logging.Error($"{requestContent}\n{requestIsCancelled}");
 			return response;
 		}
 
@@ -76,8 +76,8 @@ public sealed class HttpLoggingHandler : DelegatingHandler
 
 		responseContent = $"[HttpHandler][Response]{newline}{responseString}{newline}{responseContent}{newline}";
 
-		var debug = Log.Debug;
-		var error = Log.Error;
+		var debug = Logging.Debug;
+		var error = Logging.Error;
 		(responseStatusCode < HttpStatusCode.BadRequest ? debug : error)($"{requestContent}\n{responseContent}");
 
 		return response;

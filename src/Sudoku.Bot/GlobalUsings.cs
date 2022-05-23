@@ -16,4 +16,3 @@ global using Sudoku.Bot.Communication.Resources;
 global using Sudoku.Bot.EqualityComparers;
 global using Sudoku.Bot.JsonConverters;
 global using static System.Math;
-global using Logging = Sudoku.Bot.Communication.Log;

@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a <see langword="static class"/> type that holds the <see langword="static"/> operations on logging.
 /// </summary>
-public static class Log
+public static class Logging
 {
 	/// <summary>
 	/// Indicates the output queue.

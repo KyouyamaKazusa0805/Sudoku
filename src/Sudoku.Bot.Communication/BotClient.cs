@@ -359,7 +359,7 @@ public partial class BotClient
 			string accessFailedHeader = StringResource.Get("LogHeader_InterfaceAccessFailed")!;
 			string errorCodeText = StringResource.Get("LogContent_ErrorCode")!;
 			string detailsText = StringResource.Get("LogContent_Details")!;
-			Log.Error(
+			Logging.Error(
 				$"""
 				[{accessFailedHeader}]{senderAuthorName} {errorCodeText}{errInfo.Code}{detailsText}{errInfo.Detail}
 				"""
@@ -372,14 +372,14 @@ public partial class BotClient
 				{
 					string seg1 = StringResource.Get("LogContent_ReportFalseSegment1")!;
 					string seg2 = StringResource.Get("LogContent_ReportFalseSegment2")!;
-					Log.Info($"[{accessFailedHeader}] {seg1} {nameof(Sender.ReportError)} {seg2}");
+					Logging.Info($"[{accessFailedHeader}] {seg1} {nameof(Sender.ReportError)} {seg2}");
 
 					break;
 				}
 				case { Message.CreatedTime: var createdTime } when createdTime.AddMinutes(5) < DateTime.Now:
 				{
 					string messageTimeout = StringResource.Get("LogContent_MessageTimeout")!;
-					Log.Info($"[{accessFailedHeader}] {messageTimeout}");
+					Logging.Info($"[{accessFailedHeader}] {messageTimeout}");
 
 					break;
 				}
@@ -387,7 +387,7 @@ public partial class BotClient
 				{
 					string seg1 = StringResource.Get("LogContent_InterfaceMainBodyNotSenderSegment1")!;
 					string seg2 = StringResource.Get("LogContent_InterfaceMainBodyNotSenderSegment2")!;
-					Log.Info($"[{accessFailedHeader}] {seg1} {nameof(Sender)}{seg2}");
+					Logging.Info($"[{accessFailedHeader}] {seg1} {nameof(Sender)}{seg2}");
 
 					break;
 				}

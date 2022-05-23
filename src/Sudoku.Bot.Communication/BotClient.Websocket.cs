@@ -65,19 +65,19 @@ partial class BotClient
 
 				string useGatewayAddress = StringResource.Get("UseGatewayAddress")!;
 				string failedToConnect = StringResource.Get("ConnectToServerFailed")!;
-				Log.Error($"[WebSocket][Connect] {useGatewayAddress}<{_gateLimit?.Url}> {failedToConnect}");
+				Logging.Error($"[WebSocket][Connect] {useGatewayAddress}<{_gateLimit?.Url}> {failedToConnect}");
 			}
 			catch (Exception ex)
 			{
 				string statusText = StringResource.Get("Status")!;
 				string descriptionText = StringResource.Get("Description")!;
-				Log.Error($"[WebSocket][Connect] {ex.Message} | {statusText}：{s} | {descriptionText}{d}");
+				Logging.Error($"[WebSocket][Connect] {ex.Message} | {statusText}：{s} | {descriptionText}{d}");
 			}
 
 			if (retryCount <= 0)
 			{
 				string reason = StringResource.Get("ConnectFailed_MaxRetryCountReached")!;
-				Log.Error($"[WebSocket] {reason}");
+				Logging.Error($"[WebSocket] {reason}");
 
 				return false;
 			}
@@ -86,7 +86,7 @@ partial class BotClient
 			{
 				string retryText = StringResource.Get("SecondsLastToRetry")!;
 				string closeBrace = StringResource.Get("CloseBrace")!;
-				Log.Info($"[WebSocket] {i} {retryText}${retryCount}{closeBrace} ...");
+				Logging.Info($"[WebSocket] {i} {retryText}${retryCount}{closeBrace} ...");
 				await Task.Delay(TimeSpan.FromSeconds(1));
 			}
 
@@ -116,7 +116,7 @@ partial class BotClient
 		static string f(Match m) => Regex.Replace(m.Groups[0].Value, """[^\.]""", "*");
 		string sendMsg = JsonSerializer.Serialize(data);
 		string unsensi = Regex.Replace(sendMsg, """(?<=Bot\s+)[^"]+""", f);
-		Log.Debug($"[WebSocket][SendIdentify] {unsensi}");
+		Logging.Debug($"[WebSocket][SendIdentify] {unsensi}");
 		await WebSocketSendAsync(sendMsg, WebSocketMessageType.Text, true);
 	}
 
@@ -129,13 +129,13 @@ partial class BotClient
 		if (_webSocketClient.State == WebSocketState.Open)
 		{
 			string sendMsg = $$"""{"p": 1, "d": {{_webSocketLastSequence}}}""";
-			Log.Debug($"[WebSocket][SendHeartbeat] {sendMsg}");
+			Logging.Debug($"[WebSocket][SendHeartbeat] {sendMsg}");
 			await WebSocketSendAsync(sendMsg, WebSocketMessageType.Text, true);
 		}
 		else
 		{
 			string connectionNotFound = StringResource.Get("ConnectionNotHavingBeenCreated")!;
-			Log.Error($"[WebSocket][Heartbeat] {connectionNotFound}");
+			Logging.Error($"[WebSocket][Heartbeat] {connectionNotFound}");
 		}
 	}
 
@@ -159,13 +159,13 @@ partial class BotClient
 			};
 
 			string sendMsg = JsonSerializer.Serialize(data);
-			Log.Debug($"[WebSocket][SendResume] {sendMsg}");
+			Logging.Debug($"[WebSocket][SendResume] {sendMsg}");
 			await WebSocketSendAsync(sendMsg, WebSocketMessageType.Text, true);
 		}
 		catch (Exception e)
 		{
 			string resumeErrorText = StringResource.Get("ResumeError")!;
-			Log.Error($"[WebSocket] {resumeErrorText}{e.Message}");
+			Logging.Error($"[WebSocket] {resumeErrorText}{e.Message}");
 		}
 	}
 
@@ -215,13 +215,13 @@ partial class BotClient
 
 				string webSocketMessageTypeText = StringResource.Get("WebSocketMessageTypeIs")!;
 				string statusText = StringResource.Get("Status")!;
-				Log.Info($"[WebSocket][Receive] {webSocketMessageTypeText}{messageType} | {statusText}{_webSocketClient.CloseStatus}");
+				Logging.Info($"[WebSocket][Receive] {webSocketMessageTypeText}{messageType} | {statusText}{_webSocketClient.CloseStatus}");
 			}
 			catch (Exception ex)
 			{
 				string statusText = StringResource.Get("Status")!;
 				string newLine = Environment.NewLine;
-				Log.Error($"[WebSocket][Receive] {ex.Message} | {statusText}{_webSocketClient.CloseStatus}{newLine}");
+				Logging.Error($"[WebSocket][Receive] {ex.Message} | {statusText}{_webSocketClient.CloseStatus}{newLine}");
 			}
 
 			// If the value is 4009, the server will require a re-connection.
@@ -244,7 +244,7 @@ partial class BotClient
 		WebSocketClosed?.Invoke(this);
 
 		string tryReconnectToServerText = StringResource.Get("TryReconnectToServer")!;
-		Log.Warn($"[WebSocket] {tryReconnectToServerText}");
+		Logging.Warn($"[WebSocket] {tryReconnectToServerText}");
 
 		await Task.Delay(TimeSpan.FromSeconds(1));
 		_webSocketClient = new();
@@ -267,7 +267,7 @@ partial class BotClient
 				_webSocketLastSequence = wssJson.GetProperty("s").GetInt32();
 				if (!wssJson.TryGetProperty("t", out var t) || !wssJson.TryGetProperty("d", out var d))
 				{
-					Log.Warn($"[WebSocket][Op00][Dispatch] {wssJson.GetRawText()}");
+					Logging.Warn($"[WebSocket][Op00][Dispatch] {wssJson.GetRawText()}");
 					break;
 				}
 
@@ -280,11 +280,11 @@ partial class BotClient
 					{
 						if (d.Deserialize<Message>() is not { } message)
 						{
-							Log.Warn($"[WebSocket][{type}] {data}");
+							Logging.Warn($"[WebSocket][{type}] {data}");
 							return;
 						}
 
-						Log.Debug($"[WebSocket][{type}] {data}");
+						Logging.Debug($"[WebSocket][{type}] {data}");
 						_ = MessageCenterAsync(message, type);
 
 						break;
@@ -294,7 +294,7 @@ partial class BotClient
 					case RawMessageTypes.GuildUpdated:
 					case RawMessageTypes.GuildDeleted:
 					{
-						Log.Debug($"[WebSocket][{type}] {data}");
+						Logging.Debug($"[WebSocket][{type}] {data}");
 						var guild = d.Deserialize<Guild>()!;
 						switch (type)
 						{
@@ -323,7 +323,7 @@ partial class BotClient
 					case RawMessageTypes.ChannelUpdated:
 					case RawMessageTypes.ChannelDeleted:
 					{
-						Log.Debug($"[WebSocket][{type}] {data}");
+						Logging.Debug($"[WebSocket][{type}] {data}");
 						var channel = d.Deserialize<Channel>()!;
 						ChannelEventSetTriggered?.Invoke(this, new(channel, type));
 
@@ -334,7 +334,7 @@ partial class BotClient
 					case RawMessageTypes.GuildMemberUpdated:
 					case RawMessageTypes.GuildMemberRemoved:
 					{
-						Log.Debug($"[WebSocket][{type}] {data}");
+						Logging.Debug($"[WebSocket][{type}] {data}");
 						var memberWithGuild = d.Deserialize<MemberWithGuildId>()!;
 						GuildMemberEventSetTriggered?.Invoke(this, new(memberWithGuild, type));
 
@@ -344,7 +344,7 @@ partial class BotClient
 					case RawMessageTypes.MessageReactionAdded:
 					case RawMessageTypes.MessageReactionRemoved:
 					{
-						Log.Debug($"[WebSocket][{type}] {data}");
+						Logging.Debug($"[WebSocket][{type}] {data}");
 						var messageReaction = d.Deserialize<MessageReaction>()!;
 						MessageReactionEventSetTriggered?.Invoke(this, new(messageReaction, type));
 
@@ -354,7 +354,7 @@ partial class BotClient
 					case RawMessageTypes.MessageAuditPassed:
 					case RawMessageTypes.MessageAuditRejected:
 					{
-						Log.Info($"[WebSocket][{type}] {data}");
+						Logging.Info($"[WebSocket][{type}] {data}");
 						var messageAudited = d.Deserialize<MessageAudited>()!;
 						messageAudited.IsPassed = type == RawMessageTypes.MessageAuditPassed;
 						MessageAudited?.Invoke(this, new(messageAudited));
@@ -367,7 +367,7 @@ partial class BotClient
 					case RawMessageTypes.AudioOnMic:
 					case RawMessageTypes.AudioOffMic:
 					{
-						Log.Info($"[WebSocket][{type}] {data}");
+						Logging.Info($"[WebSocket][{type}] {data}");
 						AudioEventSetTriggered?.Invoke(this, wssJson);
 
 						break;
@@ -376,7 +376,7 @@ partial class BotClient
 					case RawMessageTypes.Resumed:
 					{
 						string connectionIsResumedText = StringResource.Get("ConnectionIsResumed")!;
-						Log.Info($"[WebSocket][Op00][RESUMED] {connectionIsResumedText}");
+						Logging.Info($"[WebSocket][Op00][RESUMED] {connectionIsResumedText}");
 						await ExecuteCommandAsync(JsonDocument.Parse($$"""{"op":{{(int)Opcode.Heartbeat}}}""").RootElement);
 
 						ConnectionResumed?.Invoke(this, d);
@@ -386,15 +386,15 @@ partial class BotClient
 
 					case RawMessageTypes.Ready:
 					{
-						Log.Debug($"[WebSocket][READY] {data}");
+						Logging.Debug($"[WebSocket][READY] {data}");
 
 						string authorizationSuccessfulText = StringResource.Get("AuthorizationSuccessful")!;
-						Log.Info($"[WebSocket][Op00] {authorizationSuccessfulText}");
+						Logging.Info($"[WebSocket][Op00] {authorizationSuccessfulText}");
 						await ExecuteCommandAsync(JsonDocument.Parse($$"""{"op":{{(int)Opcode.Heartbeat}}}""").RootElement);
 						_webSoketSessionId = d.GetProperty("session_id").GetString();
 
 						string getGuildListWithLimit100Text = StringResource.Get("GetGuildListWithLimit100")!;
-						Log.Info($"[WebSocket][GetGuilds] {getGuildListWithLimit100Text}");
+						Logging.Info($"[WebSocket][GetGuilds] {getGuildListWithLimit100Text}");
 						string? guildNext = null;
 						for (int page = 1; ; ++page)
 						{
@@ -405,7 +405,7 @@ partial class BotClient
 							{
 								string getGuildJoinedFailedText = StringResource.Get("GetGuildJoinedFailed")!;
 
-								Log.Info($"[WebSocket][GetGuilds] {getGuildJoinedText} {page:00} {getGuildJoinedFailedText}");
+								Logging.Info($"[WebSocket][GetGuilds] {getGuildJoinedText} {page:00} {getGuildJoinedFailedText}");
 								break;
 							}
 
@@ -413,12 +413,12 @@ partial class BotClient
 							{
 								string getGuildJoinedEmptyText = StringResource.Get("GetGuildJoinedEmpty")!;
 
-								Log.Info($"[WebSocket][GetGuilds] {getGuildJoinedText} {page:00} {getGuildJoinedEmptyText}");
+								Logging.Info($"[WebSocket][GetGuilds] {getGuildJoinedText} {page:00} {getGuildJoinedEmptyText}");
 								break;
 							}
 
 							string getGuildJoinedSuccessfulText = StringResource.Get("GetGuildJoinedSuccessful")!;
-							Log.Info($"[WebSocket][GetGuilds] {getGuildJoinedText} {page:00} {getGuildJoinedSuccessfulText} {guilds.Count}");
+							Logging.Info($"[WebSocket][GetGuilds] {getGuildJoinedText} {page:00} {getGuildJoinedSuccessfulText} {guilds.Count}");
 
 							Parallel.ForEach(guilds, loop);
 							guildNext = guilds.Last().Id;
@@ -433,7 +433,7 @@ partial class BotClient
 
 						string botHasJoinedText = StringResource.Get("BotHasJoined")!;
 						string guildCountText = StringResource.Get("GuildCountText")!;
-						Log.Info($"[WebSocket][GetGuilds] {botHasJoinedText} {Guilds.Count} {guildCountText}");
+						Logging.Info($"[WebSocket][GetGuilds] {botHasJoinedText} {Guilds.Count} {guildCountText}");
 
 						Info = d.GetProperty("user").Deserialize<User>()!;
 						Info.Avatar = (await GetInfoAsync(null))?.Avatar;
@@ -448,7 +448,7 @@ partial class BotClient
 					default:
 					{
 						string unknownEventText = StringResource.Get("UnknownEvent")!;
-						Log.Warn($"[WebSocket][{type}] {unknownEventText}");
+						Logging.Warn($"[WebSocket][{type}] {unknownEventText}");
 						break;
 					}
 				}
@@ -459,7 +459,7 @@ partial class BotClient
 			{
 				string endpoint = StringResource.Get(wssJson.Get("d") == null ? "Client" : "Server")!;
 				string sendHeartbeatText = StringResource.Get("SendHeartbeat")!;
-				Log.Debug($"[WebSocket][Op01] {endpoint}{sendHeartbeatText}");
+				Logging.Debug($"[WebSocket][Op01] {endpoint}{sendHeartbeatText}");
 
 				HeartbeatMessageReceived?.Invoke(this, wssJson);
 
@@ -471,7 +471,7 @@ partial class BotClient
 			case Opcode.Identify: // Send authorization.
 			{
 				string sendAuthorizationText = StringResource.Get("SendAuthorization")!;
-				Log.Info($"[WebSocket][Op02] {sendAuthorizationText}");
+				Logging.Info($"[WebSocket][Op02] {sendAuthorizationText}");
 
 				Identifying?.Invoke(this, wssJson);
 
@@ -482,7 +482,7 @@ partial class BotClient
 			case Opcode.Resume: // Resume the connection.
 			{
 				string sendReconnect = StringResource.Get("SendResumeMessage")!;
-				Log.Info($"[WebSocket][Op06] {sendReconnect}");
+				Logging.Info($"[WebSocket][Op06] {sendReconnect}");
 				_shouldBeResumed = false;
 
 				ConnectionResuming?.Invoke(this, wssJson);
@@ -494,7 +494,7 @@ partial class BotClient
 			case Opcode.Reconnect: // Receive the message that requires client reconnecting.
 			{
 				string receiveReconnect = StringResource.Get("ReceiveReconnectMessage")!;
-				Log.Info($"[WebSocket][Op07] {receiveReconnect}");
+				Logging.Info($"[WebSocket][Op07] {receiveReconnect}");
 
 				ConnectionReconnected?.Invoke(this, wssJson);
 
@@ -503,7 +503,7 @@ partial class BotClient
 			case Opcode.InvalidSession: // Receive error message when identifying or resuming.
 			{
 				string receiveAuthorizationErrorMessage = StringResource.Get("ReceiveAuthorizationErrorMessage")!;
-				Log.Warn($"[WebSocket][Op09] {receiveAuthorizationErrorMessage}");
+				Logging.Warn($"[WebSocket][Op09] {receiveAuthorizationErrorMessage}");
 
 				SessionInvalid?.Invoke(this, wssJson);
 
@@ -514,7 +514,7 @@ partial class BotClient
 				const int defaultHeartbeatInterval = 30000;
 
 				string receiveHelloMessage = StringResource.Get("ReceiveHelloMessage")!;
-				Log.Info($"[WebSocket][Op10][{receiveHelloMessage}] {wssJson.GetRawText()}");
+				Logging.Info($"[WebSocket][Op10][{receiveHelloMessage}] {wssJson.GetRawText()}");
 
 				Helloing?.Invoke(this, wssJson);
 
@@ -533,7 +533,7 @@ partial class BotClient
 			case Opcode.HeartbeatACK: // Receive acknowledge of heartbeat.
 			{
 				string receiveHeartbeatAck = StringResource.Get("ReceiveHeartbeatAcknowledgementMessage")!;
-				Log.Debug($"[WebSocket][Op11] {receiveHeartbeatAck}");
+				Logging.Debug($"[WebSocket][Op11] {receiveHeartbeatAck}");
 
 				HeartbeatMessageAcknowledged?.Invoke(this, wssJson);
 
@@ -542,7 +542,7 @@ partial class BotClient
 			case var opCode:
 			{
 				string unknownOpCode = StringResource.Get("UnkownOperationCode")!;
-				Log.Warn($"[WebSocket][OpNC] {unknownOpCode}{opCode}");
+				Logging.Warn($"[WebSocket][OpNC] {unknownOpCode}{opCode}");
 
 				break;
 			}
