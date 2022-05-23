@@ -926,21 +926,6 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.AddNode(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,System.Collections.Generic.HashSet{System.Int32}@)">
-            <summary>
-            Adds the specified node into the collection, or just get the ID value.
-            </summary>
-            <param name="nextNode">The next node.</param>
-            <param name="list">The list.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.UpdateInferenceTable(System.Collections.Generic.HashSet{System.Int32},Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
-            <summary>
-            To assign the recorded IDs into the dictionary.
-            </summary>
-            <param name="list">The list of IDs.</param>
-            <param name="node">The current node.</param>
-            <param name="inferences">Indicates what dictionary the hash set is assigned to.</param>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.RemoveIdsNotAppearingInLookupDictionary(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
             <summary>
             Remove all ID values in the lookup dictionary.
@@ -1000,12 +985,6 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_SoleAndLocked(Sudoku.Concepts.Collections.Grid@)">
             <summary>
             Gather the strong and weak inferences on sole candidate nodes and locked candidates nodes.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_AlmostLockedSet(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Gather the strong and weak inferences on almost locked sets nodes.
             </summary>
             <param name="grid">The grid.</param>
         </member>
