@@ -84,11 +84,13 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		in Grid puzzle, in Grid solution, bool isSukaku, ManualSolverResult baseSolverResult,
 		CancellationToken cancellationToken = default)
 	{
-		var playground = puzzle;
-		List<Step> tempSteps = new(20), recordedSteps = new(100);
-		var stepGrids = new List<Grid>(100);
-
-		var stepSearchers = StepSearcherPool.Collection;
+		var (playground, tempSteps, recordedSteps, stepGrids, stepSearchers) = (
+			puzzle,
+			new List<Step>(20),
+			new List<Step>(100),
+			new List<Grid>(100),
+			StepSearcherPool.Collection
+		);
 
 		// Bug fix: Sets the solution grid to the step searchers that will use the property value.
 		((BruteForceStepSearcher)StepSearcherPool.Collection[^1]).Solution = solution;
