@@ -99,6 +99,11 @@ public abstract partial class Node : IEquatable<Node>, IEqualityOperators<Node, 
 		get => (NodeType)(int)(_other >> 4 & 7);
 	}
 
+	/// <summary>
+	/// Indicates the type identifier.
+	/// </summary>
+	protected abstract string TypeIdentifier { get; }
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

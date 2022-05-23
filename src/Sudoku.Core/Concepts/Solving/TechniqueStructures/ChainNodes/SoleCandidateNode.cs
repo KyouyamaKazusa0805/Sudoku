@@ -3,7 +3,8 @@
 /// <summary>
 /// Provides with the node that stores a sole candidate.
 /// </summary>
-public sealed class SoleCandidateNode : Node
+[JsonConverter(typeof(JsonConverter))]
+public sealed partial class SoleCandidateNode : Node
 {
 	/// <summary>
 	/// Initializes a <see cref="SoleCandidateNode"/> instance via the candidate and its current status.
@@ -29,4 +30,7 @@ public sealed class SoleCandidateNode : Node
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cell * 9 + Digit;
 	}
+
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(SoleCandidateNode);
 }

@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a chain node that provides with the data for a locked candidates.
 /// </summary>
-public sealed class LockedCandidatesNode : Node
+[JsonConverter(typeof(JsonConverter))]
+public sealed partial class LockedCandidatesNode : Node
 {
 	/// <summary>
 	/// Initializes a <see cref="LockedCandidatesNode"/> instance via the digit used,
@@ -41,4 +42,8 @@ public sealed class LockedCandidatesNode : Node
 	public LockedCandidatesNode(byte digit, in Cells cells) : base(NodeType.LockedCandidates, digit, cells)
 	{
 	}
+
+
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(LockedCandidatesNode);
 }

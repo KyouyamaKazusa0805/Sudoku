@@ -47,6 +47,14 @@ public sealed partial class RxCyNotation : INotationHandler, ICellNotation<RxCyN
 		}
 	}
 
+	/// <summary>
+	/// Gets the <see cref="string"/> representation of a cell.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <returns>The <see cref="string"/> representation of a cell.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ToCellString(int cell) => ToCellsString(Cells.Empty + cell);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToCellsString(in Cells cells) => ToCellsString(cells, RxCyNotationOptions.Default);

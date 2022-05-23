@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a chain node that provides with the data for an almost locked set.
 /// </summary>
-public sealed class AlmostLockedSetNode : Node
+[JsonConverter(typeof(JsonConverter))]
+public sealed partial class AlmostLockedSetNode : Node
 {
 	/// <summary>
 	/// Indicates the shifting bits that each cell stores in the <see cref="Node._other"/> mask.
@@ -48,6 +49,9 @@ public sealed class AlmostLockedSetNode : Node
 			return result;
 		}
 	}
+
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(AlmostLockedSetNode);
 
 
 	/// <inheritdoc/>

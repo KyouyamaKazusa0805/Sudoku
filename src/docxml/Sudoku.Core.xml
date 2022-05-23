@@ -3755,6 +3755,13 @@
         <member name="M:Sudoku.Concepts.Notations.RxCyNotation.TryParseCells(System.String,Sudoku.Concepts.Collections.Cells@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ToCellString(System.Int32)">
+            <summary>
+            Gets the <see cref="T:System.String"/> representation of a cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The <see cref="T:System.String"/> representation of a cell.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ToCellsString(Sudoku.Concepts.Collections.Cells@)">
             <inheritdoc/>
         </member>
@@ -5470,6 +5477,9 @@
             Indicates the whole ALS map.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.ToSimpleString">
             <inheritdoc/>
         </member>
@@ -5483,6 +5493,18 @@
             Throws when the number of elements in the argument <paramref name="extraCells"/>
             is greater than 8.
             </exception>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.JsonConverter">
+            <summary>
+            Defines a JSON converter that can serialize or deserialize between a JSON string text
+            and a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode">
             <summary>
@@ -5514,6 +5536,21 @@
             </summary>
             <param name="digit">The digit used.</param>
             <param name="cells">The cells used.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode.JsonConverter">
+            <summary>
+            Defines a JSON converter that can serialize or deserialize between a JSON string text
+            and a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node">
             <summary>
@@ -5607,6 +5644,11 @@
             Indicates the type of the node.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.TypeIdentifier">
+            <summary>
+            Indicates the type identifier.
+            </summary>
+        </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.Equals(System.Object)">
             <inheritdoc/>
         </member>
@@ -5662,6 +5704,21 @@
             <summary>
             Indicates the candidate used.
             </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode.JsonConverter">
+            <summary>
+            Defines a JSON converter that can serialize or deserialize between a JSON string text
+            and a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern">
             <summary>
