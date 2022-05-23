@@ -21,7 +21,7 @@ public sealed unsafe class TrueCandidatesSearcher
 	/// <summary>
 	/// Indicates the current grid is a BUG+n pattern.
 	/// </summary>
-	public bool IsBugPattern => TrueCandidates.Count != 0;
+	public bool IsBugPattern => TrueCandidates is not [];
 
 	/// <summary>
 	/// The grid.
