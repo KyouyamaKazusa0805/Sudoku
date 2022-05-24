@@ -196,6 +196,6 @@ public sealed partial class RxCyNotation : INotationHandler, ICellNotation<RxCyN
 	/// <summary>
 	/// Indicates the regular expression for matching a cell or cell-list.
 	/// </summary>
-	[RegexGenerator("""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.ExplicitCapture, 5000)]
+	[RegexGenerator("""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.Compiled, 5000)]
 	private static partial Regex CellOrCellListRegex();
 }

@@ -693,7 +693,7 @@ public unsafe partial struct Candidates :
 	/// Indicates the candidate regular expression pattern.
 	/// </summary>
 	/// <returns>The regular expression pattern instance.</returns>
-	[RegexGenerator("""([1-9]{3}|[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\))""", RegexOptions.ExplicitCapture, 5000)]
+	[RegexGenerator("""([1-9]{3}|[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\))""", RegexOptions.Compiled, 5000)]
 	private static partial Regex CandidatePattern();
 
 

@@ -1468,7 +1468,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the eliminations in the extended susser format.
 	/// </summary>
-	[RegexGenerator("""(?<=\:)(\d{3}\s+)*\d{3}""")]
+	[RegexGenerator("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]
 	internal static partial Regex ExtendedSusserEliminationsRegex();
 
 
