@@ -1,4 +1,5 @@
 ﻿using static Sudoku.Runtime.AnalysisServices.SearcherNodeTypes;
+using ChainingDictionary = System.Collections.Generic.Dictionary<int, System.Collections.Generic.HashSet<int>?>;
 
 namespace Sudoku.Solving.Manual.Searchers;
 
@@ -60,7 +61,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="Dictionary{TKey, TValue}"/>
-	private readonly Dictionary<int, HashSet<int>?> _strongInferences = new();
+	private readonly ChainingDictionary _strongInferences = new();
 
 	/// <summary>
 	/// Indicates the field that stores the temporary weak inferences during the searching.
@@ -86,7 +87,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="Dictionary{TKey, TValue}"/>
-	private readonly Dictionary<int, HashSet<int>?> _weakInferences = new();
+	private readonly ChainingDictionary _weakInferences = new();
 
 	/// <summary>
 	/// Indicates the lookup table that can get the target ID value
@@ -210,7 +211,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// <summary>
 	/// Remove all ID values in the lookup dictionary.
 	/// </summary>
-	private void RemoveIdsNotAppearingInLookupDictionary(Dictionary<int, HashSet<int>?> inferences)
+	private void RemoveIdsNotAppearingInLookupDictionary(ChainingDictionary inferences)
 	{
 		foreach (int id in inferences.Keys)
 		{
@@ -240,7 +241,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// </code>
 	/// </param>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private void PrintInferences(Dictionary<int, HashSet<int>?> inferences, Action<string> outputHandler)
+	private void PrintInferences(ChainingDictionary inferences, Action<string> outputHandler)
 	{
 		const string separator = ", ";
 
@@ -283,7 +284,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// <param name="a">The first node to be constructed as a strong inference.</param>
 	/// <param name="b">The second node to be constructed as a strong inference.</param>
 	/// <param name="inferences">The inferences list you want to add.</param>
-	private void ConstructInference(Node a, Node b, Dictionary<int, HashSet<int>?> inferences)
+	private void ConstructInference(Node a, Node b, ChainingDictionary inferences)
 	{
 		int bId;
 		if (_idLookup.TryGetValue(a, out int aId))
@@ -815,7 +816,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 						break;
 
-						
+
 						void internalAdd(Node node1, Node node2)
 						{
 							switch (node1, node2)
