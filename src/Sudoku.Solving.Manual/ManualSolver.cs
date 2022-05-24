@@ -287,8 +287,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		foreach (var (t, c, d) in step.Conclusions)
 		{
 			int digit = solution[c];
-			if (t == ConclusionType.Assignment && digit != d
-				|| t == ConclusionType.Elimination && digit == d)
+			if (t == ConclusionType.Assignment && digit != d || t == ConclusionType.Elimination && digit == d)
 			{
 				return false;
 			}
