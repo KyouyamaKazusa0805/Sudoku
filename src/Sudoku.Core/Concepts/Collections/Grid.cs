@@ -6,7 +6,7 @@ namespace Sudoku.Concepts.Collections;
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
-[JsonConverter(typeof(JsonConverter))]
+[JsonConverter(typeof(GridJsonConverter))]
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 [AutoOverridesEquals(UseExplicitImplementation = true, EmitsInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]

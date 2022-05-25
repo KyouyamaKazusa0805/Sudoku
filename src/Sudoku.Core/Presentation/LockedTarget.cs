@@ -4,7 +4,7 @@
 /// Defines the data structure that stores a set of cells and a digit, indicating the information
 /// about the locked candidate node.
 /// </summary>
-[JsonConverter(typeof(JsonConverter))]
+[JsonConverter(typeof(LockedTargetJsonConverter))]
 [AutoOverridesGetHashCode(nameof(Cells), nameof(Digit))]
 [AutoOverridesEquals(nameof(Digit), nameof(Cells), UseExplicitImplementation = true)]
 [AutoOverridesToString(nameof(Digit), nameof(Cells), Pattern = "Locked target: {[0] + 1}{[1]}")]

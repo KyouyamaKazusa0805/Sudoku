@@ -4,7 +4,7 @@
 /// Defines an identifier that can differ colors.
 /// </summary>
 [StructLayout(LayoutKind.Explicit)]
-[JsonConverter(typeof(JsonConverter))]
+[JsonConverter(typeof(IdentifierJsonConverter))]
 [DisableParameterlessConstructor(Message = "You cannot use the parameterless constructor to construct the data structure. Please use factory method instead.")]
 [AutoOverridesGetHashCode(nameof(UseId), nameof(_colorRawValue))]
 [AutoOverridesEquals(nameof(UseId), nameof(Id))]

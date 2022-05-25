@@ -11,7 +11,7 @@ namespace Sudoku.Concepts.Collections;
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
-[JsonConverter(typeof(JsonConverter))]
+[JsonConverter(typeof(CellsJsonConverter))]
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 [AutoOverridesGetHashCode(nameof(BinaryCode))]
 [AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitImplementation = true, EmitsInKeyword = true)]

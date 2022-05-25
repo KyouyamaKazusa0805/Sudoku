@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation;
+﻿namespace Sudoku.Runtime.Serialization;
 
 /// <summary>
 /// The internal color structure.
