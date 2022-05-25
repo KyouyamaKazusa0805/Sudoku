@@ -343,8 +343,7 @@ public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuz
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	private decimal Evaluator(
-		delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
+	private decimal Evaluator(delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
 	{
 		return Steps.IsDefaultOrEmpty ? d : executor(Steps, &f);
 
