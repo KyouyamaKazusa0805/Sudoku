@@ -180,31 +180,8 @@ public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuz
 	/// of types <see cref="Grid"/> and <see cref="Step"/>.
 	/// </para>
 	/// </summary>
-	public ImmutableArray<(Grid StepGrid, Step Step)> StepsWithCorrespondingGrids
-	{
-		get
-		{
-			if (!IsSolved)
-			{
-				return default(ImmutableArray<(Grid, Step)>);
-			}
-
-#if true
-			Debug.Assert(Steps.Length == StepGrids.Length);
-
-			var result = new (Grid, Step)[Steps.Length];
-			for (int i = 0; i < Steps.Length; i++)
-			{
-				result[i] = (StepGrids[i], Steps[i]);
-			}
-
-			return ImmutableArray.Create(result);
-#else
-			// Just use the method 'Enumerable.Zip' is okay for getting the result collection.
-			return StepGrids.Zip(Steps).ToImmutableArray();
-#endif
-		}
-	}
+	public ImmutableArray<(Grid SteppingGrid, Step Step)> SolvingPath
+		=> IsSolved ? StepGrids.Zip(Steps).ToImmutableArray() : default(ImmutableArray<(Grid, Step)>);
 
 	/// <summary>
 	/// <para>

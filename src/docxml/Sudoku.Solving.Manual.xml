@@ -367,7 +367,7 @@
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.StepGrids"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.StepsWithCorrespondingGrids">
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.SolvingPath">
             <summary>
             <para>Indicates a list of pairs of information about each step.</para>
             <para>
