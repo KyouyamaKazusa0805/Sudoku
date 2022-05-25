@@ -4,7 +4,7 @@
 /// Provides the solver result after <see cref="ManualSolver"/> solves a puzzle.
 /// </summary>
 /// <param name="OriginalPuzzle">Indicates the original sudoku puzzle to solve.</param>
-public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuzzle) : ISimpleFormattable
+public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuzzle)
 {
 	/// <summary>
 	/// Indicates whether the solver has solved the puzzle.
@@ -317,11 +317,7 @@ public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuz
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(null);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string? format) => new Formatter(this).ToString(format);
+	public override string ToString() => new Formatter(this).ToString();
 
 	/// <inheritdoc cref="Formatter.ToString(SolverResultFormattingOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

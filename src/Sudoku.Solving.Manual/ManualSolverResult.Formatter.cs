@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using static Sudoku.Solving.Manual.SolverResultFormattingOptions;
+
+namespace Sudoku.Solving.Manual;
 
 partial record class ManualSolverResult
 {
@@ -9,44 +11,8 @@ partial record class ManualSolverResult
 	private readonly record struct Formatter(ManualSolverResult Result)
 	{
 		/// <inheritdoc/>
-		public override string ToString() => ToString(null);
-
-		/// <summary>
-		/// Returns a string that represents the current object with the specified format string.
-		/// </summary>
-		/// <param name="format">
-		/// The format. If available, the parameter can be <see langword="null"/>.
-		/// </param>
-		/// <returns>The string result.</returns>
-		/// <exception cref="FormatException">
-		/// Throws when the specified format contains other invalid characters
-		/// and the format provider can't work.
-		/// </exception>
-		public string ToString(string? format)
-		{
-			format ??= ".-!l";
-			if (format.IsMatch(@"[^\^\-\.\?#@!abdl]"))
-			{
-				throw new FormatException("The specified format is invalid due to with invalid characters.");
-			}
-
-			string formatLower = format.ToLower();
-			var options = SolverResultFormattingOptions.None;
-			options |= c(in formatLower, '-') ? SolverResultFormattingOptions.ShowSeparators : 0;
-			options |= c(in formatLower, '#') ? SolverResultFormattingOptions.ShowStepLabel : 0;
-			options |= c(in formatLower, '@') ? SolverResultFormattingOptions.ShowSimple : 0;
-			options |= c(in formatLower, '?') ? SolverResultFormattingOptions.ShowBottleneck : 0;
-			options |= c(in formatLower, '!') ? SolverResultFormattingOptions.ShowDifficulty : 0;
-			options |= c(in formatLower, '.') ? SolverResultFormattingOptions.ShowStepsAfterBottleneck : 0;
-			options |= c(in formatLower, 'd') ? SolverResultFormattingOptions.ShowStepDetail : 0;
-			options |= c(in formatLower, 'l') ? SolverResultFormattingOptions.ShowSteps : 0;
-
-			return ToString(options);
-
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static bool c(in string formatLower, char c) => formatLower.Contains(c);
-		}
+		public override string ToString()
+			=> ToString(ShowStepsAfterBottleneck | ShowSeparators | ShowDifficulty | ShowSteps);
 
 		/// <summary>
 		/// Get the string result with the specified formatting options.
@@ -82,7 +48,7 @@ partial record class ManualSolverResult
 			sb.AppendLine();
 
 			// Print solving steps (if worth).
-			if (options.Flags(SolverResultFormattingOptions.ShowSteps) && !steps.IsDefaultOrEmpty)
+			if (options.Flags(ShowSteps) && !steps.IsDefaultOrEmpty)
 			{
 				sb.Append(R["AnalysisResultSolvingSteps"]!);
 				sb.AppendLine();
@@ -91,7 +57,7 @@ partial record class ManualSolverResult
 				{
 					for (int i = 0, count = steps.Length; i < count; i++)
 					{
-						if (i > bIndex && options.Flags(SolverResultFormattingOptions.ShowStepsAfterBottleneck))
+						if (i > bIndex && options.Flags(ShowStepsAfterBottleneck))
 						{
 							sb.Append(R.EmitPunctuation(Punctuation.Ellipsis));
 							sb.AppendLine();
@@ -100,15 +66,15 @@ partial record class ManualSolverResult
 						}
 
 						var info = steps[i];
-						string infoStr = options.Flags(SolverResultFormattingOptions.ShowSimple)
+						string infoStr = options.Flags(ShowSimple)
 							? info.ToSimpleString()
 							: info.Formatize();
-						bool showDiff = options.Flags(SolverResultFormattingOptions.ShowDifficulty)
+						bool showDiff = options.Flags(ShowDifficulty)
 							&& info.ShowDifficulty;
 
 						string d = $"({info.Difficulty,5:0.0}";
 						string s = $"{i + 1,4}";
-						string labelInfo = (options.Flags(SolverResultFormattingOptions.ShowStepLabel), showDiff) switch
+						string labelInfo = (options.Flags(ShowStepLabel), showDiff) switch
 						{
 							(true, true) => $"{s}, {d}) ",
 							(true, false) => $"{s} ",
@@ -121,13 +87,13 @@ partial record class ManualSolverResult
 						sb.AppendLine();
 					}
 
-					if (options.Flags(SolverResultFormattingOptions.ShowBottleneck))
+					if (options.Flags(ShowBottleneck))
 					{
-						a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
+						a(ref sb, options.Flags(ShowSeparators));
 
 						sb.Append(R["AnalysisResultBottleneckStep"]!);
 
-						if (options.Flags(SolverResultFormattingOptions.ShowStepLabel))
+						if (options.Flags(ShowStepLabel))
 						{
 							sb.Append(R["AnalysisResultInStep"]!);
 							sb.Append(bIndex + 1);
@@ -139,7 +105,7 @@ partial record class ManualSolverResult
 						sb.AppendLine();
 					}
 
-					a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
+					a(ref sb, options.Flags(ShowSeparators));
 				}
 			}
 
@@ -149,7 +115,7 @@ partial record class ManualSolverResult
 				sb.Append(R["AnalysisResultTechniqueUsed"]!);
 				sb.AppendLine();
 
-				if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
+				if (options.Flags(ShowStepDetail))
 				{
 					sb.Append(R["AnalysisResultMin"]!, 6);
 					sb.Append(',');
@@ -160,7 +126,7 @@ partial record class ManualSolverResult
 
 				foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
 				{
-					if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
+					if (options.Flags(ShowStepDetail))
 					{
 						decimal currentTotal = 0, currentMinimum = decimal.MaxValue;
 						foreach (var solvingStep in solvingStepsGroup)
@@ -184,7 +150,7 @@ partial record class ManualSolverResult
 					sb.AppendLine();
 				}
 
-				if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
+				if (options.Flags(ShowStepDetail))
 				{
 					sb.Append("  (---");
 					sb.Append(total, 8);
@@ -197,7 +163,7 @@ partial record class ManualSolverResult
 				sb.Append(R[stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural"]!);
 				sb.AppendLine();
 
-				a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
+				a(ref sb, options.Flags(ShowSeparators));
 			}
 
 			// Print detail data.
@@ -225,7 +191,7 @@ partial record class ManualSolverResult
 			sb.Append($@"{elapsed:hh\:mm\:ss\.fff}");
 			sb.AppendLine();
 
-			a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
+			a(ref sb, options.Flags(ShowSeparators));
 
 			return sb.ToStringAndClear();
 

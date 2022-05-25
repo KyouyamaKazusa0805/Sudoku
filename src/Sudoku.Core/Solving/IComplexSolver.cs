@@ -4,7 +4,7 @@
 /// Defines a complex solver.
 /// </summary>
 /// <typeparam name="TSolverResult">The type of the target result.</typeparam>
-public interface IComplexSolver<out TSolverResult> where TSolverResult : ISimpleFormattable
+public interface IComplexSolver<out TSolverResult>
 {
 	/// <summary>
 	/// To solve the specified puzzle.
