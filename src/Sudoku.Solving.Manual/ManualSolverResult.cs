@@ -181,7 +181,7 @@ public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuz
 	/// </para>
 	/// </summary>
 	public ImmutableArray<(Grid SteppingGrid, Step Step)> SolvingPath
-		=> IsSolved ? StepGrids.Zip(Steps).ToImmutableArray() : default(ImmutableArray<(Grid, Step)>);
+		=> IsSolved ? StepGrids.Zip(Steps) : default(ImmutableArray<(Grid, Step)>);
 
 	/// <summary>
 	/// <para>

@@ -2138,6 +2138,14 @@
             A transform function to apply to each element.
             </param>
         </member>
+        <member name="T:System.Linq.ImmutableArrayEnumerable">
+            <summary>
+            Provides with LINQ methods on <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.ImmutableArrayEnumerable.Zip``2(System.Collections.Immutable.ImmutableArray{``0},System.Collections.Immutable.ImmutableArray{``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
+        </member>
         <member name="T:System.Linq.SpanEnumerable">
             <summary>
             Provides LINQ-based extension methods on <see cref="T:System.Span`1"/> and <see cref="T:System.ReadOnlySpan`1"/>.
