@@ -9,14 +9,14 @@
 /// <code>
 /// {
 ///   "fullCells": [
-///     10,
-///     20,
-///     30
+///     "r1c1",
+///     "r1c2",
+///     "r1c3"
 ///   ],
 ///   "cells": [
-///     10,
-///     20,
-///     30
+///     "r1c1",
+///     "r1c2",
+///     "r1c3"
 ///   ],
 ///   "digit": 2
 /// }
@@ -76,8 +76,10 @@ public sealed class AlmostLockedSetNodeJsonConverter : JsonConverter<AlmostLocke
 	public override void Write(Utf8JsonWriter writer, AlmostLockedSetNode value, JsonSerializerOptions options)
 	{
 		writer.WriteStartObject();
-		writer.WriteString(nameof(AlmostLockedSetNode.FullCells), RxCyNotation.ToCellsString(value.FullCells));
-		writer.WriteString(nameof(AlmostLockedSetNode.Cells), RxCyNotation.ToCellsString(value.Cells));
+		writer.WritePropertyName(nameof(AlmostLockedSetNode.FullCells));
+		writer.WriteNestedObject(value.FullCells, options);
+		writer.WritePropertyName(nameof(AlmostLockedSetNode.Cells));
+		writer.WriteNestedObject(value.Cells, options);
 		writer.WriteNumber(nameof(AlmostLockedSetNode.Digit), value.Digit + 1);
 		writer.WriteEndObject();
 	}

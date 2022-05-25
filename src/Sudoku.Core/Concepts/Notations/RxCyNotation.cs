@@ -32,6 +32,27 @@ public sealed partial class RxCyNotation : INotationHandler, ICellNotation<RxCyN
 	public Notation Notation => Notation.RxCy;
 
 
+	/// <summary>
+	/// Try to parse the specified <see cref="string"/> value, and convert it into the <see cref="int"/>
+	/// instance, as the cell value.
+	/// </summary>
+	/// <param name="str">The <see cref="string"/> value.</param>
+	/// <param name="result">
+	/// The <see cref="int"/> result. If the return value is <see langword="false"/>,
+	/// this argument will be a discard and cannot be used.
+	/// </param>
+	/// <returns>A <see cref="bool"/> value indicating whether the parsing operation is successful.</returns>
+	public static bool TryParseCell(string str, out int result)
+	{
+		(result, bool @return) = str.Trim() switch
+		{
+			['R' or 'r', var r and >= '1' and <= '9', 'C' or 'c', var c and >= '1' and <= '9'] => ((r - '1') * 9 + (c - '1'), true),
+			_ => (0, false)
+		};
+
+		return @return;
+	}
+
 	/// <inheritdoc/>
 	public static bool TryParseCells(string str, out Cells result)
 	{

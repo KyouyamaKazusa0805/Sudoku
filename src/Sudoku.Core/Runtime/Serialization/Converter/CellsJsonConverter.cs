@@ -7,9 +7,9 @@
 /// JSON Pattern:
 /// <code>
 /// [
-///   10,
-///   20,
-///   30
+///   "r1c1",
+///   "r1c2",
+///   "r1c3"
 /// ]
 /// </code>
 /// </remarks>
@@ -27,7 +27,11 @@ public sealed class CellsJsonConverter : JsonConverter<Cells>
 		var result = Cells.Empty;
 		while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
 		{
-			result.Add(reader.TokenType == JsonTokenType.Number ? reader.GetInt32() : throw new JsonException());
+			result.Add(
+				reader.TokenType == JsonTokenType.String && RxCyNotation.TryParseCell(reader.GetString()!, out int c)
+					? c
+					: throw new JsonException()
+			);
 		}
 
 		return result;
@@ -39,7 +43,7 @@ public sealed class CellsJsonConverter : JsonConverter<Cells>
 		writer.WriteStartArray();
 		foreach (int cell in value)
 		{
-			writer.WriteNumberValue(cell);
+			writer.WriteStringValue(RxCyNotation.ToCellString(cell));
 		}
 		writer.WriteEndArray();
 	}

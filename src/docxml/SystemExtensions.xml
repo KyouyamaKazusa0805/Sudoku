@@ -2259,11 +2259,34 @@
             </returns>
             <seealso cref="P:System.Text.Json.JsonSerializerOptions.Converters"/>
         </member>
+        <member name="T:System.Text.Json.Utf8JsonReaderExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonReader"/>.
+            </summary>
+            <seealso cref="T:System.Text.Json.Utf8JsonReader"/>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonReaderExtensions.GetNestedObject``1(System.Text.Json.Utf8JsonReader@,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            To read as a nested object in the JSON string stream.
+            </summary>
+            <typeparam name="T">The type of the instance to be deserialized.</typeparam>
+            <param name="this">The <see cref="T:System.Text.Json.Utf8JsonReader"/> instance.</param>
+            <param name="options">The options.</param>
+        </member>
         <member name="T:System.Text.Json.Utf8JsonWriterExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonWriter"/>.
             </summary>
             <seealso cref="T:System.Text.Json.Utf8JsonWriter"/>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteNestedObject``1(System.Text.Json.Utf8JsonWriter,``0,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            To write an object as nested one in the JSON string stream.
+            </summary>
+            <typeparam name="T">The type of the instance to be serialized.</typeparam>
+            <param name="this">The <see cref="T:System.Text.Json.Utf8JsonWriter"/> instance.</param>
+            <param name="instance">The instance to be serialized.</param>
+            <param name="options">The options.</param>
         </member>
         <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteStringValue(System.Text.Json.Utf8JsonWriter,System.Text.StringHandler@)">
             <summary>

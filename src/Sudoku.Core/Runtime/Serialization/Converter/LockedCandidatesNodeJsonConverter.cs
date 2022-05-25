@@ -28,12 +28,20 @@ public sealed class LockedCandidatesNodeJsonConverter : JsonConverter<LockedCand
 			throw new JsonException();
 		}
 
-		if (!reader.Read() || reader.TokenType != JsonTokenType.String)
+		if (!reader.Read()
+			|| reader.TokenType != JsonTokenType.PropertyName || reader.GetString() != nameof(LockedCandidatesNode.Cells))
 		{
 			throw new JsonException();
 		}
 
-		var cells = RxCyNotation.ParseCells(reader.GetString()!);
+		var cells = reader.GetNestedObject<Cells>(options);
+
+		if (!reader.Read()
+			|| reader.TokenType != JsonTokenType.PropertyName || reader.GetString() != nameof(LockedCandidatesNode.Digit))
+		{
+			throw new JsonException();
+		}
+
 		if (!reader.Read() || reader.TokenType != JsonTokenType.Number)
 		{
 			throw new JsonException();
@@ -52,7 +60,8 @@ public sealed class LockedCandidatesNodeJsonConverter : JsonConverter<LockedCand
 	public override void Write(Utf8JsonWriter writer, LockedCandidatesNode value, JsonSerializerOptions options)
 	{
 		writer.WriteStartObject();
-		writer.WriteString(nameof(LockedCandidatesNode.Cells), RxCyNotation.ToCellsString(value.Cells));
+		writer.WritePropertyName(nameof(LockedCandidatesNode.Cells));
+		writer.WriteNestedObject(value.Cells, options);
 		writer.WriteNumber(nameof(LockedCandidatesNode.Digit), value.Digit + 1);
 		writer.WriteEndObject();
 	}

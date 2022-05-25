@@ -3791,6 +3791,18 @@
         <member name="P:Sudoku.Concepts.Notations.RxCyNotation.Notation">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.TryParseCell(System.String,System.Int32@)">
+            <summary>
+            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:System.Int32"/>
+            instance, as the cell value.
+            </summary>
+            <param name="str">The <see cref="T:System.String"/> value.</param>
+            <param name="result">
+            The <see cref="T:System.Int32"/> result. If the return value is <see langword="false"/>,
+            this argument will be a discard and cannot be used.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the parsing operation is successful.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.Notations.RxCyNotation.TryParseCells(System.String,Sudoku.Concepts.Collections.Cells@)">
             <inheritdoc/>
         </member>
@@ -12205,14 +12217,14 @@
             <code>
             {
               "fullCells": [
-                10,
-                20,
-                30
+                "r1c1",
+                "r1c2",
+                "r1c3"
               ],
               "cells": [
-                10,
-                20,
-                30
+                "r1c1",
+                "r1c2",
+                "r1c3"
               ],
               "digit": 2
             }
@@ -12234,9 +12246,9 @@
             JSON Pattern:
             <code>
             [
-              10,
-              20,
-              30
+              "r1c1",
+              "r1c2",
+              "r1c3"
             ]
             </code>
             </remarks>

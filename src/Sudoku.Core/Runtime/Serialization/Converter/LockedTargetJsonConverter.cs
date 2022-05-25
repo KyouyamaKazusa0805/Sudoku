@@ -38,24 +38,15 @@ public sealed class LockedTargetJsonConverter : JsonConverter<LockedTarget>
 			throw new JsonException();
 		}
 
+		int digit = reader.GetInt32();
+
 		if (!reader.Read()
 			|| reader.TokenType != JsonTokenType.PropertyName || reader.GetString() != nameof(LockedTarget.Cells))
 		{
 			throw new JsonException();
 		}
 
-		int digit = reader.GetInt32();
-		if (!reader.Read() || reader.TokenType != JsonTokenType.StartArray)
-		{
-			throw new JsonException();
-		}
-
-		var cells = Cells.Empty;
-		while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
-		{
-			int cell = reader.GetInt32();
-			cells.Add(cell);
-		}
+		var cells = reader.GetNestedObject<Cells>(options);
 
 		if (reader.TokenType != JsonTokenType.EndObject)
 		{
@@ -71,12 +62,7 @@ public sealed class LockedTargetJsonConverter : JsonConverter<LockedTarget>
 		writer.WriteStartObject();
 		writer.WriteNumber(nameof(LockedTarget.Digit), value.Digit);
 		writer.WritePropertyName(nameof(LockedTarget.Cells));
-		writer.WriteStartArray();
-		foreach (int cell in value.Cells)
-		{
-			writer.WriteNumberValue(cell);
-		}
-		writer.WriteEndArray();
+		writer.WriteNestedObject(value.Cells, options);
 		writer.WriteEndObject();
 	}
 }
