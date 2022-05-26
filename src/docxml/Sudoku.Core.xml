@@ -22,8 +22,8 @@
             <param name="grid">The grid to be checked.</param>
             <returns>
             The candidate found and confirmed being missing, whose valid range is from 0 to 728.
-            <c>-1</c> will be returned if no possible missing candidate found. For example,
-            at least two missing candidates should be checked.
+            <see langword="null"/> will be returned if no possible missing candidate found.
+            For example, at least two missing candidates should be checked.
             </returns>
             <exception cref="T:System.InvalidOperationException">
             Throws when the puzzle contain no solution or a unique solution.

@@ -18,54 +18,56 @@ public static class MissingCandidateSearcher
 	/// <param name="grid">The grid to be checked.</param>
 	/// <returns>
 	/// The candidate found and confirmed being missing, whose valid range is from 0 to 728.
-	/// <c>-1</c> will be returned if no possible missing candidate found. For example,
-	/// at least two missing candidates should be checked.
+	/// <see langword="null"/> will be returned if no possible missing candidate found.
+	/// For example, at least two missing candidates should be checked.
 	/// </returns>
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the puzzle contain no solution or a unique solution.
 	/// </exception>
-	public static unsafe int GetMissingCandidate(in Grid grid)
+	public static unsafe int? GetMissingCandidate(in Grid grid)
 	{
 		// Optimization: Check the symmetry. User-created sudoku puzzles often contain patterns with symmetry.
 		return Solver.Solve(grid.ToString("0"), null, 2) switch
 		{
 			0 or 1 => throw new InvalidOperationException($"The {nameof(grid)} must contain more than one solution."),
-			_
-				=> testSymmetry(grid, &GridTransformations.RotatePi)
-				?? testSymmetry(grid, &GridTransformations.MirrorLeftRight)
-				?? testSymmetry(grid, &GridTransformations.MirrorTopBottom)
-				?? testSymmetry(grid, &GridTransformations.MirrorDiagonal)
-				?? testSymmetry(grid, &GridTransformations.MirrorAntidiagonal)
-				?? testSymmetry(grid, &GridTransformations.RotateClockwise)
-				?? testSymmetry(grid, &GridTransformations.RotateCounterclockwise)
-				?? testNoSymmetry(grid)
-				?? -1
+			_ => tryWithSymmetry(grid) ?? tryWithNoSymmetry(grid)
 		};
 
 
-		static int? testSymmetry(in Grid grid, delegate*<in Grid, Grid> transform)
+		static int? tryWithSymmetry(in Grid grid)
 		{
-			if ((grid.GivenCells ^ transform(grid).GivenCells) is not [var cell])
+			var handlers = stackalloc delegate*<in Grid, Grid>[]
 			{
-				goto ReturnNull;
-			}
+				&GridTransformations.RotatePi,
+				&GridTransformations.MirrorLeftRight,
+				&GridTransformations.MirrorTopBottom,
+				&GridTransformations.MirrorDiagonal,
+				&GridTransformations.MirrorAntidiagonal,
+				&GridTransformations.RotateClockwise,
+				&GridTransformations.RotateCounterclockwise
+			};
 
-			foreach (int digit in grid.GetCandidates(cell))
+			for (int i = 0; i < 7; i++)
 			{
-				var newGrid = grid;
-				newGrid[cell] = digit;
-
-				if (Solver.CheckValidity(newGrid.ToString("0")))
+				if ((grid.GivenCells ^ handlers[i](grid).GivenCells) is [var cell])
 				{
-					return cell * 9 + digit;
+					foreach (int digit in grid.GetCandidates(cell))
+					{
+						var newGrid = grid;
+						newGrid[cell] = digit;
+
+						if (Solver.CheckValidity(newGrid.ToString("0")))
+						{
+							return cell * 9 + digit;
+						}
+					}
 				}
 			}
 
-		ReturnNull:
 			return null;
 		}
 
-		static int? testNoSymmetry(in Grid grid)
+		static int? tryWithNoSymmetry(in Grid grid)
 		{
 			foreach (int candidate in grid)
 			{

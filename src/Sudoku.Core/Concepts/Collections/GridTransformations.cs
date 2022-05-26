@@ -220,7 +220,7 @@ public static unsafe class GridTransformations
 	{
 		Argument.ThrowIfFalse(houseIndex1 is >= 9 and < 27, "The specified argument is out of valid range.");
 		Argument.ThrowIfFalse(houseIndex2 is >= 9 and < 27, "The specified argument is out of valid range.");
-		Argument.ThrowIfFalse(houseIndex1 / 9 == houseIndex2 / 9, "Two houses should be the same house type.");
+		Argument.ThrowIfFalse(houseIndex1.ToHouse() == houseIndex2.ToHouse(), "Two houses should be the same house type.");
 
 		var result = @this;
 		fixed (short* pThis = @this, pResult = result)
