@@ -48,7 +48,7 @@ public sealed class AutoOverridesEqualsGenerator : IIncrementalGenerator
 #pragma warning disable IDE0055
 				v is not (
 					{ TypeKind: var typeKind, IsRecord: var isRecord, IsRefLikeType: var isRefStruct } type,
-					{ ConstructorArguments: [var firstArg, ..] } attributeData
+					{ ConstructorArguments: [{ Values: var typedConstants }, ..] } attributeData
 				)
 #pragma warning restore IDE0055
 			)
@@ -72,7 +72,7 @@ public sealed class AutoOverridesEqualsGenerator : IIncrementalGenerator
 				targetSymbolsRawString.Add("other is not null");
 			}
 
-			foreach (var typedConstant in firstArg is { Kind: TypedConstantKind.Array, Values: var array } ? array : ImmutableArray.Create(firstArg))
+			foreach (var typedConstant in typedConstants)
 			{
 				string memberName = (string)typedConstant.Value!;
 

@@ -7,7 +7,7 @@
 /// A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
 /// two position can fill this candidate.
 /// </remarks>
-[MaskStyledDataType<int>("From", 10, typeof(int), "To", 20, typeof(int), "Digit", 24, typeof(int))]
+[AutoOverridesGetHashCode(nameof(Map), nameof(Digit))]
 [AutoOverridesEquals(nameof(Map), nameof(Digit))]
 [AutoOverridesToString(nameof(From), nameof(To), nameof(Digit), Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]} == {Sudoku.Concepts.Collections.Cells.Empty + [1]}({[2] + 1})")]
 [AutoOverloadsEqualityOperators]
@@ -17,6 +17,21 @@ public readonly partial struct Conjugate :
 	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate>
 {
+	/// <summary>
+	/// Indicates the mask.
+	/// </summary>
+	private readonly int _mask;
+
+
+	/// <summary>
+	/// Initializes a <see cref="Conjugate"/> instance with from and to cell offset and a digit.
+	/// </summary>
+	/// <param name="from">The from cell.</param>
+	/// <param name="to">The to cell.</param>
+	/// <param name="digit">The digit.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Conjugate(int from, int to, int digit) => _mask = digit << 20 | from << 10 | to;
+
 	/// <summary>
 	/// Initializes a <see cref="Conjugate"/> instance with the map and the digit.
 	/// The map should contains two cells, the first one is the start one, and the second one is the end one.
@@ -28,6 +43,33 @@ public readonly partial struct Conjugate :
 	{
 	}
 
+
+	/// <summary>
+	/// Indicates the cell that starts with the conjugate pair.
+	/// </summary>
+	public int From
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _mask & 1023;
+	}
+
+	/// <summary>
+	/// Indicates the cell that ends with the conjugate pair.
+	/// </summary>
+	public int To
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _mask >> 10 & 1023;
+	}
+
+	/// <summary>
+	/// Indicates the digit used.
+	/// </summary>
+	public int Digit
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _mask >> 20 & 15;
+	}
 
 	/// <summary>
 	/// Indicates the line that two cells lie in.

@@ -2758,6 +2758,19 @@
             two position can fill this candidate.
             </remarks>
         </member>
+        <member name="F:Sudoku.Concepts.Conjugate._mask">
+            <summary>
+            Indicates the mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Conjugate.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Conjugate"/> instance with from and to cell offset and a digit.
+            </summary>
+            <param name="from">The from cell.</param>
+            <param name="to">The to cell.</param>
+            <param name="digit">The digit.</param>
+        </member>
         <member name="M:Sudoku.Concepts.Conjugate.#ctor(Sudoku.Concepts.Collections.Cells@,System.Int32)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Conjugate"/> instance with the map and the digit.
@@ -2765,6 +2778,21 @@
             </summary>
             <param name="map">The map.</param>
             <param name="digit">The digit.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Conjugate.From">
+            <summary>
+            Indicates the cell that starts with the conjugate pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Conjugate.To">
+            <summary>
+            Indicates the cell that ends with the conjugate pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Conjugate.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Conjugate.Line">
             <summary>
@@ -2816,7 +2844,10 @@
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conjugate.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Concepts.Enumerators.BitSubsetsGenerator">
             <summary>
