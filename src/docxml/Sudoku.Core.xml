@@ -6454,19 +6454,6 @@
             Indicates all symmetry types should be satisfied.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.SymmetryTypeExtensions">
-            <summary>
-            Provides extension methods for <see cref="T:Sudoku.Concepts.SymmetryType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.SymmetryType"/>
-        </member>
-        <member name="M:Sudoku.Concepts.SymmetryTypeExtensions.GetNameMulti(Sudoku.Concepts.SymmetryType)">
-            <summary>
-            Get the name of the current symmetry type.
-            </summary>
-            <param name="this">The type.</param>
-            <returns>The name.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.Inference_EnumSwitchExpressionExtensions">
             <summary>
             Provides with extension methods for switching on the current type.
