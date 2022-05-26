@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.UI.Drawing</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.UI.Drawing.PointConversions">
+            <summary>
+            Stores a set of methods on handling point conversions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GridSize(System.Double,System.Double)">
+            <summary>
+            Gets the grid size from the specified pane size and the outside offset.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
+            <returns>The grid size.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.BlockSize(System.Double,System.Double)">
+            <summary>
+            Gets the block size from the specified pane size and the outside offset.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
+            <returns>The block size.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.CellSize(System.Double,System.Double)">
+            <summary>
+            Gets the cell size from the specified pane size and the outside offset.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
+            <returns>The cell size.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.CandidateSize(System.Double,System.Double)">
+            <summary>
+            Gets the candidate size from the specified pane size and the outside offset.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
+            <returns>The candidate size.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetBlockLine(System.Double,System.Double,System.Byte)">
+            <summary>
+            Gets the start and end point that corresponds to the target block line at the specified index.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="order">The index of the target block line. The value must be between 0 and 3.</param>
+            <returns>The two points indicating the start and end point of the line.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetCellLine(System.Double,System.Double,System.Byte)">
+            <summary>
+            Gets the start and end point that corresponds to the target cell line at the specified index.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="order">The index of the target cell line. The value must be between 0 and 9.</param>
+            <returns>The two points indicating the start and end point of the line.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetCandidateLine(System.Double,System.Double,System.Byte)">
+            <summary>
+            Gets the start and end point that corresponds to the target candidate line at the specified index.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="order">The index of the target candidate line. The value must be between 0 and 27.</param>
+            <returns>The two points indicating the start and end point of the line.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetCell(Windows.Foundation.Point@,System.Double,System.Double)">
+            <summary>
+            Gets the cell index via the <see cref="T:Windows.Foundation.Point"/> value through the mouse interaction.
+            </summary>
+            <param name="point">The point value.</param>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <returns>
+            The cell index. If the argument <paramref name="point"/> is invalid,
+            the return value will be -1.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetCandidate(Windows.Foundation.Point@,System.Double,System.Double)">
+            <summary>
+            Gets the candidate index via the <see cref="T:Windows.Foundation.Point"/> value through the mouse interaction.
+            </summary>
+            <param name="point">The point value.</param>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <returns>
+            The candidate index. If the argument <paramref name="point"/> is invalid,
+            the return value will be -1.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetLine(System.Double,System.Double,System.Byte,System.Int32)">
+            <summary>
+            Gets the start and end point that corresponds to the target line at the specified index,
+            with the specified line weight.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="i">The index of the target line.</param>
+            <param name="w">The weight of the line type. The value must be 3, 9 or 27.</param>
+            <returns>The two points indicating the start and end point of the line.</returns>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE8A62F54E">
+            <summary>
+            Provides with extension deconstruction methods on this type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE8A62F54E.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Deconstruct the current instance into multiple values, which means you can use
+            the value-tuple syntax to define your own deconstruction logic.
+            </summary>
+            <remarks>
+            <para>
+            For example,
+            if you have defined a <see langword="static"/> deconstruction method <c>Deconstruct</c>
+            in a <see langword="static class"/>, without any return value:
+            <code><![CDATA[
+            public static void Deconstruct(out string name, out int age)
+            {
+                name = Name;
+                age = Age;
+            }
+            ]]></code>
+            The following code will be legal.
+            <code><![CDATA[
+            // Use explicitly typed variables to get a deconstruction.
+            (string name, int age) = student;
+            
+            // Or use the type inferring to omit the type of each variable having been deconstructed.
+            var (name, age) = student;
+            
+            // Of course, you can also use the instance-method-like invocation to get values.
+            student.Deconstruct(out string name, out int age);
+            ]]></code>
+            </para>
+            <para>
+            Static deconstruction methods also allow you using deconstruction patterns, like this:
+            <code><![CDATA[
+            if (student is (name: var name, age: >= 18))
+            {
+                Console.WriteLine(name);
+            }
+            ]]></code>
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Windows.Foundation.Point_DE21A8A3CE">
+            <summary>
+            Provides with extension deconstruction methods on this type.
+            </summary>
+        </member>
+        <member name="M:Windows.Foundation.Point_DE21A8A3CE.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+            <summary>
+            Deconstruct the current instance into multiple values, which means you can use
+            the value-tuple syntax to define your own deconstruction logic.
+            </summary>
+            <remarks>
+            <para>
+            For example,
+            if you have defined a <see langword="static"/> deconstruction method <c>Deconstruct</c>
+            in a <see langword="static class"/>, without any return value:
+            <code><![CDATA[
+            public static void Deconstruct(out string name, out int age)
+            {
+                name = Name;
+                age = Age;
+            }
+            ]]></code>
+            The following code will be legal.
+            <code><![CDATA[
+            // Use explicitly typed variables to get a deconstruction.
+            (string name, int age) = student;
+            
+            // Or use the type inferring to omit the type of each variable having been deconstructed.
+            var (name, age) = student;
+            
+            // Of course, you can also use the instance-method-like invocation to get values.
+            student.Deconstruct(out string name, out int age);
+            ]]></code>
+            </para>
+            <para>
+            Static deconstruction methods also allow you using deconstruction patterns, like this:
+            <code><![CDATA[
+            if (student is (name: var name, age: >= 18))
+            {
+                Console.WriteLine(name);
+            }
+            ]]></code>
+            </para>
+            </remarks>
+        </member>
+    </members>
+</doc>
