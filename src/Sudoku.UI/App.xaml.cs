@@ -1,4 +1,5 @@
-﻿using Sudoku.UI.Views.Windows;
+﻿using Sudoku.UI.Drawing;
+using Sudoku.UI.Views.Windows;
 
 namespace Sudoku.UI;
 
