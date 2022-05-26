@@ -1928,6 +1928,25 @@
             The default value is <see cref="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.Throw"/>.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.MaskStyledDataTypeAttribute`1">
+            <summary>
+            Provides with an attribute that is applied to a type, which contains an only field of type
+            <typeparamref name="TUnmanaged"/>, indicating the mask of the data structure.
+            </summary>
+            <typeparam name="TUnmanaged">The type of the only field.</typeparam>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.MaskStyledDataTypeAttribute`1.#ctor(System.Object[])">
+            <summary>
+            Initializes a <see cref="T:System.Diagnostics.CodeGen.MaskStyledDataTypeAttribute`1"/> instance via the specified list of positions.
+            </summary>
+            <param name="nameAndPositions">An array of names and their own corresponding position indices.</param>
+            <exception cref="T:System.ArgumentException">Throws when the argument has invalid values.</exception>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.MaskStyledDataTypeAttribute`1.Positions">
+            <summary>
+            Indicates the positions that marks the start and end index separating the mask on bits.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.OptionProviders.ICustomizedNamespaceEmitter">
             <summary>
             Indicates an attribute type that can emit customized namespaces.

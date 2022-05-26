@@ -28,4 +28,5 @@ internal static class Shortcuts
 	public const string Utf8JsonReader = "u8rbo";
 	public const string Utf8JsonWriter = "u8wbo";
 	public const string StepSearcherOptions = "sso";
+	public const string MaskStyledDataType = "msdt";
 }

@@ -6,9 +6,6 @@
 [Generator(LanguageNames.CSharp)]
 public sealed class AutoOverridesGetHashCodeGenerator : IIncrementalGenerator
 {
-	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute";
-
-
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(
@@ -32,7 +29,8 @@ public sealed class AutoOverridesGetHashCodeGenerator : IIncrementalGenerator
 			return null;
 		}
 
-		var attributeTypeSymbol = compilation.GetTypeByMetadataName(AttributeFullName);
+		const string attributeFullName = "System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute";
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(attributeFullName);
 		var attributeData = (
 			from a in typeSymbol.GetAttributes()
 			where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTypeSymbol)

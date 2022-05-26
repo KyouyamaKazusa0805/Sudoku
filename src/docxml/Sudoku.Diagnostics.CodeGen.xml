@@ -413,6 +413,14 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.JsonSerializerBitOperationsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.MaskStyledDataTypeGenerator">
+            <summary>
+            Defines a generator that generates the source code for mask-styled members on a type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.MaskStyledDataTypeGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator">
             <summary>
             Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.

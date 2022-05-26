@@ -6,9 +6,6 @@
 [Generator(LanguageNames.CSharp)]
 public sealed class AutoOverridesEqualsGenerator : IIncrementalGenerator
 {
-	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute";
-
-
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(
@@ -32,7 +29,8 @@ public sealed class AutoOverridesEqualsGenerator : IIncrementalGenerator
 			return null;
 		}
 
-		var attributeTypeSymbol = compilation.GetTypeByMetadataName(AttributeFullName);
+		const string attributeFullName = "System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute";
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(attributeFullName);
 		var attributeData = (
 			from a in typeSymbol.GetAttributes()
 			where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTypeSymbol)
@@ -50,7 +48,7 @@ public sealed class AutoOverridesEqualsGenerator : IIncrementalGenerator
 #pragma warning disable IDE0055
 				v is not (
 					{ TypeKind: var typeKind, IsRecord: var isRecord, IsRefLikeType: var isRefStruct } type,
-					{ ConstructorArguments: [{ Values: var typedConstants }, ..] } attributeData
+					{ ConstructorArguments: [var firstArg, ..] } attributeData
 				)
 #pragma warning restore IDE0055
 			)
@@ -74,7 +72,7 @@ public sealed class AutoOverridesEqualsGenerator : IIncrementalGenerator
 				targetSymbolsRawString.Add("other is not null");
 			}
 
-			foreach (var typedConstant in typedConstants)
+			foreach (var typedConstant in firstArg is { Kind: TypedConstantKind.Array, Values: var array } ? array : ImmutableArray.Create(firstArg))
 			{
 				string memberName = (string)typedConstant.Value!;
 
