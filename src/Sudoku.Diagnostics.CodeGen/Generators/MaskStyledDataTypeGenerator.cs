@@ -16,7 +16,7 @@ public sealed class MaskStyledDataTypeGenerator : IIncrementalGenerator
 			GenerateSource
 		);
 
-	private (INamedTypeSymbol, AttributeData)? GetValuesProvider(GeneratorSyntaxContext gsc, CancellationToken ct)
+	private static (INamedTypeSymbol, AttributeData)? GetValuesProvider(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
 		if (gsc is not { Node: TypeDeclarationSyntax node, SemanticModel: var semanticModel })
 		{
