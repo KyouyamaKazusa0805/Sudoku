@@ -42,26 +42,23 @@ public sealed class AnalysisResultRow
 	/// </param>
 	/// <returns>The result list of <see cref="AnalysisResultRow"/>-typed elements.</returns>
 	public static IEnumerable<AnalysisResultRow> CreateListFrom(ManualSolverResult analysisResult)
-	{
-		var stepDifficultySelector = static (Step step) => step.Difficulty;
-		return
-			from step in analysisResult.Steps
-			orderby step.DifficultyLevel, step.TechniqueCode
-			group step by step.Name into stepGroup
-			let stepGroupArray = stepGroup.ToArray()
-			let difficultyLevels =
+		=>
+		from step in analysisResult.Steps
+		orderby step.DifficultyLevel, step.TechniqueCode
+		group step by step.Name into stepGroup
+		let stepGroupArray = stepGroup.ToArray()
+		select new AnalysisResultRow
+		{
+			TechniqueName = stepGroup.Key,
+			CountOfSteps = stepGroupArray.Length,
+			DifficultyLevel = (
 				from step in stepGroupArray
 				group step by step.DifficultyLevel into stepGroupedByDifficultyLevel
 				select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
 				orderby targetDifficultyLevel
 				select targetDifficultyLevel
-			select new AnalysisResultRow
-			{
-				TechniqueName = stepGroup.Key,
-				CountOfSteps = stepGroupArray.Length,
-				DifficultyLevel = difficultyLevels.Aggregate(static (interim, next) => interim | next),
-				TotalDifficulty = stepGroupArray.Sum(stepDifficultySelector),
-				MaximumDifficulty = stepGroupArray.Max(stepDifficultySelector)
-			};
-	}
+			).Aggregate(static (interim, next) => interim | next),
+			TotalDifficulty = stepGroupArray.Sum(static step => step.Difficulty),
+			MaximumDifficulty = stepGroupArray.Max(static step => step.Difficulty)
+		};
 }
