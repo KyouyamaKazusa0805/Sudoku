@@ -216,8 +216,8 @@ public sealed partial class SudokuGrid : DrawingElement
 			_grid = value;
 
 			// Clear the wrong status for all cell digits and candidate digits.
-			Array.ForEach(_cellDigits, cellDigit => cellDigit.IsGiven = false);
-			Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.WrongDigitMask = 0);
+			Array.ForEach(_cellDigits, static cellDigit => cellDigit.IsGiven = false);
+			Array.ForEach(_candidateDigits, static candidateDigit => candidateDigit.WrongDigitMask = 0);
 
 			// Update the view.
 			UpdateView();
