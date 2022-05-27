@@ -103,7 +103,7 @@ static async void PlaySudokuAsync(Sender sender, string message)
 	}
 
 	// TODO: Implement the game. Here we should implement the drawing items.
-	// TODO: Official APIs doesn't support about uploading pictures from local path.
+	// TODO: Official APIs don't support about uploading pictures from local path.
 	/*
 	// Create game.
 	var generator = new HardPatternPuzzleGenerator();
