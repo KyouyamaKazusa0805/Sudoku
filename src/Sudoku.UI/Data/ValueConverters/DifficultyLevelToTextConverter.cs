@@ -1,9 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.UI.Xaml.Data;
-using Sudoku.Runtime.AnalysisServices;
-
-namespace Sudoku.UI.Data.ValueConverters;
+﻿namespace Sudoku.UI.Data.ValueConverters;
 
 /// <summary>
 /// Defines a value converter that allows the one-way binding from the
@@ -23,16 +18,12 @@ public sealed class DifficultyLevelToTextConverter : IValueConverter
 			? throw new ArgumentException($"The desired target type must be 'string'.", nameof(targetType))
 			: value switch
 			{
-				DifficultyLevel d => d switch
-				{
-					DifficultyLevel.Easy => Get("SudokuPage_AnalysisResultColumn_Easy"),
-					DifficultyLevel.Moderate => Get("SudokuPage_AnalysisResultColumn_Moderate"),
-					DifficultyLevel.Hard => Get("SudokuPage_AnalysisResultColumn_Hard"),
-					DifficultyLevel.Fiendish => Get("SudokuPage_AnalysisResultColumn_Fiendish"),
-					DifficultyLevel.Nightmare => Get("SudokuPage_AnalysisResultColumn_Nightmare"),
-					_ => string.Empty
-				},
-				_ => null
+				DifficultyLevel.Easy => Get("SudokuPage_AnalysisResultColumn_Easy"),
+				DifficultyLevel.Moderate => Get("SudokuPage_AnalysisResultColumn_Moderate"),
+				DifficultyLevel.Hard => Get("SudokuPage_AnalysisResultColumn_Hard"),
+				DifficultyLevel.Fiendish => Get("SudokuPage_AnalysisResultColumn_Fiendish"),
+				DifficultyLevel.Nightmare => Get("SudokuPage_AnalysisResultColumn_Nightmare"),
+				_ => string.Empty,
 			};
 
 	/// <inheritdoc/>

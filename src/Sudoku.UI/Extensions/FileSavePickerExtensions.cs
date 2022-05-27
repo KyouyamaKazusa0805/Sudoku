@@ -1,9 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using Sudoku.UI.Data.Interoperability;
-using WinRT;
-
-namespace Windows.Storage.Pickers;
+﻿namespace Windows.Storage.Pickers;
 
 /// <summary>
 /// Provides extension methods on <see cref="FileSavePicker"/>.

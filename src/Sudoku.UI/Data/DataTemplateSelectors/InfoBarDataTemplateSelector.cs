@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.UI.Data.DataTemplateSelectors;
+﻿namespace Sudoku.UI.Data.DataTemplateSelectors;
 
 /// <summary>
 /// Defines a data template selector that selects the <see cref="DataTemplate"/> between

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using Microsoft.UI.Xaml.Media.Animation;
-using Microsoft.UI.Xaml.Navigation;
-
-namespace Sudoku.UI.Views.Pages;
+﻿namespace Sudoku.UI.Views.Pages;
 
 /// <summary>
 /// Indicates the main page of the window. The page is used for navigation to other pages.
@@ -79,11 +72,13 @@ public sealed partial class MainPage : Page
 	private void ViewRouterFrame_Navigated(object sender, NavigationEventArgs e)
 	{
 		if (
+#pragma warning disable IDE0055
 			(sender, e, _cViewRouter) is not (
 				Frame { SourcePageType: not null },
 				{ SourcePageType: var sourcePageType },
 				{ MenuItems: var menuItems, FooterMenuItems: var footerMenuItems }
 			)
+#pragma warning restore IDE0055
 		)
 		{
 			return;

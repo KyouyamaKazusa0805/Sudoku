@@ -1,7 +1,4 @@
-﻿using Microsoft.UI;
-using Microsoft.UI.Windowing;
-
-namespace Sudoku.UI.Views.Windows;
+﻿namespace Sudoku.UI.Views.Windows;
 
 /// <summary>
 /// An empty window that can be used on its own or navigated to within a <see cref="Frame"/>.

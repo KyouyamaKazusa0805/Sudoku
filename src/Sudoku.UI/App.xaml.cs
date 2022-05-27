@@ -1,7 +1,4 @@
-﻿using Sudoku.UI.Drawing;
-using Sudoku.UI.Views.Windows;
-
-namespace Sudoku.UI;
+﻿namespace Sudoku.UI;
 
 /// <summary>
 /// Provides application-specific behavior to supplement the default <see cref="Application"/> class.

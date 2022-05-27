@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Sudoku.Concepts.Solving;
-using Sudoku.Runtime.AnalysisServices;
-using Sudoku.Solving.Manual;
-
-namespace Sudoku.UI.Data;
+﻿namespace Sudoku.UI.Data;
 
 /// <summary>
 /// Defines a row that used for displaying the information about a technique,

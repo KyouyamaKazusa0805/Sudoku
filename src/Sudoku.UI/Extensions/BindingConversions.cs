@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-
-namespace Sudoku.UI;
+﻿namespace Sudoku.UI;
 
 /// <summary>
 /// Provides a set of methods to convert the information.

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.UI.Xaml.Data;
-
-namespace Sudoku.UI.Data.ValueConverters;
+﻿namespace Sudoku.UI.Data.ValueConverters;
 
 /// <summary>
 /// Defines a value converter that allows the one-way binding from the undo-stack or redo-stack

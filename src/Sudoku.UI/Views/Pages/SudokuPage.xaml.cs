@@ -1,29 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Microsoft.UI.Input;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media.Imaging;
-using Sudoku.Generating.Puzzlers;
-using Sudoku.Runtime.AnalysisServices;
-using Sudoku.Solving.Manual;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.Graphics.Imaging;
-using Windows.Storage;
-using Windows.Storage.Pickers;
-using Windows.Storage.Provider;
-using Windows.Storage.Streams;
-using Windows.System;
-using Windows.UI.Core;
-using Windows.UI.ViewManagement;
-
-namespace Sudoku.UI.Views.Pages;
+﻿namespace Sudoku.UI.Views.Pages;
 
 /// <summary>
 /// An empty page that can be used on its own or navigated to within a Frame.

@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual;
-
-namespace Sudoku.UI.Data;
+﻿namespace Sudoku.UI.Data;
 
 /// <summary>
 /// Defines a <see cref="InfoBarMessage"/> instance that can provide with the details

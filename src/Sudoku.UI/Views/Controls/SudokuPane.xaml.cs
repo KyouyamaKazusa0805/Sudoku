@@ -1,15 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Microsoft.UI.Input;
-using Microsoft.UI.Xaml.Input;
-using Sudoku.UI.Drawing;
-using Sudoku.UI.Drawing.Shapes;
-using Windows.Foundation;
-using Windows.System;
-using Windows.UI.Core;
-
-namespace Sudoku.UI.Views.Controls;
+﻿namespace Sudoku.UI.Views.Controls;
 
 /// <summary>
 /// Defines a user control that interacts with a sudoku grid.

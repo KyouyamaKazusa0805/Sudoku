@@ -1,11 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Sudoku.Solving.Manual;
-using Sudoku.UI.Data;
-
-namespace Sudoku.UI.Views.Controls;
+﻿namespace Sudoku.UI.Views.Controls;
 
 /// <summary>
 /// Defines a user control that handles the messages displaying via <see cref="InfoBar"/>s.

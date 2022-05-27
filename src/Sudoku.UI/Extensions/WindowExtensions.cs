@@ -1,8 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Microsoft.UI.Windowing;
-using WinRT.Interop;
-
-namespace Microsoft.UI.Xaml;
+﻿namespace Microsoft.UI.Xaml;
 
 /// <summary>
 /// Provides extension methods on <see cref="Window"/>.
