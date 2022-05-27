@@ -4,7 +4,39 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:m="using:Sudoku.UI.Data"
 	mc:Ignorable="d">
 	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<TextBlock Grid.Row="0" Text="Here displays the items of settings that may be used in this program." Style="{ThemeResource PlainText}" />
+		<ListView x:Name="_cListView" ItemsSource="{x:Bind _settingGroupItems}" Grid.Row="1" SelectionMode="None">
+			<ListView.ItemTemplate>
+				<DataTemplate x:DataType="m:SettingGroupItem">
+					<Expander Margin="40,20,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+						<Expander.Header>
+							<Grid>
+								<TextBlock
+									Text="{x:Bind Name}" FontWeight="Bold" HorizontalAlignment="Left"
+									VerticalAlignment="Center" />
+								<TextBlock Text="{x:Bind Description}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+							</Grid>
+						</Expander.Header>
+						<Expander.Content>
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition />
+								</Grid.RowDefinitions>
+
+								<TextBlock Text="{StaticResource __SampleField}" Grid.Row="0" />
+							</Grid>
+						</Expander.Content>
+					</Expander>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
 	</Grid>
 </Page>
