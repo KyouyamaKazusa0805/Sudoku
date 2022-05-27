@@ -13,23 +13,12 @@ internal static class EnumerableExtensions
 	/// <param name="this">The collection to iterate.</param>
 	/// <param name="action">The action that is executed while iterating.</param>
 	public static void ForEach<T>(this IEnumerable<T> @this, Action<T> action)
-	{
-		var type = @this.GetType();
-		if (type == typeof(T[]))
-		{
-			Array.ForEach((T[])@this, action);
-			return;
-		}
-
-		if (type == typeof(List<T>))
-		{
-			((List<T>)@this).ForEach(action);
-			return;
-		}
-
-		foreach (var element in @this)
-		{
-			action(element);
-		}
-	}
+		=> (
+			@this switch
+			{
+				T[] array => action => Array.ForEach(array, action),
+				List<T> list => new Action<Action<T>>(list.ForEach),
+				_ => action => { foreach (var element in @this) { action(element); } }
+			}
+		)(action);
 }
