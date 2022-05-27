@@ -147,7 +147,7 @@ public sealed partial class SudokuPage : Page
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void CopySudokuCode()
 	{
-		ref readonly var grid = ref _cPane.GridByReference();
+		ref readonly var grid = ref _cPane.GridRef;
 		if (grid is { IsUndefined: true } or { IsEmpty: true })
 		{
 			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_CopyFailedDueToEmpty"));
@@ -343,7 +343,7 @@ public sealed partial class SudokuPage : Page
 		CachedFileManager.DeferUpdates(file);
 
 		// Writes to the file.
-		await FileIO.WriteTextAsync(file, _cPane.GridByReference().ToString("#"));
+		await FileIO.WriteTextAsync(file, _cPane.GridRef.ToString("#"));
 
 		// Let Windows know that we're finished changing the file so the other app can update
 		// the remote version of the file.
@@ -432,7 +432,7 @@ public sealed partial class SudokuPage : Page
 	private void GetSolution()
 	{
 		// Gets the grid and its solution, then check it.
-		ref readonly var grid = ref _cPane.GridByReference();
+		ref readonly var grid = ref _cPane.GridRef;
 		if (grid is not { IsValid: true, Solution: { IsUndefined: false } solution })
 		{
 			return;
@@ -456,7 +456,7 @@ public sealed partial class SudokuPage : Page
 		button.IsEnabled = false;
 
 		// Solve the puzzle using the manual solver.
-		var analysisResult = await Task.Run(() => Solver.Solve(_cPane.GridByReference()));
+		var analysisResult = await Task.Run(() => Solver.Solve(_cPane.GridRef));
 
 		// Enable the control.
 		button.IsEnabled = true;

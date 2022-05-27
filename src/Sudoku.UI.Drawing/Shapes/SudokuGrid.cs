@@ -199,8 +199,11 @@ public sealed partial class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
-	/// Gets or sets the grid.
+	/// Gets or sets the grid. If you want to get the inner sudoku grid puzzle instance,
+	/// we suggest you use the property <see cref="GridRef"/> instead of using the accessor
+	/// <see cref="Grid"/>.<see langword="get"/> because that property (i.e. <see cref="GridRef"/>) copies by reference.
 	/// </summary>
+	/// <seealso cref="GridRef"/>
 	public Grid Grid
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -235,6 +238,15 @@ public sealed partial class SudokuGrid : DrawingElement
 	/// Indicates the number of available redoable steps.
 	/// </summary>
 	internal int RedoStepsCount => _redoSteps.Count;
+
+	/// <summary>
+	/// Gets the reference of the grid. The method is used for getting the grid instance by reference.
+	/// </summary>
+	internal ref readonly Grid GridRef
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ref _grid;
+	}
 
 	private string TypeIdentifier => nameof(SudokuGrid);
 
@@ -384,13 +396,6 @@ public sealed partial class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
 		=> other is SudokuGrid comparer && _grid == comparer._grid;
-
-	/// <summary>
-	/// Gets the inner grid instance by reference.
-	/// </summary>
-	/// <returns>The reference of the grid.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ref readonly Grid GetGridByReference() => ref _grid;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
