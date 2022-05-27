@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -74,12 +73,9 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	public void AddMessage(InfoBarSeverity severity, string info)
 	{
 		var up = ((App)Application.Current).UserPreference;
-
-		Action<PlainMessage> handler = up.DescendingOrderedInfoBarBoard
-			? _list.Prepend<InfoBarMessage, PlainMessage>
-			: _list.Add;
-
-		handler(new() { Severity = severity, Message = info });
+		var a = _list.Prepend<InfoBarMessage, PlainMessage>;
+		var b = _list.Add;
+		(up.DescendingOrderedInfoBarBoard ? a : b)(new() { Severity = severity, Message = info });
 	}
 
 	/// <summary>
@@ -95,18 +91,17 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	public void AddMessage(InfoBarSeverity severity, string info, string link, string linkDescription)
 	{
 		var up = ((App)Application.Current).UserPreference;
-
-		Action<HyperlinkMessage> handler = up.DescendingOrderedInfoBarBoard
-			? _list.Prepend<InfoBarMessage, HyperlinkMessage>
-			: _list.Add;
-
-		handler(new()
-		{
-			Severity = severity,
-			Message = info,
-			Hyperlink = new(link),
-			HyperlinkDescription = linkDescription
-		});
+		var a = _list.Prepend<InfoBarMessage, HyperlinkMessage>;
+		var b = _list.Add;
+		(up.DescendingOrderedInfoBarBoard ? a : b)(
+			new()
+			{
+				Severity = severity,
+				Message = info,
+				Hyperlink = new(link),
+				HyperlinkDescription = linkDescription
+			}
+		);
 	}
 
 	/// <summary>
@@ -118,17 +113,16 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	public void AddMessage(ManualSolverResult analysisResult, InfoBarSeverity severity = InfoBarSeverity.Success)
 	{
 		var up = ((App)Application.Current).UserPreference;
-
-		Action<ManualSolverResultMessage> handler = up.DescendingOrderedInfoBarBoard
-			? _list.Prepend<InfoBarMessage, ManualSolverResultMessage>
-			: _list.Add;
-
-		handler(new()
-		{
-			AnalysisResult = analysisResult,
-			Severity = severity,
-			Message = Get("SudokuPage_InfoBar_AnalyzeSuccessfully")
-		});
+		var a = _list.Prepend<InfoBarMessage, ManualSolverResultMessage>;
+		var b = _list.Add;
+		(up.DescendingOrderedInfoBarBoard ? a : b)(
+			new()
+			{
+				AnalysisResult = analysisResult,
+				Severity = severity,
+				Message = Get("SudokuPage_InfoBar_AnalyzeSuccessfully")
+			}
+		);
 	}
 
 	/// <summary>
