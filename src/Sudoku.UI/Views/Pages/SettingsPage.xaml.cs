@@ -9,16 +9,43 @@ public sealed partial class SettingsPage : Page
 	/// <summary>
 	/// Indicates the backing list of <see cref="SettingGroupItem"/>s.
 	/// </summary>
-	private readonly IList<SettingGroupItem> _settingGroupItems = new List<SettingGroupItem>
-	{
-		new() { Name = "Group 1", Description = "Description 1" },
-		new() { Name = "Group 2", Description = "Description 2" },
-		new() { Name = "Group 3", Description = "Description 3" }
-	};
+	private IList<SettingGroupItem> _settingGroupItems;
 
 
 	/// <summary>
 	/// Initializes a <see cref="SettingsPage"/> instance.
 	/// </summary>
-	public SettingsPage() => InitializeComponent();
+	public SettingsPage()
+	{
+		InitializeComponent();
+
+		InitializeSettingGroupItems();
+	}
+
+	/// <summary>
+	/// Initializes the field <see cref="_settingGroupItems"/>.
+	/// </summary>
+	/// <seealso cref="_settingGroupItems"/>
+	[MemberNotNull(nameof(_settingGroupItems))]
+	private void InitializeSettingGroupItems()
+	{
+		_settingGroupItems = new List<SettingGroupItem>
+		{
+			new()
+			{
+				Name = Get("SettingsPage_GroupItemName_Basic"),
+				Description = Get("SettingsPage_GroupItemDescription_Basic")
+			},
+			new()
+			{
+				Name = Get("SettingsPage_GroupItemName_Solving"),
+				Description = Get("SettingsPage_GroupItemDescription_Solving")
+			},
+			new()
+			{
+				Name = Get("SettingsPage_GroupItemName_Miscellaneous"),
+				Description = Get("SettingsPage_GroupItemDescription_Miscellaneous")
+			}
+		};
+	}
 }

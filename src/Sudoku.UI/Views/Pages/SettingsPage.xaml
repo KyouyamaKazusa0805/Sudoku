@@ -12,7 +12,7 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
-		<TextBlock Grid.Row="0" Text="Here displays the items of settings that may be used in this program." Style="{ThemeResource PlainText}" />
+		<TextBlock Grid.Row="0" Text="{StaticResource SettingsPage_DetailDescrption}" Style="{ThemeResource PlainText}" />
 		<ListView x:Name="_cListView" ItemsSource="{x:Bind _settingGroupItems}" Grid.Row="1" SelectionMode="None">
 			<ListView.ItemTemplate>
 				<DataTemplate x:DataType="m:SettingGroupItem">
@@ -22,7 +22,8 @@
 								<TextBlock
 									Text="{x:Bind Name}" FontWeight="Bold" HorizontalAlignment="Left"
 									VerticalAlignment="Center" />
-								<TextBlock Text="{x:Bind Description}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+								<TextBlock
+									Text="{x:Bind Description}" HorizontalAlignment="Right" VerticalAlignment="Center" />
 							</Grid>
 						</Expander.Header>
 						<Expander.Content>

@@ -64,6 +64,13 @@
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Hard">困难</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Fiendish">极难</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Nightmare">地狱</x:String>
+	<x:String x:Key="SettingsPage_DetailDescrption">本页面列举一些可提供你修改程序行为的选项，这样可以提供了操作数独程序处理过程之中的灵活性。</x:String>
+	<x:String x:Key="SettingsPage_GroupItemName_Basic">基本设置项</x:String>
+	<x:String x:Key="SettingsPage_GroupItemName_Solving">解题</x:String>
+	<x:String x:Key="SettingsPage_GroupItemName_Miscellaneous">其它</x:String>
+	<x:String x:Key="SettingsPage_GroupItemDescription_Basic">基本设置选项都在这里</x:String>
+	<x:String x:Key="SettingsPage_GroupItemDescription_Solving">用于控制解题行为的选项都在这里</x:String>
+	<x:String x:Key="SettingsPage_GroupItemDescription_Miscellaneous">其它选项都在这里</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>
