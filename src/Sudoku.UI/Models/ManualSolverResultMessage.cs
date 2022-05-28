@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Data;
+﻿namespace Sudoku.UI.Models;
 
 /// <summary>
 /// Defines a <see cref="InfoBarMessage"/> instance that can provide with the details

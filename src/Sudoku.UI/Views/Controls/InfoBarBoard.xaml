@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:cvt="using:Sudoku.UI.Data.ValueConverters"
 	xmlns:dts="using:Sudoku.UI.Data.DataTemplateSelectors"
-	xmlns:m="using:Sudoku.UI.Data"
+	xmlns:m="using:Sudoku.UI.Models"
 	xmlns:ui="using:Sudoku.UI"
 	xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
 	mc:Ignorable="d"

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Data;
+﻿namespace Sudoku.UI.Models;
 
 /// <summary>
 /// Defines a setting group item.

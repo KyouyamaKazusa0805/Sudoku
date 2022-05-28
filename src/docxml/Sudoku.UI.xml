@@ -43,21 +43,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.App.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.App.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.CommonFileExtensions">
             <summary>
             Defines the constants that are the common file extensions.
@@ -88,107 +73,35 @@
             Indicates the configuration file.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Data.AnalysisResultRow">
-            <summary>
-            Defines a row that used for displaying the information about a technique,
-            whose inner data is from the <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>
-        </member>
-        <member name="P:Sudoku.UI.Data.AnalysisResultRow.TotalDifficulty">
-            <summary>
-            Indicates the total difficulty of all steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.AnalysisResultRow.MaximumDifficulty">
-            <summary>
-            Indicates the maximum difficulty in the steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.AnalysisResultRow.CountOfSteps">
-            <summary>
-            Indicates the number of steps that uses logic of the current technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.AnalysisResultRow.TechniqueName">
-            <summary>
-            Indicates the technique name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel">
-            <summary>
-            Indicates the difficulty level of the techinque belonging to.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Data.AnalysisResultRow.CreateListFrom(Sudoku.Solving.Manual.ManualSolverResult)">
-            <summary>
-            Creates the list of <see cref="T:Sudoku.UI.Data.AnalysisResultRow"/> as the result value,
-            via the specified <paramref name="analysisResult"/> instance of <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> type.
-            </summary>
-            <param name="analysisResult">
-            The <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance that is used for creating the result value.
-            </param>
-            <returns>The result list of <see cref="T:Sudoku.UI.Data.AnalysisResultRow"/>-typed elements.</returns>
-        </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
             Defines a data template selector that selects the <see cref="T:Microsoft.UI.Xaml.DataTemplate"/> between
-            <see cref="T:Sudoku.UI.Data.InfoBarMessage"/> and <see cref="T:Sudoku.UI.Data.HyperlinkMessage"/> as the model types.
+            <see cref="T:Sudoku.UI.Models.InfoBarMessage"/> and <see cref="T:Sudoku.UI.Models.HyperlinkMessage"/> as the model types.
             </summary>
-            <seealso cref="T:Sudoku.UI.Data.InfoBarMessage"/>
-            <seealso cref="T:Sudoku.UI.Data.HyperlinkMessage"/>
+            <seealso cref="T:Sudoku.UI.Models.InfoBarMessage"/>
+            <seealso cref="T:Sudoku.UI.Models.HyperlinkMessage"/>
         </member>
         <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.PlainMessageTemplate">
             <summary>
-            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.PlainMessage"/>.
+            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.PlainMessage"/>.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.HyperlinkMessageTemplate">
             <summary>
-            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.HyperlinkMessage"/>.
+            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.HyperlinkMessage"/>.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.AnalysisResultTemplate">
             <summary>
-            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.ManualSolverResultMessage"/>.
+            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.ManualSolverResultMessage"/>.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.SelectTemplateCore(System.Object)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">
             Throws when the type of the argument <paramref name="item"/> doesn't derive
-            from <see cref="T:Sudoku.UI.Data.InfoBarMessage"/>.
+            from <see cref="T:Sudoku.UI.Models.InfoBarMessage"/>.
             </exception>
-        </member>
-        <member name="T:Sudoku.UI.Data.HyperlinkMessage">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.UI.Data.HyperlinkMessage.HyperlinkDescription">
-            <summary>
-            Indicates the description text of the hyperlink. The default value is <see cref="F:System.String.Empty"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.HyperlinkMessage.Hyperlink">
-            <summary>
-            Indicates the hyperlink that the current <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> relates to.
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Data.InfoBarMessage">
-            <summary>
-            Defines a <see cref="T:Sudoku.UI.Data.InfoBarMessage"/> instance that represents for a message
-            that is used for the displaying as the message in <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> controls.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
-        </member>
-        <member name="P:Sudoku.UI.Data.InfoBarMessage.Message">
-            <summary>
-            Indicates the message to be displayed. The default value is <see cref="F:System.String.Empty"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.InfoBarMessage.Severity">
-            <summary>
-            Indicates the severity of the information.
-            </summary>
         </member>
         <member name="T:Sudoku.UI.Data.Interoperability.IInitializeWithWindow">
             <summary>
@@ -228,44 +141,12 @@
             </see>.
             </remarks>
         </member>
-        <member name="T:Sudoku.UI.Data.ManualSolverResultMessage">
-            <summary>
-            Defines a <see cref="T:Sudoku.UI.Data.InfoBarMessage"/> instance that can provide with the details
-            for a <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>
-        </member>
-        <member name="P:Sudoku.UI.Data.ManualSolverResultMessage.AnalysisResult">
-            <summary>
-            Indicates the analysis result.
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Data.PlainMessage">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.UI.Data.SettingGroupItem">
-            <summary>
-            Defines a setting group item.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.SettingGroupItem.Name">
-            <summary>
-            Indicates the name of the setting item. The default value is <see cref="F:System.String.Empty"/>.
-            </summary>
-            <seealso cref="F:System.String.Empty"/>
-        </member>
-        <member name="P:Sudoku.UI.Data.SettingGroupItem.Description">
-            <summary>
-            Indicates the description of the setting item. The default value is <see cref="F:System.String.Empty"/>.
-            </summary>
-            <seealso cref="F:System.String.Empty"/>
-        </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.DifficultyLevelToBackgroundConverter">
             <summary>
             Defines a value converter that allows the one-way binding from the
-            <see cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/> to <see cref="P:Microsoft.UI.Xaml.Controls.Control.Background"/> property value.
+            <see cref="P:Sudoku.UI.Models.AnalysisResultRow.DifficultyLevel"/> to <see cref="P:Microsoft.UI.Xaml.Controls.Control.Background"/> property value.
             </summary>
-            <seealso cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/>
+            <seealso cref="P:Sudoku.UI.Models.AnalysisResultRow.DifficultyLevel"/>
             <seealso cref="P:Microsoft.UI.Xaml.Controls.Control.Background"/>
         </member>
         <member name="F:Sudoku.UI.Data.ValueConverters.DifficultyLevelToBackgroundConverter.Backgrounds">
@@ -286,9 +167,9 @@
         <member name="T:Sudoku.UI.Data.ValueConverters.DifficultyLevelToForegroundConverter">
             <summary>
             Defines a value converter that allows the one-way binding from the
-            <see cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/> to <see cref="P:Microsoft.UI.Xaml.Controls.Control.Foreground"/> property value.
+            <see cref="P:Sudoku.UI.Models.AnalysisResultRow.DifficultyLevel"/> to <see cref="P:Microsoft.UI.Xaml.Controls.Control.Foreground"/> property value.
             </summary>
-            <seealso cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/>
+            <seealso cref="P:Sudoku.UI.Models.AnalysisResultRow.DifficultyLevel"/>
             <seealso cref="P:Microsoft.UI.Xaml.Controls.Control.Foreground"/>
         </member>
         <member name="F:Sudoku.UI.Data.ValueConverters.DifficultyLevelToForegroundConverter.Foregrounds">
@@ -309,9 +190,9 @@
         <member name="T:Sudoku.UI.Data.ValueConverters.DifficultyLevelToTextConverter">
             <summary>
             Defines a value converter that allows the one-way binding from the
-            <see cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/> to <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Text"/> property value.
+            <see cref="P:Sudoku.UI.Models.AnalysisResultRow.DifficultyLevel"/> to <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Text"/> property value.
             </summary>
-            <seealso cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/>
+            <seealso cref="P:Sudoku.UI.Models.AnalysisResultRow.DifficultyLevel"/>
             <seealso cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Text"/>
         </member>
         <member name="M:Sudoku.UI.Data.ValueConverters.DifficultyLevelToTextConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -364,19 +245,19 @@
         </member>
         <member name="M:Sudoku.UI.BindingConversions.License(System.String)">
             <summary>
-            Indicates the license displaying value on <see cref="P:Sudoku.UI.RepositoryInfo.OpenSourceLicense"/>.
+            Indicates the license displaying value on <see cref="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense"/>.
             </summary>
             <param name="input">The license name.</param>
             <returns>The converted result string.</returns>
-            <seealso cref="P:Sudoku.UI.RepositoryInfo.OpenSourceLicense"/>
+            <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense"/>
         </member>
         <member name="M:Sudoku.UI.BindingConversions.ForReference(System.Boolean)">
             <summary>
-            Indicates the conversion on <see cref="P:Sudoku.UI.RepositoryInfo.IsForReference"/>.
+            Indicates the conversion on <see cref="P:Sudoku.UI.Models.RepositoryInfo.IsForReference"/>.
             </summary>
             <param name="input">The input value.</param>
             <returns>The converted result string value.</returns>
-            <seealso cref="P:Sudoku.UI.RepositoryInfo.IsForReference"/>
+            <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.IsForReference"/>
         </member>
         <member name="M:Sudoku.UI.BindingConversions.InfoBarTitle(Microsoft.UI.Xaml.Controls.InfoBarSeverity)">
             <summary>
@@ -398,40 +279,144 @@
             <param name="uri">The URI website.</param>
             <returns>The process.</returns>
         </member>
-        <member name="T:Sudoku.UI.RepositoryInfo">
+        <member name="T:Sudoku.UI.Models.AnalysisResultRow">
+            <summary>
+            Defines a row that used for displaying the information about a technique,
+            whose inner data is from the <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.AnalysisResultRow.TotalDifficulty">
+            <summary>
+            Indicates the total difficulty of all steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.AnalysisResultRow.MaximumDifficulty">
+            <summary>
+            Indicates the maximum difficulty in the steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.AnalysisResultRow.CountOfSteps">
+            <summary>
+            Indicates the number of steps that uses logic of the current technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.AnalysisResultRow.TechniqueName">
+            <summary>
+            Indicates the technique name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.AnalysisResultRow.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level of the techinque belonging to.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.AnalysisResultRow.CreateListFrom(Sudoku.Solving.Manual.ManualSolverResult)">
+            <summary>
+            Creates the list of <see cref="T:Sudoku.UI.Models.AnalysisResultRow"/> as the result value,
+            via the specified <paramref name="analysisResult"/> instance of <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> type.
+            </summary>
+            <param name="analysisResult">
+            The <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance that is used for creating the result value.
+            </param>
+            <returns>The result list of <see cref="T:Sudoku.UI.Models.AnalysisResultRow"/>-typed elements.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Models.HyperlinkMessage">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Models.HyperlinkMessage.HyperlinkDescription">
+            <summary>
+            Indicates the description text of the hyperlink. The default value is <see cref="F:System.String.Empty"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.HyperlinkMessage.Hyperlink">
+            <summary>
+            Indicates the hyperlink that the current <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> relates to.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Models.InfoBarMessage">
+            <summary>
+            Defines a <see cref="T:Sudoku.UI.Models.InfoBarMessage"/> instance that represents for a message
+            that is used for the displaying as the message in <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> controls.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.InfoBarMessage.Message">
+            <summary>
+            Indicates the message to be displayed. The default value is <see cref="F:System.String.Empty"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.InfoBarMessage.Severity">
+            <summary>
+            Indicates the severity of the information.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Models.ManualSolverResultMessage">
+            <summary>
+            Defines a <see cref="T:Sudoku.UI.Models.InfoBarMessage"/> instance that can provide with the details
+            for a <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.ManualSolverResultMessage.AnalysisResult">
+            <summary>
+            Indicates the analysis result.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Models.PlainMessage">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Models.RepositoryInfo">
             <summary>
             Defines a set of properties to describe an image.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.RepositoryInfo.IsForReference">
+        <member name="P:Sudoku.UI.Models.RepositoryInfo.IsForReference">
             <summary>
             Indicates whether the repository code is for reference.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.RepositoryInfo.OpenSourceLicense">
+        <member name="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense">
             <summary>
             Indicates the open-source license being used for this repository.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.RepositoryInfo.Initials">
+        <member name="P:Sudoku.UI.Models.RepositoryInfo.Initials">
             <summary>
             Indicates the initials displaying on the <see cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/> control.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.RepositoryInfo.Name">
+        <member name="P:Sudoku.UI.Models.RepositoryInfo.Name">
             <summary>
             Indicates the name of the image.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.RepositoryInfo.IconPath">
+        <member name="P:Sudoku.UI.Models.RepositoryInfo.IconPath">
             <summary>
             Indicates the path of the image to show. The field can be <see langword="null"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.RepositoryInfo.Site">
+        <member name="P:Sudoku.UI.Models.RepositoryInfo.Site">
             <summary>
             Indicates the website which name is corresponding to.
             </summary>
+        </member>
+        <member name="T:Sudoku.UI.Models.SettingGroupItem">
+            <summary>
+            Defines a setting group item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingGroupItem.Name">
+            <summary>
+            Indicates the name of the setting item. The default value is <see cref="F:System.String.Empty"/>.
+            </summary>
+            <seealso cref="F:System.String.Empty"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingGroupItem.Description">
+            <summary>
+            Indicates the description of the setting item. The default value is <see cref="F:System.String.Empty"/>.
+            </summary>
+            <seealso cref="F:System.String.Empty"/>
         </member>
         <member name="T:Sudoku.UI.StringResource">
             <summary>
@@ -454,7 +439,7 @@
         </member>
         <member name="F:Sudoku.UI.Views.Controls.InfoBarBoard._list">
             <summary>
-            The list of <see cref="T:Sudoku.UI.Data.InfoBarMessage"/>s.
+            The list of <see cref="T:Sudoku.UI.Models.InfoBarMessage"/>s.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Views.Controls.InfoBarBoard._spacing">
@@ -527,16 +512,6 @@
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
@@ -714,16 +689,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Pages.AboutPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -738,16 +703,6 @@
         <member name="M:Sudoku.UI.Views.Pages.AboutPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.MainPage">
@@ -816,16 +771,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Pages.SettingsPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -834,7 +779,7 @@
         </member>
         <member name="F:Sudoku.UI.Views.Pages.SettingsPage._settingGroupItems">
             <summary>
-            Indicates the backing list of <see cref="T:Sudoku.UI.Data.SettingGroupItem"/>s.
+            Indicates the backing list of <see cref="T:Sudoku.UI.Models.SettingGroupItem"/>s.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.#ctor">
@@ -851,16 +796,6 @@
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SudokuPage">
@@ -1096,16 +1031,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -1127,39 +1052,9 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Program">
             <summary>
             Program class
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.Controls.GridWithExtensions">
@@ -1227,12 +1122,12 @@
             <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
             <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
             the value-tuple syntax to define your own deconstruction logic.
@@ -1296,12 +1191,12 @@
             </summary>
             <param name="this">The instance.</param>
         </member>
-        <member name="T:Windows.Foundation.Point_DE7BE3B162">
+        <member name="T:Windows.Foundation.Point_DE5AF559E2">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DE7BE3B162.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DE5AF559E2.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
             the value-tuple syntax to define your own deconstruction logic.

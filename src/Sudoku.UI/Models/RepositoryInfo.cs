@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI;
+﻿namespace Sudoku.UI.Models;
 
 /// <summary>
 /// Defines a set of properties to describe an image.
