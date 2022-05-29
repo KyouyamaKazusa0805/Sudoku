@@ -39,7 +39,7 @@
 										<dts:SettingItemDataTemplateSelector.BooleanValueTemplate>
 											<DataTemplate x:DataType="m:SettingItem">
 												<ToggleSwitch
-													IsOn="{Binding ItemValue}"
+													IsOn="{x:Bind ItemValue}"
 													OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
 													OffContent="{StaticResource ToggleSwitchDefaultOffContent}">
 													<ToggleSwitch.Header>
