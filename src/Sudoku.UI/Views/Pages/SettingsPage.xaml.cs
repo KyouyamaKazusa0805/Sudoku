@@ -54,8 +54,7 @@ public sealed partial class SettingsPage : Page
 			new()
 			{
 				Name = Get("SettingsPage_GroupItemName_Solving"),
-				Description = Get("SettingsPage_GroupItemDescription_Solving"),
-				SettingItem = new List<SettingItem?> { null }
+				Description = Get("SettingsPage_GroupItemDescription_Solving")
 			},
 			new()
 			{

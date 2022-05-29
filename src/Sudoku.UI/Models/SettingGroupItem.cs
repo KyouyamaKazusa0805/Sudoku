@@ -20,5 +20,5 @@ public sealed class SettingGroupItem
 	/// <summary>
 	/// Indicates the setting items in the group.
 	/// </summary>
-	public IList<SettingItem?> SettingItem { get; set; } = null!;
+	public IList<SettingItem?> SettingItem { get; set; } = new List<SettingItem?> { null };
 }
