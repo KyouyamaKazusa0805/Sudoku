@@ -11,7 +11,9 @@ public sealed class SettingGroupItem
 	/// <param name="name">The name.</param>
 	/// <param name="description">The description.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SettingGroupItem(string name, string description) => (Name, Description) = (name, description);
+	public SettingGroupItem(string name, string description) : this(name, description, new List<SettingItem?>() { null })
+	{
+	}
 
 	/// <summary>
 	/// Initializes a <see cref="SettingGroupItem"/> instance via the specified name, the specified description
