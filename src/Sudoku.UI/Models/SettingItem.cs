@@ -9,8 +9,9 @@ public sealed class SettingItem
 	/// Initializes a <see cref="SettingItem"/> instance via the properties.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SettingItem(string name, string preferenceValueName)
-		=> (Name, PreferenceValueName) = (name, preferenceValueName);
+	public SettingItem(string name, string preferenceValueName) : this(name, string.Empty, preferenceValueName)
+	{
+	}
 
 	/// <summary>
 	/// Initializes a <see cref="SettingItem"/> instance via the properties.
