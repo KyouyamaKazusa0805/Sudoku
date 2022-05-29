@@ -35,7 +35,7 @@ public sealed partial class SettingsPage : Page
 			{
 				Name = Get("SettingsPage_GroupItemName_Basic"),
 				Description = Get("SettingsPage_GroupItemDescription_Basic"),
-				SettingItem = new List<SettingItem>
+				SettingItem = new List<SettingItem?>
 				{
 					new()
 					{
@@ -55,13 +55,13 @@ public sealed partial class SettingsPage : Page
 			{
 				Name = Get("SettingsPage_GroupItemName_Solving"),
 				Description = Get("SettingsPage_GroupItemDescription_Solving"),
-				SettingItem = new List<SettingItem>()
+				SettingItem = new List<SettingItem?> { null }
 			},
 			new()
 			{
 				Name = Get("SettingsPage_GroupItemName_Miscellaneous"),
 				Description = Get("SettingsPage_GroupItemDescription_Miscellaneous"),
-				SettingItem = new List<SettingItem>
+				SettingItem = new List<SettingItem?>
 				{
 					new()
 					{

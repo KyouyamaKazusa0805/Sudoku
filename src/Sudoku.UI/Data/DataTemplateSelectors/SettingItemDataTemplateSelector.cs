@@ -21,11 +21,7 @@ public sealed class SettingItemDataTemplateSelector : DataTemplateSelector
 	protected override DataTemplate SelectTemplateCore(object item)
 		=> item switch
 		{
-			SettingItem { ItemValue: var value } => value switch
-			{
-				bool => BooleanValueTemplate,
-				_ => DefaultTemplate
-			},
-			_ => throw new InvalidOperationException("Cannot find possible data template due to invalid type of the item.")
+			SettingItem { ItemValue: bool } => BooleanValueTemplate,
+			_ => DefaultTemplate
 		};
 }
