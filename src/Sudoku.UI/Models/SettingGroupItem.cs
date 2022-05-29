@@ -6,6 +6,26 @@
 public sealed class SettingGroupItem
 {
 	/// <summary>
+	/// Initializes a <see cref="SettingGroupItem"/> instance via the specified name and the specified description.
+	/// </summary>
+	/// <param name="name">The name.</param>
+	/// <param name="description">The description.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public SettingGroupItem(string name, string description) => (Name, Description) = (name, description);
+
+	/// <summary>
+	/// Initializes a <see cref="SettingGroupItem"/> instance via the specified name, the specified description
+	/// and the sub-setting items.
+	/// </summary>
+	/// <param name="name">The name.</param>
+	/// <param name="description">The description.</param>
+	/// <param name="settingItem">The setting items.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public SettingGroupItem(string name, string description, IList<SettingItem?> settingItem)
+		=> (Name, Description, SettingItem) = (name, description, settingItem);
+
+
+	/// <summary>
 	/// Indicates the name of the setting item. The default value is <see cref="string.Empty"/>.
 	/// </summary>
 	/// <seealso cref="string.Empty"/>

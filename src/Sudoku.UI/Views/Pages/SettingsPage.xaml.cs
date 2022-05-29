@@ -31,11 +31,10 @@ public sealed partial class SettingsPage : Page
 	private void InitializeSettingGroupItems()
 		=> _settingGroupItems = new List<SettingGroupItem>
 		{
-			new()
-			{
-				Name = Get("SettingsPage_GroupItemName_Basic"),
-				Description = Get("SettingsPage_GroupItemDescription_Basic"),
-				SettingItem = new List<SettingItem?>
+			new(
+				Get("SettingsPage_GroupItemName_Basic"),
+				Get("SettingsPage_GroupItemDescription_Basic"),
+				new List<SettingItem?>
 				{
 					new(Get("SettingsPage_ItemName_ShowCandidates"), nameof(UserPreference.ShowCandidates)),
 					new(
@@ -48,23 +47,18 @@ public sealed partial class SettingsPage : Page
 						nameof(UserPreference.EnableDeltaValuesDisplaying)
 					)
 				}
-			},
-			new()
-			{
-				Name = Get("SettingsPage_GroupItemName_Solving"),
-				Description = Get("SettingsPage_GroupItemDescription_Solving")
-			},
-			new()
-			{
-				Name = Get("SettingsPage_GroupItemName_Miscellaneous"),
-				Description = Get("SettingsPage_GroupItemDescription_Miscellaneous"),
-				SettingItem = new List<SettingItem?>
+			),
+			new(Get("SettingsPage_GroupItemName_Solving"), Get("SettingsPage_GroupItemDescription_Solving")),
+			new(
+				Get("SettingsPage_GroupItemName_Miscellaneous"),
+				Get("SettingsPage_GroupItemDescription_Miscellaneous"),
+				new List<SettingItem?>
 				{
 					new(
 						Get("SettingsPage_ItemName_DescendingOrderedInfoBarBoard"),
 						nameof(UserPreference.DescendingOrderedInfoBarBoard)
 					)
 				}
-			}
+			)
 		};
 }
