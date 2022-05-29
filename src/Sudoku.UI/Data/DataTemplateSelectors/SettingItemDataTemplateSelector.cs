@@ -6,9 +6,9 @@
 public sealed class SettingItemDataTemplateSelector : DataTemplateSelector
 {
 	/// <summary>
-	/// Indicates the template that is used for a boolean value.
+	/// Indicates the template that is used for a toggle switch.
 	/// </summary>
-	public DataTemplate BooleanValueTemplate { get; set; } = null!;
+	public DataTemplate ToggleSwitchTemplate { get; set; } = null!;
 
 	/// <summary>
 	/// Indicates the default template.
@@ -19,15 +19,9 @@ public sealed class SettingItemDataTemplateSelector : DataTemplateSelector
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when data template cannot be found.</exception>
 	protected override DataTemplate SelectTemplateCore(object item)
-	{
-		return item switch
+		=> item switch
 		{
-			SettingItem { PreferenceValueName: var fieldType } when getFieldType(fieldType) == typeof(bool)
-				=> BooleanValueTemplate,
+			ToggleSwitchSettingItem => ToggleSwitchTemplate,
 			_ => DefaultTemplate
 		};
-
-
-		static Type? getFieldType(string name) => typeof(UserPreference).GetField(name)?.FieldType;
-	}
 }

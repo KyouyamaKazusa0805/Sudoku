@@ -1,15 +1,16 @@
 ﻿namespace Sudoku.UI.Models;
 
 /// <summary>
-/// Defines a pair of value that defines a setting item.
+/// Defines an instance that defines a setting item.
 /// </summary>
-public sealed class SettingItem
+public abstract class SettingItem
 {
 	/// <summary>
 	/// Initializes a <see cref="SettingItem"/> instance via the properties.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SettingItem(string name, string preferenceValueName) : this(name, string.Empty, preferenceValueName)
+	private protected SettingItem(string name, string preferenceValueName) :
+		this(name, string.Empty, preferenceValueName)
 	{
 	}
 
@@ -17,7 +18,7 @@ public sealed class SettingItem
 	/// Initializes a <see cref="SettingItem"/> instance via the properties.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SettingItem(string name, string description, string preferenceValueName)
+	private protected SettingItem(string name, string description, string preferenceValueName)
 		=> (Name, Description, PreferenceValueName) = (name, description, preferenceValueName);
 
 
@@ -38,25 +39,4 @@ public sealed class SettingItem
 	/// </summary>
 	/// <seealso cref="string.Empty"/>
 	public string PreferenceValueName { get; set; } = string.Empty;
-
-
-	/// <summary>
-	/// Try to get the preference value from the current instance.
-	/// </summary>
-	/// <returns>The value of the preference.</returns>
-	public bool GetPreference()
-	{
-		var instance = ((App)Application.Current).UserPreference;
-		return (bool)typeof(UserPreference).GetField(PreferenceValueName)!.GetValue(instance)!;
-	}
-
-	/// <summary>
-	/// Try to set the preference value to the current instance.
-	/// </summary>
-	/// <param name="value">The value.</param>
-	public void SetPreference(bool value)
-	{
-		var instance = ((App)Application.Current).UserPreference;
-		typeof(UserPreference).GetField(PreferenceValueName)!.SetValue(instance, value);
-	}
 }

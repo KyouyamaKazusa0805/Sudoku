@@ -29,19 +29,22 @@ public sealed partial class SettingsPage : Page
 	/// <seealso cref="_settingGroupItems"/>
 	[MemberNotNull(nameof(_settingGroupItems))]
 	private void InitializeSettingGroupItems()
-		=> _settingGroupItems = new List<SettingGroupItem>
+		=> _settingGroupItems = new SettingGroupItem[]
 		{
 			new(
 				Get("SettingsPage_GroupItemName_Basic"),
 				Get("SettingsPage_GroupItemDescription_Basic"),
-				new List<SettingItem?>
+				new[]
 				{
-					new(Get("SettingsPage_ItemName_ShowCandidates"), nameof(UserPreference.ShowCandidates)),
-					new(
+					new ToggleSwitchSettingItem(
+						Get("SettingsPage_ItemName_ShowCandidates"),
+						nameof(UserPreference.ShowCandidates)
+					),
+					new ToggleSwitchSettingItem(
 						Get("SettingsPage_ItemName_ShowCandidateBorderLines"),
 						nameof(UserPreference.ShowCandidateBorderLines)
 					),
-					new(
+					new ToggleSwitchSettingItem(
 						Get("SettingsPage_ItemName_EnableDeltaValuesDisplaying"),
 						Get("SettingsPage_ItemDescription_EnableDeltaValuesDisplaying"),
 						nameof(UserPreference.EnableDeltaValuesDisplaying)
@@ -52,9 +55,9 @@ public sealed partial class SettingsPage : Page
 			new(
 				Get("SettingsPage_GroupItemName_Miscellaneous"),
 				Get("SettingsPage_GroupItemDescription_Miscellaneous"),
-				new List<SettingItem?>
+				new[]
 				{
-					new(
+					new ToggleSwitchSettingItem(
 						Get("SettingsPage_ItemName_DescendingOrderedInfoBarBoard"),
 						nameof(UserPreference.DescendingOrderedInfoBarBoard)
 					)
