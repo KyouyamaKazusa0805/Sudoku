@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Data.Interoperability;
+﻿namespace Sudoku.UI.Interoperability;
 
 /// <summary>
 /// Exposes a method through which a client can provide an owner window
@@ -15,7 +15,7 @@
 /// Use this interface if you will provide an owner window to a WinRT object in a desktop application.
 /// For more information about this scenario, see
 /// <see href="https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp#classes-that-use-iinitializewithwindow">
-/// Classes that use IInitializeWithWindow
+/// Classes that use <c>IInitializeWithWindow</c>
 /// </see>.
 /// </para>
 /// <para>
@@ -23,9 +23,7 @@
 /// refer to an individual object's documentation to determine whether that object implements this interface.
 /// </para>
 /// </remarks>
-[ComImport]
-[Guid("3E68D4BD-7135-4D10-8018-9FB6D9F33FA1")]
-[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+[ComImport, Guid("3E68D4BD-7135-4D10-8018-9FB6D9F33FA1"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal interface IInitializeWithWindow
 {
 	/// <summary>

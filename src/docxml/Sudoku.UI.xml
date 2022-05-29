@@ -43,6 +43,21 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.CommonFileExtensions">
             <summary>
             Defines the constants that are the common file extensions.
@@ -102,44 +117,6 @@
             Throws when the type of the argument <paramref name="item"/> doesn't derive
             from <see cref="T:Sudoku.UI.Models.InfoBarMessage"/>.
             </exception>
-        </member>
-        <member name="T:Sudoku.UI.Data.Interoperability.IInitializeWithWindow">
-            <summary>
-            Exposes a method through which a client can provide an owner window
-            to a Windows Runtime (WinRT) object used in a desktop application.
-            </summary>
-            <remarks>
-            <para>
-            <b>When to initialize:</b><br/>
-            Implement this interface if your object needs to be provided with an owner window,
-            generally to display UI. Most third-party applications will not need to implement this interface.
-            </para>
-            <para>
-            <b>When to use:</b><br/>
-            Use this interface if you will provide an owner window to a WinRT object in a desktop application.
-            For more information about this scenario, see
-            <see href="https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp#classes-that-use-iinitializewithwindow">
-            Classes that use IInitializeWithWindow
-            </see>.
-            </para>
-            <para>
-            This interface is implemented by the following objects. Note that this is necessarily an incomplete list;
-            refer to an individual object's documentation to determine whether that object implements this interface.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.UI.Data.Interoperability.IInitializeWithWindow.Initialize(System.IntPtr)">
-            <summary>
-            Specifies an owner window to be used by a Windows Runtime (WinRT) object that is used in a desktop app.
-            </summary>
-            <param name="hwnd">The handle of the window to be used as the owner window.</param>
-            <remarks>
-            The method doesn't return anything, but the method returns an HResult value
-            in the Win32 API. For more information, please visit
-            <see href="https://docs.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-iinitializewithwindow-initialize">
-            this link
-            </see>.
-            </remarks>
         </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.DifficultyLevelToBackgroundConverter">
             <summary>
@@ -278,6 +255,44 @@
             </summary>
             <param name="uri">The URI website.</param>
             <returns>The process.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Interoperability.IInitializeWithWindow">
+            <summary>
+            Exposes a method through which a client can provide an owner window
+            to a Windows Runtime (WinRT) object used in a desktop application.
+            </summary>
+            <remarks>
+            <para>
+            <b>When to initialize:</b><br/>
+            Implement this interface if your object needs to be provided with an owner window,
+            generally to display UI. Most third-party applications will not need to implement this interface.
+            </para>
+            <para>
+            <b>When to use:</b><br/>
+            Use this interface if you will provide an owner window to a WinRT object in a desktop application.
+            For more information about this scenario, see
+            <see href="https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp#classes-that-use-iinitializewithwindow">
+            Classes that use <c>IInitializeWithWindow</c>
+            </see>.
+            </para>
+            <para>
+            This interface is implemented by the following objects. Note that this is necessarily an incomplete list;
+            refer to an individual object's documentation to determine whether that object implements this interface.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Interoperability.IInitializeWithWindow.Initialize(System.IntPtr)">
+            <summary>
+            Specifies an owner window to be used by a Windows Runtime (WinRT) object that is used in a desktop app.
+            </summary>
+            <param name="hwnd">The handle of the window to be used as the owner window.</param>
+            <remarks>
+            The method doesn't return anything, but the method returns an HResult value
+            in the Win32 API. For more information, please visit
+            <see href="https://docs.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-iinitializewithwindow-initialize">
+            this link
+            </see>.
+            </remarks>
         </member>
         <member name="T:Sudoku.UI.Models.AnalysisResultRow">
             <summary>
@@ -514,6 +529,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
             <summary>
             Defines a user control that interacts with a sudoku grid.
@@ -689,6 +714,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.AboutPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -703,6 +738,16 @@
         <member name="M:Sudoku.UI.Views.Pages.AboutPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.MainPage">
@@ -771,6 +816,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.MainPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.MainPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.SettingsPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -796,6 +851,16 @@
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SudokuPage">
@@ -1031,6 +1096,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -1052,9 +1127,39 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Program">
             <summary>
             Program class
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.Controls.GridWithExtensions">
@@ -1122,12 +1227,12 @@
             <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
             <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
             the value-tuple syntax to define your own deconstruction logic.
@@ -1191,12 +1296,12 @@
             </summary>
             <param name="this">The instance.</param>
         </member>
-        <member name="T:Windows.Foundation.Point_DE5AF559E2">
+        <member name="T:Windows.Foundation.Point_DE7BE3B162">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DE5AF559E2.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DE7BE3B162.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
             the value-tuple syntax to define your own deconstruction logic.

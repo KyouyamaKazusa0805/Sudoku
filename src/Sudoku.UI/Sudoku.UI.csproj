@@ -75,13 +75,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="Data\ResourceDictionaries\TextResources-zh-cn.xaml">
+		<Page Update="ResourceDictionaries\TextResources-zh-cn.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Data\ResourceDictionaries\TextResources-en-us.xaml">
+		<Page Update="ResourceDictionaries\TextResources-en-us.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Data\ResourceDictionaries\BasicProperties.xaml">
+		<Page Update="ResourceDictionaries\BasicProperties.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\AboutPage.xaml">
