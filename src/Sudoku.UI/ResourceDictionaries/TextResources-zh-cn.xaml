@@ -71,6 +71,11 @@
 	<x:String x:Key="SettingsPage_GroupItemDescription_Basic">基本设置选项都在这里</x:String>
 	<x:String x:Key="SettingsPage_GroupItemDescription_Solving">用于控制解题行为的选项都在这里</x:String>
 	<x:String x:Key="SettingsPage_GroupItemDescription_Miscellaneous">其它选项都在这里</x:String>
+	<x:String x:Key="SettingsPage_ItemName_ShowCandidates">显示候选数</x:String>
+	<x:String x:Key="SettingsPage_ItemName_ShowCandidateBorderLines">显示盘面上的候选数边界线</x:String>
+	<x:String x:Key="SettingsPage_ItemName_EnableDeltaValuesDisplaying">用别的颜色显示错误填数</x:String>
+	<x:String x:Key="SettingsPage_ItemName_DescendingOrderedInfoBarBoard">以降序显示侧边的提示信息条</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_EnableDeltaValuesDisplaying">如果有数字填错，该设置项允许将其以另一种配色呈现出这些数字，以帮助做题。</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>

@@ -5,7 +5,9 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:Sudoku.UI.Models"
+	xmlns:data="using:Sudoku.UI.Data"
 	xmlns:dts="using:Sudoku.UI.Data.DataTemplateSelectors"
+	xmlns:cvt="using:Sudoku.UI.Data.ValueConverters"
 	mc:Ignorable="d">
 	<Grid>
 		<Grid.RowDefinitions>
@@ -39,13 +41,17 @@
 										<dts:SettingItemDataTemplateSelector.BooleanValueTemplate>
 											<DataTemplate x:DataType="m:SettingItem">
 												<ToggleSwitch
-													IsOn="{x:Bind ItemValue}"
+													IsOn="{x:Bind GetPreference(),
+														Mode=TwoWay,
+														UpdateSourceTrigger=PropertyChanged,
+														BindBack=SetPreference}"
 													OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
 													OffContent="{StaticResource ToggleSwitchDefaultOffContent}">
 													<ToggleSwitch.Header>
 														<StackPanel>
 															<TextBlock Text="{x:Bind Name}" FontWeight="Bold" />
 															<TextBlock
+																Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
 																Text="{x:Bind Description}"
 																Style="{ThemeResource CaptionTextBlockStyle}"/>
 														</StackPanel>

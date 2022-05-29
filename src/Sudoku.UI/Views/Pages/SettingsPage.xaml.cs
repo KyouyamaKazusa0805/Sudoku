@@ -37,18 +37,16 @@ public sealed partial class SettingsPage : Page
 				Description = Get("SettingsPage_GroupItemDescription_Basic"),
 				SettingItem = new List<SettingItem?>
 				{
-					new()
-					{
-						Name = "Nested item 1",
-						Description = "Nested description 1",
-						ItemValue = true
-					},
-					new()
-					{
-						Name = "Nested item 2",
-						Description = "Nested description 2",
-						ItemValue = true
-					}
+					new(Get("SettingsPage_ItemName_ShowCandidates"), nameof(UserPreference.ShowCandidates)),
+					new(
+						Get("SettingsPage_ItemName_ShowCandidateBorderLines"),
+						nameof(UserPreference.ShowCandidateBorderLines)
+					),
+					new(
+						Get("SettingsPage_ItemName_EnableDeltaValuesDisplaying"),
+						Get("SettingsPage_ItemDescription_EnableDeltaValuesDisplaying"),
+						nameof(UserPreference.EnableDeltaValuesDisplaying)
+					)
 				}
 			},
 			new()
@@ -62,24 +60,10 @@ public sealed partial class SettingsPage : Page
 				Description = Get("SettingsPage_GroupItemDescription_Miscellaneous"),
 				SettingItem = new List<SettingItem?>
 				{
-					new()
-					{
-						Name = "Nested item 1",
-						Description = "Nested description 1",
-						ItemValue = true
-					},
-					new()
-					{
-						Name = "Nested item 2",
-						Description = "Nested description 2",
-						ItemValue = true
-					},
-					new()
-					{
-						Name = "Nested item 3",
-						Description = "Nested description 3",
-						ItemValue = true
-					},
+					new(
+						Get("SettingsPage_ItemName_DescendingOrderedInfoBarBoard"),
+						nameof(UserPreference.DescendingOrderedInfoBarBoard)
+					)
 				}
 			}
 		};

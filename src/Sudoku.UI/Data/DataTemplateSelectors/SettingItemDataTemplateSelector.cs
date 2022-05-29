@@ -19,9 +19,15 @@ public sealed class SettingItemDataTemplateSelector : DataTemplateSelector
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when data template cannot be found.</exception>
 	protected override DataTemplate SelectTemplateCore(object item)
-		=> item switch
+	{
+		return item switch
 		{
-			SettingItem { ItemValue: bool } => BooleanValueTemplate,
+			SettingItem { PreferenceValueName: var fieldType } when getFieldType(fieldType) == typeof(bool)
+				=> BooleanValueTemplate,
 			_ => DefaultTemplate
 		};
+
+
+		static Type? getFieldType(string name) => typeof(UserPreference).GetField(name)?.FieldType;
+	}
 }

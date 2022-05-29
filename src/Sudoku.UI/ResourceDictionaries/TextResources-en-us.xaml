@@ -73,6 +73,11 @@
 	<x:String x:Key="SettingsPage_GroupItemDescription_Basic">Basic items</x:String>
 	<x:String x:Key="SettingsPage_GroupItemDescription_Solving">Settings on solving a sudoku</x:String>
 	<x:String x:Key="SettingsPage_GroupItemDescription_Miscellaneous">Other options</x:String>
+	<x:String x:Key="SettingsPage_ItemName_ShowCandidates">Show candidates</x:String>
+	<x:String x:Key="SettingsPage_ItemName_ShowCandidateBorderLines">Show candidate border lines</x:String>
+	<x:String x:Key="SettingsPage_ItemName_EnableDeltaValuesDisplaying">Enable displaying for delta values</x:String>
+	<x:String x:Key="SettingsPage_ItemName_DescendingOrderedInfoBarBoard">Show board using descending order</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_EnableDeltaValuesDisplaying">This option will allow the program displaying for wrong digits you have filled using a different color with the basic one.</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>

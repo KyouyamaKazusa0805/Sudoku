@@ -462,6 +462,16 @@
             Defines a pair of value that defines a setting item.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Models.SettingItem.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.SettingItem"/> instance via the properties.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItem.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.SettingItem"/> instance via the properties.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Models.SettingItem.Name">
             <summary>
             Indicates the name of the setting. The default value is <see cref="F:System.String.Empty"/>.
@@ -474,10 +484,23 @@
             </summary>
             <seealso cref="F:System.String.Empty"/>
         </member>
-        <member name="P:Sudoku.UI.Models.SettingItem.ItemValue">
+        <member name="P:Sudoku.UI.Models.SettingItem.PreferenceValueName">
             <summary>
-            Indicates the item value used.
+            Indicates the name corresponding to the current name. The default value is <see cref="F:System.String.Empty"/>.
             </summary>
+            <seealso cref="F:System.String.Empty"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItem.GetPreference">
+            <summary>
+            Try to get the preference value from the current instance.
+            </summary>
+            <returns>The value of the preference.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItem.SetPreference(System.Boolean)">
+            <summary>
+            Try to set the preference value to the current instance.
+            </summary>
+            <param name="value">The value.</param>
         </member>
         <member name="T:Sudoku.UI.StringResource">
             <summary>
