@@ -118,6 +118,25 @@
             from <see cref="T:Sudoku.UI.Models.InfoBarMessage"/>.
             </exception>
         </member>
+        <member name="T:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector">
+            <summary>
+            Defines a data template selector that determines which data template can be used on a setting item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.BooleanValueTemplate">
+            <summary>
+            Indicates the template that is used for a boolean value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.DefaultTemplate">
+            <summary>
+            Indicates the default template.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.SelectTemplateCore(System.Object)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when data template cannot be found.</exception>
+        </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.DifficultyLevelToBackgroundConverter">
             <summary>
             Defines a value converter that allows the one-way binding from the
@@ -432,6 +451,33 @@
             Indicates the description of the setting item. The default value is <see cref="F:System.String.Empty"/>.
             </summary>
             <seealso cref="F:System.String.Empty"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingGroupItem.SettingItem">
+            <summary>
+            Indicates the setting items in the group.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Models.SettingItem">
+            <summary>
+            Defines a pair of value that defines a setting item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingItem.Name">
+            <summary>
+            Indicates the name of the setting. The default value is <see cref="F:System.String.Empty"/>.
+            </summary>
+            <seealso cref="F:System.String.Empty"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingItem.Description">
+            <summary>
+            Indicates the description of the setting. The default value is <see cref="F:System.String.Empty"/>.
+            </summary>
+            <seealso cref="F:System.String.Empty"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingItem.ItemValue">
+            <summary>
+            Indicates the item value used.
+            </summary>
         </member>
         <member name="T:Sudoku.UI.StringResource">
             <summary>

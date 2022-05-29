@@ -22,30 +22,66 @@ public sealed partial class SettingsPage : Page
 		InitializeSettingGroupItems();
 	}
 
+
 	/// <summary>
 	/// Initializes the field <see cref="_settingGroupItems"/>.
 	/// </summary>
 	/// <seealso cref="_settingGroupItems"/>
 	[MemberNotNull(nameof(_settingGroupItems))]
 	private void InitializeSettingGroupItems()
-	{
-		_settingGroupItems = new List<SettingGroupItem>
+		=> _settingGroupItems = new List<SettingGroupItem>
 		{
 			new()
 			{
 				Name = Get("SettingsPage_GroupItemName_Basic"),
-				Description = Get("SettingsPage_GroupItemDescription_Basic")
+				Description = Get("SettingsPage_GroupItemDescription_Basic"),
+				SettingItem = new List<SettingItem>
+				{
+					new()
+					{
+						Name = "Nested item 1",
+						Description = "Nested description 1",
+						ItemValue = true
+					},
+					new()
+					{
+						Name = "Nested item 2",
+						Description = "Nested description 2",
+						ItemValue = true
+					}
+				}
 			},
 			new()
 			{
 				Name = Get("SettingsPage_GroupItemName_Solving"),
-				Description = Get("SettingsPage_GroupItemDescription_Solving")
+				Description = Get("SettingsPage_GroupItemDescription_Solving"),
+				SettingItem = new List<SettingItem>()
 			},
 			new()
 			{
 				Name = Get("SettingsPage_GroupItemName_Miscellaneous"),
-				Description = Get("SettingsPage_GroupItemDescription_Miscellaneous")
+				Description = Get("SettingsPage_GroupItemDescription_Miscellaneous"),
+				SettingItem = new List<SettingItem>
+				{
+					new()
+					{
+						Name = "Nested item 1",
+						Description = "Nested description 1",
+						ItemValue = true
+					},
+					new()
+					{
+						Name = "Nested item 2",
+						Description = "Nested description 2",
+						ItemValue = true
+					},
+					new()
+					{
+						Name = "Nested item 3",
+						Description = "Nested description 3",
+						ItemValue = true
+					},
+				}
 			}
 		};
-	}
 }

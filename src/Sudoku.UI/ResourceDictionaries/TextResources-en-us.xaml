@@ -98,4 +98,6 @@
 	<x:String x:Key="Link_SudokuTutorialDescription">Bilibili Sudoku Tutorial Page (rl291187)</x:String>
 	<x:String x:Key="FileExtension_TextDescription">Plain sudoku text code</x:String>
 	<x:String x:Key="__SampleField">Sample field</x:String>
+	<x:String x:Key="ToggleSwitchDefaultOnContent">Yes</x:String>
+	<x:String x:Key="ToggleSwitchDefaultOffContent">No</x:String>
 </ResourceDictionary>

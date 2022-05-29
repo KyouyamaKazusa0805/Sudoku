@@ -94,4 +94,6 @@
 	<x:String x:Key="AboutPage_Framework_DotnetRuntime">.NET 框架 API：</x:String>
 	<x:String x:Key="Link_SudokuTutorialDescription">哔哩哔哩数独教程专栏（rl291187）</x:String>
 	<x:String x:Key="FileExtension_TextDescription">数独代码文本</x:String>
+	<x:String x:Key="ToggleSwitchDefaultOnContent">是</x:String>
+	<x:String x:Key="ToggleSwitchDefaultOffContent">否</x:String>
 </ResourceDictionary>
