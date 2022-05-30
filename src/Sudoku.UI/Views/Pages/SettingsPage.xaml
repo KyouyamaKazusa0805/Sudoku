@@ -89,7 +89,13 @@
 																	Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
 																	Text="{x:Bind Description}"
 																	Margin="{StaticResource _rSettingDescriptionMargin}"
-																	Style="{ThemeResource CaptionTextBlockStyle}"/>
+																	Style="{ThemeResource CaptionTextBlockStyle}" />
+																<TextBlock
+																	Style="{ThemeResource CaptionTextBlockStyle}"
+																	Margin="{StaticResource _rSettingDescriptionMargin}"
+																	FontStyle="Italic"
+																	Text="{x:Bind data:SimpleConverters.SliderPossibleValueString(MinValue,MaxValue)}"
+																/>
 															</StackPanel>
 														</Slider.Header>
 													</Slider>

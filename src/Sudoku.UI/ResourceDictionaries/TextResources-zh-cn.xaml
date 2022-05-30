@@ -105,4 +105,5 @@
 	<x:String x:Key="FileExtension_TextDescription">数独代码文本</x:String>
 	<x:String x:Key="ToggleSwitchDefaultOnContent">是</x:String>
 	<x:String x:Key="ToggleSwitchDefaultOffContent">否</x:String>
+	<x:String x:Key="SliderPossibleValue">该拖动条支持的取值范围：</x:String>
 </ResourceDictionary>
