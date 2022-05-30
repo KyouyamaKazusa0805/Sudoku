@@ -88,6 +88,12 @@
             Indicates the configuration file.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Data.DataTemplateModelTypeAttribute`1">
+            <summary>
+            Defines an attribute that applies to a data template property.
+            </summary>
+            <typeparam name="TModel">The type of the model.</typeparam>
+        </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
             Defines a data template selector that selects the <see cref="T:Microsoft.UI.Xaml.DataTemplate"/> between
@@ -128,6 +134,11 @@
             Indicates the template that is used for a toggle switch.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.SliderTemplate">
+            <summary>
+            Indicates the template that is used for a slider.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.DefaultTemplate">
             <summary>
             Indicates the default template.
@@ -135,7 +146,6 @@
         </member>
         <member name="M:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.SelectTemplateCore(System.Object)">
             <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">Throws when data template cannot be found.</exception>
         </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.DifficultyLevelToBackgroundConverter">
             <summary>
@@ -217,6 +227,17 @@
         <member name="M:Sudoku.UI.Data.ValueConverters.InfoBarBoardToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
             <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
+        </member>
+        <member name="T:Sudoku.UI.Data.ValueConverters.Int32ToStringConverter">
+            <summary>
+            Defines a converter that can convert an <see cref="T:System.Int32"/> value to a <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.Int32ToStringConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.Int32ToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.UndoOrRedoStackToIsEnabledConverter">
             <summary>
@@ -506,6 +527,61 @@
             </summary>
             <seealso cref="F:System.String.Empty"/>
         </member>
+        <member name="M:Sudoku.UI.Models.SettingItem.GetPreference``1">
+            <summary>
+            Try to get the preference value from the current instance.
+            </summary>
+            <returns>The value of the preference.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)">
+            <summary>
+            Try to set the preference value to the current instance.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:Sudoku.UI.Models.SliderSettingItem">
+            <summary>
+            Defines a floating-point or integer option that is binding with a slider on displaying.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SliderSettingItem.#ctor(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SliderSettingItem.#ctor(System.String,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Models.SliderSettingItem.StepFrequency">
+            <summary>
+            Indicates the step frequency.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SliderSettingItem.TickFrequency">
+            <summary>
+            Indicates the tick frequency.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SliderSettingItem.MinValue">
+            <summary>
+            Indicates the minimum value of the slider.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SliderSettingItem.MaxValue">
+            <summary>
+            Indicates the maximum value of the slider.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SliderSettingItem.GetPreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SliderSettingItem.SetPreference(System.Double)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SliderSettingItem.PreferenceValueToString">
+            <summary>
+            Gets the string result of the preference value.
+            </summary>
+            <returns>The string result.</returns>
+        </member>
         <member name="T:Sudoku.UI.Models.ToggleSwitchSettingItem">
             <summary>
             Defines a boolean option that is binding with a toggle switch on displaying.
@@ -518,16 +594,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Models.ToggleSwitchSettingItem.GetPreference">
-            <summary>
-            Try to get the preference value from the current instance.
-            </summary>
-            <returns>The value of the preference.</returns>
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
         </member>
         <member name="M:Sudoku.UI.Models.ToggleSwitchSettingItem.SetPreference(System.Boolean)">
-            <summary>
-            Try to set the preference value to the current instance.
-            </summary>
-            <param name="value">The value.</param>
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
         </member>
         <member name="T:Sudoku.UI.StringResource">
             <summary>

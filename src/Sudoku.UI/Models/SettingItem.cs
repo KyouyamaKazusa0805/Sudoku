@@ -39,4 +39,25 @@ public abstract class SettingItem
 	/// </summary>
 	/// <seealso cref="string.Empty"/>
 	public string PreferenceValueName { get; set; } = string.Empty;
+
+
+	/// <summary>
+	/// Try to get the preference value from the current instance.
+	/// </summary>
+	/// <returns>The value of the preference.</returns>
+	protected T GetPreference<T>()
+	{
+		var instance = ((App)Application.Current).UserPreference;
+		return (T)typeof(UserPreference).GetField(PreferenceValueName)!.GetValue(instance)!;
+	}
+
+	/// <summary>
+	/// Try to set the preference value to the current instance.
+	/// </summary>
+	/// <param name="value">The value.</param>
+	protected void SetPreference<T>(T value)
+	{
+		var instance = ((App)Application.Current).UserPreference;
+		typeof(UserPreference).GetField(PreferenceValueName)!.SetValue(instance, value);
+	}
 }

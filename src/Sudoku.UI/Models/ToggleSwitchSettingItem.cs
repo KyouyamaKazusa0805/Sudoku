@@ -19,23 +19,9 @@ public sealed class ToggleSwitchSettingItem : SettingItem
 	}
 
 
-	/// <summary>
-	/// Try to get the preference value from the current instance.
-	/// </summary>
-	/// <returns>The value of the preference.</returns>
-	public bool GetPreference()
-	{
-		var instance = ((App)Application.Current).UserPreference;
-		return (bool)typeof(UserPreference).GetField(PreferenceValueName)!.GetValue(instance)!;
-	}
+	/// <inheritdoc cref="SettingItem.GetPreference{T}"/>
+	public bool GetPreference() => GetPreference<bool>();
 
-	/// <summary>
-	/// Try to set the preference value to the current instance.
-	/// </summary>
-	/// <param name="value">The value.</param>
-	public void SetPreference(bool value)
-	{
-		var instance = ((App)Application.Current).UserPreference;
-		typeof(UserPreference).GetField(PreferenceValueName)!.SetValue(instance, value);
-	}
+	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>
+	public void SetPreference(bool value) => SetPreference<bool>(value);
 }

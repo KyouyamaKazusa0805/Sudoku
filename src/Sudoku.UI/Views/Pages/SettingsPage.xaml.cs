@@ -53,6 +53,24 @@ public sealed partial class SettingsPage : Page
 			),
 			new(Get("SettingsPage_GroupItemName_Solving"), Get("SettingsPage_GroupItemDescription_Solving")),
 			new(
+				Get("SettingsPage_GroupItemName_Rendering"),
+				Get("SettingsPage_GroupItemDescription_Rendering"),
+				new[]
+				{
+					new SliderSettingItem(
+						Get("SettingsPage_ItemName_OutsideBorderWidth"),
+						Get("SettingsPage_ItemDescription_OutsideBorderWidth"),
+						nameof(UserPreference.OutsideBorderWidth)
+					)
+					{
+						TickFrequency = .3,
+						StepFrequency = .1,
+						MinValue = 0,
+						MaxValue = 3
+					}
+				}
+			),
+			new(
 				Get("SettingsPage_GroupItemName_Miscellaneous"),
 				Get("SettingsPage_GroupItemDescription_Miscellaneous"),
 				new[]

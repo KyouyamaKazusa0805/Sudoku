@@ -4,11 +4,17 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:m="using:Sudoku.UI.Models"
+	xmlns:cvt="using:Sudoku.UI.Data.ValueConverters"
 	xmlns:data="using:Sudoku.UI.Data"
 	xmlns:dts="using:Sudoku.UI.Data.DataTemplateSelectors"
+	xmlns:m="using:Sudoku.UI.Models"
 	mc:Ignorable="d">
 	<Grid>
+		<Grid.Resources>
+			<Thickness x:Key="_rSettingItemMargin">0,6,0,12</Thickness>
+			<Thickness x:Key="_rSettingDescriptionMargin">0,9,0,0</Thickness>
+			<cvt:Int32ToStringConverter x:Key="_rToStringConverter" />
+		</Grid.Resources>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
@@ -46,7 +52,7 @@
 														Mode=TwoWay,
 														UpdateSourceTrigger=PropertyChanged,
 														BindBack=SetPreference}"
-													Margin="0,6,0,12"
+													Margin="{StaticResource _rSettingItemMargin}"
 													OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
 													OffContent="{StaticResource ToggleSwitchDefaultOffContent}">
 													<ToggleSwitch.Header>
@@ -54,13 +60,53 @@
 															<TextBlock Text="{x:Bind Name}" FontWeight="Bold" />
 															<TextBlock
 																Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
-																Text="{x:Bind Description}" Margin="0,9,0,0"
+																Text="{x:Bind Description}"
+																Margin="{StaticResource _rSettingDescriptionMargin}"
 																Style="{ThemeResource CaptionTextBlockStyle}"/>
 														</StackPanel>
 													</ToggleSwitch.Header>
 												</ToggleSwitch>
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.ToggleSwitchTemplate>
+										<dts:SettingItemDataTemplateSelector.SliderTemplate>
+											<DataTemplate x:DataType="m:SliderSettingItem">
+												<StackPanel Orientation="Horizontal">
+													<Slider
+														x:Name="_cSlider"
+														Minimum="{x:Bind MinValue}" Maximum="{x:Bind MaxValue}"
+														TickFrequency="{x:Bind TickFrequency}"
+														StepFrequency="{x:Bind StepFrequency}"
+														TickPlacement="Outside"
+														Margin="{StaticResource _rSettingItemMargin}"
+														Value="{x:Bind GetPreference(),
+															Mode=TwoWay,
+															UpdateSourceTrigger=PropertyChanged,
+															BindBack=SetPreference}">
+														<Slider.Header>
+															<StackPanel>
+																<TextBlock Text="{x:Bind Name}" FontWeight="Bold" />
+																<TextBlock
+																	Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
+																	Text="{x:Bind Description}"
+																	Margin="{StaticResource _rSettingDescriptionMargin}"
+																	Style="{ThemeResource CaptionTextBlockStyle}"/>
+															</StackPanel>
+														</Slider.Header>
+													</Slider>
+													<TextBlock
+														VerticalAlignment="Top"
+														Margin="{x:Bind data:SimpleConverters.SettingItemToMargin(Description)}"
+														Text="{Binding
+															ElementName=_cSlider,
+															Path=Value,
+															Converter={StaticResource _rToStringConverter},
+															ConverterParameter='0.0',
+															UpdateSourceTrigger=PropertyChanged,
+															Mode=OneWay}"
+													/>
+												</StackPanel>
+											</DataTemplate>
+										</dts:SettingItemDataTemplateSelector.SliderTemplate>
 									</dts:SettingItemDataTemplateSelector>
 								</ListView.ItemTemplateSelector>
 							</ListView>
