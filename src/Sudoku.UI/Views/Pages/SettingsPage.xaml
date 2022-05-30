@@ -72,11 +72,11 @@
 											<DataTemplate x:DataType="m:SliderSettingItem">
 												<StackPanel Orientation="Horizontal">
 													<Slider
-														x:Name="_cSlider"
+														x:Name="_cSlider" TickPlacement="Outside"
+														Width="600"
 														Minimum="{x:Bind MinValue}" Maximum="{x:Bind MaxValue}"
 														TickFrequency="{x:Bind TickFrequency}"
 														StepFrequency="{x:Bind StepFrequency}"
-														TickPlacement="Outside"
 														Margin="{StaticResource _rSettingItemMargin}"
 														Value="{x:Bind GetPreference(),
 															Mode=TwoWay,
@@ -94,14 +94,12 @@
 																	Style="{ThemeResource CaptionTextBlockStyle}"
 																	Margin="{StaticResource _rSettingDescriptionMargin}"
 																	FontStyle="Italic"
-																	Text="{x:Bind data:SimpleConverters.SliderPossibleValueString(MinValue,MaxValue)}"
-																/>
+																	Text="{x:Bind data:SimpleConverters.SliderPossibleValueString(MinValue,MaxValue,StepFrequency,TickFrequency)}" />
 															</StackPanel>
 														</Slider.Header>
 													</Slider>
 													<TextBlock
-														VerticalAlignment="Top"
-														Margin="{x:Bind data:SimpleConverters.SettingItemToMargin(Description)}"
+														VerticalAlignment="Center"
 														Text="{Binding
 															ElementName=_cSlider,
 															Path=Value,
@@ -109,7 +107,7 @@
 															ConverterParameter='0.0',
 															UpdateSourceTrigger=PropertyChanged,
 															Mode=OneWay}"
-													/>
+														Style="{StaticResource BoldText}" />
 												</StackPanel>
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.SliderTemplate>

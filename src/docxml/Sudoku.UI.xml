@@ -544,6 +544,15 @@
             Defines a floating-point or integer option that is binding with a slider on displaying.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Models.SliderSettingItem.#ctor(System.String,System.String,System.Double,System.Double,System.Double,System.Double)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.#ctor(System.String,System.String)"/>
+            <param name="name"><inheritdoc/></param>
+            <param name="preferenceValueName"><inheritdoc/></param>
+            <param name="stepFrequency">The step frequency.</param>
+            <param name="tickFrequency">The tick frequency.</param>
+            <param name="minValue">The minimum value.</param>
+            <param name="maxValue">The maximum value.</param>
+        </member>
         <member name="M:Sudoku.UI.Models.SliderSettingItem.#ctor(System.String,System.String,System.String,System.Double,System.Double,System.Double,System.Double)">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.#ctor(System.String,System.String,System.String)"/>
             <param name="name"><inheritdoc/></param>

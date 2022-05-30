@@ -82,6 +82,10 @@
 	<x:String x:Key="SettingsPage_ItemDescription_EnableDeltaValuesDisplaying">This option will allow the program displaying for wrong digits you have filled using a different color with the basic one.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_OutsideBorderWidth">Blank size outside the border</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_OutsideBorderWidth">Set the value to control the padding width and height that distances between the grid rendered and the left aligning line.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_BlockBorderWidth">Size of the block borders</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CellBorderWidth">Size of the cell borders</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CandidateBorderWidth">Size of the candidate borders</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_CandidateBorderWidth">This property is valid only if the candidate border displays.</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>
@@ -110,4 +114,6 @@
 	<x:String x:Key="ToggleSwitchDefaultOnContent">Yes</x:String>
 	<x:String x:Key="ToggleSwitchDefaultOffContent">No</x:String>
 	<x:String x:Key="SliderPossibleValue" xml:space="preserve">The supported range: </x:String>
+	<x:String x:Key="SliderStepFrequency" xml:space="preserve">, step frequency: </x:String>
+	<x:String x:Key="SliderTickFrequency" xml:space="preserve">, tick frequency: </x:String>
 </ResourceDictionary>

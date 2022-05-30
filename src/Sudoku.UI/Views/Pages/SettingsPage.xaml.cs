@@ -65,6 +65,31 @@ public sealed partial class SettingsPage : Page
 						tickFrequency: .3,
 						minValue: 0,
 						maxValue: 3
+					),
+					new SliderSettingItem(
+						Get("SettingsPage_ItemName_BlockBorderWidth"),
+						nameof(UserPreference.BlockBorderWidth),
+						stepFrequency: .5,
+						tickFrequency: .5,
+						minValue: 0,
+						maxValue: 5
+					),
+					new SliderSettingItem(
+						Get("SettingsPage_ItemName_CellBorderWidth"),
+						nameof(UserPreference.CellBorderWidth),
+						stepFrequency: .5,
+						tickFrequency: .5,
+						minValue: 0,
+						maxValue: 5
+					),
+					new SliderSettingItem(
+						Get("SettingsPage_ItemName_CandidateBorderWidth"),
+						Get("SettingsPage_ItemDescription_CandidateBorderWidth"),
+						nameof(UserPreference.CandidateBorderWidth),
+						stepFrequency: .1,
+						tickFrequency: .3,
+						minValue: 0,
+						maxValue: 3
 					)
 				}
 			),

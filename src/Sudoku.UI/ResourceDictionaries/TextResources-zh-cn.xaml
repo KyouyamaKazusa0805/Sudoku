@@ -80,6 +80,10 @@
 	<x:String x:Key="SettingsPage_ItemDescription_EnableDeltaValuesDisplaying">如果有数字填错，该设置项允许将其以另一种配色呈现出这些数字，以帮助做题。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_OutsideBorderWidth">框线外侧留白宽度</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_OutsideBorderWidth">有些时候绘图期间会超出盘面范围，留白越多越能显示出这些多出来的部分，不过因为留白会导致盘面往右轻微移动，使得窗体分布不好看。</x:String>
+	<x:String x:Key="SettingsPage_ItemName_BlockBorderWidth">宫线粗细</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CellBorderWidth">单元格线条粗细</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CandidateBorderWidth">候选数边框线粗细</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_CandidateBorderWidth">该设置项只会在显示了候选数线条的时候生效。</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>
@@ -106,4 +110,6 @@
 	<x:String x:Key="ToggleSwitchDefaultOnContent">是</x:String>
 	<x:String x:Key="ToggleSwitchDefaultOffContent">否</x:String>
 	<x:String x:Key="SliderPossibleValue">该拖动条支持的取值范围：</x:String>
+	<x:String x:Key="SliderStepFrequency">，滑块移动的最小单位：</x:String>
+	<x:String x:Key="SliderTickFrequency">，刻度单位：</x:String>
 </ResourceDictionary>
