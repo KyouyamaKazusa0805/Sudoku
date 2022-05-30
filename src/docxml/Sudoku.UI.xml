@@ -147,6 +147,11 @@
         <member name="M:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.SelectTemplateCore(System.Object)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.UI.Data.SimpleConverters">
+            <summary>
+            Provides with a set of methods as simple converters that can be used and called by XAML files.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.DifficultyLevelToBackgroundConverter">
             <summary>
             Defines a value converter that allows the one-way binding from the

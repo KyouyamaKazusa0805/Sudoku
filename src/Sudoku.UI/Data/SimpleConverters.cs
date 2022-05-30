@@ -1,5 +1,8 @@
 ﻿namespace Sudoku.UI.Data;
 
+/// <summary>
+/// Provides with a set of methods as simple converters that can be used and called by XAML files.
+/// </summary>
 internal static class SimpleConverters
 {
 	public static string SliderPossibleValueString(double min, double max, double stepFrequency, double tickFrequency)
