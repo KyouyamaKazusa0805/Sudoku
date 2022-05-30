@@ -84,6 +84,7 @@
 	<x:String x:Key="SettingsPage_ItemName_CellBorderWidth">单元格线条粗细</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateBorderWidth">候选数边框线粗细</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateBorderWidth">该设置项只会在显示了候选数线条的时候生效。</x:String>
+	<x:String x:Key="SettingsPage_ItemName_OutsideBorderColor">外框线颜色</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>

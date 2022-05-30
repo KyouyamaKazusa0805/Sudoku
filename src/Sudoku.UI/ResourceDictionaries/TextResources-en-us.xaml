@@ -86,6 +86,7 @@
 	<x:String x:Key="SettingsPage_ItemName_CellBorderWidth">Size of the cell borders</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateBorderWidth">Size of the candidate borders</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateBorderWidth">This property is valid only if the candidate border displays.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_OutsideBorderColor">Outside border color</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>

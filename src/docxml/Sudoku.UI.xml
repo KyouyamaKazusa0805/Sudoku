@@ -139,6 +139,11 @@
             Indicates the template that is used for a slider.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.ColorPickerTemplate">
+            <summary>
+            Indicates the template that is used for a color picker.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.DefaultTemplate">
             <summary>
             Indicates the default template.
@@ -380,6 +385,23 @@
             The <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance that is used for creating the result value.
             </param>
             <returns>The result list of <see cref="T:Sudoku.UI.Models.AnalysisResultRow"/>-typed elements.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Models.ColorPickerSettingItem">
+            <summary>
+            Defines a color option that is binding with a color picker on displaying.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.#ctor(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.#ctor(System.String,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.GetPreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.SetPreference(Windows.UI.Color)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
         </member>
         <member name="T:Sudoku.UI.Models.HyperlinkMessage">
             <inheritdoc/>

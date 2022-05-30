@@ -55,7 +55,7 @@ public sealed partial class SettingsPage : Page
 			new(
 				Get("SettingsPage_GroupItemName_Rendering"),
 				Get("SettingsPage_GroupItemDescription_Rendering"),
-				new[]
+				new SettingItem[]
 				{
 					new SliderSettingItem(
 						Get("SettingsPage_ItemName_OutsideBorderWidth"),
@@ -90,6 +90,10 @@ public sealed partial class SettingsPage : Page
 						tickFrequency: .3,
 						minValue: 0,
 						maxValue: 3
+					),
+					new ColorPickerSettingItem(
+						Get("SettingsPage_ItemName_OutsideBorderColor"),
+						nameof(UserPreference.OutsideBorderColor)
 					)
 				}
 			),

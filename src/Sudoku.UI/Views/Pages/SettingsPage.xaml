@@ -14,6 +14,9 @@
 			<Thickness x:Key="_rSettingItemMargin">0,6,0,12</Thickness>
 			<Thickness x:Key="_rSettingDescriptionMargin">0,9,0,0</Thickness>
 			<cvt:Int32ToStringConverter x:Key="_rToStringConverter" />
+			<Style x:Key="_rSettingItemNameTextBlockStyle" TargetType="TextBlock">
+				<Setter Property="FontWeight" Value="Bold" />
+			</Style>
 		</Grid.Resources>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
@@ -57,12 +60,14 @@
 													OffContent="{StaticResource ToggleSwitchDefaultOffContent}">
 													<ToggleSwitch.Header>
 														<StackPanel>
-															<TextBlock Text="{x:Bind Name}" FontWeight="Bold" />
+															<TextBlock
+																Text="{x:Bind Name}"
+																Style="{StaticResource _rSettingItemNameTextBlockStyle}" />
 															<TextBlock
 																Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
 																Text="{x:Bind Description}"
 																Margin="{StaticResource _rSettingDescriptionMargin}"
-																Style="{ThemeResource CaptionTextBlockStyle}"/>
+																Style="{ThemeResource CaptionTextBlockStyle}" />
 														</StackPanel>
 													</ToggleSwitch.Header>
 												</ToggleSwitch>
@@ -84,7 +89,9 @@
 															BindBack=SetPreference}">
 														<Slider.Header>
 															<StackPanel>
-																<TextBlock Text="{x:Bind Name}" FontWeight="Bold" />
+																<TextBlock
+																	Text="{x:Bind Name}"
+																	Style="{ThemeResource _rSettingItemNameTextBlockStyle}" />
 																<TextBlock
 																	Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
 																	Text="{x:Bind Description}"
@@ -93,7 +100,6 @@
 																<TextBlock
 																	Style="{ThemeResource CaptionTextBlockStyle}"
 																	Margin="{StaticResource _rSettingDescriptionMargin}"
-																	FontStyle="Italic"
 																	Text="{x:Bind data:SimpleConverters.SliderPossibleValueString(MinValue,MaxValue,StepFrequency,TickFrequency)}" />
 															</StackPanel>
 														</Slider.Header>
@@ -111,6 +117,29 @@
 												</StackPanel>
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.SliderTemplate>
+										<dts:SettingItemDataTemplateSelector.ColorPickerTemplate>
+											<DataTemplate x:DataType="m:ColorPickerSettingItem">
+												<StackPanel>
+													<TextBlock
+														Text="{x:Bind Name}"
+														Style="{ThemeResource _rSettingItemNameTextBlockStyle}" />
+													<TextBlock
+														Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
+														Text="{x:Bind Description}"
+														Margin="{StaticResource _rSettingDescriptionMargin}"
+														Style="{ThemeResource CaptionTextBlockStyle}" />
+													<ColorPicker
+														IsColorSpectrumVisible="False" IsMoreButtonVisible="True"
+														IsColorSliderVisible="False" IsAlphaSliderVisible="False"
+														IsHexInputVisible="True" IsAlphaEnabled="True"
+														IsAlphaTextInputVisible="True"
+														Color="{x:Bind GetPreference(),
+															Mode=TwoWay,
+															UpdateSourceTrigger=PropertyChanged,
+															BindBack=SetPreference}" />
+												</StackPanel>
+											</DataTemplate>
+										</dts:SettingItemDataTemplateSelector.ColorPickerTemplate>
 									</dts:SettingItemDataTemplateSelector>
 								</ListView.ItemTemplateSelector>
 							</ListView>

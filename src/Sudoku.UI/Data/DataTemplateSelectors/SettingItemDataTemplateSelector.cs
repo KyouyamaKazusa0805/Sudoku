@@ -18,6 +18,12 @@ public sealed class SettingItemDataTemplateSelector : DataTemplateSelector
 	public DataTemplate SliderTemplate { get; set; } = null!;
 
 	/// <summary>
+	/// Indicates the template that is used for a color picker.
+	/// </summary>
+	[DataTemplateModelType<ColorPickerSettingItem>]
+	public DataTemplate ColorPickerTemplate { get; set; } = null!;
+
+	/// <summary>
 	/// Indicates the default template.
 	/// </summary>
 	public DataTemplate DefaultTemplate { get; set; } = null!;
