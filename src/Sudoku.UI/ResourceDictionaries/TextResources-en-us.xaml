@@ -87,6 +87,17 @@
 	<x:String x:Key="SettingsPage_ItemName_CandidateBorderWidth">Size of the candidate borders</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateBorderWidth">This property is valid only if the candidate border displays.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_OutsideBorderColor">Outside border color</x:String>
+	<x:String x:Key="SettingsPage_ItemName_BlockBorderColor">Block border color</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CellBorderColor">Cell border color</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CandidateBorderColor">Candidate border color</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_CandidateBorderColor">Candidate border color</x:String>
+	<x:String x:Key="SettingsPage_ItemName_GivenColor">Color for given digits</x:String>
+	<x:String x:Key="SettingsPage_ItemName_ModifiableColor">Color for modifiable digits</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CandidateColor">Color for candidates</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CellDeltaColor">Color for delta digits</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_CellDeltaColor">The option controls the color of delta digits. Delta digits are wrong ones disobeying the sudoku rule.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CandidateDeltaColor">Color for delta candidates</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_CandidateDeltaColor">Same logic as above :)</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>

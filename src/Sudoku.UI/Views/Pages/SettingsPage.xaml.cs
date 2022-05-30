@@ -94,6 +94,41 @@ public sealed partial class SettingsPage : Page
 					new ColorPickerSettingItem(
 						Get("SettingsPage_ItemName_OutsideBorderColor"),
 						nameof(UserPreference.OutsideBorderColor)
+					),
+					new ColorPickerSettingItem(
+						Get("SettingsPage_ItemName_BlockBorderColor"),
+						nameof(UserPreference.BlockBorderColor)
+					),
+					new ColorPickerSettingItem(
+						Get("SettingsPage_ItemName_CellBorderColor"),
+						nameof(UserPreference.CellBorderColor)
+					),
+					new ColorPickerSettingItem(
+						Get("SettingsPage_ItemName_CandidateBorderColor"),
+						Get("SettingsPage_ItemDescription_CandidateBorderColor"),
+						nameof(UserPreference.CandidateBorderColor)
+					),
+					new ColorPickerSettingItem(
+						Get("SettingsPage_ItemName_GivenColor"),
+						nameof(UserPreference.GivenColor)
+					),
+					new ColorPickerSettingItem(
+						Get("SettingsPage_ItemName_ModifiableColor"),
+						nameof(UserPreference.ModifiableColor)
+					),
+					new ColorPickerSettingItem(
+						Get("SettingsPage_ItemName_CandidateColor"),
+						nameof(UserPreference.CandidateColor)
+					),
+					new ColorPickerSettingItem(
+						Get("SettingsPage_ItemName_CellDeltaColor"),
+						Get("SettingsPage_ItemDescription_CellDeltaColor"),
+						nameof(UserPreference.CellDeltaColor)
+					),
+					new ColorPickerSettingItem(
+						Get("SettingsPage_ItemName_CandidateDeltaColor"),
+						Get("SettingsPage_ItemDescription_CandidateDeltaColor"),
+						nameof(UserPreference.CandidateDeltaColor)
 					)
 				}
 			),

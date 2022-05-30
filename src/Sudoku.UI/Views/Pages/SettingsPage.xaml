@@ -129,6 +129,7 @@
 														Margin="{StaticResource _rSettingDescriptionMargin}"
 														Style="{ThemeResource CaptionTextBlockStyle}" />
 													<ColorPicker
+														HorizontalAlignment="Left" VerticalAlignment="Top"
 														IsColorSpectrumVisible="False" IsMoreButtonVisible="True"
 														IsColorSliderVisible="False" IsAlphaSliderVisible="False"
 														IsHexInputVisible="True" IsAlphaEnabled="True"
