@@ -60,14 +60,12 @@ public sealed partial class SettingsPage : Page
 					new SliderSettingItem(
 						Get("SettingsPage_ItemName_OutsideBorderWidth"),
 						Get("SettingsPage_ItemDescription_OutsideBorderWidth"),
-						nameof(UserPreference.OutsideBorderWidth)
+						nameof(UserPreference.OutsideBorderWidth),
+						stepFrequency: .1,
+						tickFrequency: .3,
+						minValue: 0,
+						maxValue: 3
 					)
-					{
-						TickFrequency = .3,
-						StepFrequency = .1,
-						MinValue = 0,
-						MaxValue = 3
-					}
 				}
 			),
 			new(

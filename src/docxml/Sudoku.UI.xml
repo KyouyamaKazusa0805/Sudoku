@@ -544,11 +544,15 @@
             Defines a floating-point or integer option that is binding with a slider on displaying.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.SliderSettingItem.#ctor(System.String,System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Models.SliderSettingItem.#ctor(System.String,System.String,System.String)">
-            <inheritdoc/>
+        <member name="M:Sudoku.UI.Models.SliderSettingItem.#ctor(System.String,System.String,System.String,System.Double,System.Double,System.Double,System.Double)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.#ctor(System.String,System.String,System.String)"/>
+            <param name="name"><inheritdoc/></param>
+            <param name="description"><inheritdoc/></param>
+            <param name="preferenceValueName"><inheritdoc/></param>
+            <param name="stepFrequency">The step frequency.</param>
+            <param name="tickFrequency">The tick frequency.</param>
+            <param name="minValue">The minimum value.</param>
+            <param name="maxValue">The maximum value.</param>
         </member>
         <member name="P:Sudoku.UI.Models.SliderSettingItem.StepFrequency">
             <summary>
@@ -575,12 +579,6 @@
         </member>
         <member name="M:Sudoku.UI.Models.SliderSettingItem.SetPreference(System.Double)">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
-        </member>
-        <member name="M:Sudoku.UI.Models.SliderSettingItem.PreferenceValueToString">
-            <summary>
-            Gets the string result of the preference value.
-            </summary>
-            <returns>The string result.</returns>
         </member>
         <member name="T:Sudoku.UI.Models.ToggleSwitchSettingItem">
             <summary>

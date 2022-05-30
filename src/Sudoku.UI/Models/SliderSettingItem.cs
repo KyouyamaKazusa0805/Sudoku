@@ -5,18 +5,20 @@
 /// </summary>
 public sealed class SliderSettingItem : SettingItem
 {
-	/// <inheritdoc/>
+	/// <inheritdoc cref="SettingItem(string, string, string)"/>
+	/// <param name="name"><inheritdoc/></param>
+	/// <param name="description"><inheritdoc/></param>
+	/// <param name="preferenceValueName"><inheritdoc/></param>
+	/// <param name="stepFrequency">The step frequency.</param>
+	/// <param name="tickFrequency">The tick frequency.</param>
+	/// <param name="minValue">The minimum value.</param>
+	/// <param name="maxValue">The maximum value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SliderSettingItem(string name, string preferenceValueName) : base(name, preferenceValueName)
-	{
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SliderSettingItem(string name, string description, string preferenceValueName)
-		: base(name, description, preferenceValueName)
-	{
-	}
+	public SliderSettingItem(
+		string name, string description, string preferenceValueName,
+		double stepFrequency, double tickFrequency, double minValue, double maxValue) :
+		base(name, description, preferenceValueName)
+		=> (StepFrequency, TickFrequency, MinValue, MaxValue) = (stepFrequency, tickFrequency, minValue, maxValue);
 
 
 	/// <summary>
@@ -45,10 +47,4 @@ public sealed class SliderSettingItem : SettingItem
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>
 	public void SetPreference(double value) => SetPreference<double>(value);
-
-	/// <summary>
-	/// Gets the string result of the preference value.
-	/// </summary>
-	/// <returns>The string result.</returns>
-	public string PreferenceValueToString() => GetPreference<double>().ToString();
 }
