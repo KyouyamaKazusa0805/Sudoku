@@ -133,7 +133,7 @@
 														IsColorSpectrumVisible="False" IsMoreButtonVisible="True"
 														IsColorSliderVisible="False" IsAlphaSliderVisible="False"
 														IsHexInputVisible="True" IsAlphaEnabled="True"
-														IsAlphaTextInputVisible="True"
+														IsAlphaTextInputVisible="True" Margin="0,20,0,20"
 														Color="{x:Bind GetPreference(),
 															Mode=TwoWay,
 															UpdateSourceTrigger=PropertyChanged,
