@@ -11,7 +11,9 @@
 		Loaded="ViewRouter_Loaded" ItemInvoked="ViewRouter_ItemInvoked"
 		SelectionChanged="ViewRouter_SelectionChanged">
 		<NavigationView.AutoSuggestBox>
-			<AutoSuggestBox QueryIcon="Find" PlaceholderText="{StaticResource MainPage_Search}" />
+			<AutoSuggestBox
+				QueryIcon="Find" PlaceholderText="{StaticResource MainPage_Search}"
+				TextChanged="AutoSuggestBox_TextChanged" />
 		</NavigationView.AutoSuggestBox>
 		<NavigationView.MenuItems>
 			<NavigationViewItemHeader Content="{StaticResource MainPage_Sudoku}" />

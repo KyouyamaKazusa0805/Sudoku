@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI.Views.Pages;
+﻿using System.Globalization;
+
+namespace Sudoku.UI.Views.Pages;
 
 /// <summary>
 /// Indicates the main page of the window. The page is used for navigation to other pages.
@@ -14,6 +16,12 @@ public sealed partial class MainPage : Page
 		(nameof(AboutPage), typeof(AboutPage), true),
 		(nameof(SudokuPage), typeof(SudokuPage), false)
 	};
+
+
+	/// <summary>
+	/// Indicates the gathered keywords.
+	/// </summary>
+	private (string Key, string Value, string OriginalValue)[] _gatheredQueryKeywords = null!;
 
 
 	/// <summary>
@@ -121,5 +129,56 @@ public sealed partial class MainPage : Page
 		{
 			OnNavigate(tag, info);
 		}
+	}
+
+	/// <summary>
+	/// Triggers when text of the main auto suggest box has been changed.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="args">The event arguments provided.</param>
+	private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+	{
+		if ((sender, args) is not ({ Text: var userText }, { Reason: AutoSuggestionBoxTextChangeReason.UserInput }))
+		{
+			return;
+		}
+
+		const string queryPrefix = "Query_";
+		string cultureInfoName = CultureInfo.CurrentUICulture.Name;
+		bool p(ResourceDictionary d) => d.Source.AbsolutePath.Contains(cultureInfoName, StringComparison.InvariantCultureIgnoreCase);
+		var resourceDic = Application.Current.Resources.MergedDictionaries.FirstOrDefault(p);
+		_gatheredQueryKeywords ??= (
+			from key in resourceDic?.Keys.OfType<string>() ?? Array.Empty<string>()
+			where key.StartsWith(queryPrefix) && resourceDic![key] is string
+			let originalValue = resourceDic![key[queryPrefix.Length..]] as string
+			where originalValue is not null
+			select (key, Get(key), originalValue)
+		).ToArray();
+
+		var suitableItems = new List<string>();
+		string[] splitText = userText.ToLower(CultureInfo.CurrentUICulture).Split(" ");
+		foreach (var (rawKey, rawValue, originalValue) in _gatheredQueryKeywords)
+		{
+			if (rawValue.Split('|') is not [var keywords, var resultToDisplay])
+			{
+				continue;
+			}
+
+			string key = rawKey[queryPrefix.Length..];
+			string[] keywordsSplit = keywords.Split(';');
+			if (splitText.All(key => Array.FindIndex(keywordsSplit, k => k.ToLower(CultureInfo.CurrentUICulture).Contains(key)) != -1))
+			{
+				string openBrace = Get("Token_OpenBrace");
+				string closedBrace = Get("Token_ClosedBrace");
+				string location = resultToDisplay.Replace("->", Get("Emoji_RightArrow"));
+				suitableItems.Add($"{originalValue}{openBrace}{location}{closedBrace}");
+			}
+		}
+		if (suitableItems.Count == 0)
+		{
+			suitableItems.Add(Get("QueryResult_Empty"));
+		}
+
+		sender.ItemsSource = suitableItems;
 	}
 }
