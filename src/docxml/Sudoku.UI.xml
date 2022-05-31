@@ -1130,6 +1130,13 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="args">The event arguments provided.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.MainPage.AutoSuggestBox_SuggestionChosen(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxSuggestionChosenEventArgs)">
+            <summary>
+            Triggers when a suggestion is chosen.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="args">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.MainPage.InitializeComponent">
             <summary>
             InitializeComponent()

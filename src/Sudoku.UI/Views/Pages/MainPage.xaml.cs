@@ -185,4 +185,12 @@ public sealed partial class MainPage : Page
 
 		sender.ItemsSource = suitableItems;
 	}
+
+	/// <summary>
+	/// Triggers when a suggestion is chosen.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="args">The event arguments provided.</param>
+	private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+		=> sender.Text = string.Empty;
 }

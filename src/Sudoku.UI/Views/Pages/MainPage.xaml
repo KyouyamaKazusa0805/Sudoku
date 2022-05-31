@@ -15,7 +15,7 @@
 		<NavigationView.AutoSuggestBox>
 			<AutoSuggestBox
 				QueryIcon="Find" PlaceholderText="{StaticResource MainPage_Search}"
-				TextChanged="AutoSuggestBox_TextChanged">
+				TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen">
 				<AutoSuggestBox.ItemTemplateSelector>
 					<dts:SearchedResultItemTemplateSelector>
 						<dts:SearchedResultItemTemplateSelector.PairInfoTemplate>
