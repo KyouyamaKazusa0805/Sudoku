@@ -24,6 +24,12 @@ public sealed class SettingItemDataTemplateSelector : DataTemplateSelector
 	public DataTemplate ColorPickerTemplate { get; set; } = null!;
 
 	/// <summary>
+	/// Indicates the template that is used for a font picker.
+	/// </summary>
+	[DataTemplateModelType<FontPickerSettingItem>]
+	public DataTemplate FontPickerTemplate { get; set; } = null!;
+
+	/// <summary>
 	/// Indicates the default template.
 	/// </summary>
 	public DataTemplate DefaultTemplate { get; set; } = null!;

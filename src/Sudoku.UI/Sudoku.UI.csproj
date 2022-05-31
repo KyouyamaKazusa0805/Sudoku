@@ -23,6 +23,9 @@
 		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
 		<Description>The solution that plays with the sudoku.</Description>
 	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Views\Controls\FontPicker.xaml" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="Assets\SplashScreen.scale-200.png" />
@@ -100,6 +103,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Controls\InfoBarBoard.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Controls\FontPicker.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

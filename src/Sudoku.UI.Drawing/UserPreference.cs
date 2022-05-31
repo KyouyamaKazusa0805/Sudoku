@@ -80,20 +80,20 @@ public sealed class UserPreference
 	public double CandidateBorderWidth = 1;
 
 	/// <summary>
-	/// Indicates the value font size.
+	/// Indicates the value font scale. The value must be between 0 and 1.
 	/// </summary>
 	/// <remarks>
-	/// The default value is <c>36</c>.
+	/// The default value is <c>.8</c>.
 	/// </remarks>
-	public double ValueFontSize = 36;
+	public double ValueFontScale = .8;
 
 	/// <summary>
-	/// Indicates the candidate font size.
+	/// Indicates the candidate font scale.
 	/// </summary>
 	/// <remarks>
-	/// The default value is <c>16</c>.
+	/// The default value is <c>.25</c>.
 	/// </remarks>
-	public double CandidateFontSize = 16;
+	public double CandidateFontScale = .25;
 
 	/// <summary>
 	/// Indicates the value font name.

@@ -98,6 +98,10 @@
 	<x:String x:Key="SettingsPage_ItemDescription_CellDeltaColor">The option controls the color of delta digits. Delta digits are wrong ones disobeying the sudoku rule.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateDeltaColor">Color for delta candidates</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateDeltaColor">Same logic as above :)</x:String>
+	<x:String x:Key="SettingsPage_ItemName_ValueFontScale">Font scale on value digits</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_ValueFontScale">Indicates the sizing scale of the value digits.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CandidateFontScale">Font scale on candidates</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_CandidateFontScale">Indicates the sizing scale of the candidates.</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>
@@ -128,4 +132,7 @@
 	<x:String x:Key="SliderPossibleValue" xml:space="preserve">The supported range: </x:String>
 	<x:String x:Key="SliderStepFrequency" xml:space="preserve">, step frequency: </x:String>
 	<x:String x:Key="SliderTickFrequency" xml:space="preserve">, tick frequency: </x:String>
+	<x:String x:Key="FontPickerFontName">Font name</x:String>
+	<x:String x:Key="FontPickerPlaceholder">Select a font</x:String>
+	<x:String x:Key="FontPickerFontScale">Font scale</x:String>
 </ResourceDictionary>

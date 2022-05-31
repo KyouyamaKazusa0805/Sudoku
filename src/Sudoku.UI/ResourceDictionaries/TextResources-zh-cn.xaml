@@ -96,6 +96,10 @@
 	<x:String x:Key="SettingsPage_ItemDescription_CellDeltaColor">该设置项控制错误填数的颜色。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateDeltaColor">错误填数的候选数数值颜色</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateDeltaColor">同上 :)</x:String>
+	<x:String x:Key="SettingsPage_ItemName_ValueFontScale">确定值（明数）字体缩放比例</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_ValueFontScale">表示文字相对单元格的比例大小。</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CandidateFontScale">候选数字体的缩放比例</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_CandidateFontScale">表示候选数相对于单元格的比例大小。</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>
@@ -124,4 +128,7 @@
 	<x:String x:Key="SliderPossibleValue">该拖动条支持的取值范围：</x:String>
 	<x:String x:Key="SliderStepFrequency">，滑块移动的最小单位：</x:String>
 	<x:String x:Key="SliderTickFrequency">，刻度单位：</x:String>
+	<x:String x:Key="FontPickerFontName">字体</x:String>
+	<x:String x:Key="FontPickerPlaceholder">选择一个字体</x:String>
+	<x:String x:Key="FontPickerFontScale">字体缩放比例</x:String>
 </ResourceDictionary>

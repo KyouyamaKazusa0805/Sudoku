@@ -1782,20 +1782,20 @@
             The default value is <c>1</c>.
             </remarks>
         </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.ValueFontSize">
+        <member name="F:Sudoku.UI.Drawing.UserPreference.ValueFontScale">
             <summary>
-            Indicates the value font size.
+            Indicates the value font scale. The value must be between 0 and 1.
             </summary>
             <remarks>
-            The default value is <c>36</c>.
+            The default value is <c>.8</c>.
             </remarks>
         </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.CandidateFontSize">
+        <member name="F:Sudoku.UI.Drawing.UserPreference.CandidateFontScale">
             <summary>
-            Indicates the candidate font size.
+            Indicates the candidate font scale.
             </summary>
             <remarks>
-            The default value is <c>16</c>.
+            The default value is <c>.25</c>.
             </remarks>
         </member>
         <member name="F:Sudoku.UI.Drawing.UserPreference.ValueFontName">

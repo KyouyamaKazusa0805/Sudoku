@@ -56,7 +56,7 @@ internal sealed partial class CellDigit : DrawingElement
 		_textBlock = new()
 		{
 			Text = digit == byte.MaxValue ? string.Empty : (digit + 1).ToString(),
-			FontSize = userPreference.ValueFontSize,
+			FontSize = 60 * userPreference.ValueFontScale,
 			FontFamily = new(userPreference.ValueFontName),
 			TextAlignment = TextAlignment.Center,
 			HorizontalTextAlignment = TextAlignment.Center,

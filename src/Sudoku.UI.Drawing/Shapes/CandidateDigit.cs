@@ -78,7 +78,7 @@ internal sealed partial class CandidateDigit : DrawingElement
 			{
 				Text = (digit + 1).ToString(),
 				FontFamily = new(_userPreference.CandidateFontName),
-				FontSize = _userPreference.CandidateFontSize,
+				FontSize = 60 * _userPreference.CandidateFontScale,
 				Visibility = ((candidateMask | wrongDigitMask) >> digit & 1) != 0 ? Visibility.Visible : Visibility.Collapsed,
 				TextAlignment = TextAlignment.Center,
 				HorizontalTextAlignment = TextAlignment.Center,

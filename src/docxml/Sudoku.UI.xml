@@ -144,6 +144,11 @@
             Indicates the template that is used for a color picker.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.FontPickerTemplate">
+            <summary>
+            Indicates the template that is used for a font picker.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.DefaultTemplate">
             <summary>
             Indicates the default template.
@@ -403,6 +408,34 @@
         <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.SetPreference(Windows.UI.Color)">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
         </member>
+        <member name="T:Sudoku.UI.Models.FontPickerSettingItem">
+            <summary>
+            Defines a color option that is binding with a font picker on displaying.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.#ctor(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.#ctor(System.String,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Models.FontPickerSettingItem.FontScalePropertyName">
+            <summary>
+            Indicates the font name property name.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.GetFontScalePreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.GetFontNamePreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.SetFontScalePreference(System.Double)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.SetFontNamePreference(System.String)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
+        </member>
         <member name="T:Sudoku.UI.Models.HyperlinkMessage">
             <inheritdoc/>
         </member>
@@ -645,6 +678,47 @@
             </summary>
             <param name="key">The <see cref="T:System.String"/>-typed resource key.</param>
             <returns>The resource value.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Views.Controls.FontPicker">
+            <summary>
+            Defines a font picker control.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Controls.FontPicker"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.FontPicker.Header">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.ComboBox.Header"/>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.FontPicker.PlaceholderText">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.ComboBox.PlaceholderText"/>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.FontPicker.FontNameChosen">
+            <summary>
+            Indicates the chosen font name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.FontPicker.SettingItem">
+            <summary>
+            Indicates the base setting item.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>

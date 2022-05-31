@@ -34,7 +34,7 @@ public sealed partial class SettingsPage : Page
 			new(
 				Get("SettingsPage_GroupItemName_Basic"),
 				Get("SettingsPage_GroupItemDescription_Basic"),
-				new[]
+				new SettingItem[]
 				{
 					new ToggleSwitchSettingItem(
 						Get("SettingsPage_ItemName_ShowCandidates"),
@@ -48,7 +48,23 @@ public sealed partial class SettingsPage : Page
 						Get("SettingsPage_ItemName_EnableDeltaValuesDisplaying"),
 						Get("SettingsPage_ItemDescription_EnableDeltaValuesDisplaying"),
 						nameof(UserPreference.EnableDeltaValuesDisplaying)
+					),
+					new FontPickerSettingItem(
+						Get("SettingsPage_ItemName_ValueFontScale"),
+						Get("SettingsPage_ItemDescription_ValueFontScale"),
+						nameof(UserPreference.ValueFontName)
 					)
+					{
+						FontScalePropertyName = nameof(UserPreference.ValueFontScale)
+					},
+					new FontPickerSettingItem(
+						Get("SettingsPage_ItemName_CandidateFontScale"),
+						Get("SettingsPage_ItemDescription_CandidateFontScale"),
+						nameof(UserPreference.CandidateFontName)
+					)
+					{
+						FontScalePropertyName = nameof(UserPreference.CandidateFontScale)
+					}
 				}
 			),
 			new(Get("SettingsPage_GroupItemName_Solving"), Get("SettingsPage_GroupItemDescription_Solving")),

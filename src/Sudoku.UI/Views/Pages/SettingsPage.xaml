@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:Sudoku.UI.Views.Controls"
 	xmlns:cvt="using:Sudoku.UI.Data.ValueConverters"
 	xmlns:data="using:Sudoku.UI.Data"
 	xmlns:dts="using:Sudoku.UI.Data.DataTemplateSelectors"
@@ -141,6 +142,29 @@
 												</StackPanel>
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.ColorPickerTemplate>
+										<dts:SettingItemDataTemplateSelector.FontPickerTemplate>
+											<DataTemplate x:DataType="m:FontPickerSettingItem">
+												<c:FontPicker
+													SettingItem="{x:Bind}"
+													PlaceholderText="{StaticResource FontPickerPlaceholder}">
+													<c:FontPicker.Header>
+														<StackPanel>
+															<TextBlock
+																Text="{x:Bind Name}"
+																Style="{StaticResource _rSettingItemNameTextBlockStyle}" />
+															<TextBlock
+																Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
+																Text="{x:Bind Description}"
+																Margin="{StaticResource _rSettingDescriptionMargin}"
+																Style="{ThemeResource CaptionTextBlockStyle}" />
+															<TextBlock
+																Text="{StaticResource FontPickerFontName}"
+																Margin="{StaticResource _rSettingDescriptionMargin}" />
+														</StackPanel>
+													</c:FontPicker.Header>
+												</c:FontPicker>
+											</DataTemplate>
+										</dts:SettingItemDataTemplateSelector.FontPickerTemplate>
 									</dts:SettingItemDataTemplateSelector>
 								</ListView.ItemTemplateSelector>
 							</ListView>
