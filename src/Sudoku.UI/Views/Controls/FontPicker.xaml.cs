@@ -45,4 +45,9 @@ public sealed partial class FontPicker : UserControl
 	/// Indicates the base setting item.
 	/// </summary>
 	public FontPickerSettingItem SettingItem { get; set; } = null!;
+
+
+	private void Control_Loaded(object _, RoutedEventArgs __)
+		=> _cComboBox.SelectedIndex =
+			((IList<string>)_cComboBox.ItemsSource).IndexOf((string)SettingItem.GetFontNamePreference());
 }

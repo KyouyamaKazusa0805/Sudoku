@@ -5,9 +5,8 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:data="using:Sudoku.UI.Data"
-	xmlns:t="using:Microsoft.Graphics.Canvas.Text"
 	mc:Ignorable="d"
-	x:Name="_cThis">
+	x:Name="_cThis" Loaded="Control_Loaded">
 	<Grid>
 		<Grid.Resources>
 			<Thickness x:Key="_rSettingItemMargin">0,6,0,12</Thickness>
@@ -22,9 +21,17 @@
 		</Grid.RowDefinitions>
 
 		<ComboBox
-			x:Name="_cComboBox" ItemsSource="{x:Bind t:CanvasTextFormat.GetSystemFontFamilies()}" Grid.Row="0"
+			x:Name="_cComboBox" ItemsSource="{x:Bind data:SimpleConverters.GetFontNames()}" Grid.Row="0"
 			Header="{Binding ElementName=_cThis,Path=Header,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
-			PlaceholderText="{Binding ElementName=_cThis,Path=PlaceholderText,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+			SelectedValue="{x:Bind SettingItem.GetFontNamePreference(),
+				Mode=TwoWay,
+				UpdateSourceTrigger=PropertyChanged,
+				BindBack=SettingItem.SetFontNamePreference}"
+			PlaceholderText="{Binding
+				ElementName=_cThis,
+				Path=PlaceholderText,
+				UpdateSourceTrigger=PropertyChanged,
+				Mode=TwoWay}" />
 		<Slider
 			x:Name="_cSlider" Grid.Row="1" TickPlacement="Outside" Width="450" Minimum="0" Maximum="1"
 			TickFrequency="0.05" StepFrequency="0.05" Margin="0,20,0,20"
@@ -37,7 +44,7 @@
 					<TextBlock Text="{StaticResource FontPickerFontScale}" />
 					<TextBlock
 						Style="{ThemeResource CaptionTextBlockStyle}" Margin="{StaticResource _rSettingDescriptionMargin}"
-						Text="{x:Bind data:SimpleConverters.SliderPossibleValueString(0,1,0.05,0.05)}" />
+						Text="{x:Bind data:SimpleConverters.SliderPossibleValueStringWithFormat(0,1,0.05,0.05,'0.00')}" />
 				</StackPanel>
 			</Slider.Header>
 		</Slider>

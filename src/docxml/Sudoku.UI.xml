@@ -433,7 +433,7 @@
         <member name="M:Sudoku.UI.Models.FontPickerSettingItem.SetFontScalePreference(System.Double)">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
         </member>
-        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.SetFontNamePreference(System.String)">
+        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.SetFontNamePreference(System.Object)">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
         </member>
         <member name="T:Sudoku.UI.Models.HyperlinkMessage">

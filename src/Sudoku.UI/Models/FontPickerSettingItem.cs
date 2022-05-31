@@ -33,7 +33,7 @@ public sealed class FontPickerSettingItem : SettingItem
 	}
 
 	/// <inheritdoc cref="SettingItem.GetPreference{T}"/>
-	public string GetFontNamePreference() => GetPreference<string>();
+	public object GetFontNamePreference() => GetPreference<object>();
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>
 	public void SetFontScalePreference(double value)
@@ -43,5 +43,5 @@ public sealed class FontPickerSettingItem : SettingItem
 	}
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>
-	public void SetFontNamePreference(string value) => SetPreference(value);
+	public void SetFontNamePreference(object value) => SetPreference(value);
 }
