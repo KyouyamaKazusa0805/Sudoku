@@ -30,7 +30,6 @@ global using Microsoft.UI.Xaml.Shapes;
 global using Sudoku.Generating.Puzzlers;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving.Manual;
-global using Sudoku.UI.Data;
 global using Sudoku.UI.Drawing;
 global using Sudoku.UI.Drawing.Shapes;
 global using Sudoku.UI.Interoperability;
