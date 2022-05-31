@@ -155,7 +155,7 @@ public sealed partial class MainPage : Page
 			select (key, Get(key), originalValue)
 		).ToArray();
 
-		var suitableItems = new List<string>();
+		var suitableItems = new List<object>();
 		string[] splitText = userText.ToLower(CultureInfo.CurrentUICulture).Split(" ");
 		foreach (var (rawKey, rawValue, originalValue) in _gatheredQueryKeywords)
 		{
@@ -166,12 +166,16 @@ public sealed partial class MainPage : Page
 
 			string key = rawKey[queryPrefix.Length..];
 			string[] keywordsSplit = keywords.Split(';');
-			if (splitText.All(key => Array.FindIndex(keywordsSplit, k => k.ToLower(CultureInfo.CurrentUICulture).Contains(key)) != -1))
+			static bool arrayPredicate(string k, string key) => k.ToLower(CultureInfo.CurrentUICulture).Contains(key);
+			if (splitText.All(key => Array.FindIndex(keywordsSplit, k => arrayPredicate(k, key)) != -1))
 			{
-				string openBrace = Get("Token_OpenBrace");
-				string closedBrace = Get("Token_ClosedBrace");
-				string location = resultToDisplay.Replace("->", Get("Emoji_RightArrow"));
-				suitableItems.Add($"{originalValue}{openBrace}{location}{closedBrace}");
+				suitableItems.Add(
+					new SearchedResult
+					{
+						Value = originalValue,
+						Location = resultToDisplay.Replace("->", Get("Emoji_RightArrow"))
+					}
+				);
 			}
 		}
 		if (suitableItems.Count == 0)

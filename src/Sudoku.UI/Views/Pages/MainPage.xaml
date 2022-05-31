@@ -4,6 +4,8 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:dts="using:Sudoku.UI.Data.DataTemplateSelectors"
+	xmlns:m="using:Sudoku.UI.Models"
 	mc:Ignorable="d">
 	<NavigationView
 		x:Name="_cViewRouter" Header="{StaticResource ProgramName}" IsBackButtonVisible="Collapsed"
@@ -13,7 +15,29 @@
 		<NavigationView.AutoSuggestBox>
 			<AutoSuggestBox
 				QueryIcon="Find" PlaceholderText="{StaticResource MainPage_Search}"
-				TextChanged="AutoSuggestBox_TextChanged" />
+				TextChanged="AutoSuggestBox_TextChanged">
+				<AutoSuggestBox.ItemTemplateSelector>
+					<dts:SearchedResultItemTemplateSelector>
+						<dts:SearchedResultItemTemplateSelector.PairInfoTemplate>
+							<DataTemplate x:DataType="m:SearchedResult">
+								<StackPanel Orientation="Vertical">
+									<TextBlock
+										Text="{x:Bind Value}" Style="{ThemeResource BodyTextBlockStyle}"
+										TextWrapping="WrapWholeWords" />
+									<TextBlock
+										Text="{x:Bind Location}" Style="{ThemeResource CaptionTextBlockStyle}"
+										TextWrapping="WrapWholeWords" />
+								</StackPanel>
+							</DataTemplate>
+						</dts:SearchedResultItemTemplateSelector.PairInfoTemplate>
+						<dts:SearchedResultItemTemplateSelector.DefaultTemplate>
+							<DataTemplate x:DataType="x:String">
+								<TextBlock Text="{x:Bind}" Style="{ThemeResource CaptionTextBlockStyle}" />
+							</DataTemplate>
+						</dts:SearchedResultItemTemplateSelector.DefaultTemplate>
+					</dts:SearchedResultItemTemplateSelector>
+				</AutoSuggestBox.ItemTemplateSelector>
+			</AutoSuggestBox>
 		</NavigationView.AutoSuggestBox>
 		<NavigationView.MenuItems>
 			<NavigationViewItemHeader Content="{StaticResource MainPage_Sudoku}" />

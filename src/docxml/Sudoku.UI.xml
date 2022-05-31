@@ -124,6 +124,24 @@
             from <see cref="T:Sudoku.UI.Models.InfoBarMessage"/>.
             </exception>
         </member>
+        <member name="T:Sudoku.UI.Data.DataTemplateSelectors.SearchedResultItemTemplateSelector">
+            <summary>
+            Defines a selector that can select the data template on searched result items.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SearchedResultItemTemplateSelector.PairInfoTemplate">
+            <summary>
+            Indicates the template that is used by the valid seared result.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SearchedResultItemTemplateSelector.DefaultTemplate">
+            <summary>
+            Indicates the default template.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.DataTemplateSelectors.SearchedResultItemTemplateSelector.SelectTemplateCore(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector">
             <summary>
             Defines a data template selector that determines which data template can be used on a setting item.
@@ -514,6 +532,21 @@
         <member name="P:Sudoku.UI.Models.RepositoryInfo.Site">
             <summary>
             Indicates the website which name is corresponding to.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Models.SearchedResult">
+            <summary>
+            Defines a searched result.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SearchedResult.Value">
+            <summary>
+            The value information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SearchedResult.Location">
+            <summary>
+            The location information.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Models.SettingGroupItem">
