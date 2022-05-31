@@ -6,6 +6,7 @@
 	<x:String x:Key="MainPage_Sudoku">Sudoku</x:String>
 	<x:String x:Key="MainPage_Settings">Settings</x:String>
 	<x:String x:Key="MainPage_About">About</x:String>
+	<x:String x:Key="MainPage_Search">Search</x:String>
 	<x:String x:Key="SudokuPage_MakeDigit">Make digit</x:String>
 	<x:String x:Key="SudokuPage_EliminateDigit">Eliminate digit</x:String>
 	<x:String x:Key="SudokuPage_Open">Open</x:String>

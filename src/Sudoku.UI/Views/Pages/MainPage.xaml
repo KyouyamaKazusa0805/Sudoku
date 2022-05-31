@@ -10,6 +10,9 @@
 		IsBackEnabled="False" PaneDisplayMode="Left" IsSettingsVisible="False"
 		Loaded="ViewRouter_Loaded" ItemInvoked="ViewRouter_ItemInvoked"
 		SelectionChanged="ViewRouter_SelectionChanged">
+		<NavigationView.AutoSuggestBox>
+			<AutoSuggestBox QueryIcon="Find" PlaceholderText="{StaticResource MainPage_Search}" />
+		</NavigationView.AutoSuggestBox>
 		<NavigationView.MenuItems>
 			<NavigationViewItemHeader Content="{StaticResource MainPage_Sudoku}" />
 			<NavigationViewItem Icon="ViewAll" Tag="SudokuPage" Content="{StaticResource MainPage_PlayingAndAnalyzing}" />

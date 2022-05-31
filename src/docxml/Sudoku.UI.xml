@@ -1501,51 +1501,6 @@
             <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
             <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2">
-            <summary>
-            Provides with extension deconstruction methods on this type.
-            </summary>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
-            <summary>
-            Deconstruct the current instance into multiple values, which means you can use
-            the value-tuple syntax to define your own deconstruction logic.
-            </summary>
-            <remarks>
-            <para>
-            For example,
-            if you have defined a <see langword="static"/> deconstruction method <c>Deconstruct</c>
-            in a <see langword="static class"/>, without any return value:
-            <code><![CDATA[
-            public static void Deconstruct(out string name, out int age)
-            {
-                name = Name;
-                age = Age;
-            }
-            ]]></code>
-            The following code will be legal.
-            <code><![CDATA[
-            // Use explicitly typed variables to get a deconstruction.
-            (string name, int age) = student;
-            
-            // Or use the type inferring to omit the type of each variable having been deconstructed.
-            var (name, age) = student;
-            
-            // Of course, you can also use the instance-method-like invocation to get values.
-            student.Deconstruct(out string name, out int age);
-            ]]></code>
-            </para>
-            <para>
-            Static deconstruction methods also allow you using deconstruction patterns, like this:
-            <code><![CDATA[
-            if (student is (name: var name, age: >= 18))
-            {
-                Console.WriteLine(name);
-            }
-            ]]></code>
-            </para>
-            </remarks>
-        </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
             <summary>
             Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
@@ -1569,51 +1524,6 @@
             To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
             </summary>
             <param name="this">The instance.</param>
-        </member>
-        <member name="T:Windows.Foundation.Point_DE7BE3B162">
-            <summary>
-            Provides with extension deconstruction methods on this type.
-            </summary>
-        </member>
-        <member name="M:Windows.Foundation.Point_DE7BE3B162.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
-            <summary>
-            Deconstruct the current instance into multiple values, which means you can use
-            the value-tuple syntax to define your own deconstruction logic.
-            </summary>
-            <remarks>
-            <para>
-            For example,
-            if you have defined a <see langword="static"/> deconstruction method <c>Deconstruct</c>
-            in a <see langword="static class"/>, without any return value:
-            <code><![CDATA[
-            public static void Deconstruct(out string name, out int age)
-            {
-                name = Name;
-                age = Age;
-            }
-            ]]></code>
-            The following code will be legal.
-            <code><![CDATA[
-            // Use explicitly typed variables to get a deconstruction.
-            (string name, int age) = student;
-            
-            // Or use the type inferring to omit the type of each variable having been deconstructed.
-            var (name, age) = student;
-            
-            // Of course, you can also use the instance-method-like invocation to get values.
-            student.Deconstruct(out string name, out int age);
-            ]]></code>
-            </para>
-            <para>
-            Static deconstruction methods also allow you using deconstruction patterns, like this:
-            <code><![CDATA[
-            if (student is (name: var name, age: >= 18))
-            {
-                Console.WriteLine(name);
-            }
-            ]]></code>
-            </para>
-            </remarks>
         </member>
     </members>
 </doc>
