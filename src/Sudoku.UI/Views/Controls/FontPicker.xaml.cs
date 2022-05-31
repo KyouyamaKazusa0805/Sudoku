@@ -48,6 +48,9 @@ public sealed partial class FontPicker : UserControl
 
 
 	private void Control_Loaded(object _, RoutedEventArgs __)
-		=> _cComboBox.SelectedIndex =
+	{
+		_cComboBox.SelectedIndex =
 			((IList<string>)_cComboBox.ItemsSource).IndexOf((string)SettingItem.GetFontNamePreference());
+		_cSlider.Value = SettingItem.GetFontScalePreference();
+	}
 }
