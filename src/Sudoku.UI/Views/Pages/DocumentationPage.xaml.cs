@@ -19,7 +19,7 @@ public sealed partial class DocumentationPage : Page
 	{
 		InitializeComponent();
 
-		InitializeTreeNodes();
+		InitializeDocListViewNodes();
 	}
 
 
@@ -27,7 +27,7 @@ public sealed partial class DocumentationPage : Page
 	/// Initializes the name list of all docs.
 	/// </summary>
 	[MemberNotNull(nameof(_docNamesList))]
-	private void InitializeTreeNodes()
+	private void InitializeDocListViewNodes()
 	{
 		string cultureInfoName = CultureInfo.CurrentUICulture.Name;
 		bool p(ResourceDictionary d) => d.Source.AbsolutePath.Contains(cultureInfoName, StringComparison.InvariantCultureIgnoreCase);

@@ -1087,7 +1087,7 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.DocumentationPage"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.InitializeTreeNodes">
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.InitializeDocListViewNodes">
             <summary>
             Initializes the name list of all docs.
             </summary>
