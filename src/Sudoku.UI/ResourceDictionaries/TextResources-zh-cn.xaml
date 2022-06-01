@@ -169,7 +169,4 @@
 	<x:String x:Key="Token_OpenBrace">（</x:String>
 	<x:String x:Key="Token_ClosedBrace">）</x:String>
 	<x:String x:Key="Token_Colon">：</x:String>
-
-	<!--Emoji 文字表情-->
-	<x:String x:Key="Emoji_RightArrow">➡</x:String>
 </ResourceDictionary>
