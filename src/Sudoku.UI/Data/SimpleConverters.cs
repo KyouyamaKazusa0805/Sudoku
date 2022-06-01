@@ -11,9 +11,9 @@ internal static class SimpleConverters
 	public static string SliderPossibleValueStringWithFormat(double min, double max, double stepFrequency, double tickFrequency, string format)
 		=> $"{Get("SliderPossibleValue")}{min.ToString(format)} - {max.ToString(format)}{Get("SliderStepFrequency")}{stepFrequency.ToString(format)}{Get("SliderTickFrequency")}{tickFrequency.ToString(format)}";
 
-	public static IList<string> GetFontNames()
-		=> (from fontName in CanvasTextFormat.GetSystemFontFamilies() orderby fontName select fontName).ToList();
-
 	public static Visibility StringToVisibility(string? s)
 		=> string.IsNullOrWhiteSpace(s) ? Visibility.Collapsed : Visibility.Visible;
+
+	public static IList<string> GetFontNames()
+		=> (from fontName in CanvasTextFormat.GetSystemFontFamilies() orderby fontName select fontName).ToList();
 }

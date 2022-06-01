@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace Sudoku.UI.Views.Pages;
+﻿namespace Sudoku.UI.Views.Pages;
 
 /// <summary>
 /// Indicates the main page of the window. The page is used for navigation to other pages.
@@ -14,7 +12,8 @@ public sealed partial class MainPage : Page
 	{
 		(nameof(SettingsPage), typeof(SettingsPage), true),
 		(nameof(AboutPage), typeof(AboutPage), true),
-		(nameof(SudokuPage), typeof(SudokuPage), false)
+		(nameof(SudokuPage), typeof(SudokuPage), false),
+		(nameof(DocumentationPage), typeof(DocumentationPage), true)
 	};
 
 

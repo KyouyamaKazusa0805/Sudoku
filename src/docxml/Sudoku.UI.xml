@@ -426,6 +426,21 @@
         <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.SetPreference(Windows.UI.Color)">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
         </member>
+        <member name="T:Sudoku.UI.Models.DocumentationFileInfo">
+            <summary>
+            Defines a pair of information on a documentation file.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.DocumentationFileInfo.DisplayName">
+            <summary>
+            Indicates the display name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.DocumentationFileInfo.FilePath">
+            <summary>
+            Indicates the file path.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Models.FontPickerSettingItem">
             <summary>
             Defines a color option that is binding with a font picker on displaying.
@@ -1053,6 +1068,54 @@
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Views.Pages.DocumentationPage">
+            <summary>
+            Indicates the documentation page.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Pages.DocumentationPage._docNamesList">
+            <summary>
+            The tree nodes used for displaying by <see cref="T:Microsoft.UI.Xaml.Controls.TreeView"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Pages.DocumentationPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.InitializeTreeNodes">
+            <summary>
+            Initializes the name list of all docs.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.LoadAssetFileAsync">
+            <summary>
+            Loads the local documentation file.
+            </summary>
+            <returns>The task that operates the current method.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.Page_LoadedAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the current page is loaded.
+            </summary>
+            <param name="sender">The object which triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

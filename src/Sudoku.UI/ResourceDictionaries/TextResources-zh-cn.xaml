@@ -5,8 +5,10 @@
 
 	<!--页面数据-->
 	<x:String x:Key="MainPage_PlayingAndAnalyzing">题目分析</x:String>
+	<x:String x:Key="MainPage_DocumentsAndReferences">文档参考</x:String>
 	<x:String x:Key="MainPage_Sudoku">数独</x:String>
 	<x:String x:Key="MainPage_Settings">设置</x:String>
+	<x:String x:Key="MainPage_Documentation">文档</x:String>
 	<x:String x:Key="MainPage_About">关于</x:String>
 	<x:String x:Key="MainPage_Search">搜索</x:String>
 	<x:String x:Key="SudokuPage_MakeDigit">出数</x:String>
@@ -103,6 +105,7 @@
 	<x:String x:Key="SettingsPage_ItemDescription_ValueFontScale">表示文字相对单元格的比例大小。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateFontScale">候选数字体的缩放比例</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateFontScale">表示候选数相对于单元格的比例大小。</x:String>
+	<x:String x:Key="DocumentationPage_TreeViewHeader">列表</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>
@@ -156,6 +159,7 @@
 	<x:String x:Key="FontPickerFontName">字体</x:String>
 	<x:String x:Key="FontPickerPlaceholder">选择一个字体</x:String>
 	<x:String x:Key="FontPickerFontScale">字体缩放比例</x:String>
+	<x:String x:Key="Docs_MainPage">主页|MainPage.md</x:String>
 
 	<!--杂项-->
 	<x:String x:Key="Link_SudokuTutorialDescription">哔哩哔哩数独教程专栏（rl291187）</x:String>
@@ -164,6 +168,7 @@
 	<!--标点符号-->
 	<x:String x:Key="Token_OpenBrace">（</x:String>
 	<x:String x:Key="Token_ClosedBrace">）</x:String>
+	<x:String x:Key="Token_Colon">：</x:String>
 
 	<!--Emoji 文字表情-->
 	<x:String x:Key="Emoji_RightArrow">➡</x:String>

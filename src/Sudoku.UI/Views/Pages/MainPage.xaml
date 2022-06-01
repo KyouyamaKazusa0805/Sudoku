@@ -42,6 +42,8 @@
 		<NavigationView.MenuItems>
 			<NavigationViewItemHeader Content="{StaticResource MainPage_Sudoku}" />
 			<NavigationViewItem Icon="ViewAll" Tag="SudokuPage" Content="{StaticResource MainPage_PlayingAndAnalyzing}" />
+			<NavigationViewItemHeader Content="{StaticResource MainPage_DocumentsAndReferences}" />
+			<NavigationViewItem Icon="Bookmarks" Tag="DocumentationPage" Content="{StaticResource MainPage_Documentation}" />
 		</NavigationView.MenuItems>
 		<NavigationView.FooterMenuItems>
 			<NavigationViewItem Icon="Setting" Tag="SettingsPage" Content="{StaticResource MainPage_Settings}" />

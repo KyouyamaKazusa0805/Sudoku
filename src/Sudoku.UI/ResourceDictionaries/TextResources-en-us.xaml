@@ -5,8 +5,10 @@
 
 	<!--Page inner data-->
 	<x:String x:Key="MainPage_PlayingAndAnalyzing">Playing &amp; Analyzing</x:String>
+	<x:String x:Key="MainPage_DocumentsAndReferences">Documents &amp; References</x:String>
 	<x:String x:Key="MainPage_Sudoku">Sudoku</x:String>
 	<x:String x:Key="MainPage_Settings">Settings</x:String>
+	<x:String x:Key="MainPage_Documentation">Documentation</x:String>
 	<x:String x:Key="MainPage_About">About</x:String>
 	<x:String x:Key="MainPage_Search">Search</x:String>
 	<x:String x:Key="SudokuPage_MakeDigit">Make digit</x:String>
@@ -105,6 +107,7 @@
 	<x:String x:Key="SettingsPage_ItemDescription_ValueFontScale">Indicates the sizing scale of the value digits.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateFontScale">Font scale on candidates</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateFontScale">Indicates the sizing scale of the candidates.</x:String>
+	<x:String x:Key="DocumentationPage_TreeViewHeader">Docs</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>
@@ -158,6 +161,7 @@
 	<x:String x:Key="FontPickerFontName">Font name</x:String>
 	<x:String x:Key="FontPickerPlaceholder">Select a font</x:String>
 	<x:String x:Key="FontPickerFontScale">Font scale</x:String>
+	<x:String x:Key="Docs_MainPage">Main page|MainPage.md</x:String>
 
 	<!--Miscellaneous-->
 	<x:String x:Key="Link_SudokuTutorial">https://www.bilibili.com/read/readlist/rl291187</x:String>
@@ -168,7 +172,9 @@
 	<!--Punctuations-->
 	<x:String x:Key="Token_OpenBrace" xml:space="preserve"> (</x:String>
 	<x:String x:Key="Token_ClosedBrace" xml:space="preserve">) </x:String>
+	<x:String x:Key="Token_Colon" xml:space="preserve">: </x:String>
 
 	<!--Emojis-->
 	<x:String x:Key="Emoji_RightArrow">➡</x:String>
+	<x:String x:Key="Emoji_Ring">⭕</x:String>
 </ResourceDictionary>
