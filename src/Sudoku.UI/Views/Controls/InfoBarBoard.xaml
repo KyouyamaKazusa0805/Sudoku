@@ -64,8 +64,7 @@
 												<xc:DataGridTemplateColumn.CellTemplate>
 													<DataTemplate x:DataType="m:AnalysisResultRow">
 														<TextBlock
-															Text="{x:Bind TechniqueName}"
-															HorizontalAlignment="Center"
+															Text="{x:Bind TechniqueName}" HorizontalAlignment="Center"
 															VerticalAlignment="Center" />
 													</DataTemplate>
 												</xc:DataGridTemplateColumn.CellTemplate>
@@ -75,8 +74,7 @@
 												<xc:DataGridTemplateColumn.CellTemplate>
 													<DataTemplate x:DataType="m:AnalysisResultRow">
 														<TextBlock
-															Text="{x:Bind CountOfSteps}"
-															HorizontalAlignment="Center"
+															Text="{x:Bind CountOfSteps}" HorizontalAlignment="Center"
 															VerticalAlignment="Center" />
 													</DataTemplate>
 												</xc:DataGridTemplateColumn.CellTemplate>
@@ -106,8 +104,7 @@
 												<xc:DataGridTemplateColumn.CellTemplate>
 													<DataTemplate x:DataType="m:AnalysisResultRow">
 														<TextBlock
-															Text="{x:Bind TotalDifficulty}"
-															HorizontalAlignment="Center"
+															Text="{x:Bind TotalDifficulty}" HorizontalAlignment="Center"
 															VerticalAlignment="Center" />
 													</DataTemplate>
 												</xc:DataGridTemplateColumn.CellTemplate>
@@ -117,8 +114,7 @@
 												<xc:DataGridTemplateColumn.CellTemplate>
 													<DataTemplate x:DataType="m:AnalysisResultRow">
 														<TextBlock
-															Text="{x:Bind MaximumDifficulty}"
-															HorizontalAlignment="Center"
+															Text="{x:Bind MaximumDifficulty}" HorizontalAlignment="Center"
 															VerticalAlignment="Center" />
 													</DataTemplate>
 												</xc:DataGridTemplateColumn.CellTemplate>
