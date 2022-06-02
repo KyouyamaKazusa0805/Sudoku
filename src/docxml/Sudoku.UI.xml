@@ -43,21 +43,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.App.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.App.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.CommonFileExtensions">
             <summary>
             Defines the constants that are the common file extensions.
@@ -180,6 +165,30 @@
             Provides with a set of methods as simple converters that can be used and called by XAML files.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Data.SimpleConverters.License(System.String)">
+            <summary>
+            Indicates the license displaying value on <see cref="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense"/>.
+            </summary>
+            <param name="input">The license name.</param>
+            <returns>The converted result string.</returns>
+            <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense"/>
+        </member>
+        <member name="M:Sudoku.UI.Data.SimpleConverters.ForReference(System.Boolean)">
+            <summary>
+            Indicates the conversion on <see cref="P:Sudoku.UI.Models.RepositoryInfo.IsForReference"/>.
+            </summary>
+            <param name="input">The input value.</param>
+            <returns>The converted result string value.</returns>
+            <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.IsForReference"/>
+        </member>
+        <member name="M:Sudoku.UI.Data.SimpleConverters.InfoBarTitle(Microsoft.UI.Xaml.Controls.InfoBarSeverity)">
+            <summary>
+            Gets the title of the info bar via its severity.
+            </summary>
+            <param name="severity">The severity.</param>
+            <returns>The title of the info bar.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the severity is not defined.</exception>
+        </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.DifficultyLevelToBackgroundConverter">
             <summary>
             Defines a value converter that allows the one-way binding from the
@@ -287,47 +296,6 @@
         <member name="M:Sudoku.UI.Data.ValueConverters.UndoOrRedoStackToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
             <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
-        </member>
-        <member name="T:Sudoku.UI.BindingConversions">
-            <summary>
-            Provides a set of methods to convert the information.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.BindingConversions.License(System.String)">
-            <summary>
-            Indicates the license displaying value on <see cref="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense"/>.
-            </summary>
-            <param name="input">The license name.</param>
-            <returns>The converted result string.</returns>
-            <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense"/>
-        </member>
-        <member name="M:Sudoku.UI.BindingConversions.ForReference(System.Boolean)">
-            <summary>
-            Indicates the conversion on <see cref="P:Sudoku.UI.Models.RepositoryInfo.IsForReference"/>.
-            </summary>
-            <param name="input">The input value.</param>
-            <returns>The converted result string value.</returns>
-            <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.IsForReference"/>
-        </member>
-        <member name="M:Sudoku.UI.BindingConversions.InfoBarTitle(Microsoft.UI.Xaml.Controls.InfoBarSeverity)">
-            <summary>
-            Gets the title of the info bar via its severity.
-            </summary>
-            <param name="severity">The severity.</param>
-            <returns>The title of the info bar.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the severity is not defined.</exception>
-        </member>
-        <member name="T:Sudoku.UI.Website">
-            <summary>
-            Provides methods on website visiting.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Website.Visit(System.String)">
-            <summary>
-            Visit the specified website.
-            </summary>
-            <param name="uri">The URI website.</param>
-            <returns>The process.</returns>
         </member>
         <member name="T:Sudoku.UI.Interoperability.IInitializeWithWindow">
             <summary>
@@ -758,16 +726,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>
             Defines a user control that handles the messages displaying via <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>s.
@@ -849,16 +807,6 @@
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
@@ -1036,16 +984,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Pages.AboutPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -1060,16 +998,6 @@
         <member name="M:Sudoku.UI.Views.Pages.AboutPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.DocumentationPage">
@@ -1108,16 +1036,6 @@
         <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.MainPage">
@@ -1205,16 +1123,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Pages.SettingsPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -1240,16 +1148,6 @@
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SudokuPage">
@@ -1485,16 +1383,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -1516,39 +1404,9 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Program">
             <summary>
             Program class
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
@@ -1575,12 +1433,12 @@
             </summary>
             <param name="this">The instance.</param>
         </member>
-        <member name="T:Windows.Foundation.Point_DE7BE3B162">
+        <member name="T:Windows.Foundation.Point_DE5AF559E2">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DE7BE3B162.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DE5AF559E2.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
             the value-tuple syntax to define your own deconstruction logic.
@@ -1685,12 +1543,12 @@
             Throws when the argument <paramref name="count"/> is negative.
             </exception>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
             the value-tuple syntax to define your own deconstruction logic.

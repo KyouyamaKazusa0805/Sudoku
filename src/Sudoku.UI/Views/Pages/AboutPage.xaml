@@ -4,8 +4,8 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:data="using:Sudoku.UI.Data"
 	xmlns:m="using:Sudoku.UI.Models"
-	xmlns:ui="using:Sudoku.UI"
 	mc:Ignorable="d">
 	<ScrollViewer>
 		<StackPanel>
@@ -106,11 +106,11 @@
 								Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
 							<TextBlock
 								Grid.Row="1" Grid.Column="1" Margin="12,6,0,0"
-								Text="{x:Bind ui:BindingConversions.License(OpenSourceLicense)}"
+								Text="{x:Bind data:SimpleConverters.License(OpenSourceLicense)}"
 								Style="{StaticResource BodyTextBlockStyle}" />
 							<TextBlock
 								Grid.Row="1" Grid.Column="2" Margin="12,6,0,0"
-								Text="{x:Bind ui:BindingConversions.ForReference(IsForReference)}"
+								Text="{x:Bind data:SimpleConverters.ForReference(IsForReference)}"
 								Style="{StaticResource BaseTextBlockStyle}" />
 							<HyperlinkButton
 								Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,0,0,6"

@@ -5,9 +5,9 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:cvt="using:Sudoku.UI.Data.ValueConverters"
+	xmlns:data="using:Sudoku.UI.Data"
 	xmlns:dts="using:Sudoku.UI.Data.DataTemplateSelectors"
 	xmlns:m="using:Sudoku.UI.Models"
-	xmlns:ui="using:Sudoku.UI"
 	xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
 	mc:Ignorable="d"
 	Loaded="UserControl_Loaded">
@@ -24,7 +24,7 @@
 					<dts:InfoBarDataTemplateSelector.PlainMessageTemplate>
 						<DataTemplate x:DataType="m:PlainMessage">
 							<InfoBar
-								Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
+								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
 								IsIconVisible="True" IsOpen="True" IsClosable="True" />
 						</DataTemplate>
@@ -32,7 +32,7 @@
 					<dts:InfoBarDataTemplateSelector.HyperlinkMessageTemplate>
 						<DataTemplate x:DataType="m:HyperlinkMessage">
 							<InfoBar
-								Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
+								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
 								IsIconVisible="True" IsOpen="True" IsClosable="True">
 								<InfoBar.ActionButton>
@@ -45,7 +45,7 @@
 					<dts:InfoBarDataTemplateSelector.AnalysisResultTemplate>
 						<DataTemplate x:DataType="m:ManualSolverResultMessage">
 							<InfoBar
-								Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
+								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
 								IsIconVisible="True" IsOpen="True" IsClosable="True">
 								<InfoBar.Content>
