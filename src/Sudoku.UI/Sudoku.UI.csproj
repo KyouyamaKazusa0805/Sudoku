@@ -93,9 +93,6 @@
 		<Page Update="Views\Pages\AboutPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Pages\MainPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\Pages\SettingsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

@@ -75,7 +75,7 @@ internal static class SimpleConverters
 			DifficultyLevel.Hard => Get("SudokuPage_AnalysisResultColumn_Hard"),
 			DifficultyLevel.Fiendish => Get("SudokuPage_AnalysisResultColumn_Fiendish"),
 			DifficultyLevel.Nightmare => Get("SudokuPage_AnalysisResultColumn_Nightmare"),
-			_ => string.Empty,
+			_ => string.Empty
 		};
 
 	public static Visibility StringToVisibility(string? s)
@@ -84,14 +84,14 @@ internal static class SimpleConverters
 	public static SolidColorBrush DifficultyLevelToForeground(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			DifficultyLevel and (0 or > DifficultyLevel.Nightmare) => new(Colors.Transparent),
+			0 or > DifficultyLevel.Nightmare => new(Colors.Transparent),
 			_ => DifficultyLevel_Foregrounds[Log2((byte)difficultyLevel)]
 		};
 
 	public static SolidColorBrush DifficultyLevelToBackground(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			DifficultyLevel and (0 or > DifficultyLevel.Nightmare) => new(Colors.Transparent),
+			0 or > DifficultyLevel.Nightmare => new(Colors.Transparent),
 			_ => DifficultyLevel_Backgrounds[Log2((byte)difficultyLevel)]
 		};
 

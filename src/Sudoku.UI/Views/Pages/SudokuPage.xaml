@@ -11,6 +11,9 @@
 	Loaded="Page_Loaded">
 	<ScrollViewer>
 		<Grid>
+			<Grid.Resources>
+				<cvt:UndoOrRedoStackToIsEnabledConverter x:Key="_rUndoingOrRedoingConverter" />
+			</Grid.Resources>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="580" />

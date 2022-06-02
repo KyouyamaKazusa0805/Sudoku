@@ -231,6 +231,100 @@
             <inheritdoc/>
             <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
         </member>
+        <member name="T:Sudoku.UI.Interoperability.AppWindowMarshal">
+            <summary>
+            Provides native methods on application window.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Interoperability.AppWindowMarshal.GetDpiForMonitor(System.IntPtr,Sudoku.UI.Interoperability.Monitor_DPI_Type,System.UInt32@,System.UInt32@)">
+            <summary>
+            Queries the dots per inch (dpi) of a display.
+            </summary>
+            <param name="hmonitor">Handle of the monitor being queried.</param>
+            <param name="dpiType">
+            <para>The type of DPI being queried. Possible values are from the <see cref="T:Sudoku.UI.Interoperability.Monitor_DPI_Type"/> enumeration.</para>
+            <para>
+            Docs reference: <see href="https://docs.microsoft.com/en-us/windows/desktop/api/shellscalingapi/ne-shellscalingapi-monitor_dpi_type">type <c>MONITOR_DPI_TYPE</c></see>.
+            </para>
+            </param>
+            <param name="dpiX">
+            The value of the DPI along the X axis.
+            This value always refers to the horizontal edge, even when the screen is rotated.
+            </param>
+            <param name="dpiY">
+            The value of the DPI along the Y axis.
+            This value always refers to the vertical edge, even when the screen is rotated.
+            </param>
+            <returns>
+            This function returns one of the following values.
+            <list type="table">
+            <listheader>
+            <term>Return code</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><c>S_OK</c></term>
+            <description>The function successfully returns the X and Y DPI values for the specified monitor.</description>
+            </item>
+            <item>
+            <term>E_INVALIDARG</term>
+            <description>The handle, DPI type, or pointers passed in are not valid.</description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            <para>
+            This API is not DPI aware and should not be used if the calling thread is per-monitor DPI aware.
+            For the DPI-aware version of this API, see
+            <see href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getdpiforwindow"><c>
+            GetDpiForWindow
+            </c></see>.
+            </para>
+            <para>
+            When you call <c>GetDpiForMonitor</c>, you will receive different DPI values depending on the DPI awareness
+            of the calling application. DPI awareness is an application-level property usually defined
+            in the application manifest. For more information about DPI awareness values, see
+            <see href="https://docs.microsoft.com/en-us/windows/desktop/api/shellscalingapi/ne-shellscalingapi-process_dpi_awareness"><c>
+            PROCESS_DPI_AWARENESS
+            </c></see>. The following table indicates how the results will differ based on the <c>PROCESS_DPI_AWARENESS</c>
+            value of your application.
+            <list type="table">
+            <item>
+            <term><c>PROCESS_DPI_UNAWARE</c></term>
+            <description>96 because the app is unaware of any other scale factors.</description>
+            </item>
+            <item>
+            <term><c>PROCESS_SYSTEM_DPI_AWARE</c></term>
+            <description>
+            A value set to the system DPI because the app assumes all applications use the system DPI.
+            </description>
+            </item>
+            <item>
+            <term><c>PROCESS_PER_MONITOR_DPI_AWARE</c></term>
+            <description>The actual DPI value set by the user for that display.</description>
+            </item>
+            </list>
+            </para>
+            <para>
+            The values of <c>*<paramref name="dpiX"/></c> and <c>*<paramref name="dpiY"/></c> are identical.
+            You only need to record one of the values to determine the DPI and respond appropriately.
+            </para>
+            <para>
+            When <see href="https://docs.microsoft.com/en-us/windows/desktop/api/shellscalingapi/ne-shellscalingapi-monitor_dpi_type"><c>
+            MONITOR_DPI_TYPE
+            </c></see> is <see cref="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Angular_DPI"/> or <see cref="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Raw_DPI"/>,
+            the returned DPI value does not include any changes that the user made to the DPI
+            by using the desktop scaling override slider control in Control Panel.
+            </para>
+            <para>
+            For more information about DPI settings in Control Panel, see
+            <see href="https://docs.microsoft.com/en-us/windows/win32/hidpi/high-dpi-desktop-application-development-on-windows">
+            the Writing DPI-Aware Desktop Applications in Windows 8.1 Preview white paper
+            </see>.
+            </para>
+            </remarks>
+            <seealso href="https://docs.microsoft.com/en-us/windows/desktop/api/shellscalingapi/ne-shellscalingapi-monitor_dpi_type">Type <c>MONITOR_DPI_TYPE</c></seealso>
+        </member>
         <member name="T:Sudoku.UI.Interoperability.IInitializeWithWindow">
             <summary>
             Exposes a method through which a client can provide an owner window
@@ -268,6 +362,42 @@
             this link
             </see>.
             </remarks>
+        </member>
+        <member name="T:Sudoku.UI.Interoperability.Monitor_DPI_Type">
+            <summary>
+            Identifies the dots per inch (dpi) setting for a monitor.
+            </summary>
+            <remarks>
+            All of these settings are affected by the
+            <see href="https://docs.microsoft.com/en-us/windows/desktop/api/shellscalingapi/ne-shellscalingapi-process_dpi_awareness"><c>
+            PROCESS_DPI_AWARENESS
+            </c></see> of your application.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Effective_DPI">
+            <summary>
+            The effective DPI. This value should be used when determining the correct scale factor for scaling UI elements.
+            This incorporates the scale factor set by the user for this specific display.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Angular_DPI">
+            <summary>
+            The angular DPI. This DPI ensures rendering at a compliant angular resolution on the screen.
+            This does not include the scale factor set by the user for this specific display.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Raw_DPI">
+            <summary>
+            The raw DPI. This value is the linear DPI of the screen as measured on the screen itself.
+            Use this value when you want to read the pixel density and not the recommended scaling setting.
+            This does not include the scale factor set by the user for this specific display and is not guaranteed
+            to be a supported DPI value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Default">
+            <summary>
+            The default DPI setting for a monitor is <see cref="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Effective_DPI"/>.
+            </summary>
         </member>
         <member name="T:Sudoku.UI.Models.AnalysisResultRow">
             <summary>
@@ -1022,101 +1152,6 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Views.Pages.MainPage">
-            <summary>
-            Indicates the main page of the window. The page is used for navigation to other pages.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Views.Pages.MainPage.NavigationPairs">
-            <summary>
-            Indicates the navigation info tuples that controls to route pages.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Views.Pages.MainPage._gatheredQueryKeywords">
-            <summary>
-            Indicates the gathered keywords.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Views.Pages.MainPage"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.OnNavigate(System.String,Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo)">
-            <summary>
-            Try to navigate the pages.
-            </summary>
-            <param name="tag">The specified tag of the navigate page item.</param>
-            <param name="transitionInfo">The transition information.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.ViewRouter_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the view router control is loaded.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.ViewRouterFrame_NavigationFailed(System.Object,Microsoft.UI.Xaml.Navigation.NavigationFailedEventArgs)">
-            <summary>
-            Triggers when the navigation is failed. The method will be invoked if and only if the routing is invalid.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-            <exception cref="T:System.InvalidOperationException">
-            Always throws. Because the method is handled with the failure of the navigation,
-            the throwing is expected.
-            </exception>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.ViewRouterFrame_Navigated(System.Object,Microsoft.UI.Xaml.Navigation.NavigationEventArgs)">
-            <summary>
-            Triggers when the frame of the navigation view control has navigated to a certain page.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.ViewRouter_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)">
-            <summary>
-            Triggers when a page-related navigation item is clicked and selected.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="args">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.ViewRouter_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)">
-            <summary>
-            Triggers when the page-related navigation item, as the selection, is changed.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="args">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.AutoSuggestBox_TextChanged(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs)">
-            <summary>
-            Triggers when text of the main auto suggest box has been changed.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="args">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.AutoSuggestBox_SuggestionChosen(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxSuggestionChosenEventArgs)">
-            <summary>
-            Triggers when a suggestion is chosen.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="args">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.MainPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Pages.SettingsPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -1403,15 +1438,116 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
         </member>
+        <member name="F:Sudoku.UI.Views.Windows.MainWindow.NavigationPairs">
+            <summary>
+            Indicates the navigation info tuples that controls to route pages.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Windows.MainWindow._gatheredQueryKeywords">
+            <summary>
+            Indicates the gathered keywords.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Windows.MainWindow._appWindow">
+            <summary>
+            Indicates the application window.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.InitializeAppWindowField">
+            <summary>
+            Initializes the field <see cref="F:Sudoku.UI.Views.Windows.MainWindow._appWindow"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Views.Windows.MainWindow._appWindow"/>
+        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.CustomizeTitleBar">
             <summary>
             Customize the title bar if available.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SetDragRegionForCustomTitleBar(Microsoft.UI.Windowing.AppWindow)">
+            <summary>
+            Sets the dragable region for the customized title bar.
+            </summary>
+            <param name="appWindow">The application window.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetScaleAdjustment">
+            <summary>
+            Gets the adjustments on scaling.
+            </summary>
+            <returns>The percentage of the scaling.</returns>
+            <exception cref="T:System.Exception">Throws when the target DPI is failed to get.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.OnNavigate(System.String,Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo)">
+            <summary>
+            Try to navigate the pages.
+            </summary>
+            <param name="tag">The specified tag of the navigate page item.</param>
+            <param name="transitionInfo">The transition information.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SwitchPresenter(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Switch on presenters. This method is only used when the relative XAML code is enabled.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.ViewRouter_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the view router control is loaded.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.ViewRouterFrame_NavigationFailed(System.Object,Microsoft.UI.Xaml.Navigation.NavigationFailedEventArgs)">
+            <summary>
+            Triggers when the navigation is failed. The method will be invoked if and only if the routing is invalid.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Always throws. Because the method is handled with the failure of the navigation,
+            the throwing is expected.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.ViewRouterFrame_Navigated(System.Object,Microsoft.UI.Xaml.Navigation.NavigationEventArgs)">
+            <summary>
+            Triggers when the frame of the navigation view control has navigated to a certain page.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.ViewRouter_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)">
+            <summary>
+            Triggers when a page-related navigation item is clicked and selected.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="args">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.ViewRouter_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)">
+            <summary>
+            Triggers when the page-related navigation item, as the selection, is changed.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="args">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.AutoSuggestBox_TextChanged(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs)">
+            <summary>
+            Triggers when text of the main auto suggest box has been changed.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="args">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.AutoSuggestBox_SuggestionChosen(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxSuggestionChosenEventArgs)">
+            <summary>
+            Triggers when a suggestion is chosen.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="args">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.InitializeComponent">
             <summary>

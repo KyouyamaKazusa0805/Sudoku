@@ -55,7 +55,7 @@ public sealed partial class DocumentationPage : Page
 	private async Task LoadAssetFileAsync()
 	{
 		const string pathEnd = """Assets\docs\MainPage.md""";
-		string location = typeof(MainPage).Assembly.Location;
+		string location = typeof(MainWindow).Assembly.Location;
 		string path = Pathing.Combine(location[..(location.IndexOf("bin") - 1)], pathEnd);
 
 		_cMarkdownTextBlock.Text = await File.ReadAllTextAsync(path);
