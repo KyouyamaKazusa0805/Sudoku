@@ -859,12 +859,10 @@ public unsafe partial struct Cells :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete($"Please use the method '{nameof(RxCyNotation)}.{nameof(RxCyNotation.ParseCells)}({nameof(String)})' instead.", false)]
 	public static Cells Parse(string str) => RxCyNotation.ParseCells(str);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete($"Please use the method '{nameof(RxCyNotation)}.{nameof(RxCyNotation.TryParseCells)}({nameof(String)}, {nameof(Boolean)})' instead.", false)]
 	public static bool TryParse(string str, out Cells result) => RxCyNotation.TryParseCells(str, out result);
 
 
