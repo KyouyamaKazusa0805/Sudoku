@@ -4,19 +4,12 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:cvt="using:Sudoku.UI.Data.ValueConverters"
 	xmlns:data="using:Sudoku.UI.Data"
 	xmlns:dts="using:Sudoku.UI.Data.DataTemplateSelectors"
 	xmlns:m="using:Sudoku.UI.Models"
 	xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
 	mc:Ignorable="d"
 	Loaded="UserControl_Loaded">
-	<UserControl.Resources>
-		<cvt:DifficultyLevelToForegroundConverter x:Key="_rDiffToForegroundConverter" />
-		<cvt:DifficultyLevelToBackgroundConverter x:Key="_rDiffToBackgroundConverter" />
-		<cvt:DifficultyLevelToTextConverter x:Key="_rDiffToTextConverter" />
-	</UserControl.Resources>
-
 	<ScrollViewer>
 		<ListView ItemsSource="{x:Bind _list}" SelectionMode="None">
 			<ListView.ItemTemplateSelector>
@@ -85,16 +78,12 @@
 													<DataTemplate x:DataType="m:AnalysisResultRow">
 														<Grid>
 															<Rectangle
-																Fill="{x:Bind DifficultyLevel,
-																	Converter={StaticResource _rDiffToBackgroundConverter}}"
+																Fill="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(DifficultyLevel)}"
 																RadiusX="5" RadiusY="5" Margin="24,3,24,3" />
 															<TextBlock
-																HorizontalAlignment="Center"
-																VerticalAlignment="Center"
-																Text="{x:Bind DifficultyLevel,
-																	Converter={StaticResource _rDiffToTextConverter}}"
-																Foreground="{x:Bind DifficultyLevel,
-																	Converter={StaticResource _rDiffToForegroundConverter}}" />
+																HorizontalAlignment="Center" VerticalAlignment="Center"
+																Text="{x:Bind data:SimpleConverters.DifficultyLevelToResourceText(DifficultyLevel)}"
+																Foreground="{x:Bind data:SimpleConverters.DifficultyLevelToForeground(DifficultyLevel)}" />
 														</Grid>
 													</DataTemplate>
 												</xc:DataGridTemplateColumn.CellTemplate>
