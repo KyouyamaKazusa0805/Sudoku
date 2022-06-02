@@ -356,13 +356,13 @@ static async void PrintQueryAsync(Sender sender, string message)
 
 	(string Id, int ExperiencePoint)? pair = null;
 	var sb = new StringBuilder();
-	int order = 0, i = 0, length = rankingPairs.Length;
-	while (i < Min(length, 10))
+	for (int order = 0, i = 0, j = 0, length = rankingPairs.Length; i < Min(length, 10) + j; i++)
 	{
 		var (id, exp) = rankingPairs[i];
 		if (await sender.GetMemberAsync(new() { Id = id }) is not { Nickname: var nickname })
 		{
 			// If failed to searched for, the returning value will be null.
+			j++;
 			continue;
 		}
 
@@ -378,8 +378,6 @@ static async void PrintQueryAsync(Sender sender, string message)
 		sb.AppendLine($"{di} {finalRankingOrder} {ming}{colon}{nickname}{comma}{exp} {expText}");
 
 		pair = (id, exp);
-
-		i++;
 	}
 
 	await sender.ReplyAsync(
