@@ -6761,7 +6761,7 @@
             Indicates a puzzle generator that uses the pattern-based sudoku generation algorithm.
             </summary>
             <remarks>
-            The main idea can be in short via those steps:
+            The main idea can be shortened into the several following steps:
             <list type="number">
             <item>Randomize to generate a pattern which contains about 24 cells.</item>
             <item>

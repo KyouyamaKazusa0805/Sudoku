@@ -4,7 +4,7 @@
 /// Indicates a puzzle generator that uses the pattern-based sudoku generation algorithm.
 /// </summary>
 /// <remarks>
-/// The main idea can be in short via those steps:
+/// The main idea can be shortened into the several following steps:
 /// <list type="number">
 /// <item>Randomize to generate a pattern which contains about 24 cells.</item>
 /// <item>
@@ -271,7 +271,5 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <seealso cref="SymmetryType.Central"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static int[] GetCells(int row, int column)
-		=> row == 4 && column == 4
-			? new[] { 40 }
-			: new[] { row * 9 + column, (8 - row) * 9 + 8 - column };
+		=> row == 4 && column == 4 ? new[] { 40 } : new[] { row * 9 + column, (8 - row) * 9 + 8 - column };
 }
