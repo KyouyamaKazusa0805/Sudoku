@@ -102,8 +102,10 @@ public sealed partial class SudokuPage : Page
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void InitialAddSudokuTechniqueInfoBar()
 		=> _cInfoBoard.AddMessage(
-			InfoBarSeverity.Informational, Get("SudokuPage_InfoBar_Welcome"),
-			Get("Link_SudokuTutorial"), Get("Link_SudokuTutorialDescription")
+			InfoBarSeverity.Informational,
+			R["SudokuPage_InfoBar_Welcome"]!,
+			R["Link_SudokuTutorial"]!,
+			R["Link_SudokuTutorialDescription"]!
 		);
 
 	/// <summary>
@@ -113,7 +115,7 @@ public sealed partial class SudokuPage : Page
 	private void ClearSudokuGrid()
 	{
 		_cPane.Grid = Grid.Empty;
-		_cInfoBoard.AddMessage(InfoBarSeverity.Informational, Get("SudokuPage_InfoBar_ClearSuccessfully"));
+		_cInfoBoard.AddMessage(InfoBarSeverity.Informational, R["SudokuPage_InfoBar_ClearSuccessfully"]!);
 	}
 
 	/// <summary>
@@ -125,7 +127,7 @@ public sealed partial class SudokuPage : Page
 		ref readonly var grid = ref _cPane.GridRef;
 		if (grid is { IsUndefined: true } or { IsEmpty: true })
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_CopyFailedDueToEmpty"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_CopyFailedDueToEmpty"]!);
 			return;
 		}
 
@@ -234,7 +236,7 @@ public sealed partial class SudokuPage : Page
 		bool unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
 		if (!unsnapped)
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, Get("SudokuPage_InfoBar_CannotSnapTheSample"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["SudokuPage_InfoBar_CannotSnapTheSample"]!);
 		}
 
 		return unsnapped;
@@ -261,7 +263,7 @@ public sealed partial class SudokuPage : Page
 
 		if (new FileInfo(filePath).Length == 0)
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_FileIsEmpty"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_FileIsEmpty"]!);
 			return;
 		}
 
@@ -269,26 +271,26 @@ public sealed partial class SudokuPage : Page
 		string content = await FileIO.ReadTextAsync(file);
 		if (string.IsNullOrWhiteSpace(content))
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_FileIsEmpty"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_FileIsEmpty"]!);
 			return;
 		}
 
 		// Checks the file content.
 		if (!Grid.TryParse(content, out var grid))
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_FileIsInvalid"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_FileIsInvalid"]!);
 			return;
 		}
 
 		// Checks the validity of the parsed grid.
 		if (!grid.IsValid)
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, Get("SudokuPage_InfoBar_FilePuzzleIsNotUnique"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["SudokuPage_InfoBar_FilePuzzleIsNotUnique"]!);
 		}
 
 		// Loads the grid.
 		_cPane.Grid = grid;
-		_cInfoBoard.AddMessage(InfoBarSeverity.Success, Get("SudokuPage_InfoBar_FileOpenSuccessfully"));
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_FileOpenSuccessfully"]!);
 	}
 
 	/// <summary>
@@ -304,7 +306,7 @@ public sealed partial class SudokuPage : Page
 			SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
 			SuggestedFileName = "Sudoku"
 		};
-		fsp.FileTypeChoices.Add(Get("FileExtension_TextDescription"), new List<string> { CommonFileExtensions.Text });
+		fsp.FileTypeChoices.Add(R["FileExtension_TextDescription"], new List<string> { CommonFileExtensions.Text });
 		fsp.AwareHandleOnWin32();
 
 		var file = await fsp.PickSaveFileAsync();
@@ -326,14 +328,14 @@ public sealed partial class SudokuPage : Page
 		var status = await CachedFileManager.CompleteUpdatesAsync(file);
 		if (status == FileUpdateStatus.Complete)
 		{
-			string a = Get("SudokuPage_InfoBar_SaveSuccessfully1");
-			string b = Get("SudokuPage_InfoBar_SaveSuccessfully2");
+			string a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
+			string b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
 			_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
 		}
 		else
 		{
-			string a = Get("SudokuPage_InfoBar_SaveFailed1");
-			string b = Get("SudokuPage_InfoBar_SaveFailed2");
+			string a = R["SudokuPage_InfoBar_SaveFailed1"]!;
+			string b = R["SudokuPage_InfoBar_SaveFailed2"]!;
 			_cInfoBoard.AddMessage(InfoBarSeverity.Error, $"{a}{fileName}{b}");
 		}
 	}
@@ -353,19 +355,19 @@ public sealed partial class SudokuPage : Page
 		string gridStr = await dataPackageView.GetTextAsync();
 		if (!Grid.TryParse(gridStr, out var grid))
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_PasteIsInvalid"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_PasteIsInvalid"]!);
 			return;
 		}
 
 		// Checks the validity of the parsed grid.
 		if (!grid.IsValid)
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, Get("SudokuPage_InfoBar_PastePuzzleIsNotUnique"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["SudokuPage_InfoBar_PastePuzzleIsNotUnique"]!);
 		}
 
 		// Loads the grid.
 		_cPane.Grid = grid;
-		_cInfoBoard.AddMessage(InfoBarSeverity.Success, Get("SudokuPage_InfoBar_PasteSuccessfully"));
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_PasteSuccessfully"]!);
 	}
 
 	/// <summary>
@@ -396,8 +398,8 @@ public sealed partial class SudokuPage : Page
 		_cPane.Grid = grid;
 
 		// Append the info to the board.
-		string part1 = Get("SudokuPage_InfoBar_GeneratingSuccessfully1");
-		string part2 = Get("SudokuPage_InfoBar_GeneratingSuccessfully2");
+		string part1 = R["SudokuPage_InfoBar_GeneratingSuccessfully1"]!;
+		string part2 = R["SudokuPage_InfoBar_GeneratingSuccessfully2"]!;
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{part1}\r\n{part2}{grid.GivensCount}");
 	}
 
@@ -414,7 +416,7 @@ public sealed partial class SudokuPage : Page
 		}
 
 		// Add message to tell the user the grid has been successfully solved.
-		_cInfoBoard.AddMessage(InfoBarSeverity.Success, Get("SudokuPage_InfoBar_GetSolutionSuccessfully"));
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_GetSolutionSuccessfully"]!);
 
 		// Update the view.
 		_cPane.ReplaceGridUndoable(solution);
@@ -445,16 +447,18 @@ public sealed partial class SudokuPage : Page
 		{
 			var failedReason = analysisResult.FailedReason;
 			var wrongStep = analysisResult.WrongStep;
-			string firstPart = Get("SudokuPage_InfoBar_AnalyzeFailedDueTo1");
-			string secondPart = Get(failedReason switch
-			{
-				FailedReason.UserCancelled => "SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling",
-				FailedReason.NotImplemented => "SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented",
-				FailedReason.ExceptionThrown => "SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown",
-				FailedReason.WrongStep => "SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep",
-				FailedReason.PuzzleIsTooHard => "SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard",
-				_ => throw new InvalidOperationException("The specified failed reason is not supported.")
-			});
+			string firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
+			string secondPart = R[
+				failedReason switch
+				{
+					FailedReason.UserCancelled => "SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling",
+					FailedReason.NotImplemented => "SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented",
+					FailedReason.ExceptionThrown => "SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown",
+					FailedReason.WrongStep => "SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep",
+					FailedReason.PuzzleIsTooHard => "SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard",
+					_ => throw new InvalidOperationException("The specified failed reason is not supported.")
+				}
+			]!;
 			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}{wrongStep}");
 		}
 	}

@@ -7653,6 +7653,12 @@
             Indicates the default language culture used in the resource file.
             </summary>
         </member>
+        <member name="F:Sudoku.Resources.MergedResources._valueSelectors">
+            <summary>
+            Indicates the extra value selectors. The value can be <see langword="null"/> if the field
+            of all usages on the current instance only raises in the current project.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.MergedResources.Item(System.String)">
             <summary>
             Gets the value via the specified string key.
@@ -7673,6 +7679,13 @@
             Changes the language to the specified language.
             </summary>
             <param name="name">The culture string, such as <c>"en-US"</c> or <c>"zh-CN"</c>.</param>
+        </member>
+        <member name="M:Sudoku.Resources.MergedResources.AddExternalResourceFetecher(System.Reflection.Assembly,System.Func{System.String,System.String})">
+            <summary>
+            Adds an extra value selector into the current resource fetching instance.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <param name="valueSelector">The value selector.</param>
         </member>
         <member name="M:Sudoku.Resources.MergedResources.EmitPunctuation(Sudoku.Resources.Punctuation)">
             <summary>

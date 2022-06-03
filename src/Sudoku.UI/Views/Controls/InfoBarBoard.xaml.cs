@@ -113,7 +113,7 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 			{
 				AnalysisResult = analysisResult,
 				Severity = severity,
-				Message = Get("SudokuPage_InfoBar_AnalyzeSuccessfully")
+				Message = R["SudokuPage_InfoBar_AnalyzeSuccessfully"]!
 			}
 		);
 	}

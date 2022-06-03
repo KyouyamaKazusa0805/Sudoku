@@ -56,6 +56,6 @@ global using Windows.UI.ViewManagement;
 global using WinRT;
 global using WinRT.Interop;
 global using static System.Numerics.BitOperations;
-global using static Sudoku.UI.StringResource;
+global using static Sudoku.Resources.MergedResources;
 global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
 global using Grid = Sudoku.Concepts.Collections.Grid;

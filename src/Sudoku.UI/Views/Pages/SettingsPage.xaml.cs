@@ -32,34 +32,34 @@ public sealed partial class SettingsPage : Page
 		=> _settingGroupItems = new SettingGroupItem[]
 		{
 			new(
-				Get("SettingsPage_GroupItemName_Basic"),
-				Get("SettingsPage_GroupItemDescription_Basic"),
+				R["SettingsPage_GroupItemName_Basic"]!,
+				R["SettingsPage_GroupItemDescription_Basic"]!,
 				new SettingItem[]
 				{
 					new ToggleSwitchSettingItem(
-						Get("SettingsPage_ItemName_ShowCandidates"),
+						R["SettingsPage_ItemName_ShowCandidates"]!,
 						nameof(UserPreference.ShowCandidates)
 					),
 					new ToggleSwitchSettingItem(
-						Get("SettingsPage_ItemName_ShowCandidateBorderLines"),
+						R["SettingsPage_ItemName_ShowCandidateBorderLines"]!,
 						nameof(UserPreference.ShowCandidateBorderLines)
 					),
 					new ToggleSwitchSettingItem(
-						Get("SettingsPage_ItemName_EnableDeltaValuesDisplaying"),
-						Get("SettingsPage_ItemDescription_EnableDeltaValuesDisplaying"),
+						R["SettingsPage_ItemName_EnableDeltaValuesDisplaying"]!,
+						R["SettingsPage_ItemDescription_EnableDeltaValuesDisplaying"]!,
 						nameof(UserPreference.EnableDeltaValuesDisplaying)
 					),
 					new FontPickerSettingItem(
-						Get("SettingsPage_ItemName_ValueFontScale"),
-						Get("SettingsPage_ItemDescription_ValueFontScale"),
+						R["SettingsPage_ItemName_ValueFontScale"]!,
+						R["SettingsPage_ItemDescription_ValueFontScale"]!,
 						nameof(UserPreference.ValueFontName)
 					)
 					{
 						FontScalePropertyName = nameof(UserPreference.ValueFontScale)
 					},
 					new FontPickerSettingItem(
-						Get("SettingsPage_ItemName_CandidateFontScale"),
-						Get("SettingsPage_ItemDescription_CandidateFontScale"),
+						R["SettingsPage_ItemName_CandidateFontScale"]!,
+						R["SettingsPage_ItemDescription_CandidateFontScale"]!,
 						nameof(UserPreference.CandidateFontName)
 					)
 					{
@@ -67,15 +67,15 @@ public sealed partial class SettingsPage : Page
 					}
 				}
 			),
-			new(Get("SettingsPage_GroupItemName_Solving"), Get("SettingsPage_GroupItemDescription_Solving")),
+			new(R["SettingsPage_GroupItemName_Solving"]!, R["SettingsPage_GroupItemDescription_Solving"]!),
 			new(
-				Get("SettingsPage_GroupItemName_Rendering"),
-				Get("SettingsPage_GroupItemDescription_Rendering"),
+				R["SettingsPage_GroupItemName_Rendering"]!,
+				R["SettingsPage_GroupItemDescription_Rendering"]!,
 				new SettingItem[]
 				{
 					new SliderSettingItem(
-						Get("SettingsPage_ItemName_OutsideBorderWidth"),
-						Get("SettingsPage_ItemDescription_OutsideBorderWidth"),
+						R["SettingsPage_ItemName_OutsideBorderWidth"]!,
+						R["SettingsPage_ItemDescription_OutsideBorderWidth"]!,
 						nameof(UserPreference.OutsideBorderWidth),
 						stepFrequency: .1,
 						tickFrequency: .3,
@@ -83,7 +83,7 @@ public sealed partial class SettingsPage : Page
 						maxValue: 3
 					),
 					new SliderSettingItem(
-						Get("SettingsPage_ItemName_BlockBorderWidth"),
+						R["SettingsPage_ItemName_BlockBorderWidth"]!,
 						nameof(UserPreference.BlockBorderWidth),
 						stepFrequency: .5,
 						tickFrequency: .5,
@@ -91,7 +91,7 @@ public sealed partial class SettingsPage : Page
 						maxValue: 5
 					),
 					new SliderSettingItem(
-						Get("SettingsPage_ItemName_CellBorderWidth"),
+						R["SettingsPage_ItemName_CellBorderWidth"]!,
 						nameof(UserPreference.CellBorderWidth),
 						stepFrequency: .5,
 						tickFrequency: .5,
@@ -99,8 +99,8 @@ public sealed partial class SettingsPage : Page
 						maxValue: 5
 					),
 					new SliderSettingItem(
-						Get("SettingsPage_ItemName_CandidateBorderWidth"),
-						Get("SettingsPage_ItemDescription_CandidateBorderWidth"),
+						R["SettingsPage_ItemName_CandidateBorderWidth"]!,
+						R["SettingsPage_ItemDescription_CandidateBorderWidth"]!,
 						nameof(UserPreference.CandidateBorderWidth),
 						stepFrequency: .1,
 						tickFrequency: .3,
@@ -108,53 +108,53 @@ public sealed partial class SettingsPage : Page
 						maxValue: 3
 					),
 					new ColorPickerSettingItem(
-						Get("SettingsPage_ItemName_OutsideBorderColor"),
+						R["SettingsPage_ItemName_OutsideBorderColor"]!,
 						nameof(UserPreference.OutsideBorderColor)
 					),
 					new ColorPickerSettingItem(
-						Get("SettingsPage_ItemName_BlockBorderColor"),
+						R["SettingsPage_ItemName_BlockBorderColor"]!,
 						nameof(UserPreference.BlockBorderColor)
 					),
 					new ColorPickerSettingItem(
-						Get("SettingsPage_ItemName_CellBorderColor"),
+						R["SettingsPage_ItemName_CellBorderColor"]!,
 						nameof(UserPreference.CellBorderColor)
 					),
 					new ColorPickerSettingItem(
-						Get("SettingsPage_ItemName_CandidateBorderColor"),
-						Get("SettingsPage_ItemDescription_CandidateBorderColor"),
+						R["SettingsPage_ItemName_CandidateBorderColor"]!,
+						R["SettingsPage_ItemDescription_CandidateBorderColor"]!,
 						nameof(UserPreference.CandidateBorderColor)
 					),
 					new ColorPickerSettingItem(
-						Get("SettingsPage_ItemName_GivenColor"),
+						R["SettingsPage_ItemName_GivenColor"]!,
 						nameof(UserPreference.GivenColor)
 					),
 					new ColorPickerSettingItem(
-						Get("SettingsPage_ItemName_ModifiableColor"),
+						R["SettingsPage_ItemName_ModifiableColor"]!,
 						nameof(UserPreference.ModifiableColor)
 					),
 					new ColorPickerSettingItem(
-						Get("SettingsPage_ItemName_CandidateColor"),
+						R["SettingsPage_ItemName_CandidateColor"]!,
 						nameof(UserPreference.CandidateColor)
 					),
 					new ColorPickerSettingItem(
-						Get("SettingsPage_ItemName_CellDeltaColor"),
-						Get("SettingsPage_ItemDescription_CellDeltaColor"),
+						R["SettingsPage_ItemName_CellDeltaColor"]!,
+						R["SettingsPage_ItemDescription_CellDeltaColor"]!,
 						nameof(UserPreference.CellDeltaColor)
 					),
 					new ColorPickerSettingItem(
-						Get("SettingsPage_ItemName_CandidateDeltaColor"),
-						Get("SettingsPage_ItemDescription_CandidateDeltaColor"),
+						R["SettingsPage_ItemName_CandidateDeltaColor"]!,
+						R["SettingsPage_ItemDescription_CandidateDeltaColor"]!,
 						nameof(UserPreference.CandidateDeltaColor)
 					)
 				}
 			),
 			new(
-				Get("SettingsPage_GroupItemName_Miscellaneous"),
-				Get("SettingsPage_GroupItemDescription_Miscellaneous"),
+				R["SettingsPage_GroupItemName_Miscellaneous"]!,
+				R["SettingsPage_GroupItemDescription_Miscellaneous"]!,
 				new[]
 				{
 					new ToggleSwitchSettingItem(
-						Get("SettingsPage_ItemName_DescendingOrderedInfoBarBoard"),
+						R["SettingsPage_ItemName_DescendingOrderedInfoBarBoard"]!,
 						nameof(UserPreference.DescendingOrderedInfoBarBoard)
 					)
 				}

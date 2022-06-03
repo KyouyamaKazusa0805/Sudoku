@@ -41,7 +41,7 @@ public sealed partial class MainWindow : Window
 		InitializeAppWindowField();
 
 		// Sets the title of the window.
-		Title = Get("ProgramName");
+		Title = R["ProgramName"];
 
 		// To customize the title bar if available.
 		CustomizeTitleBar();
@@ -364,7 +364,7 @@ public sealed partial class MainWindow : Window
 			where key.StartsWith(queryPrefix) && resourceDic![key] is string
 			let originalValue = resourceDic![key[queryPrefix.Length..]] as string
 			where originalValue is not null
-			select (key, Get(key), originalValue)
+			select (key, R[key], originalValue)
 		).ToArray();
 
 		var suitableItems = new List<object>();
@@ -385,14 +385,14 @@ public sealed partial class MainWindow : Window
 					new SearchedResult
 					{
 						Value = originalValue,
-						Location = resultToDisplay.Replace("->", Get("Emoji_RightArrow"))
+						Location = resultToDisplay.Replace("->", R["Emoji_RightArrow"])
 					}
 				);
 			}
 		}
 		if (suitableItems.Count == 0)
 		{
-			suitableItems.Add(Get("QueryResult_Empty"));
+			suitableItems.Add(R["QueryResult_Empty"]!);
 		}
 
 		sender.ItemsSource = suitableItems;

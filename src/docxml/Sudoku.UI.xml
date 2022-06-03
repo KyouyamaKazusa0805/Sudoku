@@ -731,19 +731,6 @@
         <member name="M:Sudoku.UI.Models.ToggleSwitchSettingItem.SetPreference(System.Boolean)">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
         </member>
-        <member name="T:Sudoku.UI.StringResource">
-            <summary>
-            Defines a <see langword="static class"/> that provides the method
-            to get the <see cref="T:System.String"/>-typed resources.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.StringResource.Get(System.String)">
-            <summary>
-            Try to get the resource value via the specified string key.
-            </summary>
-            <param name="key">The <see cref="T:System.String"/>-typed resource key.</param>
-            <returns>The resource value.</returns>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.FontPicker">
             <summary>
             Defines a font picker control.

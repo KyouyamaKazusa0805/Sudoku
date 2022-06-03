@@ -31,7 +31,7 @@ internal static class SimpleConverters
 	/// <returns>The converted result string.</returns>
 	/// <seealso cref="RepositoryInfo.OpenSourceLicense"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string License(string input) => $"{input} {Get("AboutPage_License")}";
+	public static string License(string input) => $"{input} {R["AboutPage_License"]}";
 
 	/// <summary>
 	/// Indicates the conversion on <see cref="RepositoryInfo.IsForReference"/>.
@@ -40,7 +40,7 @@ internal static class SimpleConverters
 	/// <returns>The converted result string value.</returns>
 	/// <seealso cref="RepositoryInfo.IsForReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ForReference(bool input) => input ? Get("AboutPage_ForReference") : string.Empty;
+	public static string ForReference(bool input) => input ? R["AboutPage_ForReference"]! : string.Empty;
 
 	/// <summary>
 	/// Gets the title of the info bar via its severity.
@@ -50,7 +50,7 @@ internal static class SimpleConverters
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the severity is not defined.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string InfoBarTitle(InfoBarSeverity severity)
-		=> Get(
+		=> R[
 			severity switch
 			{
 				InfoBarSeverity.Informational => "SudokuPage_InfoBar_SeverityInfo",
@@ -59,24 +59,26 @@ internal static class SimpleConverters
 				InfoBarSeverity.Error => "SudokuPage_InfoBar_SeverityError",
 				_ => throw new ArgumentOutOfRangeException(nameof(severity))
 			}
-		);
+		]!;
 
 	public static string SliderPossibleValueString(double min, double max, double stepFrequency, double tickFrequency)
-		=> $"{Get("SliderPossibleValue")}{min:0.0} - {max:0.0}{Get("SliderStepFrequency")}{stepFrequency:0.0}{Get("SliderTickFrequency")}{tickFrequency:0.0}";
+		=> $"{R["SliderPossibleValue"]}{min:0.0} - {max:0.0}{R["SliderStepFrequency"]}{stepFrequency:0.0}{R["SliderTickFrequency"]}{tickFrequency:0.0}";
 
 	public static string SliderPossibleValueStringWithFormat(double min, double max, double stepFrequency, double tickFrequency, string format)
-		=> $"{Get("SliderPossibleValue")}{min.ToString(format)} - {max.ToString(format)}{Get("SliderStepFrequency")}{stepFrequency.ToString(format)}{Get("SliderTickFrequency")}{tickFrequency.ToString(format)}";
+		=> $"{R["SliderPossibleValue"]}{min.ToString(format)} - {max.ToString(format)}{R["SliderStepFrequency"]}{stepFrequency.ToString(format)}{R["SliderTickFrequency"]}{tickFrequency.ToString(format)}";
 
 	public static string DifficultyLevelToResourceText(DifficultyLevel difficultyLevel)
-		=> difficultyLevel switch
-		{
-			DifficultyLevel.Easy => Get("SudokuPage_AnalysisResultColumn_Easy"),
-			DifficultyLevel.Moderate => Get("SudokuPage_AnalysisResultColumn_Moderate"),
-			DifficultyLevel.Hard => Get("SudokuPage_AnalysisResultColumn_Hard"),
-			DifficultyLevel.Fiendish => Get("SudokuPage_AnalysisResultColumn_Fiendish"),
-			DifficultyLevel.Nightmare => Get("SudokuPage_AnalysisResultColumn_Nightmare"),
-			_ => string.Empty
-		};
+		=> (
+			difficultyLevel switch
+			{
+				DifficultyLevel.Easy => R["SudokuPage_AnalysisResultColumn_Easy"],
+				DifficultyLevel.Moderate => R["SudokuPage_AnalysisResultColumn_Moderate"],
+				DifficultyLevel.Hard => R["SudokuPage_AnalysisResultColumn_Hard"],
+				DifficultyLevel.Fiendish => R["SudokuPage_AnalysisResultColumn_Fiendish"],
+				DifficultyLevel.Nightmare => R["SudokuPage_AnalysisResultColumn_Nightmare"],
+				_ => string.Empty
+			}
+		)!;
 
 	public static Visibility StringToVisibility(string? s)
 		=> string.IsNullOrWhiteSpace(s) ? Visibility.Collapsed : Visibility.Visible;

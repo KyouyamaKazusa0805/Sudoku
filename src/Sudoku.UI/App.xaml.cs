@@ -36,6 +36,10 @@ public partial class App : Application
 	/// <param name="args">Details about the launch request and process.</param>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
+		// Binds the resource fetcher on type 'MergedResources'.
+		R.AddExternalResourceFetecher(GetType().Assembly, static key => Current.Resources[key] as string);
+
+		// Activate the main window.
 		MainWindow = new MainWindow();
 		MainWindow.Activate();
 	}

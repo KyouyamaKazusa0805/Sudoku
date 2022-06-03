@@ -27,7 +27,7 @@ public sealed partial class DocumentationPage : Page
 			XamlRoot = XamlRoot,
 			Title = title,
 			Content = message,
-			CloseButtonText = Get("Close"),
+			CloseButtonText = R["Close"],
 			DefaultButton = ContentDialogButton.Close
 		};
 
@@ -52,10 +52,10 @@ public sealed partial class DocumentationPage : Page
 		catch (Exception ex)
 		{
 			await CreateErrorDialog(
-				Get("DocumentationPage_FailedToLoadFile"),
+				R["DocumentationPage_FailedToLoadFile"]!,
 				$"""
-				{Get("DocumentationPage_FailedToLoadFileDialogContent")}
-					
+				{R["DocumentationPage_FailedToLoadFileDialogContent"]!}
+				
 				{ex.Message}
 				"""
 			).ShowAsync();
@@ -127,8 +127,8 @@ public sealed partial class DocumentationPage : Page
 		}
 
 		await CreateErrorDialog(
-			Get("DocumentationPage_FailedToLoadFile"),
-			Get("DocumentationPage_MarkdownFileNotFound")
+			R["DocumentationPage_FailedToLoadFile"]!,
+			R["DocumentationPage_MarkdownFileNotFound"]!
 		).ShowAsync();
 
 
