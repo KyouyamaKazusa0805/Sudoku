@@ -1099,18 +1099,26 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.DocumentationPage"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.EscapeMarkdown(System.String)">
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.CreateErrorDialog(System.String,System.String)">
             <summary>
-            Escapes the markdown text to avoid the exception thrown in runtime for the markdown text block control.
+            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.ContentDialog"/> instance.
             </summary>
-            <param name="markdownText">The markdown text.</param>
-            <returns>The escaped text.</returns>
+            <param name="title">The title.</param>
+            <param name="message">The message.</param>
+            <returns>The result instance.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.LoadAssetFileAsync">
             <summary>
             Loads the local documentation file.
             </summary>
             <returns>The task that operates the current method.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.EscapeMarkdown(System.String)">
+            <summary>
+            Escapes the markdown text to avoid the exception thrown in runtime for the markdown text block control.
+            </summary>
+            <param name="markdownText">The markdown text.</param>
+            <returns>The escaped text.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.NestedInlineCodeBlockInImageBlockPattern">
             <summary>

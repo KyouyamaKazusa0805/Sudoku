@@ -14,24 +14,22 @@ public sealed partial class DocumentationPage : Page
 	public DocumentationPage() => InitializeComponent();
 
 
-#if ESCAPE_NESTED_INLINE_CODE_BLOCK
 	/// <summary>
-	/// Escapes the markdown text to avoid the exception thrown in runtime for the markdown text block control.
+	/// Creates a <see cref="ContentDialog"/> instance.
 	/// </summary>
-	/// <param name="markdownText">The markdown text.</param>
-	/// <returns>The escaped text.</returns>
-	private string EscapeMarkdown(string markdownText)
-		// At present, the control may cause exception on parsing a nested rendering.
-		// For example, an inline code block nested in an image block (e.g. [`inline` text](link)) may reproduce a bug:
-		// https://github.com/CommunityToolkit/WindowsCommunityToolkit/issues/2802
-		=> NestedInlineCodeBlockInImageBlockPattern().Replace(
-			markdownText,
-			static m =>
-				m.Groups is [_, { Value: var e }, { Value: var a }, { Value: var b }, { Value: var c }, { Value: var d }]
-					? $"[{e}{a}{b}{c}{e}]({d})"
-					: string.Empty
-		);
-#endif
+	/// <param name="title">The title.</param>
+	/// <param name="message">The message.</param>
+	/// <returns>The result instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private ContentDialog CreateErrorDialog(string title, string message)
+		=> new()
+		{
+			XamlRoot = XamlRoot,
+			Title = title,
+			Content = message,
+			CloseButtonText = Get("Close"),
+			DefaultButton = ContentDialogButton.Close
+		};
 
 	/// <summary>
 	/// Loads the local documentation file.
@@ -53,23 +51,36 @@ public sealed partial class DocumentationPage : Page
 		}
 		catch (Exception ex)
 		{
-			await new ContentDialog
-			{
-				XamlRoot = XamlRoot,
-				Title = Get("DocumentationPage_FailedToLoadFile"),
-				Content =
-					$"""
-					{Get("DocumentationPage_FailedToLoadFileDialogContent")}
+			await CreateErrorDialog(
+				Get("DocumentationPage_FailedToLoadFile"),
+				$"""
+				{Get("DocumentationPage_FailedToLoadFileDialogContent")}
 					
-					{ex.Message}
-					""",
-				DefaultButton = ContentDialogButton.Close
-			}.ShowAsync();
+				{ex.Message}
+				"""
+			).ShowAsync();
 		}
 	}
 
 
 #if ESCAPE_NESTED_INLINE_CODE_BLOCK
+	/// <summary>
+	/// Escapes the markdown text to avoid the exception thrown in runtime for the markdown text block control.
+	/// </summary>
+	/// <param name="markdownText">The markdown text.</param>
+	/// <returns>The escaped text.</returns>
+	private static string EscapeMarkdown(string markdownText)
+		// At present, the control may cause exception on parsing a nested rendering.
+		// For example, an inline code block nested in an image block (e.g. [`inline` text](link)) may reproduce a bug:
+		// https://github.com/CommunityToolkit/WindowsCommunityToolkit/issues/2802
+		=> NestedInlineCodeBlockInImageBlockPattern().Replace(
+			markdownText,
+			static m =>
+				m.Groups is [_, { Value: var e }, { Value: var a }, { Value: var b }, { Value: var c }, { Value: var d }]
+					? $"[{e}{a}{b}{c}{e}]({d})"
+					: string.Empty
+		);
+
 	/// <summary>
 	/// Defines a pattern that matches an inline code block nested in the image block. For example,
 	/// <c>[`inline` block](link)</c>.
@@ -94,9 +105,62 @@ public sealed partial class DocumentationPage : Page
 	/// <param name="e">The event arguments provided.</param>
 	private async void MarkdownTextBlock_LinkClickedAsync(object sender, LinkClickedEventArgs e)
 	{
-		if (Uri.TryCreate($"{_cMarkdownTextBlock.UriPrefix}{e.Link}", UriKind.Absolute, out var uri))
+		if ((_cMarkdownTextBlock, e) is not ({ UriPrefix: var uriPrefix }, { Link: var link }))
+		{
+			return;
+		}
+
+		if (Uri.TryCreate(link, UriKind.Absolute, out var uri))
 		{
 			await Launcher.LaunchUriAsync(uri);
+			return;
+		}
+
+		if (await tryDownloadStringAsync($"{uriPrefix}{link}.md", _cMarkdownTextBlock))
+		{
+			return;
+		}
+
+		if (await tryDownloadStringAsync($"{uriPrefix}{link}/index.md", _cMarkdownTextBlock))
+		{
+			return;
+		}
+
+		await CreateErrorDialog(
+			Get("DocumentationPage_FailedToLoadFile"),
+			Get("DocumentationPage_MarkdownFileNotFound")
+		).ShowAsync();
+
+
+		static async Task<bool> tryDownloadStringAsync(string link, MarkdownTextBlock control)
+		{
+			using var httpClient = new HttpClient();
+			if (Uri.TryCreate(link, UriKind.Absolute, out var uri))
+			{
+				string? text = null;
+				try
+				{
+					text = await httpClient.GetStringAsync(uri);
+				}
+				catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+				{
+				}
+
+				if (text is not null)
+				{
+					control.Text =
+#if ESCAPE_NESTED_INLINE_CODE_BLOCK
+						EscapeMarkdown(text);
+#else
+						text;
+#endif
+
+					return true;
+				}
+			}
+
+			control.Text = string.Empty;
+			return false;
 		}
 	}
 }

@@ -110,6 +110,7 @@
 	<x:String x:Key="DocumentationPage_PleaseWait">Please wait...</x:String>
 	<x:String x:Key="DocumentationPage_FailedToLoadFile">Failed to load file</x:String>
 	<x:String x:Key="DocumentationPage_FailedToLoadFileDialogContent">Sorry. Something wrong that causes the failure. Exception details:</x:String>
+	<x:String x:Key="DocumentationPage_MarkdownFileNotFound">The file is not found in the server.</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>
@@ -169,6 +170,7 @@
 	<x:String x:Key="Link_SudokuTutorial">https://www.bilibili.com/read/readlist/rl291187</x:String>
 	<x:String x:Key="Link_SudokuTutorialDescription">Bilibili Sudoku Tutorial Page (rl291187)</x:String>
 	<x:String x:Key="FileExtension_TextDescription">Plain sudoku text code</x:String>
+	<x:String x:Key="Close">Close</x:String>
 	<x:String x:Key="__SampleField">Sample field</x:String>
 
 	<!--Punctuations-->
