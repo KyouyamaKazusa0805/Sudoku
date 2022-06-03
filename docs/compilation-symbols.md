@@ -16,6 +16,7 @@
 | `GRID_SERIALIZE_RAW_DATA`                                    | 表示序列化数独盘面信息是按照底层的原始掩码表进行序列化的方式。 |
 | `USE_EQUALITY_COMPARER`                                      | 表示是否使用 `EqualityComparer<T>` 类型来给对象进行比较运算操作。 |
 | `VISIT_SITE_DIRECTLY`                                        | 表示是否直接弹出浏览器显示指定的链接。如果不设置该符号的话，那么就只会输出网址信息到控制台。 |
+| `ESCAPE_NESTED_INLINE_CODE_BLOCK`                            | 目前渲染 Markdown 代码的控件由于自身的 bug 导致无法正确渲染嵌入图片代码 `[]()` 的 `[]` 部分里的内联代码块 ```` ``。 |
 
 完整的符号引用树状图如下：
 
@@ -26,12 +27,14 @@ graph LR
         Z -->|派生| P3(Sudoku.CommandLine)
         Z -->|派生| P4(Sudoku.Solving.Manual)
         Z -->|派生| P2(SystemExtensions)
+        Z -->|派生| P5(Sudoku.UI)
         style Z fill:#FFF
         click Z "https://github.com/SunnieShine/Sudoku" _blank
         click P1 "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core" _blank
         click P2 "https://github.com/SunnieShine/Sudoku/tree/main/src/System" _blank
         click P3 "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine" _blank
         click P4 "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Manual" _blank
+        click P5 "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI" _blank
     end
 
     subgraph 文件和符号对应关系
@@ -42,10 +45,12 @@ graph LR
         P2 -->|文件| G(StringHandler.cs)
         P3 -->|文件| F(MainMethod.cs)
         P4 -->|文件| H(UniqueRectangleStepSearcher.cs)
+        P5 -->|文件| I(DocumentationPage.xaml.cs)
         style P1 fill:#FFF
         style P2 fill:#FFF
         style P3 fill:#FFF
         style P4 fill:#FFF
+        style P5 fill:#FFF
         style A fill:#0F8
         style B fill:#0F8
         style C fill:#0F8
@@ -54,6 +59,7 @@ graph LR
         style F fill:#0F8
         style G fill:#0F8
         style H fill:#0F8
+        style I fill:#0F8
         click A "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs" _blank
         click C "https://github.com/SunnieShine/Sudoku/blob/main/src/System/Collections/Generic/Bag.cs" _blank
         click D "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Solving/BitwiseSolver.cs" _blank
@@ -61,6 +67,7 @@ graph LR
         click F "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine/MainMethod.cs" _blank
         click G "https://github.com/SunnieShine/Sudoku/blob/main/src/System/Text/StringHandler.cs" _blank
         click H "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Solving/Solving/Manual/Searchers/DeadlyPatterns/Rectangles/UniqueRectangleStepSearcher.cs" _blank
+        click I "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.UI/Views/Pages/DocumentationPage.xaml"
 
         A -->|符号| S2(SOLUTION_DISPLAY_MODIFIABLES)
         A -->|嵌套类文件| B(Grid.JsonConverter.cs)
@@ -74,6 +81,7 @@ graph LR
         G -->|符号| S9(DISCARD_INTERPOLATION_INFO)
         G -->|符号| S10(USE_NEWER_CONSTANT_VALUES)
         H -->|符号| S11(IMPLEMENTED)
+        I -->|符号| S12(ESCAPE_NESTED_INLINE_CODE_BLOCK)
         style S2 fill:#EEE
         style S3 fill:#CCC
         style S4 fill:#EEE
@@ -84,6 +92,7 @@ graph LR
         style S9 fill:#EEE
         style S10 fill:#EEE
         style S11 fill:#CCC
+        style S12 fill:#EEE
         click B "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.JsonConverter.cs" _blank
     end
 ```

@@ -107,7 +107,9 @@
 	<x:String x:Key="SettingsPage_ItemDescription_ValueFontScale">Indicates the sizing scale of the value digits.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateFontScale">Font scale on candidates</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateFontScale">Indicates the sizing scale of the candidates.</x:String>
-	<x:String x:Key="DocumentationPage_TreeViewHeader">Docs</x:String>
+	<x:String x:Key="DocumentationPage_PleaseWait">Please wait...</x:String>
+	<x:String x:Key="DocumentationPage_FailedToLoadFile">Failed to load file</x:String>
+	<x:String x:Key="DocumentationPage_FailedToLoadFileDialogContent">Sorry. Something wrong that causes the failure. Exception details:</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>

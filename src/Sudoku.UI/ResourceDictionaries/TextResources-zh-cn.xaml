@@ -105,7 +105,9 @@
 	<x:String x:Key="SettingsPage_ItemDescription_ValueFontScale">表示文字相对单元格的比例大小。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateFontScale">候选数字体的缩放比例</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateFontScale">表示候选数相对于单元格的比例大小。</x:String>
-	<x:String x:Key="DocumentationPage_TreeViewHeader">列表</x:String>
+	<x:String x:Key="DocumentationPage_PleaseWait">请稍候……</x:String>
+	<x:String x:Key="DocumentationPage_FailedToLoadFile">载入文件失败</x:String>
+	<x:String x:Key="DocumentationPage_FailedToLoadFileDialogContent">抱歉，程序出错，详细错误信息如下：</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>

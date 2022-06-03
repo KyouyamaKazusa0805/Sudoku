@@ -5,40 +5,17 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
-	xmlns:m="using:Sudoku.UI.Models"
 	mc:Ignorable="d"
 	Loaded="Page_LoadedAsync">
 
 	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition Width="360" />
-		</Grid.ColumnDefinitions>
-
-		<xc:MarkdownTextBlock
-			x:Name="_cMarkdownTextBlock" Margin="{ThemeResource ParagraphOffsetWithMarginBottom}"
-			Grid.Column="0" Padding="20" InlineCodePadding="10" />
-		<Grid Grid.Column="1" Margin="10,20,10,0">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition />
-			</Grid.RowDefinitions>
-
-			<TextBlock Grid.Row="0" Text="{StaticResource DocumentationPage_TreeViewHeader}" FontWeight="Bold" />
-			<ListView
-				Grid.Row="1" SelectionMode="None" ItemsSource="{x:Bind _docNamesList}"
-				HorizontalAlignment="Left" VerticalAlignment="Top">
-				<ListView.ItemTemplate>
-					<DataTemplate x:DataType="m:DocumentationFileInfo">
-						<TextBlock>
-							<Run Text="{StaticResource Emoji_Ring}" />
-							<Run Text="{x:Bind DisplayName}" />
-							<Run Text="{StaticResource Token_Colon}" />
-							<Run Text="{x:Bind FilePath}" TextDecorations="Underline" />
-						</TextBlock>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
-		</Grid>
+		<ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+			<xc:MarkdownTextBlock
+				x:Name="_cMarkdownTextBlock" Margin="{ThemeResource ParagraphOffsetWithMarginBottom}"
+				Text="{StaticResource DocumentationPage_PleaseWait}" Padding="20" InlineCodePadding="10"
+				SchemeList="companyportal,randomscheme"
+				UriPrefix="https://raw.githubusercontent.com/SunnieShine/Sudoku/main/docs/"
+				LinkClicked="MarkdownTextBlock_LinkClickedAsync" />
+		</ScrollViewer>
 	</Grid>
 </Page>
