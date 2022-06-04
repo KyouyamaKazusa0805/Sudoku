@@ -26,16 +26,16 @@ public static partial class Casing
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToCamelCase(string str)
-		=> !IsValidIdentifier(str)
-			? throw new ArgumentException("The specified string is not an identifier.", nameof(str))
-			: str switch
+		=> IsValidIdentifier(str)
+			? str switch
 			{
 				[] => throw new ArgumentException("The specified string is empty.", nameof(str)),
 				[>= 'a' and <= 'z', ..] => str,
 				[var firstChar and >= 'A' and <= 'Z', .. var otherChars] => $"{firstChar}{otherChars}",
 				['_', .. var otherChars] => ToCamelCase(otherChars),
 				_ => throw new ArgumentException("The specified string is invalid due to containing invalid characters.", nameof(str))
-			};
+			}
+			: throw new ArgumentException("The specified string is not an identifier.", nameof(str));
 
 	/// <summary>
 	/// Converts the current string identifier into the pascal-casing (like <c>PascalCasingVariable</c>).
