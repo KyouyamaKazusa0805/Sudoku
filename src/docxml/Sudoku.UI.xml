@@ -43,6 +43,21 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.CommonFileExtensions">
             <summary>
             Defines the constants that are the common file extensions.
@@ -72,12 +87,6 @@
             <summary>
             Indicates the configuration file.
             </summary>
-        </member>
-        <member name="T:Sudoku.UI.Data.DataTemplateModelTypeAttribute`1">
-            <summary>
-            Defines an attribute that applies to a data template property.
-            </summary>
-            <typeparam name="TModel">The type of the model.</typeparam>
         </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
@@ -159,17 +168,6 @@
         </member>
         <member name="M:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.SelectTemplateCore(System.Object)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.UI.Data.PageAttribute">
-            <summary>
-            Defines an attribute that can be applied to a type derived from <see cref="T:Microsoft.UI.Xaml.Controls.Page"/>,
-            describing the metadata.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.PageAttribute.DisplayTitle">
-            <summary>
-            Indicates whether the page displays title.
-            </summary>
         </member>
         <member name="T:Sudoku.UI.Data.SimpleConverters">
             <summary>
@@ -393,6 +391,23 @@
         <member name="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Default">
             <summary>
             The default DPI setting for a monitor is <see cref="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Effective_DPI"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Metadata.DataTemplateModelTypeAttribute`1">
+            <summary>
+            Defines an attribute that applies to a data template property.
+            </summary>
+            <typeparam name="TModel">The type of the model.</typeparam>
+        </member>
+        <member name="T:Sudoku.UI.Metadata.PageAttribute">
+            <summary>
+            Defines an attribute that can be applied to a type derived from <see cref="T:Microsoft.UI.Xaml.Controls.Page"/>,
+            describing the metadata.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Metadata.PageAttribute.DisplayTitle">
+            <summary>
+            Indicates whether the page displays title.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Models.AnalysisResultRow">
@@ -758,6 +773,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>
             Defines a user control that handles the messages displaying via <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>s.
@@ -839,6 +864,16 @@
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
@@ -1016,6 +1051,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.AboutPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -1030,6 +1075,16 @@
         <member name="M:Sudoku.UI.Views.Pages.AboutPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.DocumentationPage">
@@ -1100,6 +1155,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.GeneratedRegex_NestedInlineCodeBlockInImageBlockPattern_D05388F0.RunnerFactory.Runner.IsWordChar(System.Char)">
             <summary>Determines whether the character is part of the [\w] set.</summary>
         </member>
@@ -1128,6 +1193,16 @@
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SudokuPage">
@@ -1363,6 +1438,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -1498,9 +1583,39 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Program">
             <summary>
             Program class
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
@@ -1527,12 +1642,12 @@
             </summary>
             <param name="this">The instance.</param>
         </member>
-        <member name="T:Windows.Foundation.Point_DE5AF559E2">
+        <member name="T:Windows.Foundation.Point_DE7BE3B162">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DE5AF559E2.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DE7BE3B162.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
             the value-tuple syntax to define your own deconstruction logic.
@@ -1637,12 +1752,12 @@
             Throws when the argument <paramref name="count"/> is negative.
             </exception>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
             the value-tuple syntax to define your own deconstruction logic.

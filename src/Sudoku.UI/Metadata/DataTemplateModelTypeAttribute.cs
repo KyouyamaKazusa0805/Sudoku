@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Data;
+﻿namespace Sudoku.UI.Metadata;
 
 /// <summary>
 /// Defines an attribute that applies to a data template property.

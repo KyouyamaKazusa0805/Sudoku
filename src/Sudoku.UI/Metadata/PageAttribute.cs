@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Data;
+﻿namespace Sudoku.UI.Metadata;
 
 /// <summary>
 /// Defines an attribute that can be applied to a type derived from <see cref="Page"/>,
