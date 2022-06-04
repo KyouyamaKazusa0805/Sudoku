@@ -30,7 +30,7 @@
 
 ```csharp
 using System;
-using Sudoku.Collections;
+using Sudoku.Concepts.Collections;
 using Sudoku.Solving.Manual;
 
 // 读取一个字符串形式的数独盘面的代码信息，并解析为 'Grid' 类型的对象。
@@ -42,26 +42,17 @@ var solver = new ManualSolver();
 // 以同步的形式解题。
 var analysisResult = solver.Solve(grid);
 
-// 你也可以转换数据类型为 ManualSolverResult 类型，以查看内部更多的数据信息。
-//var analysisResultConverted = (ManualSolverResult)analysisResult;
-
 // 输出分析结果。
 // 你也可以使用 ToString 代替 ToDisplayString，它们底层是一样的。
 Console.WriteLine(analysisResult.ToDisplayString());
 //Console.WriteLine(analysisResult.ToString()); // 一样的。
-//Console.WriteLine(analysisResultConverted.ToDisplayString()); // 一样的。
-//Console.WriteLine(analysisResultConverted.ToString()); // 一样的。
 ```
 
-以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 App 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
+以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win11 App 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
 我很遗憾我并未创建英文版的 Wiki 内容，因为工程量太大了。我学了很多年的英语，但是对于一些描述（尤其是细节的表达）要翻译成英语仍然有点困难。
 
-请注意，编程语言的版本我一直用的是预览版，也就意味着即使有些语言特性不属于我上方给出的版本支持的特性，但是项目也在使用它们。
-
 当然，你也可以使用 JetBrains 的 Rider 作为你的 IDE 来开发。随便你用什么都行，甚至是记事本（大笑）。虽说 C# 拥有一些只能在 VS 上使用的语法（`__makeref` 之类的关键字），不过这个项目里没有使用这些内容，因此你可以大大方方地使用别的 IDE 开发。
-
-另外，框架和 IDE 使用版本可能在以后会继续更新。换句话说，它们并非一直都不变。这些信息**仅供参考**。
 
 MVVM 框架对我来说有些复杂，我还在学习期间，所以如果上手使用 MVVM 会影响我设计程序的进度，这有点太慢了，所以我暂时不打算考虑用这个框架进行架构的定义和设计。
 
@@ -79,7 +70,7 @@ UI：
 
 ## 关于该仓库的克隆（Fork）及代码拉取请求（Pull Requests）
 
-当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于 [MIT](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE) 开源协议的情况下做你任何想做的事情。不过，由于 Gitee 是从 GitHub 拷贝过来的，所以 Gitee 项目暂时不支持任何的代码拉取请求，敬请谅解；不过这两个仓库都可以创建 issue。详情请参考下面的“基本信息”一栏的内容。
+当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于 [MIT](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE) 开源协议的情况下做你任何想做的事情。不过，由于 Gitee 是从 GitHub 拷贝过来的，所以 Gitee 项目暂时不支持任何的代码拉取请求，敬请谅解；不过这两个仓库都可以创建 issue。
 
 另外，这个仓库可能会更新得**非常频繁**（大概一天至少一次代码提交），而备份过去的 Gitee 的仓库由于配置了 webhook，因此在上传到 GitHub 的时候会自动同步过来。
 
@@ -109,7 +100,7 @@ UI：
   * [ ] ~~Nuget 包导出~~（暂时不考虑，但不代表我一直都不考虑，因为 API 变动非常大）
   * [ ] ~~关于项目一些功能的代码分析插件~~（暂时不考虑，原因同上）
 
-> 部分并未列举出来，比如 WPF 和 UWP 项目，没有列举它们的原因多数都是因为过时。早期在提交代码的时候已经包含了它们，但因为现如今 .NET 技术更新换代比较多，因此很多新的框架有诞生，因此考虑到项目的复杂性，基本上做得差不多的功能的解决方案就不再考虑翻新整改，以及修复 bug 了。
+> 部分并未列举出来，比如 WPF 和 UWP 项目，没有列举它们的原因多数都是因为过时。早期在提交代码的时候已经包含了它们，但因为现如今 .NET 技术更新换代比较快，因此很多新的框架有诞生，因此考虑到项目的复杂性，基本上做得差不多的功能的解决方案就不再考虑翻新整改，以及修复 bug 了。
 
 ## 数独技巧参考
 

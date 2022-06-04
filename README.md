@@ -30,7 +30,7 @@ For example, you can use the code like this to solve a puzzle:
 
 ```csharp
 using System;
-using Sudoku.Collections;
+using Sudoku.Concepts.Collections;
 using Sudoku.Solving.Manual;
 
 // Parse a puzzle from the string text.
