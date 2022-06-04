@@ -40,7 +40,6 @@ public partial class App : Application
 		R.AddExternalResourceFetecher(GetType().Assembly, static key => Current.Resources[key] as string);
 
 		// Activate the main window.
-		MainWindow = new MainWindow();
-		MainWindow.Activate();
+		(MainWindow = new MainWindow()).Activate();
 	}
 }
