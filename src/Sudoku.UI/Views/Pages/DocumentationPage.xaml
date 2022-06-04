@@ -11,10 +11,9 @@
 	<Grid>
 		<ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
 			<xc:MarkdownTextBlock
-				x:Name="_cMarkdownTextBlock" Margin="{ThemeResource ParagraphOffsetWithMarginBottom}"
+				x:Name="_cMarkdownTextBlock" UriPrefix="https://raw.githubusercontent.com/SunnieShine/Sudoku/main/docs/"
 				Text="{StaticResource DocumentationPage_PleaseWait}" Padding="20" InlineCodePadding="10"
-				SchemeList="companyportal,randomscheme"
-				UriPrefix="https://raw.githubusercontent.com/SunnieShine/Sudoku/main/docs/"
+				SchemeList="companyportal,randomscheme"  Margin="{ThemeResource ParagraphOffsetWithMarginBottom}"
 				LinkClicked="MarkdownTextBlock_LinkClickedAsync" />
 		</ScrollViewer>
 	</Grid>

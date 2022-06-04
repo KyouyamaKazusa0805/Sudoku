@@ -15,6 +15,7 @@ global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
 global using System.Runtime.InteropServices.WindowsRuntime;
+global using System.Text.Markdown;
 global using System.Text.RegularExpressions;
 global using System.Threading.Tasks;
 global using CommunityToolkit.WinUI.UI.Controls;

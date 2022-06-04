@@ -8,6 +8,13 @@ namespace Sudoku.UI.Views.Pages;
 public sealed partial class DocumentationPage : Page
 {
 	/// <summary>
+	/// Indicates the page prefixes to visit. This collection is used as a cached collection,
+	/// providing with a way backing to the last page.
+	/// </summary>
+	private readonly Stack<string> _pagePrefixes = new();
+
+
+	/// <summary>
 	/// Initializes a <see cref="DocumentationPage"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -42,11 +49,10 @@ public sealed partial class DocumentationPage : Page
 		using var httpClient = new HttpClient();
 		try
 		{
-			_cMarkdownTextBlock.Text =
 #if ESCAPE_NESTED_INLINE_CODE_BLOCK
-				EscapeMarkdown(await httpClient.GetStringAsync(indexPageUrl));
+			_cMarkdownTextBlock.Text = EscapeMarkdown(await httpClient.GetStringAsync(indexPageUrl));
 #else
-				await httpClient.GetStringAsync(indexPageUrl);
+			_cMarkdownTextBlock.Text = await httpClient.GetStringAsync(indexPageUrl);
 #endif
 		}
 		catch (Exception ex)
@@ -69,15 +75,17 @@ public sealed partial class DocumentationPage : Page
 	/// </summary>
 	/// <param name="markdownText">The markdown text.</param>
 	/// <returns>The escaped text.</returns>
+	/// <remarks>
+	/// At present, the control may cause exception on parsing a nested rendering.
+	/// For example, an inline code block nested in an image block (e.g. [`inline` text](link)) may reproduce a bug:
+	/// <see href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/issues/2802">Issue #2802</see>.
+	/// </remarks>
 	private static string EscapeMarkdown(string markdownText)
-		// At present, the control may cause exception on parsing a nested rendering.
-		// For example, an inline code block nested in an image block (e.g. [`inline` text](link)) may reproduce a bug:
-		// https://github.com/CommunityToolkit/WindowsCommunityToolkit/issues/2802
 		=> NestedInlineCodeBlockInImageBlockPattern().Replace(
 			markdownText,
 			static m =>
 				m.Groups is [_, { Value: var e }, { Value: var a }, { Value: var b }, { Value: var c }, { Value: var d }]
-					? $"[{e}{a}{b}{c}{e}]({d})"
+					? MarkdownElementFactory.ImageBlock($"{e}{a}{b}{c}{e}", d)
 					: string.Empty
 		);
 
@@ -116,12 +124,13 @@ public sealed partial class DocumentationPage : Page
 			return;
 		}
 
-		if (await tryDownloadStringAsync($"{uriPrefix}{link}.md", _cMarkdownTextBlock))
+		string popped = _pagePrefixes.TryPop(out string? u) ? u : uriPrefix;
+		if (await tryDownloadStringAsync($"{popped}{link}.md", _cMarkdownTextBlock))
 		{
 			return;
 		}
 
-		if (await tryDownloadStringAsync($"{uriPrefix}{link}/index.md", _cMarkdownTextBlock))
+		if (await tryDownloadStringAsync($"{popped}{link}/index.md", _cMarkdownTextBlock))
 		{
 			return;
 		}
@@ -132,7 +141,7 @@ public sealed partial class DocumentationPage : Page
 		).ShowAsync();
 
 
-		static async Task<bool> tryDownloadStringAsync(string link, MarkdownTextBlock control)
+		async Task<bool> tryDownloadStringAsync(string link, MarkdownTextBlock control)
 		{
 			using var httpClient = new HttpClient();
 			if (Uri.TryCreate(link, UriKind.Absolute, out var uri))
@@ -148,13 +157,13 @@ public sealed partial class DocumentationPage : Page
 
 				if (text is not null)
 				{
-					control.Text =
 #if ESCAPE_NESTED_INLINE_CODE_BLOCK
-						EscapeMarkdown(text);
+					control.Text = EscapeMarkdown(text);
 #else
-						text;
+					control.Text = text;
 #endif
 
+					_pagePrefixes.Push(uri.ToString()[..(uri.ToString().LastIndexOf('/') + 1)]);
 					return true;
 				}
 			}

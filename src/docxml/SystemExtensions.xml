@@ -2538,6 +2538,37 @@
             <param name="selector">The selector that is used for conversion.</param>
             <returns>The array of target result elements.</returns>
         </member>
+        <member name="T:System.Text.Markdown.MarkdownElementFactory">
+            <summary>
+            Provides with a factory that can create a markdown element.
+            </summary>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownElementFactory.ImageBlock(System.String,System.String)">
+            <summary>
+            Creates an image block <c>[path](url)</c>.
+            </summary>
+            <param name="path">
+            The path of the image. The value can be <see langword="null"/> if you don't want to set any value.
+            </param>
+            <param name="imageUrl">The link to the image.</param>
+            <returns>The markdown code describing an image.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownElementFactory.InliningCodeBlock(System.String)">
+            <summary>
+            Creates an inlined code block <c>`code`</c>.
+            </summary>
+            <param name="code">The code.</param>
+            <returns>The markdown code describing an inlined code snippet.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownElementFactory.InliningCodeBlock(System.String,System.Int32)">
+            <summary>
+            Creates an inlined code block, with the specified number of backticks <c>"`"</c>
+            appeared in both delimiters.
+            </summary>
+            <param name="code">The code.</param>
+            <param name="backticksCount">The number of backticks <c>"`"</c> appeared in both delimiters.</param>
+            <returns>The markdown code describing an inlined code snippet.</returns>
+        </member>
         <member name="T:System.Text.StringHandler">
             <summary>
             <para>
