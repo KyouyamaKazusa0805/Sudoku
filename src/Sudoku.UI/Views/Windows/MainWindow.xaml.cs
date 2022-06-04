@@ -150,7 +150,7 @@ public sealed partial class MainWindow : Window
 		var hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
 
 		// Get DPI.
-		if (AppWindowMarshal.GetDpiForMonitor(hMonitor, Monitor_DPI_Type.MDT_Default, out uint dpiX, out uint _) != 0)
+		if (AppWindowMarshal.GetDpiForMonitor(hMonitor, Monitor_DPI_Type.MDT_Default, out uint dpiX, out _) != 0)
 		{
 			throw new Exception("Could not get DPI for monitor.");
 		}
