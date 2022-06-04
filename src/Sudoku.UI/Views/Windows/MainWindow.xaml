@@ -31,7 +31,7 @@
 				x:Name="_cTitleTextBlock" Grid.Column="2" Text="{StaticResource ProgramName}"
 				Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" Margin="12,0,0,0" />
 			<AutoSuggestBox
-				Grid.Column="4" QueryIcon="Find" PlaceholderText="{StaticResource MainPage_Search}" Width="260"
+				Grid.Column="4" QueryIcon="Find" PlaceholderText="{StaticResource MainPage_Search}" Width="300"
 				Margin="4,0" VerticalAlignment="Center" TextChanged="AutoSuggestBox_TextChanged"
 				SuggestionChosen="AutoSuggestBox_SuggestionChosen">
 				<AutoSuggestBox.ItemTemplateSelector>
