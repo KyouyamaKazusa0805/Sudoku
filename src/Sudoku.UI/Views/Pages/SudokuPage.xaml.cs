@@ -3,6 +3,7 @@
 /// <summary>
 /// An empty page that can be used on its own or navigated to within a Frame.
 /// </summary>
+[Page(DisplayTitle = false)]
 public sealed partial class SudokuPage : Page
 {
 	/// <summary>

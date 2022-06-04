@@ -5,6 +5,7 @@ namespace Sudoku.UI.Views.Pages;
 /// <summary>
 /// Indicates the documentation page.
 /// </summary>
+[Page]
 public sealed partial class DocumentationPage : Page
 {
 	/// <summary>

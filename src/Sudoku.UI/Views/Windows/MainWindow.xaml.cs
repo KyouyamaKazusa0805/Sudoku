@@ -9,13 +9,7 @@ public sealed partial class MainWindow : Window
 	/// <summary>
 	/// Indicates the navigation info tuples that controls to route pages.
 	/// </summary>
-	private static readonly (string ViewItemTag, Type PageType, bool DisplayTitle)[] NavigationPairs =
-	{
-		(nameof(SettingsPage), typeof(SettingsPage), true),
-		(nameof(AboutPage), typeof(AboutPage), true),
-		(nameof(SudokuPage), typeof(SudokuPage), false),
-		(nameof(DocumentationPage), typeof(DocumentationPage), true)
-	};
+	private static readonly (string ViewItemTag, Type PageType, bool DisplayTitle)[] NavigationPairs;
 
 
 	/// <summary>
@@ -46,6 +40,15 @@ public sealed partial class MainWindow : Window
 		// To customize the title bar if available.
 		CustomizeTitleBar();
 	}
+
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
+	static MainWindow()
+		=> NavigationPairs = (
+			from type in typeof(MainWindow).Assembly.GetDerivedTypes(typeof(Page))
+			let attribute = type.GetCustomAttribute<PageAttribute>()
+			where attribute is not null
+			select (type.Name, type, attribute.DisplayTitle)
+		).ToArray();
 
 
 	/// <summary>
