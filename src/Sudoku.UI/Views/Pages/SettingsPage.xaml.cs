@@ -188,7 +188,7 @@ public sealed partial class SettingsPage : Page
 		var fsp = new FileSavePicker
 		{
 			SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
-			SuggestedFileName = "Sudoku"
+			SuggestedFileName = R["PreferenceBackup"]!
 		};
 		fsp.FileTypeChoices.Add(R["FileExtension_Configuration"], new List<string> { CommonFileExtensions.Configuration });
 		fsp.AwareHandleOnWin32();

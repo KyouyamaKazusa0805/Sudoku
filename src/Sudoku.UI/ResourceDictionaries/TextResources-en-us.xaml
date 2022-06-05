@@ -177,6 +177,8 @@
 	<x:String x:Key="FileExtension_Configuration">User preferences</x:String>
 	<x:String x:Key="Close">Close</x:String>
 	<x:String x:Key="Info">Info</x:String>
+	<x:String x:Key="Sudoku">Sudoku</x:String>
+	<x:String x:Key="PreferenceBackup">Preference backup</x:String>
 	<x:String x:Key="__SampleField">Sample field</x:String>
 
 	<!--Punctuations-->

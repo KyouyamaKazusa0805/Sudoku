@@ -305,7 +305,7 @@ public sealed partial class SudokuPage : Page
 		var fsp = new FileSavePicker
 		{
 			SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
-			SuggestedFileName = "Sudoku"
+			SuggestedFileName = R["Sudoku"]!
 		};
 		fsp.FileTypeChoices.Add(R["FileExtension_TextDescription"], new List<string> { CommonFileExtensions.Text });
 		fsp.AwareHandleOnWin32();
