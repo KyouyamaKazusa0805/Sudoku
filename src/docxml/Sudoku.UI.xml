@@ -83,9 +83,9 @@
             Indicates the drawing file.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.CommonFileExtensions.Configuration">
+        <member name="F:Sudoku.UI.CommonFileExtensions.PreferenceBackup">
             <summary>
-            Indicates the configuration file.
+            Indicates the preference backup file.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">

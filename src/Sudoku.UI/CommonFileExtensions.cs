@@ -26,7 +26,7 @@ internal static class CommonFileExtensions
 	public const string SudokuWithDrawing = ".sdd";
 
 	/// <summary>
-	/// Indicates the configuration file.
+	/// Indicates the preference backup file.
 	/// </summary>
-	public const string Configuration = ".sdc";
+	public const string PreferenceBackup = ".sdc";
 }
