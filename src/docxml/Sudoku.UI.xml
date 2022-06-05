@@ -1190,6 +1190,27 @@
             </summary>
             <seealso cref="F:Sudoku.UI.Views.Pages.SettingsPage._settingGroupItems"/>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.CreateErrorDialog(System.String,System.String)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.ContentDialog"/> instance.
+            </summary>
+            <param name="title">The title.</param>
+            <param name="message">The message.</param>
+            <returns>The result instance.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.BackupPreferenceFileAsync">
+            <summary>
+            To backup a preference file.
+            </summary>
+            <returns>The task that handles the current operation.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.BackupPreference_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the "backup preference" button is clicked.
+            </summary>
+            <param name="sender">The object triggering the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()

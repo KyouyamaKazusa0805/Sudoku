@@ -4425,6 +4425,20 @@
             </remarks>
             <seealso cref="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>
         </member>
+        <member name="T:System.Runtime.CompilerServices.ReferenceMarshal">
+            <summary>
+            Provides an unsafe way to handle references.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.ReferenceMarshal.RefThrow``2">
+            <summary>
+            Throws an exception of type <typeparamref name="TException"/>.
+            </summary>
+            <typeparam name="T">The type of the reference value.</typeparam>
+            <typeparam name="TException">The exception type.</typeparam>
+            <returns>The return value is a discard.</returns>
+            <exception cref="T:System.Exception">Always throws.</exception>
+        </member>
         <member name="T:System.Utf8Char">
             <summary>
             Represents a character as a UTF-8 code unit.

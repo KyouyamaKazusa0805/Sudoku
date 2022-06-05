@@ -107,6 +107,10 @@
 	<x:String x:Key="SettingsPage_ItemDescription_ValueFontScale">Indicates the sizing scale of the value digits.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateFontScale">Font scale on candidates</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateFontScale">Indicates the sizing scale of the candidates.</x:String>
+	<x:String x:Key="SettingsPage_SavePreferenceDescription">All options are saved instantly, but some options will be enabled after being restarted the program.</x:String>
+	<x:String x:Key="SettingsPage_BackupPreference">Backup preferences</x:String>
+	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">File "</x:String>
+	<x:String x:Key="SettingsPage_BackupPreferenceFailed2">" is failed to backup.</x:String>
 	<x:String x:Key="DocumentationPage_PleaseWait">Please wait...</x:String>
 	<x:String x:Key="DocumentationPage_FailedToLoadFile">Failed to load file</x:String>
 	<x:String x:Key="DocumentationPage_FailedToLoadFileDialogContent">Sorry. Something wrong that causes the failure. Exception details:</x:String>
@@ -170,7 +174,9 @@
 	<x:String x:Key="Link_SudokuTutorial">https://www.bilibili.com/read/readlist/rl291187</x:String>
 	<x:String x:Key="Link_SudokuTutorialDescription">Bilibili Sudoku Tutorial Page (rl291187)</x:String>
 	<x:String x:Key="FileExtension_TextDescription">Plain sudoku text code</x:String>
+	<x:String x:Key="FileExtension_Configuration">User preferences</x:String>
 	<x:String x:Key="Close">Close</x:String>
+	<x:String x:Key="Info">Info</x:String>
 	<x:String x:Key="__SampleField">Sample field</x:String>
 
 	<!--Punctuations-->

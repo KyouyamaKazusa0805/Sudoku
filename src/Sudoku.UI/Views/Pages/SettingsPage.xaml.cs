@@ -161,4 +161,82 @@ public sealed partial class SettingsPage : Page
 				}
 			)
 		};
+
+	/// <summary>
+	/// Creates a <see cref="ContentDialog"/> instance.
+	/// </summary>
+	/// <param name="title">The title.</param>
+	/// <param name="message">The message.</param>
+	/// <returns>The result instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private ContentDialog CreateErrorDialog(string title, string message)
+		=> new()
+		{
+			XamlRoot = XamlRoot,
+			Title = title,
+			Content = message,
+			CloseButtonText = R["Close"],
+			DefaultButton = ContentDialogButton.Close
+		};
+
+	/// <summary>
+	/// To backup a preference file.
+	/// </summary>
+	/// <returns>The task that handles the current operation.</returns>
+	private async Task BackupPreferenceFileAsync()
+	{
+		var fsp = new FileSavePicker
+		{
+			SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
+			SuggestedFileName = "Sudoku"
+		};
+		fsp.FileTypeChoices.Add(R["FileExtension_Configuration"], new List<string> { CommonFileExtensions.Configuration });
+		fsp.AwareHandleOnWin32();
+
+		if (await fsp.PickSaveFileAsync() is not { Name: var fileName } file)
+		{
+			return;
+		}
+
+		// Prevent updates to the remote version of the file until we finish making changes
+		// and call CompleteUpdatesAsync.
+		CachedFileManager.DeferUpdates(file);
+
+		// Writes to the file.
+		await FileIO.WriteTextAsync(
+			file,
+			JsonSerializer.Serialize(
+				((App)Application.Current).UserPreference,
+				new JsonSerializerOptions
+				{
+					WriteIndented = true,
+					IncludeFields = true,
+					IgnoreReadOnlyProperties = true,
+					IgnoreReadOnlyFields = true,
+					PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+				}
+			)
+		);
+
+		// Let Windows know that we're finished changing the file so the other app can update
+		// the remote version of the file.
+		// Completing updates may require Windows to ask for user input.
+		if (await CachedFileManager.CompleteUpdatesAsync(file) == FileUpdateStatus.Complete)
+		{
+			return;
+		}
+
+		// Failed to backup.
+		string a = R["SettingsPage_BackupPreferenceFailed1"]!;
+		string b = R["SettingsPage_BackupPreferenceFailed2"]!;
+		await CreateErrorDialog(R["Info"]!, $"{a}{fileName}{b}").ShowAsync();
+	}
+
+
+	/// <summary>
+	/// Triggers when the "backup preference" button is clicked.
+	/// </summary>
+	/// <param name="sender">The object triggering the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private async void BackupPreference_ClickAsync(object sender, RoutedEventArgs e) => await BackupPreferenceFileAsync();
 }

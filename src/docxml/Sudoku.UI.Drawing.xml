@@ -103,6 +103,18 @@
             <param name="w">The weight of the line type. The value must be 3, 9 or 27.</param>
             <returns>The two points indicating the start and end point of the line.</returns>
         </member>
+        <member name="T:Sudoku.UI.Drawing.Serialization.ColorJsonConverter">
+            <summary>
+            Defines a JSON converter that can serialize or deserialize the type <see cref="T:Windows.UI.Color"/>.
+            </summary>
+            <seealso cref="T:Windows.UI.Color"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Serialization.ColorJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Serialization.ColorJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Windows.UI.Color,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.BlockLine">
             <summary>
             Defines a block line.

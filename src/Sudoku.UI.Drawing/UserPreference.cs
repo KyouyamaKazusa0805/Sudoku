@@ -117,6 +117,7 @@ public sealed class UserPreference
 	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color OutsideBorderColor = Colors.Black;
 
 	/// <summary>
@@ -125,6 +126,7 @@ public sealed class UserPreference
 	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color BlockBorderColor = Colors.Black;
 
 	/// <summary>
@@ -133,6 +135,7 @@ public sealed class UserPreference
 	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color CellBorderColor = Colors.Black;
 
 	/// <summary>
@@ -141,6 +144,7 @@ public sealed class UserPreference
 	/// <remarks>
 	/// The default value is <c>#FFD3D3D3</c> (i.e. <see cref="Colors.LightGray"/>).
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color CandidateBorderColor = Colors.LightGray;
 
 	/// <summary>
@@ -149,6 +153,7 @@ public sealed class UserPreference
 	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color GivenColor = Colors.Black;
 
 	/// <summary>
@@ -157,6 +162,7 @@ public sealed class UserPreference
 	/// <remarks>
 	/// The default value is <c>#FF0000FF</c> (i.e. <see cref="Colors.Blue"/>).
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color ModifiableColor = Colors.Blue;
 
 	/// <summary>
@@ -165,6 +171,7 @@ public sealed class UserPreference
 	/// <remarks>
 	/// The default value is <c>#FF696969</c> (i.e. <see cref="Colors.DimGray"/>).
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color CandidateColor = Colors.DimGray;
 
 	/// <summary>
@@ -173,6 +180,7 @@ public sealed class UserPreference
 	/// <remarks>
 	/// The default value is <c>#FFFF0000</c> (i.e. <see cref="Colors.Red"/>).
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color CellDeltaColor = Colors.Red;
 
 	/// <summary>
@@ -181,5 +189,6 @@ public sealed class UserPreference
 	/// <remarks>
 	/// The default value is <c>#FFFFB9B9</c> (i.e. <see cref="Color"/> {255, 255, 185, 185}).
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color CandidateDeltaColor = Color.FromArgb(255, 255, 185, 185);
 }
