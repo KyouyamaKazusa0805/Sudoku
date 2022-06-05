@@ -75,12 +75,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Resource Include="Assets\docs\MainPage.md">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Resource>
-	</ItemGroup>
-
-	<ItemGroup>
 		<Page Update="ResourceDictionaries\TextResources-zh-cn.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
