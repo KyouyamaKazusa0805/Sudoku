@@ -10,6 +10,12 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 	private static readonly BitwiseSolver Solver = new();
 
 
+	/// <summary>
+	/// Indicates the random number generator.
+	/// </summary>
+	private readonly Random _random = new();
+
+
 	/// <inheritdoc/>
 	public Grid Generate(CancellationToken cancellationToken = default)
 	{
@@ -45,7 +51,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 			string result;
 			do
 			{
-				var selectedType = allTypes[Random.Shared.Next(count)];
+				var selectedType = allTypes[_random.Next(count)];
 				fixed (char* pTempSolution = tempSolution)
 				{
 					Unsafe.CopyBlock(pSolution, pTempSolution, sizeof(char) * 81);
@@ -57,7 +63,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 					int cell;
 					do
 					{
-						cell = Random.Shared.Next(0, 81);
+						cell = _random.Next(81);
 					} while (totalMap.Contains(cell));
 
 					int r = cell / 9, c = cell % 9;
@@ -103,7 +109,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 			{
 				while (true)
 				{
-					int cell = Random.Shared.Next(0, 81);
+					int cell = _random.Next(81);
 					if (!map.Contains(cell))
 					{
 						map.Add(cell);
@@ -116,7 +122,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 			{
 				do
 				{
-					pPuzzle[cell] = (char)(Random.Shared.Next(1, 9) + '0');
+					pPuzzle[cell] = (char)(_random.Next(1, 9) + '0');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
 		} while (Solver.Solve(pPuzzle, pSolution, 2) == 0);

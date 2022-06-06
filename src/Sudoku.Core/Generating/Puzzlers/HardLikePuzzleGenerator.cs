@@ -98,7 +98,7 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 			{
 				while (true)
 				{
-					int cell = _random.Next(0, 81);
+					int cell = _random.Next(81);
 					if (!map.Contains(cell))
 					{
 						map.Add(cell);
