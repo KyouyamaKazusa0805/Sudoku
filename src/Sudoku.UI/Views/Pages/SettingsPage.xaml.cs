@@ -163,23 +163,6 @@ public sealed partial class SettingsPage : Page
 		};
 
 	/// <summary>
-	/// Creates a <see cref="ContentDialog"/> instance.
-	/// </summary>
-	/// <param name="title">The title.</param>
-	/// <param name="message">The message.</param>
-	/// <returns>The result instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private ContentDialog CreateErrorDialog(string title, string message)
-		=> new()
-		{
-			XamlRoot = XamlRoot,
-			Title = title,
-			Content = message,
-			CloseButtonText = R["Close"],
-			DefaultButton = ContentDialogButton.Close
-		};
-
-	/// <summary>
 	/// To backup a preference file.
 	/// </summary>
 	/// <returns>The task that handles the current operation.</returns>
@@ -227,7 +210,7 @@ public sealed partial class SettingsPage : Page
 		// Failed to backup.
 		string a = R["SettingsPage_BackupPreferenceFailed1"]!;
 		string b = R["SettingsPage_BackupPreferenceFailed2"]!;
-		await CreateErrorDialog(R["Info"]!, $"{a}{fileName}{b}").ShowAsync();
+		await SimpleControlFactory.CreateErrorDialog(this, R["Info"]!, $"{a}{fileName}{b}").ShowAsync();
 	}
 
 

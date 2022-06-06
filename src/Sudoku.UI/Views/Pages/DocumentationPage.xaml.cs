@@ -23,23 +23,6 @@ public sealed partial class DocumentationPage : Page
 
 
 	/// <summary>
-	/// Creates a <see cref="ContentDialog"/> instance.
-	/// </summary>
-	/// <param name="title">The title.</param>
-	/// <param name="message">The message.</param>
-	/// <returns>The result instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private ContentDialog CreateErrorDialog(string title, string message)
-		=> new()
-		{
-			XamlRoot = XamlRoot,
-			Title = title,
-			Content = message,
-			CloseButtonText = R["Close"],
-			DefaultButton = ContentDialogButton.Close
-		};
-
-	/// <summary>
 	/// Loads the local documentation file.
 	/// </summary>
 	/// <returns>The task that operates the current method.</returns>
@@ -58,7 +41,8 @@ public sealed partial class DocumentationPage : Page
 		}
 		catch (Exception ex)
 		{
-			await CreateErrorDialog(
+			await SimpleControlFactory.CreateErrorDialog(
+				this,
 				R["DocumentationPage_FailedToLoadFile"]!,
 				$"""
 				{R["DocumentationPage_FailedToLoadFileDialogContent"]!}
@@ -136,7 +120,8 @@ public sealed partial class DocumentationPage : Page
 			return;
 		}
 
-		await CreateErrorDialog(
+		await SimpleControlFactory.CreateErrorDialog(
+			this,
 			R["DocumentationPage_FailedToLoadFile"]!,
 			R["DocumentationPage_MarkdownFileNotFound"]!
 		).ShowAsync();
