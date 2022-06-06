@@ -20,8 +20,6 @@
 
 [![bilibili](https://img.shields.io/badge/dynamic/json?color=%23fb7299&label=bilibili&logo=bilibili&query=%24.data.follower&suffix=%20followers&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Frelation%2Fstat%3Fvmid%3D23736703)](https://space.bilibili.com/23736703)
 
-> Most of codes in this repo obeys MIT license, but except `Sudoku.Recognition`: that project is copied and modified from another repo using LGPLv2.1 open source license. For more information please visit that project to check the open-source license.
-
 ## Introduction
 
 A sudoku handling SDK using brute forces and logical techniques. Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
@@ -81,6 +79,18 @@ The program is being under construction now!
 Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the [MIT license](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE). However, due to the copy of the GitHub repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms. Please visit the following part "Basic Information" for learning about more details.
 
 In addition, this repo may update **frequently** (At least 1 commit in a day).
+
+## Open source license
+
+### Codes
+
+The codes in this repository uses MIT license, which means you should mention the copyright of the author of the repository if you want to use code snippet in this repository.
+
+However, one project is an exception. `Sudoku.Recognition` copies the code from another project, which uses the open-source lisence LGPL v2.1. For more information please check the license file stored in the folder `src/Sudoku.Recognition`.
+
+### Wiki pages
+
+The repository also lists many wiki pages, which are stored in the folder `docs`. In addition, files `README.md` and `README-zh-cn.md` (as Chinese translation version) are also included as wiki pages. Those pages uses CC-BY-4.0 license to constraint your usage and copyright statements on this repository. You should mention the copyright of the author in this repository and give the state changes after modified the content in the copied one if you want to use the Wiki pages.
 
 ## To-do List
 
