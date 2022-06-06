@@ -10,6 +10,11 @@
 internal sealed partial class CellDigit : DrawingElement
 {
 	/// <summary>
+	/// Indicates the cell status.
+	/// </summary>
+	private bool? _isGiven;
+
+	/// <summary>
 	/// The inner text block.
 	/// </summary>
 	private readonly TextBlock _textBlock;
@@ -17,20 +22,15 @@ internal sealed partial class CellDigit : DrawingElement
 	/// <summary>
 	/// The user preference.
 	/// </summary>
-	private readonly UserPreference _userPreference;
-
-	/// <summary>
-	/// Indicates the cell status.
-	/// </summary>
-	private bool? _isGiven;
+	private readonly IDrawingPreference _preference;
 
 
 	/// <summary>
 	/// Initializes a <see cref="CellDigit"/> instance via the details.
 	/// </summary>
-	/// <param name="userPreference">The user preference.</param>
+	/// <param name="preference">The user preference.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellDigit(UserPreference userPreference) : this(byte.MaxValue, false, userPreference)
+	public CellDigit(IDrawingPreference preference) : this(byte.MaxValue, false, preference)
 	{
 	}
 
@@ -44,27 +44,27 @@ internal sealed partial class CellDigit : DrawingElement
 	/// <param name="isGiven">
 	/// Indicates whether the cell is given. If <see langword="false"/>, modifiable value.
 	/// </param>
-	/// <param name="userPreference">The user preference.</param>
+	/// <param name="preference">The user preference.</param>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="digit"/> is not 255 and not in range 0 to 8.
 	/// </exception>
-	public CellDigit(byte digit, bool? isGiven, UserPreference userPreference)
+	public CellDigit(byte digit, bool? isGiven, IDrawingPreference preference)
 	{
 		Argument.ThrowIfFalse(digit is < 9 or byte.MaxValue);
 
-		(_userPreference, _isGiven) = (userPreference, isGiven);
+		(_preference, _isGiven) = (preference, isGiven);
 		_textBlock = new()
 		{
 			Text = digit == byte.MaxValue ? string.Empty : (digit + 1).ToString(),
-			FontSize = 60 * userPreference.ValueFontScale,
-			FontFamily = new(userPreference.ValueFontName),
+			FontSize = 60 * preference.ValueFontScale,
+			FontFamily = new(preference.ValueFontName),
 			TextAlignment = TextAlignment.Center,
 			HorizontalTextAlignment = TextAlignment.Center,
 			Foreground = new SolidColorBrush(isGiven switch
 			{
-				true => userPreference.GivenColor,
-				false => userPreference.ModifiableColor,
-				_ => userPreference.CellDeltaColor
+				true => preference.GivenColor,
+				false => preference.ModifiableColor,
+				_ => preference.CellDeltaColor
 			})
 		};
 	}
@@ -96,16 +96,17 @@ internal sealed partial class CellDigit : DrawingElement
 		get => _isGiven;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			_isGiven = value;
-			_textBlock.Foreground = new SolidColorBrush(value switch
-			{
-				true => _userPreference.GivenColor,
-				false => _userPreference.ModifiableColor,
-				_ => _userPreference.CellDeltaColor
-			});
-		}
+		set => (_isGiven, _textBlock.Foreground) = (
+			value,
+			new SolidColorBrush(
+				value switch
+				{
+					true => _preference.GivenColor,
+					false => _preference.ModifiableColor,
+					_ => _preference.CellDeltaColor
+				}
+			)
+		);
 	}
 
 	/// <summary>
@@ -153,12 +154,12 @@ internal sealed partial class CellDigit : DrawingElement
 	public string FontName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _userPreference.ValueFontName;
+		get => _preference.ValueFontName;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			_userPreference.ValueFontName = value;
+			_preference.ValueFontName = value;
 			_textBlock.FontFamily = new(value);
 		}
 	}
@@ -169,12 +170,12 @@ internal sealed partial class CellDigit : DrawingElement
 	public Color GivenColor
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _userPreference.GivenColor;
+		get => _preference.GivenColor;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			_userPreference.GivenColor = value;
+			_preference.GivenColor = value;
 			if (_isGiven is true)
 			{
 				_textBlock.Foreground = new SolidColorBrush(value);
@@ -188,12 +189,12 @@ internal sealed partial class CellDigit : DrawingElement
 	public Color ModifiableColor
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _userPreference.ModifiableColor;
+		get => _preference.ModifiableColor;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			_userPreference.ModifiableColor = value;
+			_preference.ModifiableColor = value;
 			if (_isGiven is false)
 			{
 				_textBlock.Foreground = new SolidColorBrush(value);
@@ -207,12 +208,12 @@ internal sealed partial class CellDigit : DrawingElement
 	public Color CellDeltaColor
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _userPreference.CellDeltaColor;
+		get => _preference.CellDeltaColor;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			_userPreference.CellDeltaColor = value;
+			_preference.CellDeltaColor = value;
 			if (_isGiven is null)
 			{
 				_textBlock.Foreground = new SolidColorBrush(value);

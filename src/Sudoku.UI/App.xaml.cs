@@ -24,7 +24,7 @@ public partial class App : Application
 	/// <summary>
 	/// Indicates the user preference instance.
 	/// </summary>
-	internal UserPreference UserPreference { get; } = new();
+	internal Preference UserPreference { get; } = new();
 
 
 	/// <summary>

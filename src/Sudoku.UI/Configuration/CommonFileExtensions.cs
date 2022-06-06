@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI;
+﻿namespace Sudoku.UI.Configuration;
 
 /// <summary>
 /// Defines the constants that are the common file extensions.

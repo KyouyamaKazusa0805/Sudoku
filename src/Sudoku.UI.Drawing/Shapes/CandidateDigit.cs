@@ -16,14 +16,14 @@ internal sealed partial class CandidateDigit : DrawingElement
 	private readonly GridLayout _grid;
 
 	/// <summary>
-	/// Indicates the user preference.
-	/// </summary>
-	private readonly UserPreference _userPreference;
-
-	/// <summary>
 	/// Indicates the digit blocks.
 	/// </summary>
 	private readonly TextBlock[] _digitBlocks = new TextBlock[9];
+
+	/// <summary>
+	/// Indicates the user preference.
+	/// </summary>
+	private readonly IDrawingPreference _preference;
 
 	/// <summary>
 	/// Indicates the candidate mask.
@@ -39,9 +39,9 @@ internal sealed partial class CandidateDigit : DrawingElement
 	/// <summary>
 	/// Initializes a <see cref="CandidateDigit"/> instance via the details.
 	/// </summary>
-	/// <param name="userPreference">The user preference.</param>
+	/// <param name="preference">The user preference.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CandidateDigit(UserPreference userPreference) : this(511, 0, userPreference)
+	public CandidateDigit(IDrawingPreference preference) : this(511, 0, preference)
 	{
 	}
 
@@ -50,21 +50,17 @@ internal sealed partial class CandidateDigit : DrawingElement
 	/// </summary>
 	/// <param name="candidateMask">The candidate mask.</param>
 	/// <param name="wrongDigitMask">The wrong digits mask.</param>
-	/// <param name="userPreference">The user preference.</param>
+	/// <param name="preference">The user preference.</param>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="candidateMask"/> is negative number or greater than 511.
 	/// </exception>
-	public CandidateDigit(short candidateMask, short wrongDigitMask, UserPreference userPreference)
+	public CandidateDigit(short candidateMask, short wrongDigitMask, IDrawingPreference preference)
 	{
-		_candidateMask = candidateMask is >= 0 and <= 511
-			? candidateMask
-			: throw new ArgumentOutOfRangeException(nameof(candidateMask));
-		_wrongDigitMask = wrongDigitMask is >= 0 and <= 511
-			? wrongDigitMask
-			: throw new ArgumentOutOfRangeException(nameof(wrongDigitMask));
+		Argument.ThrowIfFalse(candidateMask is >= 0 and <= 511);
+		Argument.ThrowIfFalse(wrongDigitMask is >= 0 and <= 511);
 
-		_userPreference = userPreference;
-		var grid = new GridLayout { Visibility = userPreference.ShowCandidates ? Visibility.Visible : Visibility.Collapsed };
+		(_candidateMask, _wrongDigitMask, _preference) = (candidateMask, wrongDigitMask, preference);
+		var grid = new GridLayout { Visibility = preference.ShowCandidates ? Visibility.Visible : Visibility.Collapsed };
 		grid.RowDefinitions.Add(new());
 		grid.RowDefinitions.Add(new());
 		grid.RowDefinitions.Add(new());
@@ -77,15 +73,13 @@ internal sealed partial class CandidateDigit : DrawingElement
 			var digitBlock = new TextBlock
 			{
 				Text = (digit + 1).ToString(),
-				FontFamily = new(_userPreference.CandidateFontName),
-				FontSize = 60 * _userPreference.CandidateFontScale,
+				FontFamily = new(_preference.CandidateFontName),
+				FontSize = 60 * _preference.CandidateFontScale,
 				Visibility = ((candidateMask | wrongDigitMask) >> digit & 1) != 0 ? Visibility.Visible : Visibility.Collapsed,
 				TextAlignment = TextAlignment.Center,
 				HorizontalTextAlignment = TextAlignment.Center,
 				Foreground = new SolidColorBrush(
-					(wrongDigitMask >> digit & 1) != 0
-						? _userPreference.CandidateDeltaColor
-						: _userPreference.CandidateColor
+					(wrongDigitMask >> digit & 1) != 0 ? _preference.CandidateDeltaColor : _preference.CandidateColor
 				)
 			};
 
@@ -105,17 +99,17 @@ internal sealed partial class CandidateDigit : DrawingElement
 	public bool ShowCandidates
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _userPreference.ShowCandidates;
+		get => _preference.ShowCandidates;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_userPreference.ShowCandidates == value)
+			if (_preference.ShowCandidates == value)
 			{
 				return;
 			}
 
-			_userPreference.ShowCandidates = value;
+			_preference.ShowCandidates = value;
 			_grid.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
 		}
 	}
@@ -130,9 +124,7 @@ internal sealed partial class CandidateDigit : DrawingElement
 
 		set
 		{
-			_candidateMask = value is >= 0 and <= 511
-				? value
-				: throw new ArgumentOutOfRangeException(nameof(value));
+			_candidateMask = value is >= 0 and <= 511 ? value : throw new ArgumentOutOfRangeException(nameof(value));
 
 			for (byte digit = 0; digit < 9; digit++)
 			{
@@ -152,9 +144,7 @@ internal sealed partial class CandidateDigit : DrawingElement
 
 		set
 		{
-			_wrongDigitMask = value is >= 0 and <= 511
-				? value
-				: throw new ArgumentOutOfRangeException(nameof(value));
+			_wrongDigitMask = value is >= 0 and <= 511 ? value : throw new ArgumentOutOfRangeException(nameof(value));
 
 			for (byte digit = 0; digit < 9; digit++)
 			{
@@ -163,8 +153,8 @@ internal sealed partial class CandidateDigit : DrawingElement
 					((_candidateMask | value) >> digit & 1) != 0 ? Visibility.Visible : Visibility.Collapsed;
 				current.Foreground = new SolidColorBrush(
 					(_wrongDigitMask >> digit & 1) != 0
-						? _userPreference.CandidateDeltaColor
-						: _userPreference.CandidateColor
+						? _preference.CandidateDeltaColor
+						: _preference.CandidateColor
 				);
 			}
 		}

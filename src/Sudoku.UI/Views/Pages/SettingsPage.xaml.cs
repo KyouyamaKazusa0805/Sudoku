@@ -39,32 +39,32 @@ public sealed partial class SettingsPage : Page
 				{
 					new ToggleSwitchSettingItem(
 						R["SettingsPage_ItemName_ShowCandidates"]!,
-						nameof(UserPreference.ShowCandidates)
+						nameof(Preference.ShowCandidates)
 					),
 					new ToggleSwitchSettingItem(
 						R["SettingsPage_ItemName_ShowCandidateBorderLines"]!,
-						nameof(UserPreference.ShowCandidateBorderLines)
+						nameof(Preference.ShowCandidateBorderLines)
 					),
 					new ToggleSwitchSettingItem(
 						R["SettingsPage_ItemName_EnableDeltaValuesDisplaying"]!,
 						R["SettingsPage_ItemDescription_EnableDeltaValuesDisplaying"]!,
-						nameof(UserPreference.EnableDeltaValuesDisplaying)
+						nameof(Preference.EnableDeltaValuesDisplaying)
 					),
 					new FontPickerSettingItem(
 						R["SettingsPage_ItemName_ValueFontScale"]!,
 						R["SettingsPage_ItemDescription_ValueFontScale"]!,
-						nameof(UserPreference.ValueFontName)
+						nameof(Preference.ValueFontName)
 					)
 					{
-						FontScalePropertyName = nameof(UserPreference.ValueFontScale)
+						FontScalePropertyName = nameof(Preference.ValueFontScale)
 					},
 					new FontPickerSettingItem(
 						R["SettingsPage_ItemName_CandidateFontScale"]!,
 						R["SettingsPage_ItemDescription_CandidateFontScale"]!,
-						nameof(UserPreference.CandidateFontName)
+						nameof(Preference.CandidateFontName)
 					)
 					{
-						FontScalePropertyName = nameof(UserPreference.CandidateFontScale)
+						FontScalePropertyName = nameof(Preference.CandidateFontScale)
 					}
 				}
 			),
@@ -77,7 +77,7 @@ public sealed partial class SettingsPage : Page
 					new SliderSettingItem(
 						R["SettingsPage_ItemName_OutsideBorderWidth"]!,
 						R["SettingsPage_ItemDescription_OutsideBorderWidth"]!,
-						nameof(UserPreference.OutsideBorderWidth),
+						nameof(Preference.OutsideBorderWidth),
 						stepFrequency: .1,
 						tickFrequency: .3,
 						minValue: 0,
@@ -85,7 +85,7 @@ public sealed partial class SettingsPage : Page
 					),
 					new SliderSettingItem(
 						R["SettingsPage_ItemName_BlockBorderWidth"]!,
-						nameof(UserPreference.BlockBorderWidth),
+						nameof(Preference.BlockBorderWidth),
 						stepFrequency: .5,
 						tickFrequency: .5,
 						minValue: 0,
@@ -93,7 +93,7 @@ public sealed partial class SettingsPage : Page
 					),
 					new SliderSettingItem(
 						R["SettingsPage_ItemName_CellBorderWidth"]!,
-						nameof(UserPreference.CellBorderWidth),
+						nameof(Preference.CellBorderWidth),
 						stepFrequency: .5,
 						tickFrequency: .5,
 						minValue: 0,
@@ -102,7 +102,7 @@ public sealed partial class SettingsPage : Page
 					new SliderSettingItem(
 						R["SettingsPage_ItemName_CandidateBorderWidth"]!,
 						R["SettingsPage_ItemDescription_CandidateBorderWidth"]!,
-						nameof(UserPreference.CandidateBorderWidth),
+						nameof(Preference.CandidateBorderWidth),
 						stepFrequency: .1,
 						tickFrequency: .3,
 						minValue: 0,
@@ -110,42 +110,42 @@ public sealed partial class SettingsPage : Page
 					),
 					new ColorPickerSettingItem(
 						R["SettingsPage_ItemName_OutsideBorderColor"]!,
-						nameof(UserPreference.OutsideBorderColor)
+						nameof(Preference.OutsideBorderColor)
 					),
 					new ColorPickerSettingItem(
 						R["SettingsPage_ItemName_BlockBorderColor"]!,
-						nameof(UserPreference.BlockBorderColor)
+						nameof(Preference.BlockBorderColor)
 					),
 					new ColorPickerSettingItem(
 						R["SettingsPage_ItemName_CellBorderColor"]!,
-						nameof(UserPreference.CellBorderColor)
+						nameof(Preference.CellBorderColor)
 					),
 					new ColorPickerSettingItem(
 						R["SettingsPage_ItemName_CandidateBorderColor"]!,
 						R["SettingsPage_ItemDescription_CandidateBorderColor"]!,
-						nameof(UserPreference.CandidateBorderColor)
+						nameof(Preference.CandidateBorderColor)
 					),
 					new ColorPickerSettingItem(
 						R["SettingsPage_ItemName_GivenColor"]!,
-						nameof(UserPreference.GivenColor)
+						nameof(Preference.GivenColor)
 					),
 					new ColorPickerSettingItem(
 						R["SettingsPage_ItemName_ModifiableColor"]!,
-						nameof(UserPreference.ModifiableColor)
+						nameof(Preference.ModifiableColor)
 					),
 					new ColorPickerSettingItem(
 						R["SettingsPage_ItemName_CandidateColor"]!,
-						nameof(UserPreference.CandidateColor)
+						nameof(Preference.CandidateColor)
 					),
 					new ColorPickerSettingItem(
 						R["SettingsPage_ItemName_CellDeltaColor"]!,
 						R["SettingsPage_ItemDescription_CellDeltaColor"]!,
-						nameof(UserPreference.CellDeltaColor)
+						nameof(Preference.CellDeltaColor)
 					),
 					new ColorPickerSettingItem(
 						R["SettingsPage_ItemName_CandidateDeltaColor"]!,
 						R["SettingsPage_ItemDescription_CandidateDeltaColor"]!,
-						nameof(UserPreference.CandidateDeltaColor)
+						nameof(Preference.CandidateDeltaColor)
 					)
 				}
 			),
@@ -156,7 +156,7 @@ public sealed partial class SettingsPage : Page
 				{
 					new ToggleSwitchSettingItem(
 						R["SettingsPage_ItemName_DescendingOrderedInfoBarBoard"]!,
-						nameof(UserPreference.DescendingOrderedInfoBarBoard)
+						nameof(Preference.DescendingOrderedInfoBarBoard)
 					)
 				}
 			)
@@ -210,9 +210,7 @@ public sealed partial class SettingsPage : Page
 				new JsonSerializerOptions
 				{
 					WriteIndented = true,
-					IncludeFields = true,
 					IgnoreReadOnlyProperties = true,
-					IgnoreReadOnlyFields = true,
 					PropertyNamingPolicy = JsonNamingPolicy.CamelCase
 				}
 			)

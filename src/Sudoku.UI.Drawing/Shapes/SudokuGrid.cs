@@ -22,11 +22,6 @@ public sealed partial class SudokuGrid : DrawingElement
 	private readonly CandidateDigit[] _candidateDigits = new CandidateDigit[81];
 
 	/// <summary>
-	/// Indicates the user preference used.
-	/// </summary>
-	private readonly UserPreference _userPreference;
-
-	/// <summary>
 	/// Indicates the stacks to store the undoing and redoing steps.
 	/// </summary>
 	private readonly Stack<Grid> _undoSteps = new(), _redoSteps = new();
@@ -35,6 +30,11 @@ public sealed partial class SudokuGrid : DrawingElement
 	/// Indicates the callback method that invokes when the undoing and redoing steps are updated.
 	/// </summary>
 	private readonly Action? _undoRedoStepsUpdatedCallback;
+
+	/// <summary>
+	/// Indicates the user preference used.
+	/// </summary>
+	private readonly IDrawingPreference _preference;
 
 	/// <summary>
 	/// Indicates the pane size.
@@ -55,15 +55,15 @@ public sealed partial class SudokuGrid : DrawingElement
 	/// <summary>
 	/// Initializes a <see cref="SudokuGrid"/> instance via the details.
 	/// </summary>
-	/// <param name="userPreference">The user preference instance.</param>
+	/// <param name="preference">The user preference instance.</param>
 	/// <param name="paneSize">The pane size.</param>
 	/// <param name="outsideOffset">The outside offset.</param>
 	/// <param name="elementUpdatedCallback">
 	/// The callback method that triggers when the inner undo-redo steps are updated.
 	/// </param>
 	public SudokuGrid(
-		UserPreference userPreference, double paneSize, double outsideOffset, Action? elementUpdatedCallback) :
-		this(Grid.Empty, userPreference, paneSize, outsideOffset, elementUpdatedCallback)
+		IDrawingPreference preference, double paneSize, double outsideOffset, Action? elementUpdatedCallback) :
+		this(Grid.Empty, preference, paneSize, outsideOffset, elementUpdatedCallback)
 	{
 	}
 
@@ -71,19 +71,24 @@ public sealed partial class SudokuGrid : DrawingElement
 	/// Initializes a <see cref="SudokuGrid"/> instance via the details.
 	/// </summary>
 	/// <param name="grid">The <see cref="Grid"/> instance.</param>
-	/// <param name="userPreference">The user preference.</param>
+	/// <param name="preference">The user preference.</param>
 	/// <param name="paneSize">The pane size.</param>
 	/// <param name="outsideOffset">The outside offset.</param>
 	/// <param name="elementUpdatedCallback">
 	/// The callback method that triggers when the inner undo-redo steps are updated.
 	/// </param>
 	public SudokuGrid(
-		in Grid grid, UserPreference userPreference, double paneSize, double outsideOffset,
+		in Grid grid, IDrawingPreference preference, double paneSize, double outsideOffset,
 		Action? elementUpdatedCallback)
 	{
-		(_userPreference, _grid, _paneSize, _outsideOffset, _gridLayout, _undoRedoStepsUpdatedCallback) = (
-			userPreference, grid, paneSize, outsideOffset, initializeGridLayout(paneSize, outsideOffset),
-			elementUpdatedCallback);
+		(_preference, _grid, _paneSize, _outsideOffset, _gridLayout, _undoRedoStepsUpdatedCallback) = (
+			preference,
+			grid,
+			paneSize,
+			outsideOffset,
+			initializeGridLayout(paneSize, outsideOffset),
+			elementUpdatedCallback
+		);
 
 		// Initializes values.
 		initializeValues();
@@ -117,14 +122,14 @@ public sealed partial class SudokuGrid : DrawingElement
 			for (int i = 0; i < 81; i++)
 			{
 				ref var p = ref _cellDigits[i];
-				p = new(userPreference);
+				p = new(preference);
 				var control1 = p.GetControl();
 				GridLayout.SetRow(control1, i / 9);
 				GridLayout.SetColumn(control1, i % 9);
 				_gridLayout.Children.Add(control1);
 
 				ref var q = ref _candidateDigits[i];
-				q = new(userPreference);
+				q = new(preference);
 				var control2 = q.GetControl();
 				GridLayout.SetRow(control2, i / 9);
 				GridLayout.SetColumn(control2, i % 9);
@@ -140,17 +145,17 @@ public sealed partial class SudokuGrid : DrawingElement
 	public bool ShowCandidates
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _userPreference.ShowCandidates;
+		get => _preference.ShowCandidates;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_userPreference.ShowCandidates == value)
+			if (_preference.ShowCandidates == value)
 			{
 				return;
 			}
 
-			_userPreference.ShowCandidates = value;
+			_preference.ShowCandidates = value;
 			Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.ShowCandidates = value);
 		}
 	}
@@ -439,7 +444,7 @@ public sealed partial class SudokuGrid : DrawingElement
 					// Checks the correctness of the candidates.
 					// If a certain digit has been wrongly removed from the grid, we should display it
 					// using a different color if enabled the delta view.
-					if (_userPreference.EnableDeltaValuesDisplaying
+					if (_preference.EnableDeltaValuesDisplaying
 						&& _grid.ResetGrid.Solution is { IsUndefined: false } solution)
 					{
 						// Checks the wrong digits.
@@ -463,7 +468,7 @@ public sealed partial class SudokuGrid : DrawingElement
 					// Checks the correctness of the digit.
 					// If the digit is wrong, we should display it using a different color
 					// if enabled the delta view.
-					if (_userPreference.EnableDeltaValuesDisplaying)
+					if (_preference.EnableDeltaValuesDisplaying)
 					{
 						if (_grid.ResetGrid.Solution is { IsUndefined: false } solution)
 						{

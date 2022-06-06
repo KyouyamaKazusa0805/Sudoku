@@ -4,6 +4,126 @@
         <name>Sudoku.UI.Drawing</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.UI.Drawing.IDrawingPreference">
+            <summary>
+            Defines the drawing-related preferences in the program.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.ShowCandidates">
+            <summary>
+            Indicates whether the current grid displays the candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.ShowCandidateBorderLines">
+            <summary>
+            Indicates whether the candidate border lines will be shown in the sudoku pane.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.EnableDeltaValuesDisplaying">
+            <summary>
+            Indicates whether the sudoku grid pane will display for wrong digits (cell or candidate values),
+            using the different color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.DescendingOrderedInfoBarBoard">
+            <summary>
+            <para>
+            Indicates whether the info bar controls will always be updated and inserted into the first place
+            of the whole info bar board. If <see langword="true"/>, descending ordered mode will be enabled,
+            the behavior will be like the above; otherwise, the new controls will be appended into the last place
+            of the board.
+            </para>
+            <para>
+            Sets the value to <see langword="true"/> may help you check new hints more quickly than
+            the case setting the value to <see langword="false"/>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.OutsideBorderWidth">
+            <summary>
+            Indicates the outside border width. The value cannot be negative.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.BlockBorderWidth">
+            <summary>
+            Indicates the width of the block border lines. The value cannot be negative.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CellBorderWidth">
+            <summary>
+            Indicates the width of the cell border lines. The value cannot be negative.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CandidateBorderWidth">
+            <summary>
+            Indicates the width of the candidate border lines. The value cannot be negative.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.ValueFontScale">
+            <summary>
+            Indicates the value font scale. The value must be between 0 and 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CandidateFontScale">
+            <summary>
+            Indicates the candidate font scale.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.ValueFontName">
+            <summary>
+            Indicates the value font name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CandidateFontName">
+            <summary>
+            Indicates the candidate font name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.OutsideBorderColor">
+            <summary>
+            Indicates the color of the outside borders.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.BlockBorderColor">
+            <summary>
+            Indicates the color of the block borders.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CellBorderColor">
+            <summary>
+            Indicates the color of the cell borders.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CandidateBorderColor">
+            <summary>
+            Indicates the color of the candidate borders.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.GivenColor">
+            <summary>
+            Indicates the color of the given values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.ModifiableColor">
+            <summary>
+            Indicates the color of the modifiable values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CandidateColor">
+            <summary>
+            Indicates the color of the candidate values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CellDeltaColor">
+            <summary>
+            Indicates the color of the wrong cell value input.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CandidateDeltaColor">
+            <summary>
+            Indicates the color of the wrong candidate value input.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
             Stores a set of methods on handling point conversions.
@@ -214,14 +334,14 @@
             Indicates the inner grid.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._userPreference">
-            <summary>
-            Indicates the user preference.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._digitBlocks">
             <summary>
             Indicates the digit blocks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._preference">
+            <summary>
+            Indicates the user preference.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._candidateMask">
@@ -234,19 +354,19 @@
             Indicates the wrong digit mask.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(Sudoku.UI.Drawing.UserPreference)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(Sudoku.UI.Drawing.IDrawingPreference)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateDigit"/> instance via the details.
             </summary>
-            <param name="userPreference">The user preference.</param>
+            <param name="preference">The user preference.</param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(System.Int16,System.Int16,Sudoku.UI.Drawing.UserPreference)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(System.Int16,System.Int16,Sudoku.UI.Drawing.IDrawingPreference)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateDigit"/> instance via the details.
             </summary>
             <param name="candidateMask">The candidate mask.</param>
             <param name="wrongDigitMask">The wrong digits mask.</param>
-            <param name="userPreference">The user preference.</param>
+            <param name="preference">The user preference.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="candidateMask"/> is negative number or greater than 511.
             </exception>
@@ -373,28 +493,28 @@
             Defines a drawing element that displays for a digit that is the cell-levelled digit.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._textBlock">
-            <summary>
-            The inner text block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._userPreference">
-            <summary>
-            The user preference.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._isGiven">
             <summary>
             Indicates the cell status.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(Sudoku.UI.Drawing.UserPreference)">
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._textBlock">
+            <summary>
+            The inner text block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._preference">
+            <summary>
+            The user preference.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(Sudoku.UI.Drawing.IDrawingPreference)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellDigit"/> instance via the details.
             </summary>
-            <param name="userPreference">The user preference.</param>
+            <param name="preference">The user preference.</param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(System.Byte,System.Nullable{System.Boolean},Sudoku.UI.Drawing.UserPreference)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(System.Byte,System.Nullable{System.Boolean},Sudoku.UI.Drawing.IDrawingPreference)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellDigit"/> instance via the details.
             </summary>
@@ -405,7 +525,7 @@
             <param name="isGiven">
             Indicates whether the cell is given. If <see langword="false"/>, modifiable value.
             </param>
-            <param name="userPreference">The user preference.</param>
+            <param name="preference">The user preference.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="digit"/> is not 255 and not in range 0 to 8.
             </exception>
@@ -1553,11 +1673,6 @@
             Indicates the candidate digits.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._userPreference">
-            <summary>
-            Indicates the user preference used.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._undoSteps">
             <summary>
             Indicates the stacks to store the undoing and redoing steps.
@@ -1571,6 +1686,11 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._undoRedoStepsUpdatedCallback">
             <summary>
             Indicates the callback method that invokes when the undoing and redoing steps are updated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._preference">
+            <summary>
+            Indicates the user preference used.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._paneSize">
@@ -1588,23 +1708,23 @@
             Indicates the inner grid.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.UI.Drawing.UserPreference,System.Double,System.Double,System.Action)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.UI.Drawing.IDrawingPreference,System.Double,System.Double,System.Action)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
             </summary>
-            <param name="userPreference">The user preference instance.</param>
+            <param name="preference">The user preference instance.</param>
             <param name="paneSize">The pane size.</param>
             <param name="outsideOffset">The outside offset.</param>
             <param name="elementUpdatedCallback">
             The callback method that triggers when the inner undo-redo steps are updated.
             </param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.Concepts.Collections.Grid@,Sudoku.UI.Drawing.UserPreference,System.Double,System.Double,System.Action)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.Concepts.Collections.Grid@,Sudoku.UI.Drawing.IDrawingPreference,System.Double,System.Double,System.Action)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
             </summary>
             <param name="grid">The <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Grid"/> instance.</param>
-            <param name="userPreference">The user preference.</param>
+            <param name="preference">The user preference.</param>
             <param name="paneSize">The pane size.</param>
             <param name="outsideOffset">The outside offset.</param>
             <param name="elementUpdatedCallback">
@@ -1714,189 +1834,6 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="T:Sudoku.UI.Drawing.UserPreference">
-            <summary>
-            Defines the user preferences in the program.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.ShowCandidates">
-            <summary>
-            Indicates whether the current grid displays the candidates.
-            </summary>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.ShowCandidateBorderLines">
-            <summary>
-            Indicates whether the candidate border lines will be shown in the sudoku pane.
-            </summary>
-            <remarks>
-            The default value is <see langword="false"/>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.EnableDeltaValuesDisplaying">
-            <summary>
-            Indicates whether the sudoku grid pane will display for wrong digits (cell or candidate values),
-            using the different color.
-            </summary>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.DescendingOrderedInfoBarBoard">
-            <summary>
-            <para>
-            Indicates whether the info bar controls will always be updated and inserted into the first place
-            of the whole info bar board. If <see langword="true"/>, descending ordered mode will be enabled,
-            the behavior will be like the above; otherwise, the new controls will be appended into the last place
-            of the board.
-            </para>
-            <para>
-            Sets the value to <see langword="true"/> may help you check new hints more quickly than
-            the case setting the value to <see langword="false"/>.
-            </para>
-            </summary>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.OutsideBorderWidth">
-            <summary>
-            Indicates the outside border width. The value cannot be negative.
-            </summary>
-            <remarks>
-            The default value is <c>0</c>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.BlockBorderWidth">
-            <summary>
-            Indicates the width of the block border lines. The value cannot be negative.
-            </summary>
-            <remarks>
-            The default value is <c>4</c>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.CellBorderWidth">
-            <summary>
-            Indicates the width of the cell border lines. The value cannot be negative.
-            </summary>
-            <remarks>
-            The default value is <c>1</c>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.CandidateBorderWidth">
-            <summary>
-            Indicates the width of the candidate border lines. The value cannot be negative.
-            </summary>
-            <remarks>
-            The default value is <c>1</c>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.ValueFontScale">
-            <summary>
-            Indicates the value font scale. The value must be between 0 and 1.
-            </summary>
-            <remarks>
-            The default value is <c>.8</c>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.CandidateFontScale">
-            <summary>
-            Indicates the candidate font scale.
-            </summary>
-            <remarks>
-            The default value is <c>.25</c>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.ValueFontName">
-            <summary>
-            Indicates the value font name.
-            </summary>
-            <remarks>
-            The default value is <c>"Tahoma"</c>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.CandidateFontName">
-            <summary>
-            Indicates the candidate font name.
-            </summary>
-            <remarks>
-            The default value is <c>"Tahoma"</c>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.OutsideBorderColor">
-            <summary>
-            Indicates the color of the outside borders.
-            </summary>
-            <remarks>
-            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.BlockBorderColor">
-            <summary>
-            Indicates the color of the block borders.
-            </summary>
-            <remarks>
-            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.CellBorderColor">
-            <summary>
-            Indicates the color of the cell borders.
-            </summary>
-            <remarks>
-            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.CandidateBorderColor">
-            <summary>
-            Indicates the color of the candidate borders.
-            </summary>
-            <remarks>
-            The default value is <c>#FFD3D3D3</c> (i.e. <see cref="P:Microsoft.UI.Colors.LightGray"/>).
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.GivenColor">
-            <summary>
-            Indicates the color of the given values.
-            </summary>
-            <remarks>
-            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.ModifiableColor">
-            <summary>
-            Indicates the color of the modifiable values.
-            </summary>
-            <remarks>
-            The default value is <c>#FF0000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/>).
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.CandidateColor">
-            <summary>
-            Indicates the color of the candidate values.
-            </summary>
-            <remarks>
-            The default value is <c>#FF696969</c> (i.e. <see cref="P:Microsoft.UI.Colors.DimGray"/>).
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.CellDeltaColor">
-            <summary>
-            Indicates the color of the wrong cell value input.
-            </summary>
-            <remarks>
-            The default value is <c>#FFFF0000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Red"/>).
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.UserPreference.CandidateDeltaColor">
-            <summary>
-            Indicates the color of the wrong candidate value input.
-            </summary>
-            <remarks>
-            The default value is <c>#FFFFB9B9</c> (i.e. <see cref="T:Windows.UI.Color"/> {255, 255, 185, 185}).
-            </remarks>
         </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE8A62F54E">
             <summary>

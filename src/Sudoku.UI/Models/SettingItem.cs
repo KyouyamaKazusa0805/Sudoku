@@ -48,7 +48,7 @@ public abstract class SettingItem
 	protected T GetPreference<T>()
 	{
 		var instance = ((App)Application.Current).UserPreference;
-		return (T)typeof(UserPreference).GetField(PreferenceValueName)!.GetValue(instance)!;
+		return (T)typeof(Preference).GetField(PreferenceValueName)!.GetValue(instance)!;
 	}
 
 	/// <summary>
@@ -58,6 +58,6 @@ public abstract class SettingItem
 	protected void SetPreference<T>(T value)
 	{
 		var instance = ((App)Application.Current).UserPreference;
-		typeof(UserPreference).GetField(PreferenceValueName)!.SetValue(instance, value);
+		typeof(Preference).GetField(PreferenceValueName)!.SetValue(instance, value);
 	}
 }

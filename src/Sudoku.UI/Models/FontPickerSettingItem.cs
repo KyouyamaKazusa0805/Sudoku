@@ -29,7 +29,7 @@ public sealed class FontPickerSettingItem : SettingItem
 	public double GetFontScalePreference()
 	{
 		var instance = ((App)Application.Current).UserPreference;
-		return (double)typeof(UserPreference).GetField(FontScalePropertyName)!.GetValue(instance)!;
+		return (double)typeof(Preference).GetField(FontScalePropertyName)!.GetValue(instance)!;
 	}
 
 	/// <inheritdoc cref="SettingItem.GetPreference{T}"/>
@@ -39,7 +39,7 @@ public sealed class FontPickerSettingItem : SettingItem
 	public void SetFontScalePreference(double value)
 	{
 		var instance = ((App)Application.Current).UserPreference;
-		typeof(UserPreference).GetField(FontScalePropertyName)!.SetValue(instance, value);
+		typeof(Preference).GetField(FontScalePropertyName)!.SetValue(instance, value);
 	}
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>
