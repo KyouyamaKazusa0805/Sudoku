@@ -2460,6 +2460,11 @@
             The table of pi-rotation.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Collections.GridTransformations.SwappableHouses">
+            <summary>
+            Indicates the swappable pairs, which means the swappable houses.
+            </summary>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.GridTransformations.MirrorLeftRight(Sudoku.Concepts.Collections.Grid@)">
             <summary>
             Mirror left-right the grid.
@@ -2525,8 +2530,8 @@
             <param name="houseIndex2">The house 2 to be swapped.</param>
             <returns>The result.</returns>
             <exception cref="T:System.ArgumentException">
-            Throws when two specified house argument is not in valid range (0..27)
-            or two houses are not in same house type.
+            Throws when two specified house argument is not in valid range (0..27),
+            two houses are not in same house type, or are not swappable.
             </exception>
         </member>
         <member name="T:Sudoku.Concepts.Collections.Handlers.ConclusionCollection">
@@ -6798,6 +6803,11 @@
             Indicates the empty grid characters.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.SwappableFactor">
+            <summary>
+            Indicates the swappable factor.
+            </summary>
+        </member>
         <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Solver">
             <inheritdoc cref="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.Solver"/>
         </member>
@@ -6895,6 +6905,11 @@
         </member>
         <member name="F:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.Solver">
             <inheritdoc cref="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.Solver"/>
+        </member>
+        <member name="F:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator._random">
+            <summary>
+            Indicates the random number generator.
+            </summary>
         </member>
         <member name="M:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>

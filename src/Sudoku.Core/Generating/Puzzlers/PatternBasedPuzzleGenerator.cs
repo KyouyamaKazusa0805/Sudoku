@@ -38,6 +38,11 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// </summary>
 	private static readonly char[] EmptyGridCharArray = Grid.EmptyString.ToCharArray();
 
+	/// <summary>
+	/// Indicates the swappable factor.
+	/// </summary>
+	private static readonly (int, int)[] SwappableFactor = { (0, 1), (0, 2), (1, 2) };
+
 	/// <inheritdoc cref="HardLikePuzzleGenerator.Solver"/>
 	private static readonly BitwiseSolver Solver = new();
 
@@ -196,17 +201,10 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <param name="grid">The grid.</param>
 	private void Shuffle(ref Grid grid)
 	{
-		for (int times = 0; times < 3; times++)
+		for (int times = 0; times < 6; times++)
 		{
-			int houseKind = _random.Next(3);
-			int house1 = houseKind * _random.Next(9);
-			int house2;
-			do
-			{
-				house2 = houseKind * _random.Next(9);
-			} while (house1 == house2);
-
-			grid = grid.SwapTwoHouses(house1, house2);
+			var ((a, b), baseHouse) = (SwappableFactor[_random.Next(3)], _random.Next(3, 9) * 3);
+			grid = grid.SwapTwoHouses(baseHouse + a, baseHouse + b);
 		}
 	}
 

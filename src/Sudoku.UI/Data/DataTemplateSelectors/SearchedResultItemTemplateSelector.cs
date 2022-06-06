@@ -8,6 +8,7 @@ public sealed class SearchedResultItemTemplateSelector : DataTemplateSelector
 	/// <summary>
 	/// Indicates the template that is used by the valid seared result.
 	/// </summary>
+	[DataTemplateModelType<SearchedResult>]
 	public DataTemplate PairInfoTemplate { get; set; } = null!;
 
 	/// <summary>
@@ -18,9 +19,18 @@ public sealed class SearchedResultItemTemplateSelector : DataTemplateSelector
 
 	/// <inheritdoc/>
 	protected override DataTemplate SelectTemplateCore(object item)
-		=> item switch
+	{
+		if (item is null)
 		{
-			SearchedResult => PairInfoTemplate,
-			_ => DefaultTemplate
-		};
+			return DefaultTemplate;
+		}
+
+		var itemType = item.GetType();
+		var query =
+			from pi in GetType().GetProperties()
+			let types = pi.GetGenericAttributeTypeArguments(typeof(DataTemplateModelTypeAttribute<>))
+			where types is [var type] && type == itemType
+			select pi;
+		return (DataTemplate)query.First().GetValue(this)!;
+	}
 }

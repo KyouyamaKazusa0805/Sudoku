@@ -11,16 +11,19 @@ public sealed class InfoBarDataTemplateSelector : DataTemplateSelector
 	/// <summary>
 	/// Indicates the data template that is used by the type <see cref="PlainMessage"/>.
 	/// </summary>
+	[DataTemplateModelType<PlainMessage>]
 	public DataTemplate PlainMessageTemplate { get; set; } = null!;
 
 	/// <summary>
 	/// Indicates the data template that is used by the type <see cref="HyperlinkMessage"/>.
 	/// </summary>
+	[DataTemplateModelType<HyperlinkMessage>]
 	public DataTemplate HyperlinkMessageTemplate { get; set; } = null!;
 
 	/// <summary>
 	/// Indicates the data template that is used by the type <see cref="ManualSolverResultMessage"/>.
 	/// </summary>
+	[DataTemplateModelType<ManualSolverResultMessage>]
 	public DataTemplate AnalysisResultTemplate { get; set; } = null!;
 
 
@@ -30,11 +33,13 @@ public sealed class InfoBarDataTemplateSelector : DataTemplateSelector
 	/// from <see cref="InfoBarMessage"/>.
 	/// </exception>
 	protected override DataTemplate SelectTemplateCore(object item)
-		=> item switch
-		{
-			PlainMessage => PlainMessageTemplate,
-			HyperlinkMessage => HyperlinkMessageTemplate,
-			ManualSolverResultMessage => AnalysisResultTemplate,
-			_ => throw new InvalidOperationException("The type is invalid.")
-		};
+	{
+		var itemType = item.GetType();
+		var query =
+			from pi in GetType().GetProperties()
+			let types = pi.GetGenericAttributeTypeArguments(typeof(DataTemplateModelTypeAttribute<>))
+			where types is [var type] && type == itemType
+			select pi;
+		return (DataTemplate)query.First().GetValue(this)!;
+	}
 }

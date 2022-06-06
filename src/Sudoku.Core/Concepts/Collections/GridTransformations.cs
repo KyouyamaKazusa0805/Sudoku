@@ -54,6 +54,15 @@ public static unsafe class GridTransformations
 		 8,  7,  6,  5,  4,  3,  2,  1,  0
 	};
 
+	/// <summary>
+	/// Indicates the swappable pairs, which means the swappable houses.
+	/// </summary>
+	private static readonly (int, int)[] SwappableHouses =
+	{
+		(9, 10), (9, 11), (10, 11), (12, 13), (12, 14), (13, 14), (15, 16), (15, 17), (16, 17),
+		(18, 19), (18, 20), (19, 20), (21, 22), (21, 23), (22, 23), (24, 25), (24, 26), (25, 26)
+	};
+
 
 	/// <summary>
 	/// Mirror left-right the grid.
@@ -63,16 +72,17 @@ public static unsafe class GridTransformations
 	public static Grid MirrorLeftRight(this in Grid @this)
 	{
 		var result = @this;
-		fixed (short* pThis = @this, pResult = result)
+		fixed (short* pResult = result)
 		{
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					pResult[i * 9 + j] = pThis[i * 9 + (8 - j)];
+					PointerMarshal.Swap(pResult + (i * 9 + j), pResult + (i * 9 + (8 - j)));
 				}
 			}
 		}
+
 		return result;
 	}
 
@@ -84,16 +94,17 @@ public static unsafe class GridTransformations
 	public static Grid MirrorTopBottom(this in Grid @this)
 	{
 		var result = @this;
-		fixed (short* pThis = @this, pResult = result)
+		fixed (short* pResult = result)
 		{
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					pResult[i * 9 + j] = pThis[(8 - i) * 9 + j];
+					PointerMarshal.Swap(pResult + (i * 9 + j), pResult + ((8 - i) * 9 + j));
 				}
 			}
 		}
+
 		return result;
 	}
 
@@ -105,16 +116,17 @@ public static unsafe class GridTransformations
 	public static Grid MirrorDiagonal(this in Grid @this)
 	{
 		var result = @this;
-		fixed (short* pThis = @this, pResult = result)
+		fixed (short* pResult = result)
 		{
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					pResult[i * 9 + j] = pThis[j * 9 + i];
+					PointerMarshal.Swap(pResult + (i * 9 + j), pResult + (j * 9 + i));
 				}
 			}
 		}
+
 		return result;
 	}
 
@@ -134,13 +146,13 @@ public static unsafe class GridTransformations
 	public static Grid MirrorAntidiagonal(this in Grid @this)
 	{
 		var result = @this;
-		fixed (short* pThis = @this, pResult = result)
+		fixed (short* pResult = result)
 		{
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					pResult[i * 9 + j] = pThis[(8 - j) * 9 + (8 - i)];
+					PointerMarshal.Swap(pResult + (i * 9 + j), pResult + ((8 - j) * 9 + (8 - i)));
 				}
 			}
 		}
@@ -155,7 +167,7 @@ public static unsafe class GridTransformations
 	/// <returns>The result.</returns>
 	public static Grid RotateClockwise(this in Grid @this)
 	{
-		var result = @this;
+		var result = Grid.Undefined;
 		fixed (short* pThis = @this, pResult = result)
 		{
 			for (int cell = 0; cell < 81; cell++)
@@ -174,7 +186,7 @@ public static unsafe class GridTransformations
 	/// <returns>The result.</returns>
 	public static Grid RotateCounterclockwise(this in Grid @this)
 	{
-		var result = @this;
+		var result = Grid.Undefined;
 		fixed (short* pThis = @this, pResult = result)
 		{
 			for (int cell = 0; cell < 81; cell++)
@@ -193,7 +205,7 @@ public static unsafe class GridTransformations
 	/// <returns>The result.</returns>
 	public static Grid RotatePi(this in Grid @this)
 	{
-		var result = @this;
+		var result = Grid.Undefined;
 		fixed (short* pThis = @this, pResult = result)
 		{
 			for (int cell = 0; cell < 81; cell++)
@@ -213,24 +225,28 @@ public static unsafe class GridTransformations
 	/// <param name="houseIndex2">The house 2 to be swapped.</param>
 	/// <returns>The result.</returns>
 	/// <exception cref="ArgumentException">
-	/// Throws when two specified house argument is not in valid range (0..27)
-	/// or two houses are not in same house type.
+	/// Throws when two specified house argument is not in valid range (0..27),
+	/// two houses are not in same house type, or are not swappable.
 	/// </exception>
 	public static Grid SwapTwoHouses(this in Grid @this, int houseIndex1, int houseIndex2)
 	{
 		Argument.ThrowIfFalse(houseIndex1 is >= 9 and < 27, "The specified argument is out of valid range.");
 		Argument.ThrowIfFalse(houseIndex2 is >= 9 and < 27, "The specified argument is out of valid range.");
 		Argument.ThrowIfFalse(houseIndex1.ToHouse() == houseIndex2.ToHouse(), "Two houses should be the same house type.");
+		Argument.ThrowIfFalse(Array.FindIndex(SwappableHouses, predicate) != -1);
 
 		var result = @this;
-		fixed (short* pThis = @this, pResult = result)
+		fixed (short* pResult = result)
 		{
 			for (int i = 0; i < 9; i++)
 			{
-				PointerMarshal.Swap(pResult + HouseCells[houseIndex1][i], pThis + HouseCells[houseIndex2][i]);
+				PointerMarshal.Swap(pResult + HouseCells[houseIndex1][i], pResult + HouseCells[houseIndex2][i]);
 			}
 		}
 
 		return result;
+
+
+		bool predicate((int, int) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
 	}
 }
