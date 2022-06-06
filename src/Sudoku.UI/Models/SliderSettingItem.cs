@@ -55,7 +55,7 @@ public sealed class SliderSettingItem : SettingItem
 	public double MaxValue { get; set; }
 
 
-	/// <inheritdoc cref="SettingItem.GetPreference{T}"/>
+	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	public double GetPreference() => GetPreference<double>();
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>

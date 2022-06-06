@@ -29,6 +29,15 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	public bool DescendingOrderedInfoBarBoard { get; set; } = true;
 
+	/// <summary>
+	/// Indicates whether the program will use zero character <c>'0'</c> as the placeholder to describe empty cells
+	/// in a sudoku grid that we should copied.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
+	public bool PlaceholderIsZero { get; set; } = true;
+
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>0</c>.

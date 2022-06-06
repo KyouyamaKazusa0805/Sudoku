@@ -50,6 +50,15 @@ public sealed partial class SettingsPage : Page
 						R["SettingsPage_ItemDescription_EnableDeltaValuesDisplaying"]!,
 						nameof(Preference.EnableDeltaValuesDisplaying)
 					),
+					new ToggleSwitchSettingItem(
+						R["SettingsPage_ItemName_PlaceholderIsZero"]!,
+						R["SettingsPage_ItemDescription_PlaceholderIsZero"]!,
+						nameof(Preference.PlaceholderIsZero)
+					)
+					{
+						OnContent = R["SettingsPage_ItemName_PlaceholderIsZero_OnContent"]!,
+						OffContent = R["SettingsPage_ItemName_PlaceholderIsZero_OffContent"]!
+					},
 					new FontPickerSettingItem(
 						R["SettingsPage_ItemName_ValueFontScale"]!,
 						R["SettingsPage_ItemDescription_ValueFontScale"]!,

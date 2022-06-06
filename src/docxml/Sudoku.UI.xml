@@ -117,6 +117,15 @@
             The default value is <see langword="true"/>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PlaceholderIsZero">
+            <summary>
+            Indicates whether the program will use zero character <c>'0'</c> as the placeholder to describe empty cells
+            in a sudoku grid that we should copied.
+            </summary>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Configuration.Preference.OutsideBorderWidth">
             <inheritdoc/>
             <remarks>
@@ -814,10 +823,24 @@
             </summary>
             <returns>The value of the preference.</returns>
         </member>
+        <member name="M:Sudoku.UI.Models.SettingItem.GetPreference``1(System.String)">
+            <summary>
+            Try to get the preference value from the current instance.
+            </summary>
+            <param name="name">The name of the property should be checked.</param>
+            <returns>The value of the preference.</returns>
+        </member>
         <member name="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)">
             <summary>
             Try to set the preference value to the current instance.
             </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0,System.String)">
+            <summary>
+            Try to set the preference value to the current instance.
+            </summary>
+            <param name="name">The name of the property should be checked.</param>
             <param name="value">The value.</param>
         </member>
         <member name="T:Sudoku.UI.Models.SliderSettingItem">
@@ -880,6 +903,16 @@
         </member>
         <member name="M:Sudoku.UI.Models.ToggleSwitchSettingItem.#ctor(System.String,System.String,System.String)">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Models.ToggleSwitchSettingItem.OnContent">
+            <summary>
+            Indicates the on content displayed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.ToggleSwitchSettingItem.OffContent">
+            <summary>
+            Indicates the off content displayed.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Models.ToggleSwitchSettingItem.GetPreference">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>

@@ -58,8 +58,7 @@
 														UpdateSourceTrigger=PropertyChanged,
 														BindBack=SetPreference}"
 													Margin="{StaticResource _rSettingItemMargin}"
-													OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
-													OffContent="{StaticResource ToggleSwitchDefaultOffContent}">
+													OnContent="{x:Bind OnContent}" OffContent="{x:Bind OffContent}">
 													<ToggleSwitch.Header>
 														<StackPanel>
 															<TextBlock

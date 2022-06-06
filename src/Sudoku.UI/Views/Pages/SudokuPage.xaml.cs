@@ -133,7 +133,7 @@ public sealed partial class SudokuPage : Page
 		}
 
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		dataPackage.SetText(grid.ToString("#"));
+		dataPackage.SetText(grid.ToString(((App)Application.Current).UserPreference.PlaceholderIsZero ? "0+:" : ".+:"));
 		Clipboard.SetContent(dataPackage);
 	}
 

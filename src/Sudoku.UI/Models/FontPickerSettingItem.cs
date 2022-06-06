@@ -25,22 +25,14 @@ public sealed class FontPickerSettingItem : SettingItem
 	public string FontScalePropertyName { get; set; } = null!;
 
 
-	/// <inheritdoc cref="SettingItem.GetPreference{T}"/>
-	public double GetFontScalePreference()
-	{
-		var instance = ((App)Application.Current).UserPreference;
-		return (double)typeof(Preference).GetField(FontScalePropertyName)!.GetValue(instance)!;
-	}
+	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
+	public double GetFontScalePreference() => GetPreference<double>(FontScalePropertyName);
 
-	/// <inheritdoc cref="SettingItem.GetPreference{T}"/>
+	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	public object GetFontNamePreference() => GetPreference<object>();
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>
-	public void SetFontScalePreference(double value)
-	{
-		var instance = ((App)Application.Current).UserPreference;
-		typeof(Preference).GetField(FontScalePropertyName)!.SetValue(instance, value);
-	}
+	public void SetFontScalePreference(double value) => SetPreference(value, FontScalePropertyName);
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>
 	public void SetFontNamePreference(object value) => SetPreference(value);

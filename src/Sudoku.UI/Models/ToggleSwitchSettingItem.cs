@@ -19,7 +19,18 @@ public sealed class ToggleSwitchSettingItem : SettingItem
 	}
 
 
-	/// <inheritdoc cref="SettingItem.GetPreference{T}"/>
+	/// <summary>
+	/// Indicates the on content displayed.
+	/// </summary>
+	public string OnContent { get; set; } = R["ToggleSwitchDefaultOnContent"]!;
+
+	/// <summary>
+	/// Indicates the off content displayed.
+	/// </summary>
+	public string OffContent { get; set; } = R["ToggleSwitchDefaultOffContent"]!;
+
+
+	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	public bool GetPreference() => GetPreference<bool>();
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>

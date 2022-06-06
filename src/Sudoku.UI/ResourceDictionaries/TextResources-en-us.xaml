@@ -82,6 +82,10 @@
 	<x:String x:Key="SettingsPage_GroupItemDescription_Miscellaneous">Other options</x:String>
 	<x:String x:Key="SettingsPage_ItemName_ShowCandidates">Show candidates</x:String>
 	<x:String x:Key="SettingsPage_ItemName_ShowCandidateBorderLines">Show candidate border lines</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero">Use zero '0' to describe empty cells as placeholders</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_PlaceholderIsZero">When copy sudoku grid code, if we set this option to true value, the empty cells will be displayed as a '0' character; otherwise, a dot '.'.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero_OnContent">Placeholder will be '0'</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero_OffContent">Placeholder will be '.'</x:String>
 	<x:String x:Key="SettingsPage_ItemName_EnableDeltaValuesDisplaying">Enable displaying for delta values</x:String>
 	<x:String x:Key="SettingsPage_ItemName_DescendingOrderedInfoBarBoard">Show board using descending order</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_EnableDeltaValuesDisplaying">This option will allow the program displaying for wrong digits you have filled using a different color with the basic one.</x:String>

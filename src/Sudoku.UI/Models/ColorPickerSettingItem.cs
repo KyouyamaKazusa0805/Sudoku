@@ -19,7 +19,7 @@ public sealed class ColorPickerSettingItem : SettingItem
 	}
 
 
-	/// <inheritdoc cref="SettingItem.GetPreference{T}"/>
+	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	public Color GetPreference() => GetPreference<Color>();
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>

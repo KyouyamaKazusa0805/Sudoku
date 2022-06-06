@@ -48,7 +48,18 @@ public abstract class SettingItem
 	protected T GetPreference<T>()
 	{
 		var instance = ((App)Application.Current).UserPreference;
-		return (T)typeof(Preference).GetField(PreferenceValueName)!.GetValue(instance)!;
+		return (T)typeof(Preference).GetProperty(PreferenceValueName)!.GetValue(instance)!;
+	}
+
+	/// <summary>
+	/// Try to get the preference value from the current instance.
+	/// </summary>
+	/// <param name="name">The name of the property should be checked.</param>
+	/// <returns>The value of the preference.</returns>
+	protected T GetPreference<T>(string name)
+	{
+		var instance = ((App)Application.Current).UserPreference;
+		return (T)typeof(Preference).GetProperty(name)!.GetValue(instance)!;
 	}
 
 	/// <summary>
@@ -58,6 +69,17 @@ public abstract class SettingItem
 	protected void SetPreference<T>(T value)
 	{
 		var instance = ((App)Application.Current).UserPreference;
-		typeof(Preference).GetField(PreferenceValueName)!.SetValue(instance, value);
+		typeof(Preference).GetProperty(PreferenceValueName)!.SetValue(instance, value);
+	}
+
+	/// <summary>
+	/// Try to set the preference value to the current instance.
+	/// </summary>
+	/// <param name="name">The name of the property should be checked.</param>
+	/// <param name="value">The value.</param>
+	protected void SetPreference<T>(T value, string name)
+	{
+		var instance = ((App)Application.Current).UserPreference;
+		typeof(Preference).GetProperty(name)!.SetValue(instance, value);
 	}
 }
