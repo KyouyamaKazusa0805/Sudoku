@@ -12,6 +12,10 @@ public static class ReferenceMarshal
 	/// <typeparam name="TException">The exception type.</typeparam>
 	/// <returns>The return value is a discard.</returns>
 	/// <exception cref="Exception">Always throws.</exception>
+	/// <remarks>
+	/// This method is used for the inlining, in order to achieve the same but invalid syntax meaning of
+	/// <c><see langword="ref throw new"/> <see cref="Exception"/>()</c>.
+	/// </remarks>
 	[DoesNotReturn]
 	public static ref T RefThrow<T, TException>() where TException : Exception, new() => throw new TException();
 }
