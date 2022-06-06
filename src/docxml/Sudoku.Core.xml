@@ -2471,6 +2471,10 @@
             </summary>
             <param name="this">The grid.</param>
             <returns>The result grid.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Collections.GridTransformations.MirrorTopBottom(Sudoku.Concepts.Collections.Grid@)">
             <summary>
@@ -2478,6 +2482,10 @@
             </summary>
             <param name="this">The grid.</param>
             <returns>The result grid.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Collections.GridTransformations.MirrorDiagonal(Sudoku.Concepts.Collections.Grid@)">
             <summary>
@@ -2485,6 +2493,10 @@
             </summary>
             <param name="this">The grid.</param>
             <returns>The result grid.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Collections.GridTransformations.Transpose(Sudoku.Concepts.Collections.Grid@)">
             <summary>
@@ -2492,6 +2504,10 @@
             </summary>
             <param name="this">The grid.</param>
             <returns>The result grid.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Collections.GridTransformations.MirrorAntidiagonal(Sudoku.Concepts.Collections.Grid@)">
             <summary>
@@ -2499,6 +2515,10 @@
             </summary>
             <param name="this">The grid.</param>
             <returns>The result grid.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Collections.GridTransformations.RotateClockwise(Sudoku.Concepts.Collections.Grid@)">
             <summary>
@@ -2506,6 +2526,10 @@
             </summary>
             <param name="this">The grid.</param>
             <returns>The result.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Collections.GridTransformations.RotateCounterclockwise(Sudoku.Concepts.Collections.Grid@)">
             <summary>
@@ -2513,6 +2537,10 @@
             </summary>
             <param name="this">The grid.</param>
             <returns>The result.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Collections.GridTransformations.RotatePi(Sudoku.Concepts.Collections.Grid@)">
             <summary>
@@ -2520,6 +2548,10 @@
             </summary>
             <param name="this">The grid.</param>
             <returns>The result.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Collections.GridTransformations.SwapTwoHouses(Sudoku.Concepts.Collections.Grid@,System.Int32,System.Int32)">
             <summary>
@@ -2533,6 +2565,10 @@
             Throws when two specified house argument is not in valid range (0..27),
             two houses are not in same house type, or are not swappable.
             </exception>
+            <remarks>
+            This method will return the reference that is same as the argument <paramref name="this"/>,
+            in order to inline multiple transformation operations.
+            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.Collections.Handlers.ConclusionCollection">
             <summary>

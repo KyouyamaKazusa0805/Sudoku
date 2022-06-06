@@ -204,7 +204,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 		for (int times = 0; times < 6; times++)
 		{
 			var ((a, b), baseHouse) = (SwappableFactor[_random.Next(3)], _random.Next(3, 9) * 3);
-			grid = grid.SwapTwoHouses(baseHouse + a, baseHouse + b);
+			grid.SwapTwoHouses(baseHouse + a, baseHouse + b);
 		}
 	}
 

@@ -36,7 +36,7 @@ public static class MissingCandidateSearcher
 
 		static int? tryWithSymmetry(in Grid grid)
 		{
-			var handlers = stackalloc delegate*<in Grid, Grid>[]
+			var handlers = stackalloc delegate*<ref Grid, ref Grid>[]
 			{
 				&GridTransformations.RotatePi,
 				&GridTransformations.MirrorLeftRight,
@@ -49,7 +49,8 @@ public static class MissingCandidateSearcher
 
 			for (int i = 0; i < 7; i++)
 			{
-				if ((grid.GivenCells ^ handlers[i](grid).GivenCells) is [var cell])
+				var copied = grid;
+				if ((grid.GivenCells ^ handlers[i](ref copied).GivenCells) is [var cell])
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{

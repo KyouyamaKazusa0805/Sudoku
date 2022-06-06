@@ -69,21 +69,24 @@ public static unsafe class GridTransformations
 	/// </summary>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result grid.</returns>
-	public static Grid MirrorLeftRight(this in Grid @this)
+	/// <remarks>
+	/// This method will return the reference that is same as the argument,
+	/// in order to inline multiple transformation operations.
+	/// </remarks>
+	public static ref Grid MirrorLeftRight(this ref Grid @this)
 	{
-		var result = @this;
-		fixed (short* pResult = result)
+		fixed (short* p = @this)
 		{
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					PointerMarshal.Swap(pResult + (i * 9 + j), pResult + (i * 9 + (8 - j)));
+					PointerMarshal.Swap(p + (i * 9 + j), p + (i * 9 + (8 - j)));
 				}
 			}
 		}
 
-		return result;
+		return ref @this;
 	}
 
 	/// <summary>
@@ -91,21 +94,24 @@ public static unsafe class GridTransformations
 	/// </summary>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result grid.</returns>
-	public static Grid MirrorTopBottom(this in Grid @this)
+	/// <remarks>
+	/// This method will return the reference that is same as the argument,
+	/// in order to inline multiple transformation operations.
+	/// </remarks>
+	public static ref Grid MirrorTopBottom(this ref Grid @this)
 	{
-		var result = @this;
-		fixed (short* pResult = result)
+		fixed (short* p = @this)
 		{
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					PointerMarshal.Swap(pResult + (i * 9 + j), pResult + ((8 - i) * 9 + j));
+					PointerMarshal.Swap(p + (i * 9 + j), p + ((8 - i) * 9 + j));
 				}
 			}
 		}
 
-		return result;
+		return ref @this;
 	}
 
 	/// <summary>
@@ -113,21 +119,24 @@ public static unsafe class GridTransformations
 	/// </summary>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result grid.</returns>
-	public static Grid MirrorDiagonal(this in Grid @this)
+	/// <remarks>
+	/// This method will return the reference that is same as the argument,
+	/// in order to inline multiple transformation operations.
+	/// </remarks>
+	public static ref Grid MirrorDiagonal(this ref Grid @this)
 	{
-		var result = @this;
-		fixed (short* pResult = result)
+		fixed (short* p = @this)
 		{
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					PointerMarshal.Swap(pResult + (i * 9 + j), pResult + (j * 9 + i));
+					PointerMarshal.Swap(p + (i * 9 + j), p + (j * 9 + i));
 				}
 			}
 		}
 
-		return result;
+		return ref @this;
 	}
 
 	/// <summary>
@@ -135,29 +144,36 @@ public static unsafe class GridTransformations
 	/// </summary>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result grid.</returns>
+	/// <remarks>
+	/// This method will return the reference that is same as the argument,
+	/// in order to inline multiple transformation operations.
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Transpose(this in Grid @this) => @this.MirrorDiagonal();
+	public static ref Grid Transpose(this ref Grid @this) => ref @this.MirrorDiagonal();
 
 	/// <summary>
 	/// Mirror anti-diagonal the grid.
 	/// </summary>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result grid.</returns>
-	public static Grid MirrorAntidiagonal(this in Grid @this)
+	/// <remarks>
+	/// This method will return the reference that is same as the argument,
+	/// in order to inline multiple transformation operations.
+	/// </remarks>
+	public static ref Grid MirrorAntidiagonal(this ref Grid @this)
 	{
-		var result = @this;
-		fixed (short* pResult = result)
+		fixed (short* p = @this)
 		{
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					PointerMarshal.Swap(pResult + (i * 9 + j), pResult + ((8 - j) * 9 + (8 - i)));
+					PointerMarshal.Swap(p + (i * 9 + j), p + ((8 - j) * 9 + (8 - i)));
 				}
 			}
 		}
 
-		return result;
+		return ref @this;
 	}
 
 	/// <summary>
@@ -165,7 +181,11 @@ public static unsafe class GridTransformations
 	/// </summary>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result.</returns>
-	public static Grid RotateClockwise(this in Grid @this)
+	/// <remarks>
+	/// This method will return the reference that is same as the argument,
+	/// in order to inline multiple transformation operations.
+	/// </remarks>
+	public static ref Grid RotateClockwise(this ref Grid @this)
 	{
 		var result = Grid.Undefined;
 		fixed (short* pThis = @this, pResult = result)
@@ -176,7 +196,8 @@ public static unsafe class GridTransformations
 			}
 		}
 
-		return result;
+		@this = result;
+		return ref @this;
 	}
 
 	/// <summary>
@@ -184,7 +205,11 @@ public static unsafe class GridTransformations
 	/// </summary>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result.</returns>
-	public static Grid RotateCounterclockwise(this in Grid @this)
+	/// <remarks>
+	/// This method will return the reference that is same as the argument,
+	/// in order to inline multiple transformation operations.
+	/// </remarks>
+	public static ref Grid RotateCounterclockwise(this ref Grid @this)
 	{
 		var result = Grid.Undefined;
 		fixed (short* pThis = @this, pResult = result)
@@ -195,7 +220,8 @@ public static unsafe class GridTransformations
 			}
 		}
 
-		return result;
+		@this = result;
+		return ref @this;
 	}
 
 	/// <summary>
@@ -203,7 +229,11 @@ public static unsafe class GridTransformations
 	/// </summary>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result.</returns>
-	public static Grid RotatePi(this in Grid @this)
+	/// <remarks>
+	/// This method will return the reference that is same as the argument,
+	/// in order to inline multiple transformation operations.
+	/// </remarks>
+	public static ref Grid RotatePi(this ref Grid @this)
 	{
 		var result = Grid.Undefined;
 		fixed (short* pThis = @this, pResult = result)
@@ -214,7 +244,8 @@ public static unsafe class GridTransformations
 			}
 		}
 
-		return result;
+		@this = result;
+		return ref @this;
 	}
 
 	/// <summary>
@@ -228,23 +259,26 @@ public static unsafe class GridTransformations
 	/// Throws when two specified house argument is not in valid range (0..27),
 	/// two houses are not in same house type, or are not swappable.
 	/// </exception>
-	public static Grid SwapTwoHouses(this in Grid @this, int houseIndex1, int houseIndex2)
+	/// <remarks>
+	/// This method will return the reference that is same as the argument <paramref name="this"/>,
+	/// in order to inline multiple transformation operations.
+	/// </remarks>
+	public static ref Grid SwapTwoHouses(this ref Grid @this, int houseIndex1, int houseIndex2)
 	{
 		Argument.ThrowIfFalse(houseIndex1 is >= 9 and < 27, "The specified argument is out of valid range.");
 		Argument.ThrowIfFalse(houseIndex2 is >= 9 and < 27, "The specified argument is out of valid range.");
 		Argument.ThrowIfFalse(houseIndex1.ToHouse() == houseIndex2.ToHouse(), "Two houses should be the same house type.");
 		Argument.ThrowIfFalse(Array.FindIndex(SwappableHouses, predicate) != -1);
 
-		var result = @this;
-		fixed (short* pResult = result)
+		fixed (short* p = @this)
 		{
 			for (int i = 0; i < 9; i++)
 			{
-				PointerMarshal.Swap(pResult + HouseCells[houseIndex1][i], pResult + HouseCells[houseIndex2][i]);
+				PointerMarshal.Swap(p + HouseCells[houseIndex1][i], p + HouseCells[houseIndex2][i]);
 			}
 		}
 
-		return result;
+		return ref @this;
 
 
 		bool predicate((int, int) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
