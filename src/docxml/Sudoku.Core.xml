@@ -6853,11 +6853,17 @@
             </returns>
             <exception cref="T:System.InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
         </member>
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Shuffle(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            To shuffle the grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
         <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.AdjustPattern(Sudoku.Concepts.Collections.Cells@)">
             <summary>
             Adjust a pattern slightly.
             </summary>
-            <param name="cells">The cells.</param>
+            <param name="pattern">The pattern.</param>
         </member>
         <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.GeneratePattern">
             <summary>

@@ -165,8 +165,12 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 						// Checks the validity.
 						if (Solver.Solve(clonedPtr, null, 2) == 1)
 						{
-							// Unique puzzle. Return the value.
-							return Grid.Parse(clonedPtr);
+							// Unique puzzle. Now we should shuffle the grid.
+							var resultGrid = Grid.Parse(clonedPtr);
+							Shuffle(ref resultGrid);
+
+							// Return the value.
+							return resultGrid;
 						}
 
 						// If the puzzle is invalid, we can adjust the pattern and try again.
@@ -187,27 +191,47 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	}
 
 	/// <summary>
+	/// To shuffle the grid.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	private void Shuffle(ref Grid grid)
+	{
+		for (int times = 0; times < 3; times++)
+		{
+			int houseKind = _random.Next(3);
+			int house1 = houseKind * _random.Next(9);
+			int house2;
+			do
+			{
+				house2 = houseKind * _random.Next(9);
+			} while (house1 == house2);
+
+			grid = grid.SwapTwoHouses(house1, house2);
+		}
+	}
+
+	/// <summary>
 	/// Adjust a pattern slightly.
 	/// </summary>
-	/// <param name="cells">The cells.</param>
-	private void AdjustPattern(ref Cells cells)
+	/// <param name="pattern">The pattern.</param>
+	private void AdjustPattern(ref Cells pattern)
 	{
-		int index = _random.Next(0, cells.Count);
-		int cellToBeDeleted = cells[index];
+		int index = _random.Next(pattern.Count);
+		int cellToBeDeleted = pattern[index];
 		int[] tempCells = GetCells(cellToBeDeleted / 9, cellToBeDeleted % 9);
-		cells -= tempCells;
+		pattern -= tempCells;
 
 		int newCell;
 		while (true)
 		{
-			newCell = _random.Next(0, 81);
-			if (!cells.Contains(newCell) && newCell != 40)
+			newCell = _random.Next(81);
+			if (!pattern.Contains(newCell) && newCell != 40)
 			{
 				break;
 			}
 		}
 
-		cells |= GetCells(newCell / 9, newCell % 9);
+		pattern |= GetCells(newCell / 9, newCell % 9);
 	}
 
 	/// <summary>
@@ -225,7 +249,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 
 		while (true)
 		{
-			int cell = _random.Next(0, 81);
+			int cell = _random.Next(81);
 			result |= GetCells(cell / 9, cell % 9);
 			if (result.Count - resultCellsCount is 1 or 0 or -1)
 			{
@@ -243,7 +267,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 		using var list = new ValueList<int>(3);
 		while (true)
 		{
-			int candidate = _random.Next(0, 728);
+			int candidate = _random.Next(729);
 			if (!list.Contains(candidate, &predicate))
 			{
 				list.Add(candidate);
