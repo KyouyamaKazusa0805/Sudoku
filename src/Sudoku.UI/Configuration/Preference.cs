@@ -76,15 +76,25 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>"Tahoma"</c>.
+	/// The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
 	/// </remarks>
-	public string ValueFontName { get; set; } = "Tahoma";
+	public string ValueFontName { get; set; }
+#if DEBUG
+	= "Cascadia Mono";
+#else
+	= "Tahoma";
+#endif
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>"Tahoma"</c>.
+	/// The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
 	/// </remarks>
-	public string CandidateFontName { get; set; } = "Tahoma";
+	public string CandidateFontName { get; set; }
+#if DEBUG
+	= "Cascadia Mono";
+#else
+	= "Tahoma";
+#endif
 
 	/// <inheritdoc/>
 	/// <remarks>
