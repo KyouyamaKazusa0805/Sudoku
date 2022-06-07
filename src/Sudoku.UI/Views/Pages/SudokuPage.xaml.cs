@@ -465,6 +465,16 @@ public sealed partial class SudokuPage : Page
 		}
 	}
 
+	/// <summary>
+	/// To mask the grid. All given and modifiable values will be hidden and displayed as an ellipse.
+	/// </summary>
+	private void Mask() => _cPane.Mask();
+
+	/// <summary>
+	/// To unmask the grid. All given and modifiable values will be hidden and displayed as a real digit.
+	/// </summary>
+	private void Unmask() => _cPane.Unmask();
+
 
 	/// <summary>
 	/// Triggers when the current page is loaded.
@@ -543,8 +553,7 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the event trigger callback method that executes resetting the grid to the initial status.
 	/// </summary>
-	private void CommandReset_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
-		=> ResetGrid();
+	private void CommandReset_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args) => ResetGrid();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes fixing digits.
@@ -589,4 +598,14 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	private async void CommandAnalysis_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
 		=> await AnalyzeAsync(_cButtonAnalyze);
+
+	/// <summary>
+	/// Indicates the event trigger callback method that mask the grid.
+	/// </summary>
+	private void ComamndMask_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args) => Mask();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that unmask the grid.
+	/// </summary>
+	private void ComamndUnmask_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args) => Unmask();
 }

@@ -158,4 +158,11 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color CandidateDeltaColor { get; set; } = Color.FromArgb(255, 255, 185, 185);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color MaskEllipseColor { get; set; } = Colors.Black;
 }

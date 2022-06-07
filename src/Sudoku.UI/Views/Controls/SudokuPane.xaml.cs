@@ -209,6 +209,28 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ReplaceGridUndoable(in Grid grid) => GetSudokuGridViewModel().ReplaceGrid(grid);
 
+	/// <summary>
+	/// Mask all value cells.
+	/// </summary>
+	public void Mask()
+	{
+		foreach (var element in _drawingElements.OfType<SudokuGrid>())
+		{
+			element.Mask();
+		}
+	}
+
+	/// <summary>
+	/// Unmask all value cells.
+	/// </summary>
+	public void Unmask()
+	{
+		foreach (var element in _drawingElements.OfType<SudokuGrid>())
+		{
+			element.Unmask();
+		}
+	}
+
 	/// <inheritdoc/>
 	protected override void OnPointerMoved(PointerRoutedEventArgs e)
 	{

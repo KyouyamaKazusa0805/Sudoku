@@ -146,6 +146,20 @@
 							</AppBarButton.Command>
 						</AppBarButton>
 					</xc:TabbedCommandBarItem>
+
+					<!--Third tab-->
+					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Displaying}">
+						<AppBarButton Label="{StaticResource SudokuPage_Mask}" Icon="HideBcc">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="ComamndMask_ExecuteRequestedAsync" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton Label="{StaticResource SudokuPage_Unmask}" Icon="ShowBcc">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="ComamndUnmask_ExecuteRequestedAsync" />
+							</AppBarButton.Command>
+						</AppBarButton>
+					</xc:TabbedCommandBarItem>
 				</xc:TabbedCommandBar.MenuItems>
 			</xc:TabbedCommandBar>
 

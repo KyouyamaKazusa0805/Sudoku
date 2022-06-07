@@ -26,6 +26,11 @@ internal sealed partial class CandidateDigit : DrawingElement
 	private readonly IDrawingPreference _preference;
 
 	/// <summary>
+	/// Indicates whether the current mode is mask mode.
+	/// </summary>
+	private bool _isMaskMode;
+
+	/// <summary>
 	/// Indicates the candidate mask.
 	/// </summary>
 	private short _candidateMask;
@@ -54,12 +59,27 @@ internal sealed partial class CandidateDigit : DrawingElement
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="candidateMask"/> is negative number or greater than 511.
 	/// </exception>
-	public CandidateDigit(short candidateMask, short wrongDigitMask, IDrawingPreference preference)
+	public CandidateDigit(short candidateMask, short wrongDigitMask, IDrawingPreference preference) :
+		this(candidateMask, wrongDigitMask, false, preference)
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="CandidateDigit"/> instance via the details.
+	/// </summary>
+	/// <param name="candidateMask">The candidate mask.</param>
+	/// <param name="wrongDigitMask">The wrong digits mask.</param>
+	/// <param name="maskMode">Whether the current mode is mask mode.</param>
+	/// <param name="preference">The user preference.</param>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="candidateMask"/> is negative number or greater than 511.
+	/// </exception>
+	public CandidateDigit(short candidateMask, short wrongDigitMask, bool maskMode, IDrawingPreference preference)
 	{
 		Argument.ThrowIfFalse(candidateMask is >= 0 and <= 511);
 		Argument.ThrowIfFalse(wrongDigitMask is >= 0 and <= 511);
 
-		(_candidateMask, _wrongDigitMask, _preference) = (candidateMask, wrongDigitMask, preference);
+		(_isMaskMode, _candidateMask, _wrongDigitMask, _preference) = (maskMode, candidateMask, wrongDigitMask, preference);
 		var grid = new GridLayout { Visibility = preference.ShowCandidates ? Visibility.Visible : Visibility.Collapsed };
 		grid.RowDefinitions.Add(new());
 		grid.RowDefinitions.Add(new());
@@ -75,7 +95,11 @@ internal sealed partial class CandidateDigit : DrawingElement
 				Text = (digit + 1).ToString(),
 				FontFamily = new(_preference.CandidateFontName),
 				FontSize = 60 * _preference.CandidateFontScale,
-				Visibility = ((candidateMask | wrongDigitMask) >> digit & 1) != 0 ? Visibility.Visible : Visibility.Collapsed,
+				Visibility = ((candidateMask | wrongDigitMask) >> digit & 1, maskMode) switch
+				{
+					(not 0, false) => Visibility.Visible,
+					_ => Visibility.Collapsed
+				},
 				TextAlignment = TextAlignment.Center,
 				HorizontalTextAlignment = TextAlignment.Center,
 				Foreground = new SolidColorBrush(
@@ -111,6 +135,32 @@ internal sealed partial class CandidateDigit : DrawingElement
 
 			_preference.ShowCandidates = value;
 			_grid.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+		}
+	}
+
+	/// <summary>
+	/// Gets or sets the value indicating whether the current mode is mask mode.
+	/// </summary>
+	public bool IsMaskMode
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _isMaskMode;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			if (_isMaskMode == value)
+			{
+				return;
+			}
+
+			if (_isMaskMode && !ShowCandidates)
+			{
+				return;
+			}
+
+			_isMaskMode = value;
+			_grid.Visibility = value ? Visibility.Collapsed : Visibility.Visible;
 		}
 	}
 

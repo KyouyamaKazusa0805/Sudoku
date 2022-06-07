@@ -43,6 +43,21 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.CommonReadOnlyFactory">
             <summary>
             Provides with the read-only values.
@@ -226,6 +241,12 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>#FFFFB9B9</c> (i.e. <see cref="T:Windows.UI.Color"/> {255, 255, 185, 185}).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.MaskEllipseColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
             </remarks>
         </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
@@ -951,6 +972,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>
             Defines a user control that handles the messages displaying via <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>s.
@@ -1032,6 +1063,16 @@
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
@@ -1168,6 +1209,16 @@
             </summary>
             <param name="grid">The grid to be replaced with.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Mask">
+            <summary>
+            Mask all value cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Unmask">
+            <summary>
+            Unmask all value cells.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnPointerMoved(Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
             <inheritdoc/>
         </member>
@@ -1209,6 +1260,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.AboutPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -1223,6 +1284,16 @@
         <member name="M:Sudoku.UI.Views.Pages.AboutPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.DocumentationPage">
@@ -1285,6 +1356,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.DocumentationPage.GeneratedRegex_NestedInlineCodeBlockInImageBlockPattern_D05388F0.RunnerFactory.Runner.IsWordChar(System.Char)">
             <summary>Determines whether the character is part of the [\w] set.</summary>
         </member>
@@ -1326,6 +1407,16 @@
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SudokuPage">
@@ -1458,6 +1549,16 @@
             <param name="button">The button.</param>
             <returns>The typical awaitable instance that holds the task to analyze the puzzle.</returns>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Mask">
+            <summary>
+            To mask the grid. All given and modifiable values will be hidden and displayed as an ellipse.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Unmask">
+            <summary>
+            To unmask the grid. All given and modifiable values will be hidden and displayed as a real digit.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current page is loaded.
@@ -1556,9 +1657,29 @@
             Indicates the event trigger callback method that analyzes the puzzle.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ComamndMask_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that mask the grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ComamndUnmask_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that unmask the grid.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
@@ -1696,9 +1817,39 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Program">
             <summary>
             Program class
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
@@ -1725,12 +1876,12 @@
             </summary>
             <param name="this">The instance.</param>
         </member>
-        <member name="T:Windows.Foundation.Point_DE5AF559E2">
+        <member name="T:Windows.Foundation.Point_DE7BE3B162">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DE5AF559E2.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DE7BE3B162.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
             the value-tuple syntax to define your own deconstruction logic.
@@ -1835,12 +1986,12 @@
             Throws when the argument <paramref name="count"/> is negative.
             </exception>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
             the value-tuple syntax to define your own deconstruction logic.

@@ -119,4 +119,9 @@ public interface IDrawingPreference
 	/// Indicates the color of the wrong candidate value input.
 	/// </summary>
 	Color CandidateDeltaColor { get; set; }
+
+	/// <summary>
+	/// Indicates the color of the mask ellipse color.
+	/// </summary>
+	Color MaskEllipseColor { get; set; }
 }

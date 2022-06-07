@@ -37,6 +37,11 @@ public sealed partial class SudokuGrid : DrawingElement
 	private readonly IDrawingPreference _preference;
 
 	/// <summary>
+	/// Indicates whether the current mode is mask mode.
+	/// </summary>
+	private bool _isMaskMode;
+
+	/// <summary>
 	/// Indicates the pane size.
 	/// </summary>
 	private double _paneSize;
@@ -127,6 +132,10 @@ public sealed partial class SudokuGrid : DrawingElement
 				GridLayout.SetRow(control1, i / 9);
 				GridLayout.SetColumn(control1, i % 9);
 				_gridLayout.Children.Add(control1);
+				var maskEllipse1 = p.GetMaskEllipseControl();
+				GridLayout.SetRow(maskEllipse1, i / 9);
+				GridLayout.SetColumn(maskEllipse1, i % 9);
+				_gridLayout.Children.Add(maskEllipse1);
 
 				ref var q = ref _candidateDigits[i];
 				q = new(preference);
@@ -150,13 +159,35 @@ public sealed partial class SudokuGrid : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_preference.ShowCandidates == value)
+			if (_preference.ShowCandidates == value || _isMaskMode)
 			{
 				return;
 			}
 
 			_preference.ShowCandidates = value;
 			Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.ShowCandidates = value);
+		}
+	}
+
+	/// <summary>
+	/// Indicates whether the current mode is mask mode.
+	/// </summary>
+	public bool IsMaskMode
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _isMaskMode;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			if (_isMaskMode == value)
+			{
+				return;
+			}
+
+			var a = Mask;
+			var b = Unmask;
+			(value ? a : b)();
 		}
 	}
 
@@ -217,6 +248,12 @@ public sealed partial class SudokuGrid : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
+			// If the current mode is mask mode, we should skip the operation and do nothing.
+			if (_isMaskMode)
+			{
+				return;
+			}
+
 			// Set the new grid and update the view.
 			_grid = value;
 
@@ -262,6 +299,11 @@ public sealed partial class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Undo()
 	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
 		_redoSteps.Push(_grid);
 
 		var previousStep = _undoSteps.Pop();
@@ -278,6 +320,11 @@ public sealed partial class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Redo()
 	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
 		_undoSteps.Push(_grid);
 
 		var nextStep = _redoSteps.Pop();
@@ -296,6 +343,12 @@ public sealed partial class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void MakeDigit(int cell, int digit)
 	{
+		// If the current mode is mask mode, we should directly skip the operation.
+		if (_isMaskMode)
+		{
+			return;
+		}
+
 		// Stores the previous grid status to the undo stack.
 		AddStep(_grid);
 
@@ -325,6 +378,12 @@ public sealed partial class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void EliminateDigit(int cell, int digit)
 	{
+		// If the current mode is mask mode, we should directly skip the operation.
+		if (_isMaskMode)
+		{
+			return;
+		}
+
 		if (digit == -1)
 		{
 			// Skips the invalid data.
@@ -345,6 +404,12 @@ public sealed partial class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void FixGrid()
 	{
+		// If the current mode is mask mode, we should directly skip the operation.
+		if (_isMaskMode)
+		{
+			return;
+		}
+
 		// Stores the previous grid status to the undo stack.
 		AddStep(_grid);
 
@@ -359,6 +424,12 @@ public sealed partial class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void UnfixGrid()
 	{
+		// If the current mode is mask mode, we should directly skip the operation.
+		if (_isMaskMode)
+		{
+			return;
+		}
+
 		// Stores the previous grid status to the undo stack.
 		AddStep(_grid);
 
@@ -374,6 +445,12 @@ public sealed partial class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ResetGrid()
 	{
+		// If the current mode is mask mode, we should directly skip the operation.
+		if (_isMaskMode)
+		{
+			return;
+		}
+
 		// Stores the previous grid status to the undo stack.
 		AddStep(_grid);
 
@@ -389,12 +466,40 @@ public sealed partial class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ReplaceGrid(in Grid grid)
 	{
+		// If the current mode is mask mode, we should directly skip the operation.
+		if (_isMaskMode)
+		{
+			return;
+		}
+
 		// Stores the previous grid status to the undo stack.
 		AddStep(_grid);
 
 		// Update the grid and view.
 		_grid = grid;
 		UpdateView();
+	}
+
+	/// <summary>
+	/// To mask the grid.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Mask()
+	{
+		_isMaskMode = true;
+		Array.ForEach(_cellDigits, static element => element.IsMaskMode = true);
+		Array.ForEach(_candidateDigits, static element => element.IsMaskMode = true);
+	}
+
+	/// <summary>
+	/// To unmask the grid.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Unmask()
+	{
+		_isMaskMode = false;
+		Array.ForEach(_cellDigits, static element => element.IsMaskMode = false);
+		Array.ForEach(_candidateDigits, static element => element.IsMaskMode = false);
 	}
 
 	/// <inheritdoc/>

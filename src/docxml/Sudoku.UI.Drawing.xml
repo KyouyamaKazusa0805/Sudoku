@@ -124,6 +124,11 @@
             Indicates the color of the wrong candidate value input.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.MaskEllipseColor">
+            <summary>
+            Indicates the color of the mask ellipse color.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
             Stores a set of methods on handling point conversions.
@@ -344,6 +349,11 @@
             Indicates the user preference.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._isMaskMode">
+            <summary>
+            Indicates whether the current mode is mask mode.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._candidateMask">
             <summary>
             Indicates the candidate mask.
@@ -371,9 +381,26 @@
             Throws when the argument <paramref name="candidateMask"/> is negative number or greater than 511.
             </exception>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(System.Int16,System.Int16,System.Boolean,Sudoku.UI.Drawing.IDrawingPreference)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateDigit"/> instance via the details.
+            </summary>
+            <param name="candidateMask">The candidate mask.</param>
+            <param name="wrongDigitMask">The wrong digits mask.</param>
+            <param name="maskMode">Whether the current mode is mask mode.</param>
+            <param name="preference">The user preference.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="candidateMask"/> is negative number or greater than 511.
+            </exception>
+        </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.ShowCandidates">
             <summary>
             Gets or sets the value indicating whether the candidate block shows digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.IsMaskMode">
+            <summary>
+            Gets or sets the value indicating whether the current mode is mask mode.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.CandidateMask">
@@ -493,6 +520,11 @@
             Defines a drawing element that displays for a digit that is the cell-levelled digit.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._isMaskMode">
+            <summary>
+            Indicates whether displaying mask ellipse.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._isGiven">
             <summary>
             Indicates the cell status.
@@ -501,6 +533,11 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._textBlock">
             <summary>
             The inner text block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._maskEllipse">
+            <summary>
+            The mask ellipse.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._preference">
@@ -530,6 +567,23 @@
             Throws when the argument <paramref name="digit"/> is not 255 and not in range 0 to 8.
             </exception>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(System.Byte,System.Nullable{System.Boolean},System.Boolean,Sudoku.UI.Drawing.IDrawingPreference)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellDigit"/> instance via the details.
+            </summary>
+            <param name="digit">
+            The digit value. If you want to hide the value, just assign 255;
+            otherwise, using 0 to 8 to indicate the displaying value corresponding to the real digit 1 to 9.
+            </param>
+            <param name="isGiven">
+            Indicates whether the cell is given. If <see langword="false"/>, modifiable value.
+            </param>
+            <param name="isMaskMode">Indicates whether displaying mask ellipse.</param>
+            <param name="preference">The user preference.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="digit"/> is not 255 and not in range 0 to 8.
+            </exception>
+        </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.IsGiven">
             <summary>
             Indicates whether the current cell is the given cell.
@@ -552,13 +606,18 @@
             </list>
             </returns>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.IsShown">
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.ShowDigit">
             <summary>
-            Indicates whether the current element is shown.
+            Indicates whether the digit is displayed at present.
             </summary>
             <exception cref="T:System.ArgumentException">
             Throws when the argument <see langword="value"/> holds <see langword="true"/> value.
             </exception>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.IsMaskMode">
+            <summary>
+            Indicates whether displaying mask ellipse.
+            </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.Digit">
             <summary>
@@ -600,6 +659,20 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.GetControl">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.GetMaskEllipseControl">
+            <summary>
+            Gets the control of the mask ellipse.
+            </summary>
+            <returns>The mask ellipse control.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.GetColor(System.Nullable{System.Boolean},Sudoku.UI.Drawing.IDrawingPreference)">
+            <summary>
+            Gets the color of the status.
+            </summary>
+            <param name="status">The status.</param>
+            <param name="preference">The preference as the source.</param>
+            <returns>The <see cref="T:Windows.UI.Color"/> instance.</returns>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -1693,6 +1766,11 @@
             Indicates the user preference used.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._isMaskMode">
+            <summary>
+            Indicates whether the current mode is mask mode.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._paneSize">
             <summary>
             Indicates the pane size.
@@ -1734,6 +1812,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ShowCandidates">
             <summary>
             Indicates whether the grid displays for candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.IsMaskMode">
+            <summary>
+            Indicates whether the current mode is mask mode.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.OutsideOffset">
@@ -1814,6 +1897,16 @@
             To replace with the new grid.
             </summary>
             <param name="grid">The grid to be replaced with.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Mask">
+            <summary>
+            To mask the grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Unmask">
+            <summary>
+            To unmask the grid.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
