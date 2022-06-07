@@ -35,6 +35,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="Assets\images\icon-config-backup-file.png" />
+		<EmbeddedResource Include="Assets\images\icon-drawing-file.png" />
+		<EmbeddedResource Include="Assets\images\icon-grid-file.png" />
+		<EmbeddedResource Include="Assets\images\icon-miscellenous-file.png" />
+		<EmbeddedResource Include="Assets\images\icon-text-file.png" />
 		<EmbeddedResource Include="Assets\images\logo.png" />
 	</ItemGroup>
 
