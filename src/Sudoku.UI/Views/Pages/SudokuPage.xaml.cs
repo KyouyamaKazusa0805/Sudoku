@@ -167,7 +167,8 @@ public sealed partial class SudokuPage : Page
 		var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, randomAccessStream);
 		encoder.SetPixelData(
 			BitmapPixelFormat.Rgba8, BitmapAlphaMode.Ignore, (uint)rtb.PixelWidth, (uint)rtb.PixelHeight,
-			dpi, dpi, pixelBuffer.ToArray());
+			dpi, dpi, pixelBuffer.ToArray()
+		);
 
 		// Copies the data to the data package.
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };

@@ -199,12 +199,7 @@ public sealed partial class SettingsPage : Page
 			file,
 			JsonSerializer.Serialize(
 				((App)Application.Current).UserPreference,
-				new JsonSerializerOptions
-				{
-					WriteIndented = true,
-					IgnoreReadOnlyProperties = true,
-					PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-				}
+				CommonReadOnlyFactory.DefaultSerializerOption
 			)
 		);
 

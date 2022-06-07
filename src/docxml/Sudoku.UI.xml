@@ -58,6 +58,21 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
+        <member name="T:Sudoku.UI.CommonReadOnlyFactory">
+            <summary>
+            Provides with the read-only values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.CommonReadOnlyFactory.DefaultSerializerOption">
+            <summary>
+            Creates a default option instance with:
+            <list type="bullet">
+            <item><see cref="P:System.Text.Json.JsonSerializerOptions.WriteIndented"/> is <see langword="true"/></item>
+            <item><see cref="P:System.Text.Json.JsonSerializerOptions.IgnoreReadOnlyProperties"/> is <see langword="true"/></item>
+            <item><see cref="P:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy"/> is <see cref="P:System.Text.Json.JsonNamingPolicy.CamelCase"/></item>
+            </list>
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Configuration.CommonFileExtensions">
             <summary>
             Defines the constants that are the common file extensions.
