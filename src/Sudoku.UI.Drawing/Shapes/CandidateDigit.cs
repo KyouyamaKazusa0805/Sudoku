@@ -174,8 +174,9 @@ internal sealed partial class CandidateDigit : DrawingElement
 
 		set
 		{
-			_candidateMask = value is >= 0 and <= 511 ? value : throw new ArgumentOutOfRangeException(nameof(value));
+			Argument.ThrowIfFalse(value is >= 0 and <= 511);
 
+			_candidateMask = value;
 			for (byte digit = 0; digit < 9; digit++)
 			{
 				_digitBlocks[digit].Visibility =
@@ -194,8 +195,9 @@ internal sealed partial class CandidateDigit : DrawingElement
 
 		set
 		{
-			_wrongDigitMask = value is >= 0 and <= 511 ? value : throw new ArgumentOutOfRangeException(nameof(value));
+			Argument.ThrowIfFalse(value is >= 0 and <= 511);
 
+			_wrongDigitMask = value;
 			for (byte digit = 0; digit < 9; digit++)
 			{
 				ref var current = ref _digitBlocks[digit];
