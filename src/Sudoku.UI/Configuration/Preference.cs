@@ -80,9 +80,9 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	public string ValueFontName { get; set; }
 #if DEBUG
-	= "Cascadia Mono";
+		= "Cascadia Mono";
 #else
-	= "Tahoma";
+		= "Tahoma";
 #endif
 
 	/// <inheritdoc/>
@@ -91,9 +91,9 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	public string CandidateFontName { get; set; }
 #if DEBUG
-	= "Cascadia Mono";
+		= "Cascadia Mono";
 #else
-	= "Tahoma";
+		= "Tahoma";
 #endif
 
 	/// <inheritdoc/>
