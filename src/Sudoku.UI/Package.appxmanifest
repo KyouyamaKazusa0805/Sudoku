@@ -39,6 +39,41 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="sdk">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.sdk</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DisplayName>Sudoku grid file</uap:DisplayName>
+            <uap:Logo>Assets\images\icon-grid-file.png</uap:Logo>
+            <uap:EditFlags OpenIsSafe="true"/>
+            <uap:InfoTip>A file that stores the sudoku grid information.</uap:InfoTip>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="sdc">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.sdc</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DisplayName>User-preference backup file</uap:DisplayName>
+            <uap:Logo>Assets\images\icon-config-backup-file.png</uap:Logo>
+            <uap:InfoTip>The file stores the options that controls the program&apos;s behavior while running.</uap:InfoTip>
+            <uap:EditFlags OpenIsSafe="true"/>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="sdd">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.sdd</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DisplayName>Drawing item file</uap:DisplayName>
+            <uap:Logo>Assets\images\icon-drawing-file.png</uap:Logo>
+            <uap:InfoTip>The file stores the drawing items on rendering extra information for a sudoku grid.</uap:InfoTip>
+            <uap:EditFlags OpenIsSafe="true"/>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
 
