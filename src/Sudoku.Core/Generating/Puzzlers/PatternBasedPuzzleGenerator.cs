@@ -39,6 +39,11 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	private static readonly char[] EmptyGridCharArray = Grid.EmptyString.ToCharArray();
 
 	/// <summary>
+	/// Indicates the swapper house starts.
+	/// </summary>
+	private static readonly int[] SwapperHouseStarts = { 9, 12, 15, 18, 21, 24 };
+
+	/// <summary>
 	/// Indicates the swappable factor.
 	/// </summary>
 	private static readonly (int, int)[] SwappableFactor = { (0, 1), (0, 2), (1, 2) };
@@ -151,6 +156,10 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 						continue;
 					}
 
+					// Shuffle the grid.
+					Shuffle(ref solution);
+
+					// Try to apply the pattern and check the validity of the uniqueness of the target puzzle.
 					for (int retrialTimeIndex = 0; retrialTimeIndex < RetrialTimes; retrialTimeIndex++)
 					{
 						fixed (char* solutionPtr = solution.ToString("!"))
@@ -170,12 +179,8 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 						// Checks the validity.
 						if (Solver.Solve(clonedPtr, null, 2) == 1)
 						{
-							// Unique puzzle. Now we should shuffle the grid.
-							var resultGrid = Grid.Parse(clonedPtr);
-							Shuffle(ref resultGrid);
-
-							// Return the value.
-							return resultGrid;
+							// Unique puzzle. Return the value.
+							return Grid.Parse(clonedPtr);
 						}
 
 						// If the puzzle is invalid, we can adjust the pattern and try again.
@@ -203,7 +208,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	{
 		for (int times = 0; times < 6; times++)
 		{
-			var ((a, b), baseHouse) = (SwappableFactor[_random.Next(3)], _random.Next(3, 9) * 3);
+			var ((a, b), baseHouse) = (SwappableFactor[_random.Next(3)], SwapperHouseStarts[times]);
 			grid.SwapTwoHouses(baseHouse + a, baseHouse + b);
 		}
 	}

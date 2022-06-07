@@ -6839,6 +6839,11 @@
             Indicates the empty grid characters.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.SwapperHouseStarts">
+            <summary>
+            Indicates the swapper house starts.
+            </summary>
+        </member>
         <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.SwappableFactor">
             <summary>
             Indicates the swappable factor.
