@@ -37,8 +37,8 @@ public sealed partial class SudokuPage : Page
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		async Task routeHandlerAsync(KeyRoutedEventArgs e)
 		{
-			bool controlKeyIsDown = modifierKeyIsPressed(VirtualKey.Control);
-			bool shiftKeyIsDown = modifierKeyIsPressed(VirtualKey.Shift);
+			bool controlKeyIsDown = VirtualKey.Control.ModifierKeyIsDown();
+			bool shiftKeyIsDown = VirtualKey.Shift.ModifierKeyIsDown();
 			switch (e.Key)
 			{
 				case VirtualKey.O when controlKeyIsDown && EnsureUnsnapped():
@@ -91,10 +91,6 @@ public sealed partial class SudokuPage : Page
 			// Make the property value 'false' to allow the handler continuously routes to the inner controls.
 			e.Handled = false;
 		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool modifierKeyIsPressed(VirtualKey key)
-			=> InputKeyboardSource.GetKeyStateForCurrentThread(key).Flags(CoreVirtualKeyStates.Down);
 	}
 
 	/// <summary>

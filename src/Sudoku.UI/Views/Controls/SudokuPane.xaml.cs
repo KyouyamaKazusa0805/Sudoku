@@ -263,14 +263,14 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			// Digits.
 			case var key and >= VirtualKey.Number0 and <= VirtualKey.Number9:
 			{
-				(modifierKeyIsPressed(VirtualKey.Shift) ? a : b)(cell, key - VirtualKey.Number0 - 1);
+				(VirtualKey.Shift.ModifierKeyIsDown() ? a : b)(cell, key - VirtualKey.Number0 - 1);
 
 				break;
 			}
 			// Digits.
 			case var key and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9:
 			{
-				(modifierKeyIsPressed(VirtualKey.Shift) ? a : b)(cell, key - VirtualKey.NumberPad0 - 1);
+				(VirtualKey.Shift.ModifierKeyIsDown() ? a : b)(cell, key - VirtualKey.NumberPad0 - 1);
 
 				break;
 			}
@@ -283,11 +283,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				return;
 			}
 		}
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool modifierKeyIsPressed(VirtualKey key)
-			=> InputKeyboardSource.GetKeyStateForCurrentThread(key).Flags(CoreVirtualKeyStates.Down);
 	}
 
 	/// <inheritdoc/>
