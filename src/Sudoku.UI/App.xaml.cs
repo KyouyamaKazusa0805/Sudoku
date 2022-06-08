@@ -49,7 +49,10 @@ public partial class App : Application
 			AppInstance.GetCurrent().GetActivatedEventArgs() is
 			{
 				Kind: ExtendedActivationKind.File,
-				Data: IFileActivatedEventArgs { Files: [StorageFile file, ..] }
+				Data: IFileActivatedEventArgs
+				{
+					Files: [StorageFile { FileType: CommonFileExtensions.Sudoku } file, ..]
+				}
 			}
 		)
 		{
