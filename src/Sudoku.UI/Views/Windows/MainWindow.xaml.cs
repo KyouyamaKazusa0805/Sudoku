@@ -119,7 +119,7 @@ public sealed partial class MainWindow : Window
 			var dragRectsList = new List<RectInt32>();
 
 			RectInt32 dragRectL;
-			dragRectL.X = (int)((_cLeftPaddingColumn.ActualWidth) * scaleAdjustment);
+			dragRectL.X = (int)(_cLeftPaddingColumn.ActualWidth * scaleAdjustment);
 			dragRectL.Y = 0;
 			dragRectL.Height = (int)(_cAppTitleBar.ActualHeight * scaleAdjustment);
 			dragRectL.Width = (int)((_cIconColumn.ActualWidth + _cTitleColumn.ActualWidth + _cLeftDragColumn.ActualWidth) * scaleAdjustment);
