@@ -17,11 +17,6 @@ public sealed partial class MainWindow : Window
 	/// </summary>
 	private (string Key, string Value, string OriginalValue)[] _gatheredQueryKeywords = null!;
 
-	/// <summary>
-	/// Indicates the application window.
-	/// </summary>
-	private AppWindow _appWindow;
-
 
 	/// <summary>
 	/// Initializes a <see cref="MainWindow"/> instance.
@@ -40,9 +35,6 @@ public sealed partial class MainWindow : Window
 		//
 		// We must set the value here instead.
 		Title = R["ProgramName"];
-
-		// To customize the title bar if available.
-		CustomizeTitleBar();
 	}
 
 
@@ -55,41 +47,6 @@ public sealed partial class MainWindow : Window
 			select (type.Name, type, attribute.DisplayTitle)
 		).ToArray();
 
-
-	/// <summary>
-	/// Customize the title bar if available.
-	/// </summary>
-	[MemberNotNull(nameof(_appWindow))]
-	private void CustomizeTitleBar()
-	{
-		// Initializes the field '_appWindow'.
-		_appWindow = this.GetAppWindow();
-
-		// Check to see if customization is supported.
-		// Currently only supported on Windows 11.
-		if (AppWindowTitleBar.IsCustomizationSupported() && _appWindow is { TitleBar: var titleBar })
-		{
-			// Hide default title bar.
-			titleBar.ExtendsContentIntoTitleBar = true;
-
-			// Sets the background color on "those" three buttons to transparent.
-			titleBar.ButtonBackgroundColor = Colors.Transparent;
-			titleBar.ButtonForegroundColor = Colors.Black;
-			titleBar.ButtonHoverBackgroundColor = Colors.LightGray;
-			titleBar.ButtonHoverForegroundColor = Colors.Black;
-			titleBar.ButtonPressedBackgroundColor = Colors.DimGray;
-			titleBar.ButtonPressedForegroundColor = Colors.Black;
-			titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-			titleBar.ButtonInactiveForegroundColor = Colors.Gray;
-		}
-		else
-		{
-			// Title bar customization using these APIs is currently
-			// supported only on Windows 11. In other cases, hide
-			// the custom title bar element.
-			_cAppTitleBar.Visibility = Visibility.Collapsed;
-		}
-	}
 
 	/// <summary>
 	/// Try to navigate the pages.
@@ -110,6 +67,14 @@ public sealed partial class MainWindow : Window
 
 		_cViewRouter.AlwaysShowHeader = displayTitle;
 	}
+
+
+	/// <summary>
+	/// To clear the content of the specified <see cref="AutoSuggestBox"/> instance.
+	/// </summary>
+	/// <param name="autoSuggestBox">The <see cref="AutoSuggestBox"/> instance.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static void ClearAutoSuggestBoxValue(AutoSuggestBox autoSuggestBox) => autoSuggestBox.Text = string.Empty;
 
 
 	/// <summary>
@@ -253,5 +218,5 @@ public sealed partial class MainWindow : Window
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="args">The event arguments provided.</param>
 	private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
-		=> sender.Text = string.Empty;
+		=> ClearAutoSuggestBoxValue(sender);
 }

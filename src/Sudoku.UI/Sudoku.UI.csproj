@@ -110,5 +110,8 @@
 		<Page Update="Views\Controls\FontPicker.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Controls\TitleBar.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 </Project>

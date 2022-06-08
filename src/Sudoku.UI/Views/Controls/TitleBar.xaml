@@ -1,0 +1,30 @@
+﻿<UserControl
+	x:Class="Sudoku.UI.Views.Controls.TitleBar"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	Loaded="UserControl_Loaded">
+	<UserControl.Resources>
+		<Thickness x:Key="_rMargin">12,0,0,0</Thickness>
+		<VerticalAlignment x:Key="_rCenterVerticalAlignment">Center</VerticalAlignment>
+	</UserControl.Resources>
+
+	<Grid x:Name="_cAppTitleBar" Grid.Row="0" Height="64">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition x:Name="_cLeftPaddingColumn" Width="0" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition/>
+			<ColumnDefinition x:Name="_cRightPaddingColumn" Width="0" />
+		</Grid.ColumnDefinitions>
+		<Image
+			x:Name="_cTitleBarIcon" Grid.Column="1" HorizontalAlignment="Left"
+			VerticalAlignment="{StaticResource _rCenterVerticalAlignment}"
+			Source="/Assets/images/logo.png" Width="44" Height="44" Margin="{StaticResource _rMargin}" />
+		<TextBlock
+			x:Name="_cTitleTextBlock" Grid.Column="2" VerticalAlignment="{StaticResource _rCenterVerticalAlignment}"
+			Text="{StaticResource ProgramName}" Style="{StaticResource CaptionTextBlockStyle}"
+			Margin="{StaticResource _rMargin}" />
+	</Grid>
+</UserControl>
