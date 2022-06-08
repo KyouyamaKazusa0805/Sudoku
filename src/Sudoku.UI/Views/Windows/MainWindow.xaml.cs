@@ -29,10 +29,7 @@ public sealed partial class MainWindow : Window
 
 		// Sets the title of the window.
 		// If we set the value to the XAML file, that file cannot be compiled successfully:
-		//
-		//     You'll receive an error (WMC0615): Type 'StaticResource' used after '{'
-		//     must be a Markup Extension. Error code 0x09c4.
-		//
+		// WMC0615: Type 'StaticResource' used after '{' must be a Markup Extension. Error code 0x09c4.
 		// We must set the value here instead.
 		Title = R["ProgramName"];
 	}
