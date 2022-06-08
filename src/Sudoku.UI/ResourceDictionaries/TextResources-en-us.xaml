@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<x:String x:Key="ProgramName">Sunnie's Sudoku Solution (Project Nano)</x:String>
+	<x:String x:Key="ProgramName">Sudoku Studio</x:String>
 
 	<!--Page inner data-->
 	<x:String x:Key="MainPage_PlayingAndAnalyzing">Playing &amp; Analyzing</x:String>

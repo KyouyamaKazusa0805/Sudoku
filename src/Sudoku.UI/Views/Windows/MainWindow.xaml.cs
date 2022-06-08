@@ -118,24 +118,38 @@ public sealed partial class MainWindow : Window
 			_cRightPaddingColumn.Width = new GridLength(appWindow.TitleBar.RightInset / scaleAdjustment);
 			_cLeftPaddingColumn.Width = new GridLength(appWindow.TitleBar.LeftInset / scaleAdjustment);
 
-			var dragRectsList = new List<RectInt32>();
-
-			RectInt32 dragRectL;
-			dragRectL.X = (int)(_cLeftPaddingColumn.ActualWidth * scaleAdjustment);
-			dragRectL.Y = 0;
-			dragRectL.Height = (int)(_cAppTitleBar.ActualHeight * scaleAdjustment);
-			dragRectL.Width = (int)((_cIconColumn.ActualWidth + _cTitleColumn.ActualWidth + _cLeftDragColumn.ActualWidth) * scaleAdjustment);
-			dragRectsList.Add(dragRectL);
-
-			RectInt32 dragRectR;
-			dragRectR.X = (int)((_cLeftPaddingColumn.ActualWidth + _cIconColumn.ActualWidth + _cTitleTextBlock.ActualWidth + _cLeftDragColumn.ActualWidth + _cSearchColumn.ActualWidth) * scaleAdjustment);
-			dragRectR.Y = 0;
-			dragRectR.Height = (int)(_cAppTitleBar.ActualHeight * scaleAdjustment);
-			dragRectR.Width = (int)(_cRightDragColumn.ActualWidth * scaleAdjustment);
-			dragRectsList.Add(dragRectR);
-
-			var dragRects = dragRectsList.ToArray();
-			appWindow.TitleBar.SetDragRectangles(dragRects);
+			var rects = new RectInt32[]
+			{
+				new()
+				{
+					X = (int)(_cLeftPaddingColumn.ActualWidth * scaleAdjustment),
+					Y = 0,
+					Height = (int)(_cAppTitleBar.ActualHeight * scaleAdjustment),
+					Width = (int)(
+						(
+							_cIconColumn.ActualWidth
+								+ _cTitleColumn.ActualWidth
+								+ _cLeftDragColumn.ActualWidth
+						) * scaleAdjustment
+					)
+				},
+				new()
+				{
+					X = (int)(
+						(
+							_cLeftPaddingColumn.ActualWidth
+								+ _cIconColumn.ActualWidth
+								+ _cTitleTextBlock.ActualWidth
+								+ _cLeftDragColumn.ActualWidth
+								+ _cSearchColumn.ActualWidth
+						) * scaleAdjustment
+					),
+					Y = 0,
+					Height = (int)(_cAppTitleBar.ActualHeight * scaleAdjustment),
+					Width = (int)(_cRightDragColumn.ActualWidth * scaleAdjustment)
+				}
+			};
+			appWindow.TitleBar.SetDragRectangles(rects);
 		}
 	}
 
@@ -207,7 +221,7 @@ public sealed partial class MainWindow : Window
 			{
 				// Compact overlay - hide custom title bar and use the default system title bar instead.
 				case AppWindowPresenterKind.CompactOverlay:
-				{	
+				{
 					_cAppTitleBar.Visibility = Visibility.Collapsed;
 					sender.TitleBar.ResetToDefault();
 
