@@ -251,6 +251,7 @@ public sealed partial class SudokuPage : Page
 	{
 		var fop = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary };
 		fop.FileTypeFilter.Add(CommonFileExtensions.Text);
+		fop.FileTypeFilter.Add(CommonFileExtensions.Sudoku);
 		fop.AwareHandleOnWin32();
 
 		var file = await fop.PickSingleFileAsync();
@@ -305,6 +306,7 @@ public sealed partial class SudokuPage : Page
 			SuggestedFileName = R["Sudoku"]!
 		};
 		fsp.FileTypeChoices.Add(R["FileExtension_TextDescription"], new List<string> { CommonFileExtensions.Text });
+		fsp.FileTypeChoices.Add(R["FileExtension_SudokuGridDescription"]!, new List<string> { CommonFileExtensions.Sudoku });
 		fsp.AwareHandleOnWin32();
 
 		var file = await fsp.PickSaveFileAsync();

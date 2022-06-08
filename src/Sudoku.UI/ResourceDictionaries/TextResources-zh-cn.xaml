@@ -177,7 +177,8 @@
 
 	<!--杂项-->
 	<x:String x:Key="Link_SudokuTutorialDescription">哔哩哔哩数独教程专栏（rl291187）</x:String>
-	<x:String x:Key="FileExtension_TextDescription">数独代码文本</x:String>
+	<x:String x:Key="FileExtension_TextDescription">文本文件</x:String>
+	<x:String x:Key="FileExtension_SudokuGridDescription">数独盘面文件</x:String>
 	<x:String x:Key="FileExtension_Configuration">用户设置项</x:String>
 	<x:String x:Key="Close">关闭</x:String>
 	<x:String x:Key="Info">提示信息</x:String>
