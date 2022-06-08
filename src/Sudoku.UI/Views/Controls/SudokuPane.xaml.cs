@@ -392,6 +392,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			_cCanvasMain.Children.Add(control);
 		}
 
+		// Loads the grid if the program is opened by opening a file.
+		if (((App)Application.Current).PreloadingGrid is { } grid)
+		{
+			// Sets the value.
+			Grid = grid;
+
+			// Remove the value to avoid re-triggering.
+			((App)Application.Current).PreloadingGrid = null;
+		}
+
 
 		void triggerBoth()
 		{

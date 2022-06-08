@@ -26,6 +26,7 @@ public sealed partial class MainWindow : Window
 	/// <summary>
 	/// Initializes a <see cref="MainWindow"/> instance.
 	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public MainWindow()
 	{
 		// Initializes the controls.
@@ -46,6 +47,7 @@ public sealed partial class MainWindow : Window
 		// To customize the title bar if available.
 		CustomizeTitleBar();
 	}
+
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static MainWindow()

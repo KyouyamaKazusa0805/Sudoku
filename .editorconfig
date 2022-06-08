@@ -319,6 +319,9 @@ dotnet_naming_style.start_with__t_.capitalization = pascal_case
 # Diagnostic results
 #
 
+# CS0184: 'is' expression's given expression is never of the provided type
+dotnet_diagnostic.CS0184.severity = error
+
 # CS8597: Thrown value may be null.
 dotnet_diagnostic.CS8597.severity = error
 

@@ -17,6 +17,11 @@ public partial class App : Application
 
 
 	/// <summary>
+	/// Indicates the preloading sudoku grid.
+	/// </summary>
+	internal Grid? PreloadingGrid { get; set; } = null;
+
+	/// <summary>
 	/// Indicates the main window in this application in the current interaction logic.
 	/// </summary>
 	internal Window MainWindow { get; private set; } = null!;
@@ -34,12 +39,23 @@ public partial class App : Application
 	/// </para>
 	/// </summary>
 	/// <param name="args">Details about the launch request and process.</param>
-	protected override void OnLaunched(LaunchActivatedEventArgs args)
+	protected override async void OnLaunched(MicrosoftLaunchActivatedEventArgs args)
 	{
 		// Binds the resource fetcher on type 'MergedResources'.
 		R.AddExternalResourceFetecher(GetType().Assembly, static key => Current.Resources[key] as string);
 
 		// Activate the main window.
+		if (
+			AppInstance.GetCurrent().GetActivatedEventArgs() is
+			{
+				Kind: ExtendedActivationKind.File,
+				Data: IFileActivatedEventArgs { Files: [StorageFile file, ..] }
+			}
+		)
+		{
+			PreloadingGrid = Grid.Parse(await FileIO.ReadTextAsync(file));
+		}
+
 		(MainWindow = new MainWindow()).Activate();
 	}
 }
