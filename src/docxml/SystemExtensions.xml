@@ -2067,6 +2067,12 @@
             <param name="baseType">The type as the base type.</param>
             <returns>All possible derived types.</returns>
         </member>
+        <member name="M:System.Reflection.AssemblyExtensions.GetDerivedTypes``1(System.Reflection.Assembly)">
+            <inheritdoc cref="M:System.Reflection.AssemblyExtensions.GetDerivedTypes(System.Reflection.Assembly,System.Type)"/>
+            <typeparam name="TBase">The type as the base type.</typeparam>
+            <param name="this"><inheritdoc/></param>
+            <returns><inheritdoc/></returns>
+        </member>
         <member name="T:System.Reflection.MemberInfoExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Reflection.MemberInfo"/> instances.

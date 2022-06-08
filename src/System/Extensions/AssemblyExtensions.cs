@@ -16,4 +16,12 @@ public static class AssemblyExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static IEnumerable<Type> GetDerivedTypes(this Assembly @this, Type baseType)
 		=> from type in @this.GetTypes() where type.IsAssignableTo(baseType) select type;
+
+	/// <inheritdoc cref="GetDerivedTypes(Assembly, Type)"/>
+	/// <typeparam name="TBase">The type as the base type.</typeparam>
+	/// <param name="this"><inheritdoc/></param>
+	/// <returns><inheritdoc/></returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static IEnumerable<Type> GetDerivedTypes<TBase>(this Assembly @this)
+		=> from type in @this.GetTypes() where type.IsAssignableTo(typeof(TBase)) select type;
 }

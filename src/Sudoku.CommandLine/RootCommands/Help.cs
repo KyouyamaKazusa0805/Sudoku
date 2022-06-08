@@ -36,7 +36,7 @@ public sealed class Help : IExecutable
 		{
 			// Iterates on each command type, to get the maximum length of the command,
 			// in order to display the commands alignedly.
-			var commandTypes = thisAssembly.GetDerivedTypes(typeof(IExecutable));
+			var commandTypes = thisAssembly.GetDerivedTypes<IExecutable>();
 			int maxWidth = 0;
 			var listOfDescriptionParts = new List<(string CommandName, IEnumerable<string> DescriptionRawParts)>();
 			foreach (var commandType in commandTypes)
@@ -69,7 +69,7 @@ public sealed class Help : IExecutable
 		{
 			// Iterates on each root command type, to validate whether the property points to the type.
 			IExecutable? instance = null;
-			foreach (var type in thisType.Assembly.GetDerivedTypes(typeof(IExecutable)))
+			foreach (var type in thisType.Assembly.GetDerivedTypes<IExecutable>())
 			{
 				var propertyInfo = thisType.GetProperty(nameof(HelpCommandName))!;
 				var attribute = propertyInfo.GetCustomAttribute<SingleArgumentCommandAttribute>()!;

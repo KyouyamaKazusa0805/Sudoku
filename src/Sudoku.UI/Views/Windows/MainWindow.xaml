@@ -14,14 +14,11 @@
 		</Grid.RowDefinitions>
 
 		<!--Title Bar-->
-		<Grid x:Name="_cAppTitleBar" Grid.Row="0" Height="64" Loaded="AppTitleBar_Loaded">
+		<Grid x:Name="_cAppTitleBar" Grid.Row="0" Height="64">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition x:Name="_cLeftPaddingColumn" Width="0" />
-				<ColumnDefinition x:Name="_cIconColumn" Width="Auto" />
-				<ColumnDefinition x:Name="_cTitleColumn" Width="Auto" />
-				<ColumnDefinition x:Name="_cLeftDragColumn" Width="*" />
-				<ColumnDefinition x:Name="_cSearchColumn" Width="Auto" />
-				<ColumnDefinition x:Name="_cRightDragColumn" Width="*" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition/>
 				<ColumnDefinition x:Name="_cRightPaddingColumn" Width="0" />
 			</Grid.ColumnDefinitions>
 			<Image
@@ -30,32 +27,6 @@
 			<TextBlock
 				x:Name="_cTitleTextBlock" Grid.Column="2" Text="{StaticResource ProgramName}"
 				Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" Margin="12,0,0,0" />
-			<AutoSuggestBox
-				Grid.Column="4" QueryIcon="Find" PlaceholderText="{StaticResource MainPage_Search}" Width="260"
-				Margin="4,0" VerticalAlignment="Center" TextChanged="AutoSuggestBox_TextChanged"
-				SuggestionChosen="AutoSuggestBox_SuggestionChosen">
-				<AutoSuggestBox.ItemTemplateSelector>
-					<dts:SearchedResultItemTemplateSelector>
-						<dts:SearchedResultItemTemplateSelector.PairInfoTemplate>
-							<DataTemplate x:DataType="m:SearchedResult">
-								<StackPanel Orientation="Vertical">
-									<TextBlock
-										Text="{x:Bind Value}" Style="{ThemeResource BodyTextBlockStyle}"
-										TextWrapping="WrapWholeWords" />
-									<TextBlock
-										Text="{x:Bind Location}" Style="{ThemeResource CaptionTextBlockStyle}"
-										TextWrapping="WrapWholeWords" />
-								</StackPanel>
-							</DataTemplate>
-						</dts:SearchedResultItemTemplateSelector.PairInfoTemplate>
-						<dts:SearchedResultItemTemplateSelector.DefaultTemplate>
-							<DataTemplate x:DataType="x:String">
-								<TextBlock Text="{x:Bind}" Style="{ThemeResource CaptionTextBlockStyle}" />
-							</DataTemplate>
-						</dts:SearchedResultItemTemplateSelector.DefaultTemplate>
-					</dts:SearchedResultItemTemplateSelector>
-				</AutoSuggestBox.ItemTemplateSelector>
-			</AutoSuggestBox>
 		</Grid>
 
 		<!--#region Test code for fullscreen mode-->
@@ -81,7 +52,35 @@
 		<NavigationView
 			x:Name="_cViewRouter" Header="{StaticResource ProgramName}" IsBackButtonVisible="Collapsed"
 			Grid.Row="1" IsBackEnabled="False" PaneDisplayMode="Left" IsSettingsVisible="False"
-			Loaded="ViewRouter_Loaded" ItemInvoked="ViewRouter_ItemInvoked" SelectionChanged="ViewRouter_SelectionChanged">
+			Loaded="ViewRouter_Loaded" ItemInvoked="ViewRouter_ItemInvoked"
+			SelectionChanged="ViewRouter_SelectionChanged">
+			<NavigationView.AutoSuggestBox>
+				<AutoSuggestBox
+					QueryIcon="Find" PlaceholderText="{StaticResource MainPage_Search}" VerticalAlignment="Center"
+					TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen">
+					<AutoSuggestBox.ItemTemplateSelector>
+						<dts:SearchedResultItemTemplateSelector>
+							<dts:SearchedResultItemTemplateSelector.PairInfoTemplate>
+								<DataTemplate x:DataType="m:SearchedResult">
+									<StackPanel Orientation="Vertical">
+										<TextBlock
+											Text="{x:Bind Value}" Style="{ThemeResource BodyTextBlockStyle}"
+											TextWrapping="WrapWholeWords" />
+										<TextBlock
+											Text="{x:Bind Location}" Style="{ThemeResource CaptionTextBlockStyle}"
+											TextWrapping="WrapWholeWords" />
+									</StackPanel>
+								</DataTemplate>
+							</dts:SearchedResultItemTemplateSelector.PairInfoTemplate>
+							<dts:SearchedResultItemTemplateSelector.DefaultTemplate>
+								<DataTemplate x:DataType="x:String">
+									<TextBlock Text="{x:Bind}" Style="{ThemeResource CaptionTextBlockStyle}" />
+								</DataTemplate>
+							</dts:SearchedResultItemTemplateSelector.DefaultTemplate>
+						</dts:SearchedResultItemTemplateSelector>
+					</AutoSuggestBox.ItemTemplateSelector>
+				</AutoSuggestBox>
+			</NavigationView.AutoSuggestBox>
 			<NavigationView.MenuItems>
 				<NavigationViewItemHeader Content="{StaticResource MainPage_Sudoku}" />
 				<NavigationViewItem Icon="ViewAll" Tag="SudokuPage" Content="{StaticResource MainPage_PlayingAndAnalyzing}" />

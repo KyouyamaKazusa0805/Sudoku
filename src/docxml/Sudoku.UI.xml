@@ -1726,29 +1726,10 @@
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.InitializeAppWindowField">
-            <summary>
-            Initializes the field <see cref="F:Sudoku.UI.Views.Windows.MainWindow._appWindow"/>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.Views.Windows.MainWindow._appWindow"/>
-        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.CustomizeTitleBar">
             <summary>
             Customize the title bar if available.
             </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SetDragRegionForCustomTitleBar(Microsoft.UI.Windowing.AppWindow)">
-            <summary>
-            Sets the dragable region for the customized title bar.
-            </summary>
-            <param name="appWindow">The application window.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetScaleAdjustment">
-            <summary>
-            Gets the adjustments on scaling.
-            </summary>
-            <returns>The percentage of the scaling.</returns>
-            <exception cref="T:System.Exception">Throws when the target DPI is failed to get.</exception>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.OnNavigate(System.String,Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo)">
             <summary>
@@ -1756,13 +1737,6 @@
             </summary>
             <param name="tag">The specified tag of the navigate page item.</param>
             <param name="transitionInfo">The transition information.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SwitchPresenter(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Switch on presenters. This method is only used when the relative XAML code is enabled.
-            </summary>
-            <param name="sender">The object to trigger the event.</param>
-            <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.ViewRouter_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>

@@ -32,9 +32,6 @@ public sealed partial class MainWindow : Window
 		// Initializes the controls.
 		InitializeComponent();
 
-		// Initializes the field '_appWindow'.
-		InitializeAppWindowField();
-
 		// Sets the title of the window.
 		// If we set the value to the XAML file, that file cannot be compiled successfully:
 		//
@@ -52,7 +49,7 @@ public sealed partial class MainWindow : Window
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static MainWindow()
 		=> NavigationPairs = (
-			from type in typeof(MainWindow).Assembly.GetDerivedTypes(typeof(Page))
+			from type in typeof(MainWindow).Assembly.GetDerivedTypes<Page>()
 			let attribute = type.GetCustomAttribute<PageAttribute>()
 			where attribute is not null
 			select (type.Name, type, attribute.DisplayTitle)
@@ -60,31 +57,20 @@ public sealed partial class MainWindow : Window
 
 
 	/// <summary>
-	/// Initializes the field <see cref="_appWindow"/>.
-	/// </summary>
-	/// <seealso cref="_appWindow"/>
-	[MemberNotNull(nameof(_appWindow))]
-	private void InitializeAppWindowField()
-	{
-		_appWindow = this.GetAppWindow();
-		_appWindow.Changed += AppWindow_Changed;
-	}
-
-	/// <summary>
 	/// Customize the title bar if available.
 	/// </summary>
+	[MemberNotNull(nameof(_appWindow))]
 	private void CustomizeTitleBar()
 	{
+		// Initializes the field '_appWindow'.
+		_appWindow = this.GetAppWindow();
+
 		// Check to see if customization is supported.
 		// Currently only supported on Windows 11.
 		if (AppWindowTitleBar.IsCustomizationSupported() && _appWindow is { TitleBar: var titleBar })
 		{
 			// Hide default title bar.
 			titleBar.ExtendsContentIntoTitleBar = true;
-
-			// Set events that detects the re-sizing by users.
-			_cAppTitleBar.Loaded += AppTitleBar_Loaded;
-			_cAppTitleBar.SizeChanged += AppTitleBar_SizeChanged;
 
 			// Sets the background color on "those" three buttons to transparent.
 			titleBar.ButtonBackgroundColor = Colors.Transparent;
@@ -103,76 +89,6 @@ public sealed partial class MainWindow : Window
 			// the custom title bar element.
 			_cAppTitleBar.Visibility = Visibility.Collapsed;
 		}
-	}
-
-	/// <summary>
-	/// Sets the dragable region for the customized title bar.
-	/// </summary>
-	/// <param name="appWindow">The application window.</param>
-	private void SetDragRegionForCustomTitleBar(AppWindow appWindow)
-	{
-		if (AppWindowTitleBar.IsCustomizationSupported() && appWindow.TitleBar.ExtendsContentIntoTitleBar)
-		{
-			double scaleAdjustment = GetScaleAdjustment();
-
-			_cRightPaddingColumn.Width = new GridLength(appWindow.TitleBar.RightInset / scaleAdjustment);
-			_cLeftPaddingColumn.Width = new GridLength(appWindow.TitleBar.LeftInset / scaleAdjustment);
-
-			var rects = new RectInt32[]
-			{
-				new()
-				{
-					X = (int)(_cLeftPaddingColumn.ActualWidth * scaleAdjustment),
-					Y = 0,
-					Height = (int)(_cAppTitleBar.ActualHeight * scaleAdjustment),
-					Width = (int)(
-						(
-							_cIconColumn.ActualWidth
-								+ _cTitleColumn.ActualWidth
-								+ _cLeftDragColumn.ActualWidth
-						) * scaleAdjustment
-					)
-				},
-				new()
-				{
-					X = (int)(
-						(
-							_cLeftPaddingColumn.ActualWidth
-								+ _cIconColumn.ActualWidth
-								+ _cTitleTextBlock.ActualWidth
-								+ _cLeftDragColumn.ActualWidth
-								+ _cSearchColumn.ActualWidth
-						) * scaleAdjustment
-					),
-					Y = 0,
-					Height = (int)(_cAppTitleBar.ActualHeight * scaleAdjustment),
-					Width = (int)(_cRightDragColumn.ActualWidth * scaleAdjustment)
-				}
-			};
-			appWindow.TitleBar.SetDragRectangles(rects);
-		}
-	}
-
-	/// <summary>
-	/// Gets the adjustments on scaling.
-	/// </summary>
-	/// <returns>The percentage of the scaling.</returns>
-	/// <exception cref="Exception">Throws when the target DPI is failed to get.</exception>
-	private double GetScaleAdjustment()
-	{
-		var hWnd = WindowNative.GetWindowHandle(this);
-		var wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
-		var displayArea = DisplayArea.GetFromWindowId(wndId, DisplayAreaFallback.Primary);
-		var hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
-
-		// Get DPI.
-		if (AppWindowMarshal.GetDpiForMonitor(hMonitor, Monitor_DPI_Type.MDT_Default, out uint dpiX, out _) != 0)
-		{
-			throw new Exception("Could not get DPI for monitor.");
-		}
-
-		uint scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);
-		return scaleFactorPercent / 100.0;
 	}
 
 	/// <summary>
@@ -195,98 +111,6 @@ public sealed partial class MainWindow : Window
 		_cViewRouter.AlwaysShowHeader = displayTitle;
 	}
 
-
-	private void AppTitleBar_Loaded(object sender, RoutedEventArgs e)
-	{
-		if (AppWindowTitleBar.IsCustomizationSupported())
-		{
-			SetDragRegionForCustomTitleBar(_appWindow);
-		}
-	}
-
-	private void AppTitleBar_SizeChanged(object sender, SizeChangedEventArgs e)
-	{
-		if (AppWindowTitleBar.IsCustomizationSupported() && _appWindow.TitleBar.ExtendsContentIntoTitleBar)
-		{
-			// Update drag region if the size of the title bar changes.
-			SetDragRegionForCustomTitleBar(_appWindow);
-		}
-	}
-
-	private void AppWindow_Changed(AppWindow sender, AppWindowChangedEventArgs args)
-	{
-		if (args.DidPresenterChange && AppWindowTitleBar.IsCustomizationSupported())
-		{
-			switch (sender.Presenter.Kind)
-			{
-				// Compact overlay - hide custom title bar and use the default system title bar instead.
-				case AppWindowPresenterKind.CompactOverlay:
-				{
-					_cAppTitleBar.Visibility = Visibility.Collapsed;
-					sender.TitleBar.ResetToDefault();
-
-					break;
-				}
-
-				// Full screen - hide the custom title bar and the default system title bar.
-				case AppWindowPresenterKind.FullScreen:
-				{
-					_cAppTitleBar.Visibility = Visibility.Collapsed;
-					sender.TitleBar.ExtendsContentIntoTitleBar = true;
-
-					break;
-				}
-
-				// Normal - hide the system title bar and use the custom title bar instead.
-				case AppWindowPresenterKind.Overlapped:
-				{
-					_cAppTitleBar.Visibility = Visibility.Visible;
-					sender.TitleBar.ExtendsContentIntoTitleBar = true;
-					SetDragRegionForCustomTitleBar(sender);
-
-					break;
-				}
-
-				// Use the default system title bar.
-				default:
-				{
-					sender.TitleBar.ResetToDefault();
-
-					break;
-				}
-			}
-		}
-	}
-
-	/// <summary>
-	/// Switch on presenters. This method is only used when the relative XAML code is enabled.
-	/// </summary>
-	/// <param name="sender">The object to trigger the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	[Conditional("FULLSCREEN_MODE_ENABLED")]
-	private void SwitchPresenter(object sender, RoutedEventArgs e)
-	{
-		if ((_appWindow, sender) is not (not null, Button { Name: var buttonName }))
-		{
-			return;
-		}
-
-		var newPresenterKind = buttonName switch
-		{
-			"_toCompactoverlay" => AppWindowPresenterKind.CompactOverlay,
-			"_toFullscreen" => AppWindowPresenterKind.FullScreen,
-			"_toOverlapped" => AppWindowPresenterKind.Overlapped,
-			_ => AppWindowPresenterKind.Default,
-		};
-
-		_appWindow.SetPresenter(
-			newPresenterKind == _appWindow.Presenter.Kind
-				// If the same presenter button was pressed as the mode we're in, toggle the window back to Default.
-				? AppWindowPresenterKind.Default
-				// Else request a presenter of the selected kind to be created and applied to the window.
-				: newPresenterKind
-		);
-	}
 
 	/// <summary>
 	/// Triggers when the view router control is loaded.
