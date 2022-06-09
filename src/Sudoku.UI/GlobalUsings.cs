@@ -64,5 +64,5 @@ global using WinRT.Interop;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Resources.MergedResources;
 global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
-global using MicrosoftLaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
+global using MsLaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 global using Grid = Sudoku.Concepts.Collections.Grid;

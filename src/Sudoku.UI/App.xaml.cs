@@ -39,7 +39,7 @@ public partial class App : Application
 	/// </para>
 	/// </summary>
 	/// <param name="args">Details about the launch request and process.</param>
-	protected override async void OnLaunched(MicrosoftLaunchActivatedEventArgs args)
+	protected override async void OnLaunched(MsLaunchActivatedEventArgs args)
 	{
 		// Binds the resource fetcher on type 'MergedResources'.
 		R.AddExternalResourceFetecher(GetType().Assembly, static key => Current.Resources[key] as string);
