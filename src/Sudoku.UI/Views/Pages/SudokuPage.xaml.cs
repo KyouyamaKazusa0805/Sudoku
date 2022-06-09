@@ -473,6 +473,60 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	private void Unmask() => _cPane.Unmask();
 
+	/// <summary>
+	/// To print the grid.
+	/// </summary>
+	private async Task PrintAsync()
+	{
+		// Create a new 'PrintHelperOptions' instance.
+		var defaultOptions = new PrintHelperOptions();
+
+		// Configure options that you want to be displayed on the print dialog.
+		defaultOptions.AddDisplayOption(StandardPrintTaskOptions.Orientation);
+		defaultOptions.Orientation = PrintOrientation.Landscape;
+
+		// Create a new 'PrintHelper' instance.
+		var printHelper = new PrintHelper(_cPrintingContainer, defaultOptions);
+
+		// Due to the design of the printer, we should remove the control from the visual tree temporarily.
+		_cPaneParent.Children.Remove(_cPane);
+
+		// Add controls that you want to print.
+		printHelper.AddFrameworkElementToPrint(_cPane);
+
+		// Add event handlers.
+		printHelper.OnPrintSucceeded += async () => await f(printHelper, R["PrintSuccessful"]!);
+		printHelper.OnPrintFailed += async () => await f(printHelper, R["PrintFailed"]!);
+
+		// Start printing process.
+		try
+		{
+			await printHelper.ShowPrintUIAsync(R["ProgramName"]!);
+		}
+		catch (COMException ex) when (ex.ErrorCode == unchecked((int)0x80040155U))
+		{
+			// System.Runtime.InteropServices.COMException: 'Interface not registered (0x80040155)'.
+			// This issue is raised due to not having been implemented on printing operations.
+			// Please visit this issue link for more details.
+			// https://github.com/microsoft/microsoft-ui-xaml/issues/4419
+			await f(printHelper, R["PrintFailed_InterfaceNotRegistered"]!);
+		}
+
+
+		async Task f(PrintHelper printHelper, string message)
+		{
+			// Dispose the print helper instance.
+			printHelper.Dispose();
+
+			// Display the result.
+			var dialog = SimpleControlFactory.CreateErrorDialog(this, string.Empty, message);
+			await dialog.ShowAsync();
+
+			// Revert control again.
+			_cPaneParent.Children.Add(_cPane);
+		}
+	}
+
 
 	/// <summary>
 	/// Triggers when the current page is loaded.
@@ -606,4 +660,10 @@ public sealed partial class SudokuPage : Page
 	/// Indicates the event trigger callback method that unmask the grid.
 	/// </summary>
 	private void ComamndUnmask_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args) => Unmask();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that print the puzzle.
+	/// </summary>
+	private async void ComamndPrint_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> await PrintAsync();
 }

@@ -1097,6 +1097,11 @@
             displaying in the window.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._isFirstLoading">
+            <summary>
+            Indicates whether the control is loading at the first time.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Views.Controls.SudokuPane._size">
             <summary>
             Indicates the size that the current pane is, which is the backing field
@@ -1601,6 +1606,11 @@
             To unmask the grid. All given and modifiable values will be hidden and displayed as a real digit.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.PrintAsync">
+            <summary>
+            To print the grid.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current page is loaded.
@@ -1707,6 +1717,11 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ComamndUnmask_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
             <summary>
             Indicates the event trigger callback method that unmask the grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ComamndPrint_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that print the puzzle.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitializeComponent">

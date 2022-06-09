@@ -19,6 +19,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private readonly DrawingElementBag _drawingElements = new();
 
 	/// <summary>
+	/// Indicates whether the control is loading at the first time.
+	/// </summary>
+	private bool _isFirstLoading = true;
+
+	/// <summary>
 	/// Indicates the size that the current pane is, which is the backing field
 	/// of the property <see cref="Size"/>.
 	/// </summary>
@@ -334,6 +339,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <param name="e">The event arguments provided.</param>
 	private void SudokuPane_Loaded(object sender, RoutedEventArgs e)
 	{
+		// If the initialization operation is not the first time, we should skip the initialization.
+		if (!_isFirstLoading)
+		{
+			return;
+		}
+
 		var up = ((App)Application.Current).UserPreference;
 
 		// Initializes the outside border if worth.
@@ -401,6 +412,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			// Remove the value to avoid re-triggering.
 			((App)Application.Current).PreloadingGrid = null;
 		}
+
+		// Sets the boolean value to false in order to avoid the re-initialize.
+		_isFirstLoading = false;
 
 
 		void triggerBoth()

@@ -160,11 +160,23 @@
 							</AppBarButton.Command>
 						</AppBarButton>
 					</xc:TabbedCommandBarItem>
+
+					<!-- Fourth tab-->
+					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Printing}">
+						<AppBarButton Label="{StaticResource SudokuPage_Print}" Icon="Print">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="ComamndPrint_ExecuteRequestedAsync" />
+							</AppBarButton.Command>
+						</AppBarButton>
+					</xc:TabbedCommandBarItem>
 				</xc:TabbedCommandBar.MenuItems>
 			</xc:TabbedCommandBar>
 
 			<!--Sudoku grid-->
-			<c:SudokuPane x:Name="_cPane" Grid.Row="1" Margin="25,25,0,0" Size="560" OutsideOffset="10" />
+			<Grid x:Name="_cPrintingContainer" Grid.Row="1" Opacity="0" />
+			<StackPanel x:Name="_cPaneParent" Grid.Row="1" Margin="25,25,0,0">
+				<c:SudokuPane x:Name="_cPane" Size="560" OutsideOffset="10" />
+			</StackPanel>
 
 			<!--Info bar board at the right side of the sudoku grid-->
 			<c:InfoBarBoard

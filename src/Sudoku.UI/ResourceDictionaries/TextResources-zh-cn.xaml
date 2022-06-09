@@ -29,9 +29,11 @@
 	<x:String x:Key="SudokuPage_Sure">是滴！</x:String>
 	<x:String x:Key="SudokuPage_Mask">隐藏数字</x:String>
 	<x:String x:Key="SudokuPage_Unmask">显现数字</x:String>
+	<x:String x:Key="SudokuPage_Print">打印题目</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">编辑</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">解题与分析</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Displaying">呈现与渲染</x:String>
+	<x:String x:Key="SudokuPage_ToolList_Printing">打印</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_Welcome">欢迎来到数独的世界！想要了解数独技巧的话，请访问这个链接：</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SeverityInfo">信息</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SeveritySuccess">成功</x:String>
@@ -182,6 +184,9 @@
 	<x:String x:Key="Info">提示信息</x:String>
 	<x:String x:Key="Sudoku">数独</x:String>
 	<x:String x:Key="PreferenceBackup">设置项备份</x:String>
+	<x:String x:Key="PrintSuccessful">打印成功！</x:String>
+	<x:String x:Key="PrintFailed">打印失败。</x:String>
+	<x:String x:Key="PrintFailed_InterfaceNotRegistered">抱歉，此功能无法成功执行，因为窗体框架本身都没有对打印机的功能进行实现，因此无法继续。</x:String>
 
 	<!--标点符号-->
 	<x:String x:Key="Token_OpenBrace">（</x:String>
