@@ -60,7 +60,6 @@ global using Windows.Storage.Streams;
 global using Windows.System;
 global using Windows.UI;
 global using Windows.UI.Core;
-global using Windows.UI.Popups;
 global using Windows.UI.ViewManagement;
 global using WinRT;
 global using WinRT.Interop;
