@@ -19,9 +19,9 @@
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.UI.App.InitialPageInfo">
+        <member name="P:Sudoku.UI.App.InitialInfo">
             <summary>
-            Indicates the initial page information.
+            Indicates the initial information.
             </summary>
         </member>
         <member name="P:Sudoku.UI.App.UserPreference">
@@ -58,28 +58,28 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
-        <member name="T:Sudoku.UI.AppLifecycle.InitialPageInfo">
+        <member name="T:Sudoku.UI.AppLifecycle.WindowInitialInfo">
             <summary>
             Defines the information to control the initial page information.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.AppLifecycle.InitialPageInfo.FirstPageTypeName">
+        <member name="P:Sudoku.UI.AppLifecycle.WindowInitialInfo.FirstPageTypeName">
             <summary>
             Indicates the first page type name. The default value is <see langword="nameof"/>(<see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/>).
             </summary>
             <seealso cref="T:Sudoku.UI.Views.Pages.SudokuPage"/>
         </member>
-        <member name="P:Sudoku.UI.AppLifecycle.InitialPageInfo.FirstGrid">
+        <member name="P:Sudoku.UI.AppLifecycle.WindowInitialInfo.FirstGrid">
             <summary>
             Indicates the first sudoku grid. The default value is <see langword="null"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.AppLifecycle.InitialPageInfo.MainWindow">
+        <member name="P:Sudoku.UI.AppLifecycle.WindowInitialInfo.MainWindow">
             <summary>
             Indicates the main window.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.AppLifecycle.InitialPageInfo.UserPreference">
+        <member name="P:Sudoku.UI.AppLifecycle.WindowInitialInfo.UserPreference">
             <summary>
             Indicates the user preference used.
             </summary>

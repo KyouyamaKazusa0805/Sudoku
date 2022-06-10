@@ -17,9 +17,9 @@ public partial class App : Application
 
 
 	/// <summary>
-	/// Indicates the initial page information.
+	/// Indicates the initial information.
 	/// </summary>
-	internal InitialPageInfo InitialPageInfo { get; } = new();
+	internal WindowInitialInfo InitialInfo { get; } = new();
 
 	/// <summary>
 	/// Indicates the user preference instance.
@@ -27,7 +27,7 @@ public partial class App : Application
 	internal Preference UserPreference
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => InitialPageInfo.UserPreference;
+		get => InitialInfo.UserPreference;
 	}
 
 
@@ -55,14 +55,14 @@ public partial class App : Application
 					CommonFileExtensions.Sudoku
 						=> async i => i.FirstGrid = Grid.Parse(await FileIO.ReadTextAsync(file)),
 					CommonFileExtensions.PreferenceBackup
-						=> i => i.FirstPageTypeName = nameof(SettingsPage),
-					_ => default(Action<InitialPageInfo>)
+						=> static i => i.FirstPageTypeName = nameof(SettingsPage),
+					_ => default(Action<WindowInitialInfo>)
 				},
 				_ => default
 			}
-		)?.Invoke(InitialPageInfo);
+		)?.Invoke(InitialInfo);
 
 		// Activate the main window.
-		(InitialPageInfo.MainWindow = new MainWindow()).Activate();
+		(InitialInfo.MainWindow = new MainWindow()).Activate();
 	}
 }

@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines the information to control the initial page information.
 /// </summary>
-internal sealed class InitialPageInfo
+internal sealed class WindowInitialInfo
 {
 	/// <summary>
 	/// Indicates the first page type name. The default value is <see langword="nameof"/>(<see cref="SudokuPage"/>).
