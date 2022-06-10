@@ -14,5 +14,10 @@ internal static class CommonReadOnlyFactory
 	/// </list>
 	/// </summary>
 	public static JsonSerializerOptions DefaultSerializerOption
-		=> new() { WriteIndented = true, IgnoreReadOnlyProperties = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+		=> new()
+		{
+			WriteIndented = true,
+			IgnoreReadOnlyProperties = true,
+			PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+		};
 }
