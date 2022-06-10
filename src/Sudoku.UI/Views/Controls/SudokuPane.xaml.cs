@@ -404,13 +404,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		// Loads the grid if the program is opened by opening a file.
-		if (((App)Application.Current).PreloadingGrid is { } grid)
+		if (((App)Application.Current).InitialPageInfo.FirstGrid is { } grid)
 		{
 			// Sets the value.
 			Grid = grid;
 
 			// Remove the value to avoid re-triggering.
-			((App)Application.Current).PreloadingGrid = null;
+			((App)Application.Current).InitialPageInfo.FirstGrid = null;
 		}
 
 		// Sets the boolean value to false in order to avoid the re-initialize.

@@ -39,6 +39,7 @@ global using Microsoft.Windows.AppLifecycle;
 global using Sudoku.Generating.Puzzlers;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving.Manual;
+global using Sudoku.UI.AppLifecycle;
 global using Sudoku.UI.Configuration;
 global using Sudoku.UI.Drawing;
 global using Sudoku.UI.Drawing.Serialization;

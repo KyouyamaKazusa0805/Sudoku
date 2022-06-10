@@ -19,14 +19,9 @@
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.UI.App.PreloadingGrid">
+        <member name="P:Sudoku.UI.App.InitialPageInfo">
             <summary>
-            Indicates the preloading sudoku grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.App.MainWindow">
-            <summary>
-            Indicates the main window in this application in the current interaction logic.
+            Indicates the initial page information.
             </summary>
         </member>
         <member name="P:Sudoku.UI.App.UserPreference">
@@ -61,6 +56,32 @@
         <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
             <summary>
             GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.AppLifecycle.InitialPageInfo">
+            <summary>
+            Defines the information to control the initial page information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.AppLifecycle.InitialPageInfo.FirstPageTypeName">
+            <summary>
+            Indicates the first page type name. The default value is <see langword="nameof"/>(<see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/>).
+            </summary>
+            <seealso cref="T:Sudoku.UI.Views.Pages.SudokuPage"/>
+        </member>
+        <member name="P:Sudoku.UI.AppLifecycle.InitialPageInfo.FirstGrid">
+            <summary>
+            Indicates the first sudoku grid. The default value is <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.AppLifecycle.InitialPageInfo.MainWindow">
+            <summary>
+            Indicates the main window.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.AppLifecycle.InitialPageInfo.UserPreference">
+            <summary>
+            Indicates the user preference used.
             </summary>
         </member>
         <member name="T:Sudoku.UI.CommonReadOnlyFactory">

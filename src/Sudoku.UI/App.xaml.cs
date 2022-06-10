@@ -17,19 +17,18 @@ public partial class App : Application
 
 
 	/// <summary>
-	/// Indicates the preloading sudoku grid.
+	/// Indicates the initial page information.
 	/// </summary>
-	internal Grid? PreloadingGrid { get; set; } = null;
-
-	/// <summary>
-	/// Indicates the main window in this application in the current interaction logic.
-	/// </summary>
-	internal Window MainWindow { get; private set; } = null!;
+	internal InitialPageInfo InitialPageInfo { get; } = new();
 
 	/// <summary>
 	/// Indicates the user preference instance.
 	/// </summary>
-	internal Preference UserPreference { get; } = new();
+	internal Preference UserPreference
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => InitialPageInfo.UserPreference;
+	}
 
 
 	/// <summary>
@@ -39,26 +38,31 @@ public partial class App : Application
 	/// </para>
 	/// </summary>
 	/// <param name="args">Details about the launch request and process.</param>
-	protected override async void OnLaunched(MsLaunchActivatedEventArgs args)
+	protected override void OnLaunched(MsLaunchActivatedEventArgs args)
 	{
 		// Binds the resource fetcher on type 'MergedResources'.
 		R.AddExternalResourceFetecher(GetType().Assembly, static key => Current.Resources[key] as string);
 
-		// Activate the main window.
-		if (
-			AppInstance.GetCurrent().GetActivatedEventArgs() is
+		// Handle and assign the initial value, to control the initial page information.
+		(
+			AppInstance.GetCurrent().GetActivatedEventArgs() switch
 			{
-				Kind: ExtendedActivationKind.File,
-				Data: IFileActivatedEventArgs
 				{
-					Files: [StorageFile { FileType: CommonFileExtensions.Sudoku } file, ..]
-				}
+					Kind: ExtendedActivationKind.File,
+					Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: var fileType } file, ..] }
+				} => fileType switch
+				{
+					CommonFileExtensions.Sudoku
+						=> async i => i.FirstGrid = Grid.Parse(await FileIO.ReadTextAsync(file)),
+					CommonFileExtensions.PreferenceBackup
+						=> i => i.FirstPageTypeName = nameof(SettingsPage),
+					_ => default(Action<InitialPageInfo>)
+				},
+				_ => default
 			}
-		)
-		{
-			PreloadingGrid = Grid.Parse(await FileIO.ReadTextAsync(file));
-		}
+		)?.Invoke(InitialPageInfo);
 
-		(MainWindow = new MainWindow()).Activate();
+		// Activate the main window.
+		(InitialPageInfo.MainWindow = new MainWindow()).Activate();
 	}
 }

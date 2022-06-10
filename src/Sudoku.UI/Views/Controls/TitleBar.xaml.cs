@@ -25,7 +25,7 @@ public sealed partial class TitleBar : UserControl
 	/// <param name="e">The event arguments provided.</param>
 	private void UserControl_Loaded(object sender, RoutedEventArgs e)
 	{
-		_appWindow = ((App)Application.Current).MainWindow.GetAppWindow();
+		_appWindow = ((App)Application.Current).InitialPageInfo.MainWindow.GetAppWindow();
 
 		// Check to see if customization is supported.
 		// Currently only supported on Windows 11.
