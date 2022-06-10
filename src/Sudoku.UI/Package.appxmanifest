@@ -48,7 +48,6 @@
             <uap:DisplayName>Sudoku grid file</uap:DisplayName>
             <uap:Logo>Assets\images\icon-grid-file.png</uap:Logo>
             <uap:EditFlags OpenIsSafe="true"/>
-            <uap:InfoTip>A file that stores the sudoku grid information.</uap:InfoTip>
           </uap:FileTypeAssociation>
         </uap:Extension>
         <uap:Extension Category="windows.fileTypeAssociation">
@@ -58,7 +57,6 @@
             </uap:SupportedFileTypes>
             <uap:DisplayName>User-preference backup file</uap:DisplayName>
             <uap:Logo>Assets\images\icon-config-backup-file.png</uap:Logo>
-            <uap:InfoTip>The file stores the options that controls the program&apos;s behavior while running.</uap:InfoTip>
             <uap:EditFlags OpenIsSafe="true"/>
           </uap:FileTypeAssociation>
         </uap:Extension>
@@ -69,7 +67,6 @@
             </uap:SupportedFileTypes>
             <uap:DisplayName>Drawing item file</uap:DisplayName>
             <uap:Logo>Assets\images\icon-drawing-file.png</uap:Logo>
-            <uap:InfoTip>The file stores the drawing items on rendering extra information for a sudoku grid.</uap:InfoTip>
             <uap:EditFlags OpenIsSafe="true"/>
           </uap:FileTypeAssociation>
         </uap:Extension>
