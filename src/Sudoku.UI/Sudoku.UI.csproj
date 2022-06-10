@@ -26,21 +26,23 @@
 
 	<ItemGroup>
 		<Content Include="Assets\SplashScreen.scale-200.png" />
-		<Content Include="Assets\LockScreenLogo.scale-200.png" />
 		<Content Include="Assets\Square150x150Logo.scale-200.png" />
 		<Content Include="Assets\Square44x44Logo.scale-200.png" />
-		<Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-		<Content Include="Assets\StoreLogo.png" />
 		<Content Include="Assets\Wide310x150Logo.scale-200.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="Assets\images\logo.png" />
 		<EmbeddedResource Include="Assets\images\icon-config-backup-file.png" />
 		<EmbeddedResource Include="Assets\images\icon-drawing-file.png" />
 		<EmbeddedResource Include="Assets\images\icon-grid-file.png" />
 		<EmbeddedResource Include="Assets\images\icon-miscellenous-file.png" />
 		<EmbeddedResource Include="Assets\images\icon-text-file.png" />
-		<EmbeddedResource Include="Assets\images\logo.png" />
+		<EmbeddedResource Include="Assets\images\zh-CN\icon-config-backup-file.png" />
+		<EmbeddedResource Include="Assets\images\zh-CN\icon-drawing-file.png" />
+		<EmbeddedResource Include="Assets\images\zh-CN\icon-grid-file.png" />
+		<EmbeddedResource Include="Assets\images\zh-CN\icon-miscellenous-file.png" />
+		<EmbeddedResource Include="Assets\images\zh-CN\icon-text-file.png" />
 	</ItemGroup>
 
 	<ItemGroup>
