@@ -1,6 +1,6 @@
 <center>语言切换：<a href="README-zh-cn.md">简体中文</a></center>
 
-# Sunnie's Sudoku Solution
+# Sudoku Studio[^1]
 
 [![stars](https://img.shields.io/github/stars/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/stargazers)
 [![issues](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues)
@@ -128,4 +128,6 @@ Here we list some websites about sudoku techniques that I used and referenced. T
 ## Author
 
 Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University. I mean, a normal university (Pun)
+
+[^1]: The old name of the repository is "Sunnie's Sudoku Solution".
 

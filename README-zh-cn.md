@@ -1,6 +1,6 @@
 <center>Language switch to: <a href="README.md">English</a></center>
 
-# 向向的数独解决方案
+# Sudoku Studio[^1]
 
 [![stars](https://img.shields.io/github/stars/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/stargazers)
 [![issues](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues)
@@ -124,4 +124,6 @@ UI：
 ## 作者
 
 小向，来自成都的一名四川~~普通大学~~师范大学的本科大学生。
+
+[^1]: 以前仓库叫 Sunnie's Sudoku Solution（即向向的数独解决方案）。
 
