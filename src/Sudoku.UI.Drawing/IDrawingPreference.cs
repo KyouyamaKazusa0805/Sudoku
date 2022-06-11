@@ -131,6 +131,81 @@ public interface IDrawingPreference
 	Color MaskEllipseColor { get; set; }
 
 	/// <summary>
+	/// Indicates the 1st color in the color palette.
+	/// </summary>
+	Color PaletteColor1 { get; set; }
+
+	/// <summary>
+	/// Indicates the 2nd color in the color palette.
+	/// </summary>
+	Color PaletteColor2 { get; set; }
+
+	/// <summary>
+	/// Indicates the 3rd color in the color palette.
+	/// </summary>
+	Color PaletteColor3 { get; set; }
+
+	/// <summary>
+	/// Indicates the 4th color in the color palette.
+	/// </summary>
+	Color PaletteColor4 { get; set; }
+
+	/// <summary>
+	/// Indicates the 5th color in the color palette.
+	/// </summary>
+	Color PaletteColor5 { get; set; }
+
+	/// <summary>
+	/// Indicates the 6th color in the color palette.
+	/// </summary>
+	Color PaletteColor6 { get; set; }
+
+	/// <summary>
+	/// Indicates the 7th color in the color palette.
+	/// </summary>
+	Color PaletteColor7 { get; set; }
+
+	/// <summary>
+	/// Indicates the 8th color in the color palette.
+	/// </summary>
+	Color PaletteColor8 { get; set; }
+
+	/// <summary>
+	/// Indicates the 9th color in the color palette.
+	/// </summary>
+	Color PaletteColor9 { get; set; }
+
+	/// <summary>
+	/// Indicates the 10th color in the color palette.
+	/// </summary>
+	Color PaletteColor10 { get; set; }
+
+	/// <summary>
+	/// Indicates the 11th color in the color palette.
+	/// </summary>
+	Color PaletteColor11 { get; set; }
+
+	/// <summary>
+	/// Indicates the 12th color in the color palette.
+	/// </summary>
+	Color PaletteColor12 { get; set; }
+
+	/// <summary>
+	/// Indicates the 13th color in the color palette.
+	/// </summary>
+	Color PaletteColor13 { get; set; }
+
+	/// <summary>
+	/// Indicates the 14th color in the color palette.
+	/// </summary>
+	Color PaletteColor14 { get; set; }
+
+	/// <summary>
+	/// Indicates the 15th color in the color palette.
+	/// </summary>
+	Color PaletteColor15 { get; set; }
+
+	/// <summary>
 	/// Indicates the color of the stroke lines surrounding with highlight cell.
 	/// </summary>
 	Color HighlightCellStrokeColor { get; set; }

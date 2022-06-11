@@ -272,13 +272,103 @@
         <member name="P:Sudoku.UI.Configuration.Preference.CandidateDeltaColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#FFFFB9B9</c> (i.e. <see cref="T:Windows.UI.Color"/> {255, 255, 185, 185}).
+            The default value is <c>#FFFFB9B9</c>.
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.MaskEllipseColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor1">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFFC059</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor2">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFB1A5F3</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor3">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFF7A5A7</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor4">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF86E8D0</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor5">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF86F280</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor6">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFF7DE8F</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor7">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFDCD4FC</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor8">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFFD2D2</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor9">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFCEFBED</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor10">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFD7FFD7</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor11">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFC5E88C</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor12">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFFCBCB</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor13">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFB2DFDF</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor14">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFCDCA5</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor15">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFFFF96</c>.
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.HighlightCellStrokeColor">

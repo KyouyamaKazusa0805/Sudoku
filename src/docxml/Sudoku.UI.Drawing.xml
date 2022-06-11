@@ -9,12 +9,14 @@
             Provides with the color-related marshalling methods.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.ColorMarshal.AsColor(Sudoku.Presentation.Identifier)">
+        <member name="M:Sudoku.UI.Drawing.ColorMarshal.AsColor(Sudoku.Presentation.Identifier,Sudoku.UI.Drawing.IDrawingPreference)">
             <summary>
             Converts an <see cref="T:Sudoku.Presentation.Identifier"/> instance into a <see cref="T:Windows.UI.Color"/> instance.
             </summary>
             <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> value.</param>
+            <param name="userPreference">The user preference instance.</param>
             <returns>The <see cref="T:Windows.UI.Color"/> result.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified ID value is invalid.</exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.IDrawingPreference">
             <summary>
@@ -144,6 +146,81 @@
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.MaskEllipseColor">
             <summary>
             Indicates the color of the mask ellipse color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor1">
+            <summary>
+            Indicates the 1st color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor2">
+            <summary>
+            Indicates the 2nd color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor3">
+            <summary>
+            Indicates the 3rd color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor4">
+            <summary>
+            Indicates the 4th color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor5">
+            <summary>
+            Indicates the 5th color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor6">
+            <summary>
+            Indicates the 6th color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor7">
+            <summary>
+            Indicates the 7th color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor8">
+            <summary>
+            Indicates the 8th color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor9">
+            <summary>
+            Indicates the 9th color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor10">
+            <summary>
+            Indicates the 10th color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor11">
+            <summary>
+            Indicates the 11th color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor12">
+            <summary>
+            Indicates the 12th color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor13">
+            <summary>
+            Indicates the 13th color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor14">
+            <summary>
+            Indicates the 14th color in the color palette.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor15">
+            <summary>
+            Indicates the 15th color in the color palette.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.HighlightCellStrokeColor">

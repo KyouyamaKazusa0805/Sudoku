@@ -160,7 +160,7 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#FFFFB9B9</c> (i.e. <see cref="Color"/> {255, 255, 185, 185}).
+	/// The default value is <c>#FFFFB9B9</c>.
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color CandidateDeltaColor { get; set; } = Color.FromArgb(255, 255, 185, 185);
@@ -171,6 +171,96 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color MaskEllipseColor { get; set; } = Colors.Black;
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFFC059</c>.
+	/// </remarks>
+	public Color PaletteColor1 { get; set; } = Color.FromArgb(255, 255, 192, 89);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFB1A5F3</c>.
+	/// </remarks>
+	public Color PaletteColor2 { get; set; } = Color.FromArgb(255, 177, 165, 243);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFF7A5A7</c>.
+	/// </remarks>
+	public Color PaletteColor3 { get; set; } = Color.FromArgb(255, 247, 165, 167);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FF86E8D0</c>.
+	/// </remarks>
+	public Color PaletteColor4 { get; set; } = Color.FromArgb(255, 134, 232, 208);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FF86F280</c>.
+	/// </remarks>
+	public Color PaletteColor5 { get; set; } = Color.FromArgb(255, 134, 242, 128);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFF7DE8F</c>.
+	/// </remarks>
+	public Color PaletteColor6 { get; set; } = Color.FromArgb(255, 247, 222, 143);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFDCD4FC</c>.
+	/// </remarks>
+	public Color PaletteColor7 { get; set; } = Color.FromArgb(255, 220, 212, 252);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFFD2D2</c>.
+	/// </remarks>
+	public Color PaletteColor8 { get; set; } = Color.FromArgb(255, 255, 210, 210);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFCEFBED</c>.
+	/// </remarks>
+	public Color PaletteColor9 { get; set; } = Color.FromArgb(255, 206, 251, 237);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFD7FFD7</c>.
+	/// </remarks>
+	public Color PaletteColor10 { get; set; } = Color.FromArgb(255, 215, 255, 215);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFC5E88C</c>.
+	/// </remarks>
+	public Color PaletteColor11 { get; set; } = Color.FromArgb(255, 197, 232, 140);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFFCBCB</c>.
+	/// </remarks>
+	public Color PaletteColor12 { get; set; } = Color.FromArgb(255, 255, 203, 203);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFB2DFDF</c>.
+	/// </remarks>
+	public Color PaletteColor13 { get; set; } = Color.FromArgb(255, 178, 223, 223);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFCDCA5</c>.
+	/// </remarks>
+	public Color PaletteColor14 { get; set; } = Color.FromArgb(255, 252, 220, 165);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFFFF96</c>.
+	/// </remarks>
+	public Color PaletteColor15 { get; set; } = Color.FromArgb(255, 255, 255, 150);
 
 	/// <inheritdoc/>
 	/// <remarks>

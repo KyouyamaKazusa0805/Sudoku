@@ -30,8 +30,7 @@ public sealed class CellViewElement : ViewElement
 	/// <param name="outsideOffset">The outside offset.</param>
 	/// <param name="userPreference">The user preference.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellViewElement(
-		CellViewNode cellViewNode, double paneSize, double outsideOffset, IDrawingPreference userPreference)
+	public CellViewElement(CellViewNode cellViewNode, double paneSize, double outsideOffset, IDrawingPreference userPreference)
 	{
 		(var (identifier, cell), _cellViewNode, double thickness, _canvas) = (
 			cellViewNode,
@@ -40,7 +39,7 @@ public sealed class CellViewElement : ViewElement
 			new()
 		);
 
-		var targetColor = identifier.AsColor();
+		var targetColor = identifier.AsColor(userPreference);
 		var ((ax1, ax2), (ay1, ay2)) = PointConversions.GetCellLine(paneSize, outsideOffset, (byte)(cell / 9));
 		var ((bx1, bx2), (by1, by2)) = PointConversions.GetCellLine(paneSize, outsideOffset, (byte)(cell / 9 + 1));
 		var ((cx1, cx2), (cy1, cy2)) = PointConversions.GetCellLine(paneSize, outsideOffset, (byte)(cell % 9 + 10));
