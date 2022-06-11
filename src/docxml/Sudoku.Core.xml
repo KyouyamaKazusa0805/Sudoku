@@ -12353,16 +12353,6 @@
             The blue value.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.Serialization.NamedKindInternal">
-            <summary>
-            The internal named kind structure.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.Serialization.NamedKindInternal.NamedKind">
-            <summary>
-            Indicates the named kind value.
-            </summary>
-        </member>
         <member name="T:Sudoku.Runtime.Serialization.Context.CandidateViewNodeSerializerContext">
             <summary>
             Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
@@ -12596,6 +12586,16 @@
         <member name="P:Sudoku.Runtime.Serialization.IdInternal.Id">
             <summary>
             Indicates the ID value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.Serialization.NamedKindInternal">
+            <summary>
+            The internal named kind structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.Serialization.NamedKindInternal.NamedKind">
+            <summary>
+            Indicates the named kind value.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.BacktrackingSolver">
