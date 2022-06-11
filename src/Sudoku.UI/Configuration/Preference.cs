@@ -165,4 +165,11 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color MaskEllipseColor { get; set; } = Colors.Black;
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FF0000FF</c> (i.e. <see cref="Colors.Blue"/>).
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color HighlightCellStrokeColor { get; set; } = Colors.Blue;
 }

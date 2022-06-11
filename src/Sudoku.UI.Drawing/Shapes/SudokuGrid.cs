@@ -32,6 +32,11 @@ public sealed partial class SudokuGrid : DrawingElement
 	private readonly Action? _undoRedoStepsUpdatedCallback;
 
 	/// <summary>
+	/// Indicates the view elements.
+	/// </summary>
+	private readonly ICollection<ViewElement> _viewElements = null!;//new List<ViewElement>();
+
+	/// <summary>
 	/// Indicates the user preference used.
 	/// </summary>
 	private readonly IDrawingPreference _preference;
@@ -55,6 +60,12 @@ public sealed partial class SudokuGrid : DrawingElement
 	/// Indicates the inner grid.
 	/// </summary>
 	private Grid _grid;
+
+	/// <summary>
+	/// Indicates the inner view.
+	/// </summary>
+	[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
+	private View? _view;
 
 
 	/// <summary>

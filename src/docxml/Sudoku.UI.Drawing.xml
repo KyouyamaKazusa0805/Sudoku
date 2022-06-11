@@ -129,6 +129,11 @@
             Indicates the color of the mask ellipse color.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.HighlightCellStrokeColor">
+            <summary>
+            Indicates the color of the stroke lines surrounding with highlight cell.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
             Stores a set of methods on handling point conversions.
@@ -764,6 +769,50 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.CellViewElement">
+            <summary>
+            Defines a cell view element.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellViewElement._cellViewNode">
+            <summary>
+            Indicates the cell view node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellViewElement._canvas">
+            <summary>
+            Indicates the <see cref="T:Microsoft.UI.Xaml.Controls.Canvas"/> instance that stores four border lines.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellViewElement._lines">
+            <summary>
+            Indicates the lines extracted from the control <see cref="F:Sudoku.UI.Drawing.Shapes.CellViewElement._canvas"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Drawing.Shapes.CellViewElement._canvas"/>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellViewElement._converter">
+            <summary>
+            Indicates the converter method that can convert the <see cref="T:Sudoku.Presentation.Identifier"/> value into a <see cref="T:Windows.UI.Color"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellViewElement.#ctor(Sudoku.Presentation.Nodes.CellViewNode,System.Double,System.Double,System.Converter{Sudoku.Presentation.Identifier,Windows.UI.Color})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellViewElement"/> instance via the specified cell, pane size and the outside offset.
+            </summary>
+            <param name="cellViewNode">The cell view node.</param>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="converter">The converter method that returns the <see cref="T:Windows.UI.Color"/> value.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellViewElement.Equals(Sudoku.UI.Drawing.Shapes.ViewElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellViewElement.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellViewElement.GetControl">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElement">
             <summary>
@@ -1761,6 +1810,11 @@
             Indicates the callback method that invokes when the undoing and redoing steps are updated.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._viewElements">
+            <summary>
+            Indicates the view elements.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._preference">
             <summary>
             Indicates the user preference used.
@@ -1784,6 +1838,11 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._grid">
             <summary>
             Indicates the inner grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._view">
+            <summary>
+            Indicates the inner view.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.UI.Drawing.IDrawingPreference,System.Double,System.Double,System.Action)">
@@ -1927,6 +1986,19 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.ViewElement">
+            <summary>
+            Defines an element in the <see cref="T:Sudoku.Presentation.View"/> to be displayed as a <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.View"/>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.ViewElement.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.ViewElement.Equals(Sudoku.UI.Drawing.Shapes.ViewElement)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE8A62F54E">
             <summary>

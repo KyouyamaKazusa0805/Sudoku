@@ -263,7 +263,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 
 				// Gets the target member via the name.
 				// If the member is a property, the operation will be successful.
-				switch (typeOfResult.GetMembers(s).FirstOrDefault())
+				switch ((from symbol in typeOfResult.GetAllMembers() where symbol.Name == s select symbol).FirstOrDefault())
 				{
 					case IFieldSymbol
 					{
@@ -400,7 +400,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 
 				// Gets the target member via the name.
 				// If the member is a property, the operation will be successful.
-				switch (type.GetMembers(s).FirstOrDefault())
+				switch ((from symbol in type.GetAllMembers() where symbol.Name == s select symbol).FirstOrDefault())
 				{
 					case IFieldSymbol
 					{

@@ -5,6 +5,7 @@
 /// </summary>
 [AutoOverridesToString(nameof(Identifier), nameof(Cell))]
 [AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(Identifier), nameof(Cell))]
+[AutoDeconstruction(nameof(Identifier), nameof(Cell))]
 public sealed partial class CellViewNode : ViewNode
 {
 	/// <summary>

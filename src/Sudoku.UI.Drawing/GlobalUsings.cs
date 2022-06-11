@@ -15,6 +15,8 @@ global using Microsoft.UI.Xaml.Controls;
 global using Microsoft.UI.Xaml.Media;
 global using Microsoft.UI.Xaml.Shapes;
 global using Sudoku.Concepts;
+global using Sudoku.Presentation;
+global using Sudoku.Presentation.Nodes;
 global using Windows.Foundation;
 global using Windows.UI;
 global using static System.Numerics.BitOperations;

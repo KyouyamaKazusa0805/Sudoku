@@ -124,4 +124,9 @@ public interface IDrawingPreference
 	/// Indicates the color of the mask ellipse color.
 	/// </summary>
 	Color MaskEllipseColor { get; set; }
+
+	/// <summary>
+	/// Indicates the color of the stroke lines surrounding with highlight cell.
+	/// </summary>
+	Color HighlightCellStrokeColor { get; set; }
 }
