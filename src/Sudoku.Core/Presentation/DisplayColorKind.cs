@@ -11,6 +11,21 @@ public enum DisplayColorKind : byte
 	Normal,
 
 	/// <summary>
+	/// Indicates the first auxiliary color.
+	/// </summary>
+	Auxiliary1,
+
+	/// <summary>
+	/// Indicates the second auxiliary color.
+	/// </summary>
+	Auxiliary2,
+
+	/// <summary>
+	/// Indicates the third auxiliary color.
+	/// </summary>
+	Auxiliary3,
+
+	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
 	Elimination,
@@ -33,5 +48,30 @@ public enum DisplayColorKind : byte
 	/// <summary>
 	/// Indicates the link color.
 	/// </summary>
-	Link
+	Link,
+
+	/// <summary>
+	/// Indicates the first ALS recorded.
+	/// </summary>
+	AlmostLockedSet1,
+
+	/// <summary>
+	/// Indicates the second ALS recorded.
+	/// </summary>
+	AlmostLockedSet2,
+
+	/// <summary>
+	/// Indicates the third ALS recorded.
+	/// </summary>
+	AlmostLockedSet3,
+
+	/// <summary>
+	/// Indicates the fourth ALS recorded.
+	/// </summary>
+	AlmostLockedSet4,
+
+	/// <summary>
+	/// Indicates the fifth ALS recorded.
+	/// </summary>
+	AlmostLockedSet5
 }

@@ -181,34 +181,24 @@ public interface IDrawingPreference
 	Color PaletteColor10 { get; set; }
 
 	/// <summary>
-	/// Indicates the 11th color in the color palette.
-	/// </summary>
-	Color PaletteColor11 { get; set; }
-
-	/// <summary>
-	/// Indicates the 12th color in the color palette.
-	/// </summary>
-	Color PaletteColor12 { get; set; }
-
-	/// <summary>
-	/// Indicates the 13th color in the color palette.
-	/// </summary>
-	Color PaletteColor13 { get; set; }
-
-	/// <summary>
-	/// Indicates the 14th color in the color palette.
-	/// </summary>
-	Color PaletteColor14 { get; set; }
-
-	/// <summary>
-	/// Indicates the 15th color in the color palette.
-	/// </summary>
-	Color PaletteColor15 { get; set; }
-
-	/// <summary>
 	/// Indicates the normal color.
 	/// </summary>
 	Color NormalColor { get; set; }
+
+	/// <summary>
+	/// Indicates the first auxiliary color.
+	/// </summary>
+	Color Auxiliary1Color { get; set; }
+
+	/// <summary>
+	/// Indicates the second auxiliary color.
+	/// </summary>
+	Color Auxiliary2Color { get; set; }
+
+	/// <summary>
+	/// Indicates the third auxiliary color.
+	/// </summary>
+	Color Auxiliary3Color { get; set; }
 
 	/// <summary>
 	/// Indicates the color that describes an elimination.
@@ -234,6 +224,31 @@ public interface IDrawingPreference
 	/// Indicates the color of links used by a chain.
 	/// </summary>
 	Color LinkColor { get; set; }
+
+	/// <summary>
+	/// Indicates the color of the first ALS recorded.
+	/// </summary>
+	Color AlmostLockedSet1Color { get; set; }
+
+	/// <summary>
+	/// Indicates the color of the second ALS recorded.
+	/// </summary>
+	Color AlmostLockedSet2Color { get; set; }
+
+	/// <summary>
+	/// Indicates the color of the third ALS recorded.
+	/// </summary>
+	Color AlmostLockedSet3Color { get; set; }
+
+	/// <summary>
+	/// Indicates the color of the fourth ALS recorded.
+	/// </summary>
+	Color AlmostLockedSet4Color { get; set; }
+
+	/// <summary>
+	/// Indicates the color of the fifth ALS recorded.
+	/// </summary>
+	Color AlmostLockedSet5Color { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the stroke lines surrounding with highlight cell.

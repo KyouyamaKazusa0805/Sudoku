@@ -38,7 +38,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 				// BUG + 1 found.
 				var step = new BivalueUniversalGraveType1Step(
 					ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, trueCandidate)),
-					ImmutableArray.Create(View.Empty + new CandidateViewNode(0, trueCandidate))
+					ImmutableArray.Create(View.Empty | new CandidateViewNode(DisplayColorKind.Normal, trueCandidate))
 				);
 				if (onlyFindOne)
 				{
@@ -118,13 +118,13 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 		var candidateOffsets = new List<CandidateViewNode>(trueCandidates.Count);
 		foreach (int candidate in trueCandidates)
 		{
-			candidateOffsets.Add(new(0, candidate));
+			candidateOffsets.Add(new(DisplayColorKind.Normal, candidate));
 		}
 
 		// BUG type 2.
 		var step = new BivalueUniversalGraveType2Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(View.Empty + candidateOffsets),
+			ImmutableArray.Create(View.Empty | candidateOffsets),
 			digit,
 			new(cells)
 		);
@@ -199,19 +199,23 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int cand in trueCandidates)
 					{
-						candidateOffsets.Add(new(0, cand));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cand));
 					}
 					foreach (int cell in cells)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(1, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
 					var step = new BivalueUniversalGraveType3Step(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, house)),
+						ImmutableArray.Create(
+							View.Empty
+								| candidateOffsets
+								| new HouseViewNode(DisplayColorKind.Normal, house)
+						),
 						trueCandidates,
 						digitsMask,
 						cells,
@@ -324,10 +328,10 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 				int i = 0;
 				foreach (int candidate in trueCandidates)
 				{
-					candidateOffsets[i++] = new(0, candidate);
+					candidateOffsets[i++] = new(DisplayColorKind.Normal, candidate);
 				}
-				candidateOffsets[^2] = new(1, c1 * 9 + conjuagtePairDigit);
-				candidateOffsets[^1] = new(1, c2 * 9 + conjuagtePairDigit);
+				candidateOffsets[^2] = new(DisplayColorKind.Auxiliary1, c1 * 9 + conjuagtePairDigit);
+				candidateOffsets[^1] = new(DisplayColorKind.Auxiliary1, c2 * 9 + conjuagtePairDigit);
 
 				// BUG type 4.
 				short digitsMask = 0;
@@ -338,7 +342,11 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 
 				var step = new BivalueUniversalGraveType4Step(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, house)),
+					ImmutableArray.Create(
+						View.Empty
+							| candidateOffsets
+							| new HouseViewNode(DisplayColorKind.Normal, house)
+					),
 					digitsMask,
 					new(cells),
 					new(c1, c2, conjuagtePairDigit)
@@ -387,13 +395,13 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 		int i = 0;
 		foreach (int candidate in trueCandidates)
 		{
-			candidateOffsets[i++] = new(0, candidate);
+			candidateOffsets[i++] = new(DisplayColorKind.Normal, candidate);
 		}
 
 		// BUG + n.
 		var step = new BivalueUniversalGraveMultipleStep(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(View.Empty + candidateOffsets),
+			ImmutableArray.Create(View.Empty | candidateOffsets),
 			trueCandidates
 		);
 		if (onlyFindOne)
@@ -444,12 +452,16 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 			var candidateOffsets = new CandidateViewNode[trueCandidates.Count];
 			for (int i = 0, count = trueCandidates.Count; i < count; i++)
 			{
-				candidateOffsets[i] = new(0, trueCandidates[i]);
+				candidateOffsets[i] = new(DisplayColorKind.Normal, trueCandidates[i]);
 			}
 
 			var step = new BivalueUniversalGraveXzStep(
 				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(View.Empty + new CellViewNode(0, cell) + candidateOffsets),
+				ImmutableArray.Create(
+					View.Empty
+						| new CellViewNode(DisplayColorKind.Normal, cell)
+						| candidateOffsets
+				),
 				mask,
 				Cells.Empty + c1 + c2,
 				cell

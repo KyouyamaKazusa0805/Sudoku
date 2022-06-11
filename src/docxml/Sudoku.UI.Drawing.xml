@@ -16,10 +16,6 @@
             <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> value.</param>
             <param name="userPreference">The user preference instance.</param>
             <returns>The <see cref="T:Windows.UI.Color"/> result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the property <see cref="P:Sudoku.Presentation.Identifier.Mode"/>
-            from the argument <paramref name="identifier"/> is not defined.
-            </exception>
             <exception cref="T:System.InvalidOperationException">
             Throws when the specified ID or named kind value is invalid.
             </exception>
@@ -204,34 +200,24 @@
             Indicates the 10th color in the color palette.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor11">
-            <summary>
-            Indicates the 11th color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor12">
-            <summary>
-            Indicates the 12th color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor13">
-            <summary>
-            Indicates the 13th color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor14">
-            <summary>
-            Indicates the 14th color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor15">
-            <summary>
-            Indicates the 15th color in the color palette.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.NormalColor">
             <summary>
             Indicates the normal color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.Auxiliary1Color">
+            <summary>
+            Indicates the first auxiliary color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.Auxiliary2Color">
+            <summary>
+            Indicates the second auxiliary color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.Auxiliary3Color">
+            <summary>
+            Indicates the third auxiliary color.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.EliminationColor">
@@ -257,6 +243,31 @@
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.LinkColor">
             <summary>
             Indicates the color of links used by a chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AlmostLockedSet1Color">
+            <summary>
+            Indicates the color of the first ALS recorded.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AlmostLockedSet2Color">
+            <summary>
+            Indicates the color of the second ALS recorded.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AlmostLockedSet3Color">
+            <summary>
+            Indicates the color of the third ALS recorded.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AlmostLockedSet4Color">
+            <summary>
+            Indicates the color of the fourth ALS recorded.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AlmostLockedSet5Color">
+            <summary>
+            Indicates the color of the fifth ALS recorded.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.HighlightCellStrokeColor">

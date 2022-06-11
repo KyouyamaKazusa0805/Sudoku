@@ -133,19 +133,29 @@ public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSea
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(digit == zDigit ? 1 : 0, cell * 9 + digit));
+							candidateOffsets.Add(
+								new(
+									digit == zDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+									cell * 9 + digit
+								)
+							);
 						}
 					}
 					foreach (int digit in grid.GetCandidates(pivot))
 					{
-						candidateOffsets.Add(new(digit == zDigit ? 1 : 0, pivot * 9 + digit));
+						candidateOffsets.Add(
+							new(
+								digit == zDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+								pivot * 9 + digit
+							)
+						);
 					}
 
 					var step = new RegularWingStep(
 						ImmutableArray.Create(
 							Conclusion.ToConclusions(elimMap, zDigit, ConclusionType.Elimination)
 						),
-						ImmutableArray.Create(View.Empty + candidateOffsets),
+						ImmutableArray.Create(View.Empty | candidateOffsets),
 						pivot,
 						PopCount((uint)mask),
 						union,

@@ -254,7 +254,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		int i = 0;
 		foreach (int cell in cellsMap)
 		{
-			cellOffsets[i++] = new(0, cell);
+			cellOffsets[i++] = new(DisplayColorKind.Normal, cell);
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>();
@@ -262,23 +262,24 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		{
 			foreach (int cell in square & CandidatesMap[digit])
 			{
-				candidateOffsets.Add(new(1, cell * 9 + digit));
+				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 			}
 		}
 		int anotherCellInPair = (pair - map)[0];
 		foreach (int digit in grid.GetCandidates(anotherCellInPair))
 		{
-			candidateOffsets.Add(new(0, anotherCellInPair * 9 + digit));
+			candidateOffsets.Add(new(DisplayColorKind.Normal, anotherCellInPair * 9 + digit));
 		}
 
 		short lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
+		int offset = isRow ? 9 : 18;
 		var step = new QiuDeadlyPatternType1Step(
 			ImmutableArray.CreateRange(conclusions),
 			ImmutableArray.Create(
 				View.Empty
-					+ cellOffsets
-					+ candidateOffsets
-					+ from pos in lineMask.GetAllSets() select new HouseViewNode(0, pos + (isRow ? 9 : 18))
+					| cellOffsets
+					| candidateOffsets
+					| from pos in lineMask.GetAllSets() select new HouseViewNode(DisplayColorKind.Normal, pos + offset)
 			),
 			pattern,
 			elimCell * 9 + extraDigit
@@ -321,32 +322,35 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		int i = 0;
 		foreach (int cell in cellsMap)
 		{
-			cellOffsets[i++] = new(0, cell);
+			cellOffsets[i++] = new(DisplayColorKind.Normal, cell);
 		}
 		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int digit in comparer)
 		{
 			foreach (int cell in square & CandidatesMap[digit])
 			{
-				candidateOffsets.Add(new(1, cell * 9 + digit));
+				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 			}
 		}
 		foreach (int cell in pair)
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
+				candidateOffsets.Add(
+					new(digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + digit)
+				);
 			}
 		}
 
 		short lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
+		int offset = isRow ? 9 : 18;
 		var step = new QiuDeadlyPatternType2Step(
 			ImmutableArray.CreateRange(conclusions),
 			ImmutableArray.Create(
 				View.Empty
-					+ cellOffsets
-					+ candidateOffsets
-					+ from pos in lineMask.GetAllSets() select new HouseViewNode(0, pos + (isRow ? 9 : 18))
+					| cellOffsets
+					| candidateOffsets
+					| from pos in lineMask.GetAllSets() select new HouseViewNode(DisplayColorKind.Normal, pos + offset)
 			),
 			pattern,
 			extraDigit
@@ -401,14 +405,14 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 					int i = 0;
 					foreach (int cell in cellsMap)
 					{
-						cellOffsets[i++] = new(0, cell);
+						cellOffsets[i++] = new(DisplayColorKind.Normal, cell);
 					}
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int digit in comparer)
 					{
 						foreach (int cell in square & CandidatesMap[digit])
 						{
-							candidateOffsets.Add(new(1, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in pair)
@@ -416,25 +420,32 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
-								new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+								new(
+									(otherDigitsMask >> digit & 1) != 0
+										? DisplayColorKind.Auxiliary1
+										: DisplayColorKind.Normal,
+									cell * 9 + digit
+								)
+							);
 						}
 					}
 					foreach (int cell in cells)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(1, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
 					short lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
+					int offset = isRow ? 9 : 18;
 					var step = new QiuDeadlyPatternType3Step(
 						ImmutableArray.CreateRange(conclusions),
 						ImmutableArray.Create(
 							View.Empty
-								+ cellOffsets
-								+ candidateOffsets
-								+ from pos in lineMask.GetAllSets() select new HouseViewNode(0, pos + (isRow ? 9 : 18))
+								| cellOffsets
+								| candidateOffsets
+								| from pos in lineMask.GetAllSets() select new HouseViewNode(DisplayColorKind.Normal, pos + offset)
 						),
 						pattern,
 						mask,
@@ -501,29 +512,30 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 				int i = 0;
 				foreach (int cell in cellsMap)
 				{
-					cellOffsets[i++] = new(0, cell);
+					cellOffsets[i++] = new(DisplayColorKind.Normal, cell);
 				}
 				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (int d in comparer)
 				{
 					foreach (int cell in square & CandidatesMap[d])
 					{
-						candidateOffsets.Add(new(1, cell * 9 + d));
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + d));
 					}
 				}
 				foreach (int cell in pair)
 				{
-					candidateOffsets.Add(new(1, cell * 9 + digit));
+					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 				}
 
 				short lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
+				int offset = isRow ? 9 : 18;
 				var step = new QiuDeadlyPatternType4Step(
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
 						View.Empty
-							+ cellOffsets
-							+ candidateOffsets
-							+ from pos in lineMask.GetAllSets() select new HouseViewNode(0, pos + (isRow ? 9 : 18))
+							| cellOffsets
+							| candidateOffsets
+							| from pos in lineMask.GetAllSets() select new HouseViewNode(DisplayColorKind.Normal, pos + offset)
 					),
 					pattern,
 					new(pair, digit)
@@ -609,36 +621,37 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		int i = 0;
 		foreach (int cell in cellsMap)
 		{
-			cellOffsets[i++] = new(0, cell);
+			cellOffsets[i++] = new(DisplayColorKind.Normal, cell);
 		}
 		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int d in comparer)
 		{
 			foreach (int cell in square & CandidatesMap[d])
 			{
-				candidateOffsets.Add(new(1, cell * 9 + d));
+				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + d));
 			}
 		}
 		foreach (int cell in pair)
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(0, cell * 9 + digit));
+				candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 			}
 		}
 		foreach (int candidate in candidates)
 		{
-			candidateOffsets.Add(new(2, candidate));
+			candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, candidate));
 		}
 
 		short lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
+		int offset = isRow ? 9 : 18;
 		var step = new QiuDeadlyPatternLockedTypeStep(
 			ImmutableArray.CreateRange(conclusions),
 			ImmutableArray.Create(
 				View.Empty
-					+ cellOffsets
-					+ candidateOffsets
-					+ from pos in lineMask.GetAllSets() select new HouseViewNode(0, pos + (isRow ? 9 : 18))
+					| cellOffsets
+					| candidateOffsets
+					| from pos in lineMask.GetAllSets() select new HouseViewNode(DisplayColorKind.Normal, pos + offset)
 			),
 			pattern,
 			candidates

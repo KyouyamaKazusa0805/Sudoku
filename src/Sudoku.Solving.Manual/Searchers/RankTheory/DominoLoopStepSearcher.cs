@@ -249,7 +249,16 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 						foreach (int digit in cands)
 						{
 							candidateOffsets.Add(
-								new((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit));
+								new(
+									(k & 3) switch
+									{
+										0 => DisplayColorKind.Auxiliary1,
+										1 => DisplayColorKind.Auxiliary2,
+										_ => DisplayColorKind.Normal
+									},
+									cell * 9 + digit
+								)
+							);
 						}
 					}
 				}
@@ -257,7 +266,7 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 				// Gather the result.
 				var step = new DominoLoopStep(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(View.Empty + candidateOffsets),
+					ImmutableArray.Create(View.Empty | candidateOffsets),
 					cells
 				);
 				if (onlyFindOne)

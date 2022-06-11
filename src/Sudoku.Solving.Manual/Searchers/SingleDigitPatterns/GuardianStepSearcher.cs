@@ -69,16 +69,16 @@ public sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 						var candidateOffsets = new List<CandidateViewNode>();
 						foreach (int c in map)
 						{
-							candidateOffsets.Add(new(0, c * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Normal, c * 9 + digit));
 						}
 						foreach (int c in guardians)
 						{
-							candidateOffsets.Add(new(1, c * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, c * 9 + digit));
 						}
 
 						var step = new GuardianStep(
 							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(View.Empty + candidateOffsets + links),
+							ImmutableArray.Create(View.Empty | candidateOffsets | links),
 							digit,
 							map,
 							guardians

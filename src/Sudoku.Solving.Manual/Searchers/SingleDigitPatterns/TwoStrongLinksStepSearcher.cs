@@ -90,14 +90,14 @@ public sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksS
 						),
 						ImmutableArray.Create(
 							View.Empty
-								+ new CandidateViewNode[]
+								| new CandidateViewNode[]
 								{
-									new(0, cells1[c1Index] * 9 + digit),
-									new(0, cells2[c2Index] * 9 + digit),
-									new(0, head * 9 + digit),
-									new(0, tail * 9 + digit)
+									new(DisplayColorKind.Normal, cells1[c1Index] * 9 + digit),
+									new(DisplayColorKind.Normal, cells2[c2Index] * 9 + digit),
+									new(DisplayColorKind.Normal, head * 9 + digit),
+									new(DisplayColorKind.Normal, tail * 9 + digit)
 								}
-								+ new HouseViewNode(1, sameHouse)
+								| new HouseViewNode(DisplayColorKind.Auxiliary1, sameHouse)
 						),
 						digit,
 						r1,

@@ -176,127 +176,169 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>#FFFFC059</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PaletteColor1 { get; set; } = Color.FromArgb(255, 255, 192, 89);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFB1A5F3</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PaletteColor2 { get; set; } = Color.FromArgb(255, 177, 165, 243);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFF7A5A7</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PaletteColor3 { get; set; } = Color.FromArgb(255, 247, 165, 167);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF86E8D0</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PaletteColor4 { get; set; } = Color.FromArgb(255, 134, 232, 208);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF86F280</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PaletteColor5 { get; set; } = Color.FromArgb(255, 134, 242, 128);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFF7DE8F</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PaletteColor6 { get; set; } = Color.FromArgb(255, 247, 222, 143);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFDCD4FC</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PaletteColor7 { get; set; } = Color.FromArgb(255, 220, 212, 252);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFFD2D2</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PaletteColor8 { get; set; } = Color.FromArgb(255, 255, 210, 210);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFCEFBED</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PaletteColor9 { get; set; } = Color.FromArgb(255, 206, 251, 237);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFD7FFD7</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PaletteColor10 { get; set; } = Color.FromArgb(255, 215, 255, 215);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFC5E88C</c>.
-	/// </remarks>
-	public Color PaletteColor11 { get; set; } = Color.FromArgb(255, 197, 232, 140);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFFFCBCB</c>.
-	/// </remarks>
-	public Color PaletteColor12 { get; set; } = Color.FromArgb(255, 255, 203, 203);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFB2DFDF</c>.
-	/// </remarks>
-	public Color PaletteColor13 { get; set; } = Color.FromArgb(255, 178, 223, 223);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFFCDCA5</c>.
-	/// </remarks>
-	public Color PaletteColor14 { get; set; } = Color.FromArgb(255, 252, 220, 165);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFFFFF96</c>.
-	/// </remarks>
-	public Color PaletteColor15 { get; set; } = Color.FromArgb(255, 255, 255, 150);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF3FDA65</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color NormalColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FF7FBBFF</c>.
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color Auxiliary1Color { get; set; } = Color.FromArgb(255, 127, 187, 255);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFD8B2FF</c>.
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color Auxiliary2Color { get; set; } = Color.FromArgb(255, 216, 178, 255);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFFFF96</c>.
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color Auxiliary3Color { get; set; } = Color.FromArgb(255, 255, 255, 150);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFF7684</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color EliminationColor { get; set; } = Color.FromArgb(255, 255, 118, 132);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF7FBBFF</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color ExofinColor { get; set; } = Color.FromArgb(255, 127, 187, 255);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFD8B2FF</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color EndofinColor { get; set; } = Color.FromArgb(255, 216, 178, 255);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFEB0000</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color CannibalismColor { get; set; } = Color.FromArgb(255, 235, 0, 0);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFF0000</c>.
 	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color LinkColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFC5E88C</c>.
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color AlmostLockedSet1Color { get; set; } = Color.FromArgb(255, 197, 232, 140);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFFCBCB</c>.
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color AlmostLockedSet2Color { get; set; } = Color.FromArgb(255, 255, 203, 203);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFB2DFDF</c>.
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color AlmostLockedSet3Color { get; set; } = Color.FromArgb(255, 178, 223, 223);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFCDCA5</c>.
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color AlmostLockedSet4Color { get; set; } = Color.FromArgb(255, 252, 220, 165);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFFFF96</c>.
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color AlmostLockedSet5Color { get; set; } = Color.FromArgb(255, 255, 255, 150);
 
 	/// <inheritdoc/>
 	/// <remarks>

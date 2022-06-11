@@ -145,15 +145,15 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 							short zDigitsMask = (short)(mask & finalZ);
 							foreach (int digit in alsDigitsMask)
 							{
-								candidateOffsets.Add(new(101, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet1, cell * 9 + digit));
 							}
 							foreach (int digit in xDigitsMask)
 							{
-								candidateOffsets.Add(new(1, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 							}
 							foreach (int digit in zDigitsMask)
 							{
-								candidateOffsets.Add(new(2, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in bMap)
@@ -164,15 +164,15 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 							short zDigitsMask = (short)(mask & finalZ);
 							foreach (int digit in alsDigitsMask)
 							{
-								candidateOffsets.Add(new(101, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet1, cell * 9 + digit));
 							}
 							foreach (int digit in yDigitsMask)
 							{
-								candidateOffsets.Add(new(1, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 							}
 							foreach (int digit in zDigitsMask)
 							{
-								candidateOffsets.Add(new(102, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet2, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in cMap)
@@ -182,11 +182,11 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 							short xyDigitsMask = (short)(mask & (finalX | finalY));
 							foreach (int digit in alsDigitsMask)
 							{
-								candidateOffsets.Add(new(103, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet1, cell * 9 + digit));
 							}
 							foreach (int digit in xyDigitsMask)
 							{
-								candidateOffsets.Add(new(1, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 							}
 						}
 
@@ -194,12 +194,12 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 							ImmutableArray.CreateRange(conclusions),
 							ImmutableArray.Create(
 								View.Empty
-									+ candidateOffsets
-									+ new HouseViewNode[]
+									| candidateOffsets
+									| new HouseViewNode[]
 									{
-										new(101, aHouse),
-										new(102, bHouse),
-										new(103, cHouse)
+										new(DisplayColorKind.AlmostLockedSet1, aHouse),
+										new(DisplayColorKind.AlmostLockedSet2, bHouse),
+										new(DisplayColorKind.AlmostLockedSet3, cHouse)
 									}
 							),
 							a,

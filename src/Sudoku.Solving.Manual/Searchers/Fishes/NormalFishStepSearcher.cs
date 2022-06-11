@@ -199,22 +199,22 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 					var houseOffsets = new List<HouseViewNode>();
 					foreach (int cell in withFin ? baseLine - fins : baseLine)
 					{
-						candidateOffsets.Add(new(0, cell * 9 + digit));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 					}
 					if (withFin)
 					{
 						foreach (int cell in fins)
 						{
-							candidateOffsets.Add(new(1, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 					foreach (int baseSet in bs)
 					{
-						houseOffsets.Add(new(0, baseSet));
+						houseOffsets.Add(new(DisplayColorKind.Normal, baseSet));
 					}
 					foreach (int coverSet in cs)
 					{
-						houseOffsets.Add(new(2, coverSet));
+						houseOffsets.Add(new(DisplayColorKind.Auxiliary2, coverSet));
 					}
 
 					// Gather the result.
@@ -223,7 +223,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 							Conclusion.ToConclusions(elimMap, digit, ConclusionType.Elimination)
 						),
 						ImmutableArray.Create(
-							View.Empty + candidateOffsets + houseOffsets,
+							View.Empty | candidateOffsets | houseOffsets,
 							GetDirectView(grid, digit, bs, cs, fins, searchRow)
 						),
 						digit,
@@ -272,7 +272,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 				{
 					case true when fins.Contains(cell):
 					{
-						cellOffsets.Add(new(1, cell));
+						cellOffsets.Add(new(DisplayColorKind.Auxiliary1, cell));
 						break;
 					}
 					case false:
@@ -307,7 +307,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 							continue;
 						}
 
-						cellOffsets.Add(new(0, cell));
+						cellOffsets.Add(new(DisplayColorKind.Normal, cell));
 						break;
 					}
 				}
@@ -316,13 +316,13 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 
 		foreach (int cell in ValuesMap[digit])
 		{
-			cellOffsets.Add(new(2, cell));
+			cellOffsets.Add(new(DisplayColorKind.Auxiliary2, cell));
 		}
 		foreach (int cell in fins)
 		{
-			candidateOffsets!.Add(new(1, cell * 9 + digit));
+			candidateOffsets!.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 		}
 
-		return View.Empty + cellOffsets + candidateOffsets;
+		return View.Empty | cellOffsets | candidateOffsets;
 	}
 }

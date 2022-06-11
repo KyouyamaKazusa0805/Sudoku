@@ -19,7 +19,7 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 		{
 			result.Add(
 				new(
-					0,
+					DisplayColorKind.Normal,
 					new(offset, Cells.Empty + cells[i]),
 					new(offset, Cells.Empty + cells[i + 1]),
 					Inference.Default
@@ -29,7 +29,7 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 
 		result.Add(
 			new(
-				0,
+				DisplayColorKind.Normal,
 				new(offset, Cells.Empty + cells[^1]),
 				new(offset, Cells.Empty + cells[0]),
 				Inference.Default

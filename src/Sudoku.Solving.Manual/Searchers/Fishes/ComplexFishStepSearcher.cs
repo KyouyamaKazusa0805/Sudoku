@@ -404,15 +404,15 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 								var houseOffsets = new List<HouseViewNode>();
 								foreach (int body in actualBaseMap)
 								{
-									candidateOffsets.Add(new(0, body * 9 + digit));
+									candidateOffsets.Add(new(DisplayColorKind.Normal, body * 9 + digit));
 								}
 								foreach (int exofin in exofins)
 								{
-									candidateOffsets.Add(new(1, exofin * 9 + digit));
+									candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, exofin * 9 + digit));
 								}
 								foreach (int endofin in endofins)
 								{
-									candidateOffsets.Add(new(3, endofin * 9 + digit));
+									candidateOffsets.Add(new(DisplayColorKind.Auxiliary3, endofin * 9 + digit));
 								}
 
 								// Don't forget the extra cover set.
@@ -428,18 +428,18 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 								int coverSetsMask = 0;
 								foreach (int baseSet in baseSets)
 								{
-									houseOffsets.Add(new(0, baseSet));
+									houseOffsets.Add(new(DisplayColorKind.Normal, baseSet));
 								}
 								foreach (int coverSet in actualCoverSets)
 								{
-									houseOffsets.Add(new(2, coverSet));
+									houseOffsets.Add(new(DisplayColorKind.Auxiliary2, coverSet));
 									coverSetsMask |= 1 << coverSet;
 								}
 
 								// Add into the 'accumulator'.
 								var step = new ComplexFishStep(
 									ImmutableArray.CreateRange(conclusions),
-									ImmutableArray.Create(View.Empty + candidateOffsets + houseOffsets),
+									ImmutableArray.Create(View.Empty | candidateOffsets | houseOffsets),
 									digit,
 									baseSetsMask,
 									coverSetsMask,

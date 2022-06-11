@@ -180,7 +180,16 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 							if (!canL[cand].Contains(cell))
 							{
 								candidateOffsets.Add(
-									new(house switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
+									new(
+										house switch
+										{
+											< 9 => DisplayColorKind.Auxiliary2,
+											< 18 => DisplayColorKind.Normal,
+											_ => DisplayColorKind.Auxiliary1
+										},
+										cell * 9 + cand
+									)
+								);
 							}
 						}
 					}
@@ -188,7 +197,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 
 				var step = new MultisectorLockedSetsStep(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(View.Empty + candidateOffsets),
+					ImmutableArray.Create(View.Empty | candidateOffsets),
 					map
 				);
 				if (onlyFindOne)

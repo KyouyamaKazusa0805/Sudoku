@@ -22,7 +22,12 @@ public interface IChainStepSearcher : IStepSearcher
 				// TODO: Get grouped node.
 				foreach (int cell in cells)
 				{
-					result.Add(new(i & 1, cell * 9 + digit));
+					result.Add(
+						new(
+							(i & 1) switch { 0 => DisplayColorKind.Normal, _ => DisplayColorKind.Auxiliary1 },
+							cell * 9 + digit
+						)
+					);
 				}
 			}
 		}
@@ -57,11 +62,16 @@ public interface IChainStepSearcher : IStepSearcher
 			if (realChainNodes[i] is { Cells: var aCells, Digit: var aDigit }
 				&& realChainNodes[i + 1] is { Cells: var bCells, Digit: var bDigit })
 			{
-				result[i] = new(0, new(aDigit, aCells), new(bDigit, bCells), (Inference)(i & 1));
+				result[i] = new(DisplayColorKind.Normal, new(aDigit, aCells), new(bDigit, bCells), (Inference)(i & 1));
 			}
 		}
 
-		result[length] = new(0, new(lastDigit, lastCells), new(firstDigit, firstCells), Inference.Strong);
+		result[length] = new(
+			DisplayColorKind.Normal,
+			new(lastDigit, lastCells),
+			new(firstDigit, firstCells),
+			Inference.Strong
+		);
 
 		return result;
 	}

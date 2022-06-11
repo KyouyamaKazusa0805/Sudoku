@@ -19,7 +19,7 @@ public interface ILoopLikeStepSearcher : IStepSearcher
 		{
 			result.Add(
 				new(
-					0,
+					DisplayColorKind.Normal,
 					new(offset, Cells.Empty + @this[i]),
 					new(offset, Cells.Empty + @this[i + 1]),
 					Inference.Default
@@ -29,7 +29,7 @@ public interface ILoopLikeStepSearcher : IStepSearcher
 
 		result.Add(
 			new(
-				0,
+				DisplayColorKind.Normal,
 				new(offset, Cells.Empty + @this[^1]),
 				new(offset, Cells.Empty + @this[0]),
 				Inference.Default

@@ -272,8 +272,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap, in Cells extraCells,
 		short normalDigits, int extraDigit, bool onlyFindOne)
 	{
-		var conclusions = new List<Conclusion>();
-		var candidateOffsets = new List<CandidateViewNode>();
+		var (conclusions, candidateOffsets) = (new List<Conclusion>(), new List<CandidateViewNode>());
 		foreach (int cell in allCellsMap)
 		{
 			if (cell == extraCells[0])
@@ -290,7 +289,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 			{
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add(new(0, cell * 9 + digit));
+					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
 			}
 		}
@@ -302,7 +301,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 
 		var step = new ExtendedRectangleType1Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(View.Empty + candidateOffsets),
+			ImmutableArray.Create(View.Empty | candidateOffsets),
 			allCellsMap,
 			normalDigits
 		);
@@ -343,13 +342,15 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
+				candidateOffsets.Add(
+					new(digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + digit)
+				);
 			}
 		}
 
 		var step = new ExtendedRectangleType2Step(
 			ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
-			ImmutableArray.Create(View.Empty + candidateOffsets),
+			ImmutableArray.Create(View.Empty | candidateOffsets),
 			allCellsMap,
 			normalDigits,
 			extraDigit
@@ -417,27 +418,32 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(0, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in extraCellsMap)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new((mask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+							candidateOffsets.Add(
+								new(
+									(mask >> digit & 1) != 0 ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+									cell * 9 + digit
+								)
+							);
 						}
 					}
 					foreach (int cell in cells)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(1, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
 					var step = new ExtendedRectangleType3Step(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, houseIndex)),
+						ImmutableArray.Create(View.Empty | candidateOffsets | new HouseViewNode(0, houseIndex)),
 						allCellsMap,
 						normalDigits,
 						cells,
@@ -505,13 +511,13 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(0, cell * 9 + digit));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 					}
 				}
 
 				var step = new ExtendedRectangleType1Step(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(View.Empty + candidateOffsets),
+					ImmutableArray.Create(View.Empty | candidateOffsets),
 					allCellsMap,
 					normalDigits
 				);
@@ -564,21 +570,17 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(0, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in extraCellsMap)
 						{
-							candidateOffsets.Add(new(1, cell * 9 + conjugateDigit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + conjugateDigit));
 						}
 
 						var step = new ExtendedRectangleType4Step(
 							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(
-								View.Empty
-									+ candidateOffsets
-									+ new HouseViewNode(0, houseIndex)
-							),
+							ImmutableArray.Create(View.Empty | candidateOffsets | new HouseViewNode(0, houseIndex)),
 							allCellsMap,
 							normalDigits,
 							new(extraCellsMap, conjugateDigit)

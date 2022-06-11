@@ -7002,6 +7002,21 @@
             Indicates the normal color.
             </summary>
         </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Auxiliary1">
+            <summary>
+            Indicates the first auxiliary color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Auxiliary2">
+            <summary>
+            Indicates the second auxiliary color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Auxiliary3">
+            <summary>
+            Indicates the third auxiliary color.
+            </summary>
+        </member>
         <member name="F:Sudoku.Presentation.DisplayColorKind.Elimination">
             <summary>
             Indicates the elimination color.
@@ -7025,6 +7040,31 @@
         <member name="F:Sudoku.Presentation.DisplayColorKind.Link">
             <summary>
             Indicates the link color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet1">
+            <summary>
+            Indicates the first ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet2">
+            <summary>
+            Indicates the second ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet3">
+            <summary>
+            Indicates the third ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet4">
+            <summary>
+            Indicates the fourth ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet5">
+            <summary>
+            Indicates the fifth ALS recorded.
             </summary>
         </member>
         <member name="T:Sudoku.Presentation.Identifier">
@@ -7723,12 +7763,6 @@
             </summary>
             <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
         </member>
-        <member name="M:Sudoku.Presentation.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
-            <summary>
-            Adds a serial of elements into the collection.
-            </summary>
-            <param name="nodes">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instances to be added.</param>
-        </member>
         <member name="M:Sudoku.Presentation.View.Contains(Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
             Determines whether an element is in the current collection.
@@ -7745,7 +7779,7 @@
         <member name="M:Sudoku.Presentation.View.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.View.op_Addition(Sudoku.Presentation.View,Sudoku.Presentation.Nodes.ViewNode)">
+        <member name="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
             Adds a new node into the collection.
             </summary>
@@ -7757,7 +7791,10 @@
             is based on the argument <paramref name="originalView"/>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Presentation.View.op_Addition(Sudoku.Presentation.View,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+        <member name="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,Sudoku.Presentation.Nodes.ViewNode[])">
+            <inheritdoc cref="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
             <summary>
             Adds a serial of view nodes into the collection.
             </summary>

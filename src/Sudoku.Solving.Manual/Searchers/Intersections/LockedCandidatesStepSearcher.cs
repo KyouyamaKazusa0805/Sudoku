@@ -87,7 +87,7 @@ public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandida
 				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (int cell in c & CandidatesMap[digit])
 				{
-					candidateOffsets.Add(new(0, cell * 9 + digit));
+					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
 
 				// Okay, now accumulate into the collection.
@@ -95,8 +95,12 @@ public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandida
 					ImmutableArray.Create(Conclusion.ToConclusions(elimMap, digit, ConclusionType.Elimination)),
 					ImmutableArray.Create(
 						View.Empty
-							+ candidateOffsets
-							+ new HouseViewNode[] { new(0, r[0]), new(1, r[1]) }
+							| candidateOffsets
+							| new HouseViewNode[]
+							{
+								new(DisplayColorKind.Normal, r[0]),
+								new(DisplayColorKind.Auxiliary1, r[1])
+							}
 					),
 					digit,
 					r[0],

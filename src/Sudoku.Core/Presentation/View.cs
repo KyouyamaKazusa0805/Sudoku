@@ -96,18 +96,6 @@ public sealed partial class View : ICloneable, IEnumerable<ViewNode>
 	}
 
 	/// <summary>
-	/// Adds a serial of elements into the collection.
-	/// </summary>
-	/// <param name="nodes">The <see cref="ViewNode"/> instances to be added.</param>
-	public void AddRange(IEnumerable<ViewNode> nodes)
-	{
-		foreach (var node in nodes)
-		{
-			Add(node);
-		}
-	}
-
-	/// <summary>
 	/// Determines whether an element is in the current collection.
 	/// </summary>
 	/// <param name="node">The node.</param>
@@ -139,11 +127,27 @@ public sealed partial class View : ICloneable, IEnumerable<ViewNode>
 	/// is based on the argument <paramref name="originalView"/>.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static View operator +(View originalView, ViewNode? newNode)
+	public static View operator |(View originalView, ViewNode? newNode)
 	{
 		if (newNode is not null)
 		{
 			originalView.Add(newNode);
+		}
+
+		return originalView;
+	}
+
+	/// <inheritdoc cref="operator |(View, IEnumerable{ViewNode})"/>
+	public static View operator |(View originalView, ViewNode[]? highlightedItems)
+	{
+		if (highlightedItems is null)
+		{
+			return originalView;
+		}
+
+		foreach (var node in highlightedItems)
+		{
+			originalView.Add(node);
 		}
 
 		return originalView;
@@ -159,12 +163,16 @@ public sealed partial class View : ICloneable, IEnumerable<ViewNode>
 	/// Please note that the operator is mutable one, which means the appending operation
 	/// is based on the argument <paramref name="originalView"/>.
 	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static View operator +(View originalView, IEnumerable<ViewNode>? highlightedItems)
+	public static View operator |(View originalView, IEnumerable<ViewNode>? highlightedItems)
 	{
-		if (highlightedItems is not null)
+		if (highlightedItems is null)
 		{
-			originalView.AddRange(highlightedItems);
+			return originalView;
+		}
+
+		foreach (var node in highlightedItems)
+		{
+			originalView.Add(node);
 		}
 
 		return originalView;

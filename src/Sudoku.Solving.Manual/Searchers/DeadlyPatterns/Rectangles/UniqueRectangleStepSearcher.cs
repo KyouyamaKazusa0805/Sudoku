@@ -353,10 +353,10 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	private static IEnumerable<CellViewNode> GetHighlightCells(int[] urCells)
 		=> new CellViewNode[]
 		{
-			new(0, urCells[0]),
-			new(0, urCells[1]),
-			new(0, urCells[2]),
-			new(0, urCells[3])
+			new(DisplayColorKind.Normal, urCells[0]),
+			new(DisplayColorKind.Normal, urCells[1]),
+			new(DisplayColorKind.Normal, urCells[2]),
+			new(DisplayColorKind.Normal, urCells[3])
 		};
 	#endregion
 
@@ -418,7 +418,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(0, cell * 9 + digit));
+				candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 			}
 		}
 
@@ -432,8 +432,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				ImmutableArray.CreateRange(conclusions),
 				ImmutableArray.Create(
 					View.Empty
-						+ (arMode ? GetHighlightCells(urCells) : null)
-						+ (arMode ? null : candidateOffsets)
+						| (arMode ? GetHighlightCells(urCells) : null)
+						| (arMode ? null : candidateOffsets)
 				),
 				d1,
 				d2,
@@ -500,7 +500,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			{
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
+					candidateOffsets.Add(
+						new(
+							digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+							cell * 9 + digit
+						)
+					);
 				}
 			}
 		}
@@ -516,8 +521,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
 				ImmutableArray.Create(
 					View.Empty
-						+ (arMode ? GetHighlightCells(urCells) : null)
-						+ candidateOffsets
+						| (arMode ? GetHighlightCells(urCells) : null)
+						| candidateOffsets
 				),
 				d1,
 				d2,
@@ -625,7 +630,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					{
 						if (grid.GetStatus(cell) != CellStatus.Empty)
 						{
-							cellOffsets.Add(new(0, cell));
+							cellOffsets.Add(new(DisplayColorKind.Normal, cell));
 						}
 					}
 
@@ -638,7 +643,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							{
 								candidateOffsets.Add(
 									new(
-										(tempMask >> digit & 1) != 0 ? 1 : 0,
+										(tempMask >> digit & 1) != 0
+											? DisplayColorKind.Auxiliary1
+											: DisplayColorKind.Normal,
 										cell * 9 + digit
 									)
 								);
@@ -649,7 +656,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(1, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
@@ -658,9 +665,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							ImmutableArray.CreateRange(conclusions),
 							ImmutableArray.Create(
 								View.Empty
-									+ (arMode ? cellOffsets : null)
-									+ candidateOffsets
-									+ new HouseViewNode(0, houseIndex)
+									| (arMode ? cellOffsets : null)
+									| candidateOffsets
+									| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
 							),
 							d1,
 							d2,
@@ -748,11 +755,11 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					{
 						if (d1 != elimDigit && grid.Exists(cell, d1) is true)
 						{
-							candidateOffsets.Add(new(1, cell * 9 + d1));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + d1));
 						}
 						if (d2 != elimDigit && grid.Exists(cell, d2) is true)
 						{
-							candidateOffsets.Add(new(1, cell * 9 + d2));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + d2));
 						}
 					}
 					else
@@ -760,7 +767,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						// Corner1 and corner2.
 						foreach (int d in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(0, cell * 9 + d));
+							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d));
 						}
 					}
 				}
@@ -777,9 +784,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.Create(conclusions),
 						ImmutableArray.Create(
 							View.Empty
-								+ (arMode ? GetHighlightCells(urCells) : null)
-								+ candidateOffsets
-								+ new HouseViewNode(0, houseIndex)
+								| (arMode ? GetHighlightCells(urCells) : null)
+								| candidateOffsets
+								| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
 						),
 						Technique.UniqueRectangleType4,
 						d1,
@@ -860,7 +867,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
+				candidateOffsets.Add(
+					new(digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + digit)
+				);
 			}
 		}
 		if (IsIncompleteUr(candidateOffsets))
@@ -873,8 +882,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
 				ImmutableArray.Create(
 					View.Empty
-						+ (arMode ? GetHighlightCells(urCells) : null)
-						+ candidateOffsets
+						| (arMode ? GetHighlightCells(urCells) : null)
+						| candidateOffsets
 				),
 				d1,
 				d2,
@@ -967,18 +976,20 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				{
 					if (d1 != digit && grid.Exists(cell, d1) is true)
 					{
-						candidateOffsets.Add(new(0, cell * 9 + d1));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
 					}
 					if (d2 != digit && grid.Exists(cell, d2) is true)
 					{
-						candidateOffsets.Add(new(0, cell * 9 + d2));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
 					}
 				}
 				else
 				{
 					foreach (int d in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(d == digit ? 1 : 0, cell * 9 + d));
+						candidateOffsets.Add(
+							new(d == digit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + d)
+						);
 					}
 				}
 			}
@@ -994,9 +1005,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					ImmutableArray.Create(conclusions),
 					ImmutableArray.Create(
 						View.Empty
-							+ (arMode ? GetHighlightCells(urCells) : null)
-							+ candidateOffsets
-							+ new HouseViewNode[] { new(0, house1), new(0, house2) }
+							| (arMode ? GetHighlightCells(urCells) : null)
+							| candidateOffsets
+							| new HouseViewNode[]
+							{
+								new(DisplayColorKind.Normal, house1),
+								new(DisplayColorKind.Normal, house2)
+							}
 					),
 					Technique.UniqueRectangleType6,
 					d1,
@@ -1086,18 +1101,28 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				{
 					if ((cell != abzCell || d1 != elimDigit) && grid.Exists(cell, d1) is true)
 					{
-						candidateOffsets.Add(new(d1 != elimDigit ? 1 : 0, cell * 9 + d1));
+						candidateOffsets.Add(
+							new(
+								d1 != elimDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+								cell * 9 + d1
+							)
+						);
 					}
 					if ((cell != abzCell || d2 != elimDigit) && grid.Exists(cell, d2) is true)
 					{
-						candidateOffsets.Add(new(d2 != elimDigit ? 1 : 0, cell * 9 + d2));
+						candidateOffsets.Add(
+							new(
+								d2 != elimDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+								cell * 9 + d2
+							)
+						);
 					}
 				}
 				else
 				{
 					foreach (int d in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(0, cell * 9 + d));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d));
 					}
 				}
 			}
@@ -1112,9 +1137,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, abzCell, elimDigit)),
 					ImmutableArray.Create(
 						View.Empty
-							+ (arMode ? GetHighlightCells(urCells) : null)
-							+ candidateOffsets
-							+ new HouseViewNode[] { new(0, r), new(0, c) }
+							| (arMode ? GetHighlightCells(urCells) : null)
+							| candidateOffsets
+							| new HouseViewNode[] { new(DisplayColorKind.Normal, r), new(DisplayColorKind.Normal, c) }
 					),
 					d1,
 					d2,
@@ -1222,7 +1247,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					{
 						candidateOffsets.Add(
 							new(
-								(comparer >> digit & 1) == 0 ? 1 : 0,
+								(comparer >> digit & 1) == 0 ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
 								cell * 9 + digit
 							)
 						);
@@ -1232,13 +1257,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(0, cell * 9 + digit));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 					}
 				}
 			}
 			foreach (int digit in xyMask)
 			{
-				candidateOffsets.Add(new(1, possibleXyCell * 9 + digit));
+				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, possibleXyCell * 9 + digit));
 			}
 
 			if (IsIncompleteUr(candidateOffsets))
@@ -1251,8 +1276,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
 						View.Empty
-							+ (arMode ? GetHighlightCells(urCells) : null)
-							+ candidateOffsets
+							| (arMode ? GetHighlightCells(urCells) : null)
+							| candidateOffsets
 					),
 					arMode ? Technique.AvoidableRectangle2D : Technique.UniqueRectangle2D,
 					d1,
@@ -1357,14 +1382,19 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
+										candidateOffsets.Add(
+											new(
+												d == digit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+												urCell * 9 + d
+											)
+										);
 									}
 								}
 								else
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(new(0, urCell * 9 + d));
+										candidateOffsets.Add(new(DisplayColorKind.Normal, urCell * 9 + d));
 									}
 								}
 							}
@@ -1376,7 +1406,11 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 									{
 										candidateOffsets.Add(
 											new(
-												urCell == elimCell ? 0 : (d1 == digit ? 1 : 0),
+												urCell == elimCell
+													? DisplayColorKind.Normal
+													: d1 == digit
+														? DisplayColorKind.Auxiliary1
+														: DisplayColorKind.Normal,
 												urCell * 9 + d1
 											)
 										);
@@ -1388,7 +1422,11 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 									{
 										candidateOffsets.Add(
 											new(
-												urCell == elimCell ? 0 : (d2 == digit ? 1 : 0),
+												urCell == elimCell
+													? DisplayColorKind.Normal
+													: d2 == digit
+														? DisplayColorKind.Auxiliary1
+														: DisplayColorKind.Normal,
 												urCell * 9 + d2
 											)
 										);
@@ -1407,9 +1445,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								ImmutableArray.CreateRange(conclusions),
 								ImmutableArray.Create(
 									View.Empty
-										+ (arMode ? GetHighlightCells(urCells) : null)
-										+ candidateOffsets
-										+ new HouseViewNode(0, house)
+										| (arMode ? GetHighlightCells(urCells) : null)
+										| candidateOffsets
+										| new HouseViewNode(DisplayColorKind.Normal, house)
 								),
 								Technique.UniqueRectangle2B1,
 								d1,
@@ -1524,14 +1562,19 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
+										candidateOffsets.Add(
+											new(
+												d == digit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+												urCell * 9 + d
+											)
+										);
 									}
 								}
 								else
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(new(0, urCell * 9 + d));
+										candidateOffsets.Add(new(DisplayColorKind.Normal, urCell * 9 + d));
 									}
 								}
 							}
@@ -1540,12 +1583,24 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								if (grid.Exists(urCell, d1) is true && (urCell != elimCell || d1 != digit))
 								{
 									candidateOffsets.Add(
-										new(urCell == elimCell ? 0 : (d1 == digit ? 1 : 0), urCell * 9 + d1));
+										new(
+											urCell == elimCell
+												? DisplayColorKind.Normal
+												: d1 == digit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+											urCell * 9 + d1
+										)
+									);
 								}
 								if (grid.Exists(urCell, d2) is true && (urCell != elimCell || d2 != digit))
 								{
 									candidateOffsets.Add(
-										new(urCell == elimCell ? 0 : (d2 == digit ? 1 : 0), urCell * 9 + d2));
+										new(
+											urCell == elimCell
+												? DisplayColorKind.Normal
+												: d2 == digit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+											urCell * 9 + d2
+										)
+									);
 								}
 							}
 						}
@@ -1560,9 +1615,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								ImmutableArray.CreateRange(conclusions),
 								ImmutableArray.Create(
 									View.Empty
-										+ (arMode ? GetHighlightCells(urCells) : null)
-										+ candidateOffsets
-										+ new HouseViewNode(0, house)
+										| (arMode ? GetHighlightCells(urCells) : null)
+										| candidateOffsets
+										| new HouseViewNode(DisplayColorKind.Normal, house)
 								),
 								Technique.UniqueRectangle2D1,
 								d1,
@@ -1674,20 +1729,25 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new((comparer >> digit & 1) == 0 ? 1 : 0, cell * 9 + digit));
+						candidateOffsets.Add(
+							new(
+								(comparer >> digit & 1) == 0 ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+								cell * 9 + digit
+							)
+						);
 					}
 				}
 				else
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(0, cell * 9 + digit));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 					}
 				}
 			}
 			foreach (int digit in xyMask)
 			{
-				candidateOffsets.Add(new(1, possibleXyCell * 9 + digit));
+				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, possibleXyCell * 9 + digit));
 			}
 			if (IsIncompleteUr(candidateOffsets))
 			{
@@ -1699,8 +1759,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
 						View.Empty
-							+ (arMode ? GetHighlightCells(urCells) : null)
-							+ candidateOffsets
+							| (arMode ? GetHighlightCells(urCells) : null)
+							| candidateOffsets
 					),
 					arMode ? Technique.AvoidableRectangle3X : Technique.UniqueRectangle3X,
 					d1,
@@ -1783,26 +1843,30 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			{
 				if ((digit == d1 || digit == d2) && digit != a)
 				{
-					candidateOffsets.Add(new(digit == b ? 1 : 0, abxCell * 9 + digit));
+					candidateOffsets.Add(
+						new(digit == b ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, abxCell * 9 + digit)
+					);
 				}
 			}
 			foreach (int digit in grid.GetCandidates(abyCell))
 			{
 				if ((digit == d1 || digit == d2) && digit != b)
 				{
-					candidateOffsets.Add(new(digit == a ? 1 : 0, abyCell * 9 + digit));
+					candidateOffsets.Add(
+						new(digit == a ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, abyCell * 9 + digit)
+					);
 				}
 			}
 			foreach (int digit in grid.GetCandidates(abzCell))
 			{
 				if (digit == a || digit == b)
 				{
-					candidateOffsets.Add(new(1, abzCell * 9 + digit));
+					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, abzCell * 9 + digit));
 				}
 			}
 			foreach (int digit in comparer)
 			{
-				candidateOffsets.Add(new(0, cornerCell * 9 + digit));
+				candidateOffsets.Add(new(DisplayColorKind.Normal, cornerCell * 9 + digit));
 			}
 			if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 6)
 			{
@@ -1814,9 +1878,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
 						View.Empty
-							+ (arMode ? GetHighlightCells(urCells) : null)
-							+ candidateOffsets
-							+ new HouseViewNode[] { new(0, map1.CoveredLine), new(1, map2.CoveredLine) }
+							| (arMode ? GetHighlightCells(urCells) : null)
+							| candidateOffsets
+							| new HouseViewNode[]
+							{
+								new(DisplayColorKind.Normal, map1.CoveredLine),
+								new(DisplayColorKind.Auxiliary1, map2.CoveredLine)
+							}
 					),
 					Technique.UniqueRectangle3X2,
 					d1,
@@ -1902,28 +1970,32 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				var candidateOffsets = new List<CandidateViewNode>(7);
 				foreach (int d in comparer)
 				{
-					candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
+					candidateOffsets.Add(
+						new(d == a ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cornerCell * 9 + d)
+					);
 				}
 				for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 				{
 					int d = digits[digitIndex];
 					if (grid.Exists(abzCell, d) is true)
 					{
-						candidateOffsets.Add(new(d == b ? 1 : 0, abzCell * 9 + d));
+						candidateOffsets.Add(
+							new(d == b ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, abzCell * 9 + d)
+						);
 					}
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(1, begin * 9 + d));
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, begin * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if ((d == d1 || d == d2) && d != a)
 					{
-						candidateOffsets.Add(new(0, end * 9 + d));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, end * 9 + d));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -1937,12 +2009,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, end, a)),
 						ImmutableArray.Create(
 							View.Empty
-								+ (arMode ? GetHighlightCells(urCells) : null)
-								+ candidateOffsets
-								+ new HouseViewNode[]
+								| (arMode ? GetHighlightCells(urCells) : null)
+								| candidateOffsets
+								| new HouseViewNode[]
 								{
-									new(0, conjugatePairs[0].Line),
-									new(1, conjugatePairs[1].Line)
+									new(DisplayColorKind.Normal, conjugatePairs[0].Line),
+									new(DisplayColorKind.Auxiliary1, conjugatePairs[1].Line)
 								}
 						),
 						Technique.UniqueRectangle3N2,
@@ -2023,27 +2095,33 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				var candidateOffsets = new List<CandidateViewNode>(7);
 				foreach (int d in comparer)
 				{
-					candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
+					candidateOffsets.Add(
+						new(d == a ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cornerCell * 9 + d)
+					);
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if ((d == d1 || d == d2) && d != a)
 					{
-						candidateOffsets.Add(new(1, begin * 9 + d));
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, begin * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == a ? 1 : 0, end * 9 + d));
+						candidateOffsets.Add(
+							new(d == a ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, end * 9 + d)
+						);
 					}
 				}
 				foreach (int d in grid.GetCandidates(abzCell))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == b ? 1 : 0, abzCell * 9 + d));
+						candidateOffsets.Add(
+							new(d == b ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, abzCell * 9 + d)
+						);
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -2057,12 +2135,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, begin, a)),
 						ImmutableArray.Create(
 							View.Empty
-								+ (arMode ? GetHighlightCells(urCells) : null)
-								+ candidateOffsets
-								+ new HouseViewNode[]
+								| (arMode ? GetHighlightCells(urCells) : null)
+								| candidateOffsets
+								| new HouseViewNode[]
 								{
-									new(0, conjugatePairs[0].Line),
-									new(1, conjugatePairs[1].Line)
+									new(DisplayColorKind.Normal, conjugatePairs[0].Line),
+									new(DisplayColorKind.Auxiliary1, conjugatePairs[1].Line)
 								}
 						),
 						Technique.UniqueRectangle3U2,
@@ -2143,27 +2221,35 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				var candidateOffsets = new List<CandidateViewNode>(7);
 				foreach (int d in comparer)
 				{
-					candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
+					candidateOffsets.Add(
+						new(d == a ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cornerCell * 9 + d)
+					);
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == a ? 1 : 0, begin * 9 + d));
+						candidateOffsets.Add(
+							new(d == a ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, begin * 9 + d)
+						);
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == a ? 1 : 0, end * 9 + d));
+						candidateOffsets.Add(
+							new(d == a ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, end * 9 + d)
+						);
 					}
 				}
 				foreach (int d in grid.GetCandidates(abzCell))
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add(new(d == a ? 1 : 0, abzCell * 9 + d));
+						candidateOffsets.Add(
+							new(d == a ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, abzCell * 9 + d)
+						);
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -2177,12 +2263,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, abzCell, b)),
 						ImmutableArray.Create(
 							View.Empty
-								+ (arMode ? GetHighlightCells(urCells) : null)
-								+ candidateOffsets
-								+ new HouseViewNode[]
+								| (arMode ? GetHighlightCells(urCells) : null)
+								| candidateOffsets
+								| new HouseViewNode[]
 								{
-									new(0, conjugatePairs[0].Line),
-									new(1, conjugatePairs[1].Line)
+									new(DisplayColorKind.Normal, conjugatePairs[0].Line),
+									new(DisplayColorKind.Auxiliary1, conjugatePairs[1].Line)
 								}
 						),
 						Technique.UniqueRectangle3E2,
@@ -2280,28 +2366,28 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add(new(1, head * 9 + d));
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, head * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(extra))
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add(new(1, extra * 9 + d));
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, extra * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(1, begin * 9 + d));
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, begin * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(1, end * 9 + d));
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, end * 9 + d));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Count) != (6, 2))
@@ -2320,13 +2406,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.CreateRange(conclusions),
 						ImmutableArray.Create(
 							View.Empty
-								+ (arMode ? GetHighlightCells(urCells) : null)
-								+ candidateOffsets
-								+ new HouseViewNode[]
+								| (arMode ? GetHighlightCells(urCells) : null)
+								| candidateOffsets
+								| new HouseViewNode[]
 								{
-									new(0, conjugatePairs[0].Line),
-									new(1, conjugatePairs[1].Line),
-									new(0, conjugatePairs[2].Line)
+									new(DisplayColorKind.Normal, conjugatePairs[0].Line),
+									new(DisplayColorKind.Auxiliary1, conjugatePairs[1].Line),
+									new(DisplayColorKind.Normal, conjugatePairs[2].Line)
 								}
 						),
 						Technique.UniqueRectangle4X3,
@@ -2431,28 +2517,39 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					{
 						if (d == d1 || d == d2)
 						{
-							candidateOffsets.Add(new(i == 0 ? d == a ? 1 : 0 : 1, abx * 9 + d));
+							candidateOffsets.Add(
+								new(
+									i == 0
+										? d == a
+											? DisplayColorKind.Auxiliary1
+											: DisplayColorKind.Normal
+										: DisplayColorKind.Auxiliary1,
+									abx * 9 + d
+								)
+							);
 						}
 					}
 					foreach (int d in grid.GetCandidates(abz))
 					{
 						if (d == d1 || d == d2)
 						{
-							candidateOffsets.Add(new(d == b ? 1 : 0, abz * 9 + d));
+							candidateOffsets.Add(
+								new(d == b ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, abz * 9 + d)
+							);
 						}
 					}
 					foreach (int d in grid.GetCandidates(aby))
 					{
 						if ((d == d1 || d == d2) && d != b)
 						{
-							candidateOffsets.Add(new(1, aby * 9 + d));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, aby * 9 + d));
 						}
 					}
 					foreach (int d in grid.GetCandidates(abw))
 					{
 						if (d == d1 || d == d2)
 						{
-							candidateOffsets.Add(new(1, abw * 9 + d));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, abw * 9 + d));
 						}
 					}
 					if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -2472,13 +2569,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, aby, b)),
 							ImmutableArray.Create(
 								View.Empty
-									+ (arMode ? GetHighlightCells(urCells) : null)
-									+ candidateOffsets
-									+ new HouseViewNode[]
+									| (arMode ? GetHighlightCells(urCells) : null)
+									| candidateOffsets
+									| new HouseViewNode[]
 									{
-										new(0, conjugatePairs[0].Line),
-										new(0, conjugatePairs[1].Line),
-										new(1, conjugatePairs[2].Line)
+										new(DisplayColorKind.Normal, conjugatePairs[0].Line),
+										new(DisplayColorKind.Normal, conjugatePairs[1].Line),
+										new(DisplayColorKind.Auxiliary1, conjugatePairs[2].Line)
 									}
 							),
 							Technique.UniqueRectangle4C3,
@@ -2631,8 +2728,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 									candidateOffsets.Add(
 										new(
 											digit == elimDigit
-												? otherCellsMap.Contains(cell) ? 2 : 0
-												: (extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
+												? otherCellsMap.Contains(cell)
+													? DisplayColorKind.Auxiliary2
+													: DisplayColorKind.Normal
+												: (extraDigitsMask >> digit & 1) != 0
+													? DisplayColorKind.Auxiliary1
+													: DisplayColorKind.Normal,
 											cell * 9 + digit
 										)
 									);
@@ -2641,11 +2742,21 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						}
 						foreach (int digit in grid.GetCandidates(c1))
 						{
-							candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
+							candidateOffsets.Add(
+								new(
+									digit == elimDigit ? DisplayColorKind.Auxiliary2 : DisplayColorKind.Auxiliary1,
+									c1 * 9 + digit
+								)
+							);
 						}
 						foreach (int digit in grid.GetCandidates(c2))
 						{
-							candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
+							candidateOffsets.Add(
+								new(
+									digit == elimDigit ? DisplayColorKind.Auxiliary2 : DisplayColorKind.Auxiliary1,
+									c2 * 9 + digit
+								)
+							);
 						}
 						if (IsIncompleteUr(candidateOffsets))
 						{
@@ -2659,8 +2770,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								),
 								ImmutableArray.Create(
 									View.Empty
-										+ (arMode ? GetHighlightCells(urCells) : null)
-										+ candidateOffsets
+										| (arMode ? GetHighlightCells(urCells) : null)
+										| candidateOffsets
 								),
 								arMode ? Technique.AvoidableRectangleXyWing : Technique.UniqueRectangleXyWing,
 								d1,
@@ -2734,7 +2845,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 										{
 											candidateOffsets.Add(
 												new(
-													(extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
+													(extraDigitsMask >> digit & 1) != 0
+														? DisplayColorKind.Auxiliary1
+														: DisplayColorKind.Normal,
 													cell * 9 + digit
 												)
 											);
@@ -2743,15 +2856,36 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								}
 								foreach (int digit in grid.GetCandidates(c1))
 								{
-									candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
+									candidateOffsets.Add(
+										new(
+											digit == elimDigit
+												? DisplayColorKind.Auxiliary2
+												: DisplayColorKind.Auxiliary1,
+											c1 * 9 + digit
+										)
+									);
 								}
 								foreach (int digit in grid.GetCandidates(c2))
 								{
-									candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
+									candidateOffsets.Add(
+										new(
+											digit == elimDigit
+												? DisplayColorKind.Auxiliary2
+												: DisplayColorKind.Auxiliary1,
+											c2 * 9 + digit
+										)
+									);
 								}
 								foreach (int digit in grid.GetCandidates(c3))
 								{
-									candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c3 * 9 + digit));
+									candidateOffsets.Add(
+										new(
+											digit == elimDigit
+												? DisplayColorKind.Auxiliary2
+												: DisplayColorKind.Auxiliary1,
+											c3 * 9 + digit
+										)
+									);
 								}
 								if (IsIncompleteUr(candidateOffsets))
 								{
@@ -2769,8 +2903,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 										),
 										ImmutableArray.Create(
 											View.Empty
-												+ (arMode ? GetHighlightCells(urCells) : null)
-												+ candidateOffsets
+												| (arMode ? GetHighlightCells(urCells) : null)
+												| candidateOffsets
 										),
 										arMode
 											? Technique.AvoidableRectangleXyzWing
@@ -2840,7 +2974,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 											{
 												candidateOffsets.Add(
 													new(
-														(extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
+														(extraDigitsMask >> digit & 1) != 0
+															? DisplayColorKind.Auxiliary1
+															: DisplayColorKind.Normal,
 														cell * 9 + digit
 													)
 												);
@@ -2849,19 +2985,47 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 									}
 									foreach (int digit in grid.GetCandidates(c1))
 									{
-										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
+										candidateOffsets.Add(
+											new(
+												digit == elimDigit
+													? DisplayColorKind.Auxiliary2
+													: DisplayColorKind.Auxiliary1,
+												c1 * 9 + digit
+											)
+										);
 									}
 									foreach (int digit in grid.GetCandidates(c2))
 									{
-										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
+										candidateOffsets.Add(
+											new(
+												digit == elimDigit
+													? DisplayColorKind.Auxiliary2
+													: DisplayColorKind.Auxiliary1,
+												c2 * 9 + digit
+											)
+										);
 									}
 									foreach (int digit in grid.GetCandidates(c3))
 									{
-										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c3 * 9 + digit));
+										candidateOffsets.Add(
+											new(
+												digit == elimDigit
+													? DisplayColorKind.Auxiliary2
+													: DisplayColorKind.Auxiliary1,
+												c3 * 9 + digit
+											)
+										);
 									}
 									foreach (int digit in grid.GetCandidates(c4))
 									{
-										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c4 * 9 + digit));
+										candidateOffsets.Add(
+											new(
+												digit == elimDigit
+													? DisplayColorKind.Auxiliary2
+													: DisplayColorKind.Auxiliary1,
+												c4 * 9 + digit
+											)
+										);
 									}
 									if (IsIncompleteUr(candidateOffsets))
 									{
@@ -2879,8 +3043,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 											),
 											ImmutableArray.Create(
 												View.Empty
-													+ (arMode ? GetHighlightCells(urCells) : null)
-													+ candidateOffsets
+													| (arMode ? GetHighlightCells(urCells) : null)
+													| candidateOffsets
 											),
 											arMode
 												? Technique.AvoidableRectangleWxyzWing
@@ -3149,7 +3313,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(
-							new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+							new(
+								(otherDigitsMask >> digit & 1) != 0
+									? DisplayColorKind.Auxiliary1
+									: DisplayColorKind.Normal,
+								cell * 9 + digit
+							)
+						);
 					}
 				}
 				foreach (int cell in currentBlockMap)
@@ -3157,7 +3327,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(
-							new(!cannibalMode && digit == digitIsolated ? 3 : 2, cell * 9 + digit));
+							new(
+								!cannibalMode && digit == digitIsolated
+									? DisplayColorKind.Auxiliary3
+									: DisplayColorKind.Auxiliary2,
+								cell * 9 + digit
+							)
+						);
 					}
 				}
 				foreach (int cell in currentInterMap)
@@ -3166,7 +3342,11 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					{
 						candidateOffsets.Add(
 							new(
-								digitIsolated == digit ? 3 : (otherDigitsMask >> digit & 1) != 0 ? 1 : 2,
+								digitIsolated == digit
+									? DisplayColorKind.Auxiliary3
+									: (otherDigitsMask >> digit & 1) != 0
+										? DisplayColorKind.Auxiliary1
+										: DisplayColorKind.Auxiliary2,
 								cell * 9 + digit
 							)
 						);
@@ -3178,9 +3358,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.CreateRange(conclusions),
 						ImmutableArray.Create(
 							View.Empty
-								+ (arMode ? GetHighlightCells(urCells) : null)
-								+ candidateOffsets
-								+ new HouseViewNode[] { new(0, block), new(2, line) }
+								| (arMode ? GetHighlightCells(urCells) : null)
+								| candidateOffsets
+								| new HouseViewNode[]
+								{
+									new(DisplayColorKind.Normal, block),
+									new(DisplayColorKind.Auxiliary2, line)
+								}
 						),
 						digit1,
 						digit2,
@@ -3342,33 +3526,33 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						// Gather views.
 						var candidateOffsets = new List<CandidateViewNode>
 						{
-							new(1, targetCell * 9 + extraDigit)
+							new(DisplayColorKind.Auxiliary1, targetCell * 9 + extraDigit)
 						};
 						if (grid.Exists(resultCell, d1) is true)
 						{
-							candidateOffsets.Add(new(0, resultCell * 9 + d1));
+							candidateOffsets.Add(new(DisplayColorKind.Normal, resultCell * 9 + d1));
 						}
 						if (grid.Exists(resultCell, d2) is true)
 						{
-							candidateOffsets.Add(new(0, resultCell * 9 + d2));
+							candidateOffsets.Add(new(DisplayColorKind.Normal, resultCell * 9 + d2));
 						}
 						if (grid.Exists(resultCell, extraDigit) is true)
 						{
-							candidateOffsets.Add(new(1, resultCell * 9 + extraDigit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, resultCell * 9 + extraDigit));
 						}
 
 						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
 						{
-							candidateOffsets.Add(new(0, urCellInSameBlock * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Normal, urCellInSameBlock * 9 + digit));
 						}
 						foreach (int digit in grid.GetCandidates(anotherCell))
 						{
-							candidateOffsets.Add(new(0, anotherCell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Normal, anotherCell * 9 + digit));
 						}
 						short _xOr_yMask = grid.GetCandidates(bivalueCellToCheck);
 						foreach (int digit in _xOr_yMask)
 						{
-							candidateOffsets.Add(new(2, bivalueCellToCheck * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, bivalueCellToCheck * 9 + digit));
 						}
 
 						// Add into the list.
@@ -3379,22 +3563,26 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								ImmutableArray.CreateRange(conclusions),
 								ImmutableArray.Create(
 									View.Empty
-										+ new CellViewNode(0, targetCell)
-										+ candidateOffsets
-										+ new HouseViewNode[] { new(0, block), new(1, line) },
+										| new CellViewNode(DisplayColorKind.Normal, targetCell)
+										| candidateOffsets
+										| new HouseViewNode[]
+										{
+											new(DisplayColorKind.Normal, block),
+											new(DisplayColorKind.Auxiliary1, line)
+										},
 									View.Empty
-										+ new CandidateViewNode[]
+										| new CandidateViewNode[]
 										{
-											new(1, resultCell * 9 + extraDigit),
-											new(1, targetCell * 9 + extraDigit)
+											new(DisplayColorKind.Auxiliary1, resultCell * 9 + extraDigit),
+											new(DisplayColorKind.Auxiliary1, targetCell * 9 + extraDigit)
 										}
-										+ new UnknownViewNode[]
+										| new UnknownViewNode[]
 										{
-											new(0, bivalueCellToCheck, (byte)'y', _xOr_yMask),
-											new(0, targetCell, (byte)'x', _xOr_yMask),
-											new(0, urCellInSameBlock, extraDigitId, extraDigitMask),
-											new(0, anotherCell, (byte)'x', _xOr_yMask),
-											new(0, resultCell, extraDigitId, extraDigitMask)
+											new(DisplayColorKind.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask),
+											new(DisplayColorKind.Normal, targetCell, (byte)'x', _xOr_yMask),
+											new(DisplayColorKind.Normal, urCellInSameBlock, extraDigitId, extraDigitMask),
+											new(DisplayColorKind.Normal, anotherCell, (byte)'x', _xOr_yMask),
+											new(DisplayColorKind.Normal, resultCell, extraDigitId, extraDigitMask)
 										}
 								),
 								d1,
@@ -3433,54 +3621,70 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						// Gather views.
 						var candidateOffsetsAnotherSubtype = new List<CandidateViewNode>
 						{
-							new(1, targetCell * 9 + extraDigit)
+							new(DisplayColorKind.Auxiliary1, targetCell * 9 + extraDigit)
 						};
 						if (grid.Exists(resultCell, d1) is true)
 						{
-							candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d1));
+							candidateOffsetsAnotherSubtype.Add(new(DisplayColorKind.Normal, resultCell * 9 + d1));
 						}
 						if (grid.Exists(resultCell, d2) is true)
 						{
-							candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d2));
+							candidateOffsetsAnotherSubtype.Add(new(DisplayColorKind.Normal, resultCell * 9 + d2));
 						}
 						if (grid.Exists(resultCell, extraDigit) is true)
 						{
-							candidateOffsetsAnotherSubtype.Add(new(1, resultCell * 9 + extraDigit));
+							candidateOffsetsAnotherSubtype.Add(
+								new(DisplayColorKind.Auxiliary1, resultCell * 9 + extraDigit)
+							);
 						}
 
 						var candidateOffsetsAnotherSubtypeLighter = new List<CandidateViewNode>
 						{
-							new(1, resultCell * 9 + extraDigit),
-							new(1, targetCell * 9 + extraDigit)
+							new(DisplayColorKind.Auxiliary1, resultCell * 9 + extraDigit),
+							new(DisplayColorKind.Auxiliary1, targetCell * 9 + extraDigit)
 						};
 						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
 						{
 							if (digit == extraDigit)
 							{
-								candidateOffsetsAnotherSubtype.Add(new(1, urCellInSameBlock * 9 + digit));
-								candidateOffsetsAnotherSubtypeLighter.Add(new(1, urCellInSameBlock * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(
+									new(DisplayColorKind.Auxiliary1, urCellInSameBlock * 9 + digit)
+								);
+								candidateOffsetsAnotherSubtypeLighter.Add(
+									new(DisplayColorKind.Auxiliary1, urCellInSameBlock * 9 + digit)
+								);
 							}
 							else
 							{
-								candidateOffsetsAnotherSubtype.Add(new(0, urCellInSameBlock * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(
+									new(DisplayColorKind.Normal, urCellInSameBlock * 9 + digit)
+								);
 							}
 						}
 						foreach (int digit in grid.GetCandidates(anotherCell))
 						{
 							if (digit == extraDigit)
 							{
-								candidateOffsetsAnotherSubtype.Add(new(1, anotherCell * 9 + digit));
-								candidateOffsetsAnotherSubtypeLighter.Add(new(1, anotherCell * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(
+									new(DisplayColorKind.Auxiliary1, anotherCell * 9 + digit)
+								);
+								candidateOffsetsAnotherSubtypeLighter.Add(
+									new(DisplayColorKind.Auxiliary1, anotherCell * 9 + digit)
+								);
 							}
 							else
 							{
-								candidateOffsetsAnotherSubtype.Add(new(0, anotherCell * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(
+									new(DisplayColorKind.Normal, anotherCell * 9 + digit)
+								);
 							}
 						}
 						short _xOr_yMask2 = grid.GetCandidates(bivalueCellToCheck);
 						foreach (int digit in _xOr_yMask2)
 						{
-							candidateOffsetsAnotherSubtype.Add(new(2, bivalueCellToCheck * 9 + digit));
+							candidateOffsetsAnotherSubtype.Add(
+								new(DisplayColorKind.Auxiliary2, bivalueCellToCheck * 9 + digit)
+							);
 						}
 
 						// Add into the list.
@@ -3491,23 +3695,23 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								ImmutableArray.CreateRange(conclusionsAnotherSubType),
 								ImmutableArray.Create(
 									View.Empty
-										+ new CellViewNode(0, targetCell)
-										+ candidateOffsetsAnotherSubtype
-										+ new HouseViewNode[]
+										| new CellViewNode(DisplayColorKind.Normal, targetCell)
+										| candidateOffsetsAnotherSubtype
+										| new HouseViewNode[]
 										{
-											new(0, block),
-											new(1, line),
-											new(1, anotherLine)
+											new(DisplayColorKind.Normal, block),
+											new(DisplayColorKind.Auxiliary1, line),
+											new(DisplayColorKind.Auxiliary1, anotherLine)
 										},
 									View.Empty
-										+ candidateOffsetsAnotherSubtypeLighter
-										+ new UnknownViewNode[]
+										| candidateOffsetsAnotherSubtypeLighter
+										| new UnknownViewNode[]
 										{
-											new(0, bivalueCellToCheck, (byte)'y', _xOr_yMask2),
-											new(0, targetCell, (byte)'x', _xOr_yMask2),
-											new(0, urCellInSameBlock, extraDigitId2, extraDigitMask2),
-											new(0, anotherCell, (byte)'x', _xOr_yMask2),
-											new(0, resultCell, extraDigitId2, extraDigitMask2)
+											new(DisplayColorKind.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask2),
+											new(DisplayColorKind.Normal, targetCell, (byte)'x', _xOr_yMask2),
+											new(DisplayColorKind.Normal, urCellInSameBlock, extraDigitId2, extraDigitMask2),
+											new(DisplayColorKind.Normal, anotherCell, (byte)'x', _xOr_yMask2),
+											new(DisplayColorKind.Normal, resultCell, extraDigitId2, extraDigitMask2)
 										}
 								),
 								d1,
@@ -3598,12 +3802,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			var candidateOffsets = new List<CandidateViewNode>(16);
 			foreach (int cell in urCells)
 			{
-				candidateOffsets.Add(new(0, cell * 9 + d1));
-				candidateOffsets.Add(new(0, cell * 9 + d2));
+				candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
+				candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
 			}
 			foreach (int cell in guardianMap)
 			{
-				candidateOffsets.Add(new(1, cell * 9 + guardianDigit));
+				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + guardianDigit));
 			}
 
 			accumulator.Add(
@@ -3613,8 +3817,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					),
 					ImmutableArray.Create(
 						View.Empty
-							+ candidateOffsets
-							+ new HouseViewNode[] { new(0, houseCombination[0]), new(0, houseCombination[1]) }
+							| candidateOffsets
+							| new HouseViewNode[]
+							{
+								new(DisplayColorKind.Normal, houseCombination[0]),
+								new(DisplayColorKind.Normal, houseCombination[1])
+							}
 					),
 					d1,
 					d2,
@@ -3731,13 +3939,16 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					var cellOffsets = new List<CellViewNode>();
 					foreach (int cell in urCells)
 					{
-						cellOffsets.Add(new(0, cell));
+						cellOffsets.Add(new(DisplayColorKind.Normal, cell));
 					}
 
-					var candidateOffsets = new List<CandidateViewNode> { new(0, anotherCell * 9 + otherDigit) };
+					var candidateOffsets = new List<CandidateViewNode>
+					{
+						new(DisplayColorKind.Normal, anotherCell * 9 + otherDigit)
+					};
 					foreach (int cell in otherCells)
 					{
-						candidateOffsets.Add(new(1, cell * 9 + otherDigit));
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + otherDigit));
 					}
 
 					accumulator.Add(
@@ -3745,9 +3956,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, baseCell, otherDigit)),
 							ImmutableArray.Create(
 								View.Empty
-									+ cellOffsets
-									+ candidateOffsets
-									+ new HouseViewNode(0, sameHouse)
+									| cellOffsets
+									| candidateOffsets
+									| new HouseViewNode(DisplayColorKind.Normal, sameHouse)
 							),
 							d1,
 							d2,

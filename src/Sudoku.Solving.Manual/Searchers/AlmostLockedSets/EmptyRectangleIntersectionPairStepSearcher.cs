@@ -91,11 +91,11 @@ public sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int digit in grid.GetCandidates(c1))
 					{
-						candidateOffsets.Add(new(0, c1 * 9 + digit));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, c1 * 9 + digit));
 					}
 					foreach (int digit in grid.GetCandidates(c2))
 					{
-						candidateOffsets.Add(new(0, c2 * 9 + digit));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, c2 * 9 + digit));
 					}
 					foreach (int cell in erCellsMap)
 					{
@@ -106,7 +106,7 @@ public sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
 								continue;
 							}
 
-							candidateOffsets.Add(new(1, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
@@ -114,8 +114,8 @@ public sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
 						ImmutableArray.CreateRange(conclusions),
 						ImmutableArray.Create(
 							View.Empty
-								+ candidateOffsets
-								+ new HouseViewNode(0, block)
+								| candidateOffsets
+								| new HouseViewNode(DisplayColorKind.Normal, block)
 						),
 						c1,
 						c2,

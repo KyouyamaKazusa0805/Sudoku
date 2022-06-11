@@ -44,12 +44,12 @@ public sealed unsafe partial class TemplateStepSearcher : ITemplateStepSearcher
 				int z = 0;
 				foreach (var (_, candidate) in templateSetConclusions)
 				{
-					candidateOffsets[z++] = new(0, candidate);
+					candidateOffsets[z++] = new(DisplayColorKind.Normal, candidate);
 				}
 
 				var templateSetStep = new TemplateStep(
 					ImmutableArray.Create(templateSetConclusions),
-					ImmutableArray.Create(View.Empty + candidateOffsets),
+					ImmutableArray.Create(View.Empty | candidateOffsets),
 					false
 				);
 				if (onlyFindOne)

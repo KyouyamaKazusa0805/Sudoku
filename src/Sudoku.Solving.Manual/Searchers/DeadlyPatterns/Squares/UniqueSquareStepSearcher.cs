@@ -136,13 +136,13 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			{
 				foreach (int cell in pattern - elimCell & CandidatesMap[digit])
 				{
-					candidateOffsets.Add(new(0, cell * 9 + digit));
+					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
 			}
 
 			var step = new UniqueSquareType1Step(
 				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(View.Empty + candidateOffsets),
+				ImmutableArray.Create(View.Empty | candidateOffsets),
 				pattern,
 				digitsMask,
 				elimCell * 9 + extraDigit
@@ -190,17 +190,17 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			{
 				foreach (int cell in CandidatesMap[digit] & pattern)
 				{
-					candidateOffsets.Add(new(0, cell * 9 + digit));
+					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
 			}
 			foreach (int cell in CandidatesMap[extraDigit] & pattern)
 			{
-				candidateOffsets.Add(new(1, cell * 9 + extraDigit));
+				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + extraDigit));
 			}
 
 			var step = new UniqueSquareType2Step(
 				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(View.Empty + candidateOffsets),
+				ImmutableArray.Create(View.Empty | candidateOffsets),
 				pattern,
 				digitsMask,
 				extraDigit
@@ -271,20 +271,30 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(
-									new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+									new(
+										(tempMask >> digit & 1) != 0
+											? DisplayColorKind.Auxiliary1
+											: DisplayColorKind.Normal,
+										cell * 9 + digit
+									)
+								);
 							}
 						}
 						foreach (int cell in cells)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(1, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 							}
 						}
 
 						var step = new UniqueSquareType3Step(
 							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, house)),
+							ImmutableArray.Create(
+								View.Empty
+									| candidateOffsets
+									| new HouseViewNode(DisplayColorKind.Normal, house)
+							),
 							pattern,
 							digitsMask,
 							extraDigitsMask,
@@ -371,21 +381,25 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(0, cell * 9 + digit));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 					}
 				}
 				foreach (int cell in compareMap & CandidatesMap[d1])
 				{
-					candidateOffsets.Add(new(1, cell * 9 + d1));
+					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + d1));
 				}
 				foreach (int cell in compareMap & CandidatesMap[d2])
 				{
-					candidateOffsets.Add(new(1, cell * 9 + d2));
+					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + d2));
 				}
 
 				var step = new UniqueSquareType4Step(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, house)),
+					ImmutableArray.Create(
+						View.Empty
+							| candidateOffsets
+							| new HouseViewNode(DisplayColorKind.Normal, house)
+					),
 					pattern,
 					digitsMask,
 					d1,

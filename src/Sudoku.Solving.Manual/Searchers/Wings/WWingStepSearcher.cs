@@ -107,16 +107,16 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 							),
 							ImmutableArray.Create(
 								View.Empty
-									+ new CandidateViewNode[]
+									| new CandidateViewNode[]
 									{
-										new(0, c1 * 9 + anotherDigit),
-										new(0, c2 * 9 + anotherDigit),
-										new(1, c1 * 9 + digit),
-										new(1, c2 * 9 + digit),
-										new(1, a * 9 + digit),
-										new(1, b * 9 + digit)
+										new(DisplayColorKind.Normal, c1 * 9 + anotherDigit),
+										new(DisplayColorKind.Normal, c2 * 9 + anotherDigit),
+										new(DisplayColorKind.Auxiliary1, c1 * 9 + digit),
+										new(DisplayColorKind.Auxiliary1, c2 * 9 + digit),
+										new(DisplayColorKind.Auxiliary1, a * 9 + digit),
+										new(DisplayColorKind.Auxiliary1, b * 9 + digit)
 									}
-									+ new HouseViewNode(0, house)),
+									| new HouseViewNode(DisplayColorKind.Normal, house)),
 							a,
 							b,
 							new(conjugate, digit)

@@ -2918,13 +2918,13 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
-            <inheritdoc/>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.LinkIds">
             <summary>
             Indicates all houses iterating on the specified block forming an empty rectangle.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.Options">
             <inheritdoc/>

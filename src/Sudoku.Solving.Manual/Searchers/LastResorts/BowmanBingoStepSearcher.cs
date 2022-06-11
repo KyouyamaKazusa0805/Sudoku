@@ -51,13 +51,13 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 					int i = 0;
 					foreach (var (_, candidate) in _tempConclusions)
 					{
-						candidateOffsets[i++] = new(0, candidate);
+						candidateOffsets[i++] = new(DisplayColorKind.Normal, candidate);
 					}
 
 					tempAccumulator.Add(
 						new BowmanBingoStep(
 							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, startCandidate)),
-							ImmutableArray.Create(View.Empty + candidateOffsets + GetLinks()),
+							ImmutableArray.Create(View.Empty | candidateOffsets | GetLinks()),
 							ImmutableArray.CreateRange(_tempConclusions)
 						)
 					);
@@ -112,12 +112,12 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 			int i = 0;
 			foreach (var (_, candidate) in _tempConclusions)
 			{
-				candidateOffsets[i++] = new(0, candidate);
+				candidateOffsets[i++] = new(DisplayColorKind.Normal, candidate);
 			}
 
 			var step = new BowmanBingoStep(
 				ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, startCand)),
-				ImmutableArray.Create(View.Empty + candidateOffsets + GetLinks()),
+				ImmutableArray.Create(View.Empty | candidateOffsets | GetLinks()),
 				ImmutableArray.CreateRange(_tempConclusions)
 			);
 			if (onlyFindOne)
@@ -147,7 +147,12 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 		for (int i = 0, iterationCount = _tempConclusions.Count - 1; i < iterationCount; i++)
 		{
 			int c1 = _tempConclusions[i].Candidate, c2 = _tempConclusions[i + 1].Candidate;
-			result.Add(new(0, new(c1 % 9, Cells.Empty + c1 / 9), new(c2 % 9, Cells.Empty + c2 / 9), Inference.Default));
+			result.Add(
+				new(
+					DisplayColorKind.Normal,
+					new(c1 % 9, Cells.Empty + c1 / 9), new(c2 % 9, Cells.Empty + c2 / 9), Inference.Default
+				)
+			);
 		}
 
 		return result;

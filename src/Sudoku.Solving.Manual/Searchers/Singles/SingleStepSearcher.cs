@@ -60,8 +60,8 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, resultCell, digit)),
 				ImmutableArray.Create(
 					View.Empty
-						+ new CandidateViewNode(0, resultCell * 9 + digit)
-						+ new HouseViewNode(0, house)
+						| new CandidateViewNode(DisplayColorKind.Normal, resultCell * 9 + digit)
+						| new HouseViewNode(DisplayColorKind.Normal, house)
 				),
 				resultCell,
 				digit
@@ -166,7 +166,10 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 						{
 							if (grid[peerCell] == i)
 							{
-								directLines.Add(new(0, Cells.Empty + peerCell, Cells.Empty, digit));
+								directLines.Add(
+									new(DisplayColorKind.Normal, Cells.Empty + peerCell, Cells.Empty, digit)
+								);
+								
 								flag = true;
 								break;
 							}
@@ -181,7 +184,11 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 
 			var step = new NakedSingleStep(
 				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, cell, digit)),
-				ImmutableArray.Create(View.Empty + new CandidateViewNode(0, cell * 9 + digit) + directLines),
+				ImmutableArray.Create(
+					View.Empty
+						| new CandidateViewNode(DisplayColorKind.Normal, cell * 9 + digit)
+						| directLines
+				),
 				cell,
 				digit
 			);
@@ -236,7 +243,7 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 					if (grid[i] == digit)
 					{
 						digitCount++;
-						cellOffsets.Add(new(0, i));
+						cellOffsets.Add(new(DisplayColorKind.Normal, i));
 					}
 				}
 
@@ -275,7 +282,7 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 				{
 					if ((PeerMaps[cell] & tempMap) is { Count: not 0 } removableCells)
 					{
-						directLines.Add(new(0, Cells.Empty + cell, removableCells, digit));
+						directLines.Add(new(DisplayColorKind.Normal, Cells.Empty + cell, removableCells, digit));
 						tempMap -= removableCells;
 					}
 				}
@@ -285,10 +292,10 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, resultCell, digit)),
 				ImmutableArray.Create(
 					View.Empty
-						+ (enableAndIsLastDigit ? cellOffsets : null)
-						+ new CandidateViewNode(0, resultCell * 9 + digit)
-						+ (enableAndIsLastDigit ? null : new HouseViewNode(0, house))
-						+ directLines
+						| (enableAndIsLastDigit ? cellOffsets : null)
+						| new CandidateViewNode(DisplayColorKind.Normal, resultCell * 9 + digit)
+						| (enableAndIsLastDigit ? null : new HouseViewNode(DisplayColorKind.Normal, house))
+						| directLines
 				),
 				resultCell,
 				digit,

@@ -151,13 +151,13 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int cell in loop - extraCell)
 		{
-			candidateOffsets.Add(new(0, cell * 9 + d1));
-			candidateOffsets.Add(new(0, cell * 9 + d2));
+			candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
+			candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
 		}
 
 		var step = new UniqueLoopType1Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(View.Empty + candidateOffsets + links),
+			ImmutableArray.Create(View.Empty | candidateOffsets | links),
 			d1,
 			d2,
 			loop
@@ -209,13 +209,15 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
+				candidateOffsets.Add(
+					new(digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + digit)
+				);
 			}
 		}
 
 		var step = new UniqueLoopType2Step(
 			ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
-			ImmutableArray.Create(View.Empty + candidateOffsets + links),
+			ImmutableArray.Create(View.Empty | candidateOffsets | links),
 			d1,
 			d2,
 			loop,
@@ -314,14 +316,20 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
-								new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+								new(
+									(otherDigitsMask >> digit & 1) != 0
+										? DisplayColorKind.Auxiliary1
+										: DisplayColorKind.Normal,
+									cell * 9 + digit
+								)
+							);
 						}
 					}
 					foreach (int cell in cells)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(1, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
@@ -329,9 +337,9 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 						ImmutableArray.CreateRange(conclusions),
 						ImmutableArray.Create(
 							View.Empty
-								+ candidateOffsets
-								+ new HouseViewNode(0, houseIndex)
-								+ links
+								| candidateOffsets
+								| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
+								| links
 						),
 						d1,
 						d2,
@@ -408,21 +416,21 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 				{
 					foreach (int d in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(0, cell * 9 + d));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d));
 					}
 				}
 				foreach (int cell in extraCellsMap)
 				{
-					candidateOffsets.Add(new(1, cell * 9 + digit));
+					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 				}
 
 				var step = new UniqueLoopType4Step(
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
 						View.Empty
-							+ candidateOffsets
-							+ new HouseViewNode(0, houseIndex)
-							+ links
+							| candidateOffsets
+							| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
+							| links
 					),
 					d1,
 					d2,

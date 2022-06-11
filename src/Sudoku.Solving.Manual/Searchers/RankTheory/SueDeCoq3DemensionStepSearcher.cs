@@ -167,21 +167,27 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 												{
 													foreach (int cell in (selectedRowCells | rbCurrentMap) & CandidatesMap[digit])
 													{
-														candidateOffsets.Add(new(0, cell * 9 + digit));
+														candidateOffsets.Add(
+															new(DisplayColorKind.Normal, cell * 9 + digit)
+														);
 													}
 												}
 												foreach (int digit in columnMask)
 												{
 													foreach (int cell in (selectedColumnCells | cbCurrentMap) & CandidatesMap[digit])
 													{
-														candidateOffsets.Add(new(1, cell * 9 + digit));
+														candidateOffsets.Add(
+															new(DisplayColorKind.Auxiliary1, cell * 9 + digit)
+														);
 													}
 												}
 												foreach (int digit in blockMask)
 												{
 													foreach (int cell in (selectedBlockCells | rbCurrentMap | cbCurrentMap) & CandidatesMap[digit])
 													{
-														candidateOffsets.Add(new(2, cell * 9 + digit));
+														candidateOffsets.Add(
+															new(DisplayColorKind.Auxiliary2, cell * 9 + digit)
+														);
 													}
 												}
 
@@ -189,12 +195,12 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 													ImmutableArray.CreateRange(conclusions),
 													ImmutableArray.Create(
 														View.Empty
-															+ candidateOffsets
-															+ new HouseViewNode[]
+															| candidateOffsets
+															| new HouseViewNode[]
 															{
-																new(0, r),
-																new(2, c),
-																new(3, b)
+																new(DisplayColorKind.Normal, r),
+																new(DisplayColorKind.Auxiliary2, c),
+																new(DisplayColorKind.Auxiliary3, b)
 															}
 													),
 													rowMask,

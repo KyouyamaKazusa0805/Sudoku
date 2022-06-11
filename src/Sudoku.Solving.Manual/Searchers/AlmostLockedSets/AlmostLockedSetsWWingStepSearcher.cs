@@ -91,8 +91,7 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 								continue;
 							}
 
-							if ((cpMap & p1).Count != 1 || (cpMap & p2).Count != 1
-								|| ((p1 | p2) & cpMap).Count != 2)
+							if ((cpMap & p1).Count != 1 || (cpMap & p2).Count != 1 || ((p1 | p2) & cpMap).Count != 2)
 							{
 								// If so, the structure may be a grouped ALS-W-Wing,
 								// but I don't implement this one, so just skip it.
@@ -123,8 +122,8 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 							// Gather highlight cells and candidates.
 							var candidateOffsets = new List<CandidateViewNode>
 							{
-								new(0, cpMap[0] * 9 + x),
-								new(0, cpMap[1] * 9 + x)
+								new(DisplayColorKind.Normal, cpMap[0] * 9 + x),
+								new(DisplayColorKind.Normal, cpMap[1] * 9 + x)
 							};
 							foreach (int cell in map1)
 							{
@@ -132,7 +131,11 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 								{
 									candidateOffsets.Add(
 										new(
-											digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : 101,
+											digit == x
+												? DisplayColorKind.Auxiliary1
+												: (wDigitsMask >> digit & 1) != 0
+													? DisplayColorKind.Auxiliary2
+													: DisplayColorKind.AlmostLockedSet1,
 											cell * 9 + digit
 										)
 									);
@@ -144,7 +147,11 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 								{
 									candidateOffsets.Add(
 										new(
-											digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : 102,
+											digit == x
+												? DisplayColorKind.Auxiliary1
+												: (wDigitsMask >> digit & 1) != 0
+													? DisplayColorKind.Auxiliary2
+													: DisplayColorKind.AlmostLockedSet2,
 											cell * 9 + digit
 										)
 									);
@@ -156,12 +163,12 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 									ImmutableArray.CreateRange(conclusions),
 									ImmutableArray.Create(
 										View.Empty
-											+ candidateOffsets
-											+ new HouseViewNode[]
+											| candidateOffsets
+											| new HouseViewNode[]
 											{
-												new(101, house1),
-												new(102, house2),
-												new(0, TrailingZeroCount(conjugatePair.Houses))
+												new(DisplayColorKind.AlmostLockedSet1, house1),
+												new(DisplayColorKind.AlmostLockedSet2, house2),
+												new(DisplayColorKind.Normal, TrailingZeroCount(conjugatePair.Houses))
 											}
 									),
 									als1,

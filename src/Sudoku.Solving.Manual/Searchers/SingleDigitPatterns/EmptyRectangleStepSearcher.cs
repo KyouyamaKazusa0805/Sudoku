@@ -10,6 +10,23 @@
 [StepSearcher]
 public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
 {
+	/// <summary>
+	/// Indicates all houses iterating on the specified block forming an empty rectangle.
+	/// </summary>
+	private static readonly int[,] LinkIds =
+	{
+		{ 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
+		{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
+		{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 },
+		{  9, 10, 11, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
+		{  9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
+		{  9, 10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23 },
+		{  9, 10, 11, 12, 13, 14, 21, 22, 23, 24, 25, 26 },
+		{  9, 10, 11, 12, 13, 14, 18, 19, 20, 24, 25, 26 },
+		{  9, 10, 11, 12, 13, 14, 18, 19, 20, 21, 22, 23 }
+	};
+
+
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
@@ -61,17 +78,21 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 					var cpCells = new List<int>(2);
 					foreach (int cell in HouseMaps[block] & CandidatesMap[digit])
 					{
-						candidateOffsets.Add(new(1, cell * 9 + digit));
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 					}
 					foreach (int cell in linkMap)
 					{
-						candidateOffsets.Add(new(0, cell * 9 + digit));
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						cpCells.Add(cell);
 					}
 
 					var step = new EmptyRectangleStep(
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, elimCell, digit)),
-						ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, block)),
+						ImmutableArray.Create(
+							View.Empty
+								| candidateOffsets
+								| new HouseViewNode(DisplayColorKind.Normal, block)
+						),
 						digit,
 						block,
 						new(cpCells[0], cpCells[1], digit)
@@ -89,21 +110,4 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 
 		return null;
 	}
-
-
-	/// <summary>
-	/// Indicates all houses iterating on the specified block forming an empty rectangle.
-	/// </summary>
-	private static readonly int[,] LinkIds =
-	{
-		{ 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
-		{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
-		{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 },
-		{ 9, 10, 11, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
-		{ 9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
-		{ 9, 10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23 },
-		{ 9, 10, 11, 12, 13, 14, 21, 22, 23, 24, 25, 26 },
-		{ 9, 10, 11, 12, 13, 14, 18, 19, 20, 24, 25, 26 },
-		{ 9, 10, 11, 12, 13, 14, 18, 19, 20, 21, 22, 23 }
-	};
 }

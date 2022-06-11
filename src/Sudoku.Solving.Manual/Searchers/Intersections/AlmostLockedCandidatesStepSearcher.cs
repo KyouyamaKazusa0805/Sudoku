@@ -161,21 +161,21 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 			{
 				foreach (int cell in cells & CandidatesMap[digit])
 				{
-					candidateOffsets.Add(new(0, cell * 9 + digit));
+					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
 			}
 			foreach (int cell in c)
 			{
 				foreach (int digit in mask & grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add(new(1, cell * 9 + digit));
+					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 				}
 			}
 			foreach (int cell in ahsCells)
 			{
 				foreach (int digit in mask & grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add(new(0, cell * 9 + digit));
+					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
 			}
 
@@ -183,7 +183,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 			var valueCells = new List<CellViewNode>(map.Count);
 			foreach (int cell in map)
 			{
-				valueCells.Add(new(0, cell));
+				valueCells.Add(new(DisplayColorKind.Normal, cell));
 			}
 
 			bool hasValueCell = valueCells.Count != 0;
@@ -191,9 +191,13 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 				ImmutableArray.CreateRange(conclusions),
 				ImmutableArray.Create(
 					View.Empty
-						+ (hasValueCell ? valueCells : null)
-						+ candidateOffsets
-						+ new HouseViewNode[] { new(0, baseSet), new(2, coverSet) }
+						| (hasValueCell ? valueCells : null)
+						| candidateOffsets
+						| new HouseViewNode[]
+						{
+							new(DisplayColorKind.Normal, baseSet),
+							new(DisplayColorKind.Auxiliary2, coverSet)
+						}
 				),
 				mask,
 				cells,

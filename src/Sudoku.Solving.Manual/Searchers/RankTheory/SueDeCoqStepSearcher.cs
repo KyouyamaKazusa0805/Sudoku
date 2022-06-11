@@ -179,7 +179,9 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 											{
 												candidateOffsets.Add(
 													new(
-														!cannibalMode && digit == digitIsolated ? 2 : 0,
+														!cannibalMode && digit == digitIsolated
+															? DisplayColorKind.Auxiliary2
+															: DisplayColorKind.Normal,
 														cell * 9 + digit
 													)
 												);
@@ -191,7 +193,9 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 											{
 												candidateOffsets.Add(
 													new(
-														!cannibalMode && digit == digitIsolated ? 2 : 1,
+														!cannibalMode && digit == digitIsolated
+															? DisplayColorKind.Auxiliary2
+															: DisplayColorKind.Auxiliary1,
 														cell * 9 + digit
 													)
 												);
@@ -204,8 +208,10 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 												candidateOffsets.Add(
 													new(
 														digitIsolated == digit
-															? 2
-															: (blockMask >> digit & 1) != 0 ? 0 : 1,
+															? DisplayColorKind.Auxiliary2
+															: (blockMask >> digit & 1) != 0
+																? DisplayColorKind.Normal
+																: DisplayColorKind.Auxiliary1,
 														cell * 9 + digit
 													)
 												);
@@ -216,8 +222,12 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 											ImmutableArray.CreateRange(conclusions),
 											ImmutableArray.Create(
 												View.Empty
-													+ candidateOffsets
-													+ new HouseViewNode[] { new(0, coverSet), new(2, baseSet) }
+													| candidateOffsets
+													| new HouseViewNode[]
+													{
+														new(DisplayColorKind.Normal, coverSet),
+														new(DisplayColorKind.Auxiliary2, baseSet)
+													}
 											),
 											coverSet,
 											baseSet,

@@ -311,13 +311,13 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add(new(0, cell * 9 + digit));
+					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
 			}
 
 			var step = new UniquePolygonType1Step(
 				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(View.Empty + candidateOffsets),
+				ImmutableArray.Create(View.Empty | candidateOffsets),
 				map,
 				tempMask
 			);
@@ -370,13 +370,18 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 			{
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add(new(digit == otherDigit ? 1 : 0, cell * 9 + digit));
+					candidateOffsets.Add(
+						new(
+							digit == otherDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+							cell * 9 + digit
+						)
+					);
 				}
 			}
 
 			var step = new UniquePolygonType2Step(
 				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(View.Empty + candidateOffsets),
+				ImmutableArray.Create(View.Empty | candidateOffsets),
 				map,
 				tempMask,
 				otherDigit
@@ -455,27 +460,38 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+								candidateOffsets.Add(
+									new(
+										(tempMask >> digit & 1) != 0
+											? DisplayColorKind.Auxiliary1
+											: DisplayColorKind.Normal,
+										cell * 9 + digit
+									)
+								);
 							}
 						}
 						foreach (int cell in otherCellsMap)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(0, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in combination)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(1, cell * 9 + digit));
+								candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 							}
 						}
 
 						var step = new UniquePolygonType3Step(
 							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, houseIndex)),
+							ImmutableArray.Create(
+								View.Empty
+									| candidateOffsets
+									| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
+							),
 							map,
 							tempMask,
 							combination,
@@ -584,20 +600,24 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 					{
 						foreach (int digit in grid.GetCandidates(cell) & combinationMask)
 						{
-							candidateOffsets.Add(new(1, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in otherCellsMap)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(0, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
 					}
 
 					var step = new UniquePolygonType4Step(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, houseIndex)),
+						ImmutableArray.Create(
+							View.Empty
+								| candidateOffsets
+								| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
+						),
 						map,
 						otherMask,
 						currentMap,

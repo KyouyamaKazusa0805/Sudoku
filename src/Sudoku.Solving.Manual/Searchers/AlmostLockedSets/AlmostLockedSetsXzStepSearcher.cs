@@ -175,7 +175,7 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(finalZ >> digit & 1, cell * 9 + digit));
+							candidateOffsets.Add(new((DisplayColorKind)(finalZ >> digit & 1), cell * 9 + digit));
 						}
 					}
 				}
@@ -189,15 +189,15 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 						short rccDigitsMask = (short)(mask & rccMask);
 						foreach (int digit in alsDigitsMask)
 						{
-							candidateOffsets.Add(new(101, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet1, cell * 9 + digit));
 						}
 						foreach (int digit in targetDigitsMask)
 						{
-							candidateOffsets.Add(new(2, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
 						}
 						foreach (int digit in rccDigitsMask)
 						{
-							candidateOffsets.Add(new(1, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in map2)
@@ -208,15 +208,15 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 						short rccDigitsMask = (short)(mask & rccMask);
 						foreach (int digit in alsDigitsMask)
 						{
-							candidateOffsets.Add(new(102, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet2, cell * 9 + digit));
 						}
 						foreach (int digit in targetDigitsMask)
 						{
-							candidateOffsets.Add(new(2, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
 						}
 						foreach (int digit in rccDigitsMask)
 						{
-							candidateOffsets.Add(new(1, cell * 9 + digit));
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 				}
@@ -225,8 +225,14 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
 						View.Empty
-							+ candidateOffsets
-							+ (isEsp ? null : new HouseViewNode[] { new(0, house1), new(1, house2) })
+							| candidateOffsets
+							| (
+								isEsp ? null : new HouseViewNode[]
+								{
+									new(DisplayColorKind.Normal, house1),
+									new(DisplayColorKind.Auxiliary1, house2)
+								}
+							)
 					),
 					als1,
 					als2,
