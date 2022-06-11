@@ -11,12 +11,19 @@ internal static class ColorMarshal
 	/// <param name="identifier">The <see cref="Identifier"/> value.</param>
 	/// <param name="userPreference">The user preference instance.</param>
 	/// <returns>The <see cref="Color"/> result.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the specified ID value is invalid.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the property <see cref="Identifier.Mode"/>
+	/// from the argument <paramref name="identifier"/> is not defined.
+	/// </exception>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the specified ID or named kind value is invalid.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Color AsColor(this Identifier identifier, IDrawingPreference userPreference)
 		=> identifier switch
 		{
-			{ UseId: true, Id: var id } => id switch
+			{ Mode: IdentifierColorMode.Raw, A: var a, R: var r, G: var g, B: var b } => Color.FromArgb(a, r, g, b),
+			{ Mode: IdentifierColorMode.Id, Id: var id } => id switch
 			{
 				1 => userPreference.PaletteColor1,
 				2 => userPreference.PaletteColor2,
@@ -35,6 +42,16 @@ internal static class ColorMarshal
 				15 => userPreference.PaletteColor15,
 				_ => throw new InvalidOperationException("Cannot fetch color due to the invalid ID value.")
 			},
-			{ UseId: false, A: var a, R: var r, G: var g, B: var b } => Color.FromArgb(a, r, g, b)
+			{ Mode: IdentifierColorMode.Named, NamedKind: var namedKind } => namedKind switch
+			{
+				DisplayColorKind.Normal => userPreference.NormalColor,
+				DisplayColorKind.Elimination => userPreference.EliminationColor,
+				DisplayColorKind.Exofin => userPreference.ExofinColor,
+				DisplayColorKind.Endofin => userPreference.EndofinColor,
+				DisplayColorKind.Cannibalism => userPreference.CannibalismColor,
+				DisplayColorKind.Link => userPreference.LinkColor,
+				_ => throw new InvalidOperationException("Cannot fetch color due to the invalid named kind value."),
+			},
+			_ => throw new ArgumentOutOfRangeException(nameof(identifier))
 		};
 }

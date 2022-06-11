@@ -231,9 +231,9 @@ public interface IPreference : ICloneable
 	/// <exception cref="InvalidOperationException">Throws when the ID is invalid.</exception>
 	protected internal bool TryGetColor(Identifier colorIdentifier, out Color result)
 	{
-		if (colorIdentifier.UseId)
+		if (colorIdentifier is { Mode: IdentifierColorMode.Id, Id: var id })
 		{
-			result = colorIdentifier.Id switch
+			result = id switch
 			{
 				1 => Color1,
 				2 => Color2,
@@ -250,7 +250,7 @@ public interface IPreference : ICloneable
 				13 => Color13,
 				14 => Color14,
 				15 => Color15,
-				_ => throw new InvalidOperationException("The ID is invalid.")
+				_ => throw new InvalidOperationException("The specified ID is invalid.")
 			};
 
 			return true;

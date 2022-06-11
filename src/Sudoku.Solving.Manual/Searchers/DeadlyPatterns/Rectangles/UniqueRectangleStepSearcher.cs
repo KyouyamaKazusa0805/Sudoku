@@ -298,7 +298,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private bool IsIncompleteUr(IEnumerable<CandidateViewNode> list)
-		=> !AllowIncompleteUniqueRectangles && list.Count(static d => d.Identifier is { UseId: true, Id: 0 }) != 8;
+	{
+		return !AllowIncompleteUniqueRectangles && list.Count(predicate) != 8;
+
+
+		static bool predicate(CandidateViewNode d)
+			=> d.Identifier is { Mode: IdentifierColorMode.Named, NamedKind: DisplayColorKind.Normal };
+	}
 
 	/// <summary>
 	/// Get a cell that can't see each other.

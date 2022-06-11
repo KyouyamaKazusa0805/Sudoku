@@ -3,32 +3,29 @@
 /// <summary>
 /// Defines an identifier that can differ colors.
 /// </summary>
-[StructLayout(LayoutKind.Explicit)]
 [JsonConverter(typeof(IdentifierJsonConverter))]
-[DisableParameterlessConstructor(Message = "You cannot use the parameterless constructor to construct the data structure. Please use factory method instead.")]
-[AutoOverridesGetHashCode(nameof(UseId), nameof(_colorRawValue))]
-[AutoOverridesEquals(nameof(UseId), nameof(Id))]
+[AutoOverridesGetHashCode(nameof(Mode), nameof(ColorRawValue))]
 [AutoOverridesToString(nameof(RawValueDisplayer))]
 [AutoOverloadsEqualityOperators]
 public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
 {
 	/// <summary>
-	/// Indicates the raw value of the color.
+	/// Initializes an <see cref="Identifier"/> instance.
 	/// </summary>
-	[field: FieldOffset(4)]
-	private readonly int _colorRawValue;
+	/// <remarks>
+	/// <b>This constructor is only used for creating a randomized instance. You cannot call this constructor.</b>
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[Obsolete("This constructor is only used for creating a randomized instance.", false)]
+	public Identifier() => Unsafe.SkipInit(out this);
 
-
+#pragma warning disable CS0618
 	/// <summary>
 	/// Initializes an <see cref="Identifier"/> instance via the ID value.
 	/// </summary>
 	/// <param name="id">The ID value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Identifier(int id)
-	{
-		Unsafe.SkipInit(out this);
-		(UseId, Id) = (true, id);
-	}
+	private Identifier(int id) : this() => (Mode, Id) = (IdentifierColorMode.Id, id);
 
 	/// <summary>
 	/// Initializes an <see cref="Identifier"/> instance via the color value.
@@ -38,63 +35,89 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// <param name="g">The green value.</param>
 	/// <param name="b">The blue value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Identifier(byte a, byte r, byte g, byte b)
-	{
-		Unsafe.SkipInit(out this);
-		(UseId, _colorRawValue) = (false, a << 24 | r << 16 | g << 8 | b);
-	}
-
+	private Identifier(byte a, byte r, byte g, byte b) : this()
+		=> (Mode, ColorRawValue) = (IdentifierColorMode.Raw, a << 24 | r << 16 | g << 8 | b);
 
 	/// <summary>
-	/// Indicates whether the user uses the ID value.
+	/// Initializes an <see cref="Identifier"/> instance via the specified displaying color kind as the named kind.
 	/// </summary>
-	[field: FieldOffset(0)]
-	public bool UseId { get; }
+	/// <param name="namedKind">The color kind.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private Identifier(DisplayColorKind namedKind) : this()
+		=> (Mode, NamedKind) = (IdentifierColorMode.Named, namedKind);
+#pragma warning restore CS0618
+
 
 	/// <summary>
 	/// Indicates the alpha value.
+	/// <b>The value can only be used when the <see cref="Mode"/> is <see cref="IdentifierColorMode.Raw"/>.</b>
 	/// </summary>
-	/// <exception cref="InvalidOperationException">Throws when the current instance uses ID.</exception>
-	public byte A
-		=> UseId
-			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
-			: (byte)(_colorRawValue >> 24 & byte.MaxValue);
+	public byte A => (byte)(ColorRawValue >> 24 & byte.MaxValue);
 
 	/// <summary>
 	/// Indicates the red value.
+	/// <b>The value can only be used when the <see cref="Mode"/> is <see cref="IdentifierColorMode.Raw"/>.</b>
 	/// </summary>
-	/// <exception cref="InvalidOperationException">Throws when the current instance uses ID.</exception>
-	public byte R
-		=> UseId
-			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
-			: (byte)(_colorRawValue >> 16 & byte.MaxValue);
+	public byte R => (byte)(ColorRawValue >> 16 & byte.MaxValue);
 
 	/// <summary>
 	/// Indicates the green value.
+	/// <b>The value can only be used when the <see cref="Mode"/> is <see cref="IdentifierColorMode.Raw"/>.</b>
 	/// </summary>
-	/// <exception cref="InvalidOperationException">Throws when the current instance uses ID.</exception>
-	public byte G
-		=> UseId
-			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
-			: (byte)(_colorRawValue >> 8 & byte.MaxValue);
+	public byte G => (byte)(ColorRawValue >> 8 & byte.MaxValue);
 
 	/// <summary>
 	/// Indicates the blue value.
+	/// <b>The value can only be used when the <see cref="Mode"/> is <see cref="IdentifierColorMode.Raw"/>.</b>
 	/// </summary>
-	/// <exception cref="InvalidOperationException">Throws when the current instance uses ID.</exception>
-	public byte B
-		=> UseId
-			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
-			: (byte)(_colorRawValue & byte.MaxValue);
+	public byte B => (byte)(ColorRawValue & byte.MaxValue);
 
 	/// <summary>
 	/// Indicates the ID value used.
+	/// <b>The value can only be used when the <see cref="Mode"/> is <see cref="IdentifierColorMode.Id"/>.</b>
 	/// </summary>
-	[field: FieldOffset(4)]
 	public int Id { get; }
 
-	private string RawValueDisplayer => UseId ? $"ID = {Id}" : $"Color = #{A:X2}{R:X2}{G:X2}{B:X2}";
+	/// <summary>
+	/// Indicates the raw color value.
+	/// </summary>
+	public int ColorRawValue { get; }
 
+	/// <summary>
+	/// Indicates the kind of the identifier named.
+	/// <b>The value can only be used when the <see cref="Mode"/> is <see cref="IdentifierColorMode.Named"/>.</b>
+	/// </summary>
+	public DisplayColorKind NamedKind { get; }
+
+	/// <summary>
+	/// Indicates the mode.
+	/// </summary>
+	public IdentifierColorMode Mode { get; }
+
+	private string RawValueDisplayer
+		=> Mode switch
+		{
+			IdentifierColorMode.Id => $"ID = {Id}",
+			IdentifierColorMode.Raw => $"Color = #{A:X2}{R:X2}{G:X2}{B:X2}",
+			IdentifierColorMode.Named => $"{nameof(NamedKind)} = {NamedKind}",
+			_ => "<Unknown mode>"
+		};
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Identifier comparer && Equals(comparer);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(Identifier other)
+		=> Mode == other.Mode && Mode switch
+		{
+			IdentifierColorMode.Raw => A == other.A && R == other.R && G == other.G && B == other.B,
+			IdentifierColorMode.Id => Id == other.Id,
+			IdentifierColorMode.Named => NamedKind == other.NamedKind,
+			_ => throw new InvalidOperationException("The specified mode is not supported.")
+		};
 
 	/// <summary>
 	/// Try to cast the current identifier instance into the result color value.
@@ -135,6 +158,14 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Identifier FromColor(byte a, byte r, byte g, byte b) => new(a, r, g, b);
 
+	/// <summary>
+	/// Creates an <see cref="Identifier"/> instance via the named kind.
+	/// </summary>
+	/// <param name="namedKind">The named kind.</param>
+	/// <returns>The result <see cref="Identifier"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Identifier FromNamedKind(DisplayColorKind namedKind) => new(namedKind);
+
 
 	/// <summary>
 	/// Explicit cast from <see cref="Identifier"/> to <see cref="int"/> indicating the ID value.
@@ -142,9 +173,19 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// <param name="identifier">The <see cref="Identifier"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator int(Identifier identifier)
-		=> identifier.UseId
+		=> identifier.Mode == IdentifierColorMode.Id
 			? identifier.Id
 			: throw new InvalidCastException("The instance cannot be converted to an 'int' due to invalid status.");
+
+	/// <summary>
+	/// Explicit cast from <see cref="Identifier"/> to <see cref="DisplayColorKind"/> indicating the named kind value.
+	/// </summary>
+	/// <param name="identifier">The <see cref="Identifier"/> instance.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator DisplayColorKind(Identifier identifier)
+		=> identifier.Mode == IdentifierColorMode.Named
+			? identifier.NamedKind
+			: throw new InvalidCastException("The instance cannot be converted to a 'DisplayColorKind' due to invalid status.");
 
 	/// <summary>
 	/// Explicit cast from <see cref="Identifier"/> to (<see cref="byte"/>, <see cref="byte"/>,
@@ -153,9 +194,9 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// <param name="identifier">The <see cref="Identifier"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator (byte R, byte G, byte B)(Identifier identifier)
-		=> identifier.UseId || identifier.A != byte.MaxValue
-			? throw new InvalidCastException("The instance cannot be converted to a triple due to invalid status.")
-			: (identifier.R, identifier.G, identifier.B);
+		=> identifier.Mode == IdentifierColorMode.Raw && identifier.A == byte.MaxValue
+			? (identifier.R, identifier.G, identifier.B)
+			: throw new InvalidCastException("The instance cannot be converted to a triple due to invalid status.");
 
 	/// <summary>
 	/// Explicit cast from <see cref="Identifier"/> to (<see cref="byte"/>, <see cref="byte"/>,
@@ -164,9 +205,9 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// <param name="identifier">The <see cref="Identifier"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator (byte A, byte R, byte G, byte B)(Identifier identifier)
-		=> identifier.UseId
-			? throw new InvalidCastException("The instance cannot be converted to a quadruple due to invalid status.")
-			: (identifier.A, identifier.R, identifier.G, identifier.B);
+		=> identifier.Mode == IdentifierColorMode.Raw
+			? (identifier.A, identifier.R, identifier.G, identifier.B)
+			: throw new InvalidCastException("The instance cannot be converted to a quadruple due to invalid status.");
 
 	/// <summary>
 	/// Implicit cast from (<see cref="byte"/>, <see cref="byte"/>, <see cref="byte"/>, <see cref="byte"/>)
@@ -197,4 +238,12 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// <param name="id">The ID value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Identifier(int id) => new(id);
+
+	/// <summary>
+	/// Implicit cast from <see cref="DisplayColorKind"/> indicating the displaying color kind as the named kind,
+	/// as the ID value to <see cref="Identifier"/>.
+	/// </summary>
+	/// <param name="namedKind">The displaying color kind.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static implicit operator Identifier(DisplayColorKind namedKind) => new(namedKind);
 }

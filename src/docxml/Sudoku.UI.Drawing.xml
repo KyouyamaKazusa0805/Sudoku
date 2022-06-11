@@ -16,7 +16,13 @@
             <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> value.</param>
             <param name="userPreference">The user preference instance.</param>
             <returns>The <see cref="T:Windows.UI.Color"/> result.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the specified ID value is invalid.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the property <see cref="P:Sudoku.Presentation.Identifier.Mode"/>
+            from the argument <paramref name="identifier"/> is not defined.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified ID or named kind value is invalid.
+            </exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.IDrawingPreference">
             <summary>

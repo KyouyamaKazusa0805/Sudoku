@@ -7032,10 +7032,13 @@
             Defines an identifier that can differ colors.
             </summary>
         </member>
-        <member name="F:Sudoku.Presentation.Identifier._colorRawValue">
+        <member name="M:Sudoku.Presentation.Identifier.#ctor">
             <summary>
-            Indicates the raw value of the color.
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance.
             </summary>
+            <remarks>
+            <b>This constructor is only used for creating a randomized instance. You cannot call this constructor.</b>
+            </remarks>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.#ctor(System.Int32)">
             <summary>
@@ -7052,39 +7055,63 @@
             <param name="g">The green value.</param>
             <param name="b">The blue value.</param>
         </member>
-        <member name="P:Sudoku.Presentation.Identifier.UseId">
+        <member name="M:Sudoku.Presentation.Identifier.#ctor(Sudoku.Presentation.DisplayColorKind)">
             <summary>
-            Indicates whether the user uses the ID value.
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the specified displaying color kind as the named kind.
             </summary>
+            <param name="namedKind">The color kind.</param>
         </member>
         <member name="P:Sudoku.Presentation.Identifier.A">
             <summary>
             Indicates the alpha value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
             </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the current instance uses ID.</exception>
         </member>
         <member name="P:Sudoku.Presentation.Identifier.R">
             <summary>
             Indicates the red value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
             </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the current instance uses ID.</exception>
         </member>
         <member name="P:Sudoku.Presentation.Identifier.G">
             <summary>
             Indicates the green value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
             </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the current instance uses ID.</exception>
         </member>
         <member name="P:Sudoku.Presentation.Identifier.B">
             <summary>
             Indicates the blue value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
             </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the current instance uses ID.</exception>
         </member>
         <member name="P:Sudoku.Presentation.Identifier.Id">
             <summary>
             Indicates the ID value used.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Id"/>.</b>
             </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.ColorRawValue">
+            <summary>
+            Indicates the raw color value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.NamedKind">
+            <summary>
+            Indicates the kind of the identifier named.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Named"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.Mode">
+            <summary>
+            Indicates the mode.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.Equals(Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.GetColor``1(System.Converter{Sudoku.Presentation.Identifier,``0})">
             <summary>
@@ -7120,9 +7147,22 @@
             <param name="b">The blue value.</param>
             <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromNamedKind(Sudoku.Presentation.DisplayColorKind)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the named kind.
+            </summary>
+            <param name="namedKind">The named kind.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
         <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.Int32">
             <summary>
             Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to <see cref="T:System.Int32"/> indicating the ID value.
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~Sudoku.Presentation.DisplayColorKind">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to <see cref="T:Sudoku.Presentation.DisplayColorKind"/> indicating the named kind value.
             </summary>
             <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
         </member>
@@ -7165,6 +7205,13 @@
             </summary>
             <param name="id">The ID value.</param>
         </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(Sudoku.Presentation.DisplayColorKind)~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Presentation.DisplayColorKind"/> indicating the displaying color kind as the named kind,
+            as the ID value to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="namedKind">The displaying color kind.</param>
+        </member>
         <member name="M:Sudoku.Presentation.Identifier.op_Equality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
             <summary>
             Determines whether two instances hold a same value.
@@ -7181,32 +7228,32 @@
             <param name="right">The right-side instance to take part in the comparison operation.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Presentation.Identifier.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Presentation.Identifier.Equals(Sudoku.Presentation.Identifier)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
         <member name="M:Sudoku.Presentation.Identifier.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Presentation.Identifier.#ctor">
+        <member name="T:Sudoku.Presentation.IdentifierColorMode">
             <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>.
+            Indicates a mode to display a color used by type <see cref="T:Sudoku.Presentation.Identifier"/>.
             </summary>
-            <exception cref="T:System.NotSupportedException">
-            The exception will always be thrown.
-            </exception>
-            <remarks>
-            The main idea of the paramterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            the author wants to make you use another member instead of it to get a better experience.
-            Therefore, the paramterless constructor is disallowed to be invoked
-            no matter what kind of invocation, reflection or strongly reference.
-            </remarks>
+            <seealso cref="T:Sudoku.Presentation.Identifier"/>
+        </member>
+        <member name="F:Sudoku.Presentation.IdentifierColorMode.Raw">
+            <summary>
+            Indicates the raw mode. The mode uses alpha, red, green and blue to represent a color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.IdentifierColorMode.Id">
+            <summary>
+            Indicates the ID mode. The mode uses an ID to represent a color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.IdentifierColorMode.Named">
+            <summary>
+            Indicates the named mode. The mode uses an enumeration field name to differ color.
+            </summary>
         </member>
         <member name="T:Sudoku.Presentation.LockedTarget">
             <summary>
@@ -12306,6 +12353,16 @@
             The blue value.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.Serialization.NamedKindInternal">
+            <summary>
+            The internal named kind structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.Serialization.NamedKindInternal.NamedKind">
+            <summary>
+            Indicates the named kind value.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.Serialization.Context.CandidateViewNodeSerializerContext">
             <summary>
             Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
@@ -12422,8 +12479,13 @@
             JSON Pattern:
             <code>
             {
-              "useId": true,
-              "id": 3
+              "mode": "Raw",
+              "value": {
+                "a": 255,
+                "r": 0,
+                "g": 0,
+                "b": 0
+              }
             }
             </code>
             </remarks>
@@ -12525,6 +12587,16 @@
         </member>
         <member name="M:Sudoku.Runtime.Serialization.Converter.SoleCandidateNodeJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.Serialization.IdInternal">
+            <summary>
+            The internal ID structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.Serialization.IdInternal.Id">
+            <summary>
+            Indicates the ID value.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.BacktrackingSolver">
             <summary>

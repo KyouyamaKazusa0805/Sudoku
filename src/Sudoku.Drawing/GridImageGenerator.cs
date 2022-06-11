@@ -78,6 +78,34 @@ public partial record class GridImageGenerator(IPointCalculator Calculator, IPre
 		return bitmap;
 	}
 
+	/// <summary>
+	/// Gets the color value.
+	/// </summary>
+	/// <param name="id">The identifier instance.</param>
+	/// <returns></returns>
+	/// <exception cref="InvalidOperationException">Throws when the specified value is invalid.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private Color GetColor(Identifier id)
+		=> id switch
+		{
+			{ Mode: IdentifierColorMode.Raw, A: var alpha, R: var red, G: var green, B: var blue }
+				=> Color.FromArgb(alpha, red, green, blue),
+			{ Mode: IdentifierColorMode.Id } when Preferences.TryGetColor(id, out var color)
+				=> Color.FromArgb(64, color),
+			{ Mode: IdentifierColorMode.Named, NamedKind: var namedKind }
+				=> namedKind switch
+				{
+					DisplayColorKind.Normal => Preferences.Color1,
+					DisplayColorKind.Elimination => Preferences.EliminationColor,
+					DisplayColorKind.Exofin => Preferences.Color2,
+					DisplayColorKind.Endofin => Preferences.Color3,
+					DisplayColorKind.Cannibalism => Preferences.CannibalismColor,
+					DisplayColorKind.Link => Preferences.ChainColor,
+					_ => throw new InvalidOperationException("Such displaying color kind is invalid.")
+				},
+			_ => throw new InvalidOperationException("Such identifier instance contains invalid value.")
+		};
+
 
 	partial void DrawGridAndBlockLines(Graphics g);
 	partial void DrawBackground(Graphics g);

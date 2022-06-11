@@ -7,8 +7,13 @@
 /// JSON Pattern:
 /// <code>
 /// {
-///   "useId": true,
-///   "id": 3
+///   "mode": "Raw",
+///   "value": {
+///     "a": 255,
+///     "r": 0,
+///     "g": 0,
+///     "b": 0
+///   }
 /// }
 /// </code>
 /// </remarks>
@@ -18,48 +23,52 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 	/// <inheritdoc/>
 	public override Identifier Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
-		if (reader.TokenType != JsonTokenType.StartObject)
+		if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
 		{
 			throw new JsonException();
 		}
 
 		if (!reader.Read()
 			|| reader.TokenType != JsonTokenType.PropertyName
-			|| reader.GetString() != nameof(Identifier.UseId))
+			|| reader.GetString() != nameof(Identifier.Mode))
 		{
 			throw new JsonException();
 		}
 
-		if (!reader.Read() || reader.TokenType != JsonTokenType.Number)
+		if (!reader.Read() || reader.TokenType != JsonTokenType.PropertyName || reader.GetString() != "Value")
 		{
 			throw new JsonException();
 		}
 
-		return reader.GetBoolean() ? getId(ref reader) : getColor(ref reader);
+		if (!reader.Read() || reader.TokenType != JsonTokenType.String)
+		{
+			throw new JsonException();
+		}
+
+		return Enum.Parse<IdentifierColorMode>(reader.GetString() ?? throw new JsonException()) switch
+		{
+			IdentifierColorMode.Id => getId(ref reader),
+			IdentifierColorMode.Raw => getColor(ref reader),
+			IdentifierColorMode.Named => getNamedKind(ref reader),
+			_ => throw new JsonException()
+		};
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static int getId(ref Utf8JsonReader reader)
 		{
-			if (!reader.Read()
-				|| reader.TokenType != JsonTokenType.PropertyName
-				|| reader.GetString() != nameof(Identifier.Id))
+			if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
 			{
 				throw new JsonException();
 			}
 
-			if (!reader.Read() || reader.TokenType != JsonTokenType.Number)
-			{
-				throw new JsonException();
-			}
-
-			int id = reader.GetInt32();
+			var raw = JsonSerializer.Deserialize<IdInternal>(ref reader);
 			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
 			{
 				throw new JsonException();
 			}
 
-			return id;
+			return raw.Id;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -70,13 +79,30 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 				throw new JsonException();
 			}
 
-			var color = JsonSerializer.Deserialize<ColorInternal>(ref reader);
+			var raw = JsonSerializer.Deserialize<ColorInternal>(ref reader);
 			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
 			{
 				throw new JsonException();
 			}
 
-			return (color.A, color.R, color.G, color.B);
+			return (raw.A, raw.R, raw.G, raw.B);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static DisplayColorKind getNamedKind(ref Utf8JsonReader reader)
+		{
+			if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
+			{
+				throw new JsonException();
+			}
+
+			var raw = JsonSerializer.Deserialize<NamedKindInternal>(ref reader);
+			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
+			{
+				throw new JsonException();
+			}
+
+			return Enum.Parse<DisplayColorKind>(raw.NamedKind);
 		}
 	}
 
@@ -84,20 +110,31 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 	public override void Write(Utf8JsonWriter writer, Identifier value, JsonSerializerOptions options)
 	{
 		writer.WriteStartObject();
-		writer.WriteBoolean(nameof(Identifier.UseId), value.UseId);
-		if (value.UseId)
+		writer.WriteString(nameof(Identifier.Mode), value.Mode.ToString());
+		writer.WritePropertyName("Value");
+		writer.WriteStartObject();
+		switch (value.Mode)
 		{
-			writer.WriteNumber(nameof(Identifier.Id), value.Id);
+			case IdentifierColorMode.Id:
+			{
+				writer.WriteNumber(nameof(Identifier.Id), value.Id);
+				break;
+			}
+			case IdentifierColorMode.Raw:
+			{
+				writer.WriteNumber(nameof(Identifier.A), value.A);
+				writer.WriteNumber(nameof(Identifier.R), value.R);
+				writer.WriteNumber(nameof(Identifier.G), value.G);
+				writer.WriteNumber(nameof(Identifier.B), value.B);
+				break;
+			}
+			case IdentifierColorMode.Named:
+			{
+				writer.WriteString(nameof(Identifier.NamedKind), value.NamedKind.ToString());
+				break;
+			}
 		}
-		else
-		{
-			writer.WriteStartObject();
-			writer.WriteNumber(nameof(Identifier.A), value.A);
-			writer.WriteNumber(nameof(Identifier.R), value.R);
-			writer.WriteNumber(nameof(Identifier.G), value.G);
-			writer.WriteNumber(nameof(Identifier.B), value.B);
-			writer.WriteEndObject();
-		}
+		writer.WriteEndObject();
 		writer.WriteEndObject();
 	}
 }
