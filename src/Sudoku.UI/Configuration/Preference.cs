@@ -264,6 +264,42 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
+	/// The default value is <c>#FF3FDA65</c>.
+	/// </remarks>
+	public Color NormalColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFF7684</c>.
+	/// </remarks>
+	public Color RemovalColor { get; set; } = Color.FromArgb(255, 255, 118, 132);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FF7FBBFF</c>.
+	/// </remarks>
+	public Color ExofinColor { get; set; } = Color.FromArgb(255, 127, 187, 255);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFD8B2FF</c>.
+	/// </remarks>
+	public Color EndofinColor { get; set; } = Color.FromArgb(255, 216, 178, 255);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFEB0000</c>.
+	/// </remarks>
+	public Color CannibalismColor { get; set; } = Color.FromArgb(255, 235, 0, 0);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFF0000</c>.
+	/// </remarks>
+	public Color LinksColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
+
+	/// <inheritdoc/>
+	/// <remarks>
 	/// The default value is <c>#FF0000FF</c> (i.e. <see cref="Colors.Blue"/>).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]

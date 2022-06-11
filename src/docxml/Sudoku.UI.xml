@@ -371,6 +371,42 @@
             The default value is <c>#FFFFFF96</c>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.NormalColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF3FDA65</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.RemovalColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFF7684</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.ExofinColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF7FBBFF</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.EndofinColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFD8B2FF</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.CannibalismColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFEB0000</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.LinksColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFF0000</c>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Configuration.Preference.HighlightCellStrokeColor">
             <inheritdoc/>
             <remarks>

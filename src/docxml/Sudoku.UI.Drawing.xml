@@ -223,6 +223,36 @@
             Indicates the 15th color in the color palette.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.NormalColor">
+            <summary>
+            Indicates the normal color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.RemovalColor">
+            <summary>
+            Indicates the color that describes an elimination.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.ExofinColor">
+            <summary>
+            Indicates the color that describes an exo-fin.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.EndofinColor">
+            <summary>
+            Indicates the color that describes an endo-fin.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CannibalismColor">
+            <summary>
+            Indicates the color that describes a cannibalism.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.LinksColor">
+            <summary>
+            Indicates the color of links used by a chain.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.HighlightCellStrokeColor">
             <summary>
             Indicates the color of the stroke lines surrounding with highlight cell.

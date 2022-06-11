@@ -206,6 +206,36 @@ public interface IDrawingPreference
 	Color PaletteColor15 { get; set; }
 
 	/// <summary>
+	/// Indicates the normal color.
+	/// </summary>
+	Color NormalColor { get; set; }
+
+	/// <summary>
+	/// Indicates the color that describes an elimination.
+	/// </summary>
+	Color RemovalColor { get; set; }
+
+	/// <summary>
+	/// Indicates the color that describes an exo-fin.
+	/// </summary>
+	Color ExofinColor { get; set; }
+
+	/// <summary>
+	/// Indicates the color that describes an endo-fin.
+	/// </summary>
+	Color EndofinColor { get; set; }
+
+	/// <summary>
+	/// Indicates the color that describes a cannibalism.
+	/// </summary>
+	Color CannibalismColor { get; set; }
+
+	/// <summary>
+	/// Indicates the color of links used by a chain.
+	/// </summary>
+	Color LinksColor { get; set; }
+
+	/// <summary>
 	/// Indicates the color of the stroke lines surrounding with highlight cell.
 	/// </summary>
 	Color HighlightCellStrokeColor { get; set; }
