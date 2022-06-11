@@ -132,7 +132,7 @@ internal static class PointConversions
 				3 => BlockSize,
 				9 => CellSize,
 				27 => CandidateSize,
-				_ => default(Func<double, double, double>)!
+				_ => default(Func<double, double, double>?)!
 			}
 		)(paneSize, outsideOffset);
 

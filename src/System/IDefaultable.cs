@@ -28,7 +28,7 @@ public interface IDefaultable</*[Self]*/ T> where T : IDefaultable<T>
 	/// Here is an example code to describe the above words:
 	/// <code><![CDATA[
 	/// // The static read-only field to introduce the default value.
-	/// public static readonly T Default = default(T);
+	/// public static readonly T Default = default(T?);
 	/// 
 	/// // An explicit implementation on the default-value property.
 	/// static T IDefaultable<T>.Default => Default;

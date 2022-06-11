@@ -56,7 +56,7 @@ public partial class App : Application
 						=> async i => i.FirstGrid = Grid.Parse(await FileIO.ReadTextAsync(file)),
 					CommonFileExtensions.PreferenceBackup
 						=> static i => i.FirstPageTypeName = nameof(SettingsPage),
-					_ => default(Action<WindowInitialInfo>)
+					_ => default(Action<WindowInitialInfo>?)
 				},
 				_ => default
 			}
