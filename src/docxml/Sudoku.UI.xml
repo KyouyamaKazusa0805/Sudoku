@@ -377,7 +377,7 @@
             The default value is <c>#FF3FDA65</c>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.RemovalColor">
+        <member name="P:Sudoku.UI.Configuration.Preference.EliminationColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#FFFF7684</c>.
@@ -401,7 +401,7 @@
             The default value is <c>#FFEB0000</c>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.LinksColor">
+        <member name="P:Sudoku.UI.Configuration.Preference.LinkColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#FFFF0000</c>.

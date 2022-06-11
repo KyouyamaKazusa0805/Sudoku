@@ -272,7 +272,7 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>#FFFF7684</c>.
 	/// </remarks>
-	public Color RemovalColor { get; set; } = Color.FromArgb(255, 255, 118, 132);
+	public Color EliminationColor { get; set; } = Color.FromArgb(255, 255, 118, 132);
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -296,7 +296,7 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>#FFFF0000</c>.
 	/// </remarks>
-	public Color LinksColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
+	public Color LinkColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
 
 	/// <inheritdoc/>
 	/// <remarks>

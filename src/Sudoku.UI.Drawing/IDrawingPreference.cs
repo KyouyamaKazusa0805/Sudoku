@@ -213,7 +213,7 @@ public interface IDrawingPreference
 	/// <summary>
 	/// Indicates the color that describes an elimination.
 	/// </summary>
-	Color RemovalColor { get; set; }
+	Color EliminationColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color that describes an exo-fin.
@@ -233,7 +233,7 @@ public interface IDrawingPreference
 	/// <summary>
 	/// Indicates the color of links used by a chain.
 	/// </summary>
-	Color LinksColor { get; set; }
+	Color LinkColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the stroke lines surrounding with highlight cell.

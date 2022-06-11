@@ -228,7 +228,7 @@
             Indicates the normal color.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.RemovalColor">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.EliminationColor">
             <summary>
             Indicates the color that describes an elimination.
             </summary>
@@ -248,7 +248,7 @@
             Indicates the color that describes a cannibalism.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.LinksColor">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.LinkColor">
             <summary>
             Indicates the color of links used by a chain.
             </summary>

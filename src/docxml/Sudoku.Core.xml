@@ -6992,6 +6992,41 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Presentation.DisplayColorKind">
+            <summary>
+            Defines a display color kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Normal">
+            <summary>
+            Indicates the normal color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Elimination">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Exofin">
+            <summary>
+            Indicates the exo-fin color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Endofin">
+            <summary>
+            Indicates the endo-fin color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Cannibalism">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Link">
+            <summary>
+            Indicates the link color.
+            </summary>
+        </member>
         <member name="T:Sudoku.Presentation.Identifier">
             <summary>
             Defines an identifier that can differ colors.
