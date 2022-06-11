@@ -1224,6 +1224,52 @@
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnRightTapped(Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.LoadFirstGridIfWorth">
+            <summary>
+            Loads the grid if the program is opened via opening a file.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.MakeLoadingOperationCompleted">
+            <summary>
+            Makes the loading operation completed, sets the field <see cref="F:Sudoku.UI.Views.Controls.SudokuPane._isFirstLoading"/>
+            to <see langword="false"/> value.
+            </summary>
+            <seealso cref="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/>
+            <seealso cref="F:Sudoku.UI.Views.Controls.SudokuPane._isFirstLoading"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeOutsideRectangle(Sudoku.UI.Configuration.Preference)">
+            <summary>
+            Initializes <see cref="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle"/> instances, and append
+            into the collection <see cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>.
+            </summary>
+            <param name="up">The user preference instance.</param>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle"/>
+            <seealso cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeGridCellLines(Sudoku.UI.Configuration.Preference)">
+            <summary>
+            Initializes <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateLine"/>, <see cref="T:Sudoku.UI.Drawing.Shapes.CellLine"/> and <see cref="T:Sudoku.UI.Drawing.Shapes.BlockLine"/> instances,
+            and append into the collection <see cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>.
+            </summary>
+            <param name="up">The user preference instance.</param>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.CandidateLine"/>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.CellLine"/>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.BlockLine"/>
+            <seealso cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeSudokuGrid(Sudoku.UI.Configuration.Preference)">
+            <summary>
+            Initializes <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instances, and append into the collection <see cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>.
+            </summary>
+            <param name="up">The user preference instance.</param>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/>
+            <seealso cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.AddIntoCanvas">
+            <summary>
+            Adds the controls into the canvas.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetSudokuGridViewModel">
             <summary>
             Gets the <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance as the view model.

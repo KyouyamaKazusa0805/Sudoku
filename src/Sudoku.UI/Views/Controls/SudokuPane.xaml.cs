@@ -325,6 +325,127 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
+	/// Loads the grid if the program is opened via opening a file.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void LoadFirstGridIfWorth()
+	{
+		if (((App)Application.Current).InitialInfo.FirstGrid is { } grid)
+		{
+			// Sets the value.
+			Grid = grid;
+
+			// Remove the value to avoid re-triggering.
+			((App)Application.Current).InitialInfo.FirstGrid = null;
+		}
+	}
+
+	/// <summary>
+	/// Makes the loading operation completed, sets the field <see cref="_isFirstLoading"/>
+	/// to <see langword="false"/> value.
+	/// </summary>
+	/// <seealso cref="SudokuPane_Loaded(object, RoutedEventArgs)"/>
+	/// <seealso cref="_isFirstLoading"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void MakeLoadingOperationCompleted() => _isFirstLoading = false;
+
+	/// <summary>
+	/// Initializes <see cref="OutsideRectangle"/> instances, and append
+	/// into the collection <see cref="_drawingElements"/>.
+	/// </summary>
+	/// <param name="up">The user preference instance.</param>
+	/// <seealso cref="OutsideRectangle"/>
+	/// <seealso cref="_drawingElements"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void InitializeOutsideRectangle(Preference up)
+	{
+		if (up.OutsideBorderWidth != 0 && OutsideOffset != 0)
+		{
+			_drawingElements.Add(new OutsideRectangle(up.OutsideBorderColor, Size, up.OutsideBorderWidth));
+		}
+	}
+
+	/// <summary>
+	/// Initializes <see cref="CandidateLine"/>, <see cref="CellLine"/> and <see cref="BlockLine"/> instances,
+	/// and append into the collection <see cref="_drawingElements"/>.
+	/// </summary>
+	/// <param name="up">The user preference instance.</param>
+	/// <seealso cref="CandidateLine"/>
+	/// <seealso cref="CellLine"/>
+	/// <seealso cref="BlockLine"/>
+	/// <seealso cref="_drawingElements"/>
+	private void InitializeGridCellLines(Preference up)
+	{
+		if (up.ShowCandidateBorderLines)
+		{
+			for (byte i = 0; i < 28; i++)
+			{
+				if (i % 3 == 0)
+				{
+					// Skips the overlapping lines.
+					continue;
+				}
+
+				_drawingElements.Add(
+					new CandidateLine(up.CandidateBorderColor, up.CandidateBorderWidth, Size, OutsideOffset, i));
+				_drawingElements.Add(
+					new CandidateLine(
+						up.CandidateBorderColor, up.CandidateBorderWidth, Size, OutsideOffset, (byte)(i + 28)));
+			}
+		}
+
+		for (byte i = 0; i < 10; i++)
+		{
+			if (i % 3 == 0)
+			{
+				// Skips the overlapping lines.
+				continue;
+			}
+
+			_drawingElements.Add(new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, i));
+			_drawingElements.Add(
+				new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, (byte)(i + 10)));
+		}
+
+		for (byte i = 0; i < 4; i++)
+		{
+			_drawingElements.Add(new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, i));
+			_drawingElements.Add(
+				new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, (byte)(i + 4)));
+		}
+	}
+
+	/// <summary>
+	/// Initializes <see cref="SudokuGrid"/> instances, and append into the collection <see cref="_drawingElements"/>.
+	/// </summary>
+	/// <param name="up">The user preference instance.</param>
+	/// <seealso cref="SudokuGrid"/>
+	/// <seealso cref="_drawingElements"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void InitializeSudokuGrid(Preference up)
+	{
+		_drawingElements.Add(new SudokuGrid(up, Size, OutsideOffset, triggerBoth));
+
+
+		void triggerBoth()
+		{
+			PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
+			PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
+		}
+	}
+
+	/// <summary>
+	/// Adds the controls into the canvas.
+	/// </summary>
+	private void AddIntoCanvas()
+	{
+		foreach (var control in from drawingElement in _drawingElements select drawingElement.GetControl())
+		{
+			_cCanvasMain.Children.Add(control);
+		}
+	}
+
+	/// <summary>
 	/// Gets the <see cref="SudokuGrid"/> instance as the view model.
 	/// </summary>
 	/// <returns>The <see cref="SudokuGrid"/> instance.</returns>
@@ -347,81 +468,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		var up = ((App)Application.Current).UserPreference;
 
-		// Initializes the outside border if worth.
-		if (up.OutsideBorderWidth != 0 && OutsideOffset != 0)
-		{
-			_drawingElements.Add(new OutsideRectangle(up.OutsideBorderColor, Size, up.OutsideBorderWidth));
-		}
-
-		// Initializes candidate border lines if worth.
-		if (up.ShowCandidateBorderLines)
-		{
-			for (byte i = 0; i < 28; i++)
-			{
-				if (i % 3 == 0)
-				{
-					// Skips the overlapping lines.
-					continue;
-				}
-
-				_drawingElements.Add(
-					new CandidateLine(up.CandidateBorderColor, up.CandidateBorderWidth, Size, OutsideOffset, i));
-				_drawingElements.Add(
-					new CandidateLine(
-						up.CandidateBorderColor, up.CandidateBorderWidth, Size, OutsideOffset, (byte)(i + 28)));
-			}
-		}
-
-		// Initializes cell border lines.
-		for (byte i = 0; i < 10; i++)
-		{
-			if (i % 3 == 0)
-			{
-				// Skips the overlapping lines.
-				continue;
-			}
-
-			_drawingElements.Add(new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, i));
-			_drawingElements.Add(
-				new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, (byte)(i + 10)));
-		}
-
-		// Initializes block border lines.
-		for (byte i = 0; i < 4; i++)
-		{
-			_drawingElements.Add(new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, i));
-			_drawingElements.Add(
-				new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, (byte)(i + 4)));
-		}
-
-		// Initializes the sudoku grid.
-		_drawingElements.Add(new SudokuGrid(up, Size, OutsideOffset, triggerBoth));
-
-		// Add them into the control collection.
-		foreach (var control in from drawingElement in _drawingElements select drawingElement.GetControl())
-		{
-			_cCanvasMain.Children.Add(control);
-		}
-
-		// Loads the grid if the program is opened by opening a file.
-		if (((App)Application.Current).InitialInfo.FirstGrid is { } grid)
-		{
-			// Sets the value.
-			Grid = grid;
-
-			// Remove the value to avoid re-triggering.
-			((App)Application.Current).InitialInfo.FirstGrid = null;
-		}
-
-		// Sets the boolean value to false in order to avoid the re-initialize.
-		_isFirstLoading = false;
-
-
-		void triggerBoth()
-		{
-			PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
-			PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
-		}
+		InitializeOutsideRectangle(up);
+		InitializeGridCellLines(up);
+		InitializeSudokuGrid(up);
+		AddIntoCanvas();
+		LoadFirstGridIfWorth();
+		MakeLoadingOperationCompleted();
 	}
 
 	/// <summary>
