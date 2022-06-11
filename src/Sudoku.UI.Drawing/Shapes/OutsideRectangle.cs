@@ -73,9 +73,10 @@ public sealed partial class OutsideRectangle : DrawingElement
 		set => _rect.Stroke = new SolidColorBrush(value);
 	}
 
-	private int RectHashCode => HashCode.Combine(_rect.Width, _rect.Height);
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(OutsideRectangle);
 
-	private string TypeIdentifier => nameof(OutsideRectangle);
+	private int RectHashCode => HashCode.Combine(_rect.Width, _rect.Height);
 
 
 	/// <inheritdoc/>

@@ -76,6 +76,12 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
+	/// The default value is <c>3</c>.
+	/// </remarks>
+	public double HighlightCellStrokeThickness { get; set; } = 3;
+
+	/// <inheritdoc/>
+	/// <remarks>
 	/// The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
 	/// </remarks>
 	public string ValueFontName { get; set; }

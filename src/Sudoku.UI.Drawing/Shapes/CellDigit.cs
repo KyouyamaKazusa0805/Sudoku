@@ -276,7 +276,8 @@ internal sealed partial class CellDigit : DrawingElement
 		}
 	}
 
-	private string TypeIdentifier => nameof(CellDigit);
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(CellDigit);
 
 #if DEBUG
 	/// <summary>

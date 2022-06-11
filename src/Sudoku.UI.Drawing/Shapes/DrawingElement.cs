@@ -9,6 +9,13 @@ public abstract partial class DrawingElement :
 	IEqualityOperators<DrawingElement, DrawingElement>
 {
 	/// <summary>
+	/// Indicates the type identifier. The value implemented can be used for the hashing.
+	/// For example, if the containing type is <c>T</c>, the property can return <c>nameof(T)</c>.
+	/// </summary>
+	protected abstract string TypeIdentifier { get; }
+
+
+	/// <summary>
 	/// Provides a way to assign the inner properties using the reflection via the specified parameters.
 	/// </summary>
 	/// <param name="objectHandler">The handler that checks and changes the inner value.</param>

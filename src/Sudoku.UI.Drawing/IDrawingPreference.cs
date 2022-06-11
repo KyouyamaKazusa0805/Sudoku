@@ -66,6 +66,11 @@ public interface IDrawingPreference
 	double CandidateFontScale { get; set; }
 
 	/// <summary>
+	/// Indicates the thickness of the stroke lines surrounding with highlight cell.
+	/// </summary>
+	double HighlightCellStrokeThickness { get; set; }
+
+	/// <summary>
 	/// Indicates the value font name.
 	/// </summary>
 	string ValueFontName { get; set; }

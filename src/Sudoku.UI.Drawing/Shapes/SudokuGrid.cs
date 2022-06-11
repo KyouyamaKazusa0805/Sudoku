@@ -301,7 +301,8 @@ public sealed partial class SudokuGrid : DrawingElement
 		get => ref _grid;
 	}
 
-	private string TypeIdentifier => nameof(SudokuGrid);
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(SudokuGrid);
 
 
 	/// <summary>

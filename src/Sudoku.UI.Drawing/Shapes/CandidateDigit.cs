@@ -212,7 +212,8 @@ internal sealed partial class CandidateDigit : DrawingElement
 		}
 	}
 
-	private string TypeIdentifier => nameof(CandidateDigit);
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(CandidateDigit);
 
 #if DEBUG
 	/// <summary>

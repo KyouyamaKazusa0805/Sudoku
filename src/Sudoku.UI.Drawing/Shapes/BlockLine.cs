@@ -137,9 +137,10 @@ public sealed partial class BlockLine : DrawingElement
 		set => _line.Stroke = new SolidColorBrush(value);
 	}
 
-	private int LineHashCode => HashCode.Combine(_line.X1, _line.X2, _line.Y1, _line.Y2);
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(BlockLine);
 
-	private string TypeIdentifier => nameof(BlockLine);
+	private int LineHashCode => HashCode.Combine(_line.X1, _line.X2, _line.Y1, _line.Y2);
 
 #if DEBUG
 	/// <summary>
