@@ -4,7 +4,9 @@
 /// Defines a source generator that generates the source code on JSON serializations
 /// (serialization or deserialization) for bit operations.
 /// </summary>
+#if false
 [Generator(LanguageNames.CSharp)]
+#endif
 public sealed class JsonSerializerBitOperationsGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
