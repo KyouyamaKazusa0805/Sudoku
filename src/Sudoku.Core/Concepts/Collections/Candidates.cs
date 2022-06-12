@@ -6,7 +6,6 @@
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 [AutoOverridesGetHashCode(nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
 [AutoOverridesEquals(nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11), UseExplicitImplementation = true, EmitsInKeyword = true)]
-[AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 public unsafe partial struct Candidates :
 	IEnumerable<int>,
 	IEquatable<Candidates>,
@@ -988,6 +987,14 @@ public unsafe partial struct Candidates :
 	/// <seealso cref="Reduce(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator /(in Candidates candidates, int digit) => candidates.Reduce(digit);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(in Candidates left, in Candidates right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(in Candidates left, in Candidates right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

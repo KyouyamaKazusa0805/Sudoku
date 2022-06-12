@@ -4,7 +4,6 @@
 /// Defines a chain node.
 /// </summary>
 [AutoOverridesGetHashCode(nameof(Cells), nameof(Digit), EmitsSealedKeyword = true)]
-[AutoOverloadsEqualityOperators(WithNullableAnnotation = true)]
 public abstract partial class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 {
 	/// <summary>
@@ -128,4 +127,14 @@ public abstract partial class Node : IEquatable<Node>, IEqualityOperators<Node, 
 		string nodeTypeName = Type.GetName() ?? "<Unnamed>";
 		return $"{nodeTypeName}: {ToSimpleString()}";
 	}
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(Node? left, Node? right) =>
+		(left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(Node? left, Node? right) => !(left == right);
 }

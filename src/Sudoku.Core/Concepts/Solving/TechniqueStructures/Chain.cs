@@ -3,8 +3,7 @@
 /// <summary>
 /// Defines a chain.
 /// </summary>
-[AutoOverloadsEqualityOperators]
-public abstract partial class Chain :
+public abstract class Chain :
 	IEquatable<Chain>,
 	IEnumerable<Node>,
 	IReadOnlyCollection<Node>,
@@ -138,4 +137,13 @@ public abstract partial class Chain :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => ((IEnumerable<Node>)_nodes).GetEnumerator();
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(Chain left, Chain right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(Chain left, Chain right) => !(left == right);
 }

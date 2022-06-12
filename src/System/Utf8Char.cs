@@ -6,8 +6,6 @@
 [AutoOverridesGetHashCode(nameof(_char))]
 [AutoOverridesEquals(nameof(_char))]
 [AutoOverridesToString(nameof(_char), Pattern = "{((char)[0]).*}")]
-[AutoOverloadsEqualityOperators]
-[AutoOverloadsComparisonOperators]
 public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
@@ -107,7 +105,32 @@ public readonly partial struct Utf8Char :
 		=> obj is Utf8Char comparer
 			? CompareTo(comparer)
 			: throw new ArgumentException("Cannot operate because the argument is not a UTF-8 formatted character.", nameof(obj));
-	
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(Utf8Char left, Utf8Char right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(Utf8Char left, Utf8Char right) => !(left == right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >(Utf8Char left, Utf8Char right) => left.CompareTo(right) > 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >=(Utf8Char left, Utf8Char right) => left.CompareTo(right) >= 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <(Utf8Char left, Utf8Char right) => left.CompareTo(right) < 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <=(Utf8Char left, Utf8Char right) => left.CompareTo(right) <= 0;
+
 
 	/// <summary>
 	/// Explicitly cast from <see cref="char"/> instance to <see cref="Utf8Char"/> instance.

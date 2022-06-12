@@ -35,7 +35,6 @@ namespace System.Text;
 /// <seealso cref="DefaultInterpolatedStringHandler"/>
 /// <seealso cref="IFormatProvider"/>
 [InterpolatedStringHandler]
-[AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoOverridesToString(nameof(Text), Pattern = "{new([0])}")]
 public unsafe ref partial struct StringHandler
 {
@@ -1457,4 +1456,13 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ElementToStringConverter<TNotNull>(TNotNull @this) where TNotNull : notnull
 		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(in StringHandler left, in StringHandler right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(in StringHandler left, in StringHandler right) => !(left == right);
 }

@@ -15,7 +15,6 @@ namespace Sudoku.Concepts.Collections;
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 [AutoOverridesGetHashCode(nameof(BinaryCode))]
 [AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitImplementation = true, EmitsInKeyword = true)]
-[AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 public unsafe partial struct Cells :
 	IComparable<Cells>,
 	IEnumerable<int>,
@@ -1202,6 +1201,14 @@ public unsafe partial struct Cells :
 
 		return map / houseIndex;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(in Cells left, in Cells right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(in Cells left, in Cells right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

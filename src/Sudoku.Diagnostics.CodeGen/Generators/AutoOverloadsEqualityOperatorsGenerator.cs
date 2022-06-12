@@ -4,7 +4,9 @@
 /// Defines a source generator that generates the code that overloads the <c><see langword="operator"/> ==</c>
 /// or <c><see langword="operator"/> !=</c>.
 /// </summary>
+#if false
 [Generator(LanguageNames.CSharp)]
+#endif
 public sealed class AutoOverloadsEqualityOperatorsGenerator : IIncrementalGenerator
 {
 	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute";

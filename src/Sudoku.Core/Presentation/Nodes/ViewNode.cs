@@ -3,8 +3,7 @@
 /// <summary>
 /// Defines a view node.
 /// </summary>
-[AutoOverloadsEqualityOperators(WithNullableAnnotation = true)]
-public abstract partial class ViewNode : ICloneable, IEquatable<ViewNode>, IEqualityOperators<ViewNode, ViewNode>
+public abstract class ViewNode : ICloneable, IEquatable<ViewNode>, IEqualityOperators<ViewNode, ViewNode>
 {
 	/// <summary>
 	/// Assigns the <see cref="Presentation.Identifier"/> instance as the basic information.
@@ -48,4 +47,14 @@ public abstract partial class ViewNode : ICloneable, IEquatable<ViewNode>, IEqua
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	object ICloneable.Clone() => Clone();
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(ViewNode left, ViewNode right) =>
+		(left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(ViewNode left, ViewNode right) => !(left == right);
 }

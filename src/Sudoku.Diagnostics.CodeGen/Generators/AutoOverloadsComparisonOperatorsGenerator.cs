@@ -4,7 +4,9 @@
 /// Defines a source generator that generates the source code for overloading on comparison operators
 /// <c><![CDATA[>]]></c>, <c><![CDATA[<]]></c>, <c><![CDATA[>=]]></c> and <c><![CDATA[<=]]></c>.
 /// </summary>
+#if false
 [Generator(LanguageNames.CSharp)]
+#endif
 public sealed class AutoOverloadsComparisonOperatorsGenerator : IIncrementalGenerator
 {
 	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoOverloadsComparisonOperatorsAttribute";

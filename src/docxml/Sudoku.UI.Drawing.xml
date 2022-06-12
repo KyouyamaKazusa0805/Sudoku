@@ -1002,20 +1002,10 @@
             <returns>The <see cref="T:Microsoft.UI.Xaml.UIElement"/> control instance.</returns>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.op_Equality(Sudoku.UI.Drawing.Shapes.DrawingElement,Sudoku.UI.Drawing.Shapes.DrawingElement)">
-            <summary>
-            Determines whether two instances hold a same value.
-            </summary>
-            <param name="left">The left-side instance to take part in the comparison operation.</param>
-            <param name="right">The right-side instance to take part in the comparison operation.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.op_Inequality(Sudoku.UI.Drawing.Shapes.DrawingElement,Sudoku.UI.Drawing.Shapes.DrawingElement)">
-            <summary>
-            Determines whether two instances don't hold a same value.
-            </summary>
-            <param name="left">The left-side instance to take part in the comparison operation.</param>
-            <param name="right">The right-side instance to take part in the comparison operation.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag">
             <summary>

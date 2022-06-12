@@ -9,7 +9,6 @@ namespace Sudoku.Concepts.Collections;
 [JsonConverter(typeof(GridJsonConverter))]
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 [AutoOverridesEquals(UseExplicitImplementation = true, EmitsInKeyword = true)]
-[AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoOverridesGetHashCode(nameof(IsUndefined), nameof(IsEmpty), Pattern = """this switch { { [0]: true } => 0, { [1]: true } => 1, _ => ToString("#").* }""")]
 public unsafe partial struct Grid :
 	ISimpleFormattable,
@@ -1499,6 +1498,13 @@ public unsafe partial struct Grid :
 		return result;
 	}
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(in Grid left, in Grid right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(in Grid left, in Grid right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

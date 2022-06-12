@@ -10,7 +10,6 @@
 [AutoOverridesGetHashCode(nameof(Map), nameof(Digit))]
 [AutoOverridesEquals(nameof(Map), nameof(Digit))]
 [AutoOverridesToString(nameof(From), nameof(To), nameof(Digit), Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]} == {Sudoku.Concepts.Collections.Cells.Empty + [1]}({[2] + 1})")]
-[AutoOverloadsEqualityOperators]
 public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate>
 {
 	/// <summary>
@@ -100,4 +99,13 @@ public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOpera
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.Empty + From + To;
 	}
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(Conjugate left, Conjugate right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(Conjugate left, Conjugate right) => !(left == right);
 }

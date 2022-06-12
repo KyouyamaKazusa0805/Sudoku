@@ -6,7 +6,6 @@
 [AutoDeconstruction(nameof(MinValue), nameof(MaxValue))]
 [AutoOverridesGetHashCode(nameof(_mask))]
 [AutoOverridesEquals(nameof(_mask))]
-[AutoOverloadsEqualityOperators]
 public readonly partial struct CellRange :
 	IEquatable<CellRange>,
 	IEqualityOperators<CellRange, CellRange>,
@@ -118,6 +117,15 @@ public readonly partial struct CellRange :
 			return false;
 		}
 	}
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(CellRange left, CellRange right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(CellRange left, CellRange right) => !(left == right);
 
 
 	/// <summary>

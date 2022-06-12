@@ -15,8 +15,6 @@
 [AutoOverridesGetHashCode(nameof(_mask))]
 [AutoOverridesEquals(nameof(_mask))]
 [AutoOverridesToString(nameof(Cell), nameof(ConclusionType), nameof(Digit), Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]}{[1].GetNotation()}{[2] + 1}")]
-[AutoOverloadsComparisonOperators]
-[AutoOverloadsEqualityOperators]
 public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion>,
@@ -151,4 +149,29 @@ public readonly partial struct Conclusion :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Conclusion[] ToConclusions(in Cells cells, int digit, ConclusionType type)
 		=> from cell in cells.ToArray() select new Conclusion(type, cell, digit);
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >(Conclusion left, Conclusion right) => left.CompareTo(right) > 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >=(Conclusion left, Conclusion right) => left.CompareTo(right) >= 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <(Conclusion left, Conclusion right) => left.CompareTo(right) < 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <=(Conclusion left, Conclusion right) => left.CompareTo(right) <= 0;
 }

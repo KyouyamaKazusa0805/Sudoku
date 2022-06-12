@@ -3,10 +3,7 @@
 /// <summary>
 /// Defines a drawing element that represents a sudoku information.
 /// </summary>
-[AutoOverloadsEqualityOperators(WithNullableAnnotation = true)]
-public abstract partial class DrawingElement :
-	IEquatable<DrawingElement>,
-	IEqualityOperators<DrawingElement, DrawingElement>
+public abstract class DrawingElement : IEquatable<DrawingElement>, IEqualityOperators<DrawingElement, DrawingElement>
 {
 	/// <summary>
 	/// Indicates the type identifier. The value implemented can be used for the hashing.
@@ -38,4 +35,14 @@ public abstract partial class DrawingElement :
 	/// </summary>
 	/// <returns>The <see cref="UIElement"/> control instance.</returns>
 	public abstract UIElement GetControl();
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(DrawingElement? left, DrawingElement? right) =>
+		(left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(DrawingElement? left, DrawingElement? right) => !(left == right);
 }

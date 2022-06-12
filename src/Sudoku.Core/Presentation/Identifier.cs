@@ -6,7 +6,6 @@
 [JsonConverter(typeof(IdentifierJsonConverter))]
 [AutoOverridesGetHashCode(nameof(Mode), nameof(ColorRawValue))]
 [AutoOverridesToString(nameof(RawValueDisplayer))]
-[AutoOverloadsEqualityOperators]
 public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
 {
 	/// <summary>
@@ -165,6 +164,15 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// <returns>The result <see cref="Identifier"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Identifier FromNamedKind(DisplayColorKind namedKind) => new(namedKind);
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(Identifier left, Identifier right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(Identifier left, Identifier right) => !(left == right);
 
 
 	/// <summary>
