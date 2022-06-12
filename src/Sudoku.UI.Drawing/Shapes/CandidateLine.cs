@@ -3,10 +3,7 @@
 /// <summary>
 /// Defines a candidate line.
 /// </summary>
-#if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
-#endif
-[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(LineHashCode))]
 public sealed partial class CandidateLine : DrawingElement
 {
 	/// <summary>
@@ -140,8 +137,6 @@ public sealed partial class CandidateLine : DrawingElement
 	/// <inheritdoc/>
 	protected override string TypeIdentifier => nameof(CandidateLine);
 
-	private int LineHashCode => HashCode.Combine(_line.X1, _line.X2, _line.Y1, _line.Y2);
-
 #if DEBUG
 	/// <summary>
 	/// Defines the debugger view.
@@ -163,10 +158,14 @@ public sealed partial class CandidateLine : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
 		=> other is CandidateLine comparer
-			&& _line.X1.NearlyEquals(comparer._line.X1, 1E-2)
-			&& _line.X2.NearlyEquals(comparer._line.X2, 1E-2)
-			&& _line.Y1.NearlyEquals(comparer._line.Y1, 1E-2)
-			&& _line.Y2.NearlyEquals(comparer._line.Y2, 1E-2);
+		&& _line.X1.NearlyEquals(comparer._line.X1, 1E-2)
+		&& _line.X2.NearlyEquals(comparer._line.X2, 1E-2)
+		&& _line.Y1.NearlyEquals(comparer._line.Y1, 1E-2)
+		&& _line.Y2.NearlyEquals(comparer._line.Y2, 1E-2);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, _line.X1, _line.X2, _line.Y1, _line.Y2);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

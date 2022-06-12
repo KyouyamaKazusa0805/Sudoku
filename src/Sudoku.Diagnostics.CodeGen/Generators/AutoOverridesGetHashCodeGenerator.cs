@@ -3,7 +3,9 @@
 /// <summary>
 /// Defines a source generator that generates for the code that is for the overriden of a type.
 /// </summary>
+#if false
 [Generator(LanguageNames.CSharp)]
+#endif
 public sealed class AutoOverridesGetHashCodeGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>

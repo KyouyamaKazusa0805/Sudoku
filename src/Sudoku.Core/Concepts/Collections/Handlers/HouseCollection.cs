@@ -3,8 +3,6 @@
 /// <summary>
 /// Indicates a house collection.
 /// </summary>
-[AutoOverridesEquals(nameof(Mask))]
-[AutoOverridesGetHashCode(nameof(Mask))]
 public readonly ref partial struct HouseCollection
 {
 	/// <summary>
@@ -66,6 +64,14 @@ public readonly ref partial struct HouseCollection
 		get => (Mask >> houseIndex & 1) != 0;
 	}
 
+
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(HouseCollection other) => Mask == other.Mask;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => Mask;
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

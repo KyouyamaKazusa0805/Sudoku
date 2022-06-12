@@ -3,10 +3,7 @@
 /// <summary>
 /// Represents a character as a UTF-8 code unit.
 /// </summary>
-[AutoOverridesGetHashCode(nameof(_char))]
-[AutoOverridesEquals(nameof(_char))]
-[AutoOverridesToString(nameof(_char), Pattern = "{((char)[0]).*}")]
-public readonly partial struct Utf8Char :
+public readonly struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
 	IComparisonOperators<Utf8Char, Utf8Char>,
@@ -81,9 +78,25 @@ public readonly partial struct Utf8Char :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool IsLetterOrDigit() => IsLetter() || IsDigit();
 
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Utf8Char comparer && Equals(comparer);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(Utf8Char other) => _char == other._char;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => _char;
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Utf8Char other) => _char.CompareTo(_char);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString() => ((char)_char).ToString();
 
 	/// <summary>
 	/// Converts the current character to the upper-casing letter.

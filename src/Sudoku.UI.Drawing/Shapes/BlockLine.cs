@@ -3,11 +3,8 @@
 /// <summary>
 /// Defines a block line.
 /// </summary>
-#if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
-#endif
-[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(LineHashCode))]
-public sealed partial class BlockLine : DrawingElement
+public sealed class BlockLine : DrawingElement
 {
 	/// <summary>
 	/// The inner line.
@@ -163,10 +160,14 @@ public sealed partial class BlockLine : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
 		=> other is BlockLine comparer
-			&& _line.X1.NearlyEquals(comparer._line.X1, 1E-2)
-			&& _line.X2.NearlyEquals(comparer._line.X2, 1E-2)
-			&& _line.Y1.NearlyEquals(comparer._line.Y1, 1E-2)
-			&& _line.Y2.NearlyEquals(comparer._line.Y2, 1E-2);
+		&& _line.X1.NearlyEquals(comparer._line.X1, 1E-2)
+		&& _line.X2.NearlyEquals(comparer._line.X2, 1E-2)
+		&& _line.Y1.NearlyEquals(comparer._line.Y1, 1E-2)
+		&& _line.Y2.NearlyEquals(comparer._line.Y2, 1E-2);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, LineHashCode);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

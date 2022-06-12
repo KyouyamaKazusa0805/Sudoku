@@ -3,9 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a house.
 /// </summary>
-[AutoOverridesToString(nameof(Identifier), nameof(House))]
-[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(Identifier), nameof(House))]
-public sealed partial class HouseViewNode : ViewNode
+public sealed class HouseViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="HouseViewNode"/> instance via the identifier and the highlight house.
@@ -29,6 +27,15 @@ public sealed partial class HouseViewNode : ViewNode
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is HouseViewNode comparer && Identifier == comparer.Identifier && House == comparer.House;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, Identifier, House);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString()
+		=> $$"""{{nameof(HouseViewNode)}} { {{nameof(Identifier)}} = {{Identifier}}, {{nameof(House)}} = {{House}} }""";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

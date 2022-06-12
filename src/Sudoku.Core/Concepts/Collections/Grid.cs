@@ -7,8 +7,6 @@ namespace Sudoku.Concepts.Collections;
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [JsonConverter(typeof(GridJsonConverter))]
-[AutoOverridesEquals(UseExplicitImplementation = true, EmitsInKeyword = true)]
-[AutoOverridesGetHashCode(nameof(IsUndefined), nameof(IsEmpty), Pattern = """this switch { { [0]: true } => 0, { [1]: true } => 1, _ => ToString("#").* }""")]
 public unsafe partial struct Grid :
 	ISimpleFormattable,
 	ISimpleParseable<Grid>,
@@ -760,6 +758,11 @@ public unsafe partial struct Grid :
 	}
 
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly bool Equals([NotNullWhen(true)] object? obj)
+		=> obj is Grid comparer && Equals(this, comparer);
+
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values
 	/// as the current instance.
@@ -905,6 +908,11 @@ public unsafe partial struct Grid :
 	/// <seealso cref="this[int, int]"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool? Exists(int cell, int digit) => GetStatus(cell) == CellStatus.Empty ? this[cell, digit] : null;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly int GetHashCode()
+		=> this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
 
 	/// <summary>
 	/// Serializes this instance to an array, where all digit value will be stored.
@@ -1228,6 +1236,10 @@ public unsafe partial struct Grid :
 
 		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, m, -1);
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IEquatable<Grid>.Equals(Grid other) => Equals(this, other);
 
 	/// <summary>
 	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.

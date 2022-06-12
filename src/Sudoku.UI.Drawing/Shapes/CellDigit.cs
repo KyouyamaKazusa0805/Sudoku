@@ -3,11 +3,8 @@
 /// <summary>
 /// Defines a drawing element that displays for a digit that is the cell-levelled digit.
 /// </summary>
-#if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
-#endif
-[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(_isGiven), nameof(Digit))]
-internal sealed partial class CellDigit : DrawingElement
+internal sealed class CellDigit : DrawingElement
 {
 	/// <summary>
 	/// Indicates whether displaying mask ellipse.
@@ -314,6 +311,10 @@ internal sealed partial class CellDigit : DrawingElement
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
 		=> other is CellDigit comparer && _isGiven == comparer._isGiven && Digit == comparer.Digit
 		&& _isMaskMode == comparer._isMaskMode;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, _isGiven, Digit);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

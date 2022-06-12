@@ -3,8 +3,6 @@
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-[AutoOverridesGetHashCode(nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
-[AutoOverridesEquals(nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11), UseExplicitImplementation = true, EmitsInKeyword = true)]
 public unsafe partial struct Candidates :
 	IEnumerable<int>,
 	IEquatable<Candidates>,
@@ -343,6 +341,17 @@ public unsafe partial struct Candidates :
 		}
 	}
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Candidates comparer && Equals(comparer);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool Equals(in Candidates other)
+		=> _0 == other._0 && _1 == other._1 && _2 == other._2 && _3 == other._3
+		&& _4 == other._4 && _5 == other._5 && _6 == other._6 && _7 == other._7
+		&& _8 == other._8 && _9 == other._9 && _10 == other._10 && _11 == other._11;
+
 	/// <summary>
 	/// Determine whether the map contains the specified offset.
 	/// </summary>
@@ -371,6 +380,26 @@ public unsafe partial struct Candidates :
 				_ => throw new ArgumentOutOfRangeException(nameof(offset))
 			} >> offset % Shifting & 1
 		) != 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly int GetHashCode()
+	{
+		var result = new HashCode();
+		result.Add(_0);
+		result.Add(_1);
+		result.Add(_2);
+		result.Add(_3);
+		result.Add(_4);
+		result.Add(_5);
+		result.Add(_6);
+		result.Add(_7);
+		result.Add(_8);
+		result.Add(_9);
+		result.Add(_10);
+		result.Add(_11);
+		return result.ToHashCode();
+	}
 
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
@@ -564,6 +593,10 @@ public unsafe partial struct Candidates :
 		_0 = _1 = _2 = _3 = _4 = _5 = _6 = _7 = _8 = _9 = _10 = _11 = 0;
 		Count = 0;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IEquatable<Candidates>.Equals(Candidates other) => Equals(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

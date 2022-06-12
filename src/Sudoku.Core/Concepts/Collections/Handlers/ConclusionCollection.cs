@@ -3,7 +3,6 @@
 /// <summary>
 /// Provides a collection that contains the conclusions.
 /// </summary>
-[AutoOverridesEquals(nameof(_collection))]
 public readonly ref partial struct ConclusionCollection
 {
 	/// <summary>
@@ -46,6 +45,15 @@ public readonly ref partial struct ConclusionCollection
 		}
 	}
 
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(ConclusionCollection other)
+#if true
+		=> ReferenceEquals(_collection, other._collection);
+#else
+		=> _collection.Length == other._collection.Length && Enumerable.SequenceEqual(_collection, other._collection);
+#endif
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() => ToString(true, ", ");

@@ -4,11 +4,8 @@
 /// Defines a drawing element that displays for a digit that is the candidate-levelled digit.
 /// The data structure represents for all possible candidates in a cell.
 /// </summary>
-#if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
-#endif
-[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(_candidateMask))]
-internal sealed partial class CandidateDigit : DrawingElement
+internal sealed class CandidateDigit : DrawingElement
 {
 	/// <summary>
 	/// Indicates the inner grid.
@@ -248,6 +245,10 @@ internal sealed partial class CandidateDigit : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
 		=> other is CandidateDigit comparer && _candidateMask == comparer._candidateMask;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, _candidateMask);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

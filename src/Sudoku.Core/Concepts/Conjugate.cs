@@ -7,10 +7,7 @@
 /// A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
 /// two position can fill this candidate.
 /// </remarks>
-[AutoOverridesGetHashCode(nameof(Map), nameof(Digit))]
-[AutoOverridesEquals(nameof(Map), nameof(Digit))]
-[AutoOverridesToString(nameof(From), nameof(To), nameof(Digit), Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]} == {Sudoku.Concepts.Collections.Cells.Empty + [1]}({[2] + 1})")]
-public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate>
+public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate>
 {
 	/// <summary>
 	/// Indicates the default instance.
@@ -99,6 +96,23 @@ public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOpera
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.Empty + From + To;
 	}
+
+
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Conjugate comparer && Equals(comparer);
+
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(Conjugate other) => Map == other.Map && Digit == other.Digit;
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(Map, Digit);
+
+	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString() => $"{Cells.Empty + From} == {Cells.Empty + To}({Digit + 1})";
 
 
 	/// <inheritdoc/>

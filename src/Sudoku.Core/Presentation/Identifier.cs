@@ -4,9 +4,7 @@
 /// Defines an identifier that can differ colors.
 /// </summary>
 [JsonConverter(typeof(IdentifierJsonConverter))]
-[AutoOverridesGetHashCode(nameof(Mode), nameof(ColorRawValue))]
-[AutoOverridesToString(nameof(RawValueDisplayer))]
-public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
+public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
 {
 	/// <summary>
 	/// Initializes an <see cref="Identifier"/> instance.
@@ -117,6 +115,24 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 			IdentifierColorMode.Named => NamedKind == other.NamedKind,
 			_ => throw new InvalidOperationException("The specified mode is not supported.")
 		};
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode()
+		=> HashCode.Combine(
+			Mode,
+			Mode switch
+			{
+				IdentifierColorMode.Id => Id,
+				IdentifierColorMode.Raw => ColorRawValue,
+				IdentifierColorMode.Named => NamedKind.GetHashCode(),
+				_ => 0xDEAD
+			}
+		);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString() => $$"""{{nameof(Identifier)}} { {{RawValueDisplayer}} }""";
 
 	/// <summary>
 	/// Try to cast the current identifier instance into the result color value.

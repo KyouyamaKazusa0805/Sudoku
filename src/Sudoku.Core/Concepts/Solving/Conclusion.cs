@@ -12,9 +12,6 @@
 /// <seealso cref="ConclusionType.Elimination"/>
 [AutoDeconstruction(nameof(ConclusionType), nameof(Candidate))]
 [AutoDeconstruction(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
-[AutoOverridesGetHashCode(nameof(_mask))]
-[AutoOverridesEquals(nameof(_mask))]
-[AutoOverridesToString(nameof(Cell), nameof(ConclusionType), nameof(Digit), Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]}{[1].GetNotation()}{[2] + 1}")]
 public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion>,
@@ -126,9 +123,25 @@ public readonly partial struct Conclusion :
 		}
 	}
 
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Conclusion comparer && Equals(comparer);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(Conclusion other) => _mask == other._mask;
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Conclusion other) => _mask.CompareTo(_mask);
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => _mask;
+
+	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString() => $"{Cells.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

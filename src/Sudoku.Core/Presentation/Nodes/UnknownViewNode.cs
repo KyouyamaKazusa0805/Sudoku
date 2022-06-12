@@ -3,9 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a unknown.
 /// </summary>
-[AutoOverridesToString(nameof(Identifier), nameof(Cell), nameof(DigitsMask), nameof(UnknownValueChar))]
-[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(Identifier), nameof(Cell), nameof(DigitsMask), nameof(UnknownValueChar))]
-public sealed partial class UnknownViewNode : ViewNode
+public sealed class UnknownViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes an <see cref="UnknownViewNode"/> instance via the specified identifier,
@@ -43,9 +41,19 @@ public sealed partial class UnknownViewNode : ViewNode
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is UnknownViewNode comparer
-			&& Identifier == comparer.Identifier
-			&& Cell == comparer.Cell && DigitsMask == comparer.DigitsMask
-			&& UnknownValueChar == comparer.UnknownValueChar;
+		&& Identifier == comparer.Identifier
+		&& Cell == comparer.Cell && DigitsMask == comparer.DigitsMask
+		&& UnknownValueChar == comparer.UnknownValueChar;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode()
+		=> HashCode.Combine(TypeIdentifier, Identifier, Cell, DigitsMask, UnknownValueChar);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString()
+		=> $$"""{{nameof(UnknownViewNode)}} { {{nameof(Identifier)}} = {{Identifier}}, {{nameof(Cell)}} = {{Cells.Empty + Cell}}, {{nameof(DigitsMask)}} = {{Convert.ToString(DigitsMask, 2)}}, {{nameof(UnknownValueChar)}} = {{UnknownValueChar}} }""";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

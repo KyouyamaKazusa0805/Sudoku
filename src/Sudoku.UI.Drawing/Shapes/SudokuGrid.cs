@@ -3,8 +3,7 @@
 /// <summary>
 /// Defines a sudoku grid.
 /// </summary>
-[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(_grid))]
-public sealed partial class SudokuGrid : DrawingElement
+public sealed class SudokuGrid : DrawingElement
 {
 	/// <summary>
 	/// Indicates the inner grid layout control.
@@ -518,6 +517,10 @@ public sealed partial class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
 		=> other is SudokuGrid comparer && _grid == comparer._grid;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, _grid);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

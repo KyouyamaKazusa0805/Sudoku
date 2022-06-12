@@ -12,8 +12,6 @@ namespace Sudoku.Concepts.Collections;
 /// the digit.
 /// </remarks>
 [JsonConverter(typeof(CellsJsonConverter))]
-[AutoOverridesGetHashCode(nameof(BinaryCode))]
-[AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitImplementation = true, EmitsInKeyword = true)]
 public unsafe partial struct Cells :
 	IComparable<Cells>,
 	IEnumerable<int>,
@@ -640,6 +638,14 @@ public unsafe partial struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(int offset) => ((offset < Shifting ? _low : _high) >> offset % Shifting & 1) != 0;
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Cells comparer && Equals(comparer);
+
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool Equals(in Cells other) => _low == other._low && _high == other._high;
+
 	/// <summary>
 	/// Get the subview mask of this map.
 	/// </summary>
@@ -872,6 +878,10 @@ public unsafe partial struct Cells :
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => _low = _high = Count = 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IEquatable<Cells>.Equals(Cells other) => Equals(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

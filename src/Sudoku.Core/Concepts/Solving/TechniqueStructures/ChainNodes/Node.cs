@@ -3,8 +3,7 @@
 /// <summary>
 /// Defines a chain node.
 /// </summary>
-[AutoOverridesGetHashCode(nameof(Cells), nameof(Digit), EmitsSealedKeyword = true)]
-public abstract partial class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
+public abstract class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 {
 	/// <summary>
 	/// Indicates the number of bits that is preserved by the bit mask field <see cref="_other"/>.
@@ -112,6 +111,10 @@ public abstract partial class Node : IEquatable<Node>, IEqualityOperators<Node, 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] Node? other)
 		=> other is { Cells: var c, Digit: var d } && c == Cells && d == Digit;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public sealed override int GetHashCode() => HashCode.Combine(Cells, Digit);
 
 	/// <summary>
 	/// Gets the simplified string value that only displays the important information.

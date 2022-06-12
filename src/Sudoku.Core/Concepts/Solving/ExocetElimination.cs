@@ -6,9 +6,7 @@
 /// </summary>
 /// <param name="Eliminations">Indicates the eliminations.</param>
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
-[AutoOverridesGetHashCode(nameof(Eliminations), nameof(Reason))]
-[AutoOverridesEquals(nameof(Eliminations), nameof(Reason), EmitsInKeyword = true, UseExplicitImplementation = true)]
-public readonly partial record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason) :
+public readonly record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason) :
 	IEquatable<ExocetElimination>,
 	IEqualityOperators<ExocetElimination, ExocetElimination>
 {
@@ -21,6 +19,14 @@ public readonly partial record struct ExocetElimination(in Candidates Eliminatio
 		get => Eliminations.Count;
 	}
 
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(in ExocetElimination other) => Eliminations == other.Eliminations && Reason == other.Reason;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(Eliminations, Reason);
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -63,6 +69,10 @@ public readonly partial record struct ExocetElimination(in Candidates Eliminatio
 
 		return result;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	bool IEquatable<ExocetElimination>.Equals(ExocetElimination other) => Equals(other);
 
 
 	/// <summary>

@@ -3,9 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a link.
 /// </summary>
-[AutoOverridesToString(nameof(Identifier), nameof(Start), nameof(End), nameof(Inference))]
-[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(Identifier), nameof(Start), nameof(End))]
-public sealed partial class LinkViewNode : ViewNode
+public sealed class LinkViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="LinkViewNode"/> instance via the specified identifier,
@@ -44,7 +42,16 @@ public sealed partial class LinkViewNode : ViewNode
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is LinkViewNode comparer
-			&& Start == comparer.Start && End == comparer.End && Inference == comparer.Inference;
+		&& Start == comparer.Start && End == comparer.End && Inference == comparer.Inference;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, Identifier, Start, End);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString() =>
+		$$"""{{nameof(LinkViewNode)}} { {{nameof(Identifier)}} = {{Identifier}}, {{nameof(Start)}} = {{Start}}, {{nameof(End)}} = {{End}}, {{nameof(Inference)}} = {{Inference}} }""";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

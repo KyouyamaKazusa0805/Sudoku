@@ -13,21 +13,22 @@
 
 源代码生成器项目依赖于 C# 语义分析的相关 Nuget 包。详情请参考 **[`Microsoft.Diagnostics.CodeAnalysis` 命名空间](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.codeanalysis)**的具体 API 介绍。它对应的 Nuget 包下载地址在[这里](https://www.nuget.org/packages/Microsoft.CodeAnalysis)。
 
-## 正在使用的源代码生成器
+## 源代码生成器
 
-本部分列举一下项目所使用到的源代码生成器的基本类型，以及生成的具体内容。它们也都正在使用。
+下面列举所有的源代码生成器。
+
+### 已启用
+
+此处列举一下项目所使用到的源代码生成器的基本类型，以及生成的具体内容。它们也都正在使用。
 
 * [解构函数生成器](auto-decon)：生成解构函数的代码。
-* [自动重写 `Equals` 方法的生成器](auto-overrides-equals)：生成关于基类型 `Equals` 虚方法或非密封方法的重写代码，同时也会实现 `IEquatable<>` 接口。
-* [自动重写 `GetHashCode` 方法的生成器](auto-overrides-get-hash-code)：生成关于基类型 `GetHashCode` 虚方法或非密封方法的重写代码。
-* [自动重写 `ToString` 方法的生成器](auto-overrides-to-string)：生成关于基类型 `ToString` 虚方法或非密封方法的重写代码。
 * [自动生成枚举类型相关的执行和路由操作](enum-switch-expr)：生成为枚举类型的所有字段进行路由和处理，构造操作的代码。
 * [自动重写 `ref struct` 派生下来的方法代码](ref-struct-default-overrides)：对 `ref struct` 类型生成从 `ValueType` 类型派生下来的方法的重写代码。
 * **`GlobalConfigValueGenerator`**：只给源代码生成器提供服务。用于给源代码生成器的项目提供版本号。
 * **`StepSearcherOptionsGenerator`**：对实现了 `IStepSearcher` 接口的类型生成默认的 `Options` 属性信息的相关代码。
 * **`BitOperationsGenerator`**：对 `BitOperations` 静态类型生成额外的方法，用于扩展比特位的相关处理操作。
 
-## 没有启用的源代码生成器
+### 未启用
 
 本项目也存在一些没有启用的源代码生成器。它们的源代码已经实现，只是没用到。
 
@@ -36,4 +37,7 @@
 * [实现 `GetEnumerator` 方法的生成器](auto-impl-enumerable)：生成关于 `IEnumerable<>` 接口实现的代码。
 * [自动重载大小比较运算符的生成器](auto-overloads-comparison-op)：生成关于 `IComparisonOperators<,,>` 接口实现的运算符重载代码。
 * [自动重载相等性比较运算符的生成器](auto-overloads-equality-op)：生成关于 `IEqualityOperators<,,>` 接口实现的运算符重载代码。
+* [自动重写 `Equals` 方法的生成器](auto-overrides-equals)：生成关于基类型 `Equals` 虚方法或非密封方法的重写代码，同时也会实现 `IEquatable<>` 接口。
+* [自动重写 `GetHashCode` 方法的生成器](auto-overrides-get-hash-code)：生成关于基类型 `GetHashCode` 虚方法或非密封方法的重写代码。
+* [自动重写 `ToString` 方法的生成器](auto-overrides-to-string)：生成关于基类型 `ToString` 虚方法或非密封方法的重写代码。
 * `JsonSerializerBitOperationsGenerator`：生成关于序列化和反序列化一个整数的置 1 的比特位。

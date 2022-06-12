@@ -471,11 +471,11 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.GetControl">
+        <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.GetControl">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CandidateDigit">
             <summary>
@@ -573,11 +573,11 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.GetControl">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.GetControl">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CandidateLine">
             <summary>
@@ -664,11 +664,11 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.GetControl">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.GetControl">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellDigit">
             <summary>
@@ -815,6 +815,9 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.GetControl">
             <inheritdoc/>
         </member>
@@ -831,9 +834,6 @@
             <param name="status">The status.</param>
             <param name="preference">The preference as the source.</param>
             <returns>The <see cref="T:Windows.UI.Color"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellLine">
             <summary>
@@ -920,11 +920,11 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.GetControl">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.GetControl">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellViewElement">
             <summary>
@@ -1095,6 +1095,9 @@
             </summary>
             <param name="element">The element to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.ToString">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
@@ -1880,9 +1883,6 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">
             <summary>
             Defines an outside rectangle.
@@ -1922,11 +1922,11 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.GetControl">
+        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.GetControl">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.SudokuGrid">
             <summary>
@@ -2126,6 +2126,9 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetControl">
             <inheritdoc/>
         </member>
@@ -2139,9 +2142,6 @@
             <summary>
             To update the view via the current grid.
             </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.ViewElement">
             <summary>

@@ -5,12 +5,7 @@
 /// about the locked candidate node.
 /// </summary>
 [JsonConverter(typeof(LockedTargetJsonConverter))]
-[AutoOverridesGetHashCode(nameof(Cells), nameof(Digit))]
-[AutoOverridesEquals(nameof(Digit), nameof(Cells), UseExplicitImplementation = true)]
-[AutoOverridesToString(nameof(Digit), nameof(Cells), Pattern = "Locked target: {[0] + 1}{[1]}")]
-public readonly partial struct LockedTarget :
-	IEquatable<LockedTarget>,
-	IEqualityOperators<LockedTarget, LockedTarget>
+public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget>
 {
 	/// <summary>
 	/// Initializes a <see cref="LockedTarget"/> instance via the specified cells and the specified digit used.
@@ -35,6 +30,28 @@ public readonly partial struct LockedTarget :
 	/// Indicates the cells used.
 	/// </summary>
 	public Cells Cells { get; }
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is LockedTarget comparer && Equals(comparer);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(in LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(Cells, Digit);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString()
+		=> $$"""{{nameof(LockedTarget)}} { {{nameof(Digit)}} = {{Digit + 1}}, {{nameof(Cells)}} = {{Cells}} }""";
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	bool IEquatable<LockedTarget>.Equals(LockedTarget other) => Equals(other);
 
 
 	/// <inheritdoc/>

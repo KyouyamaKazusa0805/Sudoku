@@ -2286,162 +2286,6 @@
             <param name="this">The <see cref="T:System.Text.Json.Utf8JsonWriter"/> instance.</param>
             <param name="handler">The string handler.</param>
         </member>
-        <member name="T:System.Text.Json.Utf8JsonReaderBitOperationsExensions">
-            <summary>
-            Defines a set of methods that handles the bits and the type <see cref="T:System.Text.Json.Utf8JsonReader"/>.
-            </summary>
-            <seealso cref="T:System.Text.Json.Utf8JsonReader"/>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetSByteArray(System.Text.Json.Utf8JsonReader@)">
-            <summary>
-            Reads the array of <see cref="T:System.SByte"/>s.
-            </summary>
-            <param name="this">The reader.</param>
-            <returns>The array of <see cref="T:System.SByte"/>s.</returns>
-            <exception cref="T:System.Text.Json.JsonException">
-            Throws when the next token is invalid while parsing the array.
-            </exception>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetByteArray(System.Text.Json.Utf8JsonReader@)">
-            <summary>
-            Reads the array of <see cref="T:System.Byte"/>s.
-            </summary>
-            <param name="this">The reader.</param>
-            <returns>The array of <see cref="T:System.Byte"/>s.</returns>
-            <exception cref="T:System.Text.Json.JsonException">
-            Throws when the next token is invalid while parsing the array.
-            </exception>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetInt16Array(System.Text.Json.Utf8JsonReader@)">
-            <summary>
-            Reads the array of <see cref="T:System.Int16"/>s.
-            </summary>
-            <param name="this">The reader.</param>
-            <returns>The array of <see cref="T:System.Int16"/>s.</returns>
-            <exception cref="T:System.Text.Json.JsonException">
-            Throws when the next token is invalid while parsing the array.
-            </exception>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetUInt16Array(System.Text.Json.Utf8JsonReader@)">
-            <summary>
-            Reads the array of <see cref="T:System.UInt16"/>s.
-            </summary>
-            <param name="this">The reader.</param>
-            <returns>The array of <see cref="T:System.UInt16"/>s.</returns>
-            <exception cref="T:System.Text.Json.JsonException">
-            Throws when the next token is invalid while parsing the array.
-            </exception>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetInt32Array(System.Text.Json.Utf8JsonReader@)">
-            <summary>
-            Reads the array of <see cref="T:System.Int32"/>s.
-            </summary>
-            <param name="this">The reader.</param>
-            <returns>The array of <see cref="T:System.Int32"/>s.</returns>
-            <exception cref="T:System.Text.Json.JsonException">
-            Throws when the next token is invalid while parsing the array.
-            </exception>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetUInt32Array(System.Text.Json.Utf8JsonReader@)">
-            <summary>
-            Reads the array of <see cref="T:System.UInt32"/>s.
-            </summary>
-            <param name="this">The reader.</param>
-            <returns>The array of <see cref="T:System.UInt32"/>s.</returns>
-            <exception cref="T:System.Text.Json.JsonException">
-            Throws when the next token is invalid while parsing the array.
-            </exception>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetInt64Array(System.Text.Json.Utf8JsonReader@)">
-            <summary>
-            Reads the array of <see cref="T:System.Int64"/>s.
-            </summary>
-            <param name="this">The reader.</param>
-            <returns>The array of <see cref="T:System.Int64"/>s.</returns>
-            <exception cref="T:System.Text.Json.JsonException">
-            Throws when the next token is invalid while parsing the array.
-            </exception>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetUInt64Array(System.Text.Json.Utf8JsonReader@)">
-            <summary>
-            Reads the array of <see cref="T:System.UInt64"/>s.
-            </summary>
-            <param name="this">The reader.</param>
-            <returns>The array of <see cref="T:System.UInt64"/>s.</returns>
-            <exception cref="T:System.Text.Json.JsonException">
-            Throws when the next token is invalid while parsing the array.
-            </exception>
-        </member>
-        <member name="T:System.Text.Json.Utf8JsonWriterBitOperationsExensions">
-            <summary>
-            Defines a set of methods that handles the bits and the type <see cref="T:System.Text.Json.Utf8JsonWriter"/>.
-            </summary>
-            <seealso cref="T:System.Text.Json.Utf8JsonWriter"/>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.SByte)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.SByte"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Byte)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.Byte"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int16)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.Int16"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt16)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.UInt16"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int32)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.Int32"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt32)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.UInt32"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int64)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.Int64"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt64)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.UInt64"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
         <member name="T:System.Text.StringBuilderExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.StringBuilder"/>.
@@ -2737,6 +2581,9 @@
             Ensures that the builder has a null character after <see cref="P:System.Text.StringHandler.Length"/>.
             </param>
             <seealso cref="P:System.Text.StringHandler.Length"/>
+        </member>
+        <member name="M:System.Text.StringHandler.ToString">
+            <inheritdoc/>
         </member>
         <member name="M:System.Text.StringHandler.GetEnumerator">
             <summary>
@@ -3318,9 +3165,6 @@
         <member name="M:System.Text.StringHandler.Enumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.StringHandler.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:System.Text.StringHandler.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -4417,7 +4261,19 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:System.Utf8Char.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Utf8Char.Equals(System.Utf8Char)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Utf8Char.CompareTo(System.Utf8Char)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.ToString">
             <inheritdoc/>
         </member>
         <member name="M:System.Utf8Char.ToUpper">
@@ -4476,18 +4332,6 @@
             Implicitly cast from <see cref="T:System.Byte"/> instance to <see cref="T:System.Utf8Char"/> instance.
             </summary>
             <param name="byteValue">The <see cref="T:System.Byte"/> instance.</param>
-        </member>
-        <member name="M:System.Utf8Char.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.Utf8Char.Equals(System.Utf8Char)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:System.Utf8Char.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.Utf8Char.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.Utf8String">
             <summary>
@@ -4548,6 +4392,9 @@
             <returns>The reference of the character.</returns>
         </member>
         <member name="P:System.Utf8String.System#Collections#Generic#IReadOnlyList{System#Utf8Char}#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.Equals(System.Object)">
             <inheritdoc/>
         </member>
         <member name="M:System.Utf8String.Equals(System.Utf8String)">
@@ -4702,9 +4549,6 @@
             Implicitly cast from <see cref="T:System.Byte"/>[] to <see cref="T:System.Utf8String"/>.
             </summary>
             <param name="underlyingArray">The underlying array.</param>
-        </member>
-        <member name="M:System.Utf8String.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
     </members>
 </doc>
