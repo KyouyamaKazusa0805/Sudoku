@@ -12,7 +12,6 @@ namespace Sudoku.Concepts.Collections;
 /// the digit.
 /// </remarks>
 [JsonConverter(typeof(CellsJsonConverter))]
-[DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 [AutoOverridesGetHashCode(nameof(BinaryCode))]
 [AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitImplementation = true, EmitsInKeyword = true)]
 public unsafe partial struct Cells :
@@ -48,6 +47,23 @@ public unsafe partial struct Cells :
 	/// </summary>
 	private long _high = 0, _low = 0;
 
+
+	/// <summary>
+	/// Throws a <see cref="NotSupportedException"/>.
+	/// </summary>
+	/// <exception cref="NotSupportedException">
+	/// The exception will always be thrown.
+	/// </exception>
+	/// <remarks>
+	/// The main idea of the paramterless constructor is to create a new instance
+	/// without any extra information, but the current type is special:
+	/// the author wants to make you use another member instead of it to get a better experience.
+	/// Therefore, the paramterless constructor is disallowed to be invoked
+	/// no matter what kind of invocation, reflection or strongly reference.
+	/// </remarks>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[Obsolete($"Please use the member '{nameof(Empty)}' instead.", true)]
+	public Cells() => throw new NotSupportedException();
 
 	/// <summary>
 	/// Initializes an instance with the specified cell offset

@@ -362,15 +362,6 @@
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator">
-            <summary>
-            Indicates the generator that generates the parameterless constructor on <see langword="struct"/> types,
-            to disallow any invokes for them from user.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator">
             <summary>
             Defines a source generator that generates the method and the corresponding values,

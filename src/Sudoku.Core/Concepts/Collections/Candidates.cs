@@ -3,7 +3,6 @@
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-[DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 [AutoOverridesGetHashCode(nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
 [AutoOverridesEquals(nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11), UseExplicitImplementation = true, EmitsInKeyword = true)]
 public unsafe partial struct Candidates :
@@ -35,6 +34,23 @@ public unsafe partial struct Candidates :
 	/// </summary>
 	private long _0 = 0, _1 = 0, _2 = 0, _3 = 0, _4 = 0, _5 = 0, _6 = 0, _7 = 0, _8 = 0, _9 = 0, _10 = 0, _11 = 0;
 
+
+	/// <summary>
+	/// Throws a <see cref="NotSupportedException"/>.
+	/// </summary>
+	/// <exception cref="NotSupportedException">
+	/// The exception will always be thrown.
+	/// </exception>
+	/// <remarks>
+	/// The main idea of the paramterless constructor is to create a new instance
+	/// without any extra information, but the current type is special:
+	/// the author wants to make you use another member instead of it to get a better experience.
+	/// Therefore, the paramterless constructor is disallowed to be invoked
+	/// no matter what kind of invocation, reflection or strongly reference.
+	/// </remarks>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[Obsolete($"Please use the member '{nameof(Empty)}' instead.", true)]
+	public Candidates() => throw new NotSupportedException();
 
 	/// <summary>
 	/// Initializes an instance with the specified candidate and its peers.

@@ -1791,22 +1791,6 @@
         <member name="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.MemberExpressions">
             <inheritdoc/>
         </member>
-        <member name="T:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute">
-            <summary>
-            Represents an attribute that limits a <see langword="struct"/> type cannot create an instance by
-            the parameterless constructor.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute.SuggestedMemberName">
-            <summary>
-            Indicates the suggested member you want to allow the user using.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute.Message">
-            <summary>
-            Indicates the message you want to tell the user.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute">
             <summary>
             Defines an attribute that can be applied to a field in an <see cref="T:System.Enum"/> type,

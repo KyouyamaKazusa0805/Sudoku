@@ -168,6 +168,21 @@
             The inner binary values.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.#ctor">
+            <summary>
+            Throws a <see cref="T:System.NotSupportedException"/>.
+            </summary>
+            <exception cref="T:System.NotSupportedException">
+            The exception will always be thrown.
+            </exception>
+            <remarks>
+            The main idea of the paramterless constructor is to create a new instance
+            without any extra information, but the current type is special:
+            the author wants to make you use another member instead of it to get a better experience.
+            Therefore, the paramterless constructor is disallowed to be invoked
+            no matter what kind of invocation, reflection or strongly reference.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.#ctor(System.Int32)">
             <summary>
             Initializes an instance with the specified candidate and its peers.
@@ -614,21 +629,6 @@
         <member name="M:Sudoku.Concepts.Collections.Candidates.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>.
-            </summary>
-            <exception cref="T:System.NotSupportedException">
-            The exception will always be thrown.
-            </exception>
-            <remarks>
-            The main idea of the paramterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            the author wants to make you use another member instead of it to get a better experience.
-            Therefore, the paramterless constructor is disallowed to be invoked
-            no matter what kind of invocation, reflection or strongly reference.
-            </remarks>
-        </member>
         <member name="T:Sudoku.Concepts.Collections.Cells">
             <summary>
             Encapsulates a binary series of cell status table.
@@ -663,6 +663,21 @@
             which represents 81 bits. <see cref="F:Sudoku.Concepts.Collections.Cells._high"/> represent the higher
             40 bits and <see cref="F:Sudoku.Concepts.Collections.Cells._low"/> represents the lower 41 bits.
             </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.#ctor">
+            <summary>
+            Throws a <see cref="T:System.NotSupportedException"/>.
+            </summary>
+            <exception cref="T:System.NotSupportedException">
+            The exception will always be thrown.
+            </exception>
+            <remarks>
+            The main idea of the paramterless constructor is to create a new instance
+            without any extra information, but the current type is special:
+            the author wants to make you use another member instead of it to get a better experience.
+            Therefore, the paramterless constructor is disallowed to be invoked
+            no matter what kind of invocation, reflection or strongly reference.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Int32)">
             <summary>
@@ -1286,21 +1301,6 @@
         <member name="M:Sudoku.Concepts.Collections.Cells.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>.
-            </summary>
-            <exception cref="T:System.NotSupportedException">
-            The exception will always be thrown.
-            </exception>
-            <remarks>
-            The main idea of the paramterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            the author wants to make you use another member instead of it to get a better experience.
-            Therefore, the paramterless constructor is disallowed to be invoked
-            no matter what kind of invocation, reflection or strongly reference.
-            </remarks>
-        </member>
         <member name="T:Sudoku.Concepts.Collections.Grid">
             <summary>
             Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -1488,6 +1488,21 @@
             </list>
             </remarks>
             <seealso cref="T:Sudoku.Concepts.CellStatus"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.#ctor">
+            <summary>
+            Throws a <see cref="T:System.NotSupportedException"/>.
+            </summary>
+            <exception cref="T:System.NotSupportedException">
+            The exception will always be thrown.
+            </exception>
+            <remarks>
+            The main idea of the paramterless constructor is to create a new instance
+            without any extra information, but the current type is special:
+            the author wants to make you use another member instead of it to get a better experience.
+            Therefore, the paramterless constructor is disallowed to be invoked
+            no matter what kind of invocation, reflection or strongly reference.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.#ctor(System.Int32[],Sudoku.Concepts.GridCreatingOption)">
             <summary>
@@ -2348,21 +2363,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>.
-            </summary>
-            <exception cref="T:System.NotSupportedException">
-            The exception will always be thrown.
-            </exception>
-            <remarks>
-            The main idea of the paramterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            the author wants to make you use another member instead of it to get a better experience.
-            Therefore, the paramterless constructor is disallowed to be invoked
-            no matter what kind of invocation, reflection or strongly reference.
-            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.Collections.GridTransformations">
             <summary>
