@@ -27,17 +27,3 @@
 * **`GlobalConfigValueGenerator`**：只给源代码生成器提供服务。用于给源代码生成器的项目提供版本号。
 * **`StepSearcherOptionsGenerator`**：对实现了 `IStepSearcher` 接口的类型生成默认的 `Options` 属性信息的相关代码。
 * **`BitOperationsGenerator`**：对 `BitOperations` 静态类型生成额外的方法，用于扩展比特位的相关处理操作。
-
-### 未启用
-
-本项目也存在一些没有启用的源代码生成器。它们的源代码已经实现，只是没用到。
-
-* [自动实现 `GetPinnableReference` 方法的生成器](auto-pinnable)：生成关于 `GetPinnableReference` 方法的代码，允许类型使用 `fixed` 声明。
-* [实现 `CompareTo` 方法的生成器](auto-impl-comparable)：生成关于 `IComparable<>` 接口实现的代码。
-* [实现 `GetEnumerator` 方法的生成器](auto-impl-enumerable)：生成关于 `IEnumerable<>` 接口实现的代码。
-* [自动重载大小比较运算符的生成器](auto-overloads-comparison-op)：生成关于 `IComparisonOperators<,,>` 接口实现的运算符重载代码。
-* [自动重载相等性比较运算符的生成器](auto-overloads-equality-op)：生成关于 `IEqualityOperators<,,>` 接口实现的运算符重载代码。
-* [自动重写 `Equals` 方法的生成器](auto-overrides-equals)：生成关于基类型 `Equals` 虚方法或非密封方法的重写代码，同时也会实现 `IEquatable<>` 接口。
-* [自动重写 `GetHashCode` 方法的生成器](auto-overrides-get-hash-code)：生成关于基类型 `GetHashCode` 虚方法或非密封方法的重写代码。
-* [自动重写 `ToString` 方法的生成器](auto-overrides-to-string)：生成关于基类型 `ToString` 虚方法或非密封方法的重写代码。
-* `JsonSerializerBitOperationsGenerator`：生成关于序列化和反序列化一个整数的置 1 的比特位。
