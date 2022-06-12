@@ -384,6 +384,12 @@
             Clear all bits.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.InternalAdd(System.Int32,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -589,12 +595,6 @@
             Explicit cast from <see cref="T:Sudoku.Concepts.Collections.Candidates"/> to <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
             <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.op_Equality(Sudoku.Concepts.Collections.Candidates@,Sudoku.Concepts.Collections.Candidates@)">
             <summary>
@@ -1019,6 +1019,12 @@
         <member name="M:Sudoku.Concepts.Collections.Cells.System#IComparable{Sudoku#Concepts#Collections#Cells}#CompareTo(Sudoku.Concepts.Collections.Cells)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.Parse(System.String)">
             <inheritdoc/>
         </member>
@@ -1271,12 +1277,6 @@
             Explicit cast from <see cref="T:Sudoku.Concepts.Collections.Cells"/> to <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
             <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.op_Equality(Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
             <summary>
@@ -5012,230 +5012,6 @@
             </exception>
             <seealso cref="P:Sudoku.Concepts.Solving.IStep.Format"/>
         </member>
-        <member name="T:Sudoku.Concepts.Solving.SolvingPath">
-            <summary>
-            Defines a solving path instance that can be used for checking steps to solve a sudoku puzzle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.SolvingPath._grids">
-            <summary>
-            Indicates the grids used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.SolvingPath._steps">
-            <summary>
-            Indicates the steps used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.#ctor(Sudoku.Concepts.Collections.Grid[],Sudoku.Concepts.Solving.Step[])">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Solving.SolvingPath"/> instance via the specified stepping grids and the corresponding steps.
-            </summary>
-            <param name="grids">The grids.</param>
-            <param name="steps">The steps.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the arrays of arguments <paramref name="grids"/> and <paramref name="steps"/> are not same of length.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.#ctor(System.ValueTuple{Sudoku.Concepts.Collections.Grid,Sudoku.Concepts.Solving.Step}[])">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Solving.SolvingPath"/> instance via the specified pair of information.
-            </summary>
-            <param name="steps">The steps.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.Length">
-            <summary>
-            Indicates the length of the solving path instance, meaning the number of steps stored in this data structure.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.MaxDifficulty">
-            <summary>
-            Indicates the maximum difficulty of the current solving path instance recorded.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.TotalDifficulty">
-            <summary>
-            Indicates the total difficulty rating of the current solving path instance recorded.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.PearlDifficulty">
-            <summary>
-            <para>
-            Indicates the pearl difficulty rating of the current solving path instance.
-            </para>
-            <para>
-            When the puzzle is solved, the value will be the difficulty rating
-            of the first solving step. If the puzzle has not solved or
-            the puzzle is solved by other solvers, this value will be always <c>0</c>.
-            </para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.DiamondDifficulty">
-            <summary>
-            <para>
-            Indicates the pearl difficulty rating of the puzzle.
-            </para>
-            <para>
-            When the puzzle is solved, the value will be the difficulty rating
-            of the first step before the first one whose conclusion is
-            <see cref="F:Sudoku.Concepts.Solving.ConclusionType.Assignment"/>. If the puzzle has not solved
-            or solved by other solvers, this value will be <c>20.0M</c>.
-            </para>
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Solving.ConclusionType"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.DifficultyLevel">
-            <summary>
-            Indicates the difficulty level of the puzzle.
-            If the puzzle has not solved or solved by other solvers,
-            this value will be <see cref="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Unknown"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.Grids">
-            <summary>
-            Gets the grids used in this current solving path.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.Steps">
-            <summary>
-            Gets the steps used in this current solving path.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.Bottleneck">
-            <summary>
-            Gets the bottleneck during the whole grid solving. Returns <see langword="null"/> if the property
-            <see cref="P:Sudoku.Concepts.Solving.SolvingPath.Steps"/> is default case (not initialized or empty).
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.Solving.SolvingPath.Steps"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.Pairs">
-            <summary>
-            Indicates the inner property that provides with the pair of information.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.Item(System.Int32)">
-            <summary>
-            Gets the step information and the corresponding stepping grid at the specified index.
-            </summary>
-            <param name="index">The index</param>
-            <returns>A pair of information at the specified index.</returns>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.Item(Sudoku.Runtime.AnalysisServices.Technique)">
-            <summary>
-            Gets the first found <see cref="T:Sudoku.Concepts.Solving.Step"/> instance whose <see cref="P:Sudoku.Concepts.Solving.Step.TechniqueCode"/> is the specified one.
-            </summary>
-            <param name="technique">The technique code.</param>
-            <returns>The <see cref="T:Sudoku.Concepts.Solving.Step"/> instance found; otherwise, <see langword="null"/>.</returns>
-            <seealso cref="P:Sudoku.Concepts.Solving.Step.TechniqueCode"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.Item(Sudoku.Runtime.AnalysisServices.TechniqueTags)">
-            <summary>
-            Gets the first found <see cref="T:Sudoku.Concepts.Solving.Step"/> instance whose <see cref="P:Sudoku.Concepts.Solving.Step.TechniqueTags"/>
-            matches the specified <see cref="T:Sudoku.Runtime.AnalysisServices.TechniqueTags"/> instance.
-            </summary>
-            <param name="techniqueTags">The <see cref="T:Sudoku.Runtime.AnalysisServices.TechniqueTags"/> instance.</param>
-            <returns>The <see cref="T:Sudoku.Concepts.Solving.Step"/> instance found; otherwise, <see langword="null"/>.</returns>
-            <seealso cref="P:Sudoku.Concepts.Solving.Step.TechniqueTags"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.Item(Sudoku.Runtime.AnalysisServices.TechniqueGroup)">
-            <summary>
-            Gets the first found <see cref="T:Sudoku.Concepts.Solving.Step"/> instance whose <see cref="P:Sudoku.Concepts.Solving.Step.TechniqueGroup"/>
-            matches the specified <see cref="T:Sudoku.Runtime.AnalysisServices.TechniqueGroup"/> instance.
-            </summary>
-            <param name="techniqueGroup">The <see cref="T:Sudoku.Runtime.AnalysisServices.TechniqueGroup"/> instance.</param>
-            <returns>The <see cref="T:Sudoku.Concepts.Solving.Step"/> instance found; otherwise, <see langword="null"/>.</returns>
-            <seealso cref="P:Sudoku.Concepts.Solving.Step.TechniqueGroup"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.Slice(System.Int32,System.Int32)">
-            <summary>
-            Slices the current instance, to get the specified range of the steps and grids.
-            </summary>
-            <param name="start">The desired start index.</param>
-            <param name="count">The desired number of elements from the start index.</param>
-            <returns>The sliced result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.ToArray">
-            <summary>
-            Convertes the current instance to an array of pairs of <see cref="T:Sudoku.Concepts.Collections.Grid"/> and its corresponding step.
-            </summary>
-            <returns>An array of pairs of <see cref="T:Sudoku.Concepts.Collections.Grid"/> and <see cref="T:Sudoku.Concepts.Solving.Step"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.ToArrayUnzipped">
-            <summary>
-            Converts the current instance to a pair of arrays that stores the grids and their corresponding steps.
-            </summary>
-            <returns>A pair of two arrays.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.EnumerateGrids">
-            <summary>
-            Enumerates the grids used in this solving path.
-            </summary>
-            <returns>The grids.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.EnumerateSteps">
-            <summary>
-            Enumerates the steps used in this solving path.
-            </summary>
-            <returns>The steps.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.Evaluator(,System.Decimal)">
-            <summary>
-            The inner executor to get the difficulty value (total, average).
-            </summary>
-            <param name="executor">The execute method.</param>
-            <param name="d">
-            The default value as the return value when steps are <see langword="null"/> or empty.
-            </param>
-            <returns>The result.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Solving.SolvingPath.Enumerator">
-            <summary>
-            Defines an enumerator type that can iterate an instance of type <see cref="T:Sudoku.Concepts.Solving.SolvingPath"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.SolvingPath.Enumerator._instance">
-            <summary>
-            Indicates the solving path.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.SolvingPath.Enumerator._index">
-            <summary>
-            Indicates the current index.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.Enumerator.#ctor(Sudoku.Concepts.Solving.SolvingPath)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Concepts.Solving.SolvingPath.Enumerator"/> instance via the specified instance.
-            </summary>
-            <param name="solvingPath">The solving path.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.SolvingPath.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.Enumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.Enumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.Enumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.SolvingPath.System#Collections#Generic#IEnumerable{(Sudoku#Concepts#Collections#GridGrid,Sudoku#Concepts#Solving#StepStep)}#GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Concepts.Solving.Step">
             <summary>
             Provides with a manual solving step that is a technique usage, and contains the conclusions.
@@ -7680,6 +7456,12 @@
         <member name="M:Sudoku.Presentation.View.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Presentation.View.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
             Adds a new node into the collection.
@@ -7706,12 +7488,6 @@
             Please note that the operator is mutable one, which means the appending operation
             is based on the argument <paramref name="originalView"/>.
             </remarks>
-        </member>
-        <member name="M:Sudoku.Presentation.View.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.View.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.ViewExtensions">
             <summary>

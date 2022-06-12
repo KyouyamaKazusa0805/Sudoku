@@ -7,7 +7,6 @@
 [AutoOverridesGetHashCode(nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
 [AutoOverridesEquals(nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11), UseExplicitImplementation = true, EmitsInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
-[AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, Pattern = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Candidates :
 	IEnumerable<int>,
 	IEquatable<Candidates>,
@@ -550,6 +549,14 @@ public unsafe partial struct Candidates :
 		_0 = _1 = _2 = _3 = _4 = _5 = _6 = _7 = _8 = _9 = _10 = _11 = 0;
 		Count = 0;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator IEnumerable.GetEnumerator() => Offsets.GetEnumerator();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

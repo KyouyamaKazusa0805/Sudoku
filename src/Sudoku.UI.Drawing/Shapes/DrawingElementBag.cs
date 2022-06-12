@@ -4,7 +4,6 @@
 /// Defines a custom collection that stores the <see cref="DrawingElement"/>s.
 /// </summary>
 [AutoOverridesToString(nameof(Count))]
-[AutoImplementsEnumerable(typeof(DrawingElement), nameof(_elements), UseExplicitImplementation = true, Pattern = "((IEnumerable<!>)@[..Count]).*|((IEnumerable<!>)this).*")]
 internal sealed partial class DrawingElementBag :
 	IReadOnlyCollection<DrawingElement>,
 	IReadOnlyList<DrawingElement>,
@@ -160,6 +159,15 @@ internal sealed partial class DrawingElementBag :
 	/// <returns>The list of the collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public DrawingElementBag Slice(int start, int count) => new(_elements[start..(count - start)]);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<DrawingElement>)this).GetEnumerator();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	IEnumerator<DrawingElement> IEnumerable<DrawingElement>.GetEnumerator()
+		=> ((IEnumerable<DrawingElement>)_elements[..Count]).GetEnumerator();
 
 	/// <summary>
 	/// Ensures the capacity, allowing new element being added into the current collection.

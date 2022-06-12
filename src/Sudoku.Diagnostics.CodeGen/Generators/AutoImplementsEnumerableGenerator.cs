@@ -4,7 +4,9 @@
 /// Defines a source generator that generates the source code on implementation for the type <see cref="IEnumerable{T}"/>.
 /// </summary>
 /// <seealso cref="IEnumerable{T}"/>
+#if false
 [Generator(LanguageNames.CSharp)]
+#endif
 public sealed class AutoImplementsEnumerableGenerator : IIncrementalGenerator
 {
 	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute";

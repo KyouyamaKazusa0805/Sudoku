@@ -4690,6 +4690,12 @@
         <member name="M:System.Utf8String.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
+        <member name="M:System.Utf8String.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.System#Collections#Generic#IEnumerable{System#Utf8Char}#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Utf8String.System#IComparable#CompareTo(System.Object)">
             <inheritdoc/>
         </member>
@@ -4738,12 +4744,6 @@
             Implicitly cast from <see cref="T:System.Byte"/>[] to <see cref="T:System.Utf8String"/>.
             </summary>
             <param name="underlyingArray">The underlying array.</param>
-        </member>
-        <member name="M:System.Utf8String.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.System#Collections#Generic#IEnumerable{System#Utf8Char}#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="M:System.Utf8String.op_LessThan(System.Utf8String,System.Utf8String)">
             <summary>

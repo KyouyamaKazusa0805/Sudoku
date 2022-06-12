@@ -3,8 +3,7 @@
 /// <summary>
 /// Provides with a data structure that displays a view for basic information.
 /// </summary>
-[AutoImplementsEnumerable(typeof(ViewNode), Pattern = "*|*", UseExplicitImplementation = true)]
-public sealed partial class View : ICloneable, IEnumerable<ViewNode>
+public sealed class View : ICloneable, IEnumerable<ViewNode>
 {
 	/// <summary>
 	/// Indicates the inner dictionary.
@@ -114,6 +113,14 @@ public sealed partial class View : ICloneable, IEnumerable<ViewNode>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	object ICloneable.Clone() => Clone();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	IEnumerator<ViewNode> IEnumerable<ViewNode>.GetEnumerator() => _nodes.GetEnumerator();
 
 
 	/// <summary>

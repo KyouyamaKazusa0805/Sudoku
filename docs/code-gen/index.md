@@ -13,12 +13,11 @@
 
 源代码生成器项目依赖于 C# 语义分析的相关 Nuget 包。详情请参考 **[`Microsoft.Diagnostics.CodeAnalysis` 命名空间](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.codeanalysis)**的具体 API 介绍。它对应的 Nuget 包下载地址在[这里](https://www.nuget.org/packages/Microsoft.CodeAnalysis)。
 
-## 源代码生成器列表
+## 正在使用的源代码生成器
 
-本部分列举一下项目所使用到的源代码生成器的基本类型，以及生成的具体内容。
+本部分列举一下项目所使用到的源代码生成器的基本类型，以及生成的具体内容。它们也都正在使用。
 
 * [解构函数生成器](auto-decon)：生成解构函数的代码。
-* [实现 `GetEnumerator` 方法的生成器](auto-impl-enumerable)：生成关于 `IEnumerable<>` 接口实现的代码。
 * [自动重载大小比较运算符的生成器](auto-overloads-comparison-op)：生成关于 `IComparisonOperators<,,>` 接口实现的运算符重载代码。
 * [自动重载相等性比较运算符的生成器](auto-overloads-equality-op)：生成关于 `IEqualityOperators<,,>` 接口实现的运算符重载代码。
 * [自动重写 `Equals` 方法的生成器](auto-overrides-equals)：生成关于基类型 `Equals` 虚方法或非密封方法的重写代码，同时也会实现 `IEquatable<>` 接口。
@@ -33,7 +32,8 @@
 
 ## 没有启用的源代码生成器
 
-本项目也存在一些没有启用的源代码生成器。
+本项目也存在一些没有启用的源代码生成器。它们的源代码已经实现，只是没用到。
 
 * [自动实现 `GetPinnableReference` 方法的生成器](auto-pinnable)：生成关于 `GetPinnableReference` 方法的代码，允许类型使用 `fixed` 声明。
 * [实现 `CompareTo` 方法的生成器](auto-impl-comparable)：生成关于 `IComparable<>` 接口实现的代码。
+* [实现 `GetEnumerator` 方法的生成器](auto-impl-enumerable)：生成关于 `IEnumerable<>` 接口实现的代码。

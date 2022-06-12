@@ -1126,6 +1126,12 @@
             <param name="count">The desired number of elements.</param>
             <returns>The list of the collection.</returns>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.System#Collections#Generic#IEnumerable{Sudoku#UI#Drawing#Shapes#DrawingElement}#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.EnsureCapacity">
             <summary>
             Ensures the capacity, allowing new element being added into the current collection.
@@ -1883,12 +1889,6 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.System#Collections#Generic#IEnumerable{Sudoku#UI#Drawing#Shapes#DrawingElement}#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
