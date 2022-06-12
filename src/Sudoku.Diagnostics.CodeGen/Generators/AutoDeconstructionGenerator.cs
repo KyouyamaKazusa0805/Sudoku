@@ -9,11 +9,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 	/// <summary>
 	/// Defines the pattern that matches for an expression.
 	/// </summary>
-	private static readonly Regex ExpressionPattern = new(
-		"""\w+""",
-		RegexOptions.ExplicitCapture,
-		TimeSpan.FromSeconds(5)
-	);
+	private static readonly Regex ExpressionPattern = new("""\w+""", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(5));
 
 
 	/// <inheritdoc/>
@@ -72,7 +68,11 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 					string fullTypeNameWithoutConstraint = type.ToDisplayString(TypeFormats.FullNameWithConstraints);
 					string finalCode = string.Join(
 						"\r\n\r\n\t",
-						GetForExtension(attributesData, genericParameterListWithoutConstraint, fullTypeNameWithoutConstraint)
+						GetForExtension(
+							attributesData,
+							genericParameterListWithoutConstraint,
+							fullTypeNameWithoutConstraint
+						)
 					);
 
 					// Hash code value will be used for the distinction for the different types
@@ -126,7 +126,10 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 					string finalCode = string.Join(
 						"\r\n\r\n\t",
 						GetForInstance(
-							type, readOnlyKeyword, (from tuple in tupleArray select tuple.AttributeData).ToArray())
+							type,
+							readOnlyKeyword,
+							(from tuple in tupleArray select tuple.AttributeData).ToArray()
+						)
 					);
 
 					// Emit the generated source.
@@ -302,44 +305,9 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 			result.Add(
 				// Here we should insert an extra indentation, on purpose.
 				$$"""
-				/// <summary>
-					/// Deconstruct the current instance into multiple values, which means you can use
-					/// the value-tuple syntax to define your own deconstruction logic.
-					/// </summary>
-					/// <remarks>
-					/// <para>
-					/// For example,
-					/// if you have defined a <see langword="static"/> deconstruction method <c>Deconstruct</c>
-					/// in a <see langword="static class"/>, without any return value:
-					/// <code><![CDATA[
-					/// public static void Deconstruct(out string name, out int age)
-					/// {
-					///     name = Name;
-					///     age = Age;
-					/// }
-					/// ]]></code>
-					/// The following code will be legal.
-					/// <code><![CDATA[
-					/// // Use explicitly typed variables to get a deconstruction.
-					/// (string name, int age) = student;
-					/// 
-					/// // Or use the type inferring to omit the type of each variable having been deconstructed.
-					/// var (name, age) = student;
-					/// 
-					/// // Of course, you can also use the instance-method-like invocation to get values.
-					/// student.Deconstruct(out string name, out int age);
-					/// ]]></code>
-					/// </para>
-					/// <para>
-					/// Static deconstruction methods also allow you using deconstruction patterns, like this:
-					/// <code><![CDATA[
-					/// if (student is (name: var name, age: >= 18))
-					/// {
-					///     Console.WriteLine(name);
-					/// }
-					/// ]]></code>
-					/// </para>
-					/// </remarks>
+				/// <include
+					///     file="../../global-doc-comments.xml"
+					///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
@@ -439,43 +407,9 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 			result.Add(
 				// Here we should insert an extra indentation, on purpose.
 				$$"""
-				/// <summary>
-					/// Deconstruct the current instance into multiple values, which means you can use
-					/// the value-tuple syntax to define your own deconstruction logic.
-					/// </summary>
-					/// <remarks>
-					/// <para>
-					/// For example,
-					/// if you have defined a deconstruction method <c>Deconstruct</c> with no return value:
-					/// <code><![CDATA[
-					/// public void Deconstruct(out string name, out int age)
-					/// {
-					///     name = Name;
-					///     age = Age;
-					/// }
-					/// ]]></code>
-					/// The following code will be legal.
-					/// <code><![CDATA[
-					/// // Use explicitly typed variables to get a deconstruction.
-					/// (string name, int age) = student;
-					/// 
-					/// // Or use the type inferring to omit the type of each variable having been deconstructed.
-					/// var (name, age) = student;
-					/// 
-					/// // Of course, you can also use the pure invocation to get values.
-					/// student.Deconstruct(out string name, out int age);
-					/// ]]></code>
-					/// </para>
-					/// <para>
-					/// Deconstruction methods also allow you using deconstruction patterns, like this:
-					/// <code><![CDATA[
-					/// if (student is (name: var name, age: >= 18))
-					/// {
-					///     Console.WriteLine(name);
-					/// }
-					/// ]]></code>
-					/// </para>
-					/// </remarks>
+				/// <include
+					///     file="../../global-doc-comments.xml"
+					///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
