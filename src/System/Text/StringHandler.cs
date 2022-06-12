@@ -37,7 +37,6 @@ namespace System.Text;
 [InterpolatedStringHandler]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoOverridesToString(nameof(Text), Pattern = "{new([0])}")]
-[AutoBePinnable(typeof(char), "global::System.Runtime.InteropServices.MemoryMarshal.GetReference(_chars)")]
 public unsafe ref partial struct StringHandler
 {
 #if USE_NEWER_CONSTANT_VALUES
@@ -252,6 +251,13 @@ public unsafe ref partial struct StringHandler
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(in StringHandler other) => Equals(this, other);
+
+	/// <include
+	///	    file="../../global-doc-comments.xml"
+	///	    path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public readonly ref readonly char GetPinnableReference() => ref MemoryMarshal.GetReference(_chars);
 
 	/// <summary>
 	/// Get a pinnable reference to the builder.

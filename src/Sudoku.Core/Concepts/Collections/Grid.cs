@@ -11,7 +11,6 @@ namespace Sudoku.Concepts.Collections;
 [AutoOverridesEquals(UseExplicitImplementation = true, EmitsInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoOverridesGetHashCode(nameof(IsUndefined), nameof(IsEmpty), Pattern = """this switch { { [0]: true } => 0, { [1]: true } => 1, _ => ToString("#").* }""")]
-[AutoBePinnable(typeof(short), "_values[0]")]
 [AutoImplementsDefaultable("Undefined", IsDefaultExpression = "IsUndefined", DefaultFieldDescription = "Indicates the default grid that all values are initialized 0.")]
 public unsafe partial struct Grid :
 	IDefaultable<Grid>,
@@ -1022,6 +1021,13 @@ public unsafe partial struct Grid :
 
 		return result;
 	}
+
+	/// <include
+	///	    file="../../global-doc-comments.xml"
+	///	    path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public readonly ref readonly short GetPinnableReference() => ref _values[0];
 
 	/// <summary>
 	/// Get all masks and print them.

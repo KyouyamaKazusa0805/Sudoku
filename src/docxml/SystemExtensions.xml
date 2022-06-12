@@ -2746,6 +2746,39 @@
             <param name="other">The instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:System.Text.StringHandler.GetPinnableReference">
+            <target name="method">
+				<summary>
+					Returns a reference as the fixed position of the current instance.
+					For example, the return value will be the pointer value that points to the zero-indexed
+					place in an array.
+				</summary>
+				<returns>A reference as the fixed position of the current instance.</returns>
+				<remarks>
+					Beginning with C# 7, we can customize the return value type of a <see langword="fixed" /> variable
+					if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
+					<see langword="ref" /> or <see langword="ref readonly" />. For example, if we hold a fixed buffer
+					of element type:
+					<code>
+					class ExampleType
+					{
+					    private fixed short _maskList[100];
+
+					    public ref readonly short GetPinnableReference() =&gt; ref _maskList[0];
+					}
+					</code>
+					We can use <see langword="fixed" /> statement to define a variable of type <see langword="short" />*
+					as the left-value.
+					<code>
+					var instance = new ExampleType();
+					fixed (short* ptr = instance)
+					{
+					    // Operation here.
+					}
+					</code>
+				</remarks>
+			</target>
+        </member>
         <member name="M:System.Text.StringHandler.GetPinnableReference(System.Boolean)">
             <summary>
             Get a pinnable reference to the builder.
@@ -3329,37 +3362,6 @@
         <member name="M:System.Text.StringHandler.Enumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.StringHandler.GetPinnableReference">
-            <summary>
-            Returns a reference as the fixed position of the current instance.
-            For example, the return value will be the pointer value that points to the zero-indexed
-            place in an array.
-            </summary>
-            <returns>A reference as the fixed position of the current instance.</returns>
-            <remarks>
-            Beginning with C# 7, we can customize the return value type of a <see langword="fixed"/> variable
-            if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
-            <see langword="ref"/> or <see langword="ref readonly"/>. For example, if we hold a fixed buffer
-            of element type <see cref="T:System.Int16"/>:
-            <code><![CDATA[
-            class ExampleType
-            {
-                private fixed short _maskList[100];
-            
-                public ref readonly short GetPinnableReference() => ref _maskList[0];
-            }
-            ]]></code>
-            We can use <see langword="fixed"/> statement to define a variable of type <see langword="short"/>*
-            as the left-value.
-            <code>
-            var instance = new ExampleType();
-            fixed (short* ptr = instance)
-            {
-                // Operation here.
-            }
-            </code>
-            </remarks>
         </member>
         <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler@,System.Text.StringHandler@)">
             <summary>
@@ -4725,6 +4727,39 @@
             <param name="s">The string.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:System.Utf8String.GetPinnableReference">
+            <target name="method">
+				<summary>
+					Returns a reference as the fixed position of the current instance.
+					For example, the return value will be the pointer value that points to the zero-indexed
+					place in an array.
+				</summary>
+				<returns>A reference as the fixed position of the current instance.</returns>
+				<remarks>
+					Beginning with C# 7, we can customize the return value type of a <see langword="fixed" /> variable
+					if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
+					<see langword="ref" /> or <see langword="ref readonly" />. For example, if we hold a fixed buffer
+					of element type:
+					<code>
+					class ExampleType
+					{
+					    private fixed short _maskList[100];
+
+					    public ref readonly short GetPinnableReference() =&gt; ref _maskList[0];
+					}
+					</code>
+					We can use <see langword="fixed" /> statement to define a variable of type <see langword="short" />*
+					as the left-value.
+					<code>
+					var instance = new ExampleType();
+					fixed (short* ptr = instance)
+					{
+					    // Operation here.
+					}
+					</code>
+				</remarks>
+			</target>
+        </member>
         <member name="M:System.Utf8String.GetHashCode">
             <inheritdoc/>
         </member>
@@ -4803,37 +4838,6 @@
             Implicitly cast from <see cref="T:System.Byte"/>[] to <see cref="T:System.Utf8String"/>.
             </summary>
             <param name="underlyingArray">The underlying array.</param>
-        </member>
-        <member name="M:System.Utf8String.GetPinnableReference">
-            <summary>
-            Returns a reference as the fixed position of the current instance.
-            For example, the return value will be the pointer value that points to the zero-indexed
-            place in an array.
-            </summary>
-            <returns>A reference as the fixed position of the current instance.</returns>
-            <remarks>
-            Beginning with C# 7, we can customize the return value type of a <see langword="fixed"/> variable
-            if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
-            <see langword="ref"/> or <see langword="ref readonly"/>. For example, if we hold a fixed buffer
-            of element type <see cref="T:System.Int16"/>:
-            <code><![CDATA[
-            class ExampleType
-            {
-                private fixed short _maskList[100];
-            
-                public ref readonly short GetPinnableReference() => ref _maskList[0];
-            }
-            ]]></code>
-            We can use <see langword="fixed"/> statement to define a variable of type <see langword="short"/>*
-            as the left-value.
-            <code>
-            var instance = new ExampleType();
-            fixed (short* ptr = instance)
-            {
-                // Operation here.
-            }
-            </code>
-            </remarks>
         </member>
         <member name="F:System.Utf8String.Empty">
             <summary>

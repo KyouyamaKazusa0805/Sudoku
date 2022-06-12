@@ -7,7 +7,6 @@
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
 [AutoImplementsEnumerable(typeof(Utf8Char), nameof(_value), UseExplicitImplementation = true, Pattern = "((IEnumerable<!>)@).*")]
-[AutoBePinnable(typeof(Utf8Char), "global::System.Runtime.InteropServices.MemoryMarshal.GetArrayDataReference(_value)", ReturnsReadOnlyReference = false)]
 [AutoImplementsDefaultable("Empty", IsDefaultExpression = "CompareTo(Empty) == 0", Pattern = "new(global::System.Array.Empty<global::System.Utf8Char>())", DefaultFieldDescription = "Indicates the default instance.")]
 public readonly partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
@@ -171,6 +170,13 @@ public readonly partial struct Utf8String :
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Contains(Utf8String s) => IndexOf(s) != -1;
+
+	/// <include
+	///	    file="../../global-doc-comments.xml"
+	///	    path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public ref Utf8Char GetPinnableReference() => ref MemoryMarshal.GetArrayDataReference(_value);
 
 	/// <inheritdoc/>
 	public override unsafe int GetHashCode()

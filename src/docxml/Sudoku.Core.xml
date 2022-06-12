@@ -2026,6 +2026,39 @@
             <param name="cells">The list of cells to gather the usages on all digits.</param>
             <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.GetPinnableReference">
+            <target name="method">
+				<summary>
+					Returns a reference as the fixed position of the current instance.
+					For example, the return value will be the pointer value that points to the zero-indexed
+					place in an array.
+				</summary>
+				<returns>A reference as the fixed position of the current instance.</returns>
+				<remarks>
+					Beginning with C# 7, we can customize the return value type of a <see langword="fixed" /> variable
+					if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
+					<see langword="ref" /> or <see langword="ref readonly" />. For example, if we hold a fixed buffer
+					of element type:
+					<code>
+					class ExampleType
+					{
+					    private fixed short _maskList[100];
+
+					    public ref readonly short GetPinnableReference() =&gt; ref _maskList[0];
+					}
+					</code>
+					We can use <see langword="fixed" /> statement to define a variable of type <see langword="short" />*
+					as the left-value.
+					<code>
+					var instance = new ExampleType();
+					fixed (short* ptr = instance)
+					{
+					    // Operation here.
+					}
+					</code>
+				</remarks>
+			</target>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.ToMaskString">
             <summary>
             Get all masks and print them.
@@ -2356,37 +2389,6 @@
         <member name="M:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.GetPinnableReference">
-            <summary>
-            Returns a reference as the fixed position of the current instance.
-            For example, the return value will be the pointer value that points to the zero-indexed
-            place in an array.
-            </summary>
-            <returns>A reference as the fixed position of the current instance.</returns>
-            <remarks>
-            Beginning with C# 7, we can customize the return value type of a <see langword="fixed"/> variable
-            if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
-            <see langword="ref"/> or <see langword="ref readonly"/>. For example, if we hold a fixed buffer
-            of element type <see cref="T:System.Int16"/>:
-            <code><![CDATA[
-            class ExampleType
-            {
-                private fixed short _maskList[100];
-            
-                public ref readonly short GetPinnableReference() => ref _maskList[0];
-            }
-            ]]></code>
-            We can use <see langword="fixed"/> statement to define a variable of type <see langword="short"/>*
-            as the left-value.
-            <code>
-            var instance = new ExampleType();
-            fixed (short* ptr = instance)
-            {
-                // Operation here.
-            }
-            </code>
-            </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Collections.Grid.Undefined">
             <summary>
