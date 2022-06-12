@@ -11,12 +11,14 @@
 [AutoOverridesEquals(nameof(Map), nameof(Digit))]
 [AutoOverridesToString(nameof(From), nameof(To), nameof(Digit), Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]} == {Sudoku.Concepts.Collections.Cells.Empty + [1]}({[2] + 1})")]
 [AutoOverloadsEqualityOperators]
-[AutoImplementsDefaultable("Default", Pattern = "new(-1, -1, -1)")]
-public readonly partial struct Conjugate :
-	IDefaultable<Conjugate>,
-	IEquatable<Conjugate>,
-	IEqualityOperators<Conjugate, Conjugate>
+public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate>
 {
+	/// <summary>
+	/// Indicates the default instance.
+	/// </summary>
+	public static readonly Conjugate Default = new(-1, -1, -1);
+
+
 	/// <summary>
 	/// Indicates the mask.
 	/// </summary>

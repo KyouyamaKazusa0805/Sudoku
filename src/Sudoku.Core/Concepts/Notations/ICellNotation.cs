@@ -8,7 +8,7 @@
 /// <typeparam name="TOptions">The type that is used as the provider for extra options.</typeparam>
 public interface ICellNotation</*[Self]*/ TBaseType, TOptions>
 	where TBaseType : class, INotationHandler, ICellNotation<TBaseType, TOptions>
-	where TOptions : struct, INotationHandlerOptions<TOptions>, IDefaultable<TOptions>
+	where TOptions : struct, INotationHandlerOptions<TOptions>
 {
 	/// <summary>
 	/// <para>

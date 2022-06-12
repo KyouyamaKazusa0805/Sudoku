@@ -12,7 +12,6 @@ public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
 	IComparisonOperators<Utf8Char, Utf8Char>,
-	IDefaultable<Utf8Char>,
 	IEquatable<Utf8Char>,
 	IEqualityOperators<Utf8Char, Utf8Char>,
 	IMinMaxValue<Utf8Char>
@@ -43,16 +42,10 @@ public readonly partial struct Utf8Char :
 
 
 	/// <inheritdoc/>
-	bool IDefaultable<Utf8Char>.IsDefault => Equals(MinValue);
-
-	/// <inheritdoc/>
 	static Utf8Char IMinMaxValue<Utf8Char>.MinValue => MinValue;
 
 	/// <inheritdoc/>
 	static Utf8Char IMinMaxValue<Utf8Char>.MaxValue => MaxValue;
-
-	/// <inheritdoc/>
-	static Utf8Char IDefaultable<Utf8Char>.Default => MinValue;
 
 
 	/// <summary>

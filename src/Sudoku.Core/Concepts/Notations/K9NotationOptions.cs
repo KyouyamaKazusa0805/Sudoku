@@ -17,8 +17,12 @@
 /// For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the seperator
 /// is <c>"|"</c>.
 /// </param>
-[AutoImplementsDefaultable("Default", Pattern = """new(false, false, "|")""")]
-public readonly partial record struct K9NotationOptions(
+public readonly record struct K9NotationOptions(
 	bool UpperCasing = false, bool AvoidConfusionOnRowLetters = false, string Separator = "|") :
-	IDefaultable<K9NotationOptions>,
-	INotationHandlerOptions<K9NotationOptions>;
+	INotationHandlerOptions<K9NotationOptions>
+{
+	/// <summary>
+	/// Indicates the default instance.
+	/// </summary>
+	public static readonly K9NotationOptions Default = new(false, false, "|");
+}

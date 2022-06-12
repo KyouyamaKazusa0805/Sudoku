@@ -17,11 +17,9 @@
 [AutoOverridesToString(nameof(Cell), nameof(ConclusionType), nameof(Digit), Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]}{[1].GetNotation()}{[2] + 1}")]
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
-[AutoImplementsDefaultable("Default")]
 public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion>,
-	IDefaultable<Conclusion>,
 	IEqualityOperators<Conclusion, Conclusion>,
 	IEquatable<Conclusion>
 {

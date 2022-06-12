@@ -11,9 +11,7 @@ namespace Sudoku.Concepts.Collections;
 [AutoOverridesEquals(UseExplicitImplementation = true, EmitsInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoOverridesGetHashCode(nameof(IsUndefined), nameof(IsEmpty), Pattern = """this switch { { [0]: true } => 0, { [1]: true } => 1, _ => ToString("#").* }""")]
-[AutoImplementsDefaultable("Undefined", IsDefaultExpression = "IsUndefined", DefaultFieldDescription = "Indicates the default grid that all values are initialized 0.")]
 public unsafe partial struct Grid :
-	IDefaultable<Grid>,
 	ISimpleFormattable,
 	ISimpleParseable<Grid>,
 	IEqualityOperators<Grid, Grid>
@@ -68,6 +66,11 @@ public unsafe partial struct Grid :
 	/// </remarks>
 	/// <seealso cref="DefaultMask"/>
 	public static readonly Grid Empty;
+
+	/// <summary>
+	/// Indicates the default grid that all values are initialized 0.
+	/// </summary>
+	public static readonly Grid Undefined;
 
 	/// <summary>
 	/// Indicates the solver that uses the bitwise algorithm to solve a puzzle as fast as possible.

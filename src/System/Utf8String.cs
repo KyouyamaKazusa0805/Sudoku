@@ -7,18 +7,22 @@
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
 [AutoImplementsEnumerable(typeof(Utf8Char), nameof(_value), UseExplicitImplementation = true, Pattern = "((IEnumerable<!>)@).*")]
-[AutoImplementsDefaultable("Empty", IsDefaultExpression = "CompareTo(Empty) == 0", Pattern = "new(global::System.Array.Empty<global::System.Utf8Char>())", DefaultFieldDescription = "Indicates the default instance.")]
 public readonly partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
 	IComparisonOperators<Utf8String, Utf8String>,
-	IDefaultable<Utf8String>,
 	IEnumerable<Utf8Char>,
 	IEqualityOperators<Utf8String, Utf8String>,
 	IEquatable<Utf8String>,
 	IReadOnlyCollection<Utf8Char>,
 	IReadOnlyList<Utf8Char>
 {
+	/// <summary>
+	/// Indicates the default instance.
+	/// </summary>
+	public static readonly Utf8String Empty = new(Array.Empty<Utf8Char>());
+
+
 	/// <summary>
 	/// Indicates the inner value.
 	/// </summary>

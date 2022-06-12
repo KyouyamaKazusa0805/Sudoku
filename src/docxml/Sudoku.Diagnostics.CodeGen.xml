@@ -239,15 +239,6 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsComparableGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsDefaultableGenerator">
-            <summary>
-            Defines a source generator that can generate the source code
-            that implements the interface type <c><![CDATA[IDefaultable<T>]]></c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsDefaultableGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsEnumerableGenerator">
             <summary>
             Defines a source generator that generates the source code on implementation for the type <see cref="T:System.Collections.Generic.IEnumerable`1"/>.

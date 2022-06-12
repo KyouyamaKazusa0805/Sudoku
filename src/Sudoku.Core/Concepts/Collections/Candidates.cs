@@ -8,9 +8,7 @@
 [AutoOverridesEquals(nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11), UseExplicitImplementation = true, EmitsInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, Pattern = "((IEnumerable<int>)@).*")]
-[AutoImplementsDefaultable("Empty", IsDefaultExpression = "Count == 0", DefaultFieldDescription = "Indicates an empty instance (all bits are 0).")]
 public unsafe partial struct Candidates :
-	IDefaultable<Candidates>,
 	IEnumerable<int>,
 	IEquatable<Candidates>,
 	ISimpleFormattable,
@@ -26,6 +24,12 @@ public unsafe partial struct Candidates :
 	/// Indicates the size of each unit.
 	/// </summary>
 	private const int Shifting = sizeof(long) * 8;
+
+
+	/// <summary>
+	/// Indicates an empty instance (all bits are 0).
+	/// </summary>
+	public static readonly Candidates Empty;
 
 
 	/// <summary>

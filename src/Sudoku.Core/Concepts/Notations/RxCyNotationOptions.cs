@@ -13,7 +13,11 @@
 /// For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the seperator
 /// is <c>"|"</c>.
 /// </param>
-[AutoImplementsDefaultable("Default", Pattern = """new(false, "|")""")]
-public readonly partial record struct RxCyNotationOptions(bool UpperCasing = false, string Separator = "|") :
-	IDefaultable<RxCyNotationOptions>,
-	INotationHandlerOptions<RxCyNotationOptions>;
+public readonly record struct RxCyNotationOptions(bool UpperCasing = false, string Separator = "|") :
+	INotationHandlerOptions<RxCyNotationOptions>
+{
+	/// <summary>
+	/// Indicates the default instance.
+	/// </summary>
+	public static readonly RxCyNotationOptions Default = new(false, "|");
+}

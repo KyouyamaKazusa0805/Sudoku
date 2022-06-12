@@ -16,11 +16,9 @@ namespace Sudoku.Concepts.Collections;
 [AutoOverridesGetHashCode(nameof(BinaryCode))]
 [AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitImplementation = true, EmitsInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
-[AutoImplementsDefaultable("Empty", IsDefaultExpression = "Count == 0", DefaultFieldDescription = "Indicates an empty instance (all bits are 0).")]
 [AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, Pattern = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Cells :
 	IComparable<Cells>,
-	IDefaultable<Cells>,
 	IEnumerable<int>,
 	IEquatable<Cells>,
 	ISimpleFormattable,
@@ -37,6 +35,12 @@ public unsafe partial struct Cells :
 	/// The value used for shifting.
 	/// </summary>
 	private const int Shifting = 41;
+
+
+	/// <summary>
+	/// Indicates the empty instance.
+	/// </summary>
+	public static readonly Cells Empty;
 
 
 	/// <summary>

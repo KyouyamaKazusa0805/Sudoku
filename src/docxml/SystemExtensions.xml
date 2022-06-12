@@ -1535,40 +1535,6 @@
         <member name="P:System.Diagnostics.CodeGen.AutoImplementsComparableAttribute.MemberName">
             <inheritdoc/>
         </member>
-        <member name="T:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute">
-            <summary>
-            Defines an attribute that is used for controlling the source generation on automatically implementing
-            <see cref="T:System.IDefaultable`1"/>.
-            </summary>
-            <seealso cref="T:System.IDefaultable`1"/>
-        </member>
-        <member name="M:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute.#ctor(System.String)">
-            <summary>
-            Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute"/> instance via the specified default field name.
-            </summary>
-            <param name="defaultFieldName">The default field name.</param>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute.DefaultFieldDescription">
-            <summary>
-            Indicates the description of the default field.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute.DefaultFieldName">
-            <summary>
-            Indicates the name of the default field.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute.Pattern">
-            <summary>
-            Indicates the pattern that initializes the default field.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute.IsDefaultExpression">
-            <summary>
-            Indicates the expression that determines whether the current instance is default.
-            The default value is <see langword="null"/>.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute">
             <summary>
             Defines an attribute that is used for controlling the source generation on automatically implementing
@@ -3785,42 +3751,6 @@
             <param name="this">The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="T:System.IDefaultable`1">
-            <summary>
-            Defines a type that holds a property with the default value of the type.
-            </summary>
-            <typeparam name="T">The type that contains the default instance.</typeparam>
-        </member>
-        <member name="P:System.IDefaultable`1.IsDefault">
-            <summary>
-            <para>
-            Indicates whether the current instance holds the default value that equals
-            to the property <see cref="P:System.IDefaultable`1.Default"/>.
-            </para>
-            <para>
-            Generally, the implementation will be like <c>this == Default</c> or <c>Equals(Default)</c>.
-            </para>
-            </summary>
-            <seealso cref="P:System.IDefaultable`1.Default"/>
-        </member>
-        <member name="P:System.IDefaultable`1.Default">
-            <summary>
-            Indicates the default-value instance of this type.
-            </summary>
-            <remarks>
-            Due to the design of the C# feature "<see langword="static abstract"/>s in interface",
-            we suggest you use explicit implementation to implement this property, and makes the value
-            referencing to the field that is named <c>Default</c>.
-            Here is an example code to describe the above words:
-            <code><![CDATA[
-            // The static read-only field to introduce the default value.
-            public static readonly T Default = default(T?);
-            
-            // An explicit implementation on the default-value property.
-            static T IDefaultable<T>.Default => Default;
-            ]]></code>
-            </remarks>
-        </member>
         <member name="T:System.ISimpleFormattable">
             <summary>
             Defines a type that supports <c>ToString(<see langword="string"/>?)</c>.
@@ -4477,16 +4407,10 @@
             </summary>
             <param name="value">The <see cref="T:System.Byte"/> value.</param>
         </member>
-        <member name="P:System.Utf8Char.System#IDefaultable{System#Utf8Char}#IsDefault">
-            <inheritdoc/>
-        </member>
         <member name="P:System.Utf8Char.System#IMinMaxValue{System#Utf8Char}#MinValue">
             <inheritdoc/>
         </member>
         <member name="P:System.Utf8Char.System#IMinMaxValue{System#Utf8Char}#MaxValue">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.Utf8Char.System#IDefaultable{System#Utf8Char}#Default">
             <inheritdoc/>
         </member>
         <member name="M:System.Utf8Char.IsDigit">
@@ -4628,6 +4552,11 @@
         <member name="T:System.Utf8String">
             <summary>
             Represents text as a sequence of UTF-8 code units.
+            </summary>
+        </member>
+        <member name="F:System.Utf8String.Empty">
+            <summary>
+            Indicates the default instance.
             </summary>
         </member>
         <member name="F:System.Utf8String._value">
@@ -4809,17 +4738,6 @@
             Implicitly cast from <see cref="T:System.Byte"/>[] to <see cref="T:System.Utf8String"/>.
             </summary>
             <param name="underlyingArray">The underlying array.</param>
-        </member>
-        <member name="F:System.Utf8String.Empty">
-            <summary>
-            Indicates the default instance.
-            </summary>
-        </member>
-        <member name="P:System.Utf8String.System#IDefaultable{System#Utf8String}#IsDefault">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.Utf8String.System#IDefaultable{System#Utf8String}#Default">
-            <inheritdoc/>
         </member>
         <member name="M:System.Utf8String.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
