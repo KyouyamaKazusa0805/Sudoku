@@ -12,7 +12,7 @@ namespace Sudoku.Concepts.Collections;
 /// the digit.
 /// </remarks>
 [JsonConverter(typeof(CellsJsonConverter))]
-public unsafe partial struct Cells :
+public unsafe struct Cells :
 	IComparable<Cells>,
 	IEnumerable<int>,
 	IEquatable<Cells>,
@@ -653,6 +653,10 @@ public unsafe partial struct Cells :
 	/// <returns>The mask.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetSubviewMask(int houseIndex) => this / houseIndex;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly int GetHashCode() => HashCode.Combine(_low, _high);
 
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

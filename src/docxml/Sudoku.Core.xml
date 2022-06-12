@@ -955,6 +955,9 @@
             <param name="houseIndex">The house index.</param>
             <returns>The mask.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.CompareTo(Sudoku.Concepts.Collections.Cells@)">
             <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
         </member>
