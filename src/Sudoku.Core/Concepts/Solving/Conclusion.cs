@@ -17,7 +17,6 @@
 [AutoOverridesToString(nameof(Cell), nameof(ConclusionType), nameof(Digit), Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]}{[1].GetNotation()}{[2] + 1}")]
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
-[AutoImplementsComparable(nameof(_mask))]
 [AutoImplementsDefaultable("Default")]
 public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
@@ -130,6 +129,10 @@ public readonly partial struct Conclusion :
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public int CompareTo(Conclusion other) => _mask.CompareTo(_mask);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

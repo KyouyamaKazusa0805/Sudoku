@@ -4519,6 +4519,9 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:System.Utf8Char.CompareTo(System.Utf8Char)">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Utf8Char.ToUpper">
             <summary>
             Converts the current character to the upper-casing letter.
@@ -4557,38 +4560,6 @@
             Implicitly cast from <see cref="T:System.Byte"/> instance to <see cref="T:System.Utf8Char"/> instance.
             </summary>
             <param name="byteValue">The <see cref="T:System.Byte"/> instance.</param>
-        </member>
-        <member name="M:System.Utf8Char.CompareTo(System.Utf8Char)">
-            <summary>
-            Compares the current instance with another object of the same type and returns an integer
-            that indicates whether the current instance precedes, follows, or occurs in the same position
-            in the sort order as the other object.
-            </summary>
-            <param name="other">An object to compare with this instance.</param>
-            <returns>
-            A value that indicates the relative order of the objects being compared.
-            The return value has these meanings:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term>Less than zero</term>
-            <description>This instance precedes <paramref name="other"/> in the sort order.</description>
-            </item>
-            <item>
-            <term>Zero</term>
-            <description>
-            The instance occurs in the same position in the sort order as <paramref name="other"/>.
-            </description>
-            </item>
-            <item>
-            <term>Greater than zero</term>
-            <description>The instance follows <paramref name="other"/> in the sort order.</description>
-            </item>
-            </list>
-            </returns>
         </member>
         <member name="M:System.Utf8Char.op_LessThan(System.Utf8Char,System.Utf8Char)">
             <summary>

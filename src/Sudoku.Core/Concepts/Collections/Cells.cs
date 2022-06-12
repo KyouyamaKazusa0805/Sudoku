@@ -16,7 +16,6 @@ namespace Sudoku.Concepts.Collections;
 [AutoOverridesGetHashCode(nameof(BinaryCode))]
 [AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitImplementation = true, EmitsInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
-[AutoImplementsComparable(UseExplicitImplementation = true)]
 [AutoImplementsDefaultable("Empty", IsDefaultExpression = "Count == 0", DefaultFieldDescription = "Indicates an empty instance (all bits are 0).")]
 [AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, Pattern = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Cells :
@@ -855,6 +854,10 @@ public unsafe partial struct Cells :
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => _low = _high = Count = 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly int IComparable<Cells>.CompareTo(Cells other) => CompareTo(other);
 
 
 	/// <inheritdoc/>
