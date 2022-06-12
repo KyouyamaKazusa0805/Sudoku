@@ -18,8 +18,6 @@
 本部分列举一下项目所使用到的源代码生成器的基本类型，以及生成的具体内容。它们也都正在使用。
 
 * [解构函数生成器](auto-decon)：生成解构函数的代码。
-* [自动重载大小比较运算符的生成器](auto-overloads-comparison-op)：生成关于 `IComparisonOperators<,,>` 接口实现的运算符重载代码。
-* [自动重载相等性比较运算符的生成器](auto-overloads-equality-op)：生成关于 `IEqualityOperators<,,>` 接口实现的运算符重载代码。
 * [自动重写 `Equals` 方法的生成器](auto-overrides-equals)：生成关于基类型 `Equals` 虚方法或非密封方法的重写代码，同时也会实现 `IEquatable<>` 接口。
 * [自动重写 `GetHashCode` 方法的生成器](auto-overrides-get-hash-code)：生成关于基类型 `GetHashCode` 虚方法或非密封方法的重写代码。
 * [自动重写 `ToString` 方法的生成器](auto-overrides-to-string)：生成关于基类型 `ToString` 虚方法或非密封方法的重写代码。
@@ -37,3 +35,5 @@
 * [自动实现 `GetPinnableReference` 方法的生成器](auto-pinnable)：生成关于 `GetPinnableReference` 方法的代码，允许类型使用 `fixed` 声明。
 * [实现 `CompareTo` 方法的生成器](auto-impl-comparable)：生成关于 `IComparable<>` 接口实现的代码。
 * [实现 `GetEnumerator` 方法的生成器](auto-impl-enumerable)：生成关于 `IEnumerable<>` 接口实现的代码。
+* [自动重载大小比较运算符的生成器](auto-overloads-comparison-op)：生成关于 `IComparisonOperators<,,>` 接口实现的运算符重载代码。
+* [自动重载相等性比较运算符的生成器](auto-overloads-equality-op)：生成关于 `IEqualityOperators<,,>` 接口实现的运算符重载代码。
