@@ -6,10 +6,10 @@
 internal sealed class WindowInitialInfo
 {
 	/// <summary>
-	/// Indicates the first page type name. The default value is <see langword="nameof"/>(<see cref="SudokuPage"/>).
+	/// Indicates the first page type name. The default value is <see langword="nameof"/>(<see cref="HomePage"/>).
 	/// </summary>
-	/// <seealso cref="SudokuPage"/>
-	public string FirstPageTypeName { get; internal set; } = nameof(SudokuPage);
+	/// <seealso cref="HomePage"/>
+	public string FirstPageTypeName { get; internal set; } = nameof(HomePage);
 
 	/// <summary>
 	/// Indicates the first sudoku grid. The default value is <see langword="null"/>.

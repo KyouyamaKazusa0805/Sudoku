@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<x:String x:Key="ProgramVersion">版本 0.11</x:String>
+
 	<!--页面数据-->
 	<x:String x:Key="MainPage_PlayingAndAnalyzing">题目分析</x:String>
 	<x:String x:Key="MainPage_DocumentsAndReferences">文档参考</x:String>
@@ -8,6 +10,7 @@
 	<x:String x:Key="MainPage_Settings">设置</x:String>
 	<x:String x:Key="MainPage_Documentation">文档</x:String>
 	<x:String x:Key="MainPage_About">关于</x:String>
+	<x:String x:Key="MainPage_Home">介绍主页</x:String>
 	<x:String x:Key="MainPage_Search">搜索</x:String>
 	<x:String x:Key="SudokuPage_MakeDigit">出数</x:String>
 	<x:String x:Key="SudokuPage_EliminateDigit">删数</x:String>

@@ -52,6 +52,8 @@
 				</AutoSuggestBox>
 			</NavigationView.AutoSuggestBox>
 			<NavigationView.MenuItems>
+				<NavigationViewItem Icon="Home" Tag="HomePage" Content="{StaticResource MainPage_Home}" />
+				<NavigationViewItemSeparator />
 				<NavigationViewItemHeader Content="{StaticResource MainPage_Sudoku}" />
 				<NavigationViewItem Icon="ViewAll" Tag="SudokuPage" Content="{StaticResource MainPage_PlayingAndAnalyzing}" />
 				<NavigationViewItemHeader Content="{StaticResource MainPage_DocumentsAndReferences}" />

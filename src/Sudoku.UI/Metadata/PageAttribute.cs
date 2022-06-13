@@ -8,7 +8,7 @@
 public sealed class PageAttribute : Attribute
 {
 	/// <summary>
-	/// Indicates whether the page displays title.
+	/// Indicates whether the page displays title. The default value is <see langword="true"/>.
 	/// </summary>
 	public bool DisplayTitle { get; init; } = true;
 }

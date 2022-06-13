@@ -23,6 +23,9 @@
 		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
 		<Description>The solution that plays with the sudoku.</Description>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Views\Pages\HomePage.xaml" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="Assets\SplashScreen.scale-200.png" />
@@ -43,6 +46,7 @@
 		<EmbeddedResource Include="Assets\images\zh-CN\icon-grid-file.png" />
 		<EmbeddedResource Include="Assets\images\zh-CN\icon-miscellenous-file.png" />
 		<EmbeddedResource Include="Assets\images\zh-CN\icon-text-file.png" />
+		<EmbeddedResource Include="Assets\images\home-page-banner.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -79,6 +83,12 @@
 		<ProjectReference Include="..\Sudoku.Solving.Manual\Sudoku.Solving.Manual.csproj" />
 		<ProjectReference Include="..\Sudoku.UI.Drawing\Sudoku.UI.Drawing.csproj" />
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Views\Pages\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 
 	<ItemGroup>
