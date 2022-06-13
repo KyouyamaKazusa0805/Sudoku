@@ -4,8 +4,8 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:Sudoku.UI.Views.Controls"
 	mc:Ignorable="d">
-
 	<Grid>
 		<GridView Margin="31,0,0,0" IsItemClickEnabled="True" IsSwipeEnabled="False" SelectionMode="None">
 			<GridView.Header>
@@ -25,11 +25,24 @@
 							Foreground="Black" Visibility="Visible" Style="{StaticResource SubtitleTextBlockStyle}"                               
 							Text="{StaticResource ProgramVersion}" />
 					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<VariableSizedWrapGrid Orientation="Horizontal" Margin="0,287,0,0" ItemWidth="200">
+							<c:GettingStartedTile
+								Title="{StaticResource MainPage_GettingStarted_Wiki}"
+								Source="/Assets/images/getting-started-1.png"
+								Link="https://sunnieshine.github.io/Sudoku/"/>
+							<c:GettingStartedTile
+								Title="{StaticResource MainPage_GettingStarted_SudokuTutorialReference}"
+								Source="/Assets/images/getting-started-2.png"
+								Link="https://www.bilibili.com/read/readlist/rl291187"/>
+							<c:GettingStartedTile
+								Title="{StaticResource MainPage_GettingStarted_GithubRepo}"
+								Source="/Assets/images/getting-started-3.png"
+								Link="https://github.com/SunnieShine/Sudoku"/>
+						</VariableSizedWrapGrid>
+					</StackPanel>
 				</Grid>
 			</GridView.Header>
-
-			<!--Items-->
-
 		</GridView>
 	</Grid>
 </Page>

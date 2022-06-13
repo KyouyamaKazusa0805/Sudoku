@@ -10,8 +10,11 @@
 	<x:String x:Key="MainPage_Settings">设置</x:String>
 	<x:String x:Key="MainPage_Documentation">文档</x:String>
 	<x:String x:Key="MainPage_About">关于</x:String>
-	<x:String x:Key="MainPage_Home">介绍主页</x:String>
+	<x:String x:Key="MainPage_Home">主页</x:String>
 	<x:String x:Key="MainPage_Search">搜索</x:String>
+	<x:String x:Key="MainPage_GettingStarted_Wiki">快速开始</x:String>
+	<x:String x:Key="MainPage_GettingStarted_SudokuTutorialReference">数独教程参考</x:String>
+	<x:String x:Key="MainPage_GettingStarted_GithubRepo">GitHub 源代码仓库</x:String>
 	<x:String x:Key="SudokuPage_MakeDigit">出数</x:String>
 	<x:String x:Key="SudokuPage_EliminateDigit">删数</x:String>
 	<x:String x:Key="SudokuPage_Open">打开</x:String>

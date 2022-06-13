@@ -1164,6 +1164,101 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Views.Controls.GettingStartedTile">
+            <summary>
+            Defines a tile that displays a getting-started link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.GettingStartedTile.TitleProperty">
+            <summary>
+            Defines with the dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.GettingStartedTile.Title"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.GettingStartedTile.Title"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.GettingStartedTile.SourceProperty">
+            <summary>
+            Defines with the dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.GettingStartedTile.Source"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.GettingStartedTile.Source"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.GettingStartedTile.LinkProperty">
+            <summary>
+            Defines with the dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.GettingStartedTile.Link"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.GettingStartedTile.Link"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.GettingStartedTile.CenterPointValue">
+            <summary>
+            Indicates the extracted read-only value that is used for the property <see cref="P:Microsoft.UI.Xaml.UIElement.CenterPoint"/>.
+            </summary>
+            <seealso cref="P:Microsoft.UI.Xaml.UIElement.CenterPoint"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.GettingStartedTile._compositor">
+            <summary>
+            Indicates the compositor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.GettingStartedTile._springAnimation">
+            <summary>
+            Indicates the spring animation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Controls.GettingStartedTile"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.GettingStartedTile.Title">
+            <summary>
+            Indicates the title to describe the link.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.GettingStartedTile.Source">
+            <summary>
+            Indicates the file path that points to the image.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.GettingStartedTile.Link">
+            <summary>
+            Indicates the link that navigates to.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.CreateOrUpdateSpringAnimation(System.Single)">
+            <summary>
+            To create or update the spring animation, updating the field <see cref="F:Sudoku.UI.Views.Controls.GettingStartedTile._springAnimation"/>.
+            </summary>
+            <param name="finalValue">The final value.</param>
+            <seealso cref="F:Sudoku.UI.Views.Controls.GettingStartedTile._springAnimation"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.Element_PointerEntered(System.Object,Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Triggers when the cursor is entered into the control.
+            </summary>
+            <param name="sender">The object having triggered this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.Element_PointerExited(System.Object,Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Triggers when the cursor is entered into the control.
+            </summary>
+            <param name="sender">The object having triggered this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>
             Defines a user control that handles the messages displaying via <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>s.

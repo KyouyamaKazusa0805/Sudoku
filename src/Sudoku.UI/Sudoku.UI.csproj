@@ -32,6 +32,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="Assets\images\getting-started-1.png" />
+		<EmbeddedResource Include="Assets\images\getting-started-2.png" />
+		<EmbeddedResource Include="Assets\images\getting-started-3.png" />
 		<EmbeddedResource Include="Assets\images\logo.png" />
 		<EmbeddedResource Include="Assets\images\icon-config-backup-file.png" />
 		<EmbeddedResource Include="Assets\images\icon-drawing-file.png" />
@@ -117,6 +120,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Controls\TitleBar.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Controls\GettingStartedTile.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>
