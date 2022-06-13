@@ -122,6 +122,9 @@
 				<m:RepositoryInfo
 					Name="{StaticResource AboutPage_SpecialThanks_UWPSamples}" OpenSourceLicense="MIT"
 					Site="https://github.com/microsoft/Windows-universal-samples" Initials="4" IsForReference="True" />
+				<m:RepositoryInfo
+					Name="{StaticResource AboutPage_SpecialThanks_WinUI3Gallary}" OpenSourceLicense="MIT"
+					Site="https://github.com/microsoft/WinUI-Gallery" Initials="5" />
 			</ListView>
 		</StackPanel>
 	</ScrollViewer>
