@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:Sudoku.UI.Views.Controls"
 	xmlns:data="using:Sudoku.UI.Data"
-	xmlns:m="using:Sudoku.UI.Models"
+	xmlns:m="using:Sudoku.UI.Models" xmlns:markup="using:Sudoku.UI.Data.MarkupExtensions"
 	mc:Ignorable="d">
 	<Grid>
 		<GridView Margin="31,0,0,0" IsSwipeEnabled="False" SelectionMode="None">
@@ -60,7 +60,7 @@
 						<m:VersionTimelineGroupItem Version="0.11">
 							<m:VersionTimelineItem
 								Description="{StaticResource HomePage_VersionTimelineDescription_BuildSuccessful}"
-								Date="{x:Bind data:SimpleConverters.GetDate('2021/3/5')}" />
+								Date="{markup:DateOnly RawDateText='2021/3/5'}" />
 						</m:VersionTimelineGroupItem>
 					</m:GettingStartedItem.Content>
 					<m:GettingStartedItem.DataTemplate>

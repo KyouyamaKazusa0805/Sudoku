@@ -508,6 +508,29 @@
             Indicates the template that is used for a font picker.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension">
+            <summary>
+            Defines a date-only markup extension.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension.RawDateText">
+            <summary>
+            Indicates the raw date text.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension.Format">
+            <summary>
+            Indicates the format.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Data.SimpleConverters">
             <summary>
             Provides with a set of methods as simple converters that can be used and called by XAML files.
