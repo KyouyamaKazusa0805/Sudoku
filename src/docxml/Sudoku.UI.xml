@@ -454,11 +454,23 @@
             Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.ManualSolverResultMessage"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.SelectTemplateCore(System.Object)">
+        <member name="T:Sudoku.UI.Data.DataTemplateSelectors.ModelDataTemplateSelector">
+            <summary>
+            Extracts a type that is used by derived types, providing them with a templated way to select data template
+            automatically and binding with a model type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.ModelDataTemplateSelector.DefaultTemplate">
+            <summary>
+            Indicates the default template. The value can be <see langword="null"/> if you don't want to provide
+            with such data template as the default case.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.DataTemplateSelectors.ModelDataTemplateSelector.SelectTemplateCore(System.Object)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">
-            Throws when the type of the argument <paramref name="item"/> doesn't derive
-            from <see cref="T:Sudoku.UI.Models.InfoBarMessage"/>.
+            Throws when the default template property <see cref="P:Sudoku.UI.Data.DataTemplateSelectors.ModelDataTemplateSelector.DefaultTemplate"/> is <see langword="null"/> currently,
+            but the argument <paramref name="item"/> is <see langword="null"/>.
             </exception>
         </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.SearchedResultItemTemplateSelector">
@@ -470,14 +482,6 @@
             <summary>
             Indicates the template that is used by the valid seared result.
             </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SearchedResultItemTemplateSelector.DefaultTemplate">
-            <summary>
-            Indicates the default template.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Data.DataTemplateSelectors.SearchedResultItemTemplateSelector.SelectTemplateCore(System.Object)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector">
             <summary>
@@ -503,14 +507,6 @@
             <summary>
             Indicates the template that is used for a font picker.
             </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.DefaultTemplate">
-            <summary>
-            Indicates the default template.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.SelectTemplateCore(System.Object)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Data.SimpleConverters">
             <summary>
