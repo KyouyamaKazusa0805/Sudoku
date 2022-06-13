@@ -23,9 +23,6 @@
 		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
 		<Description>The solution that plays with the sudoku.</Description>
 	</PropertyGroup>
-	<ItemGroup>
-	  <None Remove="Views\Pages\HomePage.xaml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="Assets\SplashScreen.scale-200.png" />
@@ -86,12 +83,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Views\Pages\HomePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
 		<Page Update="ResourceDictionaries\TextResources-zh-cn.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
@@ -99,6 +90,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="ResourceDictionaries\BasicProperties.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\HomePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\AboutPage.xaml">
