@@ -5,9 +5,11 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:Sudoku.UI.Views.Controls"
+	xmlns:data="using:Sudoku.UI.Data"
+	xmlns:m="using:Sudoku.UI.Models"
 	mc:Ignorable="d">
 	<Grid>
-		<GridView Margin="31,0,0,0" IsItemClickEnabled="True" IsSwipeEnabled="False" SelectionMode="None">
+		<GridView Margin="31,0,0,0" IsSwipeEnabled="False" SelectionMode="None">
 			<GridView.Header>
 				<Grid Margin="12,39,43,0">
 					<ParallaxView Height="256" VerticalAlignment="Top">
@@ -17,7 +19,7 @@
 								Source="/Assets/images/home-page-banner.png" />
 						</Grid>
 					</ParallaxView>
-					<StackPanel Orientation="Vertical" Margin="50,80,0,20">
+					<StackPanel Orientation="Vertical" Margin="50,95,0,20">
 						<TextBlock
 							Foreground="Black" Visibility="Visible" Style="{StaticResource TitleTextBlockStyle}"                               
 							Text="{StaticResource ProgramName}" />
@@ -41,6 +43,47 @@
 					</StackPanel>
 				</Grid>
 			</GridView.Header>
+
+			<!--Items-->
+			<ListView Margin="0,20,0,0" SelectionMode="None">
+				<ListView.ItemTemplate>
+					<DataTemplate x:DataType="m:GettingStartedItem">
+						<StackPanel>
+							<TextBlock Text="{x:Bind Title}" FontSize="28" FontWeight="Bold" />
+							<ContentControl Content="{x:Bind Content}" ContentTemplate="{x:Bind DataTemplate}" />
+						</StackPanel>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+
+				<m:GettingStartedItem Title="{StaticResource HomePage_GettingStartedHeader_Updates}">
+					<m:GettingStartedItem.Content>
+						<m:VersionTimelineGroupItem Version="0.11">
+							<m:VersionTimelineItem
+								Description="{StaticResource HomePage_VersionTimelineDescription_BuildSuccessful}"
+								Date="{x:Bind data:SimpleConverters.GetDate('2021/3/5')}" />
+						</m:VersionTimelineGroupItem>
+					</m:GettingStartedItem.Content>
+					<m:GettingStartedItem.DataTemplate>
+						<DataTemplate x:DataType="m:VersionTimelineGroupItem">
+							<StackPanel Orientation="Vertical">
+								<TextBlock Text="{x:Bind Version}" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0" />
+								<ListView ItemsSource="{x:Bind}" SelectionMode="None">
+									<ListView.ItemTemplate>
+										<DataTemplate x:DataType="m:VersionTimelineItem">
+											<StackPanel Orientation="Horizontal">
+												<Ellipse Width="6" Height="6" Margin="0,0,6,0" Fill="Black" />
+												<TextBlock
+													Text="{x:Bind data:SimpleConverters.GetTimelineInfo((m:VersionTimelineItem))}"
+													TextWrapping="WrapWholeWords" />
+											</StackPanel>
+										</DataTemplate>
+									</ListView.ItemTemplate>
+								</ListView>
+							</StackPanel>
+						</DataTemplate>
+					</m:GettingStartedItem.DataTemplate>
+				</m:GettingStartedItem>
+			</ListView>
 		</GridView>
 	</Grid>
 </Page>

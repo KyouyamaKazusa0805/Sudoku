@@ -15,6 +15,8 @@
 	<x:String x:Key="MainPage_GettingStarted_Wiki">快速开始</x:String>
 	<x:String x:Key="MainPage_GettingStarted_SudokuTutorialReference">数独教程参考</x:String>
 	<x:String x:Key="MainPage_GettingStarted_GithubRepo">GitHub 源代码仓库</x:String>
+	<x:String x:Key="HomePage_GettingStartedHeader_Updates">更新日志</x:String>
+	<x:String x:Key="HomePage_VersionTimelineDescription_BuildSuccessful">成功编译，完成最初版程序代码书写和程序生成过程</x:String>
 	<x:String x:Key="SudokuPage_MakeDigit">出数</x:String>
 	<x:String x:Key="SudokuPage_EliminateDigit">删数</x:String>
 	<x:String x:Key="SudokuPage_Open">打开</x:String>

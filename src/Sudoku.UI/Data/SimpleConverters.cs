@@ -80,6 +80,21 @@ internal static class SimpleConverters
 			}
 		)!;
 
+	/// <summary>
+	/// Gets the date value from the raw string.
+	/// </summary>
+	/// <param name="dateRawString">The date raw string.</param>
+	/// <returns>The target <see cref="DateOnly"/> instance.</returns>
+	public static DateOnly GetDate(string dateRawString) => DateOnly.Parse(dateRawString);
+
+	/// <summary>
+	/// Gets the date value from the raw string.
+	/// </summary>
+	/// <param name="dateRawString">The date raw string.</param>
+	/// <param name="format">The format.</param>
+	/// <returns>The target <see cref="DateOnly"/> instance.</returns>
+	public static DateOnly GetDateWithFormat(string dateRawString, string format) => DateOnly.ParseExact(dateRawString, format);
+
 	public static Visibility StringToVisibility(string? s)
 		=> string.IsNullOrWhiteSpace(s) ? Visibility.Collapsed : Visibility.Visible;
 
@@ -96,6 +111,16 @@ internal static class SimpleConverters
 			0 or > DifficultyLevel.Nightmare => new(Colors.Transparent),
 			_ => DifficultyLevel_Backgrounds[Log2((byte)difficultyLevel)]
 		};
+
+	/// <summary>
+	/// Gets the timeline information.
+	/// </summary>
+	/// <param name="versionTimelineItem">The version timeline item value.</param>
+	/// <returns>The text block instance.</returns>
+	public static string GetTimelineInfo(VersionTimelineItem versionTimelineItem)
+		=> versionTimelineItem.Description is var description && versionTimelineItem.Date is { } date
+			? $"{R["Token_OpenBrace"]}{date.ToShortDateString()}{R["Token_ClosedBrace"]}{description}" 
+			: description;
 
 	public static IList<string> GetFontNames()
 		=> (from fontName in CanvasTextFormat.GetSystemFontFamilies() orderby fontName select fontName).ToList();
