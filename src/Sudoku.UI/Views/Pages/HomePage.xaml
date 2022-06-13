@@ -28,17 +28,15 @@
 					<StackPanel Orientation="Horizontal">
 						<VariableSizedWrapGrid Orientation="Horizontal" Margin="0,287,0,0" ItemWidth="200">
 							<c:GettingStartedTile
-								Title="{StaticResource MainPage_GettingStarted_Wiki}"
-								Source="/Assets/images/getting-started-1.png"
-								Link="https://sunnieshine.github.io/Sudoku/"/>
+								Title="{StaticResource MainPage_GettingStarted_Wiki}" Link="{StaticResource Link_Wiki}"
+								Source="/Assets/images/getting-started-1.png" />
 							<c:GettingStartedTile
 								Title="{StaticResource MainPage_GettingStarted_SudokuTutorialReference}"
 								Source="/Assets/images/getting-started-2.png"
-								Link="https://www.bilibili.com/read/readlist/rl291187"/>
+								Link="{StaticResource Link_SudokuTutorial}"/>
 							<c:GettingStartedTile
 								Title="{StaticResource MainPage_GettingStarted_GithubRepo}"
-								Source="/Assets/images/getting-started-3.png"
-								Link="https://github.com/SunnieShine/Sudoku"/>
+								Source="/Assets/images/getting-started-3.png" Link="{StaticResource Link_Repo}" />
 						</VariableSizedWrapGrid>
 					</StackPanel>
 				</Grid>
