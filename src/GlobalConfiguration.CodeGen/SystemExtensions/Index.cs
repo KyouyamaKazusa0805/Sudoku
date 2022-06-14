@@ -36,7 +36,7 @@ internal readonly struct Index : IEquatable<Index>
 		_value = fromEnd ? ~value : value;
 	}
 
-	// The following private constructors mainly created for perf reason to avoid the checks
+	// The following private constructors mainly created for performance reason to avoid the checks
 	private Index(int value) => _value = value;
 
 

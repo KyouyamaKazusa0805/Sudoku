@@ -52,7 +52,7 @@ public enum CommandLineInternalError
 	ArgumentIsEmpty,
 
 	/// <summary>
-	/// Indicates the error that not all requied properties are assigned.
+	/// Indicates the error that not all required properties are assigned.
 	/// </summary>
 	[Description("Not all required properties are assigned.")]
 	NotAllRequiredPropertiesAreAssigned,

@@ -10,7 +10,7 @@
 public sealed class MessageArk
 {
 	/// <summary>
-	/// Indicates the templated ID of the ARK message. The templated ID should be requested to be registered firstly.
+	/// Indicates the template ID of the ARK message. The template ID should be requested to be registered firstly.
 	/// </summary>
 	[JsonPropertyName("template_id")]
 	public int TemplateId { get; set; }

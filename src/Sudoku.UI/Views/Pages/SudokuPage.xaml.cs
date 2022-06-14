@@ -310,7 +310,7 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
-	/// To paste the text via the clipboard asynchonously.
+	/// To paste the text via the clipboard asynchronously.
 	/// </summary>
 	/// <returns>The typical awaitable instance that holds the task to paste the sudoku grid text.</returns>
 	private async Task PasteAsync()
@@ -351,7 +351,7 @@ public sealed partial class SudokuPage : Page
 
 		// Generate the puzzle.
 		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
-		// TODO: May allow the user cancelling the puzzle-generating operation.
+		// TODO: May allow the user canceling the puzzle-generating operation.
 		var grid = await Task.Run(static () => Generator.Generate());
 
 		// Enable the control.

@@ -10,7 +10,7 @@
 public sealed class ApiPermissionDemand
 {
 	/// <summary>
-	/// The GUILD ID that tries to request permssions.
+	/// The GUILD ID that tries to request permissions.
 	/// </summary>
 	[JsonPropertyName("guild_id")]
 	public string? GuildId { get; set; }

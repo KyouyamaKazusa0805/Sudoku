@@ -44,7 +44,7 @@ public enum Opcode
 	Hello = 10,
 
 	/// <summary>
-	/// Indicates the operation that report the acknowledgement message the client successfully sends the heartbeat.
+	/// Indicates the operation that report the acknowledgment message the client successfully sends the heartbeat.
 	/// </summary>
 	HeartbeatACK = 11
 }

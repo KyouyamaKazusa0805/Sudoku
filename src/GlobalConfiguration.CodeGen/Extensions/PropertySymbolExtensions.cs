@@ -1,7 +1,7 @@
 ﻿namespace Microsoft.CodeAnalysis;
 
 /// <summary>
-/// Proivdes extension methods on <see cref="IPropertySymbol"/>.
+/// Provides extension methods on <see cref="IPropertySymbol"/>.
 /// </summary>
 /// <seealso cref="IPropertySymbol"/>
 internal static class PropertySymbolExtensions

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Drawing;
 
 /// <summary>
-/// Indicates a perference instance.
+/// Indicates a preference instance.
 /// </summary>
 public sealed class Perference : IPreference
 {

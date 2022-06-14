@@ -6,7 +6,7 @@
     <members>
         <member name="T:Sudoku.UI.Drawing.ColorMarshal">
             <summary>
-            Provides with the color-related marshalling methods.
+            Provides with the color-related marshaling methods.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.ColorMarshal.AsColor(Sudoku.Presentation.Identifier,Sudoku.UI.Drawing.IDrawingPreference)">
@@ -479,7 +479,7 @@
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CandidateDigit">
             <summary>
-            Defines a drawing element that displays for a digit that is the candidate-levelled digit.
+            Defines a drawing element that displays for a digit that is the candidate-leveled digit.
             The data structure represents for all possible candidates in a cell.
             </summary>
         </member>
@@ -672,7 +672,7 @@
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellDigit">
             <summary>
-            Defines a drawing element that displays for a digit that is the cell-levelled digit.
+            Defines a drawing element that displays for a digit that is the cell-leveled digit.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._isMaskMode">
@@ -1314,7 +1314,7 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Where(System.Predicate{Sudoku.UI.Drawing.Shapes.DrawingElement})">
             <summary>
-            Makes a filerting that removes the elements not satisfied the specified condition.
+            Makes a filtering that removes the elements not satisfied the specified condition.
             </summary>
             <param name="predicate">The filtering condition method.</param>
             <returns>
@@ -1336,7 +1336,7 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Where()">
             <summary>
-            Makes a filerting that removes the elements not satisfied the specified condition.
+            Makes a filtering that removes the elements not satisfied the specified condition.
             </summary>
             <param name="predicate">The filtering condition method.</param>
             <returns>The enumerator instance.</returns>
@@ -1704,7 +1704,7 @@
             </summary>
             <param name="elements">The elements to be iterated.</param>
             <param name="count">The number of elements to be iterated.</param>
-            <param name="predicate">The filerting condition.</param>
+            <param name="predicate">The filtering condition.</param>
             <exception cref="T:System.ArgumentNullException">
             Throws when the argument <paramref name="predicate"/> is <see langword="null"/>.
             </exception>
@@ -1790,7 +1790,7 @@
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1._whereEnumerator">
             <summary>
-            The enunmerator.
+            The enumerator.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1._selector">

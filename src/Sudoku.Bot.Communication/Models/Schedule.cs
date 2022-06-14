@@ -21,7 +21,7 @@ public sealed class Schedule
 	/// <param name="description">The description of the schedule.</param>
 	/// <param name="startTime">The start time.</param>
 	/// <param name="endTime">
-	/// The end time. The end time is defaultly later than <paramref name="startTime"/> 1 hour.
+	/// The end time. The end time is by default later than <paramref name="startTime"/> 1 hour.
 	/// </param>
 	/// <param name="jumpChannel">The channel that jumped when starting.</param>
 	/// <param name="remindType">The remind type.</param>

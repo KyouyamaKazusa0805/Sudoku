@@ -44,7 +44,7 @@ public sealed class User
 	public string? UnionOpenId { get; set; }
 
 	/// <summary>
-	/// Indicates the accounter info for the application connected,
+	/// Indicates the account info for the application connected,
 	/// which connects the same application as the property <see cref="UnionOpenId"/>.
 	/// </summary>
 	/// <remarks>

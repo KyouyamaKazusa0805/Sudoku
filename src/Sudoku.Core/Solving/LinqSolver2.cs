@@ -135,7 +135,7 @@ public sealed class LinqSolver2 : ISimpleSolver
 	}
 
 	/// <summary>
-	/// Determines whether all elemenets in this collection are not <see langword="null"/>.
+	/// Determines whether all elements in this collection are not <see langword="null"/>.
 	/// </summary>
 	/// <typeparam name="T">The type of the element in the sequence.</typeparam>
 	/// <param name="sequence">The whole sequence.</param>
@@ -174,7 +174,7 @@ public sealed class LinqSolver2 : ISimpleSolver
 
 	/// <summary>
 	/// Given a string of 81 digits (or <c>'.'</c>, <c>'0'</c> or <c>'-'</c>),
-	/// and return a dict of a key-value pair of cell and the candidates.
+	/// and return a dictionary of a key-value pair of cell and the candidates.
 	/// </summary>
 	public Dictionary<string, string>? ParseGrid(string gridStr)
 	{

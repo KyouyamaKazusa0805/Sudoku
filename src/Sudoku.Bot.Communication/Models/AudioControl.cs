@@ -10,7 +10,7 @@
 public sealed class AudioControl
 {
 	/// <summary>
-	/// Inidcates the URL corresponds to the audio itself.
+	/// Indicates the URL corresponds to the audio itself.
 	/// The audio data will be transferred when the property <see cref="Status"/> is 0.
 	/// </summary>
 	/// <seealso cref="Status"/>

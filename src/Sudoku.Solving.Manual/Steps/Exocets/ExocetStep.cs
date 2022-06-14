@@ -40,7 +40,7 @@ public abstract record class ExocetStep(
 	public sealed override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
 
 	/// <summary>
-	/// Indiactes the digits string.
+	/// Indicates the digits string.
 	/// </summary>
 	[FormatItem]
 	internal string DigitsStr

@@ -328,7 +328,7 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator">
             <summary>
-            Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
+            Indicates the generator that generates the default overridden methods in a <see langword="ref struct"/>.
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
@@ -339,7 +339,7 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.OnTopLevel(Microsoft.CodeAnalysis.GeneratorExecutionContext,System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.Boolean},Microsoft.CodeAnalysis.Compilation)">
             <summary>
-            Generates for top-levelled <see langword="ref struct"/> types.
+            Generates for top-leveled <see langword="ref struct"/> types.
             </summary>
             <param name="context">The context.</param>
             <param name="tuple">The tuple.</param>
@@ -347,7 +347,7 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.OnNested(Microsoft.CodeAnalysis.GeneratorExecutionContext,System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.Boolean},Microsoft.CodeAnalysis.Compilation)">
             <summary>
-            Generates for nested-levelled <see langword="ref struct"/> types.
+            Generates for nested-leveled <see langword="ref struct"/> types.
             </summary>
             <param name="context">The context.</param>
             <param name="tuple">The tuple.</param>

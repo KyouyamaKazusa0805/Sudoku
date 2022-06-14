@@ -6,7 +6,7 @@
 /// </summary>
 /// <param name="Name">Indicates the name of the command.</param>
 /// <param name="Callback">
-/// Indicates the callback function to handle the message around this commmand.
+/// Indicates the callback function to handle the message around this command.
 /// For example:
 /// <code><![CDATA[
 /// // A lambda that repeats the message asynchronously.

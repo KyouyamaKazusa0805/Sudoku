@@ -6,14 +6,14 @@
 internal class DataNode
 {
 	/// <summary>
-	/// Initializes a <see cref="DataNode"/> instance via the specfied ID value and the column node.
+	/// Initializes a <see cref="DataNode"/> instance via the specified ID value and the column node.
 	/// </summary>
 	/// <param name="id">The ID value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	protected internal DataNode(int id) => (Id, Column, Left, Right, Up, Down) = (id, null, this, this, this, this);
 
 	/// <summary>
-	/// Initializes a <see cref="DataNode"/> instance via the specfied ID value and the column node.
+	/// Initializes a <see cref="DataNode"/> instance via the specified ID value and the column node.
 	/// </summary>
 	/// <param name="id">The ID value.</param>
 	/// <param name="column">The column node.</param>

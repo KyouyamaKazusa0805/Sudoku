@@ -8,9 +8,9 @@
 /// <list type="bullet">
 /// <item>Full House, Last Digit, Hidden Single, Naked Single</item>
 /// <item>Pointing, Claiming</item>
-/// <item>Naked Pair, Naked Triple, Naked Quarduple</item>
-/// <item>Naked Pair (+), Naked Triple (+), Naked Quarduple (+)</item>
-/// <item>Hidden Pair, Hidden Triple, Hidden Quarduple</item>
+/// <item>Naked Pair, Naked Triple, Naked Quadruple</item>
+/// <item>Naked Pair (+), Naked Triple (+), Naked Quadruple (+)</item>
+/// <item>Hidden Pair, Hidden Triple, Hidden Quadruple</item>
 /// <item>Locked Pair, Locked Triple</item>
 /// </list>
 /// </remarks>

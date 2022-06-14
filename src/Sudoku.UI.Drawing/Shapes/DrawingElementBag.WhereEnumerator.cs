@@ -50,7 +50,7 @@ partial class DrawingElementBag
 		/// </summary>
 		/// <param name="elements">The elements to be iterated.</param>
 		/// <param name="count">The number of elements to be iterated.</param>
-		/// <param name="predicate">The filerting condition.</param>
+		/// <param name="predicate">The filtering condition.</param>
 		/// <exception cref="ArgumentNullException">
 		/// Throws when the argument <paramref name="predicate"/> is <see langword="null"/>.
 		/// </exception>

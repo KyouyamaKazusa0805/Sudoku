@@ -19,7 +19,6 @@ public sealed class MessageEmbed
 
 	/// <summary>
 	/// Indicates the description of the embedded message.
-	/// 描述 (见NodeSDK文档)
 	/// </summary>
 	[JsonPropertyName("description")]
 	public string? Description { get; set; }

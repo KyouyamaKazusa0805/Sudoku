@@ -79,7 +79,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>The solver result.</returns>
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>
-	/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
+	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
 	private ManualSolverResult Solve_HodokuMode(
 		in Grid puzzle, in Grid solution, bool isSukaku, ManualSolverResult baseSolverResult,
 		CancellationToken cancellationToken = default)
@@ -206,7 +206,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <summary>
 	/// <para>
 	/// Records the current found and valid step into the specified collection. This method will also
-	/// check the validity of <paramref name="cancellationToken"/>. If user has cancelled the operation,
+	/// check the validity of <paramref name="cancellationToken"/>. If user has canceled the operation,
 	/// here we'll throw an exception and exit the operation directly.
 	/// </para>
 	/// <para>
@@ -225,7 +225,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <param name="result">The analysis result.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <exception cref="OperationCanceledException">
-	/// Throws when the current operation is cancelled.
+	/// Throws when the current operation is canceled.
 	/// </exception>
 	private bool RecordStep(
 		ICollection<Step> steps, Step step, ref Grid playground, Stopwatch stopwatch,

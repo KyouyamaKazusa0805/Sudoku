@@ -7,7 +7,7 @@ public enum EnumSwitchExpressionDefaultBehavior : byte
 {
 	/// <summary>
 	/// Indicates the result behavior is to return the string representation of the integer value
-	/// corrsponding to the current enumeration field.
+	/// corresponding to the current enumeration field.
 	/// </summary>
 	ReturnIntegerValue,
 

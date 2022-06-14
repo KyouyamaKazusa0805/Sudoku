@@ -35,7 +35,7 @@ public sealed class Help : IExecutable
 		if (HelpCommandName is null)
 		{
 			// Iterates on each command type, to get the maximum length of the command,
-			// in order to display the commands alignedly.
+			// in order to display the commands with characters aligned.
 			var commandTypes = thisAssembly.GetDerivedTypes<IExecutable>();
 			int maxWidth = 0;
 			var listOfDescriptionParts = new List<(string CommandName, IEnumerable<string> DescriptionRawParts)>();

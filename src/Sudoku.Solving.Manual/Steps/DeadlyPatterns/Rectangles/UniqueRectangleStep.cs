@@ -12,11 +12,11 @@
 /// to pass the value and assign it to the property <see cref="Step.TechniqueCode"/>. If write code
 /// to place the property <see cref="Step.TechniqueCode"/> into the primary constructor as a parameter,
 /// the default member named <c>TechniqueCode</c> may be duplicate with this parameter's,
-/// which isn't allowed in <see langword="record"/> types in the langugae design.
+/// which isn't allowed in <see langword="record"/> types in the language design.
 /// </para>
 /// </param>
-/// <param name="Digit1">Indicates the the first digit used in this unique rectangle pattern.</param>
-/// <param name="Digit2">Indicates the the second digit used in this unique rectangle pattern.</param>
+/// <param name="Digit1">Indicates the first digit used in this unique rectangle pattern.</param>
+/// <param name="Digit2">Indicates the second digit used in this unique rectangle pattern.</param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="IsAvoidable">
 /// <para>Indicates whether the current unique rectangle is avoidable rectangle.</para>

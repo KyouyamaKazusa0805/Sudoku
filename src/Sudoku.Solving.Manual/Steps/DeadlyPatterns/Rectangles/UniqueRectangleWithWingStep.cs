@@ -10,7 +10,7 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="IsAvoidable"><inheritdoc/></param>
-/// <param name="Pivots">Indictaes the pivots used.</param>
+/// <param name="Pivots">Indicates the pivots used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>

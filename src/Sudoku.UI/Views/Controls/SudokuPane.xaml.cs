@@ -283,7 +283,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			default:
 			{
 				// Here we must set the value to 'false', in order to process keyboard accelerators.
-				// If we se 'e.Handled = true', the keyboard accelerators in the base page won't be triggered.
+				// If we set 'e.Handled = true', the keyboard accelerators in the base page won't be triggered.
 				e.Handled = false;
 				return;
 			}

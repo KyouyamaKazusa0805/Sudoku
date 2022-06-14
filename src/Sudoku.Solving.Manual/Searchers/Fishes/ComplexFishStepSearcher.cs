@@ -85,7 +85,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 		}
 		catch (AggregateException ex) when (ex.InnerException is OperationCanceledException)
 		{
-			// User has cancelled the operation.
+			// User has canceled the operation.
 			return firstPossibleStep!;
 		}
 

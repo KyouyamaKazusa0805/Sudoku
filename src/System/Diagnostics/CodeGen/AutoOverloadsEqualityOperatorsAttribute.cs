@@ -2,7 +2,7 @@
 
 /// <summary>
 /// Defines an attributes that allows user using it applying to a type
-/// (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overriden metadata
+/// (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overridden metadata
 /// for <c><see langword="operator"/> ==</c> and <c><see langword="operator"/> !=</c>,
 /// and make source generator generates their own operators automatically.
 /// </summary>

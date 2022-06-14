@@ -30,7 +30,7 @@ partial struct Grid
 		/// </summary>
 		/// <param name="arr">The pointer to an array.</param>
 		/// <remarks>
-		/// Note here we should point at the one-unit-lengthed memory before the array start.
+		/// Note here we should point at the one-unit-length memory before the array start.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal MaskCollectionEnumerator(short* arr) => _currentPointer = _start = arr - 1;

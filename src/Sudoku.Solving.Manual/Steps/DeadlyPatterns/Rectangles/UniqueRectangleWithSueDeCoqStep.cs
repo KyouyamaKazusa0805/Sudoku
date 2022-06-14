@@ -22,7 +22,7 @@
 /// of houses <see cref="Block"/> and <see cref="Line"/>
 /// </param>
 /// <param name="IsCannibalistic">Indicates whether the Sue de Coq structure is a cannibalism.</param>
-/// <param name="IsolatedDigitsMask">Indicates the mask that contains all isolated digtis.</param>
+/// <param name="IsolatedDigitsMask">Indicates the mask that contains all isolated digits.</param>
 /// <param name="BlockCells">Indicates the cells in the block of the Sue de Coq structure.</param>
 /// <param name="LineCells">Indicates the cells in the line of the Sue de Coq structure.</param>
 /// <param name="IntersectionCells">

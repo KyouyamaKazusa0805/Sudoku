@@ -5,7 +5,7 @@ partial class BotClient
 	/// <summary>
 	/// Gets the permissions available in the current GUILD.
 	/// </summary>
-	/// <param name="guild_id">The GUILD. <b>The argument cannoe be renamed.</b></param>
+	/// <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
 	/// <param name="sender">The sender who sends the message.</param>
 	/// <returns>
 	/// A task instance encapsulates a list of <see cref="ApiPermission"/> instances as the result value.

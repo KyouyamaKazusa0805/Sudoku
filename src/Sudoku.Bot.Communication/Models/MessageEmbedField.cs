@@ -10,7 +10,7 @@
 public sealed class MessageEmbedField
 {
 	/// <summary>
-	/// 字段名
+	/// Indicates the name of the field.
 	/// </summary>
 	[JsonPropertyName("name")]
 	public string? Name { get; set; }

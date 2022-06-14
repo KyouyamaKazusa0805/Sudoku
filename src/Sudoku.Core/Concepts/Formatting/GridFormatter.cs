@@ -49,7 +49,7 @@ public readonly ref partial struct GridFormatter
 	/// Indicates whether the formatter will treat values as givens always.
 	/// </param>
 	/// <param name="subtleGridLines">
-	/// Indicates whether the formatter will process outline corner of the multiline grid.
+	/// Indicates whether the formatter will process outline corner of the multi-line grid.
 	/// </param>
 	/// <param name="hodokuCompatible">
 	/// Indicates whether the formatter will use hodoku library mode to output.

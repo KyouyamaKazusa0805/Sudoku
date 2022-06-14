@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.UI.Drawing;
 
 /// <summary>
-/// Provides with the color-related marshalling methods.
+/// Provides with the color-related marshaling methods.
 /// </summary>
 internal static class ColorMarshal
 {

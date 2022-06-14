@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.UI.Drawing.Shapes;
 
 /// <summary>
-/// Defines a drawing element that displays for a digit that is the candidate-levelled digit.
+/// Defines a drawing element that displays for a digit that is the candidate-leveled digit.
 /// The data structure represents for all possible candidates in a cell.
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]

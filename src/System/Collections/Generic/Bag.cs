@@ -174,7 +174,7 @@ public ref partial struct Bag<T>
 	/// <summary>
 	/// Adds a serial of elements into the collection, one by one.
 	/// </summary>
-	/// <param name="elements">The lements to be added.</param>
+	/// <param name="elements">The elements to be added.</param>
 	public void AddRange(IEnumerable<T> elements)
 	{
 		foreach (var element in elements)

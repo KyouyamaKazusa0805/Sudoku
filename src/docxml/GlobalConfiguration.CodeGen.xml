@@ -121,7 +121,7 @@
         </member>
         <member name="T:Microsoft.CodeAnalysis.PropertySymbolExtensions">
             <summary>
-            Proivdes extension methods on <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>.
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>.
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>
         </member>
@@ -196,9 +196,6 @@
             </summary>
             <typeparam name="TKey">The type of the key.</typeparam>
             <typeparam name="TValue">The type of the value.</typeparam>
-            <param name="this">The instance to be deconstructed.</param>
-            <param name="key">The key.</param>
-            <param name="value">The value.</param>
         </member>
         <member name="T:System.Text.RegularExpressions.RegexExtensions">
             <summary>
@@ -231,7 +228,7 @@
         </member>
         <member name="M:System.StringExtensions.ToCamelCase(System.String)">
             <summary>
-            Convertes the specified string value as the camel-casing.
+            Converts the specified string value as the camel-casing.
             </summary>
             <param name="this">The string.</param>
             <returns>The converted string value.</returns>

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Bot.Communication;
 
 /// <summary>
-/// Encapsualtes a data type that describes a time span of freezing a bot, if the bot emits
+/// Encapsulates a data type that describes a time span of freezing a bot, if the bot emits
 /// some messages that QQ doesn't allow.
 /// </summary>
 public sealed class FreezeTime

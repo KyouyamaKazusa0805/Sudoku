@@ -453,7 +453,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.BotApis.GetScheduleInChannel">
             <summary>
-            Gte the details of the specified schedule in the specified channel.
+            Get the details of the specified schedule in the specified channel.
             <list type="bullet">
             <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/get_schedule.html">here</see>.</item>
             <item>Corresponding: <c>GET /channels/{channel_id}/schedules/{schedule_id}</c></item>
@@ -692,7 +692,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.CommandPrefix">
             <summary>
-            <para>Indicates the command prefix. The prefix is used for the recognization for the bot commands.</para>
+            <para>Indicates the command prefix. The prefix is used for the recognition for the bot commands.</para>
             <para>The default value is <c>"/"</c>.</para>
             </summary>
         </member>
@@ -735,7 +735,7 @@
         </member>
         <member name="F:Sudoku.Bot.Communication.BotClient._messageStack">
             <summary>
-            Indiactes the cached data that stores the messages.
+            Indicates the cached data that stores the messages.
             The dictionary stores key-value pairs. The key value is the user ID, and the value is the messages
             that emitted from the current user.
             </summary>
@@ -778,7 +778,7 @@
             during running respectively.
             </summary>
             <param name="identity">The identity instance.</param>
-            <param name="sandBoxApi">Indicates whetehr the API is based on sandbox.</param>
+            <param name="sandBoxApi">Indicates whether the API is based on sandbox.</param>
             <param name="reportApiError">Indicates whether the client will report errors to foreground.</param>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.ReportApiError">
@@ -959,7 +959,7 @@
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.GuildMemberEventSetTriggered">
             <summary>
-            Indicates the event triggered when an event related to GUILD-levelled member is triggered.
+            Indicates the event triggered when an event related to GUILD-leveled member is triggered.
             </summary>
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.ChannelEventSetTriggered">
@@ -1134,7 +1134,7 @@
             <summary>
             Gets the permissions available in the current GUILD.
             </summary>
-            <param name="guild_id">The GUILD. <b>The argument cannoe be renamed.</b></param>
+            <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
             <param name="sender">The sender who sends the message.</param>
             <returns>
             A task instance encapsulates a list of <see cref="T:Sudoku.Bot.Communication.Models.ApiPermission"/> instances as the result value.
@@ -1289,7 +1289,7 @@
             </summary>
             <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
             <param name="since">
-            Indicates the date time with wich the returned schedules should start.
+            Indicates the date time with the returned schedules should start.
             If the value is <see langword="null"/>, the method will return all schedules in <see cref="P:System.DateTime.Today"/>.
             </param>
             <param name="sender">The sender who sends the message.</param>
@@ -1510,7 +1510,7 @@
             </summary>
             <param name="Name">Indicates the name of the command.</param>
             <param name="Callback">
-            Indicates the callback function to handle the message around this commmand.
+            Indicates the callback function to handle the message around this command.
             For example:
             <code><![CDATA[
             // A lambda that repeats the message asynchronously.
@@ -1542,7 +1542,7 @@
             </summary>
             <param name="Name">Indicates the name of the command.</param>
             <param name="Callback">
-            Indicates the callback function to handle the message around this commmand.
+            Indicates the callback function to handle the message around this command.
             For example:
             <code><![CDATA[
             // A lambda that repeats the message asynchronously.
@@ -1572,7 +1572,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Command.Callback">
             <summary>
-            Indicates the callback function to handle the message around this commmand.
+            Indicates the callback function to handle the message around this command.
             For example:
             <code><![CDATA[
             // A lambda that repeats the message asynchronously.
@@ -1621,7 +1621,7 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.FreezeTime">
             <summary>
-            Encapsualtes a data type that describes a time span of freezing a bot, if the bot emits
+            Encapsulates a data type that describes a time span of freezing a bot, if the bot emits
             some messages that QQ doesn't allow.
             </summary>
         </member>
@@ -2119,7 +2119,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermission.Path">
             <summary>
-            Indicates the interface address. For exmaple, <c>/guilds/{guild_id}/members/{user_id}</c>.
+            Indicates the interface address. For example, <c>/guilds/{guild_id}/members/{user_id}</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermission.Method">
@@ -2148,7 +2148,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.GuildId">
             <summary>
-            The GUILD ID that tries to request permssions.
+            The GUILD ID that tries to request permissions.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.ChannelId">
@@ -2173,14 +2173,14 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify">
             <summary>
-            接口权限需求标识对象
+            Indicates the API permission demand identify.
             </summary>
             <param name="Path">The path of the interface. For example, <c>/guilds/{guild_id}/members/{user_id}</c>.</param>
             <param name="Method">The method. For example, <c>GET</c>.</param>
         </member>
         <member name="M:Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify.#ctor(System.String,System.String)">
             <summary>
-            接口权限需求标识对象
+            Indicates the API permission demand identify.
             </summary>
             <param name="Path">The path of the interface. For example, <c>/guilds/{guild_id}/members/{user_id}</c>.</param>
             <param name="Method">The method. For example, <c>GET</c>.</param>
@@ -2222,7 +2222,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.AudioAction.AudioUrl">
             <summary>
-            Inidcates the URL corresponds to the audio itself.
+            Indicates the URL corresponds to the audio itself.
             The audio data will be transferred when the property <see cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/> is 0.
             </summary>
             <seealso cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/>
@@ -2245,7 +2245,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.AudioControl.AudioUrl">
             <summary>
-            Inidcates the URL corresponds to the audio itself.
+            Indicates the URL corresponds to the audio itself.
             The audio data will be transferred when the property <see cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/> is 0.
             </summary>
             <seealso cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/>
@@ -2795,7 +2795,7 @@
             </summary>
             <remarks>
             <b>
-            Please note that due to the bug waiting for being fixed by the offical APIs,
+            Please note that due to the bug waiting for being fixed by the official APIs,
             the framework doesn't support alpha value. The alpha value will be set to 1.0 as the constant value.
             </b>
             (note date: 2021/12/21)
@@ -3013,7 +3013,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageArk.TemplateId">
             <summary>
-            Indicates the templated ID of the ARK message. The templated ID should be requested to be registered firstly.
+            Indicates the template ID of the ARK message. The template ID should be requested to be registered firstly.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageArk.Kv">
@@ -3186,7 +3186,6 @@
         <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Description">
             <summary>
             Indicates the description of the embedded message.
-            描述 (见NodeSDK文档)
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Prompt">
@@ -3215,7 +3214,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageEmbedField.Name">
             <summary>
-            字段名
+            Indicates the name of the field.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageEmbedThumbnail">
@@ -3304,7 +3303,7 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.MsgArk23">
             <summary>
-            Indicates the templated message whose ID is 23, which contains plain text with links.
+            Indicates the template message whose ID is 23, which contains plain text with links.
             </summary>
             <remarks>
             The data type is referenced from
@@ -3313,7 +3312,7 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.MsgArk24">
             <summary>
-            Indicates the templated message whose ID is 24, which contains a paragraph of plain text, a link and a thumbnail.
+            Indicates the template message whose ID is 24, which contains a paragraph of plain text, a link and a thumbnail.
             </summary>
             <remarks>
             The data type is referenced from
@@ -3322,7 +3321,7 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.MsgArk34">
             <summary>
-            Indicates the templated message whose ID is 34, which contains a line of plain text, a big-sized picture.
+            Indicates the template message whose ID is 34, which contains a line of plain text, a big-sized picture.
             </summary>
             <remarks>
             The data type is referenced from
@@ -3331,7 +3330,7 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.MsgArk37">
             <summary>
-            Indicates the templated message whose ID is 37, which contains a line of plain text, a subtitle
+            Indicates the template message whose ID is 37, which contains a line of plain text, a subtitle
             and a big-sized picture.
             </summary>
             <remarks>
@@ -3650,7 +3649,7 @@
             <param name="description">The description of the schedule.</param>
             <param name="startTime">The start time.</param>
             <param name="endTime">
-            The end time. The end time is defaultly later than <paramref name="startTime"/> 1 hour.
+            The end time. The end time is by default later than <paramref name="startTime"/> 1 hour.
             </param>
             <param name="jumpChannel">The channel that jumped when starting.</param>
             <param name="remindType">The remind type.</param>
@@ -3776,7 +3775,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.User.UnionUserAccount">
             <summary>
-            Indicates the accounter info for the application connected,
+            Indicates the account info for the application connected,
             which connects the same application as the property <see cref="P:Sudoku.Bot.Communication.Models.User.UnionOpenId"/>.
             </summary>
             <remarks>
@@ -3859,7 +3858,7 @@
         </member>
         <member name="F:Sudoku.Bot.Communication.Opcode.HeartbeatACK">
             <summary>
-            Indicates the operation that report the acknowledgement message the client successfully sends the heartbeat.
+            Indicates the operation that report the acknowledgment message the client successfully sends the heartbeat.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.RawMessageTypes">
@@ -3939,7 +3938,7 @@
         </member>
         <member name="F:Sudoku.Bot.Communication.RawMessageTypes.GuildMemberRemoved">
             <summary>
-            Indicates a member is reomved from a GUILD.
+            Indicates a member is removed from a GUILD.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.RawMessageTypes.MessageReactionAdded">
@@ -3954,7 +3953,7 @@
         </member>
         <member name="F:Sudoku.Bot.Communication.RawMessageTypes.MessageAuditPassed">
             <summary>
-            Indiactes a message is passed after an audition.
+            Indicates a message is passed after an audition.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.RawMessageTypes.MessageAuditRejected">
@@ -5963,7 +5962,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Triggering.ChannelRelatedEventArgs.EventType">
             <summary>
-            Indiactes which event is triggered.
+            Indicates which event is triggered.
             The possible values are <see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ChannelCreated"/>,
             <see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ChannelUpdated"/> and <see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ChannelDeleted"/>.
             </summary>

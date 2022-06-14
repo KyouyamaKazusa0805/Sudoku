@@ -19,7 +19,7 @@ partial struct ValueList<TUnmanaged>
 
 
 		/// <summary>
-		/// Intialzies the <see cref="Enumerator"/> type via the current instance.
+		/// Initializes the <see cref="Enumerator"/> type via the current instance.
 		/// </summary>
 		/// <param name="ptr">The pointer that points to the list.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

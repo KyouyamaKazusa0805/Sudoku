@@ -27,7 +27,7 @@ public enum Stableness : byte
 	Unstable = 1 << 2,
 
 	/// <summary>
-	/// Indicates the stableness is expremely unstable.
+	/// Indicates the stableness is extremely unstable.
 	/// </summary>
 	ExtremelyUnstable = 1 << 3
 }

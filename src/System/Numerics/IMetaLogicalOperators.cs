@@ -29,7 +29,7 @@ public interface IMetaLogicalOperators</*[Self]*/ T> where T : IMetaLogicalOpera
 	/// </para>
 	/// <para>
 	/// The expression <c><![CDATA[a || b]]></c> will be expanded to <c><![CDATA[false(a) ? a : a | b]]></c>,
-	/// where the variable <c>a</c> corresponds to the arguement <paramref name="value"/>.
+	/// where the variable <c>a</c> corresponds to the argument <paramref name="value"/>.
 	/// </para>
 	/// </summary>
 	/// <param name="value">The value.</param>
@@ -46,7 +46,7 @@ public interface IMetaLogicalOperators</*[Self]*/ T> where T : IMetaLogicalOpera
 	/// </para>
 	/// <para>
 	/// The expression <c><![CDATA[a && b]]></c> will be expanded to <c><![CDATA[false(a) ? a : a & b]]></c>,
-	/// where the variable <c>a</c> corresponds to the arguement <paramref name="value"/>.
+	/// where the variable <c>a</c> corresponds to the argument <paramref name="value"/>.
 	/// </para>
 	/// </summary>
 	/// <param name="value">The value.</param>

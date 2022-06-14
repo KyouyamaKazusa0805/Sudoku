@@ -17,7 +17,7 @@
         <member name="M:Sudoku.Checking.MissingCandidateSearcher.GetMissingCandidate(Sudoku.Concepts.Collections.Grid@)">
             <summary>
             Gets the missing candidate that makes the grid have unique solution when it's restored.
-            Returns <c>-1</c> when this metohd doesn't find out any possible missing candidates.
+            Returns <c>-1</c> when this method doesn't find out any possible missing candidates.
             </summary>
             <param name="grid">The grid to be checked.</param>
             <returns>
@@ -176,10 +176,10 @@
             The exception will always be thrown.
             </exception>
             <remarks>
-            The main idea of the paramterless constructor is to create a new instance
+            The main idea of the parameterless constructor is to create a new instance
             without any extra information, but the current type is special:
             the author wants to make you use another member instead of it to get a better experience.
-            Therefore, the paramterless constructor is disallowed to be invoked
+            Therefore, the parameterless constructor is disallowed to be invoked
             no matter what kind of invocation, reflection or strongly reference.
             </remarks>
         </member>
@@ -325,7 +325,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.GetSubviewMask(System.Int32,System.Int32)">
             <summary>
-            Get the subview mask of this map.
+            Get the sub-view mask of this map.
             </summary>
             <param name="hosue">The house index.</param>
             <param name="digit">The digit.</param>
@@ -672,10 +672,10 @@
             The exception will always be thrown.
             </exception>
             <remarks>
-            The main idea of the paramterless constructor is to create a new instance
+            The main idea of the parameterless constructor is to create a new instance
             without any extra information, but the current type is special:
             the author wants to make you use another member instead of it to get a better experience.
-            Therefore, the paramterless constructor is disallowed to be invoked
+            Therefore, the parameterless constructor is disallowed to be invoked
             no matter what kind of invocation, reflection or strongly reference.
             </remarks>
         </member>
@@ -950,7 +950,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.GetSubviewMask(System.Int32)">
             <summary>
-            Get the subview mask of this map.
+            Get the sub-view mask of this map.
             </summary>
             <param name="houseIndex">The house index.</param>
             <returns>The mask.</returns>
@@ -1211,7 +1211,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.op_Division(Sudoku.Concepts.Collections.Cells@,System.Int32)">
             <summary>
-            Get the subview mask of this map.
+            Get the sub-view mask of this map.
             </summary>
             <param name="map">The map.</param>
             <param name="houseIndex">The house index.</param>
@@ -1219,7 +1219,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.op_CheckedDivision(Sudoku.Concepts.Collections.Cells@,System.Int32)">
             <summary>
-            Get the subview mask of this map. This operator will check the validity
+            Get the sub-view mask of this map. This operator will check the validity
             of the argument <paramref name="houseIndex"/>.
             </summary>
             <param name="map">The map.</param>
@@ -1338,7 +1338,7 @@
             </summary>
             <param name="arr">The pointer to an array.</param>
             <remarks>
-            Note here we should point at the one-unit-lengthed memory before the array start.
+            Note here we should point at the one-unit-length memory before the array start.
             </remarks>
         </member>
         <member name="P:Sudoku.Concepts.Collections.Grid.CandidateCollectionEnumerator.Current">
@@ -1497,10 +1497,10 @@
             The exception will always be thrown.
             </exception>
             <remarks>
-            The main idea of the paramterless constructor is to create a new instance
+            The main idea of the parameterless constructor is to create a new instance
             without any extra information, but the current type is special:
             the author wants to make you use another member instead of it to get a better experience.
-            Therefore, the paramterless constructor is disallowed to be invoked
+            Therefore, the parameterless constructor is disallowed to be invoked
             no matter what kind of invocation, reflection or strongly reference.
             </remarks>
         </member>
@@ -1671,7 +1671,7 @@
             <para>A <b>Null House</b> is a house whose hold cells are all empty cells.</para>
             <para>
             The property returns an <see cref="T:System.Int32"/> value as a mask that contains all possible house indices.
-            For example, if the row 5, column 5 and block 5 (1-9) are null houces, the property will return
+            For example, if the row 5, column 5 and block 5 (1-9) are null houses, the property will return
             the result <see cref="T:System.Int32"/> value, <c>000010000_000010000_000010000</c> as binary.
             </para>
             </summary>
@@ -2314,7 +2314,7 @@
             </summary>
             <param name="arr">The pointer to an array.</param>
             <remarks>
-            Note here we should point at the one-unit-lengthed memory before the array start.
+            Note here we should point at the one-unit-length memory before the array start.
             </remarks>
         </member>
         <member name="P:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator.Current">
@@ -2926,7 +2926,7 @@
             Indicates whether the formatter will treat values as givens always.
             </param>
             <param name="subtleGridLines">
-            Indicates whether the formatter will process outline corner of the multiline grid.
+            Indicates whether the formatter will process outline corner of the multi-line grid.
             </param>
             <param name="hodokuCompatible">
             Indicates whether the formatter will use hodoku library mode to output.
@@ -3634,7 +3634,7 @@
             </param>
             <param name="Separator">
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the seperator
+            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the separator
             is <c>"|"</c>.
             </param>
         </member>
@@ -3653,7 +3653,7 @@
             </param>
             <param name="Separator">
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the seperator
+            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the separator
             is <c>"|"</c>.
             </param>
         </member>
@@ -3673,7 +3673,7 @@
         <member name="P:Sudoku.Concepts.Notations.K9NotationOptions.Separator">
             <summary>
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the seperator
+            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the separator
             is <c>"|"</c>.
             </summary>
         </member>
@@ -3776,7 +3776,7 @@
             </param>
             <param name="Separator">
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the seperator
+            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the separator
             is <c>"|"</c>.
             </param>
         </member>
@@ -3791,7 +3791,7 @@
             </param>
             <param name="Separator">
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the seperator
+            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the separator
             is <c>"|"</c>.
             </param>
         </member>
@@ -3805,7 +3805,7 @@
         <member name="P:Sudoku.Concepts.Notations.RxCyNotationOptions.Separator">
             <summary>
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the seperator
+            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the separator
             is <c>"|"</c>.
             </summary>
         </member>
@@ -4836,7 +4836,7 @@
             <remarks>
             Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
             we still can't set multiple flag values into the result. The flags are filtered
-            during generting puzzles.
+            during generating puzzles.
             </remarks>
             <seealso cref="T:System.FlagsAttribute"/>
         </member>
@@ -4847,7 +4847,7 @@
             <remarks>
             Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
             we still can't set multiple flag values into the result. The flags are filtered
-            during generting puzzles.
+            during generating puzzles.
             </remarks>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.Stableness.Stable"/>
             <seealso cref="T:System.FlagsAttribute"/>
@@ -4859,7 +4859,7 @@
             <remarks>
             Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
             we still can't set multiple flag values into the result. The flags are filtered
-            during generting puzzles.
+            during generating puzzles.
             </remarks>
             <seealso cref="T:System.FlagsAttribute"/>
         </member>
@@ -5033,7 +5033,7 @@
         <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.StrongRelationsCount">
             <summary>
             Indicates an array of the total number of the strong relations in an ALS of the different size.
-            The field is only unsed in the property <see cref="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.StrongLinksMask"/>.
+            The field is only unused in the property <see cref="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.StrongLinksMask"/>.
             </summary>
             <seealso cref="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.StrongLinksMask"/>
         </member>
@@ -5160,7 +5160,7 @@
             <param name="isStrong">Indicates whether the chain starts and ends with strong inferences.</param>
             <exception cref="T:System.ArgumentException">
             Throws when the length of the argument <paramref name="nodes"/> is less than or equals 3,
-            or the first and the last node aren't the same when the arguemnt <paramref name="isStrong"/>
+            or the first and the last node aren't the same when the argument <paramref name="isStrong"/>
             is <see langword="true"/>.
             </exception>
         </member>
@@ -6340,7 +6340,7 @@
             <summary>
             Check whether the digit in its peer cells has duplicate ones.
             </summary>
-            <param name="ptrGrid">The pointer that pointes to a grid.</param>
+            <param name="ptrGrid">The pointer that points to a grid.</param>
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -6355,7 +6355,7 @@
             </summary>
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>
-            The result puzzle generated. If cancelled, the return value will be <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.
+            The result puzzle generated. If canceled, the return value will be <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.
             </returns>
         </member>
         <member name="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator">
@@ -6460,7 +6460,7 @@
             <param name="times">The trial times.</param>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>
-            If user has cancelled the operation or the maximum trial times has been reached, <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>;
+            If user has canceled the operation or the maximum trial times has been reached, <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>;
             otherwise, the valid grid.
             </returns>
             <exception cref="T:System.InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
@@ -6549,7 +6549,7 @@
             <summary>
             Check whether the digit in its peer cells has duplicate ones.
             </summary>
-            <param name="ptrGrid">The pointer that pointes to a grid.</param>
+            <param name="ptrGrid">The pointer that points to a grid.</param>
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -9947,7 +9947,7 @@
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.FailedReason.UserCancelled">
             <summary>
-            Indicates the failed reason is that the user has cancelled the task.
+            Indicates the failed reason is that the user has canceled the task.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.FailedReason.NotImplemented">
@@ -10228,7 +10228,7 @@
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Stableness.ExtremelyUnstable">
             <summary>
-            Indicates the stableness is expremely unstable.
+            Indicates the stableness is extremely unstable.
             </summary>
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.Technique">
@@ -12679,13 +12679,13 @@
         </member>
         <member name="M:Sudoku.Solving.DancingLinx.DataNode.#ctor(System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Solving.DancingLinx.DataNode"/> instance via the specfied ID value and the column node.
+            Initializes a <see cref="T:Sudoku.Solving.DancingLinx.DataNode"/> instance via the specified ID value and the column node.
             </summary>
             <param name="id">The ID value.</param>
         </member>
         <member name="M:Sudoku.Solving.DancingLinx.DataNode.#ctor(System.Int32,Sudoku.Solving.DancingLinx.ColumnNode)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Solving.DancingLinx.DataNode"/> instance via the specfied ID value and the column node.
+            Initializes a <see cref="T:Sudoku.Solving.DancingLinx.DataNode"/> instance via the specified ID value and the column node.
             </summary>
             <param name="id">The ID value.</param>
             <param name="column">The column node.</param>
@@ -12899,7 +12899,7 @@
         </member>
         <member name="M:Sudoku.Solving.LinqSolver2.AllNotNull``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            Determines whether all elemenets in this collection are not <see langword="null"/>.
+            Determines whether all elements in this collection are not <see langword="null"/>.
             </summary>
             <typeparam name="T">The type of the element in the sequence.</typeparam>
             <param name="sequence">The whole sequence.</param>
@@ -12916,7 +12916,7 @@
         <member name="M:Sudoku.Solving.LinqSolver2.ParseGrid(System.String)">
             <summary>
             Given a string of 81 digits (or <c>'.'</c>, <c>'0'</c> or <c>'-'</c>),
-            and return a dict of a key-value pair of cell and the candidates.
+            and return a dictionary of a key-value pair of cell and the candidates.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.LinqSolver2.Search(System.Collections.Generic.Dictionary{System.String,System.String})">

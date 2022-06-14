@@ -1,15 +1,15 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Provides with a <b>Bivalue Universal Grave</b> step searcher.
+/// Provides with a <b>Bi-value Universal Grave</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>Bivalue Universal Grave Type 1</item>
-/// <item>Bivalue Universal Grave Type 2</item>
-/// <item>Bivalue Universal Grave Type 3</item>
-/// <item>Bivalue Universal Grave Type 4</item>
-/// <item>Bivalue Universal Grave + n</item>
-/// <item>Bivalue Universal Grave XZ</item>
+/// <item>Bi-value Universal Grave Type 1</item>
+/// <item>Bi-value Universal Grave Type 2</item>
+/// <item>Bi-value Universal Grave Type 3</item>
+/// <item>Bi-value Universal Grave Type 4</item>
+/// <item>Bi-value Universal Grave + n</item>
+/// <item>Bi-value Universal Grave XZ</item>
 /// </list>
 /// </summary>
 [StepSearcher]

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.UI.Data.DataTemplateSelectors;
 
 /// <summary>
-/// Extracts a type that is used by derived types, providing them with a templated way to select data template
+/// Extracts a type that is used by derived types, providing them with a template way to select data template
 /// automatically and binding with a model type.
 /// </summary>
 public abstract class ModelDataTemplateSelector : DataTemplateSelector

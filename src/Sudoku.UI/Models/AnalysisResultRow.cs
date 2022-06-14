@@ -28,7 +28,7 @@ public sealed class AnalysisResultRow
 	public string TechniqueName { get; set; } = null!;
 
 	/// <summary>
-	/// Indicates the difficulty level of the techinque belonging to.
+	/// Indicates the difficulty level of the technique belonging to.
 	/// </summary>
 	public DifficultyLevel DifficultyLevel { get; set; }
 

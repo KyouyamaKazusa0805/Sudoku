@@ -3,7 +3,7 @@
 namespace Sudoku.Bot.Communication.Models.MessageTemplates;
 
 /// <summary>
-/// Indicates the templated message whose ID is 34, which contains a line of plain text, a big-sized picture.
+/// Indicates the template message whose ID is 34, which contains a line of plain text, a big-sized picture.
 /// </summary>
 /// <remarks>
 /// The data type is referenced from

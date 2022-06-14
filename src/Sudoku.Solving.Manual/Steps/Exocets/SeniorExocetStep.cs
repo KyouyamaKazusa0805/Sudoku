@@ -7,7 +7,7 @@
 /// <param name="Exocet"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="EndoTargetCell">Indicates the target cell that is embedded into the cross-line cells.</param>
-/// <param name="ExtraHousesMask">Indicates the mask tnat holds the extra houses used.</param>
+/// <param name="ExtraHousesMask">Indicates the mask that holds the extra houses used.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
 public sealed record class SeniorExocetStep(
 	ViewList Views, in ExocetPattern Exocet, short DigitsMask, int EndoTargetCell,

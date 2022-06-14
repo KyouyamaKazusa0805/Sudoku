@@ -1,14 +1,14 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Provides with a <b>3-demensional Sue de Coq</b> step searcher.
+/// Provides with a <b>3-dimensional Sue de Coq</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>3-demensional Sue de Coq</item>
+/// <item>3-dimensional Sue de Coq</item>
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionStepSearcher
+public sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3DimensionStepSearcher
 {
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)

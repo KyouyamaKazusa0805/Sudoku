@@ -361,7 +361,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	#endregion
 
 
-	#region Basic types implmentation
+	#region Basic types implementation
 	/// <summary>
 	/// Check type 1.
 	/// </summary>
@@ -3460,7 +3460,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					continue;
 				}
 
-				// Check all bivalue cells.
+				// Check all bi-value cells.
 				foreach (int bivalueCellToCheck in bivalueCellsToCheck)
 				{
 					if ((Cells.Empty + bivalueCellToCheck + targetCell).CoveredLine != InvalidFirstSet)

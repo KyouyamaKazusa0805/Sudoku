@@ -22,7 +22,7 @@ public sealed class AudioAction
 	public string? ChannelId { get; set; }
 
 	/// <summary>
-	/// Inidcates the URL corresponds to the audio itself.
+	/// Indicates the URL corresponds to the audio itself.
 	/// The audio data will be transferred when the property <see cref="AudioControl.Status"/> is 0.
 	/// </summary>
 	/// <seealso cref="AudioControl.Status"/>

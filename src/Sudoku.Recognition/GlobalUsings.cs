@@ -1,4 +1,4 @@
-﻿// This project is copied and modified from the repo https://github.com/VoBilyk/SudokuSolverOCR
+﻿// This project is copied and modified from the repository https://github.com/VoBilyk/SudokuSolverOCR
 // Original author: VoBilyk https://github.com/VoBilyk
 // Copyright (c) VoBilyk 2018
 //

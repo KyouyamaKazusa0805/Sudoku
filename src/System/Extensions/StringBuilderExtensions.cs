@@ -7,7 +7,7 @@
 public static class StringBuilderExtensions
 {
 	/// <summary>
-	/// Remove all characters hehind the character whose index is specified.
+	/// Remove all characters behind the character whose index is specified.
 	/// </summary>
 	/// <param name="this">The instance to remove characters.</param>
 	/// <param name="startIndex">The start index.</param>

@@ -76,7 +76,7 @@ internal static class RawMessageTypes
 	public const string GuildMemberUpdated = "GUILD_MEMBER_UPDATE";
 
 	/// <summary>
-	/// Indicates a member is reomved from a GUILD.
+	/// Indicates a member is removed from a GUILD.
 	/// </summary>
 	public const string GuildMemberRemoved = "GUILD_MEMBER_REMOVE";
 
@@ -91,7 +91,7 @@ internal static class RawMessageTypes
 	public const string MessageReactionRemoved = "MESSAGE_REACTION_REMOVE";
 
 	/// <summary>
-	/// Indiactes a message is passed after an audition.
+	/// Indicates a message is passed after an audition.
 	/// </summary>
 	public const string MessageAuditPassed = "MESSAGE_AUDIT_PASS";
 

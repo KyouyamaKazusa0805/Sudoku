@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.UI.Drawing.Shapes;
 
 /// <summary>
-/// Defines a drawing element that displays for a digit that is the cell-levelled digit.
+/// Defines a drawing element that displays for a digit that is the cell-leveled digit.
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
 internal sealed class CellDigit : DrawingElement

@@ -123,10 +123,10 @@ public unsafe partial struct Grid :
 	/// The exception will always be thrown.
 	/// </exception>
 	/// <remarks>
-	/// The main idea of the paramterless constructor is to create a new instance
+	/// The main idea of the parameterless constructor is to create a new instance
 	/// without any extra information, but the current type is special:
 	/// the author wants to make you use another member instead of it to get a better experience.
-	/// Therefore, the paramterless constructor is disallowed to be invoked
+	/// Therefore, the parameterless constructor is disallowed to be invoked
 	/// no matter what kind of invocation, reflection or strongly reference.
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
@@ -445,7 +445,7 @@ public unsafe partial struct Grid :
 	/// <para>A <b>Null House</b> is a house whose hold cells are all empty cells.</para>
 	/// <para>
 	/// The property returns an <see cref="int"/> value as a mask that contains all possible house indices.
-	/// For example, if the row 5, column 5 and block 5 (1-9) are null houces, the property will return
+	/// For example, if the row 5, column 5 and block 5 (1-9) are null houses, the property will return
 	/// the result <see cref="int"/> value, <c>000010000_000010000_000010000</c> as binary.
 	/// </para>
 	/// </summary>
@@ -1082,7 +1082,7 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly override string ToString() => ToString(null);
+	public override readonly string ToString() => ToString(null);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

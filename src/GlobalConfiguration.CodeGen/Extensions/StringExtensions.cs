@@ -7,7 +7,7 @@
 internal static class StringExtensions
 {
 	/// <summary>
-	/// Convertes the specified string value as the camel-casing.
+	/// Converts the specified string value as the camel-casing.
 	/// </summary>
 	/// <param name="this">The string.</param>
 	/// <returns>The converted string value.</returns>

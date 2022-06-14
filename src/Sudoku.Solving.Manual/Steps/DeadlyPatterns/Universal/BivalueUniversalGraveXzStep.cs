@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Bivalue Universal Grave XZ</b> technique.
+/// Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>

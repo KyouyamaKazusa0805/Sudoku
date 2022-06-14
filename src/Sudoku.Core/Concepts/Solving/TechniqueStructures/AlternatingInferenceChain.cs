@@ -38,7 +38,7 @@ public sealed class AlternatingInferenceChain : Chain
 	/// <param name="isStrong">Indicates whether the chain starts and ends with strong inferences.</param>
 	/// <exception cref="ArgumentException">
 	/// Throws when the length of the argument <paramref name="nodes"/> is less than or equals 3,
-	/// or the first and the last node aren't the same when the arguemnt <paramref name="isStrong"/>
+	/// or the first and the last node aren't the same when the argument <paramref name="isStrong"/>
 	/// is <see langword="true"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

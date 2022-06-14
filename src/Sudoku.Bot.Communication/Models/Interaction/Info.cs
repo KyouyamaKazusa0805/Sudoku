@@ -50,7 +50,7 @@ public sealed class Info
 	/// </summary>
 	/// <remarks>
 	/// <b>
-	/// Please note that due to the bug waiting for being fixed by the offical APIs,
+	/// Please note that due to the bug waiting for being fixed by the official APIs,
 	/// the framework doesn't support alpha value. The alpha value will be set to 1.0 as the constant value.
 	/// </b>
 	/// (note date: 2021/12/21)

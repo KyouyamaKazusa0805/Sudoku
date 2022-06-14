@@ -40,10 +40,10 @@ public unsafe partial struct Candidates :
 	/// The exception will always be thrown.
 	/// </exception>
 	/// <remarks>
-	/// The main idea of the paramterless constructor is to create a new instance
+	/// The main idea of the parameterless constructor is to create a new instance
 	/// without any extra information, but the current type is special:
 	/// the author wants to make you use another member instead of it to get a better experience.
-	/// Therefore, the paramterless constructor is disallowed to be invoked
+	/// Therefore, the parameterless constructor is disallowed to be invoked
 	/// no matter what kind of invocation, reflection or strongly reference.
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
@@ -409,7 +409,7 @@ public unsafe partial struct Candidates :
 	public readonly int[] ToArray() => Offsets;
 
 	/// <summary>
-	/// Get the subview mask of this map.
+	/// Get the sub-view mask of this map.
 	/// </summary>
 	/// <param name="hosue">The house index.</param>
 	/// <param name="digit">The digit.</param>

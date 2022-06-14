@@ -15,7 +15,7 @@ public sealed class AlmostLockedSet :
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
-	/// The field is only unsed in the property <see cref="StrongLinksMask"/>.
+	/// The field is only unused in the property <see cref="StrongLinksMask"/>.
 	/// </summary>
 	/// <seealso cref="StrongLinksMask"/>
 	private static readonly int[] StrongRelationsCount = { 0, 1, 3, 6, 10, 15, 21, 34, 45 };

@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="House">The house that structure lies in.</param>
 /// <param name="Cells">All cells used.</param>
-/// <param name="DigitsMask">The maks that contains all digits used.</param>
+/// <param name="DigitsMask">The mask that contains all digits used.</param>
 public abstract record class SubsetStep(
 	ConclusionList Conclusions, ViewList Views, int House, in Cells Cells, short DigitsMask) :
 	Step(Conclusions, Views),

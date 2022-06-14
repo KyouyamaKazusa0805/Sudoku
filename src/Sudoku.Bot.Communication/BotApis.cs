@@ -370,7 +370,7 @@ internal static class BotApis
 		=> new(ApiType.PublicDomain, HttpMethod.Get, """/channels/{channel_id}/schedules""");
 
 	/// <summary>
-	/// Gte the details of the specified schedule in the specified channel.
+	/// Get the details of the specified schedule in the specified channel.
 	/// <list type="bullet">
 	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/get_schedule.html">here</see>.</item>
 	/// <item>Corresponding: <c>GET /channels/{channel_id}/schedules/{schedule_id}</c></item>

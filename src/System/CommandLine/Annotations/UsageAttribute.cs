@@ -1,7 +1,7 @@
 ﻿namespace System.CommandLine.Annotations;
 
 /// <summary>
-/// Represents an attriubute that is applied to a command type, indicating the usage of the current root command.
+/// Represents an attribute that is applied to a command type, indicating the usage of the current root command.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
 public sealed class UsageAttribute : Attribute
@@ -61,7 +61,7 @@ public sealed class UsageAttribute : Attribute
 	/// </item>
 	/// <item>
 	/// <term>Star <c>*</c></term>
-	/// <description>Indicates the current argument can appear arbitary times.</description>
+	/// <description>Indicates the current argument can appear arbitrary times.</description>
 	/// </item>
 	/// <item>
 	/// <term>Plus sign <c>+</c></term>

@@ -16,7 +16,7 @@ public sealed class ChannelRelatedEventArgs : EventArgs
 
 
 	/// <summary>
-	/// Indiactes which event is triggered.
+	/// Indicates which event is triggered.
 	/// The possible values are <see cref="RawMessageTypes.ChannelCreated"/>,
 	/// <see cref="RawMessageTypes.ChannelUpdated"/> and <see cref="RawMessageTypes.ChannelDeleted"/>.
 	/// </summary>

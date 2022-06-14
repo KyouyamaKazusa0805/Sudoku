@@ -18,7 +18,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 	/// <param name="loopMap">Indicates the map of the loop.</param>
 	/// <param name="tempLoop">Indicates the cells used of the loop, queued.</param>
 	/// <param name="predicate">
-	/// Indicates the condition that checks whether the procedured structure is a valid loop.
+	/// Indicates the condition that checks whether the procedure-like structure is a valid loop.
 	/// </param>
 	/// <param name="loops">The possible loops found.</param>
 	protected static void SearchForPossibleLoopPatterns(

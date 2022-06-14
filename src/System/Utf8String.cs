@@ -334,7 +334,7 @@ public readonly struct Utf8String :
 			// At this point, we have compared all the characters in at least one string.
 			// The longer string will be larger.
 			// We could optimize and compare lengths before iterating strings, but we want
-			// Foo and Foo1 to be sorted adjacent to eachother.
+			// Foo and Foo1 to be sorted adjacent to each other.
 			return strA._value.Length - strB._value.Length;
 		}
 	}

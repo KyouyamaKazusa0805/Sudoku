@@ -1152,7 +1152,7 @@
         </member>
         <member name="T:Sudoku.Drawing.Perference">
             <summary>
-            Indicates a perference instance.
+            Indicates a preference instance.
             </summary>
         </member>
         <member name="M:Sudoku.Drawing.Perference.#ctor">

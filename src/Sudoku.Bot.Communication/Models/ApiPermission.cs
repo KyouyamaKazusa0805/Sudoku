@@ -10,7 +10,7 @@
 public sealed class ApiPermission
 {
 	/// <summary>
-	/// Indicates the interface address. For exmaple, <c>/guilds/{guild_id}/members/{user_id}</c>.
+	/// Indicates the interface address. For example, <c>/guilds/{guild_id}/members/{user_id}</c>.
 	/// </summary>
 	[JsonPropertyName("path")]
 	public string Path { get; set; } = string.Empty;

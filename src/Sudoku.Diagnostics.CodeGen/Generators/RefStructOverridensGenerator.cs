@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
-/// Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
+/// Indicates the generator that generates the default overridden methods in a <see langword="ref struct"/>.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
 public sealed partial class RefStructOverridensGenerator : ISourceGenerator
@@ -29,7 +29,7 @@ public sealed partial class RefStructOverridensGenerator : ISourceGenerator
 		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 
 	/// <summary>
-	/// Generates for top-levelled <see langword="ref struct"/> types.
+	/// Generates for top-leveled <see langword="ref struct"/> types.
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <param name="tuple">The tuple.</param>
@@ -132,7 +132,7 @@ partial struct {type.Name}{genericParameterList}
 	}
 
 	/// <summary>
-	/// Generates for nested-levelled <see langword="ref struct"/> types.
+	/// Generates for nested-leveled <see langword="ref struct"/> types.
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <param name="tuple">The tuple.</param>

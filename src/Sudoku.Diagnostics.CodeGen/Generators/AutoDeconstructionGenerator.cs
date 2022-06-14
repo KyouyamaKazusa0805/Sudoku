@@ -242,7 +242,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 			// in order to optimize the argument-passing operation.
 			string inKeyword = attributeData.GetNamedArgument<bool>("EmitsInKeyword") ? "in " : string.Empty;
 
-			// Creates a collection that is used for storing a pair of information on the target propeties.
+			// Creates a collection that is used for storing a pair of information on the target properties.
 			// Here the target property means the corresponding property searching it through the attribute value
 			// (have mentioned above, an array of string elements).
 			var pairs = new List<(ITypeSymbol Symbol, string Name)>();
@@ -344,7 +344,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 				continue;
 			}
 
-			// Creates a collection that is used for storing a pair of information on the target propeties.
+			// Creates a collection that is used for storing a pair of information on the target properties.
 			// Here the target property means the corresponding property searching it through the attribute value
 			// (have mentioned above, an array of string elements).
 			var pairs = new List<(ITypeSymbol Symbol, string Name)>();

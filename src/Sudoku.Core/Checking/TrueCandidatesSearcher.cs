@@ -43,7 +43,7 @@ public sealed unsafe class TrueCandidatesSearcher
 	/// <returns>All true candidates.</returns>
 	public Candidates GetAllTrueCandidates(int maximumEmptyCells, CancellationToken cancellationToken = default)
 	{
-		// Get the number of multivalue cells.
+		// Get the number of multi-value cells.
 		// If the number of that is greater than the specified number,
 		// here will return the default list directly.
 		int multivalueCellsCount = 0;
@@ -59,7 +59,7 @@ public sealed unsafe class TrueCandidatesSearcher
 			}
 		}
 
-		// Store all bivalue cells and construct the relations.
+		// Store all bi-value cells and construct the relations.
 		int* peerHouses = stackalloc int[3];
 		var stack = new Cells[multivalueCellsCount + 1, 9];
 		foreach (int cell in Puzzle.BivalueCells)
@@ -82,7 +82,7 @@ public sealed unsafe class TrueCandidatesSearcher
 			}
 		}
 
-		// Store all multivalue cells.
+		// Store all multi-value cells.
 		// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
 		// The comments will help you to understand the processing.
 		Unsafe.SkipInit(out short mask);
@@ -90,13 +90,13 @@ public sealed unsafe class TrueCandidatesSearcher
 		int[] multivalueCells = (Puzzle.EmptyCells - Puzzle.BivalueCells).ToArray();
 		for (int i = 0, length = multivalueCells.Length; i < length; i++)
 		{
-			// eg. { 2, 4, 6 } (42)
+			// e.g. { 2, 4, 6 } (42)
 			mask = Puzzle.GetCandidates(multivalueCells[i]);
 
-			// eg. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
+			// e.g. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
 			short[] pairList = MaskMarshal.GetMaskSubsets(mask, 2);
 
-			// eg. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
+			// e.g. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
 			pairs[i, 0] = (short)pairList.Length;
 			for (int z = 1, pairListLength = pairList.Length; z <= pairListLength; z++)
 			{

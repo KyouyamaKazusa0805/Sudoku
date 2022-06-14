@@ -19,7 +19,7 @@
 [assembly: SearcherConfiguration<BowmanBingoStepSearcher>(19, DisplayingLevel.C, EnabledArea = EnabledArea.None, DisabledReason = DisabledReason.TooSlow | DisabledReason.LastResort)]
 [assembly: SearcherConfiguration<PatternOverlayStepSearcher>(20, DisplayingLevel.C, EnabledArea = EnabledArea.Gathering, DisabledReason = DisabledReason.LastResort)]
 [assembly: SearcherConfiguration<TemplateStepSearcher>(21, DisplayingLevel.C, EnabledArea = EnabledArea.None, DisabledReason = DisabledReason.LastResort)]
-[assembly: SearcherConfiguration<SueDeCoq3DemensionStepSearcher>(22, DisplayingLevel.B)]
+[assembly: SearcherConfiguration<SueDeCoq3DimensionStepSearcher>(22, DisplayingLevel.B)]
 [assembly: SearcherConfiguration<AlmostLockedSetsXzStepSearcher>(23, DisplayingLevel.B)]
 [assembly: SearcherConfiguration<BivalueUniversalGraveStepSearcher>(24, DisplayingLevel.B)]
 [assembly: SearcherConfiguration<QiuDeadlyPatternStepSearcher>(25, DisplayingLevel.B)]

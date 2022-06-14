@@ -31,7 +31,7 @@ public enum FailedReason : byte
 	PuzzleHasMultipleSolutions,
 
 	/// <summary>
-	/// Indicates the failed reason is that the user has cancelled the task.
+	/// Indicates the failed reason is that the user has canceled the task.
 	/// </summary>
 	UserCancelled,
 

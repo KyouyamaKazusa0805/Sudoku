@@ -199,7 +199,7 @@ partial class DrawingElementBag
 	public unsafe SelectEnumerator<T> Select<T>(delegate*<DrawingElement, T> selector) => new(_elements, Count, selector);
 
 	/// <summary>
-	/// Makes a filerting that removes the elements not satisfied the specified condition.
+	/// Makes a filtering that removes the elements not satisfied the specified condition.
 	/// </summary>
 	/// <param name="predicate">The filtering condition method.</param>
 	/// <returns>
@@ -222,7 +222,7 @@ partial class DrawingElementBag
 	public WhereEnumerator Where(Predicate<DrawingElement> predicate) => new(_elements, Count, predicate);
 
 	/// <summary>
-	/// Makes a filerting that removes the elements not satisfied the specified condition.
+	/// Makes a filtering that removes the elements not satisfied the specified condition.
 	/// </summary>
 	/// <param name="predicate">The filtering condition method.</param>
 	/// <returns>The enumerator instance.</returns>

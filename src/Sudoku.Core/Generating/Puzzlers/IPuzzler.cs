@@ -10,7 +10,7 @@ public interface IPuzzler
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>
-	/// The result puzzle generated. If cancelled, the return value will be <see cref="Grid.Undefined"/>.
+	/// The result puzzle generated. If canceled, the return value will be <see cref="Grid.Undefined"/>.
 	/// </returns>
 	Grid Generate(CancellationToken cancellationToken = default);
 }

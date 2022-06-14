@@ -14,7 +14,7 @@
 /// </param>
 /// <param name="Separator">
 /// Indicates the separator string value that inserts two coordinate elements, to combine them.
-/// For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the seperator
+/// For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the separator
 /// is <c>"|"</c>.
 /// </param>
 public readonly record struct K9NotationOptions(

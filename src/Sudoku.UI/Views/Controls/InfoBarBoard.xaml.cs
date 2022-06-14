@@ -60,7 +60,7 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// and the information.
 	/// </summary>
 	/// <param name="severity">The severity of the info bar.</param>
-	/// <param name="info">The displaing text of the info bar.</param>
+	/// <param name="info">The displaying text of the info bar.</param>
 	/// <seealso cref="InfoBar"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddMessage(InfoBarSeverity severity, string info)
@@ -76,7 +76,7 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// the information and the hyperlink button.
 	/// </summary>
 	/// <param name="severity">The severity of the info bar.</param>
-	/// <param name="info">The displaing text of the info bar.</param>
+	/// <param name="info">The displaying text of the info bar.</param>
 	/// <param name="link">The hyperlink to be appended into.</param>
 	/// <param name="linkDescription">The description of the hyperlink.</param>
 	/// <seealso cref="InfoBar"/>

@@ -19,7 +19,7 @@ public partial class BotClient
 
 
 	/// <summary>
-	/// Indiactes the cached data that stores the messages.
+	/// Indicates the cached data that stores the messages.
 	/// The dictionary stores key-value pairs. The key value is the user ID, and the value is the messages
 	/// that emitted from the current user.
 	/// </summary>
@@ -64,7 +64,7 @@ public partial class BotClient
 	/// during running respectively.
 	/// </summary>
 	/// <param name="identity">The identity instance.</param>
-	/// <param name="sandBoxApi">Indicates whetehr the API is based on sandbox.</param>
+	/// <param name="sandBoxApi">Indicates whether the API is based on sandbox.</param>
 	/// <param name="reportApiError">Indicates whether the client will report errors to foreground.</param>
 	public BotClient(BotIdentity identity, bool sandBoxApi = false, bool reportApiError = false)
 	{
@@ -268,7 +268,7 @@ public partial class BotClient
 	public event GuildRelatedEventHandler? GuildEventSetTriggered;
 
 	/// <summary>
-	/// Indicates the event triggered when an event related to GUILD-levelled member is triggered.
+	/// Indicates the event triggered when an event related to GUILD-leveled member is triggered.
 	/// </summary>
 	public event GuildMemberRelatedEventHandler? GuildMemberEventSetTriggered;
 

@@ -1,6 +1,4 @@
-﻿using Sudoku.Runtime.AnalysisServices;
-
-namespace Sudoku.Concepts.Solving;
+﻿namespace Sudoku.Concepts.Solving;
 
 /// <summary>
 /// Provides a basic manual solving step.
@@ -112,7 +110,7 @@ public interface IStep
 	/// <remarks>
 	/// Although the type of this property is marked <see cref="FlagsAttribute"/>,
 	/// we still can't set multiple flag values into the result. The flags are filtered
-	/// during generting puzzles.
+	/// during generating puzzles.
 	/// </remarks>
 	/// <seealso cref="FlagsAttribute"/>
 	DifficultyLevel DifficultyLevel { get; }
@@ -123,7 +121,7 @@ public interface IStep
 	/// <remarks>
 	/// Although the type of this property is marked <see cref="FlagsAttribute"/>,
 	/// we still can't set multiple flag values into the result. The flags are filtered
-	/// during generting puzzles.
+	/// during generating puzzles.
 	/// </remarks>
 	/// <seealso cref="Stableness.Stable"/>
 	/// <seealso cref="FlagsAttribute"/>
@@ -135,7 +133,7 @@ public interface IStep
 	/// <remarks>
 	/// Although the type of this property is marked <see cref="FlagsAttribute"/>,
 	/// we still can't set multiple flag values into the result. The flags are filtered
-	/// during generting puzzles.
+	/// during generating puzzles.
 	/// </remarks>
 	/// <seealso cref="FlagsAttribute"/>
 	Rarity Rarity { get; }

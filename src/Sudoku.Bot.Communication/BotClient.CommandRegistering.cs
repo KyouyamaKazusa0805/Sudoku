@@ -3,7 +3,7 @@
 partial class BotClient
 {
 	/// <summary>
-	/// <para>Indicates the command prefix. The prefix is used for the recognization for the bot commands.</para>
+	/// <para>Indicates the command prefix. The prefix is used for the recognition for the bot commands.</para>
 	/// <para>The default value is <c>"/"</c>.</para>
 	/// </summary>
 	public string CommandPrefix { get; set; } = "/";

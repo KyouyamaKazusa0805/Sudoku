@@ -57,7 +57,7 @@ public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSea
 				var map = PeerMaps[pivot] & BivalueCells;
 				if (map.Count < size - 1)
 				{
-					// Bivalue cells are not enough.
+					// Bi-value cells are not enough.
 					continue;
 				}
 

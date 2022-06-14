@@ -40,7 +40,7 @@ public sealed record class TwoStrongLinksStep(
 			(0, _) or (_, 0) => Technique.TurbotFish,
 			(1, 1) or (2, 2) => Technique.Skyscraper,
 			(1, 2) or (2, 1) => Technique.TwoStringKite,
-			_ => throw new InvalidOperationException("The currnet status is invalid.")
+			_ => throw new InvalidOperationException("The current status is invalid.")
 		};
 
 	/// <inheritdoc/>

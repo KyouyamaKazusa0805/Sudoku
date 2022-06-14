@@ -331,7 +331,7 @@
             <summary>
             Adds a serial of elements into the collection, one by one.
             </summary>
-            <param name="elements">The lements to be added.</param>
+            <param name="elements">The elements to be added.</param>
         </member>
         <member name="M:System.Collections.Generic.Bag`1.Remove">
             <summary>
@@ -780,7 +780,7 @@
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.Enumerator.#ctor(System.Collections.Generic.ValueList{`0}@)">
             <summary>
-            Intialzies the <see cref="T:System.Collections.Generic.ValueList`1.Enumerator"/> type via the current instance.
+            Initializes the <see cref="T:System.Collections.Generic.ValueList`1.Enumerator"/> type via the current instance.
             </summary>
             <param name="ptr">The pointer that points to the list.</param>
         </member>
@@ -866,7 +866,7 @@
         </member>
         <member name="T:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute">
             <summary>
-            Represents a double-argument command. The command requires an argument name, following with a real vlaue,
+            Represents a double-argument command. The command requires an argument name, following with a real value,
             such as "<c>-g grid</c>".
             </summary>
         </member>
@@ -1063,7 +1063,7 @@
         </member>
         <member name="T:System.CommandLine.Annotations.UsageAttribute">
             <summary>
-            Represents an attriubute that is applied to a command type, indicating the usage of the current root command.
+            Represents an attribute that is applied to a command type, indicating the usage of the current root command.
             </summary>
         </member>
         <member name="M:System.CommandLine.Annotations.UsageAttribute.#ctor(System.String,System.String)">
@@ -1120,7 +1120,7 @@
             </item>
             <item>
             <term>Star <c>*</c></term>
-            <description>Indicates the current argument can appear arbitary times.</description>
+            <description>Indicates the current argument can appear arbitrary times.</description>
             </item>
             <item>
             <term>Plus sign <c>+</c></term>
@@ -1241,7 +1241,7 @@
         </member>
         <member name="F:System.CommandLine.CommandLineInternalError.NotAllRequiredPropertiesAreAssigned">
             <summary>
-            Indicates the error that not all requied properties are assigned.
+            Indicates the error that not all required properties are assigned.
             </summary>
         </member>
         <member name="F:System.CommandLine.CommandLineInternalError.ConverterError">
@@ -1596,7 +1596,7 @@
         <member name="T:System.Diagnostics.CodeGen.AutoOverloadsComparisonOperatorsAttribute">
             <summary>
             Defines an attributes that allows user using it applying to a type
-            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overriden metadata
+            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overridden metadata
             for <c><see langword="operator"/> &gt;</c> and <c><see langword="operator"/> &lt;</c>,
             <c><see langword="operator"/> &gt;=</c> and <c><see langword="operator"/> &lt;=</c>,
             and make source generator generates their own operators automatically.
@@ -1615,7 +1615,7 @@
         <member name="T:System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute">
             <summary>
             Defines an attributes that allows user using it applying to a type
-            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overriden metadata
+            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overridden metadata
             for <c><see langword="operator"/> ==</c> and <c><see langword="operator"/> !=</c>,
             and make source generator generates their own operators automatically.
             </summary>
@@ -1633,7 +1633,7 @@
         <member name="T:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute">
             <summary>
             Defines an attributes that allows user using it applying to a type
-            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overriden metadata
+            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overridden metadata
             for method <see cref="M:System.Object.Equals(System.Object)"/>, and make source generator generates their own <c>Equals</c>
             method automatically.
             </summary>
@@ -1682,7 +1682,7 @@
         <member name="T:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute">
             <summary>
             Defines an attributes that allows user using it applying to a type
-            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overriden metadata
+            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overridden metadata
             for method <see cref="M:System.Object.GetHashCode"/>, and make source generator generates their own <c>GetHashCode</c>
             method automatically.
             </summary>
@@ -1727,7 +1727,7 @@
         <member name="T:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute">
             <summary>
             Defines an attributes that allows user using it applying to a type
-            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overriden metadata
+            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overridden metadata
             for method <see cref="M:System.Object.ToString"/>, and make source generator generates their own <c>ToString</c>
             method automatically.
             </summary>
@@ -1823,7 +1823,7 @@
         <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.ReturnIntegerValue">
             <summary>
             Indicates the result behavior is to return the string representation of the integer value
-            corrsponding to the current enumeration field.
+            corresponding to the current enumeration field.
             </summary>
         </member>
         <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.ReturnNull">
@@ -1928,7 +1928,7 @@
         </member>
         <member name="P:System.Diagnostics.CodeGen.OptionProviders.IInterfaceImplementingCaseController.UseExplicitImplementation">
             <summary>
-            Indicates whether the source generator will emit explicit implmentation to implement the method.
+            Indicates whether the source generator will emit explicit implementation to implement the method.
             The default value is <see langword="false"/>.
             </summary>
         </member>
@@ -2227,13 +2227,13 @@
         </member>
         <member name="T:System.Text.Json.JsonSerializerOptionsExtensions">
             <summary>
-            Provdies extension methods on <see cref="T:System.Text.Json.JsonSerializerOptions"/>.
+            Provides extension methods on <see cref="T:System.Text.Json.JsonSerializerOptions"/>.
             </summary>
             <seealso cref="T:System.Text.Json.JsonSerializerOptions"/>
         </member>
         <member name="M:System.Text.Json.JsonSerializerOptionsExtensions.GetConverter``2(System.Text.Json.JsonSerializerOptions)">
             <summary>
-            Returns the converter that supports the givent type, or the <typeparamref name="TConverter"/>
+            Returns the converter that supports the given type, or the <typeparamref name="TConverter"/>
             will be used when the property <see cref="P:System.Text.Json.JsonSerializerOptions.Converters"/>
             doesn't contain any valid converters.
             </summary>
@@ -2294,7 +2294,7 @@
         </member>
         <member name="M:System.Text.StringBuilderExtensions.RemoveFrom(System.Text.StringBuilder,System.Int32)">
             <summary>
-            Remove all characters hehind the character whose index is specified.
+            Remove all characters behind the character whose index is specified.
             </summary>
             <param name="this">The instance to remove characters.</param>
             <param name="startIndex">The start index.</param>
@@ -2528,7 +2528,7 @@
         </member>
         <member name="M:System.Text.StringHandler.CopyTo(System.Text.StringHandler@)">
             <summary>
-            Copies the current colletion into the specified collection.
+            Copies the current collection into the specified collection.
             </summary>
             <param name="handler">The collection.</param>
         </member>
@@ -3646,7 +3646,7 @@
             </para>
             <para>
             The expression <c><![CDATA[a || b]]></c> will be expanded to <c><![CDATA[false(a) ? a : a | b]]></c>,
-            where the variable <c>a</c> corresponds to the arguement <paramref name="value"/>.
+            where the variable <c>a</c> corresponds to the argument <paramref name="value"/>.
             </para>
             </summary>
             <param name="value">The value.</param>
@@ -3663,7 +3663,7 @@
             </para>
             <para>
             The expression <c><![CDATA[a && b]]></c> will be expanded to <c><![CDATA[false(a) ? a : a & b]]></c>,
-            where the variable <c>a</c> corresponds to the arguement <paramref name="value"/>.
+            where the variable <c>a</c> corresponds to the argument <paramref name="value"/>.
             </para>
             </summary>
             <param name="value">The value.</param>

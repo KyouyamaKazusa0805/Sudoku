@@ -13,7 +13,7 @@ partial class DrawingElementBag
 		public unsafe ref partial struct SelectEnumerator<T>
 		{
 			/// <summary>
-			/// The enunmerator.
+			/// The enumerator.
 			/// </summary>
 			private WhereEnumerator _whereEnumerator;
 

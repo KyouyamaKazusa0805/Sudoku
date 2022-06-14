@@ -13,7 +13,7 @@ public static class MissingCandidateSearcher
 
 	/// <summary>
 	/// Gets the missing candidate that makes the grid have unique solution when it's restored.
-	/// Returns <c>-1</c> when this metohd doesn't find out any possible missing candidates.
+	/// Returns <c>-1</c> when this method doesn't find out any possible missing candidates.
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
 	/// <returns>

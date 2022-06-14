@@ -181,7 +181,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 	/// <summary>
 	/// Check whether the digit in its peer cells has duplicate ones.
 	/// </summary>
-	/// <param name="ptrGrid">The pointer that pointes to a grid.</param>
+	/// <param name="ptrGrid">The pointer that points to a grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private static bool CheckDuplicate(char* ptrGrid, int cell)

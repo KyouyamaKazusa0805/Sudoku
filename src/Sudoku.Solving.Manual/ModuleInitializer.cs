@@ -38,7 +38,7 @@ internal static class ModuleInitializer
 				continue;
 			}
 
-			// Now checks whether the step searcher can be seperated into multiple instances.
+			// Now checks whether the step searcher can be separated into multiple instances.
 			// If so, we should create instances one by one, and assign the properties with values
 			// using the values inside the type 'SeparatedStepSearcherAttribute'.
 			switch (type.GetCustomAttributes<SeparatedStepSearcherAttribute>().ToArray())

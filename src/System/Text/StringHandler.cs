@@ -230,7 +230,7 @@ public unsafe ref partial struct StringHandler
 
 
 	/// <summary>
-	/// Copies the current colletion into the specified collection.
+	/// Copies the current collection into the specified collection.
 	/// </summary>
 	/// <param name="handler">The collection.</param>
 	public readonly void CopyTo(ref StringHandler handler)

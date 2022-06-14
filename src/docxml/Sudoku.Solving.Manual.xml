@@ -142,10 +142,10 @@
             However, in this case the difficulty order (ascending or descending order) of steps
             won't be guaranteed. For example, the possible difficulty rating of a step searched via a UR searcher
             is between 4.5 and 4.8, and another rating of a step via a chain searcher is between 4.6 and 5.1.
-            If the UR searcher has a larger priority than chain searcher, the solver may find all UR steps firsly
+            If the UR searcher has a larger priority than chain searcher, the solver may find all UR steps firstly
             in this case, and secondly searches for chains. In some cases, some UR steps found
             has a larger difficulty rating value than some chain steps found, so the difficulty ratings
-            are unstrictly-handled (i.e. steps are out of ordered).
+            are not strictly-handled (i.e. steps are out of ordered).
             </para>
             <para>
             If you want to strictly handle the difficulty rating, we recommend you set this property value
@@ -164,7 +164,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.OptimizedApplyingOrder">
             <summary>
-            Indicates whether the solver will apply the steps via the asecending order.
+            Indicates whether the solver will apply the steps via the ascending order.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.IStepsGathererOptions">
@@ -207,13 +207,13 @@
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>The solver result.</returns>
             <exception cref="T:Sudoku.Solving.Manual.WrongStepException">Throws when found wrong steps to apply.</exception>
-            <exception cref="T:System.OperationCanceledException">Throws when the operation is cancelled.</exception>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordStep(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Solving.Step,Sudoku.Concepts.Collections.Grid@,System.Diagnostics.Stopwatch,System.Collections.Generic.ICollection{Sudoku.Concepts.Collections.Grid},Sudoku.Solving.Manual.ManualSolverResult,System.Threading.CancellationToken,Sudoku.Solving.Manual.ManualSolverResult@)">
             <summary>
             <para>
             Records the current found and valid step into the specified collection. This method will also
-            check the validity of <paramref name="cancellationToken"/>. If user has cancelled the operation,
+            check the validity of <paramref name="cancellationToken"/>. If user has canceled the operation,
             here we'll throw an exception and exit the operation directly.
             </para>
             <para>
@@ -232,7 +232,7 @@
             <param name="result">The analysis result.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <exception cref="T:System.OperationCanceledException">
-            Throws when the current operation is cancelled.
+            Throws when the current operation is canceled.
             </exception>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.AreConclusionsValid(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.Step)">
@@ -2017,7 +2017,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueSquareStepSearcher">
             <summary>
-            Defines a step searcher that searches for unique sqaure steps.
+            Defines a step searcher that searches for unique square steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher">
@@ -2058,15 +2058,15 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.BivalueUniversalGraveStepSearcher">
             <summary>
-            Provides with a <b>Bivalue Universal Grave</b> step searcher.
+            Provides with a <b>Bi-value Universal Grave</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Bivalue Universal Grave Type 1</item>
-            <item>Bivalue Universal Grave Type 2</item>
-            <item>Bivalue Universal Grave Type 3</item>
-            <item>Bivalue Universal Grave Type 4</item>
-            <item>Bivalue Universal Grave + n</item>
-            <item>Bivalue Universal Grave XZ</item>
+            <item>Bi-value Universal Grave Type 1</item>
+            <item>Bi-value Universal Grave Type 2</item>
+            <item>Bi-value Universal Grave Type 3</item>
+            <item>Bi-value Universal Grave Type 4</item>
+            <item>Bi-value Universal Grave + n</item>
+            <item>Bi-value Universal Grave XZ</item>
             </list>
             </summary>
         </member>
@@ -2572,7 +2572,7 @@
             <param name="loopMap">Indicates the map of the loop.</param>
             <param name="tempLoop">Indicates the cells used of the loop, queued.</param>
             <param name="predicate">
-            Indicates the condition that checks whether the procedured structure is a valid loop.
+            Indicates the condition that checks whether the procedure-like structure is a valid loop.
             </param>
             <param name="loops">The possible loops found.</param>
         </member>
@@ -2699,7 +2699,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IPatternOverlayStepSearcher.GetTemplates">
             <summary>
-            Get all possible templates. The total number of all possbile pattern overlay templates is 46656.
+            Get all possible templates. The total number of all possible pattern overlay templates is 46656.
             </summary>
             <returns>The templates.</returns>
         </member>
@@ -2834,9 +2834,9 @@
             Defines a step searcher that searches for rank theory steps.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.ISueDeCoq3DemensionStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.ISueDeCoq3DimensionStepSearcher">
             <summary>
-            Defines a step searcher that searches for 3-demensional sue de coq steps.
+            Defines a step searcher that searches for 3-dimensional sue de coq steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ISueDeCoqStepSearcher">
@@ -2877,19 +2877,19 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.SueDeCoq3DemensionStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.SueDeCoq3DimensionStepSearcher">
             <summary>
-            Provides with a <b>3-demensional Sue de Coq</b> step searcher.
+            Provides with a <b>3-dimensional Sue de Coq</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>3-demensional Sue de Coq</item>
+            <item>3-dimensional Sue de Coq</item>
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.SueDeCoq3DemensionStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.SueDeCoq3DimensionStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.SueDeCoq3DemensionStepSearcher.Options">
+        <member name="P:Sudoku.Solving.Manual.Searchers.SueDeCoq3DimensionStepSearcher.Options">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.SueDeCoqStepSearcher">
@@ -3320,7 +3320,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.StepExtensions.IsChaining``1(``0)">
             <summary>
-            Indicates whether the corresponding technique of the current step is a chain. The chain techiques are:
+            Indicates whether the corresponding technique of the current step is a chain. The chain techniques are:
             <list type="bullet">
             <item>
             Wings
@@ -3479,9 +3479,9 @@
             Search for all possible steps in a grid.
             </summary>
             <param name="puzzle">The puzzle grid.</param>
-            <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
+            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
             <returns>The result grouped by technique names.</returns>
-            <exception cref="T:System.OperationCanceledException">Throws when the operation is cancelled.</exception>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
         </member>
         <member name="P:Sudoku.Solving.Manual.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
             <inheritdoc/>
@@ -3526,7 +3526,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Als1">Indicates the first ALS used in this pattern.</param>
             <param name="Als2">Indicates the second ALS used in this pattern.</param>
-            <param name="ConjugatePair">Indiactes the conjugate pair used.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
             <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
             <param name="X">Indicates the X digit.</param>
         </member>
@@ -3538,7 +3538,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Als1">Indicates the first ALS used in this pattern.</param>
             <param name="Als2">Indicates the second ALS used in this pattern.</param>
-            <param name="ConjugatePair">Indiactes the conjugate pair used.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
             <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
             <param name="X">Indicates the X digit.</param>
         </member>
@@ -3549,7 +3549,7 @@
             <summary>Indicates the second ALS used in this pattern.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.ConjugatePair">
-            <summary>Indiactes the conjugate pair used.</summary>
+            <summary>Indicates the conjugate pair used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.WDigitsMask">
             <summary>Indicates the mask that holds the W digit.</summary>
@@ -4954,11 +4954,11 @@
             to pass the value and assign it to the property <see cref="P:Sudoku.Concepts.Solving.Step.TechniqueCode"/>. If write code
             to place the property <see cref="P:Sudoku.Concepts.Solving.Step.TechniqueCode"/> into the primary constructor as a parameter,
             the default member named <c>TechniqueCode</c> may be duplicate with this parameter's,
-            which isn't allowed in <see langword="record"/> types in the langugae design.
+            which isn't allowed in <see langword="record"/> types in the language design.
             </para>
             </param>
-            <param name="Digit1">Indicates the the first digit used in this unique rectangle pattern.</param>
-            <param name="Digit2">Indicates the the second digit used in this unique rectangle pattern.</param>
+            <param name="Digit1">Indicates the first digit used in this unique rectangle pattern.</param>
+            <param name="Digit2">Indicates the second digit used in this unique rectangle pattern.</param>
             <param name="Cells">Indicates the cells used.</param>
             <param name="IsAvoidable">
             <para>Indicates whether the current unique rectangle is avoidable rectangle.</para>
@@ -4991,11 +4991,11 @@
             to pass the value and assign it to the property <see cref="P:Sudoku.Concepts.Solving.Step.TechniqueCode"/>. If write code
             to place the property <see cref="P:Sudoku.Concepts.Solving.Step.TechniqueCode"/> into the primary constructor as a parameter,
             the default member named <c>TechniqueCode</c> may be duplicate with this parameter's,
-            which isn't allowed in <see langword="record"/> types in the langugae design.
+            which isn't allowed in <see langword="record"/> types in the language design.
             </para>
             </param>
-            <param name="Digit1">Indicates the the first digit used in this unique rectangle pattern.</param>
-            <param name="Digit2">Indicates the the second digit used in this unique rectangle pattern.</param>
+            <param name="Digit1">Indicates the first digit used in this unique rectangle pattern.</param>
+            <param name="Digit2">Indicates the second digit used in this unique rectangle pattern.</param>
             <param name="Cells">Indicates the cells used.</param>
             <param name="IsAvoidable">
             <para>Indicates whether the current unique rectangle is avoidable rectangle.</para>
@@ -5023,15 +5023,15 @@
             to pass the value and assign it to the property <see cref="P:Sudoku.Concepts.Solving.Step.TechniqueCode"/>. If write code
             to place the property <see cref="P:Sudoku.Concepts.Solving.Step.TechniqueCode"/> into the primary constructor as a parameter,
             the default member named <c>TechniqueCode</c> may be duplicate with this parameter's,
-            which isn't allowed in <see langword="record"/> types in the langugae design.
+            which isn't allowed in <see langword="record"/> types in the language design.
             </para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.Digit1">
-            <summary>Indicates the the first digit used in this unique rectangle pattern.</summary>
+            <summary>Indicates the first digit used in this unique rectangle pattern.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.Digit2">
-            <summary>Indicates the the second digit used in this unique rectangle pattern.</summary>
+            <summary>Indicates the second digit used in this unique rectangle pattern.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.Cells">
             <summary>Indicates the cells used.</summary>
@@ -5398,7 +5398,7 @@
             of houses <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>
             </param>
             <param name="IsCannibalistic">Indicates whether the Sue de Coq structure is a cannibalism.</param>
-            <param name="IsolatedDigitsMask">Indicates the mask that contains all isolated digtis.</param>
+            <param name="IsolatedDigitsMask">Indicates the mask that contains all isolated digits.</param>
             <param name="BlockCells">Indicates the cells in the block of the Sue de Coq structure.</param>
             <param name="LineCells">Indicates the cells in the line of the Sue de Coq structure.</param>
             <param name="IntersectionCells">
@@ -5429,7 +5429,7 @@
             of houses <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>
             </param>
             <param name="IsCannibalistic">Indicates whether the Sue de Coq structure is a cannibalism.</param>
-            <param name="IsolatedDigitsMask">Indicates the mask that contains all isolated digtis.</param>
+            <param name="IsolatedDigitsMask">Indicates the mask that contains all isolated digits.</param>
             <param name="BlockCells">Indicates the cells in the block of the Sue de Coq structure.</param>
             <param name="LineCells">Indicates the cells in the line of the Sue de Coq structure.</param>
             <param name="IntersectionCells">
@@ -5463,7 +5463,7 @@
             <summary>Indicates whether the Sue de Coq structure is a cannibalism.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.IsolatedDigitsMask">
-            <summary>Indicates the mask that contains all isolated digtis.</summary>
+            <summary>Indicates the mask that contains all isolated digits.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.BlockCells">
             <summary>Indicates the cells in the block of the Sue de Coq structure.</summary>
@@ -5549,7 +5549,7 @@
             <param name="Digit2"><inheritdoc/></param>
             <param name="Cells"><inheritdoc/></param>
             <param name="IsAvoidable"><inheritdoc/></param>
-            <param name="Pivots">Indictaes the pivots used.</param>
+            <param name="Pivots">Indicates the pivots used.</param>
             <param name="Petals">Indicates the petals used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
@@ -5565,13 +5565,13 @@
             <param name="Digit2"><inheritdoc/></param>
             <param name="Cells"><inheritdoc/></param>
             <param name="IsAvoidable"><inheritdoc/></param>
-            <param name="Pivots">Indictaes the pivots used.</param>
+            <param name="Pivots">Indicates the pivots used.</param>
             <param name="Petals">Indicates the petals used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.Pivots">
-            <summary>Indictaes the pivots used.</summary>
+            <summary>Indicates the pivots used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.Petals">
             <summary>Indicates the petals used.</summary>
@@ -5799,7 +5799,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveMultipleStep">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave + n</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave + n</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5807,7 +5807,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveMultipleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave + n</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave + n</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5836,14 +5836,14 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveStep">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5862,14 +5862,14 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType1Step">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave Type 1</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave Type 1</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5882,7 +5882,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType2Step">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave Type 2</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5891,7 +5891,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.Collections.Cells@)">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave Type 2</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5921,7 +5921,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave Type 3</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5932,7 +5932,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Concepts.Collections.Cells@,System.Boolean)">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave Type 3</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5975,7 +5975,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave Type 4</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave Type 4</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5985,7 +5985,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Conjugate@)">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave Type 4</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave Type 4</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -6019,7 +6019,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave XZ</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -6029,7 +6029,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.Collections.Cells@,System.Int32)">
             <summary>
-            Provides with a step that is a <b>Bivalue Universal Grave XZ</b> technique.
+            Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -6117,7 +6117,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.DigitsStr">
             <summary>
-            Indiactes the digits string.
+            Indicates the digits string.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.BaseMapStr">
@@ -6207,7 +6207,7 @@
             <param name="Exocet"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="EndoTargetCell">Indicates the target cell that is embedded into the cross-line cells.</param>
-            <param name="ExtraHousesMask">Indicates the mask tnat holds the extra houses used.</param>
+            <param name="ExtraHousesMask">Indicates the mask that holds the extra houses used.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.SeniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern@,System.Int16,System.Int32,System.Int32[],System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
@@ -6218,14 +6218,14 @@
             <param name="Exocet"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="EndoTargetCell">Indicates the target cell that is embedded into the cross-line cells.</param>
-            <param name="ExtraHousesMask">Indicates the mask tnat holds the extra houses used.</param>
+            <param name="ExtraHousesMask">Indicates the mask that holds the extra houses used.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.EndoTargetCell">
             <summary>Indicates the target cell that is embedded into the cross-line cells.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.ExtraHousesMask">
-            <summary>Indicates the mask tnat holds the extra houses used.</summary>
+            <summary>Indicates the mask that holds the extra houses used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.ContainsExtraHouses">
             <summary>
@@ -6600,9 +6600,9 @@
             <list type="bullet">
             <item>Full House, Last Digit, Hidden Single, Naked Single</item>
             <item>Pointing, Claiming</item>
-            <item>Naked Pair, Naked Triple, Naked Quarduple</item>
-            <item>Naked Pair (+), Naked Triple (+), Naked Quarduple (+)</item>
-            <item>Hidden Pair, Hidden Triple, Hidden Quarduple</item>
+            <item>Naked Pair, Naked Triple, Naked Quadruple</item>
+            <item>Naked Pair (+), Naked Triple (+), Naked Quadruple (+)</item>
+            <item>Hidden Pair, Hidden Triple, Hidden Quadruple</item>
             <item>Locked Pair, Locked Triple</item>
             </list>
             </remarks>
@@ -7917,7 +7917,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="House">The house that structure lies in.</param>
             <param name="Cells">All cells used.</param>
-            <param name="DigitsMask">The maks that contains all digits used.</param>
+            <param name="DigitsMask">The mask that contains all digits used.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.SubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int16)">
             <summary>
@@ -7927,7 +7927,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="House">The house that structure lies in.</param>
             <param name="Cells">All cells used.</param>
-            <param name="DigitsMask">The maks that contains all digits used.</param>
+            <param name="DigitsMask">The mask that contains all digits used.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.House">
             <summary>The house that structure lies in.</summary>
@@ -7936,7 +7936,7 @@
             <summary>All cells used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.DigitsMask">
-            <summary>The maks that contains all digits used.</summary>
+            <summary>The mask that contains all digits used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.ShowDifficulty">
             <inheritdoc/>
@@ -7976,7 +7976,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Pivot">Indicates the cell that blossomed its petals.</param>
             <param name="PivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
-            <param name="DigitsMask">Indicates a mask that contins all digits used.</param>
+            <param name="DigitsMask">Indicates a mask that contains all digits used.</param>
             <param name="Petals">Indicates the petals used.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.RegularWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int16,Sudoku.Concepts.Collections.Cells@)">
@@ -7987,7 +7987,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Pivot">Indicates the cell that blossomed its petals.</param>
             <param name="PivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
-            <param name="DigitsMask">Indicates a mask that contins all digits used.</param>
+            <param name="DigitsMask">Indicates a mask that contains all digits used.</param>
             <param name="Petals">Indicates the petals used.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.Pivot">
@@ -7997,7 +7997,7 @@
             <summary>Indicates the number of digits in the pivot cell.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.DigitsMask">
-            <summary>Indicates a mask that contins all digits used.</summary>
+            <summary>Indicates a mask that contains all digits used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.Petals">
             <summary>Indicates the petals used.</summary>

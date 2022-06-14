@@ -1,7 +1,7 @@
 ﻿namespace System.CommandLine.Annotations;
 
 /// <summary>
-/// Represents a double-argument command. The command requires an argument name, following with a real vlaue,
+/// Represents a double-argument command. The command requires an argument name, following with a real value,
 /// such as "<c>-g grid</c>".
 /// </summary>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]

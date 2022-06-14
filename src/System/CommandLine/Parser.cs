@@ -43,7 +43,7 @@ public static class Parser
 			throw new CommandLineParserException(CommandLineInternalError.CommandNameIsInvalid);
 		}
 
-		// Now gets the information of the global configration.
+		// Now gets the information of the global configuration.
 		var targetAssembly = typeOfRootCommand.Assembly;
 		var globalOptions = targetAssembly.GetCustomAttribute<GlobalConfigurationAttribute>() ?? new();
 

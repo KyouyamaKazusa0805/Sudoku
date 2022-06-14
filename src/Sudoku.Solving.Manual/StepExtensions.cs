@@ -18,7 +18,7 @@ public static class StepExtensions
 		=> @this.HasTag(TechniqueTags.Als);
 
 	/// <summary>
-	/// Indicates whether the corresponding technique of the current step is a chain. The chain techiques are:
+	/// Indicates whether the corresponding technique of the current step is a chain. The chain techniques are:
 	/// <list type="bullet">
 	/// <item>
 	/// Wings

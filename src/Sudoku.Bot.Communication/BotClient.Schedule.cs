@@ -7,7 +7,7 @@ partial class BotClient
 	/// </summary>
 	/// <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
 	/// <param name="since">
-	/// Indicates the date time with wich the returned schedules should start.
+	/// Indicates the date time with the returned schedules should start.
 	/// If the value is <see langword="null"/>, the method will return all schedules in <see cref="DateTime.Today"/>.
 	/// </param>
 	/// <param name="sender">The sender who sends the message.</param>

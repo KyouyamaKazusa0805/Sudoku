@@ -3,7 +3,7 @@
 namespace Sudoku.Bot.Communication.Models.MessageTemplates;
 
 /// <summary>
-/// Indicates the templated message whose ID is 23, which contains plain text with links.
+/// Indicates the template message whose ID is 23, which contains plain text with links.
 /// </summary>
 /// <remarks>
 /// The data type is referenced from

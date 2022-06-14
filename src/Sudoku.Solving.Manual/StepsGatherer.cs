@@ -9,11 +9,10 @@ public sealed partial class StepsGatherer
 	/// Search for all possible steps in a grid.
 	/// </summary>
 	/// <param name="puzzle">The puzzle grid.</param>
-	/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
+	/// <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
 	/// <returns>The result grouped by technique names.</returns>
-	/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
-	public IEnumerable<IGrouping<string, Step>> Search(
-		in Grid puzzle, CancellationToken cancellationToken = default)
+	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
+	public IEnumerable<IGrouping<string, Step>> Search(in Grid puzzle, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out bool? sukaku))
 		{

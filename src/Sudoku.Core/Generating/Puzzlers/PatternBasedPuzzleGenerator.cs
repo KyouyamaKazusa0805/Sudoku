@@ -107,7 +107,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <param name="times">The trial times.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>
-	/// If user has cancelled the operation or the maximum trial times has been reached, <see cref="Grid.Undefined"/>;
+	/// If user has canceled the operation or the maximum trial times has been reached, <see cref="Grid.Undefined"/>;
 	/// otherwise, the valid grid.
 	/// </returns>
 	/// <exception cref="InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
@@ -186,7 +186,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 						// If the puzzle is invalid, we can adjust the pattern and try again.
 						AdjustPattern(ref pattern);
 
-						// Check whether user has cancelled the operation.
+						// Check whether user has canceled the operation.
 						if (cancellationToken.IsCancellationRequested)
 						{
 							goto ReturnDefault;
