@@ -25,68 +25,37 @@ public sealed partial class SudokuPage : Page
 
 
 	/// <inheritdoc/>
-	protected override async void OnKeyDown(KeyRoutedEventArgs e)
+	protected override void OnKeyDown(KeyRoutedEventArgs e)
 	{
 		// Calls the base method.
 		base.OnKeyDown(e);
 
 		// Checks the status of the key-pressed data.
-		await routeHandlerAsync(e);
+		routeHandler(e);
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		async Task routeHandlerAsync(KeyRoutedEventArgs e)
+		void routeHandler(KeyRoutedEventArgs e)
 		{
-			bool controlKeyIsDown = VirtualKey.Control.ModifierKeyIsDown();
-			bool shiftKeyIsDown = VirtualKey.Shift.ModifierKeyIsDown();
-			switch (e.Key)
-			{
-				case VirtualKey.O when controlKeyIsDown && EnsureUnsnapped():
+			(
+				(VirtualKey.Control.ModifierKeyIsDown(), VirtualKey.Shift.ModifierKeyIsDown()) switch
 				{
-					await OpenFileAsync();
-					break;
+					(true, true) => e.Key switch { VirtualKey.Tab => FixGrid, _ => default },
+					(true, _) => e.Key switch
+					{
+						VirtualKey.O when EnsureUnsnapped() => async () => await OpenFileAsync(),
+						VirtualKey.S when EnsureUnsnapped() => async () => await SaveFileAsync(),
+						VirtualKey.C => CopySudokuCode,
+						VirtualKey.V => async () => await PasteAsync(),
+						VirtualKey.Tab => FixGrid,
+						VirtualKey.Z => Undo,
+						VirtualKey.Y => Redo,
+						VirtualKey.H => () => GenerateAsync(_cButtonGenerate),
+						_ => default
+					},
+					_ => default(Action?)
 				}
-				case VirtualKey.C when controlKeyIsDown:
-				{
-					CopySudokuCode();
-					break;
-				}
-				case VirtualKey.V when controlKeyIsDown:
-				{
-					await PasteAsync();
-					break;
-				}
-				case VirtualKey.S when controlKeyIsDown && EnsureUnsnapped():
-				{
-					await SaveFileAsync();
-					break;
-				}
-				case VirtualKey.Tab when controlKeyIsDown:
-				{
-					FixGrid();
-					break;
-				}
-				case VirtualKey.Tab when controlKeyIsDown && shiftKeyIsDown:
-				{
-					UnfixGrid();
-					break;
-				}
-				case VirtualKey.Z when controlKeyIsDown:
-				{
-					Undo();
-					break;
-				}
-				case VirtualKey.Y when controlKeyIsDown:
-				{
-					Redo();
-					break;
-				}
-				case VirtualKey.H when controlKeyIsDown:
-				{
-					GenerateAsync(_cButtonGenerate);
-					break;
-				}
-			}
+			)?.Invoke();
 
 			// Make the property value 'false' to allow the handler continuously routes to the inner controls.
 			e.Handled = false;
