@@ -1,10 +1,11 @@
 ﻿#
 #
-# C# and XAML files
+# C# files
 #
 #
 
-[*.{cs,vb}]
+# [*.{cs,vb}]
+[*.cs]
 
 #
 # Core EditorConfig Options
@@ -142,6 +143,9 @@ csharp_style_unused_value_expression_statement_preference = discard_variable:sil
 
 # 'using' directive preferences
 csharp_using_directive_placement = outside_namespace:suggestion
+
+# miscellaneous preferences
+csharp_style_prefer_utf8_string_literals = true:suggestion
 
 
 #
