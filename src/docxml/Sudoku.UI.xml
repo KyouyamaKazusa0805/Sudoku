@@ -1143,15 +1143,14 @@
             Initializes a <see cref="T:Sudoku.UI.Models.VersionTimelineGroupItem"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.VersionTimelineGroupItem.#ctor(System.Collections.Generic.IEnumerable{Sudoku.UI.Models.VersionTimelineItem})">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.VersionTimelineGroupItem"/> instance via the specified items.
-            </summary>
-            <param name="items">The items.</param>
-        </member>
         <member name="P:Sudoku.UI.Models.VersionTimelineGroupItem.Version">
             <summary>
             Indicates the version of the timeline group used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.VersionTimelineGroupItem.Items">
+            <summary>
+            Indicates the items.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Models.VersionTimelineItem">

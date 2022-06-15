@@ -10,15 +10,14 @@ public sealed class DateOnlyExtension : MarkupExtension
 	/// Initializes a <see cref="DateOnlyExtension"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public DateOnlyExtension() : base()
-	{
-	}
+	[SetsRequiredMembers]
+	public DateOnlyExtension() : base() => RawDateText = DateOnly.FromDateTime(DateTime.Now.Date).ToShortDateString();
 
 
 	/// <summary>
 	/// Indicates the raw date text.
 	/// </summary>
-	public string? RawDateText { get; set; }
+	public required string RawDateText { get; set; }
 
 	/// <summary>
 	/// Indicates the format.
@@ -28,10 +27,10 @@ public sealed class DateOnlyExtension : MarkupExtension
 
 	/// <inheritdoc/>
 	protected override object? ProvideValue()
-		=> (RawDateText, Format) switch
+		=> Format switch
 		{
-			(not null, null) when DateOnly.TryParse(RawDateText, out var result) => result,
-			(not null, not null) when DateOnly.TryParseExact(RawDateText, Format, out var result) => result,
-			_ => null,
+			null when DateOnly.TryParse(RawDateText, out var result) => result,
+			not null when DateOnly.TryParseExact(RawDateText, Format, out var result) => result,
+			_ => null
 		};
 }

@@ -3,28 +3,22 @@
 /// <summary>
 /// Defines a version timeline group item.
 /// </summary>
-public sealed class VersionTimelineGroupItem : List<VersionTimelineItem>
+public sealed class VersionTimelineGroupItem
 {
 	/// <summary>
 	/// Initializes a <see cref="VersionTimelineGroupItem"/> instance.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public VersionTimelineGroupItem() : base(Array.Empty<VersionTimelineItem>())
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="VersionTimelineGroupItem"/> instance via the specified items.
-	/// </summary>
-	/// <param name="items">The items.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public VersionTimelineGroupItem(IEnumerable<VersionTimelineItem> items) : base(items)
-	{
-	}
+	[SetsRequiredMembers]
+	public VersionTimelineGroupItem() => Version = null!;
 
 
 	/// <summary>
 	/// Indicates the version of the timeline group used.
 	/// </summary>
-	public string Version { get; set; } = string.Empty;
+	public required string Version { get; set; }
+
+	/// <summary>
+	/// Indicates the items.
+	/// </summary>
+	public IList<VersionTimelineItem> Items { get; set; } = new List<VersionTimelineItem>();
 }
