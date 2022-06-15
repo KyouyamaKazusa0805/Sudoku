@@ -456,7 +456,7 @@
         </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.ModelDataTemplateSelector">
             <summary>
-            Extracts a type that is used by derived types, providing them with a templated way to select data template
+            Extracts a type that is used by derived types, providing them with a template way to select data template
             automatically and binding with a model type.
             </summary>
         </member>
@@ -837,7 +837,7 @@
         </member>
         <member name="P:Sudoku.UI.Models.AnalysisResultRow.DifficultyLevel">
             <summary>
-            Indicates the difficulty level of the techinque belonging to.
+            Indicates the difficulty level of the technique belonging to.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Models.AnalysisResultRow.CreateListFrom(Sudoku.Solving.Manual.ManualSolverResult)">
@@ -855,12 +855,6 @@
             Defines a color option that is binding with a color picker on displaying.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.#ctor(System.String,System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.#ctor(System.String,System.String,System.String)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.GetPreference">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
         </member>
@@ -872,11 +866,10 @@
             Defines a color option that is binding with a font picker on displaying.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.#ctor(System.String,System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.#ctor(System.String,System.String,System.String)">
-            <inheritdoc/>
+        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.FontPickerSettingItem"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.UI.Models.FontPickerSettingItem.FontScalePropertyName">
             <summary>
@@ -900,14 +893,19 @@
             Indicates a getting-started item.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.GettingStartedItem.Title">
+        <member name="M:Sudoku.UI.Models.GettingStartedItem.#ctor">
             <summary>
-            Indicates the title.
+            Initializes a <see cref="T:Sudoku.UI.Models.GettingStartedItem"/> instance.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Models.GettingStartedItem.Content">
             <summary>
             Indicates the content.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.GettingStartedItem.Title">
+            <summary>
+            Indicates the title.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Models.GettingStartedItem.DataTemplate">
@@ -920,7 +918,7 @@
         </member>
         <member name="P:Sudoku.UI.Models.HyperlinkMessage.HyperlinkDescription">
             <summary>
-            Indicates the description text of the hyperlink. The default value is <see cref="F:System.String.Empty"/>.
+            Indicates the description text of the hyperlink.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Models.HyperlinkMessage.Hyperlink">
@@ -937,7 +935,7 @@
         </member>
         <member name="P:Sudoku.UI.Models.InfoBarMessage.Message">
             <summary>
-            Indicates the message to be displayed. The default value is <see cref="F:System.String.Empty"/>.
+            Indicates the message to be displayed.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Models.InfoBarMessage.Severity">
@@ -965,6 +963,11 @@
             Defines a set of properties to describe an image.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Models.RepositoryInfo.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.RepositoryInfo"/> instance.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Models.RepositoryInfo.IsForReference">
             <summary>
             Indicates whether the repository code is for reference.
@@ -979,6 +982,7 @@
             <summary>
             Indicates the initials displaying on the <see cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/> control.
             </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/>
         </member>
         <member name="P:Sudoku.UI.Models.RepositoryInfo.Name">
             <summary>
@@ -1015,33 +1019,15 @@
             Defines a setting group item.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.SettingGroupItem.#ctor(System.String,System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.SettingGroupItem"/> instance via the specified name and the specified description.
-            </summary>
-            <param name="name">The name.</param>
-            <param name="description">The description.</param>
-        </member>
-        <member name="M:Sudoku.UI.Models.SettingGroupItem.#ctor(System.String,System.String,System.Collections.Generic.IList{Sudoku.UI.Models.SettingItem})">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.SettingGroupItem"/> instance via the specified name, the specified description
-            and the sub-setting items.
-            </summary>
-            <param name="name">The name.</param>
-            <param name="description">The description.</param>
-            <param name="settingItem">The setting items.</param>
-        </member>
         <member name="P:Sudoku.UI.Models.SettingGroupItem.Name">
             <summary>
-            Indicates the name of the setting item. The default value is <see cref="F:System.String.Empty"/>.
+            Indicates the name of the setting item.
             </summary>
-            <seealso cref="F:System.String.Empty"/>
         </member>
         <member name="P:Sudoku.UI.Models.SettingGroupItem.Description">
             <summary>
-            Indicates the description of the setting item. The default value is <see cref="F:System.String.Empty"/>.
+            Indicates the description of the setting item.
             </summary>
-            <seealso cref="F:System.String.Empty"/>
         </member>
         <member name="P:Sudoku.UI.Models.SettingGroupItem.SettingItem">
             <summary>
@@ -1053,21 +1039,10 @@
             Defines an instance that defines a setting item.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.SettingItem.#ctor(System.String,System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.SettingItem"/> instance via the properties.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Models.SettingItem.#ctor(System.String,System.String,System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.SettingItem"/> instance via the properties.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Models.SettingItem.Name">
             <summary>
-            Indicates the name of the setting. The default value is <see cref="F:System.String.Empty"/>.
+            Indicates the name of the setting.
             </summary>
-            <seealso cref="F:System.String.Empty"/>
         </member>
         <member name="P:Sudoku.UI.Models.SettingItem.Description">
             <summary>
@@ -1077,9 +1052,8 @@
         </member>
         <member name="P:Sudoku.UI.Models.SettingItem.PreferenceValueName">
             <summary>
-            Indicates the name corresponding to the current name. The default value is <see cref="F:System.String.Empty"/>.
+            Indicates the name corresponding to the current name.
             </summary>
-            <seealso cref="F:System.String.Empty"/>
         </member>
         <member name="M:Sudoku.UI.Models.SettingItem.GetPreference``1">
             <summary>
@@ -1112,25 +1086,6 @@
             Defines a floating-point or integer option that is binding with a slider on displaying.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.SliderSettingItem.#ctor(System.String,System.String,System.Double,System.Double,System.Double,System.Double)">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.#ctor(System.String,System.String)"/>
-            <param name="name"><inheritdoc/></param>
-            <param name="preferenceValueName"><inheritdoc/></param>
-            <param name="stepFrequency">The step frequency.</param>
-            <param name="tickFrequency">The tick frequency.</param>
-            <param name="minValue">The minimum value.</param>
-            <param name="maxValue">The maximum value.</param>
-        </member>
-        <member name="M:Sudoku.UI.Models.SliderSettingItem.#ctor(System.String,System.String,System.String,System.Double,System.Double,System.Double,System.Double)">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.#ctor(System.String,System.String,System.String)"/>
-            <param name="name"><inheritdoc/></param>
-            <param name="description"><inheritdoc/></param>
-            <param name="preferenceValueName"><inheritdoc/></param>
-            <param name="stepFrequency">The step frequency.</param>
-            <param name="tickFrequency">The tick frequency.</param>
-            <param name="minValue">The minimum value.</param>
-            <param name="maxValue">The maximum value.</param>
-        </member>
         <member name="P:Sudoku.UI.Models.SliderSettingItem.StepFrequency">
             <summary>
             Indicates the step frequency.
@@ -1161,12 +1116,6 @@
             <summary>
             Defines a boolean option that is binding with a toggle switch on displaying.
             </summary>
-        </member>
-        <member name="M:Sudoku.UI.Models.ToggleSwitchSettingItem.#ctor(System.String,System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Models.ToggleSwitchSettingItem.#ctor(System.String,System.String,System.String)">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.UI.Models.ToggleSwitchSettingItem.OnContent">
             <summary>
@@ -1208,6 +1157,11 @@
         <member name="T:Sudoku.UI.Models.VersionTimelineItem">
             <summary>
             Defines a version timeline item.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.VersionTimelineItem.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.VersionTimelineItem"/> instance.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Models.VersionTimelineItem.Description">
@@ -1401,7 +1355,7 @@
             and the information.
             </summary>
             <param name="severity">The severity of the info bar.</param>
-            <param name="info">The displaing text of the info bar.</param>
+            <param name="info">The displaying text of the info bar.</param>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.AddMessage(Microsoft.UI.Xaml.Controls.InfoBarSeverity,System.String,System.String,System.String)">
@@ -1410,7 +1364,7 @@
             the information and the hyperlink button.
             </summary>
             <param name="severity">The severity of the info bar.</param>
-            <param name="info">The displaing text of the info bar.</param>
+            <param name="info">The displaying text of the info bar.</param>
             <param name="link">The hyperlink to be appended into.</param>
             <param name="linkDescription">The description of the hyperlink.</param>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
@@ -1873,12 +1827,6 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.SettingsPage"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeSettingGroupItems">
-            <summary>
-            Initializes the field <see cref="F:Sudoku.UI.Views.Pages.SettingsPage._settingGroupItems"/>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.Views.Pages.SettingsPage._settingGroupItems"/>
-        </member>
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.BackupPreferenceFileAsync">
             <summary>
             To backup a preference file.
@@ -2014,7 +1962,7 @@
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.PasteAsync">
             <summary>
-            To paste the text via the clipboard asynchonously.
+            To paste the text via the clipboard asynchronously.
             </summary>
             <returns>The typical awaitable instance that holds the task to paste the sudoku grid text.</returns>
         </member>

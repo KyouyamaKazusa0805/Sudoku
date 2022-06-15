@@ -6,9 +6,16 @@
 public sealed class VersionTimelineItem
 {
 	/// <summary>
+	/// Initializes a <see cref="VersionTimelineItem"/> instance.
+	/// </summary>
+	[SetsRequiredMembers]
+	public VersionTimelineItem() => Description = null!;
+
+
+	/// <summary>
 	/// Indicates the description.
 	/// </summary>
-	public string Description { get; set; } = string.Empty;
+	public required string Description { get; set; }
 
 	/// <summary>
 	/// Indicates the date that the item introduced.

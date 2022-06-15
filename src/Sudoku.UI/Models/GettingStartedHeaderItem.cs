@@ -6,17 +6,24 @@
 public sealed class GettingStartedItem
 {
 	/// <summary>
-	/// Indicates the title.
+	/// Initializes a <see cref="GettingStartedItem"/> instance.
 	/// </summary>
-	public string Title { get; set; } = string.Empty;
+	[SetsRequiredMembers]
+	public GettingStartedItem() => (Content, Title, DataTemplate) = (null!, null!, null!);
+
 
 	/// <summary>
 	/// Indicates the content.
 	/// </summary>
-	public object Content { get; set; } = null!;
+	public required object Content { get; set; }
+
+	/// <summary>
+	/// Indicates the title.
+	/// </summary>
+	public required string Title { get; set; }
 
 	/// <summary>
 	/// Indicates the data template used.
 	/// </summary>
-	public DataTemplate DataTemplate { get; set; } = null!;
+	public required DataTemplate DataTemplate { get; set; }
 }

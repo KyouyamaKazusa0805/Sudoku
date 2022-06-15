@@ -8,12 +8,12 @@
 public abstract class InfoBarMessage
 {
 	/// <summary>
-	/// Indicates the message to be displayed. The default value is <see cref="string.Empty"/>.
+	/// Indicates the message to be displayed.
 	/// </summary>
-	public string Message { get; set; } = "";
+	public required string Message { get; set; }
 
 	/// <summary>
 	/// Indicates the severity of the information.
 	/// </summary>
-	public InfoBarSeverity Severity { get; set; }
+	public required InfoBarSeverity Severity { get; set; }
 }

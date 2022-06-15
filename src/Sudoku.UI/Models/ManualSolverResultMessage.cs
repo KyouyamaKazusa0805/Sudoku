@@ -10,5 +10,5 @@ public sealed class ManualSolverResultMessage : InfoBarMessage
 	/// <summary>
 	/// Indicates the analysis result.
 	/// </summary>
-	public ManualSolverResult AnalysisResult { get; set; } = null!;
+	public required ManualSolverResult AnalysisResult { get; set; }
 }

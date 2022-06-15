@@ -6,6 +6,13 @@
 public sealed class FontPickerSettingItem : SettingItem
 {
 	/// <summary>
+	/// Initializes a <see cref="FontPickerSettingItem"/> instance.
+	/// </summary>
+	[SetsRequiredMembers]
+	public FontPickerSettingItem() => FontScalePropertyName = null!;
+
+
+	/// <summary>
 	/// Indicates the font name property name.
 	/// </summary>
 	public required string FontScalePropertyName { get; set; }

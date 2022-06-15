@@ -6,6 +6,13 @@
 public sealed class RepositoryInfo
 {
 	/// <summary>
+	/// Initializes a <see cref="RepositoryInfo"/> instance.
+	/// </summary>
+	[SetsRequiredMembers]
+	public RepositoryInfo() => (OpenSourceLicense, Initials, Name, IconPath, Site) = (null!, null!, null!, null!, null!);
+
+
+	/// <summary>
 	/// Indicates whether the repository code is for reference.
 	/// </summary>
 	public bool IsForReference { get; set; }
@@ -13,25 +20,26 @@ public sealed class RepositoryInfo
 	/// <summary>
 	/// Indicates the open-source license being used for this repository.
 	/// </summary>
-	public string? OpenSourceLicense { get; set; }
+	public required string OpenSourceLicense { get; set; }
 
 	/// <summary>
 	/// Indicates the initials displaying on the <see cref="PersonPicture"/> control.
 	/// </summary>
-	public string? Initials { get; set; }
+	/// <seealso cref="PersonPicture"/>
+	public required string Initials { get; set; }
 
 	/// <summary>
 	/// Indicates the name of the image.
 	/// </summary>
-	public string? Name { get; set; }
+	public required string Name { get; set; }
 
 	/// <summary>
 	/// Indicates the path of the image to show. The field can be <see langword="null"/>.
 	/// </summary>
-	public string? IconPath { get; set; }
+	public required string IconPath { get; set; }
 
 	/// <summary>
 	/// Indicates the website which name is corresponding to.
 	/// </summary>
-	public Uri? Site { get; set; }
+	public required Uri Site { get; set; }
 }
