@@ -5,20 +5,6 @@
 /// </summary>
 public sealed class ToggleSwitchSettingItem : SettingItem
 {
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ToggleSwitchSettingItem(string name, string preferenceValueName) : base(name, preferenceValueName)
-	{
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ToggleSwitchSettingItem(string name, string description, string preferenceValueName) :
-		base(name, description, preferenceValueName)
-	{
-	}
-
-
 	/// <summary>
 	/// Indicates the on content displayed.
 	/// </summary>

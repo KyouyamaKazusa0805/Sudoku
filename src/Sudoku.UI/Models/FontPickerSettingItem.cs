@@ -5,24 +5,10 @@
 /// </summary>
 public sealed class FontPickerSettingItem : SettingItem
 {
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public FontPickerSettingItem(string name, string preferenceValueName) : base(name, preferenceValueName)
-	{
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public FontPickerSettingItem(string name, string description, string preferenceValueName) :
-		base(name, description, preferenceValueName)
-	{
-	}
-
-
 	/// <summary>
 	/// Indicates the font name property name.
 	/// </summary>
-	public string FontScalePropertyName { get; set; } = null!;
+	public required string FontScalePropertyName { get; set; }
 
 
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>

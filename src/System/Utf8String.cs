@@ -434,4 +434,12 @@ public readonly struct Utf8String :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Utf8String(byte[] underlyingArray)
 		=> (Utf8String)Encoding.UTF8.GetString(underlyingArray);
+
+	/// <summary>
+	/// Implicitly cast from <see cref="ReadOnlySpan{T}"/> of <see cref="byte"/> to <see cref="Utf8String"/>.
+	/// </summary>
+	/// <param name="underlyingArray">The underlying array.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static implicit operator Utf8String(ReadOnlySpan<byte> underlyingArray)
+		=> (Utf8String)Encoding.UTF8.GetString(underlyingArray);
 }

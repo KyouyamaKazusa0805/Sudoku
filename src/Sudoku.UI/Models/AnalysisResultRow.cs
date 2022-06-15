@@ -10,27 +10,27 @@ public sealed class AnalysisResultRow
 	/// <summary>
 	/// Indicates the total difficulty of all steps.
 	/// </summary>
-	public decimal TotalDifficulty { get; set; }
+	public required decimal TotalDifficulty { get; set; }
 
 	/// <summary>
 	/// Indicates the maximum difficulty in the steps.
 	/// </summary>
-	public decimal MaximumDifficulty { get; set; }
+	public required decimal MaximumDifficulty { get; set; }
 
 	/// <summary>
 	/// Indicates the number of steps that uses logic of the current technique.
 	/// </summary>
-	public int CountOfSteps { get; set; }
+	public required int CountOfSteps { get; set; }
 
 	/// <summary>
 	/// Indicates the technique name.
 	/// </summary>
-	public string TechniqueName { get; set; } = null!;
+	public required string TechniqueName { get; set; }
 
 	/// <summary>
 	/// Indicates the difficulty level of the technique belonging to.
 	/// </summary>
-	public DifficultyLevel DifficultyLevel { get; set; }
+	public required DifficultyLevel DifficultyLevel { get; set; }
 
 
 	/// <summary>

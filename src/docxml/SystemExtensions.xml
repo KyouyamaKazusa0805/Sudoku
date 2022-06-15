@@ -4550,5 +4550,11 @@
             </summary>
             <param name="underlyingArray">The underlying array.</param>
         </member>
+        <member name="M:System.Utf8String.op_Implicit(System.ReadOnlySpan{System.Byte})~System.Utf8String">
+            <summary>
+            Implicitly cast from <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Byte"/> to <see cref="T:System.Utf8String"/>.
+            </summary>
+            <param name="underlyingArray">The underlying array.</param>
+        </member>
     </members>
 </doc>
