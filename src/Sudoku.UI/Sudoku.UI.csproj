@@ -107,9 +107,6 @@
 		<Page Update="Views\Pages\SudokuPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Pages\DocumentationPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\Controls\SudokuPane.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

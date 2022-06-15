@@ -5,10 +5,8 @@
 
 	<!--页面数据-->
 	<x:String x:Key="MainPage_PlayingAndAnalyzing">题目分析</x:String>
-	<x:String x:Key="MainPage_DocumentsAndReferences">文档参考</x:String>
 	<x:String x:Key="MainPage_Sudoku">数独</x:String>
 	<x:String x:Key="MainPage_Settings">设置</x:String>
-	<x:String x:Key="MainPage_Documentation">文档</x:String>
 	<x:String x:Key="MainPage_About">关于</x:String>
 	<x:String x:Key="MainPage_Home">起始页</x:String>
 	<x:String x:Key="MainPage_Search">搜索</x:String>

@@ -6,10 +6,8 @@
 
 	<!--Page inner data-->
 	<x:String x:Key="MainPage_PlayingAndAnalyzing">Playing &amp; Analyzing</x:String>
-	<x:String x:Key="MainPage_DocumentsAndReferences">Documents &amp; References</x:String>
 	<x:String x:Key="MainPage_Sudoku">Sudoku</x:String>
 	<x:String x:Key="MainPage_Settings">Settings</x:String>
-	<x:String x:Key="MainPage_Documentation">Documentation</x:String>
 	<x:String x:Key="MainPage_About">About</x:String>
 	<x:String x:Key="MainPage_Home">Home</x:String>
 	<x:String x:Key="MainPage_Search">Search</x:String>
