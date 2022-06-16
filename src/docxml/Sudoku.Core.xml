@@ -6720,14 +6720,6 @@
         <member name="M:Sudoku.Presentation.Identifier.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.Identifier.GetColor``1(System.Converter{Sudoku.Presentation.Identifier,``0})">
-            <summary>
-            Try to cast the current identifier instance into the result color value.
-            </summary>
-            <typeparam name="TColor">The type of the color.</typeparam>
-            <param name="converter">The converter method.</param>
-            <returns>The result color.</returns>
-        </member>
         <member name="M:Sudoku.Presentation.Identifier.FromId(System.Int32)">
             <summary>
             Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the specified ID value.

@@ -134,15 +134,6 @@ public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<I
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => $$"""{{nameof(Identifier)}} { {{RawValueDisplayer}} }""";
 
-	/// <summary>
-	/// Try to cast the current identifier instance into the result color value.
-	/// </summary>
-	/// <typeparam name="TColor">The type of the color.</typeparam>
-	/// <param name="converter">The converter method.</param>
-	/// <returns>The result color.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public TColor GetColor<TColor>(Converter<Identifier, TColor> converter) => converter(this);
-
 
 	/// <summary>
 	/// Creates an <see cref="Identifier"/> instance via the specified ID value.
