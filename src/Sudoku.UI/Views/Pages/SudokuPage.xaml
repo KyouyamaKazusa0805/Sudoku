@@ -149,16 +149,6 @@
 
 					<!--Third tab-->
 					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Displaying}">
-						<AppBarButton Label="{StaticResource SudokuPage_Mask}" Icon="HideBcc">
-							<AppBarButton.Command>
-								<XamlUICommand ExecuteRequested="ComamndMask_ExecuteRequested" />
-							</AppBarButton.Command>
-						</AppBarButton>
-						<AppBarButton Label="{StaticResource SudokuPage_Unmask}" Icon="ShowBcc">
-							<AppBarButton.Command>
-								<XamlUICommand ExecuteRequested="ComamndUnmask_ExecuteRequested" />
-							</AppBarButton.Command>
-						</AppBarButton>
 						<AppBarButton Label="{StaticResource SudokuPage_ShowCandidates}" Icon="ShowBcc">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandShowCandidates_ExecuteRequested" />
@@ -167,6 +157,16 @@
 						<AppBarButton Label="{StaticResource SudokuPage_HideCandidates}" Icon="HideBcc">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandHideCandidates_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton Label="{StaticResource SudokuPage_Mask}" Icon="HideBcc">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="ComamndMask_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton Label="{StaticResource SudokuPage_Unmask}" Icon="ShowBcc">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="ComamndUnmask_ExecuteRequested" />
 							</AppBarButton.Command>
 						</AppBarButton>
 					</xc:TabbedCommandBarItem>
