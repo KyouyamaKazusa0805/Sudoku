@@ -37,7 +37,7 @@ var grid = Grid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24
 // Declare a manual solver that uses techniques used by humans to solve a puzzle.
 var solver = new ManualSolver();
 
-// To solve a puzzle synchonously.
+// To solve a puzzle synchronously.
 var analysisResult = solver.Solve(grid);
 
 // You can also convert the type to 'ManualSolverResult'
@@ -52,7 +52,7 @@ Console.WriteLine(analysisResult.ToDisplayString());
 //Console.WriteLine(analysisResultConverted.ToString()); // Same.
 ```
 
-In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
+In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10 app project, android app project, bot on common on-line platforms (QQ, Bilibili and so on).
 
 Please note that the programming language version is always used as 'preview', which means some preview features are still used in this solution.
 
@@ -80,6 +80,10 @@ Of course you can fork my repo and do whatever you want. You can do whatever you
 
 In addition, this repo may update **frequently** (At least 1 commit in a day).
 
+## Planning
+
+Please visit [this link](https://github.com/users/SunnieShine/projects/2) for more information.
+
 ## Open source license
 
 ### Codes
@@ -92,35 +96,9 @@ However, one project is an exception. `Sudoku.Recognition` copies the code from 
 
 The repository also lists many wiki pages, which are stored in the folder `docs`. In addition, files `README.md` and `README-zh-cn.md` (as Chinese translation version) are also included as wiki pages. Those pages uses CC-BY-4.0 license to constraint your usage and copyright statements on this repository. You should mention the copyright of the author in this repository and give the state changes after modified the content in the copied one if you want to use the Wiki pages.
 
-## To-do List
-
-* [x] API Implementation
-  * [x] Data structures
-  * [x] Generator (To generate sudokus)
-  * [x] Solvers
-    * [x] Human solving techniques
-    * [x] Brute forces
-* [ ] Wiki Documentation
-  * [ ] Basic docs
-  * [ ] Sudoku tutorial
-* Solutions
-  * [x] Console
-  * [ ] User Interfaces
-    * [ ] **Windows UI (I'm working on this)**
-    * [ ] MAUI
-  * [ ] Platform Bots
-    * [ ] Bilibili
-    * [x] QQ
-    * [ ] WeChat
-* Miscellaneous
-  * [ ] ~~Nuget packages~~ (Don't consider due to large modifications on APIs)
-  * [ ] ~~Code analysis plug-ins~~ (Don't consider for same reason mentioned above)
-
-> Some items aren't displayed because they are deprecated. In fact, the current repository did implement those like WPF. But now .NET has been updating very frequently, so I won't consider to maintain older frameworks of this repository, large complexity.
-
 ## Sudoku Technique References
 
-Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links to learn about more information. In Chinese.
+Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links[^2] to learn about more information.
 
 * [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
 * [标准数独技巧教程（专栏）_bilibili](https://www.bilibili.com/read/readlist/rl291187)
@@ -130,4 +108,6 @@ Here we list some websites about sudoku techniques that I used and referenced. T
 Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University. I mean, a normal university (Pun)
 
 [^1]: The old name of the repository is "Sunnie's Sudoku Solution".
+
+[^2]: I'm sorry that those pages are written in Chinese. However, I may create pages written in other languages in the future.
 
