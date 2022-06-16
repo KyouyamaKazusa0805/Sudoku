@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using Cae = System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
+
+namespace System;
 
 /// <summary>
 /// Represents a type that holds argument checking operations.
@@ -18,7 +20,7 @@ public static class Argument
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void ThrowIfNotEqual<TEquatable>(
-		TEquatable instance, TEquatable value, [CallerArgumentExpression("instance")] string? argName = null)
+		TEquatable instance, TEquatable value, [Cae(nameof(instance))] string? argName = null)
 		where TEquatable : notnull, IEquatable<TEquatable>
 	{
 		if (!instance.Equals(value))
@@ -39,8 +41,7 @@ public static class Argument
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void ThrowIfFalse(
-		bool condition, string? message = null,
-		[CallerArgumentExpression("condition")] string? conditionStr = null)
+		bool condition, string? message = null, [Cae(nameof(condition))] string? conditionStr = null)
 	{
 		if (!condition)
 		{
@@ -60,8 +61,7 @@ public static class Argument
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void ThrowIfInvalid(
-		bool condition, string? message = null,
-		[CallerArgumentExpression("condition")] string? conditionStr = null)
+		bool condition, string? message = null, [Cae(nameof(condition))] string? conditionStr = null)
 	{
 		if (!condition)
 		{
@@ -80,7 +80,7 @@ public static class Argument
 	/// Throws when the <paramref name="argName"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void ThrowIfNull(void* pointer, [CallerArgumentExpression("pointer")] string? argName = null)
+	public static unsafe void ThrowIfNull(void* pointer, [Cae(nameof(pointer))] string? argName = null)
 	{
 		if (pointer == null)
 		{
@@ -97,7 +97,7 @@ public static class Argument
 	/// <param name="argName">The argument name.</param>
 	/// <exception cref="ArgumentNullException"></exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNullRef<TStruct>(in TStruct @ref, [CallerArgumentExpression("ref")] string? argName = null)
+	public static void ThrowIfNullRef<TStruct>(in TStruct @ref, [Cae(nameof(@ref))] string? argName = null)
 		where TStruct : struct
 	{
 		if (Unsafe.IsNullRef(ref Unsafe.AsRef(@ref)))

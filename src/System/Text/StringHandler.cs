@@ -2,6 +2,8 @@
 #define DISCARD_INTERPOLATION_INFO
 #define USE_NEWER_CONSTANT_VALUES
 
+using Isha = System.Runtime.CompilerServices.InterpolatedStringHandlerArgumentAttribute;
+
 namespace System.Text;
 
 /// <summary>
@@ -475,7 +477,7 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc cref="AppendFormatted(in StringHandler)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append([InterpolatedStringHandlerArgument] in StringHandler handler) => AppendFormatted(handler);
+	public void Append([Isha] in StringHandler handler) => AppendFormatted(handler);
 
 	/// <summary>
 	/// Writes the specified interpolated string with the specified format provider into the handler.
@@ -485,7 +487,7 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append(
 		IFormatProvider? provider,
-		[InterpolatedStringHandlerArgument("provider")] ref DefaultInterpolatedStringHandler handler
+		[Isha(nameof(provider))] ref DefaultInterpolatedStringHandler handler
 	) => AppendFormatted(string.Create(provider, ref handler));
 
 	/// <summary>
@@ -498,7 +500,7 @@ public unsafe ref partial struct StringHandler
 	public void Append(
 		IFormatProvider? provider,
 		Span<char> initialBuffer,
-		[InterpolatedStringHandlerArgument("provider", "initialBuffer")] ref DefaultInterpolatedStringHandler handler
+		[Isha(nameof(provider), nameof(initialBuffer))] ref DefaultInterpolatedStringHandler handler
 	) => AppendFormatted(string.Create(provider, initialBuffer, ref handler));
 
 	/// <inheritdoc cref="AppendFormatted{T}(T)"/>
