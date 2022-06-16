@@ -60,9 +60,9 @@ public sealed class LockedCandidatesNodeJsonConverter : JsonConverter<LockedCand
 	public override void Write(Utf8JsonWriter writer, LockedCandidatesNode value, JsonSerializerOptions options)
 	{
 		writer.WriteStartObject();
-		writer.WritePropertyName(nameof(LockedCandidatesNode.Cells));
+		writer.WritePropertyName(nameof(value.Cells));
 		writer.WriteNestedObject(value.Cells, options);
-		writer.WriteNumber(nameof(LockedCandidatesNode.Digit), value.Digit + 1);
+		writer.WriteNumber(nameof(value.Digit), value.Digit + 1);
 		writer.WriteEndObject();
 	}
 }

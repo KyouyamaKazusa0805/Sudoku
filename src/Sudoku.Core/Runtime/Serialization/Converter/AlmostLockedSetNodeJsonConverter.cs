@@ -76,11 +76,11 @@ public sealed class AlmostLockedSetNodeJsonConverter : JsonConverter<AlmostLocke
 	public override void Write(Utf8JsonWriter writer, AlmostLockedSetNode value, JsonSerializerOptions options)
 	{
 		writer.WriteStartObject();
-		writer.WritePropertyName(nameof(AlmostLockedSetNode.FullCells));
+		writer.WritePropertyName(nameof(value.FullCells));
 		writer.WriteNestedObject(value.FullCells, options);
-		writer.WritePropertyName(nameof(AlmostLockedSetNode.Cells));
+		writer.WritePropertyName(nameof(value.Cells));
 		writer.WriteNestedObject(value.Cells, options);
-		writer.WriteNumber(nameof(AlmostLockedSetNode.Digit), value.Digit + 1);
+		writer.WriteNumber(nameof(value.Digit), value.Digit + 1);
 		writer.WriteEndObject();
 	}
 }

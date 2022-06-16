@@ -64,8 +64,8 @@ public sealed class SoleCandidateNodeJsonConverter : JsonConverter<SoleCandidate
 	public override void Write(Utf8JsonWriter writer, SoleCandidateNode value, JsonSerializerOptions options)
 	{
 		writer.WriteStartObject();
-		writer.WriteString(nameof(SoleCandidateNode.Cell), RxCyNotation.ToCellString(value.Cell));
-		writer.WriteNumber(nameof(SoleCandidateNode.Digit), value.Digit + 1);
+		writer.WriteString(nameof(value.Cell), RxCyNotation.ToCellString(value.Cell));
+		writer.WriteNumber(nameof(value.Digit), value.Digit + 1);
 		writer.WriteEndObject();
 	}
 }

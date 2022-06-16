@@ -20,6 +20,12 @@
 /// <seealso cref="Identifier"/>
 public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 {
+	/// <summary>
+	/// Indicates the property name <c>"Value"</c>.
+	/// </summary>
+	private const string ValuePropertyName = "Value";
+
+
 	/// <inheritdoc/>
 	public override Identifier Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
@@ -35,7 +41,8 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 			throw new JsonException();
 		}
 
-		if (!reader.Read() || reader.TokenType != JsonTokenType.PropertyName || reader.GetString() != "Value")
+		if (!reader.Read() || reader.TokenType != JsonTokenType.PropertyName
+			|| reader.GetString() != ValuePropertyName)
 		{
 			throw new JsonException();
 		}
@@ -110,27 +117,27 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 	public override void Write(Utf8JsonWriter writer, Identifier value, JsonSerializerOptions options)
 	{
 		writer.WriteStartObject();
-		writer.WriteString(nameof(Identifier.Mode), value.Mode.ToString());
-		writer.WritePropertyName("Value");
+		writer.WriteString(nameof(value.Mode), value.Mode.ToString());
+		writer.WritePropertyName(ValuePropertyName);
 		writer.WriteStartObject();
 		switch (value.Mode)
 		{
 			case IdentifierColorMode.Id:
 			{
-				writer.WriteNumber(nameof(Identifier.Id), value.Id);
+				writer.WriteNumber(nameof(value.Id), value.Id);
 				break;
 			}
 			case IdentifierColorMode.Raw:
 			{
-				writer.WriteNumber(nameof(Identifier.A), value.A);
-				writer.WriteNumber(nameof(Identifier.R), value.R);
-				writer.WriteNumber(nameof(Identifier.G), value.G);
-				writer.WriteNumber(nameof(Identifier.B), value.B);
+				writer.WriteNumber(nameof(value.A), value.A);
+				writer.WriteNumber(nameof(value.R), value.R);
+				writer.WriteNumber(nameof(value.G), value.G);
+				writer.WriteNumber(nameof(value.B), value.B);
 				break;
 			}
 			case IdentifierColorMode.Named:
 			{
-				writer.WriteString(nameof(Identifier.NamedKind), value.NamedKind.ToString());
+				writer.WriteString(nameof(value.NamedKind), value.NamedKind.ToString());
 				break;
 			}
 		}

@@ -60,8 +60,8 @@ public sealed class LockedTargetJsonConverter : JsonConverter<LockedTarget>
 	public override void Write(Utf8JsonWriter writer, LockedTarget value, JsonSerializerOptions options)
 	{
 		writer.WriteStartObject();
-		writer.WriteNumber(nameof(LockedTarget.Digit), value.Digit);
-		writer.WritePropertyName(nameof(LockedTarget.Cells));
+		writer.WriteNumber(nameof(value.Digit), value.Digit);
+		writer.WritePropertyName(nameof(value.Cells));
 		writer.WriteNestedObject(value.Cells, options);
 		writer.WriteEndObject();
 	}

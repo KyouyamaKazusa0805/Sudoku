@@ -12043,6 +12043,11 @@
             </remarks>
             <seealso cref="T:Sudoku.Presentation.Identifier"/>
         </member>
+        <member name="F:Sudoku.Runtime.Serialization.Converter.IdentifierJsonConverter.ValuePropertyName">
+            <summary>
+            Indicates the property name <c>"Value"</c>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Runtime.Serialization.Converter.IdentifierJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
