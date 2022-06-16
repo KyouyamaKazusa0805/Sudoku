@@ -6285,6 +6285,99 @@
             <param name="unit">The unit.</param>
             <returns>The value of the specified size unit.</returns>
         </member>
+        <member name="T:Sudoku.Generating.ExercisePuzzlers.ExerciseFactory">
+            <summary>
+            Defines a type that creates exercises.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.ExerciseFactory.FullHouse">
+            <summary>
+            Creates a full house puzzle.
+            </summary>
+            <returns>The puzzle.</returns>
+        </member>
+        <member name="T:Sudoku.Generating.ExercisePuzzlers.FullHouseExerciseGenerator">
+            <summary>
+            Defines a full-house technique exercise generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.FullHouseExerciseGenerator.Generate">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk">
+            <summary>
+            Defines a chunk that stores the cells in a house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk._mask">
+            <summary>
+            Indicates the mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.#ctor(System.Int32,System.Int32*)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk"/> instance via the chunk of 9 values. 0 is for empty cell.
+            </summary>
+            <param name="house">Indicates the house used.</param>
+            <param name="chunkValues">A chunk of values. This argument must hold 9 elements.</param>
+        </member>
+        <member name="P:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.House">
+            <summary>
+            Indicates the house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.ResultCandidate">
+            <summary>
+            Indicates the result candidate.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Equals(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.CompareTo(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.CompareTo(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_Equality(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_Inequality(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_GreaterThan(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_GreaterThanOrEqual(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_LessThan(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_LessThanOrEqual(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.ExercisePuzzlers.IExerciseGenerator">
+            <summary>
+            Defines an exercise generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.IExerciseGenerator.Generate">
+            <summary>
+            Try to generate a puzzle.
+            </summary>
+            <returns>The result grid.</returns>
+        </member>
         <member name="T:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator">
             <summary>
             Defines a puzzle generator that makes the given pattern as a hard one.
