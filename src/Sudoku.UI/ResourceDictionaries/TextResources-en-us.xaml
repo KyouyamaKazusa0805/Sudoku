@@ -36,6 +36,8 @@
 	<x:String x:Key="SudokuPage_Sure">Sure!</x:String>
 	<x:String x:Key="SudokuPage_Mask">Mask</x:String>
 	<x:String x:Key="SudokuPage_Unmask">Unmask</x:String>
+	<x:String x:Key="SudokuPage_ShowCandidates">Show candidates</x:String>
+	<x:String x:Key="SudokuPage_HideCandidates">Hide candidates</x:String>
 	<x:String x:Key="SudokuPage_Print">Print</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">Editing</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">Solving &amp; Analysis</x:String>

@@ -28,6 +28,11 @@ internal sealed class CandidateDigit : DrawingElement
 	private bool _isMaskMode;
 
 	/// <summary>
+	/// Indicates whether the user controls on showing candidates.
+	/// </summary>
+	private bool _showsCandidates;
+
+	/// <summary>
 	/// Indicates the candidate mask.
 	/// </summary>
 	private short _candidateMask;
@@ -76,7 +81,14 @@ internal sealed class CandidateDigit : DrawingElement
 		Argument.ThrowIfFalse(candidateMask is >= 0 and <= 511);
 		Argument.ThrowIfFalse(wrongDigitMask is >= 0 and <= 511);
 
-		(_isMaskMode, _candidateMask, _wrongDigitMask, _preference) = (maskMode, candidateMask, wrongDigitMask, preference);
+		(_isMaskMode, _candidateMask, _wrongDigitMask, _preference, _showsCandidates) = (
+			maskMode,
+			candidateMask,
+			wrongDigitMask,
+			preference,
+			preference.ShowCandidates
+		);
+
 		var grid = new GridLayout { Visibility = preference.ShowCandidates ? Visibility.Visible : Visibility.Collapsed };
 		grid.RowDefinitions.Add(new());
 		grid.RowDefinitions.Add(new());
@@ -136,6 +148,27 @@ internal sealed class CandidateDigit : DrawingElement
 	}
 
 	/// <summary>
+	/// Gets or sets the value indicating whether user controls on displaying candidates.
+	/// </summary>
+	public bool UserShowCandidates
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _showsCandidates;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			if (_showsCandidates == value)
+			{
+				return;
+			}
+
+			_showsCandidates = value;
+			_grid.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+		}
+	}
+
+	/// <summary>
 	/// Gets or sets the value indicating whether the current mode is mask mode.
 	/// </summary>
 	public bool IsMaskMode
@@ -157,7 +190,7 @@ internal sealed class CandidateDigit : DrawingElement
 			}
 
 			_isMaskMode = value;
-			_grid.Visibility = value ? Visibility.Collapsed : Visibility.Visible;
+			_grid.Visibility = value || !_showsCandidates ? Visibility.Collapsed : Visibility.Visible;
 		}
 	}
 

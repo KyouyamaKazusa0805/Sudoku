@@ -443,6 +443,16 @@ public sealed partial class SudokuPage : Page
 	private void Unmask() => _cPane.Unmask();
 
 	/// <summary>
+	/// To show the candidates.
+	/// </summary>
+	private void ShowCandidates() => _cPane.ShowCandidates();
+
+	/// <summary>
+	/// To hide the candidates.
+	/// </summary>
+	private void HideCandidates() => _cPane.HideCandidates();
+
+	/// <summary>
 	/// To print the grid.
 	/// </summary>
 	private async Task PrintAsync()
@@ -623,12 +633,24 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the event trigger callback method that mask the grid.
 	/// </summary>
-	private void ComamndMask_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args) => Mask();
+	private void ComamndMask_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args) => Mask();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that unmask the grid.
 	/// </summary>
-	private void ComamndUnmask_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args) => Unmask();
+	private void ComamndUnmask_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args) => Unmask();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that shows the candidates temporarily.
+	/// </summary>
+	private void CommandShowCandidates_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> ShowCandidates();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that hides the candidates permanently.
+	/// </summary>
+	private void CommandHideCandidates_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> HideCandidates();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that print the puzzle.

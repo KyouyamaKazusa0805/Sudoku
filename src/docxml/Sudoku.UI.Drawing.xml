@@ -503,6 +503,11 @@
             Indicates whether the current mode is mask mode.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._showsCandidates">
+            <summary>
+            Indicates whether the user controls on showing candidates.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._candidateMask">
             <summary>
             Indicates the candidate mask.
@@ -545,6 +550,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.ShowCandidates">
             <summary>
             Gets or sets the value indicating whether the candidate block shows digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.UserShowCandidates">
+            <summary>
+            Gets or sets the value indicating whether user controls on displaying candidates.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.IsMaskMode">
@@ -1978,6 +1988,11 @@
             Indicates whether the current mode is mask mode.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._showsCandidates">
+            <summary>
+            Indicates whether the current grid pane shows candidates regardless of the value in the preference file.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._paneSize">
             <summary>
             Indicates the pane size.
@@ -2023,8 +2038,24 @@
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ShowCandidates">
             <summary>
-            Indicates whether the grid displays for candidates.
+            <para>Indicates whether the grid displays for candidates.</para>
+            <para>
+            This property will also change the value in the user preference. If you want to temporarily change
+            the value, use <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.UserShowCandidates"/> instead.
+            </para>
             </summary>
+            <seealso cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.UserShowCandidates"/>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.UserShowCandidates">
+            <summary>
+            <para>Indicates whether the grid displays for candidates.</para>
+            <para>
+            This property will temporarily change the state of the displaying candidates. The property doesn't
+            modify the user preference. If you want to modify the user preference value, use <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ShowCandidates"/>
+            instead.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ShowCandidates"/>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.IsMaskMode">
             <summary>

@@ -236,6 +236,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
+	/// <summary>
+	/// Shows the candidates.
+	/// </summary>
+	public void ShowCandidates() => GetSudokuGridViewModel().UserShowCandidates = true;
+
+	/// <summary>
+	/// Hides the candidates.
+	/// </summary>
+	public void HideCandidates() => GetSudokuGridViewModel().UserShowCandidates = false;
+
 	/// <inheritdoc/>
 	protected override void OnPointerMoved(PointerRoutedEventArgs e)
 	{

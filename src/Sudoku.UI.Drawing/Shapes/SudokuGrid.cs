@@ -46,6 +46,11 @@ public sealed class SudokuGrid : DrawingElement
 	private bool _isMaskMode;
 
 	/// <summary>
+	/// Indicates whether the current grid pane shows candidates regardless of the value in the preference file.
+	/// </summary>
+	private bool _showsCandidates;
+
+	/// <summary>
 	/// Indicates the pane size.
 	/// </summary>
 	private double _paneSize;
@@ -96,13 +101,14 @@ public sealed class SudokuGrid : DrawingElement
 		in Grid grid, IDrawingPreference preference, double paneSize, double outsideOffset,
 		Action? elementUpdatedCallback)
 	{
-		(_preference, _grid, _paneSize, _outsideOffset, _gridLayout, _undoRedoStepsUpdatedCallback) = (
+		(_preference, _grid, _paneSize, _outsideOffset, _gridLayout, _undoRedoStepsUpdatedCallback, _showsCandidates) = (
 			preference,
 			grid,
 			paneSize,
 			outsideOffset,
 			initializeGridLayout(paneSize, outsideOffset),
-			elementUpdatedCallback
+			elementUpdatedCallback,
+			preference.ShowCandidates
 		);
 
 		// Initializes values.
@@ -159,8 +165,13 @@ public sealed class SudokuGrid : DrawingElement
 
 
 	/// <summary>
-	/// Indicates whether the grid displays for candidates.
+	/// <para>Indicates whether the grid displays for candidates.</para>
+	/// <para>
+	/// This property will also change the value in the user preference. If you want to temporarily change
+	/// the value, use <see cref="UserShowCandidates"/> instead.
+	/// </para>
 	/// </summary>
+	/// <seealso cref="UserShowCandidates"/>
 	public bool ShowCandidates
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -176,6 +187,33 @@ public sealed class SudokuGrid : DrawingElement
 
 			_preference.ShowCandidates = value;
 			Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.ShowCandidates = value);
+		}
+	}
+
+	/// <summary>
+	/// <para>Indicates whether the grid displays for candidates.</para>
+	/// <para>
+	/// This property will temporarily change the state of the displaying candidates. The property doesn't
+	/// modify the user preference. If you want to modify the user preference value, use <see cref="ShowCandidates"/>
+	/// instead.
+	/// </para>
+	/// </summary>
+	/// <seealso cref="ShowCandidates"/>
+	public bool UserShowCandidates
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _showsCandidates;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			if (_showsCandidates == value || _isMaskMode)
+			{
+				return;
+			}
+
+			_showsCandidates = value;
+			Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.UserShowCandidates = value);
 		}
 	}
 

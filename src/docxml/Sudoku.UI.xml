@@ -1552,6 +1552,16 @@
             Unmask all value cells.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ShowCandidates">
+            <summary>
+            Shows the candidates.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.HideCandidates">
+            <summary>
+            Hides the candidates.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnPointerMoved(Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
             <inheritdoc/>
         </member>
@@ -1921,6 +1931,16 @@
             To unmask the grid. All given and modifiable values will be hidden and displayed as a real digit.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ShowCandidates">
+            <summary>
+            To show the candidates.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.HideCandidates">
+            <summary>
+            To hide the candidates.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.PrintAsync">
             <summary>
             To print the grid.
@@ -2024,14 +2044,24 @@
             Indicates the event trigger callback method that analyzes the puzzle.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ComamndMask_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ComamndMask_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
             <summary>
             Indicates the event trigger callback method that mask the grid.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ComamndUnmask_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ComamndUnmask_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
             <summary>
             Indicates the event trigger callback method that unmask the grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandShowCandidates_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that shows the candidates temporarily.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandHideCandidates_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that hides the candidates permanently.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ComamndPrint_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
