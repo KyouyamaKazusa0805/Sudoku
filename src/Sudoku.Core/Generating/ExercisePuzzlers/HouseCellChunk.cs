@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a chunk that stores the cells in a house.
 /// </summary>
-public readonly unsafe struct HouseCellChunk :
+[AutoDeconstruction(nameof(Cells), nameof(Digits))]
+public readonly unsafe partial struct HouseCellChunk :
 	IComparable<HouseCellChunk>,
 	IComparisonOperators<HouseCellChunk, HouseCellChunk>,
 	IEquatable<HouseCellChunk>,
@@ -44,33 +45,64 @@ public readonly unsafe struct HouseCellChunk :
 	{
 		get
 		{
-			bool* status = stackalloc bool[9];
-			Unsafe.InitBlock(status, 0, sizeof(bool) * 9);
-
-			int resultCell = 0;
-			for (byte i = 0; i < 9; i++)
+			var (cells, digits) = this;
+			for (int i = 0; i < 9; i++)
 			{
-				if ((byte)(_mask >> (i << 2) & 15) is var mask and not 0xF)
+				if ((cells[i], digits[i]) is (var cell, 0xF))
 				{
-					status[mask] = true;
-				}
-				else
-				{
-					resultCell = i;
+					short mask = 511;
+					for (int j = 0; j < 9; j++)
+					{
+						if (digits[j] != 0xF)
+						{
+							mask |= (short)(1 << digits[j]);
+						}
+					}
+
+					return cell * 9 + TrailingZeroCount(mask);
 				}
 			}
 
-			int resultDigit = -1;
-			for (byte i = 0; i < 9; i++)
+			return -1;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the cells used in this structure.
+	/// </summary>
+	public Cells Cells
+	{
+		get
+		{
+			int[] digits = Digits;
+			int[] houseCells = HouseCells[House];
+			var result = Cells.Empty;
+			for (int i = 0; i < 9; i++)
 			{
-				if (!status[i])
+				if (digits[i] == 0xF)
 				{
-					resultDigit = i;
-					break;
+					result.Add(houseCells[i]);
 				}
 			}
 
-			return HouseCells[House][resultCell] * 9 + resultDigit;
+			return result;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the digits used.
+	/// </summary>
+	private int[] Digits
+	{
+		get
+		{
+			int[] digits = new int[9];
+			for (byte i = 0; i < 9; i++)
+			{
+				digits[i] = (byte)(_mask >> (i << 2) & 15);
+			}
+
+			return digits;
 		}
 	}
 
@@ -137,4 +169,24 @@ public readonly unsafe struct HouseCellChunk :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <=(HouseCellChunk left, HouseCellChunk right) => left.CompareTo(right) <= 0;
+
+
+	/// <summary>
+	/// Converts the current <see cref="HouseCellChunk"/> instance into a <see cref="Grid"/>.
+	/// </summary>
+	/// <param name="chunk">The <see cref="HouseCellChunk"/> instance.</param>
+	public static implicit operator Grid(HouseCellChunk chunk)
+	{
+		var (cells, digits) = chunk;
+		var result = Grid.Empty;
+		for (int i = 0; i < 9; i++)
+		{
+			if (digits[i] is var digit and not 0xF)
+			{
+				result[cells[i]] = digit;
+			}
+		}
+
+		return result;
+	}
 }
