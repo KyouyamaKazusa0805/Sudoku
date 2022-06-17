@@ -7,7 +7,7 @@ internal static class ConfigurationPaths
 {
 	/// <summary>
 	/// Indicates the path <c>lastTimeCheckedIn</c>. This field is used for checking
-	/// whether the user clocks in in a same day.
+	/// whether the user clocks-in in a same day.
 	/// </summary>
 	public const string LastTimeCheckedIn = "lastTimeCheckedIn";
 

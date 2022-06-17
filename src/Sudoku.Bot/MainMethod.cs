@@ -2,12 +2,12 @@
 Logging.LogLevel = LogLevel.Info;
 
 // Outputs the copyright information.
-Console.WriteLine($"{StringResource.Get("__ProjectCopyrightStatement")!}\r\n");
+Console.WriteLine($"{R["__ProjectCopyrightStatement"]!}\r\n");
 
 // Initializes an identity instance.
 // Please note that the token and secret code corresponds to the info for the bot.
 // For more information please visit the link https://q.qq.com/bot/#/home
-var identity = LoadBotConfiguration(StringResource.Get("__LocalBotConfigPath")!, out string testChannelId);
+var identity = LoadBotConfiguration(R["__LocalBotConfigPath"]!, out string testChannelId);
 
 // Initializes a bot client.
 var bot = new BotClient(identity, sandBoxApi: true, reportApiError: true)
@@ -35,10 +35,10 @@ while (true)
 
 static void registerCommands(BotClient bot)
 {
-	bot.RegisterCommand(new(StringResource.Get("Command_Sudoku")!, PlaySudokuAsync));
-	bot.RegisterCommand(new(StringResource.Get("Command_ClockIn")!, ClockInAsync));
-	bot.RegisterCommand(new(StringResource.Get("Command_Query")!, PrintQueryAsync));
-	bot.RegisterCommand(new(StringResource.Get("Command_Help")!, PrintHelperTextAsync));
+	bot.RegisterCommand(new(R["Command_Sudoku"]!, PlaySudokuAsync));
+	bot.RegisterCommand(new(R["Command_ClockIn"]!, ClockInAsync));
+	bot.RegisterCommand(new(R["Command_Query"]!, PrintQueryAsync));
+	bot.RegisterCommand(new(R["Command_Help"]!, PrintHelperTextAsync));
 }
 
 static async void PlaySudokuAsync(Sender sender, string message)
@@ -49,7 +49,7 @@ static async void PlaySudokuAsync(Sender sender, string message)
 	}
 
 	if (
-		!new[] { StringResource.Get("Command_Sudoku_PkMode1")!, StringResource.Get("Command_Sudoku_PkMode2")! }
+		!new[] { R["Command_Sudoku_PkMode1"]!, R["Command_Sudoku_PkMode2"]! }
 			.Contains(message, new IgnoreCasingStringEqualityComparer())
 	)
 	{
@@ -58,10 +58,10 @@ static async void PlaySudokuAsync(Sender sender, string message)
 
 	// Versus mode.
 	// Now we leave about 40 seconds to ensure at least 2 players can join in the arena.
-	_currentLockCommand = StringResource.Get("Command_Sudoku")!;
+	_currentLockCommand = R["Command_Sudoku"]!;
 	_timeLast = 40;
 
-	await sender.ReplyAsync(StringResource.Get("CommandStartWaitingPlayers")!);
+	await sender.ReplyAsync(R["CommandStartWaitingPlayers"]!);
 
 	// Defines a timer to wait for 40 seconds.
 	var timer = new Timer(1000);
@@ -83,7 +83,7 @@ static async void PlaySudokuAsync(Sender sender, string message)
 		case ( <= 0, { Count: < 2 }):
 		{
 			// Players not enough.
-			await sender.ReplyAsync(StringResource.Get("CommandGamePlayFailed")!);
+			await sender.ReplyAsync(R["CommandGamePlayFailed"]!);
 			goto default;
 		}
 		case (_, { Count: >= 2 }):
@@ -143,20 +143,20 @@ static async void ClockInAsync(Sender sender, string message)
 
 	if (!string.IsNullOrWhiteSpace(message))
 	{
-		await sender.ReplyAsync(StringResource.Get("CommandParserError_CommandNotRequireParameter")!);
+		await sender.ReplyAsync(R["CommandParserError_CommandNotRequireParameter"]!);
 		return;
 	}
 
 	if (_currentLockCommand is not null)
 	{
-		await sender.ReplyAsync(StringResource.Get("CommandExecutionFailed_LockedCommandIsNotEmpty")!);
+		await sender.ReplyAsync(R["CommandExecutionFailed_LockedCommandIsNotEmpty"]!);
 		return;
 	}
 
-	if (StringResource.Get("__LocalPlayerConfigPath") is not { } path)
+	if (R["__LocalPlayerConfigPath"] is not { } path)
 	{
 		// The configuration path is not found.
-		await sender.ReplyAsync(StringResource.Get("ClockInError_ResourceNotFound")!);
+		await sender.ReplyAsync(R["ClockInError_ResourceNotFound"]!);
 		return;
 	}
 
@@ -188,7 +188,7 @@ static async void ClockInAsync(Sender sender, string message)
 					if (date == DateTime.Today)
 					{
 						// A same day. Notice the user that he/she cannot clock in again.
-						await sender.ReplyAsync(StringResource.Get("ClockInWarning_CannotClockInInSameDay")!);
+						await sender.ReplyAsync(R["ClockInWarning_CannotClockInInSameDay"]!);
 						return;
 					}
 
@@ -212,20 +212,20 @@ static async void ClockInAsync(Sender sender, string message)
 
 					await File.WriteAllTextAsync(userPath, updatedJson);
 
-					string a = StringResource.Get("ClockInSuccess_ValueUpdatedSegment1")!;
-					string b = StringResource.Get("ClockInSuccess_ValueUpdatedSegment2")!;
-					string c = StringResource.Get("ClockInSuccess_ValueUpdatedSegment3")!;
-					string d = isWeekend() ? $" {StringResource.Get("HopeYouHappyWeekend")!}" : string.Empty;
+					string a = R["ClockInSuccess_ValueUpdatedSegment1"]!;
+					string b = R["ClockInSuccess_ValueUpdatedSegment2"]!;
+					string c = R["ClockInSuccess_ValueUpdatedSegment3"]!;
+					string d = isWeekend() ? $" {R["HopeYouHappyWeekend"]!}" : string.Empty;
 					await sender.ReplyAsync($"{a} {extraExp} {b} {realFinalValue} {c}{d}", true);
 				}
 				catch (ArgumentNullException)
 				{
-					await sender.ReplyAsync(StringResource.Get("ClockInError_DateStringIsNull")!);
+					await sender.ReplyAsync(R["ClockInError_DateStringIsNull"]!);
 				}
 				catch (Exception ex) when (ex is FormatException or InvalidOperationException)
 				{
 					// Invalid date value parsed.
-					await sender.ReplyAsync(StringResource.Get("ClockInError_InvalidDateValue")!, true);
+					await sender.ReplyAsync(R["ClockInError_InvalidDateValue"]!, true);
 				}
 			}
 			else
@@ -252,10 +252,10 @@ static async void ClockInAsync(Sender sender, string message)
 
 				await File.WriteAllTextAsync(userPath, updatedJson);
 
-				string a = StringResource.Get("ClockInSuccess_ValueCreatedSegment1")!;
-				string b = StringResource.Get("ClockInSuccess_ValueCreatedSegment2")!;
-				string c = StringResource.Get("ClockInSuccess_ValueCreatedSegment3")!;
-				string d = isWeekend() ? $" {StringResource.Get("HopeYouHappyWeekend")!}" : string.Empty;
+				string a = R["ClockInSuccess_ValueCreatedSegment1"]!;
+				string b = R["ClockInSuccess_ValueCreatedSegment2"]!;
+				string c = R["ClockInSuccess_ValueCreatedSegment3"]!;
+				string d = isWeekend() ? $" {R["HopeYouHappyWeekend"]!}" : string.Empty;
 				await sender.ReplyAsync($"{a} {extraExp} {b} {realFinalValue} {c}{d}", true);
 			}
 		}
@@ -293,9 +293,9 @@ static async void ClockInAsync(Sender sender, string message)
 			"""
 		);
 
-		string a = StringResource.Get("ClockInSuccess_FileCreatedSegment1")!;
-		string b = StringResource.Get("ClockInSuccess_FileCreatedSegment2")!;
-		string c = isWeekend() ? $" {StringResource.Get("HopeYouHappyWeekend")!}" : string.Empty;
+		string a = R["ClockInSuccess_FileCreatedSegment1"]!;
+		string b = R["ClockInSuccess_FileCreatedSegment2"]!;
+		string c = isWeekend() ? $" {R["HopeYouHappyWeekend"]!}" : string.Empty;
 		await sender.ReplyAsync($"{a} {extraExp} {b}{c}", true);
 	}
 }
@@ -309,20 +309,20 @@ static async void PrintQueryAsync(Sender sender, string message)
 
 	if (!string.IsNullOrWhiteSpace(message))
 	{
-		await sender.ReplyAsync(StringResource.Get("CommandParserError_CommandNotRequireParameter")!);
+		await sender.ReplyAsync(R["CommandParserError_CommandNotRequireParameter"]!);
 		return;
 	}
 
 	if (_currentLockCommand is not null)
 	{
-		await sender.ReplyAsync(StringResource.Get("CommandExecutionFailed_LockedCommandIsNotEmpty")!);
+		await sender.ReplyAsync(R["CommandExecutionFailed_LockedCommandIsNotEmpty"]!);
 		return;
 	}
 
-	if (StringResource.Get("__LocalPlayerConfigPath") is not { } path)
+	if (R["__LocalPlayerConfigPath"] is not { } path)
 	{
 		// The configuration path is not found.
-		await sender.ReplyAsync(StringResource.Get("ClockInError_ResourceNotFound")!);
+		await sender.ReplyAsync(R["ClockInError_ResourceNotFound"]!);
 		return;
 	}
 
@@ -334,7 +334,7 @@ static async void PrintQueryAsync(Sender sender, string message)
 	if (filePaths.Length == 0)
 	{
 		// No configuration files found.
-		await sender.ReplyAsync(StringResource.Get("RankExpFailed_NoConfigFileFound")!);
+		await sender.ReplyAsync(R["RankExpFailed_NoConfigFileFound"]!);
 		return;
 	}
 
@@ -366,11 +366,11 @@ static async void PrintQueryAsync(Sender sender, string message)
 			continue;
 		}
 
-		string expText = StringResource.Get("ExperiencePointText")!;
-		string comma = StringResource.Get("Comma")!;
-		string colon = StringResource.Get("Colon")!;
-		string di = StringResource.Get("Di")!;
-		string ming = StringResource.Get("Ming")!;
+		string expText = R["ExperiencePointText"]!;
+		string comma = R["Comma"]!;
+		string colon = R["Colon"]!;
+		string di = R["Di"]!;
+		string ming = R["Ming"]!;
 
 		// Special case: if the current user has a same experience point value with the former one,
 		// we should treat him/her as same ranking value as the former one.
@@ -382,7 +382,7 @@ static async void PrintQueryAsync(Sender sender, string message)
 
 	await sender.ReplyAsync(
 		$"""
-		{StringResource.Get("RankExpSuccessful_Segment1")!}
+		{R["RankExpSuccessful_Segment1"]!}
 		---
 		{sb}
 		"""
@@ -393,21 +393,21 @@ static async void PrintHelperTextAsync(Sender sender, string message)
 {
 	if (!string.IsNullOrWhiteSpace(message))
 	{
-		await sender.ReplyAsync(StringResource.Get("CommandParserError_CommandNotRequireParameter")!);
+		await sender.ReplyAsync(R["CommandParserError_CommandNotRequireParameter"]!);
 		return;
 	}
 
 	if (_currentLockCommand is not null)
 	{
-		await sender.ReplyAsync(StringResource.Get("CommandExecutionFailed_LockedCommandIsNotEmpty")!);
+		await sender.ReplyAsync(R["CommandExecutionFailed_LockedCommandIsNotEmpty"]!);
 		return;
 	}
 
 	await sender.ReplyAsync(
 		$"""
-		{StringResource.Get("AboutInfo_Segment1")!}{AssemblyVersion}
+		{R["AboutInfo_Segment1"]!}{AssemblyVersion}
 		---
-		{StringResource.Get("AboutInfo_Segment2")!}
+		{R["AboutInfo_Segment2"]!}
 		"""
 	);
 }

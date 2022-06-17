@@ -34,13 +34,13 @@ internal static partial class Program
 	/// Indicates callback method that will be invoked when the bot has successfully connected to the server,
 	/// and successfully passed the authorization.
 	/// </summary>
-	private static void OnSuccessfullyConnected() => Logging.Info(StringResource.Get("BotConnectedCallbackOutput_Success")!);
+	private static void OnSuccessfullyConnected() => Logging.Info(R["BotConnectedCallbackOutput_Success"]!);
 
 	/// <summary>
 	/// Indicates callback method that will be invoked when the bot has failed connected to the server,
 	/// or failed passed the authorization.
 	/// </summary>
-	private static void OnFailedConnected() => Logging.Warn(StringResource.Get("BotConnectedCallbackOutput_Fail")!);
+	private static void OnFailedConnected() => Logging.Warn(R["BotConnectedCallbackOutput_Fail"]!);
 
 	/// <summary>
 	/// Exits the program fast.
@@ -67,16 +67,16 @@ internal static partial class Program
 			if (e is { User: { UserName: var userName, Id: var id } user }
 				&& typeof(BotClient).Assembly.GetName() is { Name: var sdkName, Version: var sdkVersion })
 			{
-				string suffix = StringResource.Get("PrivateDomainBotSuffix")!;
-				string sdkVersionName = StringResource.Get("SdkVersionName")!;
-				string colon = StringResource.Get("Colon")!;
+				string suffix = R["PrivateDomainBotSuffix"]!;
+				string sdkVersionName = R["SdkVersionName"]!;
+				string colon = R["Colon"]!;
 
 				Console.Title = $"{userName}{suffix} <{id}> - {sdkVersionName}{colon}{sdkName}_{sdkVersion}";
 			}
 		};
 		bot.MessageCreated += static async (_, e) =>
 		{
-			if (_currentLockCommand != StringResource.Get("Command_Sudoku"))
+			if (_currentLockCommand != R["Command_Sudoku"])
 			{
 				return;
 			}
@@ -94,7 +94,7 @@ internal static partial class Program
 
 			// Here we should register the joining operation.
 			_playersJoined.Add(creatorId);
-			await sender.ReplyAsync(StringResource.Get("CommandJoinGameSuccess")!);
+			await sender.ReplyAsync(R["CommandJoinGameSuccess"]!);
 		};
 	}
 
