@@ -275,22 +275,19 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		var b = MakeDigit;
 		switch (e.Key)
 		{
-			// Digits.
-			case var key and >= VirtualKey.Number0 and <= VirtualKey.Number9:
+			case var key and >= VirtualKey.Number0 and <= VirtualKey.Number9: // Digits.
 			{
 				(VirtualKey.Shift.ModifierKeyIsDown() ? a : b)(cell, key - VirtualKey.Number0 - 1);
 
 				break;
 			}
-			// Digits.
-			case var key and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9:
+			case var key and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9: // Digits that uses number pad.
 			{
 				(VirtualKey.Shift.ModifierKeyIsDown() ? a : b)(cell, key - VirtualKey.NumberPad0 - 1);
 
 				break;
 			}
-			// Other cases.
-			default:
+			default: // Other cases.
 			{
 				// Here we must set the value to 'false', in order to process keyboard accelerators.
 				// If we set 'e.Handled = true', the keyboard accelerators in the base page won't be triggered.
