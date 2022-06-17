@@ -146,6 +146,9 @@ public sealed class SudokuGrid : DrawingElement
 		// Then initialize other items.
 		UpdateView();
 
+		// Last, set the focused cell to -1, to hide the highlight cell by default.
+		FocusedCell = -1;
+
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static GridLayout initializeGridLayout(double paneSize, double outsideOffset)
@@ -329,12 +332,18 @@ public sealed class SudokuGrid : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_focusedCell == value || value is < 0 or >= 81)
+			if (_focusedCell == value)
 			{
 				return;
 			}
 
-			_focusedCell = value;
+			if ((_focusedCell = value) == -1)
+			{
+				_focusedRectangle.Visibility = Visibility.Collapsed;
+				return;
+			}
+
+			_focusedRectangle.Visibility = Visibility.Visible;
 			GridLayout.SetRow(_focusedRectangle, value / 9);
 			GridLayout.SetColumn(_focusedRectangle, value % 9);
 		}
