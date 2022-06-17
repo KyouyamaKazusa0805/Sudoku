@@ -431,6 +431,12 @@
             The default value is <c>#FF0000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/>).
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.FocusedCellColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#40FFFF00</c> (i.e. <see cref="P:Microsoft.UI.Colors.Yellow"/> with alpha 64).
+            </remarks>
+        </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
             Defines a data template selector that selects the <see cref="T:Microsoft.UI.Xaml.DataTemplate"/> between
@@ -1439,9 +1445,9 @@
             </summary>
             <seealso cref="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset"/>
         </member>
-        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._currentPointPosition">
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._cell">
             <summary>
-            Indicates the current mouse point.
+            Indicates the cell being focused.
             </summary>
             <remarks>
             The variable is used for the following members:

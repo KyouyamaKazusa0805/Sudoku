@@ -346,4 +346,11 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color HighlightCellStrokeColor { get; set; } = Colors.Blue;
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#40FFFF00</c> (i.e. <see cref="Colors.Yellow"/> with alpha 64).
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color FocusedCellColor { get; set; } = Colors.Yellow with { A = 64 };
 }

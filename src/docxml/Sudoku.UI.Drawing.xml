@@ -275,6 +275,11 @@
             Indicates the color of the stroke lines surrounding with highlight cell.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.FocusedCellColor">
+            <summary>
+            Indicates the focused cell color.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
             Stores a set of methods on handling point conversions.
@@ -1943,6 +1948,11 @@
             Defines a sudoku grid.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid.FocusedCellControlTag">
+            <summary>
+            Indicates the tag that is used for the control.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._gridLayout">
             <summary>
             Indicates the inner grid layout control.
@@ -1966,6 +1976,11 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._redoSteps">
             <summary>
             Indicates the stacks to store the undoing and redoing steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._focusedRectangle">
+            <summary>
+            Indicates the focused cell rectangle.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._undoRedoStepsUpdatedCallback">
@@ -2001,6 +2016,11 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._outsideOffset">
             <summary>
             Indicates the outside offset.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._focusedCell">
+            <summary>
+            Indicates the focused cell.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._grid">
@@ -2070,6 +2090,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.PaneSize">
             <summary>
             Gets or sets the pane size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.FocusedCell">
+            <summary>
+            Indicates the focused cell used.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Grid">

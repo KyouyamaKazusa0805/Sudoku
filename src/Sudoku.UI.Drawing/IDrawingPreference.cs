@@ -254,4 +254,9 @@ public interface IDrawingPreference
 	/// Indicates the color of the stroke lines surrounding with highlight cell.
 	/// </summary>
 	Color HighlightCellStrokeColor { get; set; }
+
+	/// <summary>
+	/// Indicates the focused cell color.
+	/// </summary>
+	Color FocusedCellColor { get; set; }
 }

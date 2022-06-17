@@ -38,7 +38,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private double _outsideOffset;
 
 	/// <summary>
-	/// Indicates the current mouse point.
+	/// Indicates the cell being focused.
 	/// </summary>
 	/// <remarks>
 	/// The variable is used for the following members:
@@ -47,7 +47,22 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <item><see cref="OnKeyDown(KeyRoutedEventArgs)"/></item>
 	/// </list>
 	/// </remarks>
+	private int _cell;
+
+#if false
+	/// <summary>
+	/// Indicates the current mouse point.
+	/// </summary>
+	/// <remarks>
+	/// This field can be calculated by <see cref="PointerRoutedEventArgs"/> instance,
+	/// using <see cref="PointerRoutedEventArgs.GetCurrentPoint(UIElement)"/> method to get the target value,
+	/// by using <see cref="PointerPoint.Position"/> property to get the result.
+	/// </remarks>
+	/// <seealso cref="PointerRoutedEventArgs"/>
+	/// <seealso cref="PointerRoutedEventArgs.GetCurrentPoint(UIElement)"/>
+	/// <seealso cref="PointerPoint.Position"/>
 	private Point _currentPointPosition;
+#endif
 
 
 	/// <summary>
@@ -251,7 +266,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		base.OnPointerMoved(e);
 
-		_currentPointPosition = e.GetCurrentPoint(this).Position;
+		_cell = PointConversions.GetCell(e.GetCurrentPoint(this).Position, Size, OutsideOffset);
+
+		foreach (var sudokuGrid in _drawingElements.OfType<SudokuGrid>())
+		{
+			sudokuGrid.FocusedCell = _cell;
+		}
 	}
 
 	/// <inheritdoc/>
@@ -259,13 +279,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		base.OnKeyDown(e);
 
-		// TODO: Update more mode to focus a cell.
 		// Here we just suppose a mode to fill with value in a cell:
 		//     1. Gets the mouse position, and then get the position of the cell.
 		//     2. Gets the pressed key from the argument 'e'.
 		//     3. Fill the cell with the value.
-		int cell = PointConversions.GetCell(_currentPointPosition, Size, OutsideOffset);
-		if (cell == -1)
+		if (_cell == -1)
 		{
 			e.Handled = true;
 			return;
@@ -277,13 +295,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			case var key and >= VirtualKey.Number0 and <= VirtualKey.Number9: // Digits.
 			{
-				(VirtualKey.Shift.ModifierKeyIsDown() ? a : b)(cell, key - VirtualKey.Number0 - 1);
+				(VirtualKey.Shift.ModifierKeyIsDown() ? a : b)(_cell, key - VirtualKey.Number0 - 1);
 
 				break;
 			}
 			case var key and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9: // Digits that uses number pad.
 			{
-				(VirtualKey.Shift.ModifierKeyIsDown() ? a : b)(cell, key - VirtualKey.NumberPad0 - 1);
+				(VirtualKey.Shift.ModifierKeyIsDown() ? a : b)(_cell, key - VirtualKey.NumberPad0 - 1);
 
 				break;
 			}

@@ -6,6 +6,12 @@
 public sealed class SudokuGrid : DrawingElement
 {
 	/// <summary>
+	/// Indicates the tag that is used for the control.
+	/// </summary>
+	private const string FocusedCellControlTag = "$special";
+
+
+	/// <summary>
 	/// Indicates the inner grid layout control.
 	/// </summary>
 	private readonly GridLayout _gridLayout;
@@ -24,6 +30,11 @@ public sealed class SudokuGrid : DrawingElement
 	/// Indicates the stacks to store the undoing and redoing steps.
 	/// </summary>
 	private readonly Stack<Grid> _undoSteps = new(), _redoSteps = new();
+
+	/// <summary>
+	/// Indicates the focused cell rectangle.
+	/// </summary>
+	private readonly Rectangle _focusedRectangle;
 
 	/// <summary>
 	/// Indicates the callback method that invokes when the undoing and redoing steps are updated.
@@ -59,6 +70,11 @@ public sealed class SudokuGrid : DrawingElement
 	/// Indicates the outside offset.
 	/// </summary>
 	private double _outsideOffset;
+
+	/// <summary>
+	/// Indicates the focused cell.
+	/// </summary>
+	private int _focusedCell;
 
 	/// <summary>
 	/// Indicates the inner grid.
@@ -101,15 +117,28 @@ public sealed class SudokuGrid : DrawingElement
 		in Grid grid, IDrawingPreference preference, double paneSize, double outsideOffset,
 		Action? elementUpdatedCallback)
 	{
-		(_preference, _grid, _paneSize, _outsideOffset, _gridLayout, _undoRedoStepsUpdatedCallback, _showsCandidates) = (
+		(
+			_preference,
+			_grid,
+			_paneSize,
+			_outsideOffset,
+			_gridLayout,
+			_undoRedoStepsUpdatedCallback,
+			_showsCandidates,
+			_focusedRectangle
+		) = (
 			preference,
 			grid,
 			paneSize,
 			outsideOffset,
 			initializeGridLayout(paneSize, outsideOffset),
 			elementUpdatedCallback,
-			preference.ShowCandidates
+			preference.ShowCandidates,
+			new() { Fill = new SolidColorBrush(preference.FocusedCellColor), Tag = FocusedCellControlTag }
 		);
+
+		// Sets the Z-Index.
+		Canvas.SetZIndex(_focusedRectangle, -1);
 
 		// Initializes values.
 		initializeValues();
@@ -159,6 +188,13 @@ public sealed class SudokuGrid : DrawingElement
 				GridLayout.SetRow(control2, i / 9);
 				GridLayout.SetColumn(control2, i % 9);
 				_gridLayout.Children.Add(control2);
+
+				if (_focusedCell == i)
+				{
+					GridLayout.SetRow(_focusedRectangle, _focusedCell / 9);
+					GridLayout.SetColumn(_focusedRectangle, _focusedCell % 9);
+					_gridLayout.Children.Add(_focusedRectangle);
+				}
 			}
 		}
 	}
@@ -279,6 +315,28 @@ public sealed class SudokuGrid : DrawingElement
 			_paneSize = value;
 			_gridLayout.Width = value;
 			_gridLayout.Height = value;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the focused cell used.
+	/// </summary>
+	public int FocusedCell
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _focusedCell;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			if (_focusedCell == value || value is < 0 or >= 81)
+			{
+				return;
+			}
+
+			_focusedCell = value;
+			GridLayout.SetRow(_focusedRectangle, value / 9);
+			GridLayout.SetColumn(_focusedRectangle, value % 9);
 		}
 	}
 
