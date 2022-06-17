@@ -157,6 +157,7 @@
 	<x:String x:Key="QueryResult_Empty">搜索不到合适的结果</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidates">显示;候选数|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidateBorderLines">显示;候选数;边框|设置页 -> 基本设置项</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_AllowFocusing">允许;聚焦;单元格|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_EnableDeltaValuesDisplaying">启用;显示;呈现;错误填数|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_OutsideBorderWidth">空白;大小;外侧|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_BlockBorderWidth">粗细;宫;边框|设置页 -> 绘图和渲染</x:String>

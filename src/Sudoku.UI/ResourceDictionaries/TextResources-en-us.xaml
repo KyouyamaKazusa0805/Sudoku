@@ -160,6 +160,7 @@
 	<x:String x:Key="QueryResult_Empty">No results found</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidates">show;candidates|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidateBorderLines">show;candidates;border|Settings Page -> Basic options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_AllowFocusing">allow;focusing|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_EnableDeltaValuesDisplaying">enable;displaying;deltas|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_OutsideBorderWidth">blank;size;outside;border|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_BlockBorderWidth">size;block;border|Settings Page -> Rendering options</x:String>

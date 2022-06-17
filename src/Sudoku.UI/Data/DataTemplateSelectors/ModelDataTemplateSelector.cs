@@ -32,6 +32,8 @@ public abstract class ModelDataTemplateSelector : DataTemplateSelector
 			let types = pi.GetGenericAttributeTypeArguments(typeof(DataTemplateModelTypeAttribute<>))
 			where types is [var type] && type == itemType
 			select pi;
-		return (DataTemplate)query.First().GetValue(this)!;
+		return (DataTemplate?)query.FirstOrDefault()?.GetValue(this)
+			?? DefaultTemplate
+			?? throw new InvalidOperationException("Default data template cannot be found.");
 	}
 }
