@@ -30,6 +30,12 @@ public sealed partial class SettingsPage : Page
 				},
 				new ToggleSwitchSettingItem
 				{
+					Name = R["SettingsPage_ItemName_AllowFocusing"]!,
+					Description = R["SettingsPage_ItemDescription_AllowFocusing"]!,
+					PreferenceValueName = nameof(Preference.AllowFocusing)
+				},
+				new ToggleSwitchSettingItem
+				{
 					Name = R["SettingsPage_ItemName_EnableDeltaValuesDisplaying"]!,
 					Description = R["SettingsPage_ItemDescription_EnableDeltaValuesDisplaying"]!,
 					PreferenceValueName = nameof(Preference.EnableDeltaValuesDisplaying)
