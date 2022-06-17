@@ -167,6 +167,12 @@
             The default value is <see langword="true"/>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.AllowFocusing">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Configuration.Preference.OutsideBorderWidth">
             <inheritdoc/>
             <remarks>

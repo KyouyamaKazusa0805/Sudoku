@@ -36,6 +36,12 @@ public interface IDrawingPreference
 	bool DescendingOrderedInfoBarBoard { get; set; }
 
 	/// <summary>
+	/// Indicates whether the sudoku grid supports focusing a cell, to display the focused cell as highlight,
+	/// using a different color.
+	/// </summary>
+	bool AllowFocusing { get; set; }
+
+	/// <summary>
 	/// Indicates the outside border width. The value cannot be negative.
 	/// </summary>
 	double OutsideBorderWidth { get; set; }

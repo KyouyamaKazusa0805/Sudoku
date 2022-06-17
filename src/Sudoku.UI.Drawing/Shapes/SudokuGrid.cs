@@ -6,12 +6,6 @@
 public sealed class SudokuGrid : DrawingElement
 {
 	/// <summary>
-	/// Indicates the tag that is used for the control.
-	/// </summary>
-	private const string FocusedCellControlTag = "$special";
-
-
-	/// <summary>
 	/// Indicates the inner grid layout control.
 	/// </summary>
 	private readonly GridLayout _gridLayout;
@@ -134,10 +128,12 @@ public sealed class SudokuGrid : DrawingElement
 			initializeGridLayout(paneSize, outsideOffset),
 			elementUpdatedCallback,
 			preference.ShowCandidates,
-			new() { Fill = new SolidColorBrush(preference.FocusedCellColor), Tag = FocusedCellControlTag }
+			new() { Fill = new SolidColorBrush(preference.FocusedCellColor), Visibility = Visibility.Collapsed }
 		);
 
 		// Sets the Z-Index.
+		GridLayout.SetRow(_focusedRectangle, 4);
+		GridLayout.SetColumn(_focusedRectangle, 4);
 		Canvas.SetZIndex(_focusedRectangle, -1);
 
 		// Initializes values.
@@ -333,6 +329,11 @@ public sealed class SudokuGrid : DrawingElement
 		set
 		{
 			if (_focusedCell == value)
+			{
+				return;
+			}
+
+			if (!_preference.AllowFocusing)
 			{
 				return;
 			}

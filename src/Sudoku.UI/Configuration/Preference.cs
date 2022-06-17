@@ -40,6 +40,12 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
+	public bool AllowFocusing { get; set; } = true;
+
+	/// <inheritdoc/>
+	/// <remarks>
 	/// The default value is <c>0</c>.
 	/// </remarks>
 	public double OutsideBorderWidth { get; set; } = 0;
