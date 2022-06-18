@@ -236,5 +236,6 @@ public sealed partial class SettingsPage : Page
 	/// </summary>
 	/// <param name="sender">The object triggering the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private async void BackupPreference_ClickAsync(object sender, RoutedEventArgs e) => await BackupPreferenceFileAsync();
+	private async void BackupPreference_ClickAsync(object sender, RoutedEventArgs e)
+		=> await BackupPreferenceFileAsync();
 }
