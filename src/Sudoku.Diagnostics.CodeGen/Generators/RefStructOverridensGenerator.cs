@@ -9,7 +9,13 @@ public sealed partial class RefStructOverridensGenerator : ISourceGenerator
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (context is not { SyntaxContextReceiver: Receiver { Collection: var tuples }, Compilation: var compilation })
+		if (
+			context is not
+			{
+				SyntaxContextReceiver: Receiver { Collection: var symbolsFound },
+				Compilation: var compilation
+			}
+		)
 		{
 			return;
 		}
@@ -17,11 +23,11 @@ public sealed partial class RefStructOverridensGenerator : ISourceGenerator
 		var onTopLevel = OnTopLevel;
 		var onNestedLevel = OnNested;
 		(
-			from tuple in tuples
-			group tuple by tuple.Symbol.ContainingType is null into tupleGroupedByIsNested
+			from symbol in symbolsFound
+			group symbol by symbol.ContainingType is null into tupleGroupedByIsNested
 			from typeTuple in tupleGroupedByIsNested
-			select (Action: tupleGroupedByIsNested.Key ? onTopLevel : onNestedLevel, TypeTuple: typeTuple)
-		).ForEach(e => e.Action(context, e.TypeTuple, compilation));
+			select (Action: tupleGroupedByIsNested.Key ? onTopLevel : onNestedLevel, Type: typeTuple)
+		).ForEach(e => e.Action(context, e.Type, compilation));
 	}
 
 	/// <inheritdoc/>
@@ -32,103 +38,77 @@ public sealed partial class RefStructOverridensGenerator : ISourceGenerator
 	/// Generates for top-leveled <see langword="ref struct"/> types.
 	/// </summary>
 	/// <param name="context">The context.</param>
-	/// <param name="tuple">The tuple.</param>
+	/// <param name="type">The type.</param>
 	/// <param name="compilation">The compilation instance.</param>
-	private void OnTopLevel(
-		GeneratorExecutionContext context,
-		(INamedTypeSymbol Type, bool GenerateGetHashCode, bool GenerateToString) tuple,
-		Compilation compilation)
+	private void OnTopLevel(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
 	{
-		var type = tuple.Type;
-
 		var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) =
 			SymbolOutputInfo.FromSymbol(type);
 
 		var methods = type.GetMembers().OfType<IMethodSymbol>().ToArray();
-		string equalsMethod = Array.Exists(
-			methods,
-			static symbol => symbol is
-			{
-				IsStatic: false,
-				Name: nameof(Equals),
-				Parameters: [{ Type.SpecialType: SpecialType.System_Object }],
-				ReturnType.SpecialType: SpecialType.System_Boolean
-			}
-		)
-			? $@"// Can't generate '{nameof(Equals)}' because the method is impl'ed by user."
-			: $@"/// <inheritdoc cref=""object.Equals(object?)""/>
-	/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
-	[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
-#endif
-	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public override {readOnlyKeyword}bool Equals(object? obj) => throw new global::System.NotSupportedException();";
+		string equalsMethod = Array.Exists(methods, ExistsEquals)
+			? $"""// Can't generate '{nameof(Equals)}' because the method is impl'ed by user."""
+			: $"""
+			/// <inheritdoc cref="object.Equals(object?)"/>
+				/// <exception cref="global::System.NotSupportedException">Always throws.</exception>
+				[global::System.CodeDom.Compiler.GeneratedCode("{GetType().FullName}", "{VersionValue}")]
+				[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+			#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
+				[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+			#endif
+				[global::System.Obsolete("You can't use or call this method.", true)]
+				[global::System.Runtime.CompilerServices.CompilerGenerated]
+				public override {readOnlyKeyword}bool Equals(object? obj) => throw new global::System.NotSupportedException();
+			""";
 
-		string getHashCodeMethod = Array.Exists(
-			methods,
-			static symbol => symbol is
-			{
-				IsStatic: false,
-				Name: nameof(GetHashCode),
-				Parameters: [],
-				ReturnType.SpecialType: SpecialType.System_Int32
-			}
-		) || !tuple.GenerateGetHashCode
-			? $@"// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."
-			: $@"/// <inheritdoc cref=""object.GetHashCode""/>
-	/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
-	[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
-#endif
-	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public override {readOnlyKeyword}int GetHashCode() => throw new global::System.NotSupportedException();";
+		string getHashCodeMethod = Array.Exists(methods, ExistsGetHashCode)
+			? $"""// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."""
+			: $"""
+			/// <inheritdoc cref="object.GetHashCode"/>
+				/// <exception cref="global::System.NotSupportedException">Always throws.</exception>
+				[global::System.CodeDom.Compiler.GeneratedCode("{GetType().FullName}", "{VersionValue}")]
+				[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+			#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
+				[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+			#endif
+				[global::System.Obsolete("You can't use or call this method.", true)]
+				[global::System.Runtime.CompilerServices.CompilerGenerated]
+				public override {readOnlyKeyword}int GetHashCode() => throw new global::System.NotSupportedException();
+			""";
 
-		string toStringMethod = Array.Exists(
-			methods,
-			static symbol => symbol is
-			{
-				IsStatic: false,
-				Name: nameof(ToString),
-				Parameters: [],
-				ReturnType.SpecialType: SpecialType.System_String
-			}
-		) || !tuple.GenerateToString
-			? $@"// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."
-			: $@"/// <inheritdoc cref=""object.ToString""/>
-	/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
-	[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
-#endif
-	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public override {readOnlyKeyword}string? ToString() => throw new global::System.NotSupportedException();";
+		string toStringMethod = Array.Exists(methods, ExistsToString)
+			? $"""// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."""
+			: $"""
+			/// <inheritdoc cref="object.ToString"/>
+				/// <exception cref="global::System.NotSupportedException">Always throws.</exception>
+				[global::System.CodeDom.Compiler.GeneratedCode("{GetType().FullName}", "{VersionValue}")]
+				[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+			#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
+				[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+			#endif
+				[global::System.Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
+				[global::System.Runtime.CompilerServices.CompilerGenerated]
+				public override {readOnlyKeyword}string? ToString() => throw new global::System.NotSupportedException();
+			""";
 
 		context.AddSource(
 			type.ToFileName(),
 			Shortcuts.RefStructDefaultOverrides,
-			$@"#pragma warning disable CS0809
-
-#nullable enable
-
-namespace {namespaceName};
-
-partial struct {type.Name}{genericParameterList}
-{{
-	{equalsMethod}
-
-	{getHashCodeMethod}
-
-	{toStringMethod}
-}}
-"
+			$$"""
+			#pragma warning disable CS0809
+			#nullable enable
+			
+			namespace {{namespaceName}};
+			
+			partial struct {{type.Name}}{{genericParameterList}}
+			{
+				{{equalsMethod}}
+			
+				{{getHashCodeMethod}}
+			
+				{{toStringMethod}}
+			}
+			"""
 		);
 	}
 
@@ -136,14 +116,10 @@ partial struct {type.Name}{genericParameterList}
 	/// Generates for nested-leveled <see langword="ref struct"/> types.
 	/// </summary>
 	/// <param name="context">The context.</param>
-	/// <param name="tuple">The tuple.</param>
+	/// <param name="type">The type.</param>
 	/// <param name="compilation">The compilation instance.</param>
-	private void OnNested(
-		GeneratorExecutionContext context, (INamedTypeSymbol Type, bool GenerateGetHashCode, bool GenerateToString) tuple,
-		Compilation compilation)
+	private void OnNested(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
 	{
-		var type = tuple.Type;
-
 		var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) =
 			SymbolOutputInfo.FromSymbol(type);
 
@@ -176,8 +152,8 @@ partial struct {type.Name}{genericParameterList}
 			outerTypesCount++;
 		}
 
-		string methodIndenting = new('\t', outerTypesCount + 1);
-		string typeIndenting = new('\t', outerTypesCount);
+		string mi = new('\t', outerTypesCount + 1);
+		string ti = new('\t', outerTypesCount);
 		for (var outer = type.ContainingType; outer is not null; outer = outer.ContainingType)
 		{
 			outerTypes.Push((outer, outerTypesCount--));
@@ -250,86 +226,111 @@ partial struct {type.Name}{genericParameterList}
 		outerTypeDeclarationsEnd.Remove(outerTypeDeclarationsEnd.Length - 2, 2);
 
 		var methods = type.GetMembers().OfType<IMethodSymbol>().ToArray();
-		string equalsMethod = Array.Exists(
-			methods,
-			static symbol => symbol is
-			{
-				IsStatic: false,
-				Name: nameof(Equals),
-				Parameters: [{ Type.SpecialType: SpecialType.System_Object }, ..],
-				ReturnType.SpecialType: SpecialType.System_Boolean
-			}
-		)
-			? $"{methodIndenting}// Can't generate '{nameof(Equals)}' because the method is impl'ed by user."
-			: $@"{methodIndenting}/// <inheritdoc cref=""object.Equals(object?)""/>
-{methodIndenting}/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
-{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-{methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-{methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
-{methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-{methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
-{methodIndenting}public override {readOnlyKeyword}bool Equals(object? obj) => throw new global::System.NotSupportedException();";
+		string equalsMethod = Array.Exists(methods, ExistsEquals)
+			? $"""{mi}// Can't generate '{nameof(Equals)}' because the method is impl'ed by user."""
+			: $"""
+			{mi}/// <inheritdoc cref="object.Equals(object?)"/>
+			{mi}/// <exception cref="global::System.NotSupportedException">Always throws.</exception>
+			{mi}[global::System.CodeDom.Compiler.GeneratedCode("{GetType().FullName}", "{VersionValue}")]
+			{mi}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+			{mi}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+			{mi}[global::System.Obsolete("You can't use or call this method.", true)]
+			{mi}[global::System.Runtime.CompilerServices.CompilerGenerated]
+			{mi}public override {readOnlyKeyword}bool Equals(object? obj) => throw new global::System.NotSupportedException();
+			""";
 
-		string getHashCodeMethod = Array.Exists(
-			methods,
-			static symbol => symbol is
-			{
-				IsStatic: false,
-				Name: nameof(GetHashCode),
-				Parameters: [],
-				ReturnType.SpecialType: SpecialType.System_Int32
-			}
-		) || !tuple.GenerateGetHashCode
-			? $"{methodIndenting}// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."
-			: $@"{methodIndenting}/// <inheritdoc cref=""object.GetHashCode""/>
-{methodIndenting}/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
-{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-{methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-{methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
-{methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-{methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
-{methodIndenting}public override {readOnlyKeyword}int GetHashCode() => throw new global::System.NotSupportedException();";
+		string getHashCodeMethod = Array.Exists(methods, ExistsGetHashCode)
+			? $"""{mi}// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."""
+			: $"""
+			{mi}/// <inheritdoc cref="object.GetHashCode"/>
+			{mi}/// <exception cref="global::System.NotSupportedException">Always throws.</exception>
+			{mi}[global::System.CodeDom.Compiler.GeneratedCode("{GetType().FullName}", "{VersionValue}")]
+			{mi}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+			{mi}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+			{mi}[global::System.Obsolete("You can't use or call this method.", true)]
+			{mi}[global::System.Runtime.CompilerServices.CompilerGenerated]
+			{mi}public override {readOnlyKeyword}int GetHashCode() => throw new global::System.NotSupportedException();
+			""";
 
-		string toStringMethod = Array.Exists(
-			methods,
-			static symbol => symbol is
-			{
-				IsStatic: false,
-				Name: nameof(ToString),
-				Parameters: [],
-				ReturnType.SpecialType: SpecialType.System_String
-			}
-		) || !tuple.GenerateToString
-			? $"{methodIndenting}// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."
-			: $@"{methodIndenting}/// <inheritdoc cref=""object.ToString""/>
-{methodIndenting}/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
-{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-{methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-{methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
-{methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-{methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
-{methodIndenting}public override {readOnlyKeyword}string? ToString() => throw new global::System.NotSupportedException();";
+		string toStringMethod = Array.Exists(methods, ExistsToString)
+			? $"""{mi}// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."""
+			: $"""
+			{mi}/// <inheritdoc cref="object.ToString"/>
+			{mi}/// <exception cref="global::System.NotSupportedException">Always throws.</exception>
+			{mi}[global::System.CodeDom.Compiler.GeneratedCode("{GetType().FullName}", "{VersionValue}")]
+			{mi}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+			{mi}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+			{mi}[global::System.Obsolete("You can't use or call this method.", true)]
+			{mi}[global::System.Runtime.CompilerServices.CompilerGenerated]
+			{mi}public override {readOnlyKeyword}string? ToString() => throw new global::System.NotSupportedException();
+			""";
 
 		context.AddSource(
 			type.ToFileName(),
 			Shortcuts.RefStructDefaultOverrides,
-			$@"#pragma warning disable CS0809
-
-#nullable enable
-
-namespace {namespaceName};
-
-{outerTypeDeclarationsStart}
-{typeIndenting}partial struct {type.Name}{genericParameterList}
-{typeIndenting}{{
-{equalsMethod}
-
-{getHashCodeMethod}
-
-{toStringMethod}
-{typeIndenting}}}
-{outerTypeDeclarationsEnd}
-"
+			$$"""
+			#pragma warning disable CS0809
+			#nullable enable
+			
+			namespace {{namespaceName}};
+			
+			{{outerTypeDeclarationsStart}}
+			{{ti}}partial struct {{type.Name}}{{genericParameterList}}
+			{{ti}}{
+			{{equalsMethod}}
+			
+			{{getHashCodeMethod}}
+			
+			{{toStringMethod}}
+			{{ti}}}
+			{{outerTypeDeclarationsEnd}}
+			"""
 		);
 	}
+
+
+	/// <summary>
+	/// Indicates whether the specified method symbol overrides <see cref="object.Equals(object)"/>.
+	/// </summary>
+	/// <param name="symbol">The symbol to be determined.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static bool ExistsEquals(IMethodSymbol symbol)
+		=> symbol is
+		{
+			IsStatic: false,
+			Name: nameof(Equals),
+			Parameters: [{ Type.SpecialType: SpecialType.System_Object }],
+			ReturnType.SpecialType: SpecialType.System_Boolean
+		};
+
+	/// <summary>
+	/// Indicates whether the specified method symbol overrides <see cref="object.GetHashCode"/>.
+	/// </summary>
+	/// <param name="symbol">The symbol to be determined.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static bool ExistsGetHashCode(IMethodSymbol symbol)
+		=> symbol is
+		{
+			IsStatic: false,
+			Name: nameof(GetHashCode),
+			Parameters: [],
+			ReturnType.SpecialType: SpecialType.System_Int32
+		};
+
+	/// <summary>
+	/// Indicates whether the specified method symbol overrides <see cref="object.ToString"/>.
+	/// </summary>
+	/// <param name="symbol">The symbol to be determined.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static bool ExistsToString(IMethodSymbol symbol)
+		=> symbol is
+		{
+			IsStatic: false,
+			Name: nameof(ToString),
+			Parameters: [],
+			ReturnType.SpecialType: SpecialType.System_String
+		};
 }

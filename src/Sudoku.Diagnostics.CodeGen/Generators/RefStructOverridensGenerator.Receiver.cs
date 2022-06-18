@@ -8,16 +8,10 @@ partial class RefStructOverridensGenerator
 	/// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
 	private sealed record class Receiver(CancellationToken CancellationToken) : ISyntaxContextReceiver
 	{
-		private const string
-			GetHashCodeAttributeFullName = "System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute",
-			ToStringAttributeFullName = "System.Diagnostics.CodeGen.AutoOverridesToStringAttribute";
-
-
 		/// <summary>
 		/// Indicates the result collection.
 		/// </summary>
-		public ICollection<(INamedTypeSymbol Symbol, bool, bool)> Collection { get; } =
-			new List<(INamedTypeSymbol, bool, bool)>();
+		public ICollection<INamedTypeSymbol> Collection { get; } = new List<INamedTypeSymbol>();
 
 
 		/// <inheritdoc/>
@@ -44,13 +38,7 @@ partial class RefStructOverridensGenerator
 				return;
 			}
 
-			var attributesData = typeSymbol.GetAttributes();
-			var getHashCodeAttribute = compilation.GetTypeByMetadataName(GetHashCodeAttributeFullName);
-			var toStringAttribute = compilation.GetTypeByMetadataName(ToStringAttributeFullName);
-			bool mayGenerateGetHashCode = !attributesData.Any(e => SymbolEqualityComparer.Default.Equals(e.AttributeClass, getHashCodeAttribute));
-			bool mayGenerateToString = !attributesData.Any(e => SymbolEqualityComparer.Default.Equals(e.AttributeClass, toStringAttribute));
-
-			Collection.Add((typeSymbol, mayGenerateGetHashCode, mayGenerateToString));
+			Collection.Add(typeSymbol);
 		}
 	}
 }

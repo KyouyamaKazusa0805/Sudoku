@@ -328,21 +328,42 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.OnTopLevel(Microsoft.CodeAnalysis.GeneratorExecutionContext,System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.Boolean},Microsoft.CodeAnalysis.Compilation)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.OnTopLevel(Microsoft.CodeAnalysis.GeneratorExecutionContext,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.Compilation)">
             <summary>
             Generates for top-leveled <see langword="ref struct"/> types.
             </summary>
             <param name="context">The context.</param>
-            <param name="tuple">The tuple.</param>
+            <param name="type">The type.</param>
             <param name="compilation">The compilation instance.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.OnNested(Microsoft.CodeAnalysis.GeneratorExecutionContext,System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.Boolean},Microsoft.CodeAnalysis.Compilation)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.OnNested(Microsoft.CodeAnalysis.GeneratorExecutionContext,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.Compilation)">
             <summary>
             Generates for nested-leveled <see langword="ref struct"/> types.
             </summary>
             <param name="context">The context.</param>
-            <param name="tuple">The tuple.</param>
+            <param name="type">The type.</param>
             <param name="compilation">The compilation instance.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.ExistsEquals(Microsoft.CodeAnalysis.IMethodSymbol)">
+            <summary>
+            Indicates whether the specified method symbol overrides <see cref="M:System.Object.Equals(System.Object)"/>.
+            </summary>
+            <param name="symbol">The symbol to be determined.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.ExistsGetHashCode(Microsoft.CodeAnalysis.IMethodSymbol)">
+            <summary>
+            Indicates whether the specified method symbol overrides <see cref="M:System.Object.GetHashCode"/>.
+            </summary>
+            <param name="symbol">The symbol to be determined.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.ExistsToString(Microsoft.CodeAnalysis.IMethodSymbol)">
+            <summary>
+            Indicates whether the specified method symbol overrides <see cref="M:System.Object.ToString"/>.
+            </summary>
+            <param name="symbol">The symbol to be determined.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver">
             <summary>
