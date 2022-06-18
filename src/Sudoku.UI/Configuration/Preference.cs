@@ -355,15 +355,15 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#200000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 32).
+	/// The default value is <c>#200000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 48).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
-	public Color FocusedCellColor { get; set; } = Colors.Blue with { A = 32 };
+	public Color FocusedCellColor { get; set; } = Colors.Blue with { A = 48 };
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#400000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 64).
+	/// The default value is <c>#400000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 32).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
-	public Color PeersFocusedCellColor { get; set; } = Colors.Blue with { A = 64 };
+	public Color PeersFocusedCellColor { get; set; } = Colors.Blue with { A = 32 };
 }
