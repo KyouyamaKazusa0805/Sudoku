@@ -90,11 +90,9 @@ Please visit [this link](https://github.com/users/SunnieShine/projects/2) for mo
 
 The codes in this repository uses MIT license, which means you should mention the copyright of the author of the repository if you want to use code snippet in this repository.
 
-However, one project is an exception. `Sudoku.Recognition` copies the code from another project, which uses the open-source lisence LGPL v2.1. For more information please check the license file stored in the folder `src/Sudoku.Recognition`.
-
 ### Wiki pages
 
-The repository also lists many wiki pages, which are stored in the folder `docs`. In addition, files `README.md` and `README-zh-cn.md` (as Chinese translation version) are also included as wiki pages. Those pages uses CC-BY-4.0 license to constraint your usage and copyright statements on this repository. You should mention the copyright of the author in this repository and give the state changes after modified the content in the copied one if you want to use the Wiki pages.
+The repository also lists many wiki pages, being stored in the folder `docs`. In addition, files `README.md` and `README-zh-cn.md` (as Chinese translation version) are also included as wiki pages. Those pages uses CC-BY-4.0 license to constraint your usage and copyright statements on this repository. You should mention the copyright of the author in this repository and give the state changes after modified the content in the copied one if you want to use the Wiki pages.
 
 ## Sudoku Technique References
 
