@@ -440,7 +440,13 @@
         <member name="P:Sudoku.UI.Configuration.Preference.FocusedCellColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#40FFFF00</c> (i.e. <see cref="P:Microsoft.UI.Colors.Yellow"/> with alpha 64).
+            The default value is <c>#200000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 32).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PeersFocusedCellColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#400000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 64).
             </remarks>
         </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">

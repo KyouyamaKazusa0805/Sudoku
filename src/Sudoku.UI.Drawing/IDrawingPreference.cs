@@ -265,4 +265,9 @@ public interface IDrawingPreference
 	/// Indicates the focused cell color.
 	/// </summary>
 	Color FocusedCellColor { get; set; }
+
+	/// <summary>
+	/// Indicates the peers focused cell color.
+	/// </summary>
+	Color PeersFocusedCellColor { get; set; }
 }

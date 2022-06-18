@@ -31,6 +31,11 @@ public sealed class SudokuGrid : DrawingElement
 	private readonly Rectangle _focusedRectangle;
 
 	/// <summary>
+	/// Indicates the rectangles displaying for peers of the focused cell.
+	/// </summary>
+	private readonly Rectangle[] _peerFocusedRectangle = new Rectangle[20];
+
+	/// <summary>
 	/// Indicates the callback method that invokes when the undoing and redoing steps are updated.
 	/// </summary>
 	private readonly Action? _undoRedoStepsUpdatedCallback;
@@ -131,6 +136,19 @@ public sealed class SudokuGrid : DrawingElement
 			new() { Fill = new SolidColorBrush(preference.FocusedCellColor), Visibility = Visibility.Collapsed }
 		);
 
+		foreach (ref var rectangle in _peerFocusedRectangle.EnumerateRef())
+		{
+			rectangle = new()
+			{
+				Fill = new SolidColorBrush(preference.PeersFocusedCellColor),
+				Visibility = Visibility.Collapsed
+			};
+
+			GridLayout.SetRow(rectangle, 4);
+			GridLayout.SetRow(rectangle, 4);
+			Canvas.SetZIndex(rectangle, -1);
+		}
+
 		// Sets the Z-Index.
 		GridLayout.SetRow(_focusedRectangle, 4);
 		GridLayout.SetColumn(_focusedRectangle, 4);
@@ -193,6 +211,16 @@ public sealed class SudokuGrid : DrawingElement
 					GridLayout.SetRow(_focusedRectangle, _focusedCell / 9);
 					GridLayout.SetColumn(_focusedRectangle, _focusedCell % 9);
 					_gridLayout.Children.Add(_focusedRectangle);
+
+					for (int peerIndex = 0; peerIndex < 20; peerIndex++)
+					{
+						var rectangle = _peerFocusedRectangle[peerIndex];
+						int peerCell = Peers[_focusedCell][peerIndex];
+
+						GridLayout.SetRow(rectangle, peerCell / 9);
+						GridLayout.SetColumn(rectangle, peerCell % 9);
+						_gridLayout.Children.Add(rectangle);
+					}
 				}
 			}
 		}
@@ -341,12 +369,24 @@ public sealed class SudokuGrid : DrawingElement
 			if ((_focusedCell = value) == -1)
 			{
 				_focusedRectangle.Visibility = Visibility.Collapsed;
+				Array.ForEach(_peerFocusedRectangle, static rectangle => rectangle.Visibility = Visibility.Collapsed);
+
 				return;
 			}
 
 			_focusedRectangle.Visibility = Visibility.Visible;
 			GridLayout.SetRow(_focusedRectangle, value / 9);
 			GridLayout.SetColumn(_focusedRectangle, value % 9);
+
+			for (int i = 0; i < 20; i++)
+			{
+				var rectangle = _peerFocusedRectangle[i];
+				int cell = Peers[value][i];
+
+				rectangle.Visibility = Visibility.Visible;
+				GridLayout.SetRow(rectangle, cell / 9);
+				GridLayout.SetColumn(rectangle, cell % 9);
+			}
 		}
 	}
 

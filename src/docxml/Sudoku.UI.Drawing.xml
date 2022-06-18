@@ -286,6 +286,11 @@
             Indicates the focused cell color.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PeersFocusedCellColor">
+            <summary>
+            Indicates the peers focused cell color.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
             Stores a set of methods on handling point conversions.
@@ -1982,6 +1987,11 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._focusedRectangle">
             <summary>
             Indicates the focused cell rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._peerFocusedRectangle">
+            <summary>
+            Indicates the rectangles displaying for peers of the focused cell.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._undoRedoStepsUpdatedCallback">
