@@ -1406,6 +1406,19 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.First">
+            <summary>
+            Gets the first element.
+            </summary>
+            <returns>The first element.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the enumerator cannot step advanced.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.FirstOrDefault">
+            <summary>
+            Gets the first element, and returns <see langword="null"/> if the collection doesn't contain any elements.
+            </summary>
+            <returns>The first element.</returns>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.Single">
             <summary>
             Gets the only element.

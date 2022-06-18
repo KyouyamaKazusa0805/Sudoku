@@ -63,6 +63,32 @@ partial class DrawingElementBag
 		public readonly OfTypeEnumerator<TDrawingElement> GetEnumerator() => this;
 
 		/// <summary>
+		/// Gets the first element.
+		/// </summary>
+		/// <returns>The first element.</returns>
+		/// <exception cref="InvalidOperationException">Throws when the enumerator cannot step advanced.</exception>
+		public readonly TDrawingElement First()
+		{
+			var enumerator = this;
+			if (!enumerator.MoveNext())
+			{
+				throw new InvalidOperationException("The list is empty.");
+			}
+
+			return enumerator.Current;
+		}
+
+		/// <summary>
+		/// Gets the first element, and returns <see langword="null"/> if the collection doesn't contain any elements.
+		/// </summary>
+		/// <returns>The first element.</returns>
+		public readonly TDrawingElement? FirstOrDefault()
+		{
+			var enumerator = this;
+			return !enumerator.MoveNext() ? null : enumerator.Current;
+		}
+
+		/// <summary>
 		/// Gets the only element.
 		/// </summary>
 		/// <returns>The only element.</returns>

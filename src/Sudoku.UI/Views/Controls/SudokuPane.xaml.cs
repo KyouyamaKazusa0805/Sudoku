@@ -232,24 +232,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Mask all value cells.
 	/// </summary>
-	public void Mask()
-	{
-		foreach (var element in _drawingElements.OfType<SudokuGrid>())
-		{
-			element.Mask();
-		}
-	}
+	public void Mask() => GetSudokuGridViewModelNullable()?.Mask();
 
 	/// <summary>
 	/// Unmask all value cells.
 	/// </summary>
-	public void Unmask()
-	{
-		foreach (var element in _drawingElements.OfType<SudokuGrid>())
-		{
-			element.Unmask();
-		}
-	}
+	public void Unmask() => GetSudokuGridViewModelNullable()?.Unmask();
 
 	/// <summary>
 	/// Shows the candidates.
@@ -267,8 +255,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		base.OnPointerMoved(e);
 
 		_cell = PointConversions.GetCell(e.GetCurrentPoint(this).Position, Size, OutsideOffset);
-
-		foreach (var sudokuGrid in _drawingElements.OfType<SudokuGrid>())
+		if (GetSudokuGridViewModelNullable() is { } sudokuGrid)
 		{
 			sudokuGrid.FocusedCell = _cell;
 		}
@@ -476,6 +463,17 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <returns>The <see cref="SudokuGrid"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private SudokuGrid GetSudokuGridViewModel() => _drawingElements.OfType<SudokuGrid>().Single();
+
+	/// <summary>
+	/// Gets the <see cref="SudokuGrid"/> instance as the view model, and return <see langword="null"/>
+	/// if the collection doesn't contain any <see cref="SudokuGrid"/> elements.
+	/// </summary>
+	/// <returns>
+	/// The <see cref="SudokuGrid"/> instance, or <see langword="null"/>
+	/// if the collection doesn't contain any <see cref="SudokuGrid"/> elements.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private SudokuGrid? GetSudokuGridViewModelNullable() => _drawingElements.OfType<SudokuGrid>().FirstOrDefault();
 
 
 	/// <summary>

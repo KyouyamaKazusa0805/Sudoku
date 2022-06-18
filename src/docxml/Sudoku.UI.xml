@@ -1641,6 +1641,16 @@
             </summary>
             <returns>The <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetSudokuGridViewModelNullable">
+            <summary>
+            Gets the <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance as the view model, and return <see langword="null"/>
+            if the collection doesn't contain any <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> elements.
+            </summary>
+            <returns>
+            The <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance, or <see langword="null"/>
+            if the collection doesn't contain any <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> elements.
+            </returns>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the pane is loaded.
