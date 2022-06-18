@@ -65,7 +65,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 					ConstructorArguments:
 					[
 						{ Type.SpecialType: SpecialType.System_Int32, Value: int priority },
-						{ Type.TypeKind: TypeKind.Enum, Value: byte dl }
+						{ Type.TypeKind: Kind.Enum, Value: byte dl }
 					],
 					NamedArguments: var namedArguments
 				}

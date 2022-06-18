@@ -381,24 +381,6 @@
             Defines the shortcuts of the source generators.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.TemplateMethods">
-            <summary>
-            Provides with a set of template methods that is used for <see cref="T:Microsoft.CodeAnalysis.IIncrementalGenerator"/> instances.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.IIncrementalGenerator"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.TemplateMethods.NodePredicate(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
-            <summary>
-            Determines whether a <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is a <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax"/>,
-            and contains at least one attribute marked onto it.
-            </summary>
-            <param name="node">The node to be verified.</param>
-            <param name="_">
-            The cancellation token that can cancel the operation.
-            This argument won't be used in this method; in other words, a discard.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
             <summary>
             Indicates the version of this project.

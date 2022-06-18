@@ -35,7 +35,8 @@ public sealed partial class RefStructOverridensGenerator : ISourceGenerator
 	/// <param name="tuple">The tuple.</param>
 	/// <param name="compilation">The compilation instance.</param>
 	private void OnTopLevel(
-		GeneratorExecutionContext context, (INamedTypeSymbol Type, bool GenerateGetHashCode, bool GenerateToString) tuple,
+		GeneratorExecutionContext context,
+		(INamedTypeSymbol Type, bool GenerateGetHashCode, bool GenerateToString) tuple,
 		Compilation compilation)
 	{
 		var type = tuple.Type;

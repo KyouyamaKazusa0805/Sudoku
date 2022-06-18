@@ -12,5 +12,4 @@ global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
 global using Sudoku.Diagnostics.CodeGen;
 global using static Sudoku.Diagnostics.CodeGen.Constants;
-global using static Sudoku.Diagnostics.CodeGen.TemplateMethods;
 global using Kind = Microsoft.CodeAnalysis.TypeKind;
