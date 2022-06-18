@@ -156,15 +156,6 @@
             </param>
             <returns>The <see cref="T:Microsoft.CodeAnalysis.SymbolOutputInfo"/> instance.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoBePinnableGenerator">
-            <summary>
-            Defines a source generator that generates the source code on implementation
-            for the method <c>GetPinnableReference</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoBePinnableGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator">
             <summary>
             Defines a source generator that generates deconstruction methods of a type.
