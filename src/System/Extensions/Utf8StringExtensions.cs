@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using StringSyntax = System.Diagnostics.CodeAnalysis.StringSyntaxAttribute;
+
+namespace System;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Utf8String"/>.
@@ -24,8 +26,7 @@ public static class Utf8StringExtensions
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool SatisfyPattern(
-		this Utf8String @this, [StringSyntax(StringSyntaxAttribute.Regex), NotNullWhen(true)] Utf8String pattern)
+	public static bool SatisfyPattern(this Utf8String @this, [@StringSyntax(StringSyntax.Regex)] Utf8String pattern)
 		=> ((string)@this).SatisfyPattern(pattern);
 
 	/// <summary>
@@ -45,7 +46,7 @@ public static class Utf8StringExtensions
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsMatch(this Utf8String @this, [StringSyntax(StringSyntaxAttribute.Regex)] Utf8String pattern)
+	public static bool IsMatch(this Utf8String @this, [@StringSyntax(StringSyntax.Regex)] Utf8String pattern)
 		=> ((string)@this).IsMatch(pattern);
 
 	/// <summary>
@@ -68,7 +69,7 @@ public static class Utf8StringExtensions
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? Match(this Utf8String @this, [StringSyntax(StringSyntaxAttribute.Regex)] Utf8String pattern)
+	public static string? Match(this Utf8String @this, [@StringSyntax(StringSyntax.Regex)] Utf8String pattern)
 		=> ((string)@this).Match(pattern);
 
 	/// <summary>
@@ -93,7 +94,7 @@ public static class Utf8StringExtensions
 	/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? Match(
-		this Utf8String @this, [StringSyntax(StringSyntaxAttribute.Regex, "regexOption")] Utf8String pattern,
+		this Utf8String @this, [@StringSyntax(StringSyntax.Regex, nameof(regexOption))] Utf8String pattern,
 		RegexOptions regexOption)
 		=> ((string)@this).Match(pattern, regexOption);
 
@@ -117,7 +118,7 @@ public static class Utf8StringExtensions
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] MatchAll(this Utf8String @this, [StringSyntax(StringSyntaxAttribute.Regex)] Utf8String pattern)
+	public static string[] MatchAll(this Utf8String @this, [@StringSyntax(StringSyntax.Regex)] Utf8String pattern)
 		=> ((string)@this).MatchAll(pattern);
 
 	/// <summary>
@@ -143,7 +144,7 @@ public static class Utf8StringExtensions
 	/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(
-		this Utf8String @this, [StringSyntax(StringSyntaxAttribute.Regex, "regexOption")] Utf8String pattern,
+		this Utf8String @this, [@StringSyntax(StringSyntax.Regex, nameof(regexOption))] Utf8String pattern,
 		RegexOptions regexOption)
 		=> ((string)@this).MatchAll(pattern, regexOption);
 
@@ -154,6 +155,6 @@ public static class Utf8StringExtensions
 	/// <param name="this">The value to check.</param>
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsRegexPattern([StringSyntax(StringSyntaxAttribute.Regex)] this Utf8String @this)
+	public static bool IsRegexPattern([@StringSyntax(StringSyntax.Regex)] this Utf8String @this)
 		=> ((string)@this).IsRegexPattern();
 }
