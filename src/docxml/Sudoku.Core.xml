@@ -993,17 +993,6 @@
             <param name="count">The desired number of offsets.</param>
             <returns>The <see cref="T:Sudoku.Concepts.Collections.Cells"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.CreateMask(System.Int32,System.Int32)">
-            <summary>
-            Being called by <see cref="P:Sudoku.Concepts.Collections.Cells.RowMask"/>, <see cref="P:Sudoku.Concepts.Collections.Cells.ColumnMask"/> and <see cref="P:Sudoku.Concepts.Collections.Cells.BlockMask"/>.
-            </summary>
-            <param name="start">The start index.</param>
-            <param name="end">The end index.</param>
-            <returns>The house mask.</returns>
-            <seealso cref="P:Sudoku.Concepts.Collections.Cells.RowMask"/>
-            <seealso cref="P:Sudoku.Concepts.Collections.Cells.ColumnMask"/>
-            <seealso cref="P:Sudoku.Concepts.Collections.Cells.BlockMask"/>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.Add(System.Int32)">
             <summary>
             Set the specified offset as <see langword="true"/> value.

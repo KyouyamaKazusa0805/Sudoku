@@ -661,19 +661,8 @@ public unsafe struct Cells :
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int CompareTo(in Cells other)
-	{
-		if (this > other)
-		{
-			return 1;
-		}
-
-		if (other > this) // 'other > this' is different with 'this < other'.
-		{
-			return -1;
-		}
-
-		return 0;
-	}
+		// 'other > this' is different with 'this < other'.
+		=> this > other ? 1 : other > this ? -1 : 0;
 
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
@@ -802,29 +791,6 @@ public unsafe struct Cells :
 	}
 
 	/// <summary>
-	/// Being called by <see cref="RowMask"/>, <see cref="ColumnMask"/> and <see cref="BlockMask"/>.
-	/// </summary>
-	/// <param name="start">The start index.</param>
-	/// <param name="end">The end index.</param>
-	/// <returns>The house mask.</returns>
-	/// <seealso cref="RowMask"/>
-	/// <seealso cref="ColumnMask"/>
-	/// <seealso cref="BlockMask"/>
-	private readonly short CreateMask(int start, int end)
-	{
-		short result = 0;
-		for (int i = start; i < end; i++)
-		{
-			if ((this & HouseMaps[i]).Count != 0)
-			{
-				result |= (short)(1 << i - start);
-			}
-		}
-
-		return result;
-	}
-
-	/// <summary>
 	/// Set the specified offset as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
@@ -943,7 +909,6 @@ public unsafe struct Cells :
 
 		return new(higherBits, lowerBits);
 	}
-
 
 	/// <summary>
 	/// Reverse status for all offsets, which means all <see langword="true"/> bits
