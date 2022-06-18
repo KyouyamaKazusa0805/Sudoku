@@ -10,6 +10,9 @@
 		<!--Syntax configuration-->
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>preview</LangVersion>
+
+		<!--Compilation Features-->
+		<Features>strict</Features>
 	</PropertyGroup>
 
 	<!--Set the nullable is enable if the language version is greater than or equals to C# 8.0.-->
@@ -57,7 +60,7 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.2.0" />
 	</ItemGroup>
 
-	<!--Import 'GlobalConfiguration.CodeGen' project into the source genrator projects.-->
+	<!--Import 'GlobalConfiguration.CodeGen' project into the source generator projects.-->
 	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' And '$(MSBuildProjectFile)'!='GlobalConfiguration.CodeGen.csproj'">
 		<AdditionalFiles Include="..\..\Directory.Build.props" />
 		<ProjectReference
