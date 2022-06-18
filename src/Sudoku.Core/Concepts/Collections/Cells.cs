@@ -793,7 +793,7 @@ public unsafe struct Cells :
 	{
 		var result = Empty;
 		int[] offsets = Offsets;
-		for (int i = start; i < count; i++)
+		for (int i = start, end = start + count; i < end; i++)
 		{
 			result += offsets[i];
 		}
