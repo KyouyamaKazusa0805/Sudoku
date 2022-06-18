@@ -2012,11 +2012,6 @@
             Indicates the callback method that invokes when the undoing and redoing steps are updated.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._viewElements">
-            <summary>
-            Indicates the view elements.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._preference">
             <summary>
             Indicates the user preference used.
@@ -2050,11 +2045,6 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._grid">
             <summary>
             Indicates the inner grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._view">
-            <summary>
-            Indicates the inner view.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.UI.Drawing.IDrawingPreference,System.Double,System.Double,System.Action)">
