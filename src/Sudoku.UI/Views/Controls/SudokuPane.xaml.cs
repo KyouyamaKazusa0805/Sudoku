@@ -49,21 +49,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </remarks>
 	private int _cell;
 
-#if false
-	/// <summary>
-	/// Indicates the current mouse point.
-	/// </summary>
-	/// <remarks>
-	/// This field can be calculated by <see cref="PointerRoutedEventArgs"/> instance,
-	/// using <see cref="PointerRoutedEventArgs.GetCurrentPoint(UIElement)"/> method to get the target value,
-	/// by using <see cref="PointerPoint.Position"/> property to get the result.
-	/// </remarks>
-	/// <seealso cref="PointerRoutedEventArgs"/>
-	/// <seealso cref="PointerRoutedEventArgs.GetCurrentPoint(UIElement)"/>
-	/// <seealso cref="PointerPoint.Position"/>
-	private Point _currentPointPosition;
-#endif
-
 
 	/// <summary>
 	/// Initializes a <see cref="SudokuPane"/> instance.
