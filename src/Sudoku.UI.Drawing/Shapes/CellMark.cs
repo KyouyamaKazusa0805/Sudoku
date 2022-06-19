@@ -8,6 +8,12 @@ namespace Sudoku.UI.Drawing.Shapes;
 internal sealed class CellMark : DrawingElement
 {
 	/// <summary>
+	/// Indicates the default margin value.
+	/// </summary>
+	private static readonly Thickness DefaultMargin = new(5);
+
+
+	/// <summary>
 	/// Indicates the inner rectangle.
 	/// </summary>
 	/// <remarks><b>
@@ -28,6 +34,11 @@ internal sealed class CellMark : DrawingElement
 	private readonly Ellipse _controlCircle;
 
 	/// <summary>
+	/// Indicates the inner cross mark.
+	/// </summary>
+	private readonly CrossMark _controlCrossMark;
+
+	/// <summary>
 	/// Indicates the user preference.
 	/// </summary>
 	private readonly IDrawingPreference _userPreference;
@@ -40,7 +51,7 @@ internal sealed class CellMark : DrawingElement
 	/// <summary>
 	/// Indicates the target shape.
 	/// </summary>
-	private Shape _shape = null!;
+	private FrameworkElement _shape;
 
 
 	/// <summary>
@@ -60,19 +71,26 @@ internal sealed class CellMark : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public CellMark(ShapeKind shapeKind, IDrawingPreference userPreference)
 	{
-		(ShapeKind, _userPreference, _controlRectangle, _controlCircle) = (
+		(ShapeKind, _userPreference, _controlRectangle, _controlCircle, _controlCrossMark) = (
 			shapeKind,
 			userPreference,
 			new()
 			{
-				Margin = new(5),
+				Margin = DefaultMargin,
 				Fill = new SolidColorBrush(userPreference.AuthorDefined_CellRectangleFillColor),
 				Visibility = Visibility.Collapsed
 			},
 			new()
 			{
-				Margin = new(5),
+				Margin = DefaultMargin,
 				Fill = new SolidColorBrush(userPreference.AuthorDefined_CellCircleFillColor),
+				Visibility = Visibility.Collapsed
+			},
+			new()
+			{
+				Margin = DefaultMargin,
+				Stroke = new SolidColorBrush(userPreference.AuthorDefined_CrossMarkStrokeColor),
+				StrokeThickness = userPreference.AuthorDefined_CrossMarkStrokeThickness,
 				Visibility = Visibility.Collapsed
 			}
 		);
@@ -118,6 +136,7 @@ internal sealed class CellMark : DrawingElement
 					{
 						ShapeKind.Rectangle => _controlRectangle,
 						ShapeKind.Circle => _controlCircle,
+						ShapeKind.CrossMark => _controlCrossMark,
 						_ => default!
 					};
 					newControl.Visibility = Visibility.Visible;
@@ -141,21 +160,21 @@ internal sealed class CellMark : DrawingElement
 	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, _shapeKind);
 
 	/// <inheritdoc/>
-	public override Shape GetControl() => _shape;
+	public override FrameworkElement GetControl() => _shape;
 
 	/// <summary>
 	/// Try to get all controls used.
 	/// </summary>
 	/// <returns>All controls.</returns>
 	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicFields)]
-	public Shape[] GetControls()
+	public FrameworkElement[] GetControls()
 	{
 		const string prefix = "_control";
 		const BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic;
 		return (
 			from fieldInfo in typeof(CellMark).GetFields(bindingFlags)
-			where fieldInfo.Name.StartsWith(prefix) && fieldInfo.FieldType.IsAssignableTo(typeof(Shape))
-			select (Shape)fieldInfo.GetValue(this)!
+			where fieldInfo.Name.StartsWith(prefix) && fieldInfo.FieldType.IsAssignableTo(typeof(FrameworkElement))
+			select (FrameworkElement)fieldInfo.GetValue(this)!
 		).ToArray();
 	}
 }

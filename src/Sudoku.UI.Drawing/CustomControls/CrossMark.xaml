@@ -1,0 +1,15 @@
+﻿<Grid
+	x:Name="_cThis"
+	x:Class="Sudoku.UI.Views.Controls.CrossMark"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+	<Line
+		x:Name="_cLine1" X1="0" Y1="0" X2="{x:Bind ActualWidth}" Y2="{x:Bind ActualHeight}"
+		Stroke="{x:Bind Stroke}" StrokeThickness="{x:Bind StrokeThickness}" />
+	<Line
+		x:Name="_cLine2" X1="0" Y1="{x:Bind ActualHeight}" X2="{x:Bind ActualWidth}" Y2="0"
+		Stroke="{x:Bind Stroke}" StrokeThickness="{x:Bind StrokeThickness}" />
+</Grid>

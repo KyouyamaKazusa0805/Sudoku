@@ -88,6 +88,12 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
+	/// The default value is <c>6</c>.
+	/// </remarks>
+	public double AuthorDefined_CrossMarkStrokeThickness { get; set; } = 6;
+
+	/// <inheritdoc/>
+	/// <remarks>
 	/// The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
 	/// </remarks>
 	public string ValueFontName { get; set; }
@@ -381,5 +387,12 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color AuthorDefined_CellCircleFillColor { get; set; } = Colors.Black with { A = 64 };
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color AuthorDefined_CrossMarkStrokeColor { get; set; } = Colors.Black with { A = 64 };
 #endif
 }

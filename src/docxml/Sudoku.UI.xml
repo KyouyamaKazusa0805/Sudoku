@@ -215,6 +215,12 @@
             The default value is <c>3</c>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CrossMarkStrokeThickness">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>6</c>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Configuration.Preference.ValueFontName">
             <inheritdoc/>
             <remarks>
@@ -456,6 +462,12 @@
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CellCircleFillColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CrossMarkStrokeColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).

@@ -76,6 +76,13 @@ public interface IDrawingPreference
 	/// </summary>
 	double HighlightCellStrokeThickness { get; set; }
 
+#if AUTHOR_FEATURE_CELL_MARKS
+	/// <summary>
+	/// Indicates the thickness of the stroke lines of the cross mark.
+	/// </summary>
+	double AuthorDefined_CrossMarkStrokeThickness { get; set; }
+#endif
+
 	/// <summary>
 	/// Indicates the value font name.
 	/// </summary>
@@ -281,5 +288,10 @@ public interface IDrawingPreference
 	/// Indicates the author-defined cell circle color used for filling.
 	/// </summary>
 	Color AuthorDefined_CellCircleFillColor { get; set; }
+
+	/// <summary>
+	/// Indicates the author-defined cross mark stroke color.
+	/// </summary>
+	Color AuthorDefined_CrossMarkStrokeColor { get; set; }
 #endif
 }
