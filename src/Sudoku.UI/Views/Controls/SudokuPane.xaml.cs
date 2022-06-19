@@ -509,8 +509,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			> 0 => (possibleDigit - 1, MakeDigit),
 			< 0 => (~possibleDigit, EliminateDigit),
-			_ => default((int, Action<int, int>))
+			_ => default((int, Action<int, int>?))
 		};
-		action(CurrentCell, digit);
+		action!(CurrentCell, digit);
 	}
 }
