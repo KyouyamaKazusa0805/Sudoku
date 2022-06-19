@@ -34,6 +34,15 @@ public sealed class CellMark : DrawingElement
 
 
 	/// <summary>
+	/// Initializes a <see cref="CellMark"/> instance via the specified user preference.
+	/// </summary>
+	/// <param name="userPreference">The user preference instance.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public CellMark(IDrawingPreference userPreference) : this(ShapeKind.None, userPreference)
+	{
+	}
+
+	/// <summary>
 	/// Initializes a <see cref="CellMark"/> instance via the specified shape kind.
 	/// </summary>
 	/// <param name="shapeKind">The shape kind.</param>
@@ -52,7 +61,7 @@ public sealed class CellMark : DrawingElement
 			new()
 			{
 				Margin = new(5),
-				Fill = new SolidColorBrush(userPreference.AuthorDefinedCellRectangleFillColor),
+				Fill = new SolidColorBrush(userPreference.AuthorDefinedCellCircleFillColor),
 				Visibility = Visibility.Collapsed
 			}
 		);
@@ -74,20 +83,35 @@ public sealed class CellMark : DrawingElement
 				return;
 			}
 
+			if (!Enum.IsDefined(value))
+			{
+				throw new InvalidOperationException("The specified value is not defined.");
+			}
+
 			_shapeKind = value;
 
-			// Hides the old shape control.
-			_shape.Visibility = Visibility.Collapsed;
-
-			_shape = value switch
+			switch (value)
 			{
-				ShapeKind.Rectangle => _rectangle,
-				ShapeKind.Circle => _circle,
-				_ => throw new InvalidOperationException("The specified value is not defined.")
-			};
+				case ShapeKind.None:
+				{
+					_shape = _rectangle;
+					_shape.Visibility = Visibility.Collapsed;
 
-			// Shows the new shape control.
-			_shape.Visibility = Visibility.Visible;
+					break;
+				}
+				default:
+				{
+					// Hides the old shape control.
+					_shape.Visibility = Visibility.Collapsed;
+
+					// Assigns a new control, and displays it.
+					ref var newControl = ref _shape;
+					newControl = value switch { ShapeKind.Rectangle => _rectangle, ShapeKind.Circle => _circle, _ => default! };
+					newControl.Visibility = Visibility.Visible;
+
+					break;
+				}
+			}
 		}
 	}
 

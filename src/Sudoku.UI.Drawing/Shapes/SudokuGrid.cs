@@ -20,6 +20,13 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private readonly CandidateDigit[] _candidateDigits = new CandidateDigit[81];
 
+#if AUTHOR_DEFINED
+	/// <summary>
+	/// Indicates the cell marks.
+	/// </summary>
+	private readonly CellMark[] _cellMarks = new CellMark[81];
+#endif
+
 	/// <summary>
 	/// Indicates the stacks to store the undoing and redoing steps.
 	/// </summary>
@@ -125,6 +132,7 @@ public sealed class SudokuGrid : DrawingElement
 			new() { Fill = new SolidColorBrush(preference.FocusedCellColor), Visibility = Visibility.Collapsed }
 		);
 
+		// Initializes the field '_peerFocusedRectangle'.
 		foreach (ref var rectangle in _peerFocusedRectangle.EnumerateRef())
 		{
 			rectangle = new()
@@ -142,6 +150,14 @@ public sealed class SudokuGrid : DrawingElement
 		GridLayout.SetRow(_focusedRectangle, 4);
 		GridLayout.SetColumn(_focusedRectangle, 4);
 		Canvas.SetZIndex(_focusedRectangle, -1);
+
+#if AUTHOR_DEFINED
+		// Initializes cell marks.
+		foreach (ref var cellMark in _cellMarks.EnumerateRef())
+		{
+			cellMark = new(preference);
+		}
+#endif
 
 		// Initializes values.
 		initializeValues();
@@ -195,6 +211,19 @@ public sealed class SudokuGrid : DrawingElement
 				GridLayout.SetColumn(control2, i % 9);
 				_gridLayout.Children.Add(control2);
 
+#if AUTHOR_DEFINED
+				// Initializes for the cell marks.
+				for (int cellIndex = 0; cellIndex < _cellMarks.Length; cellIndex++)
+				{
+					var cellMark = _cellMarks[cellIndex];
+					var control = cellMark.GetControl();
+					GridLayout.SetRow(control, cellIndex / 9);
+					GridLayout.SetColumn(control, cellIndex % 9);
+					_gridLayout.Children.Add(control);
+				}
+#endif
+
+				// Initializes for the items to render the focusing elements.
 				if (_focusedCell == i)
 				{
 					GridLayout.SetRow(_focusedRectangle, _focusedCell / 9);
@@ -205,7 +234,6 @@ public sealed class SudokuGrid : DrawingElement
 					{
 						var rectangle = _peerFocusedRectangle[peerIndex];
 						int peerCell = Peers[_focusedCell][peerIndex];
-
 						GridLayout.SetRow(rectangle, peerCell / 9);
 						GridLayout.SetColumn(rectangle, peerCell % 9);
 						_gridLayout.Children.Add(rectangle);
@@ -647,6 +675,26 @@ public sealed class SudokuGrid : DrawingElement
 		Array.ForEach(_cellDigits, static element => element.IsMaskMode = false);
 		Array.ForEach(_candidateDigits, static element => element.IsMaskMode = false);
 	}
+
+	/// <summary>
+	/// Sets the mark shape at the specified cell index.
+	/// </summary>
+	/// <param name="cellIndex">The cell index.</param>
+	/// <param name="shapeKind">
+	/// The shape kind you want to assign. If the value is <see cref="ShapeKind.None"/>,
+	/// the method will clear the displaying of the shape. In this case you can also call the method
+	/// <see cref="ClearCellMark(int)"/>. They are same.
+	/// </param>
+	/// <seealso cref="ClearCellMark(int)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetCellMark(int cellIndex, ShapeKind shapeKind) => _cellMarks[cellIndex].ShapeKind = shapeKind;
+
+	/// <summary>
+	/// Clears the mark shape at the specified cell index.
+	/// </summary>
+	/// <param name="cellIndex">The cell index.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ClearCellMark(int cellIndex) => SetCellMark(cellIndex, ShapeKind.None);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

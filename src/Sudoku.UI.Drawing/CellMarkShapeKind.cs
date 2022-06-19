@@ -6,6 +6,11 @@
 public enum ShapeKind : byte
 {
 	/// <summary>
+	/// Indicates none of shapes will be displayed.
+	/// </summary>
+	None,
+
+	/// <summary>
 	/// Indicates the shape kind is a rectangle.
 	/// </summary>
 	Rectangle,
