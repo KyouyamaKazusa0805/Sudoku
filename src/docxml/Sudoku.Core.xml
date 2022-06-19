@@ -1749,7 +1749,7 @@
             <description>The status of the specified cell is <see cref="F:Sudoku.Concepts.CellStatus.Empty"/>.</description>
             </item>
             <item>
-            <term>0 to 8</term>
+            <term><![CDATA[>= 0 and < 9]]></term>
             <description>
             The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..
             </description>
