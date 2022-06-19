@@ -505,13 +505,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			return;
 		}
 
-		var a = EliminateDigit;
-		var b = MakeDigit;
 		var (digit, action) = possibleDigit switch
 		{
-			> 0 => (possibleDigit - 1, b),
-			< 0 => (~possibleDigit, a),
-			_ => throw new()
+			> 0 => (possibleDigit - 1, MakeDigit),
+			< 0 => (~possibleDigit, EliminateDigit),
+			_ => default((int, Action<int, int>))
 		};
 		action(CurrentCell, digit);
 	}
