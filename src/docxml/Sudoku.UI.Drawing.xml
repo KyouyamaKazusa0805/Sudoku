@@ -9,6 +9,11 @@
             Defines a shape kind that is used for a mark-like drawing element.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.ShapeKind.None">
+            <summary>
+            Indicates none of shapes will be displayed.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.ShapeKind.Rectangle">
             <summary>
             Indicates the shape kind is a rectangle.
@@ -1006,6 +1011,12 @@
             <summary>
             Indicates the target shape.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.#ctor(Sudoku.UI.Drawing.IDrawingPreference)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellMark"/> instance via the specified user preference.
+            </summary>
+            <param name="userPreference">The user preference instance.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.#ctor(Sudoku.UI.Drawing.ShapeKind,Sudoku.UI.Drawing.IDrawingPreference)">
             <summary>
@@ -2066,6 +2077,11 @@
             Indicates the candidate digits.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._cellMarks">
+            <summary>
+            Indicates the cell marks.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._undoSteps">
             <summary>
             Indicates the stacks to store the undoing and redoing steps.
@@ -2271,6 +2287,24 @@
             <summary>
             To unmask the grid.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetCellMark(System.Int32,Sudoku.UI.Drawing.ShapeKind)">
+            <summary>
+            Sets the mark shape at the specified cell index.
+            </summary>
+            <param name="cellIndex">The cell index.</param>
+            <param name="shapeKind">
+            The shape kind you want to assign. If the value is <see cref="F:Sudoku.UI.Drawing.ShapeKind.None"/>,
+            the method will clear the displaying of the shape. In this case you can also call the method
+            <see cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearCellMark(System.Int32)"/>. They are same.
+            </param>
+            <seealso cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearCellMark(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearCellMark(System.Int32)">
+            <summary>
+            Clears the mark shape at the specified cell index.
+            </summary>
+            <param name="cellIndex">The cell index.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>

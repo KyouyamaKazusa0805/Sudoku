@@ -5,7 +5,7 @@ namespace Sudoku.UI.Drawing.Shapes;
 /// <summary>
 /// Defines a cell mark.
 /// </summary>
-public sealed class CellMark : DrawingElement
+internal sealed class CellMark : DrawingElement
 {
 	/// <summary>
 	/// Indicates the inner rectangle.
