@@ -367,7 +367,7 @@ public sealed class Preference : IDrawingPreference
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PeersFocusedCellColor { get; set; } = Colors.Blue with { A = 32 };
 
-#if AUTHOR_DEFINED
+#if AUTHOR_FEATURE_CELL_MARKS
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).

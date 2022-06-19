@@ -271,7 +271,7 @@ public interface IDrawingPreference
 	/// </summary>
 	Color PeersFocusedCellColor { get; set; }
 
-#if AUTHOR_DEFINED
+#if AUTHOR_FEATURE_CELL_MARKS
 	/// <summary>
 	/// Indicates the author-defined cell rectangle color used for filling.
 	/// </summary>

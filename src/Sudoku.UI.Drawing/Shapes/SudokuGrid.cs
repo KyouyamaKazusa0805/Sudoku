@@ -20,7 +20,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private readonly CandidateDigit[] _candidateDigits = new CandidateDigit[81];
 
-#if AUTHOR_DEFINED
+#if AUTHOR_FEATURE_CELL_MARKS
 	/// <summary>
 	/// Indicates the cell marks.
 	/// </summary>
@@ -203,7 +203,7 @@ public sealed class SudokuGrid : DrawingElement
 				GridLayout.SetColumn(control2, i % 9);
 				_gridLayout.Children.Add(control2);
 
-#if AUTHOR_DEFINED
+#if AUTHOR_FEATURE_CELL_MARKS
 				// Initializes for the cell marks.
 				ref var cellMark = ref _cellMarks[i];
 				cellMark = new(preference);
@@ -669,6 +669,7 @@ public sealed class SudokuGrid : DrawingElement
 		Array.ForEach(_candidateDigits, static element => element.IsMaskMode = false);
 	}
 
+#if AUTHOR_FEATURE_CELL_MARKS
 	/// <summary>
 	/// Sets the mark shape at the specified cell index.
 	/// </summary>
@@ -688,6 +689,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// <param name="cellIndex">The cell index.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ClearCellMark(int cellIndex) => SetCellMark(cellIndex, ShapeKind.None);
+#endif
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

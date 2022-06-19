@@ -1,4 +1,4 @@
-﻿#if AUTHOR_DEFINED
+﻿#if AUTHOR_FEATURE_CELL_MARKS
 
 namespace Sudoku.UI.Drawing.Shapes;
 
