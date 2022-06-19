@@ -1,6 +1,6 @@
 <center>Language switch to: <a href="README.md">English</a></center>
 
-# Sudoku Studio[^1]
+# Sudoku Studio^1^
 
 [![stars](https://img.shields.io/github/stars/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/stargazers)
 [![issues](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues)
@@ -19,6 +19,8 @@
 [![](https://img.shields.io/badge/Wiki-%E7%82%B9%E6%88%91%EF%BC%81-%230d1117)](https://sunnieshine.github.io/Sudoku/)
 
 [![哔哩哔哩](https://img.shields.io/badge/dynamic/json?color=%23fb7299&label=%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9&logo=bilibili&query=%24.data.follower&suffix=%20%E5%85%B3%E6%B3%A8&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Frelation%2Fstat%3Fvmid%3D23736703)](https://space.bilibili.com/23736703)
+
+> 以前仓库叫 Sunnie's Sudoku Solution（即向向的数独解决方案）。
 
 ## 简介
 
@@ -92,16 +94,14 @@ UI：
 
 ## 数独技巧参考
 
-我列举一些我这个解决方案里用到和参考的数独技巧网站。这些网站内容都是我自己写和出品的，所以如果你想要了解数独技巧的具体细节，你可以参考这些链接[^2]来了解它们。
+我列举一些我这个解决方案里用到和参考的数独技巧网站。这些网站内容都是我自己写和出品的，所以如果你想要了解数独技巧的具体细节，你可以参考这些链接^2^来了解它们。
 
 * [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
 * [标准数独技巧教程（专栏）_bilibili](https://www.bilibili.com/read/readlist/rl291187)
 
+> 这些页面都是中文的。不过，我以后可能会考虑写其它语言版本的页面。
+
 ## 作者
 
 小向，来自成都的一名四川~~普通大学~~师范大学的本科大学生。
-
-[^1]: 以前仓库叫 Sunnie's Sudoku Solution（即向向的数独解决方案）。
-
-[^2]: 这些页面都是中文的。不过，我以后可能会考虑写其它语言版本的页面。
 
