@@ -4,6 +4,21 @@
         <name>Sudoku.UI.Drawing</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.UI.Drawing.ShapeKind">
+            <summary>
+            Defines a shape kind that is used for a mark-like drawing element.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.ShapeKind.Rectangle">
+            <summary>
+            Indicates the shape kind is a rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.ShapeKind.Circle">
+            <summary>
+            Indicates the shape kind is a circle.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Drawing.ColorMarshal">
             <summary>
             Provides with the color-related marshaling methods.
@@ -289,6 +304,16 @@
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PeersFocusedCellColor">
             <summary>
             Indicates the peers focused cell color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefinedCellRectangleFillColor">
+            <summary>
+            Indicates the author-defined cell rectangle color used for filling.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefinedCellCircleFillColor">
+            <summary>
+            Indicates the author-defined cell circle color used for filling.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
@@ -950,6 +975,60 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.GetControl">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.CellMark">
+            <summary>
+            Defines a cell mark.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._rectangle">
+            <summary>
+            Indicates the inner rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._circle">
+            <summary>
+            Indicates the inner circle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._userPreference">
+            <summary>
+            Indicates the user preference.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._shapeKind">
+            <summary>
+            Indicates the shape kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._shape">
+            <summary>
+            Indicates the target shape.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.#ctor(Sudoku.UI.Drawing.ShapeKind,Sudoku.UI.Drawing.IDrawingPreference)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellMark"/> instance via the specified shape kind.
+            </summary>
+            <param name="shapeKind">The shape kind.</param>
+            <param name="userPreference">The user preference instance.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.ShapeKind">
+            <summary>
+            Indicates the shape kind used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControl">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellViewElement">

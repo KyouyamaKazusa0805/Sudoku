@@ -15,6 +15,7 @@
 		<!--Syntax configurations-->
 		<RootNamespace>Sudoku.UI</RootNamespace>
 		<DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
+		<DefineConstants>AUTHOR_DEFINED</DefineConstants>
 
 		<!--Repository configurations-->
 		<PackageReadmeFile>README.md</PackageReadmeFile>

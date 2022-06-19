@@ -270,4 +270,16 @@ public interface IDrawingPreference
 	/// Indicates the peers focused cell color.
 	/// </summary>
 	Color PeersFocusedCellColor { get; set; }
+
+#if AUTHOR_DEFINED
+	/// <summary>
+	/// Indicates the author-defined cell rectangle color used for filling.
+	/// </summary>
+	Color AuthorDefinedCellRectangleFillColor { get; set; }
+
+	/// <summary>
+	/// Indicates the author-defined cell circle color used for filling.
+	/// </summary>
+	Color AuthorDefinedCellCircleFillColor { get; set; }
+#endif
 }

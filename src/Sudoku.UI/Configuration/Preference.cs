@@ -366,4 +366,20 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PeersFocusedCellColor { get; set; } = Colors.Blue with { A = 32 };
+
+#if AUTHOR_DEFINED
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color AuthorDefinedCellRectangleFillColor { get; set; } = Colors.Black with { A = 64 };
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color AuthorDefinedCellCircleFillColor { get; set; } = Colors.Black with { A = 64 };
+#endif
 }
