@@ -373,13 +373,13 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
-	public Color AuthorDefinedCellRectangleFillColor { get; set; } = Colors.Black with { A = 64 };
+	public Color AuthorDefined_CellRectangleFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
-	public Color AuthorDefinedCellCircleFillColor { get; set; } = Colors.Black with { A = 64 };
+	public Color AuthorDefined_CellCircleFillColor { get; set; } = Colors.Black with { A = 64 };
 #endif
 }

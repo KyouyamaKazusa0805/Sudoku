@@ -10,12 +10,22 @@ internal sealed class CellMark : DrawingElement
 	/// <summary>
 	/// Indicates the inner rectangle.
 	/// </summary>
-	private readonly Rectangle _rectangle;
+	/// <remarks><b>
+	/// The prefix <c>_control</c> is appended on purpose, which is used for
+	/// checking in method <see cref="GetControls"/>.
+	/// </b></remarks>
+	/// <seealso cref="GetControls"/>
+	private readonly Rectangle _controlRectangle;
 
 	/// <summary>
 	/// Indicates the inner circle.
 	/// </summary>
-	private readonly Ellipse _circle;
+	/// <remarks><b>
+	/// The prefix <c>_control</c> is appended on purpose, which is used for
+	/// checking in method <see cref="GetControls"/>.
+	/// </b></remarks>
+	/// <seealso cref="GetControls"/>
+	private readonly Ellipse _controlCircle;
 
 	/// <summary>
 	/// Indicates the user preference.
@@ -49,22 +59,26 @@ internal sealed class CellMark : DrawingElement
 	/// <param name="userPreference">The user preference instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public CellMark(ShapeKind shapeKind, IDrawingPreference userPreference)
-		=> (ShapeKind, _userPreference, _rectangle, _circle) = (
+	{
+		(ShapeKind, _userPreference, _controlRectangle, _controlCircle) = (
 			shapeKind,
 			userPreference,
 			new()
 			{
 				Margin = new(5),
-				Fill = new SolidColorBrush(userPreference.AuthorDefinedCellRectangleFillColor),
+				Fill = new SolidColorBrush(userPreference.AuthorDefined_CellRectangleFillColor),
 				Visibility = Visibility.Collapsed
 			},
 			new()
 			{
 				Margin = new(5),
-				Fill = new SolidColorBrush(userPreference.AuthorDefinedCellCircleFillColor),
+				Fill = new SolidColorBrush(userPreference.AuthorDefined_CellCircleFillColor),
 				Visibility = Visibility.Collapsed
 			}
 		);
+
+		_shape = _controlRectangle;
+	}
 
 
 	/// <summary>
@@ -78,24 +92,18 @@ internal sealed class CellMark : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_shapeKind == value)
+			if (_shapeKind == value || !Enum.IsDefined(value))
 			{
 				return;
 			}
 
-			if (!Enum.IsDefined(value))
-			{
-				throw new InvalidOperationException("The specified value is not defined.");
-			}
-
 			_shapeKind = value;
-
 			switch (value)
 			{
 				case ShapeKind.None:
 				{
-					_shape = _rectangle;
-					_shape.Visibility = Visibility.Collapsed;
+					// Hides all possible controls.
+					Array.ForEach(GetControls(), static control => control.Visibility = Visibility.Collapsed);
 
 					break;
 				}
@@ -106,7 +114,7 @@ internal sealed class CellMark : DrawingElement
 
 					// Assigns a new control, and displays it.
 					ref var newControl = ref _shape;
-					newControl = value switch { ShapeKind.Rectangle => _rectangle, ShapeKind.Circle => _circle, _ => default! };
+					newControl = value switch { ShapeKind.Rectangle => _controlRectangle, ShapeKind.Circle => _controlCircle, _ => default! };
 					newControl.Visibility = Visibility.Visible;
 
 					break;
@@ -129,6 +137,22 @@ internal sealed class CellMark : DrawingElement
 
 	/// <inheritdoc/>
 	public override Shape GetControl() => _shape;
+
+	/// <summary>
+	/// Try to get all controls used.
+	/// </summary>
+	/// <returns>All controls.</returns>
+	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicFields)]
+	public Shape[] GetControls()
+	{
+		const string prefix = "_control";
+		const BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic;
+		return (
+			from fieldInfo in typeof(CellMark).GetFields(bindingFlags)
+			where fieldInfo.Name.StartsWith(prefix) && fieldInfo.FieldType.IsAssignableTo(typeof(Shape))
+			select (Shape)fieldInfo.GetValue(this)!
+		).ToArray();
+	}
 }
 
 #endif

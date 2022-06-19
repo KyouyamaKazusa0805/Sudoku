@@ -234,6 +234,20 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public void HideCandidates() => GetSudokuGridViewModel().UserShowCandidates = false;
 
+	/// <summary>
+	/// Sets the cell mark at the specified cell index.
+	/// </summary>
+	/// <param name="cellIndex">The cell index.</param>
+	/// <param name="shapeKind">The shape kind you want to set.</param>
+	public void SetCellMark(int cellIndex, ShapeKind shapeKind)
+		=> GetSudokuGridViewModel().SetCellMark(cellIndex, shapeKind);
+
+	/// <summary>
+	/// Clears the cell mark at the specified cell index.
+	/// </summary>
+	/// <param name="cellIndex">The cell index.</param>
+	public void ClearCellMark(int cellIndex) => SetCellMark(cellIndex, ShapeKind.None);
+
 	/// <inheritdoc/>
 	protected override void OnPointerMoved(PointerRoutedEventArgs e)
 	{
@@ -263,17 +277,20 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		var a = EliminateDigit;
 		var b = MakeDigit;
+		void c(int cell, int shapeKindIndex) => SetCellMark(cell, (ShapeKind)(byte)shapeKindIndex + 1);
+
+		var targetMethod = VirtualKey.Shift.ModifierKeyIsDown() ? a : VirtualKey.Control.ModifierKeyIsDown() ? c : b;
 		switch (e.Key)
 		{
 			case var key and >= VirtualKey.Number0 and <= VirtualKey.Number9: // Digits.
 			{
-				(VirtualKey.Shift.ModifierKeyIsDown() ? a : b)(_cell, key - VirtualKey.Number0 - 1);
+				targetMethod(_cell, key - VirtualKey.Number0 - 1);
 
 				break;
 			}
 			case var key and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9: // Digits that uses number pad.
 			{
-				(VirtualKey.Shift.ModifierKeyIsDown() ? a : b)(_cell, key - VirtualKey.NumberPad0 - 1);
+				targetMethod(_cell, key - VirtualKey.NumberPad0 - 1);
 
 				break;
 			}

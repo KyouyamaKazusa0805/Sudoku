@@ -449,13 +449,13 @@
             The default value is <c>#400000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 32).
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefinedCellRectangleFillColor">
+        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CellRectangleFillColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefinedCellCircleFillColor">
+        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CellCircleFillColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
@@ -1591,6 +1591,19 @@
             <summary>
             Hides the candidates.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetCellMark(System.Int32,Sudoku.UI.Drawing.ShapeKind)">
+            <summary>
+            Sets the cell mark at the specified cell index.
+            </summary>
+            <param name="cellIndex">The cell index.</param>
+            <param name="shapeKind">The shape kind you want to set.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ClearCellMark(System.Int32)">
+            <summary>
+            Clears the cell mark at the specified cell index.
+            </summary>
+            <param name="cellIndex">The cell index.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnPointerMoved(Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
             <inheritdoc/>

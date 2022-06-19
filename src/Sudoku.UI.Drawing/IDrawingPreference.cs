@@ -275,11 +275,11 @@ public interface IDrawingPreference
 	/// <summary>
 	/// Indicates the author-defined cell rectangle color used for filling.
 	/// </summary>
-	Color AuthorDefinedCellRectangleFillColor { get; set; }
+	Color AuthorDefined_CellRectangleFillColor { get; set; }
 
 	/// <summary>
 	/// Indicates the author-defined cell circle color used for filling.
 	/// </summary>
-	Color AuthorDefinedCellCircleFillColor { get; set; }
+	Color AuthorDefined_CellCircleFillColor { get; set; }
 #endif
 }

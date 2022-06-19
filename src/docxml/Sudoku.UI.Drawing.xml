@@ -311,12 +311,12 @@
             Indicates the peers focused cell color.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefinedCellRectangleFillColor">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CellRectangleFillColor">
             <summary>
             Indicates the author-defined cell rectangle color used for filling.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefinedCellCircleFillColor">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CellCircleFillColor">
             <summary>
             Indicates the author-defined cell circle color used for filling.
             </summary>
@@ -987,15 +987,25 @@
             Defines a cell mark.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._rectangle">
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlRectangle">
             <summary>
             Indicates the inner rectangle.
             </summary>
+            <remarks><b>
+            The prefix <c>_control</c> is appended on purpose, which is used for
+            checking in method <see cref="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControls"/>.
+            </b></remarks>
+            <seealso cref="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControls"/>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._circle">
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlCircle">
             <summary>
             Indicates the inner circle.
             </summary>
+            <remarks><b>
+            The prefix <c>_control</c> is appended on purpose, which is used for
+            checking in method <see cref="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControls"/>.
+            </b></remarks>
+            <seealso cref="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControls"/>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._userPreference">
             <summary>
@@ -1041,6 +1051,12 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControl">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControls">
+            <summary>
+            Try to get all controls used.
+            </summary>
+            <returns>All controls.</returns>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellViewElement">
             <summary>

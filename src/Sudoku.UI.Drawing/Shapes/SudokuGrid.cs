@@ -151,14 +151,6 @@ public sealed class SudokuGrid : DrawingElement
 		GridLayout.SetColumn(_focusedRectangle, 4);
 		Canvas.SetZIndex(_focusedRectangle, -1);
 
-#if AUTHOR_DEFINED
-		// Initializes cell marks.
-		foreach (ref var cellMark in _cellMarks.EnumerateRef())
-		{
-			cellMark = new(preference);
-		}
-#endif
-
 		// Initializes values.
 		initializeValues();
 
@@ -213,12 +205,13 @@ public sealed class SudokuGrid : DrawingElement
 
 #if AUTHOR_DEFINED
 				// Initializes for the cell marks.
-				for (int cellIndex = 0; cellIndex < _cellMarks.Length; cellIndex++)
+				ref var cellMark = ref _cellMarks[i];
+				cellMark = new(preference);
+				var controls = cellMark.GetControls();
+				foreach (var control in controls)
 				{
-					var cellMark = _cellMarks[cellIndex];
-					var control = cellMark.GetControl();
-					GridLayout.SetRow(control, cellIndex / 9);
-					GridLayout.SetColumn(control, cellIndex % 9);
+					GridLayout.SetRow(control, i / 9);
+					GridLayout.SetColumn(control, i % 9);
 					_gridLayout.Children.Add(control);
 				}
 #endif
