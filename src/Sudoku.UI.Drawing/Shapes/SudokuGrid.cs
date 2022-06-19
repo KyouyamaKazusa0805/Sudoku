@@ -379,7 +379,7 @@ public sealed class SudokuGrid : DrawingElement
 			if ((_focusedCell = value) == -1)
 			{
 				_focusedRectangle.Visibility = Visibility.Collapsed;
-				Array.ForEach(_peerFocusedRectangle, static rectangle => rectangle.Visibility = Visibility.Collapsed);
+				Array.ForEach(_peerFocusedRectangle, CommonMethods.HideControl);
 
 				return;
 			}

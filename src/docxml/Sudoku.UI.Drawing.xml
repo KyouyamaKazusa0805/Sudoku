@@ -2355,6 +2355,18 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.ViewElement.Equals(Sudoku.UI.Drawing.Shapes.ViewElement)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
+        <member name="T:Microsoft.UI.Xaml.CommonMethods">
+            <summary>
+            Defines a set of commonly-used methods.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.CommonMethods.HideControl``1(``0)">
+            <summary>
+            To hide a control.
+            </summary>
+            <typeparam name="TUIElement">The type of the control.</typeparam>
+            <param name="control">The control instance.</param>
+        </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE8A62F54E">
             <summary>
             Provides with extension deconstruction methods on this type.

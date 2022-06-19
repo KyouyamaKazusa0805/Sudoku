@@ -103,7 +103,7 @@ internal sealed class CellMark : DrawingElement
 				case ShapeKind.None:
 				{
 					// Hides all possible controls.
-					Array.ForEach(GetControls(), static control => control.Visibility = Visibility.Collapsed);
+					Array.ForEach(GetControls(), CommonMethods.HideControl);
 
 					break;
 				}
@@ -114,7 +114,12 @@ internal sealed class CellMark : DrawingElement
 
 					// Assigns a new control, and displays it.
 					ref var newControl = ref _shape;
-					newControl = value switch { ShapeKind.Rectangle => _controlRectangle, ShapeKind.Circle => _controlCircle, _ => default! };
+					newControl = value switch
+					{
+						ShapeKind.Rectangle => _controlRectangle,
+						ShapeKind.Circle => _controlCircle,
+						_ => default!
+					};
 					newControl.Visibility = Visibility.Visible;
 
 					break;
