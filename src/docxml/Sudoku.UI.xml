@@ -218,7 +218,7 @@
         <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CrossMarkStrokeThickness">
             <inheritdoc/>
             <remarks>
-            The default value is <c>6</c>.
+            The default value is <c>4</c>.
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.ValueFontName">

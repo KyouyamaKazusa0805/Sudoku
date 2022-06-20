@@ -88,9 +88,9 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>6</c>.
+	/// The default value is <c>4</c>.
 	/// </remarks>
-	public double AuthorDefined_CrossMarkStrokeThickness { get; set; } = 6;
+	public double AuthorDefined_CrossMarkStrokeThickness { get; set; } = 4;
 
 	/// <inheritdoc/>
 	/// <remarks>

@@ -16,7 +16,7 @@ public sealed partial class CrossMark : GridLayout
 	public double StrokeThickness
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _cLine1.StrokeThickness;
+		get => _cPath.StrokeThickness;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
@@ -26,8 +26,7 @@ public sealed partial class CrossMark : GridLayout
 				return;
 			}
 
-			_cLine1.StrokeThickness = value;
-			_cLine2.StrokeThickness = value;
+			_cPath.StrokeThickness = value;
 		}
 	}
 
@@ -35,7 +34,7 @@ public sealed partial class CrossMark : GridLayout
 	public Brush Stroke
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _cLine1.Stroke;
+		get => _cPath.Stroke;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
@@ -45,8 +44,7 @@ public sealed partial class CrossMark : GridLayout
 				return;
 			}
 
-			_cLine1.Stroke = value;
-			_cLine2.Stroke = value;
+			_cPath.Stroke = value;
 		}
 	}
 }
