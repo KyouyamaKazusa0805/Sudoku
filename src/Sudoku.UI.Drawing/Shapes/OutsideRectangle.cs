@@ -15,16 +15,18 @@ public sealed class OutsideRectangle : DrawingElement
 	/// Initializes an <see cref="OutsideRectangle"/> instance via the specified details.
 	/// </summary>
 	/// <param name="strokeColor">The stroke color.</param>
+	/// <param name="fillColor">The fill color.</param>
 	/// <param name="paneSize">The pane size.</param>
 	/// <param name="strokeThickness">The stroke thickness.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OutsideRectangle(Color strokeColor, double paneSize, double strokeThickness)
+	public OutsideRectangle(Color strokeColor, Color fillColor, double paneSize, double strokeThickness)
 		=> _rect = new()
 		{
 			Width = paneSize,
 			Height = paneSize,
 			Stroke = new SolidColorBrush(strokeColor),
-			StrokeThickness = strokeThickness
+			StrokeThickness = strokeThickness,
+			Fill = new SolidColorBrush(fillColor)
 		};
 
 
@@ -62,6 +64,18 @@ public sealed class OutsideRectangle : DrawingElement
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set => _rect.Stroke = new SolidColorBrush(value);
+	}
+
+	/// <summary>
+	/// The filling color of the outside rectangle.
+	/// </summary>
+	public Color FillColor
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ((SolidColorBrush)_rect.Fill).Color;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => _rect.Fill = new SolidColorBrush(value);
 	}
 
 	/// <inheritdoc/>

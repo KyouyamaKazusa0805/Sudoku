@@ -123,6 +123,13 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
+	/// The default value is <c>#FFFFFFFF</c> (i.e. <see cref="Colors.White"/>).
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color GridBackgroundFillColor { get; set; } = Colors.White;
+
+	/// <inheritdoc/>
+	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]

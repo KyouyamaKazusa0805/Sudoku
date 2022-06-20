@@ -239,6 +239,12 @@
             The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.GridBackgroundFillColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFFFFFF</c> (i.e. <see cref="P:Microsoft.UI.Colors.White"/>).
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Configuration.Preference.BlockBorderColor">
             <inheritdoc/>
             <remarks>
@@ -1913,6 +1919,12 @@
             <returns>
             The typical awaitable instance that holds the task to copy the snapshot.
             </returns>
+            <remarks>
+            The code is referenced from
+            <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L120">here</see>
+            and
+            <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L182">here</see>.
+            </remarks>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.UpdateIsEnabledStatus">
             <summary>

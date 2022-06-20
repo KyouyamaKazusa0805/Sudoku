@@ -381,12 +381,14 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <seealso cref="_drawingElements"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void InitializeOutsideRectangle(Preference up)
-	{
-		if (up.OutsideBorderWidth != 0 && OutsideOffset != 0)
-		{
-			_drawingElements.Add(new OutsideRectangle(up.OutsideBorderColor, Size, up.OutsideBorderWidth));
-		}
-	}
+		=> _drawingElements.Add(
+			new OutsideRectangle(
+				up.OutsideBorderColor,
+				up.GridBackgroundFillColor,
+				Size,
+				up.OutsideBorderWidth
+			)
+		);
 
 	/// <summary>
 	/// Initializes <see cref="CandidateLine"/>, <see cref="CellLine"/> and <see cref="BlockLine"/> instances,

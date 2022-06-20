@@ -151,6 +151,11 @@
             Indicates the color of the outside borders.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.GridBackgroundFillColor">
+            <summary>
+            Indicates the color of the grid background color for filling.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.BlockBorderColor">
             <summary>
             Indicates the color of the block borders.
@@ -2108,11 +2113,12 @@
             The inner rectangle.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.#ctor(Windows.UI.Color,System.Double,System.Double)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.#ctor(Windows.UI.Color,Windows.UI.Color,System.Double,System.Double)">
             <summary>
             Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle"/> instance via the specified details.
             </summary>
             <param name="strokeColor">The stroke color.</param>
+            <param name="fillColor">The fill color.</param>
             <param name="paneSize">The pane size.</param>
             <param name="strokeThickness">The stroke thickness.</param>
         </member>
@@ -2129,6 +2135,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.StrokeColor">
             <summary>
             The stroke color of the block line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.FillColor">
+            <summary>
+            The filling color of the outside rectangle.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.TypeIdentifier">
@@ -2430,26 +2441,6 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.ViewElement.Equals(Sudoku.UI.Drawing.Shapes.ViewElement)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="T:Sudoku.UI.Drawing.Sudoku_UI_Drawing_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Sudoku_UI_Drawing_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Sudoku_UI_Drawing_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Sudoku_UI_Drawing_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.CrossMark">
             <summary>
             Defines a cross mark sign.
@@ -2471,16 +2462,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.StarMark">
             <summary>
             Defines a star sign.
@@ -2497,16 +2478,6 @@
         <member name="M:Sudoku.UI.Views.Controls.StarMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.TriangleMark">
@@ -2527,16 +2498,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Microsoft.UI.Xaml.CommonMethods">
             <summary>
             Defines a set of commonly-used methods.
@@ -2549,12 +2510,12 @@
             <typeparam name="TUIElement">The type of the control.</typeparam>
             <param name="control">The control instance.</param>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE8A62F54E">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE31A42D46">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE8A62F54E.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE31A42D46.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -2595,12 +2556,12 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Windows.Foundation.Point_DE21A8A3CE">
+        <member name="T:Windows.Foundation.Point_DE9A6E7BC6">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DE21A8A3CE.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DE9A6E7BC6.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

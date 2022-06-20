@@ -99,6 +99,11 @@ public interface IDrawingPreference
 	Color OutsideBorderColor { get; set; }
 
 	/// <summary>
+	/// Indicates the color of the grid background color for filling.
+	/// </summary>
+	Color GridBackgroundFillColor { get; set; }
+
+	/// <summary>
 	/// Indicates the color of the block borders.
 	/// </summary>
 	Color BlockBorderColor { get; set; }

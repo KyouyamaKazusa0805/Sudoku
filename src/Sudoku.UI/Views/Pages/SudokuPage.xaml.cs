@@ -108,8 +108,12 @@ public sealed partial class SudokuPage : Page
 	/// <returns>
 	/// The typical awaitable instance that holds the task to copy the snapshot.
 	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+	/// <remarks>
+	/// The code is referenced from
+	/// <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L120">here</see>
+	/// and
+	/// <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L182">here</see>.
+	/// </remarks>
 	private async Task CopySnapshotAsync()
 	{
 		// Gets the snapshot of the control.
@@ -117,35 +121,43 @@ public sealed partial class SudokuPage : Page
 		await rtb.RenderAsync(_cPane);
 		var pixelBuffer = await rtb.GetPixelsAsync();
 
-		// Gets the DPI value for the current computer.
-#if true
-		const float dpi = 96;
-#else
-		float dpi = DisplayInformation.GetForCurrentView().LogicalDpi;
-#endif
-
 		// Creates the stream to store the output image data.
-		await using var stream = new MemoryStream();
-		var randomAccessStream = stream.AsRandomAccessStream();
+		var stream = new InMemoryRandomAccessStream();
+
+		// Gets the DPI value.
+		float dpi;
+		try
+		{
+			dpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+		}
+		catch (COMException ex) when (ex.ErrorCode == unchecked((int)0x80070490))
+		{
+			// Cannot find the element.
+			dpi = 96;
+		}
 
 		// Creates an encoder.
-		var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, randomAccessStream);
+		var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
 		encoder.SetPixelData(
-			BitmapPixelFormat.Rgba8, BitmapAlphaMode.Ignore, (uint)rtb.PixelWidth, (uint)rtb.PixelHeight,
-			dpi, dpi, pixelBuffer.ToArray()
+			BitmapPixelFormat.Bgra8,
+			BitmapAlphaMode.Ignore,
+			(uint)rtb.PixelWidth,
+			(uint)rtb.PixelHeight,
+			dpi,
+			dpi,
+			pixelBuffer.ToArray()
 		);
+
+		// Flushes the encoder.
+		await encoder.FlushAsync();
 
 		// Copies the data to the data package.
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		var dataTransferManager = DataTransferManager.GetForCurrentView();
-		var streamRef = RandomAccessStreamReference.CreateFromStream(randomAccessStream);
+		var streamRef = RandomAccessStreamReference.CreateFromStream(stream);
 		dataPackage.SetBitmap(streamRef);
 
 		// Copies to the clipboard.
 		Clipboard.SetContent(dataPackage);
-
-		// Flushes the encoder.
-		await encoder.FlushAsync();
 	}
 
 	/// <summary>
@@ -546,21 +558,15 @@ public sealed partial class SudokuPage : Page
 	/// Indicates the event trigger callback method that executes
 	/// copying the snapshot of the sudoku grid control.
 	/// </summary>
-#if true
-	private void CommandCopyControlSnapshot_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
-	{
-	}
-#else
-	private async void CommandCopyControlSnapshot_ExecuteRequestedAsync(
-		XamlUICommand sender, ExecuteRequestedEventArgs args) => await CopySnapshotAsync();
-#endif
+	private async void CommandCopyControlSnapshot_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> await CopySnapshotAsync();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes
 	/// parsing the string text representing as a sudoku grid from the clipboard.
 	/// </summary>
-	private async void CommandPasteSudokuGridText_ExecuteRequestedAsync(
-		XamlUICommand sender, ExecuteRequestedEventArgs args) => await PasteAsync();
+	private async void CommandPasteSudokuGridText_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> await PasteAsync();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes saving sudoku file.
