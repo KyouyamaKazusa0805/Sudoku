@@ -23,5 +23,10 @@ public enum ShapeKind : byte
 	/// <summary>
 	/// Indicates the shape kind is a cross mark.
 	/// </summary>
-	CrossMark
+	CrossMark,
+
+	/// <summary>
+	/// Indicates the shape kind is a star.
+	/// </summary>
+	Star
 }

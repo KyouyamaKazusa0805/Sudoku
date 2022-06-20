@@ -39,6 +39,11 @@ internal sealed class CellMark : DrawingElement
 	private readonly CrossMark _controlCrossMark;
 
 	/// <summary>
+	/// Indicates the inner star mark.
+	/// </summary>
+	private readonly StarMark _controlStarMark;
+
+	/// <summary>
 	/// Indicates the user preference.
 	/// </summary>
 	private readonly IDrawingPreference _userPreference;
@@ -71,7 +76,7 @@ internal sealed class CellMark : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public CellMark(ShapeKind shapeKind, IDrawingPreference userPreference)
 	{
-		(ShapeKind, _userPreference, _controlRectangle, _controlCircle, _controlCrossMark) = (
+		(ShapeKind, _userPreference, _controlRectangle, _controlCircle, _controlCrossMark, _controlStarMark) = (
 			shapeKind,
 			userPreference,
 			new()
@@ -91,6 +96,12 @@ internal sealed class CellMark : DrawingElement
 				Margin = DefaultMargin,
 				Stroke = new SolidColorBrush(userPreference.AuthorDefined_CrossMarkStrokeColor),
 				StrokeThickness = userPreference.AuthorDefined_CrossMarkStrokeThickness,
+				Visibility = Visibility.Collapsed
+			},
+			new()
+			{
+				Margin = DefaultMargin,
+				Fill = new SolidColorBrush(userPreference.AuthorDefined_StarFillColor),
 				Visibility = Visibility.Collapsed
 			}
 		);
@@ -137,6 +148,7 @@ internal sealed class CellMark : DrawingElement
 						ShapeKind.Rectangle => _controlRectangle,
 						ShapeKind.Circle => _controlCircle,
 						ShapeKind.CrossMark => _controlCrossMark,
+						ShapeKind.Star => _controlStarMark,
 						_ => default!
 					};
 					newControl.Visibility = Visibility.Visible;

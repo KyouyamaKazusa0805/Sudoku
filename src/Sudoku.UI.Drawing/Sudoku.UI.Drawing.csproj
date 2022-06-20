@@ -23,6 +23,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="CustomControls\StarMark.xaml">
+			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+			<SubType>Designer</SubType>
+		</Page>
 		<Page Update="CustomControls\CrossMark.xaml">
 			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 			<SubType>Designer</SubType>

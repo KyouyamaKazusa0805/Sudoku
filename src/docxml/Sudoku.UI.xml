@@ -473,6 +473,12 @@
             The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_StarFillColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            </remarks>
+        </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
             Defines a data template selector that selects the <see cref="T:Microsoft.UI.Xaml.DataTemplate"/> between

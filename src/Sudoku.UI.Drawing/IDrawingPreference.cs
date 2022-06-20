@@ -293,5 +293,10 @@ public interface IDrawingPreference
 	/// Indicates the author-defined cross mark stroke color.
 	/// </summary>
 	Color AuthorDefined_CrossMarkStrokeColor { get; set; }
+
+	/// <summary>
+	/// Indicates the author-defined cell star color used for filling.
+	/// </summary>
+	Color AuthorDefined_StarFillColor { get; set; }
 #endif
 }
