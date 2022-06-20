@@ -1027,6 +1027,11 @@
             Indicates the default margin value.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark.BuiltinShapeDefaultMargin">
+            <summary>
+            Indicates the default margin value that is applied to a built-in control.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlRectangle">
             <summary>
             Indicates the inner rectangle.

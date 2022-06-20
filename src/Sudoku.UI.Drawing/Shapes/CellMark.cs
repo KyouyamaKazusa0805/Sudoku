@@ -12,6 +12,11 @@ internal sealed class CellMark : DrawingElement
 	/// </summary>
 	private static readonly Thickness DefaultMargin = new(5);
 
+	/// <summary>
+	/// Indicates the default margin value that is applied to a built-in control.
+	/// </summary>
+	private static readonly Thickness BuiltinShapeDefaultMargin = new(10);
+
 
 	/// <summary>
 	/// Indicates the inner rectangle.
@@ -86,13 +91,13 @@ internal sealed class CellMark : DrawingElement
 			userPreference,
 			new()
 			{
-				Margin = DefaultMargin,
+				Margin = BuiltinShapeDefaultMargin,
 				Fill = new SolidColorBrush(userPreference.AuthorDefined_CellRectangleFillColor),
 				Visibility = Visibility.Collapsed
 			},
 			new()
 			{
-				Margin = DefaultMargin,
+				Margin = BuiltinShapeDefaultMargin,
 				Fill = new SolidColorBrush(userPreference.AuthorDefined_CellCircleFillColor),
 				Visibility = Visibility.Collapsed
 			},
