@@ -6,6 +6,12 @@
 public sealed class SudokuGrid : DrawingElement
 {
 	/// <summary>
+	/// Indicates the possible cell indices.
+	/// </summary>
+	private static readonly int[] CellIndices = Enumerable.Range(0, 81).ToArray();
+
+
+	/// <summary>
 	/// Indicates the inner grid layout control.
 	/// </summary>
 	private readonly GridLayout _gridLayout;
@@ -432,7 +438,7 @@ public sealed class SudokuGrid : DrawingElement
 
 #if AUTHOR_FEATURE_CELL_MARKS
 			// Clears the cell marks.
-			Array.ForEach(Enumerable.Range(0, 81).ToArray(), ClearCellMark);
+			Array.ForEach(CellIndices, ClearCellMark);
 #endif
 
 			// The operation must clear two stacks, and trigger the handler '_undoRedoStepsUpdatedCallback'.
@@ -632,7 +638,7 @@ public sealed class SudokuGrid : DrawingElement
 
 #if AUTHOR_FEATURE_CELL_MARKS
 		// Clears the cell marks.
-		Array.ForEach(Enumerable.Range(0, 81).ToArray(), ClearCellMark);
+		Array.ForEach(CellIndices, ClearCellMark);
 #endif
 	}
 
@@ -658,7 +664,7 @@ public sealed class SudokuGrid : DrawingElement
 
 #if AUTHOR_FEATURE_CELL_MARKS
 		// Clears the cell marks.
-		Array.ForEach(Enumerable.Range(0, 81).ToArray(), ClearCellMark);
+		Array.ForEach(CellIndices, ClearCellMark);
 #endif
 	}
 
