@@ -430,6 +430,11 @@ public sealed class SudokuGrid : DrawingElement
 			// Update the view.
 			UpdateView();
 
+#if AUTHOR_FEATURE_CELL_MARKS
+			// Clears the cell marks.
+			Array.ForEach(Enumerable.Range(0, 81).ToArray(), ClearCellMark);
+#endif
+
 			// The operation must clear two stacks, and trigger the handler '_undoRedoStepsUpdatedCallback'.
 			_undoSteps.Clear();
 			_redoSteps.Clear();
@@ -624,6 +629,11 @@ public sealed class SudokuGrid : DrawingElement
 		// Update the grid and view.
 		_grid.Reset();
 		UpdateView();
+
+#if AUTHOR_FEATURE_CELL_MARKS
+		// Clears the cell marks.
+		Array.ForEach(Enumerable.Range(0, 81).ToArray(), ClearCellMark);
+#endif
 	}
 
 	/// <summary>
@@ -645,6 +655,11 @@ public sealed class SudokuGrid : DrawingElement
 		// Update the grid and view.
 		_grid = grid;
 		UpdateView();
+
+#if AUTHOR_FEATURE_CELL_MARKS
+		// Clears the cell marks.
+		Array.ForEach(Enumerable.Range(0, 81).ToArray(), ClearCellMark);
+#endif
 	}
 
 	/// <summary>
@@ -656,6 +671,10 @@ public sealed class SudokuGrid : DrawingElement
 		_isMaskMode = true;
 		Array.ForEach(_cellDigits, static element => element.IsMaskMode = true);
 		Array.ForEach(_candidateDigits, static element => element.IsMaskMode = true);
+
+#if AUTHOR_FEATURE_CELL_MARKS
+		Array.ForEach(_cellMarks, static cellMark => cellMark.UserVisibility = Visibility.Collapsed);
+#endif
 	}
 
 	/// <summary>
@@ -667,6 +686,10 @@ public sealed class SudokuGrid : DrawingElement
 		_isMaskMode = false;
 		Array.ForEach(_cellDigits, static element => element.IsMaskMode = false);
 		Array.ForEach(_candidateDigits, static element => element.IsMaskMode = false);
+
+#if AUTHOR_FEATURE_CELL_MARKS
+		Array.ForEach(_cellMarks, static cellMark => cellMark.UserVisibility = Visibility.Visible);
+#endif
 	}
 
 #if AUTHOR_FEATURE_CELL_MARKS
@@ -681,14 +704,30 @@ public sealed class SudokuGrid : DrawingElement
 	/// </param>
 	/// <seealso cref="ClearCellMark(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetCellMark(int cellIndex, ShapeKind shapeKind) => _cellMarks[cellIndex].ShapeKind = shapeKind;
+	public void SetCellMark(int cellIndex, ShapeKind shapeKind)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		_cellMarks[cellIndex].ShapeKind = shapeKind;
+	}
 
 	/// <summary>
 	/// Clears the mark shape at the specified cell index.
 	/// </summary>
 	/// <param name="cellIndex">The cell index.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ClearCellMark(int cellIndex) => SetCellMark(cellIndex, ShapeKind.None);
+	public void ClearCellMark(int cellIndex)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		SetCellMark(cellIndex, ShapeKind.None);
+	}
 #endif
 
 	/// <inheritdoc/>

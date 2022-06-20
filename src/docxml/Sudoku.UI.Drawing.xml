@@ -1077,6 +1077,11 @@
             Indicates the shape kind.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._tempVisibility">
+            <summary>
+            Indicates the previous visibility.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._shape">
             <summary>
             Indicates the target shape.
@@ -1098,6 +1103,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.ShapeKind">
             <summary>
             Indicates the shape kind used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.UserVisibility">
+            <summary>
+            Indicates the visibility of the shape.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.TypeIdentifier">

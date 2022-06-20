@@ -64,6 +64,11 @@ internal sealed class CellMark : DrawingElement
 	private ShapeKind _shapeKind;
 
 	/// <summary>
+	/// Indicates the previous visibility.
+	/// </summary>
+	private Visibility _tempVisibility;
+
+	/// <summary>
 	/// Indicates the target shape.
 	/// </summary>
 	private FrameworkElement _shape;
@@ -169,6 +174,41 @@ internal sealed class CellMark : DrawingElement
 						_ => default!
 					};
 					newControl.Visibility = Visibility.Visible;
+
+					break;
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the visibility of the shape.
+	/// </summary>
+	public Visibility UserVisibility
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _shape.Visibility;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			if (UserVisibility == value)
+			{
+				return;
+			}
+
+			switch (value)
+			{
+				case Visibility.Collapsed:
+				{
+					_tempVisibility = _shape.Visibility;
+					_shape.Visibility = Visibility.Collapsed;
+
+					break;
+				}
+				case Visibility.Visible:
+				{
+					_shape.Visibility = _tempVisibility;
 
 					break;
 				}
