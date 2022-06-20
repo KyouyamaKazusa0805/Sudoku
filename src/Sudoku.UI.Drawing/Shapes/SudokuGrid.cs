@@ -679,7 +679,7 @@ public sealed class SudokuGrid : DrawingElement
 		Array.ForEach(_candidateDigits, static element => element.IsMaskMode = true);
 
 #if AUTHOR_FEATURE_CELL_MARKS
-		Array.ForEach(_cellMarks, static cellMark => cellMark.UserVisibility = Visibility.Collapsed);
+		Array.ForEach(_cellMarks, static element => element.ShowMark = false);
 #endif
 	}
 
@@ -694,7 +694,7 @@ public sealed class SudokuGrid : DrawingElement
 		Array.ForEach(_candidateDigits, static element => element.IsMaskMode = false);
 
 #if AUTHOR_FEATURE_CELL_MARKS
-		Array.ForEach(_cellMarks, static cellMark => cellMark.UserVisibility = Visibility.Visible);
+		Array.ForEach(_cellMarks, static element => element.ShowMark = true);
 #endif
 	}
 

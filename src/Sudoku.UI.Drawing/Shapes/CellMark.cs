@@ -59,14 +59,19 @@ internal sealed class CellMark : DrawingElement
 	private readonly IDrawingPreference _userPreference;
 
 	/// <summary>
+	/// Indicates whether the cell mark is shown.
+	/// </summary>
+	private bool _showMark;
+
+	/// <summary>
 	/// Indicates the shape kind.
 	/// </summary>
 	private ShapeKind _shapeKind;
 
 	/// <summary>
-	/// Indicates the previous visibility.
+	/// Indicates the previous state of the visibility case.
 	/// </summary>
-	private Visibility _tempVisibility;
+	private Visibility? _previousVisibilityState;
 
 	/// <summary>
 	/// Indicates the target shape.
@@ -184,31 +189,30 @@ internal sealed class CellMark : DrawingElement
 	/// <summary>
 	/// Indicates the visibility of the shape.
 	/// </summary>
-	public Visibility UserVisibility
+	public bool ShowMark
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _shape.Visibility;
+		get => _showMark;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (UserVisibility == value)
+			switch (value, _previousVisibilityState)
 			{
-				return;
-			}
-
-			switch (value)
-			{
-				case Visibility.Collapsed:
+				case (true, { } previousState):
 				{
-					_tempVisibility = _shape.Visibility;
-					_shape.Visibility = Visibility.Collapsed;
+					_showMark = value;
+
+					_shape.Visibility = previousState;
 
 					break;
 				}
-				case Visibility.Visible:
+				case (false, _):
 				{
-					_shape.Visibility = _tempVisibility;
+					_showMark = value;
+
+					_previousVisibilityState = _shape.Visibility;
+					_shape.Visibility = Visibility.Collapsed;
 
 					break;
 				}

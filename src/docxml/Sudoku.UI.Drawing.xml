@@ -1077,14 +1077,19 @@
             Indicates the user preference.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._showMark">
+            <summary>
+            Indicates whether the cell mark is shown.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._shapeKind">
             <summary>
             Indicates the shape kind.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._tempVisibility">
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._previousVisibilityState">
             <summary>
-            Indicates the previous visibility.
+            Indicates the previous state of the visibility case.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._shape">
@@ -1110,7 +1115,7 @@
             Indicates the shape kind used.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.UserVisibility">
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.ShowMark">
             <summary>
             Indicates the visibility of the shape.
             </summary>
