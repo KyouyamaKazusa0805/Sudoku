@@ -298,5 +298,10 @@ public interface IDrawingPreference
 	/// Indicates the author-defined cell star color used for filling.
 	/// </summary>
 	Color AuthorDefined_StarFillColor { get; set; }
+
+	/// <summary>
+	/// Indicates the author-defined cell triangle color used for filling.
+	/// </summary>
+	Color AuthorDefined_TriangleFillColor { get; set; }
 #endif
 }

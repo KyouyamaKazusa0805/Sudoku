@@ -1,0 +1,11 @@
+﻿<Grid
+	x:Class="Sudoku.UI.Views.Controls.TriangleMark"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+	<Viewbox Stretch="Uniform" Margin="{x:Bind Margin}">
+		<Path x:Name="_cPath" Data="M10,2 L20,19.320508 L0,19.320508 Z" Fill="{x:Bind Fill}" Width="20" Height="20" />
+	</Viewbox>
+</Grid>

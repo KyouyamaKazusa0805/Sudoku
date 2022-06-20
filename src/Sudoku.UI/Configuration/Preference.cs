@@ -401,5 +401,12 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color AuthorDefined_StarFillColor { get; set; } = Colors.Black with { A = 64 };
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color AuthorDefined_TriangleFillColor { get; set; } = Colors.Black with { A = 64 };
 #endif
 }

@@ -34,6 +34,11 @@
             Indicates the shape kind is a star.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.ShapeKind.Triangle">
+            <summary>
+            Indicates the shape kind is a triangle.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Drawing.ColorMarshal">
             <summary>
             Provides with the color-related marshaling methods.
@@ -344,6 +349,11 @@
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_StarFillColor">
             <summary>
             Indicates the author-defined cell star color used for filling.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_TriangleFillColor">
+            <summary>
+            Indicates the author-defined cell triangle color used for filling.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
@@ -1045,6 +1055,11 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlStarMark">
             <summary>
             Indicates the inner star mark.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlTriangleMark">
+            <summary>
+            Indicates the inner triangle mark.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._userPreference">
@@ -2430,6 +2445,24 @@
             <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.StarMark.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Views.Controls.TriangleMark">
+            <summary>
+            Defines a star sign.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Controls.TriangleMark"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.TriangleMark.Fill">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.InitializeComponent">
             <summary>
             InitializeComponent()
             </summary>
