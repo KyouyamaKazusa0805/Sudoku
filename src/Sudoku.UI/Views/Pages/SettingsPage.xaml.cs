@@ -194,8 +194,8 @@ public sealed partial class SettingsPage : Page
 		{
 			SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
 			SuggestedFileName = R["PreferenceBackup"]!
-		};
-		fsp.FileTypeChoices.Add(R["FileExtension_Configuration"], new List<string> { CommonFileExtensions.PreferenceBackup });
+		}
+		.AddFileTypeChoice(R["FileExtension_Configuration"]!, new List<string> { CommonFileExtensions.PreferenceBackup });
 		fsp.AwareHandleOnWin32();
 
 		if (await fsp.PickSaveFileAsync() is not { Name: var fileName } file)

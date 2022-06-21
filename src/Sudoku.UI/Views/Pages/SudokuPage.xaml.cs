@@ -213,27 +213,6 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
-	/// Try to get the logical DPI value.
-	/// </summary>
-	/// <param name="default">The default DPI value. The default value is 96.</param>
-	/// <returns>The DPI value to get.</returns>
-	private float TryGetLogicalDpi(float @default = 96)
-	{
-		float dpi;
-		try
-		{
-			dpi = DisplayInformation.GetForCurrentView().LogicalDpi;
-		}
-		catch (COMException ex) when (ex.ErrorCode == unchecked((int)0x80070490))
-		{
-			// Cannot find the element.
-			dpi = @default;
-		}
-
-		return dpi;
-	}
-
-	/// <summary>
 	/// Get the drawing data.
 	/// </summary>
 	/// <returns>The drawing data.</returns>
@@ -304,20 +283,19 @@ public sealed partial class SudokuPage : Page
 		{
 			SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
 			SuggestedFileName = R["Sudoku"]!
-		};
-		fsp.FileTypeChoices.Add(R["FileExtension_TextDescription"]!, new List<string> { CommonFileExtensions.Text });
-		fsp.FileTypeChoices.Add(R["FileExtension_Picture"]!, new List<string> { CommonFileExtensions.PortablePicture });
-		fsp.FileTypeChoices.Add(R["FileExtension_SudokuGridDescription"]!, new List<string> { CommonFileExtensions.Sudoku });
-		fsp.FileTypeChoices.Add(R["FileExtension_DrawingData"]!, new List<string> { CommonFileExtensions.DrawingData });
+		}
+		.AddFileTypeChoice(R["FileExtension_TextDescription"]!, new List<string> { CommonFileExtensions.Text })
+		.AddFileTypeChoice(R["FileExtension_Picture"]!, new List<string> { CommonFileExtensions.PortablePicture })
+		.AddFileTypeChoice(R["FileExtension_SudokuGridDescription"]!, new List<string> { CommonFileExtensions.Sudoku })
+		.AddFileTypeChoice(R["FileExtension_DrawingData"]!, new List<string> { CommonFileExtensions.DrawingData });
 		fsp.AwareHandleOnWin32();
 
-		var file = await fsp.PickSaveFileAsync();
-		if (file is not { Name: var fileName })
+		if (await fsp.PickSaveFileAsync() is not { Path: var filePath, Name: var fileName } file)
 		{
 			return;
 		}
 
-		switch (SystemIOPath.GetExtension(fileName))
+		switch (SystemIOPath.GetExtension(filePath))
 		{
 			case CommonFileExtensions.Text:
 			case CommonFileExtensions.Sudoku:
@@ -347,43 +325,9 @@ public sealed partial class SudokuPage : Page
 				// Render to an image at the current system scale and retrieve pixel contents.
 				var rtb = new RenderTargetBitmap();
 				await rtb.RenderAsync(_cPane);
-				var pixelBuffer = await rtb.GetPixelsAsync();
 
-#if false
-				var fsp2 = new FileSavePicker
-				{
-					DefaultFileExtension = CommonFileExtensions.PortablePicture
-				};
-				fsp2.FileTypeChoices.Add(R["FileExtension_Picture"]!, new List<string> { CommonFileExtensions.PortablePicture });
-				fsp2.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-				fsp2.SuggestedFileName = R["Sudoku"]!;
-
-				// Prompt and verify the user to select a file.
-				if (await fsp2.PickSaveFileAsync() is not { } file)
-				{
-					return;
-				}
-#endif
-
-				// Gets the DPI value.
-				float dpi = TryGetLogicalDpi();
-
-				// Encode the image to the selected file on disk
-				using (var pictureFileStream = await file.OpenAsync(FileAccessMode.ReadWrite))
-				{
-					var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, pictureFileStream);
-					encoder.SetPixelData(
-						BitmapPixelFormat.Bgra8,
-						BitmapAlphaMode.Ignore,
-						(uint)rtb.PixelWidth,
-						(uint)rtb.PixelHeight,
-						dpi,
-						dpi,
-						pixelBuffer.ToArray()
-					);
-
-					await encoder.FlushAsync();
-				}
+				// Outputs the file.
+				await outputPictureFileAsync(file, rtb);
 
 				// Let Windows know that we're finished changing the file so the other app can update
 				// the remote version of the file.
@@ -409,9 +353,74 @@ public sealed partial class SudokuPage : Page
 				var drawingDataStatus = await CachedFileManager.CompleteUpdatesAsync(file);
 				reportUserOutputResult(drawingDataStatus, fileName);
 
+				string? picturePath = SystemIOPath.ChangeExtension(filePath, CommonFileExtensions.PortablePicture);
+				if (picturePath is null)
+				{
+					// The path is null.
+					break;
+				}
+
+				if (SystemIOFile.Exists(picturePath))
+				{
+					// The file has already existed. We should break the method
+					// to avoid the file being overwritten.
+					break;
+				}
+
+				// Gets the file, but fast close the file.
+				var tempStream = SystemIOFile.Create(picturePath);
+				tempStream.Close();
+
+				// Creates the storage file instance.
+				var pictureFile = await StorageFile.GetFileFromPathAsync(picturePath);
+
+				// Prevent updates to the remote version of the file until we finish making changes
+				// and call CompleteUpdatesAsync.
+				CachedFileManager.DeferUpdates(pictureFile);
+
+				// Writes to the file.
+				// Render to an image at the current system scale and retrieve pixel contents.
+				var rtb = new RenderTargetBitmap();
+				await rtb.RenderAsync(_cPane);
+
+				// Outputs the file.
+				await outputPictureFileAsync(pictureFile, rtb);
+
+				// Let Windows know that we're finished changing the file so the other app can update
+				// the remote version of the file.
+				// Completing updates may require Windows to ask for user input.
+				var pictureStatus = await CachedFileManager.CompleteUpdatesAsync(pictureFile);
+				reportUserOutputResult(pictureStatus, SystemIOPath.GetFileName(picturePath)!);
+
 				break;
 			}
 
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static async Task outputPictureFileAsync(StorageFile file, RenderTargetBitmap rtb)
+			{
+				// Creates the pixel buffer.
+				var pixelBuffer = await rtb.GetPixelsAsync();
+
+				// Gets the DPI value.
+				float dpi = TryGetLogicalDpi();
+
+				// Encodes the image to the selected file on disk
+				using var pictureFileStream = await file.OpenAsync(FileAccessMode.ReadWrite);
+				var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, pictureFileStream);
+				encoder.SetPixelData(
+					BitmapPixelFormat.Bgra8,
+					BitmapAlphaMode.Ignore,
+					(uint)rtb.PixelWidth,
+					(uint)rtb.PixelHeight,
+					dpi,
+					dpi,
+					pixelBuffer.ToArray()
+				);
+
+				// Flushes the encoder.
+				await encoder.FlushAsync();
+			}
 
 			void reportUserOutputResult(FileUpdateStatus status, string fileName)
 			{
@@ -626,6 +635,28 @@ public sealed partial class SudokuPage : Page
 			// Revert control again.
 			_cPaneParent.Children.Add(_cPane);
 		}
+	}
+
+
+	/// <summary>
+	/// Try to get the logical DPI value.
+	/// </summary>
+	/// <param name="default">The default DPI value. The default value is 96.</param>
+	/// <returns>The DPI value to get.</returns>
+	private static float TryGetLogicalDpi(float @default = 96)
+	{
+		float dpi;
+		try
+		{
+			dpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+		}
+		catch (COMException ex) when (ex.ErrorCode == unchecked((int)0x80070490))
+		{
+			// Cannot find the element.
+			dpi = @default;
+		}
+
+		return dpi;
 	}
 
 

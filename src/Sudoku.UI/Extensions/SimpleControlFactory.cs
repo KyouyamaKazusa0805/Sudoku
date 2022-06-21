@@ -22,4 +22,20 @@ internal static class SimpleControlFactory
 			CloseButtonText = R["Close"],
 			DefaultButton = ContentDialogButton.Close
 		};
+
+	/// <summary>
+	/// Creates a <see cref="FileSavePicker"/> that outputs for a picture.
+	/// </summary>
+	/// <returns>The <see cref="FileSavePicker"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static FileSavePicker PictureFileSavePicker()
+	{
+		var fsp = new FileSavePicker
+		{
+			DefaultFileExtension = CommonFileExtensions.PortablePicture,
+			SuggestedFileName = R["Sudoku"]!
+		}.AddFileTypeChoice(R["FileExtension_Picture"]!, new List<string> { CommonFileExtensions.PortablePicture });
+
+		return fsp;
+	}
 }

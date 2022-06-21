@@ -24,4 +24,11 @@ internal static class FileSavePickerExtensions
 		[DllImport("user32", EntryPoint = "GetActiveWindow", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true)]
 		static extern nint getActiveWindow();
 	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static FileSavePicker AddFileTypeChoice(this FileSavePicker @this, string key, IList<string> values)
+	{
+		@this.FileTypeChoices.Add(key, values);
+		return @this;
+	}
 }

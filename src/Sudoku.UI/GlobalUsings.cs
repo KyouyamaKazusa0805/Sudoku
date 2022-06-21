@@ -69,4 +69,5 @@ global using static Sudoku.Resources.MergedResources;
 global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
 global using MsLaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 global using Grid = Sudoku.Concepts.Collections.Grid;
+global using SystemIOFile = System.IO.File;
 global using SystemIOPath = System.IO.Path;
