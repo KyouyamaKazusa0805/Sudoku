@@ -193,6 +193,7 @@
 	<x:String x:Key="FileExtension_SudokuGridDescription">数独盘面文件</x:String>
 	<x:String x:Key="FileExtension_Configuration">用户设置文件</x:String>
 	<x:String x:Key="FileExtension_DrawingData">绘图文件</x:String>
+	<x:String x:Key="FileExtension_Picture">图片文件</x:String>
 	<x:String x:Key="Close">关闭</x:String>
 	<x:String x:Key="Info">提示信息</x:String>
 	<x:String x:Key="Sudoku">数独</x:String>

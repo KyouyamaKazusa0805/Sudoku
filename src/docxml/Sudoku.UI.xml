@@ -2014,6 +2014,13 @@
             </summary>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.TryGetLogicalDpi(System.Single)">
+            <summary>
+            Try to get the logical DPI value.
+            </summary>
+            <param name="default">The default DPI value. The default value is 96.</param>
+            <returns>The DPI value to get.</returns>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetDrawingData">
             <summary>
             Get the drawing data.

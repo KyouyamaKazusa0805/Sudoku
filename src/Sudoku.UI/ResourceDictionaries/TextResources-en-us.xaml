@@ -199,6 +199,7 @@
 	<x:String x:Key="FileExtension_SudokuGridDescription">Sudoku grid file</x:String>
 	<x:String x:Key="FileExtension_Configuration">User preference file</x:String>
 	<x:String x:Key="FileExtension_DrawingData">Drawing data file</x:String>
+	<x:String x:Key="FileExtension_Picture">Picture file</x:String>
 	<x:String x:Key="Close">Close</x:String>
 	<x:String x:Key="Info">Info</x:String>
 	<x:String x:Key="Sudoku">Sudoku</x:String>
