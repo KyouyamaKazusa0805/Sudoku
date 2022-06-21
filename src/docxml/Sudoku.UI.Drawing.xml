@@ -2422,6 +2422,12 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetControl">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetCellMarks">
+            <summary>
+            Try to get the inner field <c>_cellMarks</c>.
+            </summary>
+            <returns>The cell marks.</returns>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.AddStep(Sudoku.Concepts.Collections.Grid@)">
             <summary>
             Adds the specified step into the collection.

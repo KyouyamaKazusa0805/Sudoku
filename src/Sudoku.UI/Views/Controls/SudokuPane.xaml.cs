@@ -248,6 +248,31 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="cellIndex">The cell index.</param>
 	public void ClearCellMark(int cellIndex) => SetCellMark(cellIndex, ShapeKind.None);
+
+	/// <summary>
+	/// Try to get drawing data.
+	/// </summary>
+	/// <returns>The drawing data.</returns>
+	public string GetDrawingData()
+	{
+		var sudokuGrid = GetSudokuGridViewModel();
+		var cellMarks = sudokuGrid.GetCellMarks();
+		var listOfShapeKinds = new List<CellMarkInfo>();
+		for (int cellIndex = 0; cellIndex < 81; cellIndex++)
+		{
+			var cellMark = cellMarks[cellIndex];
+			var shapeKind = cellMark.ShapeKind;
+			if (shapeKind != ShapeKind.None)
+			{
+				listOfShapeKinds.Add(new() { CellIndex = cellIndex, ShapeKindRawValue = (int)shapeKind });
+			}
+		}
+
+		return JsonSerializer.Serialize(
+			new CellMarkData { Data = listOfShapeKinds, GridRawValue = Grid.ToString("#") },
+			CommonReadOnlyFactory.DefaultSerializerOption
+		);
+	}
 #endif
 
 	/// <inheritdoc/>

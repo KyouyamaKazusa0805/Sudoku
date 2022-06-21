@@ -197,7 +197,8 @@
 	<x:String x:Key="Link_Repo">https://github.com/SunnieShine/Sudoku</x:String>
 	<x:String x:Key="FileExtension_TextDescription">Plain text file</x:String>
 	<x:String x:Key="FileExtension_SudokuGridDescription">Sudoku grid file</x:String>
-	<x:String x:Key="FileExtension_Configuration">User preferences</x:String>
+	<x:String x:Key="FileExtension_Configuration">User preference file</x:String>
+	<x:String x:Key="FileExtension_DrawingData">Drawing data file</x:String>
 	<x:String x:Key="Close">Close</x:String>
 	<x:String x:Key="Info">Info</x:String>
 	<x:String x:Key="Sudoku">Sudoku</x:String>

@@ -11,22 +11,27 @@ internal static class CommonFileExtensions
 	public const string All = "*";
 
 	/// <summary>
-	/// Indicates the plain-text format.
+	/// Indicates the plain-text file format.
 	/// </summary>
 	public const string Text = ".txt";
 
 	/// <summary>
-	/// Indicates the sudoku file.
+	/// Indicates the portable network graph (PNG) picture file format.
+	/// </summary>
+	public const string PortablePicture = ".png";
+
+	/// <summary>
+	/// Indicates the sudoku file format.
 	/// </summary>
 	public const string Sudoku = ".sdk";
 
 	/// <summary>
-	/// Indicates the drawing file.
+	/// Indicates the drawing data file format.
 	/// </summary>
-	public const string SudokuWithDrawing = ".sdd";
+	public const string DrawingData = ".sdd";
 
 	/// <summary>
-	/// Indicates the preference backup file.
+	/// Indicates the preference backup file format.
 	/// </summary>
 	public const string PreferenceBackup = ".sdc";
 }

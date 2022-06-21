@@ -749,6 +749,15 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override GridLayout GetControl() => _gridLayout;
 
+#if AUTHOR_FEATURE_CELL_MARKS
+	/// <summary>
+	/// Try to get the inner field <c>_cellMarks</c>.
+	/// </summary>
+	/// <returns>The cell marks.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal CellMark[] GetCellMarks() => _cellMarks;
+#endif
+
 	/// <summary>
 	/// Adds the specified step into the collection.
 	/// </summary>

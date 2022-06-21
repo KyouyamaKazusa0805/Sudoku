@@ -222,6 +222,13 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
+	/// Get the drawing data.
+	/// </summary>
+	/// <returns>The drawing data.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private string GetDrawingData() => _cPane.GetDrawingData();
+
+	/// <summary>
 	/// Asynchronously opening the file, and get the inner content to be parsed to a <see cref="Grid"/> result
 	/// to display.
 	/// </summary>
@@ -286,8 +293,9 @@ public sealed partial class SudokuPage : Page
 			SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
 			SuggestedFileName = R["Sudoku"]!
 		};
-		fsp.FileTypeChoices.Add(R["FileExtension_TextDescription"], new List<string> { CommonFileExtensions.Text });
+		fsp.FileTypeChoices.Add(R["FileExtension_TextDescription"]!, new List<string> { CommonFileExtensions.Text });
 		fsp.FileTypeChoices.Add(R["FileExtension_SudokuGridDescription"]!, new List<string> { CommonFileExtensions.Sudoku });
+		fsp.FileTypeChoices.Add(R["FileExtension_DrawingData"]!, new List<string> { CommonFileExtensions.DrawingData });
 		fsp.AwareHandleOnWin32();
 
 		var file = await fsp.PickSaveFileAsync();
@@ -296,28 +304,61 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		// Prevent updates to the remote version of the file until we finish making changes
-		// and call CompleteUpdatesAsync.
-		CachedFileManager.DeferUpdates(file);
-
-		// Writes to the file.
-		await FileIO.WriteTextAsync(file, _cPane.GridRef.ToString("#"));
-
-		// Let Windows know that we're finished changing the file so the other app can update
-		// the remote version of the file.
-		// Completing updates may require Windows to ask for user input.
-		var status = await CachedFileManager.CompleteUpdatesAsync(file);
-		if (status == FileUpdateStatus.Complete)
+		switch (SystemIOPath.GetExtension(fileName))
 		{
-			string a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
-			string b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
-			_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
-		}
-		else
-		{
-			string a = R["SudokuPage_InfoBar_SaveFailed1"]!;
-			string b = R["SudokuPage_InfoBar_SaveFailed2"]!;
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, $"{a}{fileName}{b}");
+			case CommonFileExtensions.Text:
+			case CommonFileExtensions.Sudoku:
+			{
+				// Prevent updates to the remote version of the file until we finish making changes
+				// and call CompleteUpdatesAsync.
+				CachedFileManager.DeferUpdates(file);
+
+				// Writes to the file.
+				await FileIO.WriteTextAsync(file, _cPane.GridRef.ToString("#"));
+
+				// Let Windows know that we're finished changing the file so the other app can update
+				// the remote version of the file.
+				// Completing updates may require Windows to ask for user input.
+				var status = await CachedFileManager.CompleteUpdatesAsync(file);
+				reportUserOutputResult(status, fileName);
+
+				break;
+			}
+			case CommonFileExtensions.DrawingData:
+			{
+				// Prevent updates to the remote version of the file until we finish making changes
+				// and call CompleteUpdatesAsync.
+				CachedFileManager.DeferUpdates(file);
+
+				// Writes to the file.
+				string drawingDataJson = GetDrawingData();
+				await FileIO.WriteTextAsync(file, drawingDataJson);
+
+				// Let Windows know that we're finished changing the file so the other app can update
+				// the remote version of the file.
+				// Completing updates may require Windows to ask for user input.
+				var drawingDataStatus = await CachedFileManager.CompleteUpdatesAsync(file);
+				reportUserOutputResult(drawingDataStatus, fileName);
+
+				break;
+			}
+
+
+			void reportUserOutputResult(FileUpdateStatus status, string fileName)
+			{
+				if (status == FileUpdateStatus.Complete)
+				{
+					string a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
+					string b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
+					_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
+				}
+				else
+				{
+					string a = R["SudokuPage_InfoBar_SaveFailed1"]!;
+					string b = R["SudokuPage_InfoBar_SaveFailed2"]!;
+					_cInfoBoard.AddMessage(InfoBarSeverity.Error, $"{a}{fileName}{b}");
+				}
+			}
 		}
 	}
 
