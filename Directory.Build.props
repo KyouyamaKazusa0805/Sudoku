@@ -10,14 +10,10 @@
 		<!--Syntax configuration-->
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>preview</LangVersion>
+		<Nullable>enable</Nullable>
 
 		<!--Compilation Features-->
 		<Features>strict</Features>
-	</PropertyGroup>
-
-	<!--Set the nullable is enable if the language version is greater than or equals to C# 8.0.-->
-	<PropertyGroup Condition="'$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='8.0'">
-		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<!--Set the root namespaces.-->
