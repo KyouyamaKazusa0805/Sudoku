@@ -269,7 +269,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		return JsonSerializer.Serialize(
-			new CellMarkData { Data = listOfShapeKinds, GridRawValue = Grid.ToString("#") },
+			new CellMarkData
+			{
+				Data = listOfShapeKinds,
+				ShowCandidates = sudokuGrid.UserShowCandidates,
+				GridRawValue = Grid.ToString("#")
+			},
 			CommonReadOnlyFactory.DefaultSerializerOption
 		);
 	}

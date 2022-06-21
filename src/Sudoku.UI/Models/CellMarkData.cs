@@ -11,6 +11,11 @@ internal sealed class CellMarkData
 	public required string GridRawValue { get; set; }
 
 	/// <summary>
+	/// Indicates whether the sudoku grid currently displays for candidates.
+	/// </summary>
+	public required bool ShowCandidates { get; set; }
+
+	/// <summary>
 	/// Indicates the full data.
 	/// </summary>
 	public required List<CellMarkInfo> Data { get; set; }
