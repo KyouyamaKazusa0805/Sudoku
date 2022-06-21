@@ -1,6 +1,6 @@
 <center>Language switch to: <a href="README.md">English</a></center>
 
-# Sudoku Studio^1^
+# Sudoku Studio
 
 [![stars](https://img.shields.io/github/stars/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/stargazers)
 [![issues](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues)
@@ -94,7 +94,7 @@ UI：
 
 ## 数独技巧参考
 
-我列举一些我这个解决方案里用到和参考的数独技巧网站。这些网站内容都是我自己写和出品的，所以如果你想要了解数独技巧的具体细节，你可以参考这些链接^2^来了解它们。
+我列举一些我这个解决方案里用到和参考的数独技巧网站。这些网站内容都是我自己写和出品的，所以如果你想要了解数独技巧的具体细节，你可以参考这些链接来了解它们。
 
 * [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
 * [标准数独技巧教程（专栏）_bilibili](https://www.bilibili.com/read/readlist/rl291187)
