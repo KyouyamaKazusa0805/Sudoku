@@ -97,6 +97,9 @@
 		<Page Update="ResourceDictionaries\BasicProperties.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Controls\ColorSelector.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\HomePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

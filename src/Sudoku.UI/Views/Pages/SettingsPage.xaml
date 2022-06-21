@@ -129,6 +129,13 @@
 														Text="{x:Bind Description}"
 														Margin="{StaticResource _rSettingDescriptionMargin}"
 														Style="{ThemeResource CaptionTextBlockStyle}" />
+													<c:ColorSelector
+														Margin="0,20,0,20"
+														SelectedColor="{x:Bind GetPreference(),
+															Mode=TwoWay,
+															UpdateSourceTrigger=PropertyChanged,
+															BindBack=SetPreference}" />
+													<!--
 													<ColorPicker
 														HorizontalAlignment="Left" VerticalAlignment="Top"
 														IsColorSpectrumVisible="False" IsMoreButtonVisible="True"
@@ -139,6 +146,7 @@
 															Mode=TwoWay,
 															UpdateSourceTrigger=PropertyChanged,
 															BindBack=SetPreference}" />
+													-->
 												</StackPanel>
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.ColorPickerTemplate>

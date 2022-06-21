@@ -24,16 +24,13 @@
 
 	<ItemGroup>
 		<Page Update="CustomControls\TriangleMark.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="CustomControls\StarMark.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="CustomControls\CrossMark.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>
 

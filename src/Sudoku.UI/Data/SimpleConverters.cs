@@ -80,6 +80,8 @@ internal static class SimpleConverters
 			}
 		)!;
 
+	public static string ToRgbString(Color color) => $"{color.R}, {color.G}, {color.B}";
+
 	/// <summary>
 	/// Gets the date value from the raw string.
 	/// </summary>
@@ -111,6 +113,8 @@ internal static class SimpleConverters
 			0 or > DifficultyLevel.Nightmare => new(Colors.Transparent),
 			_ => DifficultyLevel_Backgrounds[Log2((byte)difficultyLevel)]
 		};
+
+	public static SolidColorBrush CreateBrushFromColor(Color color) => new(color);
 
 	/// <summary>
 	/// Gets the timeline information.

@@ -46,6 +46,7 @@ global using Sudoku.UI.Drawing.Shapes;
 global using Sudoku.UI.Interoperability;
 global using Sudoku.UI.Metadata;
 global using Sudoku.UI.Models;
+global using Sudoku.UI.ResourceDictionaries;
 global using Sudoku.UI.Views.Pages;
 global using Sudoku.UI.Views.Windows;
 global using Windows.ApplicationModel.Activation;

@@ -1,0 +1,37 @@
+﻿<UserControl
+	x:Class="Sudoku.UI.Views.Controls.ColorSelector"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	xmlns:data="using:Sudoku.UI.Data"
+	xmlns:r="using:Sudoku.UI.ResourceDictionaries">
+	<SplitButton x:Name="_cSplitButton">
+		<SplitButton.Flyout>
+			<Flyout Placement="Bottom">
+				<GridView
+					x:Name="_cGridView" IsItemClickEnabled="True" ItemsSource="{x:Bind r:ColorPalette.Value}"
+					ItemClick="GridView_ItemClick">
+					<GridView.ItemsPanel>
+						<ItemsPanelTemplate>
+							<ItemsWrapGrid MaximumRowsOrColumns="12" Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</GridView.ItemsPanel>
+					<GridView.ItemTemplate>
+						<DataTemplate x:DataType="Color">
+							<StackPanel Orientation="Horizontal">
+								<Ellipse
+									Fill="{x:Bind data:SimpleConverters.CreateBrushFromColor((Color))}"
+									Width="30" Height="30" Stroke="Black" StrokeThickness="4"
+									ToolTipService.ToolTip="{x:Bind data:SimpleConverters.ToRgbString((Color))}" />
+							</StackPanel>
+						</DataTemplate>
+					</GridView.ItemTemplate>
+				</GridView>
+			</Flyout>
+		</SplitButton.Flyout>
+
+		<Border x:Name="_cCurrentColorBorder" CornerRadius="6" Margin="0" Width="30" Height="30" />
+	</SplitButton>
+</UserControl>
