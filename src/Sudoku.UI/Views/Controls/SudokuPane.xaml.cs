@@ -383,13 +383,57 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void LoadFirstGridIfWorth()
 	{
-		if (((App)Application.Current).InitialInfo.FirstGrid is { } grid)
+		switch (((App)Application.Current).InitialInfo)
 		{
-			// Sets the value.
-			Grid = grid;
+			case { FirstGrid: { } grid } initialInfo:
+			{
+				// Sets the value.
+				Grid = grid;
 
-			// Remove the value to avoid re-triggering.
-			((App)Application.Current).InitialInfo.FirstGrid = null;
+				// Remove the value to avoid re-triggering.
+				initialInfo.FirstGrid = null;
+
+				break;
+			}
+#if AUTHOR_FEATURE_CELL_MARKS
+			case { DrawingDataRawValue: { } rawDataValue } initialInfo:
+			{
+				// Handles the raw data value.
+				var cellMarkData = JsonSerializer.Deserialize<CellMarkData>(
+					rawDataValue,
+					CommonReadOnlyFactory.DefaultSerializerOption
+				);
+
+				if (cellMarkData is not var (gridRawValue, showCandidates, data))
+				{
+					break;
+				}
+
+				if (!Grid.TryParse(gridRawValue, out var grid))
+				{
+					break;
+				}
+
+				var a = ShowCandidates;
+				var b = HideCandidates;
+
+				Grid = grid;
+				(showCandidates ? a : b)();
+
+				if (data.Count != 0)
+				{
+					foreach (var (cellIndex, shapeKindRaw) in data)
+					{
+						SetCellMark(cellIndex, (ShapeKind)shapeKindRaw);
+					}
+				}
+
+				// Remove the value to avoid re-triggering.
+				initialInfo.DrawingDataRawValue = null;
+
+				break;
+			}
+#endif
 		}
 	}
 

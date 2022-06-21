@@ -3,7 +3,8 @@
 /// <summary>
 /// Indicates the cell mark data of a complete sudoku grid.
 /// </summary>
-internal sealed class CellMarkData
+[AutoDeconstruction(nameof(GridRawValue), nameof(ShowCandidates), nameof(Data))]
+internal sealed partial class CellMarkData
 {
 	/// <summary>
 	/// Indicates the grid raw value. The format is <c>"#"</c>.

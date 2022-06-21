@@ -16,6 +16,13 @@ internal sealed class WindowInitialInfo
 	/// </summary>
 	public Grid? FirstGrid { get; internal set; } = null;
 
+#if AUTHOR_FEATURE_CELL_MARKS
+	/// <summary>
+	/// Indicates the raw value of the drawing data. The default value is <see langword="null"/>.
+	/// </summary>
+	public string? DrawingDataRawValue { get; internal set; } = null;
+#endif
+
 	/// <summary>
 	/// Indicates the main window.
 	/// </summary>

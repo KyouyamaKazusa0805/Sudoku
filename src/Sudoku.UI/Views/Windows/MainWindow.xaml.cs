@@ -83,7 +83,10 @@ public sealed partial class MainWindow : Window
 		=> OnNavigate(
 			((App)Application.Current).InitialInfo switch
 			{
-				{ FirstGrid: { } grid } => nameof(SudokuPage),
+				{ FirstGrid: not null } => nameof(SudokuPage),
+#if AUTHOR_FEATURE_CELL_MARKS
+				{ DrawingDataRawValue: not null } => nameof(SudokuPage),
+#endif
 				{ FirstPageTypeName: var firstPageTypeName } => firstPageTypeName,
 				_ => throw new InvalidOperationException("The initialization information is invalid.")
 			},

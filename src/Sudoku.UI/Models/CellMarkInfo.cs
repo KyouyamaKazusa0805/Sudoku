@@ -3,7 +3,8 @@
 /// <summary>
 /// Indicates the cell mark info that describes a single cell.
 /// </summary>
-internal struct CellMarkInfo
+[AutoDeconstruction(nameof(CellIndex), nameof(ShapeKindRawValue))]
+internal partial struct CellMarkInfo
 {
 	/// <summary>
 	/// Indicates the cell index.

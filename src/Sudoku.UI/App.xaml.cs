@@ -52,10 +52,11 @@ public partial class App : Application
 					Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: var fileType } file, ..] }
 				} => fileType switch
 				{
-					CommonFileExtensions.Sudoku
-						=> async i => i.FirstGrid = Grid.Parse(await FileIO.ReadTextAsync(file)),
-					CommonFileExtensions.PreferenceBackup
-						=> static i => i.FirstPageTypeName = nameof(SettingsPage),
+					CommonFileExtensions.Sudoku => async i => i.FirstGrid = Grid.Parse(await readAsync(file)),
+					CommonFileExtensions.PreferenceBackup => static i => i.FirstPageTypeName = nameof(SettingsPage),
+#if AUTHOR_FEATURE_CELL_MARKS
+					CommonFileExtensions.DrawingData => async i => i.DrawingDataRawValue = await readAsync(file),
+#endif
 					_ => default(Action<WindowInitialInfo>?)
 				},
 				_ => default
@@ -64,5 +65,8 @@ public partial class App : Application
 
 		// Activate the main window.
 		(InitialInfo.MainWindow = new MainWindow()).Activate();
+
+
+		static async Task<string> readAsync(IStorageFile file) => await FileIO.ReadTextAsync(file);
 	}
 }
