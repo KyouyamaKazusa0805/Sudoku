@@ -308,5 +308,10 @@ public interface IDrawingPreference
 	/// Indicates the author-defined cell triangle color used for filling.
 	/// </summary>
 	Color AuthorDefined_TriangleFillColor { get; set; }
+
+	/// <summary>
+	/// Indicates the author-defined cell diamond color used for filling.
+	/// </summary>
+	Color AuthorDefined_DiamondFillColor { get; set; }
 #endif
 }

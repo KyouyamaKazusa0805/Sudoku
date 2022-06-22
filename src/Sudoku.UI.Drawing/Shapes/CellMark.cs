@@ -54,6 +54,11 @@ internal sealed class CellMark : DrawingElement
 	private readonly TriangleMark _controlTriangleMark;
 
 	/// <summary>
+	/// Indicates the inner diamond mark.
+	/// </summary>
+	private readonly DiamondMark _controlDiamondMark;
+
+	/// <summary>
 	/// Indicates the user preference.
 	/// </summary>
 	private readonly IDrawingPreference _userPreference;
@@ -96,41 +101,45 @@ internal sealed class CellMark : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public CellMark(ShapeKind shapeKind, IDrawingPreference userPreference)
 	{
-		(ShapeKind, _userPreference, _controlRectangle, _controlCircle, _controlCrossMark, _controlStarMark, _controlTriangleMark) = (
-			shapeKind,
-			userPreference,
-			new()
-			{
-				Margin = BuiltinShapeDefaultMargin,
-				Fill = new SolidColorBrush(userPreference.AuthorDefined_CellRectangleFillColor),
-				Visibility = Visibility.Collapsed
-			},
-			new()
-			{
-				Margin = BuiltinShapeDefaultMargin,
-				Fill = new SolidColorBrush(userPreference.AuthorDefined_CellCircleFillColor),
-				Visibility = Visibility.Collapsed
-			},
-			new()
-			{
-				Margin = DefaultMargin,
-				Stroke = new SolidColorBrush(userPreference.AuthorDefined_CrossMarkStrokeColor),
-				StrokeThickness = userPreference.AuthorDefined_CrossMarkStrokeThickness,
-				Visibility = Visibility.Collapsed
-			},
-			new()
-			{
-				Margin = DefaultMargin,
-				Fill = new SolidColorBrush(userPreference.AuthorDefined_StarFillColor),
-				Visibility = Visibility.Collapsed
-			},
-			new()
-			{
-				Margin = DefaultMargin,
-				Fill = new SolidColorBrush(userPreference.AuthorDefined_TriangleFillColor),
-				Visibility = Visibility.Collapsed
-			}
-		);
+		ShapeKind = shapeKind;
+		_userPreference = userPreference;
+		_controlRectangle = new()
+		{
+			Margin = BuiltinShapeDefaultMargin,
+			Fill = new SolidColorBrush(userPreference.AuthorDefined_CellRectangleFillColor),
+			Visibility = Visibility.Collapsed
+		};
+		_controlCircle = new()
+		{
+			Margin = BuiltinShapeDefaultMargin,
+			Fill = new SolidColorBrush(userPreference.AuthorDefined_CellCircleFillColor),
+			Visibility = Visibility.Collapsed
+		};
+		_controlCrossMark = new()
+		{
+			Margin = DefaultMargin,
+			Stroke = new SolidColorBrush(userPreference.AuthorDefined_CrossMarkStrokeColor),
+			StrokeThickness = userPreference.AuthorDefined_CrossMarkStrokeThickness,
+			Visibility = Visibility.Collapsed
+		};
+		_controlStarMark = new()
+		{
+			Margin = DefaultMargin,
+			Fill = new SolidColorBrush(userPreference.AuthorDefined_StarFillColor),
+			Visibility = Visibility.Collapsed
+		};
+		_controlTriangleMark = new()
+		{
+			Margin = DefaultMargin,
+			Fill = new SolidColorBrush(userPreference.AuthorDefined_TriangleFillColor),
+			Visibility = Visibility.Collapsed
+		};
+		_controlDiamondMark = new()
+		{
+			Margin = DefaultMargin,
+			Fill = new SolidColorBrush(userPreference.AuthorDefined_DiamondFillColor),
+			Visibility = Visibility.Collapsed
+		};
 
 		_shape = _controlRectangle;
 	}
@@ -176,6 +185,7 @@ internal sealed class CellMark : DrawingElement
 						ShapeKind.CrossMark => _controlCrossMark,
 						ShapeKind.Star => _controlStarMark,
 						ShapeKind.Triangle => _controlTriangleMark,
+						ShapeKind.Diamond => _controlDiamondMark,
 						_ => default!
 					};
 					newControl.Visibility = Visibility.Visible;

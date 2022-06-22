@@ -33,5 +33,10 @@ public enum ShapeKind : byte
 	/// <summary>
 	/// Indicates the shape kind is a triangle.
 	/// </summary>
-	Triangle
+	Triangle,
+
+	/// <summary>
+	/// Indicates the shape kind is a diamond.
+	/// </summary>
+	Diamond
 }

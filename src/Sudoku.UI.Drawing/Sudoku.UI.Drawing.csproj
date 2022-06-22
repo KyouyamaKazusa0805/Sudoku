@@ -23,6 +23,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="CustomControls\DiamondMark.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="CustomControls\TriangleMark.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
