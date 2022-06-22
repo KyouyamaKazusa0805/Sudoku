@@ -1,17 +1,17 @@
-﻿#if AUTHOR_FEATURE_CELL_MARKS
+﻿#if AUTHOR_FEATURE_CANDIDATE_MARKS
 
 namespace Sudoku.UI.Drawing.Shapes;
 
 /// <summary>
-/// Defines a cell mark.
+/// Defines a candidate mark.
 /// </summary>
-internal sealed class CellMark : DrawingElement, IMark
+internal sealed class CandidateMark : DrawingElement, IMark
 {
 	/// <inheritdoc cref="IMark.DefaultMargin"/>
-	private static readonly Thickness DefaultMargin = new(5);
+	private static readonly Thickness DefaultMargin = new(2.5);
 
 	/// <inheritdoc cref="IMark.BuiltinShapeDefaultMargin"/>
-	private static readonly Thickness BuiltinShapeDefaultMargin = new(10);
+	private static readonly Thickness BuiltinShapeDefaultMargin = new(5);
 
 
 	/// <summary>
@@ -87,21 +87,21 @@ internal sealed class CellMark : DrawingElement, IMark
 
 
 	/// <summary>
-	/// Initializes a <see cref="CellMark"/> instance via the specified user preference.
+	/// Initializes a <see cref="CandidateMark"/> instance via the specified user preference.
 	/// </summary>
 	/// <param name="userPreference">The user preference instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellMark(IDrawingPreference userPreference) : this(ShapeKind.None, userPreference)
+	public CandidateMark(IDrawingPreference userPreference) : this(ShapeKind.None, userPreference)
 	{
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="CellMark"/> instance via the specified shape kind.
+	/// Initializes a <see cref="CandidateMark"/> instance via the specified shape kind.
 	/// </summary>
 	/// <param name="shapeKind">The shape kind.</param>
 	/// <param name="userPreference">The user preference instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellMark(ShapeKind shapeKind, IDrawingPreference userPreference)
+	public CandidateMark(ShapeKind shapeKind, IDrawingPreference userPreference)
 	{
 		ShapeKind = shapeKind;
 		_userPreference = userPreference;
@@ -121,7 +121,7 @@ internal sealed class CellMark : DrawingElement, IMark
 		{
 			Margin = DefaultMargin,
 			Stroke = new SolidColorBrush(userPreference.AuthorDefined_CrossMarkStrokeColor),
-			StrokeThickness = userPreference.AuthorDefined_CrossMarkStrokeThickness,
+			StrokeThickness = userPreference.AuthorDefined_CrossMarkStrokeThickness_ApplyToCandidateMark,
 			Visibility = Visibility.Collapsed
 		};
 		_controlStarMark = new()
@@ -219,8 +219,10 @@ internal sealed class CellMark : DrawingElement, IMark
 		}
 	}
 
-	/// <inheritdoc/>
-	protected override string TypeIdentifier => nameof(CellMark);
+	/// <summary>
+	/// Indicates the type identifier.
+	/// </summary>
+	protected override string TypeIdentifier => nameof(CandidateMark);
 
 	/// <inheritdoc/>
 	static Thickness IMark.DefaultMargin => DefaultMargin;
@@ -231,7 +233,7 @@ internal sealed class CellMark : DrawingElement, IMark
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
-		=> other is CellMark comparer && _shapeKind == comparer._shapeKind;
+		=> other is CandidateMark comparer && _shapeKind == comparer._shapeKind;
 
 	/// <inheritdoc/>
 	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, _shapeKind);
@@ -244,7 +246,7 @@ internal sealed class CellMark : DrawingElement, IMark
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public FrameworkElement[] GetControls()
 		=> (
-			from fieldInfo in typeof(CellMark).GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+			from fieldInfo in typeof(CandidateMark).GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
 			where fieldInfo.IsDefined(typeof(ShapeAttribute))
 			select (FrameworkElement)fieldInfo.GetValue(this)!
 		).ToArray();
@@ -259,7 +261,7 @@ internal sealed class CellMark : DrawingElement, IMark
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private FrameworkElement? GetControlViaShapeKind(ShapeKind shapeKind)
 		=> (
-			from fieldInfo in typeof(CellMark).GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+			from fieldInfo in typeof(CandidateMark).GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
 			where fieldInfo.GetCustomAttribute<ShapeAttribute>()?.Kind == shapeKind
 			select (FrameworkElement)fieldInfo.GetValue(this)!
 		).FirstOrDefault();

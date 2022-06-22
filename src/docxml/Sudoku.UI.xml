@@ -231,6 +231,12 @@
             The default value is <c>4</c>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CrossMarkStrokeThickness_ApplyToCandidateMark">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>1.5</c>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Configuration.Preference.ValueFontName">
             <inheritdoc/>
             <remarks>

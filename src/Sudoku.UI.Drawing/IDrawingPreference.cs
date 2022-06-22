@@ -83,6 +83,13 @@ public interface IDrawingPreference
 	double AuthorDefined_CrossMarkStrokeThickness { get; set; }
 #endif
 
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <summary>
+	/// Indicates the thickness of the stroke lines of the cross mark, as a candidate mark.
+	/// </summary>
+	double AuthorDefined_CrossMarkStrokeThickness_ApplyToCandidateMark { get; set; }
+#endif
+
 	/// <summary>
 	/// Indicates the value font name.
 	/// </summary>
@@ -283,7 +290,7 @@ public interface IDrawingPreference
 	/// </summary>
 	Color PeersFocusedCellColor { get; set; }
 
-#if AUTHOR_FEATURE_CELL_MARKS
+#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
 	/// <summary>
 	/// Indicates the author-defined cell rectangle color used for filling.
 	/// </summary>

@@ -86,11 +86,21 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	public double HighlightCellStrokeThickness { get; set; } = 3;
 
+#if AUTHOR_FEATURE_CELL_MARKS
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>4</c>.
 	/// </remarks>
 	public double AuthorDefined_CrossMarkStrokeThickness { get; set; } = 4;
+#endif
+
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>1.5</c>.
+	/// </remarks>
+	public double AuthorDefined_CrossMarkStrokeThickness_ApplyToCandidateMark { get; set; } = 1.5;
+#endif
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -380,7 +390,7 @@ public sealed class Preference : IDrawingPreference
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PeersFocusedCellColor { get; set; } = Colors.Blue with { A = 32 };
 
-#if AUTHOR_FEATURE_CELL_MARKS
+#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
