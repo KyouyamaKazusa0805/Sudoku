@@ -477,7 +477,7 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Undo()
 	{
-		if (_isMaskMode)
+		if (_isMaskMode || _undoSteps.Count == 0)
 		{
 			return;
 		}
@@ -498,7 +498,7 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Redo()
 	{
-		if (_isMaskMode)
+		if (_isMaskMode || _redoSteps.Count == 0)
 		{
 			return;
 		}
