@@ -371,6 +371,22 @@
             Indicates the author-defined cell diamond color used for filling.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Drawing.Metadata.ShapeAttribute">
+            <summary>
+            Defines a type that marks a field, indicating the field binding with a shape kind.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Metadata.ShapeAttribute.#ctor(Sudoku.UI.Drawing.ShapeKind)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Metadata.ShapeAttribute"/> instance via the specified shape kind.
+            </summary>
+            <param name="kind">The shape kind.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Metadata.ShapeAttribute.Kind">
+            <summary>
+            Indicates the shape kind.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
             Stores a set of methods on handling point conversions.

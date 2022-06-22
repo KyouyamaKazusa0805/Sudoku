@@ -26,6 +26,7 @@ internal sealed class CellMark : DrawingElement
 	/// checking in method <see cref="GetControls"/>.
 	/// </b></remarks>
 	/// <seealso cref="GetControls"/>
+	[Shape(ShapeKind.Rectangle)]
 	private readonly Rectangle _controlRectangle;
 
 	/// <summary>
@@ -36,26 +37,31 @@ internal sealed class CellMark : DrawingElement
 	/// checking in method <see cref="GetControls"/>.
 	/// </b></remarks>
 	/// <seealso cref="GetControls"/>
+	[Shape(ShapeKind.Circle)]
 	private readonly Ellipse _controlCircle;
 
 	/// <summary>
 	/// Indicates the inner cross mark.
 	/// </summary>
+	[Shape(ShapeKind.CrossMark)]
 	private readonly CrossMark _controlCrossMark;
 
 	/// <summary>
 	/// Indicates the inner star mark.
 	/// </summary>
+	[Shape(ShapeKind.Star)]
 	private readonly StarMark _controlStarMark;
 
 	/// <summary>
 	/// Indicates the inner triangle mark.
 	/// </summary>
+	[Shape(ShapeKind.Triangle)]
 	private readonly TriangleMark _controlTriangleMark;
 
 	/// <summary>
 	/// Indicates the inner diamond mark.
 	/// </summary>
+	[Shape(ShapeKind.Diamond)]
 	private readonly DiamondMark _controlDiamondMark;
 
 	/// <summary>
@@ -178,16 +184,7 @@ internal sealed class CellMark : DrawingElement
 
 					// Assigns a new control, and displays it.
 					ref var newControl = ref _shape;
-					newControl = value switch
-					{
-						ShapeKind.Rectangle => _controlRectangle,
-						ShapeKind.Circle => _controlCircle,
-						ShapeKind.CrossMark => _controlCrossMark,
-						ShapeKind.Star => _controlStarMark,
-						ShapeKind.Triangle => _controlTriangleMark,
-						ShapeKind.Diamond => _controlDiamondMark,
-						_ => default!
-					};
+					newControl = GetControlViaShapeKind(value)!;
 					newControl.Visibility = Visibility.Visible;
 
 					break;
@@ -250,16 +247,22 @@ internal sealed class CellMark : DrawingElement
 	/// </summary>
 	/// <returns>All controls.</returns>
 	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicFields)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public FrameworkElement[] GetControls()
-	{
-		const string prefix = "_control";
-		const BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic;
-		return (
-			from fieldInfo in typeof(CellMark).GetFields(bindingFlags)
-			where fieldInfo.Name.StartsWith(prefix) && fieldInfo.FieldType.IsAssignableTo(typeof(FrameworkElement))
+		=> (
+			from fieldInfo in typeof(CellMark).GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+			where fieldInfo.IsDefined(typeof(ShapeAttribute))
 			select (FrameworkElement)fieldInfo.GetValue(this)!
 		).ToArray();
-	}
+
+	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicFields)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private FrameworkElement? GetControlViaShapeKind(ShapeKind shapeKind)
+		=> (
+			from fieldInfo in typeof(CellMark).GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+			where fieldInfo.GetCustomAttribute<ShapeAttribute>()?.Kind == shapeKind
+			select (FrameworkElement)fieldInfo.GetValue(this)!
+		).FirstOrDefault();
 }
 
 #endif
