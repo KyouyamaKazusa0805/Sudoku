@@ -39,6 +39,9 @@
 							<c:GettingStartedTile
 								Title="{StaticResource MainPage_GettingStarted_GithubRepo}"
 								Source="/Assets/images/getting-started-3.png" Link="{StaticResource Link_Repo}" />
+							<c:GettingStartedTile
+								Title="{StaticResource MainPage_GettingStarted_TechniqueWiki}"
+								Source="/Assets/images/getting-started-3.png" Link="{StaticResource Link_TechniqueWiki}" />
 						</VariableSizedWrapGrid>
 					</StackPanel>
 				</Grid>
