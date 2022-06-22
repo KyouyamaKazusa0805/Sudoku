@@ -169,15 +169,15 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		}
 	}
 
-	private unsafe string CreateExpression<T>(
-		T field, string typeName, IDictionary<byte, string> enabledAreasFields,
+	private unsafe string CreateExpression<TUnmanaged>(
+		TUnmanaged field, string typeName, IDictionary<byte, string> enabledAreasFields,
 		IDictionary<short, string> disabledReasonFields)
-		where T : unmanaged
+		where TUnmanaged : unmanaged
 	{
-		long l = sizeof(T) switch
+		long l = sizeof(TUnmanaged) switch
 		{
-			1 or 2 or 4 => Unsafe.As<T, int>(ref field),
-			8 => Unsafe.As<T, long>(ref field),
+			1 or 2 or 4 => Unsafe.As<TUnmanaged, int>(ref field),
+			8 => Unsafe.As<TUnmanaged, long>(ref field),
 			_ => default
 		};
 

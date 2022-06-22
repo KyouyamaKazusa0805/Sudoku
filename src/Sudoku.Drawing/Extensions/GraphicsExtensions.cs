@@ -8,20 +8,21 @@ internal static class GraphicsExtensions
 	/// <summary>
 	/// Draw the string representation an instance onto the current <see cref="Graphics"/> instance.
 	/// </summary>
-	/// <typeparam name="T">The type of the value to draw.</typeparam>
+	/// <typeparam name="TNotNull">The type of the value to draw.</typeparam>
 	/// <param name="this">The graphics instance.</param>
 	/// <param name="value">The value to drawing onto.</param>
 	/// <param name="font">The font.</param>
 	/// <param name="brush">The brush.</param>
 	/// <param name="point">The point.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void DrawValue<T>(this Graphics @this, T value, Font font, Brush brush, in PointF point)
-		where T : notnull => @this.DrawString(value.ToString(), font, brush, point);
+	public static void DrawValue<TNotNull>(this Graphics @this, TNotNull value, Font font, Brush brush, in PointF point)
+		where TNotNull : notnull
+		=> @this.DrawString(value.ToString(), font, brush, point);
 
 	/// <summary>
 	/// Draw the string representation of an instance onto the current <see cref="Graphics"/> instance.
 	/// </summary>
-	/// <typeparam name="T">The type of the value to draw.</typeparam>
+	/// <typeparam name="TNotNull">The type of the value to draw.</typeparam>
 	/// <param name="this">The graphics instance.</param>
 	/// <param name="value">The value to drawing onto.</param>
 	/// <param name="font">The font.</param>
@@ -29,9 +30,10 @@ internal static class GraphicsExtensions
 	/// <param name="point">The point.</param>
 	/// <param name="stringFormat">The string format instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void DrawValue<T>(
-		this Graphics @this, T value, Font font, Brush brush, in PointF point, StringFormat stringFormat)
-		where T : notnull => @this.DrawString(value.ToString(), font, brush, point, stringFormat);
+	public static void DrawValue<TNotNull>(
+		this Graphics @this, TNotNull value, Font font, Brush brush, in PointF point, StringFormat stringFormat)
+		where TNotNull : notnull
+		=> @this.DrawString(value.ToString(), font, brush, point, stringFormat);
 
 	/// <summary>
 	/// Draw a cross sign (<c>x</c>).
