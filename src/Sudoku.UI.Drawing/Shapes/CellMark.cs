@@ -5,12 +5,16 @@ namespace Sudoku.UI.Drawing.Shapes;
 /// <summary>
 /// Defines a cell mark.
 /// </summary>
-internal sealed class CellMark : DrawingElement, IMark
+internal sealed class CellMark : DrawingElement
 {
-	/// <inheritdoc cref="IMark.DefaultMargin"/>
+	/// <summary>
+	/// Indicates the default margin.
+	/// </summary>
 	private static readonly Thickness DefaultMargin = new(5);
 
-	/// <inheritdoc cref="IMark.BuiltinShapeDefaultMargin"/>
+	/// <summary>
+	/// Indicates the default margin value that is applied to a built-in control.
+	/// </summary>
 	private static readonly Thickness BuiltinShapeDefaultMargin = new(10);
 
 
@@ -147,7 +151,43 @@ internal sealed class CellMark : DrawingElement, IMark
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the visibility of the shape.
+	/// </summary>
+	public bool ShowMark
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _showMark;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			switch (value, _previousVisibilityState)
+			{
+				case (true, { } previousState):
+				{
+					_showMark = value;
+
+					_shape.Visibility = previousState;
+
+					break;
+				}
+				case (false, _):
+				{
+					_showMark = value;
+
+					_previousVisibilityState = _shape.Visibility;
+					_shape.Visibility = Visibility.Collapsed;
+
+					break;
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the shape kind.
+	/// </summary>
 	public ShapeKind ShapeKind
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -188,45 +228,7 @@ internal sealed class CellMark : DrawingElement, IMark
 	}
 
 	/// <inheritdoc/>
-	public bool ShowMark
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _showMark;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			switch (value, _previousVisibilityState)
-			{
-				case (true, { } previousState):
-				{
-					_showMark = value;
-
-					_shape.Visibility = previousState;
-
-					break;
-				}
-				case (false, _):
-				{
-					_showMark = value;
-
-					_previousVisibilityState = _shape.Visibility;
-					_shape.Visibility = Visibility.Collapsed;
-
-					break;
-				}
-			}
-		}
-	}
-
-	/// <inheritdoc/>
 	protected override string TypeIdentifier => nameof(CellMark);
-
-	/// <inheritdoc/>
-	static Thickness IMark.DefaultMargin => DefaultMargin;
-
-	/// <inheritdoc/>
-	static Thickness IMark.BuiltinShapeDefaultMargin => BuiltinShapeDefaultMargin;
 
 
 	/// <inheritdoc/>
@@ -239,7 +241,10 @@ internal sealed class CellMark : DrawingElement, IMark
 	/// <inheritdoc/>
 	public override FrameworkElement GetControl() => _shape;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Try to get all controls used.
+	/// </summary>
+	/// <returns>All controls.</returns>
 	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicFields)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public FrameworkElement[] GetControls()
@@ -249,12 +254,11 @@ internal sealed class CellMark : DrawingElement, IMark
 			select (FrameworkElement)fieldInfo.GetValue(this)!
 		).ToArray();
 
-	/// <inheritdoc/>
-	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicFields)]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	FrameworkElement? IMark.GetControlViaShapeKind(ShapeKind shapeKind) => GetControlViaShapeKind(shapeKind);
-
-	/// <inheritdoc cref="IMark.GetControlViaShapeKind(ShapeKind)"/>
+	/// <summary>
+	/// Gets the control via the specified shape kind.
+	/// </summary>
+	/// <param name="shapeKind">The shape kind.</param>
+	/// <returns>The target control. If none found, <see langword="null"/>.</returns>
 	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicFields)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private FrameworkElement? GetControlViaShapeKind(ShapeKind shapeKind)

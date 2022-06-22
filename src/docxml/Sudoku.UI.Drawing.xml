@@ -141,11 +141,6 @@
             Indicates the thickness of the stroke lines of the cross mark.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CrossMarkStrokeThickness_ApplyToCandidateMark">
-            <summary>
-            Indicates the thickness of the stroke lines of the cross mark, as a candidate mark.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.ValueFontName">
             <summary>
             Indicates the value font name.
@@ -797,130 +792,6 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.GetControl">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.UI.Drawing.Shapes.CandidateMark">
-            <summary>
-            Defines a candidate mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark.DefaultMargin">
-            <inheritdoc cref="P:Sudoku.UI.Drawing.Shapes.IMark.DefaultMargin"/>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark.BuiltinShapeDefaultMargin">
-            <inheritdoc cref="P:Sudoku.UI.Drawing.Shapes.IMark.BuiltinShapeDefaultMargin"/>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._controlRectangle">
-            <summary>
-            Indicates the inner rectangle.
-            </summary>
-            <remarks><b>
-            The prefix <c>_control</c> is appended on purpose, which is used for
-            checking in method <see cref="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetControls"/>.
-            </b></remarks>
-            <seealso cref="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetControls"/>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._controlCircle">
-            <summary>
-            Indicates the inner circle.
-            </summary>
-            <remarks><b>
-            The prefix <c>_control</c> is appended on purpose, which is used for
-            checking in method <see cref="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetControls"/>.
-            </b></remarks>
-            <seealso cref="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetControls"/>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._controlCrossMark">
-            <summary>
-            Indicates the inner cross mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._controlStarMark">
-            <summary>
-            Indicates the inner star mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._controlTriangleMark">
-            <summary>
-            Indicates the inner triangle mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._controlDiamondMark">
-            <summary>
-            Indicates the inner diamond mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._userPreference">
-            <summary>
-            Indicates the user preference.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._showMark">
-            <summary>
-            Indicates whether the cell mark is shown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._shapeKind">
-            <summary>
-            Indicates the shape kind.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._previousVisibilityState">
-            <summary>
-            Indicates the previous state of the visibility case.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._shape">
-            <summary>
-            Indicates the target shape.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.#ctor(Sudoku.UI.Drawing.IDrawingPreference)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateMark"/> instance via the specified user preference.
-            </summary>
-            <param name="userPreference">The user preference instance.</param>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.#ctor(Sudoku.UI.Drawing.ShapeKind,Sudoku.UI.Drawing.IDrawingPreference)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateMark"/> instance via the specified shape kind.
-            </summary>
-            <param name="shapeKind">The shape kind.</param>
-            <param name="userPreference">The user preference instance.</param>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateMark.ShapeKind">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateMark.ShowMark">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateMark.TypeIdentifier">
-            <summary>
-            Indicates the type identifier.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateMark.Sudoku#UI#Drawing#Shapes#IMark#DefaultMargin">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateMark.Sudoku#UI#Drawing#Shapes#IMark#BuiltinShapeDefaultMargin">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetControl">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetControls">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.Sudoku#UI#Drawing#Shapes#IMark#GetControlViaShapeKind(Sudoku.UI.Drawing.ShapeKind)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetControlViaShapeKind(Sudoku.UI.Drawing.ShapeKind)">
-            <inheritdoc cref="M:Sudoku.UI.Drawing.Shapes.IMark.GetControlViaShapeKind(Sudoku.UI.Drawing.ShapeKind)"/>
-        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellDigit">
             <summary>
             Defines a drawing element that displays for a digit that is the cell-leveled digit.
@@ -1183,10 +1054,14 @@
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellMark.DefaultMargin">
-            <inheritdoc cref="P:Sudoku.UI.Drawing.Shapes.IMark.DefaultMargin"/>
+            <summary>
+            Indicates the default margin.
+            </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellMark.BuiltinShapeDefaultMargin">
-            <inheritdoc cref="P:Sudoku.UI.Drawing.Shapes.IMark.BuiltinShapeDefaultMargin"/>
+            <summary>
+            Indicates the default margin value that is applied to a built-in control.
+            </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlRectangle">
             <summary>
@@ -1266,19 +1141,17 @@
             <param name="shapeKind">The shape kind.</param>
             <param name="userPreference">The user preference instance.</param>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.ShapeKind">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.ShowMark">
-            <inheritdoc/>
+            <summary>
+            Indicates the visibility of the shape.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.ShapeKind">
+            <summary>
+            Indicates the shape kind.
+            </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.TypeIdentifier">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.Sudoku#UI#Drawing#Shapes#IMark#DefaultMargin">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.Sudoku#UI#Drawing#Shapes#IMark#BuiltinShapeDefaultMargin">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
@@ -1291,13 +1164,17 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControls">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.Sudoku#UI#Drawing#Shapes#IMark#GetControlViaShapeKind(Sudoku.UI.Drawing.ShapeKind)">
-            <inheritdoc/>
+            <summary>
+            Try to get all controls used.
+            </summary>
+            <returns>All controls.</returns>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControlViaShapeKind(Sudoku.UI.Drawing.ShapeKind)">
-            <inheritdoc cref="M:Sudoku.UI.Drawing.Shapes.IMark.GetControlViaShapeKind(Sudoku.UI.Drawing.ShapeKind)"/>
+            <summary>
+            Gets the control via the specified shape kind.
+            </summary>
+            <param name="shapeKind">The shape kind.</param>
+            <returns>The target control. If none found, <see langword="null"/>.</returns>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellViewElement">
             <summary>
@@ -2269,44 +2146,6 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="T:Sudoku.UI.Drawing.Shapes.IMark">
-            <summary>
-            Defines a mark type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.IMark.ShowMark">
-            <summary>
-            Indicates the visibility of the shape.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.IMark.ShapeKind">
-            <summary>
-            Indicates the shape kind.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.IMark.DefaultMargin">
-            <summary>
-            Indicates the default margin.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.IMark.BuiltinShapeDefaultMargin">
-            <summary>
-            Indicates the default margin value that is applied to a built-in control.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.IMark.GetControls">
-            <summary>
-            Try to get all controls used.
-            </summary>
-            <returns>All controls.</returns>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.IMark.GetControlViaShapeKind(Sudoku.UI.Drawing.ShapeKind)">
-            <summary>
-            Gets the control via the specified shape kind.
-            </summary>
-            <param name="shapeKind">The shape kind.</param>
-            <returns>The target control. If none found, <see langword="null"/>.</returns>
-        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">
             <summary>
             Defines an outside rectangle.
@@ -2651,26 +2490,6 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.ViewElement.Equals(Sudoku.UI.Drawing.Shapes.ViewElement)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="T:Sudoku.UI.Drawing.Sudoku_UI_Drawing_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Sudoku_UI_Drawing_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Sudoku_UI_Drawing_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Sudoku_UI_Drawing_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.CrossMark">
             <summary>
             Defines a cross mark sign.
@@ -2692,16 +2511,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.DiamondMark">
             <summary>
             Defines a diamond mark sign.
@@ -2718,16 +2527,6 @@
         <member name="M:Sudoku.UI.Views.Controls.DiamondMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.StarMark">
@@ -2748,16 +2547,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.TriangleMark">
             <summary>
             Defines a star sign.
@@ -2776,16 +2565,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Microsoft.UI.Xaml.CommonMethods">
             <summary>
             Defines a set of commonly-used methods.
@@ -2798,12 +2577,12 @@
             <typeparam name="TUIElement">The type of the control.</typeparam>
             <param name="control">The control instance.</param>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE8A62F54E">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE31A42D46">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE8A62F54E.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE31A42D46.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -2844,12 +2623,12 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Windows.Foundation.Point_DE21A8A3CE">
+        <member name="T:Windows.Foundation.Point_DE9A6E7BC6">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DE21A8A3CE.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DE9A6E7BC6.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

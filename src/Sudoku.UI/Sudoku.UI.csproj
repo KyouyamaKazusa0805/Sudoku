@@ -15,7 +15,7 @@
 		<!--Syntax configurations-->
 		<RootNamespace>Sudoku.UI</RootNamespace>
 		<DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
-		<DefineConstants>AUTHOR_FEATURE_CELL_MARKS;AUTHOR_FEATURE_CANDIDATE_MARKS</DefineConstants>
+		<DefineConstants>AUTHOR_FEATURE_CELL_MARKS</DefineConstants>
 
 		<!--Repository configurations-->
 		<PackageReadmeFile>README.md</PackageReadmeFile>
