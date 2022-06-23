@@ -519,6 +519,9 @@
             </summary>
             <param name="paletteColorIndex">The index.</param>
             <returns>The color result.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the argument <paramref name="paletteColorIndex"/> is below 1 or above 10.
+            </exception>
         </member>
         <member name="M:Sudoku.UI.Configuration.Preference.GetColorIndex(Windows.UI.Color)">
             <summary>
