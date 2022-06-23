@@ -383,7 +383,15 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 					case (true, true, false): // Control + Shift.
 					{
-						d(_candidate, key == VirtualKey.Back ? -1 : key - VirtualKey.Number0 - 1);
+						d(
+							_candidate,
+							key switch
+							{
+								VirtualKey.Back => -1,
+								VirtualKey.Number0 => 10,
+								_ => key - VirtualKey.Number0 - 1
+							}
+						);
 						break;
 					}
 #endif
@@ -415,7 +423,15 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 					case (true, true, false): // Control + Shift.
 					{
-						d(_candidate, key == VirtualKey.Back ? -1 : key - VirtualKey.NumberPad0 - 1);
+						d(
+							_candidate,
+							key switch
+							{
+								VirtualKey.Back => -1,
+								VirtualKey.NumberPad0 => 10,
+								_ => key - VirtualKey.NumberPad0 - 1
+							}
+						);
 						break;
 					}
 #endif
