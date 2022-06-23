@@ -440,9 +440,25 @@ public sealed class Preference : IDrawingPreference
 	/// </summary>
 	/// <param name="paletteColorIndex">The index.</param>
 	/// <returns>The color result.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the argument <paramref name="paletteColorIndex"/> is below 1 or above 10.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Color GetColor(int paletteColorIndex)
-		=> (Color)GetType().GetProperty($"PaletteColor{paletteColorIndex}")!.GetValue(this)!;
+		=> paletteColorIndex switch
+		{
+			1 => PaletteColor1,
+			2 => PaletteColor2,
+			3 => PaletteColor3,
+			4 => PaletteColor4,
+			5 => PaletteColor5,
+			6 => PaletteColor6,
+			7 => PaletteColor7,
+			8 => PaletteColor8,
+			9 => PaletteColor9,
+			10 => PaletteColor10,
+			_ => throw new InvalidOperationException("The specified index is invalid. The valid range must be [1, 10].")
+		};
 
 	/// <summary>
 	/// Gets the color index via the specified color.
