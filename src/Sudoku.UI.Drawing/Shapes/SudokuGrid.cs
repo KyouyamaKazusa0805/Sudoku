@@ -234,6 +234,8 @@ public sealed class SudokuGrid : DrawingElement
 				ref var candidateMark = ref _candidateMarks[i];
 				candidateMark = new(preference.AuthorDefined_CandidateMarkThickness);
 				var candidateMarkControl = candidateMark.GetControl();
+				GridLayout.SetRow(candidateMarkControl, i / 9);
+				GridLayout.SetColumn(candidateMarkControl, i % 9);
 				_gridLayout.Children.Add(candidateMarkControl);
 #endif
 

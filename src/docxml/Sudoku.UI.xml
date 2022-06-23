@@ -1798,6 +1798,18 @@
             </list>
             </remarks>
         </member>
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._candidate">
+            <summary>
+            Indicates the candidate being focused.
+            </summary>
+            <remarks>
+            The variable is used for the following members:
+            <list type="bullet">
+            <item><see cref="M:Sudoku.UI.Views.Controls.SudokuPane.OnPointerMoved(Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)"/></item>
+            <item><see cref="M:Sudoku.UI.Views.Controls.SudokuPane.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)"/></item>
+            </list>
+            </remarks>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.SudokuPane"/> instance.

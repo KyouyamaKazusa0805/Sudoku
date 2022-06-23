@@ -49,6 +49,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </remarks>
 	private int _cell;
 
+	/// <summary>
+	/// Indicates the candidate being focused.
+	/// </summary>
+	/// <remarks>
+	/// The variable is used for the following members:
+	/// <list type="bullet">
+	/// <item><see cref="OnPointerMoved(PointerRoutedEventArgs)"/></item>
+	/// <item><see cref="OnKeyDown(KeyRoutedEventArgs)"/></item>
+	/// </list>
+	/// </remarks>
+	private int _candidate;
+
 
 	/// <summary>
 	/// Initializes a <see cref="SudokuPane"/> instance.
@@ -339,7 +351,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		base.OnPointerMoved(e);
 
-		_cell = PointConversions.GetCell(e.GetCurrentPoint(this).Position, Size, OutsideOffset);
+		var position = e.GetCurrentPoint(this).Position;
+		_cell = PointConversions.GetCell(position, Size, OutsideOffset);
+		_candidate = PointConversions.GetCandidate(position, Size, OutsideOffset);
 		if (GetSudokuGridViewModelNullable() is { } sudokuGrid)
 		{
 			sudokuGrid.FocusedCell = _cell;
@@ -361,29 +375,58 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			return;
 		}
 
-#if AUTHOR_FEATURE_CELL_MARKS
+#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
 		var a = EliminateDigit;
 		var b = MakeDigit;
+#if AUTHOR_FEATURE_CELL_MARKS
 		void c(int cell, int shapeKindIndex) => SetCellMark(cell, (ShapeKind)(byte)shapeKindIndex + 1);
+#endif
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+		void d(int candidate, int paletteIndex)
+		{
+			if (paletteIndex + 1 is var i and > 0 and <= 10
+				&& ((App)Application.Current).InitialInfo.UserPreference.GetColor(i) is var color)
+			{
+				SetCandidateMark(candidate / 9, candidate % 9, color);
+			}
+		}
+#endif
 
-		var targetMethod = VirtualKey.Shift.ModifierKeyIsDown() ? a : VirtualKey.Control.ModifierKeyIsDown() ? c : b;
+		bool pressedShift = VirtualKey.Shift.ModifierKeyIsDown(), pressedControl = VirtualKey.Control.ModifierKeyIsDown();
+		var targetMethod = (pressedShift, pressedControl) switch
+		{
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+			(true, true) => d, // Control + Shift.
+#endif
+			(true, false) => a, // Shift.
+#if AUTHOR_FEATURE_CELL_MARKS
+			(false, true) => c, // Control.
+#endif
+			_ => b
+		};
 #else
 		var a = EliminateDigit;
 		var b = MakeDigit;
 
 		var targetMethod = VirtualKey.Shift.ModifierKeyIsDown() ? a : b;
 #endif
+
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+		int firstParameter = pressedShift && pressedControl ? _candidate : _cell;
+#else
+		int firstParameter = _cell;
+#endif
 		switch (e.Key)
 		{
 			case var key and >= VirtualKey.Number0 and <= VirtualKey.Number9: // Digits.
 			{
-				targetMethod(_cell, key - VirtualKey.Number0 - 1);
+				targetMethod(firstParameter, key - VirtualKey.Number0 - 1);
 
 				break;
 			}
-			case var key and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9: // Digits that uses number pad.
+			case var key and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9: // Digits but using number pad.
 			{
-				targetMethod(_cell, key - VirtualKey.NumberPad0 - 1);
+				targetMethod(firstParameter, key - VirtualKey.NumberPad0 - 1);
 
 				break;
 			}
