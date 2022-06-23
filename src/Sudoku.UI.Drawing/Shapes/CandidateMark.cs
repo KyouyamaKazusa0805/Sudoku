@@ -19,6 +19,15 @@ internal sealed class CandidateMark : DrawingElement
 
 
 	/// <summary>
+	/// Initializes a <see cref="CandidateMark"/> instance via the specified stroke thickness.
+	/// </summary>
+	/// <param name="strokeThickness">The stroke thickness.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public CandidateMark(double strokeThickness) : this(Colors.Transparent, strokeThickness)
+	{
+	}
+
+	/// <summary>
 	/// Initializes a <see cref="CandidateMark"/> instance via the specified stroke color and thickness.
 	/// </summary>
 	/// <param name="strokeColor">The stroke color.</param>

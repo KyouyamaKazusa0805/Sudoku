@@ -248,7 +248,28 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="cellIndex">The cell index.</param>
 	public void ClearCellMark(int cellIndex) => SetCellMark(cellIndex, ShapeKind.None);
+#endif
 
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <summary>
+	/// Sets the candidate mark at the specified candidate index.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	/// <param name="color">The color.</param>
+	public void SetCandidateMark(int cell, int digit, Color color)
+		=> GetSudokuGridViewModel().SetCandidateMark(cell, digit, color);
+
+	/// <summary>
+	/// Clears the candidate mark at the specified candidate index.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ClearCandidateMark(int cell, int digit) => SetCandidateMark(cell, digit, Colors.Transparent);
+#endif
+
+#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
 	/// <summary>
 	/// Try to get drawing data.
 	/// </summary>
@@ -256,22 +277,45 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public string GetDrawingData()
 	{
 		var sudokuGrid = GetSudokuGridViewModel();
+
+#if AUTHOR_FEATURE_CELL_MARKS
 		var cellMarks = sudokuGrid.GetCellMarks();
-		var listOfShapeKinds = new List<CellMarkInfo>();
+		var listOfCellMarks = new List<CellMarkInfo>(81);
+#endif
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+		var candidateMarks = sudokuGrid.GetCandidateMarks();
+		var listOfCandidateMarks = new List<CandidateMarkInfo>(729);
+#endif
 		for (int cellIndex = 0; cellIndex < 81; cellIndex++)
 		{
+#if AUTHOR_FEATURE_CELL_MARKS
 			var cellMark = cellMarks[cellIndex];
 			var shapeKind = cellMark.ShapeKind;
 			if (shapeKind != ShapeKind.None)
 			{
-				listOfShapeKinds.Add(new() { CellIndex = cellIndex, ShapeKindRawValue = (int)shapeKind });
+				listOfCellMarks.Add(new() { CellIndex = cellIndex, ShapeKindRawValue = (int)shapeKind });
 			}
+#endif
+
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+			var candidateMark = candidateMarks[cellIndex];
+			for (int digit = 0; digit < 9; digit++)
+			{
+				var color = candidateMark.GetStrokeColor(digit);
+				listOfCandidateMarks.Add(new() { CellIndex = cellIndex, DigitIndex = digit, Color = color });
+			}
+#endif
 		}
 
 		return JsonSerializer.Serialize(
-			new CellMarkData
+			new SerializableDrawingData
 			{
-				Data = listOfShapeKinds,
+#if AUTHOR_FEATURE_CELL_MARKS
+				CellData = listOfCellMarks,
+#endif
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+				CandidateData = listOfCandidateMarks,
+#endif
 				ShowCandidates = sudokuGrid.UserShowCandidates,
 				GridRawValue = Grid.ToString("#")
 			},
@@ -395,16 +439,29 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
-#if AUTHOR_FEATURE_CELL_MARKS
+#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
 			case { DrawingDataRawValue: { } rawDataValue } initialInfo:
 			{
 				// Handles the raw data value.
-				var cellMarkData = JsonSerializer.Deserialize<CellMarkData>(
+				var drawingData = JsonSerializer.Deserialize<SerializableDrawingData>(
 					rawDataValue,
 					CommonReadOnlyFactory.DefaultSerializerOption
 				);
 
-				if (cellMarkData is not var (gridRawValue, showCandidates, data))
+				if (
+					drawingData is not var (
+						gridRawValue,
+						showCandidates
+#if AUTHOR_FEATURE_CELL_MARKS
+						,
+						cellData
+#endif
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+						,
+						candidateData
+#endif
+					)
+				)
 				{
 					break;
 				}
@@ -420,13 +477,25 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				Grid = grid;
 				(showCandidates ? a : b)();
 
-				if (data.Count != 0)
+#if AUTHOR_FEATURE_CELL_MARKS
+				if (cellData.Count != 0)
 				{
-					foreach (var (cellIndex, shapeKindRaw) in data)
+					foreach (var (cellIndex, shapeKindRaw) in cellData)
 					{
 						SetCellMark(cellIndex, (ShapeKind)shapeKindRaw);
 					}
 				}
+#endif
+
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+				if (candidateData.Count != 0)
+				{
+					foreach (var (cellIndex, digitIndex, color) in candidateData)
+					{
+						SetCandidateMark(cellIndex, digitIndex, color);
+					}
+				}
+#endif
 
 				// Remove the value to avoid re-triggering.
 				initialInfo.DrawingDataRawValue = null;

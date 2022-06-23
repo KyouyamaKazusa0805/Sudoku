@@ -33,6 +33,13 @@ public sealed class SudokuGrid : DrawingElement
 	private readonly CellMark[] _cellMarks = new CellMark[81];
 #endif
 
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <summary>
+	/// Indicates the candidate marks.
+	/// </summary>
+	private readonly CandidateMark[] _candidateMarks = new CandidateMark[81];
+#endif
+
 	/// <summary>
 	/// Indicates the stacks to store the undoing and redoing steps.
 	/// </summary>
@@ -213,13 +220,21 @@ public sealed class SudokuGrid : DrawingElement
 				// Initializes for the cell marks.
 				ref var cellMark = ref _cellMarks[i];
 				cellMark = new(preference);
-				var controls = cellMark.GetControls();
-				foreach (var control in controls)
+				var cellMarkControls = cellMark.GetControls();
+				foreach (var cellMarkControl in cellMarkControls)
 				{
-					GridLayout.SetRow(control, i / 9);
-					GridLayout.SetColumn(control, i % 9);
-					_gridLayout.Children.Add(control);
+					GridLayout.SetRow(cellMarkControl, i / 9);
+					GridLayout.SetColumn(cellMarkControl, i % 9);
+					_gridLayout.Children.Add(cellMarkControl);
 				}
+#endif
+
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+				// Initializes for the candidate marks.
+				ref var candidateMark = ref _candidateMarks[i];
+				candidateMark = new(preference.AuthorDefined_CandidateMarkThickness);
+				var candidateMarkControl = candidateMark.GetControl();
+				_gridLayout.Children.Add(candidateMarkControl);
 #endif
 
 				// Initializes for the items to render the focusing elements.
@@ -736,6 +751,32 @@ public sealed class SudokuGrid : DrawingElement
 	}
 #endif
 
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <summary>
+	/// Sets the mark at the specified candidate index.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	/// <param name="color">The color you want to set.</param>
+	public void SetCandidateMark(int cell, int digit, Color color)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		_candidateMarks[cell].SetDigitColor(digit, color);
+	}
+
+	/// <summary>
+	/// Clears the mark at the specified candidate index.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ClearCandidateMark(int cell, int digit) => _candidateMarks[cell].SetDigitColor(digit, Colors.Transparent);
+#endif
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
@@ -756,6 +797,15 @@ public sealed class SudokuGrid : DrawingElement
 	/// <returns>The cell marks.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal CellMark[] GetCellMarks() => _cellMarks;
+#endif
+
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <summary>
+	/// Try to get the inner field <c>_candidateMarks</c>.
+	/// </summary>
+	/// <returns>The candidate marks.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal CandidateMark[] GetCandidateMarks() => _candidateMarks;
 #endif
 
 	/// <summary>

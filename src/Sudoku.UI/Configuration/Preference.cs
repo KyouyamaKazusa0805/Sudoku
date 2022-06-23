@@ -94,6 +94,14 @@ public sealed class Preference : IDrawingPreference
 	public double AuthorDefined_CrossMarkStrokeThickness { get; set; } = 4;
 #endif
 
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>2</c>.
+	/// </remarks>
+	public double AuthorDefined_CandidateMarkThickness { get; set; } = 2;
+#endif
+
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.

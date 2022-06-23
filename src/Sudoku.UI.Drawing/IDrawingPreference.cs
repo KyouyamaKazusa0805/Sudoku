@@ -83,6 +83,13 @@ public interface IDrawingPreference
 	double AuthorDefined_CrossMarkStrokeThickness { get; set; }
 #endif
 
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <summary>
+	/// Indicates the candidate mark stroke thickness.
+	/// </summary>
+	double AuthorDefined_CandidateMarkThickness { get; set; }
+#endif
+
 	/// <summary>
 	/// Indicates the value font name.
 	/// </summary>

@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI.Models;
+﻿#if AUTHOR_FEATURE_CELL_MARKS
+
+namespace Sudoku.UI.Models;
 
 /// <summary>
 /// Indicates the cell mark info that describes a single cell.
@@ -16,3 +18,5 @@ internal partial struct CellMarkInfo
 	/// </summary>
 	public required int ShapeKindRawValue { get; set; }
 }
+
+#endif
