@@ -40,7 +40,7 @@ internal sealed class CandidateMark : DrawingElement
 			{
 				Stroke = new SolidColorBrush(strokeColor),
 				StrokeThickness = strokeThickness,
-				Visibility = Visibility.Collapsed
+				Visibility = strokeColor == Colors.Transparent ? Visibility.Collapsed : Visibility.Visible
 			};
 
 			GridLayout.SetRow(current, i / 3);
