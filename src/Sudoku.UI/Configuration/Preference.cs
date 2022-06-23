@@ -433,4 +433,32 @@ public sealed class Preference : IDrawingPreference
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color AuthorDefined_DiamondFillColor { get; set; } = Colors.Black with { A = 64 };
 #endif
+
+
+	/// <summary>
+	/// Gets the color at the specified index of the palette color list.
+	/// </summary>
+	/// <param name="paletteColorIndex">The index.</param>
+	/// <returns>The color result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Color GetColor(int paletteColorIndex)
+		=> (Color)GetType().GetProperty($"PaletteColor{paletteColorIndex}")!.GetValue(this)!;
+
+	/// <summary>
+	/// Gets the color index via the specified color.
+	/// </summary>
+	/// <param name="color">The color.</param>
+	/// <returns>The index result.</returns>
+	public int GetColorIndex(Color color)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			if (GetColor(i) == color)
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
 }

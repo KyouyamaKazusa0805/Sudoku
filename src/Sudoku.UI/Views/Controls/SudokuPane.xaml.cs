@@ -302,7 +302,17 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			for (int digit = 0; digit < 9; digit++)
 			{
 				var color = candidateMark.GetStrokeColor(digit);
-				listOfCandidateMarks.Add(new() { CellIndex = cellIndex, DigitIndex = digit, Color = color });
+				listOfCandidateMarks.Add(
+					new()
+					{
+						CellIndex = cellIndex,
+						DigitIndex = digit,
+						PaletteColorIndex =
+							((App)Application.Current).InitialInfo.UserPreference.GetColorIndex(color) is var i and not -1
+								? i
+								: throw new NotSupportedException("The specified color is not supported.")
+					}
+				);
 			}
 #endif
 		}
@@ -440,7 +450,14 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				break;
 			}
 #if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-			case { DrawingDataRawValue: { } rawDataValue } initialInfo:
+			case
+			{
+				DrawingDataRawValue: { } rawDataValue
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+				,
+				UserPreference: var up
+#endif
+			} initialInfo:
 			{
 				// Handles the raw data value.
 				var drawingData = JsonSerializer.Deserialize<SerializableDrawingData>(
@@ -490,9 +507,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 				if (candidateData.Count != 0)
 				{
-					foreach (var (cellIndex, digitIndex, color) in candidateData)
+					foreach (var (cellIndex, digitIndex, paletteColorIndex) in candidateData)
 					{
-						SetCandidateMark(cellIndex, digitIndex, color);
+						SetCandidateMark(cellIndex, digitIndex, up.GetColor(paletteColorIndex));
 					}
 				}
 #endif
