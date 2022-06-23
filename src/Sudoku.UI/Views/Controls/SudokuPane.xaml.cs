@@ -464,6 +464,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 					return;
 				}
 
+				ref readonly var grid = ref GridRef;
+				if (grid.Exists(candidate) is not true)
+				{
+					return;
+				}
+
 				SetCandidateMark(candidate / 9, candidate % 9, CandidateMark.SupportedShapes[shapeKindIndex]);
 			}
 #endif
