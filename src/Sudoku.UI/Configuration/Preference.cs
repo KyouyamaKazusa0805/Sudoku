@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines the user preferences in the program.
 /// </summary>
-public sealed class Preference : IDrawingPreference
+public sealed partial class Preference : IDrawingPreference
 {
 	/// <inheritdoc/>
 	/// <remarks>
@@ -99,7 +99,7 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>2</c>.
 	/// </remarks>
-	public double AuthorDefined_CandidateMarkThickness { get; set; } = 2;
+	public double AuthorDefined_CandidateMarkStrokeThickness { get; set; } = 2;
 #endif
 
 	/// <inheritdoc/>
@@ -378,14 +378,14 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#200000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 48).
+	/// The default value is <c>#300000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 48).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color FocusedCellColor { get; set; } = Colors.Blue with { A = 48 };
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#400000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 32).
+	/// The default value is <c>#200000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 32).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color PeersFocusedCellColor { get; set; } = Colors.Blue with { A = 32 };
@@ -393,88 +393,53 @@ public sealed class Preference : IDrawingPreference
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
+	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color AuthorDefined_CellRectangleFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
+	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color AuthorDefined_CellCircleFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
+	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color AuthorDefined_CrossMarkStrokeColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
+	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color AuthorDefined_StarFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
+	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color AuthorDefined_TriangleFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
+	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
 	[JsonConverter(typeof(ColorJsonConverter))]
 	public Color AuthorDefined_DiamondFillColor { get; set; } = Colors.Black with { A = 64 };
 #endif
 
-
-	/// <summary>
-	/// Gets the color at the specified index of the palette color list.
-	/// </summary>
-	/// <param name="paletteColorIndex">The index.</param>
-	/// <returns>The color result.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the argument <paramref name="paletteColorIndex"/> is below 1 or above 10.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Color GetColor(int paletteColorIndex)
-		=> paletteColorIndex switch
-		{
-			1 => PaletteColor1,
-			2 => PaletteColor2,
-			3 => PaletteColor3,
-			4 => PaletteColor4,
-			5 => PaletteColor5,
-			6 => PaletteColor6,
-			7 => PaletteColor7,
-			8 => PaletteColor8,
-			9 => PaletteColor9,
-			10 => PaletteColor10,
-			_ => throw new InvalidOperationException("The specified index is invalid. The valid range must be [1, 10].")
-		};
-
-	/// <summary>
-	/// Gets the color index via the specified color.
-	/// </summary>
-	/// <param name="color">The color.</param>
-	/// <returns>The index result. If failed to found, -1.</returns>
-	public int GetColorIndex(Color color)
-	{
-		for (int i = 1; i <= 10; i++)
-		{
-			if (GetColor(i) == color)
-			{
-				return i;
-			}
-		}
-
-		return -1;
-	}
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 128).
+	/// </remarks>
+	[JsonConverter(typeof(ColorJsonConverter))]
+	public Color AuthorDefined_CandidateMarkStrokeColor { get; set; } = Colors.Black with { A = 128 };
+#endif
 }

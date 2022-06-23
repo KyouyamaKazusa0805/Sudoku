@@ -87,7 +87,7 @@ public interface IDrawingPreference
 	/// <summary>
 	/// Indicates the candidate mark stroke thickness.
 	/// </summary>
-	double AuthorDefined_CandidateMarkThickness { get; set; }
+	double AuthorDefined_CandidateMarkStrokeThickness { get; set; }
 #endif
 
 	/// <summary>
@@ -320,5 +320,12 @@ public interface IDrawingPreference
 	/// Indicates the author-defined cell diamond color used for filling.
 	/// </summary>
 	Color AuthorDefined_DiamondFillColor { get; set; }
+#endif
+
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <summary>
+	/// Indicates the stroke color of the mark applied to a candidate.
+	/// </summary>
+	Color AuthorDefined_CandidateMarkStrokeColor { get; set; }
 #endif
 }

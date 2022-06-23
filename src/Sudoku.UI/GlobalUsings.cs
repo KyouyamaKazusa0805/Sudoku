@@ -13,6 +13,7 @@ global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
 global using System.Runtime.InteropServices.WindowsRuntime;
+global using System.Text.Encodings.Web;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;

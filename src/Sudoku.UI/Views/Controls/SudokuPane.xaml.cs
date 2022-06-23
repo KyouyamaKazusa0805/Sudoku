@@ -268,9 +268,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
-	/// <param name="color">The color.</param>
-	public void SetCandidateMark(int cell, int digit, Color color)
-		=> GetSudokuGridViewModel().SetCandidateMark(cell, digit, color);
+	/// <param name="shapeKind">The shape kind.</param>
+	public void SetCandidateMark(int cell, int digit, ShapeKind shapeKind)
+		=> GetSudokuGridViewModel().SetCandidateMark(cell, digit, shapeKind);
 
 	/// <summary>
 	/// Clears the candidate mark at the specified candidate index.
@@ -278,7 +278,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ClearCandidateMark(int cell, int digit) => SetCandidateMark(cell, digit, Colors.Transparent);
+	public void ClearCandidateMark(int cell, int digit) => SetCandidateMark(cell, digit, ShapeKind.None);
 #endif
 
 #if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
@@ -304,10 +304,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 #if AUTHOR_FEATURE_CELL_MARKS
 			var cellMark = cellMarks[cellIndex];
-			var shapeKind = cellMark.ShapeKind;
-			if (shapeKind != ShapeKind.None)
+			var cellShapeKind = cellMark.ShapeKind;
+			if (cellShapeKind != ShapeKind.None)
 			{
-				listOfCellMarks.Add(new() { CellIndex = cellIndex, ShapeKindRawValue = (int)shapeKind });
+				listOfCellMarks.Add(new() { CellIndex = cellIndex, ShapeKindRawValue = (int)cellShapeKind });
 			}
 #endif
 
@@ -315,14 +315,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			var candidateMark = candidateMarks[cellIndex];
 			for (int digit = 0; digit < 9; digit++)
 			{
-				var color = candidateMark.GetStrokeColor(digit);
-				int i = color == Colors.Transparent ? -1 : up.GetColorIndex(color);
-				if (i == -1)
+				var candidateShapeKind = candidateMark.GetShapeKind(digit);
+				if (candidateShapeKind != ShapeKind.None)
 				{
-					continue;
+					listOfCandidateMarks.Add(
+						new()
+						{
+							CellIndex = cellIndex,
+							DigitIndex = digit,
+							ShapeKindRawValue = (int)candidateShapeKind
+						}
+					);
 				}
-
-				listOfCandidateMarks.Add(new() { CellIndex = cellIndex, DigitIndex = digit, PaletteColorIndex = i });
 			}
 #endif
 		}
@@ -383,15 +387,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 					case (true, true, false): // Control + Shift.
 					{
-						d(
-							_candidate,
-							key switch
-							{
-								VirtualKey.Back => -1,
-								VirtualKey.Number0 => 10,
-								_ => key - VirtualKey.Number0 - 1
-							}
-						);
+						d(_candidate, key == VirtualKey.Back ? 0 : key - VirtualKey.Number0);
 						break;
 					}
 #endif
@@ -423,15 +419,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 					case (true, true, false): // Control + Shift.
 					{
-						d(
-							_candidate,
-							key switch
-							{
-								VirtualKey.Back => -1,
-								VirtualKey.NumberPad0 => 10,
-								_ => key - VirtualKey.NumberPad0 - 1
-							}
-						);
+						d(_candidate, key == VirtualKey.Back ? 0 : key - VirtualKey.NumberPad0);
 						break;
 					}
 #endif
@@ -466,27 +454,17 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 
 #if AUTHOR_FEATURE_CELL_MARKS
-			void c(int cell, int shapeKindIndex) => SetCellMark(cell, (ShapeKind)(byte)shapeKindIndex + 1);
+			void c(int cell, int shapeKindIndex) => SetCellMark(cell, (ShapeKind)(byte)(shapeKindIndex + 1));
 #endif
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
-			void d(int candidate, int paletteIndex)
+			void d(int candidate, int shapeKindIndex)
 			{
-				int cell = candidate / 9, digit = candidate % 9;
-				switch (paletteIndex + 1)
+				if (shapeKindIndex >= CandidateMark.SupportedShapes.Length)
 				{
-					case var i and > 0 and <= 10:
-					{
-						SetCandidateMark(cell, digit, ((App)Application.Current).InitialInfo.UserPreference.GetColor(i));
-
-						break;
-					}
-					case 0:
-					{
-						ClearCandidateMark(cell, digit);
-
-						break;
-					}
+					return;
 				}
+
+				SetCandidateMark(candidate / 9, candidate % 9, CandidateMark.SupportedShapes[shapeKindIndex]);
 			}
 #endif
 		}
@@ -594,7 +572,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				{
 					foreach (var (cellIndex, shapeKindRaw) in cellData)
 					{
-						SetCellMark(cellIndex, (ShapeKind)shapeKindRaw);
+						SetCellMark(cellIndex, (ShapeKind)(byte)shapeKindRaw);
 					}
 				}
 #endif
@@ -602,9 +580,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 				if (candidateData.Count != 0)
 				{
-					foreach (var (cellIndex, digitIndex, paletteColorIndex) in candidateData)
+					foreach (var (cellIndex, digitIndex, shapeKindRaw) in candidateData)
 					{
-						SetCandidateMark(cellIndex, digitIndex, up.GetColor(paletteColorIndex));
+						SetCandidateMark(cellIndex, digitIndex, (ShapeKind)(byte)shapeKindRaw);
 					}
 				}
 #endif

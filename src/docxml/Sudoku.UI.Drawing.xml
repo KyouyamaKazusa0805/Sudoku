@@ -141,7 +141,7 @@
             Indicates the thickness of the stroke lines of the cross mark.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CandidateMarkThickness">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CandidateMarkStrokeThickness">
             <summary>
             Indicates the candidate mark stroke thickness.
             </summary>
@@ -374,6 +374,11 @@
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_DiamondFillColor">
             <summary>
             Indicates the author-defined cell diamond color used for filling.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CandidateMarkStrokeColor">
+            <summary>
+            Indicates the stroke color of the mark applied to a candidate.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Drawing.Metadata.ShapeAttribute">
@@ -802,38 +807,54 @@
             Defines a candidate mark.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark.SupportedShapes">
+            <summary>
+            Indicates the supported shapes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._showMarkStates">
+            <summary>
+            Indicates the states of showing marks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._previousVisibilities">
+            <summary>
+            Indicates the previous visibilities.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._shapeKinds">
+            <summary>
+            Indicates the shape kinds.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._gridLayout">
             <summary>
             Indicates the grid layout.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._ellipses">
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._currentControls">
             <summary>
-            Indicates the inner circles.
+            Indicates the current control.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.#ctor(System.Double)">
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._pool">
+            <summary>
+            Indicates the list of controls.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._userPreference">
+            <summary>
+            Indicates the user preference instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.#ctor(Sudoku.UI.Drawing.IDrawingPreference)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateMark"/> instance via the specified stroke thickness.
             </summary>
-            <param name="strokeThickness">The stroke thickness.</param>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.#ctor(Windows.UI.Color,System.Double)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateMark"/> instance via the specified stroke color and thickness.
-            </summary>
-            <param name="strokeColor">The stroke color.</param>
-            <param name="strokeThickness">The stroke thickness.</param>
+            <param name="userPreference">The user preference instance.</param>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateMark.TypeIdentifier">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.SetStrokeColor(System.Int32,Windows.UI.Color)">
-            <summary>
-            Sets the specified color at the specified digit's place.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="color">The color.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.SetStrokeThickness(System.Int32,System.Double)">
             <summary>
@@ -842,11 +863,33 @@
             <param name="digit">The digit.</param>
             <param name="strokeThickness">The stroke thickness.</param>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.SetShapeKind(System.Int32,Sudoku.UI.Drawing.ShapeKind)">
+            <summary>
+            Sets the specified shape.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="shapeKind">The shape kind.</param>
+            <exception cref="T:System.NotSupportedException">Throws when the specified shape kind is not supported.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.SetShowMark(System.Int32,System.Boolean)">
+            <summary>
+            Sets the show mark value at the specified digit's place.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="showMark">Indicates whether the candidate mark will be shown.</param>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.HideDigit(System.Int32)">
             <summary>
             Hides the circle control at the specified digit's place.
             </summary>
             <param name="digit">The digit.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetShowMark(System.Int32)">
+            <summary>
+            Gets the state that describes whether the current digit shows marks.
+            </summary>
+            <param name="digit">The digit.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
@@ -861,12 +904,12 @@
             <param name="digit">The digit.</param>
             <returns>The stroke thickness.</returns>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetStrokeColor(System.Int32)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetShapeKind(System.Int32)">
             <summary>
-            Gets the color at the specified digit's place.
+            Gets the shape at the specified digit's place.
             </summary>
             <param name="digit">The digit.</param>
-            <returns>The color.</returns>
+            <returns>The shape kind.</returns>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetControl">
             <inheritdoc/>
@@ -2286,6 +2329,11 @@
             Indicates the possible cell indices.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid.Digits">
+            <summary>
+            Indicates the digit labels.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._gridLayout">
             <summary>
             Indicates the inner grid layout control.
@@ -2535,13 +2583,13 @@
             </summary>
             <param name="cellIndex">The cell index.</param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetCandidateMark(System.Int32,System.Int32,Windows.UI.Color)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetCandidateMark(System.Int32,System.Int32,Sudoku.UI.Drawing.ShapeKind)">
             <summary>
-            Sets the mark at the specified candidate index.
+            Sets the shape at the specified candidate index.
             </summary>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
-            <param name="color">The color you want to set.</param>
+            <param name="shapeKind">The shape kind.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearCandidateMark(System.Int32,System.Int32)">
             <summary>
@@ -2661,6 +2709,12 @@
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.TriangleMark"/> instance.
             </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.TriangleMark.StrokeThickness">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeThickness"/>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.TriangleMark.Stroke">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.Stroke"/>
         </member>
         <member name="P:Sudoku.UI.Views.Controls.TriangleMark.Fill">
             <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/>

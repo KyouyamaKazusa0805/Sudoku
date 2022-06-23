@@ -202,27 +202,20 @@ internal sealed class CellMark : DrawingElement
 			}
 
 			_shapeKind = value;
-			switch (value)
+			if (value == ShapeKind.None)
 			{
-				case ShapeKind.None:
-				{
-					// Hides all possible controls.
-					Array.ForEach(GetControls(), CommonMethods.HideControl);
+				// Hides all possible controls.
+				Array.ForEach(GetControls(), CommonMethods.HideControl);
+			}
+			else
+			{
+				// Hides the old shape control.
+				_shape.Visibility = Visibility.Collapsed;
 
-					break;
-				}
-				default:
-				{
-					// Hides the old shape control.
-					_shape.Visibility = Visibility.Collapsed;
-
-					// Assigns a new control, and displays it.
-					ref var newControl = ref _shape;
-					newControl = GetControlViaShapeKind(value)!;
-					newControl.Visibility = Visibility.Visible;
-
-					break;
-				}
+				// Assigns a new control, and displays it.
+				ref var newControl = ref _shape;
+				newControl = GetControlViaShapeKind(value)!;
+				newControl.Visibility = Visibility.Visible;
 			}
 		}
 	}

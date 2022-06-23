@@ -10,6 +10,11 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private static readonly int[] CellIndices = Enumerable.Range(0, 81).ToArray();
 
+	/// <summary>
+	/// Indicates the digit labels.
+	/// </summary>
+	private static readonly int[] Digits = Enumerable.Range(0, 9).ToArray();
+
 
 	/// <summary>
 	/// Indicates the inner grid layout control.
@@ -226,7 +231,7 @@ public sealed class SudokuGrid : DrawingElement
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 				// Initializes for the candidate marks.
 				ref var candidateMark = ref _candidateMarks[i];
-				candidateMark = new(preference.AuthorDefined_CandidateMarkThickness);
+				candidateMark = new(preference);
 				var candidateMarkControl = candidateMark.GetControl();
 				GridLayout.SetRow(candidateMarkControl, i / 9);
 				GridLayout.SetColumn(candidateMarkControl, i % 9);
@@ -451,6 +456,10 @@ public sealed class SudokuGrid : DrawingElement
 			// Clears the cell marks.
 			Array.ForEach(CellIndices, ClearCellMark);
 #endif
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+			// Clears the candidate marks.
+			Array.ForEach(CellIndices, cell => Array.ForEach(Digits, digit => ClearCandidateMark(cell, digit)));
+#endif
 
 			// The operation must clear two stacks, and trigger the handler '_undoRedoStepsUpdatedCallback'.
 			_undoSteps.Clear();
@@ -648,8 +657,10 @@ public sealed class SudokuGrid : DrawingElement
 		UpdateView();
 
 #if AUTHOR_FEATURE_CELL_MARKS
-		// Clears the cell marks.
 		Array.ForEach(CellIndices, ClearCellMark);
+#endif
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+		Array.ForEach(CellIndices, cell => Array.ForEach(Digits, digit => ClearCandidateMark(cell, digit)));
 #endif
 	}
 
@@ -674,8 +685,10 @@ public sealed class SudokuGrid : DrawingElement
 		UpdateView();
 
 #if AUTHOR_FEATURE_CELL_MARKS
-		// Clears the cell marks.
 		Array.ForEach(CellIndices, ClearCellMark);
+#endif
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+		Array.ForEach(CellIndices, cell => Array.ForEach(Digits, digit => ClearCandidateMark(cell, digit)));
 #endif
 	}
 
@@ -692,6 +705,9 @@ public sealed class SudokuGrid : DrawingElement
 #if AUTHOR_FEATURE_CELL_MARKS
 		Array.ForEach(_cellMarks, static element => element.ShowMark = false);
 #endif
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+		Array.ForEach(Digits, i => Array.ForEach(_candidateMarks, element => element.SetShowMark(i, false)));
+#endif
 	}
 
 	/// <summary>
@@ -706,6 +722,9 @@ public sealed class SudokuGrid : DrawingElement
 
 #if AUTHOR_FEATURE_CELL_MARKS
 		Array.ForEach(_cellMarks, static element => element.ShowMark = true);
+#endif
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+		Array.ForEach(Digits, i => Array.ForEach(_candidateMarks, element => element.SetShowMark(i, true)));
 #endif
 	}
 
@@ -749,19 +768,19 @@ public sealed class SudokuGrid : DrawingElement
 
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 	/// <summary>
-	/// Sets the mark at the specified candidate index.
+	/// Sets the shape at the specified candidate index.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
-	/// <param name="color">The color you want to set.</param>
-	public void SetCandidateMark(int cell, int digit, Color color)
+	/// <param name="shapeKind">The shape kind.</param>
+	public void SetCandidateMark(int cell, int digit, ShapeKind shapeKind)
 	{
 		if (_isMaskMode)
 		{
 			return;
 		}
 
-		_candidateMarks[cell].SetStrokeColor(digit, color);
+		_candidateMarks[cell].SetShapeKind(digit, shapeKind);
 	}
 
 	/// <summary>

@@ -5,7 +5,7 @@ namespace Sudoku.UI.Models;
 /// <summary>
 /// Indicates the candidate mark info that describes a candidate.
 /// </summary>
-[AutoDeconstruction(nameof(CellIndex), nameof(DigitIndex), nameof(PaletteColorIndex))]
+[AutoDeconstruction(nameof(CellIndex), nameof(DigitIndex), nameof(ShapeKindRawValue))]
 internal partial struct CandidateMarkInfo
 {
 	/// <summary>
@@ -19,9 +19,9 @@ internal partial struct CandidateMarkInfo
 	public required int DigitIndex { get; set; }
 
 	/// <summary>
-	/// Indicates the color index in the palette.
+	/// Indicates the shape kind raw value.
 	/// </summary>
-	public required int PaletteColorIndex { get; set; }
+	public required int ShapeKindRawValue { get; set; }
 }
 
 #endif

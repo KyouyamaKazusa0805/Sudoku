@@ -100,7 +100,12 @@
             <list type="bullet">
             <item><see cref="P:System.Text.Json.JsonSerializerOptions.WriteIndented"/> is <see langword="true"/></item>
             <item><see cref="P:System.Text.Json.JsonSerializerOptions.IgnoreReadOnlyProperties"/> is <see langword="true"/></item>
-            <item><see cref="P:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy"/> is <see cref="P:System.Text.Json.JsonNamingPolicy.CamelCase"/></item>
+            <item>
+            <see cref="P:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy"/> is <see cref="P:System.Text.Json.JsonNamingPolicy.CamelCase"/>
+            </item>
+            <item>
+            <see cref="P:System.Text.Json.JsonSerializerOptions.Encoder"/> is <see cref="P:System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping"/>
+            </item>
             </list>
             </summary>
         </member>
@@ -231,7 +236,7 @@
             The default value is <c>4</c>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CandidateMarkThickness">
+        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CandidateMarkStrokeThickness">
             <inheritdoc/>
             <remarks>
             The default value is <c>2</c>.
@@ -468,49 +473,55 @@
         <member name="P:Sudoku.UI.Configuration.Preference.FocusedCellColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#200000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 48).
+            The default value is <c>#300000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 48).
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.PeersFocusedCellColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#400000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 32).
+            The default value is <c>#200000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 32).
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CellRectangleFillColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CellCircleFillColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CrossMarkStrokeColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_StarFillColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_TriangleFillColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_DiamondFillColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CandidateMarkStrokeColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 128).
             </remarks>
         </member>
         <member name="M:Sudoku.UI.Configuration.Preference.GetColor(System.Int32)">
@@ -523,7 +534,7 @@
             Throws when the argument <paramref name="paletteColorIndex"/> is below 1 or above 10.
             </exception>
         </member>
-        <member name="M:Sudoku.UI.Configuration.Preference.GetColorIndex(Windows.UI.Color)">
+        <member name="M:Sudoku.UI.Configuration.Preference.GetPaletteColorIndex(Windows.UI.Color)">
             <summary>
             Gets the color index via the specified color.
             </summary>
@@ -1001,9 +1012,9 @@
             Indicates the digit index.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.CandidateMarkInfo.PaletteColorIndex">
+        <member name="P:Sudoku.UI.Models.CandidateMarkInfo.ShapeKindRawValue">
             <summary>
-            Indicates the color index in the palette.
+            Indicates the shape kind raw value.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Models.CandidateMarkInfo.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">
@@ -1968,13 +1979,13 @@
             </summary>
             <param name="cellIndex">The cell index.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetCandidateMark(System.Int32,System.Int32,Windows.UI.Color)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetCandidateMark(System.Int32,System.Int32,Sudoku.UI.Drawing.ShapeKind)">
             <summary>
             Sets the candidate mark at the specified candidate index.
             </summary>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
-            <param name="color">The color.</param>
+            <param name="shapeKind">The shape kind.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ClearCandidateMark(System.Int32,System.Int32)">
             <summary>
