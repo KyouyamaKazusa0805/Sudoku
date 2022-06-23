@@ -525,7 +525,7 @@
             Gets the color index via the specified color.
             </summary>
             <param name="color">The color.</param>
-            <returns>The index result.</returns>
+            <returns>The index result. If failed to found, -1.</returns>
         </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
@@ -1080,6 +1080,72 @@
         <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.SetPreference(Windows.UI.Color)">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
         </member>
+        <member name="T:Sudoku.UI.Models.DrawingData">
+            <summary>
+            Indicates the serializable drawing data of a complete sudoku grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.DrawingData.GridRawValue">
+            <summary>
+            Indicates the grid raw value. The format is <c>"#"</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.DrawingData.ShowCandidates">
+            <summary>
+            Indicates whether the sudoku grid currently displays for candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.DrawingData.CellData">
+            <summary>
+            Indicates the full cell data.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.DrawingData.CandidateData">
+            <summary>
+            Indicates the full candidate data.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.DrawingData.Deconstruct(System.String@,System.Boolean@,System.Collections.Generic.List{Sudoku.UI.Models.CellMarkInfo}@,System.Collections.Generic.List{Sudoku.UI.Models.CandidateMarkInfo}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+					public static void Deconstruct(out string name, out int age)
+					{
+					    name = Name;
+					    age = Age;
+					}
+						</code>
+						The following code will be legal.
+						<code>
+					// Use explicitly typed variables to get a deconstruction.
+					(string name, int age) = student;
+
+					// Or use the type inferring to omit the type of each variable having been deconstructed.
+					var (name, age) = student;
+
+					// Of course, you can also use the invocation to get values.
+					student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+					if (student is (name: var name, age: &gt;= 18))
+					{
+					    Console.WriteLine(name);
+					}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="T:Sudoku.UI.Models.FontPickerSettingItem">
             <summary>
             Defines a color option that is binding with a font picker on displaying.
@@ -1232,72 +1298,6 @@
             <summary>
             The location information.
             </summary>
-        </member>
-        <member name="T:Sudoku.UI.Models.SerializableDrawingData">
-            <summary>
-            Indicates the serializable drawing data of a complete sudoku grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.SerializableDrawingData.GridRawValue">
-            <summary>
-            Indicates the grid raw value. The format is <c>"#"</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.SerializableDrawingData.ShowCandidates">
-            <summary>
-            Indicates whether the sudoku grid currently displays for candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.SerializableDrawingData.CellData">
-            <summary>
-            Indicates the full cell data.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.SerializableDrawingData.CandidateData">
-            <summary>
-            Indicates the full candidate data.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Models.SerializableDrawingData.Deconstruct(System.String@,System.Boolean@,System.Collections.Generic.List{Sudoku.UI.Models.CellMarkInfo}@,System.Collections.Generic.List{Sudoku.UI.Models.CandidateMarkInfo}@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-					public static void Deconstruct(out string name, out int age)
-					{
-					    name = Name;
-					    age = Age;
-					}
-						</code>
-						The following code will be legal.
-						<code>
-					// Use explicitly typed variables to get a deconstruction.
-					(string name, int age) = student;
-
-					// Or use the type inferring to omit the type of each variable having been deconstructed.
-					var (name, age) = student;
-
-					// Of course, you can also use the invocation to get values.
-					student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-					if (student is (name: var name, age: &gt;= 18))
-					{
-					    Console.WriteLine(name);
-					}
-						</code>
-					</para>
-				</remarks>
-			</target>
         </member>
         <member name="T:Sudoku.UI.Models.SettingGroupItem">
             <summary>

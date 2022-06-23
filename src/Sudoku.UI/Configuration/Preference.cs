@@ -448,10 +448,10 @@ public sealed class Preference : IDrawingPreference
 	/// Gets the color index via the specified color.
 	/// </summary>
 	/// <param name="color">The color.</param>
-	/// <returns>The index result.</returns>
+	/// <returns>The index result. If failed to found, -1.</returns>
 	public int GetColorIndex(Color color)
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 1; i <= 10; i++)
 		{
 			if (GetColor(i) == color)
 			{

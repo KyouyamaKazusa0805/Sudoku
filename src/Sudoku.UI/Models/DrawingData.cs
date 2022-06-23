@@ -6,7 +6,7 @@ namespace Sudoku.UI.Models;
 /// Indicates the serializable drawing data of a complete sudoku grid.
 /// </summary>
 [AutoDeconstruction(nameof(GridRawValue), nameof(ShowCandidates), nameof(CellData), nameof(CandidateData))]
-internal sealed partial class SerializableDrawingData
+internal sealed partial class DrawingData
 {
 	/// <summary>
 	/// Indicates the grid raw value. The format is <c>"#"</c>.
@@ -24,14 +24,14 @@ internal sealed partial class SerializableDrawingData
 	/// <summary>
 	/// Indicates the full cell data.
 	/// </summary>
-	public required List<CellMarkInfo> CellData { get; set; }
+	public required List<CellMarkInfo> CellData { get; set; } = new();
 #endif
 
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 	/// <summary>
 	/// Indicates the full candidate data.
 	/// </summary>
-	public required List<CandidateMarkInfo> CandidateData { get; set; }
+	public required List<CandidateMarkInfo> CandidateData { get; set; } = new();
 #endif
 }
 

@@ -297,6 +297,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 		var candidateMarks = sudokuGrid.GetCandidateMarks();
 		var listOfCandidateMarks = new List<CandidateMarkInfo>(729);
+
+		var up = ((App)Application.Current).InitialInfo.UserPreference;
 #endif
 		for (int cellIndex = 0; cellIndex < 81; cellIndex++)
 		{
@@ -314,23 +316,19 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			for (int digit = 0; digit < 9; digit++)
 			{
 				var color = candidateMark.GetStrokeColor(digit);
-				listOfCandidateMarks.Add(
-					new()
-					{
-						CellIndex = cellIndex,
-						DigitIndex = digit,
-						PaletteColorIndex =
-							((App)Application.Current).InitialInfo.UserPreference.GetColorIndex(color) is var i and not -1
-								? i
-								: throw new NotSupportedException("The specified color is not supported.")
-					}
-				);
+				int i = color == Colors.Transparent ? -1 : up.GetColorIndex(color);
+				if (i == -1)
+				{
+					continue;
+				}
+
+				listOfCandidateMarks.Add(new() { CellIndex = cellIndex, DigitIndex = digit, PaletteColorIndex = i });
 			}
 #endif
 		}
 
 		return JsonSerializer.Serialize(
-			new SerializableDrawingData
+			new DrawingData
 			{
 #if AUTHOR_FEATURE_CELL_MARKS
 				CellData = listOfCellMarks,
@@ -503,7 +501,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			} initialInfo:
 			{
 				// Handles the raw data value.
-				var drawingData = JsonSerializer.Deserialize<SerializableDrawingData>(
+				var drawingData = JsonSerializer.Deserialize<DrawingData>(
 					rawDataValue,
 					CommonReadOnlyFactory.DefaultSerializerOption
 				);
