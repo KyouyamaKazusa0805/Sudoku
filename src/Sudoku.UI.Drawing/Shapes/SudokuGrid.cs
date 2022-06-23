@@ -125,25 +125,19 @@ public sealed class SudokuGrid : DrawingElement
 		in Grid grid, IDrawingPreference preference, double paneSize, double outsideOffset,
 		Action? elementUpdatedCallback)
 	{
-		(
-			_preference,
-			_grid,
-			_paneSize,
-			_outsideOffset,
-			_gridLayout,
-			_undoRedoStepsUpdatedCallback,
-			_showsCandidates,
-			_focusedRectangle
-		) = (
-			preference,
-			grid,
-			paneSize,
-			outsideOffset,
-			initializeGridLayout(paneSize, outsideOffset),
-			elementUpdatedCallback,
-			preference.ShowCandidates,
-			new() { Fill = new SolidColorBrush(preference.FocusedCellColor), Visibility = Visibility.Collapsed }
-		);
+		_preference = preference;
+		_grid = grid;
+		_paneSize = paneSize;
+		_outsideOffset = outsideOffset;
+		_gridLayout = initializeGridLayout(paneSize, outsideOffset);
+		_undoRedoStepsUpdatedCallback = elementUpdatedCallback;
+		_showsCandidates = preference.ShowCandidates;
+		_focusedRectangle = new()
+		{
+			Fill = new SolidColorBrush(preference.FocusedCellColor),
+			Visibility = Visibility.Collapsed
+		};
+
 
 		// Initializes the field '_peerFocusedRectangle'.
 		foreach (ref var rectangle in _peerFocusedRectangle.EnumerateRef())
