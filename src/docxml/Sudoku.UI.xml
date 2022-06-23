@@ -728,6 +728,37 @@
             </summary>
             <returns>The <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.</returns>
         </member>
+        <member name="T:Sudoku.UI.Input.ModifierKeyData">
+            <summary>
+            Provides a way to get information for pressing on modifier keys.
+            </summary>
+            <param name="ControlIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Control"/> key is pressed down.</param>
+            <param name="ShiftIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Shift"/> key is pressed down.</param>
+            <param name="AltIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Menu"/> key is pressed down.</param>
+        </member>
+        <member name="M:Sudoku.UI.Input.ModifierKeyData.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Provides a way to get information for pressing on modifier keys.
+            </summary>
+            <param name="ControlIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Control"/> key is pressed down.</param>
+            <param name="ShiftIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Shift"/> key is pressed down.</param>
+            <param name="AltIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Menu"/> key is pressed down.</param>
+        </member>
+        <member name="P:Sudoku.UI.Input.ModifierKeyData.ControlIsDown">
+            <summary>Indicates whether the <see cref="F:Windows.System.VirtualKey.Control"/> key is pressed down.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Input.ModifierKeyData.ShiftIsDown">
+            <summary>Indicates whether the <see cref="F:Windows.System.VirtualKey.Shift"/> key is pressed down.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Input.ModifierKeyData.AltIsDown">
+            <summary>Indicates whether the <see cref="F:Windows.System.VirtualKey.Menu"/> key is pressed down.</summary>
+        </member>
+        <member name="M:Sudoku.UI.Input.ModifierKeyData.FromCurrentState">
+            <summary>
+            Creates a <see cref="T:Sudoku.UI.Input.ModifierKeyData"/> instance from the current state.
+            </summary>
+            <returns>The <see cref="T:Sudoku.UI.Input.ModifierKeyData"/> instance.</returns>
+        </member>
         <member name="T:Sudoku.UI.Interoperability.AppWindowMarshal">
             <summary>
             Provides native methods on application window.

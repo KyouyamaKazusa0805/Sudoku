@@ -767,7 +767,7 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		_candidateMarks[cell].SetDigitColor(digit, color);
+		_candidateMarks[cell].SetStrokeColor(digit, color);
 	}
 
 	/// <summary>
@@ -776,7 +776,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ClearCandidateMark(int cell, int digit) => _candidateMarks[cell].SetDigitColor(digit, Colors.Transparent);
+	public void ClearCandidateMark(int cell, int digit) => _candidateMarks[cell].HideDigit(digit);
 #endif
 
 	/// <inheritdoc/>

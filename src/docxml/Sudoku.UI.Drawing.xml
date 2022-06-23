@@ -828,7 +828,7 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateMark.TypeIdentifier">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.SetDigitColor(System.Int32,Windows.UI.Color)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.SetStrokeColor(System.Int32,Windows.UI.Color)">
             <summary>
             Sets the specified color at the specified digit's place.
             </summary>

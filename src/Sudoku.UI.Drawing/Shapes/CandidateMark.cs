@@ -69,7 +69,7 @@ internal sealed class CandidateMark : DrawingElement
 	/// <param name="digit">The digit.</param>
 	/// <param name="color">The color.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetDigitColor(int digit, Color color)
+	public void SetStrokeColor(int digit, Color color)
 	{
 		if (GetStrokeColor(digit) == color)
 		{
@@ -109,7 +109,7 @@ internal sealed class CandidateMark : DrawingElement
 	/// </summary>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void HideDigit(int digit) => SetDigitColor(digit, Colors.Transparent);
+	public void HideDigit(int digit) => SetStrokeColor(digit, Colors.Transparent);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
