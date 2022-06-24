@@ -164,6 +164,9 @@ internal sealed class CandidateMark : DrawingElement
 		{
 			// Hides all possible controls.
 			Array.ForEach(_pool[digit], static c => _ = c is not null ? c.Visibility = Visibility.Collapsed : default);
+
+			// Sets the shape kind as none.
+			_shapeKinds[digit] = ShapeKind.None;
 		}
 		else if (_pool[digit][(int)shapeKind] is { } control)
 		{
