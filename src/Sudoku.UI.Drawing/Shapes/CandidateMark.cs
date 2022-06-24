@@ -227,11 +227,21 @@ internal sealed class CandidateMark : DrawingElement
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
-		=> other is CandidateMark comparer && _gridLayout == comparer._gridLayout;
+		=> other is CandidateMark comparer && Enumerable.SequenceEqual(_shapeKinds, comparer._shapeKinds);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, _gridLayout.GetHashCode());
+	public override int GetHashCode()
+	{
+		var hc = new HashCode();
+		hc.Add(TypeIdentifier);
+		for (int i = 0; i < 9; i++)
+		{
+			hc.Add(_shapeKinds[i]);
+		}
+
+		return hc.ToHashCode();
+	}
 
 	/// <summary>
 	/// Gets the stroke thickness at the specified digit's place.

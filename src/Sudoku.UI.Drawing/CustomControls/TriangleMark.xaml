@@ -6,6 +6,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 	<Viewbox Stretch="Uniform" Margin="{x:Bind Margin}">
-		<Path x:Name="_cPath" Data="M10,2 L20,19.320508 L0,19.320508 Z" Fill="{x:Bind Fill}" Width="20" Height="20" />
+		<Path
+			x:Name="_cPath" Data="M10,2 L20,19.320508 L0,19.320508 Z" Stroke="{x:Bind Stroke}"
+			Fill="{x:Bind Fill}" Width="20" Height="20" />
 	</Viewbox>
 </Grid>
