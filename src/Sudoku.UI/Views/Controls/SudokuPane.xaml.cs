@@ -229,21 +229,25 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Mask all value cells.
 	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Mask() => GetSudokuGridViewModelNullable()?.Mask();
 
 	/// <summary>
 	/// Unmask all value cells.
 	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Unmask() => GetSudokuGridViewModelNullable()?.Unmask();
 
 	/// <summary>
 	/// Shows the candidates.
 	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ShowCandidates() => GetSudokuGridViewModel().UserShowCandidates = true;
 
 	/// <summary>
 	/// Hides the candidates.
 	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void HideCandidates() => GetSudokuGridViewModel().UserShowCandidates = false;
 
 #if AUTHOR_FEATURE_CELL_MARKS
@@ -252,14 +256,43 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="cellIndex">The cell index.</param>
 	/// <param name="shapeKind">The shape kind you want to set.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetCellMark(int cellIndex, ShapeKind shapeKind)
 		=> GetSudokuGridViewModel().SetCellMark(cellIndex, shapeKind);
 
 	/// <summary>
+	/// Expands the cell mark at the specified cell to all cells in the specified house.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="houseType">The house type.</param>
+	public void DiffuseCellMark(int cell, HouseType houseType)
+	{
+		var shapeKind = GetSudokuGridViewModel().GetCellMarks()[cell].ShapeKind;
+		if (shapeKind == ShapeKind.None)
+		{
+			// The cell doesn't contain any cell marks.
+			return;
+		}
+
+		ref readonly var grid = ref GridRef;
+		foreach (int currentCell in HouseMaps[cell.ToHouseIndex(houseType)])
+		{
+			if (currentCell == cell)
+			{
+				// Skips for the current cell.
+				continue;
+			}
+
+			SetCellMark(currentCell, shapeKind);
+		}
+	}
+
+	/// <summary>
 	/// Clears the cell mark at the specified cell index.
 	/// </summary>
-	/// <param name="cellIndex">The cell index.</param>
-	public void ClearCellMark(int cellIndex) => SetCellMark(cellIndex, ShapeKind.None);
+	/// <param name="cell">The cell index.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ClearCellMark(int cell) => SetCellMark(cell, ShapeKind.None);
 #endif
 
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
@@ -269,8 +302,43 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <param name="shapeKind">The shape kind.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetCandidateMark(int cell, int digit, ShapeKind shapeKind)
 		=> GetSudokuGridViewModel().SetCandidateMark(cell, digit, shapeKind);
+
+	/// <summary>
+	/// Expands the candidate mark at the specified cell and the digit to all candidates in the specified house.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	/// <param name="houseType">The house type.</param>
+	public void DiffuseCandidateMark(int cell, int digit, HouseType houseType)
+	{
+		var shapeKind = GetSudokuGridViewModel().GetCandidateMarks()[cell].GetShapeKind(digit);
+		if (shapeKind == ShapeKind.None)
+		{
+			// The candidate doesn't contain any candidate marks.
+			return;
+		}
+
+		ref readonly var grid = ref GridRef;
+		foreach (int currentCell in HouseMaps[cell.ToHouseIndex(houseType)])
+		{
+			if (currentCell == cell)
+			{
+				// Skips for the current cell.
+				continue;
+			}
+
+			if (grid.Exists(currentCell, digit) is not true)
+			{
+				// Skips for the cell that doesn't contain the digit.
+				continue;
+			}
+
+			SetCandidateMark(currentCell, digit, shapeKind);
+		}
+	}
 
 	/// <summary>
 	/// Clears the candidate mark at the specified candidate index.
@@ -444,6 +512,34 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
+#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
+			case var key and (VirtualKey.Up or VirtualKey.Down or VirtualKey.Left or VirtualKey.Right):
+			{
+				switch (pressedData)
+				{
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+					case (true, true, false): // Control + Shift.
+					{
+						var houseType = key is VirtualKey.Up or VirtualKey.Down ? HouseType.Column : HouseType.Row;
+						DiffuseCandidateMark(_candidate / 9, _candidate % 9, houseType);
+
+						break;
+					}
+#endif
+#if AUTHOR_FEATURE_CELL_MARKS
+					case (true, false, false): // Control.
+					{
+						var houseType = key is VirtualKey.Up or VirtualKey.Down ? HouseType.Column : HouseType.Row;
+						DiffuseCellMark(_cell, houseType);
+
+						break;
+					}
+#endif
+				}
+
+				break;
+			}
+#endif
 			default: // Other cases.
 			{
 				// Here we must set the value to 'false', in order to process keyboard accelerators.

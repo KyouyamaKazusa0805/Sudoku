@@ -23,6 +23,10 @@
   * <kbd>Ctrl + 数字</kbd>：为鼠标指向的单元格添加背景图案（支持的图形有正方形、圆形、五角星等等）；
   * <kbd>Ctrl + Shift + 数字</kbd>：为鼠标指向的候选数添加背景图案（支持的图形基本同上）；
   * <kbd>Ctrl + 退格键</kbd> 或 <kbd>Ctrl + 0</kbd>：去除鼠标指向的单元格的背景图案；
-  * <kbd>Ctrl + Shift + 退格键</kbd> 或 <kbd>Ctrl + Shift + 0</kbd>：去除鼠标指向的候选数的背景图案。
+  * <kbd>Ctrl + Shift + 退格键</kbd> 或 <kbd>Ctrl + Shift + 0</kbd>：去除鼠标指向的候选数的背景图案；
+  * <kbd>Ctrl + ←</kbd> 或 <kbd>Ctrl + →</kbd>：同行扩散当前单元格的背景图案；
+  * <kbd>Ctrl + ↑</kbd> 或 <kbd>Ctrl + ↓</kbd>：同列扩散当前单元格的背景图案；
+  * <kbd>Ctrl + Shift + ←</kbd> 或 <kbd>Ctrl + Shift + →</kbd>：同行扩散当前候选数的背景图案；
+  * <kbd>Ctrl + Shift + ↑</kbd> 或 <kbd>Ctrl + Shift + ↓</kbd>：同列扩散当前候选数的背景图案。
 
 其它页面的功能要么还没做，要么不需要快捷键，所以敬请期待。
