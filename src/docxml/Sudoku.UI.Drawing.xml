@@ -4,46 +4,6 @@
         <name>Sudoku.UI.Drawing</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.UI.Drawing.ShapeKind">
-            <summary>
-            Defines a shape kind that is used for a mark-like drawing element.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.None">
-            <summary>
-            Indicates none of shapes will be displayed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.Rectangle">
-            <summary>
-            Indicates the shape kind is a rectangle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.Circle">
-            <summary>
-            Indicates the shape kind is a circle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.CrossMark">
-            <summary>
-            Indicates the shape kind is a cross mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.Star">
-            <summary>
-            Indicates the shape kind is a star.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.Triangle">
-            <summary>
-            Indicates the shape kind is a triangle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.Diamond">
-            <summary>
-            Indicates the shape kind is a diamond.
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Drawing.ColorMarshal">
             <summary>
             Provides with the color-related marshaling methods.
@@ -397,6 +357,12 @@
             Indicates the shape kind.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Drawing.Metadata.NotSupportedCandidateMarkAttribute">
+            <summary>
+            Indicates the specified shape kind is not supported in <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateMark"/>.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.CandidateMark"/>
+        </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
             Stores a set of methods on handling point conversions.
@@ -507,6 +473,46 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Serialization.ColorJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Windows.UI.Color,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.ShapeKind">
+            <summary>
+            Defines a shape kind that is used for a mark-like drawing element.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.ShapeKind.None">
+            <summary>
+            Indicates none of shapes will be displayed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.ShapeKind.Rectangle">
+            <summary>
+            Indicates the shape kind is a rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.ShapeKind.Circle">
+            <summary>
+            Indicates the shape kind is a circle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.ShapeKind.CrossMark">
+            <summary>
+            Indicates the shape kind is a cross mark.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.ShapeKind.Star">
+            <summary>
+            Indicates the shape kind is a star.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.ShapeKind.Triangle">
+            <summary>
+            Indicates the shape kind is a triangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.ShapeKind.Diamond">
+            <summary>
+            Indicates the shape kind is a diamond.
+            </summary>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.BlockLine">
             <summary>

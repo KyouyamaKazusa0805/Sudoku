@@ -10,14 +10,12 @@ internal sealed class CandidateMark : DrawingElement
 	/// <summary>
 	/// Indicates the supported shapes.
 	/// </summary>
-	public static readonly ShapeKind[] SupportedShapes = new[]
-	{
-		ShapeKind.None,
-		ShapeKind.Rectangle,
-		ShapeKind.Circle,
-		ShapeKind.CrossMark,
-		ShapeKind.Triangle
-	};
+	public static readonly ShapeKind[] SupportedShapes = (
+		from shapeKind in Enum.GetValues<ShapeKind>()
+		let fieldInfo = typeof(ShapeKind).GetField(shapeKind.ToString())!
+		where !fieldInfo.IsDefined(typeof(NotSupportedCandidateMarkAttribute))
+		select shapeKind
+	).ToArray();
 
 
 	/// <summary>

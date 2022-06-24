@@ -789,7 +789,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ClearCandidateMark(int cell, int digit) => _candidateMarks[cell].HideDigit(digit);
+	public void ClearCandidateMark(int cell, int digit) => SetCandidateMark(cell, digit, ShapeKind.None);
 #endif
 
 	/// <inheritdoc/>

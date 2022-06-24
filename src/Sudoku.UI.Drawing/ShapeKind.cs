@@ -28,6 +28,7 @@ public enum ShapeKind : byte
 	/// <summary>
 	/// Indicates the shape kind is a star.
 	/// </summary>
+	[NotSupportedCandidateMark]
 	Star,
 
 	/// <summary>
@@ -38,5 +39,6 @@ public enum ShapeKind : byte
 	/// <summary>
 	/// Indicates the shape kind is a diamond.
 	/// </summary>
+	[NotSupportedCandidateMark]
 	Diamond
 }
