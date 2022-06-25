@@ -799,7 +799,7 @@ public sealed class SudokuGrid : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, _grid);
+	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, _grid.GetHashCode());
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
