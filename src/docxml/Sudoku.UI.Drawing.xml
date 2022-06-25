@@ -55,12 +55,6 @@
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AllowFocusing">
-            <summary>
-            Indicates whether the sudoku grid supports focusing a cell, to display the focused cell as highlight,
-            using a different color.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.OutsideBorderWidth">
             <summary>
             Indicates the outside border width. The value cannot be negative.
@@ -114,6 +108,11 @@
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CandidateFontName">
             <summary>
             Indicates the candidate font name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PeerFocusingMode">
+            <summary>
+            Indicates the peer focusing mode.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.OutsideBorderColor">
@@ -2275,6 +2274,26 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.GetControl">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode">
+            <summary>
+            Defines a set of modes that constraints the displaying for focused cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.PeerFocusingMode.None">
+            <summary>
+            Indicates the focusing mode is to display none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.PeerFocusingMode.FocusedCell">
+            <summary>
+            Indicates the focusing mode is to display the focused cell itself.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.PeerFocusingMode.FocusedCellAndPeerCells">
+            <summary>
+            Indicates the focusing mode is to display the peer cells.
+            </summary>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.SudokuGrid">
             <summary>

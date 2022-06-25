@@ -38,12 +38,6 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	public bool PlaceholderIsZero { get; set; } = true;
 
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <see langword="true"/>.
-	/// </remarks>
-	public bool AllowFocusing { get; set; } = true;
-
 #if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
 	/// <summary>
 	/// Indicates whether the old shape should be covered when diffused.
@@ -133,6 +127,12 @@ public sealed class Preference : IDrawingPreference
 #else
 		= "Tahoma";
 #endif
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <see cref="PeerFocusingMode.FocusedCellAndPeerCells"/>.
+	/// </remarks>
+	public PeerFocusingMode PeerFocusingMode { get; set; } = PeerFocusingMode.FocusedCellAndPeerCells;
 
 	/// <inheritdoc/>
 	/// <remarks>

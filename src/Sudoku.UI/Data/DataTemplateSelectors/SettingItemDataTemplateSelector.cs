@@ -28,4 +28,12 @@ public sealed class SettingItemDataTemplateSelector : ModelDataTemplateSelector
 	/// </summary>
 	[DataTemplateModelType<FontPickerSettingItem>]
 	public DataTemplate FontPickerTemplate { get; set; } = null!;
+
+	/// <summary>
+	/// Indicates the template that is used for a combo box group that applied
+	/// to a <see cref="PeerFocusingMode"/> instance.
+	/// </summary>
+	/// <seealso cref="PeerFocusingMode"/>
+	[DataTemplateModelType<PeerFocusingModeComboBoxGroupSettingItem>]
+	public DataTemplate PeerFocusingModeComboBoxGroupTemplate { get; set; } = null!;
 }

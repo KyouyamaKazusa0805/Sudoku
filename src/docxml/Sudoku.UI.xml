@@ -43,6 +43,21 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.AppLifecycle.WindowInitialInfo">
             <summary>
             Defines the information to control the initial page information.
@@ -167,12 +182,6 @@
             The default value is <see langword="true"/>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AllowFocusing">
-            <inheritdoc/>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
         <member name="P:Sudoku.UI.Configuration.Preference.CoverOldShapeWhenDiffused">
             <summary>
             Indicates whether the old shape should be covered when diffused.
@@ -245,6 +254,12 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.PeerFocusingMode">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see cref="F:Sudoku.UI.Drawing.Shapes.PeerFocusingMode.FocusedCellAndPeerCells"/>.
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Configuration.Preference.OutsideBorderColor">
@@ -553,6 +568,13 @@
             <summary>
             Indicates the template that is used for a font picker.
             </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.PeerFocusingModeComboBoxGroupTemplate">
+            <summary>
+            Indicates the template that is used for a combo box group that applied
+            to a <see cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/>
         </member>
         <member name="T:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension">
             <summary>
@@ -1221,6 +1243,44 @@
             Indicates the analysis result.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Models.PeerFocusingModeComboBoxGroupSettingItem">
+            <summary>
+            Defines a combo box group setting item for enumeration type <see cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/>.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.PeerFocusingModeComboBoxGroupSettingItem.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.PeerFocusingModeComboBoxGroupSettingItem"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.PeerFocusingModeComboBoxGroupSettingItem.Option0Content">
+            <summary>
+            Indicates the option 0 content.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.PeerFocusingModeComboBoxGroupSettingItem.Option1Content">
+            <summary>
+            Indicates the option 1 content.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.PeerFocusingModeComboBoxGroupSettingItem.Option2Content">
+            <summary>
+            Indicates the option 2 content.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.PeerFocusingModeComboBoxGroupSettingItem.GetPreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.PeerFocusingModeComboBoxGroupSettingItem.SetPreference(Sudoku.UI.Drawing.Shapes.PeerFocusingMode)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.PeerFocusingModeComboBoxGroupSettingItem.GetPreferenceIndex">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.PeerFocusingModeComboBoxGroupSettingItem.SetPreferenceIndex(System.Int32)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
+        </member>
         <member name="T:Sudoku.UI.Models.PlainMessage">
             <inheritdoc/>
         </member>
@@ -1492,6 +1552,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.ColorSelector.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.ColorSelector.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.FontPicker">
             <summary>
             Defines a font picker control.
@@ -1521,6 +1591,16 @@
         <member name="M:Sudoku.UI.Views.Controls.FontPicker.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.GettingStartedTile">
@@ -1608,6 +1688,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>
             Defines a user control that handles the messages displaying via <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>s.
@@ -1689,6 +1779,16 @@
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
@@ -2008,6 +2108,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.TitleBar">
             <summary>
             Defines a customized title bar.
@@ -2035,6 +2145,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.TitleBar.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TitleBar.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.AboutPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -2051,6 +2171,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.HomePage">
             <summary>
             Defines a home page.
@@ -2064,6 +2194,16 @@
         <member name="M:Sudoku.UI.Views.Pages.HomePage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.HomePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.HomePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SettingsPage">
@@ -2098,6 +2238,16 @@
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SudokuPage">
@@ -2402,6 +2552,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -2507,9 +2667,39 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Program">
             <summary>
             Program class
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
@@ -2549,12 +2739,12 @@
             <param name="this">The modifier key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DE5AF559E2">
+        <member name="T:Windows.Foundation.Point_DE7BE3B162">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DE5AF559E2.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DE7BE3B162.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -2660,12 +2850,12 @@
             Throws when the argument <paramref name="count"/> is negative.
             </exception>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

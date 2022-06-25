@@ -36,12 +36,6 @@ public interface IDrawingPreference
 	public abstract bool DescendingOrderedInfoBarBoard { get; set; }
 
 	/// <summary>
-	/// Indicates whether the sudoku grid supports focusing a cell, to display the focused cell as highlight,
-	/// using a different color.
-	/// </summary>
-	public abstract bool AllowFocusing { get; set; }
-
-	/// <summary>
 	/// Indicates the outside border width. The value cannot be negative.
 	/// </summary>
 	public abstract double OutsideBorderWidth { get; set; }
@@ -99,6 +93,11 @@ public interface IDrawingPreference
 	/// Indicates the candidate font name.
 	/// </summary>
 	public abstract string CandidateFontName { get; set; }
+
+	/// <summary>
+	/// Indicates the peer focusing mode.
+	/// </summary>
+	public abstract PeerFocusingMode PeerFocusingMode { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the outside borders.

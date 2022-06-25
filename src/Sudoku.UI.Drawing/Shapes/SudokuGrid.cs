@@ -393,31 +393,48 @@ public sealed class SudokuGrid : DrawingElement
 				return;
 			}
 
-			if (!_preference.AllowFocusing)
+			if (_preference.PeerFocusingMode == PeerFocusingMode.None)
 			{
 				return;
 			}
 
-			if ((_focusedCell = value) == -1)
+			_focusedCell = value;
+			switch (value, _preference.PeerFocusingMode)
 			{
-				_focusedRectangle.Visibility = Visibility.Collapsed;
-				Array.ForEach(_peerFocusedRectangle, CommonMethods.HideControl);
+				case (-1, _):
+				{
+					_focusedCell = value;
 
-				return;
-			}
+					_focusedRectangle.Visibility = Visibility.Collapsed;
+					Array.ForEach(_peerFocusedRectangle, CommonMethods.HideControl);
 
-			_focusedRectangle.Visibility = Visibility.Visible;
-			GridLayout.SetRow(_focusedRectangle, value / 9);
-			GridLayout.SetColumn(_focusedRectangle, value % 9);
+					break;
+				}
+				case (_, PeerFocusingMode.FocusedCellAndPeerCells):
+				{
+					for (int i = 0; i < 20; i++)
+					{
+						var rectangle = _peerFocusedRectangle[i];
+						int cell = Peers[value][i];
 
-			for (int i = 0; i < 20; i++)
-			{
-				var rectangle = _peerFocusedRectangle[i];
-				int cell = Peers[value][i];
+						rectangle.Visibility = Visibility.Visible;
+						GridLayout.SetRow(rectangle, cell / 9);
+						GridLayout.SetColumn(rectangle, cell % 9);
+					}
 
-				rectangle.Visibility = Visibility.Visible;
-				GridLayout.SetRow(rectangle, cell / 9);
-				GridLayout.SetColumn(rectangle, cell % 9);
+					goto Previous;
+				}
+#pragma warning disable IDE0055
+				case (_, PeerFocusingMode.FocusedCell):
+				Previous:
+				{
+					_focusedRectangle.Visibility = Visibility.Visible;
+					GridLayout.SetRow(_focusedRectangle, value / 9);
+					GridLayout.SetColumn(_focusedRectangle, value % 9);
+
+					break;
+				}
+#pragma warning restore IDE0055
 			}
 		}
 	}

@@ -124,6 +124,9 @@
 	<x:String x:Key="SettingsPage_ItemName_CandidateFontScale">候选数字体的缩放比例</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateFontScale">表示候选数相对于单元格的比例大小。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CoverOldShapeWhenDiffused">扩散形状的时候覆盖别格的旧形状</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption0Content">不显示聚焦单元格</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption1Content">显示聚焦单元格</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption2Content">显示聚焦单元格及相关单元格</x:String>
 	<x:String x:Key="SettingsPage_SavePreferenceDescription">所有设置都是即时保存，不过有些设置项可能需要重启程序才会生效。</x:String>
 	<x:String x:Key="SettingsPage_BackupPreference">备份配置项</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">文件“</x:String>
