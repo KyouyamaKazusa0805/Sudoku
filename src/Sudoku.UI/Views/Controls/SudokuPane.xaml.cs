@@ -382,7 +382,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		var candidateMarks = sudokuGrid.GetCandidateMarks();
 		var listOfCandidateMarks = new List<CandidateMarkInfo>(729);
 
-		var up = ((App)Application.Current).InitialInfo.UserPreference;
+		var up = ((App)Application.Current).UserPreference;
 #endif
 		for (int cellIndex = 0; cellIndex < 81; cellIndex++)
 		{
