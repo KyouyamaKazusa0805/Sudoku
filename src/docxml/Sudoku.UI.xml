@@ -173,6 +173,14 @@
             The default value is <see langword="true"/>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Configuration.Preference.CoverOldShapeWhenDiffused">
+            <summary>
+            Indicates whether the old shape should be covered when diffused.
+            </summary>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Configuration.Preference.OutsideBorderWidth">
             <inheritdoc/>
             <remarks>

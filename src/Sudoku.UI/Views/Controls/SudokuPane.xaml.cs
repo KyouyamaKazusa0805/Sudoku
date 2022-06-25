@@ -267,19 +267,27 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <param name="houseType">The house type.</param>
 	public void DiffuseCellMark(int cell, HouseType houseType)
 	{
-		var shapeKind = GetSudokuGridViewModel().GetCellMarks()[cell].ShapeKind;
+		var cellMarks = GetSudokuGridViewModel().GetCellMarks();
+		var shapeKind = cellMarks[cell].ShapeKind;
 		if (shapeKind == ShapeKind.None)
 		{
 			// The cell doesn't contain any cell marks.
 			return;
 		}
 
+		bool coverOldShapeWhenDiffused = ((App)Application.Current).UserPreference.CoverOldShapeWhenDiffused;
 		ref readonly var grid = ref GridRef;
 		foreach (int currentCell in HouseMaps[cell.ToHouseIndex(houseType)])
 		{
 			if (currentCell == cell)
 			{
 				// Skips for the current cell.
+				continue;
+			}
+
+			if (!coverOldShapeWhenDiffused && cellMarks[currentCell].ShapeKind != ShapeKind.None)
+			{
+				// Skips for the cell that is filled by a certain shape.
 				continue;
 			}
 
@@ -314,13 +322,15 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <param name="houseType">The house type.</param>
 	public void DiffuseCandidateMark(int cell, int digit, HouseType houseType)
 	{
-		var shapeKind = GetSudokuGridViewModel().GetCandidateMarks()[cell].GetShapeKind(digit);
+		var candidateMarks = GetSudokuGridViewModel().GetCandidateMarks();
+		var shapeKind = candidateMarks[cell].GetShapeKind(digit);
 		if (shapeKind == ShapeKind.None)
 		{
 			// The candidate doesn't contain any candidate marks.
 			return;
 		}
 
+		bool coverOldShapeWhenDiffused = ((App)Application.Current).UserPreference.CoverOldShapeWhenDiffused;
 		ref readonly var grid = ref GridRef;
 		foreach (int currentCell in HouseMaps[cell.ToHouseIndex(houseType)])
 		{
@@ -333,6 +343,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			if (grid.Exists(currentCell, digit) is not true)
 			{
 				// Skips for the cell that doesn't contain the digit.
+				continue;
+			}
+
+			if (!coverOldShapeWhenDiffused && candidateMarks[currentCell].GetShapeKind(digit) != ShapeKind.None)
+			{
+				// Skips for the candidate that is filled by a certain shape.
 				continue;
 			}
 

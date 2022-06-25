@@ -61,6 +61,11 @@ public sealed partial class SettingsPage : Page
 					Description = R["SettingsPage_ItemDescription_CandidateFontScale"]!,
 					PreferenceValueName = nameof(Preference.CandidateFontName),
 					FontScalePropertyName = nameof(Preference.CandidateFontScale)
+				},
+				new ToggleSwitchSettingItem
+				{
+					Name = R["SettingsPage_ItemName_CoverOldShapeWhenDiffused"]!,
+					PreferenceValueName = nameof(Preference.CoverOldShapeWhenDiffused)
 				}
 			}
 		},

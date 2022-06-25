@@ -44,6 +44,16 @@ public sealed partial class Preference : IDrawingPreference
 	/// </remarks>
 	public bool AllowFocusing { get; set; } = true;
 
+#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <summary>
+	/// Indicates whether the old shape should be covered when diffused.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <see langword="false"/>.
+	/// </remarks>
+	public bool CoverOldShapeWhenDiffused { get; set; } = false;
+#endif
+
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>0</c>.

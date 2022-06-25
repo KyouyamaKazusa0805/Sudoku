@@ -126,6 +126,7 @@
 	<x:String x:Key="SettingsPage_ItemDescription_ValueFontScale">Indicates the sizing scale of the value digits.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateFontScale">Font scale on candidates</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateFontScale">Indicates the sizing scale of the candidates.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CoverOldShapeWhenDiffused">Cover old shape marks when diffused</x:String>
 	<x:String x:Key="SettingsPage_SavePreferenceDescription">All options are saved instantly, but some options will be enabled after being restarted the program.</x:String>
 	<x:String x:Key="SettingsPage_BackupPreference">Backup preferences</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">File "</x:String>
