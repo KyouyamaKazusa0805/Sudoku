@@ -156,56 +156,6 @@ public interface IDrawingPreference
 	Color MaskEllipseColor { get; set; }
 
 	/// <summary>
-	/// Indicates the 1st color in the color palette.
-	/// </summary>
-	Color PaletteColor1 { get; set; }
-
-	/// <summary>
-	/// Indicates the 2nd color in the color palette.
-	/// </summary>
-	Color PaletteColor2 { get; set; }
-
-	/// <summary>
-	/// Indicates the 3rd color in the color palette.
-	/// </summary>
-	Color PaletteColor3 { get; set; }
-
-	/// <summary>
-	/// Indicates the 4th color in the color palette.
-	/// </summary>
-	Color PaletteColor4 { get; set; }
-
-	/// <summary>
-	/// Indicates the 5th color in the color palette.
-	/// </summary>
-	Color PaletteColor5 { get; set; }
-
-	/// <summary>
-	/// Indicates the 6th color in the color palette.
-	/// </summary>
-	Color PaletteColor6 { get; set; }
-
-	/// <summary>
-	/// Indicates the 7th color in the color palette.
-	/// </summary>
-	Color PaletteColor7 { get; set; }
-
-	/// <summary>
-	/// Indicates the 8th color in the color palette.
-	/// </summary>
-	Color PaletteColor8 { get; set; }
-
-	/// <summary>
-	/// Indicates the 9th color in the color palette.
-	/// </summary>
-	Color PaletteColor9 { get; set; }
-
-	/// <summary>
-	/// Indicates the 10th color in the color palette.
-	/// </summary>
-	Color PaletteColor10 { get; set; }
-
-	/// <summary>
 	/// Indicates the normal color.
 	/// </summary>
 	Color NormalColor { get; set; }
@@ -328,4 +278,19 @@ public interface IDrawingPreference
 	/// </summary>
 	Color AuthorDefined_CandidateMarkStrokeColor { get; set; }
 #endif
+
+	/// <summary>
+	/// Indicates the palette colors.
+	/// </summary>
+	Color[] PaletteColors { get; set; }
+
+
+	/// <summary>
+	/// Gets the color at the specified index of the palette color list, i.e. the property <see cref="PaletteColors"/>s.
+	/// </summary>
+	/// <param name="paletteColorIndex">The index.</param>
+	/// <returns>The color result.</returns>
+	/// <seealso cref="PaletteColors"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public sealed Color GetPaletteColor(int paletteColorIndex) => PaletteColors[paletteColorIndex];
 }

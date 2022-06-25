@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines the user preferences in the program.
 /// </summary>
-public sealed partial class Preference : IDrawingPreference
+public sealed class Preference : IDrawingPreference
 {
 	/// <inheritdoc/>
 	/// <remarks>
@@ -202,66 +202,6 @@ public sealed partial class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#FFFFC059</c>.
-	/// </remarks>
-	public Color PaletteColor1 { get; set; } = Color.FromArgb(255, 255, 192, 89);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFB1A5F3</c>.
-	/// </remarks>
-	public Color PaletteColor2 { get; set; } = Color.FromArgb(255, 177, 165, 243);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFF7A5A7</c>.
-	/// </remarks>
-	public Color PaletteColor3 { get; set; } = Color.FromArgb(255, 247, 165, 167);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FF86E8D0</c>.
-	/// </remarks>
-	public Color PaletteColor4 { get; set; } = Color.FromArgb(255, 134, 232, 208);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FF86F280</c>.
-	/// </remarks>
-	public Color PaletteColor5 { get; set; } = Color.FromArgb(255, 134, 242, 128);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFF7DE8F</c>.
-	/// </remarks>
-	public Color PaletteColor6 { get; set; } = Color.FromArgb(255, 247, 222, 143);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFDCD4FC</c>.
-	/// </remarks>
-	public Color PaletteColor7 { get; set; } = Color.FromArgb(255, 220, 212, 252);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFFFD2D2</c>.
-	/// </remarks>
-	public Color PaletteColor8 { get; set; } = Color.FromArgb(255, 255, 210, 210);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFCEFBED</c>.
-	/// </remarks>
-	public Color PaletteColor9 { get; set; } = Color.FromArgb(255, 206, 251, 237);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFD7FFD7</c>.
-	/// </remarks>
-	public Color PaletteColor10 { get; set; } = Color.FromArgb(255, 215, 255, 215);
-
-	/// <inheritdoc/>
-	/// <remarks>
 	/// The default value is <c>#FF3FDA65</c>.
 	/// </remarks>
 	public Color NormalColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
@@ -407,4 +347,36 @@ public sealed partial class Preference : IDrawingPreference
 	/// </remarks>
 	public Color AuthorDefined_CandidateMarkStrokeColor { get; set; } = Colors.Black with { A = 128 };
 #endif
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is an array of 10 elements:
+	/// <list type="number">
+	/// <item>#FFFFC059 (Orange)</item>
+	/// <item>#FFB1A5F3 (Light purple)</item>
+	/// <item>#FFF7A5A7 (Red)</item>
+	/// <item>#FF86E8D0 (Sky blue)</item>
+	/// <item>#FF86F280 (Light green)</item>
+	/// <item>#FFF7DE8F (Light orange)</item>
+	/// <item>#FFDCD4FC (Whitey purple)</item>
+	/// <item>#FFFFD2D2 (Light red)</item>
+	/// <item>#FFCEFBED (Whitey blue)</item>
+	/// <item>#FFD7FFD7 (Whitey green)</item>
+	/// </list>
+	/// All values of this array are referenced from sudoku project
+	/// <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
+	/// </remarks>
+	public Color[] PaletteColors { get; set; } =
+	{
+		Color.FromArgb(255, 255, 192, 89), // FFFFC059
+		Color.FromArgb(255, 177, 165, 243), // FFB1A5F3
+		Color.FromArgb(255, 247, 165, 167), // FFF7A5A7
+		Color.FromArgb(255, 134, 232, 208), // FF86E8D0
+		Color.FromArgb(255, 134, 242, 128), // FF86F280
+		Color.FromArgb(255, 247, 222, 143), // FFF7DE8F
+		Color.FromArgb(255, 220, 212, 252), // FFDCD4FC
+		Color.FromArgb(255, 255, 210, 210), // FFFFD2D2
+		Color.FromArgb(255, 206, 251, 237), // FFCEFBED
+		Color.FromArgb(255, 215, 255, 215) // FFD7FFD7
+	};
 }

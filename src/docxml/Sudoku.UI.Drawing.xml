@@ -171,56 +171,6 @@
             Indicates the color of the mask ellipse color.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor1">
-            <summary>
-            Indicates the 1st color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor2">
-            <summary>
-            Indicates the 2nd color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor3">
-            <summary>
-            Indicates the 3rd color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor4">
-            <summary>
-            Indicates the 4th color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor5">
-            <summary>
-            Indicates the 5th color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor6">
-            <summary>
-            Indicates the 6th color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor7">
-            <summary>
-            Indicates the 7th color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor8">
-            <summary>
-            Indicates the 8th color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor9">
-            <summary>
-            Indicates the 9th color in the color palette.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColor10">
-            <summary>
-            Indicates the 10th color in the color palette.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.NormalColor">
             <summary>
             Indicates the normal color.
@@ -340,6 +290,19 @@
             <summary>
             Indicates the stroke color of the mark applied to a candidate.
             </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColors">
+            <summary>
+            Indicates the palette colors.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.IDrawingPreference.GetPaletteColor(System.Int32)">
+            <summary>
+            Gets the color at the specified index of the palette color list, i.e. the property <see cref="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColors"/>s.
+            </summary>
+            <param name="paletteColorIndex">The index.</param>
+            <returns>The color result.</returns>
+            <seealso cref="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColors"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Metadata.ShapeAttribute">
             <summary>

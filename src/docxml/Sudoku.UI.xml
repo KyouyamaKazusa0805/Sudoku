@@ -328,66 +328,6 @@
             The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor1">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFFC059</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor2">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFB1A5F3</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor3">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFF7A5A7</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor4">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF86E8D0</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor5">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF86F280</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor6">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFF7DE8F</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor7">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFDCD4FC</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor8">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFFD2D2</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor9">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFCEFBED</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColor10">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFD7FFD7</c>.
-            </remarks>
-        </member>
         <member name="P:Sudoku.UI.Configuration.Preference.NormalColor">
             <inheritdoc/>
             <remarks>
@@ -532,22 +472,25 @@
             The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 128).
             </remarks>
         </member>
-        <member name="M:Sudoku.UI.Configuration.Preference.GetColor(System.Int32)">
-            <summary>
-            Gets the color at the specified index of the palette color list.
-            </summary>
-            <param name="paletteColorIndex">The index.</param>
-            <returns>The color result.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the argument <paramref name="paletteColorIndex"/> is below 1 or above 10.
-            </exception>
-        </member>
-        <member name="M:Sudoku.UI.Configuration.Preference.GetPaletteColorIndex(Windows.UI.Color)">
-            <summary>
-            Gets the color index via the specified color.
-            </summary>
-            <param name="color">The color.</param>
-            <returns>The index result. If failed to found, -1.</returns>
+        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColors">
+            <inheritdoc/>
+            <remarks>
+            The default value is an array of 10 elements:
+            <list type="number">
+            <item>#FFFFC059 (Orange)</item>
+            <item>#FFB1A5F3 (Light purple)</item>
+            <item>#FFF7A5A7 (Red)</item>
+            <item>#FF86E8D0 (Sky blue)</item>
+            <item>#FF86F280 (Light green)</item>
+            <item>#FFF7DE8F (Light orange)</item>
+            <item>#FFDCD4FC (Whitey purple)</item>
+            <item>#FFFFD2D2 (Light red)</item>
+            <item>#FFCEFBED (Whitey blue)</item>
+            <item>#FFD7FFD7 (Whitey green)</item>
+            </list>
+            All values of this array are referenced from sudoku project
+            <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
+            </remarks>
         </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
