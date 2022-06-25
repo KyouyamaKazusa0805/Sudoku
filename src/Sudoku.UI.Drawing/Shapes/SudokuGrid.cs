@@ -385,7 +385,6 @@ public sealed class SudokuGrid : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _focusedCell;
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
 			if (_focusedCell == value)
