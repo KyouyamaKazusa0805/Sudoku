@@ -37,5 +37,5 @@ internal interface IInitializeWithWindow
 	/// this link
 	/// </see>.
 	/// </remarks>
-	void Initialize([In] nint hwnd);
+	public abstract void Initialize([In] nint hwnd);
 }

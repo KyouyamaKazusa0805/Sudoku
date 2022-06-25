@@ -8,5 +8,5 @@ public interface IBruteForceStepSearcher : ILastResortStepSearcher
 	/// <summary>
 	/// Indicates the solution grid. The grid will be used for validating the result.
 	/// </summary>
-	Grid Solution { get; set; }
+	public abstract Grid Solution { get; set; }
 }

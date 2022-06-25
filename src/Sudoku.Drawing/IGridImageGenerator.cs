@@ -35,27 +35,27 @@ public interface IGridImageGenerator
 	/// <summary>
 	/// Indicates the drawing width.
 	/// </summary>
-	float Width { get; }
+	public abstract float Width { get; }
 
 	/// <summary>
 	/// Indicates the drawing height.
 	/// </summary>
-	float Height { get; }
+	public abstract float Height { get; }
 
 	/// <summary>
 	/// Indicates the focused cells.
 	/// </summary>
-	Cells FocusedCells { get; set; }
+	public abstract Cells FocusedCells { get; set; }
 
 	/// <summary>
 	/// Indicates the view.
 	/// </summary>
-	View? View { get; set; }
+	public abstract View? View { get; set; }
 
 	/// <summary>
 	/// Indicates all conclusions.
 	/// </summary>
-	IEnumerable<Conclusion>? Conclusions { get; set; }
+	public abstract IEnumerable<Conclusion>? Conclusions { get; set; }
 
 
 	/// <summary>
@@ -65,7 +65,7 @@ public interface IGridImageGenerator
 	/// <remarks>
 	/// The method may be called manually, because we can't control whether the value is modified.
 	/// </remarks>
-	Image DrawManually();
+	public abstract Image DrawManually();
 
 
 	/// <summary>
@@ -80,6 +80,6 @@ public interface IGridImageGenerator
 	/// Throws when <paramref name="fontName"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected static Font GetFont(string? fontName, float size, decimal scale, FontStyle style) =>
+	protected static sealed Font GetFont(string? fontName, float size, decimal scale, FontStyle style) =>
 		new(fontName ?? throw new ArgumentNullException(nameof(size)), size * (float)scale, style);
 }

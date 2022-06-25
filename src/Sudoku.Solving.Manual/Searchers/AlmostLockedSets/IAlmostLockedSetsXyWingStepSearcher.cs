@@ -8,5 +8,5 @@ public interface IAlmostLockedSetsXyWingStepSearcher : IStepSearcher
 	/// <summary>
 	/// Indicates whether two ALSes make an collision, which means they share the some same cells. 
 	/// </summary>
-	bool AllowCollision { get; set; }
+	public abstract bool AllowCollision { get; set; }
 }

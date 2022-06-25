@@ -8,5 +8,5 @@ public interface INotationHandler
 	/// <summary>
 	/// Indicates the notation of the current provider type.
 	/// </summary>
-	Notation Notation { get; }
+	public abstract Notation Notation { get; }
 }

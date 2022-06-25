@@ -8,7 +8,7 @@ public unsafe interface ITemplateStepSearcher : IStepSearcher
 	/// <summary>
 	/// Indicates whether the technique searcher only checks template deletes.
 	/// </summary>
-	bool TemplateDeleteOnly { get; set; }
+	public abstract bool TemplateDeleteOnly { get; set; }
 
 	/// <summary>
 	/// Indicates the reference of the solution sudoku grid.
@@ -16,5 +16,5 @@ public unsafe interface ITemplateStepSearcher : IStepSearcher
 	/// <remarks>
 	/// Please note that the property will be received a pointer value that points to a <see cref="Grid"/>.
 	/// </remarks>
-	Grid* Solution { get; set; }
+	public abstract Grid* Solution { get; set; }
 }

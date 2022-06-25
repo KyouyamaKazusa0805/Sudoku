@@ -32,17 +32,17 @@ public interface IManualSolverOptions
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="SearchingOptions.Priority"/>
-	bool IsHodokuMode { get; set; }
+	public abstract bool IsHodokuMode { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver will use fast searching mode to solve puzzles.
 	/// If the value is <see langword="true"/>, the solver will apply all steps after gathered.
 	/// In the normal case, solver only fetches the first found step to apply.
 	/// </summary>
-	bool IsFastSearching { get; set; }
+	public abstract bool IsFastSearching { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver will apply the steps via the ascending order.
 	/// </summary>
-	bool OptimizedApplyingOrder { get; set; }
+	public abstract bool OptimizedApplyingOrder { get; set; }
 }

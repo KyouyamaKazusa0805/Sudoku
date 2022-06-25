@@ -8,207 +8,207 @@ public interface IPreference : ICloneable
 	/// <summary>
 	/// Indicates whether the form shows candidates.
 	/// </summary>
-	bool ShowCandidates { get; set; }
+	public abstract bool ShowCandidates { get; set; }
 
 	/// <summary>
 	/// Indicates whether the grid painter will use new algorithm to render a region (lighter).
 	/// </summary>
-	bool ShowLightRegion { get; set; }
+	public abstract bool ShowLightRegion { get; set; }
 
 	/// <summary>
 	/// Indicates the scale of values.
 	/// </summary>
-	decimal ValueScale { get; set; }
+	public abstract decimal ValueScale { get; set; }
 
 	/// <summary>
 	/// Indicates the scale of candidates.
 	/// </summary>
-	decimal CandidateScale { get; set; }
+	public abstract decimal CandidateScale { get; set; }
 
 	/// <summary>
 	/// Indicates the grid line width of the sudoku grid to render.
 	/// </summary>
-	float GridLineWidth { get; set; }
+	public abstract float GridLineWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the block line width of the sudoku grid to render.
 	/// </summary>
-	float BlockLineWidth { get; set; }
+	public abstract float BlockLineWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the font of given digits to render.
 	/// </summary>
-	string? GivenFontName { get; set; }
+	public abstract string? GivenFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font of modifiable digits to render.
 	/// </summary>
-	string? ModifiableFontName { get; set; }
+	public abstract string? ModifiableFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font of candidate digits to render.
 	/// </summary>
-	string? CandidateFontName { get; set; }
+	public abstract string? CandidateFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of the givens.
 	/// </summary>
-	FontStyle GivenFontStyle { get; set; }
+	public abstract FontStyle GivenFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of the modifiables.
 	/// </summary>
-	FontStyle ModifiableFontStyle { get; set; }
+	public abstract FontStyle ModifiableFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of the candidates.
 	/// </summary>
-	FontStyle CandidateFontStyle { get; set; }
+	public abstract FontStyle CandidateFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of an unknown.
 	/// </summary>
-	FontStyle UnknownFontStyle { get; set; }
+	public abstract FontStyle UnknownFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the given digits to render.
 	/// </summary>
-	Color GivenColor { get; set; }
+	public abstract Color GivenColor { get; set; }
 
 	/// <summary>
 	/// Indicates the modifiable digits to render.
 	/// </summary>
-	Color ModifiableColor { get; set; }
+	public abstract Color ModifiableColor { get; set; }
 
 	/// <summary>
 	/// Indicates the candidate digits to render.
 	/// </summary>
-	Color CandidateColor { get; set; }
+	public abstract Color CandidateColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color used for painting for focused cells.
 	/// </summary>
-	Color FocusedCellColor { get; set; }
+	public abstract Color FocusedCellColor { get; set; }
 
 	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
-	Color EliminationColor { get; set; }
+	public abstract Color EliminationColor { get; set; }
 
 	/// <summary>
 	/// Indicates the cannibalism color.
 	/// </summary>
-	Color CannibalismColor { get; set; }
+	public abstract Color CannibalismColor { get; set; }
 
 	/// <summary>
 	/// Indicates the chain color.
 	/// </summary>
-	Color ChainColor { get; set; }
+	public abstract Color ChainColor { get; set; }
 
 	/// <summary>
 	/// Indicates the background color of the sudoku grid to render.
 	/// </summary>
-	Color BackgroundColor { get; set; }
+	public abstract Color BackgroundColor { get; set; }
 
 	/// <summary>
 	/// Indicates the grid line color of the sudoku grid to render.
 	/// </summary>
-	Color GridLineColor { get; set; }
+	public abstract Color GridLineColor { get; set; }
 
 	/// <summary>
 	/// Indicates the block line color of the sudoku grid to render.
 	/// </summary>
-	Color BlockLineColor { get; set; }
+	public abstract Color BlockLineColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the crosshatching outline.
 	/// </summary>
-	Color CrosshatchingOutlineColor { get; set; }
+	public abstract Color CrosshatchingOutlineColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the crosshatching inner.
 	/// </summary>
-	Color CrosshatchingInnerColor { get; set; }
+	public abstract Color CrosshatchingInnerColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the unknown identifier color.
 	/// </summary>
-	Color UnknownIdentifierColor { get; set; }
+	public abstract Color UnknownIdentifierColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the cross sign.
 	/// </summary>
-	Color CrossSignColor { get; set; }
+	public abstract Color CrossSignColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color 1.
 	/// </summary>
-	Color Color1 { get; set; }
+	public abstract Color Color1 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 2.
 	/// </summary>
-	Color Color2 { get; set; }
+	public abstract Color Color2 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 3.
 	/// </summary>
-	Color Color3 { get; set; }
+	public abstract Color Color3 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 4.
 	/// </summary>
-	Color Color4 { get; set; }
+	public abstract Color Color4 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 5.
 	/// </summary>
-	Color Color5 { get; set; }
+	public abstract Color Color5 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 6.
 	/// </summary>
-	Color Color6 { get; set; }
+	public abstract Color Color6 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 7.
 	/// </summary>
-	Color Color7 { get; set; }
+	public abstract Color Color7 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 8.
 	/// </summary>
-	Color Color8 { get; set; }
+	public abstract Color Color8 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 9.
 	/// </summary>
-	Color Color9 { get; set; }
+	public abstract Color Color9 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 10.
 	/// </summary>
-	Color Color10 { get; set; }
+	public abstract Color Color10 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 11.
 	/// </summary>
-	Color Color11 { get; set; }
+	public abstract Color Color11 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 12.
 	/// </summary>
-	Color Color12 { get; set; }
+	public abstract Color Color12 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 13.
 	/// </summary>
-	Color Color13 { get; set; }
+	public abstract Color Color13 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 14.
 	/// </summary>
-	Color Color14 { get; set; }
+	public abstract Color Color14 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 15.
@@ -220,7 +220,7 @@ public interface IPreference : ICloneable
 	/// Copies and covers the current instance via the newer instance.
 	/// </summary>
 	/// <param name="newPreferences">The newer instance to copy.</param>
-	void CoverBy(IPreference newPreferences);
+	public abstract void CoverBy(IPreference newPreferences);
 
 	/// <summary>
 	/// Try to get the result color value.
@@ -229,7 +229,7 @@ public interface IPreference : ICloneable
 	/// <param name="result">The result color got.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the ID is invalid.</exception>
-	protected internal bool TryGetColor(Identifier colorIdentifier, out Color result)
+	protected internal sealed bool TryGetColor(Identifier colorIdentifier, out Color result)
 	{
 		if (colorIdentifier is { Mode: IdentifierColorMode.Id, Id: var id })
 		{

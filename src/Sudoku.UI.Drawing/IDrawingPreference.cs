@@ -8,18 +8,18 @@ public interface IDrawingPreference
 	/// <summary>
 	/// Indicates whether the current grid displays the candidates.
 	/// </summary>
-	bool ShowCandidates { get; set; }
+	public abstract bool ShowCandidates { get; set; }
 
 	/// <summary>
 	/// Indicates whether the candidate border lines will be shown in the sudoku pane.
 	/// </summary>
-	bool ShowCandidateBorderLines { get; set; }
+	public abstract bool ShowCandidateBorderLines { get; set; }
 
 	/// <summary>
 	/// Indicates whether the sudoku grid pane will display for wrong digits (cell or candidate values),
 	/// using the different color.
 	/// </summary>
-	bool EnableDeltaValuesDisplaying { get; set; }
+	public abstract bool EnableDeltaValuesDisplaying { get; set; }
 
 	/// <summary>
 	/// <para>
@@ -33,256 +33,256 @@ public interface IDrawingPreference
 	/// the case setting the value to <see langword="false"/>.
 	/// </para>
 	/// </summary>
-	bool DescendingOrderedInfoBarBoard { get; set; }
+	public abstract bool DescendingOrderedInfoBarBoard { get; set; }
 
 	/// <summary>
 	/// Indicates whether the sudoku grid supports focusing a cell, to display the focused cell as highlight,
 	/// using a different color.
 	/// </summary>
-	bool AllowFocusing { get; set; }
+	public abstract bool AllowFocusing { get; set; }
 
 	/// <summary>
 	/// Indicates the outside border width. The value cannot be negative.
 	/// </summary>
-	double OutsideBorderWidth { get; set; }
+	public abstract double OutsideBorderWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the width of the block border lines. The value cannot be negative.
 	/// </summary>
-	double BlockBorderWidth { get; set; }
+	public abstract double BlockBorderWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the width of the cell border lines. The value cannot be negative.
 	/// </summary>
-	double CellBorderWidth { get; set; }
+	public abstract double CellBorderWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the width of the candidate border lines. The value cannot be negative.
 	/// </summary>
-	double CandidateBorderWidth { get; set; }
+	public abstract double CandidateBorderWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the value font scale. The value must be between 0 and 1.
 	/// </summary>
-	double ValueFontScale { get; set; }
+	public abstract double ValueFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the candidate font scale.
 	/// </summary>
-	double CandidateFontScale { get; set; }
+	public abstract double CandidateFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the thickness of the stroke lines surrounding with highlight cell.
 	/// </summary>
-	double HighlightCellStrokeThickness { get; set; }
+	public abstract double HighlightCellStrokeThickness { get; set; }
 
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <summary>
 	/// Indicates the thickness of the stroke lines of the cross mark.
 	/// </summary>
-	double AuthorDefined_CrossMarkStrokeThickness { get; set; }
+	public abstract double AuthorDefined_CrossMarkStrokeThickness { get; set; }
 #endif
 
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 	/// <summary>
 	/// Indicates the candidate mark stroke thickness.
 	/// </summary>
-	double AuthorDefined_CandidateMarkStrokeThickness { get; set; }
+	public abstract double AuthorDefined_CandidateMarkStrokeThickness { get; set; }
 #endif
 
 	/// <summary>
 	/// Indicates the value font name.
 	/// </summary>
-	string ValueFontName { get; set; }
+	public abstract string ValueFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the candidate font name.
 	/// </summary>
-	string CandidateFontName { get; set; }
+	public abstract string CandidateFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the outside borders.
 	/// </summary>
-	Color OutsideBorderColor { get; set; }
+	public abstract Color OutsideBorderColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the grid background color for filling.
 	/// </summary>
-	Color GridBackgroundFillColor { get; set; }
+	public abstract Color GridBackgroundFillColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the block borders.
 	/// </summary>
-	Color BlockBorderColor { get; set; }
+	public abstract Color BlockBorderColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the cell borders.
 	/// </summary>
-	Color CellBorderColor { get; set; }
+	public abstract Color CellBorderColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the candidate borders.
 	/// </summary>
-	Color CandidateBorderColor { get; set; }
+	public abstract Color CandidateBorderColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the given values.
 	/// </summary>
-	Color GivenColor { get; set; }
+	public abstract Color GivenColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the modifiable values.
 	/// </summary>
-	Color ModifiableColor { get; set; }
+	public abstract Color ModifiableColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the candidate values.
 	/// </summary>
-	Color CandidateColor { get; set; }
+	public abstract Color CandidateColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the wrong cell value input.
 	/// </summary>
-	Color CellDeltaColor { get; set; }
+	public abstract Color CellDeltaColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the wrong candidate value input.
 	/// </summary>
-	Color CandidateDeltaColor { get; set; }
+	public abstract Color CandidateDeltaColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the mask ellipse color.
 	/// </summary>
-	Color MaskEllipseColor { get; set; }
+	public abstract Color MaskEllipseColor { get; set; }
 
 	/// <summary>
 	/// Indicates the normal color.
 	/// </summary>
-	Color NormalColor { get; set; }
+	public abstract Color NormalColor { get; set; }
 
 	/// <summary>
 	/// Indicates the first auxiliary color.
 	/// </summary>
-	Color Auxiliary1Color { get; set; }
+	public abstract Color Auxiliary1Color { get; set; }
 
 	/// <summary>
 	/// Indicates the second auxiliary color.
 	/// </summary>
-	Color Auxiliary2Color { get; set; }
+	public abstract Color Auxiliary2Color { get; set; }
 
 	/// <summary>
 	/// Indicates the third auxiliary color.
 	/// </summary>
-	Color Auxiliary3Color { get; set; }
+	public abstract Color Auxiliary3Color { get; set; }
 
 	/// <summary>
 	/// Indicates the color that describes an elimination.
 	/// </summary>
-	Color EliminationColor { get; set; }
+	public abstract Color EliminationColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color that describes an exo-fin.
 	/// </summary>
-	Color ExofinColor { get; set; }
+	public abstract Color ExofinColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color that describes an endo-fin.
 	/// </summary>
-	Color EndofinColor { get; set; }
+	public abstract Color EndofinColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color that describes a cannibalism.
 	/// </summary>
-	Color CannibalismColor { get; set; }
+	public abstract Color CannibalismColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of links used by a chain.
 	/// </summary>
-	Color LinkColor { get; set; }
+	public abstract Color LinkColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the first ALS recorded.
 	/// </summary>
-	Color AlmostLockedSet1Color { get; set; }
+	public abstract Color AlmostLockedSet1Color { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the second ALS recorded.
 	/// </summary>
-	Color AlmostLockedSet2Color { get; set; }
+	public abstract Color AlmostLockedSet2Color { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the third ALS recorded.
 	/// </summary>
-	Color AlmostLockedSet3Color { get; set; }
+	public abstract Color AlmostLockedSet3Color { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the fourth ALS recorded.
 	/// </summary>
-	Color AlmostLockedSet4Color { get; set; }
+	public abstract Color AlmostLockedSet4Color { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the fifth ALS recorded.
 	/// </summary>
-	Color AlmostLockedSet5Color { get; set; }
+	public abstract Color AlmostLockedSet5Color { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the stroke lines surrounding with highlight cell.
 	/// </summary>
-	Color HighlightCellStrokeColor { get; set; }
+	public abstract Color HighlightCellStrokeColor { get; set; }
 
 	/// <summary>
 	/// Indicates the focused cell color.
 	/// </summary>
-	Color FocusedCellColor { get; set; }
+	public abstract Color FocusedCellColor { get; set; }
 
 	/// <summary>
 	/// Indicates the peers focused cell color.
 	/// </summary>
-	Color PeersFocusedCellColor { get; set; }
+	public abstract Color PeersFocusedCellColor { get; set; }
 
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <summary>
 	/// Indicates the author-defined cell rectangle color used for filling.
 	/// </summary>
-	Color AuthorDefined_CellRectangleFillColor { get; set; }
+	public abstract Color AuthorDefined_CellRectangleFillColor { get; set; }
 
 	/// <summary>
 	/// Indicates the author-defined cell circle color used for filling.
 	/// </summary>
-	Color AuthorDefined_CellCircleFillColor { get; set; }
+	public abstract Color AuthorDefined_CellCircleFillColor { get; set; }
 
 	/// <summary>
 	/// Indicates the author-defined cross mark stroke color.
 	/// </summary>
-	Color AuthorDefined_CrossMarkStrokeColor { get; set; }
+	public abstract Color AuthorDefined_CrossMarkStrokeColor { get; set; }
 
 	/// <summary>
 	/// Indicates the author-defined cell star color used for filling.
 	/// </summary>
-	Color AuthorDefined_StarFillColor { get; set; }
+	public abstract Color AuthorDefined_StarFillColor { get; set; }
 
 	/// <summary>
 	/// Indicates the author-defined cell triangle color used for filling.
 	/// </summary>
-	Color AuthorDefined_TriangleFillColor { get; set; }
+	public abstract Color AuthorDefined_TriangleFillColor { get; set; }
 
 	/// <summary>
 	/// Indicates the author-defined cell diamond color used for filling.
 	/// </summary>
-	Color AuthorDefined_DiamondFillColor { get; set; }
+	public abstract Color AuthorDefined_DiamondFillColor { get; set; }
 #endif
 
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 	/// <summary>
 	/// Indicates the stroke color of the mark applied to a candidate.
 	/// </summary>
-	Color AuthorDefined_CandidateMarkStrokeColor { get; set; }
+	public abstract Color AuthorDefined_CandidateMarkStrokeColor { get; set; }
 #endif
 
 	/// <summary>
 	/// Indicates the palette colors.
 	/// </summary>
-	Color[] PaletteColors { get; set; }
+	public abstract Color[] PaletteColors { get; set; }
 
 
 	/// <summary>

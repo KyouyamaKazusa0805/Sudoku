@@ -8,7 +8,7 @@ public interface IFishStepSearcher : IStepSearcher
 	/// <summary>
 	/// Indicates the maximum size the searcher can search for.
 	/// </summary>
-	int MaxSize { get; set; }
+	public abstract int MaxSize { get; set; }
 
 
 	/// <summary>
@@ -34,7 +34,7 @@ public interface IFishStepSearcher : IStepSearcher
 	/// </item>
 	/// </list>
 	/// </returns>
-	protected static bool? IsSashimi(int[] baseSets, in Cells fins, int digit)
+	protected static sealed bool? IsSashimi(int[] baseSets, in Cells fins, int digit)
 	{
 		if (fins is [])
 		{

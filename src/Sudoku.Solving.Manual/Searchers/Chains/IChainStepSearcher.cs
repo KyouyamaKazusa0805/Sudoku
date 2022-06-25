@@ -11,7 +11,7 @@ public interface IChainStepSearcher : IStepSearcher
 	/// </summary>
 	/// <param name="chain">The chain.</param>
 	/// <returns>An array of presentation data of candidates.</returns>
-	protected static CandidateViewNode[] GetViewOnCandidates(AlternatingInferenceChain chain)
+	protected static sealed CandidateViewNode[] GetViewOnCandidates(AlternatingInferenceChain chain)
 	{
 		var realChainNodes = chain.RealChainNodes;
 		var result = new List<CandidateViewNode>(realChainNodes.Length);
@@ -41,7 +41,7 @@ public interface IChainStepSearcher : IStepSearcher
 	/// </summary>
 	/// <param name="chain">The chain.</param>
 	/// <returns>An array of presentation data of links.</returns>
-	protected static LinkViewNode[] GetViewOnLinks(AlternatingInferenceChain chain)
+	protected static sealed LinkViewNode[] GetViewOnLinks(AlternatingInferenceChain chain)
 	{
 		if (
 			chain.RealChainNodes is not (

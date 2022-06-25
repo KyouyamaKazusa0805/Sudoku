@@ -8,7 +8,7 @@ public interface IStepSearcher
 	/// <summary>
 	/// Indicates the step searching options.
 	/// </summary>
-	SearchingOptions Options { get; set; }
+	public abstract SearchingOptions Options { get; set; }
 
 
 	/// <summary>
@@ -55,5 +55,5 @@ public interface IStepSearcher
 	/// </item>
 	/// </list>
 	/// </returns>
-	Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne);
+	public abstract Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne);
 }

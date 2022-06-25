@@ -31,5 +31,5 @@ public interface ILoopLikeStep : IStep
 	/// </item>
 	/// </list>
 	/// </returns>
-	public bool? IsNice { get; }
+	public abstract bool? IsNice { get; }
 }

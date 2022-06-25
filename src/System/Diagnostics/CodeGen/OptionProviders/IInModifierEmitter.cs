@@ -11,5 +11,5 @@ internal interface IInModifierEmitter : ISourceGeneratorOptionProvider
 	/// </para>
 	/// <para>The default value is <see langword="false"/>.</para>
 	/// </summary>
-	bool EmitsInKeyword { get; init; }
+	public abstract bool EmitsInKeyword { get; init; }
 }

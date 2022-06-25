@@ -28,14 +28,14 @@ public interface ICandidateNotation</*[Self]*/ TBaseType, TOptions>
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating whether the parsing operation is successful.</returns>
 	/// <seealso cref="ParseCandidates(string)"/>
-	static abstract bool TryParseCandidates(string str, out Candidates result);
+	public static abstract bool TryParseCandidates(string str, out Candidates result);
 
 	/// <summary>
 	/// Gets the <see cref="string"/> representation of a list of candidates.
 	/// </summary>
 	/// <param name="candidates">The candidate list.</param>
 	/// <returns>The <see cref="string"/> representation describe the candidate list.</returns>
-	static abstract string ToCandidatesString(in Candidates candidates);
+	public static abstract string ToCandidatesString(in Candidates candidates);
 
 	/// <summary>
 	/// Gets the <see cref="string"/> representation of a list of candidates.
@@ -43,7 +43,7 @@ public interface ICandidateNotation</*[Self]*/ TBaseType, TOptions>
 	/// <param name="candidates">The candidates list.</param>
 	/// <param name="options">The extra options to control the output style.</param>
 	/// <returns>The <see cref="string"/> representation describe the candidate list.</returns>
-	static abstract string ToCandidatesString(in Candidates candidates, in TOptions options);
+	public static abstract string ToCandidatesString(in Candidates candidates, in TOptions options);
 
 	/// <summary>
 	/// Try to parse the specified <see cref="string"/> value, and convert it into the <see cref="Candidates"/>
@@ -54,5 +54,5 @@ public interface ICandidateNotation</*[Self]*/ TBaseType, TOptions>
 	/// <exception cref="FormatException">
 	/// Throws when the parsing operation is failed due to invalid characters or invalid operation.
 	/// </exception>
-	static abstract Candidates ParseCandidates(string str);
+	public static abstract Candidates ParseCandidates(string str);
 }

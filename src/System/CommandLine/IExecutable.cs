@@ -9,5 +9,5 @@ public interface IExecutable
 	/// Try to execute the command, and returns the result reflected the execution.
 	/// </summary>
 	/// <exception cref="CommandLineRuntimeException">Throws when an error has been encountered.</exception>
-	void Execute();
+	public abstract void Execute();
 }

@@ -18,13 +18,13 @@ public interface IStep
 	/// </para>
 	/// <para>The default value is <see langword="true"/>.</para>
 	/// </summary>
-	bool ShowDifficulty { get; }
+	public abstract bool ShowDifficulty { get; }
 
 	/// <summary>
 	/// Indicates the technique name. The technique name are all stored in the resource dictionary,
 	/// you can find them in the <c>Resources</c> folder (Type <see cref="MergedResources"/>).
 	/// </summary>
-	string Name { get; }
+	public abstract string Name { get; }
 
 	/// <summary>
 	/// Gets the format of the current instance.
@@ -81,28 +81,28 @@ public interface IStep
 	/// <seealso cref="ToFullString"/>
 	/// <seealso cref="FormatItemAttribute"/>
 	/// <seealso cref="R"/>
-	string? Format { get; }
+	public abstract string? Format { get; }
 
 	/// <summary>
 	/// The difficulty or this step.
 	/// </summary>
-	decimal Difficulty { get; }
+	public abstract decimal Difficulty { get; }
 
 	/// <summary>
 	/// The technique code of this instance used for comparison
 	/// (e.g. search for specified puzzle that contains this technique).
 	/// </summary>
-	Technique TechniqueCode { get; }
+	public abstract Technique TechniqueCode { get; }
 
 	/// <summary>
 	/// The technique tags of this instance.
 	/// </summary>
-	TechniqueTags TechniqueTags { get; }
+	public abstract TechniqueTags TechniqueTags { get; }
 
 	/// <summary>
 	/// The technique group that this technique instance belongs to.
 	/// </summary>
-	TechniqueGroup TechniqueGroup { get; }
+	public abstract TechniqueGroup TechniqueGroup { get; }
 
 	/// <summary>
 	/// The difficulty level of this step.
@@ -113,7 +113,7 @@ public interface IStep
 	/// during generating puzzles.
 	/// </remarks>
 	/// <seealso cref="FlagsAttribute"/>
-	DifficultyLevel DifficultyLevel { get; }
+	public abstract DifficultyLevel DifficultyLevel { get; }
 
 	/// <summary>
 	/// Indicates the stableness of this technique. The default value is <see cref="Stableness.Stable"/>.
@@ -125,7 +125,7 @@ public interface IStep
 	/// </remarks>
 	/// <seealso cref="Stableness.Stable"/>
 	/// <seealso cref="FlagsAttribute"/>
-	Stableness Stableness { get; }
+	public abstract Stableness Stableness { get; }
 
 	/// <summary>
 	/// Indicates the rarity of this technique appears.
@@ -136,17 +136,17 @@ public interface IStep
 	/// during generating puzzles.
 	/// </remarks>
 	/// <seealso cref="FlagsAttribute"/>
-	Rarity Rarity { get; }
+	public abstract Rarity Rarity { get; }
 
 	/// <summary>
 	/// Indicates the conclusions that the step can be eliminated or assigned to.
 	/// </summary>
-	ImmutableArray<Conclusion> Conclusions { get; }
+	public abstract ImmutableArray<Conclusion> Conclusions { get; }
 
 	/// <summary>
 	/// Indicates the views of the step that may be displayed onto the screen using pictures.
 	/// </summary>
-	ImmutableArray<View> Views { get; }
+	public abstract ImmutableArray<View> Views { get; }
 
 	/// <summary>
 	/// Indicates the string representation of the conclusions.
@@ -163,7 +163,7 @@ public interface IStep
 	/// Put this instance into the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	void ApplyTo(ref Grid grid);
+	public abstract void ApplyTo(ref Grid grid);
 
 	/// <summary>
 	/// Determine whether the current step information instance with the specified flags.
@@ -172,20 +172,20 @@ public interface IStep
 	/// The flags. If the argument contains more than one set bit, all flags will be checked one by one.
 	/// </param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	bool HasTag(TechniqueTags flags);
+	public abstract bool HasTag(TechniqueTags flags);
 
 	/// <summary>
 	/// Returns a string that only contains the name and the conclusions.
 	/// </summary>
 	/// <returns>The string instance.</returns>
-	string ToSimpleString();
+	public abstract string ToSimpleString();
 
 	/// <summary>
 	/// Returns a string that contains the name, the conclusions and its all details.
 	/// This method is used for displaying details in text box control.
 	/// </summary>
 	/// <returns>The string instance.</returns>
-	string ToFullString();
+	public abstract string ToFullString();
 
 	/// <summary>
 	/// Formatizes the <see cref="Format"/> property string and output the result.
@@ -202,5 +202,5 @@ public interface IStep
 	/// </list>
 	/// </exception>
 	/// <seealso cref="Format"/>
-	string Formatize(bool handleEscaping = false);
+	public abstract string Formatize(bool handleEscaping = false);
 }

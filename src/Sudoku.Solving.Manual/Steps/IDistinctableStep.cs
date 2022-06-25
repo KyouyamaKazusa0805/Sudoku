@@ -35,7 +35,7 @@ public interface IDistinctableStep<in TStep> : IStep where TStep : Step
 	/// but <see langword="record"/>s are automatically implemented the method, which is useless
 	/// and unmeaningful.
 	/// </remarks>
-	static abstract bool Equals(TStep left, TStep right);
+	public static abstract bool Equals(TStep left, TStep right);
 
 
 	/// <summary>
@@ -46,7 +46,7 @@ public interface IDistinctableStep<in TStep> : IStep where TStep : Step
 	/// <param name="list">The list of steps to be processed.</param>
 	/// <returns>The list of steps.</returns>
 	/// <seealso cref="Equals(TStep, TStep)"/>
-	public static IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
+	public static sealed IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
 		where TDistinctableStep : Step, IDistinctableStep<TDistinctableStep>
 	{
 		if (list.Count == 1)

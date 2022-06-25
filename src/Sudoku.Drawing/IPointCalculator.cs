@@ -24,44 +24,44 @@ public interface IPointCalculator
 	/// <summary>
 	/// Indicates the width of the picture to draw.
 	/// </summary>
-	float Width { get; }
+	public abstract float Width { get; }
 
 	/// <summary>
 	/// Indicates the height of the picture to draw.
 	/// </summary>
-	float Height { get; }
+	public abstract float Height { get; }
 
 	/// <summary>
 	/// Indicates the offset of the gap between the picture box outline and the sudoku grid outline.
 	/// </summary>
-	float Offset { get; }
+	public abstract float Offset { get; }
 
 	/// <summary>
 	/// Indicates the control size.
 	/// </summary>
-	SizeF ControlSize { get; }
+	public abstract SizeF ControlSize { get; }
 
 	/// <summary>
 	/// Indicates the grid size.
 	/// </summary>
-	SizeF GridSize { get; }
+	public abstract SizeF GridSize { get; }
 
 	/// <summary>
 	/// Indicates the cell size.
 	/// </summary>
-	SizeF CellSize { get; }
+	public abstract SizeF CellSize { get; }
 
 	/// <summary>
 	/// Indicates the candidate size.
 	/// </summary>
-	SizeF CandidateSize { get; }
+	public abstract SizeF CandidateSize { get; }
 
 	/// <summary>
 	/// Indicates the absolutely points in grid cross-lines.
 	/// This property will be assigned later (and not <see langword="null"/>).
 	/// </summary>
 	/// <remarks>Note that the size of this 2D array is always 28 by 28.</remarks>
-	PointF[,] GridPoints { get; }
+	public abstract PointF[,] GridPoints { get; }
 
 
 	/// <summary>
@@ -69,14 +69,14 @@ public interface IPointCalculator
 	/// </summary>
 	/// <param name="point">The mouse point.</param>
 	/// <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
-	int GetCell(in PointF point);
+	public abstract int GetCell(in PointF point);
 
 	/// <summary>
 	/// Get the focus candidate offset via a mouse point.
 	/// </summary>
 	/// <param name="point">The mouse point.</param>
 	/// <returns>The candidate offset.</returns>
-	int GetCandidate(in PointF point);
+	public abstract int GetCandidate(in PointF point);
 
 	/// <summary>
 	/// Get the center mouse point of all candidates.
@@ -84,7 +84,7 @@ public interface IPointCalculator
 	/// <param name="map">The map of candidates.</param>
 	/// <returns>The center mouse point.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
-	PointF GetMouseCenter(in Candidates map);
+	public abstract PointF GetMouseCenter(in Candidates map);
 
 	/// <summary>
 	/// Gets the center mouse point of the specified locked target.
@@ -92,7 +92,7 @@ public interface IPointCalculator
 	/// <param name="lockedTarget">The locked target.</param>
 	/// <returns>The center mouse point.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
-	PointF GetMouseCenter(in LockedTarget lockedTarget);
+	public abstract PointF GetMouseCenter(in LockedTarget lockedTarget);
 
 	/// <summary>
 	/// Get the rectangle from all candidates.
@@ -100,14 +100,14 @@ public interface IPointCalculator
 	/// <param name="map">The candidates.</param>
 	/// <returns>The rectangle.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
-	RectangleF GetMouseRectangle(in Candidates map);
+	public abstract RectangleF GetMouseRectangle(in Candidates map);
 
 	/// <summary>
 	/// Get the rectangle (4 mouse points) via the specified cell.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The rectangle.</returns>
-	RectangleF GetMouseRectangleViaCell(int cell);
+	public abstract RectangleF GetMouseRectangleViaCell(int cell);
 
 	/// <summary>
 	/// Get the rectangle (4 mouse points) for the specified cell and digit of a candidate.
@@ -115,21 +115,21 @@ public interface IPointCalculator
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The rectangle.</returns>
-	RectangleF GetMouseRectangle(int cell, int digit);
+	public abstract RectangleF GetMouseRectangle(int cell, int digit);
 
 	/// <summary>
 	/// Get the rectangle (4 mouse points) via the specified region.
 	/// </summary>
 	/// <param name="region">The region.</param>
 	/// <returns>The rectangle.</returns>
-	RectangleF GetMouseRectangleViaRegion(int region);
+	public abstract RectangleF GetMouseRectangleViaRegion(int region);
 
 	/// <summary>
 	/// Get the mouse point of the center of a cell via its offset.
 	/// </summary>
 	/// <param name="cell">The cell offset.</param>
 	/// <returns>The mouse point.</returns>
-	PointF GetMousePointInCenter(int cell);
+	public abstract PointF GetMousePointInCenter(int cell);
 
 	/// <summary>
 	/// Get the mouse point of the center of a cell via its offset and the digit.
@@ -137,14 +137,14 @@ public interface IPointCalculator
 	/// <param name="cell">The cell offset.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The mouse point.</returns>
-	PointF GetMousePointInCenter(int cell, int digit);
+	public abstract PointF GetMousePointInCenter(int cell, int digit);
 
 	/// <summary>
 	/// Gets two points that specifies and represents the anchors of this region.
 	/// </summary>
 	/// <param name="region">The region.</param>
 	/// <returns>The anchor points.</returns>
-	(PointF LeftUp, PointF RightDown) GetAnchorsViaRegion(int region);
+	public abstract (PointF LeftUp, PointF RightDown) GetAnchorsViaRegion(int region);
 
 
 	/// <summary>
@@ -153,5 +153,5 @@ public interface IPointCalculator
 	/// <param name="size">The size.</param>
 	/// <param name="offset">The offset. The default value is <c>10</c>.</param>
 	/// <returns>An <see cref="IPointCalculator"/> instance.</returns>
-	static abstract IPointCalculator CreateConverter(float size, float offset = 10);
+	public static abstract IPointCalculator CreateConverter(float size, float offset = 10);
 }

@@ -8,5 +8,5 @@ internal interface IMultipleMembersBinder : ISourceGeneratorOptionProvider
 	/// <summary>
 	/// Indicates the name of members that will be referenced.
 	/// </summary>
-	string[] MemberExpressions { get; }
+	public abstract string[] MemberExpressions { get; }
 }

@@ -8,17 +8,17 @@ public interface ISingleStepSearcher : IStepSearcher
 	/// <summary>
 	/// Indicates whether the solver enables the technique full house.
 	/// </summary>
-	bool EnableFullHouse { get; set; }
+	public abstract bool EnableFullHouse { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver enables the technique last digit.
 	/// </summary>
-	bool EnableLastDigit { get; set; }
+	public abstract bool EnableLastDigit { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver checks for hidden single in block firstly.
 	/// </summary>
-	bool HiddenSinglesInBlockFirst { get; set; }
+	public abstract bool HiddenSinglesInBlockFirst { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver shows the direct lines (cross-hatching information).
@@ -55,5 +55,5 @@ public interface ISingleStepSearcher : IStepSearcher
 	/// point may be used a circle mark ('<c>o</c>').
 	/// </para>
 	/// </remarks>
-	bool ShowDirectLines { get; set; }
+	public abstract bool ShowDirectLines { get; set; }
 }

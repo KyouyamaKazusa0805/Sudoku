@@ -8,12 +8,12 @@ public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 	/// <summary>
 	/// Indicates whether the searcher uses DFS algorithm to search for chains.
 	/// </summary>
-	bool DepthFirstSearching { get; set; }
+	public abstract bool DepthFirstSearching { get; set; }
 
 	/// <summary>
 	/// Indicates the maximum capacity used for the allocation on shared memory.
 	/// </summary>
-	int MaxCapacity { get; set; }
+	public abstract int MaxCapacity { get; set; }
 
 	/// <summary>
 	/// <para>
@@ -78,5 +78,5 @@ public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 	/// Other typed inferences are being considered, such as an XYZ-Wing node, etc.
 	/// </para>
 	/// </summary>
-	SearcherNodeTypes NodeTypes { get; init; }
+	public abstract SearcherNodeTypes NodeTypes { get; init; }
 }

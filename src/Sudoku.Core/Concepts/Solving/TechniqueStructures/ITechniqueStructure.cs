@@ -10,5 +10,5 @@ public interface ITechniquePattern</*[Self]*/ TTechniquePattern>
 	/// <summary>
 	/// Indicates the whole map of cells that the technique used.
 	/// </summary>
-	Cells Map { get; }
+	public abstract Cells Map { get; }
 }

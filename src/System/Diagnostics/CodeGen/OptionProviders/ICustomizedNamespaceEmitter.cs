@@ -9,5 +9,5 @@ internal interface ICustomizedNamespaceEmitter : ISourceGeneratorOptionProvider
 	/// <para>Indicates the namespace the source generator emits.</para>
 	/// <para>The default value is <see langword="null"/>.</para>
 	/// </summary>
-	string? Namespace { get; init; }
+	public abstract string? Namespace { get; init; }
 }

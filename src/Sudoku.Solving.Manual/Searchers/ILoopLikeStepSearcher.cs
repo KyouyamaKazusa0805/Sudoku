@@ -11,7 +11,7 @@ public interface ILoopLikeStepSearcher : IStepSearcher
 	/// <param name="this">The list of cells.</param>
 	/// <param name="offset">The offset. The default value is <c>4</c>.</param>
 	/// <returns>All links.</returns>
-	protected static IEnumerable<LinkViewNode> GetLinks(IReadOnlyList<int> @this, int offset = 4)
+	protected static sealed IEnumerable<LinkViewNode> GetLinks(IReadOnlyList<int> @this, int offset = 4)
 	{
 		var result = new List<LinkViewNode>();
 

@@ -10,7 +10,7 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The 9 maps for invalid positions of each digit.</returns>
-	protected static Cells[] GetInvalidPos(in Grid grid)
+	protected static sealed Cells[] GetInvalidPos(in Grid grid)
 	{
 		var result = new Cells[9];
 		var invalidPos = new Cells[9];

@@ -9,7 +9,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 	/// Indicates whether the searcher should call the extended BUG checker
 	/// to search for all true candidates no matter how difficult searching.
 	/// </summary>
-	bool SearchExtendedTypes { get; set; }
+	public abstract bool SearchExtendedTypes { get; set; }
 
 
 	/// <summary>
@@ -30,7 +30,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the puzzle contains multiple solutions or even no solution.
 	/// </exception>
-	public static bool FindTrueCandidates(
+	public static sealed bool FindTrueCandidates(
 		in Grid grid, [NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
 		int maximumCellsToCheck = 20)
 	{

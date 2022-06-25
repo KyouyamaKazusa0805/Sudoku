@@ -11,7 +11,7 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 	/// <param name="cells">The list of cells.</param>
 	/// <param name="offset">The offset. The default value is 4.</param>
 	/// <returns>All links.</returns>
-	protected static IEnumerable<LinkViewNode> GetLinks(IReadOnlyList<int> cells, int offset = 4)
+	protected static sealed IEnumerable<LinkViewNode> GetLinks(IReadOnlyList<int> cells, int offset = 4)
 	{
 		var result = new List<LinkViewNode>();
 

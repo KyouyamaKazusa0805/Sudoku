@@ -18,7 +18,7 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	/// This is a complete pattern, and we may remove an <c>ab</c> in a certain corner.
 	/// The incomplete pattern may not contain all four <c>ab</c>s in the structure.
 	/// </remarks>
-	bool AllowIncompleteUniqueRectangles { get; set; }
+	public abstract bool AllowIncompleteUniqueRectangles { get; set; }
 
 	/// <summary>
 	/// Indicates whether the searcher can search for extended URs.
@@ -26,5 +26,5 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	/// <remarks>
 	/// The basic types are type 1 to type 6, all other types are extended ones.
 	/// </remarks>
-	bool SearchForExtendedUniqueRectangles { get; set; }
+	public abstract bool SearchForExtendedUniqueRectangles { get; set; }
 }
