@@ -43,7 +43,6 @@ global using Sudoku.Solving.Manual;
 global using Sudoku.UI.AppLifecycle;
 global using Sudoku.UI.Configuration;
 global using Sudoku.UI.Drawing;
-global using Sudoku.UI.Drawing.Serialization;
 global using Sudoku.UI.Drawing.Shapes;
 global using Sudoku.UI.Input;
 global using Sudoku.UI.Interoperability;
