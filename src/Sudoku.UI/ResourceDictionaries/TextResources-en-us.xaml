@@ -221,7 +221,10 @@
 	<x:String x:Key="PreferenceBackup">Preference backup</x:String>
 	<x:String x:Key="PrintSuccessful">Print successful.</x:String>
 	<x:String x:Key="PrintFailed">Print failed.</x:String>
+	<x:String x:Key="PrintFailedTitle">Printing Failure</x:String>
 	<x:String x:Key="PrintFailed_InterfaceNotRegistered">I'm sorry. This function cannot be implemented at present due to not having been implemented by UI framework itself.</x:String>
+	<x:String x:Key="PrintFailed_CannotProceed">Sorry, printing can't proceed at this time.</x:String>
+	<x:String x:Key="PrintFailed_NotSupported">Sorry, printing is not supported on this device.</x:String>
 	<x:String x:Key="__SampleField">Sample field</x:String>
 
 	<!--Punctuations-->

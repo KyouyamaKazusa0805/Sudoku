@@ -2266,6 +2266,21 @@
             Indicates the internal puzzle generator.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Pages.SudokuPage._printManager">
+            <summary>
+            Indicates the print manager instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Pages.SudokuPage._printDocument">
+            <summary>
+            Indicates the document of the print.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Pages.SudokuPage._printDocumentSource">
+            <summary>
+            Indicates the print document source.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/> instance.
@@ -2273,6 +2288,11 @@
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.RegisterPrint">
+            <summary>
+            To register the printing operation.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitialAddSudokuTechniqueInfoBar">
             <summary>
@@ -2431,6 +2451,9 @@
             <summary>
             To print the grid.
             </summary>
+            <remarks>
+            The code is referenced from <see href="https://github.com/marb2000/PrintSample">this sample</see>.
+            </remarks>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.TryGetLogicalDpi(System.Single)">
             <summary>

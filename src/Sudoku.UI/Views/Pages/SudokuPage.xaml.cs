@@ -18,10 +18,31 @@ public sealed partial class SudokuPage : Page
 
 
 	/// <summary>
+	/// Indicates the print manager instance.
+	/// </summary>
+	private PrintManager _printManager;
+
+	/// <summary>
+	/// Indicates the document of the print.
+	/// </summary>
+	private PrintDocument _printDocument;
+
+	/// <summary>
+	/// Indicates the print document source.
+	/// </summary>
+	private IPrintDocumentSource _printDocumentSource;
+
+
+	/// <summary>
 	/// Initializes a <see cref="SudokuPage"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SudokuPage() => InitializeComponent();
+	public SudokuPage()
+	{
+		InitializeComponent();
+
+		RegisterPrint();
+	}
 
 
 	/// <inheritdoc/>
@@ -59,6 +80,52 @@ public sealed partial class SudokuPage : Page
 
 			// Make the property value 'false' to allow the handler continuously routes to the inner controls.
 			e.Handled = false;
+		}
+	}
+
+	/// <summary>
+	/// To register the printing operation.
+	/// </summary>
+	[MemberNotNull(nameof(_printManager), nameof(_printDocumentSource), nameof(_printDocument))]
+	private void RegisterPrint()
+	{
+		// Register for PrintTaskRequested event.
+		var hWnd = WindowNative.GetWindowHandle(((App)Application.Current).InitialInfo.MainWindow);
+
+		// Registers a print manager.
+		_printManager = PrintManagerInterop.GetForWindow(hWnd);
+		_printManager.PrintTaskRequested += printTaskRequested;
+
+		// Build a PrintDocument and register for callbacks.
+		_printDocument = new();
+		_printDocumentSource = _printDocument.DocumentSource;
+		_printDocument.Paginate += (_, _) => _printDocument.SetPreviewPageCount(1, PreviewPageCountType.Final);
+		_printDocument.GetPreviewPage += (_, e) => _printDocument.SetPreviewPage(e.PageNumber, _cPane);
+		_printDocument.AddPages += printDocAddPages;
+
+
+		void printTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
+		{
+			// Create the PrintTask.
+			// Defines the title and delegate for PrintTaskSourceRequested.
+			var printTask = args.Request.CreatePrintTask("Print", e => e.SetSource(_printDocumentSource));
+
+			// Handle PrintTask.Completed to catch failed print jobs.
+			printTask.Completed += printTaskCompleted;
+		}
+
+		void printTaskCompleted(PrintTask __, PrintTaskCompletedEventArgs args)
+			=> _ = args.Completion == PrintTaskCompletion.Failed && DispatcherQueue.TryEnqueue(showErrorAsync);
+
+		async void showErrorAsync()
+			=> await SimpleControlFactory.CreateErrorDialog(this, R["PrintFailedTitle"]!, R["PrintFailed"]!).ShowAsync();
+
+		void printDocAddPages(object _, AddPagesEventArgs __)
+		{
+			_printDocument.AddPage(_cPane);
+
+			// Indicate that all of the print pages have been provided.
+			_printDocument.AddPagesComplete();
 		}
 	}
 
@@ -609,54 +676,41 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// To print the grid.
 	/// </summary>
+	/// <remarks>
+	/// The code is referenced from <see href="https://github.com/marb2000/PrintSample">this sample</see>.
+	/// </remarks>
 	private async Task PrintAsync()
 	{
-		// Create a new 'PrintHelperOptions' instance.
-		var defaultOptions = new PrintHelperOptions();
-
-		// Configure options that you want to be displayed on the print dialog.
-		defaultOptions.AddDisplayOption(StandardPrintTaskOptions.Orientation);
-		defaultOptions.Orientation = PrintOrientation.Landscape;
-
-		// Create a new 'PrintHelper' instance.
-		var printHelper = new PrintHelper(_cPrintingContainer, defaultOptions);
-
-		// Due to the design of the printer, we should remove the control from the visual tree temporarily.
-		_cPaneParent.Children.Remove(_cPane);
-
-		// Add controls that you want to print.
-		printHelper.AddFrameworkElementToPrint(_cPane);
-
-		// Add event handlers.
-		printHelper.OnPrintSucceeded += async () => await f(printHelper, R["PrintSuccessful"]!);
-		printHelper.OnPrintFailed += async () => await f(printHelper, R["PrintFailed"]!);
-
-		// Start printing process.
-		try
+		var mainWindow = ((App)Application.Current).InitialInfo.MainWindow;
+		if (PrintManager.IsSupported())
 		{
-			await printHelper.ShowPrintUIAsync(R["ProgramName"]!);
+			try
+			{
+				// Show print UI.
+				var hWnd = WindowNative.GetWindowHandle(mainWindow);
+				await PrintManagerInterop.ShowPrintUIForWindowAsync(hWnd);
+			}
+			catch (COMException ex) when (ex.ErrorCode == unchecked((int)0x80040155U))
+			{
+				// System.Runtime.InteropServices.COMException: 'Interface not registered (0x80040155)'.
+				// This issue will be raised due to not having been implemented on printing operations.
+				// Please visit this issue link for more details.
+				// https://github.com/microsoft/microsoft-ui-xaml/issues/4419
+				var dialog = SimpleControlFactory.CreateErrorDialog(this, R["PrintFailedTitle"]!, R["PrintFailed_InterfaceNotRegistered"]!);
+				await dialog.ShowAsync();
+			}
+			catch
+			{
+				// Printing cannot proceed at this time.
+				var dialog = SimpleControlFactory.CreateErrorDialog(this, R["PrintFailedTitle"]!, R["PrintFailed_CannotProceed"]!);
+				await dialog.ShowAsync();
+			}
 		}
-		catch (COMException ex) when (ex.ErrorCode == unchecked((int)0x80040155U))
+		else
 		{
-			// System.Runtime.InteropServices.COMException: 'Interface not registered (0x80040155)'.
-			// This issue is raised due to not having been implemented on printing operations.
-			// Please visit this issue link for more details.
-			// https://github.com/microsoft/microsoft-ui-xaml/issues/4419
-			await f(printHelper, R["PrintFailed_InterfaceNotRegistered"]!);
-		}
-
-
-		async Task f(PrintHelper printHelper, string message)
-		{
-			// Dispose the print helper instance.
-			printHelper.Dispose();
-
-			// Display the result.
-			var dialog = SimpleControlFactory.CreateErrorDialog(this, string.Empty, message);
+			// Printing is not supported on this device.
+			var dialog = SimpleControlFactory.CreateErrorDialog(this, R["PrintFailedTitle"]!, R["PrintFailed_NotSupported"]!);
 			await dialog.ShowAsync();
-
-			// Revert control again.
-			_cPaneParent.Children.Add(_cPane);
 		}
 	}
 

@@ -214,7 +214,10 @@
 	<x:String x:Key="PreferenceBackup">设置项备份</x:String>
 	<x:String x:Key="PrintSuccessful">打印成功！</x:String>
 	<x:String x:Key="PrintFailed">打印失败。</x:String>
+	<x:String x:Key="PrintFailedTitle">打印失败</x:String>
 	<x:String x:Key="PrintFailed_InterfaceNotRegistered">抱歉，此功能无法成功执行，因为窗体框架本身都没有对打印机的功能进行实现，因此无法继续。</x:String>
+	<x:String x:Key="PrintFailed_CannotProceed">抱歉，当前打印操作无法继续进行。</x:String>
+	<x:String x:Key="PrintFailed_NotSupported">抱歉，这台设备本身不支持打印功能。</x:String>
 
 	<!--标点符号-->
 	<x:String x:Key="Token_OpenBrace">（</x:String>
