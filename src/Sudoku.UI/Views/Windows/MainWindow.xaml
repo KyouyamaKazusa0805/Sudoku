@@ -26,7 +26,7 @@
 			SelectionChanged="ViewRouter_SelectionChanged">
 			<NavigationView.AutoSuggestBox>
 				<AutoSuggestBox
-					QueryIcon="Find" PlaceholderText="{StaticResource MainPage_Search}" VerticalAlignment="Center"
+					QueryIcon="Find" PlaceholderText="{StaticResource HomePage_Search}" VerticalAlignment="Center"
 					TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen">
 					<AutoSuggestBox.ItemTemplateSelector>
 						<dts:SearchedResultItemTemplateSelector>
@@ -52,14 +52,14 @@
 				</AutoSuggestBox>
 			</NavigationView.AutoSuggestBox>
 			<NavigationView.MenuItems>
-				<NavigationViewItem Icon="Home" Tag="HomePage" Content="{StaticResource MainPage_Home}" />
+				<NavigationViewItem Icon="Home" Tag="HomePage" Content="{StaticResource HomePage_Home}" />
 				<NavigationViewItemSeparator />
-				<NavigationViewItemHeader Content="{StaticResource MainPage_Sudoku}" />
-				<NavigationViewItem Icon="ViewAll" Tag="SudokuPage" Content="{StaticResource MainPage_PlayingAndAnalyzing}" />
+				<NavigationViewItemHeader Content="{StaticResource HomePage_Sudoku}" />
+				<NavigationViewItem Icon="ViewAll" Tag="SudokuPage" Content="{StaticResource HomePage_PlayingAndAnalyzing}" />
 			</NavigationView.MenuItems>
 			<NavigationView.FooterMenuItems>
-				<NavigationViewItem Icon="Setting" Tag="SettingsPage" Content="{StaticResource MainPage_Settings}" />
-				<NavigationViewItem Icon="People" Tag="AboutPage" Content="{StaticResource MainPage_About}" />
+				<NavigationViewItem Icon="Setting" Tag="SettingsPage" Content="{StaticResource HomePage_Settings}" />
+				<NavigationViewItem Icon="People" Tag="AboutPage" Content="{StaticResource HomePage_About}" />
 			</NavigationView.FooterMenuItems>
 
 			<Frame

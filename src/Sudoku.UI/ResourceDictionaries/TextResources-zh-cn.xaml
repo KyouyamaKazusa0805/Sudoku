@@ -4,16 +4,16 @@
 	<x:String x:Key="ProgramVersion">版本 0.11</x:String>
 
 	<!--页面数据-->
-	<x:String x:Key="MainPage_PlayingAndAnalyzing">题目分析</x:String>
-	<x:String x:Key="MainPage_Sudoku">数独</x:String>
-	<x:String x:Key="MainPage_Settings">设置</x:String>
-	<x:String x:Key="MainPage_About">关于</x:String>
-	<x:String x:Key="MainPage_Home">起始页</x:String>
-	<x:String x:Key="MainPage_Search">搜索</x:String>
-	<x:String x:Key="MainPage_GettingStarted_Wiki">快速开始</x:String>
-	<x:String x:Key="MainPage_GettingStarted_SudokuTutorialReference">数独教程参考</x:String>
-	<x:String x:Key="MainPage_GettingStarted_GithubRepo">GitHub 源代码仓库</x:String>
-	<x:String x:Key="MainPage_GettingStarted_TechniqueWiki">技巧 Wiki 页</x:String>
+	<x:String x:Key="HomePage_PlayingAndAnalyzing">题目分析</x:String>
+	<x:String x:Key="HomePage_Sudoku">数独</x:String>
+	<x:String x:Key="HomePage_Settings">设置</x:String>
+	<x:String x:Key="HomePage_About">关于</x:String>
+	<x:String x:Key="HomePage_Home">起始页</x:String>
+	<x:String x:Key="HomePage_Search">搜索</x:String>
+	<x:String x:Key="HomePage_GettingStarted_Wiki">快速开始</x:String>
+	<x:String x:Key="HomePage_GettingStarted_SudokuTutorialReference">数独教程参考</x:String>
+	<x:String x:Key="HomePage_GettingStarted_GithubRepo">GitHub 源代码仓库</x:String>
+	<x:String x:Key="HomePage_GettingStarted_TechniqueWiki">技巧 Wiki 页</x:String>
 	<x:String x:Key="HomePage_GettingStartedHeader_Updates">更新日志</x:String>
 	<x:String x:Key="HomePage_VersionTimelineDescription_BuildSuccessful">成功编译，完成最初版程序代码书写和程序生成过程</x:String>
 	<x:String x:Key="SudokuPage_MakeDigit">出数</x:String>
@@ -143,10 +143,6 @@
 	<x:String x:Key="SettingsPage_BackupPreference">备份配置项</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">文件“</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed2">”备份失败。</x:String>
-	<x:String x:Key="DocumentationPage_PleaseWait">请稍候……</x:String>
-	<x:String x:Key="DocumentationPage_FailedToLoadFile">载入文件失败</x:String>
-	<x:String x:Key="DocumentationPage_FailedToLoadFileDialogContent">抱歉，程序出错，详细错误信息如下：</x:String>
-	<x:String x:Key="DocumentationPage_MarkdownFileNotFound">文件在服务器上不存在。</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>
@@ -176,6 +172,7 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidateBorderLines">显示;候选数;边框|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_AllowFocusing">允许;聚焦;单元格|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_EnableDeltaValuesDisplaying">启用;显示;呈现;错误填数|设置页 -> 基本设置项</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_CoverOldShapeWhenDiffused">覆盖;旧;形状;扩散|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_OutsideBorderWidth">空白;大小;外侧|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_BlockBorderWidth">粗细;宫;边框|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CellBorderWidth">粗细;单元格;边框|设置页 -> 绘图和渲染</x:String>

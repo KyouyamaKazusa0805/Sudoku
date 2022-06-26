@@ -5,16 +5,16 @@
 	<x:String x:Key="ProgramVersion">Version 0.11</x:String>
 
 	<!--Page inner data-->
-	<x:String x:Key="MainPage_PlayingAndAnalyzing">Playing &amp; Analyzing</x:String>
-	<x:String x:Key="MainPage_Sudoku">Sudoku</x:String>
-	<x:String x:Key="MainPage_Settings">Settings</x:String>
-	<x:String x:Key="MainPage_About">About</x:String>
-	<x:String x:Key="MainPage_Home">Home</x:String>
-	<x:String x:Key="MainPage_Search">Search</x:String>
-	<x:String x:Key="MainPage_GettingStarted_Wiki">Getting Started</x:String>
-	<x:String x:Key="MainPage_GettingStarted_SudokuTutorialReference">Sudoku Tutorial</x:String>
-	<x:String x:Key="MainPage_GettingStarted_GithubRepo">GitHub Repository</x:String>
-	<x:String x:Key="MainPage_GettingStarted_TechniqueWiki">Technique Wiki</x:String>
+	<x:String x:Key="HomePage_PlayingAndAnalyzing">Playing &amp; Analyzing</x:String>
+	<x:String x:Key="HomePage_Sudoku">Sudoku</x:String>
+	<x:String x:Key="HomePage_Settings">Settings</x:String>
+	<x:String x:Key="HomePage_About">About</x:String>
+	<x:String x:Key="HomePage_Home">Home</x:String>
+	<x:String x:Key="HomePage_Search">Search</x:String>
+	<x:String x:Key="HomePage_GettingStarted_Wiki">Getting Started</x:String>
+	<x:String x:Key="HomePage_GettingStarted_SudokuTutorialReference">Sudoku Tutorial</x:String>
+	<x:String x:Key="HomePage_GettingStarted_GithubRepo">GitHub Repository</x:String>
+	<x:String x:Key="HomePage_GettingStarted_TechniqueWiki">Technique Wiki</x:String>
 	<x:String x:Key="HomePage_GettingStartedHeader_Updates">Updates</x:String>
 	<x:String x:Key="HomePage_VersionTimelineDescription_BuildSuccessful">Build succeeded</x:String>
 	<x:String x:Key="SudokuPage_MakeDigit">Make digit</x:String>
@@ -146,10 +146,6 @@
 	<x:String x:Key="SettingsPage_BackupPreference">Backup preferences</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">File "</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed2">" is failed to backup.</x:String>
-	<x:String x:Key="DocumentationPage_PleaseWait">Please wait...</x:String>
-	<x:String x:Key="DocumentationPage_FailedToLoadFile">Failed to load file</x:String>
-	<x:String x:Key="DocumentationPage_FailedToLoadFileDialogContent">Sorry. Something wrong that causes the failure. Exception details:</x:String>
-	<x:String x:Key="DocumentationPage_MarkdownFileNotFound">The file is not found in the server.</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>
@@ -179,6 +175,7 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidateBorderLines">show;candidates;border|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_AllowFocusing">allow;focusing|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_EnableDeltaValuesDisplaying">enable;displaying;deltas|Settings Page -> Basic options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_CoverOldShapeWhenDiffused">cover;old;shape;diffused|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_OutsideBorderWidth">blank;size;outside;border|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_BlockBorderWidth">size;block;border|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CellBorderWidth">size;cell;border|Settings Page -> Rendering options</x:String>
