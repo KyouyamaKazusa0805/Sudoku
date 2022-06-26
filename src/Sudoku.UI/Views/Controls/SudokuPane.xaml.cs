@@ -276,7 +276,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		bool coverOldShapeWhenDiffused = ((App)Application.Current).UserPreference.CoverOldShapeWhenDiffused;
-		ref readonly var grid = ref GridRef;
 		foreach (int currentCell in HouseMaps[cell.ToHouseIndex(houseType)])
 		{
 			if (currentCell == cell)
@@ -331,7 +330,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		bool coverOldShapeWhenDiffused = ((App)Application.Current).UserPreference.CoverOldShapeWhenDiffused;
-		ref readonly var grid = ref GridRef;
+		var grid = Grid;
 		foreach (int currentCell in HouseMaps[cell.ToHouseIndex(houseType)])
 		{
 			if (currentCell == cell)
@@ -576,8 +575,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 					return;
 				}
 
-				ref readonly var grid = ref GridRef;
-				if (grid.Exists(candidate) is not true)
+				if (Grid.Exists(candidate) is not true)
 				{
 					return;
 				}
