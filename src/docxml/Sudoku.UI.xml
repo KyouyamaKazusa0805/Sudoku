@@ -2446,6 +2446,13 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the current page is unloaded.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InfoBoard_CollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
             <summary>
             Triggers when the inner collection of the control <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cInfoBoard"/> is changed.

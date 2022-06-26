@@ -691,6 +691,16 @@ public sealed partial class SudokuPage : Page
 	private void Page_Loaded(object sender, RoutedEventArgs e) => InitialAddSudokuTechniqueInfoBar();
 
 	/// <summary>
+	/// Triggers when the current page is unloaded.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void Page_Unloaded(object sender, RoutedEventArgs e)
+	{
+		// TODO: Dispose the release if worth.
+	}
+
+	/// <summary>
 	/// Triggers when the inner collection of the control <see cref="_cInfoBoard"/> is changed.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
