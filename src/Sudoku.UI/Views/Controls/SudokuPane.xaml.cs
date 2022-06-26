@@ -465,6 +465,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			case var key and (>= VirtualKey.Number0 and <= VirtualKey.Number9 or VirtualKey.Back):
 			{
+				int digit = key - VirtualKey.Number0 - 1;
 				switch (pressedData)
 				{
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
@@ -477,18 +478,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #if AUTHOR_FEATURE_CELL_MARKS
 					case (true, false, false): // Control.
 					{
-						c(_cell, key == VirtualKey.Back ? -1 : key - VirtualKey.Number0 - 1);
+						c(_cell, key == VirtualKey.Back ? -1 : digit);
 						break;
 					}
 #endif
 					case (false, true, false) when key != VirtualKey.Back: // Shift.
 					{
-						EliminateDigit(_cell, key - VirtualKey.Number0 - 1);
+						EliminateDigit(_cell, digit);
 						break;
 					}
 					case (false, false, false):
 					{
-						MakeDigit(_cell, key == VirtualKey.Back ? -1 : key - VirtualKey.Number0);
+						MakeDigit(_cell, key == VirtualKey.Back ? -1 : digit);
 						break;
 					}
 				}
@@ -497,6 +498,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			}
 			case var key and (>= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9 or VirtualKey.Back):
 			{
+				int digit = key - VirtualKey.NumberPad0 - 1;
 				switch (pressedData)
 				{
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
@@ -509,18 +511,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #if AUTHOR_FEATURE_CELL_MARKS
 					case (true, false, false): // Control.
 					{
-						c(_cell, key == VirtualKey.Back ? -1 : key - VirtualKey.NumberPad0 - 1);
+						c(_cell, key == VirtualKey.Back ? -1 : digit);
 						break;
 					}
 #endif
 					case (false, true, false) when key != VirtualKey.Back: // Shift.
 					{
-						EliminateDigit(_cell, key - VirtualKey.NumberPad0 - 1);
+						EliminateDigit(_cell, digit);
 						break;
 					}
 					case (false, false, false):
 					{
-						MakeDigit(_cell, key == VirtualKey.Back ? -1 : key - VirtualKey.NumberPad0);
+						MakeDigit(_cell, key == VirtualKey.Back ? -1 : digit);
 						break;
 					}
 				}
