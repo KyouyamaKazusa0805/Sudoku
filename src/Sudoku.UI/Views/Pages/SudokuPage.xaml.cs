@@ -90,6 +90,17 @@ public sealed partial class SudokuPage : Page
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void CopySudokuCode()
 	{
+		string format = ((App)Application.Current).UserPreference.PlaceholderIsZero ? "0+:" : ".+:";
+		CopySudokuCode(format);
+	}
+
+	/// <summary>
+	/// Copy the string text that represents the current sudoku grid used, to the clipboard, with the specified format.
+	/// </summary>
+	/// <param name="format">The format.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void CopySudokuCode(string? format)
+	{
 		ref readonly var grid = ref _cPane.GridRef;
 		if (grid is { IsUndefined: true } or { IsEmpty: true })
 		{
@@ -97,8 +108,20 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
+		CopySudokuCode(grid, format);
+	}
+
+	/// <summary>
+	/// Copy the string text that represents the current sudoku grid used, to the clipboard,
+	/// with the specified grid and the format.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="format">The format.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void CopySudokuCode(in Grid grid, string? format)
+	{
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		dataPackage.SetText(grid.ToString(((App)Application.Current).UserPreference.PlaceholderIsZero ? "0+:" : ".+:"));
+		dataPackage.SetText(grid.ToString(format));
 		Clipboard.SetContent(dataPackage);
 	}
 
@@ -800,8 +823,71 @@ public sealed partial class SudokuPage : Page
 		=> HideCandidates();
 
 	/// <summary>
-	/// Indicates the event trigger callback method that print the puzzle.
+	/// Indicates the event trigger callback method that prints the puzzle.
 	/// </summary>
 	private async void ComamndPrint_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
 		=> await PrintAsync();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that copies the initial grid.
+	/// </summary>
+	private void CopyInitial_Click(object sender, RoutedEventArgs e)
+		=> CopySudokuCode(((App)Application.Current).UserPreference.PlaceholderIsZero ? "0" : ".");
+
+	/// <summary>
+	/// Indicates the event trigger callback method that copies the current grid.
+	/// </summary>
+	private void CopyCurrent_Click(object sender, RoutedEventArgs e)
+		=> CopySudokuCode(((App)Application.Current).UserPreference.PlaceholderIsZero ? "0+:" : ".+:");
+
+	/// <summary>
+	/// Indicates the event trigger callback method that copies the current grid
+	/// and treat all values as given ones forcedly.
+	/// </summary>
+	private void CopyCurrentIgnoreModifiables_Click(object sender, RoutedEventArgs e)
+		=> CopySudokuCode(((App)Application.Current).UserPreference.PlaceholderIsZero ? "0!:" : ".!:");
+
+	/// <summary>
+	/// Indicates the event trigger callback method that copies the solution grid.
+	/// </summary>
+	private void CopySolution_Click(object sender, RoutedEventArgs e) => CopySudokuCode(_cPane.Grid.Solution, null);
+
+	/// <summary>
+	/// Indicates the event trigger callback method that copies the initial grid, with multiple-line format.
+	/// </summary>
+	private void CopyInitialMultilined_Click(object sender, RoutedEventArgs e)
+		=> CopySudokuCode(((App)Application.Current).UserPreference.PlaceholderIsZero ? "@0*" : "@.*");
+
+	/// <summary>
+	/// Indicates the event trigger callback method that copies the solution grid, with multiple-line format.
+	/// </summary>
+	private void CopySolutionMultilined_Click(object sender, RoutedEventArgs e)
+		=> CopySudokuCode(_cPane.Grid.Solution, "@");
+
+	/// <summary>
+	/// Indicates the event trigger callback method that copies the current pencil-marked grid.
+	/// </summary>
+	private void CopyPmCurrent_Click(object sender, RoutedEventArgs e) => CopySudokuCode("@:");
+
+	/// <summary>
+	/// Indicates the event trigger callback method that copies the current pencil-marked grid,
+	/// and treat all values as given ones forcedly.
+	/// </summary>
+	private void CopyPmCurrentIgnoreModifiable_Click(object sender, RoutedEventArgs e) => CopySudokuCode("@!");
+
+	/// <summary>
+	/// Indicates the event trigger callback method that copies the current sukaku grid.
+	/// </summary>
+	private void CopySukakuCurrent_Click(object sender, RoutedEventArgs e)
+		=> CopySudokuCode(((App)Application.Current).UserPreference.PlaceholderIsZero ? "@~0" : "@~.");
+
+	/// <summary>
+	/// Indicates the event trigger callback method that copies the current Excel grid.
+	/// </summary>
+	private void CopyExcelCurrent_Click(object sender, RoutedEventArgs e) => CopySudokuCode("%");
+
+	/// <summary>
+	/// Indicates the event trigger callback method that copies the current open-sudoku grid.
+	/// </summary>
+	private void CopyOpenSudokuCurrent_Click(object sender, RoutedEventArgs e) => CopySudokuCode("^");
 }

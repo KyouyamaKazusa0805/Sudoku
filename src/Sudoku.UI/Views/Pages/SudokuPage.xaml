@@ -40,6 +40,46 @@
 								<XamlUICommand ExecuteRequested="CommandCopySudokuGridText_ExecuteRequested" />
 							</AppBarButton.Command>
 						</AppBarButton>
+						<AppBarButton Label="{StaticResource SudokuPage_CopyEx}" Icon="Copy">
+							<AppBarButton.Flyout>
+								<MenuFlyout>
+									<MenuFlyoutItem
+										Text="{StaticResource SudokuPage_CopyInitial}" Click="CopyInitial_Click" />
+									<MenuFlyoutItem
+										Text="{StaticResource SudokuPage_CopyCurrent}" Click="CopyCurrent_Click" />
+									<MenuFlyoutItem
+										Text="{StaticResource SudokuPage_CopyCurrentIgnoreModifiable}"
+										Click="CopyCurrentIgnoreModifiables_Click" />
+									<MenuFlyoutItem
+										Text="{StaticResource SudokuPage_CopySolution}" Click="CopySolution_Click" />
+									<MenuFlyoutSeparator />
+									<MenuFlyoutItem
+										Text="{StaticResource SudokuPage_CopyInitialMultilined}"
+										Click="CopyInitialMultilined_Click" />
+									<MenuFlyoutItem
+										Text="{StaticResource SudokuPage_CopySolutionMultilined}"
+										Click="CopySolutionMultilined_Click" />
+									<MenuFlyoutSeparator />
+									<MenuFlyoutItem
+										Text="{StaticResource SudokuPage_CopyPmCurrent}" Click="CopyPmCurrent_Click" />
+									<MenuFlyoutItem
+										Text="{StaticResource SudokuPage_CopyPmCurrentIgnoreModifiable}"
+										Click="CopyPmCurrentIgnoreModifiable_Click" />
+									<MenuFlyoutSeparator />
+									<MenuFlyoutItem
+										Text="{StaticResource SudokuPage_CopySukakuCurrent}"
+										Click="CopySukakuCurrent_Click" />
+									<MenuFlyoutSeparator />
+									<MenuFlyoutItem
+										Text="{StaticResource SudokuPage_CopyExcelCurrent}"
+										Click="CopyExcelCurrent_Click" />
+									<MenuFlyoutSeparator />
+									<MenuFlyoutItem
+										Text="{StaticResource SudokuPage_CopyOpenSudokuCurrent}"
+										Click="CopyOpenSudokuCurrent_Click" />
+								</MenuFlyout>
+							</AppBarButton.Flyout>
+						</AppBarButton>
 						<AppBarButton Label="{StaticResource SudokuPage_CopyPic}" Icon="Copy">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandCopyControlSnapshot_ExecuteRequestedAsync" />
