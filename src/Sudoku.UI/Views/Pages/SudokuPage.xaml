@@ -12,6 +12,9 @@
 	<ScrollViewer>
 		<Grid>
 			<Grid.Resources>
+				<Style TargetType="xc:TabbedCommandBarItem">
+					<Setter Property="DefaultLabelPosition" Value="Right" />
+				</Style>
 				<cvt:UndoOrRedoStackToIsEnabledConverter x:Key="_rUndoingOrRedoingConverter" />
 			</Grid.Resources>
 			<Grid.RowDefinitions>
@@ -25,6 +28,21 @@
 
 			<!--Tabbed command bar-->
 			<xc:TabbedCommandBar Grid.ColumnSpan="2" Margin="25,0,25,0" IsTabStop="True">
+				<xc:TabbedCommandBar.PaneFooter>
+					<CommandBar Background="Transparent" DefaultLabelPosition="Right">
+						<!--
+						<AppBarButton Label="Share" Icon="Share"/>
+						<AppBarButton Label="Comments" Icon="Message"/>
+						-->
+						<AppBarButton
+							x:Name="_cClearInfoBars" Icon="ClearSelection"
+							Label="{StaticResource SudokuPage_ClearInfoBars}">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandClearMessages_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+					</CommandBar>
+				</xc:TabbedCommandBar.PaneFooter>
 				<xc:TabbedCommandBar.MenuItems>
 					<!--First tab-->
 					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Editing}">
@@ -156,14 +174,6 @@
 								UpdateSourceTrigger=PropertyChanged}">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandRedo_ExecuteRequested" />
-							</AppBarButton.Command>
-						</AppBarButton>
-						<AppBarSeparator />
-						<AppBarButton
-							x:Name="_cClearInfoBars" Icon="ClearSelection"
-							Label="{StaticResource SudokuPage_ClearInfoBars}">
-							<AppBarButton.Command>
-								<XamlUICommand ExecuteRequested="CommandClearMessages_ExecuteRequested" />
 							</AppBarButton.Command>
 						</AppBarButton>
 					</xc:TabbedCommandBarItem>
