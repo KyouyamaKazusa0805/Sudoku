@@ -174,7 +174,7 @@
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.FontPickerTemplate>
 										<dts:SettingItemDataTemplateSelector.PeerFocusingModeComboBoxGroupTemplate>
-											<DataTemplate x:DataType="m:PeerFocusingModeComboBoxGroupSettingItem">
+											<DataTemplate x:DataType="m:PeerFocusingModeComboBoxSettingItem">
 												<StackPanel>
 													<TextBlock
 														Text="{x:Bind Name}"
@@ -186,13 +186,16 @@
 														Style="{ThemeResource CaptionTextBlockStyle}" />
 													<ComboBox
 														Margin="{StaticResource _rSettingDescriptionMargin}"
+														ItemsSource="{x:Bind OptionContents}"
 														SelectedIndex="{x:Bind GetPreferenceIndex(),
 															Mode=TwoWay,
 															UpdateSourceTrigger=PropertyChanged,
 															BindBack=SetPreferenceIndex}">
-														<ComboBoxItem Content="{x:Bind Option0Content}" />
-														<ComboBoxItem Content="{x:Bind Option1Content}" />
-														<ComboBoxItem Content="{x:Bind Option2Content}" />
+														<ComboBox.ItemTemplate>
+															<DataTemplate x:DataType="x:String">
+																<ComboBoxItem Content="{x:Bind}" Padding="0" />
+															</DataTemplate>
+														</ComboBox.ItemTemplate>
 													</ComboBox>
 												</StackPanel>
 											</DataTemplate>

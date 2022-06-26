@@ -28,13 +28,16 @@ public sealed partial class SettingsPage : Page
 					Name = R["SettingsPage_ItemName_ShowCandidateBorderLines"]!,
 					PreferenceValueName = nameof(Preference.ShowCandidateBorderLines)
 				},
-				new PeerFocusingModeComboBoxGroupSettingItem
+				new PeerFocusingModeComboBoxSettingItem
 				{
 					Name = R["SettingsPage_ItemName_AllowFocusing"]!,
 					Description = R["SettingsPage_ItemDescription_AllowFocusing"]!,
-					Option0Content = R["SettingsPage_ItemName_PeerFocusingModeOption0Content"]!,
-					Option1Content = R["SettingsPage_ItemName_PeerFocusingModeOption1Content"]!,
-					Option2Content = R["SettingsPage_ItemName_PeerFocusingModeOption2Content"]!,
+					OptionContents = new[]
+					{
+						R["SettingsPage_ItemName_PeerFocusingModeOption0Content"]!,
+						R["SettingsPage_ItemName_PeerFocusingModeOption1Content"]!,
+						R["SettingsPage_ItemName_PeerFocusingModeOption2Content"]!,
+					},
 					PreferenceValueName = nameof(Preference.PeerFocusingMode)
 				},
 				new ToggleSwitchSettingItem

@@ -34,6 +34,6 @@ public sealed class SettingItemDataTemplateSelector : ModelDataTemplateSelector
 	/// to a <see cref="PeerFocusingMode"/> instance.
 	/// </summary>
 	/// <seealso cref="PeerFocusingMode"/>
-	[DataTemplateModelType<PeerFocusingModeComboBoxGroupSettingItem>]
+	[DataTemplateModelType<PeerFocusingModeComboBoxSettingItem>]
 	public DataTemplate PeerFocusingModeComboBoxGroupTemplate { get; set; } = null!;
 }
