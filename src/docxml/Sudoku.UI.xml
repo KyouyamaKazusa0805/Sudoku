@@ -896,6 +896,92 @@
             The default DPI setting for a monitor is <see cref="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Effective_DPI"/>.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper">
+            <summary>
+            Provides with a way to make Mica material works for the main window in the current project.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper._dispatcherQueueController">
+            <summary>
+            The inner field that is used as a dispatcher queue controller.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController">
+            <summary>
+            To ensure <see cref="T:Windows.System.DispatcherQueueController"/> works.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.CreateDispatcherQueueController(Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions,System.Object@)">
+            <summary>
+            Creates a <see cref="T:Windows.System.DispatcherQueueController"/>
+            on the caller's thread. Use the created <see cref="T:Windows.System.DispatcherQueueController"/> to create
+            and manage the lifetime of a <see cref="T:Windows.System.DispatcherQueue"/>
+            to run queued tasks in priority order on the Dispatcher queue's thread.
+            </summary>
+            <param name="options">
+            The threading affinity and type of COM apartment for the created <see cref="T:Windows.System.DispatcherQueueController"/>.
+            See remarks for details.
+            </param>
+            <param name="dispatcherQueueController">
+            <para>The created dispatcher queue controller.</para>
+            <para><b>Please note that the <see cref="T:Windows.System.DispatcherQueueController"/> is a WinRT object.</b></para>
+            </param>
+            <returns>0 for success; otherwise a failure code.</returns>
+            <remarks>
+            <para>Introduced in Windows 10, version 1709.</para>
+            <para>
+            If options.threadType is <c>DQTYPE_THREAD_DEDICATED</c>, then this function creates the dedicated thread
+            and then creates the <see cref="T:Windows.System.DispatcherQueueController"/> on that thread.
+            The dispatcher queue event loop runs on the new dedicated thread.
+            </para>
+            <para>
+            If options.threadType is <c>DQTYPE_THREAD_CURRENT</c>, then the <see cref="T:Windows.System.DispatcherQueueController"/> instance
+            is created on the current thread. An error results if there is already a <see cref="T:Windows.System.IDispatcherQueueController"/>
+            on the current thread. If you create a dispatcher queue on the current thread,
+            ensure that there is a message pump running on the current thread so that the dispatcher queue can use it
+            to dispatch tasks.
+            </para>
+            <para>
+            This call does not return until the new thread and <see cref="T:Windows.System.DispatcherQueueController"/> are created.
+            The new thread will be initialized using the specified COM apartment.
+            </para>
+            <para><b>
+            The <see cref="T:Windows.System.DispatcherQueueController"/>, and its associated <see cref="T:Windows.System.DispatcherQueue"/>,
+            are WinRT objects. See their documentation for usage details.
+            </b></para>
+            </remarks>
+            <seealso cref="T:Windows.System.DispatcherQueueController"/>
+            <seealso cref="T:Windows.System.DispatcherQueue"/>
+            <seealso cref="T:Windows.System.IDispatcherQueueController"/>
+        </member>
+        <member name="T:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions">
+            <summary>
+            Specifies the threading and apartment type for a new <see cref="T:Windows.System.DispatcherQueueController"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.dwSize">
+            <summary>
+            Size of this <see cref="T:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions"/> structure.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.threadType">
+            <summary>
+            Thread affinity for the created <see cref="T:Windows.System.DispatcherQueueController"/>.
+            </summary>
+            <seealso cref="T:Windows.System.DispatcherQueueController"/>
+        </member>
+        <member name="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.apartmentType">
+            <summary>
+            Specifies whether to initialize COM apartment on the new thread
+            as an application single-threaded apartment (ASTA) or single-threaded apartment (STA).
+            This field is only relevant if threadType is <c>DQTYPE_THREAD_DEDICATED</c>.
+            Use <c>DQTAT_COM_NONE</c> when <see cref="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_CURRENT</c>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.threadType"/>
+            <remarks>
+            Introduced in Windows 10, version 1709.
+            </remarks>
+        </member>
         <member name="T:Sudoku.UI.Metadata.DataTemplateModelTypeAttribute`1">
             <summary>
             Defines an attribute that applies to a data template property.
@@ -2680,6 +2766,36 @@
             Indicates the gathered keywords.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Windows.MainWindow._wsdqHelper">
+            <summary>
+            Indicates the helper instance.
+            </summary>
+            <remarks>
+            For more information about the Mica material, please visit
+            <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
+            to learn more.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.Views.Windows.MainWindow._micaController">
+            <summary>
+            The Mica material controller.
+            </summary>
+            <remarks>
+            For more information about the Mica material, please visit
+            <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
+            to learn more.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.Views.Windows.MainWindow._configurationSource">
+            <summary>
+            Indicates the configuration source instance for Mica material.
+            </summary>
+            <remarks>
+            For more information about the Mica material, please visit
+            <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
+            to learn more.
+            </remarks>
+        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
@@ -2705,11 +2821,48 @@
             <param name="tag">The specified tag of the navigate page item.</param>
             <param name="transitionInfo">The transition information.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SetConfigurationSourceTheme">
+            <summary>
+            Try to set the configuration source with the theme value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.TrySetMicaBackdrop">
+            <summary>
+            Try to set Mica backdrop.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the operation is succeeded.</returns>
+            <remarks>
+            For more information about the Mica material, please visit
+            <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
+            to learn more.
+            </remarks>
+        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.ClearAutoSuggestBoxValue(Microsoft.UI.Xaml.Controls.AutoSuggestBox)">
             <summary>
             To clear the content of the specified <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance.
             </summary>
             <param name="autoSuggestBox">The <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_Activated(System.Object,Microsoft.UI.Xaml.WindowActivatedEventArgs)">
+            <summary>
+            Triggers when the window is activated.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="args">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_Closed(System.Object,Microsoft.UI.Xaml.WindowEventArgs)">
+            <summary>
+            Triggers when the window is closed.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="args">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_ThemeChanged(Microsoft.UI.Xaml.FrameworkElement,System.Object)">
+            <summary>
+            Triggers when the theme is changed.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="args">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.ViewRouter_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>

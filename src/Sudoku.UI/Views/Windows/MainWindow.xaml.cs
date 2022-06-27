@@ -17,6 +17,36 @@ public sealed partial class MainWindow : Window
 	/// </summary>
 	private (string Key, string Value, string OriginalValue)[] _gatheredQueryKeywords = null!;
 
+	/// <summary>
+	/// Indicates the helper instance.
+	/// </summary>
+	/// <remarks>
+	/// For more information about the Mica material, please visit
+	/// <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
+	/// to learn more.
+	/// </remarks>
+	private WindowsSystemDispatcherQueueHelper _wsdqHelper = null!;
+
+	/// <summary>
+	/// The Mica material controller.
+	/// </summary>
+	/// <remarks>
+	/// For more information about the Mica material, please visit
+	/// <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
+	/// to learn more.
+	/// </remarks>
+	private MicaController _micaController = null!;
+
+	/// <summary>
+	/// Indicates the configuration source instance for Mica material.
+	/// </summary>
+	/// <remarks>
+	/// For more information about the Mica material, please visit
+	/// <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
+	/// to learn more.
+	/// </remarks>
+	private SystemBackdropConfiguration _configurationSource = null!;
+
 
 	/// <summary>
 	/// Initializes a <see cref="MainWindow"/> instance.
@@ -26,6 +56,13 @@ public sealed partial class MainWindow : Window
 	{
 		// Initializes the controls.
 		InitializeComponent();
+
+#if false
+		// Try to set the window with Mica material.
+		// For more information, please visit this link:
+		// https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/SamplePages/SampleSystemBackdropsWindow.xaml.cs
+		TrySetMicaBackdrop();
+#endif
 
 		// Sets the title of the window.
 		// If we set the value to the XAML file, that file cannot be compiled successfully:
@@ -65,6 +102,62 @@ public sealed partial class MainWindow : Window
 		_cViewRouter.AlwaysShowHeader = displayTitle;
 	}
 
+	/// <summary>
+	/// Try to set the configuration source with the theme value.
+	/// </summary>
+	private void SetConfigurationSourceTheme()
+	{
+		if (((FrameworkElement)Content).ActualTheme is var actualTheme && Enum.IsDefined(actualTheme))
+		{
+			_configurationSource.Theme = actualTheme switch
+			{
+				ElementTheme.Dark => SystemBackdropTheme.Dark,
+				ElementTheme.Light => SystemBackdropTheme.Light,
+				ElementTheme.Default => SystemBackdropTheme.Default,
+				_ => default
+			};
+		}
+	}
+
+	/// <summary>
+	/// Try to set Mica backdrop.
+	/// </summary>
+	/// <returns>A <see cref="bool"/> value indicating whether the operation is succeeded.</returns>
+	/// <remarks>
+	/// For more information about the Mica material, please visit
+	/// <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
+	/// to learn more.
+	/// </remarks>
+	[MemberNotNullWhen(true, nameof(_wsdqHelper), nameof(_configurationSource), nameof(_micaController))]
+	private bool TrySetMicaBackdrop()
+	{
+		if (MicaController.IsSupported())
+		{
+			_wsdqHelper = new();
+			_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
+
+			// Hooking up the policy object.
+			_configurationSource = new();
+			Activated += Window_Activated;
+			Closed += Window_Closed;
+			((FrameworkElement)Content).ActualThemeChanged += Window_ThemeChanged;
+
+			// Initial configuration state.
+			_configurationSource.IsInputActive = true;
+			SetConfigurationSourceTheme();
+
+			_micaController = new();
+
+			// Enable the system backdrop.
+			_micaController.AddSystemBackdropTarget(this.As<ICompositionSupportsSystemBackdrop>());
+			_micaController.SetSystemBackdropConfiguration(_configurationSource);
+
+			return true; // Succeeded.
+		}
+
+		return false; // Mica is not supported on this system.
+	}
+
 
 	/// <summary>
 	/// To clear the content of the specified <see cref="AutoSuggestBox"/> instance.
@@ -73,6 +166,45 @@ public sealed partial class MainWindow : Window
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static void ClearAutoSuggestBoxValue(AutoSuggestBox autoSuggestBox) => autoSuggestBox.Text = string.Empty;
 
+
+	/// <summary>
+	/// Triggers when the window is activated.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event.</param>
+	/// <param name="args">The event arguments provided.</param>
+	private void Window_Activated(object sender, MsWindowActivatedEventArgs args)
+		=> _configurationSource.IsInputActive = args.WindowActivationState != WindowActivationState.Deactivated;
+
+	/// <summary>
+	/// Triggers when the window is closed.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event.</param>
+	/// <param name="args">The event arguments provided.</param>
+	private void Window_Closed(object sender, WindowEventArgs args)
+	{
+		// Make sure any Mica/Acrylic controller is disposed so it doesn't try to use this closed window.
+		if (_micaController is not null)
+		{
+			_micaController.Dispose();
+			_micaController = null!;
+		}
+
+		Activated -= Window_Activated;
+		_configurationSource = null!;
+	}
+
+	/// <summary>
+	/// Triggers when the theme is changed.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event.</param>
+	/// <param name="args">The event arguments provided.</param>
+	private void Window_ThemeChanged(FrameworkElement sender, object args)
+	{
+		if (_configurationSource is not null)
+		{
+			SetConfigurationSourceTheme();
+		}
+	}
 
 	/// <summary>
 	/// Triggers when the view router control is loaded.
