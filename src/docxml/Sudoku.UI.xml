@@ -728,100 +728,6 @@
             </summary>
             <returns>The <see cref="T:Sudoku.UI.Input.ModifierKeyData"/> instance.</returns>
         </member>
-        <member name="T:Sudoku.UI.Interoperability.AppWindowMarshal">
-            <summary>
-            Provides native methods on application window.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Interoperability.AppWindowMarshal.GetDpiForMonitor(System.IntPtr,Sudoku.UI.Interoperability.Monitor_DPI_Type,System.UInt32@,System.UInt32@)">
-            <summary>
-            Queries the dots per inch (dpi) of a display.
-            </summary>
-            <param name="hmonitor">Handle of the monitor being queried.</param>
-            <param name="dpiType">
-            <para>The type of DPI being queried. Possible values are from the <see cref="T:Sudoku.UI.Interoperability.Monitor_DPI_Type"/> enumeration.</para>
-            <para>
-            Docs reference: <see href="https://docs.microsoft.com/en-us/windows/desktop/api/shellscalingapi/ne-shellscalingapi-monitor_dpi_type">type <c>MONITOR_DPI_TYPE</c></see>.
-            </para>
-            </param>
-            <param name="dpiX">
-            The value of the DPI along the X axis.
-            This value always refers to the horizontal edge, even when the screen is rotated.
-            </param>
-            <param name="dpiY">
-            The value of the DPI along the Y axis.
-            This value always refers to the vertical edge, even when the screen is rotated.
-            </param>
-            <returns>
-            This function returns one of the following values.
-            <list type="table">
-            <listheader>
-            <term>Return code</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term><c>S_OK</c></term>
-            <description>The function successfully returns the X and Y DPI values for the specified monitor.</description>
-            </item>
-            <item>
-            <term>E_INVALIDARG</term>
-            <description>The handle, DPI type, or pointers passed in are not valid.</description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            <para>
-            This API is not DPI aware and should not be used if the calling thread is per-monitor DPI aware.
-            For the DPI-aware version of this API, see
-            <see href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getdpiforwindow"><c>
-            GetDpiForWindow
-            </c></see>.
-            </para>
-            <para>
-            When you call <c>GetDpiForMonitor</c>, you will receive different DPI values depending on the DPI awareness
-            of the calling application. DPI awareness is an application-level property usually defined
-            in the application manifest. For more information about DPI awareness values, see
-            <see href="https://docs.microsoft.com/en-us/windows/desktop/api/shellscalingapi/ne-shellscalingapi-process_dpi_awareness"><c>
-            PROCESS_DPI_AWARENESS
-            </c></see>. The following table indicates how the results will differ based on the <c>PROCESS_DPI_AWARENESS</c>
-            value of your application.
-            <list type="table">
-            <item>
-            <term><c>PROCESS_DPI_UNAWARE</c></term>
-            <description>96 because the app is unaware of any other scale factors.</description>
-            </item>
-            <item>
-            <term><c>PROCESS_SYSTEM_DPI_AWARE</c></term>
-            <description>
-            A value set to the system DPI because the app assumes all applications use the system DPI.
-            </description>
-            </item>
-            <item>
-            <term><c>PROCESS_PER_MONITOR_DPI_AWARE</c></term>
-            <description>The actual DPI value set by the user for that display.</description>
-            </item>
-            </list>
-            </para>
-            <para>
-            The values of <c>*<paramref name="dpiX"/></c> and <c>*<paramref name="dpiY"/></c> are identical.
-            You only need to record one of the values to determine the DPI and respond appropriately.
-            </para>
-            <para>
-            When <see href="https://docs.microsoft.com/en-us/windows/desktop/api/shellscalingapi/ne-shellscalingapi-monitor_dpi_type"><c>
-            MONITOR_DPI_TYPE
-            </c></see> is <see cref="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Angular_DPI"/> or <see cref="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Raw_DPI"/>,
-            the returned DPI value does not include any changes that the user made to the DPI
-            by using the desktop scaling override slider control in Control Panel.
-            </para>
-            <para>
-            For more information about DPI settings in Control Panel, see
-            <see href="https://docs.microsoft.com/en-us/windows/win32/hidpi/high-dpi-desktop-application-development-on-windows">
-            the Writing DPI-Aware Desktop Applications in Windows 8.1 Preview white paper
-            </see>.
-            </para>
-            </remarks>
-            <seealso href="https://docs.microsoft.com/en-us/windows/desktop/api/shellscalingapi/ne-shellscalingapi-monitor_dpi_type">Type <c>MONITOR_DPI_TYPE</c></seealso>
-        </member>
         <member name="T:Sudoku.UI.Interoperability.IInitializeWithWindow">
             <summary>
             Exposes a method through which a client can provide an owner window
@@ -860,127 +766,62 @@
             </see>.
             </remarks>
         </member>
-        <member name="T:Sudoku.UI.Interoperability.Monitor_DPI_Type">
+        <member name="T:Sudoku.UI.Materials.MaterialApplier">
             <summary>
-            Identifies the dots per inch (dpi) setting for a monitor.
-            </summary>
-            <remarks>
-            All of these settings are affected by the
-            <see href="https://docs.microsoft.com/en-us/windows/desktop/api/shellscalingapi/ne-shellscalingapi-process_dpi_awareness"><c>
-            PROCESS_DPI_AWARENESS
-            </c></see> of your application.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Effective_DPI">
-            <summary>
-            The effective DPI. This value should be used when determining the correct scale factor for scaling UI elements.
-            This incorporates the scale factor set by the user for this specific display.
+            Provides a marshalling type that holds the method that operates the switching on materials.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Angular_DPI">
+        <member name="M:Sudoku.UI.Materials.MaterialApplier.MakeTransparent(System.IntPtr)">
             <summary>
-            The angular DPI. This DPI ensures rendering at a compliant angular resolution on the screen.
-            This does not include the scale factor set by the user for this specific display.
+            Make the window be transparent.
             </summary>
-        </member>
-        <member name="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Raw_DPI">
-            <summary>
-            The raw DPI. This value is the linear DPI of the screen as measured on the screen itself.
-            Use this value when you want to read the pixel density and not the recommended scaling setting.
-            This does not include the scale factor set by the user for this specific display and is not guaranteed
-            to be a supported DPI value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Default">
-            <summary>
-            The default DPI setting for a monitor is <see cref="F:Sudoku.UI.Interoperability.Monitor_DPI_Type.MDT_Effective_DPI"/>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper">
-            <summary>
-            Provides with a way to make Mica material works for the main window in the current project.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper._dispatcherQueueController">
-            <summary>
-            The inner field that is used as a dispatcher queue controller.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController">
-            <summary>
-            To ensure <see cref="T:Windows.System.DispatcherQueueController"/> works.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.CreateDispatcherQueueController(Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions,System.Object@)">
-            <summary>
-            Creates a <see cref="T:Windows.System.DispatcherQueueController"/>
-            on the caller's thread. Use the created <see cref="T:Windows.System.DispatcherQueueController"/> to create
-            and manage the lifetime of a <see cref="T:Windows.System.DispatcherQueue"/>
-            to run queued tasks in priority order on the Dispatcher queue's thread.
-            </summary>
-            <param name="options">
-            The threading affinity and type of COM apartment for the created <see cref="T:Windows.System.DispatcherQueueController"/>.
-            See remarks for details.
+            <param name="hWnd">
+            The handle of the window. You can use the method <see cref="M:WinRT.Interop.WindowNative.GetWindowHandle(System.Object)"/>
+            to get the target value. Please note that the return value will be an <see cref="T:System.IntPtr"/> value,
+            which is equivalent to the type <see langword="nint"/> having been introduced in C# 9.
             </param>
-            <param name="dispatcherQueueController">
-            <para>The created dispatcher queue controller.</para>
-            <para><b>Please note that the <see cref="T:Windows.System.DispatcherQueueController"/> is a WinRT object.</b></para>
+        </member>
+        <member name="M:Sudoku.UI.Materials.MaterialApplier.SetMica(System.IntPtr,System.Boolean,System.Boolean)">
+            <summary>
+            Applies or removes the specified window for Mica material.
+            </summary>
+            <param name="hWnd">
+            The handle of the window. You can use the method <see cref="M:WinRT.Interop.WindowNative.GetWindowHandle(System.Object)"/>
+            to get the target value. Please note that the return value will be an <see cref="T:System.IntPtr"/> value,
+            which is equivalent to the type <see langword="nint"/> having been introduced in C# 9.
             </param>
-            <returns>0 for success; otherwise a failure code.</returns>
-            <remarks>
-            <para>Introduced in Windows 10, version 1709.</para>
-            <para>
-            If options.threadType is <c>DQTYPE_THREAD_DEDICATED</c>, then this function creates the dedicated thread
-            and then creates the <see cref="T:Windows.System.DispatcherQueueController"/> on that thread.
-            The dispatcher queue event loop runs on the new dedicated thread.
-            </para>
-            <para>
-            If options.threadType is <c>DQTYPE_THREAD_CURRENT</c>, then the <see cref="T:Windows.System.DispatcherQueueController"/> instance
-            is created on the current thread. An error results if there is already a <see cref="T:Windows.System.IDispatcherQueueController"/>
-            on the current thread. If you create a dispatcher queue on the current thread,
-            ensure that there is a message pump running on the current thread so that the dispatcher queue can use it
-            to dispatch tasks.
-            </para>
-            <para>
-            This call does not return until the new thread and <see cref="T:Windows.System.DispatcherQueueController"/> are created.
-            The new thread will be initialized using the specified COM apartment.
-            </para>
-            <para><b>
-            The <see cref="T:Windows.System.DispatcherQueueController"/>, and its associated <see cref="T:Windows.System.DispatcherQueue"/>,
-            are WinRT objects. See their documentation for usage details.
-            </b></para>
-            </remarks>
-            <seealso cref="T:Windows.System.DispatcherQueueController"/>
-            <seealso cref="T:Windows.System.DispatcherQueue"/>
-            <seealso cref="T:Windows.System.IDispatcherQueueController"/>
+            <param name="enable">Indicates whether the operation is applying. If <see langword="false"/>, removing.</param>
+            <param name="darkMode">Indicates whether the current window uses the dark mode currently.</param>
+            <seealso cref="M:WinRT.Interop.WindowNative.GetWindowHandle(System.Object)"/>
+            <seealso cref="T:System.IntPtr"/>
         </member>
-        <member name="T:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions">
+        <member name="M:Sudoku.UI.Materials.MaterialApplier.SetAcrylic(System.IntPtr,System.Boolean,System.Boolean)">
             <summary>
-            Specifies the threading and apartment type for a new <see cref="T:Windows.System.DispatcherQueueController"/>.
+            Applies or removes the specified window for acrylic material.
             </summary>
+            <param name="hWnd">
+            The handle of the window. You can use the method <see cref="M:WinRT.Interop.WindowNative.GetWindowHandle(System.Object)"/>
+            to get the target value. Please note that the return value will be an <see cref="T:System.IntPtr"/> value,
+            which is equivalent to the type <see langword="nint"/> having been introduced in C# 9.
+            </param>
+            <param name="enable">Indicates whether the operation is applying. If <see langword="false"/>, removing.</param>
+            <param name="darkMode">Indicates whether the current window uses the dark mode currently.</param>
+            <seealso cref="M:WinRT.Interop.WindowNative.GetWindowHandle(System.Object)"/>
+            <seealso cref="T:System.IntPtr"/>
         </member>
-        <member name="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.dwSize">
+        <member name="M:Sudoku.UI.Materials.MaterialApplier.SetBlur(System.IntPtr,System.Boolean,System.Boolean)">
             <summary>
-            Size of this <see cref="T:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions"/> structure.
+            Applies or removes the specified window for blur material.
             </summary>
-        </member>
-        <member name="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.threadType">
-            <summary>
-            Thread affinity for the created <see cref="T:Windows.System.DispatcherQueueController"/>.
-            </summary>
-            <seealso cref="T:Windows.System.DispatcherQueueController"/>
-        </member>
-        <member name="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.apartmentType">
-            <summary>
-            Specifies whether to initialize COM apartment on the new thread
-            as an application single-threaded apartment (ASTA) or single-threaded apartment (STA).
-            This field is only relevant if threadType is <c>DQTYPE_THREAD_DEDICATED</c>.
-            Use <c>DQTAT_COM_NONE</c> when <see cref="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_CURRENT</c>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.Interoperability.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.threadType"/>
-            <remarks>
-            Introduced in Windows 10, version 1709.
-            </remarks>
+            <param name="hWnd">
+            The handle of the window. You can use the method <see cref="M:WinRT.Interop.WindowNative.GetWindowHandle(System.Object)"/>
+            to get the target value. Please note that the return value will be an <see cref="T:System.IntPtr"/> value,
+            which is equivalent to the type <see langword="nint"/> having been introduced in C# 9.
+            </param>
+            <param name="enable">Indicates whether the operation is applying. If <see langword="false"/>, removing.</param>
+            <param name="darkMode">Indicates whether the current window uses the dark mode currently.</param>
+            <seealso cref="M:WinRT.Interop.WindowNative.GetWindowHandle(System.Object)"/>
+            <seealso cref="T:System.IntPtr"/>
         </member>
         <member name="T:Sudoku.UI.Metadata.DataTemplateModelTypeAttribute`1">
             <summary>
@@ -2766,36 +2607,6 @@
             Indicates the gathered keywords.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Views.Windows.MainWindow._wsdqHelper">
-            <summary>
-            Indicates the helper instance.
-            </summary>
-            <remarks>
-            For more information about the Mica material, please visit
-            <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
-            to learn more.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Views.Windows.MainWindow._micaController">
-            <summary>
-            The Mica material controller.
-            </summary>
-            <remarks>
-            For more information about the Mica material, please visit
-            <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
-            to learn more.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.UI.Views.Windows.MainWindow._configurationSource">
-            <summary>
-            Indicates the configuration source instance for Mica material.
-            </summary>
-            <remarks>
-            For more information about the Mica material, please visit
-            <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
-            to learn more.
-            </remarks>
-        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
@@ -2821,48 +2632,17 @@
             <param name="tag">The specified tag of the navigate page item.</param>
             <param name="transitionInfo">The transition information.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SetConfigurationSourceTheme">
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.TrySetMicaMaterial">
             <summary>
-            Try to set the configuration source with the theme value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.TrySetMicaBackdrop">
-            <summary>
-            Try to set Mica backdrop.
+            Try to apply Mica material to the current window.
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the operation is succeeded.</returns>
-            <remarks>
-            For more information about the Mica material, please visit
-            <see href="https://docs.microsoft.com/en-us/windows/apps/design/style/mica">this link</see>
-            to learn more.
-            </remarks>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.ClearAutoSuggestBoxValue(Microsoft.UI.Xaml.Controls.AutoSuggestBox)">
             <summary>
             To clear the content of the specified <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance.
             </summary>
             <param name="autoSuggestBox">The <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_Activated(System.Object,Microsoft.UI.Xaml.WindowActivatedEventArgs)">
-            <summary>
-            Triggers when the window is activated.
-            </summary>
-            <param name="sender">The object to trigger the event.</param>
-            <param name="args">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_Closed(System.Object,Microsoft.UI.Xaml.WindowEventArgs)">
-            <summary>
-            Triggers when the window is closed.
-            </summary>
-            <param name="sender">The object to trigger the event.</param>
-            <param name="args">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_ThemeChanged(Microsoft.UI.Xaml.FrameworkElement,System.Object)">
-            <summary>
-            Triggers when the theme is changed.
-            </summary>
-            <param name="sender">The object to trigger the event.</param>
-            <param name="args">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.ViewRouter_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
