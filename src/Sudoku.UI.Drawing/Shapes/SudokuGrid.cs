@@ -557,9 +557,21 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void MakeDigit(int cell, int digit)
 	{
-		// If the current mode is mask mode, we should directly skip the operation.
 		if (_isMaskMode)
 		{
+			// If the current mode is mask mode, we should directly skip the operation.
+			return;
+		}
+
+		if (_grid.GetStatus(cell) == CellStatus.Given)
+		{
+			// Skips the case that the cell is a given.
+			return;
+		}
+		
+		if (digit == -1)
+		{
+			// Skip the case that the user input 0 but the cell is currently empty.
 			return;
 		}
 
@@ -567,7 +579,7 @@ public sealed class SudokuGrid : DrawingElement
 		AddStep(_grid);
 
 		// To re-compute candidates if the current cell is modifiable.
-		if (digit != -1 && _grid.GetStatus(cell) == CellStatus.Modifiable)
+		if (_grid.GetStatus(cell) == CellStatus.Modifiable)
 		{
 			_grid[cell] = -1;
 		}
@@ -592,15 +604,21 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void EliminateDigit(int cell, int digit)
 	{
-		// If the current mode is mask mode, we should directly skip the operation.
 		if (_isMaskMode)
 		{
+			// If the current mode is mask mode, we should directly skip the operation.
 			return;
 		}
 
 		if (digit == -1)
 		{
 			// Skips the invalid data.
+			return;
+		}
+
+		if (_grid.Exists(cell, digit) is not true)
+		{
+			// Skips the case that user removes a candidate that doesn't exist.
 			return;
 		}
 
