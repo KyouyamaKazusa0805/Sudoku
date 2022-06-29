@@ -168,7 +168,7 @@ public sealed partial class SudokuPage : Page
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void CopySudokuCode(string? format)
 	{
-		ref readonly var grid = ref _cPane.GridRef;
+		var grid = _cPane.Grid;
 		if (grid is { IsUndefined: true } or { IsEmpty: true })
 		{
 			_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_CopyFailedDueToEmpty"]!);
