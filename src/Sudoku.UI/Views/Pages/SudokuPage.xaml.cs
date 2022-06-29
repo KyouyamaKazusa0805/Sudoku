@@ -395,7 +395,7 @@ public sealed partial class SudokuPage : Page
 				CachedFileManager.DeferUpdates(file);
 
 				// Writes to the file.
-				await FileIO.WriteTextAsync(file, _cPane.GridRef.ToString("#"));
+				await FileIO.WriteTextAsync(file, _cPane.Grid.ToString("#"));
 
 				// Let Windows know that we're finished changing the file so the other app can update
 				// the remote version of the file.
