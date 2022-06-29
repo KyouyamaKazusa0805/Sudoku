@@ -15,7 +15,7 @@
 		<!--Syntax configurations-->
 		<RootNamespace>Sudoku.UI</RootNamespace>
 		<DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
-		<DefineConstants>DISABLE_XAML_GENERATED_MAIN;AUTHOR_FEATURE_CELL_MARKS;AUTHOR_FEATURE_CANDIDATE_MARKS;WINDOWS_OS_22H2_OR_GREATER</DefineConstants>
+		<DefineConstants>DISABLE_XAML_GENERATED_MAIN;AUTHOR_FEATURE_CELL_MARKS;AUTHOR_FEATURE_CANDIDATE_MARKS</DefineConstants>
 
 		<!--Repository configurations-->
 		<PackageReadmeFile>README.md</PackageReadmeFile>

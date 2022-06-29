@@ -30,16 +30,16 @@ public sealed partial class MainWindow : Window
 
 	/// <summary>
 	/// Indicates the mica controller instance.
-	/// The value is not <see langword="null"/> when the method <see cref="InnerTrySetMica"/> returns <see langword="true"/>.
+	/// The value is not <see langword="null"/> when the method <see cref="InnerTrySetMaterial"/> returns <see langword="true"/>.
 	/// </summary>
-	/// <seealso cref="InnerTrySetMica"/>
+	/// <seealso cref="InnerTrySetMaterial"/>
 	private MicaController? _micaController;
 
 	/// <summary>
 	/// Indicates the system backdrop configuration instance.
-	/// The value is not <see langword="null"/> when the method <see cref="InnerTrySetMica"/> returns <see langword="true"/>.
+	/// The value is not <see langword="null"/> when the method <see cref="InnerTrySetMaterial"/> returns <see langword="true"/>.
 	/// </summary>
-	/// <seealso cref="InnerTrySetMica"/>
+	/// <seealso cref="InnerTrySetMaterial"/>
 	private SystemBackdropConfiguration? _configurationSource;
 
 
@@ -56,7 +56,7 @@ public sealed partial class MainWindow : Window
 		_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
 
 		// Try to set the window with Mica material.
-		SetMicaBackdrop();
+		SetMaterialBackdrop();
 
 		// Sets the title of the window.
 		// If we set the value to the XAML file, that file cannot be compiled successfully:
@@ -87,10 +87,10 @@ public sealed partial class MainWindow : Window
 	}
 
 	/// <summary>
-	/// Try to set the Mica backdrop. The method is used as an entry to set Mica backdrop,
+	/// Try to set the material backdrop. The method is used as an entry to set Mica or Acrylic backdrop,
 	/// which is called by the constructor of the current type.
 	/// </summary>
-	private void SetMicaBackdrop()
+	private void SetMaterialBackdrop()
 	{
 		if (_micaController is not null)
 		{
@@ -103,7 +103,7 @@ public sealed partial class MainWindow : Window
 
 		_configurationSource = null;
 
-		InnerTrySetMica();
+		InnerTrySetMaterial();
 	}
 
 	/// <summary>
@@ -130,12 +130,11 @@ public sealed partial class MainWindow : Window
 	}
 
 	/// <summary>
-	/// Try to apply Mica material to the current window.
+	/// Try to apply Mica or acrylic material to the current window.
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating whether the operation is succeeded.</returns>
 	[MemberNotNullWhen(true, nameof(_configurationSource), nameof(_micaController))]
-	private bool InnerTrySetMica()
-#if WINDOWS_OS_22H2_OR_GREATER
+	private bool InnerTrySetMaterial()
 	{
 		if (MicaController.IsSupported())
 		{
@@ -167,10 +166,6 @@ public sealed partial class MainWindow : Window
 		// Mica is not supported on this system.
 		return false;
 	}
-#else
-		// Mica is not supported on this system.
-		=> false;
-#endif
 
 
 	/// <summary>

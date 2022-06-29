@@ -16,7 +16,6 @@
 | `GRID_SERIALIZE_RAW_DATA`                                    | 表示序列化数独盘面信息是按照底层的原始掩码表进行序列化的方式。 |
 | `USE_EQUALITY_COMPARER`                                      | 表示是否使用 `EqualityComparer<T>` 类型来给对象进行比较运算操作。 |
 | `VISIT_SITE_DIRECTLY`                                        | 表示是否直接弹出浏览器显示指定的链接。如果不设置该符号的话，那么就只会输出网址信息到控制台。 |
-| `ESCAPE_NESTED_INLINE_CODE_BLOCK`                            | 目前渲染 Markdown 代码的控件由于自身的 bug 导致无法正确渲染嵌入图片代码 `[]()` 的 `[]` 部分里的内联代码块 ```` ``。 |
 
 完整的符号引用树状图如下：
 
@@ -27,7 +26,6 @@ graph LR
         Z -->|派生| P3(Sudoku.CommandLine)
         Z -->|派生| P4(Sudoku.Solving.Manual)
         Z -->|派生| P2(SystemExtensions)
-        Z -->|派生| P5(Sudoku.UI)
         style Z fill:#FFF
         click Z "https://github.com/SunnieShine/Sudoku" _blank
         click P1 "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core" _blank
@@ -45,12 +43,10 @@ graph LR
         P2 -->|文件| G(StringHandler.cs)
         P3 -->|文件| F(MainMethod.cs)
         P4 -->|文件| H(UniqueRectangleStepSearcher.cs)
-        P5 -->|文件| I(DocumentationPage.xaml.cs)
         style P1 fill:#FFF
         style P2 fill:#FFF
         style P3 fill:#FFF
         style P4 fill:#FFF
-        style P5 fill:#FFF
         style A fill:#0F8
         style B fill:#0F8
         style C fill:#0F8
@@ -59,7 +55,6 @@ graph LR
         style F fill:#0F8
         style G fill:#0F8
         style H fill:#0F8
-        style I fill:#0F8
         click A "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs" _blank
         click C "https://github.com/SunnieShine/Sudoku/blob/main/src/System/Collections/Generic/Bag.cs" _blank
         click D "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Solving/BitwiseSolver.cs" _blank
@@ -67,7 +62,6 @@ graph LR
         click F "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine/MainMethod.cs" _blank
         click G "https://github.com/SunnieShine/Sudoku/blob/main/src/System/Text/StringHandler.cs" _blank
         click H "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Solving/Solving/Manual/Searchers/DeadlyPatterns/Rectangles/UniqueRectangleStepSearcher.cs" _blank
-        click I "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.UI/Views/Pages/DocumentationPage.xaml"
 
         A -->|符号| S2(SOLUTION_DISPLAY_MODIFIABLES)
         A -->|嵌套类文件| B(Grid.JsonConverter.cs)
@@ -81,7 +75,6 @@ graph LR
         G -->|符号| S9(DISCARD_INTERPOLATION_INFO)
         G -->|符号| S10(USE_NEWER_CONSTANT_VALUES)
         H -->|符号| S11(IMPLEMENTED)
-        I -->|符号| S12(ESCAPE_NESTED_INLINE_CODE_BLOCK)
         style S2 fill:#EEE
         style S3 fill:#CCC
         style S4 fill:#EEE
@@ -92,7 +85,6 @@ graph LR
         style S9 fill:#EEE
         style S10 fill:#EEE
         style S11 fill:#CCC
-        style S12 fill:#EEE
         click B "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.JsonConverter.cs" _blank
     end
 ```
@@ -114,6 +106,7 @@ graph LR
 
 | 符号                             | 默认值 | 含义                                         |
 | -------------------------------- | ------ | -------------------------------------------- |
+| `DISABLE_XAML_GENERATED_MAIN`    | 有     | 表示是否禁用生成器自动生成主方法。           |
 | `AUTHOR_FEATURE_CELL_MARKS`      | 有     | 表示数独盘面是否支持用户往单元格上添加图形。 |
 | `AUTHOR_FEATURE_CANDIDATE_MARKS` | 有     | 表示数独盘面是否支持用户往候选数上添加图形。 |
 
@@ -121,14 +114,13 @@ graph LR
 
 这些符号是 .NET 库文件和官方库 API 提供和预带的条件编译符号，它们多用于区分项目所使用的库 API 的版本。它们多以“NET”开头。
 
-| 符号名                       | 使用范围               | 含义                                                      |
-| ---------------------------- | ---------------------- | --------------------------------------------------------- |
-| `NETSTANDARD2_1_OR_GREATER`  | 源代码生成器的生成代码 | 表示当前 .NET 框架是否为 .NET Standard 2.1 以及以上版本。 |
-| `NET5_0_OR_GREATER`          | 源代码生成器的生成代码 | 表示当前 .NET 框架是否为 .NET 5 以及以上版本。            |
-| `NET7_0_OR_GREATER`          | 源代码生成器的生成代码 | 表示当前 .NET 框架是否为 .NET 7 以及以上版本。            |
-| `NETCOREAPP3_0`              | 源代码生成器的生成代码 | 表示当前 .NET 框架是否为 .NET Core 3.0 版本。             |
-| `NETCOREAPP3_1`              | 源代码生成器的生成代码 | 表示当前 .NET 框架是否为 .NET Core 3.1 版本。             |
-| `WINDOWS_OS_22H2_OR_GREATER` | UI 项目                | 表示当前操作系统的版本在 22H2 以及以上。                  |
+| 符号名                      | 使用范围               | 含义                                                      |
+| --------------------------- | ---------------------- | --------------------------------------------------------- |
+| `NETSTANDARD2_1_OR_GREATER` | 源代码生成器的生成代码 | 表示当前 .NET 框架是否为 .NET Standard 2.1 以及以上版本。 |
+| `NET5_0_OR_GREATER`         | 源代码生成器的生成代码 | 表示当前 .NET 框架是否为 .NET 5 以及以上版本。            |
+| `NET7_0_OR_GREATER`         | 源代码生成器的生成代码 | 表示当前 .NET 框架是否为 .NET 7 以及以上版本。            |
+| `NETCOREAPP3_0`             | 源代码生成器的生成代码 | 表示当前 .NET 框架是否为 .NET Core 3.0 版本。             |
+| `NETCOREAPP3_1`             | 源代码生成器的生成代码 | 表示当前 .NET 框架是否为 .NET Core 3.1 版本。             |
 
 [^1]: “符号名”表示该条件编译符号在代码里使用的标识符名称。
 [^2]: 在代码实现里，`StringHandler` 为了减少内存分配以提升性能，这里故意提供了这个符号处理。如果配置了该符号，那么在初始化的时候，直接将计算得到的结果作为内存分配的大小；否则会按照“按 2 的次幂向上取整”的约定将计算得到的结果进行处理，然后将处理后的结果作为分配大小。
