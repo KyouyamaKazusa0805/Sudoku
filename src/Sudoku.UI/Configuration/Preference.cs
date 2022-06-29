@@ -392,7 +392,9 @@ public sealed class Preference : IDrawingPreference
 	/// <summary>
 	/// Covers the config file by the specified preference instance.
 	/// </summary>
-	/// <param name="preference">The preference instance.</param>
+	/// <param name="preference">
+	/// The preference instance. If the value is <see langword="null"/>, no operation will be handled.
+	/// </param>
 	public void CoverPreferenceBy(Preference? preference)
 	{
 		if (preference is null)

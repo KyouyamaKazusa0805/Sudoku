@@ -30,16 +30,12 @@ public sealed partial class MainWindow : Window
 
 	/// <summary>
 	/// Indicates the mica controller instance.
-	/// The value is not <see langword="null"/> when the method <see cref="InnerTrySetMaterial"/> returns <see langword="true"/>.
 	/// </summary>
-	/// <seealso cref="InnerTrySetMaterial"/>
 	private MicaController? _micaController;
 
 	/// <summary>
 	/// Indicates the system backdrop configuration instance.
-	/// The value is not <see langword="null"/> when the method <see cref="InnerTrySetMaterial"/> returns <see langword="true"/>.
 	/// </summary>
-	/// <seealso cref="InnerTrySetMaterial"/>
 	private SystemBackdropConfiguration? _configurationSource;
 
 
@@ -49,20 +45,11 @@ public sealed partial class MainWindow : Window
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public MainWindow()
 	{
-		// Initializes the controls.
 		InitializeComponent();
-
-		// To ensure the dispatcher queue be not null.
-		_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
-
-		// Try to set the window with Mica material.
-		SetMaterialBackdrop();
-
-		// Sets the title of the window.
-		// If we set the value to the XAML file, that file cannot be compiled successfully:
-		// WMC0615: Type 'StaticResource' used after '{' must be a Markup Extension. Error code 0x09c4.
-		// We must set the value here instead.
-		Title = R["ProgramName"];
+		EnsureDispatcherQueueExists();
+		SetMicaBackdropIfSupports();
+		SetProgramNameToTitle();
+		LoadGlobalPreferenceIfExistsAsync();
 	}
 
 
@@ -87,10 +74,22 @@ public sealed partial class MainWindow : Window
 	}
 
 	/// <summary>
-	/// Try to set the material backdrop. The method is used as an entry to set Mica or Acrylic backdrop,
+	/// To ensure the dispatcher queue exists.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void EnsureDispatcherQueueExists() => _wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
+
+	/// <summary>
+	/// Try to set the title.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void SetProgramNameToTitle() => Title = R["ProgramName"];
+
+	/// <summary>
+	/// Try to set the Mica backdrop. The method is used as an entry to set Mica backdrop,
 	/// which is called by the constructor of the current type.
 	/// </summary>
-	private void SetMaterialBackdrop()
+	private void SetMicaBackdropIfSupports()
 	{
 		if (_micaController is not null)
 		{
@@ -98,12 +97,34 @@ public sealed partial class MainWindow : Window
 			_micaController = null;
 		}
 
-		Activated -= Window_Activated;
-		Closed -= Window_Closed;
+		Activated -= UserDefined_Window_Activated;
+		Closed -= UserDefined_Window_Closed;
 
 		_configurationSource = null;
 
-		InnerTrySetMaterial();
+		if (MicaController.IsSupported())
+		{
+			// Hooking up the policy object.
+			_configurationSource = new();
+			Activated += UserDefined_Window_Activated;
+			Closed += UserDefined_Window_Closed;
+			((FrameworkElement)Content).ActualThemeChanged += UserDefined_Window_ThemeChanged;
+
+			// Initial configuration state.
+			_configurationSource.IsInputActive = true;
+			SetConfigurationSourceTheme();
+
+			_micaController = new();
+
+			// I tested the case that I run the program at the machine lower than 22H1,
+			// the method will always throw an exception whose the inner message is difficult to understand.
+			// The reason why the method throws an exception is that
+			// the window doesn't support the Mica backdrop in earlier versions.
+			_micaController.AddSystemBackdropTarget(this.As<ICompositionSupportsSystemBackdrop>());
+
+			// Enable the system backdrop.
+			_micaController.SetSystemBackdropConfiguration(_configurationSource);
+		}
 	}
 
 	/// <summary>
@@ -130,41 +151,23 @@ public sealed partial class MainWindow : Window
 	}
 
 	/// <summary>
-	/// Try to apply Mica or acrylic material to the current window.
+	/// Loads the local preference file if the file exists.
 	/// </summary>
-	/// <returns>A <see cref="bool"/> value indicating whether the operation is succeeded.</returns>
-	[MemberNotNullWhen(true, nameof(_configurationSource), nameof(_micaController))]
-	private bool InnerTrySetMaterial()
+	/// <returns>The task.</returns>
+	private async void LoadGlobalPreferenceIfExistsAsync()
 	{
-		if (MicaController.IsSupported())
-		{
-			// Hooking up the policy object.
-			_configurationSource = new();
-			Activated += Window_Activated;
-			Closed += Window_Closed;
-			((FrameworkElement)Content).ActualThemeChanged += Window_ThemeChanged;
+		var up = await PreferenceSavingLoading.LoadAsync();
+		((App)Application.Current).UserPreference.CoverPreferenceBy(up);
+	}
 
-			// Initial configuration state.
-			_configurationSource.IsInputActive = true;
-			SetConfigurationSourceTheme();
-
-			_micaController = new();
-
-			// I tested the case that I run the program at the machine lower than 22H1,
-			// the method will always throw an exception whose the inner message is difficult to understand.
-			// The reason why the method throws an exception is that
-			// the window doesn't support the Mica backdrop in earlier versions.
-			_micaController.AddSystemBackdropTarget(this.As<ICompositionSupportsSystemBackdrop>());
-
-			// Enable the system backdrop.
-			_micaController.SetSystemBackdropConfiguration(_configurationSource);
-
-			// Succeeded.
-			return true;
-		}
-
-		// Mica is not supported on this system.
-		return false;
+	/// <summary>
+	/// Saves the global preference file to the local path.
+	/// </summary>
+	/// <returns>The task.</returns>
+	private async Task SaveGlobalPreferenceFileAsync()
+	{
+		var up = ((App)Application.Current).UserPreference;
+		await PreferenceSavingLoading.SaveAsync(up);
 	}
 
 
@@ -177,13 +180,21 @@ public sealed partial class MainWindow : Window
 
 
 	/// <summary>
+	/// Triggers when the window is closed.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="args">The event arguments provided.</param>
+	private async void Window_ClosedAsync(object sender, WindowEventArgs args)
+		=> await SaveGlobalPreferenceFileAsync();
+
+	/// <summary>
 	/// Triggers when the window is activated.
 	/// This method requires the field <see cref="_configurationSource"/> being not <see langword="null"/>.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="args">The event arguments provided.</param>
 	/// <seealso cref="_configurationSource"/>
-	private void Window_Activated(object sender, MsWindowActivatedEventArgs args)
+	private void UserDefined_Window_Activated(object sender, MsWindowActivatedEventArgs args)
 	{
 		Debug.Assert(_configurationSource is not null);
 
@@ -198,7 +209,7 @@ public sealed partial class MainWindow : Window
 	/// <remarks>
 	/// Make sure the Mica controller is disposed so it doesn't try to use this closed window.
 	/// </remarks>
-	private void Window_Closed(object sender, WindowEventArgs args)
+	private void UserDefined_Window_Closed(object sender, WindowEventArgs args)
 	{
 		if (_micaController is not null)
 		{
@@ -206,7 +217,7 @@ public sealed partial class MainWindow : Window
 			_micaController = null;
 		}
 
-		Activated -= Window_Activated;
+		Activated -= UserDefined_Window_Activated;
 		_configurationSource = null;
 	}
 
@@ -215,7 +226,7 @@ public sealed partial class MainWindow : Window
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="args">The event arguments provided.</param>
-	private void Window_ThemeChanged(FrameworkElement sender, object args)
+	private void UserDefined_Window_ThemeChanged(FrameworkElement sender, object args)
 	{
 		if (_configurationSource is not null)
 		{

@@ -504,7 +504,9 @@
             <summary>
             Covers the config file by the specified preference instance.
             </summary>
-            <param name="preference">The preference instance.</param>
+            <param name="preference">
+            The preference instance. If the value is <see langword="null"/>, no operation will be handled.
+            </param>
         </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
@@ -823,6 +825,39 @@
             <summary>
             To ensure <see cref="T:Windows.System.DispatcherQueue"/> instance contains the controller.
             </summary>
+        </member>
+        <member name="T:Sudoku.UI.LocalStorages.PreferenceSavingLoading">
+            <summary>
+            Provides a way to save or load preference files.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.LocalStorages.PreferenceSavingLoading.GlobalConfigFileName">
+            <summary>
+            Indicates the config file name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.LocalStorages.PreferenceSavingLoading.StoragePath">
+            <summary>
+            Indicates the configuration file local storage path.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.LocalStorages.PreferenceSavingLoading.SaveAsync(Sudoku.UI.Configuration.Preference,System.Threading.CancellationToken)">
+            <summary>
+            Save the preference to the local path.
+            </summary>
+            <param name="up">The user preference instance.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>The task that holds the current operation.</returns>
+        </member>
+        <member name="M:Sudoku.UI.LocalStorages.PreferenceSavingLoading.LoadAsync(System.Threading.CancellationToken)">
+            <summary>
+            Load the preference from the local path.
+            </summary>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>
+            A task that holds the current operation with a returning value of type <see cref="T:Sudoku.UI.Configuration.Preference"/>
+            indicating the result value after the operation handled, or <see langword="null"/> if failed to fetch.
+            </returns>
         </member>
         <member name="T:Sudoku.UI.Metadata.DataTemplateModelTypeAttribute`1">
             <summary>
@@ -2640,16 +2675,12 @@
         <member name="F:Sudoku.UI.Views.Windows.MainWindow._micaController">
             <summary>
             Indicates the mica controller instance.
-            The value is not <see langword="null"/> when the method <see cref="M:Sudoku.UI.Views.Windows.MainWindow.InnerTrySetMaterial"/> returns <see langword="true"/>.
             </summary>
-            <seealso cref="M:Sudoku.UI.Views.Windows.MainWindow.InnerTrySetMaterial"/>
         </member>
         <member name="F:Sudoku.UI.Views.Windows.MainWindow._configurationSource">
             <summary>
             Indicates the system backdrop configuration instance.
-            The value is not <see langword="null"/> when the method <see cref="M:Sudoku.UI.Views.Windows.MainWindow.InnerTrySetMaterial"/> returns <see langword="true"/>.
             </summary>
-            <seealso cref="M:Sudoku.UI.Views.Windows.MainWindow.InnerTrySetMaterial"/>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.#ctor">
             <summary>
@@ -2663,9 +2694,19 @@
             <param name="tag">The specified tag of the navigate page item.</param>
             <param name="transitionInfo">The transition information.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SetMaterialBackdrop">
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.EnsureDispatcherQueueExists">
             <summary>
-            Try to set the material backdrop. The method is used as an entry to set Mica or Acrylic backdrop,
+            To ensure the dispatcher queue exists.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SetProgramNameToTitle">
+            <summary>
+            Try to set the title.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SetMicaBackdropIfSupports">
+            <summary>
+            Try to set the Mica backdrop. The method is used as an entry to set Mica backdrop,
             which is called by the constructor of the current type.
             </summary>
         </member>
@@ -2676,11 +2717,17 @@
             </summary>
             <seealso cref="F:Sudoku.UI.Views.Windows.MainWindow._configurationSource"/>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.InnerTrySetMaterial">
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.LoadGlobalPreferenceIfExistsAsync">
             <summary>
-            Try to apply Mica or acrylic material to the current window.
+            Loads the local preference file if the file exists.
             </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating whether the operation is succeeded.</returns>
+            <returns>The task.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SaveGlobalPreferenceFileAsync">
+            <summary>
+            Saves the global preference file to the local path.
+            </summary>
+            <returns>The task.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.ClearAutoSuggestBoxValue(Microsoft.UI.Xaml.Controls.AutoSuggestBox)">
             <summary>
@@ -2688,7 +2735,14 @@
             </summary>
             <param name="autoSuggestBox">The <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_Activated(System.Object,Microsoft.UI.Xaml.WindowActivatedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_ClosedAsync(System.Object,Microsoft.UI.Xaml.WindowEventArgs)">
+            <summary>
+            Triggers when the window is closed.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="args">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.UserDefined_Window_Activated(System.Object,Microsoft.UI.Xaml.WindowActivatedEventArgs)">
             <summary>
             Triggers when the window is activated.
             This method requires the field <see cref="F:Sudoku.UI.Views.Windows.MainWindow._configurationSource"/> being not <see langword="null"/>.
@@ -2697,7 +2751,7 @@
             <param name="args">The event arguments provided.</param>
             <seealso cref="F:Sudoku.UI.Views.Windows.MainWindow._configurationSource"/>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_Closed(System.Object,Microsoft.UI.Xaml.WindowEventArgs)">
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.UserDefined_Window_Closed(System.Object,Microsoft.UI.Xaml.WindowEventArgs)">
             <summary>
             Triggers when the window is closed.
             </summary>
@@ -2707,7 +2761,7 @@
             Make sure the Mica controller is disposed so it doesn't try to use this closed window.
             </remarks>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_ThemeChanged(Microsoft.UI.Xaml.FrameworkElement,System.Object)">
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.UserDefined_Window_ThemeChanged(Microsoft.UI.Xaml.FrameworkElement,System.Object)">
             <summary>
             Triggers when the theme of the window is changed.
             </summary>
