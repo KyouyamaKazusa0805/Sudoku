@@ -21,7 +21,7 @@ public sealed partial class MainWindow : Window
 	/// <summary>
 	/// Indicates the helper type instance that is used for ensuring the dispatcher queue is not null.
 	/// </summary>
-	private readonly WindowsSystemDispatcherQueueHelper _wsdqHelper = new();
+	private readonly WinsysDispatcherQueueHelper _wsdqHelper = new();
 
 	/// <summary>
 	/// Indicates the gathered keywords.
