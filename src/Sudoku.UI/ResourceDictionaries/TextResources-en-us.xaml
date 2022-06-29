@@ -144,9 +144,11 @@
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption1Content">Display focused cell</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption2Content">Display peer cells</x:String>
 	<x:String x:Key="SettingsPage_SavePreferenceDescription">All options are saved instantly, but some options will be enabled after being restarted the program.</x:String>
-	<x:String x:Key="SettingsPage_BackupPreference">Backup preferences</x:String>
+	<x:String x:Key="SettingsPage_BackupPreference">Backup to local</x:String>
+	<x:String x:Key="SettingsPage_LoadLocalBackupPreference">Load from local</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">File "</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed2">" is failed to backup.</x:String>
+	<x:String x:Key="SettingsPage_BackupPreferenceFailed_ParseFailed">File is failed to parse.</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>

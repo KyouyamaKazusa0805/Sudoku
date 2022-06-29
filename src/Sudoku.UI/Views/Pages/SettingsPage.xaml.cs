@@ -200,6 +200,7 @@ public sealed partial class SettingsPage : Page
 	/// </summary>
 	public SettingsPage() => InitializeComponent();
 
+
 	/// <summary>
 	/// To backup a preference file.
 	/// </summary>
@@ -246,11 +247,69 @@ public sealed partial class SettingsPage : Page
 		await SimpleControlFactory.CreateErrorDialog(this, R["Info"]!, $"{a}{fileName}{b}").ShowAsync();
 	}
 
+	/// <summary>
+	/// To load a preference file from local.
+	/// </summary>
+	/// <returns>The task that handles the current operation.</returns>
+	private async Task LocalBackupPreferenceFromLocalAsync()
+	{
+		var fop = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary };
+		fop.FileTypeFilter.Add(CommonFileExtensions.PreferenceBackup);
+		fop.AwareHandleOnWin32();
+
+		var file = await fop.PickSingleFileAsync();
+		if (file is not { Path: var filePath })
+		{
+			return;
+		}
+
+		if (new FileInfo(filePath).Length == 0)
+		{
+			SimpleControlFactory.CreateErrorDialog(this, string.Empty, R["SudokuPage_InfoBar_FileIsEmpty"]!);
+
+			return;
+		}
+
+		// Checks the validity of the file, and reads the whole content.
+		string content = await FileIO.ReadTextAsync(file);
+		if (string.IsNullOrWhiteSpace(content))
+		{
+			SimpleControlFactory.CreateErrorDialog(this, string.Empty, R["SudokuPage_InfoBar_FileIsEmpty"]!);
+
+			return;
+		}
+
+		try
+		{
+			var tempPref = JsonSerializer.Deserialize<Preference>(
+				content,
+				CommonReadOnlyFactory.DefaultSerializerOption
+			);
+
+			((App)Application.Current).UserPreference.CoverPreferenceBy(tempPref);
+		}
+		catch (Exception ex) when (ex is JsonException or NotSupportedException)
+		{
+			SimpleControlFactory.CreateErrorDialog(this, string.Empty, R["SettingsPage_BackupPreferenceFailed_ParseFailed"]!);
+
+			return;
+		}
+	}
+
 
 	/// <summary>
 	/// Triggers when the "backup preference" button is clicked.
 	/// </summary>
 	/// <param name="sender">The object triggering the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private async void BackupPreference_ClickAsync(object sender, RoutedEventArgs e) => await BackupPreferenceFileAsync();
+	private async void BackupPreference_ClickAsync(object sender, RoutedEventArgs e)
+		=> await BackupPreferenceFileAsync();
+
+	/// <summary>
+	/// Triggers when the "load backup preference from local" button is clicked.
+	/// </summary>
+	/// <param name="sender">The object triggering the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private async void LoadBackupPreferenceFromLocal_ClickAsync(object sender, RoutedEventArgs e)
+		=> await LocalBackupPreferenceFromLocalAsync();
 }

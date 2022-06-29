@@ -142,8 +142,10 @@
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption2Content">显示聚焦单元格及相关单元格</x:String>
 	<x:String x:Key="SettingsPage_SavePreferenceDescription">所有设置都是即时保存，不过有些设置项可能需要重启程序才会生效。</x:String>
 	<x:String x:Key="SettingsPage_BackupPreference">备份配置项</x:String>
+	<x:String x:Key="SettingsPage_LoadLocalBackupPreference">读取配置项</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">文件“</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed2">”备份失败。</x:String>
+	<x:String x:Key="SettingsPage_BackupPreferenceFailed_ParseFailed">文件解析失败。</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>

@@ -387,4 +387,19 @@ public sealed class Preference : IDrawingPreference
 		Color.FromArgb(255, 206, 251, 237), // FFCEFBED
 		Color.FromArgb(255, 215, 255, 215) // FFD7FFD7
 	};
+
+
+	/// <summary>
+	/// Covers the config file by the specified preference instance.
+	/// </summary>
+	/// <param name="preference">The preference instance.</param>
+	public void CoverPreferenceBy(Preference? preference)
+	{
+		if (preference is null)
+		{
+			return;
+		}
+
+		((IDrawingPreference)this).CoverPreferenceBy(preference);
+	}
 }

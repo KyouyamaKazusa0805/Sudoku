@@ -292,4 +292,23 @@ public interface IDrawingPreference
 	/// <seealso cref="PaletteColors"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public sealed Color GetPaletteColor(int paletteColorIndex) => PaletteColors[paletteColorIndex];
+
+	/// <summary>
+	/// Covers the config file by the specified preference instance.
+	/// </summary>
+	/// <typeparam name="TPreference">The type of the drawing preference.</typeparam>
+	/// <param name="preference">The preference instance.</param>
+	protected internal sealed void CoverPreferenceBy<TPreference>(TPreference preference)
+		where TPreference : IDrawingPreference
+	{
+		foreach (var propertyInfo in GetType().GetProperties())
+		{
+			if (propertyInfo is not { CanRead: true, CanWrite: true })
+			{
+				continue;
+			}
+
+			propertyInfo.SetValue(this, propertyInfo.GetValue(preference));
+		}
+	}
 }

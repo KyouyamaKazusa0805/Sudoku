@@ -500,6 +500,12 @@
             <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
             </remarks>
         </member>
+        <member name="M:Sudoku.UI.Configuration.Preference.CoverPreferenceBy(Sudoku.UI.Configuration.Preference)">
+            <summary>
+            Covers the config file by the specified preference instance.
+            </summary>
+            <param name="preference">The preference instance.</param>
+        </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
             Defines a data template selector that selects the <see cref="T:Microsoft.UI.Xaml.DataTemplate"/> between
@@ -2162,9 +2168,22 @@
             </summary>
             <returns>The task that handles the current operation.</returns>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.LocalBackupPreferenceFromLocalAsync">
+            <summary>
+            To load a preference file from local.
+            </summary>
+            <returns>The task that handles the current operation.</returns>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.BackupPreference_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the "backup preference" button is clicked.
+            </summary>
+            <param name="sender">The object triggering the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.LoadBackupPreferenceFromLocal_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the "load backup preference from local" button is clicked.
             </summary>
             <param name="sender">The object triggering the event.</param>
             <param name="e">The event arguments provided.</param>
