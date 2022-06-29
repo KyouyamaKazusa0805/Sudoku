@@ -48,6 +48,14 @@ public sealed class Preference : IDrawingPreference
 	public bool CoverOldShapeWhenDiffused { get; set; } = false;
 #endif
 
+	/// <summary>
+	/// Indicates whether the picture will also be saved when a drawing data file is saved to local.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
+	public bool AlsoSavePictureWhenSaveDrawingData { get; set; } = true;
+
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>0</c>.

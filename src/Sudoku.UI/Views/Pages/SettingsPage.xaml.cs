@@ -72,6 +72,11 @@ public sealed partial class SettingsPage : Page
 				{
 					Name = R["SettingsPage_ItemName_CoverOldShapeWhenDiffused"]!,
 					PreferenceValueName = nameof(Preference.CoverOldShapeWhenDiffused)
+				},
+				new ToggleSwitchSettingItem
+				{
+					Name = R["SettingsPage_ItemName_AlsoSavePictureWhenSaveDrawingData"]!,
+					PreferenceValueName = nameof(Preference.AlsoSavePictureWhenSaveDrawingData)
 				}
 			}
 		},

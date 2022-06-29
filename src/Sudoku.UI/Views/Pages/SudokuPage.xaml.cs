@@ -443,44 +443,47 @@ public sealed partial class SudokuPage : Page
 				var drawingDataStatus = await CachedFileManager.CompleteUpdatesAsync(file);
 				reportUserOutputResult(drawingDataStatus, fileName);
 
-				string? picturePath = SystemIOPath.ChangeExtension(filePath, CommonFileExtensions.PortablePicture);
-				if (picturePath is null)
+				if (((App)Application.Current).UserPreference.AlsoSavePictureWhenSaveDrawingData)
 				{
-					// The path is null.
-					break;
+					string? picturePath = SystemIOPath.ChangeExtension(filePath, CommonFileExtensions.PortablePicture);
+					if (picturePath is null)
+					{
+						// The path is null.
+						break;
+					}
+
+					if (SystemIOFile.Exists(picturePath))
+					{
+						// The file has already existed. We should break the method
+						// to avoid the file being overwritten.
+						break;
+					}
+
+					// Gets the file, but fast close the file.
+					var tempStream = SystemIOFile.Create(picturePath);
+					tempStream.Close();
+
+					// Creates the storage file instance.
+					var pictureFile = await StorageFile.GetFileFromPathAsync(picturePath);
+
+					// Prevent updates to the remote version of the file until we finish making changes
+					// and call CompleteUpdatesAsync.
+					CachedFileManager.DeferUpdates(pictureFile);
+
+					// Writes to the file.
+					// Render to an image at the current system scale and retrieve pixel contents.
+					var rtb = new RenderTargetBitmap();
+					await rtb.RenderAsync(_cPane);
+
+					// Outputs the file.
+					await outputPictureFileAsync(pictureFile, rtb);
+
+					// Let Windows know that we're finished changing the file so the other app can update
+					// the remote version of the file.
+					// Completing updates may require Windows to ask for user input.
+					var pictureStatus = await CachedFileManager.CompleteUpdatesAsync(pictureFile);
+					reportUserOutputResult(pictureStatus, SystemIOPath.GetFileName(picturePath)!);
 				}
-
-				if (SystemIOFile.Exists(picturePath))
-				{
-					// The file has already existed. We should break the method
-					// to avoid the file being overwritten.
-					break;
-				}
-
-				// Gets the file, but fast close the file.
-				var tempStream = SystemIOFile.Create(picturePath);
-				tempStream.Close();
-
-				// Creates the storage file instance.
-				var pictureFile = await StorageFile.GetFileFromPathAsync(picturePath);
-
-				// Prevent updates to the remote version of the file until we finish making changes
-				// and call CompleteUpdatesAsync.
-				CachedFileManager.DeferUpdates(pictureFile);
-
-				// Writes to the file.
-				// Render to an image at the current system scale and retrieve pixel contents.
-				var rtb = new RenderTargetBitmap();
-				await rtb.RenderAsync(_cPane);
-
-				// Outputs the file.
-				await outputPictureFileAsync(pictureFile, rtb);
-
-				// Let Windows know that we're finished changing the file so the other app can update
-				// the remote version of the file.
-				// Completing updates may require Windows to ask for user input.
-				var pictureStatus = await CachedFileManager.CompleteUpdatesAsync(pictureFile);
-				reportUserOutputResult(pictureStatus, SystemIOPath.GetFileName(picturePath)!);
 
 				break;
 			}
