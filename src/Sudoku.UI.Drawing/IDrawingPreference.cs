@@ -298,17 +298,14 @@ public interface IDrawingPreference
 	/// </summary>
 	/// <typeparam name="TPreference">The type of the drawing preference.</typeparam>
 	/// <param name="preference">The preference instance.</param>
-	protected internal sealed void CoverPreferenceBy<TPreference>(TPreference preference)
-		where TPreference : IDrawingPreference
+	protected internal sealed void CoverPreferenceBy<TPreference>(TPreference preference) where TPreference : IDrawingPreference
 	{
 		foreach (var propertyInfo in GetType().GetProperties())
 		{
-			if (propertyInfo is not { CanRead: true, CanWrite: true })
+			if (propertyInfo is { CanRead: true, CanWrite: true })
 			{
-				continue;
+				propertyInfo.SetValue(this, propertyInfo.GetValue(preference));
 			}
-
-			propertyInfo.SetValue(this, propertyInfo.GetValue(preference));
 		}
 	}
 }
