@@ -53,8 +53,8 @@ public partial class App : Application
 				} => fileType switch
 				{
 					CommonFileExtensions.Sudoku => async i => i.FirstGrid = Grid.Parse(await readAsync(file)),
-					CommonFileExtensions.PreferenceBackup => static i => i.FirstPageTypeName = nameof(SettingsPage),
-#if AUTHOR_FEATURE_CELL_MARKS
+					CommonFileExtensions.PreferenceBackup => async i => await backPreferenceFiles(i, file),
+#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
 					CommonFileExtensions.DrawingData => async i => i.DrawingDataRawValue = await readAsync(file),
 #endif
 					_ => default(Action<WindowInitialInfo>?)
@@ -66,6 +66,18 @@ public partial class App : Application
 		// Activate the main window.
 		(InitialInfo.MainWindow = new MainWindow()).Activate();
 
+
+		static async Task backPreferenceFiles(WindowInitialInfo i, IStorageFile file)
+		{
+#if false
+			i.FirstPageTypeName = nameof(SettingsPage);
+#endif
+
+			string content = await readAsync(file);
+			var options = CommonReadOnlyFactory.DefaultSerializerOption;
+			var up = JsonSerializer.Deserialize<Preference>(content, options);
+			i.UserPreference.CoverPreferenceBy(up);
+		}
 
 		static async Task<string> readAsync(IStorageFile file) => await FileIO.ReadTextAsync(file);
 	}
