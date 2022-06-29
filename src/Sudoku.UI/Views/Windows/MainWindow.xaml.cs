@@ -135,13 +135,9 @@ public sealed partial class MainWindow : Window
 	/// <returns>A <see cref="bool"/> value indicating whether the operation is succeeded.</returns>
 	[MemberNotNullWhen(true, nameof(_configurationSource), nameof(_micaController))]
 	private bool InnerTrySetMica()
-	{
 #if WINDOWS_OS_22H2_OR_GREATER
-		// This compilation symbol is used to limit the version of the windows you running the program at.
+	{
 		if (MicaController.IsSupported())
-#else
-		if (false)
-#endif
 		{
 			// Hooking up the policy object.
 			_configurationSource = new();
@@ -155,21 +151,26 @@ public sealed partial class MainWindow : Window
 
 			_micaController = new();
 
-			
 			// I tested the case that I run the program at the machine lower than 22H1,
-			// the method will always throw an exception
-			// whose the inner message is difficult to understand.
-			// I don't know why the method throws an exception. I guess the window doesn't support the Mica backdrop.
+			// the method will always throw an exception whose the inner message is difficult to understand.
+			// The reason why the method throws an exception is that
+			// the window doesn't support the Mica backdrop in earlier versions.
 			_micaController.AddSystemBackdropTarget(this.As<ICompositionSupportsSystemBackdrop>());
 
 			// Enable the system backdrop.
 			_micaController.SetSystemBackdropConfiguration(_configurationSource);
 
-			return true; // Succeeded.
+			// Succeeded.
+			return true;
 		}
 
-		return false; // Mica is not supported on this system.
+		// Mica is not supported on this system.
+		return false;
 	}
+#else
+		// Mica is not supported on this system.
+		=> false;
+#endif
 
 
 	/// <summary>
@@ -182,9 +183,11 @@ public sealed partial class MainWindow : Window
 
 	/// <summary>
 	/// Triggers when the window is activated.
+	/// This method requires the field <see cref="_configurationSource"/> being not <see langword="null"/>.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="args">The event arguments provided.</param>
+	/// <seealso cref="_configurationSource"/>
 	private void Window_Activated(object sender, MsWindowActivatedEventArgs args)
 	{
 		Debug.Assert(_configurationSource is not null);

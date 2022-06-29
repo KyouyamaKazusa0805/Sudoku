@@ -2494,9 +2494,11 @@
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_Activated(System.Object,Microsoft.UI.Xaml.WindowActivatedEventArgs)">
             <summary>
             Triggers when the window is activated.
+            This method requires the field <see cref="F:Sudoku.UI.Views.Windows.MainWindow._configurationSource"/> being not <see langword="null"/>.
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="args">The event arguments provided.</param>
+            <seealso cref="F:Sudoku.UI.Views.Windows.MainWindow._configurationSource"/>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.Window_Closed(System.Object,Microsoft.UI.Xaml.WindowEventArgs)">
             <summary>
