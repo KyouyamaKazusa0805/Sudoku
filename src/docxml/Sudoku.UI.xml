@@ -2108,6 +2108,11 @@
             Indicates the application window.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Controls.TitleBar._baseWindow">
+            <summary>
+            Indicates the base window.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.TitleBar.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.TitleBar"/> instance.

@@ -10,6 +10,11 @@ public sealed partial class TitleBar : UserControl
 	/// </summary>
 	private AppWindow _appWindow = null!;
 
+	/// <summary>
+	/// Indicates the base window.
+	/// </summary>
+	private MainWindow _baseWindow = null!;
+
 
 	/// <summary>
 	/// Initializes a <see cref="TitleBar"/> instance.
@@ -43,7 +48,7 @@ public sealed partial class TitleBar : UserControl
 	/// </exception>
 	private double GetScaleAdjustment()
 	{
-		nint hWnd = WindowNative.GetWindowHandle(((App)Application.Current).InitialInfo.MainWindow);
+		nint hWnd = WindowNative.GetWindowHandle(_baseWindow);
 		var wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
 		var displayArea = DisplayArea.GetFromWindowId(wndId, DisplayAreaFallback.Primary);
 		nint hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
@@ -71,7 +76,8 @@ public sealed partial class TitleBar : UserControl
 	/// <param name="e">The event arguments provided.</param>
 	private void UserControl_Loaded(object sender, RoutedEventArgs e)
 	{
-		_appWindow = ((App)Application.Current).InitialInfo.MainWindow.GetAppWindow();
+		_baseWindow = ((App)Application.Current).InitialInfo.MainWindow;
+		_appWindow = _baseWindow.GetAppWindow();
 
 		// Check to see if customization is supported.
 		// Currently only supported on Windows 11.
@@ -89,6 +95,8 @@ public sealed partial class TitleBar : UserControl
 			titleBar.ButtonPressedForegroundColor = Colors.Black;
 			titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 			titleBar.ButtonInactiveForegroundColor = Colors.Gray;
+
+			SetDragRegionForCustomTitleBar(_appWindow);
 
 			Loaded += TitleBar_Loaded;
 			SizeChanged += TitleBar_SizeChanged;
