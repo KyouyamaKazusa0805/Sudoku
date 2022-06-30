@@ -48,7 +48,6 @@ public sealed partial class MainWindow : Window
 		InitializeComponent();
 		EnsureDispatcherQueueExists();
 		SetMicaBackdropIfSupports();
-		SetEventsForTitleBar();
 		SetProgramNameToTitle();
 		LoadGlobalPreferenceIfExistsAsync();
 	}
@@ -72,18 +71,6 @@ public sealed partial class MainWindow : Window
 		}
 
 		_cViewRouter.AlwaysShowHeader = displayTitle;
-	}
-
-	/// <summary>
-	/// Set events for the title bar.
-	/// </summary>
-	private void SetEventsForTitleBar()
-	{
-		if (AppWindowTitleBar.IsCustomizationSupported())
-		{
-			_cTitleBar.Loaded += TitleBar_Loaded;
-			_cTitleBar.SizeChanged += TitleBar_SizeChanged;
-		}
 	}
 
 	/// <summary>
@@ -178,51 +165,6 @@ public sealed partial class MainWindow : Window
 	}
 
 	/// <summary>
-	/// Set drag region for the custom title bar.
-	/// </summary>
-	/// <param name="appWindow">The app window.</param>
-	private void SetDragRegionForCustomTitleBar(AppWindow appWindow)
-	{
-		if (appWindow.TitleBar.ExtendsContentIntoTitleBar)
-		{
-			double scaleAdjustment = GetScaleAdjustment();
-			int width = (int)(_cTitleBar.ActualWidth * scaleAdjustment);
-			int height = (int)(_cTitleBar.ActualHeight * scaleAdjustment);
-			var rect = new RectInt32(0, 0, width, height);
-			appWindow.TitleBar.SetDragRectangles(new[] { rect });
-		}
-	}
-
-	/// <summary>
-	/// Gets the scale adjustment.
-	/// </summary>
-	/// <returns></returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the external API cannot fetch the valid result.
-	/// </exception>
-	private double GetScaleAdjustment()
-	{
-		nint hWnd = WindowNative.GetWindowHandle(this);
-		var wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
-		var displayArea = DisplayArea.GetFromWindowId(wndId, DisplayAreaFallback.Primary);
-		nint hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
-
-		// Get DPI.
-		int result = getDpiForMonitor(hMonitor, Monitor_DPI_Type.MDT_Default, out uint dpiX, out _);
-		if (result != 0)
-		{
-			throw new InvalidOperationException("Could not get DPI for monitor.");
-		}
-
-		uint scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);
-		return scaleFactorPercent / 100.0;
-
-
-		[DllImport("Shcore", EntryPoint = "GetDpiForMonitor", SetLastError = true)]
-		static extern int getDpiForMonitor(nint hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
-	}
-
-	/// <summary>
 	/// Saves the global preference file to the local path.
 	/// </summary>
 	/// <returns>The task.</returns>
@@ -251,41 +193,7 @@ public sealed partial class MainWindow : Window
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="args">The event arguments provided.</param>
 	private async void Window_ClosedAsync(object sender, WindowEventArgs args)
-	{
-		if (AppWindowTitleBar.IsCustomizationSupported())
-		{
-			_cTitleBar.Loaded -= TitleBar_Loaded;
-			_cTitleBar.SizeChanged -= TitleBar_SizeChanged;
-		}
-
-		await SaveGlobalPreferenceFileAsync();
-	}
-
-	/// <summary>
-	/// Triggers when the title bar's size is changed.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void TitleBar_SizeChanged(object sender, SizeChangedEventArgs e)
-	{
-		var appWindow = this.GetAppWindow();
-		if (appWindow.TitleBar.ExtendsContentIntoTitleBar)
-		{
-			// Update drag region if the size of the title bar changes.
-			SetDragRegionForCustomTitleBar(appWindow);
-		}
-	}
-
-	/// <summary>
-	/// Triggers when the title bar is loaded.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void TitleBar_Loaded(object sender, RoutedEventArgs e)
-	{
-		var appWindow = this.GetAppWindow();
-		SetDragRegionForCustomTitleBar(appWindow);
-	}
+		=> await SaveGlobalPreferenceFileAsync();
 
 	/// <summary>
 	/// Triggers when the window is activated.

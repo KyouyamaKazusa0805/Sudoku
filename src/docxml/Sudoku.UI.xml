@@ -2113,11 +2113,47 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.TitleBar"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.TitleBar.SetDragRegionForCustomTitleBar(Microsoft.UI.Windowing.AppWindow)">
+            <summary>
+            Set drag region for the custom title bar.
+            </summary>
+            <param name="appWindow">The app window.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TitleBar.GetScaleAdjustment">
+            <summary>
+            Gets the scale adjustment.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the external API cannot fetch the valid result.
+            </exception>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.TitleBar.UserControl_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the control is loaded.
             </summary>
             <param name="sender">The instance which triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TitleBar.UserControl_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the control is unloaded.
+            </summary>
+            <param name="sender">The instance which triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TitleBar.TitleBar_SizeChanged(System.Object,Microsoft.UI.Xaml.SizeChangedEventArgs)">
+            <summary>
+            Triggers when the title bar's size is changed.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TitleBar.TitleBar_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the title bar is loaded.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.TitleBar.InitializeComponent">
@@ -2699,11 +2735,6 @@
             <param name="tag">The specified tag of the navigate page item.</param>
             <param name="transitionInfo">The transition information.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SetEventsForTitleBar">
-            <summary>
-            Set events for the title bar.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.EnsureDispatcherQueueExists">
             <summary>
             To ensure the dispatcher queue exists.
@@ -2733,21 +2764,6 @@
             </summary>
             <returns>The task.</returns>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.SetDragRegionForCustomTitleBar(Microsoft.UI.Windowing.AppWindow)">
-            <summary>
-            Set drag region for the custom title bar.
-            </summary>
-            <param name="appWindow">The app window.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetScaleAdjustment">
-            <summary>
-            Gets the scale adjustment.
-            </summary>
-            <returns></returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the external API cannot fetch the valid result.
-            </exception>
-        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.SaveGlobalPreferenceFileAsync">
             <summary>
             Saves the global preference file to the local path.
@@ -2766,20 +2782,6 @@
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="args">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.TitleBar_SizeChanged(System.Object,Microsoft.UI.Xaml.SizeChangedEventArgs)">
-            <summary>
-            Triggers when the title bar's size is changed.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.TitleBar_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the title bar is loaded.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.UserDefined_Window_Activated(System.Object,Microsoft.UI.Xaml.WindowActivatedEventArgs)">
             <summary>
