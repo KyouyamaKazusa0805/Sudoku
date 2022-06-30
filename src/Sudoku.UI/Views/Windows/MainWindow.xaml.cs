@@ -161,8 +161,6 @@ public sealed partial class MainWindow : Window
 		{
 			var up = await PreferenceSavingLoading.LoadAsync();
 			((App)Application.Current).UserPreference.CoverPreferenceBy(up);
-
-			initialInfo.FromPreferenceFile = false;
 		}
 	}
 
@@ -172,8 +170,12 @@ public sealed partial class MainWindow : Window
 	/// <returns>The task.</returns>
 	private async Task SaveGlobalPreferenceFileAsync()
 	{
-		var up = ((App)Application.Current).UserPreference;
-		await PreferenceSavingLoading.SaveAsync(up);
+		var initialInfo = ((App)Application.Current).InitialInfo;
+		if (!initialInfo.FromPreferenceFile)
+		{
+			var up = ((App)Application.Current).UserPreference;
+			await PreferenceSavingLoading.SaveAsync(up);
+		}
 	}
 
 
