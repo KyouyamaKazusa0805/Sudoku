@@ -64,7 +64,7 @@ public partial class App : Application
 		)?.Invoke(InitialInfo);
 
 		// Activate the main window.
-		(InitialInfo.MainWindow = new MainWindow()).Activate();
+		(InitialInfo.MainWindow = new()).Activate();
 
 
 		static async Task backPreferenceFiles(WindowInitialInfo i, IStorageFile file)
