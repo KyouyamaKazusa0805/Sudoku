@@ -318,9 +318,9 @@ public sealed partial class SudokuPage : Page
 	/// </returns>
 	private async Task OpenFileAsync()
 	{
-		var fop = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary };
-		fop.FileTypeFilter.Add(CommonFileExtensions.Text);
-		fop.FileTypeFilter.Add(CommonFileExtensions.Sudoku);
+		var fop = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary }
+			.AddFileTypeFilter(CommonFileExtensions.Text)
+			.AddFileTypeFilter(CommonFileExtensions.Sudoku);
 		fop.AwareHandleOnWin32();
 
 		var file = await fop.PickSingleFileAsync();

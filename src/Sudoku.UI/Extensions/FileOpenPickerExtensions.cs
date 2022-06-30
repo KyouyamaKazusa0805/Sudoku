@@ -24,4 +24,12 @@ internal static class FileOpenPickerExtensions
 		[DllImport("user32", EntryPoint = "GetActiveWindow", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true)]
 		static extern nint getActiveWindow();
 	}
+
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static FileOpenPicker AddFileTypeFilter(this FileOpenPicker @this, string item)
+	{
+		@this.FileTypeFilter.Add(item);
+		return @this;
+	}
 }
