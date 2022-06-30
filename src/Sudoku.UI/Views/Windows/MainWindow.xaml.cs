@@ -248,18 +248,7 @@ public sealed partial class MainWindow : Window
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
 	private void ViewRouter_Loaded(object sender, RoutedEventArgs e)
-		=> OnNavigate(
-			((App)Application.Current).InitialInfo switch
-			{
-				{ FirstGrid: not null } => nameof(SudokuPage),
-#if AUTHOR_FEATURE_CELL_MARKS
-				{ DrawingDataRawValue: not null } => nameof(SudokuPage),
-#endif
-				{ FirstPageTypeName: var firstPageTypeName } => firstPageTypeName,
-				_ => throw new InvalidOperationException("The initialization information is invalid.")
-			},
-			new EntranceNavigationTransitionInfo()
-		);
+		=> OnNavigate(((App)Application.Current).InitialInfo.RouteToPageName(), new EntranceNavigationTransitionInfo());
 
 	/// <summary>
 	/// Triggers when the navigation is failed. The method will be invoked if and only if the routing is invalid.

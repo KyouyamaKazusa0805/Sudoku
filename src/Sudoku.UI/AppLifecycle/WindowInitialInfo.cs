@@ -37,4 +37,25 @@ internal sealed class WindowInitialInfo
 	/// Indicates the user preference used.
 	/// </summary>
 	public Preference UserPreference { get; } = new();
+
+
+	/// <summary>
+	/// Routes the current instance to the specified page type, returning the type's name.
+	/// </summary>
+	/// <returns>The type's name to be routed.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the current instance is invalid, or contains invalid data.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string RouteToPageName()
+		=> this switch
+		{
+			{ FirstGrid: not null } => nameof(SudokuPage),
+#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
+			{ DrawingDataRawValue: not null } => nameof(SudokuPage),
+#endif
+			{ FromPreferenceFile: true } => nameof(SettingsPage),
+			{ FirstPageTypeName: var firstPageTypeName } => firstPageTypeName,
+			_ => throw new InvalidOperationException("The initialization information is invalid.")
+		};
 }

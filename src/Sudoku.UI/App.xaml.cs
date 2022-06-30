@@ -69,10 +69,6 @@ public partial class App : Application
 
 		static async Task backPreferenceFiles(WindowInitialInfo i, IStorageFile file)
 		{
-#if false
-			i.FirstPageTypeName = nameof(SettingsPage);
-#endif
-
 			i.FromPreferenceFile = true;
 
 			string content = await readAsync(file);
