@@ -73,6 +73,8 @@ public partial class App : Application
 			i.FirstPageTypeName = nameof(SettingsPage);
 #endif
 
+			i.FromPreferenceFile = true;
+
 			string content = await readAsync(file);
 			var options = CommonReadOnlyFactory.DefaultSerializerOption;
 			var up = JsonSerializer.Deserialize<Preference>(content, options);

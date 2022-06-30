@@ -6,6 +6,11 @@
 internal sealed class WindowInitialInfo
 {
 	/// <summary>
+	/// Indicates whether the window is created from the preference backup file.
+	/// </summary>
+	public bool FromPreferenceFile { get; internal set; } = false;
+
+	/// <summary>
 	/// Indicates the first page type name. The default value is <see langword="nameof"/>(<see cref="HomePage"/>).
 	/// </summary>
 	/// <seealso cref="HomePage"/>

@@ -156,8 +156,14 @@ public sealed partial class MainWindow : Window
 	/// <returns>The task.</returns>
 	private async void LoadGlobalPreferenceIfExistsAsync()
 	{
-		var up = await PreferenceSavingLoading.LoadAsync();
-		((App)Application.Current).UserPreference.CoverPreferenceBy(up);
+		var initialInfo = ((App)Application.Current).InitialInfo;
+		if (!initialInfo.FromPreferenceFile)
+		{
+			var up = await PreferenceSavingLoading.LoadAsync();
+			((App)Application.Current).UserPreference.CoverPreferenceBy(up);
+
+			initialInfo.FromPreferenceFile = false;
+		}
 	}
 
 	/// <summary>
