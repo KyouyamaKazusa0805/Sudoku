@@ -58,6 +58,7 @@ global using Sudoku.UI.Views.Windows;
 global using Windows.ApplicationModel.Activation;
 global using Windows.ApplicationModel.DataTransfer;
 global using Windows.Foundation;
+global using Windows.Graphics;
 global using Windows.Graphics.Display;
 global using Windows.Graphics.Imaging;
 global using Windows.Graphics.Printing;

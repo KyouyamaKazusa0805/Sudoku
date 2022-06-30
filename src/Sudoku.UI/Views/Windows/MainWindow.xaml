@@ -16,7 +16,7 @@
 		</Grid.RowDefinitions>
 
 		<!--Title Bar-->
-		<c:TitleBar Grid.Row="0" />
+		<c:TitleBar x:Name="_cTitleBar" Grid.Row="0" />
 
 		<!--Navigation view-->
 		<!--The control is the main item in the current window-->
