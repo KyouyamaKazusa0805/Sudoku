@@ -18,6 +18,11 @@ public sealed partial class SudokuPage : Page
 
 
 	/// <summary>
+	/// Indicates whether the
+	/// </summary>
+	private bool _isFirstLoad = true;
+
+	/// <summary>
 	/// Indicates the print manager instance.
 	/// </summary>
 	private PrintManager _printManager;
@@ -40,7 +45,6 @@ public sealed partial class SudokuPage : Page
 	public SudokuPage()
 	{
 		InitializeComponent();
-
 		RegisterPrint();
 	}
 
@@ -134,12 +138,19 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void InitialAddSudokuTechniqueInfoBar()
-		=> _cInfoBoard.AddMessage(
-			InfoBarSeverity.Informational,
-			R["SudokuPage_InfoBar_Welcome"]!,
-			R["Link_SudokuTutorial"]!,
-			R["Link_SudokuTutorialDescription"]!
-		);
+	{
+		if (_isFirstLoad)
+		{
+			_cInfoBoard.AddMessage(
+				InfoBarSeverity.Informational,
+				R["SudokuPage_InfoBar_Welcome"]!,
+				R["Link_SudokuTutorial"]!,
+				R["Link_SudokuTutorialDescription"]!
+			);
+
+			_isFirstLoad = false;
+		}
+	}
 
 	/// <summary>
 	/// Clear the current sudoku grid, and revert the status to the empty grid.
