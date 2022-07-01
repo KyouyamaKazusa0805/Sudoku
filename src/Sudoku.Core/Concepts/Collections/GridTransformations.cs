@@ -268,7 +268,7 @@ public static unsafe class GridTransformations
 		Argument.ThrowIfFalse(houseIndex1 is >= 9 and < 27, "The specified argument is out of valid range.");
 		Argument.ThrowIfFalse(houseIndex2 is >= 9 and < 27, "The specified argument is out of valid range.");
 		Argument.ThrowIfFalse(houseIndex1.ToHouse() == houseIndex2.ToHouse(), "Two houses should be the same house type.");
-		Argument.ThrowIfFalse(Array.FindIndex(SwappableHouses, predicate) != -1);
+		Argument.ThrowIfFalse(SwappableHouses.CanFind(predicate));
 
 		fixed (short* p = @this)
 		{

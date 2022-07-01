@@ -1627,6 +1627,24 @@
             that is used or called by the source generator.
             </summary>
         </member>
+        <member name="T:System.ArrayExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Array"/>.
+            </summary>
+            <seealso cref="T:System.Array"/>
+        </member>
+        <member name="M:System.ArrayExtensions.CanFind``1(``0[],System.Predicate{``0})">
+            <summary>
+            Simply encapsulates a method to call method <see cref="M:System.Array.FindIndex``1(``0[],System.Predicate{``0})"/>
+            and returns a <see cref="T:System.Boolean"/> value indicating whether the result is not -1.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">An array with one dimension.</param>
+            <param name="predicate">
+            The predicate that determines whether an element satisfies the user's requirement.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether such element can be found.</returns>
+        </member>
         <member name="T:System.Reflection.AssemblyExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Reflection.Assembly"/>.

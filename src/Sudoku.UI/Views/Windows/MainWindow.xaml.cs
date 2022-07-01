@@ -345,7 +345,7 @@ public sealed partial class MainWindow : Window
 			string key = rawKey[queryPrefix.Length..];
 			string[] keywordsSplit = keywords.Split(';');
 			static bool arrayPredicate(string k, string key) => k.ToLower(CultureInfo.CurrentUICulture).Contains(key);
-			if (splitText.All(key => Array.FindIndex(keywordsSplit, k => arrayPredicate(k, key)) != -1))
+			if (splitText.All(key => keywordsSplit.CanFind(k => arrayPredicate(k, key))))
 			{
 				suitableItems.Add(
 					new SearchedResult
