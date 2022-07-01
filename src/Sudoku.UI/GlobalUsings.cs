@@ -53,6 +53,7 @@ global using Sudoku.UI.Interoperability;
 global using Sudoku.UI.LocalStorages;
 global using Sudoku.UI.Metadata;
 global using Sudoku.UI.Models;
+global using Sudoku.UI.Navigation;
 global using Sudoku.UI.Views.Pages;
 global using Sudoku.UI.Views.Windows;
 global using Windows.ApplicationModel.Activation;
@@ -80,6 +81,7 @@ global using MsLaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEvent
 global using MsWindowActivatedEventArgs = Microsoft.UI.Xaml.WindowActivatedEventArgs;
 global using Grid = Sudoku.Concepts.Collections.Grid;
 global using EnvironmentFolders = System.Environment.SpecialFolder;
+global using SystemIODirectory = System.IO.Directory;
 global using SystemIOFile = System.IO.File;
 global using SystemIOPath = System.IO.Path;
 global using WinsysDispatcherQueue = Windows.System.DispatcherQueue;

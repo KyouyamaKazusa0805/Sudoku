@@ -6,6 +6,12 @@
 public static class Program
 {
 	/// <summary>
+	/// Indicates the program name.
+	/// </summary>
+	public const string ProgramName = "Sudoku Studio";
+
+
+	/// <summary>
 	/// Indicates the main entry point of the program.
 	/// </summary>
 	/// <param name="args">The command line arguments. The default value is an empty array.</param>

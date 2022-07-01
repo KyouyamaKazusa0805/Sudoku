@@ -850,24 +850,22 @@
             Indicates the config file name.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.LocalStorages.PreferenceSavingLoading.StoragePath">
+        <member name="P:Sudoku.UI.LocalStorages.PreferenceSavingLoading.StorageFolder">
             <summary>
-            Indicates the configuration file local storage path.
+            Indicates the configuration file local storage folder.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.LocalStorages.PreferenceSavingLoading.SaveAsync(Sudoku.UI.Configuration.Preference,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.UI.LocalStorages.PreferenceSavingLoading.SaveAsync(Sudoku.UI.Configuration.Preference)">
             <summary>
             Save the preference to the local path.
             </summary>
             <param name="up">The user preference instance.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>The task that holds the current operation.</returns>
         </member>
-        <member name="M:Sudoku.UI.LocalStorages.PreferenceSavingLoading.LoadAsync(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.UI.LocalStorages.PreferenceSavingLoading.LoadAsync">
             <summary>
             Load the preference from the local path.
             </summary>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>
             A task that holds the current operation with a returning value of type <see cref="T:Sudoku.UI.Configuration.Preference"/>
             indicating the result value after the operation handled, or <see langword="null"/> if failed to fetch.
@@ -1478,9 +1476,45 @@
             The value can be <see langword="null"/> if you don't want to specify it.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Navigation.NavigationInfo">
+            <summary>
+            Defines a navigation information instance.
+            </summary>
+            <param name="ViewItemTag">The tag of the view item.</param>
+            <param name="PageType">The page type.</param>
+            <param name="DisplayTitle">The displaying title.</param>
+        </member>
+        <member name="M:Sudoku.UI.Navigation.NavigationInfo.#ctor(System.String,System.Type,System.Boolean)">
+            <summary>
+            Defines a navigation information instance.
+            </summary>
+            <param name="ViewItemTag">The tag of the view item.</param>
+            <param name="PageType">The page type.</param>
+            <param name="DisplayTitle">The displaying title.</param>
+        </member>
+        <member name="P:Sudoku.UI.Navigation.NavigationInfo.ViewItemTag">
+            <summary>The tag of the view item.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Navigation.NavigationInfo.PageType">
+            <summary>The page type.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Navigation.NavigationInfo.DisplayTitle">
+            <summary>The displaying title.</summary>
+        </member>
+        <member name="M:Sudoku.UI.Navigation.NavigationInfo.GetPages">
+            <summary>
+            Get navigation information instances of pages.
+            </summary>
+            <returns>An array of pages' navigation information.</returns>
+        </member>
         <member name="T:Sudoku.UI.Program">
             <summary>
             Indicates the type that contains the main method, which is the main entry point.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Program.ProgramName">
+            <summary>
+            Indicates the program name.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Program.Main(System.String[])">

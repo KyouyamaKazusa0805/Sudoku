@@ -9,13 +9,7 @@ public sealed partial class MainWindow : Window
 	/// <summary>
 	/// Indicates the navigation info tuples that controls to route pages.
 	/// </summary>
-	private static readonly (string ViewItemTag, Type PageType, bool DisplayTitle)[] NavigationPairs =
-		(
-			from type in typeof(MainWindow).Assembly.GetDerivedTypes<Page>()
-			let attribute = type.GetCustomAttribute<PageAttribute>()
-			where attribute is not null
-			select (type.Name, type, attribute.DisplayTitle)
-		).ToArray();
+	private static readonly NavigationInfo[] NavigationPairs = NavigationInfo.GetPages();
 
 
 	/// <summary>
@@ -283,17 +277,10 @@ public sealed partial class MainWindow : Window
 			return;
 		}
 
-		var (tag, _, _) = Array.Find(NavigationPairs, tagSelector);
-		var item = menuItems.Concat(footerMenuItems).OfType<NavigationViewItem>().First(itemSelector);
+		var (tag, _, _) = Array.Find(NavigationPairs, p => p.PageType == sourcePageType);
+		var item = menuItems.Concat(footerMenuItems).OfType<NavigationViewItem>().First(n => n.Tag as string == tag);
 		_cViewRouter.SelectedItem = item;
 		_cViewRouter.Header = item.Content?.ToString();
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		bool tagSelector((string, Type PageType, bool) p) => p.PageType == sourcePageType;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		bool itemSelector(NavigationViewItem n) => n.Tag as string == tag;
 	}
 
 	/// <summary>
