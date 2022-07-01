@@ -2332,16 +2332,6 @@
             Indicates the candidate digits.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._cellMarks">
-            <summary>
-            Indicates the cell marks.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._candidateMarks">
-            <summary>
-            Indicates the candidate marks.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._undoSteps">
             <summary>
             Indicates the stacks to store the undoing and redoing steps.
@@ -2402,10 +2392,23 @@
             Indicates the inner grid.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.UI.Drawing.IDrawingPreference,System.Double,System.Double,System.Action)">
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._cellMarks">
+            <summary>
+            Indicates the cell marks.
+            The value won't be <see langword="null"/> if the field <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.AllowMarkups"/> is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._candidateMarks">
+            <summary>
+            Indicates the candidate marks.
+            The value won't be <see langword="null"/> if the field <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.AllowMarkups"/> is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(System.Boolean,Sudoku.UI.Drawing.IDrawingPreference,System.Double,System.Double,System.Action)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
             </summary>
+            <param name="allowMarkups">Indicates whether the grid allow drawing.</param>
             <param name="preference">The user preference instance.</param>
             <param name="paneSize">The pane size.</param>
             <param name="outsideOffset">The outside offset.</param>
@@ -2413,10 +2416,11 @@
             The callback method that triggers when the inner undo-redo steps are updated.
             </param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.Concepts.Collections.Grid@,Sudoku.UI.Drawing.IDrawingPreference,System.Double,System.Double,System.Action)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(System.Boolean,Sudoku.Concepts.Collections.Grid@,Sudoku.UI.Drawing.IDrawingPreference,System.Double,System.Double,System.Action)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
             </summary>
+            <param name="allowMarkups">Indicates whether the grid allow drawing.</param>
             <param name="grid">The <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Grid"/> instance.</param>
             <param name="preference">The user preference.</param>
             <param name="paneSize">The pane size.</param>
@@ -2424,6 +2428,11 @@
             <param name="elementUpdatedCallback">
             The callback method that triggers when the inner undo-redo steps are updated.
             </param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.AllowMarkups">
+            <summary>
+            Indicates whether allow users drawing.
+            </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ShowCandidates">
             <summary>
@@ -2595,12 +2604,18 @@
             Try to get the inner field <c>_cellMarks</c>.
             </summary>
             <returns>The cell marks.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the current sudoku grid doesn't support drawing.
+            </exception>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetCandidateMarks">
             <summary>
             Try to get the inner field <c>_candidateMarks</c>.
             </summary>
             <returns>The candidate marks.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the current sudoku grid doesn't support drawing.
+            </exception>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.AddStep(Sudoku.Concepts.Collections.Grid@)">
             <summary>

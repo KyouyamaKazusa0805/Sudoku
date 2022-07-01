@@ -800,7 +800,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void InitializeSudokuGrid(Preference up)
 	{
-		_drawingElements.Add(new SudokuGrid(up, Size, OutsideOffset, triggerBoth));
+		_drawingElements.Add(new SudokuGrid(true, up, Size, OutsideOffset, triggerBoth));
 
 
 		void triggerBoth()
