@@ -3,7 +3,9 @@
 /// <summary>
 /// Defines a block line.
 /// </summary>
+#if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
+#endif
 public sealed class BlockLine : DrawingElement
 {
 	/// <summary>

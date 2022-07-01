@@ -3,7 +3,9 @@
 /// <summary>
 /// Defines a candidate line.
 /// </summary>
+#if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
+#endif
 public sealed partial class CandidateLine : DrawingElement
 {
 	/// <summary>

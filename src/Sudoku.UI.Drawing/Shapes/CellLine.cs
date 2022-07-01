@@ -3,7 +3,9 @@
 /// <summary>
 /// Defines a cell line.
 /// </summary>
+#if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
+#endif
 public sealed class CellLine : DrawingElement
 {
 	/// <summary>

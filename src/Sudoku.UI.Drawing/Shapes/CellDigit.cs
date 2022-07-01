@@ -3,7 +3,9 @@
 /// <summary>
 /// Defines a drawing element that displays for a digit that is the cell-leveled digit.
 /// </summary>
+#if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
+#endif
 internal sealed class CellDigit : DrawingElement
 {
 	/// <summary>

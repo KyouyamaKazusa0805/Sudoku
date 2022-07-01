@@ -4,7 +4,9 @@
 /// Defines a drawing element that displays for a digit that is the candidate-leveled digit.
 /// The data structure represents for all possible candidates in a cell.
 /// </summary>
+#if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
+#endif
 internal sealed class CandidateDigit : DrawingElement
 {
 	/// <summary>
