@@ -113,6 +113,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// <param name="elementUpdatedCallback">
 	/// The callback method that triggers when the inner undo-redo steps are updated.
 	/// </param>
+	[SetsRequiredMembers]
 	public SudokuGrid(
 		bool allowMarkups, IDrawingPreference preference, double paneSize,
 		double outsideOffset, Action? elementUpdatedCallback) :
@@ -131,6 +132,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// <param name="elementUpdatedCallback">
 	/// The callback method that triggers when the inner undo-redo steps are updated.
 	/// </param>
+	[SetsRequiredMembers]
 	public SudokuGrid(
 		bool allowMarkups, in Grid grid, IDrawingPreference preference, double paneSize,
 		double outsideOffset, Action? elementUpdatedCallback)
@@ -299,7 +301,7 @@ public sealed class SudokuGrid : DrawingElement
 #endif
 	)]
 #endif
-	public bool AllowMarkups { get; }
+	public required bool AllowMarkups { get; init; }
 
 	/// <summary>
 	/// <para>Indicates whether the grid displays for candidates.</para>
