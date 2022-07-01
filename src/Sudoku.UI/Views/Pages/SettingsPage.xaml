@@ -191,13 +191,7 @@
 														SelectedIndex="{x:Bind GetPreferenceIndex(),
 															Mode=TwoWay,
 															UpdateSourceTrigger=PropertyChanged,
-															BindBack=SetPreferenceIndex}">
-														<ComboBox.ItemTemplate>
-															<DataTemplate x:DataType="x:String">
-																<ComboBoxItem Content="{x:Bind}" Padding="0" />
-															</DataTemplate>
-														</ComboBox.ItemTemplate>
-													</ComboBox>
+															BindBack=SetPreferenceIndex}" />
 												</StackPanel>
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.PeerFocusingModeComboBoxGroupTemplate>
