@@ -9,8 +9,8 @@
 	<Identity Name="08e8d82e-98c7-4980-a875-2ef1d8abac22" Publisher="CN=Sunnie" Version="0.11.0.0" />
 
 	<Properties>
-		<DisplayName>Sudoku.UI</DisplayName>
-		<PublisherDisplayName>ms-resource:Resources/ProgramAuthorName</PublisherDisplayName>
+		<DisplayName>Sudoku Studio</DisplayName>
+		<PublisherDisplayName>Sunnie</PublisherDisplayName>
 		<Logo>Assets\StoreLogo.png</Logo>
 	</Properties>
 
