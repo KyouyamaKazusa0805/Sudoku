@@ -750,7 +750,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <seealso cref="CellLine"/>
 	/// <seealso cref="BlockLine"/>
 	/// <seealso cref="_drawingElements"/>
-	private void InitializeGridCellLines(Preference up)
+	private void InitializeBorderLines(Preference up)
 	{
 		if (up.ShowCandidateBorderLines)
 		{
@@ -763,10 +763,25 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				}
 
 				_drawingElements.Add(
-					new CandidateLine(up.CandidateBorderColor, up.CandidateBorderWidth, Size, OutsideOffset, i));
+					new CandidateLine
+					{
+						Order = i,
+						PaneSize = Size,
+						OutsideOffset = OutsideOffset,
+						StrokeColor = up.CandidateBorderColor,
+						StrokeThickness = up.CandidateBorderWidth
+					}
+				);
 				_drawingElements.Add(
-					new CandidateLine(
-						up.CandidateBorderColor, up.CandidateBorderWidth, Size, OutsideOffset, (byte)(i + 28)));
+					new CandidateLine
+					{
+						Order = (byte)(i + 28),
+						PaneSize = Size,
+						OutsideOffset = OutsideOffset,
+						StrokeColor = up.CandidateBorderColor,
+						StrokeThickness = up.CandidateBorderWidth
+					}
+				);
 			}
 		}
 
@@ -778,16 +793,50 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				continue;
 			}
 
-			_drawingElements.Add(new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, i));
 			_drawingElements.Add(
-				new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, (byte)(i + 10)));
+				new CellLine
+				{
+					Order = i,
+					PaneSize = Size,
+					OutsideOffset = OutsideOffset,
+					StrokeColor = up.CellBorderColor,
+					StrokeThickness = up.CellBorderWidth
+				}
+			);
+			_drawingElements.Add(
+				new CellLine
+				{
+					Order = (byte)(i + 10),
+					PaneSize = Size,
+					OutsideOffset = OutsideOffset,
+					StrokeColor = up.CellBorderColor,
+					StrokeThickness = up.CellBorderWidth
+				}
+			);
 		}
 
 		for (byte i = 0; i < 4; i++)
 		{
-			_drawingElements.Add(new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, i));
 			_drawingElements.Add(
-				new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, (byte)(i + 4)));
+				new BlockLine
+				{
+					Order = i,
+					PaneSize = Size,
+					OutsideOffset = OutsideOffset,
+					StrokeColor = up.BlockBorderColor,
+					StrokeThickness = up.BlockBorderWidth
+				}
+			);
+			_drawingElements.Add(
+				new BlockLine
+				{
+					Order = (byte)(i + 4),
+					PaneSize = Size,
+					OutsideOffset = OutsideOffset,
+					StrokeColor = up.BlockBorderColor,
+					StrokeThickness = up.BlockBorderWidth
+				}
+			);
 		}
 	}
 
@@ -856,7 +905,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		var up = ((App)Application.Current).UserPreference;
 
 		InitializeOutsideRectangle(up);
-		InitializeGridCellLines(up);
+		InitializeBorderLines(up);
 		InitializeSudokuGrid(up);
 		AddIntoCanvas();
 		LoadFirstGridIfWorth();

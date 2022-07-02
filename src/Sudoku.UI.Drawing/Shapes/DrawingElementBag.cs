@@ -4,10 +4,10 @@
 /// Defines a custom collection that stores the <see cref="DrawingElement"/>s.
 /// </summary>
 internal sealed partial class DrawingElementBag :
-	IReadOnlyCollection<DrawingElement>,
-	IReadOnlyList<DrawingElement>,
 	IEnumerable,
-	IEnumerable<DrawingElement>
+	IEnumerable<DrawingElement>,
+	IReadOnlyCollection<DrawingElement>,
+	IReadOnlyList<DrawingElement>
 {
 	/// <summary>
 	/// <para>Defines the inner elements.</para>
@@ -161,7 +161,7 @@ internal sealed partial class DrawingElementBag :
 	/// <param name="count">The desired number of elements.</param>
 	/// <returns>The list of the collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public DrawingElementBag Slice(int start, int count) => new(_elements[start..(count - start)]);
+	public DrawingElementBag Slice(int start, int count) => new(_elements[start..(start + count)]);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

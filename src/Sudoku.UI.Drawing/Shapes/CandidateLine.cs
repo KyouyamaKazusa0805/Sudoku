@@ -9,9 +9,14 @@
 public sealed partial class CandidateLine : DrawingElement
 {
 	/// <summary>
+	/// Indicates the order.
+	/// </summary>
+	private readonly byte _order;
+
+	/// <summary>
 	/// The inner line.
 	/// </summary>
-	private readonly Line _line;
+	private readonly Line _line = new();
 
 	/// <summary>
 	/// Indicates the pane size, which is the backing field of the property <see cref="PaneSize"/>.
@@ -24,35 +29,6 @@ public sealed partial class CandidateLine : DrawingElement
 	/// </summary>
 	/// <seealso cref="OutsideOffset"/>
 	private double _outsideOffset;
-
-
-	/// <summary>
-	/// Initializes a <see cref="CandidateLine"/> instance via the specified details.
-	/// </summary>
-	/// <param name="strokeColor">The stroke color of the block line.</param>
-	/// <param name="strokeThickness">The stroke thickness of the block line.</param>
-	/// <param name="paneSize">Indicates the pane size.</param>
-	/// <param name="outsideOffset">Indicates the outside offset.</param>
-	/// <param name="order">
-	/// The order. The value can only be between 0 and 27. For more details of the parameter,
-	/// please see the property <see cref="Order"/>.
-	/// </param>
-	public CandidateLine(
-		Color strokeColor, double strokeThickness, double paneSize, double outsideOffset, byte order)
-	{
-		(_paneSize, _outsideOffset, Order) = (paneSize, outsideOffset, order);
-		var ((x1, y1), (x2, y2)) = PointConversions.GetCandidateLine(paneSize, outsideOffset, order);
-		_line = new Line
-		{
-			Stroke = new SolidColorBrush(strokeColor),
-			StrokeThickness = strokeThickness,
-			X1 = x1,
-			Y1 = y1,
-			X2 = x2,
-			Y2 = y2,
-			StrokeLineJoin = PenLineJoin.Round
-		};
-	}
 
 
 	/// <summary>
@@ -72,12 +48,33 @@ public sealed partial class CandidateLine : DrawingElement
 	/// </item>
 	/// </list>
 	/// </summary>
-	public byte Order { get; }
+	public required byte Order
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _order;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		init
+		{
+			_order = value;
+
+			if (_paneSize == 0 || _outsideOffset == 0)
+			{
+				return;
+			}
+
+			var ((x1, y1), (x2, y2)) = PointConversions.GetCandidateLine(_paneSize, _outsideOffset, value);
+			_line.X1 = x1;
+			_line.X2 = x2;
+			_line.Y1 = y1;
+			_line.Y2 = y2;
+		}
+	}
 
 	/// <summary>
 	/// The stroke thickness of the block line.
 	/// </summary>
-	public double StrokeThickness
+	public required double StrokeThickness
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _line.StrokeThickness;
@@ -89,7 +86,7 @@ public sealed partial class CandidateLine : DrawingElement
 	/// <summary>
 	/// The pane size.
 	/// </summary>
-	public double PaneSize
+	public required double PaneSize
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _paneSize;
@@ -108,7 +105,7 @@ public sealed partial class CandidateLine : DrawingElement
 	/// <summary>
 	/// The outside offset.
 	/// </summary>
-	public double OutsideOffset
+	public required double OutsideOffset
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _outsideOffset;
@@ -127,7 +124,7 @@ public sealed partial class CandidateLine : DrawingElement
 	/// <summary>
 	/// The stroke color of the block line.
 	/// </summary>
-	public Color StrokeColor
+	public required Color StrokeColor
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ((SolidColorBrush)_line.Stroke).Color;
@@ -167,7 +164,8 @@ public sealed partial class CandidateLine : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, _line.X1, _line.X2, _line.Y1, _line.Y2);
+	public override int GetHashCode()
+		=> HashCode.Combine(TypeIdentifier, HashCode.Combine(_line.X1, _line.X2, _line.Y1, _line.Y2));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

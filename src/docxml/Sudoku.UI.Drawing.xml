@@ -476,6 +476,11 @@
             Defines a block line.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.BlockLine._order">
+            <summary>
+            Indicates the order.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.BlockLine._line">
             <summary>
             The inner line.
@@ -492,19 +497,6 @@
             Indicates the outside offset, which is the backing field of the property <see cref="P:Sudoku.UI.Drawing.Shapes.BlockLine.OutsideOffset"/>.
             </summary>
             <seealso cref="P:Sudoku.UI.Drawing.Shapes.BlockLine.OutsideOffset"/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.#ctor(Windows.UI.Color,System.Double,System.Double,System.Double,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.BlockLine"/> instance via the specified details.
-            </summary>
-            <param name="strokeColor">The stroke color of the block line.</param>
-            <param name="strokeThickness">The stroke thickness of the block line.</param>
-            <param name="paneSize">Indicates the pane size.</param>
-            <param name="outsideOffset">Indicates the outside offset.</param>
-            <param name="order">
-            The order. The value can only be between 0 and 19. For more details of the parameter,
-            please see the property <see cref="P:Sudoku.UI.Drawing.Shapes.BlockLine.Order"/>.
-            </param>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.Order">
             <summary>
@@ -679,6 +671,11 @@
             Defines a candidate line.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateLine._order">
+            <summary>
+            Indicates the order.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CandidateLine._line">
             <summary>
             The inner line.
@@ -695,19 +692,6 @@
             Indicates the outside offset, which is the backing field of the property <see cref="P:Sudoku.UI.Drawing.Shapes.CandidateLine.OutsideOffset"/>.
             </summary>
             <seealso cref="P:Sudoku.UI.Drawing.Shapes.CandidateLine.OutsideOffset"/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.#ctor(Windows.UI.Color,System.Double,System.Double,System.Double,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateLine"/> instance via the specified details.
-            </summary>
-            <param name="strokeColor">The stroke color of the block line.</param>
-            <param name="strokeThickness">The stroke thickness of the block line.</param>
-            <param name="paneSize">Indicates the pane size.</param>
-            <param name="outsideOffset">Indicates the outside offset.</param>
-            <param name="order">
-            The order. The value can only be between 0 and 27. For more details of the parameter,
-            please see the property <see cref="P:Sudoku.UI.Drawing.Shapes.CandidateLine.Order"/>.
-            </param>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.Order">
             <summary>
@@ -1047,6 +1031,11 @@
             Defines a cell line.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellLine._order">
+            <summary>
+            Indicates the order.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellLine._line">
             <summary>
             The inner line.
@@ -1063,19 +1052,6 @@
             Indicates the outside offset, which is the backing field of the property <see cref="P:Sudoku.UI.Drawing.Shapes.CellLine.OutsideOffset"/>.
             </summary>
             <seealso cref="P:Sudoku.UI.Drawing.Shapes.CellLine.OutsideOffset"/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.#ctor(Windows.UI.Color,System.Double,System.Double,System.Double,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellLine"/> instance via the specified details.
-            </summary>
-            <param name="strokeColor">The stroke color of the block line.</param>
-            <param name="strokeThickness">The stroke thickness of the block line.</param>
-            <param name="paneSize">Indicates the pane size.</param>
-            <param name="outsideOffset">Indicates the outside offset.</param>
-            <param name="order">
-            The order. The value can only be between 0 and 19. For more details of the parameter,
-            please see the property <see cref="P:Sudoku.UI.Drawing.Shapes.CellLine.Order"/>.
-            </param>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.Order">
             <summary>

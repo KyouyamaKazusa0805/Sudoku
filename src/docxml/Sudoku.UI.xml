@@ -2010,7 +2010,7 @@
             <seealso cref="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle"/>
             <seealso cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeGridCellLines(Sudoku.UI.Configuration.Preference)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeBorderLines(Sudoku.UI.Configuration.Preference)">
             <summary>
             Initializes <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateLine"/>, <see cref="T:Sudoku.UI.Drawing.Shapes.CellLine"/> and <see cref="T:Sudoku.UI.Drawing.Shapes.BlockLine"/> instances,
             and append into the collection <see cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>.
