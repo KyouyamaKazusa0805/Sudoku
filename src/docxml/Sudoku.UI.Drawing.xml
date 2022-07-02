@@ -90,12 +90,12 @@
             Indicates the thickness of the stroke lines surrounding with highlight cell.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CrossMarkStrokeThickness">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CrossMarkStrokeThickness">
             <summary>
             Indicates the thickness of the stroke lines of the cross mark.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CandidateMarkStrokeThickness">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CandidateMarkStrokeThickness">
             <summary>
             Indicates the candidate mark stroke thickness.
             </summary>
@@ -255,37 +255,37 @@
             Indicates the peers focused cell color.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CellRectangleFillColor">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CellRectangleFillColor">
             <summary>
             Indicates the author-defined cell rectangle color used for filling.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CellCircleFillColor">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CellCircleFillColor">
             <summary>
             Indicates the author-defined cell circle color used for filling.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CrossMarkStrokeColor">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CrossMarkStrokeColor">
             <summary>
             Indicates the author-defined cross mark stroke color.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_StarFillColor">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__StarFillColor">
             <summary>
             Indicates the author-defined cell star color used for filling.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_TriangleFillColor">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__TriangleFillColor">
             <summary>
             Indicates the author-defined cell triangle color used for filling.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_DiamondFillColor">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__DiamondFillColor">
             <summary>
             Indicates the author-defined cell diamond color used for filling.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuthorDefined_CandidateMarkStrokeColor">
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CandidateMarkStrokeColor">
             <summary>
             Indicates the stroke color of the mark applied to a candidate.
             </summary>

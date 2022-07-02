@@ -74,8 +74,8 @@ internal sealed class CandidateMark : DrawingElement
 		{
 			var c1 = new Rectangle
 			{
-				Stroke = new SolidColorBrush(_userPreference.AuthorDefined_CandidateMarkStrokeColor),
-				StrokeThickness = _userPreference.AuthorDefined_CandidateMarkStrokeThickness,
+				Stroke = new SolidColorBrush(_userPreference.__CandidateMarkStrokeColor),
+				StrokeThickness = _userPreference.__CandidateMarkStrokeThickness,
 				Visibility = Visibility.Collapsed
 			};
 			GridLayout.SetRow(c1, i / 3);
@@ -84,8 +84,8 @@ internal sealed class CandidateMark : DrawingElement
 
 			var c2 = new Ellipse
 			{
-				Stroke = new SolidColorBrush(_userPreference.AuthorDefined_CandidateMarkStrokeColor),
-				StrokeThickness = _userPreference.AuthorDefined_CandidateMarkStrokeThickness,
+				Stroke = new SolidColorBrush(_userPreference.__CandidateMarkStrokeColor),
+				StrokeThickness = _userPreference.__CandidateMarkStrokeThickness,
 				Visibility = Visibility.Collapsed
 			};
 			GridLayout.SetRow(c2, i / 3);
@@ -94,8 +94,8 @@ internal sealed class CandidateMark : DrawingElement
 
 			var c3 = new CrossMark
 			{
-				Stroke = new SolidColorBrush(_userPreference.AuthorDefined_CandidateMarkStrokeColor),
-				StrokeThickness = _userPreference.AuthorDefined_CandidateMarkStrokeThickness,
+				Stroke = new SolidColorBrush(_userPreference.__CandidateMarkStrokeColor),
+				StrokeThickness = _userPreference.__CandidateMarkStrokeThickness,
 				Visibility = Visibility.Collapsed
 			};
 			GridLayout.SetRow(c3, i / 3);
@@ -104,8 +104,8 @@ internal sealed class CandidateMark : DrawingElement
 
 			var c4 = new TriangleMark
 			{
-				Stroke = new SolidColorBrush(_userPreference.AuthorDefined_CandidateMarkStrokeColor),
-				StrokeThickness = _userPreference.AuthorDefined_CandidateMarkStrokeThickness,
+				Stroke = new SolidColorBrush(_userPreference.__CandidateMarkStrokeColor),
+				StrokeThickness = _userPreference.__CandidateMarkStrokeThickness,
 				Visibility = Visibility.Collapsed
 			};
 			GridLayout.SetRow(c4, i / 3);

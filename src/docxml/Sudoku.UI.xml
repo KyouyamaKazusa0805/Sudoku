@@ -389,7 +389,7 @@
             The default value is <see langword="true"/>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.CoverOldShapeWhenDiffused">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CoverOldShapeWhenDiffused">
             <summary>
             Indicates whether the old shape should be covered when diffused.
             </summary>
@@ -447,13 +447,13 @@
             The default value is <c>3</c>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CrossMarkStrokeThickness">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CrossMarkStrokeThickness">
             <inheritdoc/>
             <remarks>
             The default value is <c>4</c>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CandidateMarkStrokeThickness">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CandidateMarkStrokeThickness">
             <inheritdoc/>
             <remarks>
             The default value is <c>2</c>.
@@ -645,43 +645,43 @@
             The default value is <c>#200000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 32).
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CellRectangleFillColor">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CellRectangleFillColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CellCircleFillColor">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CellCircleFillColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CrossMarkStrokeColor">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CrossMarkStrokeColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_StarFillColor">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__StarFillColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_TriangleFillColor">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__TriangleFillColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_DiamondFillColor">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__DiamondFillColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CandidateMarkStrokeColor">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CandidateMarkStrokeColor">
             <inheritdoc/>
             <remarks>
             The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 128).

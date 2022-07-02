@@ -112,38 +112,38 @@ internal sealed class CellMark : DrawingElement
 		_controlRectangle = new()
 		{
 			Margin = BuiltinShapeDefaultMargin,
-			Fill = new SolidColorBrush(userPreference.AuthorDefined_CellRectangleFillColor),
+			Fill = new SolidColorBrush(userPreference.__CellRectangleFillColor),
 			Visibility = Visibility.Collapsed
 		};
 		_controlCircle = new()
 		{
 			Margin = BuiltinShapeDefaultMargin,
-			Fill = new SolidColorBrush(userPreference.AuthorDefined_CellCircleFillColor),
+			Fill = new SolidColorBrush(userPreference.__CellCircleFillColor),
 			Visibility = Visibility.Collapsed
 		};
 		_controlCrossMark = new()
 		{
 			Margin = DefaultMargin,
-			Stroke = new SolidColorBrush(userPreference.AuthorDefined_CrossMarkStrokeColor),
-			StrokeThickness = userPreference.AuthorDefined_CrossMarkStrokeThickness,
+			Stroke = new SolidColorBrush(userPreference.__CrossMarkStrokeColor),
+			StrokeThickness = userPreference.__CrossMarkStrokeThickness,
 			Visibility = Visibility.Collapsed
 		};
 		_controlStarMark = new()
 		{
 			Margin = DefaultMargin,
-			Fill = new SolidColorBrush(userPreference.AuthorDefined_StarFillColor),
+			Fill = new SolidColorBrush(userPreference.__StarFillColor),
 			Visibility = Visibility.Collapsed
 		};
 		_controlTriangleMark = new()
 		{
 			Margin = DefaultMargin,
-			Fill = new SolidColorBrush(userPreference.AuthorDefined_TriangleFillColor),
+			Fill = new SolidColorBrush(userPreference.__TriangleFillColor),
 			Visibility = Visibility.Collapsed
 		};
 		_controlDiamondMark = new()
 		{
 			Margin = DefaultMargin,
-			Fill = new SolidColorBrush(userPreference.AuthorDefined_DiamondFillColor),
+			Fill = new SolidColorBrush(userPreference.__DiamondFillColor),
 			Visibility = Visibility.Collapsed
 		};
 

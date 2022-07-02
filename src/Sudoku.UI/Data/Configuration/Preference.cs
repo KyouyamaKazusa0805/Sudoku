@@ -1,4 +1,8 @@
-﻿namespace Sudoku.UI.Data.Configuration;
+﻿#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
+#pragma warning disable IDE1006
+#endif
+
+namespace Sudoku.UI.Data.Configuration;
 
 /// <summary>
 /// Defines the user preferences in the program.
@@ -45,7 +49,7 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	public bool CoverOldShapeWhenDiffused { get; set; } = false;
+	public bool __CoverOldShapeWhenDiffused { get; set; } = false;
 #endif
 
 	/// <summary>
@@ -103,7 +107,7 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>4</c>.
 	/// </remarks>
-	public double AuthorDefined_CrossMarkStrokeThickness { get; set; } = 4;
+	public double __CrossMarkStrokeThickness { get; set; } = 4;
 #endif
 
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
@@ -111,7 +115,7 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>2</c>.
 	/// </remarks>
-	public double AuthorDefined_CandidateMarkStrokeThickness { get; set; } = 2;
+	public double __CandidateMarkStrokeThickness { get; set; } = 2;
 #endif
 
 	/// <inheritdoc/>
@@ -315,37 +319,37 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	public Color AuthorDefined_CellRectangleFillColor { get; set; } = Colors.Black with { A = 64 };
+	public Color __CellRectangleFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	public Color AuthorDefined_CellCircleFillColor { get; set; } = Colors.Black with { A = 64 };
+	public Color __CellCircleFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	public Color AuthorDefined_CrossMarkStrokeColor { get; set; } = Colors.Black with { A = 64 };
+	public Color __CrossMarkStrokeColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	public Color AuthorDefined_StarFillColor { get; set; } = Colors.Black with { A = 64 };
+	public Color __StarFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	public Color AuthorDefined_TriangleFillColor { get; set; } = Colors.Black with { A = 64 };
+	public Color __TriangleFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	public Color AuthorDefined_DiamondFillColor { get; set; } = Colors.Black with { A = 64 };
+	public Color __DiamondFillColor { get; set; } = Colors.Black with { A = 64 };
 #endif
 
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
@@ -353,7 +357,7 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 128).
 	/// </remarks>
-	public Color AuthorDefined_CandidateMarkStrokeColor { get; set; } = Colors.Black with { A = 128 };
+	public Color __CandidateMarkStrokeColor { get; set; } = Colors.Black with { A = 128 };
 #endif
 
 	/// <inheritdoc/>

@@ -71,7 +71,7 @@ public sealed partial class SettingsPage : Page
 				new ToggleSwitchSettingItem
 				{
 					Name = R["SettingsPage_ItemName_CoverOldShapeWhenDiffused"]!,
-					PreferenceValueName = nameof(Preference.CoverOldShapeWhenDiffused)
+					PreferenceValueName = nameof(Preference.__CoverOldShapeWhenDiffused)
 				},
 				new ToggleSwitchSettingItem
 				{
