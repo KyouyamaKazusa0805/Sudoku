@@ -1929,6 +1929,29 @@
             <param name="this">The <see cref="T:System.Text.Json.Utf8JsonWriter"/> instance.</param>
             <param name="handler">The string handler.</param>
         </member>
+        <member name="T:System.Text.Json.PascalCaseJsonNamingPolicy">
+            <summary>
+            Defines the pascal casing JSON naming policy.
+            </summary>
+            <remarks>
+            This type cannot be initialized; instead, you can use the property <see cref="P:System.Text.Json.PascalCaseJsonNamingPolicy.PascalCase"/> to get the instance.
+            </remarks>
+            <seealso cref="P:System.Text.Json.PascalCaseJsonNamingPolicy.PascalCase"/>
+        </member>
+        <member name="M:System.Text.Json.PascalCaseJsonNamingPolicy.#ctor">
+            <summary>
+            Initializes a <see cref="T:System.Text.Json.PascalCaseJsonNamingPolicy"/> instance.
+            </summary>
+        </member>
+        <member name="P:System.Text.Json.PascalCaseJsonNamingPolicy.PascalCase">
+            <summary>
+            Gets the naming policy for pascal-casing.
+            </summary>
+            <returns>The naming policy for pascal-casing.</returns>
+        </member>
+        <member name="M:System.Text.Json.PascalCaseJsonNamingPolicy.ConvertName(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Text.StringBuilderExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.StringBuilder"/>.
