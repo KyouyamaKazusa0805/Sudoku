@@ -43,6 +43,21 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.AppLifecycle.WindowInitialInfo">
             <summary>
             Defines the information to control the initial page information.
@@ -769,44 +784,6 @@
             <seealso cref="F:Sudoku.UI.Interoperability.DispatcherQueueOptions.threadType"/>
             <remarks>
             Introduced in Windows 10, version 1709.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.UI.Interoperability.IInitializeWithWindow">
-            <summary>
-            Exposes a method through which a client can provide an owner window
-            to a Windows Runtime (WinRT) object used in a desktop application.
-            </summary>
-            <remarks>
-            <para>
-            <b>When to initialize:</b><br/>
-            Implement this interface if your object needs to be provided with an owner window,
-            generally to display UI. Most third-party applications will not need to implement this interface.
-            </para>
-            <para>
-            <b>When to use:</b><br/>
-            Use this interface if you will provide an owner window to a WinRT object in a desktop application.
-            For more information about this scenario, see
-            <see href="https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp#classes-that-use-iinitializewithwindow">
-            Classes that use <c>IInitializeWithWindow</c>
-            </see>.
-            </para>
-            <para>
-            This interface is implemented by the following objects. Note that this is necessarily an incomplete list;
-            refer to an individual object's documentation to determine whether that object implements this interface.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.UI.Interoperability.IInitializeWithWindow.Initialize(System.IntPtr)">
-            <summary>
-            Specifies an owner window to be used by a Windows Runtime (WinRT) object that is used in a desktop app.
-            </summary>
-            <param name="hwnd">The handle of the window to be used as the owner window.</param>
-            <remarks>
-            The method doesn't return anything, but the method returns an HResult value
-            in the Win32 API. For more information, please visit
-            <see href="https://docs.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-iinitializewithwindow-initialize">
-            this link
-            </see>.
             </remarks>
         </member>
         <member name="T:Sudoku.UI.Interoperability.WinsysDispatcherQueueHelper">
@@ -1560,6 +1537,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.ColorSelector.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.ColorSelector.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.FontPicker">
             <summary>
             Defines a font picker control.
@@ -1589,6 +1576,16 @@
         <member name="M:Sudoku.UI.Views.Controls.FontPicker.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.GettingStartedTile">
@@ -1676,6 +1673,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>
             Defines a user control that handles the messages displaying via <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>s.
@@ -1757,6 +1764,16 @@
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
@@ -2076,6 +2093,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.TitleBar">
             <summary>
             Defines a customized title bar.
@@ -2144,6 +2171,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.TitleBar.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TitleBar.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.AboutPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -2160,6 +2197,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.HomePage">
             <summary>
             Defines a home page.
@@ -2173,6 +2220,16 @@
         <member name="M:Sudoku.UI.Views.Pages.HomePage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.HomePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.HomePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SettingsPage">
@@ -2220,6 +2277,16 @@
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SudokuPage">
@@ -2630,6 +2697,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -2805,29 +2882,35 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
             <summary>
-            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
+            Connect()
             </summary>
-            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
         </member>
-        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.AwareHandleOnWin32(Windows.Storage.Pickers.FileOpenPicker)">
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
             <summary>
-            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
+            GetBindingConnector(int connectionId, object target)
             </summary>
-            <param name="this">The instance.</param>
         </member>
-        <member name="T:Windows.Storage.Pickers.FileSavePickerExtensions">
+        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
             <summary>
-            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileSavePicker"/>.
+            Main class for providing metadata for the app or library
             </summary>
-            <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
         </member>
-        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.AwareHandleOnWin32(Windows.Storage.Pickers.FileSavePicker)">
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
             <summary>
-            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
+            GetXamlType(Type)
             </summary>
-            <param name="this">The instance.</param>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
         </member>
         <member name="T:Windows.System.VirtualKeyExtensions">
             <summary>
@@ -2842,12 +2925,12 @@
             <param name="this">The modifier key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DE5AF559E2">
+        <member name="T:Windows.Foundation.Point_DEDD88788C">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DE5AF559E2.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEDD88788C.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -2902,63 +2985,12 @@
             <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
             <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Controls.GridWithExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridWithExtensions.WithGridLayout``1(``0,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Sets the info on <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>, and returns the reference
-            of the argument <paramref name="this"/>.
-            </summary>
-            <typeparam name="TFrameworkElement">The type of the control.</typeparam>
-            <param name="this">The <typeparamref name="TFrameworkElement"/>-typed control.</param>
-            <param name="row">
-            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetRow(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
-            </param>
-            <param name="column">
-            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetColumn(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
-            </param>
-            <param name="rowSpan">
-            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
-            </param>
-            <param name="columnSpan">
-            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetColumnSpan(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
-            </param>
-            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridWithExtensions.WithRowDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
-            <summary>
-            Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.RowDefinition"/> instances and adds into the target
-            <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
-            </summary>
-            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
-            <param name="count">The number of <see cref="T:Microsoft.UI.Xaml.Controls.RowDefinition"/>s to be added.</param>
-            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="count"/> is negative.
-            </exception>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridWithExtensions.WithColumnDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
-            <summary>
-            Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/> instances and adds into the target
-            <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
-            </summary>
-            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
-            <param name="count">The number of <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/>s to be added.</param>
-            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="count"/> is negative.
-            </exception>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

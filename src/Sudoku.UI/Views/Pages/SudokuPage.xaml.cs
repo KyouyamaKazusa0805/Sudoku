@@ -331,8 +331,8 @@ public sealed partial class SudokuPage : Page
 	{
 		var fop = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary }
 			.AddFileTypeFilter(CommonFileExtensions.Text)
-			.AddFileTypeFilter(CommonFileExtensions.Sudoku);
-		fop.AwareHandleOnWin32();
+			.AddFileTypeFilter(CommonFileExtensions.Sudoku)
+			.WithAwareHandleOnWin32();
 
 		var file = await fop.PickSingleFileAsync();
 		if (file is not { Path: var filePath })
@@ -380,16 +380,14 @@ public sealed partial class SudokuPage : Page
 	/// </returns>
 	private async Task SaveFileAsync()
 	{
-		var fsp = new FileSavePicker
-		{
-			SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
-			SuggestedFileName = R["Sudoku"]!
-		}
-		.AddFileTypeChoice(R["FileExtension_TextDescription"]!, new List<string> { CommonFileExtensions.Text })
-		.AddFileTypeChoice(R["FileExtension_Picture"]!, new List<string> { CommonFileExtensions.PortablePicture })
-		.AddFileTypeChoice(R["FileExtension_SudokuGridDescription"]!, new List<string> { CommonFileExtensions.Sudoku })
-		.AddFileTypeChoice(R["FileExtension_DrawingData"]!, new List<string> { CommonFileExtensions.DrawingData });
-		fsp.AwareHandleOnWin32();
+		var fsp = new FileSavePicker()
+			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
+			.WithSuggestedFileName(R["Sudoku"]!)
+			.AddFileTypeChoice(R["FileExtension_TextDescription"]!, CommonFileExtensions.Text)
+			.AddFileTypeChoice(R["FileExtension_Picture"]!, CommonFileExtensions.PortablePicture)
+			.AddFileTypeChoice(R["FileExtension_SudokuGridDescription"]!, CommonFileExtensions.Sudoku)
+			.AddFileTypeChoice(R["FileExtension_DrawingData"]!, CommonFileExtensions.DrawingData)
+			.WithAwareHandleOnWin32();
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath, Name: var fileName } file)
 		{

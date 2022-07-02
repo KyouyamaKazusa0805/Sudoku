@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
 	<PropertyGroup>
 		<!--Basic configurations-->
 		<OutputType>WinExe</OutputType>
@@ -94,6 +95,7 @@
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\Sudoku.Solving.Manual\Sudoku.Solving.Manual.csproj" />
+		<ProjectReference Include="..\Sudoku.UI.Core\Sudoku.UI.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.UI.Drawing\Sudoku.UI.Drawing.csproj" />
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
@@ -139,4 +141,5 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>
+
 </Project>

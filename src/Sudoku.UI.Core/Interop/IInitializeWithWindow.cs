@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Interoperability;
+﻿namespace Sudoku.UI.Interop;
 
 /// <summary>
 /// Exposes a method through which a client can provide an owner window

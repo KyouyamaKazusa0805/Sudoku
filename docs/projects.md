@@ -13,6 +13,7 @@
 | [`Sudoku.Drawing`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing) | 类库         | 提供一种简单、轻量级的数独绘图 API。                         |
 | [`Sudoku.Solving.Manual`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Manual) | 类库         | 提供数独关于解题操作和技巧搜寻功能的 API。                   |
 | [`Sudoku.UI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI) | Windows UI   | 用于呈现和使用 API 提供一个具体的 UI 级别实现。**正在更新中。** |
+| [`Sudoku.UI.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI.Core) | 类库         | 用于为 `Sudoku.UI` 项目提供固定 API。                        |
 | [`Sudoku.UI.Drawing`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI.Drawing) | 类库         | 为 `Sudoku.UI` 项目提供绘图 API。                            |
 | [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System) | 类库         | 为整个解决方案的别的项目提供关于 .NET 基本库 API 拓展 API 或功能代码。 |
 

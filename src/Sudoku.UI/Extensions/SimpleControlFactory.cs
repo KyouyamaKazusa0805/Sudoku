@@ -29,13 +29,8 @@ internal static class SimpleControlFactory
 	/// <returns>The <see cref="FileSavePicker"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static FileSavePicker PictureFileSavePicker()
-	{
-		var fsp = new FileSavePicker
-		{
-			DefaultFileExtension = CommonFileExtensions.PortablePicture,
-			SuggestedFileName = R["Sudoku"]!
-		}.AddFileTypeChoice(R["FileExtension_Picture"]!, new List<string> { CommonFileExtensions.PortablePicture });
-
-		return fsp;
-	}
+		=> new FileSavePicker()
+			.WithDefaultFileExtension(CommonFileExtensions.PortablePicture)
+			.WithSuggestedFileName(R["Sudoku"]!)
+			.AddFileTypeChoice(R["FileExtension_Picture"]!, CommonFileExtensions.PortablePicture);
 }

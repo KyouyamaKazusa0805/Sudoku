@@ -1,10 +1,10 @@
 ﻿namespace Microsoft.UI.Xaml.Controls;
 
 /// <summary>
-/// Provides extension methods on <see cref="GridLayout"/>.
+/// Provides with extension methods for <see cref="GridLayout"/>.
 /// </summary>
 /// <seealso cref="GridLayout"/>
-internal static class GridWithExtensions
+public static class GridLayoutExtensions
 {
 	/// <summary>
 	/// Sets the info on <see cref="GridLayout"/>, and returns the reference
@@ -36,7 +36,6 @@ internal static class GridWithExtensions
 		GridLayout.SetColumnSpan(@this, columnSpan);
 		return @this;
 	}
-
 
 	/// <summary>
 	/// Creates the specified number of new <see cref="RowDefinition"/> instances and adds into the target

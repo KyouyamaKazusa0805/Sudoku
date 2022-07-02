@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.UI.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
+            </summary>
+            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.WithAwareHandleOnWin32(Windows.Storage.Pickers.FileOpenPicker)">
+            <summary>
+            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
+            </summary>
+            <param name="this">The instance.</param>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.WithSuggestedStartLocation(Windows.Storage.Pickers.FileOpenPicker,Windows.Storage.Pickers.PickerLocationId)">
+            <summary>
+            Sets the property <see cref="P:Windows.Storage.Pickers.FileOpenPicker.SuggestedStartLocation"/> with the specified value.
+            </summary>
+            <seealso cref="P:Windows.Storage.Pickers.FileOpenPicker.SuggestedStartLocation"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.AddFileTypeFilter(Windows.Storage.Pickers.FileOpenPicker,System.String)">
+            <summary>
+            Adds the file type filter into the <see cref="P:Windows.Storage.Pickers.FileOpenPicker.FileTypeFilter"/> property.
+            </summary>
+        </member>
+        <member name="T:Windows.Storage.Pickers.FileSavePickerExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileSavePicker"/>.
+            </summary>
+            <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithAwareHandleOnWin32(Windows.Storage.Pickers.FileSavePicker)">
+            <summary>
+            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
+            </summary>
+            <param name="this">The instance.</param>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithSuggestedFileName(Windows.Storage.Pickers.FileSavePicker,System.String)">
+            <summary>
+            Sets the property <see cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedFileName"/> with the specified value.
+            </summary>
+            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedFileName"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithSuggestedStartLocation(Windows.Storage.Pickers.FileSavePicker,Windows.Storage.Pickers.PickerLocationId)">
+            <summary>
+            Sets the property <see cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedStartLocation"/> with the specified value.
+            </summary>
+            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedStartLocation"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithDefaultFileExtension(Windows.Storage.Pickers.FileSavePicker,System.String)">
+            <summary>
+            Sets the property <see cref="P:Windows.Storage.Pickers.FileSavePicker.DefaultFileExtension"/> with the specified value.
+            </summary>
+            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.DefaultFileExtension"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.AddFileTypeChoice(Windows.Storage.Pickers.FileSavePicker,System.String,System.String[])">
+            <summary>
+            Adds the file type choices into the <see cref="P:Windows.Storage.Pickers.FileSavePicker.FileTypeChoices"/> property.
+            </summary>
+            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.FileTypeChoices"/>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Controls.GridLayoutExtensions">
+            <summary>
+            Provides with extension methods for <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithGridLayout``1(``0,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Sets the info on <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>, and returns the reference
+            of the argument <paramref name="this"/>.
+            </summary>
+            <typeparam name="TFrameworkElement">The type of the control.</typeparam>
+            <param name="this">The <typeparamref name="TFrameworkElement"/>-typed control.</param>
+            <param name="row">
+            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetRow(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
+            </param>
+            <param name="column">
+            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetColumn(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
+            </param>
+            <param name="rowSpan">
+            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
+            </param>
+            <param name="columnSpan">
+            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetColumnSpan(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
+            </param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithRowDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
+            <summary>
+            Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.RowDefinition"/> instances and adds into the target
+            <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
+            <param name="count">The number of <see cref="T:Microsoft.UI.Xaml.Controls.RowDefinition"/>s to be added.</param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="count"/> is negative.
+            </exception>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithColumnDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
+            <summary>
+            Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/> instances and adds into the target
+            <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
+            <param name="count">The number of <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/>s to be added.</param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="count"/> is negative.
+            </exception>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.UIElementExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.UIElement"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.UIElement"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.WithVisibility``1(``0,Microsoft.UI.Xaml.Visibility)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.UIElement.Visibility"/> with the specified value.
+            </summary>
+            <param name="this">The property.</param>
+            <param name="visibility">The value.</param>
+            <returns>The instance.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Interop.IInitializeWithWindow">
+            <summary>
+            Exposes a method through which a client can provide an owner window
+            to a Windows Runtime (WinRT) object used in a desktop application.
+            </summary>
+            <remarks>
+            <para>
+            <b>When to initialize:</b><br/>
+            Implement this interface if your object needs to be provided with an owner window,
+            generally to display UI. Most third-party applications will not need to implement this interface.
+            </para>
+            <para>
+            <b>When to use:</b><br/>
+            Use this interface if you will provide an owner window to a WinRT object in a desktop application.
+            For more information about this scenario, see
+            <see href="https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp#classes-that-use-iinitializewithwindow">
+            Classes that use <c>IInitializeWithWindow</c>
+            </see>.
+            </para>
+            <para>
+            This interface is implemented by the following objects. Note that this is necessarily an incomplete list;
+            refer to an individual object's documentation to determine whether that object implements this interface.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Interop.IInitializeWithWindow.Initialize(System.IntPtr)">
+            <summary>
+            Specifies an owner window to be used by a Windows Runtime (WinRT) object that is used in a desktop app.
+            </summary>
+            <param name="hwnd">The handle of the window to be used as the owner window.</param>
+            <remarks>
+            The method doesn't return anything, but the method returns an HResult value
+            in the Win32 API. For more information, please visit
+            <see href="https://docs.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-iinitializewithwindow-initialize">
+            this link
+            </see>.
+            </remarks>
+        </member>
+    </members>
+</doc>

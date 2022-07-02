@@ -91,13 +91,10 @@ internal sealed class CandidateDigit : DrawingElement
 			preference.ShowCandidates
 		);
 
-		var grid = new GridLayout { Visibility = preference.ShowCandidates ? Visibility.Visible : Visibility.Collapsed };
-		grid.RowDefinitions.Add(new());
-		grid.RowDefinitions.Add(new());
-		grid.RowDefinitions.Add(new());
-		grid.ColumnDefinitions.Add(new());
-		grid.ColumnDefinitions.Add(new());
-		grid.ColumnDefinitions.Add(new());
+		var grid = new GridLayout()
+			.WithVisibility(preference.ShowCandidates ? Visibility.Visible : Visibility.Collapsed)
+			.WithRowDefinitionsCount(3)
+			.WithColumnDefinitionsCount(3);
 
 		for (byte digit = 0; digit < 9; digit++)
 		{

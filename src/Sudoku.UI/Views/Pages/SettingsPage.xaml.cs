@@ -207,13 +207,11 @@ public sealed partial class SettingsPage : Page
 	/// <returns>The task that handles the current operation.</returns>
 	private async Task BackupPreferenceFileAsync()
 	{
-		var fsp = new FileSavePicker
-		{
-			SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
-			SuggestedFileName = R["PreferenceBackup"]!
-		}
-		.AddFileTypeChoice(R["FileExtension_Configuration"]!, new List<string> { CommonFileExtensions.PreferenceBackup });
-		fsp.AwareHandleOnWin32();
+		var fsp = new FileSavePicker()
+			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
+			.WithSuggestedFileName(R["PreferenceBackup"]!)
+			.AddFileTypeChoice(R["FileExtension_Configuration"]!, CommonFileExtensions.PreferenceBackup)
+			.WithAwareHandleOnWin32();
 
 		if (await fsp.PickSaveFileAsync() is not { Name: var fileName } file)
 		{
@@ -253,9 +251,10 @@ public sealed partial class SettingsPage : Page
 	/// <returns>The task that handles the current operation.</returns>
 	private async Task LocalBackupPreferenceFromLocalAsync()
 	{
-		var fop = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary };
-		fop.FileTypeFilter.Add(CommonFileExtensions.PreferenceBackup);
-		fop.AwareHandleOnWin32();
+		var fop = new FileOpenPicker()
+			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
+			.AddFileTypeFilter(CommonFileExtensions.PreferenceBackup)
+			.WithAwareHandleOnWin32();
 
 		var file = await fop.PickSingleFileAsync();
 		if (file is not { Path: var filePath })

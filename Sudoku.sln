@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Drawing", "src\Sudok
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI.Drawing", "src\Sudoku.UI.Drawing\Sudoku.UI.Drawing.csproj", "{C4622356-5F4A-422D-AAAB-4689B97BA9FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.UI.Core", "src\Sudoku.UI.Core\Sudoku.UI.Core.csproj", "{6EFEB8FA-B665-423B-A098-EA7854364337}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Build|Any CPU = Build|Any CPU
@@ -398,13 +400,43 @@ Global
 		{C4622356-5F4A-422D-AAAB-4689B97BA9FA}.Release|x64.Build.0 = Release|Any CPU
 		{C4622356-5F4A-422D-AAAB-4689B97BA9FA}.Release|x86.ActiveCfg = Release|Any CPU
 		{C4622356-5F4A-422D-AAAB-4689B97BA9FA}.Release|x86.Build.0 = Release|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Build|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Build|Any CPU.Build.0 = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Build|ARM.ActiveCfg = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Build|ARM.Build.0 = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Build|ARM64.ActiveCfg = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Build|ARM64.Build.0 = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Build|x64.ActiveCfg = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Build|x64.Build.0 = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Build|x86.ActiveCfg = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Build|x86.Build.0 = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Debug|ARM.Build.0 = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Debug|x64.Build.0 = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Debug|x86.Build.0 = Debug|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Release|ARM.ActiveCfg = Release|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Release|ARM.Build.0 = Release|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Release|ARM64.Build.0 = Release|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Release|x64.ActiveCfg = Release|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Release|x64.Build.0 = Release|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Release|x86.ActiveCfg = Release|Any CPU
+		{6EFEB8FA-B665-423B-A098-EA7854364337}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal
