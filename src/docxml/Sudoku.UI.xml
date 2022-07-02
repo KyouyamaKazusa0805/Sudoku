@@ -2354,13 +2354,6 @@
             The code is referenced from <see href="https://github.com/marb2000/PrintSample">this sample</see>.
             </remarks>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.TryGetLogicalDpi(System.Single)">
-            <summary>
-            Try to get the logical DPI value.
-            </summary>
-            <param name="default">The default DPI value. The default value is 96.</param>
-            <returns>The DPI value to get.</returns>
-        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current page is loaded.

@@ -217,31 +217,11 @@ public sealed partial class SudokuPage : Page
 	/// </remarks>
 	private async Task CopySnapshotAsync()
 	{
-		// Gets the snapshot of the control.
-		var rtb = new RenderTargetBitmap();
-		await rtb.RenderAsync(_cPane);
-		var pixelBuffer = await rtb.GetPixelsAsync();
-
 		// Creates the stream to store the output image data.
 		var stream = new InMemoryRandomAccessStream();
 
-		// Gets the DPI value.
-		float dpi = TryGetLogicalDpi();
-
-		// Creates an encoder.
-		var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
-		encoder.SetPixelData(
-			BitmapPixelFormat.Bgra8,
-			BitmapAlphaMode.Ignore,
-			(uint)rtb.PixelWidth,
-			(uint)rtb.PixelHeight,
-			dpi,
-			dpi,
-			pixelBuffer.ToArray()
-		);
-
-		// Flushes the encoder.
-		await encoder.FlushAsync();
+		// Gets the snapshot of the control.
+		await _cPane.RenderToAsync(stream);
 
 		// Copies the data to the data package.
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
@@ -415,11 +395,7 @@ public sealed partial class SudokuPage : Page
 
 				// Writes to the file.
 				// Render to an image at the current system scale and retrieve pixel contents.
-				var rtb = new RenderTargetBitmap();
-				await rtb.RenderAsync(_cPane);
-
-				// Outputs the file.
-				await outputPictureFileAsync(file, rtb);
+				await _cPane.RenderToAsync(file);
 
 				// Let Windows know that we're finished changing the file so the other app can update
 				// the remote version of the file.
@@ -479,11 +455,7 @@ public sealed partial class SudokuPage : Page
 
 					// Writes to the file.
 					// Render to an image at the current system scale and retrieve pixel contents.
-					var rtb = new RenderTargetBitmap();
-					await rtb.RenderAsync(_cPane);
-
-					// Outputs the file.
-					await outputPictureFileAsync(pictureFile, rtb);
+					await _cPane.RenderToAsync(pictureFile);
 
 					// Let Windows know that we're finished changing the file so the other app can update
 					// the remote version of the file.
@@ -495,32 +467,6 @@ public sealed partial class SudokuPage : Page
 				break;
 			}
 
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static async Task outputPictureFileAsync(StorageFile file, RenderTargetBitmap rtb)
-			{
-				// Creates the pixel buffer.
-				var pixelBuffer = await rtb.GetPixelsAsync();
-
-				// Gets the DPI value.
-				float dpi = TryGetLogicalDpi();
-
-				// Encodes the image to the selected file on disk
-				using var pictureFileStream = await file.OpenAsync(FileAccessMode.ReadWrite);
-				var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, pictureFileStream);
-				encoder.SetPixelData(
-					BitmapPixelFormat.Bgra8,
-					BitmapAlphaMode.Ignore,
-					(uint)rtb.PixelWidth,
-					(uint)rtb.PixelHeight,
-					dpi,
-					dpi,
-					pixelBuffer.ToArray()
-				);
-
-				// Flushes the encoder.
-				await encoder.FlushAsync();
-			}
 
 			void reportUserOutputResult(FileUpdateStatus status, string fileName)
 			{
@@ -723,29 +669,7 @@ public sealed partial class SudokuPage : Page
 		}
 	}
 
-
-	/// <summary>
-	/// Try to get the logical DPI value.
-	/// </summary>
-	/// <param name="default">The default DPI value. The default value is 96.</param>
-	/// <returns>The DPI value to get.</returns>
-	private static float TryGetLogicalDpi(float @default = 96)
-	{
-		float dpi;
-		try
-		{
-			dpi = DisplayInformation.GetForCurrentView().LogicalDpi;
-		}
-		catch (COMException ex) when (ex.ErrorCode == unchecked((int)0x80070490))
-		{
-			// Cannot find the element.
-			dpi = @default;
-		}
-
-		return dpi;
-	}
-
-
+	
 	/// <summary>
 	/// Triggers when the current page is loaded.
 	/// </summary>

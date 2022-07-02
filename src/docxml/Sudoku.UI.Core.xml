@@ -141,6 +141,29 @@
             <param name="visibility">The value.</param>
             <returns>The instance.</returns>
         </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``1(``0,Windows.Storage.StorageFile)">
+            <summary>
+            Renders the specified UI control to the target file as a picture.
+            </summary>
+            <typeparam name="TUIElement">The type of the UI control.</typeparam>
+            <param name="this">The control.</param>
+            <param name="file">The target file.</param>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``1(``0,Windows.Storage.Streams.IRandomAccessStream)">
+            <summary>
+            Renders the specified UI control to the target stream as a picture.
+            </summary>
+            <typeparam name="TUIElement">The type of the UI control.</typeparam>
+            <param name="this">The control.</param>
+            <param name="stream">The target stream.</param>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.TryGetLogicalDpi(System.Single)">
+            <summary>
+            Try to get the logical DPI value.
+            </summary>
+            <param name="default">The default DPI value. The default value is 96.</param>
+            <returns>The DPI value to get.</returns>
+        </member>
         <member name="T:Microsoft.UI.Xaml.WindowExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Window"/>.
