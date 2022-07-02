@@ -343,6 +343,12 @@
             Release the memory or return the rent memory.
             </summary>
         </member>
+        <member name="M:System.Collections.Generic.Bag`1.GetDebuggerDisplay">
+            <summary>
+            Gets the display view of the type on debugger.
+            </summary>
+            <returns>The string representation of the instance.</returns>
+        </member>
         <member name="T:System.Collections.Generic.Bag`1.Enumerator">
             <summary>
             Indicates the inner enumerator.

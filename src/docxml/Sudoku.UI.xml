@@ -2987,12 +2987,12 @@
             <param name="this">The modifier key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DE7BE3B162">
+        <member name="T:Windows.Foundation.Point_DEDD88788C">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DE7BE3B162.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEDD88788C.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3098,12 +3098,12 @@
             Throws when the argument <paramref name="count"/> is negative.
             </exception>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
