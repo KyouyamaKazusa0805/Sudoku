@@ -24,6 +24,17 @@
 		<PackageTags>algorithms;sudoku;puzzle-solving</PackageTags>
 		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
 		<Description>The solution that plays with the sudoku.</Description>
+		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+		<PackageCertificateThumbprint>0B3F4278445C22139788C5BAAF7F423533A1A710</PackageCertificateThumbprint>
+		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+		<GenerateTestArtifacts>True</GenerateTestArtifacts>
+		<AppxBundle>Always</AppxBundle>
+		<AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
+		<AppInstallerUri>C:\Apps</AppInstallerUri>
+		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 	</PropertyGroup>
 
 	<ItemGroup>
