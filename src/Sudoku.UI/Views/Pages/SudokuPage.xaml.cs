@@ -611,8 +611,7 @@ public sealed partial class SudokuPage : Page
 	private void GetSolution()
 	{
 		// Gets the grid and its solution, then check it.
-		ref readonly var grid = ref _cPane.GridRef;
-		if (grid is not { IsValid: true, Solution: { IsUndefined: false } solution })
+		if (_cPane.Grid is not { IsValid: true, Solution: { IsUndefined: false } solution })
 		{
 			return;
 		}
