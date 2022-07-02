@@ -223,13 +223,8 @@ public sealed partial class SettingsPage : Page
 		CachedFileManager.DeferUpdates(file);
 
 		// Writes to the file.
-		await FileIO.WriteTextAsync(
-			file,
-			JsonSerializer.Serialize(
-				((App)Application.Current).UserPreference,
-				CommonReadOnlyFactory.DefaultSerializerOption
-			)
-		);
+		var up = ((App)Application.Current).UserPreference;
+		await FileIO.WriteTextAsync(file, JsonSerializer.Serialize(up, CommonSerializerOptions.CamelCasing));
 
 		// Let Windows know that we're finished changing the file so the other app can update
 		// the remote version of the file.
@@ -280,10 +275,7 @@ public sealed partial class SettingsPage : Page
 
 		try
 		{
-			var tempPref = JsonSerializer.Deserialize<Preference>(
-				content,
-				CommonReadOnlyFactory.DefaultSerializerOption
-			);
+			var tempPref = JsonSerializer.Deserialize<Preference>(content, CommonSerializerOptions.CamelCasing);
 
 			((App)Application.Current).UserPreference.CoverPreferenceBy(tempPref);
 		}

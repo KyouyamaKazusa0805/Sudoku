@@ -426,7 +426,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				ShowCandidates = sudokuGrid.UserShowCandidates,
 				GridRawValue = Grid.ToString("#")
 			},
-			CommonReadOnlyFactory.DefaultSerializerOption
+			CommonSerializerOptions.CamelCasing
 		);
 	}
 #endif
@@ -641,32 +641,20 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				break;
 			}
 #if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-			case
-			{
-				DrawingDataRawValue: { } rawDataValue
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-				,
-				UserPreference: var up
-#endif
-			} initialInfo:
+			case { DrawingDataRawValue: { } rawDataValue } initialInfo:
 			{
 				// Handles the raw data value.
-				var drawingData = JsonSerializer.Deserialize<DrawingData>(
-					rawDataValue,
-					CommonReadOnlyFactory.DefaultSerializerOption
-				);
-
 				if (
-					drawingData is not var (
-						gridRawValue,
-						showCandidates
+					JsonSerializer.Deserialize<DrawingData>(rawDataValue, CommonSerializerOptions.CamelCasing) is not (
+						var gridRawValue,
+						var showCandidates
 #if AUTHOR_FEATURE_CELL_MARKS
 						,
-						cellData
+						var cellData
 #endif
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 						,
-						candidateData
+						var candidateData
 #endif
 					)
 				)

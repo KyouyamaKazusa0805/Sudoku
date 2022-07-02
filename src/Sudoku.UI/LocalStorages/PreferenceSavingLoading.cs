@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.DataFactory.LocalStorages;
+﻿namespace Sudoku.UI.LocalStorages;
 
 /// <summary>
 /// Provides a way to save or load preference files.
@@ -30,7 +30,7 @@ internal static class PreferenceSavingLoading
 			SioDirectory.CreateDirectory(StorageFolder);
 		}
 
-		string json = JsonSerializer.Serialize(up, CommonReadOnlyFactory.DefaultSerializerOption);
+		string json = JsonSerializer.Serialize(up, CommonSerializerOptions.CamelCasing);
 		await SioFile.WriteAllTextAsync($"""{StorageFolder}\{GlobalConfigFileName}""", json);
 	}
 
@@ -46,18 +46,13 @@ internal static class PreferenceSavingLoading
 		try
 		{
 			string content = await SioFile.ReadAllTextAsync($"""{StorageFolder}\{GlobalConfigFileName}""");
-			if (string.IsNullOrWhiteSpace(content))
-			{
-				return null;
-			}
-
-			var options = CommonReadOnlyFactory.DefaultSerializerOption;
-			return JsonSerializer.Deserialize<Preference>(content, options);
+			return string.IsNullOrWhiteSpace(content)
+				? null
+				: JsonSerializer.Deserialize<Preference>(content, CommonSerializerOptions.CamelCasing);
 		}
 		catch (Exception ex) when (ex is FileNotFoundException or JsonException or NotSupportedException)
 		{
+			return null;
 		}
-
-		return null;
 	}
 }

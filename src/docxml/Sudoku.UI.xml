@@ -220,57 +220,6 @@
             <inheritdoc/>
             <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
         </member>
-        <member name="T:Sudoku.UI.DataFactory.CommonReadOnlyFactory">
-            <summary>
-            Provides with the read-only values.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.DataFactory.CommonReadOnlyFactory.DefaultSerializerOption">
-            <summary>
-            Creates a default option instance with:
-            <list type="bullet">
-            <item><see cref="P:System.Text.Json.JsonSerializerOptions.WriteIndented"/> is <see langword="true"/></item>
-            <item><see cref="P:System.Text.Json.JsonSerializerOptions.IgnoreReadOnlyProperties"/> is <see langword="true"/></item>
-            <item>
-            <see cref="P:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy"/> is <see cref="P:System.Text.Json.JsonNamingPolicy.CamelCase"/>
-            </item>
-            <item>
-            <see cref="P:System.Text.Json.JsonSerializerOptions.Encoder"/> is <see cref="P:System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping"/>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.DataFactory.LocalStorages.PreferenceSavingLoading">
-            <summary>
-            Provides a way to save or load preference files.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.DataFactory.LocalStorages.PreferenceSavingLoading.GlobalConfigFileName">
-            <summary>
-            Indicates the config file name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.DataFactory.LocalStorages.PreferenceSavingLoading.StorageFolder">
-            <summary>
-            Indicates the configuration file local storage folder.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.DataFactory.LocalStorages.PreferenceSavingLoading.SaveAsync(Sudoku.UI.Data.Configuration.Preference)">
-            <summary>
-            Save the preference to the local path.
-            </summary>
-            <param name="up">The user preference instance.</param>
-            <returns>The task that holds the current operation.</returns>
-        </member>
-        <member name="M:Sudoku.UI.DataFactory.LocalStorages.PreferenceSavingLoading.LoadAsync">
-            <summary>
-            Load the preference from the local path.
-            </summary>
-            <returns>
-            A task that holds the current operation with a returning value of type <see cref="T:Sudoku.UI.Data.Configuration.Preference"/>
-            indicating the result value after the operation handled, or <see langword="null"/> if failed to fetch.
-            </returns>
-        </member>
         <member name="T:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo">
             <summary>
             Defines the information to control the initial page information.
@@ -772,6 +721,37 @@
             <summary>
             Indicates the colors.
             </summary>
+        </member>
+        <member name="T:Sudoku.UI.LocalStorages.PreferenceSavingLoading">
+            <summary>
+            Provides a way to save or load preference files.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.LocalStorages.PreferenceSavingLoading.GlobalConfigFileName">
+            <summary>
+            Indicates the config file name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.LocalStorages.PreferenceSavingLoading.StorageFolder">
+            <summary>
+            Indicates the configuration file local storage folder.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.LocalStorages.PreferenceSavingLoading.SaveAsync(Sudoku.UI.Data.Configuration.Preference)">
+            <summary>
+            Save the preference to the local path.
+            </summary>
+            <param name="up">The user preference instance.</param>
+            <returns>The task that holds the current operation.</returns>
+        </member>
+        <member name="M:Sudoku.UI.LocalStorages.PreferenceSavingLoading.LoadAsync">
+            <summary>
+            Load the preference from the local path.
+            </summary>
+            <returns>
+            A task that holds the current operation with a returning value of type <see cref="T:Sudoku.UI.Data.Configuration.Preference"/>
+            indicating the result value after the operation handled, or <see langword="null"/> if failed to fetch.
+            </returns>
         </member>
         <member name="T:Sudoku.UI.Models.AnalysisResultRow">
             <summary>
