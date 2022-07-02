@@ -96,7 +96,7 @@ The repository also lists many wiki pages, being stored in the folder `docs`. In
 
 ## Code of Conduct
 
-Please see the file "[CODE_OF_CONDUCT](CODE_OF_CONDUCT)".
+Please see the file [CODE_OF_CONDUCT](CODE_OF_CONDUCT).
 
 ## Sudoku Technique References
 

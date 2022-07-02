@@ -92,9 +92,9 @@ UI：
 
 本项目里包含了一些 Wiki 文档（即放入 docs 文件夹的所有文件，包含 Markdown 文件以及关联的图片，还有位于仓库根目录下的 README.md 和中文版本 README-zh-cn.md），由于均为自己写的内容，所以它们需要遵守 CC 协议。如果你需要使用，请在你的资料文献等内容里说明本文的版权信息，并且附上改动过的条目。
 
-## Code of Conduct
+## 行为准则
 
-请查看 [CODE_OF_CONDUCT](CODE_OF_CONDUCT) 文件。
+请查看 [行为准则](CODE_OF_CONDUCT) 文件。
 
 ## 数独技巧参考
 
