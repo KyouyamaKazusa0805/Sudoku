@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Data.ValueConverters;
+﻿namespace Sudoku.UI.DataConversion.ValueConverters;
 
 /// <summary>
 /// Defines a value converter that allows the one-way binding from the undo-stack or redo-stack

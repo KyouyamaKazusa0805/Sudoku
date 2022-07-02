@@ -43,21 +43,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.App.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.App.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.AppLifecycle.WindowInitialInfo">
             <summary>
             Defines the information to control the initial page information.
@@ -522,7 +507,7 @@
             The preference instance. If the value is <see langword="null"/>, no operation will be handled.
             </param>
         </member>
-        <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
+        <member name="T:Sudoku.UI.DataConversion.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
             Defines a data template selector that selects the <see cref="T:Microsoft.UI.Xaml.DataTemplate"/> between
             <see cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/> and <see cref="T:Sudoku.UI.Models.InfoBarMessages.HyperlinkMessage"/> as the model types.
@@ -530,88 +515,88 @@
             <seealso cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/>
             <seealso cref="T:Sudoku.UI.Models.InfoBarMessages.HyperlinkMessage"/>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.PlainMessageTemplate">
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.InfoBarDataTemplateSelector.PlainMessageTemplate">
             <summary>
             Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.InfoBarMessages.PlainMessage"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.HyperlinkMessageTemplate">
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.InfoBarDataTemplateSelector.HyperlinkMessageTemplate">
             <summary>
             Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.InfoBarMessages.HyperlinkMessage"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.AnalysisResultTemplate">
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.InfoBarDataTemplateSelector.AnalysisResultTemplate">
             <summary>
             Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.ManualSolverResultMessage"/>.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Data.DataTemplateSelectors.ModelDataTemplateSelector">
+        <member name="T:Sudoku.UI.DataConversion.DataTemplateSelectors.ModelDataTemplateSelector">
             <summary>
             Extracts a type that is used by derived types, providing them with a template way to select data template
             automatically and binding with a model type.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.ModelDataTemplateSelector.DefaultTemplate">
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.ModelDataTemplateSelector.DefaultTemplate">
             <summary>
             Indicates the default template. The value can be <see langword="null"/> if you don't want to provide
             with such data template as the default case.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Data.DataTemplateSelectors.ModelDataTemplateSelector.SelectTemplateCore(System.Object)">
+        <member name="M:Sudoku.UI.DataConversion.DataTemplateSelectors.ModelDataTemplateSelector.SelectTemplateCore(System.Object)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">
-            Throws when the default template property <see cref="P:Sudoku.UI.Data.DataTemplateSelectors.ModelDataTemplateSelector.DefaultTemplate"/> is <see langword="null"/> currently,
+            Throws when the default template property <see cref="P:Sudoku.UI.DataConversion.DataTemplateSelectors.ModelDataTemplateSelector.DefaultTemplate"/> is <see langword="null"/> currently,
             but the argument <paramref name="item"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="T:Sudoku.UI.Data.DataTemplateSelectors.SearchedResultItemTemplateSelector">
+        <member name="T:Sudoku.UI.DataConversion.DataTemplateSelectors.SearchedResultItemTemplateSelector">
             <summary>
             Defines a selector that can select the data template on searched result items.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SearchedResultItemTemplateSelector.PairInfoTemplate">
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.SearchedResultItemTemplateSelector.PairInfoTemplate">
             <summary>
             Indicates the template that is used by the valid seared result.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector">
+        <member name="T:Sudoku.UI.DataConversion.DataTemplateSelectors.SettingItemDataTemplateSelector">
             <summary>
             Defines a data template selector that determines which data template can be used on a setting item.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.ToggleSwitchTemplate">
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.SettingItemDataTemplateSelector.ToggleSwitchTemplate">
             <summary>
             Indicates the template that is used for a toggle switch.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.SliderTemplate">
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.SettingItemDataTemplateSelector.SliderTemplate">
             <summary>
             Indicates the template that is used for a slider.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.ColorPickerTemplate">
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.SettingItemDataTemplateSelector.ColorPickerTemplate">
             <summary>
             Indicates the template that is used for a color picker.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.FontPickerTemplate">
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.SettingItemDataTemplateSelector.FontPickerTemplate">
             <summary>
             Indicates the template that is used for a font picker.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.SettingItemDataTemplateSelector.PeerFocusingModeComboBoxGroupTemplate">
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.SettingItemDataTemplateSelector.PeerFocusingModeComboBoxGroupTemplate">
             <summary>
             Indicates the template that is used for a combo box group that applied
             to a <see cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/> instance.
             </summary>
             <seealso cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/>
         </member>
-        <member name="T:Sudoku.UI.Data.SimpleConverters">
+        <member name="T:Sudoku.UI.DataConversion.SimpleConverters">
             <summary>
             Provides with a set of methods as simple converters that can be used and called by XAML files.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Data.SimpleConverters.License(System.String)">
+        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.License(System.String)">
             <summary>
             Indicates the license displaying value on <see cref="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense"/>.
             </summary>
@@ -619,7 +604,7 @@
             <returns>The converted result string.</returns>
             <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense"/>
         </member>
-        <member name="M:Sudoku.UI.Data.SimpleConverters.ForReference(System.Boolean)">
+        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.ForReference(System.Boolean)">
             <summary>
             Indicates the conversion on <see cref="P:Sudoku.UI.Models.RepositoryInfo.IsForReference"/>.
             </summary>
@@ -627,7 +612,7 @@
             <returns>The converted result string value.</returns>
             <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.IsForReference"/>
         </member>
-        <member name="M:Sudoku.UI.Data.SimpleConverters.InfoBarTitle(Microsoft.UI.Xaml.Controls.InfoBarSeverity)">
+        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.InfoBarTitle(Microsoft.UI.Xaml.Controls.InfoBarSeverity)">
             <summary>
             Gets the title of the info bar via its severity.
             </summary>
@@ -635,14 +620,14 @@
             <returns>The title of the info bar.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the severity is not defined.</exception>
         </member>
-        <member name="M:Sudoku.UI.Data.SimpleConverters.GetDate(System.String)">
+        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.GetDate(System.String)">
             <summary>
             Gets the date value from the raw string.
             </summary>
             <param name="dateRawString">The date raw string.</param>
             <returns>The target <see cref="T:System.DateOnly"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.UI.Data.SimpleConverters.GetDateWithFormat(System.String,System.String)">
+        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.GetDateWithFormat(System.String,System.String)">
             <summary>
             Gets the date value from the raw string.
             </summary>
@@ -650,37 +635,37 @@
             <param name="format">The format.</param>
             <returns>The target <see cref="T:System.DateOnly"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.UI.Data.SimpleConverters.GetTimelineInfo(Sudoku.UI.Models.VersionTimelineItem)">
+        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.GetTimelineInfo(Sudoku.UI.Models.VersionTimelineItem)">
             <summary>
             Gets the timeline information.
             </summary>
             <param name="versionTimelineItem">The version timeline item value.</param>
             <returns>The text block instance.</returns>
         </member>
-        <member name="T:Sudoku.UI.Data.ValueConverters.Int32ToStringConverter">
+        <member name="T:Sudoku.UI.DataConversion.ValueConverters.Int32ToStringConverter">
             <summary>
             Defines a converter that can convert an <see cref="T:System.Int32"/> value to a <see cref="T:System.String"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Data.ValueConverters.Int32ToStringConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.Int32ToStringConverter.Convert(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Data.ValueConverters.Int32ToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.Int32ToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.UI.Data.ValueConverters.UndoOrRedoStackToIsEnabledConverter">
+        <member name="T:Sudoku.UI.DataConversion.ValueConverters.UndoOrRedoStackToIsEnabledConverter">
             <summary>
             Defines a value converter that allows the one-way binding from the undo-stack or redo-stack
             to a <see cref="T:System.Boolean"/> value indicating whether the control should be enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Data.ValueConverters.UndoOrRedoStackToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.UndoOrRedoStackToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
             <exception cref="T:System.ArgumentException">
             Throws when the argument <paramref name="targetType"/> is not <see cref="T:System.Boolean"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.UI.Data.ValueConverters.UndoOrRedoStackToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.UndoOrRedoStackToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
             <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
         </member>
@@ -1419,16 +1404,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.ColorSelector.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.ColorSelector.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.FontPicker">
             <summary>
             Defines a font picker control.
@@ -1458,16 +1433,6 @@
         <member name="M:Sudoku.UI.Views.Controls.FontPicker.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.GettingStartedTile">
@@ -1555,16 +1520,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>
             Defines a user control that handles the messages displaying via <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>s.
@@ -1646,16 +1601,6 @@
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
@@ -1975,16 +1920,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.TitleBar">
             <summary>
             Defines a customized title bar.
@@ -2053,16 +1988,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.TitleBar.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TitleBar.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Pages.AboutPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -2079,16 +2004,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Pages.HomePage">
             <summary>
             Defines a home page.
@@ -2102,16 +2017,6 @@
         <member name="M:Sudoku.UI.Views.Pages.HomePage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.HomePage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.HomePage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SettingsPage">
@@ -2159,16 +2064,6 @@
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SudokuPage">
@@ -2579,16 +2474,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -2764,42 +2649,12 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -2840,12 +2695,12 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Windows.Foundation.Point_DEDD88788C">
+        <member name="T:Windows.Foundation.Point_DE5AF559E2">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEDD88788C.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DE5AF559E2.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

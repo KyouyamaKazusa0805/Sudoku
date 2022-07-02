@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Data.DataTemplateSelectors;
+﻿namespace Sudoku.UI.DataConversion.DataTemplateSelectors;
 
 /// <summary>
 /// Extracts a type that is used by derived types, providing them with a template way to select data template

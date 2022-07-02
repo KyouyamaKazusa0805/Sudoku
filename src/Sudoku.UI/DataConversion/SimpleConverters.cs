@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Data;
+﻿namespace Sudoku.UI.DataConversion;
 
 /// <summary>
 /// Provides with a set of methods as simple converters that can be used and called by XAML files.

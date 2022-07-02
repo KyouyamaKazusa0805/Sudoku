@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Data.ValueConverters;
+﻿namespace Sudoku.UI.DataConversion.ValueConverters;
 
 /// <summary>
 /// Defines a converter that can convert an <see cref="int"/> value to a <see cref="string"/>.

@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:Sudoku.UI.Views.Controls"
-	xmlns:data="using:Sudoku.UI.Data"
+	xmlns:data="using:Sudoku.UI.DataConversion"
 	xmlns:m="using:Sudoku.UI.Models"
 	xmlns:markup="using:Sudoku.UI.MarkupExtensions"
 	mc:Ignorable="d">

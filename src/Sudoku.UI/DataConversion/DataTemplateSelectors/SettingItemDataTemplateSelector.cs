@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Data.DataTemplateSelectors;
+﻿namespace Sudoku.UI.DataConversion.DataTemplateSelectors;
 
 /// <summary>
 /// Defines a data template selector that determines which data template can be used on a setting item.
