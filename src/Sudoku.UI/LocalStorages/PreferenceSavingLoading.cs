@@ -30,8 +30,14 @@ internal static class PreferenceSavingLoading
 			SioDirectory.CreateDirectory(StorageFolder);
 		}
 
-		string json = JsonSerializer.Serialize(up, CommonSerializerOptions.CamelCasing);
-		await SioFile.WriteAllTextAsync($"""{StorageFolder}\{GlobalConfigFileName}""", json);
+		string jsonBody = JsonSerializer.Serialize(up, CommonSerializerOptions.CamelCasing);
+		await SioFile.WriteAllTextAsync(
+			$"""{StorageFolder}\{GlobalConfigFileName}""",
+			$"""
+			{R["JsonConfigHeader"]}
+			{jsonBody}
+			"""
+		);
 	}
 
 	/// <summary>

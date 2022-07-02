@@ -230,6 +230,25 @@
 	<x:String x:Key="PrintFailed_InterfaceNotRegistered">I'm sorry. This function cannot be implemented at present due to not having been implemented by UI framework itself.</x:String>
 	<x:String x:Key="PrintFailed_CannotProceed">Sorry, printing can't proceed at this time.</x:String>
 	<x:String x:Key="PrintFailed_NotSupported">Sorry, printing is not supported on this device.</x:String>
+	<x:String x:Key="JsonConfigHeader" xml:space="preserve">//
+// Serialization file version 1.0
+// Author: SunnieShine
+// Explanation:
+// The file use key-value pairs to store values.
+// The format will be like:
+//
+//     {
+//     //    Key part       Value part
+//         "key_string" : "string_value",
+//         "key_integer": integer_value,
+//         "key_boolean": true, // Can also be 'false'.
+//         ...
+//     }
+//
+// If you want to change the value manually and silently,
+// please find the value whose corresponding key is matched preference you think,
+// and then change the value part (NOT key part).
+//</x:String>
 	<x:String x:Key="__SampleField">Sample field</x:String>
 
 	<!--Punctuations-->

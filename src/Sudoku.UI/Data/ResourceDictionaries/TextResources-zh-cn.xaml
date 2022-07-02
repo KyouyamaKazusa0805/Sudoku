@@ -223,6 +223,24 @@
 	<x:String x:Key="PrintFailed_InterfaceNotRegistered">抱歉，此功能无法成功执行，因为窗体框架本身都没有对打印机的功能进行实现，因此无法继续。</x:String>
 	<x:String x:Key="PrintFailed_CannotProceed">抱歉，当前打印操作无法继续进行。</x:String>
 	<x:String x:Key="PrintFailed_NotSupported">抱歉，这台设备本身不支持打印功能。</x:String>
+	<x:String x:Key="JsonConfigHeader" xml:space="preserve">//
+// 序列化文件 版本 1.0
+// 作者：小向（SunnieShine）
+// 解释:
+// 这个文件存储的是一系列的键值对。它的完整格式长得像是如下这样：
+//
+//     {
+//     //      键部分          数值部分
+//         "key_string" : "string_value",
+//         "key_integer": integer_value,
+//         "key_boolean": true, // 也可以是 false。
+//         ...
+//     }
+//
+// 如果你想要不让程序知道，背地里修改数值的话，
+// 请找到你觉得匹配的选项的配置项的名称（键部分），
+// 然后将数值部分（不是键部分）改成你想要修改的数值。
+//</x:String>
 
 	<!--标点符号-->
 	<x:String x:Key="Token_OpenBrace">（</x:String>

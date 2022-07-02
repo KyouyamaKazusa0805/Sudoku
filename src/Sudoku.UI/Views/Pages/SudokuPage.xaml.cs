@@ -314,13 +314,6 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
-	/// Get the drawing data.
-	/// </summary>
-	/// <returns>The drawing data.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private string GetDrawingData() => _cPane.GetDrawingData();
-
-	/// <summary>
 	/// Asynchronously opening the file, and get the inner content to be parsed to a <see cref="Grid"/> result
 	/// to display.
 	/// </summary>
@@ -443,8 +436,13 @@ public sealed partial class SudokuPage : Page
 				CachedFileManager.DeferUpdates(file);
 
 				// Writes to the file.
-				string drawingDataJson = GetDrawingData();
-				await FileIO.WriteTextAsync(file, drawingDataJson);
+				await FileIO.WriteTextAsync(
+					file,
+					$"""
+					{R["JsonConfigHeader"]!}
+					{_cPane.GetDrawingData()}
+					"""
+				);
 
 				// Let Windows know that we're finished changing the file so the other app can update
 				// the remote version of the file.

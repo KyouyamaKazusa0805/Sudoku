@@ -2284,12 +2284,6 @@
             </summary>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetDrawingData">
-            <summary>
-            Get the drawing data.
-            </summary>
-            <returns>The drawing data.</returns>
-        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.OpenFileAsync">
             <summary>
             Asynchronously opening the file, and get the inner content to be parsed to a <see cref="T:Sudoku.Concepts.Collections.Grid"/> result
