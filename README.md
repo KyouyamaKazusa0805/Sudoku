@@ -94,6 +94,10 @@ The codes in this repository uses MIT license, which means you should mention th
 
 The repository also lists many wiki pages, being stored in the folder `docs`. In addition, files `README.md` and `README-zh-cn.md` (as Chinese translation version) are also included as wiki pages. Those pages uses CC-BY-4.0 license to constraint your usage and copyright statements on this repository. You should mention the copyright of the author in this repository and give the state changes after modified the content in the copied one if you want to use the Wiki pages.
 
+## Code of Conduct
+
+Please see the file "[CODE_OF_CONDUCT](CODE_OF_CONDUCT)".
+
 ## Sudoku Technique References
 
 Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links[^2] to learn about more information.
