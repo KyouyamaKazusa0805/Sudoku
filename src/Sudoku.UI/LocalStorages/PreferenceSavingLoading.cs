@@ -25,13 +25,13 @@ internal static class PreferenceSavingLoading
 	/// <returns>The task that holds the current operation.</returns>
 	public static async Task SaveAsync(Preference up)
 	{
-		if (!SystemIODirectory.Exists(StorageFolder))
+		if (!SioDirectory.Exists(StorageFolder))
 		{
-			SystemIODirectory.CreateDirectory(StorageFolder);
+			SioDirectory.CreateDirectory(StorageFolder);
 		}
 
 		string json = JsonSerializer.Serialize(up, CommonReadOnlyFactory.DefaultSerializerOption);
-		await SystemIOFile.WriteAllTextAsync($"""{StorageFolder}\{GlobalConfigFileName}""", json);
+		await SioFile.WriteAllTextAsync($"""{StorageFolder}\{GlobalConfigFileName}""", json);
 	}
 
 	/// <summary>
@@ -45,7 +45,7 @@ internal static class PreferenceSavingLoading
 	{
 		try
 		{
-			string content = await SystemIOFile.ReadAllTextAsync($"""{StorageFolder}\{GlobalConfigFileName}""");
+			string content = await SioFile.ReadAllTextAsync($"""{StorageFolder}\{GlobalConfigFileName}""");
 			if (string.IsNullOrWhiteSpace(content))
 			{
 				return null;

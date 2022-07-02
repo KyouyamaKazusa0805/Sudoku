@@ -394,7 +394,7 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		switch (SystemIOPath.GetExtension(filePath))
+		switch (SioPath.GetExtension(filePath))
 		{
 			case CommonFileExtensions.Text:
 			case CommonFileExtensions.Sudoku:
@@ -454,14 +454,14 @@ public sealed partial class SudokuPage : Page
 
 				if (((App)Application.Current).UserPreference.AlsoSavePictureWhenSaveDrawingData)
 				{
-					string? picturePath = SystemIOPath.ChangeExtension(filePath, CommonFileExtensions.PortablePicture);
+					string? picturePath = SioPath.ChangeExtension(filePath, CommonFileExtensions.PortablePicture);
 					if (picturePath is null)
 					{
 						// The path is null.
 						break;
 					}
 
-					if (SystemIOFile.Exists(picturePath))
+					if (SioFile.Exists(picturePath))
 					{
 						// The file has already existed. We should break the method
 						// to avoid the file being overwritten.
@@ -469,7 +469,7 @@ public sealed partial class SudokuPage : Page
 					}
 
 					// Gets the file, but fast close the file.
-					var tempStream = SystemIOFile.Create(picturePath);
+					var tempStream = SioFile.Create(picturePath);
 					tempStream.Close();
 
 					// Creates the storage file instance.
@@ -491,7 +491,7 @@ public sealed partial class SudokuPage : Page
 					// the remote version of the file.
 					// Completing updates may require Windows to ask for user input.
 					var pictureStatus = await CachedFileManager.CompleteUpdatesAsync(pictureFile);
-					reportUserOutputResult(pictureStatus, SystemIOPath.GetFileName(picturePath)!);
+					reportUserOutputResult(pictureStatus, SioPath.GetFileName(picturePath)!);
 				}
 
 				break;
