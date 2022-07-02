@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Navigation;
+﻿namespace Sudoku.UI.Data.Navigation;
 
 /// <summary>
 /// Defines a navigation information instance.

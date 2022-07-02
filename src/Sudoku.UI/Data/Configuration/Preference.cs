@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Configuration;
+﻿namespace Sudoku.UI.Data.Configuration;
 
 /// <summary>
 /// Defines the user preferences in the program.

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.ResourceDictionaries;
+﻿namespace Sudoku.UI.Data.ResourceDictionaries;
 
 /// <summary>
 /// Indicates the color palette.

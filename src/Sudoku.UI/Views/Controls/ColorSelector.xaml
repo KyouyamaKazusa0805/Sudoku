@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	xmlns:data="using:Sudoku.UI.DataConversion"
-	xmlns:r="using:Sudoku.UI.ResourceDictionaries">
+	xmlns:r="using:Sudoku.UI.Data.ResourceDictionaries">
 	<SplitButton x:Name="_cSplitButton">
 		<SplitButton.Flyout>
 			<Flyout Placement="Bottom">

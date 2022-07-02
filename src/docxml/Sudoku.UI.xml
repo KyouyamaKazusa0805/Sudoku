@@ -43,469 +43,20 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="T:Sudoku.UI.AppLifecycle.WindowInitialInfo">
+        <member name="M:Sudoku.UI.App.GetXamlType(System.Type)">
             <summary>
-            Defines the information to control the initial page information.
+            GetXamlType(Type)
             </summary>
         </member>
-        <member name="P:Sudoku.UI.AppLifecycle.WindowInitialInfo.FromPreferenceFile">
+        <member name="M:Sudoku.UI.App.GetXamlType(System.String)">
             <summary>
-            Indicates whether the window is created from the preference backup file.
+            GetXamlType(String)
             </summary>
         </member>
-        <member name="P:Sudoku.UI.AppLifecycle.WindowInitialInfo.FirstPageTypeName">
+        <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
             <summary>
-            Indicates the first page type name. The default value is <see langword="nameof"/>(<see cref="T:Sudoku.UI.Views.Pages.HomePage"/>).
+            GetXmlnsDefinitions()
             </summary>
-            <seealso cref="T:Sudoku.UI.Views.Pages.HomePage"/>
-        </member>
-        <member name="P:Sudoku.UI.AppLifecycle.WindowInitialInfo.DrawingDataRawValue">
-            <summary>
-            Indicates the raw value of the drawing data. The default value is <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.AppLifecycle.WindowInitialInfo.FirstGrid">
-            <summary>
-            Indicates the first sudoku grid. The default value is <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.AppLifecycle.WindowInitialInfo.MainWindow">
-            <summary>
-            Indicates the main window.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.AppLifecycle.WindowInitialInfo.UserPreference">
-            <summary>
-            Indicates the user preference used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.AppLifecycle.WindowInitialInfo.RouteToPageName">
-            <summary>
-            Routes the current instance to the specified page type, returning the type's name.
-            </summary>
-            <returns>The type's name to be routed.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the current instance is invalid, or contains invalid data.
-            </exception>
-        </member>
-        <member name="T:Sudoku.UI.CommonReadOnlyFactory">
-            <summary>
-            Provides with the read-only values.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.CommonReadOnlyFactory.DefaultSerializerOption">
-            <summary>
-            Creates a default option instance with:
-            <list type="bullet">
-            <item><see cref="P:System.Text.Json.JsonSerializerOptions.WriteIndented"/> is <see langword="true"/></item>
-            <item><see cref="P:System.Text.Json.JsonSerializerOptions.IgnoreReadOnlyProperties"/> is <see langword="true"/></item>
-            <item>
-            <see cref="P:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy"/> is <see cref="P:System.Text.Json.JsonNamingPolicy.CamelCase"/>
-            </item>
-            <item>
-            <see cref="P:System.Text.Json.JsonSerializerOptions.Encoder"/> is <see cref="P:System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping"/>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Configuration.CommonFileExtensions">
-            <summary>
-            Defines the constants that are the common file extensions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Configuration.CommonFileExtensions.All">
-            <summary>
-            Indicates all file extensions are accepted.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Configuration.CommonFileExtensions.Text">
-            <summary>
-            Indicates the plain-text file format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Configuration.CommonFileExtensions.PortablePicture">
-            <summary>
-            Indicates the portable network graph (PNG) picture file format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Configuration.CommonFileExtensions.Sudoku">
-            <summary>
-            Indicates the sudoku file format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Configuration.CommonFileExtensions.DrawingData">
-            <summary>
-            Indicates the drawing data file format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Configuration.CommonFileExtensions.PreferenceBackup">
-            <summary>
-            Indicates the preference backup file format.
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Configuration.Preference">
-            <summary>
-            Defines the user preferences in the program.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.ShowCandidates">
-            <inheritdoc/>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.ShowCandidateBorderLines">
-            <inheritdoc/>
-            <remarks>
-            The default value is <see langword="false"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.EnableDeltaValuesDisplaying">
-            <inheritdoc/>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.DescendingOrderedInfoBarBoard">
-            <inheritdoc/>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PlaceholderIsZero">
-            <summary>
-            Indicates whether the program will use zero character <c>'0'</c> as the placeholder to describe empty cells
-            in a sudoku grid that we should copied.
-            </summary>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.CoverOldShapeWhenDiffused">
-            <summary>
-            Indicates whether the old shape should be covered when diffused.
-            </summary>
-            <remarks>
-            The default value is <see langword="false"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AlsoSavePictureWhenSaveDrawingData">
-            <summary>
-            Indicates whether the picture will also be saved when a drawing data file is saved to local.
-            </summary>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.OutsideBorderWidth">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>0</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.BlockBorderWidth">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>4</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.CellBorderWidth">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>1</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.CandidateBorderWidth">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>1</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.ValueFontScale">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>.8</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.CandidateFontScale">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>.25</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.HighlightCellStrokeThickness">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>3</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CrossMarkStrokeThickness">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>4</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CandidateMarkStrokeThickness">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>2</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.ValueFontName">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.CandidateFontName">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PeerFocusingMode">
-            <inheritdoc/>
-            <remarks>
-            The default value is <see cref="F:Sudoku.UI.Drawing.Shapes.PeerFocusingMode.FocusedCellAndPeerCells"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.OutsideBorderColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.GridBackgroundFillColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFFFFFF</c> (i.e. <see cref="P:Microsoft.UI.Colors.White"/>).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.BlockBorderColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.CellBorderColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.CandidateBorderColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFD3D3D3</c> (i.e. <see cref="P:Microsoft.UI.Colors.LightGray"/>).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.GivenColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.ModifiableColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF0000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/>).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.CandidateColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF696969</c> (i.e. <see cref="P:Microsoft.UI.Colors.DimGray"/>).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.CellDeltaColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFF0000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Red"/>).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.CandidateDeltaColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFFB9B9</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.MaskEllipseColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.NormalColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF3FDA65</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.Auxiliary1Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF7FBBFF</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.Auxiliary2Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFD8B2FF</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.Auxiliary3Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFFFF96</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.EliminationColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFF7684</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.ExofinColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF7FBBFF</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.EndofinColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFD8B2FF</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.CannibalismColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFEB0000</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.LinkColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFF0000</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AlmostLockedSet1Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFC5E88C</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AlmostLockedSet2Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFFCBCB</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AlmostLockedSet3Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFB2DFDF</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AlmostLockedSet4Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFCDCA5</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AlmostLockedSet5Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFFFF96</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.HighlightCellStrokeColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF0000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/>).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.FocusedCellColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#300000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 48).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PeersFocusedCellColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#200000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 32).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CellRectangleFillColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CellCircleFillColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CrossMarkStrokeColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_StarFillColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_TriangleFillColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_DiamondFillColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.AuthorDefined_CandidateMarkStrokeColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 128).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Configuration.Preference.PaletteColors">
-            <inheritdoc/>
-            <remarks>
-            The default value is an array of 10 elements:
-            <list type="number">
-            <item>#FFFFC059 (Orange)</item>
-            <item>#FFB1A5F3 (Light purple)</item>
-            <item>#FFF7A5A7 (Red)</item>
-            <item>#FF86E8D0 (Sky blue)</item>
-            <item>#FF86F280 (Light green)</item>
-            <item>#FFF7DE8F (Light orange)</item>
-            <item>#FFDCD4FC (Whitey purple)</item>
-            <item>#FFFFD2D2 (Light red)</item>
-            <item>#FFCEFBED (Whitey blue)</item>
-            <item>#FFD7FFD7 (Whitey green)</item>
-            </list>
-            All values of this array are referenced from sudoku project
-            <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.UI.Configuration.Preference.CoverPreferenceBy(Sudoku.UI.Configuration.Preference)">
-            <summary>
-            Covers the config file by the specified preference instance.
-            </summary>
-            <param name="preference">
-            The preference instance. If the value is <see langword="null"/>, no operation will be handled.
-            </param>
         </member>
         <member name="T:Sudoku.UI.DataConversion.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
@@ -669,52 +220,557 @@
             <inheritdoc/>
             <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
         </member>
-        <member name="T:Sudoku.UI.LocalStorages.PreferenceSavingLoading">
+        <member name="T:Sudoku.UI.DataFactory.CommonReadOnlyFactory">
+            <summary>
+            Provides with the read-only values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.DataFactory.CommonReadOnlyFactory.DefaultSerializerOption">
+            <summary>
+            Creates a default option instance with:
+            <list type="bullet">
+            <item><see cref="P:System.Text.Json.JsonSerializerOptions.WriteIndented"/> is <see langword="true"/></item>
+            <item><see cref="P:System.Text.Json.JsonSerializerOptions.IgnoreReadOnlyProperties"/> is <see langword="true"/></item>
+            <item>
+            <see cref="P:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy"/> is <see cref="P:System.Text.Json.JsonNamingPolicy.CamelCase"/>
+            </item>
+            <item>
+            <see cref="P:System.Text.Json.JsonSerializerOptions.Encoder"/> is <see cref="P:System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping"/>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.DataFactory.LocalStorages.PreferenceSavingLoading">
             <summary>
             Provides a way to save or load preference files.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.LocalStorages.PreferenceSavingLoading.GlobalConfigFileName">
+        <member name="F:Sudoku.UI.DataFactory.LocalStorages.PreferenceSavingLoading.GlobalConfigFileName">
             <summary>
             Indicates the config file name.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.LocalStorages.PreferenceSavingLoading.StorageFolder">
+        <member name="P:Sudoku.UI.DataFactory.LocalStorages.PreferenceSavingLoading.StorageFolder">
             <summary>
             Indicates the configuration file local storage folder.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.LocalStorages.PreferenceSavingLoading.SaveAsync(Sudoku.UI.Configuration.Preference)">
+        <member name="M:Sudoku.UI.DataFactory.LocalStorages.PreferenceSavingLoading.SaveAsync(Sudoku.UI.Data.Configuration.Preference)">
             <summary>
             Save the preference to the local path.
             </summary>
             <param name="up">The user preference instance.</param>
             <returns>The task that holds the current operation.</returns>
         </member>
-        <member name="M:Sudoku.UI.LocalStorages.PreferenceSavingLoading.LoadAsync">
+        <member name="M:Sudoku.UI.DataFactory.LocalStorages.PreferenceSavingLoading.LoadAsync">
             <summary>
             Load the preference from the local path.
             </summary>
             <returns>
-            A task that holds the current operation with a returning value of type <see cref="T:Sudoku.UI.Configuration.Preference"/>
+            A task that holds the current operation with a returning value of type <see cref="T:Sudoku.UI.Data.Configuration.Preference"/>
             indicating the result value after the operation handled, or <see langword="null"/> if failed to fetch.
             </returns>
         </member>
-        <member name="T:Sudoku.UI.Metadata.DataTemplateModelTypeAttribute`1">
+        <member name="T:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo">
+            <summary>
+            Defines the information to control the initial page information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.FromPreferenceFile">
+            <summary>
+            Indicates whether the window is created from the preference backup file.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.FirstPageTypeName">
+            <summary>
+            Indicates the first page type name. The default value is <see langword="nameof"/>(<see cref="T:Sudoku.UI.Views.Pages.HomePage"/>).
+            </summary>
+            <seealso cref="T:Sudoku.UI.Views.Pages.HomePage"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.DrawingDataRawValue">
+            <summary>
+            Indicates the raw value of the drawing data. The default value is <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.FirstGrid">
+            <summary>
+            Indicates the first sudoku grid. The default value is <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.MainWindow">
+            <summary>
+            Indicates the main window.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.UserPreference">
+            <summary>
+            Indicates the user preference used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.RouteToPageName">
+            <summary>
+            Routes the current instance to the specified page type, returning the type's name.
+            </summary>
+            <returns>The type's name to be routed.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the current instance is invalid, or contains invalid data.
+            </exception>
+        </member>
+        <member name="T:Sudoku.UI.Data.Configuration.CommonFileExtensions">
+            <summary>
+            Defines the constants that are the common file extensions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.CommonFileExtensions.All">
+            <summary>
+            Indicates all file extensions are accepted.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.CommonFileExtensions.Text">
+            <summary>
+            Indicates the plain-text file format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.CommonFileExtensions.PortablePicture">
+            <summary>
+            Indicates the portable network graph (PNG) picture file format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.CommonFileExtensions.Sudoku">
+            <summary>
+            Indicates the sudoku file format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.CommonFileExtensions.DrawingData">
+            <summary>
+            Indicates the drawing data file format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.CommonFileExtensions.PreferenceBackup">
+            <summary>
+            Indicates the preference backup file format.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Data.Configuration.Preference">
+            <summary>
+            Defines the user preferences in the program.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.ShowCandidates">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.ShowCandidateBorderLines">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.EnableDeltaValuesDisplaying">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.DescendingOrderedInfoBarBoard">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.PlaceholderIsZero">
+            <summary>
+            Indicates whether the program will use zero character <c>'0'</c> as the placeholder to describe empty cells
+            in a sudoku grid that we should copied.
+            </summary>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CoverOldShapeWhenDiffused">
+            <summary>
+            Indicates whether the old shape should be covered when diffused.
+            </summary>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlsoSavePictureWhenSaveDrawingData">
+            <summary>
+            Indicates whether the picture will also be saved when a drawing data file is saved to local.
+            </summary>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.OutsideBorderWidth">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>0</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.BlockBorderWidth">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>4</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CellBorderWidth">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>1</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CandidateBorderWidth">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>1</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.ValueFontScale">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>.8</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CandidateFontScale">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>.25</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.HighlightCellStrokeThickness">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>3</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CrossMarkStrokeThickness">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>4</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CandidateMarkStrokeThickness">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>2</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.ValueFontName">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CandidateFontName">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.PeerFocusingMode">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see cref="F:Sudoku.UI.Drawing.Shapes.PeerFocusingMode.FocusedCellAndPeerCells"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.OutsideBorderColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.GridBackgroundFillColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFFFFFF</c> (i.e. <see cref="P:Microsoft.UI.Colors.White"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.BlockBorderColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CellBorderColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CandidateBorderColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFD3D3D3</c> (i.e. <see cref="P:Microsoft.UI.Colors.LightGray"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.GivenColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.ModifiableColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF0000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CandidateColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF696969</c> (i.e. <see cref="P:Microsoft.UI.Colors.DimGray"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CellDeltaColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFF0000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Red"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CandidateDeltaColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFFB9B9</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.MaskEllipseColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.NormalColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF3FDA65</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.Auxiliary1Color">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF7FBBFF</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.Auxiliary2Color">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFD8B2FF</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.Auxiliary3Color">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFFFF96</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.EliminationColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFF7684</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.ExofinColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF7FBBFF</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.EndofinColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFD8B2FF</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CannibalismColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFEB0000</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.LinkColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFF0000</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSet1Color">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFC5E88C</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSet2Color">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFFCBCB</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSet3Color">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFB2DFDF</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSet4Color">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFCDCA5</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSet5Color">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFFFF96</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.HighlightCellStrokeColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF0000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/>).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.FocusedCellColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#300000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 48).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.PeersFocusedCellColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#200000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 32).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CellRectangleFillColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CellCircleFillColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CrossMarkStrokeColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_StarFillColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_TriangleFillColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_DiamondFillColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuthorDefined_CandidateMarkStrokeColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 128).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.PaletteColors">
+            <inheritdoc/>
+            <remarks>
+            The default value is an array of 10 elements:
+            <list type="number">
+            <item>#FFFFC059 (Orange)</item>
+            <item>#FFB1A5F3 (Light purple)</item>
+            <item>#FFF7A5A7 (Red)</item>
+            <item>#FF86E8D0 (Sky blue)</item>
+            <item>#FF86F280 (Light green)</item>
+            <item>#FFF7DE8F (Light orange)</item>
+            <item>#FFDCD4FC (Whitey purple)</item>
+            <item>#FFFFD2D2 (Light red)</item>
+            <item>#FFCEFBED (Whitey blue)</item>
+            <item>#FFD7FFD7 (Whitey green)</item>
+            </list>
+            All values of this array are referenced from sudoku project
+            <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Data.Configuration.Preference.CoverPreferenceBy(Sudoku.UI.Data.Configuration.Preference)">
+            <summary>
+            Covers the config file by the specified preference instance.
+            </summary>
+            <param name="preference">
+            The preference instance. If the value is <see langword="null"/>, no operation will be handled.
+            </param>
+        </member>
+        <member name="T:Sudoku.UI.Data.Metadata.DataTemplateModelTypeAttribute`1">
             <summary>
             Defines an attribute that applies to a data template property.
             </summary>
             <typeparam name="TModel">The type of the model.</typeparam>
         </member>
-        <member name="T:Sudoku.UI.Metadata.PageAttribute">
+        <member name="T:Sudoku.UI.Data.Metadata.PageAttribute">
             <summary>
             Defines an attribute that can be applied to a type derived from <see cref="T:Microsoft.UI.Xaml.Controls.Page"/>,
             describing the metadata.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Metadata.PageAttribute.DisplayTitle">
+        <member name="P:Sudoku.UI.Data.Metadata.PageAttribute.DisplayTitle">
             <summary>
             Indicates whether the page displays title. The default value is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Data.Navigation.NavigationInfo">
+            <summary>
+            Defines a navigation information instance.
+            </summary>
+            <param name="ViewItemTag">The tag of the view item.</param>
+            <param name="PageType">The page type.</param>
+            <param name="DisplayTitle">The displaying title.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.Navigation.NavigationInfo.#ctor(System.String,System.Type,System.Boolean)">
+            <summary>
+            Defines a navigation information instance.
+            </summary>
+            <param name="ViewItemTag">The tag of the view item.</param>
+            <param name="PageType">The page type.</param>
+            <param name="DisplayTitle">The displaying title.</param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Navigation.NavigationInfo.ViewItemTag">
+            <summary>The tag of the view item.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Navigation.NavigationInfo.PageType">
+            <summary>The page type.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Navigation.NavigationInfo.DisplayTitle">
+            <summary>The displaying title.</summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.Navigation.NavigationInfo.GetPages">
+            <summary>
+            Get navigation information instances of pages.
+            </summary>
+            <returns>An array of pages' navigation information.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Data.ResourceDictionaries.ColorPalette">
+            <summary>
+            Indicates the color palette.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.ResourceDictionaries.ColorPalette.Value">
+            <summary>
+            Indicates the colors.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Models.AnalysisResultRow">
@@ -1305,37 +1361,6 @@
             The value can be <see langword="null"/> if you don't want to specify it.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Navigation.NavigationInfo">
-            <summary>
-            Defines a navigation information instance.
-            </summary>
-            <param name="ViewItemTag">The tag of the view item.</param>
-            <param name="PageType">The page type.</param>
-            <param name="DisplayTitle">The displaying title.</param>
-        </member>
-        <member name="M:Sudoku.UI.Navigation.NavigationInfo.#ctor(System.String,System.Type,System.Boolean)">
-            <summary>
-            Defines a navigation information instance.
-            </summary>
-            <param name="ViewItemTag">The tag of the view item.</param>
-            <param name="PageType">The page type.</param>
-            <param name="DisplayTitle">The displaying title.</param>
-        </member>
-        <member name="P:Sudoku.UI.Navigation.NavigationInfo.ViewItemTag">
-            <summary>The tag of the view item.</summary>
-        </member>
-        <member name="P:Sudoku.UI.Navigation.NavigationInfo.PageType">
-            <summary>The page type.</summary>
-        </member>
-        <member name="P:Sudoku.UI.Navigation.NavigationInfo.DisplayTitle">
-            <summary>The displaying title.</summary>
-        </member>
-        <member name="M:Sudoku.UI.Navigation.NavigationInfo.GetPages">
-            <summary>
-            Get navigation information instances of pages.
-            </summary>
-            <returns>An array of pages' navigation information.</returns>
-        </member>
         <member name="T:Sudoku.UI.Program">
             <summary>
             Indicates the type that contains the main method, which is the main entry point.
@@ -1351,16 +1376,6 @@
             Indicates the main entry point of the program.
             </summary>
             <param name="args">The command line arguments. The default value is an empty array.</param>
-        </member>
-        <member name="T:Sudoku.UI.ResourceDictionaries.ColorPalette">
-            <summary>
-            Indicates the color palette.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.ResourceDictionaries.ColorPalette.Value">
-            <summary>
-            Indicates the colors.
-            </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.ColorSelector">
             <summary>
@@ -1404,6 +1419,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.ColorSelector.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.ColorSelector.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.FontPicker">
             <summary>
             Defines a font picker control.
@@ -1433,6 +1458,16 @@
         <member name="M:Sudoku.UI.Views.Controls.FontPicker.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.GettingStartedTile">
@@ -1520,6 +1555,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>
             Defines a user control that handles the messages displaying via <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>s.
@@ -1601,6 +1646,16 @@
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
@@ -1845,7 +1900,7 @@
             <seealso cref="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/>
             <seealso cref="F:Sudoku.UI.Views.Controls.SudokuPane._isFirstLoading"/>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeOutsideRectangle(Sudoku.UI.Configuration.Preference)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeOutsideRectangle(Sudoku.UI.Data.Configuration.Preference)">
             <summary>
             Initializes <see cref="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle"/> instances, and append
             into the collection <see cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>.
@@ -1854,7 +1909,7 @@
             <seealso cref="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle"/>
             <seealso cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeBorderLines(Sudoku.UI.Configuration.Preference)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeBorderLines(Sudoku.UI.Data.Configuration.Preference)">
             <summary>
             Initializes <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateLine"/>, <see cref="T:Sudoku.UI.Drawing.Shapes.CellLine"/> and <see cref="T:Sudoku.UI.Drawing.Shapes.BlockLine"/> instances,
             and append into the collection <see cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>.
@@ -1865,7 +1920,7 @@
             <seealso cref="T:Sudoku.UI.Drawing.Shapes.BlockLine"/>
             <seealso cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeSudokuGrid(Sudoku.UI.Configuration.Preference)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeSudokuGrid(Sudoku.UI.Data.Configuration.Preference)">
             <summary>
             Initializes <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instances, and append into the collection <see cref="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements"/>.
             </summary>
@@ -1918,6 +1973,16 @@
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.TitleBar">
@@ -1988,6 +2053,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.TitleBar.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TitleBar.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.AboutPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -2004,6 +2079,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.HomePage">
             <summary>
             Defines a home page.
@@ -2017,6 +2102,16 @@
         <member name="M:Sudoku.UI.Views.Pages.HomePage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.HomePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.HomePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SettingsPage">
@@ -2064,6 +2159,16 @@
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SudokuPage">
@@ -2474,6 +2579,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -2649,12 +2764,42 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62">
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -2695,12 +2840,12 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Windows.Foundation.Point_DE5AF559E2">
+        <member name="T:Windows.Foundation.Point_DEDD88788C">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DE5AF559E2.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEDD88788C.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

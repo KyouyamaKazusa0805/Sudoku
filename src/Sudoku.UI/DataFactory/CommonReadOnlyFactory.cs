@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI;
+﻿namespace Sudoku.UI.DataFactory;
 
 /// <summary>
 /// Provides with the read-only values.

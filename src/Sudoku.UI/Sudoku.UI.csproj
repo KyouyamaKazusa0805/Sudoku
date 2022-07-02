@@ -101,13 +101,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="ResourceDictionaries\TextResources-zh-cn.xaml">
+		<Page Update="Data\ResourceDictionaries\TextResources-zh-cn.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="ResourceDictionaries\TextResources-en-us.xaml">
+		<Page Update="Data\ResourceDictionaries\TextResources-en-us.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="ResourceDictionaries\BasicProperties.xaml">
+		<Page Update="Data\ResourceDictionaries\BasicProperties.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Controls\ColorSelector.xaml">

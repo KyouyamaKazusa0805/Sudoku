@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.AppLifecycle;
+﻿namespace Sudoku.UI.Data.AppLifecycle;
 
 /// <summary>
 /// Defines the information to control the initial page information.

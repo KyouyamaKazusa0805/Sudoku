@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.LocalStorages;
+﻿namespace Sudoku.UI.DataFactory.LocalStorages;
 
 /// <summary>
 /// Provides a way to save or load preference files.
