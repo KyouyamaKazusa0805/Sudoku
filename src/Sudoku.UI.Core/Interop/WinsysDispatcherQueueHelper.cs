@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Interoperability;
+﻿namespace Sudoku.UI.Interop;
 
 /// <summary>
 /// Provides with a type that holds the light-weighted helper methods to controls the dispatcher queue controller.

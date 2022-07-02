@@ -63,6 +63,19 @@
             </summary>
             <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.FileTypeChoices"/>
         </member>
+        <member name="T:Windows.System.VirtualKeyExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.System.VirtualKey"/>.
+            </summary>
+            <seealso cref="T:Windows.System.VirtualKey"/>
+        </member>
+        <member name="M:Windows.System.VirtualKeyExtensions.ModifierKeyIsDown(Windows.System.VirtualKey)">
+            <summary>
+            Determines whether the specified modifier key is pressed down.
+            </summary>
+            <param name="this">The modifier key.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="T:Microsoft.UI.Xaml.Controls.GridLayoutExtensions">
             <summary>
             Provides with extension methods for <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
@@ -128,6 +141,93 @@
             <param name="visibility">The value.</param>
             <returns>The instance.</returns>
         </member>
+        <member name="T:Microsoft.UI.Xaml.WindowExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Window"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.WindowExtensions.GetAppWindow``1(``0)">
+            <summary>
+            Gets the <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance via the specified <see cref="T:Microsoft.UI.Xaml.Window"/>.
+            </summary>
+            <typeparam name="TWindow">The type of the window.</typeparam>
+            <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
+            <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.UI.SimpleControlFactory">
+            <summary>
+            Provides a simple way to construct controls.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.SimpleControlFactory.CreateErrorDialog(Microsoft.UI.Xaml.UIElement,System.String,System.String)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.ContentDialog"/> instance.
+            </summary>
+            <param name="uiElement">The UI control.</param>
+            <param name="title">The title.</param>
+            <param name="message">The message.</param>
+            <returns>The result instance.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Input.ModifierKeyDownData">
+            <summary>
+            Provides a way to get information for pressing on modifier keys.
+            </summary>
+            <param name="ControlIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Control"/> key is pressed down.</param>
+            <param name="ShiftIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Shift"/> key is pressed down.</param>
+            <param name="AltIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Menu"/> key is pressed down.</param>
+        </member>
+        <member name="M:Sudoku.UI.Input.ModifierKeyDownData.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Provides a way to get information for pressing on modifier keys.
+            </summary>
+            <param name="ControlIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Control"/> key is pressed down.</param>
+            <param name="ShiftIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Shift"/> key is pressed down.</param>
+            <param name="AltIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Menu"/> key is pressed down.</param>
+        </member>
+        <member name="P:Sudoku.UI.Input.ModifierKeyDownData.ControlIsDown">
+            <summary>Indicates whether the <see cref="F:Windows.System.VirtualKey.Control"/> key is pressed down.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Input.ModifierKeyDownData.ShiftIsDown">
+            <summary>Indicates whether the <see cref="F:Windows.System.VirtualKey.Shift"/> key is pressed down.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Input.ModifierKeyDownData.AltIsDown">
+            <summary>Indicates whether the <see cref="F:Windows.System.VirtualKey.Menu"/> key is pressed down.</summary>
+        </member>
+        <member name="M:Sudoku.UI.Input.ModifierKeyDownData.FromCurrentState">
+            <summary>
+            Creates a <see cref="T:Sudoku.UI.Input.ModifierKeyDownData"/> instance from the current state.
+            </summary>
+            <returns>The <see cref="T:Sudoku.UI.Input.ModifierKeyDownData"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Interop.DispatcherQueueOptions">
+            <summary>
+            Specifies the threading and apartment type for a new <see cref="T:Windows.System.DispatcherQueueController"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Interop.DispatcherQueueOptions.dwSize">
+            <summary>
+            Size of this <see cref="T:Sudoku.UI.Interop.DispatcherQueueOptions"/> structure.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Interop.DispatcherQueueOptions.threadType">
+            <summary>
+            Thread affinity for the created <see cref="T:Windows.System.DispatcherQueueController"/>.
+            </summary>
+            <seealso cref="T:Windows.System.DispatcherQueueController"/>
+        </member>
+        <member name="F:Sudoku.UI.Interop.DispatcherQueueOptions.apartmentType">
+            <summary>
+            Specifies whether to initialize COM apartment on the new thread
+            as an application single-threaded apartment (ASTA) or single-threaded apartment (STA).
+            This field is only relevant if threadType is <c>DQTYPE_THREAD_DEDICATED</c>.
+            Use <c>DQTAT_COM_NONE</c> when <see cref="F:Sudoku.UI.Interop.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_CURRENT</c>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Interop.DispatcherQueueOptions.threadType"/>
+            <remarks>
+            Introduced in Windows 10, version 1709.
+            </remarks>
+        </member>
         <member name="T:Sudoku.UI.Interop.IInitializeWithWindow">
             <summary>
             Exposes a method through which a client can provide an owner window
@@ -165,6 +265,45 @@
             this link
             </see>.
             </remarks>
+        </member>
+        <member name="T:Sudoku.UI.Interop.WinsysDispatcherQueueHelper">
+            <summary>
+            Provides with a type that holds the light-weighted helper methods to controls the dispatcher queue controller.
+            </summary>
+            <seealso cref="T:Windows.System.DispatcherQueue"/>
+        </member>
+        <member name="F:Sudoku.UI.Interop.WinsysDispatcherQueueHelper._dispatcherQueueController">
+            <summary>
+            The dispatcher queue controller instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Interop.WinsysDispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController">
+            <summary>
+            To ensure <see cref="T:Windows.System.DispatcherQueue"/> instance contains the controller.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.MarkupExtensions.DateOnlyExtension">
+            <summary>
+            Defines a date-only markup extension.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MarkupExtensions.DateOnlyExtension.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.MarkupExtensions.DateOnlyExtension"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.MarkupExtensions.DateOnlyExtension.RawDateText">
+            <summary>
+            Indicates the raw date text.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.MarkupExtensions.DateOnlyExtension.Format">
+            <summary>
+            Indicates the format.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MarkupExtensions.DateOnlyExtension.ProvideValue">
+            <inheritdoc/>
         </member>
     </members>
 </doc>

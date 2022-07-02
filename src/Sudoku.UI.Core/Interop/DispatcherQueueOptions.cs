@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Interoperability;
+﻿namespace Sudoku.UI.Interop;
 
 /// <summary>
 /// Specifies the threading and apartment type for a new <see cref="WinsysDispatcherQueueController"/>.

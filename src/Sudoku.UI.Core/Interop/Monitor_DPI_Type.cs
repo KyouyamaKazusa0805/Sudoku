@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Interoperability;
+﻿namespace Sudoku.UI.Interop;
 
 internal enum Monitor_DPI_Type : int
 {

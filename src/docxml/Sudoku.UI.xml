@@ -606,29 +606,6 @@
             </summary>
             <seealso cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/>
         </member>
-        <member name="T:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension">
-            <summary>
-            Defines a date-only markup extension.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension.RawDateText">
-            <summary>
-            Indicates the raw date text.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension.Format">
-            <summary>
-            Indicates the format.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Data.MarkupExtensions.DateOnlyExtension.ProvideValue">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.UI.Data.SimpleConverters">
             <summary>
             Provides with a set of methods as simple converters that can be used and called by XAML files.
@@ -706,101 +683,6 @@
         <member name="M:Sudoku.UI.Data.ValueConverters.UndoOrRedoStackToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
             <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
-        </member>
-        <member name="T:Sudoku.UI.SimpleControlFactory">
-            <summary>
-            Provides a simple way to construct controls.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.SimpleControlFactory.CreateErrorDialog(Microsoft.UI.Xaml.UIElement,System.String,System.String)">
-            <summary>
-            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.ContentDialog"/> instance.
-            </summary>
-            <param name="uiElement">The UI control.</param>
-            <param name="title">The title.</param>
-            <param name="message">The message.</param>
-            <returns>The result instance.</returns>
-        </member>
-        <member name="M:Sudoku.UI.SimpleControlFactory.PictureFileSavePicker">
-            <summary>
-            Creates a <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> that outputs for a picture.
-            </summary>
-            <returns>The <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.UI.Input.ModifierKeyData">
-            <summary>
-            Provides a way to get information for pressing on modifier keys.
-            </summary>
-            <param name="ControlIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Control"/> key is pressed down.</param>
-            <param name="ShiftIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Shift"/> key is pressed down.</param>
-            <param name="AltIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Menu"/> key is pressed down.</param>
-        </member>
-        <member name="M:Sudoku.UI.Input.ModifierKeyData.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Provides a way to get information for pressing on modifier keys.
-            </summary>
-            <param name="ControlIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Control"/> key is pressed down.</param>
-            <param name="ShiftIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Shift"/> key is pressed down.</param>
-            <param name="AltIsDown">Indicates whether the <see cref="F:Windows.System.VirtualKey.Menu"/> key is pressed down.</param>
-        </member>
-        <member name="P:Sudoku.UI.Input.ModifierKeyData.ControlIsDown">
-            <summary>Indicates whether the <see cref="F:Windows.System.VirtualKey.Control"/> key is pressed down.</summary>
-        </member>
-        <member name="P:Sudoku.UI.Input.ModifierKeyData.ShiftIsDown">
-            <summary>Indicates whether the <see cref="F:Windows.System.VirtualKey.Shift"/> key is pressed down.</summary>
-        </member>
-        <member name="P:Sudoku.UI.Input.ModifierKeyData.AltIsDown">
-            <summary>Indicates whether the <see cref="F:Windows.System.VirtualKey.Menu"/> key is pressed down.</summary>
-        </member>
-        <member name="M:Sudoku.UI.Input.ModifierKeyData.FromCurrentState">
-            <summary>
-            Creates a <see cref="T:Sudoku.UI.Input.ModifierKeyData"/> instance from the current state.
-            </summary>
-            <returns>The <see cref="T:Sudoku.UI.Input.ModifierKeyData"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.UI.Interoperability.DispatcherQueueOptions">
-            <summary>
-            Specifies the threading and apartment type for a new <see cref="T:Windows.System.DispatcherQueueController"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Interoperability.DispatcherQueueOptions.dwSize">
-            <summary>
-            Size of this <see cref="T:Sudoku.UI.Interoperability.DispatcherQueueOptions"/> structure.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Interoperability.DispatcherQueueOptions.threadType">
-            <summary>
-            Thread affinity for the created <see cref="T:Windows.System.DispatcherQueueController"/>.
-            </summary>
-            <seealso cref="T:Windows.System.DispatcherQueueController"/>
-        </member>
-        <member name="F:Sudoku.UI.Interoperability.DispatcherQueueOptions.apartmentType">
-            <summary>
-            Specifies whether to initialize COM apartment on the new thread
-            as an application single-threaded apartment (ASTA) or single-threaded apartment (STA).
-            This field is only relevant if threadType is <c>DQTYPE_THREAD_DEDICATED</c>.
-            Use <c>DQTAT_COM_NONE</c> when <see cref="F:Sudoku.UI.Interoperability.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_CURRENT</c>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.Interoperability.DispatcherQueueOptions.threadType"/>
-            <remarks>
-            Introduced in Windows 10, version 1709.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.UI.Interoperability.WinsysDispatcherQueueHelper">
-            <summary>
-            Provides with a type that holds the light-weighted helper methods to controls the dispatcher queue controller.
-            </summary>
-            <seealso cref="T:Windows.System.DispatcherQueue"/>
-        </member>
-        <member name="F:Sudoku.UI.Interoperability.WinsysDispatcherQueueHelper._dispatcherQueueController">
-            <summary>
-            The dispatcher queue controller instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Interoperability.WinsysDispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController">
-            <summary>
-            To ensure <see cref="T:Windows.System.DispatcherQueue"/> instance contains the controller.
-            </summary>
         </member>
         <member name="T:Sudoku.UI.LocalStorages.PreferenceSavingLoading">
             <summary>
@@ -2912,25 +2794,12 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
-        <member name="T:Windows.System.VirtualKeyExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Windows.System.VirtualKey"/>.
-            </summary>
-            <seealso cref="T:Windows.System.VirtualKey"/>
-        </member>
-        <member name="M:Windows.System.VirtualKeyExtensions.ModifierKeyIsDown(Windows.System.VirtualKey)">
-            <summary>
-            Determines whether the specified modifier key is pressed down.
-            </summary>
-            <param name="this">The modifier key.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Windows.Foundation.Point_DEDD88788C">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEDD88788C.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -2971,26 +2840,12 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Microsoft.UI.Xaml.WindowExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Window"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.WindowExtensions.GetAppWindow``1(``0)">
-            <summary>
-            Gets the <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance via the specified <see cref="T:Microsoft.UI.Xaml.Window"/>.
-            </summary>
-            <typeparam name="TWindow">The type of the window.</typeparam>
-            <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
-            <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C">
+        <member name="T:Windows.Foundation.Point_DEDD88788C">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEDD88788C.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

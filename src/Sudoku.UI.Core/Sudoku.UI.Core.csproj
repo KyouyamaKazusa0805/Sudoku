@@ -15,4 +15,9 @@
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	  <ProjectReference Include="..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
 </Project>

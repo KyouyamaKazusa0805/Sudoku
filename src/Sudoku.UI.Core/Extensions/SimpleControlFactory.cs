@@ -19,18 +19,7 @@ internal static class SimpleControlFactory
 			XamlRoot = uiElement.XamlRoot,
 			Title = title,
 			Content = message,
-			CloseButtonText = R["Close"],
+			CloseButtonText = R["Close"]!,
 			DefaultButton = ContentDialogButton.Close
 		};
-
-	/// <summary>
-	/// Creates a <see cref="FileSavePicker"/> that outputs for a picture.
-	/// </summary>
-	/// <returns>The <see cref="FileSavePicker"/> instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FileSavePicker PictureFileSavePicker()
-		=> new FileSavePicker()
-			.WithDefaultFileExtension(CommonFileExtensions.PortablePicture)
-			.WithSuggestedFileName(R["Sudoku"]!)
-			.AddFileTypeChoice(R["FileExtension_Picture"]!, CommonFileExtensions.PortablePicture);
 }

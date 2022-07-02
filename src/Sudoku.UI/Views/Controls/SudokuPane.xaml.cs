@@ -460,7 +460,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			return;
 		}
 
-		var pressedData = ModifierKeyData.FromCurrentState();
+		var pressedData = ModifierKeyDownData.FromCurrentState();
 		switch (e.Key)
 		{
 			case var key and (>= VirtualKey.Number0 and <= VirtualKey.Number9 or VirtualKey.Back):

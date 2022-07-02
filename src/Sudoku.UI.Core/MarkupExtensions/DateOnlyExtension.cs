@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Data.MarkupExtensions;
+﻿namespace Sudoku.UI.MarkupExtensions;
 
 /// <summary>
 /// Defines a date-only markup extension.
