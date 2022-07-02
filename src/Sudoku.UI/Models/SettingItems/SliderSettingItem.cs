@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Models;
+﻿namespace Sudoku.UI.Models.SettingItems;
 
 /// <summary>
 /// Defines a floating-point or integer option that is binding with a slider on displaying.

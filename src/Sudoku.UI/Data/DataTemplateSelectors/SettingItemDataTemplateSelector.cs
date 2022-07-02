@@ -8,13 +8,13 @@ public sealed class SettingItemDataTemplateSelector : ModelDataTemplateSelector
 	/// <summary>
 	/// Indicates the template that is used for a toggle switch.
 	/// </summary>
-	[DataTemplateModelTypeAttribute<ToggleSwitchSettingItem>]
+	[DataTemplateModelType<ToggleSwitchSettingItem>]
 	public DataTemplate ToggleSwitchTemplate { get; set; } = null!;
 
 	/// <summary>
 	/// Indicates the template that is used for a slider.
 	/// </summary>
-	[DataTemplateModelTypeAttribute<SliderSettingItem>]
+	[DataTemplateModelType<SliderSettingItem>]
 	public DataTemplate SliderTemplate { get; set; } = null!;
 
 	/// <summary>

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Models;
+﻿namespace Sudoku.UI.Models.SettingItems;
 
 /// <summary>
 /// Provides a setting item that binds with the enumeration type <see cref="PeerFocusingMode"/>.

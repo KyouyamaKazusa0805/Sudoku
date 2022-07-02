@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Models;
+﻿namespace Sudoku.UI.Models.SettingItems;
 
 /// <summary>
 /// Defines a combo box setting item.

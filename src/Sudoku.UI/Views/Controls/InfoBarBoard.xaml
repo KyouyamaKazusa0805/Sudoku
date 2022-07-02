@@ -7,6 +7,7 @@
 	xmlns:data="using:Sudoku.UI.Data"
 	xmlns:dts="using:Sudoku.UI.Data.DataTemplateSelectors"
 	xmlns:m="using:Sudoku.UI.Models"
+	xmlns:mm="using:Sudoku.UI.Models.InfoBarMessages"
 	xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
 	mc:Ignorable="d"
 	Loaded="UserControl_Loaded">
@@ -15,7 +16,7 @@
 			<ListView.ItemTemplateSelector>
 				<dts:InfoBarDataTemplateSelector>
 					<dts:InfoBarDataTemplateSelector.PlainMessageTemplate>
-						<DataTemplate x:DataType="m:PlainMessage">
+						<DataTemplate x:DataType="mm:PlainMessage">
 							<InfoBar
 								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
@@ -23,7 +24,7 @@
 						</DataTemplate>
 					</dts:InfoBarDataTemplateSelector.PlainMessageTemplate>
 					<dts:InfoBarDataTemplateSelector.HyperlinkMessageTemplate>
-						<DataTemplate x:DataType="m:HyperlinkMessage">
+						<DataTemplate x:DataType="mm:HyperlinkMessage">
 							<InfoBar
 								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}"

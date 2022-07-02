@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Models;
+﻿namespace Sudoku.UI.Models.SettingItems;
 
 /// <summary>
 /// Defines a color option that is binding with a font picker on displaying.

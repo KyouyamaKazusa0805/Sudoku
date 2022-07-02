@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.Models;
+﻿namespace Sudoku.UI.Models.SettingItems;
 
 /// <summary>
 /// Defines a boolean option that is binding with a toggle switch on displaying.

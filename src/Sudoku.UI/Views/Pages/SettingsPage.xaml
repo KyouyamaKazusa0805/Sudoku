@@ -9,6 +9,7 @@
 	xmlns:data="using:Sudoku.UI.Data"
 	xmlns:dts="using:Sudoku.UI.Data.DataTemplateSelectors"
 	xmlns:m="using:Sudoku.UI.Models"
+	xmlns:ms="using:Sudoku.UI.Models.SettingItems"
 	mc:Ignorable="d">
 	<Grid>
 		<Grid.Resources>
@@ -47,12 +48,12 @@
 								<ListView.ItemTemplateSelector>
 									<dts:SettingItemDataTemplateSelector>
 										<dts:SettingItemDataTemplateSelector.DefaultTemplate>
-											<DataTemplate x:DataType="m:SettingItem">
+											<DataTemplate x:DataType="ms:SettingItem">
 												<TextBlock Text="{StaticResource __SampleField}" />
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.DefaultTemplate>
 										<dts:SettingItemDataTemplateSelector.ToggleSwitchTemplate>
-											<DataTemplate x:DataType="m:ToggleSwitchSettingItem">
+											<DataTemplate x:DataType="ms:ToggleSwitchSettingItem">
 												<ToggleSwitch
 													IsOn="{x:Bind GetPreference(),
 														Mode=TwoWay,
@@ -76,7 +77,7 @@
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.ToggleSwitchTemplate>
 										<dts:SettingItemDataTemplateSelector.SliderTemplate>
-											<DataTemplate x:DataType="m:SliderSettingItem">
+											<DataTemplate x:DataType="ms:SliderSettingItem">
 												<StackPanel Orientation="Horizontal">
 													<Slider
 														x:Name="_cSlider" TickPlacement="Outside"
@@ -120,7 +121,7 @@
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.SliderTemplate>
 										<dts:SettingItemDataTemplateSelector.ColorPickerTemplate>
-											<DataTemplate x:DataType="m:ColorPickerSettingItem">
+											<DataTemplate x:DataType="ms:ColorPickerSettingItem">
 												<StackPanel>
 													<TextBlock
 														Text="{x:Bind Name}"
@@ -152,7 +153,7 @@
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.ColorPickerTemplate>
 										<dts:SettingItemDataTemplateSelector.FontPickerTemplate>
-											<DataTemplate x:DataType="m:FontPickerSettingItem">
+											<DataTemplate x:DataType="ms:FontPickerSettingItem">
 												<c:FontPicker
 													SettingItem="{x:Bind}"
 													PlaceholderText="{StaticResource FontPickerPlaceholder}">
@@ -175,7 +176,7 @@
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.FontPickerTemplate>
 										<dts:SettingItemDataTemplateSelector.PeerFocusingModeComboBoxGroupTemplate>
-											<DataTemplate x:DataType="m:PeerFocusingModeComboBoxSettingItem">
+											<DataTemplate x:DataType="ms:PeerFocusingModeComboBoxSettingItem">
 												<StackPanel>
 													<TextBlock
 														Text="{x:Bind Name}"

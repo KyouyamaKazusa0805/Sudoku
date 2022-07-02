@@ -43,21 +43,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.App.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.App.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.AppLifecycle.WindowInitialInfo">
             <summary>
             Defines the information to control the initial page information.
@@ -525,19 +510,19 @@
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
             Defines a data template selector that selects the <see cref="T:Microsoft.UI.Xaml.DataTemplate"/> between
-            <see cref="T:Sudoku.UI.Models.InfoBarMessage"/> and <see cref="T:Sudoku.UI.Models.HyperlinkMessage"/> as the model types.
+            <see cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/> and <see cref="T:Sudoku.UI.Models.InfoBarMessages.HyperlinkMessage"/> as the model types.
             </summary>
-            <seealso cref="T:Sudoku.UI.Models.InfoBarMessage"/>
-            <seealso cref="T:Sudoku.UI.Models.HyperlinkMessage"/>
+            <seealso cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/>
+            <seealso cref="T:Sudoku.UI.Models.InfoBarMessages.HyperlinkMessage"/>
         </member>
         <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.PlainMessageTemplate">
             <summary>
-            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.PlainMessage"/>.
+            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.InfoBarMessages.PlainMessage"/>.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.HyperlinkMessageTemplate">
             <summary>
-            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.HyperlinkMessage"/>.
+            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.InfoBarMessages.HyperlinkMessage"/>.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.AnalysisResultTemplate">
@@ -891,39 +876,6 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Sudoku.UI.Models.ColorPickerSettingItem">
-            <summary>
-            Defines a color option that is binding with a color picker on displaying.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.GetPreference">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
-        </member>
-        <member name="M:Sudoku.UI.Models.ColorPickerSettingItem.SetPreference(Windows.UI.Color)">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
-        </member>
-        <member name="T:Sudoku.UI.Models.ComboBoxSettingItem`1">
-            <summary>
-            Defines a combo box setting item.
-            </summary>
-            <typeparam name="TEnum">The type of the enumeration.</typeparam>
-        </member>
-        <member name="M:Sudoku.UI.Models.ComboBoxSettingItem`1.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.ComboBoxSettingItem`1"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.ComboBoxSettingItem`1.OptionContents">
-            <summary>
-            Indicates the option contents.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Models.ComboBoxSettingItem`1.GetPreference">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
-        </member>
-        <member name="M:Sudoku.UI.Models.ComboBoxSettingItem`1.SetPreference(`0)">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
-        </member>
         <member name="T:Sudoku.UI.Models.DrawingData">
             <summary>
             Indicates the serializable drawing data of a complete sudoku grid.
@@ -990,33 +942,6 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Sudoku.UI.Models.FontPickerSettingItem">
-            <summary>
-            Defines a color option that is binding with a font picker on displaying.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.FontPickerSettingItem"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.FontPickerSettingItem.FontScalePropertyName">
-            <summary>
-            Indicates the font name property name.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.GetFontScalePreference">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
-        </member>
-        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.GetFontNamePreference">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
-        </member>
-        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.SetFontScalePreference(System.Double)">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
-        </member>
-        <member name="M:Sudoku.UI.Models.FontPickerSettingItem.SetFontNamePreference(System.Object)">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
-        </member>
         <member name="T:Sudoku.UI.Models.GettingStartedItem">
             <summary>
             Indicates a getting-started item.
@@ -1042,39 +967,42 @@
             Indicates the data template used.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Models.HyperlinkMessage">
+        <member name="T:Sudoku.UI.Models.InfoBarMessages.HyperlinkMessage">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.UI.Models.HyperlinkMessage.HyperlinkDescription">
+        <member name="P:Sudoku.UI.Models.InfoBarMessages.HyperlinkMessage.HyperlinkDescription">
             <summary>
             Indicates the description text of the hyperlink.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.HyperlinkMessage.Hyperlink">
+        <member name="P:Sudoku.UI.Models.InfoBarMessages.HyperlinkMessage.Hyperlink">
             <summary>
             Indicates the hyperlink that the current <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> relates to.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Models.InfoBarMessage">
+        <member name="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage">
             <summary>
-            Defines a <see cref="T:Sudoku.UI.Models.InfoBarMessage"/> instance that represents for a message
+            Defines a <see cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/> instance that represents for a message
             that is used for the displaying as the message in <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> controls.
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
         </member>
-        <member name="P:Sudoku.UI.Models.InfoBarMessage.Message">
+        <member name="P:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage.Message">
             <summary>
             Indicates the message to be displayed.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.InfoBarMessage.Severity">
+        <member name="P:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage.Severity">
             <summary>
             Indicates the severity of the information.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Models.InfoBarMessages.PlainMessage">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Models.ManualSolverResultMessage">
             <summary>
-            Defines a <see cref="T:Sudoku.UI.Models.InfoBarMessage"/> instance that can provide with the details
+            Defines a <see cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/> instance that can provide with the details
             for a <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance.
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>
@@ -1083,26 +1011,6 @@
             <summary>
             Indicates the analysis result.
             </summary>
-        </member>
-        <member name="T:Sudoku.UI.Models.PeerFocusingModeComboBoxSettingItem">
-            <summary>
-            Provides a setting item that binds with the enumeration type <see cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/>.
-            </summary>
-            <seealso cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/>
-        </member>
-        <member name="M:Sudoku.UI.Models.PeerFocusingModeComboBoxSettingItem.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.PeerFocusingModeComboBoxSettingItem"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Models.PeerFocusingModeComboBoxSettingItem.GetPreferenceIndex">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
-        </member>
-        <member name="M:Sudoku.UI.Models.PeerFocusingModeComboBoxSettingItem.SetPreferenceIndex(System.Int32)">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
-        </member>
-        <member name="T:Sudoku.UI.Models.PlainMessage">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Models.RepositoryInfo">
             <summary>
@@ -1180,104 +1088,181 @@
             Indicates the setting items in the group.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Models.SettingItem">
+        <member name="T:Sudoku.UI.Models.SettingItems.ColorPickerSettingItem">
+            <summary>
+            Defines a color option that is binding with a color picker on displaying.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ColorPickerSettingItem.GetPreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ColorPickerSettingItem.SetPreference(Windows.UI.Color)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
+        </member>
+        <member name="T:Sudoku.UI.Models.SettingItems.ComboBoxSettingItem`1">
+            <summary>
+            Defines a combo box setting item.
+            </summary>
+            <typeparam name="TEnum">The type of the enumeration.</typeparam>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ComboBoxSettingItem`1.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.SettingItems.ComboBoxSettingItem`1"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingItems.ComboBoxSettingItem`1.OptionContents">
+            <summary>
+            Indicates the option contents.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ComboBoxSettingItem`1.GetPreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ComboBoxSettingItem`1.SetPreference(`0)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
+        </member>
+        <member name="T:Sudoku.UI.Models.SettingItems.FontPickerSettingItem">
+            <summary>
+            Defines a color option that is binding with a font picker on displaying.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.SettingItems.FontPickerSettingItem"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.FontScalePropertyName">
+            <summary>
+            Indicates the font name property name.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.GetFontScalePreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.GetFontNamePreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.SetFontScalePreference(System.Double)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.SetFontNamePreference(System.Object)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
+        </member>
+        <member name="T:Sudoku.UI.Models.SettingItems.PeerFocusingModeComboBoxSettingItem">
+            <summary>
+            Provides a setting item that binds with the enumeration type <see cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/>.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.PeerFocusingModeComboBoxSettingItem.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.SettingItems.PeerFocusingModeComboBoxSettingItem"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.PeerFocusingModeComboBoxSettingItem.GetPreferenceIndex">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.PeerFocusingModeComboBoxSettingItem.SetPreferenceIndex(System.Int32)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
+        </member>
+        <member name="T:Sudoku.UI.Models.SettingItems.SettingItem">
             <summary>
             Defines an instance that defines a setting item.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.SettingItem.Name">
+        <member name="P:Sudoku.UI.Models.SettingItems.SettingItem.Name">
             <summary>
             Indicates the name of the setting.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.SettingItem.Description">
+        <member name="P:Sudoku.UI.Models.SettingItems.SettingItem.Description">
             <summary>
             Indicates the description of the setting. The default value is <see cref="F:System.String.Empty"/>.
             </summary>
             <seealso cref="F:System.String.Empty"/>
         </member>
-        <member name="P:Sudoku.UI.Models.SettingItem.PreferenceValueName">
+        <member name="P:Sudoku.UI.Models.SettingItems.SettingItem.PreferenceValueName">
             <summary>
             Indicates the name corresponding to the current name.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.SettingItem.GetPreference``1">
+        <member name="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1">
             <summary>
             Try to get the preference value from the current instance.
             </summary>
             <returns>The value of the preference.</returns>
         </member>
-        <member name="M:Sudoku.UI.Models.SettingItem.GetPreference``1(System.String)">
+        <member name="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1(System.String)">
             <summary>
             Try to get the preference value from the current instance.
             </summary>
             <param name="name">The name of the property should be checked.</param>
             <returns>The value of the preference.</returns>
         </member>
-        <member name="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)">
+        <member name="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)">
             <summary>
             Try to set the preference value to the current instance.
             </summary>
             <param name="value">The value.</param>
         </member>
-        <member name="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0,System.String)">
+        <member name="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0,System.String)">
             <summary>
             Try to set the preference value to the current instance.
             </summary>
             <param name="name">The name of the property should be checked.</param>
             <param name="value">The value.</param>
         </member>
-        <member name="T:Sudoku.UI.Models.SliderSettingItem">
+        <member name="T:Sudoku.UI.Models.SettingItems.SliderSettingItem">
             <summary>
             Defines a floating-point or integer option that is binding with a slider on displaying.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.SliderSettingItem.StepFrequency">
+        <member name="P:Sudoku.UI.Models.SettingItems.SliderSettingItem.StepFrequency">
             <summary>
             Indicates the step frequency.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.SliderSettingItem.TickFrequency">
+        <member name="P:Sudoku.UI.Models.SettingItems.SliderSettingItem.TickFrequency">
             <summary>
             Indicates the tick frequency.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.SliderSettingItem.MinValue">
+        <member name="P:Sudoku.UI.Models.SettingItems.SliderSettingItem.MinValue">
             <summary>
             Indicates the minimum value of the slider.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.SliderSettingItem.MaxValue">
+        <member name="P:Sudoku.UI.Models.SettingItems.SliderSettingItem.MaxValue">
             <summary>
             Indicates the maximum value of the slider.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.SliderSettingItem.GetPreference">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
+        <member name="M:Sudoku.UI.Models.SettingItems.SliderSettingItem.GetPreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
         </member>
-        <member name="M:Sudoku.UI.Models.SliderSettingItem.SetPreference(System.Double)">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
+        <member name="M:Sudoku.UI.Models.SettingItems.SliderSettingItem.SetPreference(System.Double)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
         </member>
-        <member name="T:Sudoku.UI.Models.ToggleSwitchSettingItem">
+        <member name="T:Sudoku.UI.Models.SettingItems.ToggleSwitchSettingItem">
             <summary>
             Defines a boolean option that is binding with a toggle switch on displaying.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.ToggleSwitchSettingItem.OnContent">
+        <member name="P:Sudoku.UI.Models.SettingItems.ToggleSwitchSettingItem.OnContent">
             <summary>
             Indicates the on content displayed.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.ToggleSwitchSettingItem.OffContent">
+        <member name="P:Sudoku.UI.Models.SettingItems.ToggleSwitchSettingItem.OffContent">
             <summary>
             Indicates the off content displayed.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.ToggleSwitchSettingItem.GetPreference">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.GetPreference``1"/>
+        <member name="M:Sudoku.UI.Models.SettingItems.ToggleSwitchSettingItem.GetPreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
         </member>
-        <member name="M:Sudoku.UI.Models.ToggleSwitchSettingItem.SetPreference(System.Boolean)">
-            <inheritdoc cref="M:Sudoku.UI.Models.SettingItem.SetPreference``1(``0)"/>
+        <member name="M:Sudoku.UI.Models.SettingItems.ToggleSwitchSettingItem.SetPreference(System.Boolean)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
         </member>
         <member name="T:Sudoku.UI.Models.VersionTimelineGroupItem">
             <summary>
@@ -1419,16 +1404,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.ColorSelector.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.ColorSelector.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.FontPicker">
             <summary>
             Defines a font picker control.
@@ -1458,16 +1433,6 @@
         <member name="M:Sudoku.UI.Views.Controls.FontPicker.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.GettingStartedTile">
@@ -1555,16 +1520,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.GettingStartedTile.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>
             Defines a user control that handles the messages displaying via <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>s.
@@ -1573,7 +1528,7 @@
         </member>
         <member name="F:Sudoku.UI.Views.Controls.InfoBarBoard._list">
             <summary>
-            The list of <see cref="T:Sudoku.UI.Models.InfoBarMessage"/>s.
+            The list of <see cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/>s.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Views.Controls.InfoBarBoard._spacing">
@@ -1646,16 +1601,6 @@
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
@@ -1975,16 +1920,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.TitleBar">
             <summary>
             Defines a customized title bar.
@@ -2053,16 +1988,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.TitleBar.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TitleBar.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Pages.AboutPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -2079,16 +2004,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Pages.HomePage">
             <summary>
             Defines a home page.
@@ -2102,16 +2017,6 @@
         <member name="M:Sudoku.UI.Views.Pages.HomePage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.HomePage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.HomePage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SettingsPage">
@@ -2159,16 +2064,6 @@
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SudokuPage">
@@ -2579,16 +2474,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -2764,42 +2649,12 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE76422E0C.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DEF13F0F62.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -2840,12 +2695,12 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Windows.Foundation.Point_DEDD88788C">
+        <member name="T:Windows.Foundation.Point_DE5AF559E2">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEDD88788C.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DE5AF559E2.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

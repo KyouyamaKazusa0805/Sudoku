@@ -51,6 +51,8 @@ global using Sudoku.UI.Interop;
 global using Sudoku.UI.LocalStorages;
 global using Sudoku.UI.Metadata;
 global using Sudoku.UI.Models;
+global using Sudoku.UI.Models.InfoBarMessages;
+global using Sudoku.UI.Models.SettingItems;
 global using Sudoku.UI.Navigation;
 global using Sudoku.UI.Views.Pages;
 global using Sudoku.UI.Views.Windows;
