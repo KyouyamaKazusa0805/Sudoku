@@ -698,7 +698,7 @@ public sealed partial class SudokuPage : Page
 			try
 			{
 				// Show print UI.
-				var hWnd = WindowNative.GetWindowHandle(mainWindow);
+				nint hWnd = WindowNative.GetWindowHandle(mainWindow);
 				await PrintManagerInterop.ShowPrintUIForWindowAsync(hWnd);
 			}
 			catch (COMException ex) when (ex.ErrorCode == unchecked((int)0x80040155U))
