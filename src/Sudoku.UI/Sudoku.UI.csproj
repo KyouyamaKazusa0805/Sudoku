@@ -96,7 +96,6 @@
 		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\Sudoku.Solving.Manual\Sudoku.Solving.Manual.csproj" />
 		<ProjectReference Include="..\Sudoku.UI.Core\Sudoku.UI.Core.csproj" />
-		<ProjectReference Include="..\Sudoku.UI.Drawing\Sudoku.UI.Drawing.csproj" />
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 
