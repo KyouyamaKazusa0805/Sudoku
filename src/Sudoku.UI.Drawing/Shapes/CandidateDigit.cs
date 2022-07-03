@@ -12,7 +12,7 @@ internal sealed class CandidateDigit : DrawingElement
 	/// <summary>
 	/// Indicates the inner grid.
 	/// </summary>
-	private readonly GridLayout _grid;
+	private readonly GridLayout? _grid;
 
 	/// <summary>
 	/// Indicates the digit blocks.
@@ -22,7 +22,7 @@ internal sealed class CandidateDigit : DrawingElement
 	/// <summary>
 	/// Indicates the user preference.
 	/// </summary>
-	private readonly IDrawingPreference _preference;
+	private readonly IDrawingPreference _preference = null!;
 
 	/// <summary>
 	/// Indicates whether the current mode is mask mode.
@@ -46,86 +46,6 @@ internal sealed class CandidateDigit : DrawingElement
 
 
 	/// <summary>
-	/// Initializes a <see cref="CandidateDigit"/> instance via the details.
-	/// </summary>
-	/// <param name="preference">The user preference.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CandidateDigit(IDrawingPreference preference) : this(511, 0, preference)
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="CandidateDigit"/> instance via the details.
-	/// </summary>
-	/// <param name="candidateMask">The candidate mask.</param>
-	/// <param name="wrongDigitMask">The wrong digits mask.</param>
-	/// <param name="preference">The user preference.</param>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="candidateMask"/> is negative number or greater than 511.
-	/// </exception>
-	public CandidateDigit(short candidateMask, short wrongDigitMask, IDrawingPreference preference) :
-		this(candidateMask, wrongDigitMask, false, preference)
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="CandidateDigit"/> instance via the details.
-	/// </summary>
-	/// <param name="candidateMask">The candidate mask.</param>
-	/// <param name="wrongDigitMask">The wrong digits mask.</param>
-	/// <param name="maskMode">Whether the current mode is mask mode.</param>
-	/// <param name="preference">The user preference.</param>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="candidateMask"/> is negative number or greater than 511.
-	/// </exception>
-	public CandidateDigit(short candidateMask, short wrongDigitMask, bool maskMode, IDrawingPreference preference)
-	{
-		Argument.ThrowIfFalse(candidateMask is >= 0 and <= 511);
-		Argument.ThrowIfFalse(wrongDigitMask is >= 0 and <= 511);
-
-		(_isMaskMode, _candidateMask, _wrongDigitMask, _preference, _showsCandidates) = (
-			maskMode,
-			candidateMask,
-			wrongDigitMask,
-			preference,
-			preference.ShowCandidates
-		);
-
-		var grid = new GridLayout()
-			.WithVisibility(preference.ShowCandidates ? Visibility.Visible : Visibility.Collapsed)
-			.WithRowDefinitionsCount(3)
-			.WithColumnDefinitionsCount(3);
-
-		for (byte digit = 0; digit < 9; digit++)
-		{
-			var digitBlock = new TextBlock
-			{
-				Text = (digit + 1).ToString(),
-				FontFamily = new(_preference.CandidateFontName),
-				FontSize = 60 * _preference.CandidateFontScale,
-				Visibility = ((candidateMask | wrongDigitMask) >> digit & 1, maskMode) switch
-				{
-					(not 0, false) => Visibility.Visible,
-					_ => Visibility.Collapsed
-				},
-				TextAlignment = TextAlignment.Center,
-				HorizontalTextAlignment = TextAlignment.Center,
-				Foreground = new SolidColorBrush(
-					(wrongDigitMask >> digit & 1) != 0 ? _preference.CandidateDeltaColor : _preference.CandidateColor
-				)
-			};
-
-			GridLayout.SetRow(digitBlock, digit / 3);
-			GridLayout.SetColumn(digitBlock, digit % 3);
-			_digitBlocks[digit] = digitBlock;
-			grid.Children.Add(digitBlock);
-		}
-
-		_grid = grid;
-	}
-
-
-	/// <summary>
 	/// Gets or sets the value indicating whether the candidate block shows digits.
 	/// </summary>
 	public bool ShowCandidates
@@ -136,7 +56,7 @@ internal sealed class CandidateDigit : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_preference.ShowCandidates == value)
+			if (_preference.ShowCandidates == value || _grid is null)
 			{
 				return;
 			}
@@ -157,7 +77,7 @@ internal sealed class CandidateDigit : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_showsCandidates == value)
+			if (_showsCandidates == value || _grid is null)
 			{
 				return;
 			}
@@ -170,7 +90,7 @@ internal sealed class CandidateDigit : DrawingElement
 	/// <summary>
 	/// Gets or sets the value indicating whether the current mode is mask mode.
 	/// </summary>
-	public bool IsMaskMode
+	public required bool IsMaskMode
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _isMaskMode;
@@ -178,7 +98,7 @@ internal sealed class CandidateDigit : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_isMaskMode == value)
+			if (_isMaskMode == value || _grid is null)
 			{
 				return;
 			}
@@ -196,7 +116,7 @@ internal sealed class CandidateDigit : DrawingElement
 	/// <summary>
 	/// Indicates the candidate mask.
 	/// </summary>
-	public short CandidateMask
+	public required short CandidateMask
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _candidateMask;
@@ -217,7 +137,7 @@ internal sealed class CandidateDigit : DrawingElement
 	/// <summary>
 	/// Indicates the wrong digits mask.
 	/// </summary>
-	public short WrongDigitMask
+	public required short WrongDigitMask
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _wrongDigitMask;
@@ -237,6 +157,51 @@ internal sealed class CandidateDigit : DrawingElement
 						? _preference.CandidateDeltaColor
 						: _preference.CandidateColor
 				);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the user preference.
+	/// </summary>
+	public required IDrawingPreference UserPreference
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _preference;
+
+		[MemberNotNull(nameof(_grid))]
+		init
+		{
+			_preference = value;
+
+			_showsCandidates = _preference.ShowCandidates;
+			_grid ??= createGrid(_digitBlocks, value);
+
+			static GridLayout createGrid(TextBlock[] textBlocks, IDrawingPreference value)
+			{
+				var grid = new GridLayout()
+					.WithVisibility(value.ShowCandidates ? Visibility.Visible : Visibility.Collapsed)
+					.WithRowDefinitionsCount(3)
+					.WithColumnDefinitionsCount(3);
+
+				for (byte digit = 0; digit < 9; digit++)
+				{
+					var digitBlock = new TextBlock
+					{
+						Text = (digit + 1).ToString(),
+						FontFamily = new(value.CandidateFontName),
+						FontSize = 60 * value.CandidateFontScale,
+						TextAlignment = TextAlignment.Center,
+						HorizontalTextAlignment = TextAlignment.Center
+					};
+
+					GridLayout.SetRow(digitBlock, digit / 3);
+					GridLayout.SetColumn(digitBlock, digit % 3);
+					textBlocks[digit] = digitBlock;
+					grid.Children.Add(digitBlock);
+				}
+
+				return grid;
 			}
 		}
 	}
@@ -284,5 +249,6 @@ internal sealed class CandidateDigit : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override GridLayout GetControl() => _grid;
+	public override GridLayout GetControl()
+		=> _grid ?? throw new InvalidOperationException("The value cannot be null.");
 }

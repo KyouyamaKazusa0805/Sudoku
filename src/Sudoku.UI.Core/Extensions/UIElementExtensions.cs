@@ -9,14 +9,21 @@ public static class UIElementExtensions
 	/// <summary>
 	/// Sets the property <see cref="UIElement.Visibility"/> with the specified value.
 	/// </summary>
-	/// <param name="this">The property.</param>
-	/// <param name="visibility">The value.</param>
-	/// <returns>The instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TUIElement WithVisibility<TUIElement>(this TUIElement @this, Visibility visibility)
 		where TUIElement : UIElement
 	{
 		@this.Visibility = visibility;
+		return @this;
+	}
+
+	/// <summary>
+	/// Calls the method <see cref="Canvas.SetZIndex(UIElement, int)"/> to set the Z-index value.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TUIElement WithCanvasZIndex<TUIElement>(this TUIElement @this, int zIndex) where TUIElement : UIElement
+	{
+		Canvas.SetZIndex(@this, zIndex);
 		return @this;
 	}
 

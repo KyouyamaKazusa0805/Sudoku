@@ -142,34 +142,31 @@ public sealed class SudokuGrid : DrawingElement
 		_grid = grid;
 		_paneSize = paneSize;
 		_outsideOffset = outsideOffset;
-		_gridLayout = initializeGridLayout(paneSize, outsideOffset);
+		_gridLayout = new GridLayout()
+			.WithWidth(paneSize)
+			.WithHeight(paneSize)
+			.WithPadding(new(outsideOffset))
+			.WithHorizontalAlignment(HorizontalAlignment.Center)
+			.WithVerticalAlignment(VerticalAlignment.Center)
+			.WithRowDefinitionsCount(9)
+			.WithColumnDefinitionsCount(9);
 		_undoRedoStepsUpdatedCallback = elementUpdatedCallback;
 		_showsCandidates = preference.ShowCandidates;
-		_focusedRectangle = new()
-		{
-			Fill = new SolidColorBrush(preference.FocusedCellColor),
-			Visibility = Visibility.Collapsed
-		};
-
+		_focusedRectangle = new Rectangle()
+			.WithFill(new SolidColorBrush(preference.FocusedCellColor))
+			.WithVisibility(Visibility.Collapsed)
+			.WithGridLayout(row: 4, column: 4)
+			.WithCanvasZIndex(-1);
 
 		// Initializes the field '_peerFocusedRectangle'.
 		foreach (ref var rectangle in _peerFocusedRectangle.EnumerateRef())
 		{
-			rectangle = new()
-			{
-				Fill = new SolidColorBrush(preference.PeersFocusedCellColor),
-				Visibility = Visibility.Collapsed
-			};
-
-			GridLayout.SetRow(rectangle, 4);
-			GridLayout.SetRow(rectangle, 4);
-			Canvas.SetZIndex(rectangle, -1);
+			rectangle = new Rectangle()
+				.WithFill(new SolidColorBrush(preference.PeersFocusedCellColor))
+				.WithVisibility(Visibility.Collapsed)
+				.WithGridLayout(row: 4, column: 4)
+				.WithCanvasZIndex(-1);
 		}
-
-		// Sets the Z-Index.
-		GridLayout.SetRow(_focusedRectangle, 4);
-		GridLayout.SetColumn(_focusedRectangle, 4);
-		Canvas.SetZIndex(_focusedRectangle, -1);
 
 		// Initializes values.
 		initializeValues();
@@ -180,26 +177,6 @@ public sealed class SudokuGrid : DrawingElement
 		// Last, set the focused cell to -1, to hide the highlight cell by default.
 		FocusedCell = -1;
 
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static GridLayout initializeGridLayout(double paneSize, double outsideOffset)
-		{
-			var result = new GridLayout
-			{
-				Width = paneSize,
-				Height = paneSize,
-				Padding = new(outsideOffset),
-				HorizontalAlignment = HorizontalAlignment.Center,
-				VerticalAlignment = VerticalAlignment.Center
-			};
-			for (int i = 0; i < 9; i++)
-			{
-				result.RowDefinitions.Add(new());
-				result.ColumnDefinitions.Add(new());
-			}
-
-			return result;
-		}
 
 		void initializeValues()
 		{
@@ -218,22 +195,25 @@ public sealed class SudokuGrid : DrawingElement
 			for (int i = 0; i < 81; i++)
 			{
 				ref var p = ref _cellDigits[i];
-				p = new(preference);
-				var control1 = p.GetControl();
-				GridLayout.SetRow(control1, i / 9);
-				GridLayout.SetColumn(control1, i % 9);
-				_gridLayout.Children.Add(control1);
-				var maskEllipse1 = p.GetMaskEllipseControl();
-				GridLayout.SetRow(maskEllipse1, i / 9);
-				GridLayout.SetColumn(maskEllipse1, i % 9);
-				_gridLayout.Children.Add(maskEllipse1);
+				p = new()
+				{
+					UserPreference = preference,
+					IsGiven = false,
+					IsMaskMode = false,
+					Digit = byte.MaxValue
+				};
+				_gridLayout.Children.Add(p.GetControl().WithGridLayout(row: i / 9, column: i % 9));
+				_gridLayout.Children.Add(p.GetMaskEllipseControl().WithGridLayout(row: i / 9, column: i % 9));
 
 				ref var q = ref _candidateDigits[i];
-				q = new(preference);
-				var control2 = q.GetControl();
-				GridLayout.SetRow(control2, i / 9);
-				GridLayout.SetColumn(control2, i % 9);
-				_gridLayout.Children.Add(control2);
+				q = new()
+				{
+					UserPreference = preference,
+					CandidateMask = 511,
+					WrongDigitMask = 0,
+					IsMaskMode = false
+				};
+				_gridLayout.Children.Add(q.GetControl().WithGridLayout(row: i / 9, column: i % 9));
 
 #if AUTHOR_FEATURE_CELL_MARKS
 				if (AllowMarkups)
@@ -241,12 +221,9 @@ public sealed class SudokuGrid : DrawingElement
 					// Initializes for the cell marks.
 					ref var cellMark = ref _cellMarks[i];
 					cellMark = new(preference);
-					var cellMarkControls = cellMark.GetControls();
-					foreach (var cellMarkControl in cellMarkControls)
+					foreach (var cellMarkControl in cellMark.GetControls())
 					{
-						GridLayout.SetRow(cellMarkControl, i / 9);
-						GridLayout.SetColumn(cellMarkControl, i % 9);
-						_gridLayout.Children.Add(cellMarkControl);
+						_gridLayout.Children.Add(cellMarkControl.WithGridLayout(row: i / 9, column: i % 9));
 					}
 				}
 #endif
@@ -257,27 +234,21 @@ public sealed class SudokuGrid : DrawingElement
 					// Initializes for the candidate marks.
 					ref var candidateMark = ref _candidateMarks[i];
 					candidateMark = new(preference);
-					var candidateMarkControl = candidateMark.GetControl();
-					GridLayout.SetRow(candidateMarkControl, i / 9);
-					GridLayout.SetColumn(candidateMarkControl, i % 9);
-					_gridLayout.Children.Add(candidateMarkControl);
+					_gridLayout.Children.Add(candidateMark.GetControl().WithGridLayout(row: i / 9, column: i % 9));
 				}
 #endif
 
 				// Initializes for the items to render the focusing elements.
 				if (_focusedCell == i)
 				{
-					GridLayout.SetRow(_focusedRectangle, _focusedCell / 9);
-					GridLayout.SetColumn(_focusedRectangle, _focusedCell % 9);
-					_gridLayout.Children.Add(_focusedRectangle);
+					_gridLayout.Children.Add(
+						_focusedRectangle.WithGridLayout(row: _focusedCell / 9, column: _focusedCell % 9));
 
 					for (int peerIndex = 0; peerIndex < 20; peerIndex++)
 					{
-						var rectangle = _peerFocusedRectangle[peerIndex];
 						int peerCell = Peers[_focusedCell][peerIndex];
-						GridLayout.SetRow(rectangle, peerCell / 9);
-						GridLayout.SetColumn(rectangle, peerCell % 9);
-						_gridLayout.Children.Add(rectangle);
+						_gridLayout.Children.Add(
+							_peerFocusedRectangle[peerIndex].WithGridLayout(row: peerCell / 9, column: peerCell % 9));
 					}
 				}
 			}
@@ -612,7 +583,7 @@ public sealed class SudokuGrid : DrawingElement
 			// Skips the case that the cell is a given.
 			return;
 		}
-		
+
 		if (digit == -1)
 		{
 			// Skip the case that the user input 0 but the cell is currently empty.

@@ -19,91 +19,24 @@ internal sealed class CellDigit : DrawingElement
 	private bool? _isGiven;
 
 	/// <summary>
+	/// The digit.
+	/// </summary>
+	private byte _digit;
+
+	/// <summary>
 	/// The inner text block.
 	/// </summary>
-	private readonly TextBlock _textBlock;
+	private readonly TextBlock? _textBlock;
 
 	/// <summary>
 	/// The mask ellipse.
 	/// </summary>
-	private readonly Ellipse _maskEllipse;
+	private readonly Ellipse? _maskEllipse;
 
 	/// <summary>
 	/// The user preference.
 	/// </summary>
-	private readonly IDrawingPreference _preference;
-
-
-	/// <summary>
-	/// Initializes a <see cref="CellDigit"/> instance via the details.
-	/// </summary>
-	/// <param name="preference">The user preference.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellDigit(IDrawingPreference preference) : this(byte.MaxValue, false, preference)
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="CellDigit"/> instance via the details.
-	/// </summary>
-	/// <param name="digit">
-	/// The digit value. If you want to hide the value, just assign 255;
-	/// otherwise, using 0 to 8 to indicate the displaying value corresponding to the real digit 1 to 9.
-	/// </param>
-	/// <param name="isGiven">
-	/// Indicates whether the cell is given. If <see langword="false"/>, modifiable value.
-	/// </param>
-	/// <param name="preference">The user preference.</param>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="digit"/> is not 255 and not in range 0 to 8.
-	/// </exception>
-	public CellDigit(byte digit, bool? isGiven, IDrawingPreference preference) : this(digit, isGiven, false, preference)
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="CellDigit"/> instance via the details.
-	/// </summary>
-	/// <param name="digit">
-	/// The digit value. If you want to hide the value, just assign 255;
-	/// otherwise, using 0 to 8 to indicate the displaying value corresponding to the real digit 1 to 9.
-	/// </param>
-	/// <param name="isGiven">
-	/// Indicates whether the cell is given. If <see langword="false"/>, modifiable value.
-	/// </param>
-	/// <param name="isMaskMode">Indicates whether displaying mask ellipse.</param>
-	/// <param name="preference">The user preference.</param>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="digit"/> is not 255 and not in range 0 to 8.
-	/// </exception>
-	public CellDigit(byte digit, bool? isGiven, bool isMaskMode, IDrawingPreference preference)
-	{
-		Argument.ThrowIfFalse(digit is < 9 or byte.MaxValue);
-
-		(_preference, _isGiven, _isMaskMode, _textBlock, _maskEllipse) = (
-			preference,
-			isGiven,
-			isMaskMode,
-			new()
-			{
-				Text = digit == byte.MaxValue ? string.Empty : (digit + 1).ToString(),
-				FontSize = 60 * preference.ValueFontScale,
-				FontFamily = new(preference.ValueFontName),
-				TextAlignment = TextAlignment.Center,
-				HorizontalTextAlignment = TextAlignment.Center,
-				Foreground = new SolidColorBrush(GetColor(isGiven, preference))
-			},
-			new()
-			{
-				Fill = new SolidColorBrush(preference.MaskEllipseColor),
-				Width = 60 * preference.ValueFontScale,
-				Height = 60 * preference.ValueFontScale,
-				HorizontalAlignment = HorizontalAlignment.Center,
-				VerticalAlignment = VerticalAlignment.Center,
-				Visibility = _isMaskMode ? Visibility.Visible : Visibility.Collapsed
-			}
-		);
-	}
+	private readonly IDrawingPreference _preference = null!;
 
 
 	/// <summary>
@@ -126,13 +59,18 @@ internal sealed class CellDigit : DrawingElement
 	/// </item>
 	/// </list>
 	/// </returns>
-	public bool? IsGiven
+	public required bool? IsGiven
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _isGiven;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => (_isGiven, _textBlock.Foreground) = (value, new SolidColorBrush(GetColor(value, _preference)));
+		set
+		{
+			ArgumentNullException.ThrowIfNull(_textBlock);
+
+			(_isGiven, _textBlock.Foreground) = (value, new SolidColorBrush(GetColor(value, _preference)));
+		}
 	}
 
 	/// <summary>
@@ -153,7 +91,7 @@ internal sealed class CellDigit : DrawingElement
 	/// <summary>
 	/// Indicates whether displaying mask ellipse.
 	/// </summary>
-	public bool IsMaskMode
+	public required bool IsMaskMode
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _isMaskMode;
@@ -172,6 +110,9 @@ internal sealed class CellDigit : DrawingElement
 				return;
 			}
 
+			ArgumentNullException.ThrowIfNull(_maskEllipse);
+			ArgumentNullException.ThrowIfNull(_textBlock);
+
 			_isMaskMode = value;
 			_maskEllipse.Visibility = value && _isGiven is true ? Visibility.Visible : Visibility.Collapsed;
 			_textBlock.Visibility = value ? Visibility.Collapsed : Visibility.Visible;
@@ -181,13 +122,25 @@ internal sealed class CellDigit : DrawingElement
 	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
-	public byte Digit
+	public required byte Digit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _textBlock.Text is var s and not "" ? (byte)(byte.Parse(s) - 1) : byte.MaxValue;
+		get
+		{
+			ArgumentNullException.ThrowIfNull(_textBlock);
+
+			return _digit;
+		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => _textBlock.Text = value == byte.MaxValue ? string.Empty : (value + 1).ToString();
+		set
+		{
+			_digit = value;
+
+			ArgumentNullException.ThrowIfNull(_textBlock);
+
+			_textBlock.Text = value == byte.MaxValue ? string.Empty : (value + 1).ToString();
+		}
 	}
 
 	/// <summary>
@@ -196,10 +149,20 @@ internal sealed class CellDigit : DrawingElement
 	public double FontSize
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _textBlock.FontSize;
+		get
+		{
+			ArgumentNullException.ThrowIfNull(_textBlock);
+
+			return _textBlock.FontSize;
+		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => _textBlock.FontSize = value;
+		set
+		{
+			ArgumentNullException.ThrowIfNull(_textBlock);
+
+			_textBlock.FontSize = value;
+		}
 	}
 
 	/// <summary>
@@ -213,6 +176,8 @@ internal sealed class CellDigit : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
+			ArgumentNullException.ThrowIfNull(_textBlock);
+
 			_preference.ValueFontName = value;
 			_textBlock.FontFamily = new(value);
 		}
@@ -229,6 +194,8 @@ internal sealed class CellDigit : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
+			ArgumentNullException.ThrowIfNull(_textBlock);
+
 			_preference.GivenColor = value;
 			if (_isGiven is true)
 			{
@@ -248,6 +215,8 @@ internal sealed class CellDigit : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
+			ArgumentNullException.ThrowIfNull(_textBlock);
+
 			_preference.ModifiableColor = value;
 			if (_isGiven is false)
 			{
@@ -267,11 +236,47 @@ internal sealed class CellDigit : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
+			ArgumentNullException.ThrowIfNull(_textBlock);
+
 			_preference.CellDeltaColor = value;
 			if (_isGiven is null)
 			{
 				_textBlock.Foreground = new SolidColorBrush(value);
 			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the user preference.
+	/// </summary>
+	public required IDrawingPreference UserPreference
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _preference;
+
+		[MemberNotNull(nameof(_textBlock), nameof(_maskEllipse))]
+		init
+		{
+			_preference = value;
+
+			_textBlock ??= new()
+			{
+				Text = _digit == byte.MaxValue ? string.Empty : (_digit + 1).ToString(),
+				FontSize = 60 * value.ValueFontScale,
+				FontFamily = new(value.ValueFontName),
+				TextAlignment = TextAlignment.Center,
+				HorizontalTextAlignment = TextAlignment.Center,
+				Foreground = new SolidColorBrush(GetColor(_isGiven, value))
+			};
+			_maskEllipse ??= new()
+			{
+				Fill = new SolidColorBrush(value.MaskEllipseColor),
+				Width = 60 * value.ValueFontScale,
+				Height = 60 * value.ValueFontScale,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center,
+				Visibility = _isMaskMode ? Visibility.Visible : Visibility.Collapsed
+			};
 		}
 	}
 
@@ -295,10 +300,11 @@ internal sealed class CellDigit : DrawingElement
 				(false, _) => "Modifiable",
 				_ => "Empty"
 			};
-			string digit = (_isMaskMode, _textBlock.Text) switch
+			string digit = (_isMaskMode, _textBlock) switch
 			{
 				(true, _) => "<Masked>",
-				(false, var s and not "") => s,
+				(false, { Text: var s and not "" }) => s,
+				(_, null) => "<_textBlock: Null>",
 				_ => "<Empty>"
 			};
 
@@ -320,14 +326,16 @@ internal sealed class CellDigit : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override TextBlock GetControl() => _textBlock;
+	public override TextBlock GetControl()
+		=> _textBlock ?? throw new InvalidOperationException("The value cannot be null.");
 
 	/// <summary>
 	/// Gets the control of the mask ellipse.
 	/// </summary>
 	/// <returns>The mask ellipse control.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Ellipse GetMaskEllipseControl() => _maskEllipse;
+	public Ellipse GetMaskEllipseControl()
+		=> _maskEllipse ?? throw new InvalidOperationException("The value cannot be null.");
 
 
 	/// <summary>

@@ -76,13 +76,13 @@
             <param name="this">The modifier key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Controls.GridLayoutExtensions">
+        <member name="T:Microsoft.UI.Xaml.FrameworkElementExtensions">
             <summary>
-            Provides with extension methods for <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>.
             </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
+            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithGridLayout``1(``0,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Microsoft.UI.Xaml.FrameworkElementExtensions.WithGridLayout``1(``0,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Sets the info on <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>, and returns the reference
             of the argument <paramref name="this"/>.
@@ -102,6 +102,37 @@
             The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetColumnSpan(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
             </param>
             <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.FrameworkElementExtensions.WithWidth``1(``0,System.Double)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.FrameworkElement.Width"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.FrameworkElementExtensions.WithHeight``1(``0,System.Double)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.FrameworkElement.Height"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.FrameworkElementExtensions.WithHorizontalAlignment``1(``0,Microsoft.UI.Xaml.HorizontalAlignment)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.FrameworkElement.HorizontalAlignment"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.FrameworkElementExtensions.WithVerticalAlignment``1(``0,Microsoft.UI.Xaml.VerticalAlignment)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.FrameworkElement.VerticalAlignment"/> with the specified value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Controls.GridLayoutExtensions">
+            <summary>
+            Provides with extension methods for <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithPadding(Microsoft.UI.Xaml.Controls.Grid,Microsoft.UI.Xaml.Thickness)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.Grid.Padding"/> with the specified value.
+            </summary>
         </member>
         <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithRowDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
             <summary>
@@ -127,6 +158,17 @@
             Throws when the argument <paramref name="count"/> is negative.
             </exception>
         </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.RectangleExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.RectangleExtensions.WithFill(Microsoft.UI.Xaml.Shapes.Rectangle,Microsoft.UI.Xaml.Media.Brush)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/> with the specified value.
+            </summary>
+        </member>
         <member name="T:Microsoft.UI.Xaml.UIElementExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.UIElement"/>.
@@ -137,9 +179,11 @@
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.UIElement.Visibility"/> with the specified value.
             </summary>
-            <param name="this">The property.</param>
-            <param name="visibility">The value.</param>
-            <returns>The instance.</returns>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.WithCanvasZIndex``1(``0,System.Int32)">
+            <summary>
+            Calls the method <see cref="M:Microsoft.UI.Xaml.Controls.Canvas.SetZIndex(Microsoft.UI.Xaml.UIElement,System.Int32)"/> to set the Z-index value.
+            </summary>
         </member>
         <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``1(``0,Windows.Storage.StorageFile)">
             <summary>

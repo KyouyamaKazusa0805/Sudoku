@@ -7,33 +7,12 @@
 public static class GridLayoutExtensions
 {
 	/// <summary>
-	/// Sets the info on <see cref="GridLayout"/>, and returns the reference
-	/// of the argument <paramref name="this"/>.
+	/// Sets the property <see cref="GridLayout.Padding"/> with the specified value.
 	/// </summary>
-	/// <typeparam name="TFrameworkElement">The type of the control.</typeparam>
-	/// <param name="this">The <typeparamref name="TFrameworkElement"/>-typed control.</param>
-	/// <param name="row">
-	/// The row value that is used for <see cref="GridLayout.SetRow(FrameworkElement, int)"/>.
-	/// </param>
-	/// <param name="column">
-	/// The row value that is used for <see cref="GridLayout.SetColumn(FrameworkElement, int)"/>.
-	/// </param>
-	/// <param name="rowSpan">
-	/// The row value that is used for <see cref="GridLayout.SetRowSpan(FrameworkElement, int)"/>.
-	/// </param>
-	/// <param name="columnSpan">
-	/// The row value that is used for <see cref="GridLayout.SetColumnSpan(FrameworkElement, int)"/>.
-	/// </param>
-	/// <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TFrameworkElement WithGridLayout<TFrameworkElement>(
-		this TFrameworkElement @this, int row = 0, int column = 0, int rowSpan = 1, int columnSpan = 1)
-		where TFrameworkElement : FrameworkElement
+	public static GridLayout WithPadding(this GridLayout @this, Thickness padding)
 	{
-		GridLayout.SetRow(@this, row);
-		GridLayout.SetColumn(@this, column);
-		GridLayout.SetRowSpan(@this, rowSpan);
-		GridLayout.SetColumnSpan(@this, columnSpan);
+		@this.Padding = padding;
 		return @this;
 	}
 
