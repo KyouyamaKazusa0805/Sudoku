@@ -81,7 +81,7 @@ public sealed partial class TitleBar : UserControl
 
 		// Check to see if customization is supported.
 		// Currently only supported on Windows 11.
-		if (AppWindowTitleBar.IsCustomizationSupported() && _appWindow is { TitleBar: var titleBar })
+		if (Supportable.TitleBar && _appWindow is { TitleBar: var titleBar })
 		{
 			// Hide default title bar.
 			titleBar.ExtendsContentIntoTitleBar = true;
@@ -117,7 +117,7 @@ public sealed partial class TitleBar : UserControl
 	/// <param name="e">The event arguments provided.</param>
 	private void UserControl_Unloaded(object sender, RoutedEventArgs e)
 	{
-		if (AppWindowTitleBar.IsCustomizationSupported())
+		if (Supportable.TitleBar)
 		{
 			Loaded -= TitleBar_Loaded;
 			SizeChanged -= TitleBar_SizeChanged;

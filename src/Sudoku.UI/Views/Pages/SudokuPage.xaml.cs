@@ -637,7 +637,7 @@ public sealed partial class SudokuPage : Page
 	private async Task PrintAsync()
 	{
 		var mainWindow = ((App)Application.Current).InitialInfo.MainWindow;
-		if (PrintManager.IsSupported())
+		if (Supportable.Printer)
 		{
 			try
 			{

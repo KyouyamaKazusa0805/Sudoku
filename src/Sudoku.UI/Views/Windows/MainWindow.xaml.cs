@@ -96,7 +96,7 @@ public sealed partial class MainWindow : Window
 
 		_configurationSource = null;
 
-		if (MicaController.IsSupported())
+		if (Supportable.Mica)
 		{
 			// Hooking up the policy object.
 			_configurationSource = new();
