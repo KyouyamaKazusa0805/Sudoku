@@ -498,24 +498,6 @@
             The default value is <c>#FF3FDA65</c>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.Auxiliary1Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF7FBBFF</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.Auxiliary2Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFD8B2FF</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.Auxiliary3Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFFFF96</c>.
-            </remarks>
-        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.EliminationColor">
             <inheritdoc/>
             <remarks>
@@ -544,36 +526,6 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>#FFFF0000</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSet1Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFC5E88C</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSet2Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFFCBCB</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSet3Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFB2DFDF</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSet4Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFCDCA5</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSet5Color">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FFFFFF96</c>.
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.HighlightCellStrokeColor">
@@ -634,6 +586,30 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 128).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuxiliaryColors">
+            <inheritdoc/>
+            <remarks>
+            The default value is an array of 3 elements:
+            <list type="number">
+            <item>#FF7FBBFF</item>
+            <item>#FFD8B2FF</item>
+            <item>#FFFFFF96</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSetColors">
+            <inheritdoc/>
+            <remarks>
+            The default value is an array of 5 elements:
+            <list type="number">
+            <item>#FFC5E88C</item>
+            <item>#FFFFCBCB</item>
+            <item>#FFB2DFDF</item>
+            <item>#FFFCDCA5</item>
+            <item>#FFFFFF96</item>
+            </list>
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.PaletteColors">

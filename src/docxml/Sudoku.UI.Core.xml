@@ -256,21 +256,6 @@
             Indicates the normal color.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.Auxiliary1Color">
-            <summary>
-            Indicates the first auxiliary color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.Auxiliary2Color">
-            <summary>
-            Indicates the second auxiliary color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.Auxiliary3Color">
-            <summary>
-            Indicates the third auxiliary color.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.EliminationColor">
             <summary>
             Indicates the color that describes an elimination.
@@ -294,31 +279,6 @@
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.LinkColor">
             <summary>
             Indicates the color of links used by a chain.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AlmostLockedSet1Color">
-            <summary>
-            Indicates the color of the first ALS recorded.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AlmostLockedSet2Color">
-            <summary>
-            Indicates the color of the second ALS recorded.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AlmostLockedSet3Color">
-            <summary>
-            Indicates the color of the third ALS recorded.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AlmostLockedSet4Color">
-            <summary>
-            Indicates the color of the fourth ALS recorded.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AlmostLockedSet5Color">
-            <summary>
-            Indicates the color of the fifth ALS recorded.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.HighlightCellStrokeColor">
@@ -369,6 +329,16 @@
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CandidateMarkStrokeColor">
             <summary>
             Indicates the stroke color of the mark applied to a candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuxiliaryColors">
+            <summary>
+            Indicates the auxiliary color that marks and describes the extra highlight candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AlmostLockedSetColors">
+            <summary>
+            Indicates the almost locked set colors for differing different ALS structures.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PaletteColors">

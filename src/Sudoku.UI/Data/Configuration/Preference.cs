@@ -259,27 +259,6 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#FF7FBBFF</c>.
-	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	public Color Auxiliary1Color { get; set; } = Color.FromArgb(255, 127, 187, 255);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFD8B2FF</c>.
-	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	public Color Auxiliary2Color { get; set; } = Color.FromArgb(255, 216, 178, 255);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFFFFF96</c>.
-	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	public Color Auxiliary3Color { get; set; } = Color.FromArgb(255, 255, 255, 150);
-
-	/// <inheritdoc/>
-	/// <remarks>
 	/// The default value is <c>#FFFF7684</c>.
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
@@ -312,41 +291,6 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
 	public Color LinkColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFC5E88C</c>.
-	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	public Color AlmostLockedSet1Color { get; set; } = Color.FromArgb(255, 197, 232, 140);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFFFCBCB</c>.
-	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	public Color AlmostLockedSet2Color { get; set; } = Color.FromArgb(255, 255, 203, 203);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFB2DFDF</c>.
-	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	public Color AlmostLockedSet3Color { get; set; } = Color.FromArgb(255, 178, 223, 223);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFFCDCA5</c>.
-	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	public Color AlmostLockedSet4Color { get; set; } = Color.FromArgb(255, 252, 220, 165);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFFFFF96</c>.
-	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	public Color AlmostLockedSet5Color { get; set; } = Color.FromArgb(255, 255, 255, 150);
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -421,6 +365,42 @@ public sealed class Preference : IDrawingPreference
 	[Preference<ColorPickerSettingItem>]
 	public Color __CandidateMarkStrokeColor { get; set; } = Colors.Black with { A = 128 };
 #endif
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is an array of 3 elements:
+	/// <list type="number">
+	/// <item>#FF7FBBFF</item>
+	/// <item>#FFD8B2FF</item>
+	/// <item>#FFFFFF96</item>
+	/// </list>
+	/// </remarks>
+	public Color[] AuxiliaryColors { get; set; } =
+	{
+		Color.FromArgb(255, 127, 187, 255), // FF7FBBFF
+		Color.FromArgb(255, 216, 178, 255), // FFD8B2FF
+		Color.FromArgb(255, 255, 255, 150) // FFFFFF96
+	};
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is an array of 5 elements:
+	/// <list type="number">
+	/// <item>#FFC5E88C</item>
+	/// <item>#FFFFCBCB</item>
+	/// <item>#FFB2DFDF</item>
+	/// <item>#FFFCDCA5</item>
+	/// <item>#FFFFFF96</item>
+	/// </list>
+	/// </remarks>
+	public Color[] AlmostLockedSetColors { get; set; } =
+	{
+		Color.FromArgb(255, 197, 232, 140), // FFC5E88C
+		Color.FromArgb(255, 255, 203, 203), // FFFFCBCB
+		Color.FromArgb(255, 178, 223, 223), // FFB2DFDF
+		Color.FromArgb(255, 252, 220, 165), // FFFCDCA5
+		Color.FromArgb(255, 255, 255, 150) // FFFFFF96
+	};
 
 	/// <inheritdoc/>
 	/// <remarks>

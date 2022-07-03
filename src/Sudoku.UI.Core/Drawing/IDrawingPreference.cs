@@ -164,21 +164,6 @@ public interface IDrawingPreference
 	public abstract Color NormalColor { get; set; }
 
 	/// <summary>
-	/// Indicates the first auxiliary color.
-	/// </summary>
-	public abstract Color Auxiliary1Color { get; set; }
-
-	/// <summary>
-	/// Indicates the second auxiliary color.
-	/// </summary>
-	public abstract Color Auxiliary2Color { get; set; }
-
-	/// <summary>
-	/// Indicates the third auxiliary color.
-	/// </summary>
-	public abstract Color Auxiliary3Color { get; set; }
-
-	/// <summary>
 	/// Indicates the color that describes an elimination.
 	/// </summary>
 	public abstract Color EliminationColor { get; set; }
@@ -202,31 +187,6 @@ public interface IDrawingPreference
 	/// Indicates the color of links used by a chain.
 	/// </summary>
 	public abstract Color LinkColor { get; set; }
-
-	/// <summary>
-	/// Indicates the color of the first ALS recorded.
-	/// </summary>
-	public abstract Color AlmostLockedSet1Color { get; set; }
-
-	/// <summary>
-	/// Indicates the color of the second ALS recorded.
-	/// </summary>
-	public abstract Color AlmostLockedSet2Color { get; set; }
-
-	/// <summary>
-	/// Indicates the color of the third ALS recorded.
-	/// </summary>
-	public abstract Color AlmostLockedSet3Color { get; set; }
-
-	/// <summary>
-	/// Indicates the color of the fourth ALS recorded.
-	/// </summary>
-	public abstract Color AlmostLockedSet4Color { get; set; }
-
-	/// <summary>
-	/// Indicates the color of the fifth ALS recorded.
-	/// </summary>
-	public abstract Color AlmostLockedSet5Color { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the stroke lines surrounding with highlight cell.
@@ -281,6 +241,16 @@ public interface IDrawingPreference
 	/// </summary>
 	public abstract Color __CandidateMarkStrokeColor { get; set; }
 #endif
+
+	/// <summary>
+	/// Indicates the auxiliary color that marks and describes the extra highlight candidates.
+	/// </summary>
+	public abstract Color[] AuxiliaryColors { get; set; }
+
+	/// <summary>
+	/// Indicates the almost locked set colors for differing different ALS structures.
+	/// </summary>
+	public abstract Color[] AlmostLockedSetColors { get; set; }
 
 	/// <summary>
 	/// Indicates the palette colors.
