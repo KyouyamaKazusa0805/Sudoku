@@ -681,6 +681,39 @@
             Indicates whether the page displays title. The default value is <see langword="true"/>.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Data.Metadata.PreferenceAttribute`1">
+            <summary>
+            Provides an attribute that can be applied to a preference item,
+            indicating the data of the arguments for the preference.
+            </summary>
+            <typeparam name="TSettingItem">The type of the setting item.</typeparam>
+        </member>
+        <member name="M:Sudoku.UI.Data.Metadata.PreferenceAttribute`1.#ctor(System.Object[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.Metadata.PreferenceAttribute`1"/> instance via the specified data.
+            </summary>
+            <param name="args">The values.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="args"/> is not of an even length,
+            or the key in argument <paramref name="args"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="P:Sudoku.UI.Data.Metadata.PreferenceAttribute`1.Data">
+            <summary>
+            Indicates the data.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Metadata.PreferenceAttribute`1.ItemType">
+            <summary>
+            Indicates the item type.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Data.Metadata.TypeAttribute`1">
+            <summary>
+            Defines the type of the field that will route.
+            </summary>
+            <typeparam name="T">The routed type.</typeparam>
+        </member>
         <member name="T:Sudoku.UI.Data.Navigation.NavigationInfo">
             <summary>
             Defines a navigation information instance.
@@ -1129,6 +1162,9 @@
             Defines a color option that is binding with a color picker on displaying.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ColorPickerSettingItem.DynamicCreate(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Models.SettingItems.ColorPickerSettingItem.GetPreference">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
         </member>
@@ -1172,6 +1208,9 @@
             Indicates the font name property name.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.DynamicCreate(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.GetFontScalePreference">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
         </member>
@@ -1194,6 +1233,9 @@
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Models.SettingItems.PeerFocusingModeComboBoxSettingItem"/> instance.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.PeerFocusingModeComboBoxSettingItem.DynamicCreate(System.String)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Models.SettingItems.PeerFocusingModeComboBoxSettingItem.GetPreferenceIndex">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
@@ -1222,6 +1264,15 @@
             Indicates the name corresponding to the current name.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.SettingItem.DynamicCreate(System.String)">
+            <summary>
+            Creates a <see cref="T:Sudoku.UI.Models.SettingItems.SettingItem"/> instance dynamically.
+            </summary>
+            <param name="propertyName">
+            The property name that references a property in the type <see cref="T:Sudoku.UI.Data.Configuration.Preference"/>.
+            </param>
+            <returns>A <see cref="T:Sudoku.UI.Models.SettingItems.SettingItem"/> instance.</returns>
+        </member>
         <member name="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1">
             <summary>
             Try to get the preference value from the current instance.
@@ -1248,6 +1299,14 @@
             <param name="name">The name of the property should be checked.</param>
             <param name="value">The value.</param>
         </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.SettingItem.GetAttributeArguments(System.String)">
+            <summary>
+            Gets attribute arguments of a property via the property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <returns>The attribute arguments of a property.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified property cannot be found.</exception>
+        </member>
         <member name="T:Sudoku.UI.Models.SettingItems.SliderSettingItem">
             <summary>
             Defines a floating-point or integer option that is binding with a slider on displaying.
@@ -1273,6 +1332,9 @@
             Indicates the maximum value of the slider.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.SliderSettingItem.DynamicCreate(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Models.SettingItems.SliderSettingItem.GetPreference">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
         </member>
@@ -1293,6 +1355,9 @@
             <summary>
             Indicates the off content displayed.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ToggleSwitchSettingItem.DynamicCreate(System.String)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Models.SettingItems.ToggleSwitchSettingItem.GetPreference">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>

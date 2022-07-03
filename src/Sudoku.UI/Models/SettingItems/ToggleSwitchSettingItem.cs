@@ -16,6 +16,22 @@ public sealed class ToggleSwitchSettingItem : SettingItem
 	public string OffContent { get; set; } = R["ToggleSwitchDefaultOffContent"]!;
 
 
+	/// <inheritdoc/>
+	public override ToggleSwitchSettingItem DynamicCreate(string propertyName)
+		=> GetAttributeArguments(propertyName) switch
+		{
+			PreferenceAttribute<ToggleSwitchSettingItem> { Data: { Length: <= 2 } data }
+				=> new()
+				{
+					Name = GetItemNameString(propertyName)!,
+					Description = GetItemDescriptionString(propertyName) ?? string.Empty,
+					PreferenceValueName = propertyName,
+					OnContent = (string)data.First(p => p.Key == nameof(OnContent)).Value!,
+					OffContent = (string)data.First(p => p.Key == nameof(OffContent)).Value!
+				},
+			_ => throw new InvalidOperationException()
+		};
+
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	public bool GetPreference() => GetPreference<bool>();
 

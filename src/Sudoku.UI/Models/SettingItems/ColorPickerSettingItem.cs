@@ -5,6 +5,20 @@
 /// </summary>
 public sealed class ColorPickerSettingItem : SettingItem
 {
+	/// <inheritdoc/>
+	public override ColorPickerSettingItem DynamicCreate(string propertyName)
+		=> GetAttributeArguments(propertyName) switch
+		{
+			PreferenceAttribute<ColorPickerSettingItem> { Data: [] }
+				=> new()
+				{
+					Name = GetItemNameString(propertyName)!,
+					Description = GetItemDescriptionString(propertyName) ?? string.Empty,
+					PreferenceValueName = propertyName
+				},
+			_ => throw new InvalidOperationException()
+		};
+
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	public Color GetPreference() => GetPreference<Color>();
 

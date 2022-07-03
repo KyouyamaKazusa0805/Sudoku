@@ -18,6 +18,9 @@ public sealed class FontPickerSettingItem : SettingItem
 	public required string FontScalePropertyName { get; set; }
 
 
+	/// <inheritdoc/>
+	public override SettingItem DynamicCreate(string propertyName) => throw new NotImplementedException();
+
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	public double GetFontScalePreference() => GetPreference<double>(FontScalePropertyName);
 

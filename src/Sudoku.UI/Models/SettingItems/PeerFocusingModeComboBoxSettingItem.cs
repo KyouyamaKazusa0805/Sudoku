@@ -16,6 +16,21 @@ public sealed class PeerFocusingModeComboBoxSettingItem : ComboBoxSettingItem<Pe
 	}
 
 
+	/// <inheritdoc/>
+	public override PeerFocusingModeComboBoxSettingItem DynamicCreate(string propertyName)
+		=> GetAttributeArguments(propertyName) switch
+		{
+			PreferenceAttribute<PeerFocusingModeComboBoxSettingItem> { Data: [(_, string[] values)] }
+				=> new()
+				{
+					Name = GetItemNameString(propertyName)!,
+					Description = GetItemDescriptionString(propertyName) ?? string.Empty,
+					PreferenceValueName = propertyName,
+					OptionContents = (from value in values select R[value]!).ToArray()
+				},
+			_ => throw new InvalidOperationException()
+		};
+
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int GetPreferenceIndex() => (int)GetPreference();
