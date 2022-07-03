@@ -136,10 +136,10 @@
 	<x:String x:Key="SettingsPage_ItemDescription_CellDeltaColor">The option controls the color of delta digits. Delta digits are wrong ones disobeying the sudoku rule.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateDeltaColor">Color for delta candidates</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateDeltaColor">Same logic as above :)</x:String>
-	<x:String x:Key="SettingsPage_ItemName_ValueFontScale">Font scale on value digits</x:String>
-	<x:String x:Key="SettingsPage_ItemDescription_ValueFontScale">Indicates the sizing scale of the value digits.</x:String>
-	<x:String x:Key="SettingsPage_ItemName_CandidateFontScale">Font scale on candidates</x:String>
-	<x:String x:Key="SettingsPage_ItemDescription_CandidateFontScale">Indicates the sizing scale of the candidates.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_ValueFont">Font scale on value digits</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_ValueFont">Indicates the sizing scale of the value digits.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CandidateFont">Font scale on candidates</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_CandidateFont">Indicates the sizing scale of the candidates.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CoverOldShapeWhenDiffused">Cover old shape marks when diffused</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption0Content">Don't display focused cell</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption1Content">Display focused cell</x:String>
@@ -194,8 +194,8 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateColor">color;candidates|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CellDeltaColor">color;deltas;digits|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateDeltaColor">color;deltas;candidates|Settings Page -> Rendering options</x:String>
-	<x:String x:Key="Query_SettingsPage_ItemName_ValueFontScale">font;scale;values;digits|Settings Page -> Rendering options</x:String>
-	<x:String x:Key="Query_SettingsPage_ItemName_CandidateFontScale">font;scale;candidates|Settings Page -> Rendering options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_ValueFont">font;scale;values;digits|Settings Page -> Rendering options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_CandidateFont">font;scale;candidates|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_DescendingOrderedInfoBarBoard">show;board;descending;order|Settings Page -> Miscellaneous options</x:String>
 
 	<!--Control-based data-->

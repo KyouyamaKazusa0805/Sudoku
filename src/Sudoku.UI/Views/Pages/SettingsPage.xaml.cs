@@ -56,14 +56,14 @@ public sealed partial class SettingsPage : Page
 				},
 				new FontPickerSettingItem
 				{
-					Name = R["SettingsPage_ItemName_ValueFontScale"]!,
-					Description = R["SettingsPage_ItemDescription_ValueFontScale"]!,
+					Name = R["SettingsPage_ItemName_ValueFont"]!,
+					Description = R["SettingsPage_ItemDescription_ValueFont"]!,
 					PreferenceValueName = nameof(Preference.ValueFont)
 				},
 				new FontPickerSettingItem
 				{
-					Name = R["SettingsPage_ItemName_CandidateFontScale"]!,
-					Description = R["SettingsPage_ItemDescription_CandidateFontScale"]!,
+					Name = R["SettingsPage_ItemName_CandidateFont"]!,
+					Description = R["SettingsPage_ItemDescription_CandidateFont"]!,
 					PreferenceValueName = nameof(Preference.CandidateFont)
 				},
 				new ToggleSwitchSettingItem

@@ -14,6 +14,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup("Basic")]
 	public bool ShowCandidates { get; set; } = true;
 
 	/// <inheritdoc/>
@@ -21,6 +22,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup("Basic")]
 	public bool ShowCandidateBorderLines { get; set; } = false;
 
 	/// <inheritdoc/>
@@ -28,6 +30,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup("Basic")]
 	public bool EnableDeltaValuesDisplaying { get; set; } = true;
 
 	/// <inheritdoc/>
@@ -35,6 +38,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup("Miscellaneous")]
 	public bool DescendingOrderedInfoBarBoard { get; set; } = true;
 
 	/// <summary>
@@ -45,6 +49,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup("Basic")]
 	public bool PlaceholderIsZero { get; set; } = true;
 
 #if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
@@ -55,6 +60,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup("Basic")]
 	public bool __CoverOldShapeWhenDiffused { get; set; } = false;
 #endif
 
@@ -65,6 +71,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup("Basic")]
 	public bool AlsoSavePictureWhenSaveDrawingData { get; set; } = true;
 
 	/// <inheritdoc/>
@@ -74,6 +81,7 @@ public sealed class Preference : IDrawingPreference
 	[Preference<SliderSettingItem>(
 		nameof(SliderSettingItem.StepFrequency), .1, nameof(SliderSettingItem.TickFrequency), .3,
 		nameof(SliderSettingItem.MinValue), 0, nameof(SliderSettingItem.MaxValue), 3)]
+	[PreferenceGroup("Rendering")]
 	public double OutsideBorderWidth { get; set; } = 0;
 
 	/// <inheritdoc/>
@@ -83,6 +91,7 @@ public sealed class Preference : IDrawingPreference
 	[Preference<SliderSettingItem>(
 		nameof(SliderSettingItem.StepFrequency), .5, nameof(SliderSettingItem.TickFrequency), .5,
 		nameof(SliderSettingItem.MinValue), 0, nameof(SliderSettingItem.MaxValue), 5)]
+	[PreferenceGroup("Rendering")]
 	public double BlockBorderWidth { get; set; } = 4;
 
 	/// <inheritdoc/>
@@ -92,6 +101,7 @@ public sealed class Preference : IDrawingPreference
 	[Preference<SliderSettingItem>(
 		nameof(SliderSettingItem.StepFrequency), .1, nameof(SliderSettingItem.TickFrequency), .3,
 		nameof(SliderSettingItem.MinValue), 0, nameof(SliderSettingItem.MaxValue), 3)]
+	[PreferenceGroup("Rendering")]
 	public double CellBorderWidth { get; set; } = 1;
 
 	/// <inheritdoc/>
@@ -101,6 +111,7 @@ public sealed class Preference : IDrawingPreference
 	[Preference<SliderSettingItem>(
 		nameof(SliderSettingItem.StepFrequency), .1, nameof(SliderSettingItem.TickFrequency), .3,
 		nameof(SliderSettingItem.MinValue), 0, nameof(SliderSettingItem.MaxValue), 3)]
+	[PreferenceGroup("Rendering")]
 	public double CandidateBorderWidth { get; set; } = 1;
 
 	/// <inheritdoc/>
@@ -137,6 +148,7 @@ public sealed class Preference : IDrawingPreference
 			"SettingsPage_ItemName_PeerFocusingModeOption1Content",
 			"SettingsPage_ItemName_PeerFocusingModeOption2Content"
 		})]
+	[PreferenceGroup("Basic")]
 	public PeerFocusingMode PeerFocusingMode { get; set; } = PeerFocusingMode.FocusedCellAndPeerCells;
 
 	/// <inheritdoc/>
@@ -144,6 +156,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>{ FontName = "Cascadia Mono", FontScale = .8 }</c> in debugging mode.
 	/// </remarks>
 	[Preference<FontPickerSettingItem>]
+	[PreferenceGroup("Basic")]
 	public FontData ValueFont { get; set; } = new()
 	{
 		FontName =
@@ -160,6 +173,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>{ FontName = "Cascadia Mono", FontScale = .25 }</c> in debugging mode.
 	/// </remarks>
 	[Preference<FontPickerSettingItem>]
+	[PreferenceGroup("Basic")]
 	public FontData CandidateFont { get; set; } = new()
 	{
 		FontName =
@@ -176,6 +190,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup("Rendering")]
 	public Color OutsideBorderColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
@@ -190,6 +205,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup("Rendering")]
 	public Color BlockBorderColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
@@ -197,6 +213,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup("Rendering")]
 	public Color CellBorderColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
@@ -204,6 +221,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FFD3D3D3</c> (i.e. <see cref="Colors.LightGray"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup("Rendering")]
 	public Color CandidateBorderColor { get; set; } = Colors.LightGray;
 
 	/// <inheritdoc/>
@@ -211,6 +229,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup("Rendering")]
 	public Color GivenColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
@@ -218,6 +237,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FF0000FF</c> (i.e. <see cref="Colors.Blue"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup("Rendering")]
 	public Color ModifiableColor { get; set; } = Colors.Blue;
 
 	/// <inheritdoc/>
@@ -225,6 +245,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FF696969</c> (i.e. <see cref="Colors.DimGray"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup("Rendering")]
 	public Color CandidateColor { get; set; } = Colors.DimGray;
 
 	/// <inheritdoc/>
@@ -232,6 +253,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FFFF0000</c> (i.e. <see cref="Colors.Red"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup("Rendering")]
 	public Color CellDeltaColor { get; set; } = Colors.Red;
 
 	/// <inheritdoc/>
@@ -239,6 +261,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FFFFB9B9</c>.
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup("Rendering")]
 	public Color CandidateDeltaColor { get; set; } = Color.FromArgb(255, 255, 185, 185);
 
 	/// <inheritdoc/>

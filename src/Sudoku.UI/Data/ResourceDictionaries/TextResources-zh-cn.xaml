@@ -133,10 +133,10 @@
 	<x:String x:Key="SettingsPage_ItemDescription_CellDeltaColor">该设置项控制错误填数的颜色。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateDeltaColor">错误填数的候选数数值颜色</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateDeltaColor">同上 :)</x:String>
-	<x:String x:Key="SettingsPage_ItemName_ValueFontScale">确定值（明数）字体缩放比例</x:String>
-	<x:String x:Key="SettingsPage_ItemDescription_ValueFontScale">表示文字相对单元格的比例大小。</x:String>
-	<x:String x:Key="SettingsPage_ItemName_CandidateFontScale">候选数字体的缩放比例</x:String>
-	<x:String x:Key="SettingsPage_ItemDescription_CandidateFontScale">表示候选数相对于单元格的比例大小。</x:String>
+	<x:String x:Key="SettingsPage_ItemName_ValueFont">确定值（明数）字体缩放比例</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_ValueFont">表示文字相对单元格的比例大小。</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CandidateFont">候选数字体的缩放比例</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_CandidateFont">表示候选数相对于单元格的比例大小。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CoverOldShapeWhenDiffused">扩散形状的时候覆盖别格的旧形状</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption0Content">不显示聚焦单元格</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption1Content">显示聚焦单元格</x:String>
@@ -191,8 +191,8 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateColor">颜色;候选数|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CellDeltaColor">颜色;错误填数|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateDeltaColor">颜色;错误填数;候选数|设置页 -> 绘图和渲染</x:String>
-	<x:String x:Key="Query_SettingsPage_ItemName_ValueFontScale">字体;缩放比例;数值|设置页 -> 绘图和渲染</x:String>
-	<x:String x:Key="Query_SettingsPage_ItemName_CandidateFontScale">字体;缩放比例;候选数|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_ValueFont">字体;缩放比例;数值|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_CandidateFont">字体;缩放比例;候选数|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_DescendingOrderedInfoBarBoard">显示;信息框;信息栏;逆序;降序|设置页 -> 其它</x:String>
 
 	<!--控件显示用文字-->
