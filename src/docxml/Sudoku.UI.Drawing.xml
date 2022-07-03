@@ -2122,18 +2122,29 @@
             The inner rectangle.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.#ctor(Windows.UI.Color,Windows.UI.Color,System.Double,System.Double)">
+        <member name="F:Sudoku.UI.Drawing.Shapes.OutsideRectangle._strokeThickness">
             <summary>
-            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle"/> instance via the specified details.
+            Indicates the stroke thickness.
             </summary>
-            <param name="strokeColor">The stroke color.</param>
-            <param name="fillColor">The fill color.</param>
-            <param name="paneSize">The pane size.</param>
-            <param name="strokeThickness">The stroke thickness.</param>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.OutsideRectangle._strokeColor">
+            <summary>
+            Indicates the stroke color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.OutsideRectangle._fillColor">
+            <summary>
+            Indicates the fill color.
+            </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.RectangleSize">
             <summary>
             The size of the rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.PaneSize">
+            <summary>
+            The size of the sudoku grid pane.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.StrokeThickness">

@@ -158,15 +158,25 @@
             Throws when the argument <paramref name="count"/> is negative.
             </exception>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.RectangleExtensions">
+        <member name="T:Microsoft.UI.Xaml.Shapes.ShapeExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/>.
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>.
             </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.RectangleExtensions.WithFill(Microsoft.UI.Xaml.Shapes.Rectangle,Microsoft.UI.Xaml.Media.Brush)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithFill``1(``0,Microsoft.UI.Xaml.Media.Brush)">
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStroke``1(``0,Microsoft.UI.Xaml.Media.Brush)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Stroke"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStrokeThickness``1(``0,System.Double)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeThickness"/> with the specified value.
             </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.UIElementExtensions">

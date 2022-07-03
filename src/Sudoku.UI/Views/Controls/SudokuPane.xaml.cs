@@ -721,12 +721,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void InitializeOutsideRectangle(Preference up)
 		=> _drawingElements.Add(
-			new OutsideRectangle(
-				up.OutsideBorderColor,
-				up.GridBackgroundFillColor,
-				Size,
-				up.OutsideBorderWidth
-			)
+			new OutsideRectangle
+			{
+				PaneSize = Size,
+				StrokeColor = up.OutsideBorderColor,
+				FillColor = up.GridBackgroundFillColor,
+				StrokeThickness = up.OutsideBorderWidth
+			}
 		);
 
 	/// <summary>
