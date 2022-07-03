@@ -8,8 +8,14 @@ public sealed partial class FontPicker : UserControl
 	/// <summary>
 	/// Initializes a <see cref="FontPicker"/> instance.
 	/// </summary>
+	[SetsRequiredMembers]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public FontPicker() => InitializeComponent();
+	public FontPicker()
+	{
+		InitializeComponent();
+
+		SettingItem = null!;
+	}
 
 
 	/// <inheritdoc cref="ComboBox.Header"/>
@@ -44,7 +50,7 @@ public sealed partial class FontPicker : UserControl
 	/// <summary>
 	/// Indicates the base setting item.
 	/// </summary>
-	public FontPickerSettingItem SettingItem { get; set; } = null!;
+	public required FontPickerSettingItem SettingItem { get; set; }
 
 
 	private void Control_Loaded(object _, RoutedEventArgs __)

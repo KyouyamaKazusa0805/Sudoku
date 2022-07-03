@@ -378,18 +378,6 @@
             The default value is <c>1</c>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.ValueFontScale">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>.8</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.CandidateFontScale">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>.25</c>.
-            </remarks>
-        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.HighlightCellStrokeThickness">
             <inheritdoc/>
             <remarks>
@@ -408,22 +396,22 @@
             The default value is <c>2</c>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.ValueFontName">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.CandidateFontName">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
-            </remarks>
-        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.PeerFocusingMode">
             <inheritdoc/>
             <remarks>
             The default value is <see cref="F:Sudoku.UI.Drawing.Shapes.PeerFocusingMode.FocusedCellAndPeerCells"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.ValueFont">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>{ FontName = "Cascadia Mono", FontScale = .8 }</c> in debugging mode.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CandidateFont">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>{ FontName = "Cascadia Mono", FontScale = .25 }</c> in debugging mode.
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.OutsideBorderColor">
@@ -1177,11 +1165,6 @@
         <member name="M:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Models.SettingItems.FontPickerSettingItem"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.FontScalePropertyName">
-            <summary>
-            Indicates the font name property name.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.DynamicCreate(System.String)">

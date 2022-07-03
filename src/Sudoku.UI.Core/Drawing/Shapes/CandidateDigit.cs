@@ -189,8 +189,8 @@ internal sealed class CandidateDigit : DrawingElement
 					var digitBlock = new TextBlock
 					{
 						Text = (digit + 1).ToString(),
-						FontFamily = new(value.CandidateFontName),
-						FontSize = 60 * value.CandidateFontScale,
+						FontFamily = new(value.CandidateFont.FontName),
+						FontSize = 60 * value.CandidateFont.FontScale,
 						TextAlignment = TextAlignment.Center,
 						HorizontalTextAlignment = TextAlignment.Center
 					};

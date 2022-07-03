@@ -105,18 +105,6 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>.8</c>.
-	/// </remarks>
-	public double ValueFontScale { get; set; } = .8;
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>.25</c>.
-	/// </remarks>
-	public double CandidateFontScale { get; set; } = .25;
-
-	/// <inheritdoc/>
-	/// <remarks>
 	/// The default value is <c>3</c>.
 	/// </remarks>
 	public double HighlightCellStrokeThickness { get; set; } = 3;
@@ -139,28 +127,6 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
-	/// </remarks>
-	public string ValueFontName { get; set; }
-#if DEBUG
-		= "Cascadia Mono";
-#else
-		= "Tahoma";
-#endif
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>"Cascadia Mono"</c> in debug environment; else <c>"Tahoma"</c>.
-	/// </remarks>
-	public string CandidateFontName { get; set; }
-#if DEBUG
-		= "Cascadia Mono";
-#else
-		= "Tahoma";
-#endif
-
-	/// <inheritdoc/>
-	/// <remarks>
 	/// The default value is <see cref="PeerFocusingMode.FocusedCellAndPeerCells"/>.
 	/// </remarks>
 	[Preference<PeerFocusingModeComboBoxSettingItem>(
@@ -172,6 +138,38 @@ public sealed class Preference : IDrawingPreference
 			"SettingsPage_ItemName_PeerFocusingModeOption2Content"
 		})]
 	public PeerFocusingMode PeerFocusingMode { get; set; } = PeerFocusingMode.FocusedCellAndPeerCells;
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>{ FontName = "Cascadia Mono", FontScale = .8 }</c> in debugging mode.
+	/// </remarks>
+	[Preference<FontPickerSettingItem>]
+	public FontData ValueFont { get; set; } = new()
+	{
+		FontName =
+#if DEBUG
+			"Cascadia Mono",
+#else
+			"Tahoma",
+#endif
+		FontScale = .8
+	};
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>{ FontName = "Cascadia Mono", FontScale = .25 }</c> in debugging mode.
+	/// </remarks>
+	[Preference<FontPickerSettingItem>]
+	public FontData CandidateFont { get; set; } = new()
+	{
+		FontName =
+#if DEBUG
+			"Cascadia Mono",
+#else
+			"Tahoma",
+#endif
+		FontScale = .25
+	};
 
 	/// <inheritdoc/>
 	/// <remarks>

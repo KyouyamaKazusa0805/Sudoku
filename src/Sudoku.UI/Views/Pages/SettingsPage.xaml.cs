@@ -58,15 +58,13 @@ public sealed partial class SettingsPage : Page
 				{
 					Name = R["SettingsPage_ItemName_ValueFontScale"]!,
 					Description = R["SettingsPage_ItemDescription_ValueFontScale"]!,
-					PreferenceValueName = nameof(Preference.ValueFontName),
-					FontScalePropertyName = nameof(Preference.ValueFontScale)
+					PreferenceValueName = nameof(Preference.ValueFont)
 				},
 				new FontPickerSettingItem
 				{
 					Name = R["SettingsPage_ItemName_CandidateFontScale"]!,
 					Description = R["SettingsPage_ItemDescription_CandidateFontScale"]!,
-					PreferenceValueName = nameof(Preference.CandidateFontName),
-					FontScalePropertyName = nameof(Preference.CandidateFontScale)
+					PreferenceValueName = nameof(Preference.CandidateFont)
 				},
 				new ToggleSwitchSettingItem
 				{

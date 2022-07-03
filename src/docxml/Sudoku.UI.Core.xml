@@ -85,6 +85,26 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Data.Configuration.FontData">
+            <summary>
+            Defines a font data.
+            </summary>
+            <param name="FontName">Indicates the font name.</param>
+            <param name="FontScale">Indicates the font scale.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.Configuration.FontData.#ctor(System.String,System.Double)">
+            <summary>
+            Defines a font data.
+            </summary>
+            <param name="FontName">Indicates the font name.</param>
+            <param name="FontScale">Indicates the font scale.</param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.FontData.FontName">
+            <summary>Indicates the font name.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.FontData.FontScale">
+            <summary>Indicates the font scale.</summary>
+        </member>
         <member name="T:Sudoku.UI.Drawing.ColorMarshal">
             <summary>
             Provides with the color-related marshaling methods.
@@ -156,16 +176,6 @@
             Indicates the width of the candidate border lines. The value cannot be negative.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.ValueFontScale">
-            <summary>
-            Indicates the value font scale. The value must be between 0 and 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CandidateFontScale">
-            <summary>
-            Indicates the candidate font scale.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.HighlightCellStrokeThickness">
             <summary>
             Indicates the thickness of the stroke lines surrounding with highlight cell.
@@ -181,19 +191,19 @@
             Indicates the candidate mark stroke thickness.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.ValueFontName">
-            <summary>
-            Indicates the value font name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CandidateFontName">
-            <summary>
-            Indicates the candidate font name.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PeerFocusingMode">
             <summary>
             Indicates the peer focusing mode.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.ValueFont">
+            <summary>
+            Indicates the value font.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.CandidateFont">
+            <summary>
+            Indicates the candidate font.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.OutsideBorderColor">

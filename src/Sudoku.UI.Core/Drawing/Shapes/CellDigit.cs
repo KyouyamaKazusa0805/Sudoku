@@ -171,14 +171,14 @@ internal sealed class CellDigit : DrawingElement
 	public string FontName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _preference.ValueFontName;
+		get => _preference.ValueFont.FontName;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
 			ArgumentNullException.ThrowIfNull(_textBlock);
 
-			_preference.ValueFontName = value;
+			_preference.ValueFont = _preference.ValueFont with { FontName = value };
 			_textBlock.FontFamily = new(value);
 		}
 	}
@@ -262,8 +262,8 @@ internal sealed class CellDigit : DrawingElement
 			_textBlock ??= new()
 			{
 				Text = _digit == byte.MaxValue ? string.Empty : (_digit + 1).ToString(),
-				FontSize = 60 * value.ValueFontScale,
-				FontFamily = new(value.ValueFontName),
+				FontSize = 60 * value.ValueFont.FontScale,
+				FontFamily = new(value.ValueFont.FontName),
 				TextAlignment = TextAlignment.Center,
 				HorizontalTextAlignment = TextAlignment.Center,
 				Foreground = new SolidColorBrush(GetColor(_isGiven, value))
@@ -271,8 +271,8 @@ internal sealed class CellDigit : DrawingElement
 			_maskEllipse ??= new()
 			{
 				Fill = new SolidColorBrush(value.MaskEllipseColor),
-				Width = 60 * value.ValueFontScale,
-				Height = 60 * value.ValueFontScale,
+				Width = 60 * value.ValueFont.FontScale,
+				Height = 60 * value.ValueFont.FontScale,
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Visibility = _isMaskMode ? Visibility.Visible : Visibility.Collapsed

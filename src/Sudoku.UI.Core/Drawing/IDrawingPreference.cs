@@ -60,16 +60,6 @@ public interface IDrawingPreference
 	public abstract double CandidateBorderWidth { get; set; }
 
 	/// <summary>
-	/// Indicates the value font scale. The value must be between 0 and 1.
-	/// </summary>
-	public abstract double ValueFontScale { get; set; }
-
-	/// <summary>
-	/// Indicates the candidate font scale.
-	/// </summary>
-	public abstract double CandidateFontScale { get; set; }
-
-	/// <summary>
 	/// Indicates the thickness of the stroke lines surrounding with highlight cell.
 	/// </summary>
 	public abstract double HighlightCellStrokeThickness { get; set; }
@@ -89,19 +79,19 @@ public interface IDrawingPreference
 #endif
 
 	/// <summary>
-	/// Indicates the value font name.
-	/// </summary>
-	public abstract string ValueFontName { get; set; }
-
-	/// <summary>
-	/// Indicates the candidate font name.
-	/// </summary>
-	public abstract string CandidateFontName { get; set; }
-
-	/// <summary>
 	/// Indicates the peer focusing mode.
 	/// </summary>
 	public abstract PeerFocusingMode PeerFocusingMode { get; set; }
+
+	/// <summary>
+	/// Indicates the value font.
+	/// </summary>
+	public abstract FontData ValueFont { get; set; }
+
+	/// <summary>
+	/// Indicates the candidate font.
+	/// </summary>
+	public abstract FontData CandidateFont { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the outside borders.
