@@ -6,6 +6,16 @@
 internal sealed class WindowRuntimeInfo
 {
 	/// <summary>
+	/// Indicates the main window.
+	/// </summary>
+	public MainWindow MainWindow { get; internal set; } = null!;
+
+	/// <summary>
+	/// Indicates the user preference used.
+	/// </summary>
+	public Preference UserPreference { get; } = new();
+
+	/// <summary>
 	/// Indicates the possible preference items.
 	/// </summary>
 	public IList<SettingGroupItem> Value { get; internal set; } = null!;

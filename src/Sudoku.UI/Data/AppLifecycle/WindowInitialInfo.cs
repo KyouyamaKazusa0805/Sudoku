@@ -28,16 +28,6 @@ internal sealed class WindowInitialInfo
 	/// </summary>
 	public Grid? FirstGrid { get; internal set; } = null;
 
-	/// <summary>
-	/// Indicates the main window.
-	/// </summary>
-	public MainWindow MainWindow { get; internal set; } = null!;
-
-	/// <summary>
-	/// Indicates the user preference used.
-	/// </summary>
-	public Preference UserPreference { get; } = new();
-
 
 	/// <summary>
 	/// Routes the current instance to the specified page type, returning the type's name.

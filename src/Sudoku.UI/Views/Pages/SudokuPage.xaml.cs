@@ -94,7 +94,7 @@ public sealed partial class SudokuPage : Page
 	private void RegisterPrint()
 	{
 		// Register for PrintTaskRequested event.
-		var hWnd = WindowNative.GetWindowHandle(((App)Application.Current).InitialInfo.MainWindow);
+		var hWnd = WindowNative.GetWindowHandle(((App)Application.Current).RuntimeInfo.MainWindow);
 
 		// Registers a print manager.
 		_printManager = PrintManagerInterop.GetForWindow(hWnd);
@@ -636,7 +636,7 @@ public sealed partial class SudokuPage : Page
 	/// </remarks>
 	private async Task PrintAsync()
 	{
-		var mainWindow = ((App)Application.Current).InitialInfo.MainWindow;
+		var mainWindow = ((App)Application.Current).RuntimeInfo.MainWindow;
 		if (Supportable.Printer)
 		{
 			try

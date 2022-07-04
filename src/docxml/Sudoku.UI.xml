@@ -251,16 +251,6 @@
             Indicates the first sudoku grid. The default value is <see langword="null"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.MainWindow">
-            <summary>
-            Indicates the main window.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.UserPreference">
-            <summary>
-            Indicates the user preference used.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.RouteToPageName">
             <summary>
             Routes the current instance to the specified page type, returning the type's name.
@@ -273,6 +263,16 @@
         <member name="T:Sudoku.UI.Data.AppLifecycle.WindowRuntimeInfo">
             <summary>
             Defines the information to control the runtime page information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowRuntimeInfo.MainWindow">
+            <summary>
+            Indicates the main window.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowRuntimeInfo.UserPreference">
+            <summary>
+            Indicates the user preference used.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.AppLifecycle.WindowRuntimeInfo.Value">

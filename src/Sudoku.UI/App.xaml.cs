@@ -34,7 +34,7 @@ public partial class App : Application
 	internal Preference UserPreference
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => InitialInfo.UserPreference;
+		get => RuntimeInfo.UserPreference;
 	}
 
 
@@ -59,31 +59,31 @@ public partial class App : Application
 					Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: var fileType } file, ..] }
 				} => fileType switch
 				{
-					CommonFileExtensions.Sudoku => async i => i.FirstGrid = Grid.Parse(await readAsync(file)),
-					CommonFileExtensions.PreferenceBackup => async i => await backPreferenceFiles(i, file),
+					CommonFileExtensions.Sudoku => async (i, _) => i.FirstGrid = Grid.Parse(await readAsync(file)),
+					CommonFileExtensions.PreferenceBackup => async (i, r) => await backPreferenceFiles(i, r, file),
 #if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-					CommonFileExtensions.DrawingData => async i => i.DrawingDataRawValue = await readAsync(file),
+					CommonFileExtensions.DrawingData => async (i, _) => i.DrawingDataRawValue = await readAsync(file),
 #endif
-					_ => default(Action<WindowInitialInfo>?)
+					_ => default
 				},
-				_ => default
+				_ => default(Action<WindowInitialInfo, WindowRuntimeInfo>?)
 			}
-		)?.Invoke(InitialInfo);
+		)?.Invoke(InitialInfo, RuntimeInfo);
 
 		// Activate the main window.
-		(InitialInfo.MainWindow = new()).Activate();
+		(RuntimeInfo.MainWindow = new()).Activate();
 
 
 		static string? valueSelector(string key)
 			=> Current.Resources.TryGetValue(key, out object? t) && t is string r ? r : null;
 
-		static async Task backPreferenceFiles(WindowInitialInfo i, IStorageFile file)
+		static async Task backPreferenceFiles(WindowInitialInfo i, WindowRuntimeInfo r, IStorageFile file)
 		{
 			i.FromPreferenceFile = true;
 
 			string content = await readAsync(file);
 			var up = JsonSerializer.Deserialize<Preference>(content, CommonSerializerOptions.CamelCasing);
-			i.UserPreference.CoverPreferenceBy(up);
+			r.UserPreference.CoverPreferenceBy(up);
 		}
 
 		static async Task<string> readAsync(IStorageFile file) => await FileIO.ReadTextAsync(file);
