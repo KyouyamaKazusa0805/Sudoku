@@ -197,7 +197,6 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>#FFFFFFFF</c> (i.e. <see cref="Colors.White"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color GridBackgroundFillColor { get; set; } = Colors.White;
 
 	/// <inheritdoc/>
@@ -268,70 +267,60 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color MaskEllipseColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF3FDA65</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color NormalColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFF7684</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color EliminationColor { get; set; } = Color.FromArgb(255, 255, 118, 132);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF7FBBFF</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color ExofinColor { get; set; } = Color.FromArgb(255, 127, 187, 255);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFD8B2FF</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color EndofinColor { get; set; } = Color.FromArgb(255, 216, 178, 255);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFEB0000</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color CannibalismColor { get; set; } = Color.FromArgb(255, 235, 0, 0);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFF0000</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color LinkColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF0000FF</c> (i.e. <see cref="Colors.Blue"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color HighlightCellStrokeColor { get; set; } = Colors.Blue;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#300000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 48).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color FocusedCellColor { get; set; } = Colors.Blue with { A = 48 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#200000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 32).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color PeersFocusedCellColor { get; set; } = Colors.Blue with { A = 32 };
 
 #if AUTHOR_FEATURE_CELL_MARKS
@@ -339,42 +328,36 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color __CellRectangleFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color __CellCircleFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color __CrossMarkStrokeColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color __StarFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color __TriangleFillColor { get; set; } = Colors.Black with { A = 64 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color __DiamondFillColor { get; set; } = Colors.Black with { A = 64 };
 #endif
 
@@ -383,7 +366,6 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 128).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
 	public Color __CandidateMarkStrokeColor { get; set; } = Colors.Black with { A = 128 };
 #endif
 
