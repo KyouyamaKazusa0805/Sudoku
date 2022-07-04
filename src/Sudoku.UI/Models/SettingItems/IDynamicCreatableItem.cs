@@ -37,7 +37,10 @@ public interface IDynamicCreatableItem<out TSettingItem>
 	/// <param name="propertyName">The property name.</param>
 	/// <returns>The name of the preference.</returns>
 	protected internal static sealed string GetItemNameString(string propertyName)
-		=> R[$"SettingsPage_ItemName_{propertyName}"]!;
+		// Leading underscore characters '_' are intentional.
+		// The character suggests the option is reserved by author himself.
+		// We should ignore the extra underscores.
+		=> R[$"SettingsPage_ItemName_{propertyName.TrimStart('_')}"]!;
 
 	/// <summary>
 	/// Gets the setting preference description of the item via the property name.
@@ -45,5 +48,8 @@ public interface IDynamicCreatableItem<out TSettingItem>
 	/// <param name="propertyName">The property name.</param>
 	/// <returns>The description of the preference.</returns>
 	protected internal static sealed string? GetItemDescriptionString(string propertyName)
-		=> R[$"SettingsPage_ItemDescription_{propertyName}"];
+		// Leading underscore characters '_' are intentional.
+		// The character suggests the option is reserved by author himself.
+		// We should ignore the extra underscores.
+		=> R[$"SettingsPage_ItemDescription_{propertyName.TrimStart('_')}"];
 }

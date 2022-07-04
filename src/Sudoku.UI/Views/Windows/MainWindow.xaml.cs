@@ -55,7 +55,7 @@ public sealed partial class MainWindow : Window
 	private void ConstructPreferenceItems()
 	{
 		const string invokeMethodName = nameof(IDynamicCreatableItem<SliderSettingItem>.DynamicCreate);
-		((App)Application.Current).RuntimeInfo.Value = (
+		((App)Application.Current).RuntimeInfo.PreferenceItemGroups = (
 			from propertyInfo in typeof(Preference).GetProperties()
 			where propertyInfo is { CanRead: true, CanWrite: true } // Must contain both setter and getter
 			let returnParameter = propertyInfo.SetMethod!.ReturnParameter

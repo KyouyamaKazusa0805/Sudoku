@@ -275,7 +275,7 @@
             Indicates the user preference used.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowRuntimeInfo.Value">
+        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowRuntimeInfo.PreferenceItemGroups">
             <summary>
             Indicates the possible preference items.
             </summary>
@@ -2288,11 +2288,6 @@
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
-        </member>
-        <member name="F:Sudoku.UI.Views.Pages.SettingsPage._settingGroupItems">
-            <summary>
-            Indicates the backing list of <see cref="T:Sudoku.UI.Models.SettingGroupItem"/>s.
-            </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SettingsPage.#ctor">
             <summary>

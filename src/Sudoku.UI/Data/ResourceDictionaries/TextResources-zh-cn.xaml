@@ -109,8 +109,8 @@
 	<x:String x:Key="SettingsPage_ItemDescription_PlaceholderIsZero">当复制题目代码的时候，如果设置了此项，那么空格就会显示为“0”；否则的话会显示为小数点“.”。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero_OnContent">空格会显示为“0”</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero_OffContent">空格会显示为小数点“.”</x:String>
-	<x:String x:Key="SettingsPage_ItemName_AllowFocusing">允许聚焦单元格</x:String>
-	<x:String x:Key="SettingsPage_ItemDescription_AllowFocusing">使用不同的颜色，来强调单元格来呈现出鼠标指向的单元格</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PeerFocusingMode">允许聚焦单元格</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_PeerFocusingMode">使用不同的颜色，来强调单元格来呈现出鼠标指向的单元格</x:String>
 	<x:String x:Key="SettingsPage_ItemName_EnableDeltaValuesDisplaying">用别的颜色显示错误填数</x:String>
 	<x:String x:Key="SettingsPage_ItemName_DescendingOrderedInfoBarBoard">以降序显示侧边的提示信息条</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_EnableDeltaValuesDisplaying">如果有数字填错，该设置项允许将其以另一种配色呈现出这些数字，以帮助做题。</x:String>
@@ -174,7 +174,7 @@
 	<x:String x:Key="QueryResult_Empty">搜索不到合适的结果</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidates">显示;候选数|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidateBorderLines">显示;候选数;边框|设置页 -> 基本设置项</x:String>
-	<x:String x:Key="Query_SettingsPage_ItemName_AllowFocusing">允许;聚焦;单元格|设置页 -> 基本设置项</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_PeerFocusingMode">允许;聚焦;单元格|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_EnableDeltaValuesDisplaying">启用;显示;呈现;错误填数|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CoverOldShapeWhenDiffused">覆盖;旧;形状;扩散|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_AlsoSavePictureWhenSaveDrawingData">保存;绘图文件;图片文件|设置页 -> 基本设置项</x:String>

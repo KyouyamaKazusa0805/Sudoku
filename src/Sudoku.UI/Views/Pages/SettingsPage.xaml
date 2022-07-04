@@ -10,6 +10,8 @@
 	xmlns:dts="using:Sudoku.UI.DataConversion.DataTemplateSelectors"
 	xmlns:m="using:Sudoku.UI.Models"
 	xmlns:ms="using:Sudoku.UI.Models.SettingItems"
+	xmlns:z="using:Sudoku.UI"
+	xmlns:msx="using:Microsoft.UI.Xaml"
 	mc:Ignorable="d">
 	<Grid>
 		<Grid.Resources>
@@ -29,7 +31,7 @@
 		<TextBlock
 			Grid.Row="0" Text="{StaticResource SettingsPage_DetailDescrption}"
 			Style="{ThemeResource PlainTextWithMarginBottom}" />
-		<ListView x:Name="_cListView" ItemsSource="{x:Bind _settingGroupItems}" Grid.Row="1" SelectionMode="None">
+		<ListView x:Name="_cListView" ItemsSource="{x:Bind ((z:App)msx:Application.Current).RuntimeInfo.PreferenceItemGroups}" Grid.Row="1" SelectionMode="None">
 			<ListView.ItemTemplate>
 				<DataTemplate x:DataType="m:SettingGroupItem">
 					<Expander Margin="40,20,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">

@@ -18,5 +18,5 @@ internal sealed class WindowRuntimeInfo
 	/// <summary>
 	/// Indicates the possible preference items.
 	/// </summary>
-	public IList<SettingGroupItem> Value { get; internal set; } = null!;
+	public IList<SettingGroupItem> PreferenceItemGroups { get; internal set; } = null!;
 }

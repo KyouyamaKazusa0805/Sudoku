@@ -112,8 +112,8 @@
 	<x:String x:Key="SettingsPage_ItemDescription_PlaceholderIsZero">When copy sudoku grid code, if we set this option to true value, the empty cells will be displayed as a '0' character; otherwise, a dot '.'.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero_OnContent">Placeholder will be '0'</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero_OffContent">Placeholder will be '.'</x:String>
-	<x:String x:Key="SettingsPage_ItemName_AllowFocusing">Allow focusing</x:String>
-	<x:String x:Key="SettingsPage_ItemDescription_AllowFocusing">Allow focusing a cell, by using a different color to highlight that cell</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PeerFocusingMode">Allow focusing</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_PeerFocusingMode">Allow focusing a cell, by using a different color to highlight that cell</x:String>
 	<x:String x:Key="SettingsPage_ItemName_EnableDeltaValuesDisplaying">Enable displaying for delta values</x:String>
 	<x:String x:Key="SettingsPage_ItemName_DescendingOrderedInfoBarBoard">Show board using descending order</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_EnableDeltaValuesDisplaying">This option will allow the program displaying for wrong digits you have filled using a different color with the basic one.</x:String>
@@ -177,7 +177,7 @@
 	<x:String x:Key="QueryResult_Empty">No results found</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidates">show;candidates|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidateBorderLines">show;candidates;border|Settings Page -> Basic options</x:String>
-	<x:String x:Key="Query_SettingsPage_ItemName_AllowFocusing">allow;focusing|Settings Page -> Basic options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_PeerFocusingMode">allow;focusing|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_EnableDeltaValuesDisplaying">enable;displaying;deltas|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CoverOldShapeWhenDiffused">cover;old;shape;diffused|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_AlsoSavePictureWhenSaveDrawingData">save;saving;picture;files|Settings Page -> Basic options</x:String>
