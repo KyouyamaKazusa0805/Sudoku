@@ -319,6 +319,25 @@
             <summary>
             Defines the user preferences in the program.
             </summary>
+            <remarks>
+            Due to the special initialization mechanism, the properties of the type should satisfy the following conditions:
+            <list type="bullet">
+            <item>
+            Only properties that contains <b>both</b> getter and normal setter (and not a <see langword="init"/> setter)
+            can be loaded, initialized and displayed to the settings page.
+            </item>
+            <item>
+            The property must be applied both attribute types <see cref="T:Sudoku.UI.Data.Metadata.PreferenceAttribute`1"/>
+            and <see cref="T:Sudoku.UI.Data.Metadata.PreferenceGroupAttribute"/>.
+            </item>
+            <item>
+            If the property is a test or reserved preference item, a double extra leading underscores "<c>__</c>"
+            will be inserted into the property name; otherwise, a normal property name is applied.
+            </item>
+            </list>
+            </remarks>
+            <seealso cref="T:Sudoku.UI.Data.Metadata.PreferenceAttribute`1"/>
+            <seealso cref="T:Sudoku.UI.Data.Metadata.PreferenceGroupAttribute"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.ShowCandidates">
             <inheritdoc/>
