@@ -54,7 +54,7 @@ public sealed partial class MainWindow : Window
 	/// <exception cref="Exception">Throws when invalid data has encountered.</exception>
 	private void ConstructPreferenceItems()
 	{
-		const string invokeMethodName = nameof(IDynamicCreatableItem<SliderSettingItem>.DynamicCreate);
+		const string invokeMethodName = nameof(IDynamicCreatableItem<SliderSettingItem>.CreateInstance);
 		((App)Application.Current).RuntimeInfo.PreferenceItemGroups = (
 			from propertyInfo in typeof(Preference).GetProperties()
 			where propertyInfo is { CanRead: true, CanWrite: true } // Must contain both setter and getter

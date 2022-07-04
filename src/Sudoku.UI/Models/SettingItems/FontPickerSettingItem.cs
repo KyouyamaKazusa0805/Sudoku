@@ -14,17 +14,25 @@ public sealed class FontPickerSettingItem : SettingItem, IDynamicCreatableItem<F
 
 
 	/// <inheritdoc/>
-	public static FontPickerSettingItem DynamicCreate(string propertyName)
-		=> IDynamicCreatableItem<FontPickerSettingItem>.GetAttributeArguments(propertyName) switch
+	public static FontPickerSettingItem CreateInstance(string propertyName)
+	{
+		var result = NamedValueLookup.GetAttributeArguments<FontPickerSettingItem>(propertyName) switch
 		{
-			{ Data: [] data } => new()
+			{ Data: [] data } => new FontPickerSettingItem
 			{
-				Name = IDynamicCreatableItem<FontPickerSettingItem>.GetItemNameString(propertyName),
-				Description = IDynamicCreatableItem<FontPickerSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
+				Name = NamedValueLookup.GetItemNameString(propertyName),
 				PreferenceValueName = propertyName
 			},
 			_ => throw new InvalidOperationException()
 		};
+
+		if (NamedValueLookup.GetItemDescriptionString(propertyName) is { } description)
+		{
+			result.Description = description;
+		}
+
+		return result;
+	}
 
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	public double GetFontScalePreference() => GetFontData().FontScale;

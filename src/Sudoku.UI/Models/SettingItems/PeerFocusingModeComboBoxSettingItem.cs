@@ -19,18 +19,45 @@ public sealed class PeerFocusingModeComboBoxSettingItem :
 
 
 	/// <inheritdoc/>
-	public static PeerFocusingModeComboBoxSettingItem DynamicCreate(string propertyName)
-		=> IDynamicCreatableItem<PeerFocusingModeComboBoxSettingItem>.GetAttributeArguments(propertyName) switch
+	/// <exception cref="NotSupportedException">
+	/// Throws when the specified type of the argument value is not supported.
+	/// </exception>
+	public static PeerFocusingModeComboBoxSettingItem CreateInstance(string propertyName)
+	{
+		var result = NamedValueLookup.GetAttributeArguments<PeerFocusingModeComboBoxSettingItem>(propertyName) switch
 		{
-			{ Data: [(_, string[] values)] } => new()
+			{ Data: [(_, var argument)] } => new PeerFocusingModeComboBoxSettingItem
 			{
-				Name = IDynamicCreatableItem<PeerFocusingModeComboBoxSettingItem>.GetItemNameString(propertyName),
-				Description = IDynamicCreatableItem<PeerFocusingModeComboBoxSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
+				Name = NamedValueLookup.GetItemNameString(propertyName),
 				PreferenceValueName = propertyName,
-				OptionContents = (from value in values select R[value]!).ToArray()
+				OptionContents = argument switch
+				{
+					int count => getOptionContentsFromCount(count, propertyName),
+					string[] values => getOptionContentsFromKey(values),
+					_ => throw new NotSupportedException("The specified type of the argument value is not supported.")
+				}
 			},
 			_ => throw new InvalidOperationException()
 		};
+
+		if (NamedValueLookup.GetItemDescriptionString(propertyName) is { } description)
+		{
+			result.Description = description;
+		}
+
+		return result;
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string[] getOptionContentsFromCount(int count, string propertyName)
+			=> (
+				from value in Enumerable.Range(0, count)
+				select R[$"SettingsPage_ItemName_{propertyName.TrimStart('_')}Option{value}Content"]!
+			).ToArray();
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string[] getOptionContentsFromKey(string[] keys) => (from key in keys select R[key]!).ToArray();
+	}
 
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

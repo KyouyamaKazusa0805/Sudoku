@@ -17,21 +17,27 @@ public sealed class ToggleSwitchSettingItem : SettingItem, IDynamicCreatableItem
 
 
 	/// <inheritdoc/>
-	public static ToggleSwitchSettingItem DynamicCreate(string propertyName)
-		=> IDynamicCreatableItem<ToggleSwitchSettingItem>.GetAttributeArguments(propertyName) switch
+	public static ToggleSwitchSettingItem CreateInstance(string propertyName)
+	{
+		var result = NamedValueLookup.GetAttributeArguments<ToggleSwitchSettingItem>(propertyName) switch
 		{
-			{ Data: { Length: <= 2 } data } => new()
+			{ Data: { Length: <= 2 } data } => new ToggleSwitchSettingItem
 			{
-				Name = IDynamicCreatableItem<ToggleSwitchSettingItem>.GetItemNameString(propertyName),
-				Description = IDynamicCreatableItem<ToggleSwitchSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
+				Name = NamedValueLookup.GetItemNameString(propertyName),
 				PreferenceValueName = propertyName,
-				OnContent = (string?)data.FirstOrDefault(static p => p.Key == nameof(OnContent)).Value
-					?? R["ToggleSwitchDefaultOnContent"]!,
-				OffContent = (string?)data.FirstOrDefault(static p => p.Key == nameof(OffContent)).Value
-					?? R["ToggleSwitchDefaultOffContent"]!
+				OnContent = data.GetNamedValue(nameof(OnContent), R["ToggleSwitchDefaultOnContent"]!),
+				OffContent = data.GetNamedValue(nameof(OffContent), R["ToggleSwitchDefaultOffContent"]!)
 			},
 			_ => throw new InvalidOperationException()
 		};
+
+		if (NamedValueLookup.GetItemDescriptionString(propertyName) is { } description)
+		{
+			result.Description = description;
+		}
+
+		return result;
+	}
 
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	public bool GetPreference() => GetPreference<bool>();

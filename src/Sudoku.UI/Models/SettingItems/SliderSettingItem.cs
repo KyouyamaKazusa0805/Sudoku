@@ -27,21 +27,29 @@ public sealed class SliderSettingItem : SettingItem, IDynamicCreatableItem<Slide
 
 
 	/// <inheritdoc/>
-	public static SliderSettingItem DynamicCreate(string propertyName)
-		=> IDynamicCreatableItem<SliderSettingItem>.GetAttributeArguments(propertyName) switch
+	public static SliderSettingItem CreateInstance(string propertyName)
+	{
+		var result = NamedValueLookup.GetAttributeArguments<SliderSettingItem>(propertyName) switch
 		{
-			{ Data: { Length: <= 4 } data } => new()
+			{ Data: { Length: <= 4 } data } => new SliderSettingItem
 			{
-				Name = IDynamicCreatableItem<SliderSettingItem>.GetItemNameString(propertyName),
-				Description = IDynamicCreatableItem<SliderSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
+				Name = NamedValueLookup.GetItemNameString(propertyName),
 				PreferenceValueName = propertyName,
-				StepFrequency = (double)data.FirstOrDefault(p => p.Key == nameof(StepFrequency)).Value!,
-				TickFrequency = (double)data.FirstOrDefault(p => p.Key == nameof(TickFrequency)).Value!,
-				MinValue = (double)data.FirstOrDefault(p => p.Key == nameof(MinValue)).Value!,
-				MaxValue = (double)data.FirstOrDefault(p => p.Key == nameof(MaxValue)).Value!
+				StepFrequency = data.GetNamedValue<double>(nameof(StepFrequency)),
+				TickFrequency = data.GetNamedValue<double>(nameof(TickFrequency)),
+				MinValue = data.GetNamedValue<double>(nameof(MinValue)),
+				MaxValue = data.GetNamedValue<double>(nameof(MaxValue))
 			},
 			_ => throw new InvalidOperationException()
 		};
+
+		if (NamedValueLookup.GetItemDescriptionString(propertyName) is { } description)
+		{
+			result.Description = description;
+		}
+
+		return result;
+	}
 
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
 	public double GetPreference() => GetPreference<double>();

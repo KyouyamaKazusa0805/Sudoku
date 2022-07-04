@@ -159,14 +159,7 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <see cref="PeerFocusingMode.FocusedCellAndPeerCells"/>.
 	/// </remarks>
-	[Preference<PeerFocusingModeComboBoxSettingItem>(
-		nameof(PeerFocusingModeComboBoxSettingItem.OptionContents),
-		new[]
-		{
-			"SettingsPage_ItemName_PeerFocusingModeOption0Content",
-			"SettingsPage_ItemName_PeerFocusingModeOption1Content",
-			"SettingsPage_ItemName_PeerFocusingModeOption2Content"
-		})]
+	[Preference<PeerFocusingModeComboBoxSettingItem>(nameof(PeerFocusingModeComboBoxSettingItem.OptionContents), 3)]
 	[PreferenceGroup(PreferenceGroupNames.Basic, 2)]
 	public PeerFocusingMode PeerFocusingMode { get; set; } = PeerFocusingMode.FocusedCellAndPeerCells;
 

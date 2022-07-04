@@ -6,17 +6,25 @@
 public sealed class ColorPickerSettingItem : SettingItem, IDynamicCreatableItem<ColorPickerSettingItem>
 {
 	/// <inheritdoc/>
-	public static ColorPickerSettingItem DynamicCreate(string propertyName)
-		=> IDynamicCreatableItem<ColorPickerSettingItem>.GetAttributeArguments(propertyName) switch
+	public static ColorPickerSettingItem CreateInstance(string propertyName)
+	{
+		var result = NamedValueLookup.GetAttributeArguments<ColorPickerSettingItem>(propertyName) switch
 		{
-			{ Data: [] } => new()
+			{ Data: [] } => new ColorPickerSettingItem
 			{
-				Name = IDynamicCreatableItem<ColorPickerSettingItem>.GetItemNameString(propertyName),
-				Description = IDynamicCreatableItem<ColorPickerSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
+				Name = NamedValueLookup.GetItemNameString(propertyName),
 				PreferenceValueName = propertyName
 			},
 			_ => throw new InvalidOperationException()
 		};
+
+		if (NamedValueLookup.GetItemDescriptionString(propertyName) is { } description)
+		{
+			result.Description = description;
+		}
+
+		return result;
+	}
 
 
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
