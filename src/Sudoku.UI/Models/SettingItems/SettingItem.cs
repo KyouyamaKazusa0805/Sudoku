@@ -23,15 +23,6 @@ public abstract class SettingItem
 
 
 	/// <summary>
-	/// Creates a <see cref="SettingItem"/> instance dynamically.
-	/// </summary>
-	/// <param name="propertyName">
-	/// The property name that references a property in the type <see cref="Preference"/>.
-	/// </param>
-	/// <returns>A <see cref="SettingItem"/> instance.</returns>
-	public abstract SettingItem DynamicCreate(string propertyName);
-
-	/// <summary>
 	/// Try to get the preference value from the current instance.
 	/// </summary>
 	/// <returns>The value of the preference.</returns>
@@ -72,25 +63,4 @@ public abstract class SettingItem
 		var instance = ((App)Application.Current).UserPreference;
 		typeof(Preference).GetProperty(name)!.SetValue(instance, value);
 	}
-
-	/// <summary>
-	/// Gets attribute arguments of a property via the property name.
-	/// </summary>
-	/// <param name="propertyName">The property name.</param>
-	/// <returns>The attribute arguments of a property.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the specified property cannot be found.</exception>
-	private protected Attribute? GetAttributeArguments(string propertyName)
-	{
-		var pi = typeof(Preference).GetProperty(propertyName) ?? throw new InvalidOperationException();
-		var attributeType = typeof(PreferenceAttribute<>).MakeGenericType(new[] { GetType() });
-		var attribute = pi.GetCustomAttribute(attributeType);
-		return attribute;
-	}
-
-
-	private protected static string? GetItemNameString(string propertyName)
-		=> R[$"SettingsPage_ItemName_{propertyName}"];
-
-	private protected static string? GetItemDescriptionString(string propertyName)
-		=> R[$"SettingsPage_ItemDescription_{propertyName}"];
 }

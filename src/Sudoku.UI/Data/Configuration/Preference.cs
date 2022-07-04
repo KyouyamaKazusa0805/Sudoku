@@ -80,7 +80,7 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[Preference<SliderSettingItem>(
 		nameof(SliderSettingItem.StepFrequency), .1, nameof(SliderSettingItem.TickFrequency), .3,
-		nameof(SliderSettingItem.MinValue), 0, nameof(SliderSettingItem.MaxValue), 3)]
+		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 3D)]
 	[PreferenceGroup("Rendering")]
 	public double OutsideBorderWidth { get; set; } = 0;
 
@@ -90,7 +90,7 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[Preference<SliderSettingItem>(
 		nameof(SliderSettingItem.StepFrequency), .5, nameof(SliderSettingItem.TickFrequency), .5,
-		nameof(SliderSettingItem.MinValue), 0, nameof(SliderSettingItem.MaxValue), 5)]
+		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 5D)]
 	[PreferenceGroup("Rendering")]
 	public double BlockBorderWidth { get; set; } = 4;
 
@@ -100,7 +100,7 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[Preference<SliderSettingItem>(
 		nameof(SliderSettingItem.StepFrequency), .1, nameof(SliderSettingItem.TickFrequency), .3,
-		nameof(SliderSettingItem.MinValue), 0, nameof(SliderSettingItem.MaxValue), 3)]
+		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 3D)]
 	[PreferenceGroup("Rendering")]
 	public double CellBorderWidth { get; set; } = 1;
 
@@ -110,7 +110,7 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[Preference<SliderSettingItem>(
 		nameof(SliderSettingItem.StepFrequency), .1, nameof(SliderSettingItem.TickFrequency), .3,
-		nameof(SliderSettingItem.MinValue), 0, nameof(SliderSettingItem.MaxValue), 3)]
+		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 3D)]
 	[PreferenceGroup("Rendering")]
 	public double CandidateBorderWidth { get; set; } = 1;
 

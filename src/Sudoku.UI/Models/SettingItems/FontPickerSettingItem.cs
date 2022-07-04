@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a color option that is binding with a font picker on displaying.
 /// </summary>
-public sealed class FontPickerSettingItem : SettingItem
+public sealed class FontPickerSettingItem : SettingItem, IDynamicCreatableItem<FontPickerSettingItem>
 {
 	/// <summary>
 	/// Initializes a <see cref="FontPickerSettingItem"/> instance.
@@ -14,16 +14,15 @@ public sealed class FontPickerSettingItem : SettingItem
 
 
 	/// <inheritdoc/>
-	public override FontPickerSettingItem DynamicCreate(string propertyName)
-		=> GetAttributeArguments(propertyName) switch
+	public static FontPickerSettingItem DynamicCreate(string propertyName)
+		=> IDynamicCreatableItem<FontPickerSettingItem>.GetAttributeArguments(propertyName) switch
 		{
-			PreferenceAttribute<FontPickerSettingItem> { Data: [] data }
-				=> new()
-				{
-					Name = GetItemNameString(propertyName)!,
-					Description = GetItemDescriptionString(propertyName) ?? string.Empty,
-					PreferenceValueName = propertyName
-				},
+			{ Data: [] data } => new()
+			{
+				Name = IDynamicCreatableItem<FontPickerSettingItem>.GetItemNameString(propertyName)!,
+				Description = IDynamicCreatableItem<FontPickerSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
+				PreferenceValueName = propertyName
+			},
 			_ => throw new InvalidOperationException()
 		};
 

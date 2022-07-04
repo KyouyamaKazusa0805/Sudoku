@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a boolean option that is binding with a toggle switch on displaying.
 /// </summary>
-public sealed class ToggleSwitchSettingItem : SettingItem
+public sealed class ToggleSwitchSettingItem : SettingItem, IDynamicCreatableItem<ToggleSwitchSettingItem>
 {
 	/// <summary>
 	/// Indicates the on content displayed.
@@ -17,18 +17,19 @@ public sealed class ToggleSwitchSettingItem : SettingItem
 
 
 	/// <inheritdoc/>
-	public override ToggleSwitchSettingItem DynamicCreate(string propertyName)
-		=> GetAttributeArguments(propertyName) switch
+	public static ToggleSwitchSettingItem DynamicCreate(string propertyName)
+		=> IDynamicCreatableItem<ToggleSwitchSettingItem>.GetAttributeArguments(propertyName) switch
 		{
-			PreferenceAttribute<ToggleSwitchSettingItem> { Data: { Length: <= 2 } data }
-				=> new()
-				{
-					Name = GetItemNameString(propertyName)!,
-					Description = GetItemDescriptionString(propertyName) ?? string.Empty,
-					PreferenceValueName = propertyName,
-					OnContent = (string)data.First(p => p.Key == nameof(OnContent)).Value!,
-					OffContent = (string)data.First(p => p.Key == nameof(OffContent)).Value!
-				},
+			{ Data: { Length: <= 2 } data } => new()
+			{
+				Name = IDynamicCreatableItem<ToggleSwitchSettingItem>.GetItemNameString(propertyName)!,
+				Description = IDynamicCreatableItem<ToggleSwitchSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
+				PreferenceValueName = propertyName,
+				OnContent = (string?)data.FirstOrDefault(static p => p.Key == nameof(OnContent)).Value
+					?? R["ToggleSwitchDefaultOnContent"]!,
+				OffContent = (string?)data.FirstOrDefault(static p => p.Key == nameof(OffContent)).Value
+					?? R["ToggleSwitchDefaultOffContent"]!
+			},
 			_ => throw new InvalidOperationException()
 		};
 

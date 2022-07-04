@@ -13,6 +13,7 @@ public partial class App : Application
 	/// and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
 	/// </para>
 	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public App() => InitializeComponent();
 
 
@@ -20,6 +21,12 @@ public partial class App : Application
 	/// Indicates the initial information.
 	/// </summary>
 	internal WindowInitialInfo InitialInfo { get; } = new();
+
+	/// <summary>
+	/// Indicates the runtime information.
+	/// </summary>
+	internal WindowRuntimeInfo RuntimeInfo { get; } = new();
+
 
 	/// <summary>
 	/// Indicates the user preference instance.
@@ -41,7 +48,7 @@ public partial class App : Application
 	protected override void OnLaunched(MsLaunchActivatedEventArgs args)
 	{
 		// Binds the resource fetcher on type 'MergedResources'.
-		R.AddExternalResourceFetecher(GetType().Assembly, static key => Current.Resources[key] as string);
+		R.AddExternalResourceFetecher(GetType().Assembly, valueSelector);
 
 		// Handle and assign the initial value, to control the initial page information.
 		(
@@ -66,6 +73,9 @@ public partial class App : Application
 		// Activate the main window.
 		(InitialInfo.MainWindow = new()).Activate();
 
+
+		static string? valueSelector(string key)
+			=> Current.Resources.TryGetValue(key, out object? t) && t is string r ? r : null;
 
 		static async Task backPreferenceFiles(WindowInitialInfo i, IStorageFile file)
 		{

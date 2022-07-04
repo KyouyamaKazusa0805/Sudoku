@@ -44,8 +44,50 @@ public sealed partial class MainWindow : Window
 		SetMicaBackdropIfSupports();
 		SetProgramNameToTitle();
 		LoadGlobalPreferenceIfExistsAsync();
+		ConstructPreferenceItems();
 	}
 
+
+	/// <summary>
+	/// Constructs the preference items.
+	/// </summary>
+	/// <exception cref="Exception">Throws when invalid data has encountered.</exception>
+	private void ConstructPreferenceItems()
+	{
+		const string invokeMethodName = nameof(IDynamicCreatableItem<SliderSettingItem>.DynamicCreate);
+		((App)Application.Current).RuntimeInfo.Value = (
+			from propertyInfo in typeof(Preference).GetProperties()
+			where propertyInfo is { CanRead: true, CanWrite: true }
+			let returnParameter = propertyInfo.SetMethod!.ReturnParameter
+			let modReqs = returnParameter.GetRequiredCustomModifiers()
+			where !modReqs.CanFind(static modReq => modReq == typeof(IsExternalInit))
+			let genericArgTypes = propertyInfo.GetGenericAttributeTypeArguments(typeof(PreferenceAttribute<>))
+			where genericArgTypes.Length == 1
+			let genericArgType = genericArgTypes[0]
+			let preferenceAttributeType = typeof(PreferenceAttribute<>).MakeGenericType(genericArgType)
+			let prefAttribute = propertyInfo.GetCustomAttribute(preferenceAttributeType)
+			where prefAttribute is not null
+			let dynamicInvokeMethodInfo = genericArgType.GetMethod(invokeMethodName)
+			where dynamicInvokeMethodInfo is not null
+			let settingItem = (SettingItem?)dynamicInvokeMethodInfo.Invoke(null, new object?[] { propertyInfo.Name })
+			where settingItem is not null
+			let groupAttribute = propertyInfo.GetCustomAttribute<PreferenceGroupAttribute>()
+			where groupAttribute is not null
+			let groupName = groupAttribute.Name
+			let gnr = R[$"SettingsPage_GroupItemName_{groupName}"] ?? throw new()
+			let gnd = R[$"SettingsPage_GroupItemDescription_{groupName}"]
+			select (GroupNameResource: gnr, GroupDescriptionResource: gnd, Item: settingItem) into triplet
+			group triplet by (triplet.GroupNameResource, triplet.GroupDescriptionResource) into groupedTriplet
+			let pair = groupedTriplet.Key
+			let settingItems = (from triplet in groupedTriplet select triplet.Item).ToArray()
+			select new SettingGroupItem
+			{
+				Name = pair.GroupNameResource,
+				Description = pair.GroupDescriptionResource,
+				SettingItem = settingItems
+			}
+		).ToArray();
+	}
 
 	/// <summary>
 	/// Try to navigate the pages.

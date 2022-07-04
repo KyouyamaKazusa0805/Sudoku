@@ -24,6 +24,11 @@
             Indicates the initial information.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.App.RuntimeInfo">
+            <summary>
+            Indicates the runtime information.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.App.UserPreference">
             <summary>
             Indicates the user preference instance.
@@ -264,6 +269,16 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the current instance is invalid, or contains invalid data.
             </exception>
+        </member>
+        <member name="T:Sudoku.UI.Data.AppLifecycle.WindowRuntimeInfo">
+            <summary>
+            Defines the information to control the runtime page information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowRuntimeInfo.Value">
+            <summary>
+            Indicates the possible preference items.
+            </summary>
         </member>
         <member name="T:Sudoku.UI.Data.Configuration.CommonFileExtensions">
             <summary>
@@ -1199,6 +1214,43 @@
         <member name="M:Sudoku.UI.Models.SettingItems.FontPickerSettingItem.SetFontNamePreference(System.Object)">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
         </member>
+        <member name="T:Sudoku.UI.Models.SettingItems.IDynamicCreatableItem`1">
+            <summary>
+            Defines the instance that can dynamically creates an instance of type <typeparamref name="TSettingItem"/>.
+            </summary>
+            <typeparam name="TSettingItem">The type of the setting item.</typeparam>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.IDynamicCreatableItem`1.DynamicCreate(System.String)">
+            <summary>
+            Creates a <see cref="T:Sudoku.UI.Models.SettingItems.SettingItem"/> instance dynamically.
+            </summary>
+            <param name="propertyName">
+            The property name that references a property in the type <see cref="T:Sudoku.UI.Data.Configuration.Preference"/>.
+            </param>
+            <returns>A <see cref="T:Sudoku.UI.Models.SettingItems.SettingItem"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.IDynamicCreatableItem`1.GetAttributeArguments(System.String)">
+            <summary>
+            Gets attribute arguments of a property via the property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <returns>The attribute arguments of a property.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified property cannot be found.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.IDynamicCreatableItem`1.GetItemNameString(System.String)">
+            <summary>
+            Gets the setting preference name of the item via the property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <returns>The name of the preference.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.IDynamicCreatableItem`1.GetItemDescriptionString(System.String)">
+            <summary>
+            Gets the setting preference description of the item via the property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <returns>The description of the preference.</returns>
+        </member>
         <member name="T:Sudoku.UI.Models.SettingItems.PeerFocusingModeComboBoxSettingItem">
             <summary>
             Provides a setting item that binds with the enumeration type <see cref="T:Sudoku.UI.Drawing.Shapes.PeerFocusingMode"/>.
@@ -1240,15 +1292,6 @@
             Indicates the name corresponding to the current name.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.SettingItems.SettingItem.DynamicCreate(System.String)">
-            <summary>
-            Creates a <see cref="T:Sudoku.UI.Models.SettingItems.SettingItem"/> instance dynamically.
-            </summary>
-            <param name="propertyName">
-            The property name that references a property in the type <see cref="T:Sudoku.UI.Data.Configuration.Preference"/>.
-            </param>
-            <returns>A <see cref="T:Sudoku.UI.Models.SettingItems.SettingItem"/> instance.</returns>
-        </member>
         <member name="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1">
             <summary>
             Try to get the preference value from the current instance.
@@ -1274,14 +1317,6 @@
             </summary>
             <param name="name">The name of the property should be checked.</param>
             <param name="value">The value.</param>
-        </member>
-        <member name="M:Sudoku.UI.Models.SettingItems.SettingItem.GetAttributeArguments(System.String)">
-            <summary>
-            Gets attribute arguments of a property via the property name.
-            </summary>
-            <param name="propertyName">The property name.</param>
-            <returns>The attribute arguments of a property.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the specified property cannot be found.</exception>
         </member>
         <member name="T:Sudoku.UI.Models.SettingItems.SliderSettingItem">
             <summary>
@@ -2647,6 +2682,12 @@
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.ConstructPreferenceItems">
+            <summary>
+            Constructs the preference items.
+            </summary>
+            <exception cref="T:System.Exception">Throws when invalid data has encountered.</exception>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.OnNavigate(System.String,Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo)">
             <summary>
