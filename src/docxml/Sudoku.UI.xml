@@ -693,15 +693,46 @@
             indicating which group the preference belongs to.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Data.Metadata.PreferenceGroupAttribute.#ctor(System.String)">
+        <member name="M:Sudoku.UI.Data.Metadata.PreferenceGroupAttribute.#ctor(System.String,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.UI.Data.Metadata.PreferenceGroupAttribute"/> instance via the name and the description.
+            Initializes a <see cref="T:Sudoku.UI.Data.Metadata.PreferenceGroupAttribute"/> instance via the name and the index of ordering.
             </summary>
             <param name="name">The name.</param>
+            <param name="orderingIndex">The index.</param>
         </member>
         <member name="P:Sudoku.UI.Data.Metadata.PreferenceGroupAttribute.Name">
             <summary>
             Indicates the group name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Metadata.PreferenceGroupAttribute.OrderingIndex">
+            <summary>
+            Indicates the index of the ordering in the group.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Data.Metadata.PreferenceGroupNames">
+            <summary>
+            Provides with a set of preference group names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.Metadata.PreferenceGroupNames.Basic">
+            <summary>
+            Indicates the basic options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.Metadata.PreferenceGroupNames.Solving">
+            <summary>
+            Indicates the solving options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.Metadata.PreferenceGroupNames.Rendering">
+            <summary>
+            Indicates the rendering options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.Metadata.PreferenceGroupNames.Miscellaneous">
+            <summary>
+            Indicates the miscellaneous options.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Data.Metadata.TypeAttribute`1">

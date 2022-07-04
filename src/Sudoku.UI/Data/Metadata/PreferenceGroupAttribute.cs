@@ -8,14 +8,20 @@
 public sealed class PreferenceGroupAttribute : Attribute
 {
 	/// <summary>
-	/// Initializes a <see cref="PreferenceGroupAttribute"/> instance via the name and the description.
+	/// Initializes a <see cref="PreferenceGroupAttribute"/> instance via the name and the index of ordering.
 	/// </summary>
 	/// <param name="name">The name.</param>
-	public PreferenceGroupAttribute(string name) => Name = name;
+	/// <param name="orderingIndex">The index.</param>
+	public PreferenceGroupAttribute(string name, int orderingIndex) => (Name, OrderingIndex) = (name, orderingIndex);
 
 
 	/// <summary>
 	/// Indicates the group name.
 	/// </summary>
 	public string Name { get; }
+
+	/// <summary>
+	/// Indicates the index of the ordering in the group.
+	/// </summary>
+	public int OrderingIndex { get; }
 }

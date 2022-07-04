@@ -74,16 +74,17 @@ public sealed partial class MainWindow : Window
 			let groupAttribute = propertyInfo.GetCustomAttribute<PreferenceGroupAttribute>()
 			where groupAttribute is not null
 			let groupName = groupAttribute.Name
+			let groupOrderingIndex = groupAttribute.OrderingIndex
 			let gnr = R[$"SettingsPage_GroupItemName_{groupName}"] ?? throw new()
 			let gnd = R[$"SettingsPage_GroupItemDescription_{groupName}"]
-			select (GroupNameResource: gnr, GroupDescriptionResource: gnd, Item: settingItem) into triplet
-			group triplet by (triplet.GroupNameResource, triplet.GroupDescriptionResource) into groupedTriplet
-			let pair = groupedTriplet.Key
-			let settingItems = (from triplet in groupedTriplet select triplet.Item).ToArray()
+			select (Resource: gnr, DescriptionResource: gnd, Item: settingItem, Ordering: groupOrderingIndex) into tuple
+			group tuple by (tuple.Resource, tuple.DescriptionResource) into groupedTuple
+			let pair = groupedTuple.Key
+			let settingItems = (from tuple in groupedTuple orderby tuple.Ordering select tuple.Item).ToArray()
 			select new SettingGroupItem
 			{
-				Name = pair.GroupNameResource,
-				Description = pair.GroupDescriptionResource,
+				Name = pair.Resource,
+				Description = pair.DescriptionResource,
 				SettingItem = settingItems
 			}
 		).ToArray();
