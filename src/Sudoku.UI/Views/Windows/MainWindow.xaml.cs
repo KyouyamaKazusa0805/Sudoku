@@ -57,36 +57,31 @@ public sealed partial class MainWindow : Window
 		const string invokeMethodName = nameof(IDynamicCreatableItem<SliderSettingItem>.DynamicCreate);
 		((App)Application.Current).RuntimeInfo.Value = (
 			from propertyInfo in typeof(Preference).GetProperties()
-			where propertyInfo is { CanRead: true, CanWrite: true }
+			where propertyInfo is { CanRead: true, CanWrite: true } // Must contain both setter and getter
 			let returnParameter = propertyInfo.SetMethod!.ReturnParameter
 			let modReqs = returnParameter.GetRequiredCustomModifiers()
-			where !modReqs.CanFind(static modReq => modReq == typeof(IsExternalInit))
+			where !modReqs.CanFind(static modReq => modReq == typeof(IsExternalInit)) // Cannot contain init setter
 			let genericArgTypes = propertyInfo.GetGenericAttributeTypeArguments(typeof(PreferenceAttribute<>))
-			where genericArgTypes.Length == 1
+			where genericArgTypes.Length == 1 // Seems useless
 			let genericArgType = genericArgTypes[0]
 			let preferenceAttributeType = typeof(PreferenceAttribute<>).MakeGenericType(genericArgType)
 			let prefAttribute = propertyInfo.GetCustomAttribute(preferenceAttributeType)
-			where prefAttribute is not null
+			where prefAttribute is not null // Exists the attribute describing the extra arguments
 			let dynamicInvokeMethodInfo = genericArgType.GetMethod(invokeMethodName)
-			where dynamicInvokeMethodInfo is not null
+			where dynamicInvokeMethodInfo is not null // Can call the method
 			let settingItem = (SettingItem?)dynamicInvokeMethodInfo.Invoke(null, new object?[] { propertyInfo.Name })
-			where settingItem is not null
+			where settingItem is not null // Cannot be null
 			let groupAttribute = propertyInfo.GetCustomAttribute<PreferenceGroupAttribute>()
-			where groupAttribute is not null
+			where groupAttribute is not null // Exists the attribute describing the grouping information
 			let groupName = groupAttribute.Name
 			let groupOrderingIndex = groupAttribute.OrderingIndex
 			let gnr = R[$"SettingsPage_GroupItemName_{groupName}"] ?? throw new()
 			let gnd = R[$"SettingsPage_GroupItemDescription_{groupName}"]
-			select (Resource: gnr, DescriptionResource: gnd, Item: settingItem, Ordering: groupOrderingIndex) into tuple
-			group tuple by (tuple.Resource, tuple.DescriptionResource) into groupedTuple
+			select (Name: gnr, Description: gnd, Item: settingItem, Ordering: groupOrderingIndex) into tuple
+			group tuple by (tuple.Name, tuple.Description) into groupedTuple
 			let pair = groupedTuple.Key
 			let settingItems = (from tuple in groupedTuple orderby tuple.Ordering select tuple.Item).ToArray()
-			select new SettingGroupItem
-			{
-				Name = pair.Resource,
-				Description = pair.DescriptionResource,
-				SettingItem = settingItems
-			}
+			select new SettingGroupItem { Name = pair.Name, Description = pair.Description, SettingItem = settingItems }
 		).ToArray();
 	}
 
