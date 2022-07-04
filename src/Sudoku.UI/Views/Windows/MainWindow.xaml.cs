@@ -78,7 +78,7 @@ public sealed partial class MainWindow : Window
 			let gnr = R[$"SettingsPage_GroupItemName_{groupName}"] ?? throw new()
 			let gnd = R[$"SettingsPage_GroupItemDescription_{groupName}"]
 			select new PreferenceItemInfo(gnr, gnd, groupName, settingItem, groupOrderingIndex) into info
-			group info by (info.Name, info.RawName, info.Description) into groupedTuple
+			group info by (info.Name, info.RawName, info.Description) into groupedTuple // Raw name is used for grouping
 			let keyTuple = groupedTuple.Key
 			let name = keyTuple.Name
 			let description = keyTuple.Description
