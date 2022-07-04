@@ -125,6 +125,7 @@
 	<x:String x:Key="SettingsPage_ItemName_CandidateBorderWidth">Size of the candidate borders</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateBorderWidth">This property is valid only if the candidate border displays.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_OutsideBorderColor">Outside border color</x:String>
+	<x:String x:Key="SettingsPage_ItemName_GridBackgroundFillColor">Grid background color</x:String>
 	<x:String x:Key="SettingsPage_ItemName_BlockBorderColor">Block border color</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CellBorderColor">Cell border color</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateBorderColor">Candidate border color</x:String>
@@ -136,6 +137,8 @@
 	<x:String x:Key="SettingsPage_ItemDescription_CellDeltaColor">The option controls the color of delta digits. Delta digits are wrong ones disobeying the sudoku rule.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateDeltaColor">Color for delta candidates</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateDeltaColor">Same logic as above :)</x:String>
+	<x:String x:Key="SettingsPage_ItemName_MaskEllipseColor">Mask circle color</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_MaskEllipseColor">A mask circle is used for hide all given cells, displaying as a solid circle. This option is to change the color of the filling.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_ValueFont">Font scale on value digits</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_ValueFont">Indicates the sizing scale of the value digits.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateFont">Font scale on candidates</x:String>
@@ -186,6 +189,7 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_CellBorderWidth">size;cell;border|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateBorderWidth">size;candidate;border|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_OutsideBorderColor">outside;border;color|Settings Page -> Rendering options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_GridBackgroundFillColor">grid;background;color|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_BlockBorderColor">block;border;color|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CellBorderColor">cell;border;color|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateBorderColor">candidate;border;color|Settings Page -> Rendering options</x:String>

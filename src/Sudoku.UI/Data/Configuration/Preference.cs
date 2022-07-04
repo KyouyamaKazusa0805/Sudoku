@@ -209,6 +209,8 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>#FFFFFFFF</c> (i.e. <see cref="Colors.White"/>).
 	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 5)]
 	public Color GridBackgroundFillColor { get; set; } = Colors.White;
 
 	/// <inheritdoc/>
@@ -216,7 +218,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 5)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 6)]
 	public Color BlockBorderColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
@@ -224,7 +226,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 6)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 7)]
 	public Color CellBorderColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
@@ -232,7 +234,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FFD3D3D3</c> (i.e. <see cref="Colors.LightGray"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 7)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 8)]
 	public Color CandidateBorderColor { get; set; } = Colors.LightGray;
 
 	/// <inheritdoc/>
@@ -240,7 +242,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 8)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 9)]
 	public Color GivenColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
@@ -248,7 +250,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FF0000FF</c> (i.e. <see cref="Colors.Blue"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 9)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 10)]
 	public Color ModifiableColor { get; set; } = Colors.Blue;
 
 	/// <inheritdoc/>
@@ -256,7 +258,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FF696969</c> (i.e. <see cref="Colors.DimGray"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 10)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 11)]
 	public Color CandidateColor { get; set; } = Colors.DimGray;
 
 	/// <inheritdoc/>
@@ -264,7 +266,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FFFF0000</c> (i.e. <see cref="Colors.Red"/>).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 11)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 12)]
 	public Color CellDeltaColor { get; set; } = Colors.Red;
 
 	/// <inheritdoc/>
@@ -272,13 +274,15 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FFFFB9B9</c>.
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 12)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 13)]
 	public Color CandidateDeltaColor { get; set; } = Color.FromArgb(255, 255, 185, 185);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 14)]
 	public Color MaskEllipseColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
