@@ -77,11 +77,20 @@ public sealed partial class MainWindow : Window
 			let groupOrderingIndex = groupAttribute.OrderingIndex
 			let gnr = R[$"SettingsPage_GroupItemName_{groupName}"] ?? throw new()
 			let gnd = R[$"SettingsPage_GroupItemDescription_{groupName}"]
-			select (Name: gnr, Description: gnd, Item: settingItem, Ordering: groupOrderingIndex) into tuple
-			group tuple by (tuple.Name, tuple.Description) into groupedTuple
-			let pair = groupedTuple.Key
-			let settingItems = (from tuple in groupedTuple orderby tuple.Ordering select tuple.Item).ToArray()
-			select new SettingGroupItem { Name = pair.Name, Description = pair.Description, SettingItem = settingItems }
+			select new PreferenceItemInfo(gnr, gnd, groupName, settingItem, groupOrderingIndex) into info
+			group info by (info.Name, info.RawName, info.Description) into groupedTuple
+			let keyTuple = groupedTuple.Key
+			let name = keyTuple.Name
+			let description = keyTuple.Description
+			let rawName = keyTuple.RawName
+			let groupNameFieldInfo = typeof(PreferenceGroupNames).GetField(rawName)
+			where groupNameFieldInfo is not null // The field can be found in the metadata
+			let orderingAttribute = groupNameFieldInfo.GetCustomAttribute<PreferenceGroupOrderAttribute>()
+			where orderingAttribute is not null // The field contains ordering attribute
+			orderby orderingAttribute.OrderingIndex
+			let items = (from i in groupedTuple orderby i.OrderingIndex select i.SettingItem).ToArray()
+			let target = new SettingGroupItem { Name = name, Description = description, SettingItem = items }
+			select target
 		).ToArray();
 	}
 

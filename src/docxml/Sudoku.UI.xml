@@ -735,6 +735,23 @@
             Indicates the miscellaneous options.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Data.Metadata.PreferenceGroupOrderAttribute">
+            <summary>
+            Defines an attribute that can be applied to a name field,
+            indicating the real displaying order in all groups, in the settings page.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.Metadata.PreferenceGroupOrderAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.Metadata.PreferenceGroupOrderAttribute"/> instance via the ordering index.
+            </summary>
+            <param name="orderingIndex">The ordering index.</param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Metadata.PreferenceGroupOrderAttribute.OrderingIndex">
+            <summary>
+            Indicates the ordering index.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Data.Metadata.TypeAttribute`1">
             <summary>
             Defines the type of the field that will route.
