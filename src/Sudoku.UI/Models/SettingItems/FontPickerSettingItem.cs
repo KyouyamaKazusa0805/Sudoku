@@ -19,7 +19,7 @@ public sealed class FontPickerSettingItem : SettingItem, IDynamicCreatableItem<F
 		{
 			{ Data: [] data } => new()
 			{
-				Name = IDynamicCreatableItem<FontPickerSettingItem>.GetItemNameString(propertyName)!,
+				Name = IDynamicCreatableItem<FontPickerSettingItem>.GetItemNameString(propertyName),
 				Description = IDynamicCreatableItem<FontPickerSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
 				PreferenceValueName = propertyName
 			},

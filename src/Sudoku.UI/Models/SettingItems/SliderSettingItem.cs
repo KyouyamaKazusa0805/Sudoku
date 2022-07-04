@@ -32,7 +32,7 @@ public sealed class SliderSettingItem : SettingItem, IDynamicCreatableItem<Slide
 		{
 			{ Data: { Length: <= 4 } data } => new()
 			{
-				Name = IDynamicCreatableItem<SliderSettingItem>.GetItemNameString(propertyName)!,
+				Name = IDynamicCreatableItem<SliderSettingItem>.GetItemNameString(propertyName),
 				Description = IDynamicCreatableItem<SliderSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
 				PreferenceValueName = propertyName,
 				StepFrequency = (double)data.FirstOrDefault(p => p.Key == nameof(StepFrequency)).Value!,

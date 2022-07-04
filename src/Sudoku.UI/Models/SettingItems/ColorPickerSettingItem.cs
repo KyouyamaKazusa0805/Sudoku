@@ -11,7 +11,7 @@ public sealed class ColorPickerSettingItem : SettingItem, IDynamicCreatableItem<
 		{
 			{ Data: [] } => new()
 			{
-				Name = IDynamicCreatableItem<ColorPickerSettingItem>.GetItemNameString(propertyName)!,
+				Name = IDynamicCreatableItem<ColorPickerSettingItem>.GetItemNameString(propertyName),
 				Description = IDynamicCreatableItem<ColorPickerSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
 				PreferenceValueName = propertyName
 			},

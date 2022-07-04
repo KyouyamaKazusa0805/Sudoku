@@ -22,7 +22,7 @@ public sealed class ToggleSwitchSettingItem : SettingItem, IDynamicCreatableItem
 		{
 			{ Data: { Length: <= 2 } data } => new()
 			{
-				Name = IDynamicCreatableItem<ToggleSwitchSettingItem>.GetItemNameString(propertyName)!,
+				Name = IDynamicCreatableItem<ToggleSwitchSettingItem>.GetItemNameString(propertyName),
 				Description = IDynamicCreatableItem<ToggleSwitchSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
 				PreferenceValueName = propertyName,
 				OnContent = (string?)data.FirstOrDefault(static p => p.Key == nameof(OnContent)).Value

@@ -24,7 +24,7 @@ public sealed class PeerFocusingModeComboBoxSettingItem :
 		{
 			{ Data: [(_, string[] values)] } => new()
 			{
-				Name = IDynamicCreatableItem<PeerFocusingModeComboBoxSettingItem>.GetItemNameString(propertyName)!,
+				Name = IDynamicCreatableItem<PeerFocusingModeComboBoxSettingItem>.GetItemNameString(propertyName),
 				Description = IDynamicCreatableItem<PeerFocusingModeComboBoxSettingItem>.GetItemDescriptionString(propertyName) ?? string.Empty,
 				PreferenceValueName = propertyName,
 				OptionContents = (from value in values select R[value]!).ToArray()
