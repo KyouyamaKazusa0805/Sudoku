@@ -85,27 +85,35 @@ internal static class SimpleConverters
 	/// <summary>
 	/// Gets the text from property value <see cref="VirtualKey"/> and <see cref="VirtualKeyModifiers"/>.
 	/// </summary>
+	/// <param name="modifiers">The modifier keys.</param>
+	/// <param name="virtualKeys">The virtual keys.</param>
 	/// <returns>The string text.</returns>
 	/// <seealso cref="VirtualKey"/>
 	/// <seealso cref="VirtualKeyModifiers"/>
-	public static unsafe string GetText(VirtualKeyModifiers modifiers, VirtualKey VirtualKey)
+	public static unsafe string GetText(VirtualKeyModifiers modifiers, VirtualKey[] virtualKeys)
 	{
 		switch (modifiers)
 		{
 			case VirtualKeyModifiers.None:
 			{
-				return ConvertVirtualKeyToName(VirtualKey);
+				return ConvertVirtualKeyToName(virtualKeys);
 			}
 			case var mods:
 			{
-				var sb = new StringHandler();
-				sb.AppendRangeUnsafe(mods, &f);
+				var sb = new StringHandler(100);
+				sb.AppendRangeWithSeparatorUnsafe(mods, &f, " + ");
 
-				return $"{sb.ToStringAndClear()} + {ConvertVirtualKeyToName(VirtualKey)}";
+				return $"{sb.ToStringAndClear()} + {ConvertVirtualKeyToName(virtualKeys)}";
 			}
 
 
-			static string f(VirtualKeyModifiers mod) => mod == VirtualKeyModifiers.Menu ? "Alt" : mod.ToString();
+			static string f(VirtualKeyModifiers mod)
+				=> mod switch
+				{
+					VirtualKeyModifiers.Menu => "Alt",
+					VirtualKeyModifiers.Control => "Ctrl",
+					_ => mod.ToString()
+				};
 		}
 	}
 
@@ -150,23 +158,111 @@ internal static class SimpleConverters
 	/// <returns>The text block instance.</returns>
 	public static string GetTimelineInfo(VersionTimelineItem versionTimelineItem)
 		=> versionTimelineItem.Description is var description && versionTimelineItem.Date is { } date
-			? $"{R["Token_OpenBrace"]}{date.ToShortDateString()}{R["Token_ClosedBrace"]}{description}" 
+			? $"{R["Token_OpenBrace"]}{date.ToShortDateString()}{R["Token_ClosedBrace"]}{description}"
 			: description;
 
 	public static IList<string> GetFontNames()
 		=> (from fontName in CanvasTextFormat.GetSystemFontFamilies() orderby fontName select fontName).ToList();
 
 	/// <summary>
-	/// Converts the specified virtual VirtualKey into a string representation.
+	/// Converts the specified virtual key into a string representation.
 	/// </summary>
-	/// <param name="VirtualKey">The virtual VirtualKey.</param>
+	/// <param name="virtualKeys">The virtual key.</param>
 	/// <returns>The string representation.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="virtualKeys"/> is <see langword="null"/>.
+	/// </exception>
+	/// <exception cref="ArgumentException">Throws when the argument <paramref name="virtualKeys"/> is empty.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string ConvertVirtualKeyToName(VirtualKey VirtualKey)
-		=> VirtualKey switch
+	private static string ConvertVirtualKeyToName(VirtualKey[]? virtualKeys)
+	{
+		return virtualKeys switch
 		{
-			>= VirtualKey.Number0 and <= VirtualKey.Number9 => (VirtualKey - VirtualKey.Number0).ToString(),
-			>= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9 => (VirtualKey - VirtualKey.NumberPad0).ToString(),
-			_ => VirtualKey.ToString()
+			// Null.
+			null => throw new ArgumentNullException(nameof(virtualKeys)),
+
+			// Empty array.
+			[] => throw new ArgumentException("The argument cannot be empty here.", nameof(virtualKeys)),
+
+			// If the key is a digit.
+			[var virtualKey] => virtualKey switch
+			{
+				>= VirtualKey.Number0 and <= VirtualKey.Number9 => (virtualKey - VirtualKey.Number0).ToString(),
+				>= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9 => (virtualKey - VirtualKey.NumberPad0).ToString(),
+				_ => virtualKey.ToString()
+			},
+
+			// If two keys are both digit and same value.
+			[
+				var a and >= VirtualKey.Number0 and <= VirtualKey.Number9,
+				var b and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9
+			]
+			when a - VirtualKey.Number0 == b - VirtualKey.NumberPad0 => (a - VirtualKey.Number0).ToString(),
+
+			// If two keys are both digit and same value.
+			[
+				var a and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9,
+				var b and >= VirtualKey.Number0 and <= VirtualKey.Number9
+			]
+			when a - VirtualKey.NumberPad0 == b - VirtualKey.Number0 => (b - VirtualKey.Number0).ToString(),
+
+			// Consecutive digit keys.
+			[
+				>= VirtualKey.Number0 and <= VirtualKey.Number9 or >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9,
+				..,
+				>= VirtualKey.Number0 and <= VirtualKey.Number9 or >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9,
+			]
+			when isConsecutiveNumber(virtualKeys, out int a, out int b) => $"{a}-{b}",
+
+			// Consecutive letter keys.
+			[>= VirtualKey.A and <= VirtualKey.Z, .., >= VirtualKey.A and <= VirtualKey.Z]
+			when isConsecutiveLetters(virtualKeys, out char a, out char b) => $"{a}-{b}",
+
+			// Otherwise.
+			_ => string.Join('/', from virtualKey in virtualKeys select ConvertVirtualKeyToName(new[] { virtualKey }))
 		};
+
+
+		static bool isConsecutiveNumber(VirtualKey[] keys, out int a, out int b)
+		{
+			var first = keys[0];
+			foreach (var key in keys[1..])
+			{
+				if (key - first != 1)
+				{
+					a = b = -1;
+					return false;
+				}
+
+				first = key;
+			}
+
+			a = keys[0] is var keyA && keyA is >= VirtualKey.Number0 and <= VirtualKey.Number9
+				? keyA - VirtualKey.Number0
+				: keyA - VirtualKey.NumberPad0;
+			b = keys[^1] is var keyB && keyB is >= VirtualKey.Number0 and <= VirtualKey.Number9
+				? keyB - VirtualKey.Number0
+				: keyB - VirtualKey.NumberPad0;
+			return true;
+		}
+
+		static bool isConsecutiveLetters(VirtualKey[] keys, out char a, out char b)
+		{
+			var first = keys[0];
+			foreach (var key in keys[1..])
+			{
+				if (key - first != 1)
+				{
+					a = b = '\0';
+					return false;
+				}
+
+				first = key;
+			}
+
+			a = (char)(keys[0] - VirtualKey.A + 'A');
+			b = (char)(keys[^1] - VirtualKey.A + 'A');
+			return true;
+		}
+	}
 }

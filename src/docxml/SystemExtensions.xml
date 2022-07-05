@@ -2007,7 +2007,7 @@
             <param name="condition">The condition.</param>
             <param name="value">The value to append.</param>
         </member>
-        <member name="M:System.Text.StringHandlerExtensions.AppendRangeUnsafe``1(System.Text.StringHandler@,``0,)">
+        <member name="M:System.Text.StringHandlerExtensions.AppendRangeWithSeparatorUnsafe``1(System.Text.StringHandler@,``0,,System.String)">
             <summary>
             Append a serial of strings converted from a serial of elements.
             </summary>
@@ -2018,6 +2018,7 @@
             The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
             whose the rule is defined as a method specified as the function pointer as this argument.
             </param>
+            <param name="separator">The separator.</param>
         </member>
         <member name="T:System.Text.RegularExpressions.MatchCollectionEnumerable">
             <summary>

@@ -31,14 +31,18 @@ public static class StringHandlerExtensions
 	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
 	/// whose the rule is defined as a method specified as the function pointer as this argument.
 	/// </param>
+	/// <param name="separator">The separator.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void AppendRangeUnsafe<TEnum>(
-		this ref StringHandler @this, TEnum enumFlags, delegate*<TEnum, string> converter)
+	public static unsafe void AppendRangeWithSeparatorUnsafe<TEnum>(
+		this ref StringHandler @this, TEnum enumFlags, delegate*<TEnum, string> converter, string separator)
 		where TEnum : unmanaged, Enum
 	{
 		foreach (var enumFlag in enumFlags)
 		{
 			@this.Append(converter(enumFlag));
+			@this.Append(separator);
 		}
+
+		@this.RemoveFromEnd(separator.Length);
 	}
 }

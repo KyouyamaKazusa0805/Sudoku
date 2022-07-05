@@ -24,110 +24,76 @@ public sealed partial class KeyboardPage : Page
 		new(R["KeyboardPage_ControlZ"]!, new List<KeyboardPair>(1) { new(Modifier.Control, Key.Z) }),
 		new(R["KeyboardPage_ControlY"]!, new List<KeyboardPair>(1) { new(Modifier.Control, Key.Y) }),
 		new(R["KeyboardPage_ControlH"]!, new List<KeyboardPair>(1) { new(Modifier.Control, Key.H) }),
-		new(R["KeyboardPage_Number0"]!, new List<KeyboardPair>(2)
+		new(R["KeyboardPage_Number0"]!, new List<KeyboardPair>(1) { new(Modifier.Control, Key.Number0) }),
+		new(R["KeyboardPage_OtherNumbers"]!, new List<KeyboardPair>(1)
 		{
-			new(Modifier.Control, Key.Number0),
-			new(Modifier.Control, Key.NumberPad0)
+			new(Modifier.Control, new[]
+			{
+				Key.Number1,
+				Key.Number2,
+				Key.Number3,
+				Key.Number4,
+				Key.Number5,
+				Key.Number6,
+				Key.Number7,
+				Key.Number8,
+				Key.Number9
+			})
 		}),
-		new(R["KeyboardPage_OtherNumbers"]!, new List<KeyboardPair>(18)
+		new(R["KeyboardPage_ShiftOtherNumbers"]!, new List<KeyboardPair>(1)
 		{
-			new(Modifier.Control, Key.Number1),
-			new(Modifier.Control, Key.Number2),
-			new(Modifier.Control, Key.Number3),
-			new(Modifier.Control, Key.Number4),
-			new(Modifier.Control, Key.Number5),
-			new(Modifier.Control, Key.Number6),
-			new(Modifier.Control, Key.Number7),
-			new(Modifier.Control, Key.Number8),
-			new(Modifier.Control, Key.Number9),
-			new(Modifier.Control, Key.NumberPad1),
-			new(Modifier.Control, Key.NumberPad2),
-			new(Modifier.Control, Key.NumberPad3),
-			new(Modifier.Control, Key.NumberPad4),
-			new(Modifier.Control, Key.NumberPad5),
-			new(Modifier.Control, Key.NumberPad6),
-			new(Modifier.Control, Key.NumberPad7),
-			new(Modifier.Control, Key.NumberPad8),
-			new(Modifier.Control, Key.NumberPad9)
+			new(Modifier.Control | Modifier.Shift, new[]
+			{
+				Key.Number1,
+				Key.Number2,
+				Key.Number3,
+				Key.Number4,
+				Key.Number5,
+				Key.Number6,
+				Key.Number7,
+				Key.Number8,
+				Key.Number9
+			})
 		}),
-		new(R["KeyboardPage_ShiftOtherNumbers"]!, new List<KeyboardPair>(18)
+		new(R["KeyboardPage_ControlNumbers"]!, new List<KeyboardPair>(1)
 		{
-			new(Modifier.Control | Modifier.Shift, Key.Number1),
-			new(Modifier.Control | Modifier.Shift, Key.Number2),
-			new(Modifier.Control | Modifier.Shift, Key.Number3),
-			new(Modifier.Control | Modifier.Shift, Key.Number4),
-			new(Modifier.Control | Modifier.Shift, Key.Number5),
-			new(Modifier.Control | Modifier.Shift, Key.Number6),
-			new(Modifier.Control | Modifier.Shift, Key.Number7),
-			new(Modifier.Control | Modifier.Shift, Key.Number8),
-			new(Modifier.Control | Modifier.Shift, Key.Number9),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad1),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad2),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad3),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad4),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad5),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad6),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad7),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad8),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad9)
+			new(Modifier.Control, new[]
+			{
+				Key.Number1,
+				Key.Number2,
+				Key.Number3,
+				Key.Number4,
+				Key.Number5,
+				Key.Number6
+			})
 		}),
-		new(R["KeyboardPage_ControlNumbers"]!, new List<KeyboardPair>(12)
+		new(R["KeyboardPage_ControlShiftNumbers"]!, new List<KeyboardPair>(1)
 		{
-			new(Modifier.Control, Key.Number1),
-			new(Modifier.Control, Key.Number2),
-			new(Modifier.Control, Key.Number3),
-			new(Modifier.Control, Key.Number4),
-			new(Modifier.Control, Key.Number5),
-			new(Modifier.Control, Key.Number6),
-			new(Modifier.Control, Key.NumberPad1),
-			new(Modifier.Control, Key.NumberPad2),
-			new(Modifier.Control, Key.NumberPad3),
-			new(Modifier.Control, Key.NumberPad4),
-			new(Modifier.Control, Key.NumberPad5),
-			new(Modifier.Control, Key.NumberPad6),
+			new(Modifier.Control | Modifier.Shift, new[] { Key.Number1, Key.Number2, Key.Number3, Key.Number4 })
 		}),
-		new(R["KeyboardPage_ControlShiftNumbers"]!, new List<KeyboardPair>(8)
+		new(R["KeyboardPage_ControlBack"]!, new List<KeyboardPair>(1)
 		{
-			new(Modifier.Control | Modifier.Shift, Key.Number1),
-			new(Modifier.Control | Modifier.Shift, Key.Number2),
-			new(Modifier.Control | Modifier.Shift, Key.Number3),
-			new(Modifier.Control | Modifier.Shift, Key.Number4),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad1),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad2),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad3),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad4)
+			new(Modifier.Control, new[] { Key.Number0, Key.Back })
 		}),
-		new(R["KeyboardPage_ControlBack"]!, new List<KeyboardPair>(3)
+		new(R["KeyboardPage_ControlShiftBack"]!, new List<KeyboardPair>(1)
 		{
-			new(Modifier.Control, Key.Number0),
-			new(Modifier.Control, Key.NumberPad0),
-			new(Modifier.Control, Key.Back)
+			new(Modifier.Control | Modifier.Shift, new[] { Key.Number0, Key.Back })
 		}),
-		new(R["KeyboardPage_ControlShiftBack"]!, new List<KeyboardPair>(3)
+		new(R["KeyboardPage_ControlLeft"]!, new List<KeyboardPair>(1)
 		{
-			new(Modifier.Control | Modifier.Shift, Key.Number0),
-			new(Modifier.Control | Modifier.Shift, Key.NumberPad0),
-			new(Modifier.Control | Modifier.Shift, Key.Back)
+			new(Modifier.Control, new[] { Key.Left, Key.Right })
 		}),
-		new(R["KeyboardPage_ControlLeft"]!, new List<KeyboardPair>(2)
+		new(R["KeyboardPage_ControlUp"]!, new List<KeyboardPair>(1)
 		{
-			new(Modifier.Control, Key.Left),
-			new(Modifier.Control, Key.Right),
+			new(Modifier.Control, new[] { Key.Up, Key.Down })
 		}),
-		new(R["KeyboardPage_ControlUp"]!, new List<KeyboardPair>(2)
+		new(R["KeyboardPage_ControlShiftLeft"]!, new List<KeyboardPair>(1)
 		{
-			new(Modifier.Control, Key.Up),
-			new(Modifier.Control, Key.Down),
+			new(Modifier.Control | Modifier.Shift, new[] { Key.Left, Key.Right })
 		}),
-		new(R["KeyboardPage_ControlShiftLeft"]!, new List<KeyboardPair>(2)
+		new(R["KeyboardPage_ControlShiftUp"]!, new List<KeyboardPair>(1)
 		{
-			new(Modifier.Control | Modifier.Shift, Key.Left),
-			new(Modifier.Control | Modifier.Shift, Key.Right),
-		}),
-		new(R["KeyboardPage_ControlShiftUp"]!, new List<KeyboardPair>(2)
-		{
-			new(Modifier.Control | Modifier.Shift, Key.Up),
-			new(Modifier.Control | Modifier.Shift, Key.Down),
+			new(Modifier.Control | Modifier.Shift, new[] { Key.Up, Key.Down })
 		})
 	};
 

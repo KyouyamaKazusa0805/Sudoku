@@ -176,10 +176,12 @@
             <returns>The title of the info bar.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the severity is not defined.</exception>
         </member>
-        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.GetText(Windows.System.VirtualKeyModifiers,Windows.System.VirtualKey)">
+        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.GetText(Windows.System.VirtualKeyModifiers,Windows.System.VirtualKey[])">
             <summary>
             Gets the text from property value <see cref="T:Windows.System.VirtualKey"/> and <see cref="T:Windows.System.VirtualKeyModifiers"/>.
             </summary>
+            <param name="modifiers">The modifier keys.</param>
+            <param name="virtualKeys">The virtual keys.</param>
             <returns>The string text.</returns>
             <seealso cref="T:Windows.System.VirtualKey"/>
             <seealso cref="T:Windows.System.VirtualKeyModifiers"/>
@@ -206,12 +208,16 @@
             <param name="versionTimelineItem">The version timeline item value.</param>
             <returns>The text block instance.</returns>
         </member>
-        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.ConvertVirtualKeyToName(Windows.System.VirtualKey)">
+        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.ConvertVirtualKeyToName(Windows.System.VirtualKey[])">
             <summary>
-            Converts the specified virtual VirtualKey into a string representation.
+            Converts the specified virtual key into a string representation.
             </summary>
-            <param name="VirtualKey">The virtual VirtualKey.</param>
+            <param name="virtualKeys">The virtual key.</param>
             <returns>The string representation.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="virtualKeys"/> is <see langword="null"/>.
+            </exception>
+            <exception cref="T:System.ArgumentException">Throws when the argument <paramref name="virtualKeys"/> is empty.</exception>
         </member>
         <member name="T:Sudoku.UI.DataConversion.ValueConverters.Int32ToStringConverter">
             <summary>
@@ -1260,24 +1266,31 @@
             <param name="ModifierKeys">
             The modifier keys. Use <c><see langword="operator"/> |</c> to combine multiple modifier keys.
             </param>
-            <param name="VirtualKey">The virtual key.</param>
+            <param name="VirtualKeys">The virtual keys.</param>
         </member>
-        <member name="M:Sudoku.UI.Models.KeyboardPair.#ctor(Windows.System.VirtualKeyModifiers,Windows.System.VirtualKey)">
+        <member name="M:Sudoku.UI.Models.KeyboardPair.#ctor(Windows.System.VirtualKeyModifiers,Windows.System.VirtualKey[])">
             <summary>
             Indicates a keyboard pair.
             </summary>
             <param name="ModifierKeys">
             The modifier keys. Use <c><see langword="operator"/> |</c> to combine multiple modifier keys.
             </param>
-            <param name="VirtualKey">The virtual key.</param>
+            <param name="VirtualKeys">The virtual keys.</param>
         </member>
         <member name="P:Sudoku.UI.Models.KeyboardPair.ModifierKeys">
             <summary>
             The modifier keys. Use <c><see langword="operator"/> |</c> to combine multiple modifier keys.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.KeyboardPair.VirtualKey">
-            <summary>The virtual key.</summary>
+        <member name="P:Sudoku.UI.Models.KeyboardPair.VirtualKeys">
+            <summary>The virtual keys.</summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.KeyboardPair.#ctor(Windows.System.VirtualKeyModifiers,Windows.System.VirtualKey)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.KeyboardPair"/> instance via the specified modifier keys and a virtual key.
+            </summary>
+            <param name="modifierKeys">The modifier keys.</param>
+            <param name="virtualKey">The virtual key.</param>
         </member>
         <member name="T:Sudoku.UI.Models.ManualSolverResultMessage">
             <summary>
