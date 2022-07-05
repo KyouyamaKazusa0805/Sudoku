@@ -94,7 +94,7 @@ public sealed partial class SudokuPage : Page
 	private void RegisterPrint()
 	{
 		// Register for PrintTaskRequested event.
-		var hWnd = WindowNative.GetWindowHandle(((App)Application.Current).RuntimeInfo.MainWindow);
+		nint hWnd = WindowNative.GetWindowHandle(((App)Application.Current).RuntimeInfo.MainWindow);
 
 		// Registers a print manager.
 		_printManager = PrintManagerInterop.GetForWindow(hWnd);
