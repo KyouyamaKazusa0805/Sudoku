@@ -233,8 +233,7 @@ public sealed partial class MainWindow : Window
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="args">The event arguments provided.</param>
-	private async void Window_ClosedAsync(object sender, WindowEventArgs args)
-		=> await SaveGlobalPreferenceFileAsync();
+	private async void Window_ClosedAsync(object sender, WindowEventArgs args) => await SaveGlobalPreferenceFileAsync();
 
 	/// <summary>
 	/// Triggers when the window is activated.
