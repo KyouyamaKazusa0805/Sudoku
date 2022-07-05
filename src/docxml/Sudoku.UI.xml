@@ -588,12 +588,6 @@
             The default value is <c>#FFFF0000</c>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.HighlightCellStrokeColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#FF0000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/>).
-            </remarks>
-        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.FocusedCellColor">
             <inheritdoc/>
             <remarks>

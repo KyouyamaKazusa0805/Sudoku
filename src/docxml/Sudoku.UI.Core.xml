@@ -291,11 +291,6 @@
             Indicates the color of links used by a chain.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.HighlightCellStrokeColor">
-            <summary>
-            Indicates the color of the stroke lines surrounding with highlight cell.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.FocusedCellColor">
             <summary>
             Indicates the focused cell color.

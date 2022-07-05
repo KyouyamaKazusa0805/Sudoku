@@ -179,11 +179,6 @@ public interface IDrawingPreference
 	public abstract Color LinkColor { get; set; }
 
 	/// <summary>
-	/// Indicates the color of the stroke lines surrounding with highlight cell.
-	/// </summary>
-	public abstract Color HighlightCellStrokeColor { get; set; }
-
-	/// <summary>
 	/// Indicates the focused cell color.
 	/// </summary>
 	public abstract Color FocusedCellColor { get; set; }

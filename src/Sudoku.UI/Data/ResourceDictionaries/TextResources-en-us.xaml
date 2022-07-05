@@ -143,6 +143,10 @@
 	<x:String x:Key="SettingsPage_ItemDescription_ValueFont">Indicates the sizing scale of the value digits.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateFont">Font scale on candidates</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateFont">Indicates the sizing scale of the candidates.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_FocusedCellColor">Focus cell background color</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_FocusedCellColor">The background color of the focused cell.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PeersFocusedCellColor">Peer cells background color</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_PeersFocusedCellColor">The background color of the peer cells of the focus cell.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CoverOldShapeWhenDiffused">Cover old shape marks when diffused</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption0Content">Don't display focused cell</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption1Content">Display focused cell</x:String>
@@ -181,9 +185,13 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidates">show;candidates|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ShowCandidateBorderLines">show;candidates;border|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_PeerFocusingMode">allow;focusing|Settings Page -> Basic options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_FocusedCellColor">focused;cell;color|Settings Page -> Basic options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_PeersFocusedCellColor">peers;cell;focused;color|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_EnableDeltaValuesDisplaying">enable;displaying;deltas|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CoverOldShapeWhenDiffused">cover;old;shape;diffused|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_AlsoSavePictureWhenSaveDrawingData">save;saving;picture;files|Settings Page -> Basic options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_ValueFont">font;scale;values;digits|Settings Page -> Basic options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_CandidateFont">font;scale;candidates|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_OutsideBorderWidth">blank;size;outside;border|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_BlockBorderWidth">size;block;border|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CellBorderWidth">size;cell;border|Settings Page -> Rendering options</x:String>
@@ -198,8 +206,6 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateColor">color;candidates|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CellDeltaColor">color;deltas;digits|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateDeltaColor">color;deltas;candidates|Settings Page -> Rendering options</x:String>
-	<x:String x:Key="Query_SettingsPage_ItemName_ValueFont">font;scale;values;digits|Settings Page -> Rendering options</x:String>
-	<x:String x:Key="Query_SettingsPage_ItemName_CandidateFont">font;scale;candidates|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_DescendingOrderedInfoBarBoard">show;board;descending;order|Settings Page -> Miscellaneous options</x:String>
 
 	<!--Control-based data-->

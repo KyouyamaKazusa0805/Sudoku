@@ -49,7 +49,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 3)]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 5)]
 	public bool EnableDeltaValuesDisplaying { get; set; } = true;
 
 	/// <inheritdoc/>
@@ -68,7 +68,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 4)]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 6)]
 	public bool PlaceholderIsZero { get; set; } = true;
 
 #if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
@@ -79,7 +79,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 7)]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 9)]
 	public bool __CoverOldShapeWhenDiffused { get; set; } = false;
 #endif
 
@@ -90,7 +90,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 8)]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 10)]
 	public bool AlsoSavePictureWhenSaveDrawingData { get; set; } = true;
 
 	/// <inheritdoc/>
@@ -168,7 +168,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>{ FontName = "Cascadia Mono", FontScale = .8 }</c> in debugging mode.
 	/// </remarks>
 	[Preference<FontPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 5)]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 7)]
 	public FontData ValueFont { get; set; } = new()
 	{
 		FontName =
@@ -185,7 +185,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>{ FontName = "Cascadia Mono", FontScale = .25 }</c> in debugging mode.
 	/// </remarks>
 	[Preference<FontPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 6)]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 8)]
 	public FontData CandidateFont { get; set; } = new()
 	{
 		FontName =
@@ -323,20 +323,18 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#FF0000FF</c> (i.e. <see cref="Colors.Blue"/>).
-	/// </remarks>
-	public Color HighlightCellStrokeColor { get; set; } = Colors.Blue;
-
-	/// <inheritdoc/>
-	/// <remarks>
 	/// The default value is <c>#300000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 48).
 	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 3)]
 	public Color FocusedCellColor { get; set; } = Colors.Blue with { A = 48 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#200000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 32).
 	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 4)]
 	public Color PeersFocusedCellColor { get; set; } = Colors.Blue with { A = 32 };
 
 #if AUTHOR_FEATURE_CELL_MARKS
