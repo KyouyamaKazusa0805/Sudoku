@@ -61,6 +61,7 @@
 		<EmbeddedResource Include="Assets\images\zh-CN\icon-miscellenous-file.png" />
 		<EmbeddedResource Include="Assets\images\zh-CN\icon-text-file.png" />
 		<EmbeddedResource Include="Assets\images\home-page-banner.png" />
+		<EmbeddedResource Include="Assets\Logo.ico" />
 	</ItemGroup>
 
 	<ItemGroup>

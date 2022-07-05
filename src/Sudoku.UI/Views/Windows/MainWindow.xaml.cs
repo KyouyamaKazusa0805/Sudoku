@@ -43,6 +43,7 @@ public sealed partial class MainWindow : Window
 		EnsureDispatcherQueueExists();
 		SetMicaBackdropIfSupports();
 		SetProgramNameToTitle();
+		SetIconFromAssetFile();
 		LoadGlobalPreferenceIfExistsAsync();
 		ConstructPreferenceItems();
 	}
@@ -93,6 +94,12 @@ public sealed partial class MainWindow : Window
 			select target
 		).ToArray();
 	}
+
+	/// <summary>
+	/// Sets the icon from assets file.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void SetIconFromAssetFile() => this.GetAppWindow().SetIcon(@"Assets\Logo.ico");
 
 	/// <summary>
 	/// Try to navigate the pages.
