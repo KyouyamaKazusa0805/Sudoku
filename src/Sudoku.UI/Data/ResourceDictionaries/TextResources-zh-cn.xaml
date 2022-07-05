@@ -277,6 +277,12 @@
 // 请找到你觉得匹配的选项的配置项的名称（键部分），
 // 然后将数值部分（不是键部分）改成你想要修改的数值。
 //</x:String>
+	<x:String x:Key="VirtualKey_Up">上方向键</x:String>
+	<x:String x:Key="VirtualKey_Down">下方向键</x:String>
+	<x:String x:Key="VirtualKey_Left">左方向键</x:String>
+	<x:String x:Key="VirtualKey_Right">右方向键</x:String>
+	<x:String x:Key="VirtualKey_Backspace">退格键</x:String>
+	<x:String x:Key="VirtualKey_Space">空格</x:String>
 
 	<!--标点符号-->
 	<x:String x:Key="Token_OpenBrace">（</x:String>

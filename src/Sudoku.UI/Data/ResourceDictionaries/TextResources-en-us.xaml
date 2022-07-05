@@ -284,6 +284,12 @@
 // please find the value whose corresponding key is matched preference you think,
 // and then change the value part (NOT key part).
 //</x:String>
+	<x:String x:Key="VirtualKey_Up">Up</x:String>
+	<x:String x:Key="VirtualKey_Down">Down</x:String>
+	<x:String x:Key="VirtualKey_Left">Left</x:String>
+	<x:String x:Key="VirtualKey_Right">Right</x:String>
+	<x:String x:Key="VirtualKey_Backspace">Backspace</x:String>
+	<x:String x:Key="VirtualKey_Space">Space</x:String>
 	<x:String x:Key="__SampleField">Sample field</x:String>
 
 	<!--Punctuations-->

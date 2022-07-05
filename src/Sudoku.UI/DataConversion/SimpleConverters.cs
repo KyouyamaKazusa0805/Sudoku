@@ -83,18 +83,18 @@ internal static class SimpleConverters
 	public static string ToRgbString(Color color) => $"{color.R}, {color.G}, {color.B}";
 
 	/// <summary>
-	/// Gets the text from property value <see cref="VirtualKey"/> and <see cref="VirtualKeyModifiers"/>.
+	/// Gets the text from property value <see cref="Key"/> and <see cref="ModifierKey"/>.
 	/// </summary>
 	/// <param name="modifiers">The modifier keys.</param>
 	/// <param name="virtualKeys">The virtual keys.</param>
 	/// <returns>The string text.</returns>
-	/// <seealso cref="VirtualKey"/>
-	/// <seealso cref="VirtualKeyModifiers"/>
-	public static unsafe string GetText(VirtualKeyModifiers modifiers, VirtualKey[] virtualKeys)
+	/// <seealso cref="Key"/>
+	/// <seealso cref="ModifierKey"/>
+	public static unsafe string GetText(ModifierKey modifiers, Key[] virtualKeys)
 	{
 		switch (modifiers)
 		{
-			case VirtualKeyModifiers.None:
+			case ModifierKey.None:
 			{
 				return ConvertVirtualKeyToName(virtualKeys);
 			}
@@ -107,13 +107,8 @@ internal static class SimpleConverters
 			}
 
 
-			static string f(VirtualKeyModifiers mod)
-				=> mod switch
-				{
-					VirtualKeyModifiers.Menu => "Alt",
-					VirtualKeyModifiers.Control => "Ctrl",
-					_ => mod.ToString()
-				};
+			static string f(ModifierKey mod)
+				=> mod switch { ModifierKey.Menu => "Alt", ModifierKey.Control => "Ctrl", _ => mod.ToString() };
 		}
 	}
 
@@ -174,7 +169,7 @@ internal static class SimpleConverters
 	/// </exception>
 	/// <exception cref="ArgumentException">Throws when the argument <paramref name="virtualKeys"/> is empty.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string ConvertVirtualKeyToName(VirtualKey[]? virtualKeys)
+	private static string ConvertVirtualKeyToName(Key[]? virtualKeys)
 	{
 		return virtualKeys switch
 		{
@@ -187,35 +182,37 @@ internal static class SimpleConverters
 			// If the key is a digit.
 			[var virtualKey] => virtualKey switch
 			{
-				>= VirtualKey.Number0 and <= VirtualKey.Number9 => (virtualKey - VirtualKey.Number0).ToString(),
-				>= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9 => (virtualKey - VirtualKey.NumberPad0).ToString(),
+				>= Key.Number0 and <= Key.Number9 => (virtualKey - Key.Number0).ToString(),
+				>= Key.NumberPad0 and <= Key.NumberPad9 => (virtualKey - Key.NumberPad0).ToString(),
+				>= Key.Left and <= Key.Down or Key.Space => R[$"VirtualKey_{virtualKey}"]!,
+				Key.Back => R["VirtualKey_Backspace"]!,
 				_ => virtualKey.ToString()
 			},
 
 			// If two keys are both digit and same value.
 			[
-				var a and >= VirtualKey.Number0 and <= VirtualKey.Number9,
-				var b and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9
+				var a and >= Key.Number0 and <= Key.Number9,
+				var b and >= Key.NumberPad0 and <= Key.NumberPad9
 			]
-			when a - VirtualKey.Number0 == b - VirtualKey.NumberPad0 => (a - VirtualKey.Number0).ToString(),
+			when a - Key.Number0 == b - Key.NumberPad0 => (a - Key.Number0).ToString(),
 
 			// If two keys are both digit and same value.
 			[
-				var a and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9,
-				var b and >= VirtualKey.Number0 and <= VirtualKey.Number9
+				var a and >= Key.NumberPad0 and <= Key.NumberPad9,
+				var b and >= Key.Number0 and <= Key.Number9
 			]
-			when a - VirtualKey.NumberPad0 == b - VirtualKey.Number0 => (b - VirtualKey.Number0).ToString(),
+			when a - Key.NumberPad0 == b - Key.Number0 => (b - Key.Number0).ToString(),
 
 			// Consecutive digit keys.
 			[
-				>= VirtualKey.Number0 and <= VirtualKey.Number9 or >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9,
+				>= Key.Number0 and <= Key.Number9 or >= Key.NumberPad0 and <= Key.NumberPad9,
 				..,
-				>= VirtualKey.Number0 and <= VirtualKey.Number9 or >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9,
+				>= Key.Number0 and <= Key.Number9 or >= Key.NumberPad0 and <= Key.NumberPad9,
 			]
 			when isConsecutiveNumber(virtualKeys, out int a, out int b) => $"{a}-{b}",
 
 			// Consecutive letter keys.
-			[>= VirtualKey.A and <= VirtualKey.Z, .., >= VirtualKey.A and <= VirtualKey.Z]
+			[>= Key.A and <= Key.Z, .., >= Key.A and <= Key.Z]
 			when isConsecutiveLetters(virtualKeys, out char a, out char b) => $"{a}-{b}",
 
 			// Otherwise.
@@ -223,7 +220,7 @@ internal static class SimpleConverters
 		};
 
 
-		static bool isConsecutiveNumber(VirtualKey[] keys, out int a, out int b)
+		static bool isConsecutiveNumber(Key[] keys, out int a, out int b)
 		{
 			var first = keys[0];
 			foreach (var key in keys[1..])
@@ -237,16 +234,16 @@ internal static class SimpleConverters
 				first = key;
 			}
 
-			a = keys[0] is var keyA && keyA is >= VirtualKey.Number0 and <= VirtualKey.Number9
-				? keyA - VirtualKey.Number0
-				: keyA - VirtualKey.NumberPad0;
-			b = keys[^1] is var keyB && keyB is >= VirtualKey.Number0 and <= VirtualKey.Number9
-				? keyB - VirtualKey.Number0
-				: keyB - VirtualKey.NumberPad0;
+			a = keys[0] is var keyA && keyA is >= Key.Number0 and <= Key.Number9
+				? keyA - Key.Number0
+				: keyA - Key.NumberPad0;
+			b = keys[^1] is var keyB && keyB is >= Key.Number0 and <= Key.Number9
+				? keyB - Key.Number0
+				: keyB - Key.NumberPad0;
 			return true;
 		}
 
-		static bool isConsecutiveLetters(VirtualKey[] keys, out char a, out char b)
+		static bool isConsecutiveLetters(Key[] keys, out char a, out char b)
 		{
 			var first = keys[0];
 			foreach (var key in keys[1..])
@@ -260,8 +257,8 @@ internal static class SimpleConverters
 				first = key;
 			}
 
-			a = (char)(keys[0] - VirtualKey.A + 'A');
-			b = (char)(keys[^1] - VirtualKey.A + 'A');
+			a = (char)(keys[0] - Key.A + 'A');
+			b = (char)(keys[^1] - Key.A + 'A');
 			return true;
 		}
 	}

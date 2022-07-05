@@ -1,7 +1,4 @@
-﻿using Key = Windows.System.VirtualKey;
-using Modifier = Windows.System.VirtualKeyModifiers;
-
-namespace Sudoku.UI.Views.Pages;
+﻿namespace Sudoku.UI.Views.Pages;
 
 /// <summary>
 /// A page that can be used on its own or navigated to within a <see cref="Frame"/>.
@@ -15,20 +12,20 @@ public sealed partial class KeyboardPage : Page
 	/// </summary>
 	private readonly IList<KeyboardKeyHintInfo> _data = new List<KeyboardKeyHintInfo>
 	{
-		new(R["KeyboardPage_ControlO"]!, new(Modifier.Control, Key.O)),
-		new(R["KeyboardPage_ControlS"]!, new(Modifier.Control, Key.S)),
-		new(R["KeyboardPage_ControlC"]!, new(Modifier.Control, Key.C)),
-		new(R["KeyboardPage_ControlV"]!, new(Modifier.Control, Key.V)),
-		new(R["KeyboardPage_ControlTab"]!, new(Modifier.Control, Key.Tab)),
-		new(R["KeyboardPage_ControlShiftTab"]!, new(Modifier.Control | Modifier.Shift, Key.Tab)),
-		new(R["KeyboardPage_ControlZ"]!, new(Modifier.Control, Key.Z)),
-		new(R["KeyboardPage_ControlY"]!, new(Modifier.Control, Key.Y)),
-		new(R["KeyboardPage_ControlH"]!, new(Modifier.Control, Key.H)),
-		new(R["KeyboardPage_Number0"]!, new(Modifier.Control, Key.Number0)),
+		new(R["KeyboardPage_ControlO"]!, new(ModifierKey.Control, Key.O)),
+		new(R["KeyboardPage_ControlS"]!, new(ModifierKey.Control, Key.S)),
+		new(R["KeyboardPage_ControlC"]!, new(ModifierKey.Control, Key.C)),
+		new(R["KeyboardPage_ControlV"]!, new(ModifierKey.Control, Key.V)),
+		new(R["KeyboardPage_ControlTab"]!, new(ModifierKey.Control, Key.Tab)),
+		new(R["KeyboardPage_ControlShiftTab"]!, new(ModifierKey.Control | ModifierKey.Shift, Key.Tab)),
+		new(R["KeyboardPage_ControlZ"]!, new(ModifierKey.Control, Key.Z)),
+		new(R["KeyboardPage_ControlY"]!, new(ModifierKey.Control, Key.Y)),
+		new(R["KeyboardPage_ControlH"]!, new(ModifierKey.Control, Key.H)),
+		new(R["KeyboardPage_Number0"]!, new(ModifierKey.Control, Key.Number0)),
 		new(
 			R["KeyboardPage_OtherNumbers"]!,
 			new(
-				Modifier.Control,
+				ModifierKey.Control,
 				new[]
 				{
 					Key.Number1, Key.Number2, Key.Number3,
@@ -40,7 +37,7 @@ public sealed partial class KeyboardPage : Page
 		new(
 			R["KeyboardPage_ShiftOtherNumbers"]!,
 			new(
-				Modifier.Control | Modifier.Shift,
+				ModifierKey.Control | ModifierKey.Shift,
 				new[]
 				{
 					Key.Number1, Key.Number2, Key.Number3,
@@ -51,15 +48,27 @@ public sealed partial class KeyboardPage : Page
 		),
 		new(
 			R["KeyboardPage_ControlNumbers"]!,
-			new(Modifier.Control, new[] { Key.Number1, Key.Number2, Key.Number3, Key.Number4, Key.Number5, Key.Number6 })
+			new(
+				ModifierKey.Control,
+				new[] { Key.Number1, Key.Number2, Key.Number3, Key.Number4, Key.Number5, Key.Number6 }
+			)
 		),
-		new(R["KeyboardPage_ControlShiftNumbers"]!, new(Modifier.Control | Modifier.Shift, new[] { Key.Number1, Key.Number2, Key.Number3, Key.Number4 })),
-		new(R["KeyboardPage_ControlBack"]!, new(Modifier.Control, new[] { Key.Number0, Key.Back })),
-		new(R["KeyboardPage_ControlShiftBack"]!, new(Modifier.Control | Modifier.Shift, new[] { Key.Number0, Key.Back })),
-		new(R["KeyboardPage_ControlLeft"]!, new(Modifier.Control, new[] { Key.Left, Key.Right })),
-		new(R["KeyboardPage_ControlUp"]!, new(Modifier.Control, new[] { Key.Up, Key.Down })),
-		new(R["KeyboardPage_ControlShiftLeft"]!, new(Modifier.Control | Modifier.Shift, new[] { Key.Left, Key.Right })),
-		new(R["KeyboardPage_ControlShiftUp"]!, new(Modifier.Control | Modifier.Shift, new[] { Key.Up, Key.Down }))
+		new(
+			R["KeyboardPage_ControlShiftNumbers"]!,
+			new(ModifierKey.Control | ModifierKey.Shift, new[] { Key.Number1, Key.Number2, Key.Number3, Key.Number4 })
+		),
+		new(R["KeyboardPage_ControlBack"]!, new(ModifierKey.Control, new[] { Key.Number0, Key.Back })),
+		new(
+			R["KeyboardPage_ControlShiftBack"]!,
+			new(ModifierKey.Control | ModifierKey.Shift, new[] { Key.Number0, Key.Back })
+		),
+		new(R["KeyboardPage_ControlLeft"]!, new(ModifierKey.Control, new[] { Key.Left, Key.Right })),
+		new(R["KeyboardPage_ControlUp"]!, new(ModifierKey.Control, new[] { Key.Up, Key.Down })),
+		new(
+			R["KeyboardPage_ControlShiftLeft"]!,
+			new(ModifierKey.Control | ModifierKey.Shift, new[] { Key.Left, Key.Right })
+		),
+		new(R["KeyboardPage_ControlShiftUp"]!, new(ModifierKey.Control | ModifierKey.Shift, new[] { Key.Up, Key.Down }))
 	};
 
 
