@@ -176,6 +176,14 @@
             <returns>The title of the info bar.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the severity is not defined.</exception>
         </member>
+        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.GetText(Windows.System.VirtualKeyModifiers,Windows.System.VirtualKey)">
+            <summary>
+            Gets the text from property value <see cref="T:Windows.System.VirtualKey"/> and <see cref="T:Windows.System.VirtualKeyModifiers"/>.
+            </summary>
+            <returns>The string text.</returns>
+            <seealso cref="T:Windows.System.VirtualKey"/>
+            <seealso cref="T:Windows.System.VirtualKeyModifiers"/>
+        </member>
         <member name="M:Sudoku.UI.DataConversion.SimpleConverters.GetDate(System.String)">
             <summary>
             Gets the date value from the raw string.
@@ -197,6 +205,13 @@
             </summary>
             <param name="versionTimelineItem">The version timeline item value.</param>
             <returns>The text block instance.</returns>
+        </member>
+        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.ConvertVirtualKeyToName(Windows.System.VirtualKey)">
+            <summary>
+            Converts the specified virtual VirtualKey into a string representation.
+            </summary>
+            <param name="VirtualKey">The virtual VirtualKey.</param>
+            <returns>The string representation.</returns>
         </member>
         <member name="T:Sudoku.UI.DataConversion.ValueConverters.Int32ToStringConverter">
             <summary>
@@ -1213,6 +1228,56 @@
         </member>
         <member name="T:Sudoku.UI.Models.InfoBarMessages.PlainMessage">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Models.KeyboardKeyHintInfo">
+            <summary>
+            Provides with a keyboard key information that is used for construction for a <see cref="!:KeyboardKeyHint"/> instance.
+            </summary>
+            <param name="KeyNameResourceKey">The resource key that describes the key hint name.</param>
+            <param name="KeyboardPairs">The keyboard pairs. Please see the type <see cref="T:Sudoku.UI.Models.KeyboardPair"/>.</param>
+            <seealso cref="!:KeyboardKeyHint"/>
+            <seealso cref="T:Sudoku.UI.Models.KeyboardPair"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.KeyboardKeyHintInfo.#ctor(System.String,System.Collections.Generic.IList{Sudoku.UI.Models.KeyboardPair})">
+            <summary>
+            Provides with a keyboard key information that is used for construction for a <see cref="!:KeyboardKeyHint"/> instance.
+            </summary>
+            <param name="KeyNameResourceKey">The resource key that describes the key hint name.</param>
+            <param name="KeyboardPairs">The keyboard pairs. Please see the type <see cref="T:Sudoku.UI.Models.KeyboardPair"/>.</param>
+            <seealso cref="!:KeyboardKeyHint"/>
+            <seealso cref="T:Sudoku.UI.Models.KeyboardPair"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.KeyboardKeyHintInfo.KeyNameResourceKey">
+            <summary>The resource key that describes the key hint name.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.KeyboardKeyHintInfo.KeyboardPairs">
+            <summary>The keyboard pairs. Please see the type <see cref="T:Sudoku.UI.Models.KeyboardPair"/>.</summary>
+        </member>
+        <member name="T:Sudoku.UI.Models.KeyboardPair">
+            <summary>
+            Indicates a keyboard pair.
+            </summary>
+            <param name="ModifierKeys">
+            The modifier keys. Use <c><see langword="operator"/> |</c> to combine multiple modifier keys.
+            </param>
+            <param name="VirtualKey">The virtual key.</param>
+        </member>
+        <member name="M:Sudoku.UI.Models.KeyboardPair.#ctor(Windows.System.VirtualKeyModifiers,Windows.System.VirtualKey)">
+            <summary>
+            Indicates a keyboard pair.
+            </summary>
+            <param name="ModifierKeys">
+            The modifier keys. Use <c><see langword="operator"/> |</c> to combine multiple modifier keys.
+            </param>
+            <param name="VirtualKey">The virtual key.</param>
+        </member>
+        <member name="P:Sudoku.UI.Models.KeyboardPair.ModifierKeys">
+            <summary>
+            The modifier keys. Use <c><see langword="operator"/> |</c> to combine multiple modifier keys.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.KeyboardPair.VirtualKey">
+            <summary>The virtual key.</summary>
         </member>
         <member name="T:Sudoku.UI.Models.ManualSolverResultMessage">
             <summary>
@@ -2311,6 +2376,37 @@
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.HomePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Views.Pages.KeyboardPage">
+            <summary>
+            A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Pages.KeyboardPage._data">
+            <summary>
+            The keyboard data.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.KeyboardPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Views.Pages.KeyboardPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.KeyboardPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.KeyboardPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.KeyboardPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

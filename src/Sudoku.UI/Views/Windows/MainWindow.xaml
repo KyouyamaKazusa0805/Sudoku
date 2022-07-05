@@ -59,6 +59,7 @@
 				<NavigationViewItem Icon="ViewAll" Tag="SudokuPage" Content="{StaticResource HomePage_PlayingAndAnalyzing}" />
 			</NavigationView.MenuItems>
 			<NavigationView.FooterMenuItems>
+				<NavigationViewItem Icon="Keyboard" Tag="KeyboardPage" Content="{StaticResource HomePage_Keyboard}" />
 				<NavigationViewItem Icon="Setting" Tag="SettingsPage" Content="{StaticResource HomePage_Settings}" />
 				<NavigationViewItem Icon="People" Tag="AboutPage" Content="{StaticResource HomePage_About}" />
 			</NavigationView.FooterMenuItems>

@@ -6,6 +6,7 @@
 	<!--页面数据-->
 	<x:String x:Key="HomePage_PlayingAndAnalyzing">题目分析</x:String>
 	<x:String x:Key="HomePage_Sudoku">数独</x:String>
+	<x:String x:Key="HomePage_Keyboard">快捷键</x:String>
 	<x:String x:Key="HomePage_Settings">设置</x:String>
 	<x:String x:Key="HomePage_About">关于</x:String>
 	<x:String x:Key="HomePage_Home">起始页</x:String>
@@ -154,6 +155,27 @@
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">文件“</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed2">”备份失败。</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed_ParseFailed">文件解析失败。</x:String>
+	<x:String x:Key="KeyboardPage_DetailDescription">该页面列举的是该程序使用的一些快捷按键组合，用于参考。</x:String>
+	<x:String x:Key="KeyboardPage_ControlO">读取本地的数独文件</x:String>
+	<x:String x:Key="KeyboardPage_ControlS">将当前题目保存到本地</x:String>
+	<x:String x:Key="KeyboardPage_ControlC">将当前题目的文本保存到剪切板</x:String>
+	<x:String x:Key="KeyboardPage_ControlV">从剪切板的数独代码粘贴进来</x:String>
+	<x:String x:Key="KeyboardPage_ControlTab">将题目的填入数固定为提示数</x:String>
+	<x:String x:Key="KeyboardPage_ControlShiftTab">将题目的提示数解除固定为填入数状态</x:String>
+	<x:String x:Key="KeyboardPage_ControlZ">撤销一个步骤，将步骤还原到上一个步骤的状态</x:String>
+	<x:String x:Key="KeyboardPage_ControlY">还原一个步骤，将当前步骤恢复为刚才撤销之前的状态</x:String>
+	<x:String x:Key="KeyboardPage_ControlH">生成一个数独题目</x:String>
+	<x:String x:Key="KeyboardPage_Number0">将当前单元格恢复为空格</x:String>
+	<x:String x:Key="KeyboardPage_OtherNumbers">往当前单元格填入数字</x:String>
+	<x:String x:Key="KeyboardPage_ShiftOtherNumbers">删除当前候选数</x:String>
+	<x:String x:Key="KeyboardPage_ControlNumbers">往当前单元格添加一个形状</x:String>
+	<x:String x:Key="KeyboardPage_ControlShiftNumbers">往当前候选数添加一个形状</x:String>
+	<x:String x:Key="KeyboardPage_ControlBack">将当前单元格的形状删除</x:String>
+	<x:String x:Key="KeyboardPage_ControlShiftBack">将当前候选数的形状删除</x:String>
+	<x:String x:Key="KeyboardPage_ControlLeft">扩散当前单元格的形状到整行的其它格子</x:String>
+	<x:String x:Key="KeyboardPage_ControlUp">扩散当前单元格的形状到整列的其它格子</x:String>
+	<x:String x:Key="KeyboardPage_ControlShiftLeft">扩散当前候选数的形状到整行的其它格子</x:String>
+	<x:String x:Key="KeyboardPage_ControlShiftUp">扩散当前候选数的形状到整列的其它格子</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>

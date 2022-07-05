@@ -83,6 +83,33 @@ internal static class SimpleConverters
 	public static string ToRgbString(Color color) => $"{color.R}, {color.G}, {color.B}";
 
 	/// <summary>
+	/// Gets the text from property value <see cref="VirtualKey"/> and <see cref="VirtualKeyModifiers"/>.
+	/// </summary>
+	/// <returns>The string text.</returns>
+	/// <seealso cref="VirtualKey"/>
+	/// <seealso cref="VirtualKeyModifiers"/>
+	public static unsafe string GetText(VirtualKeyModifiers modifiers, VirtualKey VirtualKey)
+	{
+		switch (modifiers)
+		{
+			case VirtualKeyModifiers.None:
+			{
+				return ConvertVirtualKeyToName(VirtualKey);
+			}
+			case var mods:
+			{
+				var sb = new StringHandler();
+				sb.AppendRangeUnsafe(mods, &f);
+
+				return $"{sb.ToStringAndClear()} + {ConvertVirtualKeyToName(VirtualKey)}";
+			}
+
+
+			static string f(VirtualKeyModifiers mod) => mod == VirtualKeyModifiers.Menu ? "Alt" : mod.ToString();
+		}
+	}
+
+	/// <summary>
 	/// Gets the date value from the raw string.
 	/// </summary>
 	/// <param name="dateRawString">The date raw string.</param>
@@ -128,4 +155,18 @@ internal static class SimpleConverters
 
 	public static IList<string> GetFontNames()
 		=> (from fontName in CanvasTextFormat.GetSystemFontFamilies() orderby fontName select fontName).ToList();
+
+	/// <summary>
+	/// Converts the specified virtual VirtualKey into a string representation.
+	/// </summary>
+	/// <param name="VirtualKey">The virtual VirtualKey.</param>
+	/// <returns>The string representation.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static string ConvertVirtualKeyToName(VirtualKey VirtualKey)
+		=> VirtualKey switch
+		{
+			>= VirtualKey.Number0 and <= VirtualKey.Number9 => (VirtualKey - VirtualKey.Number0).ToString(),
+			>= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9 => (VirtualKey - VirtualKey.NumberPad0).ToString(),
+			_ => VirtualKey.ToString()
+		};
 }

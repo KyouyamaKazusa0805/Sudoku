@@ -20,4 +20,25 @@ public static class StringHandlerExtensions
 			@this.Append(value);
 		}
 	}
+
+	/// <summary>
+	/// Append a serial of strings converted from a serial of elements.
+	/// </summary>
+	/// <typeparam name="TEnum">The type of each element.</typeparam>
+	/// <param name="this">The handler.</param>
+	/// <param name="enumFlags">The list of enumeration flags.</param>
+	/// <param name="converter">
+	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
+	/// whose the rule is defined as a method specified as the function pointer as this argument.
+	/// </param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static unsafe void AppendRangeUnsafe<TEnum>(
+		this ref StringHandler @this, TEnum enumFlags, delegate*<TEnum, string> converter)
+		where TEnum : unmanaged, Enum
+	{
+		foreach (var enumFlag in enumFlags)
+		{
+			@this.Append(converter(enumFlag));
+		}
+	}
 }
