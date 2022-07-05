@@ -18,8 +18,7 @@ public sealed partial class SettingsPage : Page
 	/// </summary>
 	private void OpenConfigFolder()
 	{
-		string baseFolder = Environment.GetFolderPath(EnvironmentFolders.MyDocuments);
-		string folderName = $@"{baseFolder}\{Program.ProgramName}";
+		string folderName = $@"{Environment.GetFolderPath(EnvironmentFolders.MyDocuments)}\{Program.ProgramName}";
 		if (!SioDirectory.Exists(folderName))
 		{
 			SimpleControlFactory.CreateErrorDialog(this, R["ErrorOpenFile"]!, R["ErrorOpenFile_Detail"]!);
@@ -27,7 +26,14 @@ public sealed partial class SettingsPage : Page
 			return;
 		}
 
-		Process.Start("explorer.exe", folderName);
+		try
+		{
+			Process.Start("explorer.exe", folderName);
+		}
+		catch (Exception ex) when (ex is InvalidOperationException or Win32Exception or FileNotFoundException)
+		{
+			SimpleControlFactory.CreateErrorDialog(this, R["ErrorOpenFile"]!, ex.Message);
+		}
 	}
 
 	/// <summary>
