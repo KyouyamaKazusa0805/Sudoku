@@ -154,6 +154,7 @@
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption2Content">Display peer cells</x:String>
 	<x:String x:Key="SettingsPage_SavePreferenceDescription">All options are saved instantly, but some options will be enabled after being restarted the program.</x:String>
 	<x:String x:Key="SettingsPage_BackupPreference">Backup to local</x:String>
+	<x:String x:Key="SettingsPage_OpenPreferenceFolder">Open preference folder</x:String>
 	<x:String x:Key="SettingsPage_LoadLocalBackupPreference">Load from local</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">File "</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed2">" is failed to backup.</x:String>
@@ -256,6 +257,8 @@
 	<x:String x:Key="Info">Info</x:String>
 	<x:String x:Key="Sudoku">Sudoku</x:String>
 	<x:String x:Key="PreferenceBackup">Preference backup</x:String>
+	<x:String x:Key="ErrorOpenFile">Error on opening folder</x:String>
+	<x:String x:Key="ErrorOpenFile_Detail">The preference folder doesn't exist.</x:String>
 	<x:String x:Key="PrintSuccessful">Print successful.</x:String>
 	<x:String x:Key="PrintFailed">Print failed.</x:String>
 	<x:String x:Key="PrintFailedTitle">Printing Failure</x:String>

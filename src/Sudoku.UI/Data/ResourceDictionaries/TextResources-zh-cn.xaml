@@ -151,6 +151,7 @@
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption2Content">显示聚焦单元格及相关单元格</x:String>
 	<x:String x:Key="SettingsPage_SavePreferenceDescription">所有设置都是即时保存，不过有些设置项可能需要重启程序才会生效。</x:String>
 	<x:String x:Key="SettingsPage_BackupPreference">备份配置项</x:String>
+	<x:String x:Key="SettingsPage_OpenPreferenceFolder">打开配置项的文件夹</x:String>
 	<x:String x:Key="SettingsPage_LoadLocalBackupPreference">读取配置项</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">文件“</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed2">”备份失败。</x:String>
@@ -250,6 +251,8 @@
 	<x:String x:Key="Info">提示信息</x:String>
 	<x:String x:Key="Sudoku">数独</x:String>
 	<x:String x:Key="PreferenceBackup">设置项备份</x:String>
+	<x:String x:Key="ErrorOpenFile">打开文件夹失败</x:String>
+	<x:String x:Key="ErrorOpenFile_Detail">配置文件夹不存在。</x:String>
 	<x:String x:Key="PrintSuccessful">打印成功！</x:String>
 	<x:String x:Key="PrintFailed">打印失败。</x:String>
 	<x:String x:Key="PrintFailedTitle">打印失败</x:String>

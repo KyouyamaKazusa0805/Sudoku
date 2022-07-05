@@ -14,6 +14,23 @@ public sealed partial class SettingsPage : Page
 
 
 	/// <summary>
+	/// To open the folder which stores the preference file.
+	/// </summary>
+	private void OpenConfigFolder()
+	{
+		string baseFolder = Environment.GetFolderPath(EnvironmentFolders.MyDocuments);
+		string folderName = $@"{baseFolder}\{Program.ProgramName}";
+		if (!SioDirectory.Exists(folderName))
+		{
+			SimpleControlFactory.CreateErrorDialog(this, R["ErrorOpenFile"]!, R["ErrorOpenFile_Detail"]!);
+
+			return;
+		}
+
+		Process.Start("explorer.exe", folderName);
+	}
+
+	/// <summary>
 	/// To backup a preference file.
 	/// </summary>
 	/// <returns>The task that handles the current operation.</returns>
@@ -99,6 +116,13 @@ public sealed partial class SettingsPage : Page
 		}
 	}
 
+
+	/// <summary>
+	/// Triggers when the "open preference folder" button is clicked.
+	/// </summary>
+	/// <param name="sender">The object triggering the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void OpenPreferenceFolder_Click(object sender, RoutedEventArgs e) => OpenConfigFolder();
 
 	/// <summary>
 	/// Triggers when the "backup preference" button is clicked.
