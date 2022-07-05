@@ -1237,26 +1237,24 @@
         </member>
         <member name="T:Sudoku.UI.Models.KeyboardKeyHintInfo">
             <summary>
-            Provides with a keyboard key information that is used for construction for a <see cref="!:KeyboardKeyHint"/> instance.
+            Provides with a keyboard key information that is used for construction for an instance.
             </summary>
-            <param name="KeyNameResourceKey">The resource key that describes the key hint name.</param>
-            <param name="KeyboardPairs">The keyboard pairs. Please see the type <see cref="T:Sudoku.UI.Models.KeyboardPair"/>.</param>
-            <seealso cref="!:KeyboardKeyHint"/>
+            <param name="KeyName">The key hint name.</param>
+            <param name="KeyboardPair">The keyboard pairs. Please see the type <see cref="T:Sudoku.UI.Models.KeyboardPair"/>.</param>
             <seealso cref="T:Sudoku.UI.Models.KeyboardPair"/>
         </member>
-        <member name="M:Sudoku.UI.Models.KeyboardKeyHintInfo.#ctor(System.String,System.Collections.Generic.IList{Sudoku.UI.Models.KeyboardPair})">
+        <member name="M:Sudoku.UI.Models.KeyboardKeyHintInfo.#ctor(System.String,Sudoku.UI.Models.KeyboardPair)">
             <summary>
-            Provides with a keyboard key information that is used for construction for a <see cref="!:KeyboardKeyHint"/> instance.
+            Provides with a keyboard key information that is used for construction for an instance.
             </summary>
-            <param name="KeyNameResourceKey">The resource key that describes the key hint name.</param>
-            <param name="KeyboardPairs">The keyboard pairs. Please see the type <see cref="T:Sudoku.UI.Models.KeyboardPair"/>.</param>
-            <seealso cref="!:KeyboardKeyHint"/>
+            <param name="KeyName">The key hint name.</param>
+            <param name="KeyboardPair">The keyboard pairs. Please see the type <see cref="T:Sudoku.UI.Models.KeyboardPair"/>.</param>
             <seealso cref="T:Sudoku.UI.Models.KeyboardPair"/>
         </member>
-        <member name="P:Sudoku.UI.Models.KeyboardKeyHintInfo.KeyNameResourceKey">
-            <summary>The resource key that describes the key hint name.</summary>
+        <member name="P:Sudoku.UI.Models.KeyboardKeyHintInfo.KeyName">
+            <summary>The key hint name.</summary>
         </member>
-        <member name="P:Sudoku.UI.Models.KeyboardKeyHintInfo.KeyboardPairs">
+        <member name="P:Sudoku.UI.Models.KeyboardKeyHintInfo.KeyboardPair">
             <summary>The keyboard pairs. Please see the type <see cref="T:Sudoku.UI.Models.KeyboardPair"/>.</summary>
         </member>
         <member name="T:Sudoku.UI.Models.KeyboardPair">
