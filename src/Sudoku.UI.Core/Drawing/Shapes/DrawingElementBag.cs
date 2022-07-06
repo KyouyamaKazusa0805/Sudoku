@@ -10,6 +10,11 @@ internal sealed partial class DrawingElementBag :
 	IReadOnlyList<DrawingElement>
 {
 	/// <summary>
+	/// Indicates the capacity value.
+	/// </summary>
+	private uint _capacity;
+
+	/// <summary>
 	/// <para>Defines the inner elements.</para>
 	/// <para>
 	/// The reference of the current field may be modified if adding a new element into it
@@ -17,11 +22,6 @@ internal sealed partial class DrawingElementBag :
 	/// </para>
 	/// </summary>
 	private DrawingElement[] _elements;
-
-	/// <summary>
-	/// Indicates the capacity value.
-	/// </summary>
-	private uint _capacity;
 
 
 	/// <summary>
