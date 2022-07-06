@@ -636,6 +636,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.TypeIdentifier">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
@@ -719,6 +724,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.TypeIdentifier">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
@@ -796,6 +806,11 @@
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.TypeIdentifier">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
@@ -1026,6 +1041,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.TypeIdentifier">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
@@ -1117,6 +1137,11 @@
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.TypeIdentifier">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
@@ -2881,12 +2906,12 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeThickness"/> with the specified value.
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE1BE1E4B8">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE1BE1E4B8.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3052,12 +3077,12 @@
             <param name="this">The modifier key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DEB02BB238">
+        <member name="T:Windows.Foundation.Point_DEF353AC3E">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEB02BB238.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEF353AC3E.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

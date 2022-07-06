@@ -6,7 +6,7 @@
 	xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
 	IgnorableNamespaces="uap rescap">
 
-	<Identity Name="08e8d82e-98c7-4980-a875-2ef1d8abac22" Publisher="CN=Sunnie" Version="0.11.0.0" />
+	<Identity Name="08e8d82e-98c7-4980-a875-2ef1d8abac22" Publisher="CN=Sunnie" Version="0.12.0.0" />
 
 	<Properties>
 		<DisplayName>Sudoku Studio</DisplayName>
