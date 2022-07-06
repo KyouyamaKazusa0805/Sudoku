@@ -2615,6 +2615,11 @@
         <member name="P:Sudoku.UI.Input.ModifierKeyDownData.AltIsDown">
             <summary>Indicates whether the <see cref="F:Windows.System.VirtualKey.Menu"/> key is pressed down.</summary>
         </member>
+        <member name="F:Sudoku.UI.Input.ModifierKeyDownData.SyncRoot">
+            <summary>
+            Indicates the sync root.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Input.ModifierKeyDownData.FromCurrentState">
             <summary>
             Creates a <see cref="T:Sudoku.UI.Input.ModifierKeyDownData"/> instance from the current state.

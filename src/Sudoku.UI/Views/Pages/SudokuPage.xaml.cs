@@ -63,19 +63,19 @@ public sealed partial class SudokuPage : Page
 		void routeHandler(KeyRoutedEventArgs e)
 		{
 			(
-				(VirtualKey.Control.ModifierKeyIsDown(), VirtualKey.Shift.ModifierKeyIsDown()) switch
+				ModifierKeyDownData.FromCurrentState() switch
 				{
-					(true, true) => e.Key switch { VirtualKey.Tab => FixGrid, _ => default },
-					(true, _) => e.Key switch
+					(true, true, false) => e.Key switch { Key.Tab => FixGrid, _ => default },
+					(true, _, false) => e.Key switch
 					{
-						VirtualKey.O when EnsureUnsnapped() => async () => await OpenFileAsync(),
-						VirtualKey.S when EnsureUnsnapped() => async () => await SaveFileAsync(),
-						VirtualKey.C => CopySudokuCode,
-						VirtualKey.V => async () => await PasteAsync(),
-						VirtualKey.Tab => FixGrid,
-						VirtualKey.Z => Undo,
-						VirtualKey.Y => Redo,
-						VirtualKey.H => () => GenerateAsync(_cButtonGenerate),
+						Key.O when EnsureUnsnapped() => async () => await OpenFileAsync(),
+						Key.S when EnsureUnsnapped() => async () => await SaveFileAsync(),
+						Key.C => CopySudokuCode,
+						Key.V => async () => await PasteAsync(),
+						Key.Tab => FixGrid,
+						Key.Z => Undo,
+						Key.Y => Redo,
+						Key.H => () => GenerateAsync(_cButtonGenerate),
 						_ => default
 					},
 					_ => default(Action?)

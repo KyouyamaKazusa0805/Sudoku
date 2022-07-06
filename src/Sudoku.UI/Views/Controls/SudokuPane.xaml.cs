@@ -463,66 +463,66 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		var pressedData = ModifierKeyDownData.FromCurrentState();
 		switch (e.Key)
 		{
-			case var key and (>= VirtualKey.Number0 and <= VirtualKey.Number9 or VirtualKey.Back):
+			case var key and (>= Key.Number0 and <= Key.Number9 or Key.Back):
 			{
-				int digit = key - VirtualKey.Number0 - 1;
+				int digit = key - Key.Number0 - 1;
 				switch (pressedData)
 				{
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 					case (true, true, false): // Control + Shift.
 					{
-						d(_candidate, key == VirtualKey.Back ? 0 : key - VirtualKey.Number0);
+						d(_candidate, key == Key.Back ? 0 : key - Key.Number0);
 						break;
 					}
 #endif
 #if AUTHOR_FEATURE_CELL_MARKS
 					case (true, false, false): // Control.
 					{
-						c(_cell, key == VirtualKey.Back ? -1 : digit);
+						c(_cell, key == Key.Back ? -1 : digit);
 						break;
 					}
 #endif
-					case (false, true, false) when key != VirtualKey.Back: // Shift.
+					case (false, true, false) when key != Key.Back: // Shift.
 					{
 						EliminateDigit(_cell, digit);
 						break;
 					}
 					case (false, false, false):
 					{
-						MakeDigit(_cell, key == VirtualKey.Back ? -1 : digit);
+						MakeDigit(_cell, key == Key.Back ? -1 : digit);
 						break;
 					}
 				}
 
 				break;
 			}
-			case var key and (>= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9 or VirtualKey.Back):
+			case var key and (>= Key.NumberPad0 and <= Key.NumberPad9 or Key.Back):
 			{
-				int digit = key - VirtualKey.NumberPad0 - 1;
+				int digit = key - Key.NumberPad0 - 1;
 				switch (pressedData)
 				{
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 					case (true, true, false): // Control + Shift.
 					{
-						d(_candidate, key == VirtualKey.Back ? 0 : key - VirtualKey.NumberPad0);
+						d(_candidate, key == Key.Back ? 0 : key - Key.NumberPad0);
 						break;
 					}
 #endif
 #if AUTHOR_FEATURE_CELL_MARKS
 					case (true, false, false): // Control.
 					{
-						c(_cell, key == VirtualKey.Back ? -1 : digit);
+						c(_cell, key == Key.Back ? -1 : digit);
 						break;
 					}
 #endif
-					case (false, true, false) when key != VirtualKey.Back: // Shift.
+					case (false, true, false) when key != Key.Back: // Shift.
 					{
 						EliminateDigit(_cell, digit);
 						break;
 					}
 					case (false, false, false):
 					{
-						MakeDigit(_cell, key == VirtualKey.Back ? -1 : digit);
+						MakeDigit(_cell, key == Key.Back ? -1 : digit);
 						break;
 					}
 				}
@@ -530,14 +530,14 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				break;
 			}
 #if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-			case var key and (VirtualKey.Up or VirtualKey.Down or VirtualKey.Left or VirtualKey.Right):
+			case var key and (Key.Up or Key.Down or Key.Left or Key.Right):
 			{
 				switch (pressedData)
 				{
 #if AUTHOR_FEATURE_CANDIDATE_MARKS
 					case (true, true, false): // Control + Shift.
 					{
-						var houseType = key is VirtualKey.Up or VirtualKey.Down ? HouseType.Column : HouseType.Row;
+						var houseType = key is Key.Up or Key.Down ? HouseType.Column : HouseType.Row;
 						DiffuseCandidateMark(_candidate / 9, _candidate % 9, houseType);
 
 						break;
@@ -546,7 +546,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #if AUTHOR_FEATURE_CELL_MARKS
 					case (true, false, false): // Control.
 					{
-						var houseType = key is VirtualKey.Up or VirtualKey.Down ? HouseType.Column : HouseType.Row;
+						var houseType = key is Key.Up or Key.Down ? HouseType.Column : HouseType.Row;
 						DiffuseCellMark(_cell, houseType);
 
 						break;

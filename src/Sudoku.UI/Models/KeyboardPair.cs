@@ -7,7 +7,7 @@
 /// The modifier keys. Use <c><see langword="operator"/> |</c> to combine multiple modifier keys.
 /// </param>
 /// <param name="VirtualKeys">The virtual keys.</param>
-internal readonly record struct KeyboardPair(VirtualKeyModifiers ModifierKeys, VirtualKey[] VirtualKeys) :
+internal readonly record struct KeyboardPair(ModifierKey ModifierKeys, Key[] VirtualKeys) :
 	IEquatable<KeyboardPair>,
 	IEqualityOperators<KeyboardPair, KeyboardPair>
 {
@@ -17,8 +17,7 @@ internal readonly record struct KeyboardPair(VirtualKeyModifiers ModifierKeys, V
 	/// <param name="modifierKeys">The modifier keys.</param>
 	/// <param name="virtualKey">The virtual key.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public KeyboardPair(VirtualKeyModifiers modifierKeys, VirtualKey virtualKey) :
-		this(modifierKeys, new[] { virtualKey })
+	public KeyboardPair(ModifierKey modifierKeys, Key virtualKey) : this(modifierKeys, new[] { virtualKey })
 	{
 	}
 }

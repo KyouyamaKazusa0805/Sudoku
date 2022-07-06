@@ -46,3 +46,4 @@ global using Grid = Sudoku.Concepts.Collections.Grid;
 global using Point = Windows.Foundation.Point;
 global using WinsysDispatcherQueue = Windows.System.DispatcherQueue;
 global using WinsysDispatcherQueueController = Windows.System.DispatcherQueueController;
+global using Key = Windows.System.VirtualKey;
