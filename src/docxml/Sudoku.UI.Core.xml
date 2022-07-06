@@ -596,6 +596,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.TypeIdentifier">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
@@ -679,6 +684,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.TypeIdentifier">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
@@ -756,6 +766,11 @@
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.TypeIdentifier">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
@@ -986,6 +1001,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.TypeIdentifier">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
@@ -1077,6 +1097,11 @@
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.TypeIdentifier">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>

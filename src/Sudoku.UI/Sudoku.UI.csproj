@@ -7,7 +7,6 @@
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
 		<WindowsSdkPackageVersion>10.0.22000.24</WindowsSdkPackageVersion>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
-		<Platforms>x86;x64;arm64</Platforms>
 		<PublishProfile>win10-$(Platform).pubxml</PublishProfile>
 		<UseWinUI>true</UseWinUI>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
@@ -32,13 +31,7 @@
 		<AppInstallerUri>C:\Apps</AppInstallerUri>
 		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 		<AppxBundlePlatforms>x64</AppxBundlePlatforms>
-	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
-		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<!--Extra configuration on unpackaged application configuration-->
 		<!--
 		Here is a potential bug that crashes the application in unpackaged application. In release mode,
@@ -51,7 +44,10 @@
 		    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 		Please see the reply https://github.com/microsoft/WindowsAppSDK/issues/1762#issuecomment-975997978
 		The first tag 'RuntimeIdentifier' can be of value 'win-x64' or 'win10-x64'. Today WinUI doesn't support 'AnyCPU'.
+		In addition, you can use the following configuration to enable the x86 platform:
+			<RuntimeIdentifiers>win10-x64;win10-x86</RuntimeIdentifiers>
 		-->
+		<Platforms>x86;x64</Platforms>
 		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
 		<SelfContained>true</SelfContained>
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>

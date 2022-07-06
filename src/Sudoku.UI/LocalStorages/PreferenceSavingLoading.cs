@@ -51,7 +51,18 @@ internal static class PreferenceSavingLoading
 	{
 		try
 		{
-			string content = await SioFile.ReadAllTextAsync($"""{StorageFolder}\{GlobalConfigFileName}""");
+			if (!SioDirectory.Exists(StorageFolder))
+			{
+				return null;
+			}
+
+			string path = $"""{StorageFolder}\{GlobalConfigFileName}""";
+			if (!SioFile.Exists(path))
+			{
+				return null;
+			}
+
+			string content = await SioFile.ReadAllTextAsync(path);
 			return string.IsNullOrWhiteSpace(content)
 				? null
 				: JsonSerializer.Deserialize<Preference>(content, CommonSerializerOptions.CamelCasing);
