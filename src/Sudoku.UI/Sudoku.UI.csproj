@@ -8,7 +8,6 @@
 		<WindowsSdkPackageVersion>10.0.22000.24</WindowsSdkPackageVersion>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Platforms>x86;x64;arm64</Platforms>
-		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
 		<PublishProfile>win10-$(Platform).pubxml</PublishProfile>
 		<UseWinUI>true</UseWinUI>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
@@ -18,7 +17,7 @@
 		<DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
 		<DefineConstants>DISABLE_XAML_GENERATED_MAIN;AUTHOR_FEATURE_CELL_MARKS;AUTHOR_FEATURE_CANDIDATE_MARKS</DefineConstants>
 
-		<!--Repository configurations-->
+		<!--Repository information-->
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/SunnieShine/Sudoku</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -26,16 +25,36 @@
 		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
 		<Description>The solution that plays with the sudoku.</Description>
 		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
-		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-		<PackageCertificateThumbprint>0B3F4278445C22139788C5BAAF7F423533A1A710</PackageCertificateThumbprint>
-		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
 		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
 		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
 		<GenerateTestArtifacts>True</GenerateTestArtifacts>
 		<AppxBundle>Always</AppxBundle>
-		<AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
 		<AppInstallerUri>C:\Apps</AppInstallerUri>
 		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+		<AppxBundlePlatforms>x64</AppxBundlePlatforms>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<!--Extra configuration on unpackaged application configuration-->
+		<!--
+		Here is a potential bug that crashes the application in unpackaged application. In release mode,
+		it seems that the method 'XamlCheckProcessRequirements' will be invalid due to not found. See links:
+		    https://github.com/microsoft/WindowsAppSDK/issues/1762
+		    https://github.com/microsoft/WindowsAppSDK/issues/2443
+		The temporary solution is to configure the following properties in the current file:
+		    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		    <SelfContained>true</SelfContained>
+		    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+		Please see the reply https://github.com/microsoft/WindowsAppSDK/issues/1762#issuecomment-975997978
+		The first tag 'RuntimeIdentifier' can be of value 'win-x64' or 'win10-x64'. Today WinUI doesn't support 'AnyCPU'.
+		-->
+		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+		<SelfContained>true</SelfContained>
+		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -46,22 +65,54 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Assets\images\getting-started-1.png" />
-		<EmbeddedResource Include="Assets\images\getting-started-2.png" />
-		<EmbeddedResource Include="Assets\images\getting-started-3.png" />
-		<EmbeddedResource Include="Assets\images\logo.png" />
-		<EmbeddedResource Include="Assets\images\icon-config-backup-file.png" />
-		<EmbeddedResource Include="Assets\images\icon-drawing-file.png" />
-		<EmbeddedResource Include="Assets\images\icon-grid-file.png" />
-		<EmbeddedResource Include="Assets\images\icon-miscellenous-file.png" />
-		<EmbeddedResource Include="Assets\images\icon-text-file.png" />
-		<EmbeddedResource Include="Assets\images\zh-CN\icon-config-backup-file.png" />
-		<EmbeddedResource Include="Assets\images\zh-CN\icon-drawing-file.png" />
-		<EmbeddedResource Include="Assets\images\zh-CN\icon-grid-file.png" />
-		<EmbeddedResource Include="Assets\images\zh-CN\icon-miscellenous-file.png" />
-		<EmbeddedResource Include="Assets\images\zh-CN\icon-text-file.png" />
-		<EmbeddedResource Include="Assets\images\home-page-banner.png" />
-		<EmbeddedResource Include="Assets\Logo.ico" />
+		<EmbeddedResource Include="Assets\images\getting-started-1.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\getting-started-2.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\getting-started-3.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\logo.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\icon-config-backup-file.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\icon-drawing-file.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\icon-grid-file.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\icon-miscellenous-file.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\icon-text-file.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\zh-CN\icon-config-backup-file.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\zh-CN\icon-drawing-file.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\zh-CN\icon-grid-file.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\zh-CN\icon-miscellenous-file.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\zh-CN\icon-text-file.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\home-page-banner.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\Logo.ico">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>

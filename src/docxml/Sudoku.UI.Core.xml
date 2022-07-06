@@ -596,11 +596,6 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.TypeIdentifier">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.DebuggerDisplayView">
-            <summary>
-            Defines the debugger view.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
@@ -684,11 +679,6 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.TypeIdentifier">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.DebuggerDisplayView">
-            <summary>
-            Defines the debugger view.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
@@ -766,11 +756,6 @@
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.TypeIdentifier">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.DebuggerDisplayView">
-            <summary>
-            Defines the debugger view.
-            </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
@@ -1001,11 +986,6 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.TypeIdentifier">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.DebuggerDisplayView">
-            <summary>
-            Defines the debugger view.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
@@ -1097,11 +1077,6 @@
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.TypeIdentifier">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.DebuggerDisplayView">
-            <summary>
-            Defines the debugger view.
-            </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
@@ -1284,6 +1259,11 @@
             Defines a custom collection that stores the <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>s.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag._capacity">
+            <summary>
+            Indicates the capacity value.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag._elements">
             <summary>
             <para>Defines the inner elements.</para>
@@ -1291,11 +1271,6 @@
             The reference of the current field may be modified if adding a new element into it
             but it being already full.
             </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag._capacity">
-            <summary>
-            Indicates the capacity value.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.#ctor">

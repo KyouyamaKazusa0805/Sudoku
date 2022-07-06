@@ -19,16 +19,17 @@ public static class Program
 	private static void Main(string[] args)
 	{
 		checkProcessRequirements();
+
 		ComWrappersSupport.InitializeComWrappers();
-		Application.Start(callback);
+		Application.Start(
+			static delegate
+			{
+				var context = new DispatcherQueueSynchronizationContext(MsDispatcherQueue.GetForCurrentThread());
+				SynchronizationContext.SetSynchronizationContext(context);
+				_ = new App();
+			}
+		);
 
-
-		static void callback(ApplicationInitializationCallbackParams p)
-		{
-			var context = new DispatcherQueueSynchronizationContext(MsDispatcherQueue.GetForCurrentThread());
-			SynchronizationContext.SetSynchronizationContext(context);
-			_ = new App();
-		}
 
 		[DllImport("Microsoft.ui.xaml", EntryPoint = "XamlCheckProcessRequirements")]
 		static extern void checkProcessRequirements();
