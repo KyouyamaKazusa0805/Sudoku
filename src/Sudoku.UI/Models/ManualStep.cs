@@ -14,4 +14,18 @@ public sealed class ManualStep
 	/// Indicates the step.
 	/// </summary>
 	public required Step Step { get; set; }
+
+
+	/// <summary>
+	/// Gets the display string value that can describe the main information of the current step.
+	/// </summary>
+	/// <returns>The string value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToDisplayString()
+	{
+		string openBrace = R["Token_OpenBrace"]!;
+		string diffStr = R["DifficultyRating"]!;
+		string closedBrace = R["Token_ClosedBrace"]!;
+		return $"{openBrace}{diffStr} {Step.Difficulty:0.0}{closedBrace} {Step.ToSimpleString()}";
+	}
 }

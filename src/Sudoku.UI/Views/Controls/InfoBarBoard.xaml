@@ -138,7 +138,7 @@
 													<ListView.ItemTemplate>
 														<DataTemplate x:DataType="m:ManualStep">
 															<ListViewItem
-																Content="{x:Bind Step.ToSimpleString()}"
+																Content="{x:Bind ToDisplayString()}"
 																Background="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(Step.DifficultyLevel)}"
 																Foreground="{x:Bind data:SimpleConverters.DifficultyLevelToForeground(Step.DifficultyLevel)}" />
 														</DataTemplate>

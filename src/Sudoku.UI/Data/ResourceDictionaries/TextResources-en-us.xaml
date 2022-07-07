@@ -258,6 +258,7 @@
 	<x:String x:Key="Info">Info</x:String>
 	<x:String x:Key="Sudoku">Sudoku</x:String>
 	<x:String x:Key="PreferenceBackup">Preference backup</x:String>
+	<x:String x:Key="DifficultyRating">Difficulty</x:String>
 	<x:String x:Key="ErrorOpenFile">Error on opening folder</x:String>
 	<x:String x:Key="ErrorOpenFile_Detail">The preference folder doesn't exist.</x:String>
 	<x:String x:Key="PrintSuccessful">Print successful.</x:String>

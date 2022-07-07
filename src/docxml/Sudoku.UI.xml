@@ -1317,6 +1317,12 @@
             Indicates the step.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Models.ManualStep.ToDisplayString">
+            <summary>
+            Gets the display string value that can describe the main information of the current step.
+            </summary>
+            <returns>The string value.</returns>
+        </member>
         <member name="T:Sudoku.UI.Models.ManualStepCollection">
             <summary>
             Provides with a list of manual steps.

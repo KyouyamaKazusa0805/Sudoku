@@ -254,6 +254,7 @@
 	<x:String x:Key="PreferenceBackup">设置项备份</x:String>
 	<x:String x:Key="ErrorOpenFile">打开文件夹失败</x:String>
 	<x:String x:Key="ErrorOpenFile_Detail">配置文件夹不存在。</x:String>
+	<x:String x:Key="DifficultyRating">难度系数</x:String>
 	<x:String x:Key="PrintSuccessful">打印成功！</x:String>
 	<x:String x:Key="PrintFailed">打印失败。</x:String>
 	<x:String x:Key="PrintFailedTitle">打印失败</x:String>
