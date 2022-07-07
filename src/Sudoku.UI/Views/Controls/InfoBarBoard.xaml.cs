@@ -113,6 +113,9 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 	/// <param name="args">The event arguments provided.</param>
 	private void InfoBar_CloseButtonClick(InfoBar sender, object args)
 	{
+		// Property 'InfoBar.Tag' is special here: The property stores the base message model instance.
+		// If we click the close button, the item should also be removed from the list '_list'.
+		// Therefore, we should records the model instance here in order to get it, and then remove it.
 		if (sender.Tag is not InfoBarMessage message)
 		{
 			return;
