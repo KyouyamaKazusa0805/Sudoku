@@ -131,4 +131,19 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
 	private void UserControl_Loaded(object sender, RoutedEventArgs e) => _list.CollectionChanged += CollectionChanged;
+
+	/// <summary>
+	/// Triggers when the close button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="args">The event arguments provided.</param>
+	private void InfoBar_CloseButtonClick(InfoBar sender, object args)
+	{
+		if (sender.Tag is not InfoBarMessage message)
+		{
+			return;
+		}
+
+		_list.Remove(message);
+	}
 }

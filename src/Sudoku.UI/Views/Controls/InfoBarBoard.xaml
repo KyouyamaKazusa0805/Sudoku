@@ -20,7 +20,8 @@
 							<InfoBar
 								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
-								IsIconVisible="True" IsOpen="True" IsClosable="True" />
+								IsIconVisible="True" IsOpen="True" IsClosable="True" Tag="{x:Bind}"
+								CloseButtonClick="InfoBar_CloseButtonClick" />
 						</DataTemplate>
 					</dts:InfoBarDataTemplateSelector.PlainMessageTemplate>
 					<dts:InfoBarDataTemplateSelector.HyperlinkMessageTemplate>
@@ -28,7 +29,8 @@
 							<InfoBar
 								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
-								IsIconVisible="True" IsOpen="True" IsClosable="True">
+								IsIconVisible="True" IsOpen="True" IsClosable="True" Tag="{x:Bind}"
+								CloseButtonClick="InfoBar_CloseButtonClick" >
 								<InfoBar.ActionButton>
 									<HyperlinkButton
 										NavigateUri="{x:Bind Hyperlink}" Content="{x:Bind HyperlinkDescription}" />
@@ -41,7 +43,8 @@
 							<InfoBar
 								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
-								IsIconVisible="True" IsOpen="True" IsClosable="True">
+								IsIconVisible="True" IsOpen="True" IsClosable="True" Tag="{x:Bind}"
+								CloseButtonClick="InfoBar_CloseButtonClick">
 								<InfoBar.Content>
 									<xc:DataGrid
 										HorizontalAlignment="Left" VerticalAlignment="Top"

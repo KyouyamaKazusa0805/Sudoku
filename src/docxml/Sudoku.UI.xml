@@ -1920,6 +1920,13 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InfoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar,System.Object)">
+            <summary>
+            Triggers when the close button is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="args">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
             InitializeComponent()
