@@ -1853,12 +1853,6 @@
             The list of <see cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/>s.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Views.Controls.InfoBarBoard._spacing">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.InfoBarSpacing"/>.
-            </summary>
-            <seealso cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.InfoBarSpacing"/>
-        </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.InfoBarBoard"/> instance.
@@ -1868,14 +1862,6 @@
             <summary>
             Indicates whether the collection is not empty.
             </summary>
-        </member>
-        <member name="P:Sudoku.UI.Views.Controls.InfoBarBoard.InfoBarSpacing">
-            <summary>
-            Indicates the spacing between two adjacent <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instances.
-            </summary>
-        </member>
-        <member name="E:Sudoku.UI.Views.Controls.InfoBarBoard.PropertyChanged">
-            <inheritdoc/>
         </member>
         <member name="E:Sudoku.UI.Views.Controls.InfoBarBoard.CollectionChanged">
             <inheritdoc/>

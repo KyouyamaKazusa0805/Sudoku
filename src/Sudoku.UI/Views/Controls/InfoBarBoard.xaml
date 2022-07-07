@@ -19,8 +19,8 @@
 						<DataTemplate x:DataType="mm:PlainMessage">
 							<InfoBar
 								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
-								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
-								IsIconVisible="True" IsOpen="True" IsClosable="True" Tag="{x:Bind}"
+								IsClosable="True" IsOpen="True" IsIconVisible="True" Margin="0,5"
+								Severity="{x:Bind Severity}" Message="{x:Bind Message}" Tag="{x:Bind}"
 								CloseButtonClick="InfoBar_CloseButtonClick" />
 						</DataTemplate>
 					</dts:InfoBarDataTemplateSelector.PlainMessageTemplate>
@@ -28,8 +28,8 @@
 						<DataTemplate x:DataType="mm:HyperlinkMessage">
 							<InfoBar
 								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
-								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
-								IsIconVisible="True" IsOpen="True" IsClosable="True" Tag="{x:Bind}"
+								IsClosable="True" IsOpen="True" IsIconVisible="True" Margin="0,5"
+								Severity="{x:Bind Severity}" Message="{x:Bind Message}" Tag="{x:Bind}"
 								CloseButtonClick="InfoBar_CloseButtonClick" >
 								<InfoBar.ActionButton>
 									<HyperlinkButton
@@ -42,8 +42,8 @@
 						<DataTemplate x:DataType="m:ManualSolverResultMessage">
 							<InfoBar
 								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
-								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
-								IsIconVisible="True" IsOpen="True" IsClosable="True" Tag="{x:Bind}"
+								IsClosable="True" IsOpen="True" IsIconVisible="True" Margin="0,5"
+								Severity="{x:Bind Severity}" Message="{x:Bind Message}" Tag="{x:Bind}"
 								CloseButtonClick="InfoBar_CloseButtonClick">
 								<InfoBar.Content>
 									<xc:DataGrid

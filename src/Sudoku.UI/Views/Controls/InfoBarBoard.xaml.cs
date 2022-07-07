@@ -4,18 +4,12 @@
 /// Defines a user control that handles the messages displaying via <see cref="InfoBar"/>s.
 /// </summary>
 /// <seealso cref="InfoBar"/>
-public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, INotifyCollectionChanged
+public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 {
 	/// <summary>
 	/// The list of <see cref="InfoBarMessage"/>s.
 	/// </summary>
 	private readonly ObservableCollection<InfoBarMessage> _list = new();
-
-	/// <summary>
-	/// Indicates the backing field of property <see cref="InfoBarSpacing"/>.
-	/// </summary>
-	/// <seealso cref="InfoBarSpacing"/>
-	private double _spacing;
 
 
 	/// <summary>
@@ -30,26 +24,6 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// </summary>
 	public bool Any => _list.Count != 0;
 
-	/// <summary>
-	/// Indicates the spacing between two adjacent <see cref="InfoBar"/> instances.
-	/// </summary>
-	public double InfoBarSpacing
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _spacing;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			_spacing = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(InfoBarSpacing)));
-		}
-	}
-
-
-	/// <inheritdoc/>
-	public event PropertyChangedEventHandler? PropertyChanged;
 
 	/// <inheritdoc/>
 	public event NotifyCollectionChangedEventHandler? CollectionChanged;
