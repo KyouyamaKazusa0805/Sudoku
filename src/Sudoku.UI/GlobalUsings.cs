@@ -1,4 +1,5 @@
 ﻿global using System;
+global using System.Collections;
 global using System.Collections.Generic;
 global using System.Collections.ObjectModel;
 global using System.Collections.Specialized;
@@ -37,6 +38,7 @@ global using Microsoft.UI.Xaml.Navigation;
 global using Microsoft.UI.Xaml.Printing;
 global using Microsoft.Windows.AppLifecycle;
 global using Sudoku.Concepts;
+global using Sudoku.Concepts.Solving;
 global using Sudoku.Generating.Puzzlers;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving.Manual;

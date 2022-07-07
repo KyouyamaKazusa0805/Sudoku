@@ -1302,6 +1302,62 @@
             Indicates the analysis result.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Models.ManualStep">
+            <summary>
+            Defines a manual step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.ManualStep.Grid">
+            <summary>
+            Indicates the current grid used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.ManualStep.Step">
+            <summary>
+            Indicates the step.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Models.ManualStepCollection">
+            <summary>
+            Provides with a list of manual steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Models.ManualStepCollection._steps">
+            <summary>
+            Indicates the steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.ManualStepCollection.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.ManualStepCollection"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.ManualStepCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.UI.Models.ManualStep})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.ManualStepCollection"/> instance via the specified steps.
+            </summary>
+            <param name="steps">The steps.</param>
+        </member>
+        <member name="P:Sudoku.UI.Models.ManualStepCollection.Count">
+            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.Count"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.ManualStepCollection.Item(System.Int32)">
+            <inheritdoc cref="P:System.Collections.Generic.IList`1.Item(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.ManualStepCollection.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Models.ManualStepCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Models.ManualStepCollection.Create(Sudoku.Solving.Manual.ManualSolverResult)">
+            <summary>
+            Creates a <see cref="T:Sudoku.UI.Models.ManualStepCollection"/> instance via the specified <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>.
+            </summary>
+            <param name="steps">The steps.</param>
+            <returns>A <see cref="T:Sudoku.UI.Models.ManualStepCollection"/> instance.</returns>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>
+        </member>
         <member name="T:Sudoku.UI.Models.RepositoryInfo">
             <summary>
             Defines a set of properties to describe an image.
