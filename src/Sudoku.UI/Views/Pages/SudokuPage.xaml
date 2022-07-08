@@ -195,7 +195,7 @@
 							</AppBarButton.Command>
 						</AppBarButton>
 						<AppBarButton
-								x:Name="_cButtonAnalyze" Label="{StaticResource SudokuPage_Analysis}" Icon="ShowBcc">
+							x:Name="_cButtonAnalyze" Label="{StaticResource SudokuPage_Analysis}" Icon="ShowBcc">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandAnalysis_ExecuteRequestedAsync" />
 							</AppBarButton.Command>
