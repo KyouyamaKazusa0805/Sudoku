@@ -7,6 +7,11 @@
 public sealed partial class SudokuPage : Page
 {
 	/// <summary>
+	/// Indicates the object that is only used for synchronize an operation, especially a long-time operation.
+	/// </summary>
+	private static readonly object SyncRoot = new();
+
+	/// <summary>
 	/// Indicates the internal solver to solve a puzzle.
 	/// </summary>
 	private static readonly ManualSolver Solver = new();
@@ -594,7 +599,7 @@ public sealed partial class SudokuPage : Page
 				button.IsEnabled = false;
 
 				// Solve the puzzle using the manual solver.
-				var analysisResult = await Task.Run(() => Solver.Solve(grid));
+				var analysisResult = await Task.Run(() => { lock (SyncRoot) { return Solver.Solve(grid); } });
 
 				// Enable the control.
 				button.IsEnabled = true;
