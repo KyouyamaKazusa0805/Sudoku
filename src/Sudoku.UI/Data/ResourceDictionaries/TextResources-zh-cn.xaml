@@ -17,7 +17,7 @@
 	<x:String x:Key="HomePage_GettingStarted_TechniqueWiki">技巧 Wiki 页</x:String>
 	<x:String x:Key="HomePage_GettingStartedHeader_Updates">更新日志</x:String>
 	<x:String x:Key="HomePage_VersionTimelineDescription_BuildSuccessful">成功编译，完成最初版程序代码书写和程序生成过程</x:String>
-	<x:String x:Key="HomePage_VersionTimelineDescription_InternalPublish">QQ 群上发布了 V0.11 版本。</x:String>
+	<x:String x:Key="HomePage_VersionTimelineDescription_InternalPublish">QQ 群上发布了 V0.11 版本</x:String>
 	<x:String x:Key="SudokuPage_MakeDigit">出数</x:String>
 	<x:String x:Key="SudokuPage_EliminateDigit">删数</x:String>
 	<x:String x:Key="SudokuPage_Open">打开</x:String>
