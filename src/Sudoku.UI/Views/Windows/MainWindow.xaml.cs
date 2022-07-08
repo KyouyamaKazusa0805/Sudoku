@@ -62,6 +62,8 @@ public sealed partial class MainWindow : Window
 			let returnParameter = propertyInfo.SetMethod!.ReturnParameter
 			let modReqs = returnParameter.GetRequiredCustomModifiers()
 			where !modReqs.CanFind(static modReq => modReq == typeof(IsExternalInit)) // Cannot contain init setter
+			let backgroundPreferenceAttribute = propertyInfo.GetCustomAttribute<BackgroundPreferenceAttribute>()
+			where backgroundPreferenceAttribute is null // The preference item is not exposed for users
 			let genericArgTypes = propertyInfo.GetGenericAttributeTypeArguments(typeof(PreferenceAttribute<>))
 			where genericArgTypes.Length == 1 // Seems useless
 			let genericArgType = genericArgTypes[0]

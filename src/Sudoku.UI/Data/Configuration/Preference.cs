@@ -109,6 +109,7 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
+	[BackgroundPreference]
 	public bool IsFirstMeet { get; set; } = true;
 
 	/// <inheritdoc/>
