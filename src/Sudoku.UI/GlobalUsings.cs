@@ -72,6 +72,7 @@ global using static System.Numerics.BitOperations;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 global using MsDispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue;
+global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
 global using MsLaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 global using MsWindowActivatedEventArgs = Microsoft.UI.Xaml.WindowActivatedEventArgs;
 global using Grid = Sudoku.Concepts.Collections.Grid;

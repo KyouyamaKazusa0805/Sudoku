@@ -80,4 +80,42 @@ public static class FrameworkElementExtensions
 		@this.VerticalAlignment = value;
 		return @this;
 	}
+
+	/// <summary>
+	/// Sets the property <see cref="FrameworkElement.Margin"/> with the specified value.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TFrameworkElement WithMargin<TFrameworkElement>(this TFrameworkElement @this, double margin)
+		where TFrameworkElement : FrameworkElement => @this.WithMargin(new Thickness(margin));
+
+	/// <summary>
+	/// Sets the property <see cref="FrameworkElement.Margin"/> with the specified value.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TFrameworkElement WithMargin<TFrameworkElement>(
+		this TFrameworkElement @this, double left, double top, double right, double bottom)
+		where TFrameworkElement : FrameworkElement => @this.WithMargin(new Thickness(left, top, right, bottom));
+
+	/// <summary>
+	/// Sets the property <see cref="FrameworkElement.Margin"/> with the specified value.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TFrameworkElement WithMargin<TFrameworkElement>(this TFrameworkElement @this, Thickness margin)
+		where TFrameworkElement : FrameworkElement
+	{
+		@this.Margin = margin;
+		return @this;
+	}
+
+	/// <summary>
+	/// Sets the binding on the specified dependency property.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TFrameworkElement WithBinding<TFrameworkElement>(
+		this TFrameworkElement @this, DependencyProperty dp, Binding binding)
+		where TFrameworkElement : FrameworkElement
+	{
+		@this.SetBinding(dp, binding);
+		return @this;
+	}
 }

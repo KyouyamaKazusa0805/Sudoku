@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	Width="{x:Bind Size,Mode=TwoWay}" Height="{x:Bind Size,Mode=TwoWay}" IsTabStop="True"
+	x:Name="_cThis" Width="{x:Bind Size,Mode=TwoWay}" Height="{x:Bind Size,Mode=TwoWay}" IsTabStop="True"
 	Loaded="SudokuPane_Loaded" PointerEntered="SudokuPane_PointerEntered">
 	<UserControl.ContextFlyout>
 		<MenuFlyout>
@@ -34,5 +34,28 @@
 		</MenuFlyout>
 	</UserControl.ContextFlyout>
 
-	<Canvas x:Name="_cCanvasMain" />
+	<Grid>
+		<!--
+		If you enable the current node snippet, don't forget add the namespace using:
+			xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
+		-->
+		<!--
+		<xc:Loading x:Name="_cLoading">
+			<xc:Loading.Background>
+				<SolidColorBrush Color="#40000000" />
+			</xc:Loading.Background>
+
+			<StackPanel Orientation="Horizontal" Padding="12">
+				<ProgressRing
+					IsActive="True" Margin="0,0,12,0" Foreground="Black"
+					HorizontalAlignment="Center" VerticalAlignment="Center" />
+				<TextBlock
+					x:Name="_cLoadingText" Foreground="Black" HorizontalAlignment="Center"
+					VerticalAlignment="Center" />
+			</StackPanel>
+		</xc:Loading>
+		-->
+
+		<Canvas x:Name="_cCanvasMain" />
+	</Grid>
 </UserControl>

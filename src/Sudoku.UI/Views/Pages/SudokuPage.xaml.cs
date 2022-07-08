@@ -669,7 +669,7 @@ public sealed partial class SudokuPage : Page
 		}
 	}
 
-	
+
 	/// <summary>
 	/// Triggers when the current page is loaded.
 	/// </summary>

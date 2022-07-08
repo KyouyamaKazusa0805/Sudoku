@@ -25,16 +25,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.DiamondMark">
             <summary>
             Defines a diamond mark sign.
@@ -53,16 +43,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.StarMark">
             <summary>
             Defines a star sign.
@@ -79,16 +59,6 @@
         <member name="M:Sudoku.UI.Views.Controls.StarMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.TriangleMark">
@@ -113,16 +83,6 @@
         <member name="M:Sudoku.UI.Views.Controls.TriangleMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Data.Configuration.FontData">
@@ -2771,24 +2731,40 @@
         <member name="M:Sudoku.UI.MarkupExtensions.DateOnlyExtension.ProvideValue">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider">
+        <member name="T:Microsoft.UI.Xaml.Data.BindingExtensions">
             <summary>
-            Main class for providing metadata for the app or library
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Data.Binding"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Data.Binding"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Data.BindingExtensions.WithElementName(Microsoft.UI.Xaml.Data.Binding,System.String)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Data.Binding.ElementName"/> with the specified value.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+        <member name="M:Microsoft.UI.Xaml.Data.BindingExtensions.WithPath(Microsoft.UI.Xaml.Data.Binding,System.String)">
             <summary>
-            GetXamlType(Type)
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Data.Binding.Path"/> with the specified value.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+        <member name="M:Microsoft.UI.Xaml.Data.BindingExtensions.WithPath(Microsoft.UI.Xaml.Data.Binding,Microsoft.UI.Xaml.PropertyPath)">
             <summary>
-            GetXamlType(String)
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Data.Binding.Path"/> with the specified value.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+        <member name="M:Microsoft.UI.Xaml.Data.BindingExtensions.WithConverter``1(Microsoft.UI.Xaml.Data.Binding)">
             <summary>
-            GetXmlnsDefinitions()
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Data.Binding.Converter"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Data.BindingExtensions.WithUpdateSourceTrigger(Microsoft.UI.Xaml.Data.Binding,Microsoft.UI.Xaml.Data.UpdateSourceTrigger)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Data.Binding.UpdateSourceTrigger"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Data.BindingExtensions.WithMode(Microsoft.UI.Xaml.Data.Binding,Microsoft.UI.Xaml.Data.BindingMode)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Data.Binding.Mode"/> with the specified value.
             </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.CommonMethods">
@@ -2802,6 +2778,73 @@
             </summary>
             <typeparam name="TUIElement">The type of the control.</typeparam>
             <param name="control">The control instance.</param>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Controls.ControlExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.Control"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Control"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.ControlExtensions.WithForeground``1(``0,Windows.UI.Color)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.Control.Foreground"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.ControlExtensions.WithForeground``1(``0,Microsoft.UI.Xaml.Media.Brush)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.Control.Foreground"/> with the specified value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Controls.GridLayoutExtensions">
+            <summary>
+            Provides with extension methods for <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithPadding(Microsoft.UI.Xaml.Controls.Grid,Microsoft.UI.Xaml.Thickness)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.Grid.Padding"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithRowDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
+            <summary>
+            Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.RowDefinition"/> instances and adds into the target
+            <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
+            <param name="count">The number of <see cref="T:Microsoft.UI.Xaml.Controls.RowDefinition"/>s to be added.</param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="count"/> is negative.
+            </exception>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithColumnDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
+            <summary>
+            Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/> instances and adds into the target
+            <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
+            <param name="count">The number of <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/>s to be added.</param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="count"/> is negative.
+            </exception>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Controls.TextBlockExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithForeground(Microsoft.UI.Xaml.Controls.TextBlock,Windows.UI.Color)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Foreground"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithForeground(Microsoft.UI.Xaml.Controls.TextBlock,Microsoft.UI.Xaml.Media.Brush)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Foreground"/> with the specified value.
+            </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.FrameworkElementExtensions">
             <summary>
@@ -2850,40 +2893,59 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.FrameworkElement.VerticalAlignment"/> with the specified value.
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Controls.GridLayoutExtensions">
+        <member name="M:Microsoft.UI.Xaml.FrameworkElementExtensions.WithMargin``1(``0,System.Double)">
             <summary>
-            Provides with extension methods for <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithPadding(Microsoft.UI.Xaml.Controls.Grid,Microsoft.UI.Xaml.Thickness)">
-            <summary>
-            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.Grid.Padding"/> with the specified value.
+            Sets the property <see cref="P:Microsoft.UI.Xaml.FrameworkElement.Margin"/> with the specified value.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithRowDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
+        <member name="M:Microsoft.UI.Xaml.FrameworkElementExtensions.WithMargin``1(``0,System.Double,System.Double,System.Double,System.Double)">
             <summary>
-            Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.RowDefinition"/> instances and adds into the target
-            <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
+            Sets the property <see cref="P:Microsoft.UI.Xaml.FrameworkElement.Margin"/> with the specified value.
             </summary>
-            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
-            <param name="count">The number of <see cref="T:Microsoft.UI.Xaml.Controls.RowDefinition"/>s to be added.</param>
-            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="count"/> is negative.
-            </exception>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridLayoutExtensions.WithColumnDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
+        <member name="M:Microsoft.UI.Xaml.FrameworkElementExtensions.WithMargin``1(``0,Microsoft.UI.Xaml.Thickness)">
             <summary>
-            Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/> instances and adds into the target
-            <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
+            Sets the property <see cref="P:Microsoft.UI.Xaml.FrameworkElement.Margin"/> with the specified value.
             </summary>
-            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
-            <param name="count">The number of <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/>s to be added.</param>
-            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="count"/> is negative.
-            </exception>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.FrameworkElementExtensions.WithBinding``1(``0,Microsoft.UI.Xaml.DependencyProperty,Microsoft.UI.Xaml.Data.Binding)">
+            <summary>
+            Sets the binding on the specified dependency property.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.PanelExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.Panel"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Panel"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.PanelExtensions.WithBackground``1(``0,Windows.UI.Color)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.Panel.Background"/> with the specified value.
+            </summary>
+            <typeparam name="TPanel">The real type of the panel.</typeparam>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.PanelExtensions.WithBackground``1(``0,Microsoft.UI.Xaml.Media.Brush)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.Panel.Background"/> with the specified value.
+            </summary>
+            <typeparam name="TPanel">The real type of the panel.</typeparam>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.PanelExtensions.AddChildren``2(``0,``1)">
+            <summary>
+            Adds the specified control into the children collection of the current panel.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.ProgressRingExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.ProgressRing"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.ProgressRing"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.ProgressRingExtensions.WithIsActive(Microsoft.UI.Xaml.Controls.ProgressRing,System.Boolean)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.ProgressRing.IsActive"/> with the specified value.
+            </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.ShapeExtensions">
             <summary>
@@ -2906,12 +2968,12 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeThickness"/> with the specified value.
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE57A11628">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE57A11628.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -2951,6 +3013,32 @@
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.StackPanelExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.StackPanel"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.StackPanel"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.StackPanelExtensions.WithOrientation(Microsoft.UI.Xaml.Controls.StackPanel,Microsoft.UI.Xaml.Controls.Orientation)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.StackPanel.Orientation"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.StackPanelExtensions.WithPadding(Microsoft.UI.Xaml.Controls.StackPanel,System.Double)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.StackPanel.Padding"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.StackPanelExtensions.WithPadding(Microsoft.UI.Xaml.Controls.StackPanel,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.StackPanel.Padding"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.StackPanelExtensions.WithPadding(Microsoft.UI.Xaml.Controls.StackPanel,Microsoft.UI.Xaml.Thickness)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.StackPanel.Padding"/> with the specified value.
+            </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.UIElementExtensions">
             <summary>
@@ -3077,12 +3165,12 @@
             <param name="this">The modifier key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DEF353AC3E">
+        <member name="T:Windows.Foundation.Point_DEFC6B40A8">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEF353AC3E.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEFC6B40A8.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

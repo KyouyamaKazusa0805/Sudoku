@@ -8,8 +8,7 @@
 	xmlns:cvt="using:Sudoku.UI.DataConversion.ValueConverters"
 	xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
 	mc:Ignorable="d"
-	NavigationCacheMode="Required"
-	Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+	NavigationCacheMode="Required" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 	<ScrollViewer>
 		<Grid>
 			<Grid.Resources>
@@ -63,14 +62,17 @@
 							<AppBarButton.Flyout>
 								<MenuFlyout>
 									<MenuFlyoutItem
-										Text="{StaticResource SudokuPage_CopyInitial}" Click="CopyInitial_Click" />
+										Text="{StaticResource SudokuPage_CopyInitial}"
+										Click="CopyInitial_Click" />
 									<MenuFlyoutItem
-										Text="{StaticResource SudokuPage_CopyCurrent}" Click="CopyCurrent_Click" />
+										Text="{StaticResource SudokuPage_CopyCurrent}"
+										Click="CopyCurrent_Click" />
 									<MenuFlyoutItem
 										Text="{StaticResource SudokuPage_CopyCurrentIgnoreModifiable}"
 										Click="CopyCurrentIgnoreModifiables_Click" />
 									<MenuFlyoutItem
-										Text="{StaticResource SudokuPage_CopySolution}" Click="CopySolution_Click" />
+										Text="{StaticResource SudokuPage_CopySolution}"
+										Click="CopySolution_Click" />
 									<MenuFlyoutSeparator />
 									<MenuFlyoutItem
 										Text="{StaticResource SudokuPage_CopyInitialMultilined}"
@@ -80,7 +82,8 @@
 										Click="CopySolutionMultilined_Click" />
 									<MenuFlyoutSeparator />
 									<MenuFlyoutItem
-										Text="{StaticResource SudokuPage_CopyPmCurrent}" Click="CopyPmCurrent_Click" />
+										Text="{StaticResource SudokuPage_CopyPmCurrent}"
+										Click="CopyPmCurrent_Click" />
 									<MenuFlyoutItem
 										Text="{StaticResource SudokuPage_CopyPmCurrentIgnoreModifiable}"
 										Click="CopyPmCurrentIgnoreModifiable_Click" />
@@ -191,7 +194,8 @@
 								<XamlUICommand ExecuteRequested="CommandGetSolution_ExecuteRequested" />
 							</AppBarButton.Command>
 						</AppBarButton>
-						<AppBarButton x:Name="_cButtonAnalyze" Label="{StaticResource SudokuPage_Analysis}" Icon="ShowBcc">
+						<AppBarButton
+								x:Name="_cButtonAnalyze" Label="{StaticResource SudokuPage_Analysis}" Icon="ShowBcc">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandAnalysis_ExecuteRequestedAsync" />
 							</AppBarButton.Command>

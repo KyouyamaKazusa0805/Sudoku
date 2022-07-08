@@ -891,6 +891,31 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			return;
 		}
 
+		// Extracts the values from resource dictionary.
+		// The variable extraction is required in multi-threading.
+		string phase1Str = R["LoadingSeparateParts"]!;
+		string phase2Str = R["LoadingSudokuGrid"]!;
+
+		// Initialize controls.
+#if false
+		_cLoading.Visibility = Visibility.Visible;
+		var up = ((App)Application.Current).UserPreference;
+
+		_cLoadingText.Text = phase1Str;
+
+		InitializeOutsideRectangle(up);
+		InitializeBorderLines(up);
+
+		_cLoadingText.Text = phase2Str;
+
+		InitializeSudokuGrid(up);
+
+		AddIntoCanvas();
+		LoadFirstGridIfWorth();
+		MakeLoadingOperationCompleted();
+
+		_cLoading.Visibility = Visibility.Collapsed;
+#else
 		var up = ((App)Application.Current).UserPreference;
 
 		InitializeOutsideRectangle(up);
@@ -899,6 +924,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		AddIntoCanvas();
 		LoadFirstGridIfWorth();
 		MakeLoadingOperationCompleted();
+#endif
 	}
 
 	/// <summary>
