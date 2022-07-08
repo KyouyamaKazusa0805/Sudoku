@@ -609,17 +609,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		// Try to create the menu flyout and show the items.
 		for (int i = 0; i < 9; i++)
 		{
-			((MenuFlyoutItem)FindName($"_cButtonMake{i + 1}")).Visibility = getVisibilityViaCandidate(cell, i);
+			bool digitExists = Grid.Exists(cell, i) is true;
+			((Button)FindName($"_cButtonMake{i + 1}")).IsEnabled = digitExists;
+			((Button)FindName($"_cButtonDelete{i + 1}")).IsEnabled = digitExists;
 		}
-		for (int i = 0; i < 9; i++)
-		{
-			((MenuFlyoutItem)FindName($"_cButtonDelete{i + 1}")).Visibility = getVisibilityViaCandidate(cell, i);
-		}
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		Visibility getVisibilityViaCandidate(int cell, int i)
-			=> Grid.Exists(cell, i) is true ? Visibility.Visible : Visibility.Collapsed;
 	}
 
 	/// <summary>
@@ -943,7 +936,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <param name="e">The event arguments provided.</param>
 	private void MakeOrDeleteMenuItem_Click(object sender, RoutedEventArgs e)
 	{
-		if (sender is not MenuFlyoutItem { Tag: string s } || !int.TryParse(s, out int possibleDigit))
+		if (sender is not Button { Tag: string s } || !int.TryParse(s, out int possibleDigit))
 		{
 			return;
 		}
