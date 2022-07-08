@@ -574,37 +574,57 @@ public sealed partial class SudokuPage : Page
 	/// <returns>The typical awaitable instance that holds the task to analyze the puzzle.</returns>
 	private async Task AnalyzeAsync(AppBarButton button)
 	{
-		// Disable the control to prevent re-invocation.
-		button.IsEnabled = false;
-
-		// Solve the puzzle using the manual solver.
-		var analysisResult = await Task.Run(() => Solver.Solve(_cPane.GridRef));
-
-		// Enable the control.
-		button.IsEnabled = true;
-
-		// Displays the analysis result info.
-		if (analysisResult.IsSolved)
+		switch (_cPane.Grid)
 		{
-			_cInfoBoard.AddMessage(analysisResult);
-		}
-		else
-		{
-			var failedReason = analysisResult.FailedReason;
-			var wrongStep = analysisResult.WrongStep;
-			string firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
-			string secondPart = R[
-				failedReason switch
+			case { IsUndefined: true } or { IsEmpty: true }:
+			{
+				// Disallow user to analyze empty or undefined grid.
+				return;
+			}
+			case { IsValid: false }:
+			{
+				// Disallow user to analyze non-unique solution.
+				_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["SudokuPage_InfoBar_AnalyzeFailedDueToInvalidPuzzle"]!);
+
+				return;
+			}
+			case var grid:
+			{
+				// Disable the control to prevent re-invocation.
+				button.IsEnabled = false;
+
+				// Solve the puzzle using the manual solver.
+				var analysisResult = await Task.Run(() => Solver.Solve(grid));
+
+				// Enable the control.
+				button.IsEnabled = true;
+
+				// Displays the analysis result info.
+				if (analysisResult.IsSolved)
 				{
-					FailedReason.UserCancelled => "SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling",
-					FailedReason.NotImplemented => "SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented",
-					FailedReason.ExceptionThrown => "SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown",
-					FailedReason.WrongStep => "SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep",
-					FailedReason.PuzzleIsTooHard => "SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard",
-					_ => throw new InvalidOperationException("The specified failed reason is not supported.")
+					_cInfoBoard.AddMessage(analysisResult);
 				}
-			]!;
-			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}{wrongStep}");
+				else
+				{
+					var failedReason = analysisResult.FailedReason;
+					var wrongStep = analysisResult.WrongStep;
+					string firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
+					string secondPart = R[
+						failedReason switch
+						{
+							FailedReason.UserCancelled => "SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling",
+							FailedReason.NotImplemented => "SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented",
+							FailedReason.ExceptionThrown => "SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown",
+							FailedReason.WrongStep => "SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep",
+							FailedReason.PuzzleIsTooHard => "SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard",
+							_ => throw new InvalidOperationException("The specified failed reason is not supported.")
+						}
+					]!;
+					_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}{wrongStep}");
+				}
+
+				break;
+			}
 		}
 	}
 
