@@ -271,12 +271,6 @@
             Indicates whether the window is created from the preference backup file.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.FirstPageTypeName">
-            <summary>
-            Indicates the first page type name. The default value is <see langword="nameof"/>(<see cref="T:Sudoku.UI.Views.Pages.HomePage"/>).
-            </summary>
-            <seealso cref="T:Sudoku.UI.Views.Pages.HomePage"/>
-        </member>
         <member name="P:Sudoku.UI.Data.AppLifecycle.WindowInitialInfo.DrawingDataRawValue">
             <summary>
             Indicates the raw value of the drawing data. The default value is <see langword="null"/>.
@@ -405,7 +399,7 @@
             and <see cref="T:Sudoku.UI.Data.Metadata.PreferenceGroupAttribute"/>.
             </item>
             <item>
-            If the property is a test or reserved preference item, a double extra leading underscores "<c>__</c>"
+            If the property is a non-formal preference item, a double extra leading underscore characters "<c>__</c>"
             will be inserted into the property name; otherwise, a normal property name is applied.
             </item>
             </list>
@@ -457,6 +451,22 @@
         <member name="P:Sudoku.UI.Data.Configuration.Preference.AlsoSavePictureWhenSaveDrawingData">
             <summary>
             Indicates whether the picture will also be saved when a drawing data file is saved to local.
+            </summary>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlwaysShowHomePageWhenOpen">
+            <summary>
+            Indicates whether the program always opens the home page if you open the program non-programmatically.
+            </summary>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.IsFirstMeet">
+            <summary>
+            Indicates whether the program is the first time to be used.
             </summary>
             <remarks>
             The default value is <see langword="true"/>.

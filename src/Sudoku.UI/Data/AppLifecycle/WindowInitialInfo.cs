@@ -10,12 +10,6 @@ internal sealed class WindowInitialInfo
 	/// </summary>
 	public bool FromPreferenceFile { get; internal set; } = false;
 
-	/// <summary>
-	/// Indicates the first page type name. The default value is <see langword="nameof"/>(<see cref="HomePage"/>).
-	/// </summary>
-	/// <seealso cref="HomePage"/>
-	public string FirstPageTypeName { get; internal set; } = nameof(HomePage);
-
 #if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
 	/// <summary>
 	/// Indicates the raw value of the drawing data. The default value is <see langword="null"/>.
@@ -45,7 +39,6 @@ internal sealed class WindowInitialInfo
 			{ DrawingDataRawValue: not null } => nameof(SudokuPage),
 #endif
 			{ FromPreferenceFile: true } => nameof(SettingsPage),
-			{ FirstPageTypeName: var firstPageTypeName } => firstPageTypeName,
-			_ => throw new InvalidOperationException("The initialization information is invalid.")
+			_ => ((App)Application.Current).UserPreference.AlwaysShowHomePageWhenOpen ? nameof(HomePage) : nameof(SudokuPage)
 		};
 }

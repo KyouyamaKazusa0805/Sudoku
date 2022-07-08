@@ -295,7 +295,31 @@ public sealed partial class MainWindow : Window
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
 	private void ViewRouter_Loaded(object sender, RoutedEventArgs e)
-		=> OnNavigate(((App)Application.Current).InitialInfo.RouteToPageName(), new EntranceNavigationTransitionInfo());
+	{
+		var navigationInfo = new EntranceNavigationTransitionInfo();
+		switch ((App)Application.Current)
+		{
+			case { UserPreference.IsFirstMeet: true }:
+			{
+				OnNavigate(nameof(HomePage), navigationInfo);
+
+				((App)Application.Current).UserPreference.IsFirstMeet = false;
+
+				break;
+			}
+			case { UserPreference.AlwaysShowHomePageWhenOpen: var homePageAlways, InitialInfo: var initInfo }:
+			{
+				OnNavigate(
+					initInfo.RouteToPageName() is var pageName && homePageAlways && pageName == nameof(HomePage)
+						? nameof(HomePage)
+						: pageName,
+					navigationInfo
+				);
+
+				break;
+			}
+		}
+	}
 
 	/// <summary>
 	/// Triggers when the navigation is failed. The method will be invoked if and only if the routing is invalid.

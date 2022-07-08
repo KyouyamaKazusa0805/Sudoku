@@ -19,7 +19,7 @@ namespace Sudoku.UI.Data.Configuration;
 /// and <see cref="PreferenceGroupAttribute"/>.
 /// </item>
 /// <item>
-/// If the property is a test or reserved preference item, a double extra leading underscores "<c>__</c>"
+/// If the property is a non-formal preference item, a double extra leading underscore characters "<c>__</c>"
 /// will be inserted into the property name; otherwise, a normal property name is applied.
 /// </item>
 /// </list>
@@ -92,6 +92,24 @@ public sealed class Preference : IDrawingPreference
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Basic, 10)]
 	public bool AlsoSavePictureWhenSaveDrawingData { get; set; } = true;
+
+	/// <summary>
+	/// Indicates whether the program always opens the home page if you open the program non-programmatically.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <see langword="false"/>.
+	/// </remarks>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 11)]
+	public bool AlwaysShowHomePageWhenOpen { get; set; } = true;
+
+	/// <summary>
+	/// Indicates whether the program is the first time to be used.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
+	public bool IsFirstMeet { get; set; } = true;
 
 	/// <inheritdoc/>
 	/// <remarks>

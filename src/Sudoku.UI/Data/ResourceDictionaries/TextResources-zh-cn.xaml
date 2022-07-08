@@ -118,6 +118,8 @@
 	<x:String x:Key="SettingsPage_ItemName_DescendingOrderedInfoBarBoard">以降序显示侧边的提示信息条</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_EnableDeltaValuesDisplaying">如果有数字填错，该设置项允许将其以另一种配色呈现出这些数字，以帮助做题。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AlsoSavePictureWhenSaveDrawingData">保存绘图文件的同时也保存题目的图片</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlwaysShowHomePageWhenOpen">总是在开启程序的时候打开起始页</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_AlwaysShowHomePageWhenOpen">如果你不想每次打开程序都打开起始页，可以取消对该选项的勾选，那么只要不是第一次使用程序，程序都会自动跳转到数独分析页面。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_OutsideBorderWidth">框线外侧留白宽度</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_OutsideBorderWidth">有些时候绘图期间会超出盘面范围，留白越多越能显示出这些多出来的部分，不过因为留白会导致盘面往右轻微移动，使得窗体分布不好看。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_BlockBorderWidth">宫线粗细</x:String>
@@ -212,6 +214,7 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_EnableDeltaValuesDisplaying">启用;显示;呈现;错误填数|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CoverOldShapeWhenDiffused">覆盖;旧;形状;扩散|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_AlsoSavePictureWhenSaveDrawingData">保存;绘图文件;图片文件|设置页 -> 基本设置项</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_AlwaysShowHomePageWhenOpen">总是;打开;开启;程序;起始页面|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ValueFont">字体;缩放比例;数值|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateFont">字体;缩放比例;候选数|设置页 -> 基本设置项</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_OutsideBorderWidth">空白;大小;外侧|设置页 -> 绘图和渲染</x:String>

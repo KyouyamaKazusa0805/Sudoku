@@ -121,6 +121,8 @@
 	<x:String x:Key="SettingsPage_ItemName_DescendingOrderedInfoBarBoard">Show board using descending order</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_EnableDeltaValuesDisplaying">This option will allow the program displaying for wrong digits you have filled using a different color with the basic one.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AlsoSavePictureWhenSaveDrawingData">Also saving picture while saving drawing data files</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlwaysShowHomePageWhenOpen">Always route to home page when you open the program</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_AlwaysShowHomePageWhenOpen">If you don't want to check the home page every time, you can set the option to false, then if non-first time you use the program, the program will always open sudoku analysis page instead of the home page.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_OutsideBorderWidth">Blank size outside the border</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_OutsideBorderWidth">Set the value to control the padding width and height that distances between the grid rendered and the left aligning line.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_BlockBorderWidth">Size of the block borders</x:String>
@@ -215,6 +217,7 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_EnableDeltaValuesDisplaying">enable;displaying;deltas|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CoverOldShapeWhenDiffused">cover;old;shape;diffused|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_AlsoSavePictureWhenSaveDrawingData">save;saving;picture;files|Settings Page -> Basic options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_AlwaysShowHomePageWhenOpen">show;home;page;open|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ValueFont">font;scale;values;digits|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateFont">font;scale;candidates|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_OutsideBorderWidth">blank;size;outside;border|Settings Page -> Rendering options</x:String>
