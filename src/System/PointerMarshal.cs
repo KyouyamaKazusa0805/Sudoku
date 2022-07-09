@@ -15,8 +15,7 @@ public static unsafe class PointerMarshal
 	/// Throws when <paramref name="left"/> or <paramref name="right"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Swap<TUnmanaged>(/*[Restrict]*/ TUnmanaged* left, /*[Restrict]*/ TUnmanaged* right)
-		where TUnmanaged : unmanaged
+	public static void Swap<TUnmanaged>(TUnmanaged* left, TUnmanaged* right) where TUnmanaged : unmanaged
 	{
 		Argument.ThrowIfNull(left);
 		Argument.ThrowIfNull(right);

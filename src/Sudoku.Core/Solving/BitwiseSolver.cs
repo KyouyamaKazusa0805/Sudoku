@@ -113,7 +113,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	/// Throws when the argument <paramref name="puzzle"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public long Solve(/*[Restrict]*/ char* puzzle, /*[Restrict]*/ char* solution, int limit)
+	public long Solve(char* puzzle, char* solution, int limit)
 	{
 		Argument.ThrowIfNull(puzzle);
 
@@ -822,7 +822,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	/// <param name="solutionPtr">The pointer to the solution string.</param>
 	/// <param name="limit">The limitation for the number of all final solutions.</param>
 	/// <returns>The number of solutions found.</returns>
-	private long InternalSolve(/*[Restrict]*/ char* puzzle, /*[Restrict]*/ char* solutionPtr, int limit)
+	private long InternalSolve(char* puzzle, char* solutionPtr, int limit)
 	{
 		_numSolutions = 0;
 		_limitSolutions = limit;

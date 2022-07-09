@@ -14,7 +14,7 @@
 public sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, /*[IsDiscard]*/ in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		for (int digit = 0; digit < 9; digit++)
 		{

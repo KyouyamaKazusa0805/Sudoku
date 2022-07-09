@@ -5,7 +5,7 @@
 /// to be parsed to the target type <typeparamref name="TSimpleParseable"/>.
 /// </summary>
 /// <typeparam name="TSimpleParseable">The type of the target result.</typeparam>
-public interface ISimpleParseable</*[Self]*/ TSimpleParseable> where TSimpleParseable : ISimpleParseable<TSimpleParseable>
+public interface ISimpleParseable<TSimpleParseable> where TSimpleParseable : ISimpleParseable<TSimpleParseable>
 {
 	/// <summary>
 	/// Parse the specified string text, and get the same-meaning instance

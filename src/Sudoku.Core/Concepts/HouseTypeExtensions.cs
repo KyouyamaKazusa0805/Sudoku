@@ -94,5 +94,5 @@ public static class HouseTypeExtensions
 	/// </list>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static HouseType ToHouse(this int houseIndex) => (HouseType)/*(byte)*/(houseIndex / 9);
+	public static HouseType ToHouse(this int houseIndex) => (HouseType)(houseIndex / 9);
 }

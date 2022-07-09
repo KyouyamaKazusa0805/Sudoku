@@ -183,7 +183,7 @@ public sealed partial class RxCyNotation : INotationHandler, ICellNotation<RxCyN
 				// Find the index of the character 'C'.
 				// The regular expression guaranteed the string must contain the character 'C' or 'c',
 				// so we don't need to check '*p != '\0''.
-				while (*anchorC is not ('C' or 'c'/* or '\0'*/))
+				while (*anchorC is not ('C' or 'c'))
 				{
 					anchorC++;
 				}

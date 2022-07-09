@@ -6,7 +6,7 @@
 /// </summary>
 /// <typeparam name="TBaseType">The base type that applies the interface.</typeparam>
 /// <typeparam name="TOptions">The type that is used as the provider for extra options.</typeparam>
-public interface ICellNotation</*[Self]*/ TBaseType, TOptions>
+public interface ICellNotation<TBaseType, TOptions>
 	where TBaseType : class, INotationHandler, ICellNotation<TBaseType, TOptions>
 	where TOptions : struct, INotationHandlerOptions<TOptions>
 {
