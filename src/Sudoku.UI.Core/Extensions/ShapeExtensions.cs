@@ -10,11 +10,25 @@ public static class ShapeExtensions
 	/// Sets the property <see cref="Shape.Fill"/> with the specified value.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TShape WithFill<TShape>(this TShape @this, Brush brush) where TShape : Shape
+	public static TShape WithFill<TShape>(this TShape @this, Color fill) where TShape : Shape
+		=> @this.WithFill(new SolidColorBrush(fill));
+
+	/// <summary>
+	/// Sets the property <see cref="Shape.Fill"/> with the specified value.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TShape WithFill<TShape>(this TShape @this, Brush fill) where TShape : Shape
 	{
-		@this.Fill = brush;
+		@this.Fill = fill;
 		return @this;
 	}
+
+	/// <summary>
+	/// Sets the property <see cref="Shape.Stroke"/> with the specified value.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TShape WithStroke<TShape>(this TShape @this, Color stroke) where TShape : Shape
+		=> @this.WithStroke(new SolidColorBrush(stroke));
 
 	/// <summary>
 	/// Sets the property <see cref="Shape.Stroke"/> with the specified value.

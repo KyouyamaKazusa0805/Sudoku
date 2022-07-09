@@ -2300,11 +2300,6 @@
             Indicates the rectangles displaying for peers of the focused cell.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._undoRedoStepsUpdatedCallback">
-            <summary>
-            Indicates the callback method that invokes when the undoing and redoing steps are updated.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._preference">
             <summary>
             Indicates the user preference used.
@@ -2351,31 +2346,6 @@
             Indicates the candidate marks.
             The value won't be <see langword="null"/> if the field <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.AllowMarkups"/> is <see langword="true"/>.
             </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(System.Boolean,Sudoku.UI.Drawing.IDrawingPreference,System.Double,System.Double,System.Action)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
-            </summary>
-            <param name="allowMarkups">Indicates whether the grid allow drawing.</param>
-            <param name="preference">The user preference instance.</param>
-            <param name="paneSize">The pane size.</param>
-            <param name="outsideOffset">The outside offset.</param>
-            <param name="elementUpdatedCallback">
-            The callback method that triggers when the inner undo-redo steps are updated.
-            </param>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(System.Boolean,Sudoku.Concepts.Collections.Grid@,Sudoku.UI.Drawing.IDrawingPreference,System.Double,System.Double,System.Action)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
-            </summary>
-            <param name="allowMarkups">Indicates whether the grid allow drawing.</param>
-            <param name="grid">The <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Grid"/> instance.</param>
-            <param name="preference">The user preference.</param>
-            <param name="paneSize">The pane size.</param>
-            <param name="outsideOffset">The outside offset.</param>
-            <param name="elementUpdatedCallback">
-            The callback method that triggers when the inner undo-redo steps are updated.
-            </param>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.AllowMarkups">
             <summary>
@@ -2430,6 +2400,16 @@
             <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Grid"/>.<see langword="get"/> because that property (i.e. <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.GridRef"/>) copies by reference.
             </summary>
             <seealso cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.GridRef"/>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.UndoRedoStepsUpdatedCallback">
+            <summary>
+            Indicates the callback method that invokes when the undoing and redoing steps are updated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Preference">
+            <summary>
+            Indicates the user preference instance.
+            </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.UndoStepsCount">
             <summary>
@@ -2953,9 +2933,19 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>
         </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithFill``1(``0,Windows.UI.Color)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/> with the specified value.
+            </summary>
+        </member>
         <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithFill``1(``0,Microsoft.UI.Xaml.Media.Brush)">
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStroke``1(``0,Windows.UI.Color)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Stroke"/> with the specified value.
             </summary>
         </member>
         <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStroke``1(``0,Microsoft.UI.Xaml.Media.Brush)">

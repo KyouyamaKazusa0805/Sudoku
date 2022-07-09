@@ -19,7 +19,11 @@ public sealed class SudokuGrid : DrawingElement
 	/// <summary>
 	/// Indicates the inner grid layout control.
 	/// </summary>
-	private readonly GridLayout _gridLayout;
+	private readonly GridLayout _gridLayout = new GridLayout()
+		.WithRowDefinitionsCount(9)
+		.WithColumnDefinitionsCount(9)
+		.WithHorizontalAlignment(HorizontalAlignment.Center)
+		.WithVerticalAlignment(VerticalAlignment.Center);
 
 	/// <summary>
 	/// Indicates the cell digits.
@@ -39,7 +43,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// <summary>
 	/// Indicates the focused cell rectangle.
 	/// </summary>
-	private readonly Rectangle _focusedRectangle;
+	private readonly Rectangle _focusedRectangle = null!;
 
 	/// <summary>
 	/// Indicates the rectangles displaying for peers of the focused cell.
@@ -47,14 +51,9 @@ public sealed class SudokuGrid : DrawingElement
 	private readonly Rectangle[] _peerFocusedRectangle = new Rectangle[20];
 
 	/// <summary>
-	/// Indicates the callback method that invokes when the undoing and redoing steps are updated.
-	/// </summary>
-	private readonly Action? _undoRedoStepsUpdatedCallback;
-
-	/// <summary>
 	/// Indicates the user preference used.
 	/// </summary>
-	private readonly IDrawingPreference _preference;
+	private readonly IDrawingPreference _preference = null!;
 
 	/// <summary>
 	/// Indicates whether the current mode is mask mode.
@@ -101,159 +100,6 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private CandidateMark[]? _candidateMarks;
 #endif
-
-
-	/// <summary>
-	/// Initializes a <see cref="SudokuGrid"/> instance via the details.
-	/// </summary>
-	/// <param name="allowMarkups">Indicates whether the grid allow drawing.</param>
-	/// <param name="preference">The user preference instance.</param>
-	/// <param name="paneSize">The pane size.</param>
-	/// <param name="outsideOffset">The outside offset.</param>
-	/// <param name="elementUpdatedCallback">
-	/// The callback method that triggers when the inner undo-redo steps are updated.
-	/// </param>
-	[SetsRequiredMembers]
-	public SudokuGrid(
-		bool allowMarkups, IDrawingPreference preference, double paneSize,
-		double outsideOffset, Action? elementUpdatedCallback) :
-		this(allowMarkups, Grid.Empty, preference, paneSize, outsideOffset, elementUpdatedCallback)
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="SudokuGrid"/> instance via the details.
-	/// </summary>
-	/// <param name="allowMarkups">Indicates whether the grid allow drawing.</param>
-	/// <param name="grid">The <see cref="Grid"/> instance.</param>
-	/// <param name="preference">The user preference.</param>
-	/// <param name="paneSize">The pane size.</param>
-	/// <param name="outsideOffset">The outside offset.</param>
-	/// <param name="elementUpdatedCallback">
-	/// The callback method that triggers when the inner undo-redo steps are updated.
-	/// </param>
-	[SetsRequiredMembers]
-	public SudokuGrid(
-		bool allowMarkups, in Grid grid, IDrawingPreference preference, double paneSize,
-		double outsideOffset, Action? elementUpdatedCallback)
-	{
-		AllowMarkups = allowMarkups;
-		_preference = preference;
-		_grid = grid;
-		_paneSize = paneSize;
-		_outsideOffset = outsideOffset;
-		_gridLayout = new GridLayout()
-			.WithWidth(paneSize)
-			.WithHeight(paneSize)
-			.WithPadding(new(outsideOffset))
-			.WithHorizontalAlignment(HorizontalAlignment.Center)
-			.WithVerticalAlignment(VerticalAlignment.Center)
-			.WithRowDefinitionsCount(9)
-			.WithColumnDefinitionsCount(9);
-		_undoRedoStepsUpdatedCallback = elementUpdatedCallback;
-		_showsCandidates = preference.ShowCandidates;
-		_focusedRectangle = new Rectangle()
-			.WithFill(new SolidColorBrush(preference.FocusedCellColor))
-			.WithVisibility(Visibility.Collapsed)
-			.WithGridLayout(row: 4, column: 4)
-			.WithCanvasZIndex(-1);
-
-		// Initializes the field '_peerFocusedRectangle'.
-		foreach (ref var rectangle in _peerFocusedRectangle.EnumerateRef())
-		{
-			rectangle = new Rectangle()
-				.WithFill(new SolidColorBrush(preference.PeersFocusedCellColor))
-				.WithVisibility(Visibility.Collapsed)
-				.WithGridLayout(row: 4, column: 4)
-				.WithCanvasZIndex(-1);
-		}
-
-		// Initializes values.
-		initializeValues();
-
-		// Then initialize other items.
-		UpdateView();
-
-		// Last, set the focused cell to -1, to hide the highlight cell by default.
-		FocusedCell = -1;
-
-
-		void initializeValues()
-		{
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-			if (AllowMarkups)
-			{
-#if AUTHOR_FEATURE_CELL_MARKS
-				_cellMarks = new CellMark[81];
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-				_candidateMarks = new CandidateMark[81];
-#endif
-			}
-#endif
-
-			for (int i = 0; i < 81; i++)
-			{
-				ref var p = ref _cellDigits[i];
-				p = new()
-				{
-					UserPreference = preference,
-					IsGiven = false,
-					IsMaskMode = false,
-					Digit = byte.MaxValue
-				};
-				_gridLayout.Children.Add(p.GetControl().WithGridLayout(row: i / 9, column: i % 9));
-				_gridLayout.Children.Add(p.GetMaskEllipseControl().WithGridLayout(row: i / 9, column: i % 9));
-
-				ref var q = ref _candidateDigits[i];
-				q = new()
-				{
-					UserPreference = preference,
-					CandidateMask = 511,
-					WrongDigitMask = 0,
-					IsMaskMode = false
-				};
-				_gridLayout.Children.Add(q.GetControl().WithGridLayout(row: i / 9, column: i % 9));
-
-#if AUTHOR_FEATURE_CELL_MARKS
-				if (AllowMarkups)
-				{
-					// Initializes for the cell marks.
-					ref var cellMark = ref _cellMarks[i];
-					cellMark = new(preference);
-					foreach (var cellMarkControl in cellMark.GetControls())
-					{
-						_gridLayout.Children.Add(cellMarkControl.WithGridLayout(row: i / 9, column: i % 9));
-					}
-				}
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-				if (AllowMarkups)
-				{
-					// Initializes for the candidate marks.
-					ref var candidateMark = ref _candidateMarks[i];
-					candidateMark = new(preference);
-					_gridLayout.Children.Add(candidateMark.GetControl().WithGridLayout(row: i / 9, column: i % 9));
-				}
-#endif
-
-				// Initializes for the items to render the focusing elements.
-				if (_focusedCell == i)
-				{
-					_gridLayout.Children.Add(
-						_focusedRectangle.WithGridLayout(row: _focusedCell / 9, column: _focusedCell % 9));
-
-					for (int peerIndex = 0; peerIndex < 20; peerIndex++)
-					{
-						int peerCell = Peers[_focusedCell][peerIndex];
-						_gridLayout.Children.Add(
-							_peerFocusedRectangle[peerIndex].WithGridLayout(row: peerCell / 9, column: peerCell % 9));
-					}
-				}
-			}
-		}
-	}
 
 
 	/// <summary>
@@ -495,7 +341,132 @@ public sealed class SudokuGrid : DrawingElement
 			// The operation must clear two stacks, and trigger the handler '_undoRedoStepsUpdatedCallback'.
 			_undoSteps.Clear();
 			_redoSteps.Clear();
-			_undoRedoStepsUpdatedCallback?.Invoke();
+			UndoRedoStepsUpdatedCallback?.Invoke();
+		}
+	}
+
+	/// <summary>
+	/// Indicates the callback method that invokes when the undoing and redoing steps are updated.
+	/// </summary>
+	public required Action? UndoRedoStepsUpdatedCallback { get; init; }
+
+	/// <summary>
+	/// Indicates the user preference instance.
+	/// </summary>
+	public required IDrawingPreference Preference
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _preference;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[MemberNotNull(nameof(_preference), nameof(_focusedRectangle))]
+		init
+		{
+			_preference = value;
+
+			_focusedRectangle = new Rectangle()
+				.WithFill(value.FocusedCellColor)
+				.WithVisibility(Visibility.Collapsed)
+				.WithGridLayout(row: 4, column: 4)
+				.WithCanvasZIndex(-1);
+
+			_showsCandidates = value.ShowCandidates;
+
+			initializePeerRectangles(_peerFocusedRectangle, value);
+			initializeValues(value);
+
+
+			static void initializePeerRectangles(Rectangle[] rectangles, IDrawingPreference preference)
+			{
+				foreach (ref var rectangle in rectangles.EnumerateRef())
+				{
+					rectangle = new Rectangle()
+						.WithFill(preference.PeersFocusedCellColor)
+						.WithVisibility(Visibility.Collapsed)
+						.WithGridLayout(row: 4, column: 4)
+						.WithCanvasZIndex(-1);
+				}
+			}
+
+			void initializeValues(IDrawingPreference preference)
+			{
+#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
+				if (AllowMarkups)
+				{
+#if AUTHOR_FEATURE_CELL_MARKS
+					_cellMarks = new CellMark[81];
+#endif
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+					_candidateMarks = new CandidateMark[81];
+#endif
+				}
+#endif
+
+				for (int i = 0; i < 81; i++)
+				{
+					ref var p = ref _cellDigits[i];
+					p = new()
+					{
+						UserPreference = preference,
+						IsGiven = false,
+						IsMaskMode = false,
+						Digit = byte.MaxValue
+					};
+					_gridLayout.Children.Add(p.GetControl().WithGridLayout(row: i / 9, column: i % 9));
+					_gridLayout.Children.Add(p.GetMaskEllipseControl().WithGridLayout(row: i / 9, column: i % 9));
+
+					ref var q = ref _candidateDigits[i];
+					q = new()
+					{
+						UserPreference = preference,
+						CandidateMask = 511,
+						WrongDigitMask = 0,
+						IsMaskMode = false
+					};
+					_gridLayout.Children.Add(q.GetControl().WithGridLayout(row: i / 9, column: i % 9));
+
+#if AUTHOR_FEATURE_CELL_MARKS
+					if (AllowMarkups)
+					{
+						// Initializes for the cell marks.
+						ref var cellMark = ref _cellMarks[i];
+						cellMark = new(preference);
+						foreach (var cellMarkControl in cellMark.GetControls())
+						{
+							_gridLayout.Children.Add(cellMarkControl.WithGridLayout(row: i / 9, column: i % 9));
+						}
+					}
+#endif
+
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+					if (AllowMarkups)
+					{
+						// Initializes for the candidate marks.
+						ref var candidateMark = ref _candidateMarks[i];
+						candidateMark = new(preference);
+						_gridLayout.Children.Add(candidateMark.GetControl().WithGridLayout(row: i / 9, column: i % 9));
+					}
+#endif
+
+					// Initializes for the items to render the focusing elements.
+					if (_focusedCell == i)
+					{
+						_gridLayout.Children.Add(
+							_focusedRectangle
+								.WithGridLayout(row: _focusedCell / 9, column: _focusedCell % 9)
+						);
+
+						for (int peerIndex = 0; peerIndex < 20; peerIndex++)
+						{
+							int peerCell = Peers[_focusedCell][peerIndex];
+							_gridLayout.Children.Add(
+								_peerFocusedRectangle[peerIndex]
+									.WithGridLayout(row: peerCell / 9, column: peerCell % 9)
+							);
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -538,7 +509,7 @@ public sealed class SudokuGrid : DrawingElement
 		var previousStep = _undoSteps.Pop();
 		_grid = previousStep;
 
-		_undoRedoStepsUpdatedCallback?.Invoke();
+		UndoRedoStepsUpdatedCallback?.Invoke();
 
 		UpdateView();
 	}
@@ -559,7 +530,7 @@ public sealed class SudokuGrid : DrawingElement
 		var nextStep = _redoSteps.Pop();
 		_grid = nextStep;
 
-		_undoRedoStepsUpdatedCallback?.Invoke();
+		UndoRedoStepsUpdatedCallback?.Invoke();
 
 		UpdateView();
 	}
@@ -901,7 +872,7 @@ public sealed class SudokuGrid : DrawingElement
 
 		_redoSteps.Clear();
 
-		_undoRedoStepsUpdatedCallback?.Invoke();
+		UndoRedoStepsUpdatedCallback?.Invoke();
 	}
 
 	/// <summary>

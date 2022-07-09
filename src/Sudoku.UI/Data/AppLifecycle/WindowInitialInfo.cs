@@ -39,6 +39,10 @@ internal sealed class WindowInitialInfo
 			{ DrawingDataRawValue: not null } => nameof(SudokuPage),
 #endif
 			{ FromPreferenceFile: true } => nameof(SettingsPage),
-			_ => ((App)Application.Current).UserPreference.AlwaysShowHomePageWhenOpen ? nameof(HomePage) : nameof(SudokuPage)
+			_ => ((App)Application.Current).UserPreference.AlwaysShowHomePageWhenOpen switch
+			{
+				true => nameof(HomePage),
+				_ => nameof(SudokuPage)
+			}
 		};
 }

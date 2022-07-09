@@ -830,16 +830,22 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <seealso cref="_drawingElements"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void InitializeSudokuGrid(Preference up)
-	{
-		_drawingElements.Add(new SudokuGrid(true, up, Size, OutsideOffset, triggerBoth));
-
-
-		void triggerBoth()
-		{
-			PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
-			PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
-		}
-	}
+		=> _drawingElements.Add(
+			new SudokuGrid
+			{
+				AllowMarkups = true,
+				Preference = up,
+				PaneSize = Size,
+				OutsideOffset = OutsideOffset,
+				Grid = Grid.Empty,
+				UndoRedoStepsUpdatedCallback = () =>
+				{
+					PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
+					PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
+				},
+				FocusedCell = -1
+			}
+		);
 
 	/// <summary>
 	/// Adds the controls into the canvas.
