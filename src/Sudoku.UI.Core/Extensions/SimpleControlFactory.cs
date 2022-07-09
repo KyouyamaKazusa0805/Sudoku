@@ -31,7 +31,6 @@ internal static class SimpleControlFactory
 		=> new ContentDialog()
 		{
 			XamlRoot = uiElement.XamlRoot,
-			Content = message,
 			CloseButtonText = R["Close"]!,
 			DefaultButton = ContentDialogButton.Close
 		}
