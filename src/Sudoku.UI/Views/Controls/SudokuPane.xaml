@@ -6,8 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	x:Name="_cThis" Width="{x:Bind Size,Mode=TwoWay}" Height="{x:Bind Size,Mode=TwoWay}"
-	IsTabStop="True" AllowDrop="True"
-	DragOver="SudokuPane_DragOver" Drop="SudokuPane_DropAsync"
+	IsTabStop="True" AllowDrop="True" DragOver="SudokuPane_DragOver" Drop="SudokuPane_DropAsync"
 	Loaded="SudokuPane_Loaded" PointerEntered="SudokuPane_PointerEntered">
 	<UserControl.Resources>
 		<Style TargetType="TextBlock" x:Key="_rFlyoutTextBlockStyle">
