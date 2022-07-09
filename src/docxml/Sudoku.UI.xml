@@ -1733,19 +1733,19 @@
             </summary>
             <param name="args">The command line arguments. The default value is an empty array.</param>
         </member>
-        <member name="T:Sudoku.UI.Supportable">
+        <member name="T:Sudoku.UI.Supportability">
             <summary>
             Provides a set of properties that checks the current runtime,
             to determine whether the current runtime supports the current operation.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Supportable.Printer">
+        <member name="P:Sudoku.UI.Supportability.Printer">
             <inheritdoc cref="M:Windows.Graphics.Printing.PrintManager.IsSupported"/>
         </member>
-        <member name="P:Sudoku.UI.Supportable.TitleBar">
+        <member name="P:Sudoku.UI.Supportability.TitleBar">
             <inheritdoc cref="M:Microsoft.UI.Windowing.AppWindowTitleBar.IsCustomizationSupported"/>
         </member>
-        <member name="P:Sudoku.UI.Supportable.Mica">
+        <member name="P:Sudoku.UI.Supportability.Mica">
             <inheritdoc cref="M:Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported"/>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.ColorSelector">

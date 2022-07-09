@@ -4,7 +4,7 @@
 /// Provides a set of properties that checks the current runtime,
 /// to determine whether the current runtime supports the current operation.
 /// </summary>
-internal static class Supportable
+internal static class Supportability
 {
 	/// <inheritdoc cref="PrintManager.IsSupported()"/>
 	public static bool Printer => PrintManager.IsSupported();

@@ -662,7 +662,7 @@ public sealed partial class SudokuPage : Page
 	private async Task PrintAsync()
 	{
 		var mainWindow = ((App)Application.Current).RuntimeInfo.MainWindow;
-		if (Supportable.Printer)
+		if (Supportability.Printer)
 		{
 			try
 			{

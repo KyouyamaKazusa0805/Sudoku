@@ -152,7 +152,7 @@ public sealed partial class MainWindow : Window
 
 		_configurationSource = null;
 
-		if (Supportable.Mica)
+		if (Supportability.Mica)
 		{
 			// Hooking up the policy object.
 			_configurationSource = new();
