@@ -1,4 +1,5 @@
-﻿namespace Sudoku.UI.Drawing;
+﻿#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
+namespace Sudoku.UI.Drawing;
 
 /// <summary>
 /// Defines a shape kind that is used for a mark-like drawing element.
@@ -42,3 +43,5 @@ public enum ShapeKind : byte
 	[NotSupportedCandidateMark]
 	Diamond
 }
+
+#endif
