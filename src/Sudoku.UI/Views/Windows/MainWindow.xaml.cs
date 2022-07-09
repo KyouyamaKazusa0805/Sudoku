@@ -40,6 +40,7 @@ public sealed partial class MainWindow : Window
 	public MainWindow()
 	{
 		InitializeComponent();
+		AddHandlerForCheckingBatteryStatusIfWorth();
 		EnsureDispatcherQueueExists();
 		SetMicaBackdropIfSupports();
 		SetProgramNameToTitle();
@@ -48,6 +49,38 @@ public sealed partial class MainWindow : Window
 		ConstructPreferenceItems();
 	}
 
+
+	/// <summary>
+	/// Add handlers that checking for battery status.
+	/// </summary>
+	private void AddHandlerForCheckingBatteryStatusIfWorth()
+	{
+		if (!((App)Application.Current).UserPreference.CheckBatteryStatusWhenOpen)
+		{
+			return;
+		}
+
+		PowerManager.BatteryStatusChanged += BatteryRelatedItemsStatusChangedAsync;
+		PowerManager.RemainingChargePercentChanged += BatteryRelatedItemsStatusChangedAsync;
+		PowerManager.PowerSupplyStatusChanged += BatteryRelatedItemsStatusChangedAsync;
+		PowerManager.PowerSourceKindChanged += BatteryRelatedItemsStatusChangedAsync;
+	}
+
+	/// <summary>
+	/// Remove handlers that checking for battery status.
+	/// </summary>
+	private void RemoveHandlerForCheckingBatteryStatusIfWorth()
+	{
+		if (!((App)Application.Current).UserPreference.CheckBatteryStatusWhenOpen)
+		{
+			return;
+		}
+
+		PowerManager.BatteryStatusChanged -= BatteryRelatedItemsStatusChangedAsync;
+		PowerManager.RemainingChargePercentChanged -= BatteryRelatedItemsStatusChangedAsync;
+		PowerManager.PowerSupplyStatusChanged -= BatteryRelatedItemsStatusChangedAsync;
+		PowerManager.PowerSourceKindChanged -= BatteryRelatedItemsStatusChangedAsync;
+	}
 
 	/// <summary>
 	/// Constructs the preference items.
@@ -61,7 +94,7 @@ public sealed partial class MainWindow : Window
 			where propertyInfo is { CanRead: true, CanWrite: true } // Must contain both setter and getter
 			let returnParameter = propertyInfo.SetMethod!.ReturnParameter
 			let modReqs = returnParameter.GetRequiredCustomModifiers()
-			where !modReqs.CanFind(static modReq => modReq == typeof(IsExternalInit)) // Cannot contain init setter
+			where !Array.Exists(modReqs, static modReq => modReq == typeof(IsExternalInit)) // Cannot contain init setter
 			let backgroundPreferenceAttribute = propertyInfo.GetCustomAttribute<BackgroundPreferenceAttribute>()
 			where backgroundPreferenceAttribute is null // The preference item is not exposed for users
 			let genericArgTypes = propertyInfo.GetGenericAttributeTypeArguments(typeof(PreferenceAttribute<>))
@@ -178,6 +211,33 @@ public sealed partial class MainWindow : Window
 	}
 
 	/// <summary>
+	/// Checks for the battery status if worth.
+	/// </summary>
+	/// <returns>The task that handles for the current operation.</returns>
+	private async Task ReportBatteryLowerStatusAsync()
+	{
+		var batteryStatus = PowerManager.BatteryStatus;
+		int remainingCharge = PowerManager.RemainingChargePercent;
+		var powerStatus = PowerManager.PowerSupplyStatus;
+		var powerSource = PowerManager.PowerSourceKind;
+
+		if (powerSource == PowerSourceKind.DC && batteryStatus == BatteryStatus.Discharging && remainingCharge < 50
+			|| powerSource == PowerSourceKind.AC && powerStatus == PowerSupplyStatus.Inadequate)
+		{
+			await SimpleControlFactory.CreateErrorDialog(_cViewRouter)
+				.WithTitle(R["BatteryStatusIsNotGood"]!)
+				.WithContent(R["BatteryStatusIsNotGood_Detail"]!)
+				.ShowAsync();
+		}
+	}
+
+	/// <summary>
+	/// Used for methods <see cref="AddHandlerForCheckingBatteryStatusIfWorth()"/>
+	/// and <see cref="RemoveHandlerForCheckingBatteryStatusIfWorth()"/>
+	/// </summary>
+	private async void BatteryRelatedItemsStatusChangedAsync(object? _, object __) => await ReportBatteryLowerStatusAsync();
+
+	/// <summary>
 	/// Try to set the theme to field <see cref="_configurationSource"/>. The method requires the field
 	/// <see cref="_configurationSource"/> be not <see langword="null"/>.
 	/// </summary>
@@ -276,6 +336,8 @@ public sealed partial class MainWindow : Window
 
 		Activated -= UserDefined_Window_Activated;
 		_configurationSource = null;
+
+		RemoveHandlerForCheckingBatteryStatusIfWorth();
 	}
 
 	/// <summary>
@@ -296,8 +358,10 @@ public sealed partial class MainWindow : Window
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void ViewRouter_Loaded(object sender, RoutedEventArgs e)
+	private async void ViewRouter_LoadedAsync(object sender, RoutedEventArgs e)
 	{
+		await ReportBatteryLowerStatusAsync();
+
 		var navigationInfo = new EntranceNavigationTransitionInfo();
 		switch ((App)Application.Current)
 		{
@@ -424,7 +488,7 @@ public sealed partial class MainWindow : Window
 			string key = rawKey[queryPrefix.Length..];
 			string[] keywordsSplit = keywords.Split(';');
 			static bool arrayPredicate(string k, string key) => k.ToLower(CultureInfo.CurrentUICulture).Contains(key);
-			if (splitText.All(key => keywordsSplit.CanFind(k => arrayPredicate(k, key))))
+			if (splitText.All(key => Array.Exists(keywordsSplit, k => arrayPredicate(k, key))))
 			{
 				suitableItems.Add(
 					new SearchedResult

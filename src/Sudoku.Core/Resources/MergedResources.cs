@@ -52,7 +52,7 @@ public sealed class MergedResources
 	/// Indicates the extra value selectors. The value can be <see langword="null"/> if the field
 	/// of all usages on the current instance only raises in the current project.
 	/// </summary>
-	private ICollection<(Assembly Assembly, Func<string, string?> ValueSelector)>? _valueSelectors;
+	private ICollection<(Assembly[] SupportedAssemblies, Func<string, string?> ValueSelector)>? _valueSelectors;
 
 
 	/// <summary>
@@ -68,8 +68,10 @@ public sealed class MergedResources
 			if (Assembly.GetCallingAssembly() is var callingAssembly && callingAssembly != GetType().Assembly)
 			{
 				// Uses external resource routing.
-				bool predicate((Assembly Assembly, Func<string, string?>) pair) => pair.Assembly == callingAssembly;
 				return _valueSelectors?.FirstOrDefault(predicate) is var (_, valueSelector) ? valueSelector(key) : null;
+
+
+				bool predicate((Assembly[] A, Func<string, string?>) p) => Array.Exists(p.A, a => a == callingAssembly);
 			}
 
 			var @default = Resources.ResourceManager;
@@ -105,7 +107,16 @@ public sealed class MergedResources
 	/// <param name="valueSelector">The value selector.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddExternalResourceFetecher(Assembly assembly, Func<string, string?> valueSelector)
-		=> (_valueSelectors ??= new List<(Assembly, Func<string, string?>)>()).Add((assembly, valueSelector));
+		=> AddExternalResourceFetecher(new[] { assembly }, valueSelector);
+
+	/// <summary>
+	/// Adds an extra value selector into the current resource fetching instance.
+	/// </summary>
+	/// <param name="assemblies">The supported assemblies.</param>
+	/// <param name="valueSelector">The value selector.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void AddExternalResourceFetecher(Assembly[] assemblies, Func<string, string?> valueSelector)
+		=> (_valueSelectors ??= new List<(Assembly[], Func<string, string?>)>()).Add((assemblies, valueSelector));
 
 	/// <summary>
 	/// Emits a string value represented as the specified punctuation mark.

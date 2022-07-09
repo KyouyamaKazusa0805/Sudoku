@@ -2601,6 +2601,13 @@
             Provides a simple way to construct controls.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.SimpleControlFactory.CreateErrorDialog(Microsoft.UI.Xaml.UIElement)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.ContentDialog"/> instance.
+            </summary>
+            <param name="uiElement">The UI control.</param>
+            <returns>The result instance.</returns>
+        </member>
         <member name="M:Sudoku.UI.SimpleControlFactory.CreateErrorDialog(Microsoft.UI.Xaml.UIElement,System.String,System.String)">
             <summary>
             Creates a <see cref="T:Microsoft.UI.Xaml.Controls.ContentDialog"/> instance.
@@ -2818,6 +2825,24 @@
             </summary>
             <typeparam name="TUIElement">The type of the control.</typeparam>
             <param name="control">The control instance.</param>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Controls.ContentDialogExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.ContentDialog"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.ContentDialog"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.ContentDialogExtensions.WithTitle``1(Microsoft.UI.Xaml.Controls.ContentDialog,``0)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.ContentDialog.Title"/> with the specified value.
+            </summary>
+            <seealso cref="P:Microsoft.UI.Xaml.Controls.ContentDialog.Title"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.ContentDialogExtensions.WithContent(Microsoft.UI.Xaml.Controls.ContentDialog,System.String)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.ContentControl.Content"/> with the specified value.
+            </summary>
+            <seealso cref="P:Microsoft.UI.Xaml.Controls.ContentControl.Content"/>
         </member>
         <member name="T:Microsoft.UI.Xaml.Controls.ControlExtensions">
             <summary>

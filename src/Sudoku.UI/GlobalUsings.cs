@@ -37,6 +37,7 @@ global using Microsoft.UI.Xaml.Media.Animation;
 global using Microsoft.UI.Xaml.Navigation;
 global using Microsoft.UI.Xaml.Printing;
 global using Microsoft.Windows.AppLifecycle;
+global using Microsoft.Windows.System.Power;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Solving;
 global using Sudoku.Generating.Puzzlers;

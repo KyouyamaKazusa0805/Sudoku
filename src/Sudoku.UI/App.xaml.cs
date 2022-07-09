@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI;
+﻿using Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo;
+
+namespace Sudoku.UI;
 
 /// <summary>
 /// Provides application-specific behavior to supplement the default <see cref="Application"/> class.
@@ -48,7 +50,7 @@ public partial class App : Application
 	protected override void OnLaunched(MsLaunchActivatedEventArgs args)
 	{
 		// Binds the resource fetcher on type 'MergedResources'.
-		R.AddExternalResourceFetecher(GetType().Assembly, valueSelector);
+		R.AddExternalResourceFetecher(new[] { GetType().Assembly, typeof(XamlMetaDataProvider).Assembly }, valueSelector);
 
 		// Handle and assign the initial value, to control the initial page information.
 		(

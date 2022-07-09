@@ -7571,6 +7571,13 @@
             <param name="assembly">The assembly.</param>
             <param name="valueSelector">The value selector.</param>
         </member>
+        <member name="M:Sudoku.Resources.MergedResources.AddExternalResourceFetecher(System.Reflection.Assembly[],System.Func{System.String,System.String})">
+            <summary>
+            Adds an extra value selector into the current resource fetching instance.
+            </summary>
+            <param name="assemblies">The supported assemblies.</param>
+            <param name="valueSelector">The value selector.</param>
+        </member>
         <member name="M:Sudoku.Resources.MergedResources.EmitPunctuation(Sudoku.Resources.Punctuation)">
             <summary>
             Emits a string value represented as the specified punctuation mark.

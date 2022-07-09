@@ -584,6 +584,15 @@
             The default value is <see langword="true"/>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CheckBatteryStatusWhenOpen">
+            <summary>
+            Indicates whether the program always check the battery status at first, when you open the program
+            non-programmatically.
+            </summary>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.IsFirstMeet">
             <summary>
             Indicates whether the program is the first time to be used.
@@ -3019,6 +3028,16 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.AddHandlerForCheckingBatteryStatusIfWorth">
+            <summary>
+            Add handlers that checking for battery status.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.RemoveHandlerForCheckingBatteryStatusIfWorth">
+            <summary>
+            Remove handlers that checking for battery status.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.ConstructPreferenceItems">
             <summary>
             Constructs the preference items.
@@ -3051,6 +3070,18 @@
             <summary>
             Try to set the Mica backdrop. The method is used as an entry to set Mica backdrop,
             which is called by the constructor of the current type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.ReportBatteryLowerStatusAsync">
+            <summary>
+            Checks for the battery status if worth.
+            </summary>
+            <returns>The task that handles for the current operation.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.BatteryRelatedItemsStatusChangedAsync(System.Object,System.Object)">
+            <summary>
+            Used for methods <see cref="M:Sudoku.UI.Views.Windows.MainWindow.AddHandlerForCheckingBatteryStatusIfWorth"/>
+            and <see cref="M:Sudoku.UI.Views.Windows.MainWindow.RemoveHandlerForCheckingBatteryStatusIfWorth"/>
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.SetConfigurationSourceTheme">
@@ -3111,7 +3142,7 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="args">The event arguments provided.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.ViewRouter_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.ViewRouter_LoadedAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the view router control is loaded.
             </summary>

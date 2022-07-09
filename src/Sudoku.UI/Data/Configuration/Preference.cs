@@ -293,9 +293,20 @@ public sealed class Preference : IDrawingPreference
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Miscellaneous, 0)]
 	public bool DescendingOrderedInfoBarBoard { get; set; } = true;
+
+	/// <summary>
+	/// Indicates whether the program always check the battery status at first, when you open the program
+	/// non-programmatically.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 1)]
+	public bool CheckBatteryStatusWhenOpen { get; set; } = true;
 	#endregion
 
-	#region Background Options
+	#region Other Options (Only used for program handling, not under the user's control)
 	/// <summary>
 	/// Indicates whether the program is the first time to be used.
 	/// </summary>

@@ -123,6 +123,8 @@
 	<x:String x:Key="SettingsPage_ItemName_AlsoSavePictureWhenSaveDrawingData">Also saving picture while saving drawing data files</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AlwaysShowHomePageWhenOpen">Always route to home page when you open the program</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_AlwaysShowHomePageWhenOpen">If you don't want to check the home page every time, you can set the option to false, then if non-first time you use the program, the program will always open sudoku analysis page instead of the home page.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CheckBatteryStatusWhenOpen">Check battery status when you open the program</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_CheckBatteryStatusWhenOpen">The program sometimes will do some heavy works. If you enable this check, you will receive a message when you opened the program if your computer uses battery instead of being power-supplied.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_OutsideBorderWidth">Blank size outside the border</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_OutsideBorderWidth">Set the value to control the padding width and height that distances between the grid rendered and the left aligning line.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_BlockBorderWidth">Size of the block borders</x:String>
@@ -218,6 +220,7 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_CoverOldShapeWhenDiffused">cover;old;shape;diffused|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_AlsoSavePictureWhenSaveDrawingData">save;saving;picture;files|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_AlwaysShowHomePageWhenOpen">show;home;page;open|Settings Page -> Basic options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_CheckBatteryStatusWhenOpen">check;battery;status;open;program|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_ValueFont">font;scale;values;digits|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateFont">font;scale;candidates|Settings Page -> Basic options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_OutsideBorderWidth">blank;size;outside;border|Settings Page -> Rendering options</x:String>
@@ -265,6 +268,8 @@
 	<x:String x:Key="DifficultyRating">Difficulty</x:String>
 	<x:String x:Key="LoadingSeparateParts">Loading separate parts</x:String>
 	<x:String x:Key="LoadingSudokuGrid">Loading sudoku grid</x:String>
+	<x:String x:Key="BatteryStatusIsNotGood">Battery message</x:String>
+	<x:String x:Key="BatteryStatusIsNotGood_Detail">It seems that your computer may not use a good performance on using this program. We suggest you keep the power being supplied or use the battery with at least 75% remaining.</x:String>
 	<x:String x:Key="ErrorOpenFile">Error on opening folder</x:String>
 	<x:String x:Key="ErrorOpenFile_Detail">The preference folder doesn't exist.</x:String>
 	<x:String x:Key="PrintSuccessful">Print successful.</x:String>
