@@ -64,6 +64,7 @@ global using Windows.Graphics.Printing;
 global using Windows.Storage;
 global using Windows.Storage.Pickers;
 global using Windows.Storage.Provider;
+global using Windows.Storage.Search;
 global using Windows.Storage.Streams;
 global using Windows.System;
 global using Windows.UI.ViewManagement;

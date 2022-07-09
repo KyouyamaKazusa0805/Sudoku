@@ -936,6 +936,80 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		=> Focus(FocusState.Programmatic);
 
 	/// <summary>
+	/// Triggers when a thing is dragging over the control.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void SudokuPane_DragOver(object sender, DragEventArgs e)
+	{
+		e.AcceptedOperation = DataPackageOperation.Copy;
+		e.DragUIOverride.Caption = R["DropSudokuFileHere"]!;
+		e.DragUIOverride.IsCaptionVisible = true;
+		e.DragUIOverride.IsContentVisible = true;
+	}
+
+	/// <summary>
+	/// Triggers when a thing is dropping over the control.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private async void SudokuPane_DropAsync(object sender, DragEventArgs e)
+	{
+		if (e.DataView is not { } dataView)
+		{
+			return;
+		}
+
+		if (!dataView.Contains(StandardDataFormats.StorageItems))
+		{
+			return;
+		}
+
+		switch (await dataView.GetStorageItemsAsync())
+		{
+#pragma warning disable IDE0055
+			case [StorageFolder folder]
+			when await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, 0, 2) is 
+			[
+				StorageFile
+				{
+					FileType: CommonFileExtensions.Text or CommonFileExtensions.Sudoku,
+					Path: var path
+				}
+			]:
+#pragma warning restore IDE0055
+			{
+				await handleSudokuFile(path);
+
+				break;
+			}
+			case [StorageFile { FileType: CommonFileExtensions.Text or CommonFileExtensions.Sudoku, Path: var path }]:
+			{
+				await handleSudokuFile(path);
+
+				break;
+			}
+
+
+			async Task handleSudokuFile(string path)
+			{
+				string content = await SioFile.ReadAllTextAsync(path);
+				if (string.IsNullOrWhiteSpace(content))
+				{
+					return;
+				}
+
+				if (!Grid.TryParse(content, out var grid))
+				{
+					return;
+				}
+
+				Grid = grid;
+			}
+		}
+	}
+
+	/// <summary>
 	/// Triggers when the target <see cref="MenuFlyoutItem"/> is clicked.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>

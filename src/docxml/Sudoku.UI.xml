@@ -2336,6 +2336,20 @@
             <param name="sender">The object to trigger the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_DragOver(System.Object,Microsoft.UI.Xaml.DragEventArgs)">
+            <summary>
+            Triggers when a thing is dragging over the control.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_DropAsync(System.Object,Microsoft.UI.Xaml.DragEventArgs)">
+            <summary>
+            Triggers when a thing is dropping over the control.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.MakeOrDeleteMenuItem_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the target <see cref="T:Microsoft.UI.Xaml.Controls.MenuFlyoutItem"/> is clicked.

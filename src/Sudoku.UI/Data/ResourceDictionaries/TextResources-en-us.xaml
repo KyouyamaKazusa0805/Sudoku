@@ -266,6 +266,7 @@
 	<x:String x:Key="Sudoku">Sudoku</x:String>
 	<x:String x:Key="PreferenceBackup">Preference backup</x:String>
 	<x:String x:Key="DifficultyRating">Difficulty</x:String>
+	<x:String x:Key="DropSudokuFileHere">Drop file here</x:String>
 	<x:String x:Key="LoadingSeparateParts">Loading separate parts</x:String>
 	<x:String x:Key="LoadingSudokuGrid">Loading sudoku grid</x:String>
 	<x:String x:Key="BatteryStatusIsNotGood">Battery message</x:String>

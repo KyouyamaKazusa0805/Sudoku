@@ -260,6 +260,7 @@
 	<x:String x:Key="Sudoku">数独</x:String>
 	<x:String x:Key="PreferenceBackup">设置项备份</x:String>
 	<x:String x:Key="DifficultyRating">难度系数</x:String>
+	<x:String x:Key="DropSudokuFileHere">文件拖到这里</x:String>
 	<x:String x:Key="LoadingSeparateParts">载入控件与零部件……</x:String>
 	<x:String x:Key="LoadingSudokuGrid">载入数独盘面……</x:String>
 	<x:String x:Key="ErrorOpenFile">打开文件夹失败</x:String>
