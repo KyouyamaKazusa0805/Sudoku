@@ -404,13 +404,25 @@
             The default value is <see langword="false"/>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.EnableDeltaValuesDisplaying">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.PeerFocusingMode">
             <inheritdoc/>
             <remarks>
-            The default value is <see langword="true"/>.
+            The default value is <see cref="F:Sudoku.UI.Drawing.Shapes.PeerFocusingMode.FocusedCellAndPeerCells"/>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.DescendingOrderedInfoBarBoard">
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.FocusedCellColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#300000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 48).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.PeersFocusedCellColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#200000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 32).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.EnableDeltaValuesDisplaying">
             <inheritdoc/>
             <remarks>
             The default value is <see langword="true"/>.
@@ -423,6 +435,18 @@
             </summary>
             <remarks>
             The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.ValueFont">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>{ FontName = "Cascadia Mono", FontScale = .8 }</c> in debugging mode.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CandidateFont">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>{ FontName = "Cascadia Mono", FontScale = .25 }</c> in debugging mode.
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.__CoverOldShapeWhenDiffused">
@@ -449,14 +473,6 @@
             The default value is <see langword="false"/>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.IsFirstMeet">
-            <summary>
-            Indicates whether the program is the first time to be used.
-            </summary>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.OutsideBorderWidth">
             <inheritdoc/>
             <remarks>
@@ -479,42 +495,6 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>1</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.HighlightCellStrokeThickness">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>3</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CrossMarkStrokeThickness">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>4</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CandidateMarkStrokeThickness">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>2</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.PeerFocusingMode">
-            <inheritdoc/>
-            <remarks>
-            The default value is <see cref="F:Sudoku.UI.Drawing.Shapes.PeerFocusingMode.FocusedCellAndPeerCells"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.ValueFont">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>{ FontName = "Cascadia Mono", FontScale = .8 }</c> in debugging mode.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.CandidateFont">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>{ FontName = "Cascadia Mono", FontScale = .25 }</c> in debugging mode.
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.OutsideBorderColor">
@@ -583,6 +563,38 @@
             The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.DescendingOrderedInfoBarBoard">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.IsFirstMeet">
+            <summary>
+            Indicates whether the program is the first time to be used.
+            </summary>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.HighlightCellStrokeThickness">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>3</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CrossMarkStrokeThickness">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>4</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CandidateMarkStrokeThickness">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>2</c>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.NormalColor">
             <inheritdoc/>
             <remarks>
@@ -617,18 +629,6 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>#FFFF0000</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.FocusedCellColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#300000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 48).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.PeersFocusedCellColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#200000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/> with alpha 32).
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.__CellRectangleFillColor">
@@ -780,6 +780,13 @@
             Defines an attribute that can be applied to a preference item property,
             indicating the property is not exposed outside for users' usages.
             </summary>
+            <remarks>
+            This attribute is not necessary, which means if you found an option isn't related to user,
+            you can mark with this attribute. The attribute only influences the option initialization
+            and displaying to the settings page. For more information please visit the initialization method
+            in type <see cref="M:Sudoku.UI.Views.Windows.MainWindow.ConstructPreferenceItems"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.UI.Views.Windows.MainWindow.ConstructPreferenceItems"/>
         </member>
         <member name="T:Sudoku.UI.Data.Metadata.DataTemplateModelTypeAttribute`1">
             <summary>

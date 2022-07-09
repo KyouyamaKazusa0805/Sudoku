@@ -28,6 +28,7 @@ namespace Sudoku.UI.Data.Configuration;
 /// <seealso cref="PreferenceGroupAttribute"/>
 public sealed class Preference : IDrawingPreference
 {
+	#region Basic Options
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <see langword="true"/>.
@@ -46,19 +47,35 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <see langword="true"/>.
+	/// The default value is <see cref="PeerFocusingMode.FocusedCellAndPeerCells"/>.
 	/// </remarks>
-	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 5)]
-	public bool EnableDeltaValuesDisplaying { get; set; } = true;
+	[Preference<PeerFocusingModeComboBoxSettingItem>(nameof(PeerFocusingModeComboBoxSettingItem.OptionContents), 3)]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 2)]
+	public PeerFocusingMode PeerFocusingMode { get; set; } = PeerFocusingMode.FocusedCellAndPeerCells;
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#300000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 48).
+	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 3)]
+	public Color FocusedCellColor { get; set; } = Colors.Blue with { A = 48 };
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#200000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 32).
+	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 4)]
+	public Color PeersFocusedCellColor { get; set; } = Colors.Blue with { A = 32 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Miscellaneous, 0)]
-	public bool DescendingOrderedInfoBarBoard { get; set; } = true;
+	[PreferenceGroup(PreferenceGroupNames.Basic, 5)]
+	public bool EnableDeltaValuesDisplaying { get; set; } = true;
 
 	/// <summary>
 	/// Indicates whether the program will use zero character <c>'0'</c> as the placeholder to describe empty cells
@@ -70,6 +87,40 @@ public sealed class Preference : IDrawingPreference
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Basic, 6)]
 	public bool PlaceholderIsZero { get; set; } = true;
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>{ FontName = "Cascadia Mono", FontScale = .8 }</c> in debugging mode.
+	/// </remarks>
+	[Preference<FontPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 7)]
+	public FontData ValueFont { get; set; } = new()
+	{
+		FontName =
+#if DEBUG
+			"Cascadia Mono",
+#else
+			"Tahoma",
+#endif
+		FontScale = .8
+	};
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>{ FontName = "Cascadia Mono", FontScale = .25 }</c> in debugging mode.
+	/// </remarks>
+	[Preference<FontPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 8)]
+	public FontData CandidateFont { get; set; } = new()
+	{
+		FontName =
+#if DEBUG
+			"Cascadia Mono",
+#else
+			"Tahoma",
+#endif
+		FontScale = .25
+	};
 
 #if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
 	/// <summary>
@@ -102,16 +153,9 @@ public sealed class Preference : IDrawingPreference
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Basic, 11)]
 	public bool AlwaysShowHomePageWhenOpen { get; set; } = true;
+	#endregion
 
-	/// <summary>
-	/// Indicates whether the program is the first time to be used.
-	/// </summary>
-	/// <remarks>
-	/// The default value is <see langword="true"/>.
-	/// </remarks>
-	[BackgroundPreference]
-	public bool IsFirstMeet { get; set; } = true;
-
+	#region Rendering Options
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>0</c>.
@@ -151,70 +195,6 @@ public sealed class Preference : IDrawingPreference
 		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 3D)]
 	[PreferenceGroup(PreferenceGroupNames.Rendering, 3)]
 	public double CandidateBorderWidth { get; set; } = 1;
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>3</c>.
-	/// </remarks>
-	public double HighlightCellStrokeThickness { get; set; } = 3;
-
-#if AUTHOR_FEATURE_CELL_MARKS
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>4</c>.
-	/// </remarks>
-	public double __CrossMarkStrokeThickness { get; set; } = 4;
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>2</c>.
-	/// </remarks>
-	public double __CandidateMarkStrokeThickness { get; set; } = 2;
-#endif
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <see cref="PeerFocusingMode.FocusedCellAndPeerCells"/>.
-	/// </remarks>
-	[Preference<PeerFocusingModeComboBoxSettingItem>(nameof(PeerFocusingModeComboBoxSettingItem.OptionContents), 3)]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 2)]
-	public PeerFocusingMode PeerFocusingMode { get; set; } = PeerFocusingMode.FocusedCellAndPeerCells;
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>{ FontName = "Cascadia Mono", FontScale = .8 }</c> in debugging mode.
-	/// </remarks>
-	[Preference<FontPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 7)]
-	public FontData ValueFont { get; set; } = new()
-	{
-		FontName =
-#if DEBUG
-			"Cascadia Mono",
-#else
-			"Tahoma",
-#endif
-		FontScale = .8
-	};
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>{ FontName = "Cascadia Mono", FontScale = .25 }</c> in debugging mode.
-	/// </remarks>
-	[Preference<FontPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 8)]
-	public FontData CandidateFont { get; set; } = new()
-	{
-		FontName =
-#if DEBUG
-			"Cascadia Mono",
-#else
-			"Tahoma",
-#endif
-		FontScale = .25
-	};
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -303,6 +283,51 @@ public sealed class Preference : IDrawingPreference
 	[Preference<ColorPickerSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Rendering, 14)]
 	public Color MaskEllipseColor { get; set; } = Colors.Black;
+	#endregion
+
+	#region Miscellaneous Options
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Miscellaneous, 0)]
+	public bool DescendingOrderedInfoBarBoard { get; set; } = true;
+	#endregion
+
+	#region Background Options
+	/// <summary>
+	/// Indicates whether the program is the first time to be used.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
+	[BackgroundPreference]
+	public bool IsFirstMeet { get; set; } = true;
+	#endregion
+
+	#region Other Options (Some belong to none of all groups mentioned above)
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>3</c>.
+	/// </remarks>
+	public double HighlightCellStrokeThickness { get; set; } = 3;
+
+#if AUTHOR_FEATURE_CELL_MARKS
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>4</c>.
+	/// </remarks>
+	public double __CrossMarkStrokeThickness { get; set; } = 4;
+#endif
+
+#if AUTHOR_FEATURE_CANDIDATE_MARKS
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>2</c>.
+	/// </remarks>
+	public double __CandidateMarkStrokeThickness { get; set; } = 2;
+#endif
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -339,22 +364,6 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <c>#FFFF0000</c>.
 	/// </remarks>
 	public Color LinkColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#300000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 48).
-	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 3)]
-	public Color FocusedCellColor { get; set; } = Colors.Blue with { A = 48 };
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#200000FF</c> (i.e. <see cref="Colors.Blue"/> with alpha 32).
-	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 4)]
-	public Color PeersFocusedCellColor { get; set; } = Colors.Blue with { A = 32 };
 
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <inheritdoc/>
@@ -469,6 +478,7 @@ public sealed class Preference : IDrawingPreference
 		Color.FromArgb(255, 206, 251, 237), // FFCEFBED
 		Color.FromArgb(255, 215, 255, 215) // FFD7FFD7
 	};
+	#endregion
 
 
 	/// <summary>
