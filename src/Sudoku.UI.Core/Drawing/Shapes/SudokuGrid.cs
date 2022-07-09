@@ -198,7 +198,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// <summary>
 	/// Gets or sets the outside offset.
 	/// </summary>
-	public double OutsideOffset
+	public required double OutsideOffset
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _outsideOffset;
@@ -219,7 +219,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// <summary>
 	/// Gets or sets the pane size.
 	/// </summary>
-	public double PaneSize
+	public required double PaneSize
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _paneSize;
