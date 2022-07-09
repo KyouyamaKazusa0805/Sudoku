@@ -973,8 +973,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		switch (await dataView.GetStorageItemsAsync())
 		{
 #pragma warning disable IDE0055
-			case [StorageFolder folder]
-			when await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, 0, 2) is 
+			case [StorageFolder folder] when await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, 0, 2) is 
 			[
 				StorageFile
 				{
