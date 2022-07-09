@@ -18,6 +18,18 @@ public static class UIElementExtensions
 	}
 
 	/// <summary>
+	/// Sets the property <see cref="UIElement.XamlRoot"/> with the specified value.
+	/// </summary>
+	/// <seealso cref="UIElement.XamlRoot"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TUIElement WithXamlRoot<TUIElement>(this TUIElement @this, XamlRoot xamlRoot)
+		where TUIElement : UIElement
+	{
+		@this.XamlRoot = xamlRoot;
+		return @this;
+	}
+
+	/// <summary>
 	/// Calls the method <see cref="Canvas.SetZIndex(UIElement, int)"/> to set the Z-index value.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

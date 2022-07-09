@@ -12,12 +12,10 @@ internal static class SimpleControlFactory
 	/// <returns>The result instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ContentDialog CreateErrorDialog(UIElement uiElement)
-		=> new()
-		{
-			XamlRoot = uiElement.XamlRoot,
-			CloseButtonText = R["Close"]!,
-			DefaultButton = ContentDialogButton.Close
-		};
+		=> new ContentDialog()
+			.WithXamlRoot(uiElement.XamlRoot)
+			.WithDefaultButton(ContentDialogButton.Close)
+			.WithCloseButtonText(R["Close"]!);
 
 	/// <summary>
 	/// Creates a <see cref="ContentDialog"/> instance.
@@ -29,11 +27,9 @@ internal static class SimpleControlFactory
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ContentDialog CreateErrorDialog(UIElement uiElement, string title, string message)
 		=> new ContentDialog()
-		{
-			XamlRoot = uiElement.XamlRoot,
-			CloseButtonText = R["Close"]!,
-			DefaultButton = ContentDialogButton.Close
-		}
-		.WithTitle(title)
-		.WithContent(message);
+			.WithXamlRoot(uiElement.XamlRoot)
+			.WithDefaultButton(ContentDialogButton.Close)
+			.WithCloseButtonText(R["Close"]!)
+			.WithTitle(title)
+			.WithContent(message);
 }

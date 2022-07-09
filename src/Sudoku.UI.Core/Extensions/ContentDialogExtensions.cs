@@ -18,13 +18,24 @@ public static class ContentDialogExtensions
 	}
 
 	/// <summary>
-	/// Sets the property <see cref="ContentControl.Content"/> with the specified value.
+	/// Sets the property <see cref="ContentDialog.CloseButtonText"/> with the specified value.
 	/// </summary>
-	/// <seealso cref="ContentControl.Content"/>
+	/// <seealso cref="ContentDialog.CloseButtonText"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ContentDialog WithContent(this ContentDialog @this, string content)
+	public static ContentDialog WithCloseButtonText(this ContentDialog @this, string closeButtonText)
 	{
-		@this.Content = content;
+		@this.CloseButtonText = closeButtonText;
+		return @this;
+	}
+
+	/// <summary>
+	/// Sets the property <see cref="ContentDialog.DefaultButton"/> with the specified value.
+	/// </summary>
+	/// <seealso cref="ContentDialog.DefaultButton"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ContentDialog WithDefaultButton(this ContentDialog @this, ContentDialogButton defaultButton)
+	{
+		@this.DefaultButton = defaultButton;
 		return @this;
 	}
 }
