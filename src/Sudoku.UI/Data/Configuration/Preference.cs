@@ -302,7 +302,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 1)]
+	[PreferenceGroup(PreferenceGroupNames.Miscellaneous, 1)]
 	public bool CheckBatteryStatusWhenOpen { get; set; } = true;
 	#endregion
 
