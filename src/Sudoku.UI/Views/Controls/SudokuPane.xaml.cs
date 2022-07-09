@@ -172,6 +172,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <inheritdoc/>
 	public event PropertyChangedEventHandler? PropertyChanged;
 
+	/// <summary>
+	/// Indicates an event that is triggered when a file is successfully received using drag and drop operation.
+	/// </summary>
+	public event EventHandler<object?>? SuccessfullyReceivedDroppedFile;
+
 
 	/// <summary>
 	/// Undo a step.
@@ -1005,6 +1010,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				}
 
 				Grid = grid;
+
+				SuccessfullyReceivedDroppedFile?.Invoke(this, null);
 			}
 		}
 	}

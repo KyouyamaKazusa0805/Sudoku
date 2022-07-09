@@ -240,7 +240,9 @@
 			<!--Sudoku grid-->
 			<Grid x:Name="_cPrintingContainer" Grid.Row="1" Opacity="0" />
 			<StackPanel x:Name="_cPaneParent" Grid.Row="1" Margin="25,25,0,0">
-				<c:SudokuPane x:Name="_cPane" Size="560" OutsideOffset="10" />
+				<c:SudokuPane
+					x:Name="_cPane" Size="560" OutsideOffset="10"
+					SuccessfullyReceivedDroppedFile="Pane_SuccessfullyReceivedDroppedFile" />
 			</StackPanel>
 
 			<!--Info bar board at the right side of the sudoku grid-->

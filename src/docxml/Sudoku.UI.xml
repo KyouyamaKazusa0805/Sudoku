@@ -2137,6 +2137,11 @@
         <member name="E:Sudoku.UI.Views.Controls.SudokuPane.PropertyChanged">
             <inheritdoc/>
         </member>
+        <member name="E:Sudoku.UI.Views.Controls.SudokuPane.SuccessfullyReceivedDroppedFile">
+            <summary>
+            Indicates an event that is triggered when a file is successfully received using drag and drop operation.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.UndoStep">
             <summary>
             Undo a step.
@@ -2814,6 +2819,13 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current page is unloaded.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Pane_SuccessfullyReceivedDroppedFile(System.Object,System.Object)">
+            <summary>
+            Triggers when a file is dropped to the target sudoku pane.
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>

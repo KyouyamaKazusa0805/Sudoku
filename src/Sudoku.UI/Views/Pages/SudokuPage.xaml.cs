@@ -713,6 +713,14 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
+	/// Triggers when a file is dropped to the target sudoku pane.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void Pane_SuccessfullyReceivedDroppedFile(object? sender, object? e)
+		=> _cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_FileDragAndDropSuccessfully"]!);
+
+	/// <summary>
 	/// Triggers when the inner collection of the control <see cref="_cInfoBoard"/> is changed.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
