@@ -51,6 +51,16 @@ public sealed class SudokuGrid : DrawingElement
 	private readonly Rectangle[] _peerFocusedRectangle = new Rectangle[20];
 
 	/// <summary>
+	/// Indicates the cell view node shapes.
+	/// </summary>
+	private readonly CellViewNodeShape[] _cellViewNodeShapes = new CellViewNodeShape[81];
+
+	/// <summary>
+	/// Indicates the candidate view node shapes.
+	/// </summary>
+	private readonly CandidateViewNodeShape[] _candidateViewNodeShapes = new CandidateViewNodeShape[81];
+
+	/// <summary>
 	/// Indicates the user preference used.
 	/// </summary>
 	private readonly IDrawingPreference _preference = null!;
@@ -425,6 +435,15 @@ public sealed class SudokuGrid : DrawingElement
 					};
 					_gridLayout.Children.Add(q.GetControl().WithGridLayout(row: i / 9, column: i % 9));
 
+					ref var r = ref _cellViewNodeShapes[i];
+					r = new() { Preference = preference, IsVisible = false };
+					_gridLayout.Children.Add(r.GetControl().WithGridLayout(row: i / 9, column: i % 9));
+
+					ref var s = ref _candidateViewNodeShapes[i];
+					s = new() { Preference = preference };
+					Array.ForEach(Digits, digit => _candidateViewNodeShapes[i].SetIsVisible(digit, false));
+					_gridLayout.Children.Add(s.GetControl().WithGridLayout(row: i / 9, column: i % 9));
+
 #if AUTHOR_FEATURE_CELL_MARKS
 					if (AllowMarkups)
 					{
@@ -756,6 +775,72 @@ public sealed class SudokuGrid : DrawingElement
 #endif
 		}
 #endif
+	}
+
+	/// <summary>
+	/// Sets the cell view node.
+	/// </summary>
+	/// <param name="cellViewNode">The cell view node.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetCellViewNode(CellViewNode cellViewNode)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		ref var current = ref _cellViewNodeShapes[cellViewNode.Cell];
+		current.IsVisible = true;
+		current.ColorIdentifier = cellViewNode.Identifier;
+	}
+
+	/// <summary>
+	/// Sets the candidate view node.
+	/// </summary>
+	/// <param name="candidateViewNode">The candidate view node.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetCandidateViewNode(CandidateViewNode candidateViewNode)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		int cell = candidateViewNode.Candidate / 9;
+		int digit = candidateViewNode.Candidate % 9;
+		ref var current = ref _candidateViewNodeShapes[cell];
+		current.SetIsVisible(digit, true);
+		current.SetIdentifier(digit, candidateViewNode.Identifier);
+	}
+
+	/// <summary>
+	/// Clears the cell view node.
+	/// </summary>
+	/// <param name="cellIndex">The cell index.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ClearCellViewNode(int cellIndex)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		_cellViewNodeShapes[cellIndex].IsVisible = false;
+	}
+
+	/// <summary>
+	/// Clears the candidate view node.
+	/// </summary>
+	/// <param name="candidateIndex">The candidate index.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ClearCandidateViewNode(int candidateIndex)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		_candidateViewNodeShapes[candidateIndex / 9].SetIsVisible(candidateIndex % 9, false);
 	}
 
 #if AUTHOR_FEATURE_CELL_MARKS

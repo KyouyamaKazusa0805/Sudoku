@@ -893,6 +893,81 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetControl">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape">
+            <summary>
+            Defines a candidate view node shape.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape._isVisibleValues">
+            <summary>
+            Indicates the table of visibility values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape._identifiers">
+            <summary>
+            Indicates the identifiers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape._ellipses">
+            <summary>
+            The inner controls.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape._gridLayout">
+            <summary>
+            Indicates the grid layout.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape._preference">
+            <summary>
+            Indicates the preference instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape.Preference">
+            <summary>
+            The user preference instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape.SetIsVisible(System.Int32,System.Boolean)">
+            <summary>
+            Sets the specified digit with the specified visibility.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="isVisible">The visibility.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape.SetIdentifier(System.Int32,Sudoku.Presentation.Identifier)">
+            <summary>
+            Sets the specified digit with the specified color.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="identifier">The color identifier.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape.GetIsVisible(System.Int32)">
+            <summary>
+            Gets the visibility at the specified digit.
+            </summary>
+            <param name="digit">The digit.</param>
+            <returns>The visibility.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape.GetIdentifier(System.Int32)">
+            <summary>
+            Gets the identifier at the specified digit.
+            </summary>
+            <param name="digit">The digit.</param>
+            <returns>The color identifier.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape.GetControl">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellDigit">
             <summary>
             Defines a drawing element that displays for a digit that is the cell-leveled digit.
@@ -1239,6 +1314,53 @@
             </summary>
             <param name="shapeKind">The shape kind.</param>
             <returns>The target control. If none found, <see langword="null"/>.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.CellViewNodeShape">
+            <summary>
+            Defines a cell view node shape.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellViewNodeShape._rectangle">
+            <summary>
+            The inner control.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellViewNodeShape._isVisible">
+            <summary>
+            Indicates whether the node shape is displayed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellViewNodeShape._identifier">
+            <summary>
+            Indicates the identifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellViewNodeShape.IsVisible">
+            <summary>
+            Indicates the visible.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellViewNodeShape.ColorIdentifier">
+            <summary>
+            The color identifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellViewNodeShape.Preference">
+            <summary>
+            The user preference instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellViewNodeShape.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellViewNodeShape.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellViewNodeShape.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellViewNodeShape.GetControl">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElement">
             <summary>
@@ -2300,6 +2422,16 @@
             Indicates the rectangles displaying for peers of the focused cell.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._cellViewNodeShapes">
+            <summary>
+            Indicates the cell view node shapes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._candidateViewNodeShapes">
+            <summary>
+            Indicates the candidate view node shapes.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._preference">
             <summary>
             Indicates the user preference used.
@@ -2484,6 +2616,30 @@
             <summary>
             To unmask the grid.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetCellViewNode(Sudoku.Presentation.Nodes.CellViewNode)">
+            <summary>
+            Sets the cell view node.
+            </summary>
+            <param name="cellViewNode">The cell view node.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetCandidateViewNode(Sudoku.Presentation.Nodes.CandidateViewNode)">
+            <summary>
+            Sets the candidate view node.
+            </summary>
+            <param name="candidateViewNode">The candidate view node.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearCellViewNode(System.Int32)">
+            <summary>
+            Clears the cell view node.
+            </summary>
+            <param name="cellIndex">The cell index.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearCandidateViewNode(System.Int32)">
+            <summary>
+            Clears the candidate view node.
+            </summary>
+            <param name="candidateIndex">The candidate index.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetCellMark(System.Int32,Sudoku.UI.Drawing.ShapeKind)">
             <summary>

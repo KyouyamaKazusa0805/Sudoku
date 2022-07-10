@@ -744,14 +744,14 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void Pane_DroppedFileIsEmpty(object sender, object e) => EmitFileIsEmptyInfo();
+	private void Pane_DroppedFileIsEmpty(object? sender, object? e) => EmitFileIsEmptyInfo();
 
 	/// <summary>
 	/// Triggers when the dropped file is too large.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void Pane_DroppedFileIsTooLarge(object sender, object e) => EmitFileIsTooLarge();
+	private void Pane_DroppedFileIsTooLarge(object? sender, object? e) => EmitFileIsTooLarge();
 
 	/// <summary>
 	/// Triggers when a file is dropped to the target sudoku pane.
