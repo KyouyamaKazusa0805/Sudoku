@@ -145,10 +145,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public int RedoStepsCount => GetSudokuGridViewModel().RedoStepsCount;
 
 	/// <summary>
-	/// Gets or sets the current used grid. If you just want to get the value of the grid, please use
-	/// the property <see cref="GridRef"/> instead.
+	/// Gets or sets the current used grid.
 	/// </summary>
-	/// <seealso cref="GridRef"/>
 	public Grid Grid
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -156,16 +154,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set => GetSudokuGridViewModel().Grid = value;
-	}
-
-	/// <summary>
-	/// Gets the reference of the grid. The property returns by reference in order to copy the reference instead
-	/// of the instance itself to provide optimization on memory allocations.
-	/// </summary>
-	internal ref readonly Grid GridRef
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ref GetSudokuGridViewModel().GridRef;
 	}
 
 
