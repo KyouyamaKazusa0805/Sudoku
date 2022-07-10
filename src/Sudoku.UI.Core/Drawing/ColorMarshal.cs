@@ -21,8 +21,16 @@ internal static class ColorMarshal
 			IdentifierColorMode.Raw when identifier is { A: var alpha, R: var red, G: var green, B: var blue }
 				=> Color.FromArgb(alpha, red, green, blue),
 			IdentifierColorMode.Id => userPreference.PaletteColors[identifier.Id],
-			IdentifierColorMode.Named when typeof(IDrawingPreference).GetProperty($"{identifier.NamedKind}Color") is { } propertyInfo
-				=> (Color)propertyInfo.GetValue(userPreference)!,
+			IdentifierColorMode.Named when identifier.NamedKind is var namedKind => namedKind switch
+			{
+				>= DisplayColorKind.Auxiliary1 and <= DisplayColorKind.Auxiliary3
+					=> userPreference.AuxiliaryColors[namedKind - DisplayColorKind.Auxiliary1],
+				>= DisplayColorKind.AlmostLockedSet1 and <= DisplayColorKind.AlmostLockedSet5
+					=> userPreference.AlmostLockedSetColors[namedKind - DisplayColorKind.AlmostLockedSet1],
+				_ when typeof(IDrawingPreference).GetProperty($"{identifier.NamedKind}Color") is { } propertyInfo
+					=> (Color)propertyInfo.GetValue(userPreference)!,
+				_ => throw new InvalidOperationException("The specified named kind is not supported.")
+			},
 			_ => throw new InvalidOperationException("The specified mode is not supported due to invalid inner value.")
 		};
 

@@ -348,6 +348,12 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
+	/// The default value is <c>#FF3FDA65</c>.
+	/// </remarks>
+	public Color AssignmentColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
+
+	/// <inheritdoc/>
+	/// <remarks>
 	/// The default value is <c>#FFFF7684</c>.
 	/// </remarks>
 	public Color EliminationColor { get; set; } = Color.FromArgb(255, 255, 118, 132);

@@ -188,8 +188,8 @@
 	<x:String x:Key="KeyboardPage_ControlUp">Diffuses cell-wide shapes to all cells in the current column</x:String>
 	<x:String x:Key="KeyboardPage_ControlShiftLeft">Diffuses cell-wide shapes to all candidates in the current row</x:String>
 	<x:String x:Key="KeyboardPage_ControlShiftUp">Diffuses cell-wide shapes to all candidates in the current column</x:String>
-	<x:String x:Key="KeyboardPage_Left">See the previous view</x:String>
-	<x:String x:Key="KeyboardPage_Right">See the next view in a step</x:String>
+	<x:String x:Key="KeyboardPage_Minus">See the previous view</x:String>
+	<x:String x:Key="KeyboardPage_Equals">See the next view in a step</x:String>
 	<x:String x:Key="KeyboardPage_Escape">Clears the view items in a step</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
@@ -309,6 +309,8 @@
 	<x:String x:Key="VirtualKey_Right">Right</x:String>
 	<x:String x:Key="VirtualKey_Backspace">Backspace</x:String>
 	<x:String x:Key="VirtualKey_Space">Space</x:String>
+	<x:String x:Key="VirtualKey_189">Minus</x:String>
+	<x:String x:Key="VirtualKey_187">Equals</x:String>
 	<x:String x:Key="__SampleField">Sample field</x:String>
 
 	<!--Punctuations-->

@@ -810,6 +810,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// <summary>
 	/// Sets the previous view.
 	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetPreviousView()
 	{
 		if (ViewIndex - 1 < 0)
@@ -817,22 +818,23 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		if (Step is not { Conclusions: var conclusions, Views: var views and not [] })
+		if (Step is not { Views: var views and not [] })
 		{
 			return;
 		}
 
 		ViewIndex--;
 		SetViewNodes(views[ViewIndex]);
-		SetConclusion(views[ViewIndex], conclusions);
+		SetConclusion(views[ViewIndex], Step.Conclusions);
 	}
 
 	/// <summary>
 	/// Sets the next view.
 	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetNextView()
 	{
-		if (Step is not { Conclusions: var conclusions, Views: { Length: var viewLength and not 0 } views })
+		if (Step is not { Views: { Length: var viewLength and not 0 } views })
 		{
 			return;
 		}
@@ -844,7 +846,29 @@ public sealed class SudokuGrid : DrawingElement
 
 		ViewIndex++;
 		SetViewNodes(views[ViewIndex]);
-		SetConclusion(views[ViewIndex], conclusions);
+		SetConclusion(views[ViewIndex], Step.Conclusions);
+	}
+
+	/// <summary>
+	/// Directly skips to the view at the specified index.
+	/// </summary>
+	/// <param name="index">The index.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SkipToViewIndex(int index)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		if (Step is null)
+		{
+			return;
+		}
+
+		ViewIndex = index;
+		SetViewNodes(Step.Views[ViewIndex]);
+		SetConclusion(Step.Views[ViewIndex], Step.Conclusions);
 	}
 
 	/// <summary>
@@ -1182,17 +1206,13 @@ public sealed class SudokuGrid : DrawingElement
 			current.SetIsVisible(digit, true);
 			current.SetIdentifier(
 				digit,
-				type switch
-				{
-					ConclusionType.Assignment => 0,
-					ConclusionType.Elimination
-						=> (
-							currentView.ConflictWith(candidate)
-								? _preference.CannibalismColor
-								: _preference.EliminationColor
-						).AsIdentifier(),
-					_ => throw new NotSupportedException("The specified conclusion type is not supported.")
-				}
+				(
+					type == ConclusionType.Assignment
+						? _preference.AssignmentColor
+						: currentView.ConflictWith(candidate)
+							? _preference.CannibalismColor
+							: _preference.EliminationColor
+				).AsIdentifier()
 			);
 		}
 	}

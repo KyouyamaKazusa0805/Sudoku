@@ -186,6 +186,8 @@ internal static class SimpleConverters
 				>= Key.NumberPad0 and <= Key.NumberPad9 => (virtualKey - Key.NumberPad0).ToString(),
 				>= Key.Left and <= Key.Down or Key.Space => R[$"VirtualKey_{virtualKey}"]!,
 				Key.Back => R["VirtualKey_Backspace"]!,
+				Key.Subtract => R["VirtualKey_Subtract"]!,
+				(Key)187 => R["VirtualKey_187"]!,
 				_ => virtualKey.ToString()
 			},
 

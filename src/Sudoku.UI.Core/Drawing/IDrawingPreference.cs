@@ -154,6 +154,11 @@ public interface IDrawingPreference
 	public abstract Color NormalColor { get; set; }
 
 	/// <summary>
+	/// Indicates the color that describes an assignment.
+	/// </summary>
+	public abstract Color AssignmentColor { get; set; }
+
+	/// <summary>
 	/// Indicates the color that describes an elimination.
 	/// </summary>
 	public abstract Color EliminationColor { get; set; }

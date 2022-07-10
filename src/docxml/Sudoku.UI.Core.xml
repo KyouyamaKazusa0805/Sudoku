@@ -273,6 +273,11 @@
             Indicates the normal color.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AssignmentColor">
+            <summary>
+            Indicates the color that describes an assignment.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.EliminationColor">
             <summary>
             Indicates the color that describes an elimination.
@@ -2648,6 +2653,12 @@
             <summary>
             Sets the next view.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SkipToViewIndex(System.Int32)">
+            <summary>
+            Directly skips to the view at the specified index.
+            </summary>
+            <param name="index">The index.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetCellViewNode(Sudoku.Presentation.Nodes.CellViewNode)">
             <summary>

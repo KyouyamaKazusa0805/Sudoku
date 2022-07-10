@@ -52,8 +52,8 @@ public sealed partial class KeyboardPage : Page
 		new(R["KeyboardPage_ControlUp"]!, new(ModifierKey.Control, Key.Up, Key.Down)),
 		new(R["KeyboardPage_ControlShiftLeft"]!, new(ModifierKey.Control | ModifierKey.Shift, Key.Left, Key.Right)),
 		new(R["KeyboardPage_ControlShiftUp"]!, new(ModifierKey.Control | ModifierKey.Shift, Key.Up, Key.Down)),
-		new(R["KeyboardPage_Left"]!, new(ModifierKey.None, Key.Left)),
-		new(R["KeyboardPage_Right"]!, new(ModifierKey.None, Key.Right)),
+		new(R["KeyboardPage_189"]!, new(ModifierKey.None, (Key)189)), // Minus
+		new(R["KeyboardPage_187"]!, new(ModifierKey.None, (Key)187)), // Equals
 		new(R["KeyboardPage_Escape"]!, new(ModifierKey.None, Key.Escape))
 	};
 

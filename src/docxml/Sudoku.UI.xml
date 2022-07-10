@@ -625,6 +625,12 @@
             The default value is <c>#FF3FDA65</c>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AssignmentColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FF3FDA65</c>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.EliminationColor">
             <inheritdoc/>
             <remarks>
@@ -2280,6 +2286,9 @@
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetNextView">
             <inheritdoc cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetNextView"/>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SkipToViewIndex(System.Int32)">
+            <inheritdoc cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SkipToViewIndex(System.Int32)"/>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ClearViews">
             <summary>
             Clear all view nodes.
@@ -2333,6 +2342,12 @@
             Try to get drawing data.
             </summary>
             <returns>The drawing data.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetViewIndex">
+            <summary>
+            Gets the view index.
+            </summary>
+            <returns>The view index.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetStep">
             <summary>
@@ -2767,6 +2782,12 @@
             <param name="grid">The grid.</param>
             <param name="format">The format.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SetPreviousView">
+            <inheritdoc cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetPreviousView"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SetNextView">
+            <inheritdoc cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetNextView"/>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CopySnapshotAsync">
             <summary>
             Copy the snapshot of the sudoku grid control, to the clipboard.
@@ -2895,16 +2916,6 @@
             To hide the candidates.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SetPreviousView">
-            <summary>
-            Sets the previous view.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SetNextView">
-            <summary>
-            Sets the next view.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ClearViews">
             <summary>
             Clear all views.
@@ -2958,6 +2969,13 @@
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.PipsPager_SelectedIndexChanged(Microsoft.UI.Xaml.Controls.PipsPager,Microsoft.UI.Xaml.Controls.PipsPagerSelectedIndexChangedEventArgs)">
+            <summary>
+            Triggers when the current pips pager is updated its selected index.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="args">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InfoBoard_CollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
             <summary>

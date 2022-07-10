@@ -85,8 +85,8 @@ public sealed partial class SudokuPage : Page
 					},
 					(false, false, false) => e.Key switch
 					{
-						Key.Left => SetPreviousView,
-						Key.Right => SetNextView,
+						(Key)189 => SetPreviousView,
+						(Key)187 => SetNextView,
 						Key.Escape => ClearViews,
 						_ => default
 					},
@@ -213,6 +213,24 @@ public sealed partial class SudokuPage : Page
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
 		dataPackage.SetText(grid.ToString(format));
 		Clipboard.SetContent(dataPackage);
+	}
+
+	/// <inheritdoc cref="SudokuGrid.SetPreviousView"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void SetPreviousView()
+	{
+		_cPane.SetPreviousView();
+
+		_cPipsPager.SelectedPageIndex = _cPane.GetViewIndex();
+	}
+
+	/// <inheritdoc cref="SudokuGrid.SetNextView"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void SetNextView()
+	{
+		_cPane.SetNextView();
+
+		_cPipsPager.SelectedPageIndex = _cPane.GetViewIndex();
 	}
 
 	/// <summary>
@@ -688,16 +706,6 @@ public sealed partial class SudokuPage : Page
 	private void HideCandidates() => _cPane.HideCandidates();
 
 	/// <summary>
-	/// Sets the previous view.
-	/// </summary>
-	private void SetPreviousView() => _cPane.SetPreviousView();
-
-	/// <summary>
-	/// Sets the next view.
-	/// </summary>
-	private void SetNextView() => _cPane.SetNextView();
-
-	/// <summary>
 	/// Clear all views.
 	/// </summary>
 	private void ClearViews() => _cPane.ClearViews();
@@ -749,13 +757,20 @@ public sealed partial class SudokuPage : Page
 	/// <param name="e">The manual step.</param>
 	private void SetManualStep(ManualStep e)
 	{
-		if (e is not (var grid, { Views: not [] } step))
+		if (e is not (var grid, { Views.Length: var viewLength and not 0 } step))
 		{
 			return;
 		}
 
 		_cPane.SetStep(step);
 		_cPane.Grid = grid;
+
+		bool isMultipleViews = viewLength > 1;
+		_cPipsPager.Visibility = isMultipleViews ? Visibility.Visible : Visibility.Collapsed;
+		if (isMultipleViews)
+		{
+			_cPipsPager.NumberOfPages = viewLength;
+		}
 	}
 
 
@@ -797,6 +812,14 @@ public sealed partial class SudokuPage : Page
 	/// <param name="e">The event arguments provided.</param>
 	private void Pane_SuccessfullyReceivedDroppedFile(object? sender, object? e)
 		=> _cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_FileDragAndDropSuccessfully"]!);
+
+	/// <summary>
+	/// Triggers when the current pips pager is updated its selected index.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="args">The event arguments provided.</param>
+	private void PipsPager_SelectedIndexChanged(PipsPager sender, PipsPagerSelectedIndexChangedEventArgs args)
+		=> _cPane.SkipToViewIndex(sender.SelectedPageIndex);
 
 	/// <summary>
 	/// Triggers when the inner collection of the control <see cref="_cInfoBoard"/> is changed.

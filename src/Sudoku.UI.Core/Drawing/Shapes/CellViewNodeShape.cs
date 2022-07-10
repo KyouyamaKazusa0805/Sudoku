@@ -9,7 +9,8 @@ public sealed class CellViewNodeShape : DrawingElement
 	/// The inner control.
 	/// </summary>
 	private readonly Rectangle _rectangle = new Rectangle()
-		.WithCanvasZIndex(-1);
+		.WithMargin(0)
+		.WithCanvasZIndex(-2);
 
 	/// <summary>
 	/// Indicates whether the node shape is displayed.

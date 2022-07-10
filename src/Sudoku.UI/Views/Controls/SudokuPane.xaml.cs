@@ -275,47 +275,19 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="step">The step to be displayed.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetStep(IStep step)
-	{
-		if (step is not { Views.Length: var viewLength and not 0 })
-		{
-			return;
-		}
-
-		bool isMultipleViews = viewLength > 1;
-		_cPipsPager.Visibility = isMultipleViews ? Visibility.Visible : Visibility.Collapsed;
-
-		GetSudokuGridViewModel().Step = step;
-
-		if (isMultipleViews)
-		{
-			int minValue = Min(viewLength, 10);
-			var visibility = viewLength >= minValue ? PipsPagerButtonVisibility.Visible : PipsPagerButtonVisibility.Collapsed;
-			_cPipsPager.NumberOfPages = minValue;
-			_cPipsPager.PreviousButtonVisibility = visibility;
-			_cPipsPager.NextButtonVisibility = visibility;
-		}
-	}
+	public void SetStep(IStep step) => GetSudokuGridViewModel().Step = step;
 
 	/// <inheritdoc cref="SudokuGrid.SetPreviousView"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetPreviousView()
-	{
-		var sudokuGrid = GetSudokuGridViewModel();
-		sudokuGrid.SetPreviousView();
-
-		_cPipsPager.SelectedPageIndex = sudokuGrid.ViewIndex;
-	}
+	public void SetPreviousView() => GetSudokuGridViewModel().SetPreviousView();
 
 	/// <inheritdoc cref="SudokuGrid.SetNextView"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetNextView()
-	{
-		var sudokuGrid = GetSudokuGridViewModel();
-		sudokuGrid.SetNextView();
+	public void SetNextView() => GetSudokuGridViewModel().SetNextView();
 
-		_cPipsPager.SelectedPageIndex = sudokuGrid.ViewIndex;
-	}
+	/// <inheritdoc cref="SudokuGrid.SkipToViewIndex"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SkipToViewIndex(int index) => GetSudokuGridViewModel().SkipToViewIndex(index);
 
 	/// <summary>
 	/// Clear all view nodes.
@@ -505,9 +477,17 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #endif
 
 	/// <summary>
+	/// Gets the view index.
+	/// </summary>
+	/// <returns>The view index.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public int GetViewIndex() => GetSudokuGridViewModel().ViewIndex;
+
+	/// <summary>
 	/// Gets the current displaying step.
 	/// </summary>
 	/// <returns>The current displaying step.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public IStep? GetStep() => GetSudokuGridViewModel().Step;
 
 	/// <inheritdoc/>

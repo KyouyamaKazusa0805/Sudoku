@@ -25,7 +25,8 @@ public sealed class CandidateViewNodeShape : DrawingElement
 	/// </summary>
 	private readonly GridLayout _gridLayout = new GridLayout()
 		.WithRowDefinitionsCount(3)
-		.WithColumnDefinitionsCount(3);
+		.WithColumnDefinitionsCount(3)
+		.WithCanvasZIndex(-3);
 
 	/// <summary>
 	/// Indicates the preference instance.
@@ -49,8 +50,8 @@ public sealed class CandidateViewNodeShape : DrawingElement
 			{
 				_gridLayout.AddChildren(
 					_ellipses[i] = new Ellipse()
+						.WithMargin(1)
 						.WithGridLayout(row: i / 3, column: i % 3)
-						.WithCanvasZIndex(-1)
 				);
 			}
 		}
@@ -69,11 +70,6 @@ public sealed class CandidateViewNodeShape : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetIsVisible(int digit, bool isVisible)
 	{
-		if (_isVisibleValues[digit] == isVisible)
-		{
-			return;
-		}
-
 		_isVisibleValues[digit] = isVisible;
 		_ellipses[digit].Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
 	}
@@ -86,11 +82,6 @@ public sealed class CandidateViewNodeShape : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetIdentifier(int digit, Identifier identifier)
 	{
-		if (_identifiers[digit] == identifier)
-		{
-			return;
-		}
-
 		_identifiers[digit] = identifier;
 		_ellipses[digit].Fill = new SolidColorBrush(identifier.AsColor(_preference));
 	}

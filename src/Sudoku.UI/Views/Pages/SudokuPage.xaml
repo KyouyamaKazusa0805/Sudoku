@@ -19,7 +19,7 @@
 			</Grid.Resources>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="580" />
+				<RowDefinition />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
@@ -238,12 +238,15 @@
 			</xc:TabbedCommandBar>
 
 			<!--Sudoku grid-->
-			<Grid x:Name="_cPrintingContainer" Grid.Row="1" Opacity="0" />
-			<StackPanel x:Name="_cPaneParent" Grid.Row="1" Margin="25,25,0,0">
+			<StackPanel x:Name="_cPaneParent" Orientation="Vertical" Grid.Row="1" Margin="25,25,0,0">
 				<c:SudokuPane
 					x:Name="_cPane" Size="560" OutsideOffset="10"
 					DroppedFileIsEmpty="Pane_DroppedFileIsEmpty" DroppedFileIsTooLarge="Pane_DroppedFileIsTooLarge"
 					SuccessfullyReceivedDroppedFile="Pane_SuccessfullyReceivedDroppedFile" />
+				<PipsPager
+					x:Name="_cPipsPager" Margin="0,3,0,0" MaxVisiblePips="10" HorizontalAlignment="Center"
+					Visibility="Collapsed" PreviousButtonVisibility="Collapsed" NextButtonVisibility="Collapsed"
+					SelectedIndexChanged="PipsPager_SelectedIndexChanged" />
 			</StackPanel>
 
 			<!--Info bar board at the right side of the sudoku grid-->
