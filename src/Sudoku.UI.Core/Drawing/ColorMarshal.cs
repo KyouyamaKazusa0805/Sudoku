@@ -16,20 +16,21 @@ internal static class ColorMarshal
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Color AsColor(this Identifier identifier, IDrawingPreference userPreference)
-	{
-		return identifier.Mode switch
+		=> identifier.Mode switch
 		{
 			IdentifierColorMode.Raw when identifier is { A: var alpha, R: var red, G: var green, B: var blue }
 				=> Color.FromArgb(alpha, red, green, blue),
-			IdentifierColorMode.Id when g($"PaletteColor{identifier.Id}") is { } propertyInfo
-				=> (Color)propertyInfo.GetValue(userPreference)!,
-			IdentifierColorMode.Named when g($"{identifier.NamedKind}Color") is { } propertyInfo
+			IdentifierColorMode.Id => userPreference.PaletteColors[identifier.Id],
+			IdentifierColorMode.Named when typeof(IDrawingPreference).GetProperty($"{identifier.NamedKind}Color") is { } propertyInfo
 				=> (Color)propertyInfo.GetValue(userPreference)!,
 			_ => throw new InvalidOperationException("The specified mode is not supported due to invalid inner value.")
 		};
 
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static PropertyInfo? g(string s) => typeof(IDrawingPreference).GetProperty(s);
-	}
+	/// <summary>
+	/// Converts the specified color to the equivalent identifier instance.
+	/// </summary>
+	/// <param name="this">The color.</param>
+	/// <returns>The identifier instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Identifier AsIdentifier(this Color @this) => (@this.A, @this.R, @this.G, @this.B);
 }

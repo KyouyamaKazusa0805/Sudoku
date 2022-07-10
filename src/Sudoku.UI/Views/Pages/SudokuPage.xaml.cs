@@ -749,12 +749,12 @@ public sealed partial class SudokuPage : Page
 	/// <param name="e">The manual step.</param>
 	private void SetManualStep(ManualStep e)
 	{
-		if (e is not (var grid, { Views: var views and not [] } step))
+		if (e is not (var grid, { Views: not [] } step))
 		{
 			return;
 		}
 
-		_cPane.SetViews(views.ToArray());
+		_cPane.SetStep(step);
 		_cPane.Grid = grid;
 	}
 

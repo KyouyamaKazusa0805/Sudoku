@@ -7434,6 +7434,14 @@
             <param name="node">The node.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Presentation.View.ConflictWith(System.Int32)">
+            <summary>
+            <para>Determines whether the current view contains a view node using the specified candidate value.</para>
+            <para>This method will be useful for cannibalism checking cases.</para>
+            </summary>
+            <param name="candidate">The candidate to be determined.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Presentation.View.Clone">
             <inheritdoc cref="M:System.ICloneable.Clone"/>
         </member>

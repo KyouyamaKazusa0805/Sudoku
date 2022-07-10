@@ -47,9 +47,11 @@ public sealed class CandidateViewNodeShape : DrawingElement
 
 			for (int i = 0; i < 9; i++)
 			{
-				ref var ellipse = ref _ellipses[i];
-				ellipse = new Ellipse().WithGridLayout(row: i / 3, column: i % 3);
-				_gridLayout.Children.Add(ellipse);
+				_gridLayout.AddChildren(
+					_ellipses[i] = new Ellipse()
+						.WithGridLayout(row: i / 3, column: i % 3)
+						.WithCanvasZIndex(-1)
+				);
 			}
 		}
 	}

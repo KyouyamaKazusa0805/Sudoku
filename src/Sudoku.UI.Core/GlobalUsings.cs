@@ -1,6 +1,7 @@
 ﻿global using System;
 global using System.Collections;
 global using System.Collections.Generic;
+global using System.Collections.Immutable;
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
@@ -23,6 +24,7 @@ global using Microsoft.UI.Xaml.Media;
 global using Microsoft.UI.Xaml.Media.Imaging;
 global using Microsoft.UI.Xaml.Shapes;
 global using Sudoku.Concepts;
+global using Sudoku.Concepts.Solving;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.UI.Data.Configuration;

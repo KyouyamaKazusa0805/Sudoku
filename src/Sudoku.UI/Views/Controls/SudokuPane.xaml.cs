@@ -271,21 +271,26 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public void HideCandidates() => GetSudokuGridViewModel().UserShowCandidates = false;
 
 	/// <summary>
-	/// Sets the views to be shown. The method will automatically displays for the first view in the view array.
+	/// Sets the step to be shown. The method will automatically displays for the first view in the view array.
 	/// </summary>
-	/// <param name="views">The views to be displayed.</param>
+	/// <param name="step">The step to be displayed.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetViews(View[] views)
+	public void SetStep(IStep step)
 	{
-		bool isMultipleViews = views.Length > 1;
+		if (step is not { Views.Length: var viewLength and not 0 })
+		{
+			return;
+		}
+
+		bool isMultipleViews = viewLength > 1;
 		_cPipsPager.Visibility = isMultipleViews ? Visibility.Visible : Visibility.Collapsed;
 
-		GetSudokuGridViewModel().Views = views;
+		GetSudokuGridViewModel().Step = step;
 
 		if (isMultipleViews)
 		{
-			int minValue = Min(views.Length, 10);
-			var visibility = views.Length >= minValue ? PipsPagerButtonVisibility.Visible : PipsPagerButtonVisibility.Collapsed;
+			int minValue = Min(viewLength, 10);
+			var visibility = viewLength >= minValue ? PipsPagerButtonVisibility.Visible : PipsPagerButtonVisibility.Collapsed;
 			_cPipsPager.NumberOfPages = minValue;
 			_cPipsPager.PreviousButtonVisibility = visibility;
 			_cPipsPager.NextButtonVisibility = visibility;
@@ -500,11 +505,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 #endif
 
 	/// <summary>
-	/// Gets the views used at the current state.
+	/// Gets the current displaying step.
 	/// </summary>
-	/// <returns>The view.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View[]? GetViews() => GetSudokuGridViewModel().Views;
+	/// <returns>The current displaying step.</returns>
+	public IStep? GetStep() => GetSudokuGridViewModel().Step;
 
 	/// <inheritdoc/>
 	protected override void OnPointerMoved(PointerRoutedEventArgs e)

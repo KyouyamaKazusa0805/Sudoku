@@ -95,11 +95,6 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private Grid _grid;
 
-	/// <summary>
-	/// Indicates the views displayed.
-	/// </summary>
-	private View[]? _views;
-
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <summary>
 	/// Indicates the cell marks.
@@ -115,6 +110,11 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private CandidateMark[]? _candidateMarks;
 #endif
+
+	/// <summary>
+	/// Indicates the current step to be displayed.
+	/// </summary>
+	private IStep? _step;
 
 
 	/// <summary>
@@ -366,29 +366,6 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
-	/// Indicates the current view index.
-	/// </summary>
-	public View CurrentView => _views![ViewIndex];
-
-	/// <summary>
-	/// Indicates the current views.
-	/// </summary>
-	[DisallowNull]
-	public View[]? Views
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _views;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			_views = value;
-
-			SetViewNodes(value[ViewIndex = 0]);
-		}
-	}
-
-	/// <summary>
 	/// Indicates the callback method that invokes when the undoing and redoing steps are updated.
 	/// </summary>
 	public required Action? UndoRedoStepsUpdatedCallback { get; init; }
@@ -519,6 +496,26 @@ public sealed class SudokuGrid : DrawingElement
 					}
 				}
 			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the current views.
+	/// </summary>
+	[DisallowNull]
+	public IStep? Step
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _step;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_step = value;
+
+			ViewIndex = 0;
+			SetViewNodes(value.Views[ViewIndex]);
+			SetConclusion(value.Views[ViewIndex], value.Conclusions);
 		}
 	}
 
@@ -820,12 +817,14 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		if (_views is null)
+		if (Step is not { Conclusions: var conclusions, Views: var views and not [] })
 		{
 			return;
 		}
 
-		SetViewNodes(_views[--ViewIndex]);
+		ViewIndex--;
+		SetViewNodes(views[ViewIndex]);
+		SetConclusion(views[ViewIndex], conclusions);
 	}
 
 	/// <summary>
@@ -833,17 +832,19 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	public void SetNextView()
 	{
-		if (_views is null)
+		if (Step is not { Conclusions: var conclusions, Views: { Length: var viewLength and not 0 } views })
 		{
 			return;
 		}
 
-		if (ViewIndex + 1 >= _views.Length)
+		if (ViewIndex + 1 >= viewLength)
 		{
 			return;
 		}
 
-		SetViewNodes(_views[++ViewIndex]);
+		ViewIndex++;
+		SetViewNodes(views[ViewIndex]);
+		SetConclusion(views[ViewIndex], conclusions);
 	}
 
 	/// <summary>
@@ -1155,6 +1156,44 @@ public sealed class SudokuGrid : DrawingElement
 					break;
 				}
 			}
+		}
+	}
+
+	/// <summary>
+	/// Sets the conclusions. The conclusions will be displayed using also <see cref="CandidateViewNodeShape"/>s.
+	/// </summary>
+	/// <param name="currentView">The view to check whether a conclusion is a cannibalism.</param>
+	/// <param name="conclusions">The conclusions.</param>
+	/// <seealso cref="CandidateViewNodeShape"/>
+	private void SetConclusion(View currentView, ImmutableArray<Conclusion> conclusions)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		foreach (var conclusion in conclusions)
+		{
+			var (type, cell, digit) = conclusion;
+			var (_, candidate) = conclusion;
+
+			ref var current = ref _candidateViewNodeShapes[cell];
+
+			current.SetIsVisible(digit, true);
+			current.SetIdentifier(
+				digit,
+				type switch
+				{
+					ConclusionType.Assignment => 0,
+					ConclusionType.Elimination
+						=> (
+							currentView.ConflictWith(candidate)
+								? _preference.CannibalismColor
+								: _preference.EliminationColor
+						).AsIdentifier(),
+					_ => throw new NotSupportedException("The specified conclusion type is not supported.")
+				}
+			);
 		}
 	}
 }

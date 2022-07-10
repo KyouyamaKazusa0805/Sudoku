@@ -2268,11 +2268,11 @@
             Hides the candidates.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetViews(Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetStep(Sudoku.Concepts.Solving.IStep)">
             <summary>
-            Sets the views to be shown. The method will automatically displays for the first view in the view array.
+            Sets the step to be shown. The method will automatically displays for the first view in the view array.
             </summary>
-            <param name="views">The views to be displayed.</param>
+            <param name="step">The step to be displayed.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetPreviousView">
             <inheritdoc cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetPreviousView"/>
@@ -2334,11 +2334,11 @@
             </summary>
             <returns>The drawing data.</returns>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetViews">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetStep">
             <summary>
-            Gets the views used at the current state.
+            Gets the current displaying step.
             </summary>
-            <returns>The view.</returns>
+            <returns>The current displaying step.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnPointerMoved(Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
             <inheritdoc/>

@@ -102,6 +102,15 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Contains(ViewNode node) => _nodes.Contains(node);
 
+	/// <summary>
+	/// <para>Determines whether the current view contains a view node using the specified candidate value.</para>
+	/// <para>This method will be useful for cannibalism checking cases.</para>
+	/// </summary>
+	/// <param name="candidate">The candidate to be determined.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool ConflictWith(int candidate) => CandidateNodes.Any(n => n.Candidate == candidate);
+
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public View Clone() => Count == 0 ? Empty : new(new(from node in _nodes select node.Clone()));
