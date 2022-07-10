@@ -619,6 +619,12 @@
             The default value is <c>2</c>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.HouseViewNodeStrokeThickness">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>3</c>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.NormalColor">
             <inheritdoc/>
             <remarks>
@@ -2221,16 +2227,6 @@
         <member name="E:Sudoku.UI.Views.Controls.SudokuPane.FailedReceivedDroppedFile">
             <summary>
             Indicates an event that is triggered when a file is failed to be received using drag and drop operation.
-            </summary>
-        </member>
-        <member name="E:Sudoku.UI.Views.Controls.SudokuPane.DroppedFileIsEmpty">
-            <summary>
-            Indicates an event that is triggered when a file is failed to be loaded because the file is empty.
-            </summary>
-        </member>
-        <member name="E:Sudoku.UI.Views.Controls.SudokuPane.DroppedFileIsTooLarge">
-            <summary>
-            Indicates an event that is triggered when a file is failed to be loaded because the file is larger than 1KB.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.UndoStep">

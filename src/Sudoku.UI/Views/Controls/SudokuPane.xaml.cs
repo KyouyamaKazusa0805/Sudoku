@@ -170,16 +170,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public event EventHandler<FailedReceivedDroppedFileEventArgs>? FailedReceivedDroppedFile;
 
-	/// <summary>
-	/// Indicates an event that is triggered when a file is failed to be loaded because the file is empty.
-	/// </summary>
-	public event EventHandler<object?>? DroppedFileIsEmpty;
-
-	/// <summary>
-	/// Indicates an event that is triggered when a file is failed to be loaded because the file is larger than 1KB.
-	/// </summary>
-	public event EventHandler<object?>? DroppedFileIsTooLarge;
-
 
 	/// <summary>
 	/// Undo a step.
@@ -1043,13 +1033,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				{
 					case 0:
 					{
-						DroppedFileIsEmpty?.Invoke(this, null);
 						FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
 						break;
 					}
 					case > 1024:
 					{
-						DroppedFileIsTooLarge?.Invoke(this, null);
 						FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsTooLarge));
 						break;
 					}

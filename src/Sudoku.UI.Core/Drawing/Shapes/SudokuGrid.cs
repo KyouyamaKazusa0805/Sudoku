@@ -15,6 +15,11 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private static readonly int[] Digits = Enumerable.Range(0, 9).ToArray();
 
+	/// <summary>
+	/// Indicates the house labels.
+	/// </summary>
+	private static readonly int[] Houses = Enumerable.Range(0, 27).ToArray();
+
 
 	/// <summary>
 	/// Indicates the inner grid layout control.
@@ -59,6 +64,11 @@ public sealed class SudokuGrid : DrawingElement
 	/// Indicates the candidate view node shapes.
 	/// </summary>
 	private readonly CandidateViewNodeShape[] _candidateViewNodeShapes = new CandidateViewNodeShape[81];
+
+	/// <summary>
+	/// Indicates the house view node shapes.
+	/// </summary>
+	private HouseViewNodeShape _houseViewNodeShape = null!;
 
 	/// <summary>
 	/// Indicates the user preference used.
@@ -379,7 +389,7 @@ public sealed class SudokuGrid : DrawingElement
 		get => _preference;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[MemberNotNull(nameof(_preference), nameof(_focusedRectangle))]
+		[MemberNotNull(nameof(_preference), nameof(_focusedRectangle), nameof(_houseViewNodeShape))]
 		init
 		{
 			_preference = value;
@@ -391,6 +401,13 @@ public sealed class SudokuGrid : DrawingElement
 				.WithCanvasZIndex(-1);
 
 			_showsCandidates = value.ShowCandidates;
+
+			_houseViewNodeShape = new() { Preference = value };
+			Array.ForEach(Houses, house => _houseViewNodeShape.SetIsVisible(house, false));
+			_gridLayout.Children.Add(
+				_houseViewNodeShape.GetControl()
+					.WithGridLayout(rowSpan: 9, columnSpan: 9)
+			);
 
 			initializePeerRectangles(_peerFocusedRectangle, value);
 			initializeValues(value);
@@ -908,6 +925,23 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
+	/// Sets the house view node.
+	/// </summary>
+	/// <param name="houseViewNode">The house view node.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetHouseViewNode(HouseViewNode houseViewNode)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		int house = houseViewNode.House;
+		_houseViewNodeShape.SetIsVisible(house, true);
+		_houseViewNodeShape.SetIdentifier(house, houseViewNode.Identifier);
+	}
+
+	/// <summary>
 	/// Clears all view nodes.
 	/// </summary>
 	public void ClearViewNodes()
@@ -920,6 +954,7 @@ public sealed class SudokuGrid : DrawingElement
 		// TODO: Sets other kinds of view nodes.
 		Array.ForEach(_cellViewNodeShapes, shape => shape.IsVisible = false);
 		Array.ForEach(_candidateViewNodeShapes, shape => Array.ForEach(Digits, digit => shape.SetIsVisible(digit, false)));
+		Array.ForEach(Houses, house => _houseViewNodeShape.SetIsVisible(house, false));
 	}
 
 	/// <summary>
@@ -950,6 +985,21 @@ public sealed class SudokuGrid : DrawingElement
 		}
 
 		_candidateViewNodeShapes[candidateIndex / 9].SetIsVisible(candidateIndex % 9, false);
+	}
+
+	/// <summary>
+	/// Clears the house view node.
+	/// </summary>
+	/// <param name="houseIndex">The house index.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ClearHouseViewNode(int houseIndex)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		_houseViewNodeShape.SetIsVisible(houseIndex, false);
 	}
 
 #if AUTHOR_FEATURE_CELL_MARKS
@@ -1177,6 +1227,11 @@ public sealed class SudokuGrid : DrawingElement
 				case CandidateViewNode candidateViewNode:
 				{
 					SetCandidateViewNode(candidateViewNode);
+					break;
+				}
+				case HouseViewNode houseViewNode:
+				{
+					SetHouseViewNode(houseViewNode);
 					break;
 				}
 			}

@@ -79,6 +79,11 @@ public interface IDrawingPreference
 #endif
 
 	/// <summary>
+	/// Indicates the stroke thickness of a house view node.
+	/// </summary>
+	public abstract double HouseViewNodeStrokeThickness { get; set; }
+
+	/// <summary>
 	/// Indicates the peer focusing mode.
 	/// </summary>
 	public abstract PeerFocusingMode PeerFocusingMode { get; set; }

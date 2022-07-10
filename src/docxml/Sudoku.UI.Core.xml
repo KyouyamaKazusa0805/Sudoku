@@ -25,16 +25,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.DiamondMark">
             <summary>
             Defines a diamond mark sign.
@@ -53,16 +43,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.StarMark">
             <summary>
             Defines a star sign.
@@ -79,16 +59,6 @@
         <member name="M:Sudoku.UI.Views.Controls.StarMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.TriangleMark">
@@ -113,16 +83,6 @@
         <member name="M:Sudoku.UI.Views.Controls.TriangleMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Data.Configuration.FontData">
@@ -236,6 +196,11 @@
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CandidateMarkStrokeThickness">
             <summary>
             Indicates the candidate mark stroke thickness.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.HouseViewNodeStrokeThickness">
+            <summary>
+            Indicates the stroke thickness of a house view node.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.PeerFocusingMode">
@@ -2342,6 +2307,81 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape">
+            <summary>
+            Defines a house view node shape.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape._isVisibleTable">
+            <summary>
+            Indicates the visible table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape._identifiers">
+            <summary>
+            Indicates the color identifiers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape._gridLayout">
+            <summary>
+            Indicates the grid layout.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape._rectangles">
+            <summary>
+            Indicates the inner rectangles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape._preference">
+            <summary>
+            Indicates the user preference instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape.Preference">
+            <summary>
+            Indicates the user preference instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape.SetIsVisible(System.Int32,System.Boolean)">
+            <summary>
+            Sets the visibility at the specified house.
+            </summary>
+            <param name="house">The house.</param>
+            <param name="isVisible">The visibility.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape.SetIdentifier(System.Int32,Sudoku.Presentation.Identifier)">
+            <summary>
+            Sets the color identifier at the specified house.
+            </summary>
+            <param name="house">The house.</param>
+            <param name="colorIdentifier">The color identifier.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape.GetVisible(System.Int32)">
+            <summary>
+            Gets the visibility at the specified house.
+            </summary>
+            <param name="house">The house.</param>
+            <returns>The visibility.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape.GetIdentifier(System.Int32)">
+            <summary>
+            Gets the color identifier at the specified house.
+            </summary>
+            <param name="house">The house.</param>
+            <returns>The color identifier.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape.GetControl">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">
             <summary>
             Defines an outside rectangle.
@@ -2439,6 +2479,11 @@
             Indicates the digit labels.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid.Houses">
+            <summary>
+            Indicates the house labels.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._gridLayout">
             <summary>
             Indicates the inner grid layout control.
@@ -2482,6 +2527,11 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._candidateViewNodeShapes">
             <summary>
             Indicates the candidate view node shapes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._houseViewNodeShape">
+            <summary>
+            Indicates the house view node shapes.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._preference">
@@ -2712,6 +2762,12 @@
             </summary>
             <param name="candidateViewNode">The candidate view node.</param>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetHouseViewNode(Sudoku.Presentation.Nodes.HouseViewNode)">
+            <summary>
+            Sets the house view node.
+            </summary>
+            <param name="houseViewNode">The house view node.</param>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearViewNodes">
             <summary>
             Clears all view nodes.
@@ -2728,6 +2784,12 @@
             Clears the candidate view node.
             </summary>
             <param name="candidateIndex">The candidate index.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearHouseViewNode(System.Int32)">
+            <summary>
+            Clears the house view node.
+            </summary>
+            <param name="houseIndex">The house index.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetCellMark(System.Int32,Sudoku.UI.Drawing.ShapeKind)">
             <summary>
@@ -2975,26 +3037,6 @@
         </member>
         <member name="M:Sudoku.UI.MarkupExtensions.DateOnlyExtension.ProvideValue">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.Data.BindingExtensions">
             <summary>
@@ -3279,12 +3321,12 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeThickness"/> with the specified value.
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE57A11628">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE57A11628.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3482,12 +3524,12 @@
             <param name="this">The modifier key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DEF353AC3E">
+        <member name="T:Windows.Foundation.Point_DEFC6B40A8">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEF353AC3E.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEFC6B40A8.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

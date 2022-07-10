@@ -342,6 +342,12 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
+	/// The default value is <c>3</c>.
+	/// </remarks>
+	public double HouseViewNodeStrokeThickness { get; set; } = 3;
+
+	/// <inheritdoc/>
+	/// <remarks>
 	/// The default value is <c>#FF3FDA65</c>.
 	/// </remarks>
 	public Color NormalColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
