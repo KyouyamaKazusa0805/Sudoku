@@ -185,6 +185,9 @@
 	<x:String x:Key="KeyboardPage_ControlUp">扩散当前单元格的形状到整列的其它格子</x:String>
 	<x:String x:Key="KeyboardPage_ControlShiftLeft">扩散当前候选数的形状到整行的其它格子</x:String>
 	<x:String x:Key="KeyboardPage_ControlShiftUp">扩散当前候选数的形状到整列的其它格子</x:String>
+	<x:String x:Key="KeyboardPage_Left">查看当前步骤的前一个视图</x:String>
+	<x:String x:Key="KeyboardPage_Right">查看当前步骤的后一个视图</x:String>
+	<x:String x:Key="KeyboardPage_Escape">清除当前步骤的视图</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>
