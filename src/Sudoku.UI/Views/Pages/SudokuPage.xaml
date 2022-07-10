@@ -242,6 +242,7 @@
 			<StackPanel x:Name="_cPaneParent" Grid.Row="1" Margin="25,25,0,0">
 				<c:SudokuPane
 					x:Name="_cPane" Size="560" OutsideOffset="10"
+					DroppedFileIsEmpty="Pane_DroppedFileIsEmpty" DroppedFileIsTooLarge="Pane_DroppedFileIsTooLarge"
 					SuccessfullyReceivedDroppedFile="Pane_SuccessfullyReceivedDroppedFile" />
 			</StackPanel>
 

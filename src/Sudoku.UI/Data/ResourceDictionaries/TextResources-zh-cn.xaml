@@ -64,6 +64,7 @@
 	<x:String x:Key="SudokuPage_InfoBar_SeverityError">错误</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FileIsEmpty">文件内容为空，打开文件失败。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FileIsInvalid">文件内容无法解析为合适的数独题目，打开文件失败。</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_FileIsTooLarge">文件大小超出该文件可能的大小，打开文件失败。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FilePuzzleIsNotUnique">题目无解，或者题目多解。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FileOpenSuccessfully">文件成功已打开。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FileDragAndDropSuccessfully">拖动文件已成功读取。</x:String>

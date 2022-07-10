@@ -281,6 +281,20 @@ public sealed partial class SudokuPage : Page
 	private void ResetGrid() => _cPane.ResetGrid();
 
 	/// <summary>
+	/// Emits the information "File is empty".
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void EmitFileIsEmptyInfo()
+		=> _cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_FileIsEmpty"]!);
+
+	/// <summary>
+	/// Emits the information "File is too large".
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void EmitFileIsTooLarge()
+		=> _cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_FileIsTooLarge"]!);
+
+	/// <summary>
 	/// To determine whether the current application view is in an unsnapped state.
 	/// </summary>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
@@ -318,36 +332,49 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		if (new FileInfo(filePath).Length == 0)
+		var fileInfo = new FileInfo(filePath);
+		switch (fileInfo.Length)
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_FileIsEmpty"]!);
-			return;
-		}
+			case 0:
+			{
+				EmitFileIsEmptyInfo();
+				return;
+			}
+			case > 1024:
+			{
+				EmitFileIsTooLarge();
+				return;
+			}
+			default:
+			{
+				// Checks the validity of the file, and reads the whole content.
+				string content = await FileIO.ReadTextAsync(file);
+				if (string.IsNullOrWhiteSpace(content))
+				{
+					_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_FileIsEmpty"]!);
+					return;
+				}
 
-		// Checks the validity of the file, and reads the whole content.
-		string content = await FileIO.ReadTextAsync(file);
-		if (string.IsNullOrWhiteSpace(content))
-		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_FileIsEmpty"]!);
-			return;
-		}
+				// Checks the file content.
+				if (!Grid.TryParse(content, out var grid))
+				{
+					_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_FileIsInvalid"]!);
+					return;
+				}
 
-		// Checks the file content.
-		if (!Grid.TryParse(content, out var grid))
-		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_FileIsInvalid"]!);
-			return;
-		}
+				// Checks the validity of the parsed grid.
+				if (!grid.IsValid)
+				{
+					_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["SudokuPage_InfoBar_FilePuzzleIsNotUnique"]!);
+				}
 
-		// Checks the validity of the parsed grid.
-		if (!grid.IsValid)
-		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["SudokuPage_InfoBar_FilePuzzleIsNotUnique"]!);
-		}
+				// Loads the grid.
+				_cPane.Grid = grid;
+				_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_FileOpenSuccessfully"]!);
 
-		// Loads the grid.
-		_cPane.Grid = grid;
-		_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_FileOpenSuccessfully"]!);
+				break;
+			}
+		}
 	}
 
 	/// <summary>
@@ -711,6 +738,20 @@ public sealed partial class SudokuPage : Page
 	{
 		// TODO: Dispose the release if worth.
 	}
+
+	/// <summary>
+	/// Triggers when the dropped file is empty.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void Pane_DroppedFileIsEmpty(object sender, object e) => EmitFileIsEmptyInfo();
+
+	/// <summary>
+	/// Triggers when the dropped file is too large.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void Pane_DroppedFileIsTooLarge(object sender, object e) => EmitFileIsTooLarge();
 
 	/// <summary>
 	/// Triggers when a file is dropped to the target sudoku pane.

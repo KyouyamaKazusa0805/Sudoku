@@ -177,6 +177,21 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public event EventHandler<object?>? SuccessfullyReceivedDroppedFile;
 
+	/// <summary>
+	/// Indicates an event that is triggered when a file is failed to be received using drag and drop operation.
+	/// </summary>
+	public event EventHandler<object?>? FailedReceivedDroppedFile;
+
+	/// <summary>
+	/// Indicates an event that is triggered when a file is failed to be loaded because the file is empty.
+	/// </summary>
+	public event EventHandler<object?>? DroppedFileIsEmpty;
+
+	/// <summary>
+	/// Indicates an event that is triggered when a file is failed to be loaded because the file is larger than 1KB.
+	/// </summary>
+	public event EventHandler<object?>? DroppedFileIsTooLarge;
+
 
 	/// <summary>
 	/// Undo a step.
@@ -997,20 +1012,39 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 			async Task handleSudokuFile(string path)
 			{
-				string content = await SioFile.ReadAllTextAsync(path);
-				if (string.IsNullOrWhiteSpace(content))
+				switch (new FileInfo(path).Length)
 				{
-					return;
+					case 0:
+					{
+						DroppedFileIsEmpty?.Invoke(this, null);
+						FailedReceivedDroppedFile?.Invoke(this, null);
+						break;
+					}
+					case > 1024:
+					{
+						DroppedFileIsTooLarge?.Invoke(this, null);
+						FailedReceivedDroppedFile?.Invoke(this, null);
+						break;
+					}
+					default:
+					{
+						string content = await SioFile.ReadAllTextAsync(path);
+						if (string.IsNullOrWhiteSpace(content))
+						{
+							return;
+						}
+
+						if (!Grid.TryParse(content, out var grid))
+						{
+							return;
+						}
+
+						Grid = grid;
+
+						SuccessfullyReceivedDroppedFile?.Invoke(this, null);
+						break;
+					}
 				}
-
-				if (!Grid.TryParse(content, out var grid))
-				{
-					return;
-				}
-
-				Grid = grid;
-
-				SuccessfullyReceivedDroppedFile?.Invoke(this, null);
 			}
 		}
 	}
