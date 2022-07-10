@@ -91,9 +91,19 @@ public sealed class SudokuGrid : DrawingElement
 	private int _focusedCell;
 
 	/// <summary>
+	/// Indicates the current view displayed.
+	/// </summary>
+	private int _viewIndex = -1;
+
+	/// <summary>
 	/// Indicates the inner grid.
 	/// </summary>
 	private Grid _grid;
+
+	/// <summary>
+	/// Indicates the views displayed.
+	/// </summary>
+	private View[]? _views;
 
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <summary>
@@ -352,6 +362,28 @@ public sealed class SudokuGrid : DrawingElement
 			_undoSteps.Clear();
 			_redoSteps.Clear();
 			UndoRedoStepsUpdatedCallback?.Invoke();
+		}
+	}
+
+	/// <summary>
+	/// Indicates the current view index.
+	/// </summary>
+	public View CurrentView => _views![_viewIndex];
+
+	/// <summary>
+	/// Indicates the current view displayed.
+	/// </summary>
+	[DisallowNull]
+	public View[]? View
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _views;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_views = value;
+			_viewIndex = 0;
 		}
 	}
 
@@ -778,6 +810,42 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
+	/// Sets the previous view.
+	/// </summary>
+	public void SetPreviousView()
+	{
+		if (_viewIndex - 1 < 0)
+		{
+			return;
+		}
+
+		if (_views is null)
+		{
+			return;
+		}
+
+		SetViewNodes(_views[--_viewIndex]);
+	}
+
+	/// <summary>
+	/// Sets the next view.
+	/// </summary>
+	public void SetNextView()
+	{
+		if (_views is null)
+		{
+			return;
+		}
+
+		if (_viewIndex + 1 >= _views.Length)
+		{
+			return;
+		}
+
+		SetViewNodes(_views[++_viewIndex]);
+	}
+
+	/// <summary>
 	/// Sets the cell view node.
 	/// </summary>
 	/// <param name="cellViewNode">The cell view node.</param>
@@ -1038,6 +1106,37 @@ public sealed class SudokuGrid : DrawingElement
 						}
 					}
 
+					break;
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Sets the view instance.
+	/// </summary>
+	/// <param name="view">The view instance.</param>
+	private void SetViewNodes(View view)
+	{
+		// TODO: Sets other kinds of view nodes.
+
+		// Clears the current view.
+		Array.ForEach(_cellViewNodeShapes, shape => shape.IsVisible = false);
+		Array.ForEach(_candidateViewNodeShapes, shape => Array.ForEach(Digits, digit => shape.SetIsVisible(digit, false)));
+
+		// Rebuild the nodes.
+		foreach (var viewNode in view)
+		{
+			switch (viewNode)
+			{
+				case CellViewNode cellViewNode:
+				{
+					SetCellViewNode(cellViewNode);
+					break;
+				}
+				case CandidateViewNode candidateViewNode:
+				{
+					SetCandidateViewNode(candidateViewNode);
 					break;
 				}
 			}
