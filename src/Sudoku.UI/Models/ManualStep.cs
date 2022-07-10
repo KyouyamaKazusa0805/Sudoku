@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a manual step.
 /// </summary>
-public sealed class ManualStep
+[AutoDeconstruction(nameof(Grid), nameof(Step))]
+public sealed partial class ManualStep
 {
 	/// <summary>
 	/// Indicates the current grid used.

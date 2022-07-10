@@ -134,11 +134,12 @@
 													Margin="0,6,0,12" />
 												<ListView
 													ItemsSource="{x:Bind m:ManualStepCollection.Create(AnalysisResult)}"
-													SelectionMode="None">
+													SelectionMode="Single" IsItemClickEnabled="True"
+													ItemClick="ListView_ItemClick">
 													<ListView.ItemTemplate>
 														<DataTemplate x:DataType="m:ManualStep">
 															<ListViewItem
-																Content="{x:Bind ToDisplayString()}"
+																Content="{x:Bind ToDisplayString()}" Tag="{x:Bind}"
 																Background="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(Step.DifficultyLevel)}"
 																Foreground="{x:Bind data:SimpleConverters.DifficultyLevelToForeground(Step.DifficultyLevel)}" />
 														</DataTemplate>

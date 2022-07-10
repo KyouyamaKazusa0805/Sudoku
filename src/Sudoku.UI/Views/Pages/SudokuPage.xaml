@@ -249,7 +249,7 @@
 			<!--Info bar board at the right side of the sudoku grid-->
 			<c:InfoBarBoard
 				x:Name="_cInfoBoard" Grid.Row="1" Grid.Column="1" Margin="25,30,25,0"
-				CollectionChanged="InfoBoard_CollectionChanged" />
+				CollectionChanged="InfoBoard_CollectionChanged" ChosenStepChanged="InfoBoard_ChosenStepChanged" />
 		</Grid>
 	</ScrollViewer>
 </Page>

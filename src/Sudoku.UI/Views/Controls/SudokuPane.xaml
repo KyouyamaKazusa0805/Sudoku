@@ -111,6 +111,11 @@
 	</UserControl.ContextFlyout>
 
 	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
 		<!--
 		If you enable the current node snippet, don't forget add the namespace using:
 			xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
@@ -132,6 +137,7 @@
 		</xc:Loading>
 		-->
 
-		<Canvas x:Name="_cCanvasMain" />
+		<Canvas x:Name="_cCanvasMain" Grid.Row="0" />
+		<PipsPager x:Name="_cPipsPager" Grid.Row="1" Margin="0,12,0,0" HorizontalAlignment="Center" Visibility="Collapsed" />
 	</Grid>
 </UserControl>

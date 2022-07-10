@@ -28,6 +28,11 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 	/// <inheritdoc/>
 	public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
+	/// <summary>
+	/// Triggers when the chosen step is changed.
+	/// </summary>
+	public event EventHandler<ManualStep>? ChosenStepChanged;
+
 
 	/// <summary>
 	/// Creates a new <see cref="InfoBar"/> instance via the specified severity
@@ -123,4 +128,12 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 
 		_list.Remove(message);
 	}
+
+	/// <summary>
+	/// Triggers when the item is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+		=> ChosenStepChanged?.Invoke(this, (ManualStep)e.ClickedItem);
 }

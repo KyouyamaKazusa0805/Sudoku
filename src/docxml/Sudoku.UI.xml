@@ -1364,6 +1364,47 @@
             </summary>
             <returns>The string value.</returns>
         </member>
+        <member name="M:Sudoku.UI.Models.ManualStep.Deconstruct(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.Step@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+					public static void Deconstruct(out string name, out int age)
+					{
+					    name = Name;
+					    age = Age;
+					}
+						</code>
+						The following code will be legal.
+						<code>
+					// Use explicitly typed variables to get a deconstruction.
+					(string name, int age) = student;
+
+					// Or use the type inferring to omit the type of each variable having been deconstructed.
+					var (name, age) = student;
+
+					// Of course, you can also use the invocation to get values.
+					student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+					if (student is (name: var name, age: &gt;= 18))
+					{
+					    Console.WriteLine(name);
+					}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="T:Sudoku.UI.Models.ManualStepCollection">
             <summary>
             Provides with a list of manual steps.
@@ -1969,6 +2010,11 @@
         <member name="E:Sudoku.UI.Views.Controls.InfoBarBoard.CollectionChanged">
             <inheritdoc/>
         </member>
+        <member name="E:Sudoku.UI.Views.Controls.InfoBarBoard.ChosenStepChanged">
+            <summary>
+            Triggers when the chosen step is changed.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.AddMessage(Microsoft.UI.Xaml.Controls.InfoBarSeverity,System.String)">
             <summary>
             Creates a new <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance via the specified severity
@@ -2015,6 +2061,13 @@
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="args">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.ListView_ItemClick(System.Object,Microsoft.UI.Xaml.Controls.ItemClickEventArgs)">
+            <summary>
+            Triggers when the item is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
@@ -2222,6 +2275,23 @@
             Hides the candidates.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetViews(Sudoku.Presentation.View[])">
+            <summary>
+            Sets the views to be shown. The method will automatically displays for the first view in the view array.
+            </summary>
+            <param name="views">The views to be displayed.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetPreviousView">
+            <inheritdoc cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetPreviousView"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetNextView">
+            <inheritdoc cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetNextView"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ClearViews">
+            <summary>
+            Clear all view nodes.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetCellMark(System.Int32,Sudoku.UI.Drawing.ShapeKind)">
             <summary>
             Sets the cell mark at the specified cell index.
@@ -2270,6 +2340,12 @@
             Try to get drawing data.
             </summary>
             <returns>The drawing data.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetViews">
+            <summary>
+            Gets the views used at the current state.
+            </summary>
+            <returns>The view.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnPointerMoved(Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
             <inheritdoc/>
@@ -2826,6 +2902,21 @@
             To hide the candidates.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SetPreviousView">
+            <summary>
+            Sets the previous view.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SetNextView">
+            <summary>
+            Sets the next view.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ClearViews">
+            <summary>
+            Clear all views.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.PrintAsync">
             <summary>
             To print the grid.
@@ -2833,6 +2924,12 @@
             <remarks>
             The code is referenced from <see href="https://github.com/marb2000/PrintSample">this sample</see>.
             </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SetManualStep(Sudoku.UI.Models.ManualStep)">
+            <summary>
+            Sets the manual step.
+            </summary>
+            <param name="e">The manual step.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
@@ -2872,6 +2969,14 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InfoBoard_CollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
             <summary>
             Triggers when the inner collection of the control <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cInfoBoard"/> is changed.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InfoBoard_ChosenStepChanged(System.Object,Sudoku.UI.Models.ManualStep)">
+            <summary>
+            Triggers when the inner collection of the control <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cInfoBoard"/> is changed its step chosen,
+            when the info bar message binds with a <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>.
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>

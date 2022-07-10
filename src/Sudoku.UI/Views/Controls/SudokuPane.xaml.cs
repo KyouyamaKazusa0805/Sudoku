@@ -270,6 +270,54 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void HideCandidates() => GetSudokuGridViewModel().UserShowCandidates = false;
 
+	/// <summary>
+	/// Sets the views to be shown. The method will automatically displays for the first view in the view array.
+	/// </summary>
+	/// <param name="views">The views to be displayed.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetViews(View[] views)
+	{
+		bool isMultipleViews = views.Length > 1;
+		_cPipsPager.Visibility = isMultipleViews ? Visibility.Visible : Visibility.Collapsed;
+
+		GetSudokuGridViewModel().Views = views;
+
+		if (isMultipleViews)
+		{
+			int minValue = Min(views.Length, 10);
+			var visibility = views.Length >= minValue ? PipsPagerButtonVisibility.Visible : PipsPagerButtonVisibility.Collapsed;
+			_cPipsPager.NumberOfPages = minValue;
+			_cPipsPager.PreviousButtonVisibility = visibility;
+			_cPipsPager.NextButtonVisibility = visibility;
+		}
+	}
+
+	/// <inheritdoc cref="SudokuGrid.SetPreviousView"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetPreviousView()
+	{
+		var sudokuGrid = GetSudokuGridViewModel();
+		sudokuGrid.SetPreviousView();
+
+		_cPipsPager.SelectedPageIndex = sudokuGrid.ViewIndex;
+	}
+
+	/// <inheritdoc cref="SudokuGrid.SetNextView"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetNextView()
+	{
+		var sudokuGrid = GetSudokuGridViewModel();
+		sudokuGrid.SetNextView();
+
+		_cPipsPager.SelectedPageIndex = sudokuGrid.ViewIndex;
+	}
+
+	/// <summary>
+	/// Clear all view nodes.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ClearViews() => GetSudokuGridViewModel().ClearViewNodes();
+
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <summary>
 	/// Sets the cell mark at the specified cell index.
@@ -450,6 +498,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		);
 	}
 #endif
+
+	/// <summary>
+	/// Gets the views used at the current state.
+	/// </summary>
+	/// <returns>The view.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public View[]? GetViews() => GetSudokuGridViewModel().Views;
 
 	/// <inheritdoc/>
 	protected override void OnPointerMoved(PointerRoutedEventArgs e)

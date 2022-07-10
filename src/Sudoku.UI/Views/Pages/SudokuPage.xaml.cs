@@ -83,6 +83,13 @@ public sealed partial class SudokuPage : Page
 						Key.H => () => GenerateAsync(_cButtonGenerate),
 						_ => default
 					},
+					(false, false, false) => e.Key switch
+					{
+						Key.Left => SetPreviousView,
+						Key.Right => SetNextView,
+						Key.Escape => ClearViews,
+						_ => default
+					},
 					_ => default(Action?)
 				}
 			)?.Invoke();
@@ -681,6 +688,21 @@ public sealed partial class SudokuPage : Page
 	private void HideCandidates() => _cPane.HideCandidates();
 
 	/// <summary>
+	/// Sets the previous view.
+	/// </summary>
+	private void SetPreviousView() => _cPane.SetPreviousView();
+
+	/// <summary>
+	/// Sets the next view.
+	/// </summary>
+	private void SetNextView() => _cPane.SetNextView();
+
+	/// <summary>
+	/// Clear all views.
+	/// </summary>
+	private void ClearViews() => _cPane.ClearViews();
+
+	/// <summary>
 	/// To print the grid.
 	/// </summary>
 	/// <remarks>
@@ -719,6 +741,21 @@ public sealed partial class SudokuPage : Page
 			var dialog = SimpleControlFactory.CreateErrorDialog(this, R["PrintFailedTitle"]!, R["PrintFailed_NotSupported"]!);
 			await dialog.ShowAsync();
 		}
+	}
+
+	/// <summary>
+	/// Sets the manual step.
+	/// </summary>
+	/// <param name="e">The manual step.</param>
+	private void SetManualStep(ManualStep e)
+	{
+		if (e is not (var grid, { Views: var views and not [] } step))
+		{
+			return;
+		}
+
+		_cPane.SetViews(views.ToArray());
+		_cPane.Grid = grid;
 	}
 
 
@@ -768,6 +805,14 @@ public sealed partial class SudokuPage : Page
 	/// <param name="e">The event arguments provided.</param>
 	private void InfoBoard_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		=> UpdateIsEnabledStatus();
+
+	/// <summary>
+	/// Triggers when the inner collection of the control <see cref="_cInfoBoard"/> is changed its step chosen,
+	/// when the info bar message binds with a <see cref="ManualSolverResult"/>.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void InfoBoard_ChosenStepChanged(object sender, ManualStep e) => SetManualStep(e);
 
 	/// <summary>
 	/// Indicates the event trigger callback method that determines

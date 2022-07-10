@@ -91,11 +91,6 @@ public sealed class SudokuGrid : DrawingElement
 	private int _focusedCell;
 
 	/// <summary>
-	/// Indicates the current view displayed.
-	/// </summary>
-	private int _viewIndex = -1;
-
-	/// <summary>
 	/// Indicates the inner grid.
 	/// </summary>
 	private Grid _grid;
@@ -259,6 +254,11 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
+	/// Indicates the current view index.
+	/// </summary>
+	public int ViewIndex { get; set; } = -1;
+
+	/// <summary>
 	/// Indicates the focused cell used.
 	/// </summary>
 	public int FocusedCell
@@ -368,13 +368,13 @@ public sealed class SudokuGrid : DrawingElement
 	/// <summary>
 	/// Indicates the current view index.
 	/// </summary>
-	public View CurrentView => _views![_viewIndex];
+	public View CurrentView => _views![ViewIndex];
 
 	/// <summary>
-	/// Indicates the current view displayed.
+	/// Indicates the current views.
 	/// </summary>
 	[DisallowNull]
-	public View[]? View
+	public View[]? Views
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _views;
@@ -383,7 +383,8 @@ public sealed class SudokuGrid : DrawingElement
 		set
 		{
 			_views = value;
-			_viewIndex = 0;
+
+			SetViewNodes(value[ViewIndex = 0]);
 		}
 	}
 
@@ -814,7 +815,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	public void SetPreviousView()
 	{
-		if (_viewIndex - 1 < 0)
+		if (ViewIndex - 1 < 0)
 		{
 			return;
 		}
@@ -824,7 +825,7 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		SetViewNodes(_views[--_viewIndex]);
+		SetViewNodes(_views[--ViewIndex]);
 	}
 
 	/// <summary>
@@ -837,12 +838,12 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		if (_viewIndex + 1 >= _views.Length)
+		if (ViewIndex + 1 >= _views.Length)
 		{
 			return;
 		}
 
-		SetViewNodes(_views[++_viewIndex]);
+		SetViewNodes(_views[++ViewIndex]);
 	}
 
 	/// <summary>
@@ -879,6 +880,21 @@ public sealed class SudokuGrid : DrawingElement
 		ref var current = ref _candidateViewNodeShapes[cell];
 		current.SetIsVisible(digit, true);
 		current.SetIdentifier(digit, candidateViewNode.Identifier);
+	}
+
+	/// <summary>
+	/// Clears all view nodes.
+	/// </summary>
+	public void ClearViewNodes()
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		// TODO: Sets other kinds of view nodes.
+		Array.ForEach(_cellViewNodeShapes, shape => shape.IsVisible = false);
+		Array.ForEach(_candidateViewNodeShapes, shape => Array.ForEach(Digits, digit => shape.SetIsVisible(digit, false)));
 	}
 
 	/// <summary>
@@ -1121,8 +1137,7 @@ public sealed class SudokuGrid : DrawingElement
 		// TODO: Sets other kinds of view nodes.
 
 		// Clears the current view.
-		Array.ForEach(_cellViewNodeShapes, shape => shape.IsVisible = false);
-		Array.ForEach(_candidateViewNodeShapes, shape => Array.ForEach(Digits, digit => shape.SetIsVisible(digit, false)));
+		ClearViewNodes();
 
 		// Rebuild the nodes.
 		foreach (var viewNode in view)
