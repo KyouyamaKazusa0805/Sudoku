@@ -26,52 +26,35 @@ public sealed partial class KeyboardPage : Page
 			R["KeyboardPage_OtherNumbers"]!,
 			new(
 				ModifierKey.Control,
-				new[]
-				{
-					Key.Number1, Key.Number2, Key.Number3,
-					Key.Number4, Key.Number5, Key.Number6,
-					Key.Number7, Key.Number8, Key.Number9
-				}
+				Key.Number1, Key.Number2, Key.Number3, Key.Number4, Key.Number5,
+				Key.Number6, Key.Number7, Key.Number8, Key.Number9
 			)
 		),
 		new(
 			R["KeyboardPage_ShiftOtherNumbers"]!,
 			new(
 				ModifierKey.Control | ModifierKey.Shift,
-				new[]
-				{
-					Key.Number1, Key.Number2, Key.Number3,
-					Key.Number4, Key.Number5, Key.Number6,
-					Key.Number7, Key.Number8, Key.Number9
-				}
+				Key.Number1, Key.Number2, Key.Number3, Key.Number4, Key.Number5,
+				Key.Number6, Key.Number7, Key.Number8, Key.Number9
 			)
 		),
 		new(
 			R["KeyboardPage_ControlNumbers"]!,
-			new(
-				ModifierKey.Control,
-				new[] { Key.Number1, Key.Number2, Key.Number3, Key.Number4, Key.Number5, Key.Number6 }
-			)
+			new(ModifierKey.Control, Key.Number1, Key.Number2, Key.Number3, Key.Number4, Key.Number5, Key.Number6)
 		),
 		new(
 			R["KeyboardPage_ControlShiftNumbers"]!,
-			new(ModifierKey.Control | ModifierKey.Shift, new[] { Key.Number1, Key.Number2, Key.Number3, Key.Number4 })
+			new(ModifierKey.Control | ModifierKey.Shift, Key.Number1, Key.Number2, Key.Number3, Key.Number4)
 		),
-		new(R["KeyboardPage_ControlBack"]!, new(ModifierKey.Control, new[] { Key.Number0, Key.Back })),
-		new(
-			R["KeyboardPage_ControlShiftBack"]!,
-			new(ModifierKey.Control | ModifierKey.Shift, new[] { Key.Number0, Key.Back })
-		),
-		new(R["KeyboardPage_ControlLeft"]!, new(ModifierKey.Control, new[] { Key.Left, Key.Right })),
-		new(R["KeyboardPage_ControlUp"]!, new(ModifierKey.Control, new[] { Key.Up, Key.Down })),
-		new(
-			R["KeyboardPage_ControlShiftLeft"]!,
-			new(ModifierKey.Control | ModifierKey.Shift, new[] { Key.Left, Key.Right })
-		),
-		new(R["KeyboardPage_ControlShiftUp"]!, new(ModifierKey.Control | ModifierKey.Shift, new[] { Key.Up, Key.Down })),
-		new(R["KeyboardPage_Left"]!, new(ModifierKey.None, new[] { Key.Left })),
-		new(R["KeyboardPage_Right"]!, new(ModifierKey.None, new[] { Key.Right })),
-		new(R["KeyboardPage_Escape"]!, new(ModifierKey.None, new[] { Key.Escape }))
+		new(R["KeyboardPage_ControlBack"]!, new(ModifierKey.Control, Key.Number0, Key.Back)),
+		new(R["KeyboardPage_ControlShiftBack"]!, new(ModifierKey.Control | ModifierKey.Shift, Key.Number0, Key.Back)),
+		new(R["KeyboardPage_ControlLeft"]!, new(ModifierKey.Control, Key.Left, Key.Right)),
+		new(R["KeyboardPage_ControlUp"]!, new(ModifierKey.Control, Key.Up, Key.Down)),
+		new(R["KeyboardPage_ControlShiftLeft"]!, new(ModifierKey.Control | ModifierKey.Shift, Key.Left, Key.Right)),
+		new(R["KeyboardPage_ControlShiftUp"]!, new(ModifierKey.Control | ModifierKey.Shift, Key.Up, Key.Down)),
+		new(R["KeyboardPage_Left"]!, new(ModifierKey.None, Key.Left)),
+		new(R["KeyboardPage_Right"]!, new(ModifierKey.None, Key.Right)),
+		new(R["KeyboardPage_Escape"]!, new(ModifierKey.None, Key.Escape))
 	};
 
 

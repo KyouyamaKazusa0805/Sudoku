@@ -1324,13 +1324,6 @@
         <member name="P:Sudoku.UI.Models.KeyboardPair.VirtualKeys">
             <summary>The virtual keys.</summary>
         </member>
-        <member name="M:Sudoku.UI.Models.KeyboardPair.#ctor(Windows.System.VirtualKeyModifiers,Windows.System.VirtualKey)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.KeyboardPair"/> instance via the specified modifier keys and a virtual key.
-            </summary>
-            <param name="modifierKeys">The modifier keys.</param>
-            <param name="virtualKey">The virtual key.</param>
-        </member>
         <member name="T:Sudoku.UI.Models.ManualSolverResultMessage">
             <summary>
             Defines a <see cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/> instance that can provide with the details
