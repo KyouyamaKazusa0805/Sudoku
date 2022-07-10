@@ -52,7 +52,11 @@ public sealed class CellViewNodeShape : DrawingElement
 		{
 			_identifier = value;
 
-			var color = _identifier.AsColor(Preference);
+			// Temporary solution:
+			// If we use a color with full alpha value (255), due to the priority of the rendering,
+			// the cell rectangles will cover a part of grid or cell border lines.
+			// Therefore, we should set the alpha value to 64.
+			var color = _identifier.AsColor(Preference) with { A = 64 };
 			_rectangle.Fill = new SolidColorBrush(color);
 		}
 	}
