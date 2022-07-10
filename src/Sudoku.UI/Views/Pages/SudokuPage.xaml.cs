@@ -766,6 +766,7 @@ public sealed partial class SudokuPage : Page
 		_cPane.Grid = grid;
 
 		bool isMultipleViews = viewLength > 1;
+		_cPipsPager.SelectedPageIndex = 0;
 		_cPipsPager.Visibility = isMultipleViews ? Visibility.Visible : Visibility.Collapsed;
 		if (isMultipleViews)
 		{
