@@ -41,7 +41,6 @@ global using Microsoft.Windows.System.Power;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Solving;
 global using Sudoku.Generating.Puzzlers;
-global using Sudoku.Presentation;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving.Manual;
 global using Sudoku.UI.Data.AppLifecycle;
