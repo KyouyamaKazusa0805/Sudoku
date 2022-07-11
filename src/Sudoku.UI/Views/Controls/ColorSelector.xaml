@@ -15,7 +15,7 @@
 					ItemClick="GridView_ItemClick">
 					<GridView.ItemsPanel>
 						<ItemsPanelTemplate>
-							<ItemsWrapGrid MaximumRowsOrColumns="12" Orientation="Horizontal" />
+							<ItemsWrapGrid MaximumRowsOrColumns="8" Orientation="Horizontal" />
 						</ItemsPanelTemplate>
 					</GridView.ItemsPanel>
 					<GridView.ItemTemplate>
@@ -23,7 +23,7 @@
 							<StackPanel Orientation="Horizontal">
 								<Ellipse
 									Fill="{x:Bind data:SimpleConverters.CreateBrushFromColor((Color))}"
-									Width="30" Height="30" Stroke="Black" StrokeThickness="4"
+									Width="20" Height="20" Stroke="Black" StrokeThickness="3"
 									ToolTipService.ToolTip="{x:Bind data:SimpleConverters.ToRgbString((Color))}" />
 							</StackPanel>
 						</DataTemplate>
