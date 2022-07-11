@@ -7,11 +7,11 @@
 	xmlns:ui="using:Sudoku.UI"
 	xmlns:xw="using:WinUIEx"
 	mc:Ignorable="d"
-	IsAlwaysOnTop="True">
+	Width="816" Height="504" IsAlwaysOnTop="True">
 	<Grid>
 		<Image Source="/Assets/images/splash-screen.png" />
 		<TextBlock
-			Text="{x:Bind ui:Program.ProgramName}" FontSize="64" FontWeight="Bold"
+			Text="{x:Bind ui:Program.ProgramName}" FontSize="36" FontWeight="SemiBold"
 			HorizontalAlignment="Center" VerticalAlignment="Center" />
 	</Grid>
 </xw:SplashScreen>
