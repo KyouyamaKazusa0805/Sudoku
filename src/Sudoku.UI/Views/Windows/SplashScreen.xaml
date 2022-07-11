@@ -4,8 +4,14 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="using:Sudoku.UI"
 	xmlns:xw="using:WinUIEx"
 	mc:Ignorable="d"
-    IsAlwaysOnTop="True">
-	<Image Source="/Assets/images/logo.png" />
+	IsAlwaysOnTop="True">
+	<Grid>
+		<Image Source="/Assets/images/splash-screen.png" />
+		<TextBlock
+			Text="{x:Bind ui:Program.ProgramName}" FontSize="64" FontWeight="Bold"
+			HorizontalAlignment="Center" VerticalAlignment="Center" />
+	</Grid>
 </xw:SplashScreen>

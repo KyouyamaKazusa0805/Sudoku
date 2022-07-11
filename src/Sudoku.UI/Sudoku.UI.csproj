@@ -54,10 +54,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Views\Windows\SplashScreen.xaml" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Content Include="Assets\SplashScreen.scale-200.png" />
 		<Content Include="Assets\Square150x150Logo.scale-200.png" />
 		<Content Include="Assets\Square44x44Logo.scale-200.png" />
@@ -90,6 +86,9 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Include="Assets\images\icon-text-file.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\splash-screen.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Include="Assets\images\zh-CN\icon-config-backup-file.png">
@@ -196,7 +195,7 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Windows\SplashScreen.xaml">
-		  <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>
 
