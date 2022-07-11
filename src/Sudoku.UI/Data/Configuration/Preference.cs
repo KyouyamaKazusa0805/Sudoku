@@ -342,9 +342,9 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>3</c>.
+	/// The default value is <c>6</c>.
 	/// </remarks>
-	public double HouseViewNodeStrokeThickness { get; set; } = 3;
+	public double HouseViewNodeStrokeThickness { get; set; } = 6;
 
 	/// <inheritdoc/>
 	/// <remarks>
