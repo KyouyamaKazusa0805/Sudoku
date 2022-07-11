@@ -74,8 +74,12 @@ public partial class App : Application
 			)
 		)?.Invoke(InitialInfo, RuntimeInfo);
 
-		// Activate the main window.
+#if true
+		var splashScreen = new MySplashScreen(typeof(MainWindow));
+		splashScreen.Completed += (_, e) => RuntimeInfo.MainWindow = (MainWindow)e!;
+#else
 		(RuntimeInfo.MainWindow = new()).Activate();
+#endif
 
 
 		static string? valueSelector(string key)

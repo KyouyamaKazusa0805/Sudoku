@@ -54,6 +54,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Views\Windows\SplashScreen.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Content Include="Assets\SplashScreen.scale-200.png" />
 		<Content Include="Assets\Square150x150Logo.scale-200.png" />
 		<Content Include="Assets\Square44x44Logo.scale-200.png" />
@@ -127,6 +131,7 @@
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" Version="7.1.2" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.197" />
+		<PackageReference Include="WinUIEx" Version="1.8.0" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
@@ -189,6 +194,9 @@
 		</Page>
 		<Page Update="Views\Controls\GettingStartedTile.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Windows\SplashScreen.xaml">
+		  <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 		</Page>
 	</ItemGroup>
 

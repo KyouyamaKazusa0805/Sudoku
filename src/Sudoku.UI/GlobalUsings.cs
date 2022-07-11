@@ -79,6 +79,7 @@ global using MsDispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue;
 global using MsLaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 global using MsWindowActivatedEventArgs = Microsoft.UI.Xaml.WindowActivatedEventArgs;
 global using Grid = Sudoku.Concepts.Collections.Grid;
+global using MySplashScreen = Sudoku.UI.Views.Windows.SplashScreen;
 global using EnvironmentFolders = System.Environment.SpecialFolder;
 global using SioDirectory = System.IO.Directory;
 global using SioFile = System.IO.File;
