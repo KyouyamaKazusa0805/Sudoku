@@ -1230,6 +1230,9 @@
         <member name="M:Sudoku.Concepts.Collections.Cells.System#ISubtractionOperators{Sudoku#Concepts#Collections#Cells,Sudoku#Concepts#Collections#Cells,Sudoku#Concepts#Collections#Cells}#op_Subtraction(Sudoku.Concepts.Collections.Cells,Sudoku.Concepts.Collections.Cells)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.System#IMultiplyOperators{Sudoku#Concepts#Collections#Cells,System#Int32,Sudoku#Concepts#Collections#Candidates}#op_Multiply(Sudoku.Concepts.Collections.Cells,System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.System#IDivisionOperators{Sudoku#Concepts#Collections#Cells,System#Int32,System#Int16}#op_Division(Sudoku.Concepts.Collections.Cells,System.Int32)">
             <inheritdoc/>
         </member>
@@ -12019,36 +12022,6 @@
             The blue value.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.Serialization.Context.CandidateViewNodeSerializerContext">
-            <summary>
-            Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>
-        </member>
-        <member name="T:Sudoku.Runtime.Serialization.Context.CellViewNodeSerializerContext">
-            <summary>
-            Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
-        </member>
-        <member name="T:Sudoku.Runtime.Serialization.Context.HouseViewNodeSerializerContext">
-            <summary>
-            Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/>
-        </member>
-        <member name="T:Sudoku.Runtime.Serialization.Context.LinkViewNodeSerializerContext">
-            <summary>
-            Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>
-        </member>
-        <member name="T:Sudoku.Runtime.Serialization.Context.UnknownViewNodeSerializerContext">
-            <summary>
-            Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.UnknownViewNode"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Presentation.Nodes.UnknownViewNode"/>
-        </member>
         <member name="T:Sudoku.Runtime.Serialization.Converter.AlmostLockedSetNodeJsonConverter">
             <summary>
             Defines a JSON converter that is used for the serialization and deserialization
@@ -12193,31 +12166,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.Serialization.Converter.LockedCandidatesNodeJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Runtime.Serialization.Converter.LockedTargetJsonConverter">
-            <summary>
-            Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Presentation.LockedTarget"/>.
-            </summary>
-            <remarks>
-            JSON Pattern:
-            <code>
-            {
-              "digit": 1,
-              "cells": [
-                10,
-                20,
-                30
-              ]
-            }
-            </code>
-            </remarks>
-            <seealso cref="T:Sudoku.Presentation.LockedTarget"/>
-        </member>
-        <member name="M:Sudoku.Runtime.Serialization.Converter.LockedTargetJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.Serialization.Converter.LockedTargetJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.LockedTarget,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.Serialization.Converter.SoleCandidateNodeJsonConverter">

@@ -21,6 +21,7 @@ public unsafe struct Cells :
 	IAdditionOperators<Cells, int, Cells>,
 	ISubtractionOperators<Cells, int, Cells>,
 	ISubtractionOperators<Cells, Cells, Cells>,
+	IMultiplyOperators<Cells, int, Candidates>,
 	IDivisionOperators<Cells, int, short>,
 	IModulusOperators<Cells, Cells, Cells>,
 	IBitwiseOperators<Cells, Cells, Cells>,
@@ -1216,6 +1217,10 @@ public unsafe struct Cells :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static Cells ISubtractionOperators<Cells, Cells, Cells>.operator -(Cells left, Cells right) => left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IMultiplyOperators<Cells, int, Candidates>.operator *(Cells left, int right) => left * right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

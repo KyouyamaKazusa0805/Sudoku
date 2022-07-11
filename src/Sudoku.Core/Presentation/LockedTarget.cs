@@ -4,7 +4,6 @@
 /// Defines the data structure that stores a set of cells and a digit, indicating the information
 /// about the locked candidate node.
 /// </summary>
-[JsonConverter(typeof(LockedTargetJsonConverter))]
 public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget>
 {
 	/// <summary>
@@ -19,17 +18,19 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 	/// <summary>
 	/// Indicates whether the number of cells is 1.
 	/// </summary>
+	[JsonIgnore]
 	public bool IsSole => Cells.Count == 1;
 
 	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
-	public int Digit { get; }
+	public int Digit { get; init; }
 
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
-	public Cells Cells { get; }
+	[JsonConverter(typeof(CellsJsonConverter))]
+	public Cells Cells { get; init; }
 
 
 	/// <inheritdoc/>
