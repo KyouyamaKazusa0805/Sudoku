@@ -194,7 +194,7 @@
 		<Page Update="Views\Controls\GettingStartedTile.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Windows\SplashScreen.xaml">
+		<Page Update="Views\Windows\MySplashScreen.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

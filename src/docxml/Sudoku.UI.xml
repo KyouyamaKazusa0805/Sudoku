@@ -3403,31 +3403,31 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Views.Windows.SplashScreen">
+        <member name="T:Sudoku.UI.Views.Windows.MySplashScreen">
             <summary>
             A splash screen window.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.SplashScreen.#ctor(System.Type)">
+        <member name="M:Sudoku.UI.Views.Windows.MySplashScreen.#ctor(System.Type)">
             <summary>
-            Initializes a <see cref="T:Sudoku.UI.Views.Windows.SplashScreen"/> instance via the specified type of the window.
+            Initializes a <see cref="T:Sudoku.UI.Views.Windows.MySplashScreen"/> instance via the specified type of the window.
             </summary>
             <param name="typeOfWindow">The type of the window.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.SplashScreen.OnLoading">
+        <member name="M:Sudoku.UI.Views.Windows.MySplashScreen.OnLoading">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.SplashScreen.InitializeComponent">
+        <member name="M:Sudoku.UI.Views.Windows.MySplashScreen.InitializeComponent">
             <summary>
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.SplashScreen.Connect(System.Int32,System.Object)">
+        <member name="M:Sudoku.UI.Views.Windows.MySplashScreen.Connect(System.Int32,System.Object)">
             <summary>
             Connect()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Windows.SplashScreen.GetBindingConnector(System.Int32,System.Object)">
+        <member name="M:Sudoku.UI.Views.Windows.MySplashScreen.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
