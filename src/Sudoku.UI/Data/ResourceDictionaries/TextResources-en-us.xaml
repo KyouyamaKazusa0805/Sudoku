@@ -276,6 +276,7 @@
 	<x:String x:Key="LoadingSudokuGrid">Loading sudoku grid</x:String>
 	<x:String x:Key="BatteryStatusIsNotGood">Battery message</x:String>
 	<x:String x:Key="BatteryStatusIsNotGood_Detail">It seems that your computer may not use a good performance on using this program. We suggest you keep the power being supplied or use the battery with at least 75% remaining.</x:String>
+	<x:String x:Key="MoreColors">&gt;&gt; More</x:String>
 	<x:String x:Key="ErrorOpenFile">Error on opening folder</x:String>
 	<x:String x:Key="ErrorOpenFile_Detail">The preference folder doesn't exist.</x:String>
 	<x:String x:Key="PrintSuccessful">Print successful.</x:String>

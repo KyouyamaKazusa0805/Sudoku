@@ -13,7 +13,7 @@ public sealed partial class ColorSelector : UserControl, INotifyPropertyChanged
 		nameof(SelectedColor),
 		typeof(Color),
 		typeof(ColorSelector),
-		new(default(Color))
+		new(Colors.Transparent)
 	);
 
 
@@ -72,4 +72,13 @@ public sealed partial class ColorSelector : UserControl, INotifyPropertyChanged
 
 		_cSplitButton.Flyout.Hide();
 	}
+
+	/// <summary>
+	/// Triggers when the color picker has changed its color.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="args">The event arguments provided.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void ColorPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
+		=> SelectedColor = args.NewColor;
 }

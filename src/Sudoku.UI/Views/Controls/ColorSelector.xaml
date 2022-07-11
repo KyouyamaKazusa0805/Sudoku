@@ -28,6 +28,22 @@
 							</StackPanel>
 						</DataTemplate>
 					</GridView.ItemTemplate>
+					<GridView.Footer>
+						<HyperlinkButton
+							Content="{StaticResource MoreColors}" HorizontalAlignment="Left"
+							VerticalAlignment="Center">
+							<HyperlinkButton.ContextFlyout>
+								<Flyout>
+									<ColorPicker
+										ColorSpectrumShape="Ring" IsMoreButtonVisible="False"
+										IsColorSliderVisible="True" IsColorChannelTextInputVisible="True"
+										IsHexInputVisible="True" IsAlphaEnabled="True" IsAlphaSliderVisible="True"
+										IsAlphaTextInputVisible="True"
+										ColorChanged="ColorPicker_ColorChanged" />
+								</Flyout>
+							</HyperlinkButton.ContextFlyout>
+						</HyperlinkButton>
+					</GridView.Footer>
 				</GridView>
 			</Flyout>
 		</SplitButton.Flyout>
