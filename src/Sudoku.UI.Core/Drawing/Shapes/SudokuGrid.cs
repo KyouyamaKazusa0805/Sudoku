@@ -952,8 +952,8 @@ public sealed class SudokuGrid : DrawingElement
 		}
 
 		// TODO: Sets other kinds of view nodes.
-		Array.ForEach(_cellViewNodeShapes, shape => shape.IsVisible = false);
-		Array.ForEach(_candidateViewNodeShapes, shape => Array.ForEach(Digits, digit => shape.SetIsVisible(digit, false)));
+		Array.ForEach(_cellViewNodeShapes, static s => s.IsVisible = false);
+		Array.ForEach(_candidateViewNodeShapes, static s => Array.ForEach(Digits, d => s.SetIsVisible(d, false)));
 		Array.ForEach(Houses, house => _houseViewNodeShape.SetIsVisible(house, false));
 	}
 
