@@ -14,8 +14,7 @@ public sealed class LinkViewNode : ViewNode
 	/// <param name="endPoint">The end point of the link.</param>
 	/// <param name="inference">The inference type.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LinkViewNode(
-		Identifier identifier, in LockedTarget startPoint, in LockedTarget endPoint, Inference inference) :
+	public LinkViewNode(Identifier identifier, in LockedTarget startPoint, in LockedTarget endPoint, Inference inference) :
 		base(identifier) => (Start, End, Inference) = (startPoint, endPoint, inference);
 
 
