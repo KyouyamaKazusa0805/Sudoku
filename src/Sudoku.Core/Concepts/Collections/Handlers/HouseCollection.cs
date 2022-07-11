@@ -148,5 +148,5 @@ public readonly ref partial struct HouseCollection
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The label.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private char GetLabel(int houseIndex) => houseIndex switch { 0 => 'b', 1 => 'r', 2 => 'c', _ => default };
+	private char GetLabel(int houseIndex) => houseIndex switch { 0 => 'b', 1 => 'r', 2 => 'c' };
 }

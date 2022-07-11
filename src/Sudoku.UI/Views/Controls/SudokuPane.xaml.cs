@@ -1076,12 +1076,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			return;
 		}
 
-		var (digit, action) = possibleDigit switch
+		if (possibleDigit > 0)
 		{
-			> 0 => (possibleDigit - 1, MakeDigit),
-			< 0 => (~possibleDigit, EliminateDigit),
-			_ => default((int, Action<int, int>?))
-		};
-		action!(CurrentCell, digit);
+			MakeDigit(CurrentCell, possibleDigit - 1);
+		}
+		else if (possibleDigit < 0)
+		{
+			EliminateDigit(CurrentCell, ~possibleDigit);
+		}
 	}
 }

@@ -11,9 +11,6 @@ internal static class ColorMarshal
 	/// <param name="identifier">The <see cref="Identifier"/> value.</param>
 	/// <param name="userPreference">The user preference instance.</param>
 	/// <returns>The <see cref="Color"/> result.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the specified ID or named kind value is invalid.
-	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Color AsColor(this Identifier identifier, IDrawingPreference userPreference)
 		=> identifier.Mode switch
@@ -28,10 +25,8 @@ internal static class ColorMarshal
 				>= DisplayColorKind.AlmostLockedSet1 and <= DisplayColorKind.AlmostLockedSet5
 					=> userPreference.AlmostLockedSetColors[namedKind - DisplayColorKind.AlmostLockedSet1],
 				_ when typeof(IDrawingPreference).GetProperty($"{identifier.NamedKind}Color") is { } propertyInfo
-					=> (Color)propertyInfo.GetValue(userPreference)!,
-				_ => throw new InvalidOperationException("The specified named kind is not supported.")
-			},
-			_ => throw new InvalidOperationException("The specified mode is not supported due to invalid inner value.")
+					=> (Color)propertyInfo.GetValue(userPreference)!
+			}
 		};
 
 	/// <summary>

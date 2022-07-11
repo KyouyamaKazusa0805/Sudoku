@@ -137,8 +137,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 					3 => CandidatesMap[digit] & (HouseMaps[bs[0]] | HouseMaps[bs[1]] | HouseMaps[bs[2]]),
 					4 => CandidatesMap[digit] & (
 						HouseMaps[bs[0]] | HouseMaps[bs[1]] | HouseMaps[bs[2]] | HouseMaps[bs[3]]
-					),
-					_ => throw new NotSupportedException("The specified size isn't supported.")
+					)
 				};
 
 				// Iterate on the cover set combination.
@@ -151,8 +150,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 						3 => CandidatesMap[digit] & (HouseMaps[cs[0]] | HouseMaps[cs[1]] | HouseMaps[cs[2]]),
 						4 => CandidatesMap[digit] & (
 							HouseMaps[cs[0]] | HouseMaps[cs[1]] | HouseMaps[cs[2]] | HouseMaps[cs[3]]
-						),
-						_ => throw new NotSupportedException("The specified size isn't supported.")
+						)
 					};
 
 					// Now check the fins and the elimination cells.

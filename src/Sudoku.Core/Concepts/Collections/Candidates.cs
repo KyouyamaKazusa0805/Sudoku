@@ -626,8 +626,7 @@ public unsafe partial struct Candidates :
 				8 => &pThis->_8,
 				9 => &pThis->_9,
 				10 => &pThis->_10,
-				11 => &pThis->_11,
-				_ => throw new()
+				11 => &pThis->_11
 			};
 			if (value)
 			{

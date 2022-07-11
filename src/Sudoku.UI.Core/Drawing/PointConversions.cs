@@ -127,13 +127,7 @@ internal static class PointConversions
 	{
 		bool isHorizontal = i <= w;
 		double targetSize = (
-			w switch
-			{
-				3 => BlockSize,
-				9 => CellSize,
-				27 => CandidateSize,
-				_ => default(Func<double, double, double>?)!
-			}
+			(Func<double, double, double>)(w switch { 3 => BlockSize, 9 => CellSize, 27 => CandidateSize })
 		)(paneSize, outsideOffset);
 
 		return (

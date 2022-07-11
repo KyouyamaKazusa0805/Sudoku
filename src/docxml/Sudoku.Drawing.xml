@@ -682,13 +682,6 @@
             <param name="g">The graphics.</param>
             <param name="offset">The offset.</param>
         </member>
-        <member name="M:Sudoku.Drawing.GridImageGenerator.DrawDirectLines(System.Drawing.Graphics,System.Single)">
-            <summary>
-            Draw direct lines. The direct lines are the information for hidden singles and naked singles.
-            </summary>
-            <param name="g">The graphics.</param>
-            <param name="offset">The drawing offset.</param>
-        </member>
         <member name="M:Sudoku.Drawing.GridImageGenerator.DrawUnknownValue(System.Drawing.Graphics)">
             <summary>
             Draw unknown values.

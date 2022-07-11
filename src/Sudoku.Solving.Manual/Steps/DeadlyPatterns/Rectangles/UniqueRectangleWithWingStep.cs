@@ -32,13 +32,16 @@ public sealed record class UniqueRectangleWithWingStep(
 		=> new[]
 		{
 			("Avoidable rectangle", IsAvoidable ? .1M : 0),
-			("Wing", TechniqueCode switch
-			{
-				Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => .2M,
-				Technique.UniqueRectangleXyzWing or Technique.AvoidableRectangleXyzWing => .3M,
-				Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => .5M,
-				_ => throw new NotSupportedException("The specified technique code is not supported.")
-			})
+			(
+				"Wing",
+				TechniqueCode switch
+				{
+					Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => .2M,
+					Technique.UniqueRectangleXyzWing or Technique.AvoidableRectangleXyzWing => .3M,
+					Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => .5M,
+					_ => throw new NotSupportedException("The specified technique code is not supported.")
+				}
+			)
 		};
 
 	/// <inheritdoc/>

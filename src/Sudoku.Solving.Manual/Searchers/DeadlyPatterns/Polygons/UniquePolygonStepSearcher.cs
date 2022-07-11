@@ -81,8 +81,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 					0 or 1 or 2 or 3 => (9, 1),
 					4 or 5 => (9, 2),
 					6 or 7 => (18, 1),
-					8 => (18, 2),
-					_ => throw new()
+					8 => (18, 2)
 				};
 				if (house1 is >= 9 and < 18)
 				{
@@ -145,8 +144,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 				0 or 1 or 2 or 3 => (9, 1),
 				4 or 5 => (9, 2),
 				6 or 7 => (18, 1),
-				8 => (18, 2),
-				_ => throw new()
+				8 => (18, 2)
 			};
 			if (house1 is >= 9 and < 18)
 			{
@@ -205,8 +203,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 					0 => (cell, cell + increment),
 					1 => houseIndex is >= 18 and < 27 ? (cell - increment, cell) : (cell, cell + increment),
 					2 => houseIndex is >= 9 and < 18 ? (cell - increment, cell) : (cell, cell + increment),
-					3 => (cell - increment, cell),
-					_ => throw new()
+					3 => (cell - increment, cell)
 				};
 				cur++;
 			}

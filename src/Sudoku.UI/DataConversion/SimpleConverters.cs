@@ -57,7 +57,6 @@ internal static class SimpleConverters
 				InfoBarSeverity.Success => "SudokuPage_InfoBar_SeveritySuccess",
 				InfoBarSeverity.Warning => "SudokuPage_InfoBar_SeverityWarning",
 				InfoBarSeverity.Error => "SudokuPage_InfoBar_SeverityError",
-				_ => throw new ArgumentOutOfRangeException(nameof(severity))
 			}
 		]!;
 

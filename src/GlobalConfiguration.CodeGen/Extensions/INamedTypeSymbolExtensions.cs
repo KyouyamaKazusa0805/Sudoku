@@ -75,9 +75,8 @@ internal static class INamedTypeSymbolExtensions
 			(TypeKind.Class, _) => "class",
 			(TypeKind.Struct, true) => "record struct",
 			(TypeKind.Struct, _) => "struct",
-			(TypeKind.Interface, _) => "interface",
+			(TypeKind.Interface, _) => "interface"
 			//(TypeKind.Delegate, _) => "delegate",
-			//(TypeKind.Enum, _) => "enum",
-			_ => throw new ArgumentException("The specified argument holds an invalid type that doesn't contain any possible type kind modifier.")
+			//(TypeKind.Enum, _) => "enum"
 		};
 }

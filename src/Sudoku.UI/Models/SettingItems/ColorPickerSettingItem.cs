@@ -14,8 +14,7 @@ public sealed class ColorPickerSettingItem : SettingItem, IDynamicCreatableItem<
 			{
 				Name = NamedValueLookup.GetItemNameString(propertyName),
 				PreferenceValueName = propertyName
-			},
-			_ => throw new InvalidOperationException()
+			}
 		};
 
 		if (NamedValueLookup.GetItemDescriptionString(propertyName) is { } description)

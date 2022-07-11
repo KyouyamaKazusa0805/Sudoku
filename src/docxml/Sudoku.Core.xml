@@ -6855,6 +6855,7 @@
         </member>
         <member name="M:Sudoku.Presentation.Identifier.Equals(Sudoku.Presentation.Identifier)">
             <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Throws when the specified mode is not supported.</exception>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.GetHashCode">
             <inheritdoc/>

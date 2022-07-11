@@ -20,8 +20,7 @@ public sealed record class TwoStrongLinksStep(
 		{
 			Technique.TurbotFish => 4.2M,
 			Technique.Skyscraper => 4.0M,
-			Technique.TwoStringKite => 4.1M,
-			_ => throw new NotSupportedException("The specified technique code is not supported.")
+			Technique.TwoStringKite => 4.1M
 		};
 
 	/// <inheritdoc/>
@@ -39,8 +38,7 @@ public sealed record class TwoStrongLinksStep(
 		{
 			(0, _) or (_, 0) => Technique.TurbotFish,
 			(1, 1) or (2, 2) => Technique.Skyscraper,
-			(1, 2) or (2, 1) => Technique.TwoStringKite,
-			_ => throw new InvalidOperationException("The current status is invalid.")
+			(1, 2) or (2, 1) => Technique.TwoStringKite
 		};
 
 	/// <inheritdoc/>

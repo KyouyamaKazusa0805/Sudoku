@@ -32,18 +32,19 @@ public sealed record class FileCounterResult(
 			SizeUnit.IMegabyte => "MiB",
 			SizeUnit.IGigabyte => "GiB",
 			SizeUnit.ITerabyte => "TiB",
-			_ => throw new()
+			_ => throw new ArgumentOutOfRangeException(nameof(unit))
 		};
 
-		return $$"""
-		Results:
-		* Code lines: {{ResultLines}}
-		* Files: {{FilesCount}}
-		* Characters: {{CharactersCount}}
-		* Bytes: {{bytesConvertedStr}} {{bytesUnitStr}} ({{Bytes}} Bytes)
-		* Time elapsed: {{Elapsed:hh\:mm\.ss\.fff}}
+		return
+			$$"""
+			Results:
+			* Code lines: {{ResultLines}}
+			* Files: {{FilesCount}}
+			* Characters: {{CharactersCount}}
+			* Bytes: {{bytesConvertedStr}} {{bytesUnitStr}} ({{Bytes}} Bytes)
+			* Time elapsed: {{Elapsed:hh\:mm\.ss\.fff}}
 
-		About more information, please call each property in this instance.
-		""";
+			About more information, please call each property in this instance.
+			""";
 	}
 }

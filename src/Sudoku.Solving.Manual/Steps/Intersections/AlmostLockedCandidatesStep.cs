@@ -23,31 +23,11 @@ public sealed record class AlmostLockedCandidatesStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty
-		=> Size switch
-		{
-			2 => 4.5M,
-			3 => 5.2M,
-			4 => 5.7M,
-			_ => throw new NotSupportedException("The specified size is not supported.")
-		};
+	public decimal BaseDifficulty => Size switch { 2 => 4.5M, 3 => 5.2M, 4 => 5.7M };
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(
-				"Extra",
-				!HasValueCell
-					? 0
-					: Size switch
-					{
-						2 or 3 => .1M,
-						4 => .2M,
-						_ => throw new NotSupportedException("The specified size is not supported.")
-					}
-			)
-		};
+		=> new[] { ("Extra", HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0) };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

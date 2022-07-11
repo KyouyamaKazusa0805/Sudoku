@@ -74,13 +74,12 @@ public sealed record class RegularWingStep(
 			6 => 4.9M,
 			7 => 5.2M,
 			8 => 5.5M,
-			9 => 5.9M,
-			_ => throw new NotSupportedException("The specified size is not supported.")
+			9 => 5.9M
 		};
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Incompleteness", IsIncomplete ? Size == 3 ? 0.2M : 0.1M : 0) };
+		=> new[] { ("Incompleteness", IsIncomplete ? Size == 3 ? .2M : .1M : 0) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode
@@ -100,7 +99,6 @@ public sealed record class RegularWingStep(
 			"Incomplete TUVWXYZ-Wing" => Technique.IncompleteTuvwxyzWing,
 			"Incomplete STUVWXYZ-Wing" => Technique.IncompleteStuvwxyzWing,
 			"Incomplete RSTUVWXYZ-Wing" => Technique.IncompleteRstuvwxyzWing,
-			_ => throw new NotSupportedException("The specified name is not supported.")
 		};
 
 	/// <inheritdoc/>
@@ -113,7 +111,6 @@ public sealed record class RegularWingStep(
 			3 or 4 => DifficultyLevel.Hard,
 			5 => DifficultyLevel.Fiendish,
 			> 5 => DifficultyLevel.Nightmare,
-			_ => throw new NotSupportedException("The specified size is not supported.")
 		};
 
 	/// <inheritdoc/>
@@ -124,7 +121,6 @@ public sealed record class RegularWingStep(
 			3 or 4 => Rarity.Seldom,
 			5 => Rarity.HardlyEver,
 			> 5 => Rarity.OnlyForSpecialPuzzles,
-			_ => throw new NotSupportedException("The specified size is not supported.")
 		};
 
 	/// <summary>
@@ -141,10 +137,8 @@ public sealed record class RegularWingStep(
 				6 => "UVWXYZ-Wing",
 				7 => "TUVWXYZ-Wing",
 				8 => "STUVWXYZ-Wing",
-				9 => "RSTUVWXYZ-Wing",
-				_ => throw new NotSupportedException("The specified size is not supported.")
-			} is var name => IsIncomplete ? $"Incomplete {name}" : name,
-			_ => throw new NotSupportedException("The specified size is not supported.")
+				9 => "RSTUVWXYZ-Wing"
+			} is var name => IsIncomplete ? $"Incomplete {name}" : name
 		};
 
 	[FormatItem]

@@ -22,8 +22,7 @@ public sealed class FontPickerSettingItem : SettingItem, IDynamicCreatableItem<F
 			{
 				Name = NamedValueLookup.GetItemNameString(propertyName),
 				PreferenceValueName = propertyName
-			},
-			_ => throw new InvalidOperationException()
+			}
 		};
 
 		if (NamedValueLookup.GetItemDescriptionString(propertyName) is { } description)

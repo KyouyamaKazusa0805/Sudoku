@@ -185,57 +185,6 @@ partial record class GridImageGenerator
 	}
 
 	/// <summary>
-	/// Draw direct lines. The direct lines are the information for hidden singles and naked singles.
-	/// </summary>
-	/// <param name="g">The graphics.</param>
-	/// <param name="offset">The drawing offset.</param>
-	partial void DrawDirectLines(Graphics g, float offset)
-	{
-		if (View is not { CrosshatchNodes: var crosshatchNodes })
-		{
-			return;
-		}
-
-		if (Preferences.ShowCandidates)
-		{
-			// Non-direct view (without candidates) don't show this function.
-			return;
-		}
-
-		foreach (var crosshatchNode in crosshatchNodes)
-		{
-			var start = crosshatchNode.Start;
-			var end = crosshatchNode.End;
-
-			// Draw start cells (may be a capsule-like shape to block them).
-			if (start is not [])
-			{
-				// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
-				var p1 = Calculator.GetMousePointInCenter(start[0]) - Calculator.CellSize / 2;
-				var p2 = Calculator.GetMousePointInCenter(start[^1]) + Calculator.CellSize / 2;
-				var rect = RectangleMarshal.CreateInstance(p1, p2).Zoom(-offset);
-
-				// Step 2: Draw capsule.
-				using var pen = new Pen(Preferences.CrosshatchingOutlineColor, 3F);
-				using var brush = new SolidBrush(Preferences.CrosshatchingInnerColor);
-				g.DrawEllipse(pen, rect);
-				g.FillEllipse(brush, rect);
-			}
-
-			// Draw end cells (may be using cross sign to represent the current cell can't fill that digit).
-			foreach (int cell in end)
-			{
-				// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
-				var rect = Calculator.GetMouseRectangleViaCell(cell).Zoom(-offset * 2);
-
-				// Step 2: Draw cross sign.
-				using var pen = new Pen(Preferences.CrossSignColor, 5F);
-				g.DrawCrossSign(pen, rect);
-			}
-		}
-	}
-
-	/// <summary>
 	/// Draw cells.
 	/// </summary>
 	/// <param name="g">The graphics.</param>

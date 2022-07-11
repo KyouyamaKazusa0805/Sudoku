@@ -30,7 +30,6 @@ public sealed class DateOnlyExtension : MarkupExtension
 		=> Format switch
 		{
 			null when DateOnly.TryParse(RawDateText, out var result) => result,
-			not null when DateOnly.TryParseExact(RawDateText, Format, out var result) => result,
-			_ => null
+			not null when DateOnly.TryParseExact(RawDateText, Format, out var result) => result
 		};
 }

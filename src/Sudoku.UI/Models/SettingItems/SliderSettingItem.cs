@@ -39,8 +39,7 @@ public sealed class SliderSettingItem : SettingItem, IDynamicCreatableItem<Slide
 				TickFrequency = data.GetNamedValue<double>(nameof(TickFrequency)),
 				MinValue = data.GetNamedValue<double>(nameof(MinValue)),
 				MaxValue = data.GetNamedValue<double>(nameof(MaxValue))
-			},
-			_ => throw new InvalidOperationException()
+			}
 		};
 
 		if (NamedValueLookup.GetItemDescriptionString(propertyName) is { } description)

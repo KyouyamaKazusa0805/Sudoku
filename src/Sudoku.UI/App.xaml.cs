@@ -54,22 +54,24 @@ public partial class App : Application
 
 		// Handle and assign the initial value, to control the initial page information.
 		(
-			AppInstance.GetCurrent().GetActivatedEventArgs() switch
-			{
+			(Action<WindowInitialInfo, WindowRuntimeInfo>?)(
+				AppInstance.GetCurrent().GetActivatedEventArgs() switch
 				{
-					Kind: ExtendedActivationKind.File,
-					Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: var fileType } file, ..] }
-				} => fileType switch
-				{
-					CommonFileExtensions.Sudoku => async (i, _) => i.FirstGrid = Grid.Parse(await readAsync(file)),
-					CommonFileExtensions.PreferenceBackup => async (i, r) => await backPreferenceFiles(i, r, file),
+					{
+						Kind: ExtendedActivationKind.File,
+						Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: var fileType } file, ..] }
+					} => fileType switch
+					{
+						CommonFileExtensions.Sudoku => async (i, _) => i.FirstGrid = Grid.Parse(await readAsync(file)),
+						CommonFileExtensions.PreferenceBackup => async (i, r) => await backPreferenceFiles(i, r, file),
 #if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-					CommonFileExtensions.DrawingData => async (i, _) => i.DrawingDataRawValue = await readAsync(file),
+						CommonFileExtensions.DrawingData => async (i, _) => i.DrawingDataRawValue = await readAsync(file),
 #endif
-					_ => default
-				},
-				_ => default(Action<WindowInitialInfo, WindowRuntimeInfo>?)
-			}
+						_ => null
+					},
+					_ => null
+				}
+			)
 		)?.Invoke(InitialInfo, RuntimeInfo);
 
 		// Activate the main window.

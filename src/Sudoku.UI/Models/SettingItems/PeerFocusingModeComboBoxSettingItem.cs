@@ -36,8 +36,7 @@ public sealed class PeerFocusingModeComboBoxSettingItem :
 					string[] values => getOptionContentsFromKey(values),
 					_ => throw new NotSupportedException("The specified type of the argument value is not supported.")
 				}
-			},
-			_ => throw new InvalidOperationException()
+			}
 		};
 
 		if (NamedValueLookup.GetItemDescriptionString(propertyName) is { } description)

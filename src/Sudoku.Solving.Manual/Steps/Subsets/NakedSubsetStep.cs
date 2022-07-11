@@ -34,34 +34,11 @@ public sealed record class NakedSubsetStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty
-		=> Size switch
-		{
-			2 => 3.0M,
-			3 => 3.6M,
-			4 => 5.0M,
-			_ => throw new NotSupportedException("The specified size is not supported.")
-		};
+	public decimal BaseDifficulty => Size switch { 2 => 3.0M, 3 => 3.6M, 4 => 5.0M };
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(
-				"Locked",
-				IsLocked switch
-				{
-					true => Size switch
-					{
-						2 => -1.0M,
-						3 => -1.1M,
-						_ => throw new NotSupportedException("The specified size is not supported.")
-					},
-					false => .1M,
-					_ => 0
-				}
-			)
-		};
+		=> new[] { ("Locked", IsLocked switch { true => Size switch { 2 => -1.0M, 3 => -1.1M }, false => .1M, _ => 0 }) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode
@@ -75,7 +52,6 @@ public sealed record class NakedSubsetStep(
 			(null, 3) => Technique.NakedTriple,
 			(false, 4) => Technique.NakedQuadruplePlus,
 			(null, 4) => Technique.NakedQuadruple,
-			_ => throw new InvalidOperationException("The current status is invalid.")
 		};
 
 	[FormatItem]

@@ -14,19 +14,20 @@ public static class SizeUnitConverter
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="sizeUnit"/> is invalid.
 	/// </exception>
-	public static decimal ConvertTo(long bytes, SizeUnit sizeUnit) => bytes / sizeUnit switch
-	{
-		SizeUnit.Byte => 1M,
-		SizeUnit.Kilobyte => 1024M,
-		SizeUnit.IKilobyte => 1000M,
-		SizeUnit.Megabyte => 1048576M,
-		SizeUnit.IMegabyte => 1000000M,
-		SizeUnit.Gigabyte => 1073741824M,
-		SizeUnit.IGigabyte => 1000000000M,
-		SizeUnit.Terabyte => 1099511627776M,
-		SizeUnit.ITerabyte => 1000000000000M,
-		_ => throw new ArgumentOutOfRangeException(nameof(sizeUnit))
-	};
+	public static decimal ConvertTo(long bytes, SizeUnit sizeUnit)
+		=> bytes / sizeUnit switch
+		{
+			SizeUnit.Byte => 1M,
+			SizeUnit.Kilobyte => 1024M,
+			SizeUnit.IKilobyte => 1000M,
+			SizeUnit.Megabyte => 1048576M,
+			SizeUnit.IMegabyte => 1000000M,
+			SizeUnit.Gigabyte => 1073741824M,
+			SizeUnit.IGigabyte => 1000000000M,
+			SizeUnit.Terabyte => 1099511627776M,
+			SizeUnit.ITerabyte => 1000000000000M,
+			_ => throw new ArgumentOutOfRangeException(nameof(sizeUnit))
+		};
 
 	/// <summary>
 	/// To convert the size into the appropriate size unit.

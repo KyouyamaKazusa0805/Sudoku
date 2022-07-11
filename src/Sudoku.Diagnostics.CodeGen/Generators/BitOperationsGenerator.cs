@@ -168,38 +168,38 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 		{
 			"uint" or "ulong" => "@this",
 			"byte" or "sbyte" or "int" or "short" or "ushort" => "(uint)@this",
-			"long" => "(ulong)@this",
-			_ => throw new()
+			"long" => "(ulong)@this"
 		};
 
-		return $$"""
-			/// <summary>
-			/// Find all offsets of set bits of the binary representation of a specified value.
-			/// </summary>
-			/// <param name="this">The value.</param>
-			/// <returns>All offsets.</returns>
-			[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-			[global::System.Runtime.CompilerServices.CompilerGenerated]
-			public static partial ReadOnlySpan<int> GetAllSets(this {{typeName}} @this)
-			{
-				if (@this == 0)
+		return
+			$$"""
+				/// <summary>
+				/// Find all offsets of set bits of the binary representation of a specified value.
+				/// </summary>
+				/// <param name="this">The value.</param>
+				/// <returns>All offsets.</returns>
+				[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+				[global::System.Runtime.CompilerServices.CompilerGenerated]
+				public static partial ReadOnlySpan<int> GetAllSets(this {{typeName}} @this)
 				{
-					return ReadOnlySpan<int>.Empty;
-				}
-				
-				int length = PopCount({{popCountStr}});
-				int[] result = new int[length];
-				for (byte i = 0, p = 0; i < sizeof({{typeName}}) << 3; i++, @this >>= 1)
-				{
-					if ((@this & 1) != 0)
+					if (@this == 0)
 					{
-						result[p++] = i;
+						return ReadOnlySpan<int>.Empty;
 					}
-				}
 				
-				return result;
-			}
-		""";
+					int length = PopCount({{popCountStr}});
+					int[] result = new int[length];
+					for (byte i = 0, p = 0; i < sizeof({{typeName}}) << 3; i++, @this >>= 1)
+					{
+						if ((@this & 1) != 0)
+						{
+							result[p++] = i;
+						}
+					}
+				
+					return result;
+				}
+			""";
 	}
 
 	/// <summary>
@@ -351,8 +351,9 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 	private string G_SkipSetBit(string typeName)
 	{
 		string conversion = typeName switch { "byte" => "(byte)", "short" => "(short)", _ => string.Empty };
-		int size = typeName switch { "byte" => 8, "short" => 16, "int" => 32, "long" => 64, _ => throw new() };
-		return $$"""
+		int size = typeName switch { "byte" => 8, "short" => 16, "int" => 32, "long" => 64 };
+		return
+			$$"""
 				/// <summary>
 				/// Skip the specified number of set bits and iterate on the integer with other set bits.
 				/// </summary>

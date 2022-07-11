@@ -68,30 +68,32 @@ public sealed partial class SudokuPage : Page
 		void routeHandler(KeyRoutedEventArgs e)
 		{
 			(
-				ModifierKeyDownData.FromCurrentState() switch
-				{
-					(true, true, false) => e.Key switch { Key.Tab => FixGrid, _ => default },
-					(true, _, false) => e.Key switch
+				(Action?)(
+					ModifierKeyDownData.FromCurrentState() switch
 					{
-						Key.O when EnsureUnsnapped() => async () => await OpenFileAsync(),
-						Key.S when EnsureUnsnapped() => async () => await SaveFileAsync(),
-						Key.C => CopySudokuCode,
-						Key.V => async () => await PasteAsync(),
-						Key.Tab => FixGrid,
-						Key.Z => Undo,
-						Key.Y => Redo,
-						Key.H => () => GenerateAsync(_cButtonGenerate),
-						_ => default
-					},
-					(false, false, false) => e.Key switch
-					{
-						(Key)189 => SetPreviousView,
-						(Key)187 => SetNextView,
-						Key.Escape => ClearViews,
-						_ => default
-					},
-					_ => default(Action?)
-				}
+						(true, true, false) => e.Key switch { Key.Tab => FixGrid, _ => null },
+						(true, _, false) => e.Key switch
+						{
+							Key.O when EnsureUnsnapped() => async () => await OpenFileAsync(),
+							Key.S when EnsureUnsnapped() => async () => await SaveFileAsync(),
+							Key.C => CopySudokuCode,
+							Key.V => async () => await PasteAsync(),
+							Key.Tab => FixGrid,
+							Key.Z => Undo,
+							Key.Y => Redo,
+							Key.H => () => GenerateAsync(_cButtonGenerate),
+							_ => null
+						},
+						(false, false, false) => e.Key switch
+						{
+							(Key)189 => SetPreviousView,
+							(Key)187 => SetNextView,
+							Key.Escape => ClearViews,
+							_ => null
+						},
+						_ => null
+					}
+				)
 			)?.Invoke();
 
 			// Make the property value 'false' to allow the handler continuously routes to the inner controls.
@@ -674,7 +676,6 @@ public sealed partial class SudokuPage : Page
 							FailedReason.ExceptionThrown => "SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown",
 							FailedReason.WrongStep => "SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep",
 							FailedReason.PuzzleIsTooHard => "SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard",
-							_ => throw new InvalidOperationException("The specified failed reason is not supported.")
 						}
 					]!;
 					_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}{wrongStep}");
@@ -807,12 +808,13 @@ public sealed partial class SudokuPage : Page
 	/// <param name="e">The event arguments provided.</param>
 	private void Pane_FailedReceivedDroppedFile(object sender, FailedReceivedDroppedFileEventArgs e)
 		=> (
-			e.Reason switch
-			{
-				FailedReceivedDroppedFileReason.FileIsEmpty => EmitFileIsEmptyInfo,
-				FailedReceivedDroppedFileReason.FileIsTooLarge => EmitFileIsTooLarge,
-				_ => default(Action?)!
-			}
+			(Action)(
+				e.Reason switch
+				{
+					FailedReceivedDroppedFileReason.FileIsEmpty => EmitFileIsEmptyInfo,
+					FailedReceivedDroppedFileReason.FileIsTooLarge => EmitFileIsTooLarge,
+				}
+			)
 		).Invoke();
 
 	/// <summary>

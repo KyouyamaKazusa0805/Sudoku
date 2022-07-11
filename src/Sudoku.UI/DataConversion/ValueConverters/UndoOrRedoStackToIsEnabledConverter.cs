@@ -14,7 +14,7 @@ public sealed class UndoOrRedoStackToIsEnabledConverter : IValueConverter
 	public object? Convert(object? value, Type targetType, object? parameter, string language)
 		=> targetType != typeof(bool)
 			? throw new ArgumentException("The desired target type must be 'bool'.", nameof(targetType))
-			: value switch { int i => i != 0, _ => null };
+			: value switch { int i => i != 0 };
 
 	/// <inheritdoc/>
 	/// <exception cref="NotImplementedException">Always throws due to not implemented.</exception>

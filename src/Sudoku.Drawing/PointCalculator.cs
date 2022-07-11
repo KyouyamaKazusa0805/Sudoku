@@ -98,8 +98,9 @@ public sealed class PointCalculator : IPointCalculator
 		=> map switch
 		{
 			[var min, .., var max]
-				when GetMousePointInCenter(min / 9, min % 9) is var (x1, y1)
-				&& GetMousePointInCenter(max / 9, max % 9) is var (x2, y2) => new((x1 + x2) / 2, (y1 + y2) / 2),
+			when GetMousePointInCenter(min / 9, min % 9) is var (x1, y1)
+			&& GetMousePointInCenter(max / 9, max % 9) is var (x2, y2)
+				=> new((x1 + x2) / 2, (y1 + y2) / 2),
 			[var s] => GetMousePointInCenter(s / 9, s % 9),
 			_ => throw new ArgumentException("Cannot get at least 1 candidate in the map.")
 		};
@@ -112,10 +113,11 @@ public sealed class PointCalculator : IPointCalculator
 		return cells switch
 		{
 			[var a, .., var b]
-				when a * 9 + digit is var min
-				&& b * 9 + digit is var max
-				&& GetMousePointInCenter(min / 9, min % 9) is var (x1, y1)
-				&& GetMousePointInCenter(max / 9, max % 9) is var (x2, y2) => new((x1 + x2) / 2, (y1 + y2) / 2),
+			when a * 9 + digit is var min
+			&& b * 9 + digit is var max
+			&& GetMousePointInCenter(min / 9, min % 9) is var (x1, y1)
+			&& GetMousePointInCenter(max / 9, max % 9) is var (x2, y2)
+				=> new((x1 + x2) / 2, (y1 + y2) / 2),
 			[var s] when s * 9 + digit is var c => GetMousePointInCenter(c / 9, c % 9),
 			_ => throw new ArgumentException("Cannot get at least 1 cell in the map.")
 		};
@@ -193,6 +195,6 @@ public sealed class PointCalculator : IPointCalculator
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IPointCalculator CreateConverter(float size, float offset = 10) =>
-		new PointCalculator(new(size, size), offset);
+	public static IPointCalculator CreateConverter(float size, float offset = 10)
+		=> new PointCalculator(new(size, size), offset);
 }

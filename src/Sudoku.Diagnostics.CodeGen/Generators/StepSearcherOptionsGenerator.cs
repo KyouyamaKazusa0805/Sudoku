@@ -179,8 +179,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		long l = sizeof(TUnmanaged) switch
 		{
 			1 or 2 or 4 => Unsafe.As<TUnmanaged, int>(ref field),
-			8 => Unsafe.As<TUnmanaged, long>(ref field),
-			_ => default
+			8 => Unsafe.As<TUnmanaged, long>(ref field)
 		};
 
 		// Special case: If the value is zero, just get the default field in the enumeration field

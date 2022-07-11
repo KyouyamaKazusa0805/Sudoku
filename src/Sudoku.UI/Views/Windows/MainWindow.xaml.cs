@@ -255,8 +255,7 @@ public sealed partial class MainWindow : Window
 		{
 			ElementTheme.Dark => SystemBackdropTheme.Dark,
 			ElementTheme.Light => SystemBackdropTheme.Light,
-			ElementTheme.Default => SystemBackdropTheme.Default,
-			_ => default
+			ElementTheme.Default => SystemBackdropTheme.Default
 		};
 	}
 

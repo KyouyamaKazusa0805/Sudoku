@@ -27,8 +27,7 @@ public sealed class ToggleSwitchSettingItem : SettingItem, IDynamicCreatableItem
 				PreferenceValueName = propertyName,
 				OnContent = data.GetNamedValue(nameof(OnContent), R["ToggleSwitchDefaultOnContent"]!),
 				OffContent = data.GetNamedValue(nameof(OffContent), R["ToggleSwitchDefaultOffContent"]!)
-			},
-			_ => throw new InvalidOperationException()
+			}
 		};
 
 		if (NamedValueLookup.GetItemDescriptionString(propertyName) is { } description)

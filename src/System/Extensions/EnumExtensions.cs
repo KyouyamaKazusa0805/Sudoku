@@ -74,7 +74,7 @@ public static unsafe class EnumExtensions
 				=> (Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue,
 			8 when Unsafe.As<TEnum, long>(ref other) is var otherValue
 				=> (Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue,
-			_ => throw new ArgumentException("The parameter should be one of the values 1, 2, 4.", nameof(@this))
+			_ => throw new ArgumentException("The parameter should be one of the values 1, 2, 4 or 8.", nameof(@this))
 		};
 
 	/// <summary>

@@ -72,8 +72,7 @@ public sealed record class AlternatingInferenceChainStep(
 		{
 			Technique.MWing or Technique.SplitWing or Technique.LocalWing => Rarity.Sometimes,
 			Technique.HybridWing or Technique.XChain or Technique.XyChain or Technique.XyXChain => Rarity.Often,
-			Technique.DiscontinuousNiceLoop or Technique.AlternatingInferenceChain => Rarity.Often,
-			_ => default
+			Technique.DiscontinuousNiceLoop or Technique.AlternatingInferenceChain => Rarity.Often
 		};
 
 	/// <inheritdoc/>

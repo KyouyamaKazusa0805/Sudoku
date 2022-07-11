@@ -106,14 +106,16 @@ public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<I
 	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Identifier comparer && Equals(comparer);
 
 	/// <inheritdoc/>
+	/// <exception cref="NotSupportedException">Throws when the specified mode is not supported.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Identifier other)
-		=> Mode == other.Mode && Mode switch
+		=> Mode == other.Mode
+		&& Mode switch
 		{
 			IdentifierColorMode.Raw => A == other.A && R == other.R && G == other.G && B == other.B,
 			IdentifierColorMode.Id => Id == other.Id,
 			IdentifierColorMode.Named => NamedKind == other.NamedKind,
-			_ => throw new InvalidOperationException("The specified mode is not supported.")
+			_ => throw new NotSupportedException("The specified mode is not supported.")
 		};
 
 	/// <inheritdoc/>
