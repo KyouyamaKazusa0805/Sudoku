@@ -53,11 +53,6 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	public IEnumerable<LinkViewNode> LinkNodes => _nodes.OfType<LinkViewNode>();
 
 	/// <summary>
-	/// Indicates the crosshatch nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<CrosshatchViewNode> CrosshatchNodes => _nodes.OfType<CrosshatchViewNode>();
-
-	/// <summary>
 	/// Indicates the unknown nodes that the current data type stores.
 	/// </summary>
 	public IEnumerable<UnknownViewNode> UnknownNodes => _nodes.OfType<UnknownViewNode>();

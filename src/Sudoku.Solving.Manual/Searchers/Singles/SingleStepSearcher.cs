@@ -22,9 +22,6 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 	/// <inheritdoc/>
 	public bool HiddenSinglesInBlockFirst { get; set; }
 
-	/// <inheritdoc/>
-	public bool ShowDirectLines { get; set; }
-
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
@@ -153,41 +150,12 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			}
 
 			int digit = TrailingZeroCount(mask);
-			List<CrosshatchViewNode>? directLines = null;
-			if (ShowDirectLines)
-			{
-				directLines = new(6);
-				for (int i = 0; i < 9; i++)
-				{
-					if (digit != i)
-					{
-						bool flag = false;
-						foreach (int peerCell in PeerMaps[cell])
-						{
-							if (grid[peerCell] == i)
-							{
-								directLines.Add(
-									new(DisplayColorKind.Normal, Cells.Empty + peerCell, Cells.Empty, digit)
-								);
-								
-								flag = true;
-								break;
-							}
-						}
-						if (flag)
-						{
-							continue;
-						}
-					}
-				}
-			}
 
 			var step = new NakedSingleStep(
 				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, cell, digit)),
 				ImmutableArray.Create(
 					View.Empty
 						| new CandidateViewNode(DisplayColorKind.Normal, cell * 9 + digit)
-						| directLines
 				),
 				cell,
 				digit
@@ -250,44 +218,6 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 				enableAndIsLastDigit = digitCount == 8;
 			}
 
-			// Get direct lines.
-			List<CrosshatchViewNode>? directLines = null;
-			if (!enableAndIsLastDigit && ShowDirectLines)
-			{
-				directLines = new(6);
-
-				// Step 1: Get all source cells that makes the result cell
-				// can't be filled with the result digit.
-				Cells crosshatchingCells = Cells.Empty, tempMap = Cells.Empty;
-				foreach (int cell in HouseCells[house])
-				{
-					if (cell != resultCell && grid.GetStatus(cell) == CellStatus.Empty)
-					{
-						tempMap.Add(cell);
-					}
-				}
-				foreach (int cell in tempMap)
-				{
-					foreach (int peerCell in PeerMaps[cell])
-					{
-						if (cell != resultCell && grid[peerCell] == digit)
-						{
-							crosshatchingCells.Add(peerCell);
-						}
-					}
-				}
-
-				// Step 2: Get all removed cells in this house.
-				foreach (int cell in crosshatchingCells)
-				{
-					if ((PeerMaps[cell] & tempMap) is { Count: not 0 } removableCells)
-					{
-						directLines.Add(new(DisplayColorKind.Normal, Cells.Empty + cell, removableCells, digit));
-						tempMap -= removableCells;
-					}
-				}
-			}
-
 			return new HiddenSingleStep(
 				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, resultCell, digit)),
 				ImmutableArray.Create(
@@ -295,7 +225,6 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 						| (enableAndIsLastDigit ? cellOffsets : null)
 						| new CandidateViewNode(DisplayColorKind.Normal, resultCell * 9 + digit)
 						| (enableAndIsLastDigit ? null : new HouseViewNode(DisplayColorKind.Normal, house))
-						| directLines
 				),
 				resultCell,
 				digit,
