@@ -30,8 +30,8 @@
 					</GridView.ItemTemplate>
 					<GridView.Footer>
 						<HyperlinkButton
-							Content="{StaticResource MoreColors}" HorizontalAlignment="Left"
-							VerticalAlignment="Center">
+							x:Name="_cMoreButton" Content="{StaticResource MoreColors}"
+							HorizontalAlignment="Left" VerticalAlignment="Center" Click="HyperlinkButton_Click">
 							<HyperlinkButton.ContextFlyout>
 								<Flyout>
 									<ColorPicker

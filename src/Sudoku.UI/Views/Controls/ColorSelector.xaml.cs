@@ -81,4 +81,13 @@ public sealed partial class ColorSelector : UserControl, INotifyPropertyChanged
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void ColorPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
 		=> SelectedColor = args.NewColor;
+
+	/// <summary>
+	/// Triggers when the "More" button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+		=> _cMoreButton.ContextFlyout.ShowAt(_cMoreButton);
 }

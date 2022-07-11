@@ -1847,6 +1847,13 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="args">The event arguments provided.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.ColorSelector.HyperlinkButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the "More" button is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.ColorSelector.InitializeComponent">
             <summary>
             InitializeComponent()
