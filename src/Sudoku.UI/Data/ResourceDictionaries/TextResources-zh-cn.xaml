@@ -60,7 +60,7 @@
 	<x:String x:Key="SudokuPage_ToolList_Editing">编辑</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">解题与分析</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Displaying">呈现与渲染</x:String>
-	<x:String x:Key="SudokuPage_ToolList_Tools">小工具</x:String>
+	<x:String x:Key="SudokuPage_ToolList_AttributesChecking">题目特性</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Printing">打印</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_Welcome">欢迎来到数独的世界！想要了解数独技巧的话，请访问这个链接：</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SeverityInfo">信息</x:String>

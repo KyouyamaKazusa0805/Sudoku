@@ -61,7 +61,7 @@
 	<x:String x:Key="SudokuPage_ToolList_Editing">Editing</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">Solving &amp; Analysis</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Displaying">Displaying &amp; Rendering</x:String>
-	<x:String x:Key="SudokuPage_ToolList_Tools">Tooling</x:String>
+	<x:String x:Key="SudokuPage_ToolList_AttributesChecking">Attributes</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Printing">Printing</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_Welcome">Welcome to the world of sudoku! For more information about sudoku techniques, you can visit the following link:</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SeverityInfo">Information</x:String>

@@ -227,7 +227,7 @@
 					</xc:TabbedCommandBarItem>
 
 					<!-- Fourth tab-->
-					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Tools}">
+					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_AttributesChecking}">
 						<AppBarButton Label="{StaticResource SudokuPage_CheckMinimal}" Icon="Play">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CheckMinimal_ExecuteRequested" />
