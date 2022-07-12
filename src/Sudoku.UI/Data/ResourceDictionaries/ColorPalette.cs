@@ -18,15 +18,16 @@ internal static class ColorPalette
 		Color.FromArgb(255, 159, 252, 253),
 		Color.FromArgb(255, 115, 251, 253),
 		Color.FromArgb(255, 50, 130, 246),
+
 		Color.FromArgb(255, 0, 35, 245),
 		Color.FromArgb(255, 0, 18, 154),
 		Color.FromArgb(255, 22, 65, 124),
 		Color.FromArgb(255, 0, 12, 123),
-
 		Color.FromArgb(255, 255, 254, 145),
 		Color.FromArgb(255, 255, 253, 85),
 		Color.FromArgb(255, 240, 155, 89),
 		Color.FromArgb(255, 240, 134, 80),
+
 		Color.FromArgb(255, 120, 67, 21),
 		Color.FromArgb(255, 129, 127, 38),
 		Color.FromArgb(255, 126, 132, 247),
@@ -44,15 +45,16 @@ internal static class ColorPalette
 		Color.FromArgb(255, 129, 128, 73),
 		Color.FromArgb(255, 239, 136, 190),
 		Color.FromArgb(255, 238, 138, 248),
+
 		Color.FromArgb(255, 234, 63, 247),
 		Color.FromArgb(255, 234, 54, 128),
 		Color.FromArgb(255, 127, 130, 187),
 		Color.FromArgb(255, 117, 22, 63),
-
 		Color.FromArgb(255, 55, 125, 34),
 		Color.FromArgb(255, 55, 126, 71),
 		Color.FromArgb(255, 54, 126, 127),
 		Color.FromArgb(255, 80, 127, 128),
+
 		Color.FromArgb(255, 24, 62, 12),
 		Color.FromArgb(255, 23, 63, 63),
 		Color.FromArgb(255, 116, 27, 124),
