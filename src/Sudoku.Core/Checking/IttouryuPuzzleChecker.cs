@@ -1,35 +1,24 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Checking;
 
 /// <summary>
-/// Indicates an ittouryu solver that can solve a sudoku grid using ittouryu mode.
+/// Provides with a checker that determines whether the puzzle is an
+/// <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">ittouryu puzzle</see>.
 /// </summary>
-public sealed class IttouryuSolver
+public static class IttouryuPuzzleChecker
 {
-	/// <summary>
-	/// The grid to be solved.
-	/// </summary>
-	private readonly Grid _grid;
-
-
-	/// <summary>
-	/// Initializes an <see cref="IttouryuSolver"/> using a sudoku grid to be solved.
-	/// </summary>
-	/// <param name="grid">The pointer to the grid.</param>
+	/// <inheritdoc cref="IsIttouryu(in Grid, out ValueTuple{int, bool}[])"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public IttouryuSolver(in Grid grid) => _grid = grid;
-
+	public static bool IsIttouryu(in Grid grid) => IsIttouryu(grid, out _);
 
 	/// <summary>
-	/// Determine whether the specified sudoku grid is ittouryu.
+	/// Determines whether the puzzle is an ittouryu puzzle, which means we can fill the puzzle digit by digit.
 	/// </summary>
+	/// <param name="grid">The grid to be determined.</param>
 	/// <param name="solvingPath">The solving path.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	/// <remarks>
-	/// An <b>ittouryu puzzle</b> is a puzzle that be finished using digits 1 to 9 one by one.
-	/// </remarks>
-	public bool IsIttouryu([NotNullWhen(true)] out (int Candidate, bool IsHiddenSingle)[]? solvingPath)
+	public static bool IsIttouryu(in Grid grid, [NotNullWhen(true)] out (int Candidate, bool IsHiddenSingle)[]? solvingPath)
 	{
-		var (listOfSteps, tempGrid, currentDigit) = (new List<(int, bool)>(), _grid, -1);
+		var (listOfSteps, tempGrid, currentDigit) = (new List<(int, bool)>(), grid, -1);
 
 		// Iterates on each digit.
 		// Here we introduce an extra variable 'validatedTimes', which records how many times we have skipped

@@ -54,6 +54,7 @@
 	<x:String x:Key="SudokuPage_Mask">Mask</x:String>
 	<x:String x:Key="SudokuPage_Unmask">Unmask</x:String>
 	<x:String x:Key="SudokuPage_CheckMinimal">Determine minimal</x:String>
+	<x:String x:Key="SudokuPage_CheckIttouryu">Determine ittouryu</x:String>
 	<x:String x:Key="SudokuPage_FindMissingDigit">Find missing given</x:String>
 	<x:String x:Key="SudokuPage_FindTrueCandidates">Find true candidates</x:String>
 	<x:String x:Key="SudokuPage_Print">Print</x:String>
@@ -286,6 +287,10 @@
 	<x:String x:Key="CheckMinimalFailed_NotMinimal1" xml:space="preserve">This puzzle is not a minimal puzzle. A possible case is that the digit </x:String>
 	<x:String x:Key="CheckMinimalFailed_NotMinimal2" xml:space="preserve"> can be removed and the modified puzzle is still valid.</x:String>
 	<x:String x:Key="CheckMinimalSuccessful">The puzzle is a minimal puzzle!</x:String>
+	<x:String x:Key="IttouryuPuzzle">What is an "Ittouryu Puzzle"?</x:String>
+	<x:String x:Key="CheckIttouryuFailed_NotUniquePuzzle">This puzzle is not unique. The concept "Ittouryu Puzzle" is based on a unique puzzle.</x:String>
+	<x:String x:Key="CheckIttouryuFailed_Invalid">This puzzle is not an ittouryu puzzle.</x:String>
+	<x:String x:Key="CheckIttouryuSuccessful">This puzzle is an ittouryu puzzle!</x:String>
 	<x:String x:Key="FindMissingDigitFailed_UniquePuzzle">This puzzle has a unique puzzle, no digits missing :)</x:String>
 	<x:String x:Key="FindMissingDigitFailed_NoSolution">This puzzle has no solution. No matter what digit will be filled, the puzzle won't be converted to a valid solution.</x:String>
 	<x:String x:Key="FindMissingDigitFailed_CannotFound">The program cannot find the missing digit. The reason to cause this result is that the puzzle may miss at least 2 digits, which is not supported for the current program algorithm.</x:String>

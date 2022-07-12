@@ -2950,6 +2950,11 @@
             Checks whether the current puzzle is minimal.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CheckIttouryu">
+            <summary>
+            Checks whether the current puzzle is ittouryu.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.FindMissingDigit">
             <summary>
             Finds the missing digit for the current grid.
@@ -3131,6 +3136,11 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CheckMinimal_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
             <summary>
             Indicates the event trigger callback method that check minimal.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CheckIttouryu_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that check ittouryu.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandFindMissingDigit_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">

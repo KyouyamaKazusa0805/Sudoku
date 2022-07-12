@@ -755,6 +755,41 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
+	/// Checks whether the current puzzle is ittouryu.
+	/// </summary>
+	private void CheckIttouryu()
+	{
+		const string link = "https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle";
+		string linkDescription = R["IttouryuPuzzle"]!;
+
+		switch (_cPane.Grid)
+		{
+			case { IsValid: false }:
+			{
+				f(InfoBarSeverity.Warning, R["CheckIttouryuFailed_NotUniquePuzzle"]!);
+				break;
+			}
+			case var grid:
+			{
+				if (IttouryuPuzzleChecker.IsIttouryu(grid, out var _))
+				{
+					f(InfoBarSeverity.Success, R["CheckIttouryuSuccessful"]!);
+				}
+				else
+				{
+					f(InfoBarSeverity.Informational, R["CheckIttouryuFailed_Invalid"]!);
+				}
+
+				break;
+			}
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			void f(InfoBarSeverity s, string i) => _cInfoBoard.AddMessage(s, i, link, linkDescription);
+		}
+	}
+
+	/// <summary>
 	/// Finds the missing digit for the current grid.
 	/// </summary>
 	private void FindMissingDigit()
@@ -1096,6 +1131,11 @@ public sealed partial class SudokuPage : Page
 	/// Indicates the event trigger callback method that check minimal.
 	/// </summary>
 	private void CheckMinimal_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args) => CheckMinimal();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that check ittouryu.
+	/// </summary>
+	private void CheckIttouryu_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args) => CheckIttouryu();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that find missing digit.

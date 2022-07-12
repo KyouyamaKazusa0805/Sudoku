@@ -24,5 +24,5 @@
   * **[共轭对](conjugate-pair)（Conjugate Pair）**：同一个区域下，只有两处可以填入同一个数字的单元格。
 * **题目性质术语**
   * **[最小题](minimal-puzzle)、精简题（Minimal Puzzle）**：题目之中的任何一个提示数都不可缺少。
-
+  * **[一刀流题](ittouryu-puzzle)（Ittouryu Puzzle）**：题目可按照数字 1 到 9 次序完成，不跳数字。
 

@@ -233,6 +233,11 @@
 								<XamlUICommand ExecuteRequested="CheckMinimal_ExecuteRequested" />
 							</AppBarButton.Command>
 						</AppBarButton>
+						<AppBarButton Label="{StaticResource SudokuPage_CheckIttouryu}" Icon="Play">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CheckIttouryu_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
 						<AppBarSeparator />
 						<AppBarButton Label="{StaticResource SudokuPage_FindMissingDigit}" Icon="Play">
 							<AppBarButton.Command>
