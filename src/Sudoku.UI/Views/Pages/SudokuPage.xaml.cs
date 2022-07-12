@@ -735,8 +735,7 @@ public sealed partial class SudokuPage : Page
 			}
 			case false:
 			{
-				int[]? found = MissingDigitsSearcher.GetMissingDigits(grid);
-				if (found is null or [])
+				if (MissingDigitsSearcher.GetMissingDigits(grid) is not (var foundCandidates and not (null or [])))
 				{
 					_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["FindMissingDigitFailed_CannotFound"]!);
 					return;
@@ -744,8 +743,8 @@ public sealed partial class SudokuPage : Page
 
 				string candidatesStr = string.Join(
 					R["Token_Comma2"]!,
-					from cand in found
-					select $"{RxCyNotation.ToCellString(cand / 9)}({cand % 9 + 1})"
+					from candidate in foundCandidates
+					select $"{RxCyNotation.ToCellString(candidate / 9)}({candidate % 9 + 1})"
 				);
 				_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{R["FindMissingDigitSuccessful"]!}{candidatesStr}");
 
