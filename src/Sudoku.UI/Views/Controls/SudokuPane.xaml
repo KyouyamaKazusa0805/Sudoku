@@ -111,27 +111,6 @@
 	</UserControl.ContextFlyout>
 
 	<Grid>
-		<!--
-		If you enable the current node snippet, don't forget add the namespace using:
-			xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
-		-->
-		<!--
-		<xc:Loading x:Name="_cLoading">
-			<xc:Loading.Background>
-				<SolidColorBrush Color="#40000000" />
-			</xc:Loading.Background>
-
-			<StackPanel Orientation="Horizontal" Padding="12">
-				<ProgressRing
-					IsActive="True" Margin="0,0,12,0" Foreground="Black"
-					HorizontalAlignment="Center" VerticalAlignment="Center" />
-				<TextBlock
-					x:Name="_cLoadingText" Foreground="Black" HorizontalAlignment="Center"
-					VerticalAlignment="Center" />
-			</StackPanel>
-		</xc:Loading>
-		-->
-
 		<Canvas x:Name="_cCanvasMain" />
 	</Grid>
 </UserControl>
