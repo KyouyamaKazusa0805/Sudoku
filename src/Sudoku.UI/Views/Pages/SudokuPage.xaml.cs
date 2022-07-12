@@ -735,16 +735,19 @@ public sealed partial class SudokuPage : Page
 			}
 			case false:
 			{
-				int? rawCandidate = MissingCandidateSearcher.GetMissingCandidate(grid);
-				if (rawCandidate is not { } candidate)
+				int[]? found = MissingDigitsSearcher.GetMissingDigits(grid);
+				if (found is null or [])
 				{
 					_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["FindMissingDigitFailed_CannotFound"]!);
 					return;
 				}
 
-				string cellStr = RxCyNotation.ToCellString(candidate / 9);
-				string digitStr = (candidate % 9 + 1).ToString();
-				_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{R["FindMissingDigitSuccessful"]!}{cellStr}({digitStr})");
+				string candidatesStr = string.Join(
+					R["Token_Comma2"]!,
+					from cand in found
+					select $"{RxCyNotation.ToCellString(cand / 9)}({cand % 9 + 1})"
+				);
+				_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{R["FindMissingDigitSuccessful"]!}{candidatesStr}");
 
 				break;
 			}

@@ -4,30 +4,27 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Checking.MissingCandidateSearcher">
+        <member name="T:Sudoku.Checking.MissingDigitsSearcher">
             <summary>
-            Provides a searcher that checks the missing candidate for a sudoku grid.
+            Provides a searcher that checks the missing digits for a sudoku grid.
             </summary>
         </member>
-        <member name="F:Sudoku.Checking.MissingCandidateSearcher.Solver">
+        <member name="F:Sudoku.Checking.MissingDigitsSearcher.Solver">
             <summary>
             Indicates the inner solver.
             </summary>
         </member>
-        <member name="M:Sudoku.Checking.MissingCandidateSearcher.GetMissingCandidate(Sudoku.Concepts.Collections.Grid@)">
+        <member name="M:Sudoku.Checking.MissingDigitsSearcher.GetMissingDigits(Sudoku.Concepts.Collections.Grid@)">
             <summary>
-            Gets the missing candidate that makes the grid have unique solution when it's restored.
-            Returns <c>-1</c> when this method doesn't find out any possible missing candidates.
+            Finds all missing digits that makes the grid have unique solution when one of them are filled in the grid.
+            Returns <see langword="null"/> when this method doesn't find out any possible missing candidates.
             </summary>
             <param name="grid">The grid to be checked.</param>
             <returns>
-            The candidate found and confirmed being missing, whose valid range is from 0 to 728.
+            An array of digits found and confirmed being missing, whose valid range is from 0 to 728.
             <see langword="null"/> will be returned if no possible missing candidate found.
-            For example, at least two missing candidates should be checked.
+            For example, the grid won't be valid until at least two missing digits should be filled at the same time.
             </returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the puzzle contain no solution or a unique solution.
-            </exception>
         </member>
         <member name="T:Sudoku.Checking.TrueCandidatesSearcher">
             <summary>

@@ -324,6 +324,7 @@
 	<x:String x:Key="Token_OpenBrace" xml:space="preserve"> (</x:String>
 	<x:String x:Key="Token_ClosedBrace" xml:space="preserve">) </x:String>
 	<x:String x:Key="Token_Colon" xml:space="preserve">: </x:String>
+	<x:String x:Key="Token_Comma2" xml:space="preserve">, </x:String>
 
 	<!--Emojis-->
 	<x:String x:Key="Emoji_RightArrow">➡</x:String>
