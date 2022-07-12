@@ -53,7 +53,7 @@
 	<x:String x:Key="SudokuPage_HideCandidates">Hide candidates</x:String>
 	<x:String x:Key="SudokuPage_Mask">Mask</x:String>
 	<x:String x:Key="SudokuPage_Unmask">Unmask</x:String>
-	<x:String x:Key="SudokuPage_FindMissingDigitViaSymmetry">Find missing given</x:String>
+	<x:String x:Key="SudokuPage_FindMissingDigit">Find missing given</x:String>
 	<x:String x:Key="SudokuPage_Print">Print</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">Editing</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">Solving &amp; Analysis</x:String>
