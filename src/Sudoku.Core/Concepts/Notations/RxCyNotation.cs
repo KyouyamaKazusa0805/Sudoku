@@ -22,8 +22,22 @@
 /// a <see langword="private"/> instance constructor, which disallows you deriving any types.
 /// </para>
 /// </remarks>
-public sealed partial class RxCyNotation : INotationHandler, ICellNotation<RxCyNotation, RxCyNotationOptions>
+public sealed partial class RxCyNotation :
+	INotationHandler,
+	ICellNotation<RxCyNotation, RxCyNotationOptions>,
+	ICandidateNotation<RxCyNotation, RxCyNotationOptions>
 {
+	/// <summary>
+	/// Indicates a pattern that matches for a pre-positional formed candidate list.
+	/// </summary>
+	private const string PrepositionalFormCandidateList = """[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})""";
+
+	/// <summary>
+	/// Indicates a pattern that matches for a post-positional formed candidate list.
+	/// </summary>
+	private const string PostpositionalFormCandidateList = """\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\)""";
+
+
 	[Obsolete("Please don't call this constructor.", true)]
 	private RxCyNotation() => throw new NotSupportedException();
 
@@ -46,7 +60,8 @@ public sealed partial class RxCyNotation : INotationHandler, ICellNotation<RxCyN
 	{
 		(result, bool @return) = str.Trim() switch
 		{
-			['R' or 'r', var r and >= '1' and <= '9', 'C' or 'c', var c and >= '1' and <= '9'] => ((r - '1') * 9 + (c - '1'), true),
+			['R' or 'r', var r and >= '1' and <= '9', 'C' or 'c', var c and >= '1' and <= '9']
+				=> ((r - '1') * 9 + (c - '1'), true),
 			_ => (0, false)
 		};
 
@@ -214,9 +229,141 @@ public sealed partial class RxCyNotation : INotationHandler, ICellNotation<RxCyN
 		return result;
 	}
 
+	/// <inheritdoc/>
+	public static bool TryParseCandidates(string str, out Candidates result)
+	{
+		try
+		{
+			result = ParseCandidates(str);
+			return true;
+		}
+		catch (FormatException)
+		{
+			Unsafe.SkipInit(out result);
+			return false;
+		}
+	}
+
 	/// <summary>
-	/// Indicates the regular expression for matching a cell or cell-list.
+	/// Gets the <see cref="string"/> representation of a candidate.
+	/// </summary>
+	/// <param name="candidate">The candidate.</param>
+	/// <returns>The <see cref="string"/> representation of a candidate.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ToCandidateString(int candidate) => $"{ToCellString(candidate / 9)}({candidate % 9 + 1})";
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ToCandidatesString(in Candidates candidates)
+		=> ToCandidatesString(candidates, RxCyNotationOptions.Default);
+
+	/// <inheritdoc/>
+	public static string ToCandidatesString(in Candidates candidates, in RxCyNotationOptions options)
+	{
+		return candidates switch
+		{
+			[] => "{ }",
+			[var a] when (a / 9, a % 9) is (var c, var d) => $"r{c / 9 + 1}c{c % 9 + 1}({d + 1})",
+			_ => f(candidates.ToArray(), options)
+		};
+
+
+		static string f(int[] offsets, in RxCyNotationOptions options)
+		{
+			var sb = new StringHandler(50);
+
+			foreach (var digitGroup in
+				from candidate in offsets
+				group candidate by candidate % 9 into digitGroups
+				orderby digitGroups.Key
+				select digitGroups)
+			{
+				var cells = Cells.Empty;
+				foreach (int candidate in digitGroup)
+				{
+					cells.Add(candidate / 9);
+				}
+
+				sb.Append(ToCellsString(cells, options));
+				sb.Append('(');
+				sb.Append(digitGroup.Key + 1);
+				sb.Append(')');
+				sb.Append(options.Separator);
+			}
+
+			sb.RemoveFromEnd(options.Separator.Length);
+			return sb.ToStringAndClear();
+		}
+	}
+
+	/// <inheritdoc/>
+	public static unsafe Candidates ParseCandidates(string str)
+	{
+		// Check whether the match is successful.
+		var matches = CandidateOrCandidateListRegex().Matches(str);
+		if (matches.Count == 0)
+		{
+			throw new FormatException("The specified string can't match any candidate instance.");
+		}
+
+		var result = Candidates.Empty;
+
+		// Iterate on each match item.
+		int* bufferDigits = stackalloc int[9];
+		foreach (var match in matches.Cast<Match>())
+		{
+			string value = match.Value;
+			if (value.SatisfyPattern(PrepositionalFormCandidateList))
+			{
+				var cells = Cells.Parse(value);
+				int digitsCount = 0;
+				fixed (char* pValue = value)
+				{
+					for (char* ptr = pValue; *ptr is not ('{' or 'R' or 'r'); ptr++)
+					{
+						bufferDigits[digitsCount++] = *ptr - '1';
+					}
+				}
+
+				foreach (int cell in cells)
+				{
+					for (int i = 0; i < digitsCount; i++)
+					{
+						result.AddAnyway(cell * 9 + bufferDigits[i]);
+					}
+				}
+			}
+			else if (value.SatisfyPattern(PostpositionalFormCandidateList))
+			{
+				var cells = Cells.Parse(value);
+				int digitsCount = 0;
+				for (int i = value.IndexOf('(') + 1, length = value.Length; i < length; i++)
+				{
+					bufferDigits[digitsCount++] = value[i] - '1';
+				}
+
+				foreach (int cell in cells)
+				{
+					for (int i = 0; i < digitsCount; i++)
+					{
+						result.AddAnyway(cell * 9 + bufferDigits[i]);
+					}
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Indicates the regular expression matching a cell or cell-list.
 	/// </summary>
 	[RegexGenerator("""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.Compiled, 5000)]
 	private static partial Regex CellOrCellListRegex();
+
+	/// <summary>
+	/// Indicates the regular expression matching a candidate or candidate-list.
+	/// </summary>
+	[RegexGenerator("""([1-9]{3}|[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\))""", RegexOptions.Compiled, 5000)]
+	private static partial Regex CandidateOrCandidateListRegex();
 }

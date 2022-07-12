@@ -375,6 +375,9 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.ToString(System.String)">
             <inheritdoc/>
+            <remarks>
+            <b><i>This method does not implement any formats. This method or even the whole type will be reconsidered.</i></b>
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.Reduce(System.Int32)">
             <summary>
@@ -469,17 +472,10 @@
             <param name="str">The string text.</param>
             <param name="options">The options to parse.</param>
             <returns>The result instance.</returns>
-            <exception cref="T:System.ArgumentException">Throws when <paramref name="options"/> is invalid.</exception>
-            <exception cref="T:System.FormatException">Throws when the specified text is invalid to parse.</exception>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.TryParse(System.String,Sudoku.Concepts.Collections.Candidates@)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.CandidatePattern">
-            <summary>
-            Indicates the candidate regular expression pattern.
-            </summary>
-            <returns>The regular expression pattern instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.op_LogicalNot(Sudoku.Concepts.Collections.Candidates@)">
             <summary>
@@ -3761,6 +3757,16 @@
             </para>
             </remarks>
         </member>
+        <member name="F:Sudoku.Concepts.Notations.RxCyNotation.PrepositionalFormCandidateList">
+            <summary>
+            Indicates a pattern that matches for a pre-positional formed candidate list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Notations.RxCyNotation.PostpositionalFormCandidateList">
+            <summary>
+            Indicates a pattern that matches for a post-positional formed candidate list.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Notations.RxCyNotation.Notation">
             <inheritdoc/>
         </member>
@@ -3795,9 +3801,33 @@
         <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ParseCells(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.TryParseCandidates(System.String,Sudoku.Concepts.Collections.Candidates@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ToCandidateString(System.Int32)">
+            <summary>
+            Gets the <see cref="T:System.String"/> representation of a candidate.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <returns>The <see cref="T:System.String"/> representation of a candidate.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ToCandidatesString(Sudoku.Concepts.Collections.Candidates@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ToCandidatesString(Sudoku.Concepts.Collections.Candidates@,Sudoku.Concepts.Notations.RxCyNotationOptions@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ParseCandidates(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Notations.RxCyNotation.CellOrCellListRegex">
             <summary>
-            Indicates the regular expression for matching a cell or cell-list.
+            Indicates the regular expression matching a cell or cell-list.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.CandidateOrCandidateListRegex">
+            <summary>
+            Indicates the regular expression matching a candidate or candidate-list.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.Notations.RxCyNotationOptions">

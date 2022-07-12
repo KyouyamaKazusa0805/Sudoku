@@ -430,47 +430,15 @@ public unsafe partial struct Candidates :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => ToString(null);
+	public override readonly string ToString() => RxCyNotation.ToCandidatesString(this);
 
 	/// <inheritdoc/>
-	public readonly string ToString(string? format)
-	{
-		return this switch
-		{
-			[] => "{ }",
-			[var a] when (a / 9, a % 9) is (var c, var d) => $"r{c / 9 + 1}c{c % 9 + 1}({d + 1})",
-			_ => f(Offsets)
-		};
-
-
-		static string f(int[] offsets)
-		{
-			const string separator = ", ";
-			var sb = new StringHandler(50);
-
-			foreach (var digitGroup in
-				from candidate in offsets
-				group candidate by candidate % 9 into digitGroups
-				orderby digitGroups.Key
-				select digitGroups)
-			{
-				var cells = Cells.Empty;
-				foreach (int candidate in digitGroup)
-				{
-					cells.Add(candidate / 9);
-				}
-
-				sb.Append(cells);
-				sb.Append('(');
-				sb.Append(digitGroup.Key + 1);
-				sb.Append(')');
-				sb.Append(separator);
-			}
-
-			sb.RemoveFromEnd(separator.Length);
-			return sb.ToStringAndClear();
-		}
-	}
+	/// <remarks>
+	/// <b><i>This method does not implement any formats. This method or even the whole type will be reconsidered.</i></b>
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[Obsolete($"This method does not implement any formats. Therefore we suggest you use '{nameof(ToString)}()' instead.", false)]
+	public readonly string ToString(string? format) => RxCyNotation.ToCandidatesString(this);
 
 	/// <summary>
 	/// Get the final <see cref="Cells"/> to get all cells that the corresponding indices
@@ -650,7 +618,7 @@ public unsafe partial struct Candidates :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates Parse(string str) => Parse(str, (CandidatesParsingOptions)7);
+	public static Candidates Parse(string str) => RxCyNotation.ParseCandidates(str);
 
 	/// <summary>
 	/// Parse a <see cref="string"/> and convert to the <see cref="Candidates"/> instance.
@@ -658,101 +626,12 @@ public unsafe partial struct Candidates :
 	/// <param name="str">The string text.</param>
 	/// <param name="options">The options to parse.</param>
 	/// <returns>The result instance.</returns>
-	/// <exception cref="ArgumentException">Throws when <paramref name="options"/> is invalid.</exception>
-	/// <exception cref="FormatException">Throws when the specified text is invalid to parse.</exception>
-	public static Candidates Parse(string str, CandidatesParsingOptions options)
-	{
-		Argument.ThrowIfFalse(options is not (0 or > (CandidatesParsingOptions)7), "The option is invalid.");
-
-		// Check whether the match is successful.
-		var matches = CandidatePattern().Matches(str);
-		if (matches.Count == 0)
-		{
-			throw new FormatException("The specified string can't match any candidate instance.");
-		}
-
-		var result = Empty;
-
-		// Iterate on each match item.
-		int* bufferDigits = stackalloc int[9];
-		foreach (var match in matches.Cast<Match>())
-		{
-			string value = match.Value;
-			if (options.Flags(CandidatesParsingOptions.ShortForm)
-				&& value.SatisfyPattern("""[1-9]{3}""")
-				&& value is [var a, var b, var c, ..])
-			{
-				result.AddAnyway((b - '1') * 81 + (c - '1') * 9 + a - '1');
-			}
-			else if (
-				options.Flags(CandidatesParsingOptions.BracketForm)
-				&& value.SatisfyPattern("""[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})""")
-			)
-			{
-				var cells = Cells.Parse(value);
-				int digitsCount = 0;
-				fixed (char* pValue = value)
-				{
-					for (char* ptr = pValue; *ptr is not ('{' or 'R' or 'r'); ptr++)
-					{
-						bufferDigits[digitsCount++] = *ptr - '1';
-					}
-				}
-
-				foreach (int cell in cells)
-				{
-					for (int i = 0; i < digitsCount; i++)
-					{
-						result.AddAnyway(cell * 9 + bufferDigits[i]);
-					}
-				}
-			}
-			else if (
-				options.Flags(CandidatesParsingOptions.PrepositionalForm)
-				&& value.SatisfyPattern("""\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\)""")
-			)
-			{
-				var cells = Cells.Parse(value);
-				int digitsCount = 0;
-				for (int i = value.IndexOf('(') + 1, length = value.Length; i < length; i++)
-				{
-					bufferDigits[digitsCount++] = value[i] - '1';
-				}
-
-				foreach (int cell in cells)
-				{
-					for (int i = 0; i < digitsCount; i++)
-					{
-						result.AddAnyway(cell * 9 + bufferDigits[i]);
-					}
-				}
-			}
-		}
-
-		return result;
-	}
+	/// <exception cref="NotSupportedException">Always throws.</exception>
+	[Obsolete("This method or even the whole type will be re-considered.", false)]
+	public static Candidates Parse(string str, CandidatesParsingOptions options) => throw new NotSupportedException();
 
 	/// <inheritdoc/>
-	public static bool TryParse(string str, out Candidates result)
-	{
-		try
-		{
-			result = Parse(str);
-			return true;
-		}
-		catch (FormatException)
-		{
-			result = Empty;
-			return false;
-		}
-	}
-
-	/// <summary>
-	/// Indicates the candidate regular expression pattern.
-	/// </summary>
-	/// <returns>The regular expression pattern instance.</returns>
-	[RegexGenerator("""([1-9]{3}|[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\))""", RegexOptions.Compiled, 5000)]
-	private static partial Regex CandidatePattern();
+	public static bool TryParse(string str, out Candidates result) => RxCyNotation.TryParseCandidates(str, out result);
 
 
 	/// <summary>

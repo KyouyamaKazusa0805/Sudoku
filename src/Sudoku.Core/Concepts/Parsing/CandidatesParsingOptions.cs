@@ -5,6 +5,7 @@
 /// </summary>
 /// <seealso cref="Candidates"/>
 [Flags]
+[Obsolete("This type will be re-considered.", false)]
 public enum CandidatesParsingOptions : byte
 {
 	/// <summary>

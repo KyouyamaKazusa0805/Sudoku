@@ -733,11 +733,9 @@ public sealed partial class SudokuPage : Page
 			}
 			case var grid when !MinimalPuzzleChecker.IsMinimal(grid, out int firstFoundCandidateMakePuzzleNotMinimal):
 			{
-				int cell = firstFoundCandidateMakePuzzleNotMinimal / 9;
-				int digit = firstFoundCandidateMakePuzzleNotMinimal % 9 + 1;
 				string a = R["CheckMinimalFailed_NotMinimal1"]!;
 				string b = R["CheckMinimalFailed_NotMinimal2"]!;
-				string resultStr = $"{RxCyNotation.ToCellString(cell)}({digit})";
+				string resultStr = RxCyNotation.ToCandidateString(firstFoundCandidateMakePuzzleNotMinimal);
 				f(InfoBarSeverity.Informational, $"{a}{resultStr}{b}");
 
 				break;
@@ -817,7 +815,7 @@ public sealed partial class SudokuPage : Page
 				string candidatesStr = string.Join(
 					R["Token_Comma2"]!,
 					from candidate in foundCandidates
-					select $"{RxCyNotation.ToCellString(candidate / 9)}({candidate % 9 + 1})"
+					select RxCyNotation.ToCandidateString(candidate)
 				);
 				_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{R["FindMissingDigitSuccessful"]!}{candidatesStr}");
 
@@ -853,24 +851,12 @@ public sealed partial class SudokuPage : Page
 
 		string a = R["FindTrueCandidateSuccessful1"]!;
 		string b = R["FindTrueCandidateSuccessful2"]!;
+		string c = RxCyNotation.ToCandidatesString(
+			trueCandidates,
+			RxCyNotationOptions.Default with { Separator = R["Token_Comma2"]! }
+		);
 
-		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{trueCandidates.Count}{b}{c(trueCandidates)}");
-
-
-		static string c(in Candidates candidates)
-		{
-			string separator = R["Token_Comma2"]!;
-
-			var sb = new StringHandler();
-			foreach (int candidate in candidates)
-			{
-				sb.Append($"{RxCyNotation.ToCellString(candidate / 9)}({candidate % 9 + 1})");
-				sb.Append(separator);
-			}
-
-			sb.RemoveFromEnd(separator.Length);
-			return sb.ToStringAndClear();
-		}
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{trueCandidates.Count}{b}{c}");
 	}
 
 	/// <summary>
