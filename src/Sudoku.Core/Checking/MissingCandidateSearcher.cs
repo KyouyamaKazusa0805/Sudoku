@@ -50,14 +50,14 @@ public static class MissingCandidateSearcher
 			for (int i = 0; i < 7; i++)
 			{
 				var copied = grid;
-				if ((grid.GivenCells ^ handlers[i](ref copied).GivenCells) is [var cell])
+				if ((grid.GivenCells ^ handlers[i](ref copied).GivenCells) is [var cell, _])
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
 						var newGrid = grid;
 						newGrid[cell] = digit;
 
-						if (Solver.CheckValidity(newGrid.ToString("0")))
+						if (Solver.CheckValidity(newGrid.ToString("!0")))
 						{
 							return cell * 9 + digit;
 						}

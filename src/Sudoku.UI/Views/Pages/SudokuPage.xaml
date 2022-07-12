@@ -227,6 +227,15 @@
 					</xc:TabbedCommandBarItem>
 
 					<!-- Fourth tab-->
+					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Tools}">
+						<AppBarButton Label="{StaticResource SudokuPage_FindMissingDigitViaSymmetry}" Icon="Play">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandFindMissingDigit_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+					</xc:TabbedCommandBarItem>
+
+					<!-- Fifth tab-->
 					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Printing}">
 						<AppBarButton Label="{StaticResource SudokuPage_Print}" Icon="Print">
 							<AppBarButton.Command>

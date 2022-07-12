@@ -2734,6 +2734,11 @@
             Indicates the internal solver to solve a puzzle.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Pages.SudokuPage.FastSolver">
+            <summary>
+            Indicates the fast solver.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Views.Pages.SudokuPage.Generator">
             <summary>
             Indicates the internal puzzle generator.
@@ -2940,6 +2945,11 @@
             Clear all views.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.FindMissingDigit">
+            <summary>
+            Finds the missing digit for the current grid.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.PrintAsync">
             <summary>
             To print the grid.
@@ -3106,6 +3116,11 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandHideCandidates_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
             <summary>
             Indicates the event trigger callback method that hides the candidates permanently.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandFindMissingDigit_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that find missing digit.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ComamndPrint_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">

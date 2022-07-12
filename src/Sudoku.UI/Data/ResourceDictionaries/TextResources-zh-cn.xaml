@@ -52,10 +52,12 @@
 	<x:String x:Key="SudokuPage_HideCandidates">隐藏候选数</x:String>
 	<x:String x:Key="SudokuPage_Mask">隐藏数字</x:String>
 	<x:String x:Key="SudokuPage_Unmask">显现数字</x:String>
+	<x:String x:Key="SudokuPage_FindMissingDigitViaSymmetry">缺失提示数搜索</x:String>
 	<x:String x:Key="SudokuPage_Print">打印题目</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">编辑</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">解题与分析</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Displaying">呈现与渲染</x:String>
+	<x:String x:Key="SudokuPage_ToolList_Tools">小工具</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Printing">打印</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_Welcome">欢迎来到数独的世界！想要了解数独技巧的话，请访问这个链接：</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SeverityInfo">信息</x:String>
@@ -271,6 +273,10 @@
 	<x:String x:Key="ErrorOpenFile">打开文件夹失败</x:String>
 	<x:String x:Key="ErrorOpenFile_Detail">配置文件夹不存在。</x:String>
 	<x:String x:Key="MoreColors">&gt;&gt; 更多</x:String>
+	<x:String x:Key="FindMissingDigitFailed_UniquePuzzle">该题为唯一解题目，不缺少任何数字 :)</x:String>
+	<x:String x:Key="FindMissingDigitFailed_NoSolution">该题为无解题目，意味着不论填充什么数字，题目都不可能改变为唯一解题目。</x:String>
+	<x:String x:Key="FindMissingDigitFailed_CannotFound">该题无法找到合适的缺失数字，主要原因是题目可能缺少至少两个数字。目前程序暂不支持搜寻缺少两个及以上缺失数字的搜索。</x:String>
+	<x:String x:Key="FindMissingDigitSuccessful">缺失的数字已经找到：</x:String>
 	<x:String x:Key="PrintSuccessful">打印成功！</x:String>
 	<x:String x:Key="PrintFailed">打印失败。</x:String>
 	<x:String x:Key="PrintFailedTitle">打印失败</x:String>

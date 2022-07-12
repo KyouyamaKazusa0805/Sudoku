@@ -17,6 +17,11 @@ public sealed partial class SudokuPage : Page
 	private static readonly ManualSolver Solver = new();
 
 	/// <summary>
+	/// Indicates the fast solver.
+	/// </summary>
+	private static readonly BitwiseSolver FastSolver = new();
+
+	/// <summary>
 	/// Indicates the internal puzzle generator.
 	/// </summary>
 	private static readonly PatternBasedPuzzleGenerator Generator = new();
@@ -712,6 +717,41 @@ public sealed partial class SudokuPage : Page
 	private void ClearViews() => _cPane.ClearViews();
 
 	/// <summary>
+	/// Finds the missing digit for the current grid.
+	/// </summary>
+	private void FindMissingDigit()
+	{
+		var grid = _cPane.Grid;
+		switch (FastSolver.Solve(grid, out _))
+		{
+			case var validity and not false:
+			{
+				_cInfoBoard.AddMessage(
+					InfoBarSeverity.Warning,
+					R[validity is true ? "FindMissingDigitFailed_UniquePuzzle" : "FindMissingDigitFailed_NoSolution"]!
+				);
+
+				break;
+			}
+			case false:
+			{
+				int? rawCandidate = MissingCandidateSearcher.GetMissingCandidate(grid);
+				if (rawCandidate is not { } candidate)
+				{
+					_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["FindMissingDigitFailed_CannotFound"]!);
+					return;
+				}
+
+				string cellStr = RxCyNotation.ToCellString(candidate / 9);
+				string digitStr = (candidate % 9 + 1).ToString();
+				_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{R["FindMissingDigitSuccessful"]!}{cellStr}({digitStr})");
+
+				break;
+			}
+		}
+	}
+
+	/// <summary>
 	/// To print the grid.
 	/// </summary>
 	/// <remarks>
@@ -964,6 +1004,12 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	private void CommandHideCandidates_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
 		=> HideCandidates();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that find missing digit.
+	/// </summary>
+	private void CommandFindMissingDigit_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> FindMissingDigit();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that prints the puzzle.
