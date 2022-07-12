@@ -4,6 +4,31 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Checking.MinimalPuzzleChecker">
+            <summary>
+            Provides with a checker that determines whether the puzzle is a
+            <see href="https://sunnieshine.github.io/Sudoku/terms/minimal-puzzle">minimal puzzle</see>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Checking.MinimalPuzzleChecker.IsMinimal(Sudoku.Concepts.Collections.Grid@)">
+            <inheritdoc cref="M:Sudoku.Checking.MinimalPuzzleChecker.IsMinimal(Sudoku.Concepts.Collections.Grid@,System.Int32@)"/>
+        </member>
+        <member name="M:Sudoku.Checking.MinimalPuzzleChecker.IsMinimal(Sudoku.Concepts.Collections.Grid@,System.Int32@)">
+            <summary>
+            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+            if arbitrary one given digit will be removed from the grid.
+            </summary>
+            <param name="grid">The grid to be determined.</param>
+            <param name="firstCandidateMakePuzzleNotMinimal">
+            <para>
+            Indicates the first found candidate that can make the puzzle not minimal, which means
+            if we remove the digit in the cell, the puzzle will still keep unique.
+            </para>
+            <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid (i.e. not unique).</exception>
+        </member>
         <member name="T:Sudoku.Checking.MissingDigitsSearcher">
             <summary>
             Provides a searcher that checks the missing digits for a sudoku grid.
@@ -1731,7 +1756,7 @@
         </member>
         <member name="P:Sudoku.Concepts.Collections.Grid.Item(System.Int32)">
             <summary>
-            Gets or sets the value in the specified cell.
+            Gets or sets the digit that has been filled in the specified cell.
             </summary>
             <param name="cell">The cell you want to get or set a value.</param>
             <value>
@@ -1739,7 +1764,11 @@
             The value you want to set. The value should be between 0 and 8. If assigning -1,
             that means to re-compute all candidates.
             </para>
-            <para>In addition, values set into the grid will be regarded as the modifiable values.</para>
+            <para>
+            The values set into the grid will be regarded as the modifiable values.
+            If the cell contains a digit, it will be covered when it is a modifiable value.
+            If the cell is a given cell, the setter will do nothing.
+            </para>
             </value>
             <returns>
             The value that the cell filled with. The possible values are:

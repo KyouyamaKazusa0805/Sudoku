@@ -717,6 +717,44 @@ public sealed partial class SudokuPage : Page
 	private void ClearViews() => _cPane.ClearViews();
 
 	/// <summary>
+	/// Checks whether the current puzzle is minimal.
+	/// </summary>
+	private void CheckMinimal()
+	{
+		const string link = "https://sunnieshine.github.io/Sudoku/terms/minimal-puzzle";
+		string linkDescription = R["MinimalPuzzle"]!;
+
+		switch (_cPane.Grid)
+		{
+			case { IsValid: false }:
+			{
+				f(InfoBarSeverity.Warning, R["CheckMinimalFalied_NotUniquePuzzle"]!);
+				break;
+			}
+			case var grid when !MinimalPuzzleChecker.IsMinimal(grid, out int firstFoundCandidateMakePuzzleNotMinimal):
+			{
+				int cell = firstFoundCandidateMakePuzzleNotMinimal / 9;
+				int digit = firstFoundCandidateMakePuzzleNotMinimal % 9 + 1;
+				string a = R["CheckMinimalFailed_NotMinimal1"]!;
+				string b = R["CheckMinimalFailed_NotMinimal2"]!;
+				string resultStr = $"{RxCyNotation.ToCellString(cell)}({digit})";
+				f(InfoBarSeverity.Informational, $"{a}{resultStr}{b}");
+
+				break;
+			}
+			default:
+			{
+				f(InfoBarSeverity.Success, R["CheckMinimalSuccessful"]!);
+				break;
+			}
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			void f(InfoBarSeverity s, string i) => _cInfoBoard.AddMessage(s, i, link, linkDescription);
+		}
+	}
+
+	/// <summary>
 	/// Finds the missing digit for the current grid.
 	/// </summary>
 	private void FindMissingDigit()
@@ -759,7 +797,7 @@ public sealed partial class SudokuPage : Page
 	private async Task FindTrueCandidatesAsync()
 	{
 		var grid = _cPane.Grid;
-		if (FastSolver.Solve(grid, out _) is not true)
+		if (!grid.IsValid)
 		{
 			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["FindTrueCandidateFailed_NotUniquePuzzle"]!);
 			return;
@@ -1053,6 +1091,11 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	private void CommandHideCandidates_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
 		=> HideCandidates();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that check minimal.
+	/// </summary>
+	private void CheckMinimal_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args) => CheckMinimal();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that find missing digit.

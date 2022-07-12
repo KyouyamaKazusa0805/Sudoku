@@ -228,6 +228,12 @@
 
 					<!-- Fourth tab-->
 					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Tools}">
+						<AppBarButton Label="{StaticResource SudokuPage_CheckMinimal}" Icon="Play">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CheckMinimal_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarSeparator />
 						<AppBarButton Label="{StaticResource SudokuPage_FindMissingDigit}" Icon="Play">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandFindMissingDigit_ExecuteRequested" />

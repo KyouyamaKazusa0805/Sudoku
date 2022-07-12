@@ -648,7 +648,7 @@ public unsafe partial struct Grid :
 
 
 	/// <summary>
-	/// Gets or sets the value in the specified cell.
+	/// Gets or sets the digit that has been filled in the specified cell.
 	/// </summary>
 	/// <param name="cell">The cell you want to get or set a value.</param>
 	/// <value>
@@ -656,7 +656,11 @@ public unsafe partial struct Grid :
 	/// The value you want to set. The value should be between 0 and 8. If assigning -1,
 	/// that means to re-compute all candidates.
 	/// </para>
-	/// <para>In addition, values set into the grid will be regarded as the modifiable values.</para>
+	/// <para>
+	/// The values set into the grid will be regarded as the modifiable values.
+	/// If the cell contains a digit, it will be covered when it is a modifiable value.
+	/// If the cell is a given cell, the setter will do nothing.
+	/// </para>
 	/// </value>
 	/// <returns>
 	/// The value that the cell filled with. The possible values are:
