@@ -754,6 +754,53 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
+	/// Finds all true candidates in the current grid.
+	/// </summary>
+	private async Task FindTrueCandidatesAsync()
+	{
+		var grid = _cPane.Grid;
+		if (FastSolver.Solve(grid, out _) is not true)
+		{
+			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["FindTrueCandidateFailed_NotUniquePuzzle"]!);
+			return;
+		}
+
+		_cCommandFindTrueCandidates.IsEnabled = false;
+
+		var i = new TrueCandidatesSearcher(grid);
+		var trueCandidates = await Task.Run(() => { lock (SyncRoot) { return i.GetAllTrueCandidates(64); } });
+
+		_cCommandFindTrueCandidates.IsEnabled = true;
+
+		if (trueCandidates is [])
+		{
+			_cInfoBoard.AddMessage(InfoBarSeverity.Informational, R["FindTrueCandidateFailed_NotBugPattern"]!);
+			return;
+		}
+
+		string a = R["FindTrueCandidateSuccessful1"]!;
+		string b = R["FindTrueCandidateSuccessful2"]!;
+
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{trueCandidates.Count}{b}{c(trueCandidates)}");
+
+
+		static string c(in Candidates candidates)
+		{
+			string separator = R["Token_Comma2"]!;
+
+			var sb = new StringHandler();
+			foreach (int candidate in candidates)
+			{
+				sb.Append($"{RxCyNotation.ToCellString(candidate / 9)}({candidate % 9 + 1})");
+				sb.Append(separator);
+			}
+
+			sb.RemoveFromEnd(separator.Length);
+			return sb.ToStringAndClear();
+		}
+	}
+
+	/// <summary>
 	/// To print the grid.
 	/// </summary>
 	/// <remarks>
@@ -1012,6 +1059,12 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	private void CommandFindMissingDigit_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
 		=> FindMissingDigit();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that find true candidates.
+	/// </summary>
+	private async void FindTrueCandidates_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> await FindTrueCandidatesAsync();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that prints the puzzle.

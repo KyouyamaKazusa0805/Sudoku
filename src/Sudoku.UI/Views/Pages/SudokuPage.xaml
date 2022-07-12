@@ -233,6 +233,13 @@
 								<XamlUICommand ExecuteRequested="CommandFindMissingDigit_ExecuteRequested" />
 							</AppBarButton.Command>
 						</AppBarButton>
+						<AppBarButton
+							x:Name="_cCommandFindTrueCandidates" Icon="Play"
+							Label="{StaticResource SudokuPage_FindTrueCandidates}">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="FindTrueCandidates_ExecuteRequestedAsync" />
+							</AppBarButton.Command>
+						</AppBarButton>
 					</xc:TabbedCommandBarItem>
 
 					<!-- Fifth tab-->

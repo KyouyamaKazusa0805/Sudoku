@@ -2950,6 +2950,11 @@
             Finds the missing digit for the current grid.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.FindTrueCandidatesAsync">
+            <summary>
+            Finds all true candidates in the current grid.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.PrintAsync">
             <summary>
             To print the grid.
@@ -3121,6 +3126,11 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandFindMissingDigit_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
             <summary>
             Indicates the event trigger callback method that find missing digit.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.FindTrueCandidates_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that find true candidates.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ComamndPrint_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">

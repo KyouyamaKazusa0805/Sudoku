@@ -52,7 +52,8 @@
 	<x:String x:Key="SudokuPage_HideCandidates">隐藏候选数</x:String>
 	<x:String x:Key="SudokuPage_Mask">隐藏数字</x:String>
 	<x:String x:Key="SudokuPage_Unmask">显现数字</x:String>
-	<x:String x:Key="SudokuPage_FindMissingDigit">缺失提示数搜索</x:String>
+	<x:String x:Key="SudokuPage_FindMissingDigit">搜索缺失提示数</x:String>
+	<x:String x:Key="SudokuPage_FindTrueCandidates">搜索真数</x:String>
 	<x:String x:Key="SudokuPage_Print">打印题目</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">编辑</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">解题与分析</x:String>
@@ -277,6 +278,10 @@
 	<x:String x:Key="FindMissingDigitFailed_NoSolution">该题为无解题目，意味着不论填充什么数字，题目都不可能改变为唯一解题目。</x:String>
 	<x:String x:Key="FindMissingDigitFailed_CannotFound">该题无法找到合适的缺失数字，主要原因是题目可能缺少至少两个数字。目前程序暂不支持搜寻缺少两个及以上缺失数字的搜索。</x:String>
 	<x:String x:Key="FindMissingDigitSuccessful">缺失的数字已经找到：</x:String>
+	<x:String x:Key="FindTrueCandidateFailed_NotUniquePuzzle">该题目不是唯一解的题目。数独技巧“全双值格致死解法”只能用于唯一解的题目。</x:String>
+	<x:String x:Key="FindTrueCandidateFailed_NotBugPattern">当前盘面不是一个合适的 BUG 盘面，因此不适用真数。</x:String>
+	<x:String x:Key="FindTrueCandidateSuccessful1" xml:space="preserve">该题为 BUG + </x:String>
+	<x:String x:Key="FindTrueCandidateSuccessful2">，真数为：</x:String>
 	<x:String x:Key="PrintSuccessful">打印成功！</x:String>
 	<x:String x:Key="PrintFailed">打印失败。</x:String>
 	<x:String x:Key="PrintFailedTitle">打印失败</x:String>

@@ -40,6 +40,7 @@ global using Microsoft.Windows.AppLifecycle;
 global using Microsoft.Windows.System.Power;
 global using Sudoku.Checking;
 global using Sudoku.Concepts;
+global using Sudoku.Concepts.Collections;
 global using Sudoku.Concepts.Notations;
 global using Sudoku.Concepts.Solving;
 global using Sudoku.Generating.Puzzlers;

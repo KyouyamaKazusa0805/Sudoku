@@ -54,6 +54,7 @@
 	<x:String x:Key="SudokuPage_Mask">Mask</x:String>
 	<x:String x:Key="SudokuPage_Unmask">Unmask</x:String>
 	<x:String x:Key="SudokuPage_FindMissingDigit">Find missing given</x:String>
+	<x:String x:Key="SudokuPage_FindTrueCandidates">Find true candidates</x:String>
 	<x:String x:Key="SudokuPage_Print">Print</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">Editing</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">Solving &amp; Analysis</x:String>
@@ -283,6 +284,10 @@
 	<x:String x:Key="FindMissingDigitFailed_NoSolution">This puzzle has no solution. No matter what digit will be filled, the puzzle won't be converted to a valid solution.</x:String>
 	<x:String x:Key="FindMissingDigitFailed_CannotFound">The program cannot find the missing digit. The reason to cause this result is that the puzzle may miss at least 2 digits, which is not supported for the current program algorithm.</x:String>
 	<x:String x:Key="FindMissingDigitSuccessful" xml:space="preserve">Missing digit is found: </x:String>
+	<x:String x:Key="FindTrueCandidateFailed_NotUniquePuzzle">The puzzle is not unique puzzle. Sudoku technique "Bi-value Universal Grave" cannot be used in this case.</x:String>
+	<x:String x:Key="FindTrueCandidateFailed_NotBugPattern">The puzzle is not a BUG pattern, which means the puzzle cannot use the technique "Bi-value Universal Grave".</x:String>
+	<x:String x:Key="FindTrueCandidateSuccessful1" xml:space="preserve">The puzzle is a Bi-value Universal Grave + </x:String>
+	<x:String x:Key="FindTrueCandidateSuccessful2" xml:space="preserve">, all true candidates are: </x:String>
 	<x:String x:Key="ErrorOpenFile">Error on opening folder</x:String>
 	<x:String x:Key="ErrorOpenFile_Detail">The preference folder doesn't exist.</x:String>
 	<x:String x:Key="PrintSuccessful">Print successful.</x:String>

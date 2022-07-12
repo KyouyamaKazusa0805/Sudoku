@@ -1192,6 +1192,26 @@ public unsafe ref partial struct StringHandler
 	/// Removes the specified number of characters from the end of the collection.
 	/// </summary>
 	/// <param name="length">The number of characters you want to remove.</param>
+	/// <remarks>
+	/// This method can be used for removing the last separator in a whole string, split by separators.
+	/// For example:
+	/// <code><![CDATA[
+	/// const string separator = ", "; // Defines a separator.
+	/// 
+	/// var sb = new StringHandler(); // Creates a string concatenator.
+	/// foreach (int element in list)
+	/// {
+	///     sb.Append(element); // Append the element.
+	///     sb.Append(separator); // Append the separator.
+	/// }
+	/// 
+	/// // Use the method 'RemoveFromEnd' to remove the last separator.
+	/// sb.RemoveFromEnd(separator.Length);
+	/// 
+	/// // Get the final string value and release the temporarily allocated memory.
+	/// return sb.ToStringAndClear();
+	/// ]]></code>
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void RemoveFromEnd(int length) => Length -= length;
 
