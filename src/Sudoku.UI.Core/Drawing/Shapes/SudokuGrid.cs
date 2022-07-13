@@ -517,9 +517,9 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
-	/// Indicates the current displayable unit.
+	/// Indicates the current displayable unit. If assigning <see langword="null"/>,
+	/// the displaying unit will be clear.
 	/// </summary>
-	[DisallowNull]
 	public IDisplayable? DisplayableUnit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -530,9 +530,16 @@ public sealed class SudokuGrid : DrawingElement
 		{
 			_displayableUnit = value;
 
-			ViewIndex = 0;
-			SetViewNodes(value.Views[ViewIndex]);
-			SetConclusion(value.Views[ViewIndex], value.Conclusions);
+			if (value is null)
+			{
+				ClearViewNodes();
+			}
+			else
+			{
+				ViewIndex = 0;
+				SetViewNodes(value.Views[ViewIndex]);
+				SetConclusion(value.Views[ViewIndex], value.Conclusions);
+			}
 		}
 	}
 
@@ -1201,6 +1208,8 @@ public sealed class SudokuGrid : DrawingElement
 				}
 			}
 		}
+
+		DisplayableUnit = null;
 	}
 
 	/// <summary>
