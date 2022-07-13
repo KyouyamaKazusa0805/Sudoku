@@ -16,7 +16,7 @@ internal static class PointExtensions
 	/// <seealso cref="PointF.X"/>
 	/// <seealso cref="PointF.Y"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Point WithOffset(this in Point @this, int offset) => new(@this.X + offset, @this.Y + offset);
+	public static Point WithOffset(this scoped in Point @this, int offset) => new(@this.X + offset, @this.Y + offset);
 
 	/// <summary>
 	/// Get a new <see cref="PointF"/> instance created by the original one, with the specified offset
@@ -29,6 +29,6 @@ internal static class PointExtensions
 	/// <seealso cref="PointF.X"/>
 	/// <seealso cref="PointF.Y"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Point WithOffset(this in Point @this, int xOffset, int yOffset)
+	public static Point WithOffset(this scoped in Point @this, int xOffset, int yOffset)
 		=> new(@this.X + xOffset, @this.Y + yOffset);
 }

@@ -12,5 +12,5 @@ internal static class SizeFExtensions
 	/// <param name="this">The size.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Size Truncate(this in SizeF @this) => new((int)@this.Width, (int)@this.Height);
+	public static Size Truncate(this scoped in SizeF @this) => new((int)@this.Width, (int)@this.Height);
 }

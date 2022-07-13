@@ -13,7 +13,7 @@ public static class StringHandlerExtensions
 	/// <param name="condition">The condition.</param>
 	/// <param name="value">The value to append.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void AppendWhen(this ref StringHandler @this, bool condition, string value)
+	public static void AppendWhen(this scoped ref scoped StringHandler @this, bool condition, string value)
 	{
 		if (condition)
 		{
@@ -34,7 +34,8 @@ public static class StringHandlerExtensions
 	/// <param name="separator">The separator.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe void AppendRangeWithSeparatorUnsafe<TEnum>(
-		this ref StringHandler @this, TEnum enumFlags, delegate*<TEnum, string> converter, string separator)
+		this scoped ref scoped StringHandler @this, TEnum enumFlags,
+		delegate*<TEnum, string> converter, string separator)
 		where TEnum : unmanaged, Enum
 	{
 		foreach (var enumFlag in enumFlags)

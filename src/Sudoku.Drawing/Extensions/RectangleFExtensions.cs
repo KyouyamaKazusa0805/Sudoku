@@ -14,7 +14,7 @@ internal static class RectangleFExtensions
 	/// <param name="offset">The offset to zoom in or out.</param>
 	/// <returns>The new rectangle.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static RectangleF Zoom(this in RectangleF @this, float offset)
+	public static RectangleF Zoom(this scoped in RectangleF @this, float offset)
 	{
 		var result = @this;
 		result.X -= offset;
@@ -30,11 +30,11 @@ internal static class RectangleFExtensions
 	/// <param name="this">The rectangle.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Rectangle Truncate(this in RectangleF @this) =>
+	public static Rectangle Truncate(this scoped in RectangleF @this) =>
 		new((int)@this.X, (int)@this.Y, (int)@this.Width, (int)@this.Height);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Deconstruct(this in RectangleF @this, out PointF point, out SizeF size)
+	public static void Deconstruct(this scoped in RectangleF @this, out PointF point, out SizeF size)
 	{
 		point = new(@this.X, @this.Y);
 		size = @this.Size;
