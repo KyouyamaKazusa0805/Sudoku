@@ -142,7 +142,7 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 		sb.AppendLine();
 		foreach (var (name, _) in ReverseBitsTypes)
 		{
-			sb.AppendLine($"\tpublic static partial void ReverseBits(this ref {name} @this);");
+			sb.AppendLine($"\tpublic static partial void ReverseBits(this scoped ref {name} @this);");
 		}
 		sb.AppendLine();
 		foreach (string name in SetAtTypes)
@@ -295,7 +295,7 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-					public static partial void ReverseBits(this ref {{typeName}} @this)
+					public static partial void ReverseBits(this scoped ref {{typeName}} @this)
 					{
 				"""
 			);

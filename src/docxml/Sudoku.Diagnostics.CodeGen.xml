@@ -180,13 +180,14 @@
             <param name="assembly">The assembly symbol.</param>
             <param name="collection">The target collection to store the results.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GetForExtension(Microsoft.CodeAnalysis.AttributeData[],System.String,System.String)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GetForExtension(Microsoft.CodeAnalysis.AttributeData[],System.String,System.String,Microsoft.CodeAnalysis.INamedTypeSymbol)">
             <summary>
             Gets the raw code parts for extension deconstruction methods via the specified list of attributes data.
             </summary>
             <param name="attributesData">The attributes data, with the corresponding location.</param>
             <param name="genericParameterListWithoutConstraint">The generic parameter list.</param>
             <param name="fullTypeNameWithoutConstraint">The full type name, without the generic constraint.</param>
+            <param name="type">The current emit type.</param>
             <returns>The collection of raw code parts for extension deconstruction methods.</returns>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GetForInstance(Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.AttributeData})">

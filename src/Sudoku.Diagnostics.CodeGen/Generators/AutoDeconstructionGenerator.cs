@@ -71,7 +71,8 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 						GetForExtension(
 							attributesData,
 							genericParameterListWithoutConstraint,
-							fullTypeNameWithoutConstraint
+							fullTypeNameWithoutConstraint,
+							type
 						)
 					);
 
@@ -205,10 +206,11 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 	/// <param name="attributesData">The attributes data, with the corresponding location.</param>
 	/// <param name="genericParameterListWithoutConstraint">The generic parameter list.</param>
 	/// <param name="fullTypeNameWithoutConstraint">The full type name, without the generic constraint.</param>
+	/// <param name="type">The current emit type.</param>
 	/// <returns>The collection of raw code parts for extension deconstruction methods.</returns>
 	private IReadOnlyCollection<string> GetForExtension(
 		AttributeData[] attributesData, string? genericParameterListWithoutConstraint,
-		string fullTypeNameWithoutConstraint)
+		string fullTypeNameWithoutConstraint, INamedTypeSymbol type)
 	{
 		string constraint = fullTypeNameWithoutConstraint.IndexOf("where") is var index and not -1
 			? fullTypeNameWithoutConstraint[index..]
@@ -244,7 +246,16 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 			// Gets the string segment for the keyword 'in' if necessary.
 			// If the type is a large structure, user will set the property value to true,
 			// in order to optimize the argument-passing operation.
-			string inKeyword = attributeData.GetNamedArgument<bool>("EmitsInKeyword") ? "in " : string.Empty;
+			string inKeyword = attributeData.GetNamedArgument<bool>("EmitsInKeyword") switch
+			{
+				true => type switch
+				{
+					{ IsRefLikeType: true } => "scoped in scoped ",
+					{ TypeKind: Kind.Struct or Kind.Enum } => "scoped in ",
+					_ => "in "
+				},
+				false => string.Empty
+			};
 
 			// Creates a collection that is used for storing a pair of information on the target properties.
 			// Here the target property means the corresponding property searching it through the attribute value
@@ -315,7 +326,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-					public static void Deconstruct{{genericParameterListWithoutConstraint}}(this {{inKeyword}}{{fullTypeNameWithoutConstraint}}@this, {{args}}){{constraint}}
+					public static void Deconstruct{{genericParameterListWithoutConstraint}}(this {{inKeyword}}{{fullTypeNameWithoutConstraint}} @this, {{args}}){{constraint}}
 					{
 						{{assignments}}
 					}
