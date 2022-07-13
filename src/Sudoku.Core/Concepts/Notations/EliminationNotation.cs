@@ -34,16 +34,16 @@ public sealed class EliminationNotation :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCandidatesString(in Candidates candidates)
+	public static string ToCandidatesString(scoped in Candidates candidates)
 		=> ToCandidatesString(candidates, EliminationNotationOptions.Default);
 
 	/// <inheritdoc/>
-	public static string ToCandidatesString(in Candidates candidates, in EliminationNotationOptions options)
+	public static string ToCandidatesString(scoped in Candidates candidates, scoped in EliminationNotationOptions options)
 	{
 		bool digitFirst = options.DigitFirst;
 		string separator = options.Separator;
 
-		var sb = new StringHandler();
+		scoped var sb = new StringHandler();
 		foreach (int candidate in candidates)
 		{
 			int cell = candidate / 9, digit = candidate % 9;

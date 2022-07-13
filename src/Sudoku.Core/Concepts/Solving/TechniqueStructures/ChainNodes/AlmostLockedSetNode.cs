@@ -23,7 +23,7 @@ public sealed class AlmostLockedSetNode : Node
 	/// Indicates the extra cells that the current ALS used, but the current digit doesn't used.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public AlmostLockedSetNode(byte digit, in Cells cells, in Cells extraCells) :
+	public AlmostLockedSetNode(byte digit, scoped in Cells cells, scoped in Cells extraCells) :
 		base(NodeType.AlmostLockedSets, digit, cells, InitOtherMask(extraCells))
 	{
 	}
@@ -64,10 +64,9 @@ public sealed class AlmostLockedSetNode : Node
 	/// <param name="extraCells">The extra cells used.</param>
 	/// <returns>The mask of type <see cref="long"/>.</returns>
 	/// <exception cref="ArgumentException">
-	/// Throws when the number of elements in the argument <paramref name="extraCells"/>
-	/// is greater than 8.
+	/// Throws when the number of elements in the argument <paramref name="extraCells"/> is greater than 8.
 	/// </exception>
-	private static long InitOtherMask(in Cells extraCells)
+	private static long InitOtherMask(scoped in Cells extraCells)
 	{
 		if (extraCells.Count > 8)
 		{

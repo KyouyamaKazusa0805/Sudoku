@@ -160,7 +160,7 @@ public readonly partial struct Conclusion :
 	/// <param name="type">The type of the conclusion.</param>
 	/// <returns>An array of type <see cref="Conclusion"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Conclusion[] ToConclusions(in Cells cells, int digit, ConclusionType type)
+	public static Conclusion[] ToConclusions(scoped in Cells cells, int digit, ConclusionType type)
 		=> from cell in cells.ToArray() select new Conclusion(type, cell, digit);
 
 

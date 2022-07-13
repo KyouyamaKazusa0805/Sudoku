@@ -25,7 +25,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		int** r = stackalloc int*[9], c = stackalloc int*[9];
 		Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
@@ -114,7 +114,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 	/// <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
 	/// <returns>The first found step.</returns>
 	private unsafe Step? GetAll(
-		ICollection<Step> accumulator, in Grid grid, int size, int** r, int** c,
+		ICollection<Step> accumulator, scoped in Grid grid, int size, int** r, int** c,
 		bool withFin, bool searchRow, bool onlyFindOne)
 	{
 		// Iterate on each digit.
@@ -257,7 +257,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 	/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 	/// <returns>The view.</returns>
 	private static View GetDirectView(
-		in Grid grid, int digit, int[] baseSets, int[] coverSets, in Cells fins, bool searchRow)
+		scoped in Grid grid, int digit, int[] baseSets, int[] coverSets, scoped in Cells fins, bool searchRow)
 	{
 		// Get the highlight cells (necessary).
 		var cellOffsets = new List<CellViewNode>();

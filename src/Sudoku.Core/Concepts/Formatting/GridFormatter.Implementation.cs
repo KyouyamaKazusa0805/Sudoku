@@ -7,10 +7,10 @@ partial struct GridFormatter
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The string.</returns>
-	private partial string ToExcelString(in Grid grid)
+	private partial string ToExcelString(scoped in Grid grid)
 	{
-		ReadOnlySpan<char> span = grid.ToString("0");
-		var sb = new StringHandler(81 + 72 + 9);
+		scoped ReadOnlySpan<char> span = grid.ToString("0");
+		scoped var sb = new StringHandler(81 + 72 + 9);
 		for (int i = 0; i < 9; i++)
 		{
 			for (int j = 0; j < 9; j++)
@@ -36,7 +36,7 @@ partial struct GridFormatter
 	/// <param name="grid">The grid.</param>
 	/// <returns>The string.</returns>
 	/// <exception cref="FormatException">Throws when the specified grid is invalid.</exception>
-	private partial string ToOpenSudokuString(in Grid grid)
+	private partial string ToOpenSudokuString(scoped in Grid grid)
 	{
 		// Calculates the length of the result string.
 		const int length = 1 + (81 * 3 - 1 << 1);
@@ -95,7 +95,7 @@ partial struct GridFormatter
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The string.</returns>
-	private partial string ToHodokuLibraryFormatString(in Grid grid) => $":0000:x:{ToSingleLineStringCore(grid)}:::";
+	private partial string ToHodokuLibraryFormatString(scoped in Grid grid) => $":0000:x:{ToSingleLineStringCore(grid)}:::";
 
 	/// <summary>
 	/// To string with the sukaku format.
@@ -105,7 +105,7 @@ partial struct GridFormatter
 	/// <exception cref="ArgumentException">
 	/// Throws when the puzzle is an invalid sukaku puzzle (at least one cell is given or modifiable).
 	/// </exception>
-	private partial string ToSukakuString(in Grid grid)
+	private partial string ToSukakuString(scoped in Grid grid)
 	{
 		if (Multiline)
 		{
@@ -122,7 +122,7 @@ partial struct GridFormatter
 
 			// Now consider the alignment for each column of output text.
 			var sb = new StringBuilder();
-			var span = (stackalloc int[9]);
+			scoped var span = (stackalloc int[9]);
 			for (int column = 0; column < 9; column++)
 			{
 				int maxLength = 0;
@@ -170,9 +170,9 @@ partial struct GridFormatter
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The result.</returns>
-	private partial string ToSingleLineStringCore(in Grid grid)
+	private partial string ToSingleLineStringCore(scoped in Grid grid)
 	{
-		var sb = new StringHandler(162);
+		scoped var sb = new StringHandler(162);
 		var originalGrid = WithCandidates && !ShortenSusser ? Grid.Parse($"{grid:.+}") : Grid.Undefined;
 
 		var eliminatedCandidates = Candidates.Empty;
@@ -236,7 +236,7 @@ partial struct GridFormatter
 
 		static unsafe string shorten(string @base, char placeholder)
 		{
-			var resultSpan = (stackalloc char[81]);
+			scoped var resultSpan = (stackalloc char[81]);
 			int index = 0;
 			for (int i = 0; i < 9; i++)
 			{
@@ -309,7 +309,7 @@ partial struct GridFormatter
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The result.</returns>
-	private partial string ToMultiLineStringCore(in Grid grid)
+	private partial string ToMultiLineStringCore(scoped in Grid grid)
 	{
 		// Step 1: gets the candidates information grouped by columns.
 		Dictionary<int, List<short>> valuesByColumn = new()
@@ -387,7 +387,7 @@ partial struct GridFormatter
 			}
 
 			// Step 3: outputs all characters.
-			var sb = new StringHandler();
+			scoped var sb = new StringHandler();
 			for (int i = 0; i < 13; i++)
 			{
 				switch (i)
@@ -437,7 +437,7 @@ partial struct GridFormatter
 
 
 						static void p(
-							in GridFormatter formatter, ref StringHandler sb,
+							scoped in GridFormatter formatter, scoped ref scoped StringHandler sb,
 							IList<short> valuesByRow, char c1, char c2, int* maxLengths)
 						{
 							sb.Append(c1);
@@ -451,7 +451,7 @@ partial struct GridFormatter
 
 
 							static void printValues(
-								in GridFormatter formatter, ref StringHandler sb,
+								scoped in GridFormatter formatter, scoped ref scoped StringHandler sb,
 								IList<short> valuesByRow, int start, int end, int* maxLengths)
 							{
 								sb.Append(' ');
@@ -506,7 +506,7 @@ partial struct GridFormatter
 			return sb.ToString();
 
 
-			static void printTabLines(ref StringHandler sb, char c1, char c2, char fillingChar, int* m)
+			static void printTabLines(scoped ref scoped StringHandler sb, char c1, char c2, char fillingChar, int* m)
 			{
 				sb.Append(c1);
 				sb.Append(string.Empty.PadRight(m[0] + m[1] + m[2] + 6, fillingChar));
@@ -525,7 +525,7 @@ partial struct GridFormatter
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The result.</returns>
-	private partial string ToMultiLineSimpleGridCore(in Grid grid)
+	private partial string ToMultiLineSimpleGridCore(scoped in Grid grid)
 	{
 		string t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
 		return new StringBuilder()

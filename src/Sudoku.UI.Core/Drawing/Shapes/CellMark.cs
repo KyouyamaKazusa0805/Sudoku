@@ -213,7 +213,7 @@ internal sealed class CellMark : DrawingElement
 				_shape.Visibility = Visibility.Collapsed;
 
 				// Assigns a new control, and displays it.
-				ref var newControl = ref _shape;
+				scoped ref var newControl = ref _shape;
 				newControl = GetControlViaShapeKind(value)!;
 				newControl.Visibility = Visibility.Visible;
 			}

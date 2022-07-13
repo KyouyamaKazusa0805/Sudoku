@@ -6,7 +6,7 @@ namespace System.Collections.Generic;
 /// Defines a value-type sequence list.
 /// </summary>
 /// <typeparam name="TUnmanaged">The element type.</typeparam>
-public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
+public ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
 {
 	/// <summary>
 	/// Indicates the length of the list.
@@ -21,7 +21,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// <summary>
 	/// Indicates the pointer that points to the first element.
 	/// </summary>
-	private TUnmanaged* _startPtr;
+	private ref TUnmanaged _startPtr;
 
 
 	/// <summary>
@@ -33,9 +33,9 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// to implicitly call the dispose method.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ValueList(byte capacity)
+	public unsafe ValueList(byte capacity)
 	{
-		_startPtr = (TUnmanaged*)NativeMemory.Alloc((nuint)sizeof(TUnmanaged) * capacity);
+		_startPtr = ref Unsafe.AsRef<TUnmanaged>(NativeMemory.Alloc((nuint)sizeof(TUnmanaged) * capacity));
 		_capacity = capacity;
 	}
 
@@ -54,11 +54,8 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueList(in TUnmanaged list, int length)
 	{
-		fixed (TUnmanaged* p = &list)
-		{
-			_startPtr = p;
-			_capacity = _length = (byte)length;
-		}
+		_startPtr = ref Unsafe.AsRef(list);
+		_capacity = _length = (byte)length;
 	}
 
 
@@ -92,14 +89,14 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	public readonly ref TUnmanaged this[byte index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ref _startPtr[index];
+		get => ref Unsafe.AddByteOffset(ref _startPtr, index);
 	}
 
 	/// <inheritdoc cref="this[byte]"/>
 	public readonly ref TUnmanaged this[Index index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ref _startPtr[index.GetOffset(_length)];
+		get => ref Unsafe.AddByteOffset(ref _startPtr, (nuint)index.GetOffset(_length));
 	}
 
 
@@ -112,7 +109,8 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	{
 		Argument.ThrowIfInvalid(_length < _capacity, "Cannot add because the collection is full.");
 
-		_startPtr[_length++] = element;
+		Unsafe.AddByteOffset(ref _startPtr, _length) = element;
+		_length++;
 	}
 
 	/// <summary>
@@ -135,10 +133,14 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// </i></remarks>
 	/// <seealso cref="ValueList{TUnmanaged}(byte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Dispose()
+	public unsafe void Dispose()
 	{
-		NativeMemory.Free(_startPtr);
-		_startPtr = null;
+		fixed (TUnmanaged* d = &_startPtr)
+		{
+			NativeMemory.Free(d);
+		}
+
+		_startPtr = ref Unsafe.NullRef<TUnmanaged>();
 	}
 
 	/// <summary>
@@ -172,7 +174,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// <returns>The string that represents the current object.</returns>
 	/// <exception cref="FormatException">Throws when the specified format is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format)
+	public readonly unsafe string ToString(string? format)
 	{
 		return format switch
 		{
@@ -186,7 +188,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 		static string toContentString(in ValueList<TUnmanaged> @this)
 		{
 			const string separator = ", ";
-			var sb = new StringHandler();
+			scoped var sb = new StringHandler();
 			foreach (var element in @this)
 			{
 				sb.Append(element.ToString()!);
@@ -207,12 +209,12 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// </summary>
 	/// <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly TUnmanaged[] ToArray()
+	public readonly unsafe TUnmanaged[] ToArray()
 	{
 		var result = new TUnmanaged[_length];
-		fixed (TUnmanaged* pResult = result)
+		fixed (TUnmanaged* pResult = result, pStart = &_startPtr)
 		{
-			Unsafe.CopyBlock(pResult, _startPtr, (uint)(sizeof(TUnmanaged) * _length));
+			Unsafe.CopyBlock(pResult, pStart, (uint)(sizeof(TUnmanaged) * _length));
 		}
 
 		return result;
@@ -224,12 +226,12 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// </summary>
 	/// <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public TUnmanaged[] ToArrayAndClear()
+	public unsafe TUnmanaged[] ToArrayAndClear()
 	{
 		var result = new TUnmanaged[_length];
-		fixed (TUnmanaged* pResult = result)
+		fixed (TUnmanaged* pResult = result, pStart = &_startPtr)
 		{
-			Unsafe.CopyBlock(pResult, _startPtr, (uint)(sizeof(TUnmanaged) * _length));
+			Unsafe.CopyBlock(pResult, pStart, (uint)(sizeof(TUnmanaged) * _length));
 		}
 
 		Dispose();

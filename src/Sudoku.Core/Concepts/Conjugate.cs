@@ -37,7 +37,7 @@ public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Con
 	/// <param name="map">The map.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conjugate(in Cells map, int digit) : this(map[0], map[1], digit)
+	public Conjugate(scoped in Cells map, int digit) : this(map[0], map[1], digit)
 	{
 	}
 

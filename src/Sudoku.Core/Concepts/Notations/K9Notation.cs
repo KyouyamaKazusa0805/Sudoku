@@ -42,10 +42,10 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCellsString(in Cells cells) => ToCellsString(cells, K9NotationOptions.Default);
+	public static string ToCellsString(scoped in Cells cells) => ToCellsString(cells, K9NotationOptions.Default);
 
 	/// <inheritdoc/>
-	public static string ToCellsString(in Cells cells, in K9NotationOptions options)
+	public static string ToCellsString(scoped in Cells cells, scoped in K9NotationOptions options)
 	{
 		return cells switch
 		{
@@ -61,9 +61,9 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 
 		static string i(int v) => (v + 1).ToString();
 
-		static unsafe string r(in Cells cells, in K9NotationOptions options)
+		static unsafe string r(scoped in Cells cells, scoped in K9NotationOptions options)
 		{
-			var sbRow = new StringHandler(18);
+			scoped var sbRow = new StringHandler(18);
 			var dic = new Dictionary<int, List<int>>(9);
 			var (upperCasing, avoidConfusionOnRowLetters, separator) = options;
 			foreach (int cell in cells)
@@ -93,10 +93,10 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 			return sbRow.ToStringAndClear();
 		}
 
-		static unsafe string c(in Cells cells, in K9NotationOptions options)
+		static unsafe string c(scoped in Cells cells, scoped in K9NotationOptions options)
 		{
 			var dic = new Dictionary<int, List<int>>(9);
-			var sbColumn = new StringHandler(18);
+			scoped var sbColumn = new StringHandler(18);
 			var (upperCasing, avoidConfusionOnRowLetters, separator) = options;
 			foreach (int cell in cells)
 			{

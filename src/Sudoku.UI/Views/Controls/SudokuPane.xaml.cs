@@ -222,7 +222,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="grid">The grid to be replaced with.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ReplaceGridUndoable(in Grid grid) => GetSudokuGridViewModel().ReplaceGrid(grid);
+	public void ReplaceGridUndoable(scoped in Grid grid) => GetSudokuGridViewModel().ReplaceGrid(grid);
 
 	/// <summary>
 	/// Mask all value cells.

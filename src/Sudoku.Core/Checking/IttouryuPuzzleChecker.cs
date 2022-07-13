@@ -8,7 +8,7 @@ public static class IttouryuPuzzleChecker
 {
 	/// <inheritdoc cref="IsIttouryu(in Grid, out ValueTuple{int, bool}[])"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsIttouryu(in Grid grid) => IsIttouryu(grid, out _);
+	public static bool IsIttouryu(scoped in Grid grid) => IsIttouryu(grid, out _);
 
 	/// <summary>
 	/// Determines whether the puzzle is an ittouryu puzzle, which means we can fill the puzzle digit by digit.
@@ -16,7 +16,8 @@ public static class IttouryuPuzzleChecker
 	/// <param name="grid">The grid to be determined.</param>
 	/// <param name="solvingPath">The solving path.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public static bool IsIttouryu(in Grid grid, [NotNullWhen(true)] out (int Candidate, bool IsHiddenSingle)[]? solvingPath)
+	public static bool IsIttouryu(
+		scoped in Grid grid, [NotNullWhen(true)] out (int Candidate, bool IsHiddenSingle)[]? solvingPath)
 	{
 		var (listOfSteps, tempGrid, currentDigit) = (new List<(int, bool)>(), grid, -1);
 

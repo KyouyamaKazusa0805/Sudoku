@@ -11,7 +11,7 @@
 /// <param name="HasValueCell">Indicates whether the step contains value cells.</param>
 public sealed record class AlmostLockedCandidatesStep(
 	ConclusionList Conclusions, ViewList Views, short DigitsMask,
-	in Cells BaseCells, in Cells TargetCells, bool HasValueCell) :
+	scoped in Cells BaseCells, scoped in Cells TargetCells, bool HasValueCell) :
 	IntersectionStep(Conclusions, Views),
 	IStepWithSize,
 	IStepWithPhasedDifficulty

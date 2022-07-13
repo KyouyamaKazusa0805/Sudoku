@@ -20,7 +20,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		if (!IBivalueUniversalGraveStepSearcher.FindTrueCandidates(grid, out var trueCandidates))
 		{
@@ -92,7 +92,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 	private static Step? CheckType2(
 		ICollection<Step> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
-		var cells = (stackalloc int[trueCandidates.Count]);
+		scoped var cells = (stackalloc int[trueCandidates.Count]);
 		int i = 0;
 		foreach (int candidate in trueCandidates)
 		{
@@ -139,7 +139,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 	}
 
 	private static Step? CheckType3Naked(
-		ICollection<Step> accumulator, in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+		ICollection<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		// Check whether all true candidates lie in a same house.
 		var map = new Cells(from c in trueCandidates group c by c / 9 into z select z.Key);
@@ -235,7 +235,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 	}
 
 	private static Step? CheckType4(
-		ICollection<Step> accumulator, in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+		ICollection<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		// Conjugate pairs should lie in two cells.
 		var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
@@ -364,7 +364,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 	}
 
 	private static Step? CheckMultiple(
-		ICollection<Step> accumulator, in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+		ICollection<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		if (trueCandidates.Count > 18)
 		{
@@ -415,7 +415,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 	}
 
 	private static Step? CheckXz(
-		ICollection<Step> accumulator, in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+		ICollection<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		if (trueCandidates.Count > 2)
 		{

@@ -6,23 +6,22 @@ partial struct Grid
 	/// Defines the default enumerator that iterates the <see cref="Grid"/>
 	/// through the candidates in the current <see cref="Grid"/> instance.
 	/// </summary>
-	public unsafe ref partial struct CandidateCollectionEnumerator
+	public ref partial struct CandidateCollectionEnumerator
 	{
 		/// <summary>
 		/// The pointer to the start value.
 		/// </summary>
-		private readonly short* _start;
-
+		private readonly ref short _start;
 
 		/// <summary>
 		/// The current pointer.
 		/// </summary>
-		private short* _currentPointer;
+		private ref short _refCurrent;
 
 		/// <summary>
 		/// Indicates the current mask.
 		/// </summary>
-		private short _currentMask = 0;
+		private short _currentMask;
 
 		/// <summary>
 		/// The current index.
@@ -31,14 +30,19 @@ partial struct Grid
 
 
 		/// <summary>
-		/// Initializes an instance with the specified pointer to an array to iterate.
+		/// Initializes an instance with the specified reference to an array to iterate.
 		/// </summary>
-		/// <param name="arr">The pointer to an array.</param>
+		/// <param name="arr">The reference to an array.</param>
 		/// <remarks>
-		/// Note here we should point at the one-unit-length memory before the array start.
+		/// Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
+		/// even though C# allows we passing a constant as an <see langword="in"/> argument.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal CandidateCollectionEnumerator(short* arr) => _currentPointer = _start = arr - 1;
+		internal CandidateCollectionEnumerator(in short arr)
+		{
+			_refCurrent = ref Unsafe.SubtractByteOffset(ref Unsafe.AsRef(arr), 1);
+			_start = ref _refCurrent;
+		}
 
 
 		/// <summary>
@@ -72,35 +76,29 @@ partial struct Grid
 		/// </returns>
 		public bool MoveNext()
 		{
-			if (_currentMask == 0 || (_currentMask &= (short)~(1 << TrailingZeroCount(_currentMask))) == 0)
+			if (_currentMask != 0 && (_currentMask &= (short)~(1 << TrailingZeroCount(_currentMask))) != 0)
 			{
-				goto MovePointer;
-			}
-			else
-			{
-				goto ReturnTrue;
+				return true;
 			}
 
-		MovePointer:
-			do
+			while (_currentIndex < 81)
 			{
 				_currentIndex++;
+				if (MaskToStatus(Unsafe.AddByteOffset(ref _start, (nint)_currentIndex)) == CellStatus.Empty)
+				{
+					break;
+				}
 			}
-			while (MaskToStatus(_start[_currentIndex + 1]) != CellStatus.Empty && _currentIndex != 81 + 1);
 
-			if (_currentIndex == 81 + 1)
+			if (_currentIndex == 81)
 			{
-				goto ReturnFalse;
+				return false;
 			}
 
-			_currentPointer = _start + _currentIndex + 1;
-			_currentMask = (short)(*_currentPointer & MaxCandidatesMask);
+			_refCurrent = ref Unsafe.AddByteOffset(ref _start, (nint)(_currentIndex + 1));
+			_currentMask = (short)(_refCurrent & MaxCandidatesMask);
 
-		ReturnTrue:
 			return true;
-
-		ReturnFalse:
-			return false;
 		}
 
 		/// <summary>
@@ -110,7 +108,7 @@ partial struct Grid
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Reset()
 		{
-			_currentPointer = _start;
+			_refCurrent = ref _start;
 			_currentIndex = -1;
 			_currentMask = default;
 		}

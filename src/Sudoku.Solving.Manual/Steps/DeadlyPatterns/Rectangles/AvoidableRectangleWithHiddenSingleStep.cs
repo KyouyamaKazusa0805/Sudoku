@@ -13,7 +13,7 @@
 /// <param name="House"></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record class AvoidableRectangleWithHiddenSingleStep(
-	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, in Cells Cells,
+	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, scoped in Cells Cells,
 	int BaseCell, int TargetCell, int House, int AbsoluteOffset) :
 	UniqueRectangleStep(
 		Conclusions, Views,

@@ -16,7 +16,7 @@
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record class UniqueRectangle2DOr3XStep(
 	ConclusionList Conclusions, ViewList Views, Technique TechniqueCode2, int Digit1, int Digit2,
-	in Cells Cells, bool IsAvoidable, int XDigit, int YDigit, int XyCell, int AbsoluteOffset) :
+	scoped in Cells Cells, bool IsAvoidable, int XDigit, int YDigit, int XyCell, int AbsoluteOffset) :
 	UniqueRectangleStep(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 {
 	/// <inheritdoc/>

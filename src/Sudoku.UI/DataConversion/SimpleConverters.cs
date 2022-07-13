@@ -99,7 +99,7 @@ internal static class SimpleConverters
 			}
 			case var mods:
 			{
-				var sb = new StringHandler(100);
+				scoped var sb = new StringHandler(100);
 				sb.AppendRangeWithSeparatorUnsafe(mods, &f, " + ");
 
 				return $"{sb.ToStringAndClear()} + {ConvertVirtualKeyToName(virtualKeys)}";

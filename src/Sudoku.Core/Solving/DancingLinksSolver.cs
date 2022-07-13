@@ -32,7 +32,7 @@ public sealed class DancingLinksSolver : ISimpleSolver
 
 
 	/// <inheritdoc/>
-	public bool? Solve(in Grid grid, out Grid result)
+	public bool? Solve(scoped in Grid grid, out Grid result)
 	{
 		Unsafe.SkipInit(out result);
 

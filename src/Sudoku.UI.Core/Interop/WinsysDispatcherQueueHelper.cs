@@ -37,7 +37,7 @@ internal sealed class WinsysDispatcherQueueHelper
 		[DllImport("CoreMessaging", EntryPoint = "CreateDispatcherQueueController")]
 		static extern int createController(
 			[In] DispatcherQueueOptions options,
-			[In, Out, MarshalAs(UnmanagedType.IUnknown), AllowNull] ref object dispatcherQueueController
+			[In, Out, MarshalAs(UnmanagedType.IUnknown), AllowNull] scoped ref object dispatcherQueueController
 		);
 	}
 }

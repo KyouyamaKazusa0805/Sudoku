@@ -18,7 +18,7 @@ public sealed class PointCalculator : IPointCalculator
 	/// in <see cref="DefaultOffset"/>
 	/// </param>
 	/// <seealso cref="DefaultOffset"/>
-	private PointCalculator(in SizeF size, float offset = DefaultOffset)
+	private PointCalculator(scoped in SizeF size, float offset = DefaultOffset)
 	{
 		// Initialize sizes.
 		ControlSize = size;
@@ -75,7 +75,7 @@ public sealed class PointCalculator : IPointCalculator
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetCell(in PointF point)
+	public int GetCell(scoped in PointF point)
 		=> point.WithOffset(-Offset) is var (x, y)
 		&& x >= 0 && x <= GridSize.Width && y >= 0 && y <= GridSize.Height
 		&& CellSize is var (cw, ch)
@@ -85,7 +85,7 @@ public sealed class PointCalculator : IPointCalculator
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetCandidate(in PointF point)
+	public int GetCandidate(scoped in PointF point)
 	{
 		var (x, y) = point;
 		var (cw, ch) = CandidateSize;
@@ -94,7 +94,7 @@ public sealed class PointCalculator : IPointCalculator
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PointF GetMouseCenter(in Candidates map)
+	public PointF GetMouseCenter(scoped in Candidates map)
 		=> map switch
 		{
 			[var min, .., var max]
@@ -107,7 +107,7 @@ public sealed class PointCalculator : IPointCalculator
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PointF GetMouseCenter(in LockedTarget lockedTarget)
+	public PointF GetMouseCenter(scoped in LockedTarget lockedTarget)
 	{
 		_ = lockedTarget is { Cells: var cells, Digit: var digit };
 		return cells switch
@@ -125,7 +125,7 @@ public sealed class PointCalculator : IPointCalculator
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public RectangleF GetMouseRectangle(in Candidates map)
+	public RectangleF GetMouseRectangle(scoped in Candidates map)
 		=> (map, CandidateSize) switch
 		{
 			([var min, .., var max], var (cw, ch))

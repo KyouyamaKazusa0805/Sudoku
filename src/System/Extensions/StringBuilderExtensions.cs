@@ -23,6 +23,6 @@ public static class StringBuilderExtensions
 	/// <param name="startIndex">The start index.</param>
 	/// <returns>The reference of the current instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static StringBuilder RemoveFrom(this StringBuilder @this, in Index startIndex)
+	public static StringBuilder RemoveFrom(this StringBuilder @this, scoped in Index startIndex)
 		=> @this.Remove(startIndex.GetOffset(@this.Length), startIndex.Value);
 }

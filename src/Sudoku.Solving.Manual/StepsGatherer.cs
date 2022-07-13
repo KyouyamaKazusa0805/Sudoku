@@ -12,7 +12,8 @@ public sealed partial class StepsGatherer
 	/// <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
 	/// <returns>The result grouped by technique names.</returns>
 	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
-	public IEnumerable<IGrouping<string, Step>> Search(in Grid puzzle, CancellationToken cancellationToken = default)
+	public IEnumerable<IGrouping<string, Step>> Search(
+		scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out bool? sukaku))
 		{

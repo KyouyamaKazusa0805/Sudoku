@@ -28,7 +28,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// Gather the POM eliminations to get all possible fish eliminations.
 		var pomElims = GetPomEliminationsFirstly(grid);
@@ -105,7 +105,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 	/// <param name="digit">The current digit used.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
 	private Step? GetAll(
-		ICollection<ComplexFishStep> accumulator, in Grid grid,
+		ICollection<ComplexFishStep> accumulator, scoped in Grid grid,
 		IList<Conclusion>?[] pomElims, int digit, bool onlyFindOne)
 	{
 		const HouseType bothLines = (HouseType)3;
@@ -474,7 +474,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-	private static IList<Conclusion>?[] GetPomEliminationsFirstly(in Grid grid)
+	private static IList<Conclusion>?[] GetPomEliminationsFirstly(scoped in Grid grid)
 	{
 		var tempList = new List<Step>();
 		new PatternOverlayStepSearcher().GetAll(tempList, grid, false);
@@ -483,7 +483,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 		foreach (PatternOverlayStep step in tempList)
 		{
 			int digit = step.Digit;
-			ref var currentList = ref result[digit];
+			scoped ref var currentList = ref result[digit];
 			if (currentList is null)
 			{
 				currentList = new List<Conclusion>(step.Conclusions);

@@ -64,7 +64,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		foreach (var pattern in Patterns)
 		{
@@ -96,7 +96,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 	}
 
 	private Step? CheckType1(
-		ICollection<Step> accumulator, in Grid grid, bool onlyFindOne, in Cells pattern, short mask)
+		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in Cells pattern, short mask)
 	{
 		if (PopCount((uint)mask) != 5)
 		{
@@ -158,7 +158,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 		return null;
 	}
 
-	private Step? CheckType2(ICollection<Step> accumulator, bool onlyFindOne, in Cells pattern, short mask)
+	private Step? CheckType2(ICollection<Step> accumulator, bool onlyFindOne, scoped in Cells pattern, short mask)
 	{
 		if (PopCount((uint)mask) != 5)
 		{
@@ -217,7 +217,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 	}
 
 	private Step? CheckType3(
-		ICollection<Step> accumulator, in Grid grid, bool onlyFindOne, in Cells pattern, short mask)
+		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in Cells pattern, short mask)
 	{
 		foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
 		{
@@ -315,7 +315,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 	}
 
 	private Step? CheckType4(
-		ICollection<Step> accumulator, in Grid grid, bool onlyFindOne, in Cells pattern, short mask)
+		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in Cells pattern, short mask)
 	{
 		foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
 		{

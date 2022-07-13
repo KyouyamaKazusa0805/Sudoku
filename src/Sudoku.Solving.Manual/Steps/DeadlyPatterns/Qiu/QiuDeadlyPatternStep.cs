@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern">Indicates the pattern used.</param>
 public abstract record class QiuDeadlyPatternStep(
-	ConclusionList Conclusions, ViewList Views, in QiuDeadlyPattern Pattern) :
+	ConclusionList Conclusions, ViewList Views, scoped in QiuDeadlyPattern Pattern) :
 	DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

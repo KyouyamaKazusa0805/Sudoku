@@ -21,14 +21,17 @@ public static class MissingDigitsSearcher
 	/// <see langword="null"/> will be returned if no possible missing candidate found.
 	/// For example, the grid won't be valid until at least two missing digits should be filled at the same time.
 	/// </returns>
-	public static unsafe int[]? GetMissingDigits(in Grid grid)
+	public static int[]? GetMissingDigits(scoped in Grid grid)
 	{
-		if (Solver.Solve(grid.ToString("0"), null, 2) < 2)
+		unsafe
 		{
-			return null;
+			if (Solver.Solve(grid.ToString("0"), null, 2) < 2)
+			{
+				return null;
+			}
 		}
 
-		using var list = new ValueList<int>(byte.MaxValue);
+		using scoped var list = new ValueList<int>(byte.MaxValue);
 		foreach (int candidate in grid)
 		{
 			var newGrid = grid;

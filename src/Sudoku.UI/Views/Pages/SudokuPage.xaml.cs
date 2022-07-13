@@ -215,7 +215,7 @@ public sealed partial class SudokuPage : Page
 	/// <param name="grid">The grid.</param>
 	/// <param name="format">The format.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void CopySudokuCode(in Grid grid, string? format)
+	private void CopySudokuCode(scoped in Grid grid, string? format)
 	{
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
 		dataPackage.SetText(grid.ToString(format));

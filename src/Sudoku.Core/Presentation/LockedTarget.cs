@@ -12,7 +12,7 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 	/// <param name="digit">Indicates the digit used.</param>
 	/// <param name="cells">Indicates the cells used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LockedTarget(int digit, in Cells cells) => (Digit, Cells) = (digit, cells);
+	public LockedTarget(int digit, scoped in Cells cells) => (Digit, Cells) = (digit, cells);
 
 
 	/// <summary>
@@ -39,7 +39,7 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
+	public bool Equals(scoped in LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -57,11 +57,11 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(in LockedTarget left, in LockedTarget right) => left.Equals(right);
+	public static bool operator ==(scoped in LockedTarget left, scoped in LockedTarget right) => left.Equals(right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(in LockedTarget left, in LockedTarget right) => !(left == right);
+	public static bool operator !=(scoped in LockedTarget left, scoped in LockedTarget right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

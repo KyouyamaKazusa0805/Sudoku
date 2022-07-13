@@ -93,10 +93,10 @@ public sealed partial class RxCyNotation :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCellsString(in Cells cells) => ToCellsString(cells, RxCyNotationOptions.Default);
+	public static string ToCellsString(scoped in Cells cells) => ToCellsString(cells, RxCyNotationOptions.Default);
 
 	/// <inheritdoc/>
-	public static string ToCellsString(in Cells cells, in RxCyNotationOptions options)
+	public static string ToCellsString(scoped in Cells cells, scoped in RxCyNotationOptions options)
 	{
 		bool upperCasing = options.UpperCasing;
 		return cells switch
@@ -115,9 +115,9 @@ public sealed partial class RxCyNotation :
 
 		static string i(int v) => (v + 1).ToString();
 
-		static unsafe string r(in Cells cells, in RxCyNotationOptions options)
+		static unsafe string r(scoped in Cells cells, scoped in RxCyNotationOptions options)
 		{
-			var sbRow = new StringHandler(50);
+			scoped var sbRow = new StringHandler(50);
 			var dic = new Dictionary<int, List<int>>(9);
 			var (upperCasing, separator) = options;
 			foreach (int cell in cells)
@@ -142,10 +142,10 @@ public sealed partial class RxCyNotation :
 			return sbRow.ToStringAndClear();
 		}
 
-		static unsafe string c(in Cells cells, in RxCyNotationOptions options)
+		static unsafe string c(scoped in Cells cells, scoped in RxCyNotationOptions options)
 		{
 			var dic = new Dictionary<int, List<int>>(9);
-			var sbColumn = new StringHandler(50);
+			scoped var sbColumn = new StringHandler(50);
 			var (upperCasing, separator) = options;
 			foreach (int cell in cells)
 			{
@@ -254,11 +254,11 @@ public sealed partial class RxCyNotation :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCandidatesString(in Candidates candidates)
+	public static string ToCandidatesString(scoped in Candidates candidates)
 		=> ToCandidatesString(candidates, RxCyNotationOptions.Default);
 
 	/// <inheritdoc/>
-	public static string ToCandidatesString(in Candidates candidates, in RxCyNotationOptions options)
+	public static string ToCandidatesString(scoped in Candidates candidates, scoped in RxCyNotationOptions options)
 	{
 		return candidates switch
 		{
@@ -268,9 +268,9 @@ public sealed partial class RxCyNotation :
 		};
 
 
-		static string f(int[] offsets, in RxCyNotationOptions options)
+		static string f(int[] offsets, scoped in RxCyNotationOptions options)
 		{
-			var sb = new StringHandler(50);
+			scoped var sb = new StringHandler(50);
 
 			foreach (var digitGroup in
 				from candidate in offsets

@@ -44,5 +44,5 @@ public interface ISimpleSolver
 	/// </item>
 	/// </list>
 	/// </returns>
-	public abstract bool? Solve(in Grid grid, out Grid result);
+	public abstract bool? Solve(scoped in Grid grid, out Grid result);
 }

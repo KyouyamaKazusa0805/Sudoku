@@ -162,7 +162,7 @@ public unsafe partial struct Grid :
 	/// <param name="gridValues">The list of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid(ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
+	public Grid(scoped ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
 		this(gridValues[0], creatingOption)
 	{
 	}
@@ -233,7 +233,7 @@ public unsafe partial struct Grid :
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
 	/// </exception>
-	private Grid(in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
+	private Grid(scoped in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
 		Argument.ThrowIfNullRef(firstElement);
 
@@ -262,7 +262,7 @@ public unsafe partial struct Grid :
 	{
 		// Initializes the empty grid.
 		Empty = default;
-		ref short firstElement = ref Empty._values[0];
+		scoped ref short firstElement = ref Empty._values[0];
 		for (int i = 0; i < 81; i++)
 		{
 			Unsafe.AddByteOffset(ref firstElement, (nuint)(i * sizeof(short))) = DefaultMask;
@@ -595,7 +595,7 @@ public unsafe partial struct Grid :
 	{
 		get
 		{
-			var arr = (stackalloc int[81]);
+			scoped var arr = (stackalloc int[81]);
 			arr.Fill(-1);
 
 			foreach (int cell in GivenCells)
@@ -708,7 +708,7 @@ public unsafe partial struct Grid :
 				}
 				case >= 0 and < 9:
 				{
-					ref short result = ref _values[cell];
+					scoped ref short result = ref _values[cell];
 					short copied = result;
 
 					// Set cell status to 'CellStatus.Modifiable'.
@@ -774,7 +774,7 @@ public unsafe partial struct Grid :
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(in Grid other) => Equals(this, other);
+	public readonly bool Equals(scoped in Grid other) => Equals(this, other);
 
 	/// <summary>
 	/// <para>
@@ -997,7 +997,7 @@ public unsafe partial struct Grid :
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
 	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly short GetDigitsUnion(in Cells cells)
+	public readonly short GetDigitsUnion(scoped in Cells cells)
 	{
 		short result = 0;
 		foreach (int cell in cells)
@@ -1019,7 +1019,7 @@ public unsafe partial struct Grid :
 	/// </param>
 	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly short GetDigitsUnion(in Cells cells, bool withValueCells)
+	public readonly short GetDigitsUnion(scoped in Cells cells, bool withValueCells)
 	{
 		short result = 0;
 		foreach (int cell in cells)
@@ -1041,7 +1041,7 @@ public unsafe partial struct Grid :
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
 	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly short GetDigitsIntersection(in Cells cells)
+	public readonly short GetDigitsIntersection(scoped in Cells cells)
 	{
 		short result = MaxCandidatesMask;
 		foreach (int cell in cells)
@@ -1073,7 +1073,7 @@ public unsafe partial struct Grid :
 	public readonly string ToMaskString()
 	{
 		const string separator = ", ";
-		var sb = new StringHandler(400);
+		scoped var sb = new StringHandler(400);
 		sb.AppendRangeWithSeparatorUnsafe(
 			(short*)Unsafe.AsPointer(ref Unsafe.AsRef(_values[0])),
 			81,
@@ -1134,13 +1134,7 @@ public unsafe partial struct Grid :
 	/// to iterate all possible candidates in the current grid.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateCollectionEnumerator EnumerateCandidates()
-	{
-		fixed (short* arr = _values)
-		{
-			return new(arr);
-		}
-	}
+	public readonly CandidateCollectionEnumerator EnumerateCandidates() => new(_values[0]);
 
 	/// <summary>
 	/// Try to enumerate the mask table of the current grid.
@@ -1161,13 +1155,7 @@ public unsafe partial struct Grid :
 	/// </code>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly MaskCollectionEnumerator EnumerateMasks()
-	{
-		fixed (short* arr = _values)
-		{
-			return new(arr);
-		}
-	}
+	public readonly MaskCollectionEnumerator EnumerateMasks() => new(_values[0]);
 
 	/// <summary>
 	/// Reset the sudoku grid, to set all modifiable values to empty ones.
@@ -1219,7 +1207,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetStatus(int cell, CellStatus status)
 	{
-		ref short mask = ref _values[cell];
+		scoped ref short mask = ref _values[cell];
 		short copied = mask;
 		mask = (short)((int)status << 9 | mask & MaxCandidatesMask);
 
@@ -1234,7 +1222,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetMask(int cell, short mask)
 	{
-		ref short m = ref _values[cell];
+		scoped ref short m = ref _values[cell];
 		short copied = m;
 		m = mask;
 
@@ -1258,7 +1246,7 @@ public unsafe partial struct Grid :
 		var result = new Cells[9];
 		for (int digit = 0; digit < 9; digit++)
 		{
-			ref var map = ref result[digit];
+			scoped ref var map = ref result[digit];
 			for (int cell = 0; cell < 81; cell++)
 			{
 				if (predicate(this, cell, digit))
@@ -1299,7 +1287,7 @@ public unsafe partial struct Grid :
 	/// <param name="left">The left one.</param>
 	/// <param name="right">The right one.</param>
 	/// <returns>The <see cref="bool"/> result indicating that.</returns>
-	public static bool Equals(in Grid left, in Grid right)
+	public static bool Equals(scoped in Grid left, scoped in Grid right)
 	{
 		fixed (short* pThis = left, pOther = right)
 		{
@@ -1519,7 +1507,7 @@ public unsafe partial struct Grid :
 	/// <param name="grid">The grid.</param>
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The result grid.</returns>
-	public static Grid operator &(in Grid grid, in Cells pattern)
+	public static Grid operator &(scoped in Grid grid, scoped in Cells pattern)
 	{
 		var result = grid;
 		foreach (int cell in ~pattern)
@@ -1532,11 +1520,11 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(in Grid left, in Grid right) => left.Equals(right);
+	public static bool operator ==(scoped in Grid left, scoped in Grid right) => left.Equals(right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(in Grid left, in Grid right) => !(left == right);
+	public static bool operator !=(scoped in Grid left, scoped in Grid right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

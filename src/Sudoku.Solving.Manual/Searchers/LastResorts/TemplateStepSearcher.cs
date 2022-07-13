@@ -19,7 +19,7 @@ public sealed unsafe partial class TemplateStepSearcher : ITemplateStepSearcher
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// Iterate on each digit.
 		var distributedMapsByDigit = Solution->ValuesMap;

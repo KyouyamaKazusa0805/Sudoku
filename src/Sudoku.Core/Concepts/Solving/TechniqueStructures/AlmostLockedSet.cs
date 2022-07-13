@@ -31,7 +31,7 @@ public sealed class AlmostLockedSet :
 	/// Indicates the possible cells that can be as the elimination.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public AlmostLockedSet(short digitMask, in Cells map, in Cells possibleEliminationMap)
+	public AlmostLockedSet(short digitMask, scoped in Cells map, scoped in Cells possibleEliminationMap)
 		=> (DigitsMask, Map, PossibleEliminationMap) = (digitMask, map, possibleEliminationMap);
 
 
@@ -70,7 +70,7 @@ public sealed class AlmostLockedSet :
 	{
 		get
 		{
-			var digits = DigitsMask.GetAllSets();
+			scoped var digits = DigitsMask.GetAllSets();
 			short[] result = new short[StrongRelationsCount[digits.Length - 1]];
 			for (int i = 0, x = 0, l = digits.Length, iterationLength = l - 1; i < iterationLength; i++)
 			{
@@ -100,7 +100,7 @@ public sealed class AlmostLockedSet :
 	/// <param name="digit">The digit.</param>
 	/// <param name="result">The result.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
-	public bool ContainsDigit(in Grid grid, int digit, out Cells result)
+	public bool ContainsDigit(scoped in Grid grid, int digit, out Cells result)
 	{
 		result = Cells.Empty;
 		foreach (int cell in Map)

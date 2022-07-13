@@ -45,7 +45,7 @@ public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandida
 	/// all possible location where may form a locked candidate.
 	/// </para>
 	/// </remarks>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		int* r = stackalloc int[2];
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)

@@ -39,7 +39,7 @@ public sealed class LockedCandidatesNode : Node
 	/// <param name="digit">The digit used.</param>
 	/// <param name="cells">The cells used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LockedCandidatesNode(byte digit, in Cells cells) : base(NodeType.LockedCandidates, digit, cells)
+	public LockedCandidatesNode(byte digit, scoped in Cells cells) : base(NodeType.LockedCandidates, digit, cells)
 	{
 	}
 

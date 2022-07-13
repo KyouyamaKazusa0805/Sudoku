@@ -130,7 +130,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		try
 		{
@@ -245,7 +245,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	{
 		const string separator = ", ";
 
-		var sb = new StringHandler();
+		scoped var sb = new StringHandler();
 		foreach (var (id, nextIds) in inferences)
 		{
 			if (_nodeLookup[id] is not { } node)
@@ -725,7 +725,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// Gather the strong and weak inferences on sole candidate nodes and locked candidates nodes.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	private void GatherInferences_SoleAndLocked(in Grid grid)
+	private void GatherInferences_SoleAndLocked(scoped in Grid grid)
 	{
 		// Iterate on each region, to get all possible links.
 		for (byte house = 9; house < 27; house++)

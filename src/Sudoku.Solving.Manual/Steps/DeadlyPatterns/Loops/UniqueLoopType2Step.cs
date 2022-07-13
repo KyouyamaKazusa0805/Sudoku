@@ -10,7 +10,7 @@
 /// <param name="Loop"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit.</param>
 public sealed record class UniqueLoopType2Step(
-	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, in Cells Loop, int ExtraDigit) :
+	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, scoped in Cells Loop, int ExtraDigit) :
 	UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
 {
 	/// <inheritdoc/>

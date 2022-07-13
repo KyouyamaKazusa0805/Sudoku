@@ -8,7 +8,7 @@
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
 public abstract record class ExtendedRectangleStep(
-	ConclusionList Conclusions, ViewList Views, in Cells Cells, short DigitsMask) :
+	ConclusionList Conclusions, ViewList Views, scoped in Cells Cells, short DigitsMask) :
 	DeadlyPatternStep(Conclusions, Views),
 	IStepWithPhasedDifficulty
 {

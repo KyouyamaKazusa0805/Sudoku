@@ -8,14 +8,14 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetStepSearcher
+public sealed partial class JuniorExocetStepSearcher : IJuniorExocetStepSearcher
 {
 	/// <inheritdoc/>
 	public bool CheckAdvanced { get; set; }
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// TODO: Re-implement JE.
 		return null;

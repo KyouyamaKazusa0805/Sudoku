@@ -12,8 +12,8 @@
 /// Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
 /// </param>
 public sealed record class UniqueSquareType3Step(
-	ConclusionList Conclusions, ViewList Views, in Cells Cells, short DigitsMask,
-	short ExtraDigitsMask, in Cells ExtraCells) :
+	ConclusionList Conclusions, ViewList Views, scoped in Cells Cells, short DigitsMask,
+	short ExtraDigitsMask, scoped in Cells ExtraCells) :
 	UniqueSquareStep(Conclusions, Views, Cells, DigitsMask),
 	IStepWithPhasedDifficulty
 {

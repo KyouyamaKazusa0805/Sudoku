@@ -41,7 +41,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		var list = new List<UniqueRectangleStep>();
 
@@ -79,7 +79,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// <param name="gathered">The list stored the result.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-	private void GetAll(ICollection<UniqueRectangleStep> gathered, in Grid grid, bool arMode)
+	private void GetAll(ICollection<UniqueRectangleStep> gathered, scoped in Grid grid, bool arMode)
 	{
 		// Iterate on each possible UR structure.
 		for (int index = 0, outerLength = UniqueRectanglePatterns.Length; index < outerLength; index++)
@@ -250,7 +250,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
 	/// <returns>Indicates whether the UR is passed to check.</returns>
-	private static bool CheckPreconditions(in Grid grid, int[] urCells, bool arMode)
+	private static bool CheckPreconditions(scoped in Grid grid, int[] urCells, bool arMode)
 	{
 		byte emptyCountWhenArMode = 0, modifiableCount = 0;
 		foreach (int urCell in urCells)
@@ -288,7 +288,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsConjugatePair(int digit, in Cells map, int houseIndex)
+	private static bool IsConjugatePair(int digit, scoped in Cells map, int houseIndex)
 		=> (HouseMaps[houseIndex] & CandidatesMap[digit]) == map;
 
 	/// <summary>
@@ -384,9 +384,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void CheckType1(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		// Get the summary mask.
 		short mask = grid.GetDigitsUnion(otherCellsMap);
@@ -467,9 +467,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void CheckType2(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		// Get the summary mask.
 		short mask = grid.GetDigitsUnion(otherCellsMap);
@@ -566,9 +566,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void CheckType3Naked(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in otherCellsMap)
@@ -709,9 +709,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void CheckType4(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -823,9 +823,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void CheckType5(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -920,9 +920,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void CheckType6(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -1051,9 +1051,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void CheckHidden(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -1178,9 +1178,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void Check2D(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2,
-		int corner1, int corner2, in Cells otherCellsMap, int index)
+		int corner1, int corner2, scoped in Cells otherCellsMap, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -1319,9 +1319,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void Check2B1SL(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -1491,9 +1491,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void Check2D1SL(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2,
-		int corner1, int corner2, in Cells otherCellsMap, int index)
+		int corner1, int corner2, scoped in Cells otherCellsMap, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -1657,9 +1657,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// Note: <c>z</c> is <c>x</c> or <c>y</c>.
 	/// </remarks>
 	private void Check3X(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2,
-		int cornerCell, in Cells otherCellsMap, int index)
+		int cornerCell, scoped in Cells otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -1801,9 +1801,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void Check3X2SL(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2,
-		int cornerCell, in Cells otherCellsMap, int index)
+		int cornerCell, scoped in Cells otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -1923,9 +1923,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void Check3N2SL(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
 		bool arMode, short comparer, int d1, int d2, int cornerCell,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -2056,8 +2056,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// </remarks>
 	private void Check3U2SL(
 		ICollection<UniqueRectangleStep> accumulator,
-		in Grid grid, int[] urCells, bool arMode, short comparer, int d1, int d2,
-		int cornerCell, in Cells otherCellsMap, int index)
+		scoped in Grid grid, int[] urCells, bool arMode, short comparer, int d1, int d2,
+		int cornerCell, scoped in Cells otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -2181,9 +2181,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void Check3E2SL(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -2310,9 +2310,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void Check4X3SL(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
 		bool arMode, short comparer, int d1, int d2, int corner1, int corner2,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		var link1Map = Cells.Empty + corner1 + corner2;
 		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
@@ -2468,9 +2468,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// </para>
 	/// </remarks>
 	private void Check4C3SL(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
 		bool arMode, short comparer, int d1, int d2, int corner1, int corner2,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		var link1Map = Cells.Empty + corner1 + corner2;
 		var innerMaps = stackalloc Cells[2];
@@ -2632,9 +2632,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// </para>
 	/// </remarks>
 	private void CheckWing(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
 		bool arMode, short comparer, int d1, int d2, int corner1, int corner2,
-		in Cells otherCellsMap, int size, int index)
+		scoped in Cells otherCellsMap, int size, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -3098,9 +3098,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// ]]></code>
 	/// </remarks>
 	private void CheckSdc(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
 		bool arMode, short comparer, int d1, int d2, int corner1, int corner2,
-		in Cells otherCellsMap, int index)
+		scoped in Cells otherCellsMap, int index)
 	{
 		bool notSatisfiedType3 = false;
 		short mergedMaskInOtherCells = 0;
@@ -3240,12 +3240,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 
 		static void checkGeneralizedSdc(
-			ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+			ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 			bool arMode, bool cannibalMode, int digit1, int digit2, int[] urCells,
 			int line, int block, short lineMask, short blockMask,
-			short selectedInterMask, short otherDigitsMask, in Cells elimMapLine,
-			in Cells elimMapBlock, in Cells currentLineMap, in Cells currentBlockMap,
-			in Cells currentInterMap, int i, int j, int index)
+			short selectedInterMask, short otherDigitsMask, scoped in Cells elimMapLine,
+			scoped in Cells elimMapBlock, scoped in Cells currentLineMap, scoped in Cells currentBlockMap,
+			scoped in Cells currentInterMap, int i, int j, int index)
 		{
 			short maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
 			short maskIsolated = (short)(
@@ -3423,7 +3423,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// </para>
 	/// </remarks>
 	private void CheckUnknownCoveringUnique(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
 		short comparer, int d1, int d2, int index)
 	{
 		checkType1(grid);
@@ -3431,7 +3431,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		checkType2(grid);
 #endif
 
-		void checkType1(in Grid grid)
+		void checkType1(scoped in Grid grid)
 		{
 			var cells = new Cells(urCells);
 
@@ -3746,7 +3746,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
 	private void CheckGuardianUniqueStandard(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, short comparer, int d1, int d2, int index)
 	{
 		var cells = new Cells(urCells);
@@ -3848,7 +3848,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
 	private void CheckGuardianUniqueSubset(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, short comparer, int d1, int d2, int index)
 	{
 		// TODO: Implement this.
@@ -3884,8 +3884,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// </para>
 	/// </remarks>
 	private void CheckHiddenSingleAvoidable(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid,
-		int[] urCells, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
+		int[] urCells, int d1, int d2, int corner1, int corner2, scoped in Cells otherCellsMap, int index)
 	{
 		if (grid.GetStatus(corner1) != CellStatus.Modifiable
 			|| grid.GetStatus(corner2) != CellStatus.Modifiable

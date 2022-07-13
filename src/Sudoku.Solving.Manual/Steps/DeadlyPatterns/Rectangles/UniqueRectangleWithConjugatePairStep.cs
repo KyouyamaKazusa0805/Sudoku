@@ -14,7 +14,7 @@
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public record class UniqueRectangleWithConjugatePairStep(
 	ConclusionList Conclusions, ViewList Views, Technique TechniqueCode2, int Digit1, int Digit2,
-	in Cells Cells, bool IsAvoidable, Conjugate[] ConjugatePairs, int AbsoluteOffset) :
+	scoped in Cells Cells, bool IsAvoidable, Conjugate[] ConjugatePairs, int AbsoluteOffset) :
 	UniqueRectangleStep(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset),
 	IStepWithPhasedDifficulty
 {
@@ -48,7 +48,7 @@ public record class UniqueRectangleWithConjugatePairStep(
 		{
 			const string separator = ", ";
 
-			var sb = new StringHandler(100);
+			scoped var sb = new StringHandler(100);
 			sb.AppendRangeWithSeparator(ConjugatePairs, separator);
 
 			return sb.ToStringAndClear();

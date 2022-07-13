@@ -12,7 +12,7 @@
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record class UniqueRectangleType1Step(
 	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2,
-	in Cells Cells, bool IsAvoidable, int AbsoluteOffset) :
+	scoped in Cells Cells, bool IsAvoidable, int AbsoluteOffset) :
 	UniqueRectangleStep(
 		Conclusions, Views, IsAvoidable ? Technique.AvoidableRectangleType1 : Technique.UniqueRectangleType1,
 		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)

@@ -80,7 +80,7 @@ partial struct Utf8GridParser
 			return Grid.Undefined;
 		}
 
-		var sb = new StringHandler(81);
+		scoped var sb = new StringHandler(81);
 		foreach (string value in values)
 		{
 			foreach (string digitString in value.Split(new[] { '\t' }))
@@ -257,7 +257,7 @@ partial struct Utf8GridParser
 		}
 
 		// Remove all '\r's and '\n's.
-		var sb = new StringHandler(81 + (9 << 1));
+		scoped var sb = new StringHandler(81 + (9 << 1));
 		sb.AppendCharacters(from @char in match where @char is not ('\r' or '\n') select @char);
 		parser.ParsingValue = (Utf8String)sb.ToStringAndClear();
 		return OnParsingSusser(ref parser, false);
@@ -381,7 +381,7 @@ partial struct Utf8GridParser
 				return false;
 			}
 
-			var resultSpan = (stackalloc char[81]);
+			scoped var resultSpan = (stackalloc char[81]);
 			string[] lines = original.Split(',');
 			if (lines.Length != 9)
 			{

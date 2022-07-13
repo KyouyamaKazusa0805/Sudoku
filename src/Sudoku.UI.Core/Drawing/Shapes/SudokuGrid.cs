@@ -415,7 +415,7 @@ public sealed class SudokuGrid : DrawingElement
 
 			static void initializePeerRectangles(Rectangle[] rectangles, IDrawingPreference preference)
 			{
-				foreach (ref var rectangle in rectangles.EnumerateRef())
+				foreach (/*scoped*/ ref /*scoped*/ var rectangle in rectangles.EnumerateRef())
 				{
 					rectangle = new Rectangle()
 						.WithFill(preference.PeersFocusedCellColor)
@@ -441,7 +441,7 @@ public sealed class SudokuGrid : DrawingElement
 
 				for (int i = 0; i < 81; i++)
 				{
-					ref var p = ref _cellDigits[i];
+					scoped ref var p = ref _cellDigits[i];
 					p = new()
 					{
 						UserPreference = preference,
@@ -452,7 +452,7 @@ public sealed class SudokuGrid : DrawingElement
 					_gridLayout.Children.Add(p.GetControl().WithGridLayout(row: i / 9, column: i % 9));
 					_gridLayout.Children.Add(p.GetMaskEllipseControl().WithGridLayout(row: i / 9, column: i % 9));
 
-					ref var q = ref _candidateDigits[i];
+					scoped ref var q = ref _candidateDigits[i];
 					q = new()
 					{
 						UserPreference = preference,
@@ -462,11 +462,11 @@ public sealed class SudokuGrid : DrawingElement
 					};
 					_gridLayout.Children.Add(q.GetControl().WithGridLayout(row: i / 9, column: i % 9));
 
-					ref var r = ref _cellViewNodeShapes[i];
+					scoped ref var r = ref _cellViewNodeShapes[i];
 					r = new() { Preference = preference, IsVisible = false };
 					_gridLayout.Children.Add(r.GetControl().WithGridLayout(row: i / 9, column: i % 9));
 
-					ref var s = ref _candidateViewNodeShapes[i];
+					scoped ref var s = ref _candidateViewNodeShapes[i];
 					s = new() { Preference = preference };
 					Array.ForEach(Digits, digit => _candidateViewNodeShapes[i].SetIsVisible(digit, false));
 					_gridLayout.Children.Add(s.GetControl().WithGridLayout(row: i / 9, column: i % 9));
@@ -475,7 +475,7 @@ public sealed class SudokuGrid : DrawingElement
 					if (AllowMarkups)
 					{
 						// Initializes for the cell marks.
-						ref var cellMark = ref _cellMarks[i];
+						scoped ref var cellMark = ref _cellMarks[i];
 						cellMark = new(preference);
 						foreach (var cellMarkControl in cellMark.GetControls())
 						{
@@ -488,7 +488,7 @@ public sealed class SudokuGrid : DrawingElement
 					if (AllowMarkups)
 					{
 						// Initializes for the candidate marks.
-						ref var candidateMark = ref _candidateMarks[i];
+						scoped ref var candidateMark = ref _candidateMarks[i];
 						candidateMark = new(preference);
 						_gridLayout.Children.Add(candidateMark.GetControl().WithGridLayout(row: i / 9, column: i % 9));
 					}
@@ -755,7 +755,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	/// <param name="grid">The grid to be replaced with.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ReplaceGrid(in Grid grid)
+	public void ReplaceGrid(scoped in Grid grid)
 	{
 		// If the current mode is mask mode, we should directly skip the operation.
 		if (_isMaskMode)
@@ -900,7 +900,7 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		ref var current = ref _cellViewNodeShapes[cellViewNode.Cell];
+		scoped ref var current = ref _cellViewNodeShapes[cellViewNode.Cell];
 		current.IsVisible = true;
 		current.ColorIdentifier = cellViewNode.Identifier;
 	}
@@ -919,7 +919,7 @@ public sealed class SudokuGrid : DrawingElement
 
 		int cell = candidateViewNode.Candidate / 9;
 		int digit = candidateViewNode.Candidate % 9;
-		ref var current = ref _candidateViewNodeShapes[cell];
+		scoped ref var current = ref _candidateViewNodeShapes[cell];
 		current.SetIsVisible(digit, true);
 		current.SetIdentifier(digit, candidateViewNode.Identifier);
 	}
@@ -1109,7 +1109,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// Adds the specified step into the collection.
 	/// </summary>
 	/// <param name="grid">The step to be added.</param>
-	private void AddStep(in Grid grid)
+	private void AddStep(scoped in Grid grid)
 	{
 		_undoSteps.Push(_grid);
 		_grid = grid;
@@ -1256,7 +1256,7 @@ public sealed class SudokuGrid : DrawingElement
 			var (type, cell, digit) = conclusion;
 			var (_, candidate) = conclusion;
 
-			ref var current = ref _candidateViewNodeShapes[cell];
+			scoped ref var current = ref _candidateViewNodeShapes[cell];
 
 			current.SetIsVisible(digit, true);
 			current.SetIdentifier(

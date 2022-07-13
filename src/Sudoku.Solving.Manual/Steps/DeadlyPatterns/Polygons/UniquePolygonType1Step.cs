@@ -8,7 +8,7 @@
 /// <param name="Map"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 public sealed record class UniquePolygonType1Step(
-	ConclusionList Conclusions, ViewList Views, in Cells Map, short DigitsMask) :
+	ConclusionList Conclusions, ViewList Views, scoped in Cells Map, short DigitsMask) :
 	UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>

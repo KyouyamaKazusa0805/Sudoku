@@ -98,7 +98,7 @@ public abstract class Chain :
 	/// are filled with modifiable values.
 	/// </para>
 	/// </remarks>
-	public abstract ImmutableArray<Conclusion> GetConclusions(in Grid grid);
+	public abstract ImmutableArray<Conclusion> GetConclusions(scoped in Grid grid);
 
 	/// <summary>
 	/// Creates an array that stores the values with each element of a pair, where:

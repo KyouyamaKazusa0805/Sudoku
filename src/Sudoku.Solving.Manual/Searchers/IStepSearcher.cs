@@ -55,5 +55,5 @@ public interface IStepSearcher
 	/// </item>
 	/// </list>
 	/// </returns>
-	public abstract Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne);
+	public abstract Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne);
 }

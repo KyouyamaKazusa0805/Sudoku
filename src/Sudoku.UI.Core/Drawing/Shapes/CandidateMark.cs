@@ -112,7 +112,7 @@ internal sealed class CandidateMark : DrawingElement
 			GridLayout.SetColumn(c4, i % 3);
 			_gridLayout.Children.Add(c4);
 
-			ref var poolOfDigit = ref _pool[i];
+			scoped ref var poolOfDigit = ref _pool[i];
 			poolOfDigit = new FrameworkElement[Enum.GetValues<ShapeKind>().Length];
 			poolOfDigit[(int)ShapeKind.Rectangle] = c1;
 			poolOfDigit[(int)ShapeKind.Circle] = c2;

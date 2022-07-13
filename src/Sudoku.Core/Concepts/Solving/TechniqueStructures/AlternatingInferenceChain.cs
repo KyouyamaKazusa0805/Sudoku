@@ -112,7 +112,7 @@ public sealed class AlternatingInferenceChain : Chain
 	/// <inheritdoc/>
 	public override string ToString()
 	{
-		var sb = new StringHandler();
+		scoped var sb = new StringHandler();
 		var realChain = RealChainNodes;
 		for (int i = 0, length = realChain.Length - 1; i < length; i++)
 		{
@@ -125,7 +125,7 @@ public sealed class AlternatingInferenceChain : Chain
 	}
 
 	/// <inheritdoc/>
-	public override ImmutableArray<Conclusion> GetConclusions(in Grid grid)
+	public override ImmutableArray<Conclusion> GetConclusions(scoped in Grid grid)
 		=> ImmutableArray.Create(
 			IsStrong switch
 			{
@@ -202,9 +202,9 @@ public sealed class AlternatingInferenceChain : Chain
 	/// <param name="d2">The digit 2.</param>
 	/// <returns>The conclusions.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Conclusion[] GetEliminationsMultipleDigits(in Grid grid, int c1, int c2, byte d1, byte d2)
+	private static Conclusion[] GetEliminationsMultipleDigits(scoped in Grid grid, int c1, int c2, byte d1, byte d2)
 	{
-		using var resultList = new ValueList<Conclusion>(2);
+		using scoped var resultList = new ValueList<Conclusion>(2);
 		if (grid.Exists(c1, d2) is true)
 		{
 			resultList.Add(new(ConclusionType.Elimination, c1, d2));
@@ -224,7 +224,7 @@ public sealed class AlternatingInferenceChain : Chain
 	/// <param name="digit">The digit.</param>
 	/// <returns>The conclusions.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Conclusion[] GetEliminationsSingleDigit(in Cells elimMap, byte digit)
+	private static Conclusion[] GetEliminationsSingleDigit(scoped in Cells elimMap, byte digit)
 	{
 		int i = 0;
 		var result = new Conclusion[elimMap.Count];

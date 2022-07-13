@@ -10,8 +10,8 @@
 /// <param name="DigitsMask">Indicates a mask that contains all digits used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
 public sealed record class RegularWingStep(
-	ConclusionList Conclusions, ViewList Views, int Pivot,
-	int PivotCandidatesCount, short DigitsMask, in Cells Petals) :
+	ConclusionList Conclusions, ViewList Views, int Pivot, int PivotCandidatesCount,
+	short DigitsMask, scoped in Cells Petals) :
 	WingStep(Conclusions, Views),
 	IStepWithSize,
 	IStepWithPhasedDifficulty

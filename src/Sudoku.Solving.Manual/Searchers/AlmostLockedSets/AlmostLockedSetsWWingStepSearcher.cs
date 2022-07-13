@@ -11,7 +11,7 @@
 public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSetsWWingStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 

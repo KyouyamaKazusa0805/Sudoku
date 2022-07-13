@@ -55,7 +55,7 @@ public sealed class BacktrackingSolver : ISimpleSolver
 	/// </item>
 	/// </list>
 	/// </returns>
-	public bool? Solve(in Grid grid, out Grid result)
+	public bool? Solve(scoped in Grid grid, out Grid result)
 	{
 		int[]? resultArray = null;
 		try
@@ -79,7 +79,8 @@ public sealed class BacktrackingSolver : ISimpleSolver
 		}
 
 
-		static void solve(ref int solutionsCount, ref int[]? result, int[] gridValues, int finishedCellsCount)
+		static void solve(
+			scoped ref int solutionsCount, scoped ref int[]? result, int[] gridValues, int finishedCellsCount)
 		{
 			if (finishedCellsCount == 81)
 			{

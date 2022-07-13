@@ -11,7 +11,7 @@
 public sealed unsafe partial class PatternOverlayStepSearcher : IPatternOverlayStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		var templates = IPatternOverlayStepSearcher.GetInvalidPos(grid);
 		for (int digit = 0; digit < 9; digit++)

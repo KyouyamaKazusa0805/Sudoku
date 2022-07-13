@@ -9,7 +9,8 @@
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 public sealed record class BivalueUniversalGraveType4Step(
-	ConclusionList Conclusions, ViewList Views, short DigitsMask, in Cells Cells, in Conjugate ConjugatePair) :
+	ConclusionList Conclusions, ViewList Views, short DigitsMask,
+	scoped in Cells Cells, scoped in Conjugate ConjugatePair) :
 	BivalueUniversalGraveStep(Conclusions, Views),
 	IStepWithPhasedDifficulty
 {

@@ -14,7 +14,7 @@
 public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		if (BivalueCells.Count < 4)
 		{
@@ -126,8 +126,8 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 	}
 
 	private Step? CheckType1(
-		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IEnumerable<LinkViewNode> links, in Cells extraCellsMap, bool onlyFindOne)
+		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
+		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, bool onlyFindOne)
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>(2);
@@ -172,8 +172,8 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 	}
 
 	private Step? CheckType2(
-		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IEnumerable<LinkViewNode> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
+		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		short mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
@@ -219,8 +219,8 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 	}
 
 	private Step? CheckType3(
-		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IEnumerable<LinkViewNode> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
+		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in extraCellsMap)

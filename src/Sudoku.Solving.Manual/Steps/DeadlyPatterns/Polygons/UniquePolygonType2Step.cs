@@ -9,7 +9,7 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">The extra digit.</param>
 public sealed record class UniquePolygonType2Step(
-	ConclusionList Conclusions, ViewList Views, in Cells Map, short DigitsMask, int ExtraDigit) :
+	ConclusionList Conclusions, ViewList Views, scoped in Cells Map, short DigitsMask, int ExtraDigit) :
 	UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>

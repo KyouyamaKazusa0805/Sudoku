@@ -17,7 +17,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 
 
 	/// <inheritdoc/>
-	public ManualSolverResult Solve(in Grid puzzle, CancellationToken cancellationToken = default)
+	public ManualSolverResult Solve(scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
 		var solverResult = new ManualSolverResult(puzzle);
 		if (puzzle.ExactlyValidate(out var solution, out bool? sukaku))
@@ -81,7 +81,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>
 	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
 	private ManualSolverResult Solve_HodokuMode(
-		in Grid puzzle, in Grid solution, bool isSukaku, ManualSolverResult baseSolverResult,
+		scoped in Grid puzzle, scoped in Grid solution, bool isSukaku, ManualSolverResult baseSolverResult,
 		CancellationToken cancellationToken = default)
 	{
 		var (playground, tempSteps, recordedSteps, stepGrids, stepSearchers) = (
@@ -282,7 +282,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <param name="solution">The solution.</param>
 	/// <param name="step">The step to check.</param>
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
-	private static bool AreConclusionsValid(in Grid solution, Step step)
+	private static bool AreConclusionsValid(scoped in Grid solution, Step step)
 	{
 		foreach (var (t, c, d) in step.Conclusions)
 		{

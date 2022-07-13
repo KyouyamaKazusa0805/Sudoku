@@ -56,7 +56,7 @@ public interface IExocetStepSearcher : IStepSearcher
 		};
 
 		int* t = stackalloc int[3];
-		var crossline = (stackalloc int[25]); // Only use [7..24].
+		scoped var crossline = (stackalloc int[25]); // Only use [7..24].
 		int n = 0;
 		for (int i = 0; i < 18; i++)
 		{
@@ -66,7 +66,7 @@ public interface IExocetStepSearcher : IStepSearcher
 				{
 					for (int l = y, yPlus3Inner = y + 3; l < yPlus3Inner; l++)
 					{
-						ref var exocet = ref Patterns[n];
+						scoped ref var exocet = ref Patterns[n];
 						var (b1, b2) = (bb[i] + b[j, 0], bb[i] + b[j, 1]);
 						var (tq1, tr1) = (bb[bc[i, 0]] + rq[k, 0], bb[bc[i, 1]] + rq[l, 0]);
 

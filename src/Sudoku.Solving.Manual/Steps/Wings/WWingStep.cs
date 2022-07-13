@@ -11,7 +11,7 @@
 /// Indicates the conjugate pair that connects cells <see cref="StartCell"/> and <see cref="EndCell"/>.
 /// </param>
 public sealed record class WWingStep(
-	ConclusionList Conclusions, ViewList Views, int StartCell, int EndCell, in Conjugate ConjugatePair) :
+	ConclusionList Conclusions, ViewList Views, int StartCell, int EndCell, scoped in Conjugate ConjugatePair) :
 	WingStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

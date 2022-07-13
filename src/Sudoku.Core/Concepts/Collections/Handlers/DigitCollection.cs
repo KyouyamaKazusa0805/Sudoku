@@ -65,7 +65,7 @@ public readonly ref partial struct DigitCollection
 		}
 
 		string separator = format ?? string.Empty;
-		var sb = new StringHandler(9);
+		scoped var sb = new StringHandler(9);
 		foreach (int digit in _mask)
 		{
 			sb.Append(digit + 1);

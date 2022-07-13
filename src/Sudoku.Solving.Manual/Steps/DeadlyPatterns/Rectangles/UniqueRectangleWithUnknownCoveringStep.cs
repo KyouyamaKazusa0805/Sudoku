@@ -12,7 +12,7 @@
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record class UniqueRectangleWithUnknownCoveringStep(
-	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, in Cells Cells,
+	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, scoped in Cells Cells,
 	int TargetCell, int ExtraDigit, int AbsoluteOffset) :
 	UniqueRectangleStep(
 		Conclusions, Views, Technique.UniqueRectangleUnknownCovering,

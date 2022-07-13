@@ -35,7 +35,7 @@ public interface ICellNotation<TBaseType, TOptions>
 	/// </summary>
 	/// <param name="cells">The cell list.</param>
 	/// <returns>The <see cref="string"/> representation describe the cell list.</returns>
-	public static abstract string ToCellsString(in Cells cells);
+	public static abstract string ToCellsString(scoped in Cells cells);
 
 	/// <summary>
 	/// Gets the <see cref="string"/> representation of a list of cells.
@@ -43,7 +43,7 @@ public interface ICellNotation<TBaseType, TOptions>
 	/// <param name="cells">The cell list.</param>
 	/// <param name="options">The extra options to control the output style.</param>
 	/// <returns>The <see cref="string"/> representation describe the cell list.</returns>
-	public static abstract string ToCellsString(in Cells cells, in TOptions options);
+	public static abstract string ToCellsString(scoped in Cells cells, scoped in TOptions options);
 
 	/// <summary>
 	/// Try to parse the specified <see cref="string"/> value, and convert it into the <see cref="Cells"/>

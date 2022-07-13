@@ -8,7 +8,7 @@
 /// <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
 /// <param name="Eliminations">Indicates all possible eliminations.</param>
 public abstract record class ExocetStep(
-	ViewList Views, in ExocetPattern Exocet, short DigitsMask, ImmutableArray<ExocetElimination> Eliminations) :
+	ViewList Views, scoped in ExocetPattern Exocet, short DigitsMask, ImmutableArray<ExocetElimination> Eliminations) :
 	Step(GatherConclusions(Eliminations), Views),
 	IStepWithRank
 {
@@ -91,7 +91,7 @@ public abstract record class ExocetStep(
 	/// <inheritdoc/>
 	public sealed override string ToFullString()
 	{
-		var sb = new StringHandler(100);
+		scoped var sb = new StringHandler(100);
 		sb.Append(base.ToFullString());
 		sb.AppendLine();
 		sb.AppendRangeWithLines(Eliminations);

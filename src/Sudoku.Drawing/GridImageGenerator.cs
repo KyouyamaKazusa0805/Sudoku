@@ -14,7 +14,8 @@ namespace Sudoku.Drawing;
 /// that decides the drawing behavior.
 /// </param>
 /// <param name="Puzzle">Indicates the puzzle.</param>
-public partial record class GridImageGenerator(IPointCalculator Calculator, IPreference Preferences, in Grid Puzzle) :
+public partial record class GridImageGenerator(
+	IPointCalculator Calculator, IPreference Preferences, scoped in Grid Puzzle) :
 	IGridImageGenerator
 {
 	/// <inheritdoc/>

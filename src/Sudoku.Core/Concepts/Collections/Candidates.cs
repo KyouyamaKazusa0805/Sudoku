@@ -182,7 +182,7 @@ public unsafe partial struct Candidates :
 	/// </summary>
 	/// <param name="map">The map.</param>
 	/// <param name="digit">The digit.</param>
-	public Candidates(in Cells map, int digit)
+	public Candidates(scoped in Cells map, int digit)
 	{
 		this = default;
 		foreach (int cell in map)
@@ -196,7 +196,7 @@ public unsafe partial struct Candidates :
 	/// </summary>
 	/// <param name="candidates">The candidates.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Candidates(in ReadOnlySpan<int> candidates)
+	public Candidates(scoped in scoped ReadOnlySpan<int> candidates)
 	{
 		this = default;
 		AddRange(candidates);
@@ -347,7 +347,7 @@ public unsafe partial struct Candidates :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(in Candidates other)
+	public readonly bool Equals(scoped in Candidates other)
 		=> _0 == other._0 && _1 == other._1 && _2 == other._2 && _3 == other._3
 		&& _4 == other._4 && _5 == other._5 && _6 == other._6 && _7 == other._7
 		&& _8 == other._8 && _9 == other._9 && _10 == other._10 && _11 == other._11;
@@ -535,7 +535,7 @@ public unsafe partial struct Candidates :
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>
-	public void AddRange(in ReadOnlySpan<int> offsets)
+	public void AddRange(scoped in scoped ReadOnlySpan<int> offsets)
 	{
 		foreach (int candidate in offsets)
 		{
@@ -644,7 +644,7 @@ public unsafe partial struct Candidates :
 	/// from the base collection can be seen.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates operator !(in Candidates offsets)
+	public static Candidates operator !(scoped in Candidates offsets)
 	{
 		if (offsets.Count == 0)
 		{
@@ -669,7 +669,7 @@ public unsafe partial struct Candidates :
 	/// <param name="offsets">The instance to negate.</param>
 	/// <returns>The negative result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates operator ~(in Candidates offsets)
+	public static Candidates operator ~(scoped in Candidates offsets)
 	{
 		const long s = (1 << 729 - Shifting * (12 - 1)) - 1;
 
@@ -696,7 +696,7 @@ public unsafe partial struct Candidates :
 	/// <param name="left">The subtrahend.</param>
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	public static bool operator >(in Candidates left, in Candidates right) => (left - right).Count != 0;
+	public static bool operator >(scoped in Candidates left, scoped in Candidates right) => (left - right).Count != 0;
 
 	/// <summary>
 	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
@@ -704,7 +704,7 @@ public unsafe partial struct Candidates :
 	/// <param name="left">The subtrahend.</param>
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	public static bool operator <(in Candidates left, in Candidates right) => (left - right).Count == 0;
+	public static bool operator <(scoped in Candidates left, scoped in Candidates right) => (left - right).Count == 0;
 
 	/// <summary>
 	/// Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
@@ -713,7 +713,7 @@ public unsafe partial struct Candidates :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates operator &(in Candidates left, in Candidates right)
+	public static Candidates operator &(scoped in Candidates left, scoped in Candidates right)
 	{
 		long* result = stackalloc long[12];
 		result[0] = left._0 & right._0;
@@ -740,7 +740,7 @@ public unsafe partial struct Candidates :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates operator |(in Candidates left, in Candidates right)
+	public static Candidates operator |(scoped in Candidates left, scoped in Candidates right)
 	{
 		long* result = stackalloc long[12];
 		result[0] = left._0 | right._0;
@@ -766,7 +766,7 @@ public unsafe partial struct Candidates :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates operator ^(in Candidates left, in Candidates right)
+	public static Candidates operator ^(scoped in Candidates left, scoped in Candidates right)
 	{
 		long* result = stackalloc long[12];
 		result[0] = left._0 ^ right._0;
@@ -793,7 +793,7 @@ public unsafe partial struct Candidates :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates operator -(in Candidates left, in Candidates right)
+	public static Candidates operator -(scoped in Candidates left, scoped in Candidates right)
 	{
 		long* result = stackalloc long[12];
 		result[0] = left._0 & ~right._0;
@@ -822,7 +822,7 @@ public unsafe partial struct Candidates :
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="offset"/> is out of range.
 	/// </exception>
-	public static Candidates operator -(in Candidates collection, int offset)
+	public static Candidates operator -(scoped in Candidates collection, int offset)
 	{
 		var result = collection;
 		if (!result.Contains(offset))
@@ -863,7 +863,7 @@ public unsafe partial struct Candidates :
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="offset"/> is out of range.
 	/// </exception>
-	public static Candidates operator +(in Candidates collection, int offset)
+	public static Candidates operator +(scoped in Candidates collection, int offset)
 	{
 		var result = collection;
 		if (result.Contains(offset))
@@ -902,7 +902,7 @@ public unsafe partial struct Candidates :
 	/// <param name="template">The template map that the base map to check and cover.</param>
 	/// <returns>The result map.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates operator %(in Candidates @base, in Candidates template)
+	public static Candidates operator %(scoped in Candidates @base, scoped in Candidates template)
 		=> !(@base & template) & template;
 
 	/// <summary>
@@ -913,15 +913,15 @@ public unsafe partial struct Candidates :
 	/// <returns>The cells.</returns>
 	/// <seealso cref="Reduce(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator /(in Candidates candidates, int digit) => candidates.Reduce(digit);
+	public static Cells operator /(scoped in Candidates candidates, int digit) => candidates.Reduce(digit);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(in Candidates left, in Candidates right) => left.Equals(right);
+	public static bool operator ==(scoped in Candidates left, scoped in Candidates right) => left.Equals(right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(in Candidates left, in Candidates right) => !(left == right);
+	public static bool operator !=(scoped in Candidates left, scoped in Candidates right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -989,33 +989,33 @@ public unsafe partial struct Candidates :
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Candidates(in Span<int> offsets) => new(offsets);
+	public static implicit operator Candidates(scoped in scoped Span<int> offsets) => new(offsets);
 
 	/// <summary>
 	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="Candidates"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Candidates(in ReadOnlySpan<int> offsets) => new(offsets);
+	public static implicit operator Candidates(scoped in scoped ReadOnlySpan<int> offsets) => new(offsets);
 
 	/// <summary>
 	/// Explicit cast from <see cref="Candidates"/> to <see cref="int"/>[].
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator int[](in Candidates offsets) => offsets.ToArray();
+	public static explicit operator int[](scoped in Candidates offsets) => offsets.ToArray();
 
 	/// <summary>
 	/// Explicit cast from <see cref="Candidates"/> to <see cref="Span{T}"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Span<int>(in Candidates offsets) => offsets.ToSpan();
+	public static explicit operator Span<int>(scoped in Candidates offsets) => offsets.ToSpan();
 
 	/// <summary>
 	/// Explicit cast from <see cref="Candidates"/> to <see cref="ReadOnlySpan{T}"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator ReadOnlySpan<int>(in Candidates offsets) => offsets.ToReadOnlySpan();
+	public static explicit operator ReadOnlySpan<int>(scoped in Candidates offsets) => offsets.ToReadOnlySpan();
 }

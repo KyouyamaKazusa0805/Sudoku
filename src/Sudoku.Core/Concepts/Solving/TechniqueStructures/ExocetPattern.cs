@@ -45,8 +45,8 @@
 /// <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
 /// <param name="CrossLine">Indicates the cross-line cells.</param>
 public readonly record struct ExocetPattern(
-	int Base1, int Base2, int TargetQ1, int TargetQ2, int TargetR1, int TargetR2, in Cells CrossLine,
-	in Cells MirrorQ1, in Cells MirrorQ2, in Cells MirrorR1, in Cells MirrorR2) :
+	int Base1, int Base2, int TargetQ1, int TargetQ2, int TargetR1, int TargetR2, scoped in Cells CrossLine,
+	scoped in Cells MirrorQ1, scoped in Cells MirrorQ2, scoped in Cells MirrorR1, scoped in Cells MirrorR2) :
 	ITechniquePattern<ExocetPattern>
 {
 	/// <inheritdoc/>

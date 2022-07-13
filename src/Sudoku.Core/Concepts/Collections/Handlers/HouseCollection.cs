@@ -98,7 +98,7 @@ public readonly ref partial struct HouseCollection
 				dic[houseIndex / 9].Add(houseIndex % 9);
 			}
 
-			var sb = new StringHandler(30);
+			scoped var sb = new StringHandler(30);
 			for (int i = 1, j = 0; j < 3; i = (i + 1) % 3, j++)
 			{
 				if (!dic.ContainsKey(i))
@@ -123,7 +123,7 @@ public readonly ref partial struct HouseCollection
 	/// <returns>The labels.</returns>
 	public string ToSimpleString()
 	{
-		var sb = new StringHandler(27);
+		scoped var sb = new StringHandler(27);
 		for (int houseIndex = 9, i = 0; i < 27; i++, houseIndex = (houseIndex + 1) % 27)
 		{
 			if (this[houseIndex])

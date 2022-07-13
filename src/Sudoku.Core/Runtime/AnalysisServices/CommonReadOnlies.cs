@@ -481,8 +481,8 @@ public static partial class CommonReadOnlies
 			for (byte j = 0; j < 3; j++)
 			{
 				byte cs = (byte)(bs < 18 ? r[(bs - 9) / 3 * 3 + j] : c[(bs - 18) / 3 * 3 + j]);
-				ref readonly var bm = ref HouseMaps[bs];
-				ref readonly var cm = ref HouseMaps[cs];
+				scoped ref readonly var bm = ref HouseMaps[bs];
+				scoped ref readonly var cm = ref HouseMaps[cs];
 				var i = bm & cm;
 				dic.Add((bs, cs), (bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
 			}

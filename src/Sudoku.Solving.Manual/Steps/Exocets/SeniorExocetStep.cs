@@ -10,7 +10,7 @@
 /// <param name="ExtraHousesMask">Indicates the mask that holds the extra houses used.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
 public sealed record class SeniorExocetStep(
-	ViewList Views, in ExocetPattern Exocet, short DigitsMask, int EndoTargetCell,
+	ViewList Views, scoped in ExocetPattern Exocet, short DigitsMask, int EndoTargetCell,
 	int[]? ExtraHousesMask, ImmutableArray<ExocetElimination> Eliminations) :
 	ExocetStep(Views, Exocet, DigitsMask, Eliminations),
 	IStepWithPhasedDifficulty
@@ -44,7 +44,7 @@ public sealed record class SeniorExocetStep(
 			string endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
 			if (ExtraHousesMask is not null)
 			{
-				var sb = new StringHandler(100);
+				scoped var sb = new StringHandler(100);
 				int count = 0;
 				for (int digit = 0; digit < 9; digit++)
 				{

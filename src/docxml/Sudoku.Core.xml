@@ -1344,7 +1344,7 @@
             The pointer to the start value.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Collections.Grid.CandidateCollectionEnumerator._currentPointer">
+        <member name="F:Sudoku.Concepts.Collections.Grid.CandidateCollectionEnumerator._refCurrent">
             <summary>
             The current pointer.
             </summary>
@@ -1359,13 +1359,14 @@
             The current index.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.CandidateCollectionEnumerator.#ctor(System.Int16*)">
+        <member name="M:Sudoku.Concepts.Collections.Grid.CandidateCollectionEnumerator.#ctor(System.Int16@)">
             <summary>
-            Initializes an instance with the specified pointer to an array to iterate.
+            Initializes an instance with the specified reference to an array to iterate.
             </summary>
-            <param name="arr">The pointer to an array.</param>
+            <param name="arr">The reference to an array.</param>
             <remarks>
-            Note here we should point at the one-unit-length memory before the array start.
+            Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
+            even though C# allows we passing a constant as an <see langword="in"/> argument.
             </remarks>
         </member>
         <member name="P:Sudoku.Concepts.Collections.Grid.CandidateCollectionEnumerator.Current">
@@ -2329,7 +2330,7 @@
             The pointer to the start value.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator._currentPointer">
+        <member name="F:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator._refCurrent">
             <summary>
             The current pointer.
             </summary>
@@ -2339,7 +2340,7 @@
             The current index.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator.#ctor(System.Int16*)">
+        <member name="M:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator.#ctor(System.Int16@)">
             <summary>
             Initializes an instance with the specified pointer to an array to iterate.
             </summary>
@@ -5430,8 +5431,7 @@
             <param name="extraCells">The extra cells used.</param>
             <returns>The mask of type <see cref="T:System.Int64"/>.</returns>
             <exception cref="T:System.ArgumentException">
-            Throws when the number of elements in the argument <paramref name="extraCells"/>
-            is greater than 8.
+            Throws when the number of elements in the argument <paramref name="extraCells"/> is greater than 8.
             </exception>
         </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode">

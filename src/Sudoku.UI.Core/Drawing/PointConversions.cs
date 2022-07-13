@@ -85,7 +85,7 @@ internal static class PointConversions
 	/// the return value will be -1.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCell(in Point point, double paneSize, double outsideOffset)
+	public static int GetCell(scoped in Point point, double paneSize, double outsideOffset)
 		=> point with { X = point.X - outsideOffset, Y = point.Y - outsideOffset } is var (x, y)
 		&& GridSize(paneSize, outsideOffset) is var gs
 		&& x >= 0 && x <= gs && y >= 0 && y <= gs
@@ -105,7 +105,7 @@ internal static class PointConversions
 	/// the return value will be -1.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCandidate(in Point point, double paneSize, double outsideOffset)
+	public static int GetCandidate(scoped in Point point, double paneSize, double outsideOffset)
 		=> point is var (x, y)
 		&& CandidateSize(paneSize, outsideOffset) is var cs
 		&& (int)((y - outsideOffset) / cs) % 3 * 3 + (int)((x - outsideOffset) / cs) % 3 is var candidateOffset

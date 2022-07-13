@@ -8,7 +8,7 @@ public static class MinimalPuzzleChecker
 {
 	/// <inheritdoc cref="IsMinimal(in Grid, out int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsMinimal(in Grid grid) => IsMinimal(grid, out _);
+	public static bool IsMinimal(scoped in Grid grid) => IsMinimal(grid, out _);
 
 	/// <summary>
 	/// Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
@@ -24,7 +24,7 @@ public static class MinimalPuzzleChecker
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <exception cref="ArgumentException">Throws when the puzzle is invalid (i.e. not unique).</exception>
-	public static bool IsMinimal(in Grid grid, out int firstCandidateMakePuzzleNotMinimal)
+	public static bool IsMinimal(scoped in Grid grid, out int firstCandidateMakePuzzleNotMinimal)
 	{
 		switch (grid)
 		{

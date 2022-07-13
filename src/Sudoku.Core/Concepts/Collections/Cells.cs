@@ -189,7 +189,7 @@ public unsafe struct Cells :
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="cell"/> is <see langword="null"/> reference.
 	/// </exception>
-	private Cells(in int cell, int length)
+	private Cells(scoped in int cell, int length)
 	{
 		Argument.ThrowIfNullRef(cell);
 
@@ -645,7 +645,7 @@ public unsafe struct Cells :
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(in Cells other) => _low == other._low && _high == other._high;
+	public readonly bool Equals(scoped in Cells other) => _low == other._low && _high == other._high;
 
 	/// <summary>
 	/// Get the sub-view mask of this map.
@@ -661,7 +661,7 @@ public unsafe struct Cells :
 
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly int CompareTo(in Cells other)
+	public readonly int CompareTo(scoped in Cells other)
 		// 'other > this' is different with 'this < other'.
 		=> this > other ? 1 : other > this ? -1 : 0;
 
@@ -690,7 +690,7 @@ public unsafe struct Cells :
 
 		static string tableToString(in Cells @this)
 		{
-			var sb = new StringHandler((3 * 7 + 2) * 13);
+			scoped var sb = new StringHandler((3 * 7 + 2) * 13);
 			for (int i = 0; i < 3; i++)
 			{
 				for (int bandLn = 0; bandLn < 3; bandLn++)
@@ -726,7 +726,7 @@ public unsafe struct Cells :
 
 		static string binaryToString(in Cells @this, bool withSeparator)
 		{
-			var sb = new StringHandler(81);
+			scoped var sb = new StringHandler(81);
 			int i;
 			long value = @this._low;
 			for (i = 0; i < 27; i++, value >>= 1)
@@ -798,7 +798,7 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(int offset)
 	{
-		ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
+		scoped ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
 		bool older = Contains(offset);
 		v |= 1L << offset % Shifting;
 		if (!older)
@@ -835,7 +835,7 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Remove(int offset)
 	{
-		ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
+		scoped ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
 		bool older = Contains(offset);
 		v &= ~(1L << offset % Shifting);
 		if (older)
@@ -884,7 +884,7 @@ public unsafe struct Cells :
 	/// <remarks>
 	/// A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
 	/// </remarks>
-	public static Cells operator !(in Cells offsets)
+	public static Cells operator !(scoped in Cells offsets)
 	{
 		long lowerBits = 0, higherBits = 0;
 		int i = 0;
@@ -919,7 +919,7 @@ public unsafe struct Cells :
 	/// <param name="offsets">The instance to negate.</param>
 	/// <returns>The negative result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator ~(in Cells offsets)
+	public static Cells operator ~(scoped in Cells offsets)
 		=> new(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
 
 	/// <summary>
@@ -929,7 +929,7 @@ public unsafe struct Cells :
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(in Cells left, in Cells right) => (left - right).Count != 0;
+	public static bool operator >(scoped in Cells left, scoped in Cells right) => (left - right).Count != 0;
 
 	/// <summary>
 	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
@@ -938,7 +938,7 @@ public unsafe struct Cells :
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(in Cells left, in Cells right) => (left - right).Count == 0;
+	public static bool operator <(scoped in Cells left, scoped in Cells right) => (left - right).Count == 0;
 
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
@@ -948,7 +948,7 @@ public unsafe struct Cells :
 	/// <param name="offset">The offset to be added.</param>
 	/// <returns>The result collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator +(in Cells collection, int offset)
+	public static Cells operator +(scoped in Cells collection, int offset)
 	{
 		var result = collection;
 		if (result.Contains(offset))
@@ -969,7 +969,7 @@ public unsafe struct Cells :
 	/// <param name="offset">The offset to be added.</param>
 	/// <returns>The result collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator checked +(in Cells collection, int offset)
+	public static Cells operator checked +(scoped in Cells collection, int offset)
 	{
 		Argument.ThrowIfInvalid(offset is >= 0 and < 81, "The offset is invalid.");
 
@@ -984,7 +984,7 @@ public unsafe struct Cells :
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator -(in Cells collection, int offset)
+	public static Cells operator -(scoped in Cells collection, int offset)
 	{
 		var result = collection;
 		if (!result.Contains(offset))
@@ -1005,7 +1005,7 @@ public unsafe struct Cells :
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator checked -(in Cells collection, int offset)
+	public static Cells operator checked -(scoped in Cells collection, int offset)
 	{
 		Argument.ThrowIfInvalid(offset is >= 0 and < 81, "The offset is invalid.");
 
@@ -1020,7 +1020,7 @@ public unsafe struct Cells :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator -(in Cells left, in Cells right) => left & ~right;
+	public static Cells operator -(scoped in Cells left, scoped in Cells right) => left & ~right;
 
 	/// <summary>
 	/// Gets the subsets of the current collection via the specified size
@@ -1052,7 +1052,7 @@ public unsafe struct Cells :
 	/// </list>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells[] operator &(in Cells cell, int subsetSize)
+	public static Cells[] operator &(scoped in Cells cell, int subsetSize)
 	{
 		if (subsetSize == 0 || subsetSize > cell.Count)
 		{
@@ -1101,7 +1101,8 @@ public unsafe struct Cells :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator &(in Cells left, in Cells right) => new(left._high & right._high, left._low & right._low);
+	public static Cells operator &(scoped in Cells left, scoped in Cells right)
+		=> new(left._high & right._high, left._low & right._low);
 
 	/// <summary>
 	/// Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
@@ -1111,7 +1112,8 @@ public unsafe struct Cells :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator |(in Cells left, in Cells right) => new(left._high | right._high, left._low | right._low);
+	public static Cells operator |(scoped in Cells left, scoped in Cells right)
+		=> new(left._high | right._high, left._low | right._low);
 
 	/// <summary>
 	/// Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
@@ -1120,7 +1122,8 @@ public unsafe struct Cells :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator ^(in Cells left, in Cells right) => new(left._high ^ right._high, left._low ^ right._low);
+	public static Cells operator ^(scoped in Cells left, scoped in Cells right)
+		=> new(left._high ^ right._high, left._low ^ right._low);
 
 	/// <summary>
 	/// <para>Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.</para>
@@ -1130,7 +1133,8 @@ public unsafe struct Cells :
 	/// <param name="template">The template map that the base map to check and cover.</param>
 	/// <returns>The result map.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator %(in Cells @base, in Cells template) => !(@base & template) & template;
+	public static Cells operator %(scoped in Cells @base, scoped in Cells template)
+		=> !(@base & template) & template;
 
 	/// <summary>
 	/// Expands via the specified digit.
@@ -1138,7 +1142,7 @@ public unsafe struct Cells :
 	/// <param name="base">The base map.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result instance.</returns>
-	public static Candidates operator *(in Cells @base, int digit)
+	public static Candidates operator *(scoped in Cells @base, int digit)
 	{
 		var result = Candidates.Empty;
 		foreach (int cell in @base.Offsets)
@@ -1155,7 +1159,7 @@ public unsafe struct Cells :
 	/// <param name="base">The base map.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result instance.</returns>
-	public static Candidates operator checked *(in Cells @base, int digit)
+	public static Candidates operator checked *(scoped in Cells @base, int digit)
 	{
 		Argument.ThrowIfFalse(digit is >= 0 and < 9, "The argument is invalid.");
 
@@ -1168,7 +1172,7 @@ public unsafe struct Cells :
 	/// <param name="map">The map.</param>
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The mask.</returns>
-	public static short operator /(in Cells map, int houseIndex)
+	public static short operator /(scoped in Cells map, int houseIndex)
 	{
 		short p = 0, i = 0;
 		foreach (int cell in HouseCells[houseIndex])
@@ -1191,7 +1195,7 @@ public unsafe struct Cells :
 	/// <param name="map">The map.</param>
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The mask.</returns>
-	public static short operator checked /(in Cells map, int houseIndex)
+	public static short operator checked /(scoped in Cells map, int houseIndex)
 	{
 		Argument.ThrowIfFalse(houseIndex is >= 0 and < 27);
 
@@ -1200,11 +1204,11 @@ public unsafe struct Cells :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(in Cells left, in Cells right) => left.Equals(right);
+	public static bool operator ==(scoped in Cells left, scoped in Cells right) => left.Equals(right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(in Cells left, in Cells right) => !(left == right);
+	public static bool operator !=(scoped in Cells left, scoped in Cells right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1267,28 +1271,28 @@ public unsafe struct Cells :
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Cells(in Span<int> offsets) => new(offsets);
+	public static implicit operator Cells(scoped in scoped Span<int> offsets) => new(offsets);
 
 	/// <summary>
 	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="Cells"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Cells(in ReadOnlySpan<int> offsets) => new(offsets);
+	public static implicit operator Cells(scoped in scoped ReadOnlySpan<int> offsets) => new(offsets);
 
 	/// <summary>
 	/// Explicit cast from <see cref="Cells"/> to <see cref="int"/>[].
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator int[](in Cells offsets) => offsets.ToArray();
+	public static explicit operator int[](scoped in Cells offsets) => offsets.ToArray();
 
 	/// <summary>
 	/// Explicit cast from <see cref="Cells"/> to <see cref="Span{T}"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Span<int>(in Cells offsets) => offsets.Offsets;
+	public static explicit operator Span<int>(scoped in Cells offsets) => offsets.Offsets;
 
 	/// <summary>
 	/// Explicit cast from <see cref="Cells"/> to <see cref="ReadOnlySpan{T}"/>.

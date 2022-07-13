@@ -28,7 +28,7 @@
 /// </param>
 public sealed record class NormalFishStep(
 	ConclusionList Conclusions, ViewList Views, int Digit,
-	int BaseSetsMask, int CoverSetsMask, in Cells Fins, bool? IsSashimi) :
+	int BaseSetsMask, int CoverSetsMask, scoped in Cells Fins, bool? IsSashimi) :
 	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask),
 	IStepWithPhasedDifficulty
 {
@@ -58,7 +58,7 @@ public sealed record class NormalFishStep(
 		{
 			fixed (char* pName = InternalName)
 			{
-				var buffer = (stackalloc char[InternalName.Length]);
+				scoped var buffer = (stackalloc char[InternalName.Length]);
 
 				int i = 0;
 				for (char* p = pName; *p != '\0'; p++)

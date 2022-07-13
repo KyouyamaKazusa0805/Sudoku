@@ -13,7 +13,7 @@
 public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// A valid SdC needs at least 4 cells like:
 		//
@@ -26,7 +26,7 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 
 		bool* cannibalModeCases = stackalloc[] { false, true };
 
-		using var list = new ValueList<Cells>(4);
+		using scoped var list = new ValueList<Cells>(4);
 		for (int caseIndex = 0; caseIndex < 2; caseIndex++)
 		{
 			bool cannibalMode = cannibalModeCases[caseIndex];

@@ -51,7 +51,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 		}
 
 
-		static void gatherHeptagons(int block, int i, int[] quad, ref int count)
+		static void gatherHeptagons(int block, int i, int[] quad, scoped ref int count)
 		{
 			if (quad is not [var q1, var q2, var q3, var q4])
 			{
@@ -129,7 +129,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 			}
 		}
 
-		static void gatherOctagons(int block, int i, int[] quad, ref int count)
+		static void gatherOctagons(int block, int i, int[] quad, scoped ref int count)
 		{
 			if (quad is not [var t1, var t2, var t3, _])
 			{
@@ -212,7 +212,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		if (EmptyCells.Count < 7)
 		{
@@ -261,8 +261,8 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 
 
 	private static Step? CheckType1(
-		ICollection<Step> accumulator, in Grid grid, UniquePolygonPattern pattern,
-		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, in Cells map)
+		ICollection<Step> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
@@ -331,8 +331,8 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 	}
 
 	private static Step? CheckType2(
-		ICollection<Step> accumulator, in Grid grid, UniquePolygonPattern pattern,
-		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, in Cells map)
+		ICollection<Step> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
@@ -396,8 +396,8 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 	}
 
 	private static Step? CheckType3(
-		ICollection<Step> accumulator, in Grid grid, UniquePolygonPattern pattern,
-		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, in Cells map)
+		ICollection<Step> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		foreach (int houseIndex in map.Houses)
@@ -509,8 +509,8 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 	}
 
 	private static Step? CheckType4(
-		ICollection<Step> accumulator, in Grid grid, UniquePolygonPattern pattern,
-		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, in Cells map)
+		ICollection<Step> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
 	{
 		// The type 4 may be complex and terrible to process.
 		// All houses that the pattern lies in should be checked.

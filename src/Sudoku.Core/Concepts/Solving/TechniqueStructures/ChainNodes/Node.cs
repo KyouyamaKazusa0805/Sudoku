@@ -31,7 +31,7 @@ public abstract class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	/// <param name="digit">The digit used.</param>
 	/// <param name="cells">The cells used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected Node(NodeType nodeType, byte digit, in Cells cells)
+	protected Node(NodeType nodeType, byte digit, scoped in Cells cells)
 	{
 		var vector = cells.ToVector();
 		(_higher, _lower, _other) = (vector.GetElement(0), vector.GetElement(1), (int)nodeType << 4 | digit);
@@ -48,7 +48,7 @@ public abstract class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	/// because they are reserved one.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected Node(NodeType nodeType, byte digit, in Cells cells, long otherMask) :
+	protected Node(NodeType nodeType, byte digit, scoped in Cells cells, long otherMask) :
 		this(nodeType, digit, cells) => _other |= otherMask;
 
 	/// <summary>

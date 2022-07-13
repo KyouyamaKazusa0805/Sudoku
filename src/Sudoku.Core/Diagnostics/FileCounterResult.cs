@@ -15,7 +15,7 @@
 /// <seealso cref="FileCounter"/>
 public sealed record class FileCounterResult(
 	int ResultLines, int FilesCount, long CharactersCount,
-	long Bytes, in TimeSpan Elapsed, IList<string> FileList)
+	long Bytes, scoped in TimeSpan Elapsed, IList<string> FileList)
 {
 	/// <inheritdoc/>
 	public override string ToString()

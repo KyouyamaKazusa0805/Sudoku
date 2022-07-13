@@ -13,7 +13,7 @@
 /// <param name="BlockCells">The block cells map.</param>
 public sealed record class SueDeCoq3DimensionStep(
 	ConclusionList Conclusions, ViewList Views, short RowDigitsMask, short ColumnDigitsMask,
-	short BlockDigitsMask, in Cells RowCells, in Cells ColumnCells, in Cells BlockCells) :
+	short BlockDigitsMask, scoped in Cells RowCells, scoped in Cells ColumnCells, scoped in Cells BlockCells) :
 	RankTheoryStep(Conclusions, Views),
 	IStepWithRank
 {

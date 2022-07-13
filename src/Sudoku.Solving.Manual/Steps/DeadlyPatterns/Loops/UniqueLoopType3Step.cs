@@ -14,7 +14,7 @@
 /// <param name="SubsetCells">Indicates the subset cells.</param>
 public sealed record class UniqueLoopType3Step(
 	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2,
-	in Cells Loop, short SubsetDigitsMask, in Cells SubsetCells) :
+	scoped in Cells Loop, short SubsetDigitsMask, scoped in Cells SubsetCells) :
 	UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop),
 	IStepWithPhasedDifficulty
 {

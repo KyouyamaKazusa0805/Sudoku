@@ -31,7 +31,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 	/// Throws when the puzzle contains multiple solutions or even no solution.
 	/// </exception>
 	public static sealed bool FindTrueCandidates(
-		in Grid grid, [NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
+		scoped in Grid grid, [NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
 		int maximumCellsToCheck = 20)
 	{
 		Argument.ThrowIfInvalid(grid.IsValid, "The puzzle must be valid (containing a unique solution).");
@@ -55,13 +55,13 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 		}
 
 		// Store all bi-value cells and construct the relations.
-		var span = (stackalloc int[3]);
+		scoped var span = (stackalloc int[3]);
 		var stack = new Cells[multivalueCellsCount + 1, 9];
 		foreach (int cell in BivalueCells)
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				ref var map = ref stack[0, digit];
+				scoped ref var map = ref stack[0, digit];
 				map.Add(cell);
 
 				fixed (int* p = span)
@@ -105,7 +105,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 		// Now check the pattern.
 		// If the pattern is a valid BUG + n, the processing here will give you one plan of all possible
 		// combinations; otherwise, none will be found.
-		var playground = (stackalloc int[3]);
+		scoped var playground = (stackalloc int[3]);
 		int currentIndex = 1;
 		int[] chosen = new int[multivalueCellsCount + 1];
 		var resultMap = new Cells[9];
@@ -162,7 +162,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 					{
 						// Take the cell that doesn't contain in the map above.
 						// Here, the cell is the "true candidate cell".
-						ref var map = ref resultMap[digit];
+						scoped ref var map = ref resultMap[digit];
 						map = CandidatesMap[digit] - stack[currentIndex, digit];
 						foreach (int cell in map)
 						{

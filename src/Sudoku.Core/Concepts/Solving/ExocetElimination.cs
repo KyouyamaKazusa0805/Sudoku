@@ -6,7 +6,7 @@
 /// </summary>
 /// <param name="Eliminations">Indicates the eliminations.</param>
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
-public readonly record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason) :
+public readonly record struct ExocetElimination(scoped in Candidates Eliminations, ExocetEliminatedReason Reason) :
 	IEquatable<ExocetElimination>,
 	IEqualityOperators<ExocetElimination, ExocetElimination>
 {
@@ -22,7 +22,7 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in ExocetElimination other) => Eliminations == other.Eliminations && Reason == other.Reason;
+	public bool Equals(scoped in ExocetElimination other) => Eliminations == other.Eliminations && Reason == other.Reason;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -87,7 +87,7 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	/// <exception cref="ArgumentException">
 	/// Throws when two instances contains different eliminated reason.
 	/// </exception>
-	public static unsafe ExocetElimination operator |(in ExocetElimination left, in ExocetElimination right)
+	public static unsafe ExocetElimination operator |(scoped in ExocetElimination left, scoped in ExocetElimination right)
 	{
 		_ = left is { Eliminations: var le, Reason: var lr };
 		_ = right is { Eliminations: var re, Reason: var rr };

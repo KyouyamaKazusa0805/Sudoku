@@ -15,7 +15,7 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		var rccs = new List<(AlmostLockedSet Left, AlmostLockedSet Right, short Mask)>();
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);

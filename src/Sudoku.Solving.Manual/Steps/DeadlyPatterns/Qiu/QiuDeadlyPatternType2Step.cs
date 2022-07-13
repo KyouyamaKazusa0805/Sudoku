@@ -8,7 +8,7 @@
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 public sealed record class QiuDeadlyPatternType2Step(
-	ConclusionList Conclusions, ViewList Views, in QiuDeadlyPattern Pattern, int ExtraDigit) :
+	ConclusionList Conclusions, ViewList Views, scoped in QiuDeadlyPattern Pattern, int ExtraDigit) :
 	QiuDeadlyPatternStep(Conclusions, Views, Pattern),
 	IStepWithPhasedDifficulty
 {

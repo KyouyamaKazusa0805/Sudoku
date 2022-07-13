@@ -67,7 +67,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		short* linkForEachHouse = stackalloc short[27];
 		var linkForEachDigit = stackalloc Cells[9];

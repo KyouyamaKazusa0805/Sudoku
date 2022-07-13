@@ -24,7 +24,7 @@ namespace System.Text;
 /// <remarks>
 /// You can use this type like this:
 /// <code><![CDATA[
-/// var sb = new StringHandler(initialCapacity: 100);
+/// scoped var sb = new StringHandler(initialCapacity: 100);
 /// 
 /// sb.Append("Hello");
 /// sb.Append(',');
@@ -235,7 +235,7 @@ public unsafe ref partial struct StringHandler
 	/// Copies the current collection into the specified collection.
 	/// </summary>
 	/// <param name="handler">The collection.</param>
-	public readonly void CopyTo(ref StringHandler handler)
+	public readonly void CopyTo(scoped ref scoped StringHandler handler)
 	{
 		fixed (char* old = _chars, @new = handler._chars)
 		{
@@ -250,7 +250,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(in StringHandler other) => Equals(this, other);
+	public readonly bool Equals(scoped in scoped StringHandler other) => Equals(this, other);
 
 	/// <include
 	///	    file="../../global-doc-comments.xml"
@@ -337,7 +337,7 @@ public unsafe ref partial struct StringHandler
 			}
 			case 1:
 			{
-				var chars = _chars;
+				scoped var chars = _chars;
 				int pos = Length;
 				if ((uint)pos < (uint)chars.Length)
 				{
@@ -353,7 +353,7 @@ public unsafe ref partial struct StringHandler
 			}
 			case 2:
 			{
-				var chars = _chars;
+				scoped var chars = _chars;
 				int pos = Length;
 				if ((uint)pos < chars.Length - 1)
 				{
@@ -421,7 +421,7 @@ public unsafe ref partial struct StringHandler
 			Grow(count);
 		}
 
-		var dst = _chars.Slice(Length, count);
+		scoped var dst = _chars.Slice(Length, count);
 		for (int i = 0, length = dst.Length; i < length; i++)
 		{
 			dst[i] = c;
@@ -468,16 +468,16 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc cref="AppendFormatted(ReadOnlySpan{char})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(ReadOnlySpan<char> value) => AppendFormatted(value);
+	public void Append(scoped ReadOnlySpan<char> value) => AppendFormatted(value);
 
 	/// <inheritdoc cref="AppendFormatted(ReadOnlySpan{char}, int, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(ReadOnlySpan<char> value, int alignment, string? format = null)
+	public void Append(scoped ReadOnlySpan<char> value, int alignment, string? format = null)
 		=> AppendFormatted(value, alignment, format);
 
 	/// <inheritdoc cref="AppendFormatted(in StringHandler)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append([Isha] in StringHandler handler) => AppendFormatted(handler);
+	public void Append([Isha] scoped in scoped StringHandler handler) => AppendFormatted(handler);
 
 	/// <summary>
 	/// Writes the specified interpolated string with the specified format provider into the handler.
@@ -487,7 +487,7 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append(
 		IFormatProvider? provider,
-		[Isha(nameof(provider))] ref DefaultInterpolatedStringHandler handler
+		[Isha(nameof(provider))] scoped ref scoped DefaultInterpolatedStringHandler handler
 	) => AppendFormatted(string.Create(provider, ref handler));
 
 	/// <summary>
@@ -499,8 +499,8 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append(
 		IFormatProvider? provider,
-		Span<char> initialBuffer,
-		[Isha(nameof(provider), nameof(initialBuffer))] ref DefaultInterpolatedStringHandler handler
+		scoped Span<char> initialBuffer,
+		[Isha(nameof(provider), nameof(initialBuffer))] scoped ref scoped DefaultInterpolatedStringHandler handler
 	) => AppendFormatted(string.Create(provider, initialBuffer, ref handler));
 
 	/// <inheritdoc cref="AppendFormatted{T}(T)"/>
@@ -726,7 +726,7 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	/// <param name="value">The value to write.</param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendLargeObjectFormatted<T>(in T value)
+	public void AppendLargeObjectFormatted<T>(scoped in T value)
 	{
 		switch (value)
 		{
@@ -771,7 +771,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="value">The value to write.</param>
 	/// <param name="format">The format string.</param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendLargeObjectFormatted<T>(in T value, string? format)
+	public void AppendLargeObjectFormatted<T>(scoped in T value, string? format)
 	{
 		switch (value)
 		{
@@ -819,7 +819,7 @@ public unsafe ref partial struct StringHandler
 	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
 	/// </param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendLargeObjectFormatted<T>(in T value, int alignment)
+	public void AppendLargeObjectFormatted<T>(scoped in T value, int alignment)
 	{
 		int startingPos = Length;
 		AppendFormatted(value);
@@ -913,7 +913,7 @@ public unsafe ref partial struct StringHandler
 	/// Writes the specified character span to the handler.
 	/// </summary>
 	/// <param name="value">The span to write.</param>
-	public void AppendFormatted(ReadOnlySpan<char> value)
+	public void AppendFormatted(scoped ReadOnlySpan<char> value)
 	{
 		// Fast path for when the value fits in the current buffer
 		if (value.TryCopyTo(_chars[Length..]))
@@ -935,7 +935,7 @@ public unsafe ref partial struct StringHandler
 	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
 	/// </param>
 	/// <param name="format">The format string.</param>
-	public void AppendFormatted(ReadOnlySpan<char> value, int alignment = 0, string? format = null)
+	public void AppendFormatted(scoped ReadOnlySpan<char> value, int alignment = 0, string? format = null)
 	{
 		(bool leftAlign, alignment) = alignment < 0 ? (true, -alignment) : (false, alignment);
 
@@ -970,7 +970,7 @@ public unsafe ref partial struct StringHandler
 	/// Writes the specified interpolated string into the handler.
 	/// </summary>
 	/// <param name="handler">The handler that creates the interpolated string as this argument.</param>
-	public void AppendFormatted([InterpolatedStringHandlerArgument] in StringHandler handler)
+	public void AppendFormatted([InterpolatedStringHandlerArgument] scoped in scoped StringHandler handler)
 	{
 		string result = handler.ToStringAndClear();
 		if (result.TryCopyTo(_chars[Length..]))
@@ -1198,7 +1198,7 @@ public unsafe ref partial struct StringHandler
 	/// <code><![CDATA[
 	/// const string separator = ", "; // Defines a separator.
 	/// 
-	/// var sb = new StringHandler(); // Creates a string concatenator.
+	/// scoped var sb = new StringHandler(); // Creates a string concatenator.
 	/// foreach (int element in list)
 	/// {
 	///     sb.Append(element); // Append the element.
@@ -1355,7 +1355,7 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	/// <param name="value">The span to write.</param>
 	[MethodImpl(MethodImplOptions.NoInlining)]
-	private void GrowThenCopySpan(ReadOnlySpan<char> value)
+	private void GrowThenCopySpan(scoped ReadOnlySpan<char> value)
 	{
 		Grow(value.Length);
 		value.CopyTo(_chars[Length..]);
@@ -1434,7 +1434,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool Equals(in StringHandler left, in StringHandler right)
+	public static bool Equals(scoped in scoped StringHandler left, scoped in scoped StringHandler right)
 	{
 		if (left.Length != right.Length)
 		{
@@ -1485,9 +1485,11 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(in StringHandler left, in StringHandler right) => left.Equals(right);
+	public static bool operator ==(scoped in scoped StringHandler left, scoped in scoped StringHandler right)
+		=> left.Equals(right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(in StringHandler left, in StringHandler right) => !(left == right);
+	public static bool operator !=(scoped in scoped StringHandler left, scoped in scoped StringHandler right)
+		=> !(left == right);
 }

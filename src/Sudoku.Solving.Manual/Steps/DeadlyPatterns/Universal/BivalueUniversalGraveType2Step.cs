@@ -8,7 +8,7 @@
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
 public sealed record class BivalueUniversalGraveType2Step(
-	ConclusionList Conclusions, ViewList Views, int Digit, in Cells Cells) :
+	ConclusionList Conclusions, ViewList Views, int Digit, scoped in Cells Cells) :
 	BivalueUniversalGraveStep(Conclusions, Views),
 	IStepWithPhasedDifficulty
 {

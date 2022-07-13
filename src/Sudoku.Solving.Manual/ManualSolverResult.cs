@@ -4,7 +4,7 @@
 /// Provides the solver result after <see cref="ManualSolver"/> solves a puzzle.
 /// </summary>
 /// <param name="OriginalPuzzle">Indicates the original sudoku puzzle to solve.</param>
-public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuzzle)
+public sealed unsafe partial record class ManualSolverResult(scoped in Grid OriginalPuzzle)
 {
 	/// <summary>
 	/// Indicates whether the solver has solved the puzzle.

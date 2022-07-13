@@ -6,18 +6,17 @@ partial struct Grid
 	/// Defines the default enumerator that iterates the <see cref="Grid"/>
 	/// through the masks in the current <see cref="Grid"/> instance.
 	/// </summary>
-	public unsafe ref partial struct MaskCollectionEnumerator
+	public ref partial struct MaskCollectionEnumerator
 	{
 		/// <summary>
 		/// The pointer to the start value.
 		/// </summary>
-		private readonly short* _start;
-
+		private readonly ref short _start;
 
 		/// <summary>
 		/// The current pointer.
 		/// </summary>
-		private short* _currentPointer;
+		private ref short _refCurrent;
 
 		/// <summary>
 		/// The current index.
@@ -33,7 +32,11 @@ partial struct Grid
 		/// Note here we should point at the one-unit-length memory before the array start.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal MaskCollectionEnumerator(short* arr) => _currentPointer = _start = arr - 1;
+		internal MaskCollectionEnumerator(in short arr)
+		{
+			_refCurrent = ref Unsafe.SubtractByteOffset(ref Unsafe.AsRef(arr), 1);
+			_start = ref _refCurrent;
+		}
 
 
 		/// <summary>
@@ -42,7 +45,7 @@ partial struct Grid
 		public readonly ref short Current
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => ref *_currentPointer;
+			get => ref _refCurrent;
 		}
 
 
@@ -74,7 +77,7 @@ partial struct Grid
 			}
 			else
 			{
-				_currentPointer++;
+				_refCurrent = ref Unsafe.AddByteOffset(ref _refCurrent, 1);
 				return true;
 			}
 		}
@@ -86,7 +89,7 @@ partial struct Grid
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Reset()
 		{
-			_currentPointer = _start;
+			_refCurrent = ref _start;
 			_currentIndex = -1;
 		}
 

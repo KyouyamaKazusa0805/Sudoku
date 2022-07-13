@@ -35,7 +35,7 @@ public interface ICandidateNotation<TBaseType, TOptions>
 	/// </summary>
 	/// <param name="candidates">The candidate list.</param>
 	/// <returns>The <see cref="string"/> representation describe the candidate list.</returns>
-	public static abstract string ToCandidatesString(in Candidates candidates);
+	public static abstract string ToCandidatesString(scoped in Candidates candidates);
 
 	/// <summary>
 	/// Gets the <see cref="string"/> representation of a list of candidates.
@@ -43,7 +43,7 @@ public interface ICandidateNotation<TBaseType, TOptions>
 	/// <param name="candidates">The candidates list.</param>
 	/// <param name="options">The extra options to control the output style.</param>
 	/// <returns>The <see cref="string"/> representation describe the candidate list.</returns>
-	public static abstract string ToCandidatesString(in Candidates candidates, in TOptions options);
+	public static abstract string ToCandidatesString(scoped in Candidates candidates, scoped in TOptions options);
 
 	/// <summary>
 	/// Try to parse the specified <see cref="string"/> value, and convert it into the <see cref="Candidates"/>

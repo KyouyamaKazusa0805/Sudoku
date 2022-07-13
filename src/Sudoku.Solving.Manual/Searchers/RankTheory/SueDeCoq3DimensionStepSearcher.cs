@@ -11,9 +11,9 @@
 public sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3DimensionStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		using ValueList<Cells> rbList = new(3), cbList = new(3);
+		using scoped ValueList<Cells> rbList = new(3), cbList = new(3);
 		foreach (int pivot in EmptyCells)
 		{
 			int r = pivot.ToHouseIndex(HouseType.Row);

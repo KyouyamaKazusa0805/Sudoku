@@ -27,7 +27,7 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		for (int size = 2; size <= ((ISubsetStepSearcher)this).MaxSize; size++)
 		{

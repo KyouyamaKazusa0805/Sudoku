@@ -42,7 +42,7 @@ partial record class ManualSolverResult
 			}
 
 			// Print header.
-			var sb = new StringHandler();
+			scoped var sb = new StringHandler();
 			sb.Append(R["AnalysisResultPuzzle"]!);
 			sb.Append($"{puzzle:#}");
 			sb.AppendLine();

@@ -10,7 +10,7 @@ public sealed unsafe class TrueCandidatesSearcher
 	/// </summary>
 	/// <param name="grid">The current puzzle grid.</param>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle is invalid.</exception>
-	public TrueCandidatesSearcher(in Grid grid)
+	public TrueCandidatesSearcher(scoped in Grid grid)
 	{
 		Argument.ThrowIfInvalid(grid.IsValid, "The puzzle must contain unique solution before checking.");
 
@@ -66,7 +66,7 @@ public sealed unsafe class TrueCandidatesSearcher
 		{
 			foreach (int digit in Puzzle.GetCandidates(cell))
 			{
-				ref var map = ref stack[0, digit];
+				scoped ref var map = ref stack[0, digit];
 				map.Add(cell);
 
 				cell.CopyHouseInfo(peerHouses);
@@ -107,7 +107,7 @@ public sealed unsafe class TrueCandidatesSearcher
 		// Now check the pattern.
 		// If the pattern is a valid BUG + n, the processing here will give you one plan of all possible
 		// combinations; otherwise, none will be found.
-		var playground = (stackalloc int[3]);
+		scoped var playground = (stackalloc int[3]);
 		int currentIndex = 1;
 		int[] chosen = new int[multivalueCellsCount + 1];
 		var resultMap = new Cells[9];
@@ -164,7 +164,7 @@ public sealed unsafe class TrueCandidatesSearcher
 					{
 						// Take the cell that doesn't contain in the map above.
 						// Here, the cell is the "true candidate cell".
-						ref var map = ref resultMap[digit];
+						scoped ref var map = ref resultMap[digit];
 						map = Puzzle.CandidatesMap[digit] - stack[currentIndex, digit];
 						foreach (int cell in map)
 						{

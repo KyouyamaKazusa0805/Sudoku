@@ -109,7 +109,7 @@ internal static class FastProperties
 	/// <param name="grid">The grid.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[MemberNotNull(nameof(CandidatesMap), nameof(DigitsMap), nameof(ValuesMap))]
-	public static void InitializeMaps(in Grid grid)
+	public static void InitializeMaps(scoped in Grid grid)
 		=> (EmptyCells, BivalueCells, CandidatesMap, DigitsMap, ValuesMap) = (
 			grid.EmptyCells,
 			grid.BivalueCells,

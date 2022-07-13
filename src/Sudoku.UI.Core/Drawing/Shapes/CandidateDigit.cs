@@ -149,7 +149,7 @@ internal sealed class CandidateDigit : DrawingElement
 			_wrongDigitMask = value;
 			for (byte digit = 0; digit < 9; digit++)
 			{
-				ref var current = ref _digitBlocks[digit];
+				scoped ref var current = ref _digitBlocks[digit];
 				current.Visibility =
 					((_candidateMask | value) >> digit & 1) != 0 ? Visibility.Visible : Visibility.Collapsed;
 				current.Foreground = new SolidColorBrush(
@@ -220,7 +220,7 @@ internal sealed class CandidateDigit : DrawingElement
 		get
 		{
 			int c = PopCount((uint)_candidateMask);
-			var sb = new StringHandler();
+			scoped var sb = new StringHandler();
 
 			byte i = 0;
 			foreach (int digit in _candidateMask)

@@ -69,14 +69,14 @@ public interface IPointCalculator
 	/// </summary>
 	/// <param name="point">The mouse point.</param>
 	/// <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
-	public abstract int GetCell(in PointF point);
+	public abstract int GetCell(scoped in PointF point);
 
 	/// <summary>
 	/// Get the focus candidate offset via a mouse point.
 	/// </summary>
 	/// <param name="point">The mouse point.</param>
 	/// <returns>The candidate offset.</returns>
-	public abstract int GetCandidate(in PointF point);
+	public abstract int GetCandidate(scoped in PointF point);
 
 	/// <summary>
 	/// Get the center mouse point of all candidates.
@@ -84,7 +84,7 @@ public interface IPointCalculator
 	/// <param name="map">The map of candidates.</param>
 	/// <returns>The center mouse point.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
-	public abstract PointF GetMouseCenter(in Candidates map);
+	public abstract PointF GetMouseCenter(scoped in Candidates map);
 
 	/// <summary>
 	/// Gets the center mouse point of the specified locked target.
@@ -92,7 +92,7 @@ public interface IPointCalculator
 	/// <param name="lockedTarget">The locked target.</param>
 	/// <returns>The center mouse point.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
-	public abstract PointF GetMouseCenter(in LockedTarget lockedTarget);
+	public abstract PointF GetMouseCenter(scoped in LockedTarget lockedTarget);
 
 	/// <summary>
 	/// Get the rectangle from all candidates.
@@ -100,7 +100,7 @@ public interface IPointCalculator
 	/// <param name="map">The candidates.</param>
 	/// <returns>The rectangle.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
-	public abstract RectangleF GetMouseRectangle(in Candidates map);
+	public abstract RectangleF GetMouseRectangle(scoped in Candidates map);
 
 	/// <summary>
 	/// Get the rectangle (4 mouse points) via the specified cell.

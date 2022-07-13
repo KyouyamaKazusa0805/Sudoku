@@ -139,7 +139,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		foreach (var (allCellsMap, pairs, size) in PatternInfos)
 		{
@@ -269,7 +269,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType1(
-		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap, in Cells extraCells,
+		ICollection<Step> accumulator, scoped in Grid grid, scoped in Cells allCellsMap, scoped in Cells extraCells,
 		short normalDigits, int extraDigit, bool onlyFindOne)
 	{
 		var (conclusions, candidateOffsets) = (new List<Conclusion>(), new List<CandidateViewNode>());
@@ -329,7 +329,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType2(
-		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap, in Cells extraCells,
+		ICollection<Step> accumulator, scoped in Grid grid, scoped in Cells allCellsMap, scoped in Cells extraCells,
 		short normalDigits, int extraDigit, bool onlyFindOne)
 	{
 		if ((!extraCells & CandidatesMap[extraDigit]) is not { Count: not 0 } elimMap)
@@ -378,7 +378,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType3Naked(
-		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap,
+		ICollection<Step> accumulator, scoped in Grid grid, scoped in Cells allCellsMap,
 		short normalDigits, short extraDigits, in Cells extraCellsMap, bool onlyFindOne)
 	{
 		foreach (int houseIndex in extraCellsMap.CoveredHouses)
@@ -477,8 +477,8 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType14(
-		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap,
-		short normalDigits, in Cells extraCellsMap, bool onlyFindOne)
+		ICollection<Step> accumulator, scoped in Grid grid, scoped in Cells allCellsMap,
+		short normalDigits, scoped in Cells extraCellsMap, bool onlyFindOne)
 	{
 		switch (extraCellsMap)
 		{

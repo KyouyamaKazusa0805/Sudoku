@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
-public sealed record class DominoLoopStep(ConclusionList Conclusions, ViewList Views, in Cells Cells) :
+public sealed record class DominoLoopStep(ConclusionList Conclusions, ViewList Views, scoped in Cells Cells) :
 	RankTheoryStep(Conclusions, Views),
 	IStepWithRank
 {

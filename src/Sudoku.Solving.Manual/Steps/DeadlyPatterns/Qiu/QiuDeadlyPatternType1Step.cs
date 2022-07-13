@@ -8,7 +8,7 @@
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidate">Indicates the extra candidate used.</param>
 public sealed record class QiuDeadlyPatternType1Step(
-	ConclusionList Conclusions, ViewList Views, in QiuDeadlyPattern Pattern, int Candidate) :
+	ConclusionList Conclusions, ViewList Views, scoped in QiuDeadlyPattern Pattern, int Candidate) :
 	QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {
 	/// <inheritdoc/>

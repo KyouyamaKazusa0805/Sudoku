@@ -11,7 +11,7 @@
 /// <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
 public sealed record class BivalueUniversalGraveType3Step(
 	ConclusionList Conclusions, ViewList Views, IReadOnlyList<int> TrueCandidates,
-	short DigitsMask, in Cells Cells, bool IsNaked) :
+	short DigitsMask, scoped in Cells Cells, bool IsNaked) :
 	BivalueUniversalGraveStep(Conclusions, Views),
 	IStepWithPhasedDifficulty
 {

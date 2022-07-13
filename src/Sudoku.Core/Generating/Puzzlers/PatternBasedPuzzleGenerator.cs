@@ -84,7 +84,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PatternBasedPuzzleGenerator(in Cells pattern) => _pattern = pattern;
+	public PatternBasedPuzzleGenerator(scoped in Cells pattern) => _pattern = pattern;
 
 	/// <summary>
 	/// Initializes a <see cref="PatternBasedPuzzleGenerator"/> instance via the specified pattern
@@ -93,7 +93,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <param name="pattern">The pattern.</param>
 	/// <param name="baseCandidates">The base candidates.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PatternBasedPuzzleGenerator(in Cells pattern, int[] baseCandidates)
+	public PatternBasedPuzzleGenerator(scoped in Cells pattern, int[] baseCandidates)
 		=> (_pattern, _baseCandidates) = (pattern, baseCandidates);
 
 
@@ -204,7 +204,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// To shuffle the grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	private void Shuffle(ref Grid grid)
+	private void Shuffle(scoped ref Grid grid)
 	{
 		for (int times = 0; times < 6; times++)
 		{
@@ -217,7 +217,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// Adjust a pattern slightly.
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
-	private void AdjustPattern(ref Cells pattern)
+	private void AdjustPattern(scoped ref Cells pattern)
 	{
 		int index = _random.Next(pattern.Count);
 		int cellToBeDeleted = pattern[index];
@@ -267,7 +267,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <returns></returns>
 	private (int, int, int) RandomizeThreeDigits()
 	{
-		using var list = new ValueList<int>(3);
+		using scoped var list = new ValueList<int>(3);
 		while (true)
 		{
 			int candidate = _random.Next(729);

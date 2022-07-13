@@ -8,7 +8,7 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 public sealed record class ExtendedRectangleType1Step(
-	ConclusionList Conclusions, ViewList Views, in Cells Cells, short DigitsMask) :
+	ConclusionList Conclusions, ViewList Views, scoped in Cells Cells, short DigitsMask) :
 	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>

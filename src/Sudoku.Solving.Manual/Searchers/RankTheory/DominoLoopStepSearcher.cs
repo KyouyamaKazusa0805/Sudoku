@@ -28,7 +28,7 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 		HouseMaps = new Cells[27];
 		for (int i = 0; i < 27; i++)
 		{
-			ref var map = ref HouseMaps[i];
+			scoped ref var map = ref HouseMaps[i];
 			foreach (int cell in HouseCells[i])
 			{
 				map.Add(cell);
@@ -36,7 +36,7 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 		}
 
 		// Initialize for SK-loop table.
-		var s = (stackalloc int[4]);
+		scoped var s = (stackalloc int[4]);
 		for (int a = 9, n = 0; a < 18; a++)
 		{
 			for (int b = 9; b < 18; b++)
@@ -97,7 +97,7 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		short* pairs = stackalloc short[8], tempLink = stackalloc short[8];
 		int* linkHouse = stackalloc int[8];

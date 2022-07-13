@@ -40,7 +40,7 @@ internal static class INamedTypeSymbolExtensions
 	internal static string ToFileName(this INamedTypeSymbol @this)
 	{
 		string result = @this.ToDisplayString(TypeFormats.FullNameWithConstraints);
-		var buffer = (stackalloc char[result.Length]);
+		scoped var buffer = (stackalloc char[result.Length]);
 		buffer.Fill('\0');
 		int pointer = 0;
 		for (int i = 0, length = result.Length; i < length; i++)

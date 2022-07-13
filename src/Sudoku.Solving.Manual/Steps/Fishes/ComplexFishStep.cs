@@ -14,7 +14,7 @@
 /// <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
 public sealed record class ComplexFishStep(
 	ConclusionList Conclusions, ViewList Views, int Digit, int BaseSetsMask, int CoverSetsMask,
-	in Cells Exofins, in Cells Endofins, bool IsFranken, bool? IsSashimi) :
+	scoped in Cells Exofins, scoped in Cells Endofins, bool IsFranken, bool? IsSashimi) :
 	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask),
 	IDistinctableStep<ComplexFishStep>,
 	IStepWithPhasedDifficulty

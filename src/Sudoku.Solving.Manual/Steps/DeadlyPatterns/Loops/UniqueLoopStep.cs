@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Digit2">Indicates the second digit.</param>
 /// <param name="Loop">Indicates the loop that the instance used.</param>
 public abstract record class UniqueLoopStep(
-	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, in Cells Loop) :
+	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, scoped in Cells Loop) :
 	DeadlyPatternStep(Conclusions, Views),
 	IDistinctableStep<UniqueLoopStep>,
 	IStepWithPhasedDifficulty

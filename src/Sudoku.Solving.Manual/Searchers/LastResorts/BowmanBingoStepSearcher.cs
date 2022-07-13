@@ -26,7 +26,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		var tempAccumulator = new List<BowmanBingoStep>();
 		var tempGrid = grid;
@@ -165,7 +165,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result.</returns>
-	private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(in Grid grid, int cell, int digit)
+	private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(scoped in Grid grid, int cell, int digit)
 	{
 		var list = new List<int>();
 		foreach (int c in PeerMaps[cell] & CandidatesMap[digit])
@@ -200,7 +200,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 	/// <param name="grid">The grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The result.</returns>
-	private static bool IsValidGrid(in Grid grid, int cell)
+	private static bool IsValidGrid(scoped in Grid grid, int cell)
 	{
 		bool result = true;
 		foreach (int peerCell in Peers[cell])

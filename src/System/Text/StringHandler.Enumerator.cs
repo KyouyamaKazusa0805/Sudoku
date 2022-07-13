@@ -20,22 +20,31 @@ partial struct StringHandler
 		/// <summary>
 		/// Indicates the pointer that points to the current character.
 		/// </summary>
-		private char* _ptr;
+		private ref char _ptr;
 
 
 		/// <summary>
 		/// Initializes an instance with the specified character list specified as a <see cref="Span{T}"/>.
 		/// </summary>
 		/// <param name="chars">The characters.</param>
+		/// <exception cref="NullReferenceException">
+		/// Throws when the field <see cref="_chars"/> in argument <paramref name="chars"/>
+		/// is a <see langword="null"/> reference after having been invoked <see cref="Span{T}.GetPinnableReference()"/>.
+		/// </exception>
 		/// <seealso cref="Span{T}"/>
-		internal Enumerator(in StringHandler chars) : this()
+		/// <seealso cref="Span{T}.GetPinnableReference()"/>
+		internal Enumerator(scoped in StringHandler chars) : this()
 		{
 			_length = chars.Length;
 			_index = -1;
-			fixed (char* p = chars._chars)
+
+			ref char z = ref chars._chars.GetPinnableReference();
+			if (Unsafe.IsNullRef(ref z))
 			{
-				_ptr = p - 1;
+				throw new NullReferenceException("The character series is a null reference.");
 			}
+
+			_ptr = ref Unsafe.SubtractByteOffset(ref z, 1);
 		}
 
 
@@ -51,7 +60,7 @@ partial struct StringHandler
 				return false;
 			}
 
-			_ptr++;
+			_ptr = Unsafe.AddByteOffset(ref _ptr, 1);
 			return true;
 		}
 	}

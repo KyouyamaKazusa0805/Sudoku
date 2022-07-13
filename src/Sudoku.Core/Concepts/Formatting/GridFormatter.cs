@@ -289,7 +289,7 @@ public readonly ref partial struct GridFormatter
 	/// <param name="grid">The grid.</param>
 	/// <returns>The string.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(in Grid grid)
+	public string ToString(scoped in Grid grid)
 		=> Sukaku
 			? ToSukakuString(grid)
 			: Multiline
@@ -311,7 +311,7 @@ public readonly ref partial struct GridFormatter
 	/// <param name="format">The string format.</param>
 	/// <returns>The string.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(in Grid grid, string? format) => GridFormatterFactory.Create(format).ToString(grid);
+	public string ToString(scoped in Grid grid, string? format) => GridFormatterFactory.Create(format).ToString(grid);
 
 
 	/// <summary>
@@ -339,11 +339,11 @@ public readonly ref partial struct GridFormatter
 		};
 
 
-	private partial string ToExcelString(in Grid grid);
-	private partial string ToOpenSudokuString(in Grid grid);
-	private partial string ToHodokuLibraryFormatString(in Grid grid);
-	private partial string ToSukakuString(in Grid grid);
-	private partial string ToSingleLineStringCore(in Grid grid);
-	private partial string ToMultiLineStringCore(in Grid grid);
-	private partial string ToMultiLineSimpleGridCore(in Grid grid);
+	private partial string ToExcelString(scoped in Grid grid);
+	private partial string ToOpenSudokuString(scoped in Grid grid);
+	private partial string ToHodokuLibraryFormatString(scoped in Grid grid);
+	private partial string ToSukakuString(scoped in Grid grid);
+	private partial string ToSingleLineStringCore(scoped in Grid grid);
+	private partial string ToMultiLineStringCore(scoped in Grid grid);
+	private partial string ToMultiLineSimpleGridCore(scoped in Grid grid);
 }
