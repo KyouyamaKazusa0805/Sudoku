@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides a basic manual solving step.
 /// </summary>
-public interface IStep
+public interface IStep : IDisplayable
 {
 	/// <summary>
 	/// <para>
@@ -137,16 +137,6 @@ public interface IStep
 	/// </remarks>
 	/// <seealso cref="FlagsAttribute"/>
 	public abstract Rarity Rarity { get; }
-
-	/// <summary>
-	/// Indicates the conclusions that the step can be eliminated or assigned to.
-	/// </summary>
-	public abstract ImmutableArray<Conclusion> Conclusions { get; }
-
-	/// <summary>
-	/// Indicates the views of the step that may be displayed onto the screen using pictures.
-	/// </summary>
-	public abstract ImmutableArray<View> Views { get; }
 
 	/// <summary>
 	/// Indicates the string representation of the conclusions.

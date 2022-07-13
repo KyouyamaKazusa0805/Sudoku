@@ -911,7 +911,7 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		_cPane.SetStep(step);
+		_cPane.SetDisplayableUnit(step);
 		_cPane.Grid = grid;
 
 		bool isMultipleViews = viewLength > 1;

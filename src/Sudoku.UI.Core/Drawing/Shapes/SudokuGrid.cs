@@ -122,9 +122,9 @@ public sealed class SudokuGrid : DrawingElement
 #endif
 
 	/// <summary>
-	/// Indicates the current step to be displayed.
+	/// Indicates the current displayable unit to be displayed.
 	/// </summary>
-	private IStep? _step;
+	private IDisplayable? _displayableUnit;
 
 
 	/// <summary>
@@ -517,18 +517,18 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
-	/// Indicates the current views.
+	/// Indicates the current displayable unit.
 	/// </summary>
 	[DisallowNull]
-	public IStep? Step
+	public IDisplayable? DisplayableUnit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _step;
+		get => _displayableUnit;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			_step = value;
+			_displayableUnit = value;
 
 			ViewIndex = 0;
 			SetViewNodes(value.Views[ViewIndex]);
@@ -835,14 +835,14 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		if (Step is not { Views: var views and not [] })
+		if (DisplayableUnit is not { Views: var views and not [] })
 		{
 			return;
 		}
 
 		ViewIndex--;
 		SetViewNodes(views[ViewIndex]);
-		SetConclusion(views[ViewIndex], Step.Conclusions);
+		SetConclusion(views[ViewIndex], DisplayableUnit.Conclusions);
 	}
 
 	/// <summary>
@@ -851,7 +851,7 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetNextView()
 	{
-		if (Step is not { Views: { Length: var viewLength and not 0 } views })
+		if (DisplayableUnit is not { Views: { Length: var viewLength and not 0 } views })
 		{
 			return;
 		}
@@ -863,7 +863,7 @@ public sealed class SudokuGrid : DrawingElement
 
 		ViewIndex++;
 		SetViewNodes(views[ViewIndex]);
-		SetConclusion(views[ViewIndex], Step.Conclusions);
+		SetConclusion(views[ViewIndex], DisplayableUnit.Conclusions);
 	}
 
 	/// <summary>
@@ -878,14 +878,14 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		if (Step is null)
+		if (DisplayableUnit is null)
 		{
 			return;
 		}
 
 		ViewIndex = index;
-		SetViewNodes(Step.Views[ViewIndex]);
-		SetConclusion(Step.Views[ViewIndex], Step.Conclusions);
+		SetViewNodes(DisplayableUnit.Views[ViewIndex]);
+		SetConclusion(DisplayableUnit.Views[ViewIndex], DisplayableUnit.Conclusions);
 	}
 
 	/// <summary>

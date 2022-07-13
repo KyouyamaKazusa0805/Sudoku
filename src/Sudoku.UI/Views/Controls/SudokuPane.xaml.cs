@@ -249,11 +249,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public void HideCandidates() => GetSudokuGridViewModel().UserShowCandidates = false;
 
 	/// <summary>
-	/// Sets the step to be shown. The method will automatically displays for the first view in the view array.
+	/// Sets the displayable unit to be shown. The method will automatically displays for the first view
+	/// in the view array.
 	/// </summary>
-	/// <param name="step">The step to be displayed.</param>
+	/// <param name="displayable">The displayable unit to be displayed.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetStep(IStep step) => GetSudokuGridViewModel().Step = step;
+	public void SetDisplayableUnit(IDisplayable displayable) => GetSudokuGridViewModel().DisplayableUnit = displayable;
 
 	/// <inheritdoc cref="SudokuGrid.SetPreviousView"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -462,11 +463,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public int GetViewIndex() => GetSudokuGridViewModel().ViewIndex;
 
 	/// <summary>
-	/// Gets the current displaying step.
+	/// Gets the current displaying unit.
 	/// </summary>
-	/// <returns>The current displaying step.</returns>
+	/// <returns>The current displaying unit.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public IStep? GetStep() => GetSudokuGridViewModel().Step;
+	public IDisplayable? GetDisplayableUnit() => GetSudokuGridViewModel().DisplayableUnit;
 
 	/// <inheritdoc/>
 	protected override void OnPointerMoved(PointerRoutedEventArgs e)
