@@ -283,6 +283,72 @@ public sealed class Preference : IDrawingPreference
 	[Preference<ColorPickerSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Rendering, 14)]
 	public Color MaskEllipseColor { get; set; } = Colors.Black;
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>6</c>.
+	/// </remarks>
+	[Preference<SliderSettingItem>(
+		nameof(SliderSettingItem.StepFrequency), .5, nameof(SliderSettingItem.TickFrequency), 1D,
+		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 8D)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 15)]
+	public double HouseViewNodeStrokeThickness { get; set; } = 6;
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FF3FDA65</c>.
+	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 16)]
+	public Color NormalColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FF3FDA65</c>.
+	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 17)]
+	public Color AssignmentColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFF7684</c>.
+	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 18)]
+	public Color EliminationColor { get; set; } = Color.FromArgb(255, 255, 118, 132);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FF7FBBFF</c>.
+	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 19)]
+	public Color ExofinColor { get; set; } = Color.FromArgb(255, 127, 187, 255);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFD8B2FF</c>.
+	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 20)]
+	public Color EndofinColor { get; set; } = Color.FromArgb(255, 216, 178, 255);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFEB0000</c>.
+	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 21)]
+	public Color CannibalismColor { get; set; } = Color.FromArgb(255, 235, 0, 0);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#FFFF0000</c>.
+	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 22)]
+	public Color LinkColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
 	#endregion
 
 	#region Miscellaneous Options
@@ -306,7 +372,7 @@ public sealed class Preference : IDrawingPreference
 	public bool CheckBatteryStatusWhenOpen { get; set; } = true;
 	#endregion
 
-	#region Other Options (Only used for program handling, not under the user's control)
+	#region Background Options (Only used for program handling, not under the user's control)
 	/// <summary>
 	/// Indicates whether the program is the first time to be used.
 	/// </summary>
@@ -318,12 +384,6 @@ public sealed class Preference : IDrawingPreference
 	#endregion
 
 	#region Other Options (Some belong to none of all groups mentioned above)
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>3</c>.
-	/// </remarks>
-	public double HighlightCellStrokeThickness { get; set; } = 3;
-
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <inheritdoc/>
 	/// <remarks>
@@ -339,54 +399,6 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	public double __CandidateMarkStrokeThickness { get; set; } = 2;
 #endif
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>6</c>.
-	/// </remarks>
-	public double HouseViewNodeStrokeThickness { get; set; } = 6;
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FF3FDA65</c>.
-	/// </remarks>
-	public Color NormalColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FF3FDA65</c>.
-	/// </remarks>
-	public Color AssignmentColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFFF7684</c>.
-	/// </remarks>
-	public Color EliminationColor { get; set; } = Color.FromArgb(255, 255, 118, 132);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FF7FBBFF</c>.
-	/// </remarks>
-	public Color ExofinColor { get; set; } = Color.FromArgb(255, 127, 187, 255);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFD8B2FF</c>.
-	/// </remarks>
-	public Color EndofinColor { get; set; } = Color.FromArgb(255, 216, 178, 255);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFEB0000</c>.
-	/// </remarks>
-	public Color CannibalismColor { get; set; } = Color.FromArgb(255, 235, 0, 0);
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#FFFF0000</c>.
-	/// </remarks>
-	public Color LinkColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
 
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <inheritdoc/>

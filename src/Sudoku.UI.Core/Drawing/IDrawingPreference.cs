@@ -59,11 +59,6 @@ public interface IDrawingPreference
 	/// </summary>
 	public abstract double CandidateBorderWidth { get; set; }
 
-	/// <summary>
-	/// Indicates the thickness of the stroke lines surrounding with highlight cell.
-	/// </summary>
-	public abstract double HighlightCellStrokeThickness { get; set; }
-
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <summary>
 	/// Indicates the thickness of the stroke lines of the cross mark.

@@ -220,11 +220,6 @@
             Indicates the width of the candidate border lines. The value cannot be negative.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.HighlightCellStrokeThickness">
-            <summary>
-            Indicates the thickness of the stroke lines surrounding with highlight cell.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CrossMarkStrokeThickness">
             <summary>
             Indicates the thickness of the stroke lines of the cross mark.

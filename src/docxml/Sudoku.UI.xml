@@ -563,47 +563,6 @@
             The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.DescendingOrderedInfoBarBoard">
-            <inheritdoc/>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.CheckBatteryStatusWhenOpen">
-            <summary>
-            Indicates whether the program always check the battery status at first, when you open the program
-            non-programmatically.
-            </summary>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.IsFirstMeet">
-            <summary>
-            Indicates whether the program is the first time to be used.
-            </summary>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.HighlightCellStrokeThickness">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>3</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CrossMarkStrokeThickness">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>4</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CandidateMarkStrokeThickness">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>2</c>.
-            </remarks>
-        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.HouseViewNodeStrokeThickness">
             <inheritdoc/>
             <remarks>
@@ -650,6 +609,41 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>#FFFF0000</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.DescendingOrderedInfoBarBoard">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CheckBatteryStatusWhenOpen">
+            <summary>
+            Indicates whether the program always check the battery status at first, when you open the program
+            non-programmatically.
+            </summary>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.IsFirstMeet">
+            <summary>
+            Indicates whether the program is the first time to be used.
+            </summary>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CrossMarkStrokeThickness">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>4</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CandidateMarkStrokeThickness">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>2</c>.
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.__CellRectangleFillColor">
