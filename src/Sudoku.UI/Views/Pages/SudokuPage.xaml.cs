@@ -353,7 +353,8 @@ public sealed partial class SudokuPage : Page
 	/// </returns>
 	private async Task OpenFileAsync()
 	{
-		var fop = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary }
+		var fop = new FileOpenPicker()
+			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
 			.AddFileTypeFilter(CommonFileExtensions.Text)
 			.AddFileTypeFilter(CommonFileExtensions.Sudoku)
 			.WithAwareHandleOnWin32();
