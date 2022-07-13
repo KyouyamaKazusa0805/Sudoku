@@ -93,7 +93,8 @@
 
 							<PersonPicture
 								Grid.RowSpan="3" Width="48" Height="48" Margin="6" HorizontalAlignment="Center"
-								VerticalAlignment="Center" Initials="{x:Bind Initials}" />
+								VerticalAlignment="Center" ProfilePicture="{x:Bind IconPath}"
+								Initials="{x:Bind Initials}" />
 							<TextBlock
 								Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,6,0,0"
 								Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
@@ -111,20 +112,24 @@
 				</ListView.ItemTemplate>
 
 				<m:RepositoryInfo
-					Name="{StaticResource AboutPage_SpecialThanks_DotnetRuntime}" IconPath="images/dotnet.png"
-					Site="https://github.com/dotnet/runtime" Initials="1" OpenSourceLicense="MIT" />
+					Name="{StaticResource AboutPage_SpecialThanks_DotnetRuntime}" OpenSourceLicense="MIT"
+					IconPath="/Assets/images/repo-dotnet.png" Site="https://github.com/dotnet/runtime" />
 				<m:RepositoryInfo
 					Name="{StaticResource AboutPage_SpecialThanks_LearnWinUI3}" OpenSourceLicense="MIT"
-					Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0" Initials="2" IsForReference="True" />
+					Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0" Initials="LW" IsForReference="True" />
 				<m:RepositoryInfo
 					Name="{StaticResource AboutPage_SpecialThanks_WpfSamples}" OpenSourceLicense="MIT"
-					Site="https://github.com/microsoft/WPF-Samples" Initials="3" IsForReference="True" />
+					Site="https://github.com/microsoft/WPF-Samples" Initials="WS" IsForReference="True" />
 				<m:RepositoryInfo
 					Name="{StaticResource AboutPage_SpecialThanks_UWPSamples}" OpenSourceLicense="MIT"
-					Site="https://github.com/microsoft/Windows-universal-samples" Initials="4" IsForReference="True" />
+					Site="https://github.com/microsoft/Windows-universal-samples" Initials="US" IsForReference="True" />
 				<m:RepositoryInfo
 					Name="{StaticResource AboutPage_SpecialThanks_WinUI3Gallary}" OpenSourceLicense="MIT"
-					Site="https://github.com/microsoft/WinUI-Gallery" Initials="5" />
+					Site="https://github.com/microsoft/WinUI-Gallery" Initials="WG" />
+				<m:RepositoryInfo
+					Name="{StaticResource AboutPage_SpecialThanks_WinUIEx}" OpenSourceLicense="MIT"
+					Site="https://github.com/dotMorten/WinUIEx" IconPath="/Assets/images/repo-winuiex.png"
+					IsForReference="True" />
 			</ListView>
 		</StackPanel>
 	</ScrollViewer>

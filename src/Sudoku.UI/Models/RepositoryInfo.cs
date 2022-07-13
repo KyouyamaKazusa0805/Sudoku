@@ -9,7 +9,7 @@ public sealed class RepositoryInfo
 	/// Initializes a <see cref="RepositoryInfo"/> instance.
 	/// </summary>
 	[SetsRequiredMembers]
-	public RepositoryInfo() => (OpenSourceLicense, Initials, Name, IconPath, Site) = (null!, null!, null!, null!, null!);
+	public RepositoryInfo() => (OpenSourceLicense, Name, Site) = (null!, null!, null!);
 
 
 	/// <summary>
@@ -24,9 +24,11 @@ public sealed class RepositoryInfo
 
 	/// <summary>
 	/// Indicates the initials displaying on the <see cref="PersonPicture"/> control.
+	/// This property can be <see langword="null"/> if you have set the property <see cref="IconPath"/>.
 	/// </summary>
 	/// <seealso cref="PersonPicture"/>
-	public required string Initials { get; set; }
+	/// <seealso cref="IconPath"/>
+	public string? Initials { get; set; }
 
 	/// <summary>
 	/// Indicates the name of the image.
@@ -34,9 +36,11 @@ public sealed class RepositoryInfo
 	public required string Name { get; set; }
 
 	/// <summary>
-	/// Indicates the path of the image to show. The field can be <see langword="null"/>.
+	/// Indicates the path of the image to show.
+	/// This property can be <see langword="null"/> if you have set the property <see cref="Initials"/>.
 	/// </summary>
-	public required string IconPath { get; set; }
+	/// <seealso cref="Initials"/>
+	public ImageSource? IconPath { get; set; }
 
 	/// <summary>
 	/// Indicates the website which name is corresponding to.

@@ -1453,8 +1453,10 @@
         <member name="P:Sudoku.UI.Models.RepositoryInfo.Initials">
             <summary>
             Indicates the initials displaying on the <see cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/> control.
+            This property can be <see langword="null"/> if you have set the property <see cref="P:Sudoku.UI.Models.RepositoryInfo.IconPath"/>.
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/>
+            <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.IconPath"/>
         </member>
         <member name="P:Sudoku.UI.Models.RepositoryInfo.Name">
             <summary>
@@ -1463,8 +1465,10 @@
         </member>
         <member name="P:Sudoku.UI.Models.RepositoryInfo.IconPath">
             <summary>
-            Indicates the path of the image to show. The field can be <see langword="null"/>.
+            Indicates the path of the image to show.
+            This property can be <see langword="null"/> if you have set the property <see cref="P:Sudoku.UI.Models.RepositoryInfo.Initials"/>.
             </summary>
+            <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.Initials"/>
         </member>
         <member name="P:Sudoku.UI.Models.RepositoryInfo.Site">
             <summary>

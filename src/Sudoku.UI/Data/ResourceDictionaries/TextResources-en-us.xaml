@@ -224,6 +224,7 @@
 	<x:String x:Key="AboutPage_SpecialThanks_WpfSamples">WPF Samples</x:String>
 	<x:String x:Key="AboutPage_SpecialThanks_UWPSamples">Universal Windows Samples</x:String>
 	<x:String x:Key="AboutPage_SpecialThanks_WinUI3Gallary">WinUI 3 Gallery</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks_WinUIEx">WinUIEx</x:String>
 	<x:String x:Key="AboutPage_ForReference">For reference</x:String>
 	<x:String x:Key="AboutPage_License">License</x:String>
 	<x:String x:Key="AboutPage_Framework">Programming Framework</x:String>
