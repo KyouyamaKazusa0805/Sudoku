@@ -770,7 +770,7 @@ public sealed partial class SudokuPage : Page
 			}
 			case var grid:
 			{
-				if (IttouryuPuzzleChecker.IsIttouryu(grid, out var _))
+				if (IttouryuPuzzleChecker.IsIttouryu(grid, out _))
 				{
 					f(InfoBarSeverity.Success, R["CheckIttouryuSuccessful"]!);
 				}
