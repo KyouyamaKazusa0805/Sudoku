@@ -290,7 +290,7 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[Preference<SliderSettingItem>(
 		nameof(SliderSettingItem.StepFrequency), .5, nameof(SliderSettingItem.TickFrequency), 1D,
-		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 8D)]
+		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 6D)]
 	[PreferenceGroup(PreferenceGroupNames.Rendering, 15)]
 	public double HouseViewNodeStrokeThickness { get; set; } = 6;
 

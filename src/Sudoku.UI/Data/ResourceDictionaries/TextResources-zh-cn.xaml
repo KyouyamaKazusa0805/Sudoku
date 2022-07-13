@@ -150,6 +150,18 @@
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateDeltaColor">同上 :)</x:String>
 	<x:String x:Key="SettingsPage_ItemName_MaskEllipseColor">提示数隐藏图形填充色</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_MaskEllipseColor">有些时候如果不想呈现提示数信息，可能会需要此功能将提示数显示为图形进行遮挡。本设置项就是改变的这个图形的填充色。</x:String>
+	<x:String x:Key="SettingsPage_ItemName_HouseViewNodeStrokeThickness">突出显示区域的边框粗细</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_HouseViewNodeStrokeThickness">为了显示一个技巧，可能需要突出显示区域信息，例如“鱼”。该设置项设置的就是这个突出显示的区域的边框线条的粗细。</x:String>
+	<x:String x:Key="SettingsPage_ItemName_NormalColor">普通的候选数突出显示颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_NormalColor">用于突出显示候选数的颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AssignmentColor">出数的候选数突出显示颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_AssignmentColor">用于显示出数技巧下候选数的涂色</x:String>
+	<x:String x:Key="SettingsPage_ItemName_EliminationColor">删数的候选数突出显示颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_EliminationColor">用于显示删数技巧下候选数的涂色</x:String>
+	<x:String x:Key="SettingsPage_ItemName_ExofinColor">外鱼鳍颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemName_EndofinColor">内鱼鳍颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CannibalismColor">自噬候选数的颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemName_LinkColor">链、守护者、死环技巧的链条配色</x:String>
 	<x:String x:Key="SettingsPage_ItemName_ValueFont">确定值（明数）字体缩放比例</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_ValueFont">表示文字相对单元格的比例大小。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateFont">候选数字体的缩放比例</x:String>
@@ -245,6 +257,14 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_CellDeltaColor">颜色;错误填数|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateDeltaColor">颜色;错误填数;候选数|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_MaskEllipseColor">颜色;提示数;图形;隐藏;掩盖;填充色|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_HouseViewNodeStrokeThickness">区域;边框;粗细|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_NormalColor">普通;突出显示;颜色|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_AssignmentColor">出数;突出显示;颜色|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_EliminationColor">删数;突出显示;颜色|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_ExofinColor">外鱼鳍;外鳍;突出显示;颜色|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_EndofinColor">内鱼鳍;内鳍;突出显示;颜色|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_CannibalismColor">自噬;突出显示;颜色|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_LinkColor">链;守护者;死环;颜色|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_DescendingOrderedInfoBarBoard">显示;信息框;信息栏;逆序;降序|设置页 -> 其它</x:String>
 
 	<!--控件显示用文字-->
