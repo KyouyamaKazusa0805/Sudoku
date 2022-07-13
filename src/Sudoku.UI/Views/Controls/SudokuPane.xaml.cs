@@ -19,6 +19,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private readonly DrawingElementBag _drawingElements = new();
 
 	/// <summary>
+	/// Indicates the compositor.
+	/// </summary>
+	private readonly Compositor _compositor = CompositionTarget.GetCompositorForCurrentThread();
+
+	/// <summary>
 	/// Indicates whether the control is loading at the first time.
 	/// </summary>
 	private bool _isFirstLoading = true;
@@ -60,6 +65,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </list>
 	/// </remarks>
 	private int _candidate;
+
+	/// <summary>
+	/// Indicates the spring animation.
+	/// </summary>
+	private SpringVector3NaturalMotionAnimation _springAnimation = null!;
 
 
 	/// <summary>
@@ -897,6 +907,23 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
+	/// To create or update the spring animation, updating the field <see cref="_springAnimation"/>.
+	/// </summary>
+	/// <param name="finalValue">The final value.</param>
+	/// <seealso cref="_springAnimation"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void CreateOrUpdateSpringAnimation(float finalValue)
+	{
+		if ((_springAnimation, _compositor) is (null, not null))
+		{
+			_springAnimation = _compositor.CreateSpringVector3Animation();
+			_springAnimation.Target = nameof(Scale);
+		}
+
+		_springAnimation!.FinalValue = new(finalValue);
+	}
+
+	/// <summary>
 	/// Gets the <see cref="SudokuGrid"/> instance as the view model.
 	/// </summary>
 	/// <returns>The <see cref="SudokuGrid"/> instance.</returns>
@@ -1085,5 +1112,39 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			EliminateDigit(CurrentCell, ~possibleDigit);
 		}
+	}
+
+	/// <summary>
+	/// Triggers when the cursor is entered into the control.
+	/// </summary>
+	/// <param name="sender">The object having triggered this event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void MakeOrDeleteMenuItem_PointerEntered(object sender, PointerRoutedEventArgs e)
+	{
+		if (sender is not Control { IsEnabled: true } uiElement)
+		{
+			return;
+		}
+
+		CreateOrUpdateSpringAnimation(1.1F);
+		uiElement.StartAnimation(_springAnimation);
+	}
+
+	/// <summary>
+	/// Triggers when the cursor is entered into the control.
+	/// </summary>
+	/// <param name="sender">The object having triggered this event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void MakeOrDeleteMenuItem_PointerExited(object sender, PointerRoutedEventArgs e)
+	{
+		if (sender is not Control { IsEnabled: true } uiElement)
+		{
+			return;
+		}
+
+		CreateOrUpdateSpringAnimation(1);
+		uiElement.StartAnimation(_springAnimation);
 	}
 }

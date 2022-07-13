@@ -35,31 +35,40 @@
 						Style="{StaticResource _rFlyoutTextBlockStyle}" />
 					<Button
 						x:Name="_cButtonMake1" Grid.Row="1" Grid.Column="0" Content="1" Tag="+1"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonMake2" Grid.Row="1" Grid.Column="1" Content="2" Tag="+2"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonMake3" Grid.Row="1" Grid.Column="2" Content="3" Tag="+3"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonMake4" Grid.Row="2" Grid.Column="0" Content="4" Tag="+4"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonMake5" Grid.Row="2" Grid.Column="1" Content="5" Tag="+5"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonMake6" Grid.Row="2" Grid.Column="2" Content="6" Tag="+6"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonMake7" Grid.Row="3" Grid.Column="0" Content="7" Tag="+7"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonMake8" Grid.Row="3" Grid.Column="1" Content="8" Tag="+8"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonMake9" Grid.Row="3" Grid.Column="2" Content="9" Tag="+9"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 				</Grid>
 				<AppBarSeparator />
 				<Grid Margin="6,0,0,0">
@@ -80,31 +89,40 @@
 						Style="{StaticResource _rFlyoutTextBlockStyle}" />
 					<Button
 						x:Name="_cButtonDelete1" Grid.Row="1" Grid.Column="0" Content="1" Tag="-1"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonDelete2" Grid.Row="1" Grid.Column="1" Content="2" Tag="-2"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonDelete3" Grid.Row="1" Grid.Column="2" Content="3" Tag="-3"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonDelete4" Grid.Row="2" Grid.Column="0" Content="4" Tag="-4"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonDelete5" Grid.Row="2" Grid.Column="1" Content="5" Tag="-5"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonDelete6" Grid.Row="2" Grid.Column="2" Content="6" Tag="-6"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonDelete7" Grid.Row="3" Grid.Column="0" Content="7" Tag="-7"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonDelete8" Grid.Row="3" Grid.Column="1" Content="8" Tag="-8"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 					<Button
 						x:Name="_cButtonDelete9" Grid.Row="3" Grid.Column="2" Content="9" Tag="-9"
-						Click="MakeOrDeleteMenuItem_Click" />
+						Click="MakeOrDeleteMenuItem_Click" PointerEntered="MakeOrDeleteMenuItem_PointerEntered"
+						PointerExited="MakeOrDeleteMenuItem_PointerExited" />
 				</Grid>
 			</StackPanel>
 		</Flyout>

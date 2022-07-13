@@ -6,7 +6,6 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	PointerEntered="Element_PointerEntered" PointerExited="Element_PointerExited">
-
 	<Grid Margin="0,0,12,12">
 		<Grid.Resources>
 			<ResourceDictionary>
@@ -14,16 +13,16 @@
 					<ResourceDictionary x:Key="Light">
 						<SolidColorBrush
 							x:Key="HyperlinkButtonBorderBrush"
-							Color="{ThemeResource ControlStrokeColorDefault}"/>
+							Color="{ThemeResource ControlStrokeColorDefault}" />
 						<SolidColorBrush
 							x:Key="HyperlinkButtonBorderBrushPointerOver"
-							Color="{ThemeResource ControlStrokeColorSecondary}"/>
+							Color="{ThemeResource ControlStrokeColorSecondary}" />
 						<SolidColorBrush
 							x:Key="HyperlinkButtonBorderBrushPressed"
-							Color="{ThemeResource ControlStrokeColorDefault}"/>
+							Color="{ThemeResource ControlStrokeColorDefault}" />
 						<SolidColorBrush
 							x:Key="HyperlinkButtonBorderBrushDisabled"
-							Color="{ThemeResource ControlStrokeColorDefault}"/>
+							Color="{ThemeResource ControlStrokeColorDefault}" />
 					</ResourceDictionary>
 				</ResourceDictionary.ThemeDictionaries>
 			</ResourceDictionary>
@@ -35,18 +34,15 @@
 					<RowDefinition Height="102" />
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
-				<Image Source="{x:Bind Source,Mode=OneWay}" Stretch="UniformToFill" HorizontalAlignment="Center" />
 
+				<Image Source="{x:Bind Source,Mode=OneWay}" Stretch="UniformToFill" HorizontalAlignment="Center" />
 				<Grid
 					Height="48" Opacity="1" Grid.Row="1" HorizontalAlignment="Stretch"
 					Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
 					<TextBlock
-						Text="{x:Bind Title,Mode=OneWay}"
-						Margin="16,0"
-						Style="{StaticResource BodyStrongTextBlockStyle}"
+						Text="{x:Bind Title,Mode=OneWay}" Margin="16,0" Style="{StaticResource BodyStrongTextBlockStyle}"
 						Foreground="{ThemeResource TextFillColorPrimaryBrush}"
-						VerticalAlignment="Center"
-						TextWrapping="Wrap" />
+						VerticalAlignment="Center" TextWrapping="Wrap" />
 					<FontIcon
 						FontFamily="Segoe MDL2 Assets" Glyph="&#xE8A7;" HorizontalAlignment="Right"
 						VerticalAlignment="Center" Margin="12" FontSize="16" />

@@ -2135,6 +2135,11 @@
             displaying in the window.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._compositor">
+            <summary>
+            Indicates the compositor.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Views.Controls.SudokuPane._isFirstLoading">
             <summary>
             Indicates whether the control is loading at the first time.
@@ -2177,6 +2182,11 @@
             <item><see cref="M:Sudoku.UI.Views.Controls.SudokuPane.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)"/></item>
             </list>
             </remarks>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._springAnimation">
+            <summary>
+            Indicates the spring animation.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.#ctor">
             <summary>
@@ -2428,6 +2438,13 @@
             Adds the controls into the canvas.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.CreateOrUpdateSpringAnimation(System.Single)">
+            <summary>
+            To create or update the spring animation, updating the field <see cref="F:Sudoku.UI.Views.Controls.SudokuPane._springAnimation"/>.
+            </summary>
+            <param name="finalValue">The final value.</param>
+            <seealso cref="F:Sudoku.UI.Views.Controls.SudokuPane._springAnimation"/>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetSudokuGridViewModel">
             <summary>
             Gets the <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance as the view model.
@@ -2477,6 +2494,20 @@
             Triggers when the target <see cref="T:Microsoft.UI.Xaml.Controls.MenuFlyoutItem"/> is clicked.
             </summary>
             <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.MakeOrDeleteMenuItem_PointerEntered(System.Object,Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Triggers when the cursor is entered into the control.
+            </summary>
+            <param name="sender">The object having triggered this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.MakeOrDeleteMenuItem_PointerExited(System.Object,Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Triggers when the cursor is entered into the control.
+            </summary>
+            <param name="sender">The object having triggered this event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeComponent">

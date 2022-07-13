@@ -9,19 +9,22 @@ public sealed partial class GettingStartedTile : UserControl
 	/// Defines with the dependency property that binds with the property <see cref="Title"/>.
 	/// </summary>
 	/// <seealso cref="Title"/>
-	public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(string), typeof(GettingStartedTile), new(null));
+	public static readonly DependencyProperty TitleProperty =
+		DependencyProperty.Register(nameof(Title), typeof(string), typeof(GettingStartedTile), new(null));
 
 	/// <summary>
 	/// Defines with the dependency property that binds with the property <see cref="Source"/>.
 	/// </summary>
 	/// <seealso cref="Source"/>
-	public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(nameof(Source), typeof(string), typeof(GettingStartedTile), new(null));
+	public static readonly DependencyProperty SourceProperty =
+		DependencyProperty.Register(nameof(Source), typeof(string), typeof(GettingStartedTile), new(null));
 
 	/// <summary>
 	/// Defines with the dependency property that binds with the property <see cref="Link"/>.
 	/// </summary>
 	/// <seealso cref="Link"/>
-	public static readonly DependencyProperty LinkProperty = DependencyProperty.Register(nameof(Link), typeof(string), typeof(GettingStartedTile), new(null));
+	public static readonly DependencyProperty LinkProperty =
+		DependencyProperty.Register(nameof(Link), typeof(string), typeof(GettingStartedTile), new(null));
 
 	/// <summary>
 	/// Indicates the extracted read-only value that is used for the property <see cref="UIElement.CenterPoint"/>.
@@ -33,7 +36,7 @@ public sealed partial class GettingStartedTile : UserControl
 	/// <summary>
 	/// Indicates the compositor.
 	/// </summary>
-	private Compositor _compositor = CompositionTarget.GetCompositorForCurrentThread();
+	private readonly Compositor _compositor = CompositionTarget.GetCompositorForCurrentThread();
 
 	/// <summary>
 	/// Indicates the spring animation.
