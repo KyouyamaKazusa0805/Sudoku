@@ -241,7 +241,7 @@
 						<AppBarSeparator />
 						<AppBarButton Label="{StaticResource SudokuPage_FindMissingDigit}" Icon="Play">
 							<AppBarButton.Command>
-								<XamlUICommand ExecuteRequested="CommandFindMissingDigit_ExecuteRequested" />
+								<XamlUICommand ExecuteRequested="FindMissingDigit_ExecuteRequested" />
 							</AppBarButton.Command>
 						</AppBarButton>
 						<AppBarButton
@@ -249,6 +249,13 @@
 							Label="{StaticResource SudokuPage_FindTrueCandidates}">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="FindTrueCandidates_ExecuteRequestedAsync" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton
+							x:Name="_cCommandFindBackdoors" Icon="Play"
+							Label="{StaticResource SudokuPage_FindBackdoors}">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="FindBackdoors_ExecuteRequestedAsync" />
 							</AppBarButton.Command>
 						</AppBarButton>
 					</xc:TabbedCommandBarItem>

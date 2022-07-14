@@ -57,6 +57,7 @@
 	<x:String x:Key="SudokuPage_CheckIttouryu">Determine ittouryu</x:String>
 	<x:String x:Key="SudokuPage_FindMissingDigit">Find missing given</x:String>
 	<x:String x:Key="SudokuPage_FindTrueCandidates">Find true candidates</x:String>
+	<x:String x:Key="SudokuPage_FindBackdoors">Find backdoors</x:String>
 	<x:String x:Key="SudokuPage_Print">Print</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">Editing</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">Solving &amp; Analysis</x:String>
@@ -321,6 +322,9 @@
 	<x:String x:Key="FindTrueCandidateFailed_NotBugPattern">The puzzle is not a BUG pattern, which means the puzzle cannot use the technique "Bi-value Universal Grave".</x:String>
 	<x:String x:Key="FindTrueCandidateSuccessful1" xml:space="preserve">The puzzle is a Bi-value Universal Grave + </x:String>
 	<x:String x:Key="FindTrueCandidateSuccessful2" xml:space="preserve">, all true candidates are: </x:String>
+	<x:String x:Key="FindBackdoorsFailed_NotUniquePuzzle">The puzzle is not unique. The concept "Backdoor" is based on a unique puzzle.</x:String>
+	<x:String x:Key="FindBackdoorsResult_NoBackdoors">The puzzle does not contain any backdoors.</x:String>
+	<x:String x:Key="FindBackdoorsResult_AllBackdoors" xml:space="preserve">The puzzle contains the following backdoors: </x:String>
 	<x:String x:Key="ErrorOpenFile">Error on opening folder</x:String>
 	<x:String x:Key="ErrorOpenFile_Detail">The preference folder doesn't exist.</x:String>
 	<x:String x:Key="PrintSuccessful">Print successful.</x:String>

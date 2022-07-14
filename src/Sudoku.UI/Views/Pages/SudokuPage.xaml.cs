@@ -861,6 +861,42 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
+	/// Finds all backdoors in the current grid.
+	/// </summary>
+	private async Task FindBackdoorsAsync()
+	{
+		var grid = _cPane.Grid;
+		if (!grid.IsValid)
+		{
+			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["FindBackdoorsFailed_NotUniquePuzzle"]!);
+			return;
+		}
+
+		_cCommandFindBackdoors.IsEnabled = false;
+
+		var backdoors = await Task.Run(() => { lock (SyncRoot) { return BackdoorSearcher.GetBackdoors(grid); } });
+
+		_cCommandFindBackdoors.IsEnabled = true;
+
+		if (backdoors.Length == 0)
+		{
+			_cInfoBoard.AddMessage(InfoBarSeverity.Informational, R["FindBackdoorsResult_NoBackdoors"]!);
+			return;
+		}
+
+		string str = string.Join(
+			R["Token_Comma2"]!,
+			from backdoor in backdoors
+			let coordinateStr = RxCyNotation.ToCellString(backdoor.Cell)
+			let digitStr = (backdoor.Digit + 1).ToString()
+			let tokenStr = backdoor.ConclusionType.GetNotation()
+			select $"{coordinateStr} {tokenStr} {digitStr}"
+		);
+
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{R["FindBackdoorsResult_AllBackdoors"]!}{str}");
+	}
+
+	/// <summary>
 	/// To print the grid.
 	/// </summary>
 	/// <remarks>
@@ -1139,7 +1175,7 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the event trigger callback method that find missing digit.
 	/// </summary>
-	private void CommandFindMissingDigit_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
+	private void FindMissingDigit_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
 		=> FindMissingDigit();
 
 	/// <summary>
@@ -1147,6 +1183,12 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	private async void FindTrueCandidates_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
 		=> await FindTrueCandidatesAsync();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that find backdoors.
+	/// </summary>
+	private async void FindBackdoors_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> await FindBackdoorsAsync();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that prints the puzzle.

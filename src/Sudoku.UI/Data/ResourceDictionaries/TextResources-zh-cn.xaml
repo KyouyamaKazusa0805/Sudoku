@@ -56,6 +56,7 @@
 	<x:String x:Key="SudokuPage_CheckIttouryu">一刀流题确认</x:String>
 	<x:String x:Key="SudokuPage_FindMissingDigit">搜索缺失提示数</x:String>
 	<x:String x:Key="SudokuPage_FindTrueCandidates">搜索真数</x:String>
+	<x:String x:Key="SudokuPage_FindBackdoors">搜索后门</x:String>
 	<x:String x:Key="SudokuPage_Print">打印题目</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">编辑</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">解题与分析</x:String>
@@ -314,6 +315,9 @@
 	<x:String x:Key="FindTrueCandidateFailed_NotBugPattern">当前盘面不是一个合适的 BUG 盘面，因此不适用真数。</x:String>
 	<x:String x:Key="FindTrueCandidateSuccessful1" xml:space="preserve">该题为 BUG + </x:String>
 	<x:String x:Key="FindTrueCandidateSuccessful2">，真数为：</x:String>
+	<x:String x:Key="FindBackdoorsFailed_NotUniquePuzzle">该题目不是唯一解的题目，而概念“后门”必须要求题目唯一解。</x:String>
+	<x:String x:Key="FindBackdoorsResult_NoBackdoors">该题目不包含任何的后门。</x:String>
+	<x:String x:Key="FindBackdoorsResult_AllBackdoors">该题目包含如下的后门：</x:String>
 	<x:String x:Key="PrintSuccessful">打印成功！</x:String>
 	<x:String x:Key="PrintFailed">打印失败。</x:String>
 	<x:String x:Key="PrintFailedTitle">打印失败</x:String>
