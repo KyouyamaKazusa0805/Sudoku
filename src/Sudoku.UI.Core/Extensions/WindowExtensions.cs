@@ -15,7 +15,7 @@ internal static class WindowExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static AppWindow GetAppWindow<TWindow>(this TWindow @this) where TWindow : Window
 	{
-		var hWnd = WindowNative.GetWindowHandle(@this);
+		nint hWnd = WindowNative.GetWindowHandle(@this);
 		var wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
 		return AppWindow.GetFromWindowId(wndId);
 	}
