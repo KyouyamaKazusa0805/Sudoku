@@ -163,12 +163,22 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		get => GetSudokuGridViewModel().Grid;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => GetSudokuGridViewModel().Grid = value;
+		set
+		{
+			GetSudokuGridViewModel().Grid = value;
+
+			GridRefreshed?.Invoke(this, null);
+		}
 	}
 
 
 	/// <inheritdoc/>
 	public event PropertyChangedEventHandler? PropertyChanged;
+
+	/// <summary>
+	/// Indicates an event that is triggered when the grid is refreshed (changed, covered, etc.).
+	/// </summary>
+	public event EventHandler<object?>? GridRefreshed;
 
 	/// <summary>
 	/// Indicates an event that is triggered when a file is successfully received using drag and drop operation.

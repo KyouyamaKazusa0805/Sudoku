@@ -594,7 +594,7 @@ public sealed partial class SudokuPage : Page
 		// Generate the puzzle.
 		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
 		// TODO: May allow the user canceling the puzzle-generating operation.
-		var grid = await Task.Run(static () => Generator.Generate());
+		var grid = await Task.Run(static () => { lock (SyncRoot) { return Generator.Generate(); } });
 
 		// Enable the control.
 		button.IsEnabled = true;
@@ -912,8 +912,9 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		_cPane.SetDisplayableUnit(step);
+		// Bug fix: This property assignment will reset the displayable unit, so we should put the statement firstly.
 		_cPane.Grid = grid;
+		_cPane.SetDisplayableUnit(step);
 
 		bool isMultipleViews = viewLength > 1;
 		_cPipsPager.SelectedPageIndex = 0;
@@ -940,6 +941,17 @@ public sealed partial class SudokuPage : Page
 	private void Page_Unloaded(object sender, RoutedEventArgs e)
 	{
 		// TODO: Dispose the release if worth.
+	}
+
+	/// <summary>
+	/// Triggers when the pane is refreshed the sudoku grid.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void Pane_GridRefreshed(object sender, object? e)
+	{
+		_cPipsPager.SelectedPageIndex = -1;
+		_cPipsPager.Visibility = Visibility.Collapsed;
 	}
 
 	/// <summary>

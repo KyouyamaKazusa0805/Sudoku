@@ -268,7 +268,7 @@
 			<StackPanel x:Name="_cPaneParent" Orientation="Vertical" Grid.Row="1" Margin="25,25,0,0">
 				<c:SudokuPane
 					x:Name="_cPane" Size="560" OutsideOffset="10"
-					FailedReceivedDroppedFile="Pane_FailedReceivedDroppedFile"
+					GridRefreshed="Pane_GridRefreshed" FailedReceivedDroppedFile="Pane_FailedReceivedDroppedFile"
 					SuccessfullyReceivedDroppedFile="Pane_SuccessfullyReceivedDroppedFile" />
 				<PipsPager
 					x:Name="_cPipsPager" Margin="0,3,0,0" MaxVisiblePips="10" HorizontalAlignment="Center"

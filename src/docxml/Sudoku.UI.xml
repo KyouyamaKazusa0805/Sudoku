@@ -2226,6 +2226,11 @@
         <member name="E:Sudoku.UI.Views.Controls.SudokuPane.PropertyChanged">
             <inheritdoc/>
         </member>
+        <member name="E:Sudoku.UI.Views.Controls.SudokuPane.GridRefreshed">
+            <summary>
+            Indicates an event that is triggered when the grid is refreshed (changed, covered, etc.).
+            </summary>
+        </member>
         <member name="E:Sudoku.UI.Views.Controls.SudokuPane.SuccessfullyReceivedDroppedFile">
             <summary>
             Indicates an event that is triggered when a file is successfully received using drag and drop operation.
@@ -3019,6 +3024,13 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current page is unloaded.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Pane_GridRefreshed(System.Object,System.Object)">
+            <summary>
+            Triggers when the pane is refreshed the sudoku grid.
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
