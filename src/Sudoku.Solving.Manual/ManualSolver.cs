@@ -7,6 +7,9 @@
 public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSolverOptions
 {
 	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
 	public bool IsHodokuMode { get; set; } = true;
 
 	/// <inheritdoc/>
@@ -14,6 +17,10 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 
 	/// <inheritdoc/>
 	public bool OptimizedApplyingOrder { get; set; }
+
+	/// <inheritdoc/>
+	[DisallowNull]
+	public IStepSearcher[]? CustomSearcherCollection { get; set; }
 
 
 	/// <inheritdoc/>
@@ -81,24 +88,32 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>
 	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
 	private ManualSolverResult Solve_HodokuMode(
-		scoped in Grid puzzle, scoped in Grid solution, bool isSukaku, ManualSolverResult baseSolverResult,
+		scoped in Grid puzzle,
+		scoped in Grid solution,
+		bool isSukaku,
+		ManualSolverResult baseSolverResult,
 		CancellationToken cancellationToken = default)
 	{
-		var (playground, tempSteps, recordedSteps, stepGrids, stepSearchers) = (
-			puzzle,
-			new List<Step>(20),
-			new List<Step>(100),
-			new List<Grid>(100),
-			StepSearcherPool.Collection
-		);
+		var playground = puzzle;
+		var tempSteps = new List<Step>(20);
+		var recordedSteps = new List<Step>(100);
+		var stepGrids = new List<Grid>(100);
+		var stepSearchers = CustomSearcherCollection ?? StepSearcherPool.Collection;
 
 		// Bug fix: Sets the solution grid to the step searchers that will use the property value.
-		((BruteForceStepSearcher)StepSearcherPool.Collection[^1]).Solution = solution;
+		if (ReferenceEquals(stepSearchers, StepSearcherPool.Collection))
+		{
+			((BruteForceStepSearcher)StepSearcherPool.Collection[^1]).Solution = solution;
+		}
+		else if (stepSearchers.OfType<BruteForceStepSearcher>().FirstOrDefault() is { } stepSearcher)
+		{
+			stepSearcher.Solution = solution;
+		}
 
 		var stopwatch = new Stopwatch();
 		stopwatch.Start();
 
-	Restart:
+	TryAgain:
 		tempSteps.Clear();
 
 		InitializeMaps(playground);
@@ -148,7 +163,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 
 					// The puzzle has not been finished, we should turn to the first step finder
 					// to continue solving puzzle.
-					goto Restart;
+					goto TryAgain;
 				}
 
 				throw new WrongStepException(puzzle, wrongStep);
@@ -156,13 +171,10 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 			else
 			{
 				// If the searcher is only used in the fast mode, just skip it.
-				if (
-					Enumerable.FirstOrDefault<Step>(
-						OptimizedApplyingOrder
-							? from info in tempSteps orderby info.Difficulty select info
-							: tempSteps
-					) is not { } step
-				)
+				var step = OptimizedApplyingOrder
+					? (from info in tempSteps orderby info.Difficulty select info).FirstOrDefault()
+					: tempSteps[0];
+				if (step is null)
 				{
 					// If current step can't find any steps,
 					// we will turn to the next step finder to
@@ -183,7 +195,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 
 					// The puzzle has not been finished, we should turn to the first step finder
 					// to continue solving puzzle.
-					goto Restart;
+					goto TryAgain;
 				}
 
 				throw new WrongStepException(puzzle, step);
@@ -228,9 +240,14 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// Throws when the current operation is canceled.
 	/// </exception>
 	private bool RecordStep(
-		ICollection<Step> steps, Step step, ref Grid playground, Stopwatch stopwatch,
-		ICollection<Grid> stepGrids, ManualSolverResult baseSolverResult,
-		CancellationToken cancellationToken, [NotNullWhen(true)] out ManualSolverResult? result)
+		ICollection<Step> steps,
+		Step step,
+		scoped ref Grid playground,
+		Stopwatch stopwatch,
+		ICollection<Grid> stepGrids,
+		ManualSolverResult baseSolverResult,
+		CancellationToken cancellationToken,
+		[NotNullWhen(true)] out ManualSolverResult? result)
 	{
 		bool atLeastOneStepIsWorth = false;
 		foreach (var (t, c, d) in step.Conclusions)
