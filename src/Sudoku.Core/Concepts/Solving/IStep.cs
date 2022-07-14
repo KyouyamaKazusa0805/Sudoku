@@ -153,7 +153,7 @@ public interface IStep : IDisplayable
 	/// Put this instance into the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	public abstract void ApplyTo(ref Grid grid);
+	public abstract void ApplyTo(scoped ref Grid grid);
 
 	/// <summary>
 	/// Determine whether the current step information instance with the specified flags.

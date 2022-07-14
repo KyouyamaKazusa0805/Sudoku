@@ -106,7 +106,7 @@ public readonly partial struct Conclusion :
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ApplyTo(ref Grid grid)
+	public void ApplyTo(scoped ref Grid grid)
 	{
 		switch (ConclusionType)
 		{

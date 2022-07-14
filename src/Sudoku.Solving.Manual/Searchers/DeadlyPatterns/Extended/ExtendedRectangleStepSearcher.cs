@@ -379,7 +379,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType3Naked(
 		ICollection<Step> accumulator, scoped in Grid grid, scoped in Cells allCellsMap,
-		short normalDigits, short extraDigits, in Cells extraCellsMap, bool onlyFindOne)
+		short normalDigits, short extraDigits, scoped in Cells extraCellsMap, bool onlyFindOne)
 	{
 		foreach (int houseIndex in extraCellsMap.CoveredHouses)
 		{

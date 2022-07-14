@@ -166,7 +166,7 @@ public sealed class AlmostLockedSet :
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All possible found <see cref="AlmostLockedSet"/>.</returns>
-	public static AlmostLockedSet[] Gather(in Grid grid)
+	public static AlmostLockedSet[] Gather(scoped in Grid grid)
 	{
 		_ = grid is { EmptyCells: var emptyMap, BivalueCells: var bivalueMap };
 

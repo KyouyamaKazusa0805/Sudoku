@@ -130,7 +130,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType1(
-		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, in Cells loop,
+		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
 		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, bool onlyFindOne)
 	{
 		int extraCell = extraCellsMap[0];

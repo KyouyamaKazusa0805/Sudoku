@@ -111,7 +111,7 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 		return null;
 
 
-		static bool isValid(ref Cells cells)
+		static bool isValid(scoped ref Cells cells)
 		{
 			foreach (int house in cells.Houses)
 			{

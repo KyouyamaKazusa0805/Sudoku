@@ -51,7 +51,7 @@ public abstract record class Step(ImmutableArray<Conclusion> Conclusions, Immuta
 
 
 	/// <inheritdoc/>
-	public void ApplyTo(ref Grid grid)
+	public void ApplyTo(scoped ref Grid grid)
 	{
 		foreach (var conclusion in Conclusions)
 		{

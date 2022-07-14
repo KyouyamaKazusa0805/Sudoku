@@ -79,7 +79,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 	}
 
 	private Step? GetAll(
-		ICollection<BowmanBingoStep> result, ref Grid grid, bool onlyFindOne, int startCand, int length)
+		ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, int startCand, int length)
 	{
 		if (length == 0 || _searcher.GetAll(null!, grid, true) is not SingleStep singleInfo)
 		{
@@ -183,7 +183,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 	/// <param name="list">The list.</param>
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask.</param>
-	private static void UndoGrid(ref Grid grid, IReadOnlyList<int> list, int cell, short mask)
+	private static void UndoGrid(scoped ref Grid grid, IReadOnlyList<int> list, int cell, short mask)
 	{
 		foreach (int cand in list)
 		{

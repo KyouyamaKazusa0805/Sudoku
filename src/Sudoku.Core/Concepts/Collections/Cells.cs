@@ -574,7 +574,7 @@ public unsafe struct Cells :
 	/// The target <see cref="Span{T}"/> instance.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly void CopyTo(ref Span<int> span)
+	public readonly void CopyTo(scoped ref scoped Span<int> span)
 	{
 		fixed (int* arr = span)
 		{
@@ -688,7 +688,7 @@ public unsafe struct Cells :
 		};
 
 
-		static string tableToString(in Cells @this)
+		static string tableToString(scoped in Cells @this)
 		{
 			scoped var sb = new StringHandler((3 * 7 + 2) * 13);
 			for (int i = 0; i < 3; i++)
@@ -724,7 +724,7 @@ public unsafe struct Cells :
 			return sb.ToStringAndClear();
 		}
 
-		static string binaryToString(in Cells @this, bool withSeparator)
+		static string binaryToString(scoped in Cells @this, bool withSeparator)
 		{
 			scoped var sb = new StringHandler(81);
 			int i;
@@ -1299,5 +1299,5 @@ public unsafe struct Cells :
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator ReadOnlySpan<int>(in Cells offsets) => offsets.Offsets;
+	public static explicit operator ReadOnlySpan<int>(scoped in Cells offsets) => offsets.Offsets;
 }

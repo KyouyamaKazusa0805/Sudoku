@@ -947,7 +947,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		}
 
 
-		void gather(in Grid grid, in Cells otherCellsMap, bool isRow, int digit, int house1, int house2)
+		void gather(scoped in Grid grid, scoped in Cells otherCellsMap, bool isRow, int digit, int house1, int house2)
 		{
 			if (
 				!(
@@ -3728,7 +3728,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		}
 
 #if IMPLEMENTED
-		void checkType2(in Grid grid)
+		void checkType2(scoped in Grid grid)
 		{
 			// TODO: Check type 2.
 		}
