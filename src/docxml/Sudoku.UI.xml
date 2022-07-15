@@ -795,40 +795,66 @@
             Provides with a displayable unit that display backdoors.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion})">
             <summary>
             Provides with a displayable unit that display backdoors.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.UI.Data.Displayables.BackdoorDisplayable.Conclusions">
             <summary><inheritdoc/></summary>
         </member>
-        <member name="P:Sudoku.UI.Data.Displayables.BackdoorDisplayable.Views">
-            <summary><inheritdoc/></summary>
+        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.#ctor(Sudoku.Concepts.Solving.Conclusion[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.Displayables.BackdoorDisplayable"/> instance via the specified conclusions as possible backdoors.
+            </summary>
+            <param name="backdoors">The backdoors.</param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Displayables.BackdoorDisplayable.Sudoku#Presentation#IDisplayable#Views">
+            <inheritdoc/>
+            <remarks>
+            This property seems to be useless in this type.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.Equals(Sudoku.UI.Data.Displayables.BackdoorDisplayable)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.GetHashCode">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable">
             <summary>
             Provides with a displayable unit that display true candidates.
             </summary>
-            <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
             <summary>
             Provides with a displayable unit that display true candidates.
             </summary>
-            <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.Conclusions">
-            <summary><inheritdoc/></summary>
         </member>
         <member name="P:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.Views">
             <summary><inheritdoc/></summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.#ctor(Sudoku.Presentation.View[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable"/> instance via the specified views.
+            </summary>
+            <param name="views">The views.</param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.Sudoku#Presentation#IDisplayable#Conclusions">
+            <inheritdoc/>
+            <remarks>
+            This property seems to be useless in this type.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.Equals(Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.GetHashCode">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Data.Metadata.BackgroundPreferenceAttribute">
             <summary>

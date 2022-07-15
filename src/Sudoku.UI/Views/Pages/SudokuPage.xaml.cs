@@ -853,11 +853,8 @@ public sealed partial class SudokuPage : Page
 		int[] candidates = trueCandidates.ToArray();
 		_cPane.SetDisplayableUnit(
 			new TrueCandidatesDisplayable(
-				ImmutableArray<Conclusion>.Empty,
-				ImmutableArray.Create(
-					View.Empty
-						| from candidate in candidates select new CandidateViewNode(DisplayColorKind.Normal, candidate)
-				)
+				View.Empty
+					| from candidate in candidates select new CandidateViewNode(DisplayColorKind.Normal, candidate)
 			)
 		);
 
@@ -898,7 +895,7 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		_cPane.SetDisplayableUnit(new BackdoorDisplayable(ImmutableArray.Create(backdoors), ImmutableArray<View>.Empty));
+		_cPane.SetDisplayableUnit(new BackdoorDisplayable(backdoors));
 
 		string str = string.Join(
 			R["Token_Comma2"]!,
