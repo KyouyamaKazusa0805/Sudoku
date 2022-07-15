@@ -25,4 +25,6 @@
 * **题目性质术语**
   * **[最小题](minimal-puzzle)、精简题（Minimal Puzzle）**：题目之中的任何一个提示数都不可缺少。
   * **[一刀流题](ittouryu-puzzle)（Ittouryu Puzzle）**：题目可按照数字 1 到 9 次序完成，不跳数字。
+  * **[后门](backdoor)（Backdoor）**：可以大幅度降低题目难度的出数或删数结论。
+  * **魔术格（Magic Cell）**：魔术格就是出数结论的后门，所用到的单元格。
 
