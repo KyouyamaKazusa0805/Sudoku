@@ -1269,8 +1269,11 @@ public sealed class SudokuGrid : DrawingElement
 
 		foreach (var conclusion in conclusions)
 		{
-			var (type, cell, digit) = conclusion;
-			var (_, candidate) = conclusion;
+#pragma warning disable CS8794
+			// This pattern-based deconstruction is always return true,
+			// but this assignment statement is on purpose, in order to merge two deconstruction statements.
+			_ = conclusion is var (type, cell, digit) and var (_, candidate);
+#pragma warning restore CS8794
 
 			scoped ref var current = ref _candidateViewNodeShapes[cell];
 
