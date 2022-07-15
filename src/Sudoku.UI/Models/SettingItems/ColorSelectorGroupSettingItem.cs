@@ -5,25 +5,15 @@
 /// </summary>
 public sealed class ColorSelectorGroupSettingItem : SettingItem, IDynamicCreatableItem<ColorSelectorGroupSettingItem>
 {
-	/// <summary>
-	/// Indicates the option contents.
-	/// </summary>
-	public required string[] OptionContents { get; set; }
-
-
 	/// <inheritdoc/>
 	public static ColorSelectorGroupSettingItem CreateInstance(string propertyName)
 	{
 		var result = NamedValueLookup.GetAttributeArguments<ColorSelectorGroupSettingItem>(propertyName) switch
 		{
-			{ Data: [(_, int count)] } => new ColorSelectorGroupSettingItem
+			{ Data: [] } => new ColorSelectorGroupSettingItem
 			{
 				Name = NamedValueLookup.GetItemNameString(propertyName),
-				PreferenceValueName = propertyName,
-				OptionContents = (
-					from value in Enumerable.Range(0, count)
-					select R[$"SettingsPage_ItemName_{propertyName.TrimStart('_')}Option{value}Content"]!
-				).ToArray()
+				PreferenceValueName = propertyName
 			}
 		};
 
@@ -51,25 +41,9 @@ public sealed class ColorSelectorGroupSettingItem : SettingItem, IDynamicCreatab
 	/// </summary>
 	/// <returns>The info list that is used for binding.</returns>
 	public IList<ColorSelectorGroupInfo> ConstructInfoList()
-	{
-		var list = new List<ColorSelectorGroupInfo>();
-
-		var colors = GetPreference();
-		for (int i = 0; i < colors.Length; i++)
-		{
-			list.Add(
-				new()
-				{
-					SettingItem = this,
-					Index = i,
-					Content = R[$"SettingsPage_ItemName_{PreferenceValueName.TrimStart('_')}Option{i}Content"]!,
-					Color = colors[i]
-				}
-			);
-		}
-
-		return list;
-	}
+		=> GetPreference()
+			.Select((color, i) => new ColorSelectorGroupInfo { SettingItem = this, Index = i, Color = color })
+			.ToList();
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>
 	public void SetPreference(object value) => SetPreference((Color[])value);

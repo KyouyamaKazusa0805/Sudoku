@@ -154,18 +154,19 @@
 														Margin="{StaticResource _rSettingDescriptionMargin}"
 														Style="{ThemeResource CaptionTextBlockStyle}" />
 													<GridView
-														SelectionMode="None" ItemsSource="{x:Bind ConstructInfoList()}">
+														SelectionMode="None" ItemsSource="{x:Bind ConstructInfoList()}"
+														Margin="{StaticResource _rSettingDescriptionMargin}">
+														<GridView.ItemsPanel>
+															<ItemsPanelTemplate>
+																<ItemsWrapGrid MaximumRowsOrColumns="5" />
+															</ItemsPanelTemplate>
+														</GridView.ItemsPanel>
 														<GridView.ItemTemplate>
 															<DataTemplate x:DataType="m:ColorSelectorGroupInfo">
-																<StackPanel Margin="0,20,40,20">
-																	<TextBlock
-																		Text="{x:Bind Content}"
-																		Margin="{StaticResource _rSettingDescriptionMargin}" />
-																	<c:ColorSelector
-																		SelectedColor="{x:Bind Color,
-																			Mode=TwoWay,
-																			UpdateSourceTrigger=PropertyChanged}" />
-																</StackPanel>
+																<c:ColorSelector
+																	SelectedColor="{x:Bind Color,
+																		Mode=TwoWay,
+																		UpdateSourceTrigger=PropertyChanged}" />
 															</DataTemplate>
 														</GridView.ItemTemplate>
 													</GridView>

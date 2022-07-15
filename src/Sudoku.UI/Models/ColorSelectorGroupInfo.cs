@@ -17,11 +17,6 @@ public sealed class ColorSelectorGroupInfo : INotifyPropertyChanged
 	public required int Index { get; init; }
 
 	/// <summary>
-	/// Indicates the text describes the color.
-	/// </summary>
-	public required string Content { get; set; }
-
-	/// <summary>
 	/// Indicates the color.
 	/// </summary>
 	public required Color Color

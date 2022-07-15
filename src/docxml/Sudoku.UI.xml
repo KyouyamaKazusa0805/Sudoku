@@ -1231,11 +1231,6 @@
             Indicates the current index.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.ColorSelectorGroupInfo.Content">
-            <summary>
-            Indicates the text describes the color.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Models.ColorSelectorGroupInfo.Color">
             <summary>
             Indicates the color.
@@ -1633,11 +1628,6 @@
         <member name="T:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem">
             <summary>
             Defines a color array option that is binding with a group of color selectors on displaying.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem.OptionContents">
-            <summary>
-            Indicates the option contents.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem.CreateInstance(System.String)">

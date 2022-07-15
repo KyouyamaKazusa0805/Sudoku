@@ -359,7 +359,7 @@ public sealed class Preference : IDrawingPreference
 	/// <item>#FFFFFF96</item>
 	/// </list>
 	/// </remarks>
-	[Preference<ColorSelectorGroupSettingItem>(nameof(ColorSelectorGroupSettingItem.OptionContents), 3)]
+	[Preference<ColorSelectorGroupSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Rendering, 23)]
 	public Color[] AuxiliaryColors { get; set; } =
 	{
@@ -381,7 +381,7 @@ public sealed class Preference : IDrawingPreference
 	/// The former 4 items of this array are referenced from sudoku project
 	/// <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
 	/// </remarks>
-	[Preference<ColorSelectorGroupSettingItem>(nameof(ColorSelectorGroupSettingItem.OptionContents), 5)]
+	[Preference<ColorSelectorGroupSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Rendering, 24)]
 	public Color[] AlmostLockedSetColors { get; set; } =
 	{
@@ -410,7 +410,7 @@ public sealed class Preference : IDrawingPreference
 	/// All values of this array are referenced from sudoku project
 	/// <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
 	/// </remarks>
-	[Preference<ColorSelectorGroupSettingItem>(nameof(ColorSelectorGroupSettingItem.OptionContents), 10)]
+	[Preference<ColorSelectorGroupSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Rendering, 25)]
 	public Color[] PaletteColors { get; set; } =
 	{
