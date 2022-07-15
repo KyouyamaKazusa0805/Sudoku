@@ -876,10 +876,13 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	private async Task FindBackdoorsAsync()
 	{
+		const string link = "https://sunnieshine.github.io/Sudoku/terms/backdoor";
+		string linkDescription = R["Backdoor"]!;
+
 		var grid = _cPane.Grid;
 		if (!grid.IsValid)
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["FindBackdoorsFailed_NotUniquePuzzle"]!);
+			f(InfoBarSeverity.Warning, R["FindBackdoorsFailed_NotUniquePuzzle"]!);
 			return;
 		}
 
@@ -891,7 +894,7 @@ public sealed partial class SudokuPage : Page
 
 		if (backdoors.Length == 0)
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Informational, R["FindBackdoorsResult_NoBackdoors"]!);
+			f(InfoBarSeverity.Informational, R["FindBackdoorsResult_NoBackdoors"]!);
 			return;
 		}
 
@@ -900,10 +903,17 @@ public sealed partial class SudokuPage : Page
 		string str = string.Join(
 			R["Token_Comma2"]!,
 			from backdoor in backdoors
-			select $"{RxCyNotation.ToCellString(backdoor.Cell)} {backdoor.ConclusionType.GetNotation()} {backdoor.Digit + 1}"
+			let coordinateStr = RxCyNotation.ToCellString(backdoor.Cell)
+			let notation = backdoor.ConclusionType.GetNotation()
+			let digitStr = (backdoor.Digit + 1).ToString()
+			select $"{coordinateStr} {notation} {digitStr}"
 		);
 
-		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{R["FindBackdoorsResult_AllBackdoors"]!}{str}");
+		f(InfoBarSeverity.Success, $"{R["FindBackdoorsResult_AllBackdoors"]!}{str}");
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		void f(InfoBarSeverity s, string i) => _cInfoBoard.AddMessage(s, i, link, linkDescription);
 	}
 
 	/// <summary>
