@@ -166,6 +166,11 @@
 	<x:String x:Key="SettingsPage_ItemName_EndofinColor">Color of endo-fins</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CannibalismColor">Color of cannibalisms</x:String>
 	<x:String x:Key="SettingsPage_ItemName_LinkColor">Chain, guardian or oddagon links</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AuxiliaryColors">Auxiliary colors</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_AuxiliaryColors">The color palette that displays for a technique structure used as the auxiliary ones</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColors">Almost locked sets colors</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColors">Palette colors</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_PaletteColors">A list of colors that can be used for customized painting</x:String>
 	<x:String x:Key="SettingsPage_ItemName_ValueFont">Font scale on value digits</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_ValueFont">Indicates the sizing scale of the value digits</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateFont">Font scale on candidates</x:String>
@@ -178,6 +183,24 @@
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption0Content">Don't display focused cell</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption1Content">Display focused cell</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption2Content">Display peer cells</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AuxiliaryColorsOption0Content">Auxiliary color #1</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AuxiliaryColorsOption1Content">Auxiliary color #2</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AuxiliaryColorsOption2Content">Auxiliary color #3</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColorsOption0Content">Almost locked set #1</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColorsOption1Content">Almost locked set #2</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColorsOption2Content">Almost locked set #3</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColorsOption3Content">Almost locked set #4</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColorsOption4Content">Almost locked set #5</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption0Content">Palette color #1</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption1Content">Palette color #2</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption2Content">Palette color #3</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption3Content">Palette color #4</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption4Content">Palette color #5</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption5Content">Palette color #6</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption6Content">Palette color #7</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption7Content">Palette color #8</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption8Content">Palette color #9</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption9Content">Palette color #10</x:String>
 	<x:String x:Key="SettingsPage_SavePreferenceDescription">All options are saved instantly, but some options will be enabled after being restarted the program.</x:String>
 	<x:String x:Key="SettingsPage_BackupPreference">Backup to local</x:String>
 	<x:String x:Key="SettingsPage_OpenPreferenceFolder">Open preference folder</x:String>
@@ -270,6 +293,9 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_EndofinColor">endo-fin;endofin;highlighted;color|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CannibalismColor">cannibalistic;cannibalism;highlighted;color|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_LinkColor">links;guardian;oddagon;chain;color|Settings Page -> Rendering options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_AuxiliaryColors">auxiliary;colors|Settings Page -> Rendering options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_AlmostLockedSetColors">almost;locked;sets;ALS;colors|Settings Page -> Rendering options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_PaletteColors">palette;colors|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_DescendingOrderedInfoBarBoard">show;board;descending;order|Settings Page -> Miscellaneous options</x:String>
 
 	<!--Control-based data-->

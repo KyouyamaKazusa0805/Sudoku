@@ -163,6 +163,11 @@
 	<x:String x:Key="SettingsPage_ItemName_EndofinColor">内鱼鳍颜色</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CannibalismColor">自噬候选数的颜色</x:String>
 	<x:String x:Key="SettingsPage_ItemName_LinkColor">链、守护者、死环技巧的链条配色</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AuxiliaryColors">辅助颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_AuxiliaryColors">用来显示一个技巧结构的辅助使用颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColors">待定数组（ALS）结构颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColors">自定义绘图颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_PaletteColors">一组颜色序列，用来控制和呈现用户绘图使用的配色方案</x:String>
 	<x:String x:Key="SettingsPage_ItemName_ValueFont">确定值（明数）字体缩放比例</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_ValueFont">表示文字相对单元格的比例大小。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateFont">候选数字体的缩放比例</x:String>
@@ -175,6 +180,24 @@
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption0Content">不显示聚焦单元格</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption1Content">显示聚焦单元格</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingModeOption2Content">显示聚焦单元格及相关单元格</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AuxiliaryColorsOption0Content">辅助配色 #1</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AuxiliaryColorsOption1Content">辅助配色 #2</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AuxiliaryColorsOption2Content">辅助配色 #3</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColorsOption0Content">待定数组（ALS）#1</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColorsOption1Content">待定数组（ALS）#2</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColorsOption2Content">待定数组（ALS）#3</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColorsOption3Content">待定数组（ALS）#4</x:String>
+	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColorsOption4Content">待定数组（ALS）#5</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption0Content">用户自定义配色 #1</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption1Content">用户自定义配色 #2</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption2Content">用户自定义配色 #3</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption3Content">用户自定义配色 #4</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption4Content">用户自定义配色 #5</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption5Content">用户自定义配色 #6</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption6Content">用户自定义配色 #7</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption7Content">用户自定义配色 #8</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption8Content">用户自定义配色 #9</x:String>
+	<x:String x:Key="SettingsPage_ItemName_PaletteColorsOption9Content">用户自定义配色 #10</x:String>
 	<x:String x:Key="SettingsPage_SavePreferenceDescription">所有设置都是即时保存，不过有些设置项可能需要重启程序才会生效。</x:String>
 	<x:String x:Key="SettingsPage_BackupPreference">备份配置项</x:String>
 	<x:String x:Key="SettingsPage_OpenPreferenceFolder">打开配置项的文件夹</x:String>
@@ -267,6 +290,9 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_EndofinColor">内鱼鳍;内鳍;突出显示;颜色|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CannibalismColor">自噬;突出显示;颜色|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_LinkColor">链;守护者;死环;颜色|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_AuxiliaryColors">辅助;颜色;配色|Settings Page -> Rendering options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_AlmostLockedSetColors">待定数组;ALS;颜色;配色|Settings Page -> Rendering options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_PaletteColors">用户;自定义;绘图;配色;颜色|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_DescendingOrderedInfoBarBoard">显示;信息框;信息栏;逆序;降序|设置页 -> 其它</x:String>
 
 	<!--控件显示用文字-->

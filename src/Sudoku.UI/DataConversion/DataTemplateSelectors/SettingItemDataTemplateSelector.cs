@@ -24,6 +24,12 @@ public sealed class SettingItemDataTemplateSelector : ModelDataTemplateSelector
 	public DataTemplate ColorPickerTemplate { get; set; } = null!;
 
 	/// <summary>
+	/// Indicates the template that is used for a group of color selectors.
+	/// </summary>
+	[DataTemplateModelType<ColorSelectorGroupSettingItem>]
+	public DataTemplate ColorSelectorGroupTemplate { get; set; } = null!;
+
+	/// <summary>
 	/// Indicates the template that is used for a font picker.
 	/// </summary>
 	[DataTemplateModelType<FontPickerSettingItem>]

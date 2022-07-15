@@ -349,6 +349,82 @@ public sealed class Preference : IDrawingPreference
 	[Preference<ColorPickerSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Rendering, 22)]
 	public Color LinkColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is an array of 3 elements:
+	/// <list type="number">
+	/// <item>#FF7FBBFF</item>
+	/// <item>#FFD8B2FF</item>
+	/// <item>#FFFFFF96</item>
+	/// </list>
+	/// </remarks>
+	[Preference<ColorSelectorGroupSettingItem>(nameof(ColorSelectorGroupSettingItem.OptionContents), 3)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 23)]
+	public Color[] AuxiliaryColors { get; set; } =
+	{
+		Color.FromArgb(255, 127, 187, 255), // FF7FBBFF
+		Color.FromArgb(255, 216, 178, 255), // FFD8B2FF
+		Color.FromArgb(255, 255, 255, 150) // FFFFFF96
+	};
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is an array of 5 elements:
+	/// <list type="number">
+	/// <item>#FFC5E88C</item>
+	/// <item>#FFFFCBCB</item>
+	/// <item>#FFB2DFDF</item>
+	/// <item>#FFFCDCA5</item>
+	/// <item>#FFFFFF96</item>
+	/// </list>
+	/// The former 4 items of this array are referenced from sudoku project
+	/// <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
+	/// </remarks>
+	[Preference<ColorSelectorGroupSettingItem>(nameof(ColorSelectorGroupSettingItem.OptionContents), 5)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 24)]
+	public Color[] AlmostLockedSetColors { get; set; } =
+	{
+		Color.FromArgb(255, 197, 232, 140), // FFC5E88C
+		Color.FromArgb(255, 255, 203, 203), // FFFFCBCB
+		Color.FromArgb(255, 178, 223, 223), // FFB2DFDF
+		Color.FromArgb(255, 252, 220, 165), // FFFCDCA5
+		Color.FromArgb(255, 255, 255, 150) // FFFFFF96
+	};
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is an array of 10 elements:
+	/// <list type="number">
+	/// <item>#FFFFC059 (Orange)</item>
+	/// <item>#FFB1A5F3 (Light purple)</item>
+	/// <item>#FFF7A5A7 (Red)</item>
+	/// <item>#FF86E8D0 (Sky blue)</item>
+	/// <item>#FF86F280 (Light green)</item>
+	/// <item>#FFF7DE8F (Light orange)</item>
+	/// <item>#FFDCD4FC (Whitey purple)</item>
+	/// <item>#FFFFD2D2 (Light red)</item>
+	/// <item>#FFCEFBED (Whitey blue)</item>
+	/// <item>#FFD7FFD7 (Whitey green)</item>
+	/// </list>
+	/// All values of this array are referenced from sudoku project
+	/// <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
+	/// </remarks>
+	[Preference<ColorSelectorGroupSettingItem>(nameof(ColorSelectorGroupSettingItem.OptionContents), 10)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 25)]
+	public Color[] PaletteColors { get; set; } =
+	{
+		Color.FromArgb(255, 255, 192, 89), // FFFFC059
+		Color.FromArgb(255, 177, 165, 243), // FFB1A5F3
+		Color.FromArgb(255, 247, 165, 167), // FFF7A5A7
+		Color.FromArgb(255, 134, 232, 208), // FF86E8D0
+		Color.FromArgb(255, 134, 242, 128), // FF86F280
+		Color.FromArgb(255, 247, 222, 143), // FFF7DE8F
+		Color.FromArgb(255, 220, 212, 252), // FFDCD4FC
+		Color.FromArgb(255, 255, 210, 210), // FFFFD2D2
+		Color.FromArgb(255, 206, 251, 237), // FFCEFBED
+		Color.FromArgb(255, 215, 255, 215) // FFD7FFD7
+	};
 	#endregion
 
 	#region Miscellaneous Options
@@ -372,7 +448,7 @@ public sealed class Preference : IDrawingPreference
 	public bool CheckBatteryStatusWhenOpen { get; set; } = true;
 	#endregion
 
-	#region Background Options (Only used for program handling, not under the user's control)
+	#region Background Options
 	/// <summary>
 	/// Indicates whether the program is the first time to be used.
 	/// </summary>
@@ -383,7 +459,7 @@ public sealed class Preference : IDrawingPreference
 	public bool IsFirstMeet { get; set; } = true;
 	#endregion
 
-	#region Other Options (Some belong to none of all groups mentioned above)
+	#region Deprecated Options
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <inheritdoc/>
 	/// <remarks>
@@ -445,74 +521,6 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	public Color __CandidateMarkStrokeColor { get; set; } = Colors.Black with { A = 128 };
 #endif
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is an array of 3 elements:
-	/// <list type="number">
-	/// <item>#FF7FBBFF</item>
-	/// <item>#FFD8B2FF</item>
-	/// <item>#FFFFFF96</item>
-	/// </list>
-	/// </remarks>
-	public Color[] AuxiliaryColors { get; set; } =
-	{
-		Color.FromArgb(255, 127, 187, 255), // FF7FBBFF
-		Color.FromArgb(255, 216, 178, 255), // FFD8B2FF
-		Color.FromArgb(255, 255, 255, 150) // FFFFFF96
-	};
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is an array of 5 elements:
-	/// <list type="number">
-	/// <item>#FFC5E88C</item>
-	/// <item>#FFFFCBCB</item>
-	/// <item>#FFB2DFDF</item>
-	/// <item>#FFFCDCA5</item>
-	/// <item>#FFFFFF96</item>
-	/// </list>
-	/// </remarks>
-	public Color[] AlmostLockedSetColors { get; set; } =
-	{
-		Color.FromArgb(255, 197, 232, 140), // FFC5E88C
-		Color.FromArgb(255, 255, 203, 203), // FFFFCBCB
-		Color.FromArgb(255, 178, 223, 223), // FFB2DFDF
-		Color.FromArgb(255, 252, 220, 165), // FFFCDCA5
-		Color.FromArgb(255, 255, 255, 150) // FFFFFF96
-	};
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is an array of 10 elements:
-	/// <list type="number">
-	/// <item>#FFFFC059 (Orange)</item>
-	/// <item>#FFB1A5F3 (Light purple)</item>
-	/// <item>#FFF7A5A7 (Red)</item>
-	/// <item>#FF86E8D0 (Sky blue)</item>
-	/// <item>#FF86F280 (Light green)</item>
-	/// <item>#FFF7DE8F (Light orange)</item>
-	/// <item>#FFDCD4FC (Whitey purple)</item>
-	/// <item>#FFFFD2D2 (Light red)</item>
-	/// <item>#FFCEFBED (Whitey blue)</item>
-	/// <item>#FFD7FFD7 (Whitey green)</item>
-	/// </list>
-	/// All values of this array are referenced from sudoku project
-	/// <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
-	/// </remarks>
-	public Color[] PaletteColors { get; set; } =
-	{
-		Color.FromArgb(255, 255, 192, 89), // FFFFC059
-		Color.FromArgb(255, 177, 165, 243), // FFB1A5F3
-		Color.FromArgb(255, 247, 165, 167), // FFF7A5A7
-		Color.FromArgb(255, 134, 232, 208), // FF86E8D0
-		Color.FromArgb(255, 134, 242, 128), // FF86F280
-		Color.FromArgb(255, 247, 222, 143), // FFF7DE8F
-		Color.FromArgb(255, 220, 212, 252), // FFDCD4FC
-		Color.FromArgb(255, 255, 210, 210), // FFFFD2D2
-		Color.FromArgb(255, 206, 251, 237), // FFCEFBED
-		Color.FromArgb(255, 215, 255, 215) // FFD7FFD7
-	};
 	#endregion
 
 

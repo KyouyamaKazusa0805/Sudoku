@@ -142,6 +142,36 @@
 												</StackPanel>
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.ColorPickerTemplate>
+										<dts:SettingItemDataTemplateSelector.ColorSelectorGroupTemplate>
+											<DataTemplate x:DataType="ms:ColorSelectorGroupSettingItem">
+												<StackPanel>
+													<TextBlock
+														Text="{x:Bind Name}"
+														Style="{ThemeResource _rSettingItemNameTextBlockStyle}" />
+													<TextBlock
+														Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
+														Text="{x:Bind Description}"
+														Margin="{StaticResource _rSettingDescriptionMargin}"
+														Style="{ThemeResource CaptionTextBlockStyle}" />
+													<GridView
+														SelectionMode="None" ItemsSource="{x:Bind ConstructInfoList()}">
+														<GridView.ItemTemplate>
+															<DataTemplate x:DataType="m:ColorSelectorGroupInfo">
+																<StackPanel Margin="0,20,40,20">
+																	<TextBlock
+																		Text="{x:Bind Content}"
+																		Margin="{StaticResource _rSettingDescriptionMargin}" />
+																	<c:ColorSelector
+																		SelectedColor="{x:Bind Color,
+																			Mode=TwoWay,
+																			UpdateSourceTrigger=PropertyChanged}" />
+																</StackPanel>
+															</DataTemplate>
+														</GridView.ItemTemplate>
+													</GridView>
+												</StackPanel>
+											</DataTemplate>
+										</dts:SettingItemDataTemplateSelector.ColorSelectorGroupTemplate>
 										<dts:SettingItemDataTemplateSelector.FontPickerTemplate>
 											<DataTemplate x:DataType="ms:FontPickerSettingItem">
 												<c:FontPicker

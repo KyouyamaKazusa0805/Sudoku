@@ -135,6 +135,11 @@
             Indicates the template that is used for a color picker.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.SettingItemDataTemplateSelector.ColorSelectorGroupTemplate">
+            <summary>
+            Indicates the template that is used for a group of color selectors.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.SettingItemDataTemplateSelector.FontPickerTemplate">
             <summary>
             Indicates the template that is used for a font picker.
@@ -611,6 +616,52 @@
             The default value is <c>#FFFF0000</c>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuxiliaryColors">
+            <inheritdoc/>
+            <remarks>
+            The default value is an array of 3 elements:
+            <list type="number">
+            <item>#FF7FBBFF</item>
+            <item>#FFD8B2FF</item>
+            <item>#FFFFFF96</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSetColors">
+            <inheritdoc/>
+            <remarks>
+            The default value is an array of 5 elements:
+            <list type="number">
+            <item>#FFC5E88C</item>
+            <item>#FFFFCBCB</item>
+            <item>#FFB2DFDF</item>
+            <item>#FFFCDCA5</item>
+            <item>#FFFFFF96</item>
+            </list>
+            The former 4 items of this array are referenced from sudoku project
+            <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.PaletteColors">
+            <inheritdoc/>
+            <remarks>
+            The default value is an array of 10 elements:
+            <list type="number">
+            <item>#FFFFC059 (Orange)</item>
+            <item>#FFB1A5F3 (Light purple)</item>
+            <item>#FFF7A5A7 (Red)</item>
+            <item>#FF86E8D0 (Sky blue)</item>
+            <item>#FF86F280 (Light green)</item>
+            <item>#FFF7DE8F (Light orange)</item>
+            <item>#FFDCD4FC (Whitey purple)</item>
+            <item>#FFFFD2D2 (Light red)</item>
+            <item>#FFCEFBED (Whitey blue)</item>
+            <item>#FFD7FFD7 (Whitey green)</item>
+            </list>
+            All values of this array are referenced from sudoku project
+            <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.DescendingOrderedInfoBarBoard">
             <inheritdoc/>
             <remarks>
@@ -686,50 +737,6 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 128).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AuxiliaryColors">
-            <inheritdoc/>
-            <remarks>
-            The default value is an array of 3 elements:
-            <list type="number">
-            <item>#FF7FBBFF</item>
-            <item>#FFD8B2FF</item>
-            <item>#FFFFFF96</item>
-            </list>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.AlmostLockedSetColors">
-            <inheritdoc/>
-            <remarks>
-            The default value is an array of 5 elements:
-            <list type="number">
-            <item>#FFC5E88C</item>
-            <item>#FFFFCBCB</item>
-            <item>#FFB2DFDF</item>
-            <item>#FFFCDCA5</item>
-            <item>#FFFFFF96</item>
-            </list>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.PaletteColors">
-            <inheritdoc/>
-            <remarks>
-            The default value is an array of 10 elements:
-            <list type="number">
-            <item>#FFFFC059 (Orange)</item>
-            <item>#FFB1A5F3 (Light purple)</item>
-            <item>#FFF7A5A7 (Red)</item>
-            <item>#FF86E8D0 (Sky blue)</item>
-            <item>#FF86F280 (Light green)</item>
-            <item>#FFF7DE8F (Light orange)</item>
-            <item>#FFDCD4FC (Whitey purple)</item>
-            <item>#FFFFD2D2 (Light red)</item>
-            <item>#FFCEFBED (Whitey blue)</item>
-            <item>#FFD7FFD7 (Whitey green)</item>
-            </list>
-            All values of this array are referenced from sudoku project
-            <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
             </remarks>
         </member>
         <member name="M:Sudoku.UI.Data.Configuration.Preference.CoverPreferenceBy(Sudoku.UI.Data.Configuration.Preference)">
@@ -1209,6 +1216,39 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:Sudoku.UI.Models.ColorSelectorGroupInfo">
+            <summary>
+            Defines a pair of info that describes for a color selector group.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Models.ColorSelectorGroupInfo._color">
+            <summary>
+            Indicates the color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.ColorSelectorGroupInfo.Index">
+            <summary>
+            Indicates the current index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.ColorSelectorGroupInfo.Content">
+            <summary>
+            Indicates the text describes the color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.ColorSelectorGroupInfo.Color">
+            <summary>
+            Indicates the color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.ColorSelectorGroupInfo.SettingItem">
+            <summary>
+            Indicates the setting item used.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.Models.ColorSelectorGroupInfo.PropertyChanged">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Models.DrawingData">
             <summary>
             Indicates the serializable drawing data of a complete sudoku grid.
@@ -1589,6 +1629,48 @@
         </member>
         <member name="M:Sudoku.UI.Models.SettingItems.ColorPickerSettingItem.SetPreference(Windows.UI.Color)">
             <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
+        </member>
+        <member name="T:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem">
+            <summary>
+            Defines a color array option that is binding with a group of color selectors on displaying.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem.OptionContents">
+            <summary>
+            Indicates the option contents.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem.CreateInstance(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem.GetPreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem.GetPreferenceForIndex(System.Int32)">
+            <summary>
+            Try to get the preference at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The color instance.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem.ConstructInfoList">
+            <summary>
+            To construct the info list.
+            </summary>
+            <returns>The info list that is used for binding.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem.SetPreference(System.Object)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem.SetPreference(Windows.UI.Color[])">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.ColorSelectorGroupSettingItem.SetPreferenceForIndex(System.Int32,Windows.UI.Color)">
+            <summary>
+            Try to set the color value at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="color">The color.</param>
         </member>
         <member name="T:Sudoku.UI.Models.SettingItems.ComboBoxSettingItem`1">
             <summary>
