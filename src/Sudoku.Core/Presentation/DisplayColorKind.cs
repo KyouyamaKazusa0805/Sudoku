@@ -26,6 +26,11 @@ public enum DisplayColorKind : byte
 	Auxiliary3,
 
 	/// <summary>
+	/// Indicates the assignment color.
+	/// </summary>
+	Assignment,
+
+	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
 	Elimination,

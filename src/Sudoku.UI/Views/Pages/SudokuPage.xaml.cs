@@ -850,6 +850,17 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
+		int[] candidates = trueCandidates.ToArray();
+		_cPane.SetDisplayableUnit(
+			new TrueCandidatesDisplayable(
+				ImmutableArray<Conclusion>.Empty,
+				ImmutableArray.Create(
+					View.Empty
+						| from candidate in candidates select new CandidateViewNode(DisplayColorKind.Normal, candidate)
+				)
+			)
+		);
+
 		string a = R["FindTrueCandidateSuccessful1"]!;
 		string b = R["FindTrueCandidateSuccessful2"]!;
 		string c = RxCyNotation.ToCandidatesString(
@@ -884,13 +895,12 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
+		_cPane.SetDisplayableUnit(new BackdoorDisplayable(ImmutableArray.Create(backdoors), ImmutableArray<View>.Empty));
+
 		string str = string.Join(
 			R["Token_Comma2"]!,
 			from backdoor in backdoors
-			let coordinateStr = RxCyNotation.ToCellString(backdoor.Cell)
-			let digitStr = (backdoor.Digit + 1).ToString()
-			let tokenStr = backdoor.ConclusionType.GetNotation()
-			select $"{coordinateStr} {tokenStr} {digitStr}"
+			select $"{RxCyNotation.ToCellString(backdoor.Cell)} {backdoor.ConclusionType.GetNotation()} {backdoor.Digit + 1}"
 		);
 
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{R["FindBackdoorsResult_AllBackdoors"]!}{str}");

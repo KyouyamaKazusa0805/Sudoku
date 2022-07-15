@@ -6783,6 +6783,11 @@
             Indicates the third auxiliary color.
             </summary>
         </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Assignment">
+            <summary>
+            Indicates the assignment color.
+            </summary>
+        </member>
         <member name="F:Sudoku.Presentation.DisplayColorKind.Elimination">
             <summary>
             Indicates the elimination color.

@@ -790,6 +790,46 @@
             The ordering index that describes the actual position in a whole preference group.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Data.Displayables.BackdoorDisplayable">
+            <summary>
+            Provides with a displayable unit that display backdoors.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+            <summary>
+            Provides with a displayable unit that display backdoors.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Displayables.BackdoorDisplayable.Conclusions">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Displayables.BackdoorDisplayable.Views">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="T:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable">
+            <summary>
+            Provides with a displayable unit that display true candidates.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+            <summary>
+            Provides with a displayable unit that display true candidates.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.Conclusions">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.Views">
+            <summary><inheritdoc/></summary>
+        </member>
         <member name="T:Sudoku.UI.Data.Metadata.BackgroundPreferenceAttribute">
             <summary>
             Defines an attribute that can be applied to a preference item property,
