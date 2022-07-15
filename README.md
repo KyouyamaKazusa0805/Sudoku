@@ -24,33 +24,7 @@
 
 A sudoku handling SDK using brute forces and logical techniques. Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
-For example, you can use the code like this to solve a puzzle:
-
-```csharp
-using System;
-using Sudoku.Concepts.Collections;
-using Sudoku.Solving.Manual;
-
-// Parse a puzzle from the string text.
-var grid = Grid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
-
-// Declare a manual solver that uses techniques used by humans to solve a puzzle.
-var solver = new ManualSolver();
-
-// To solve a puzzle synchronously.
-var analysisResult = solver.Solve(grid);
-
-// You can also convert the type to 'ManualSolverResult'
-// in order to check more data.
-//var analysisResultConverted = (ManualSolverResult)analysisResult;
-
-// Output the analysis result.
-// You can also use 'ToString' instead of 'ToDisplayString'. They are same.
-Console.WriteLine(analysisResult.ToDisplayString());
-//Console.WriteLine(analysisResult.ToString()); // Same.
-//Console.WriteLine(analysisResultConverted.ToDisplayString()); // Same.
-//Console.WriteLine(analysisResultConverted.ToString()); // Same.
-```
+Here I give you [a sample](https://github.com/SunnieShine/Sudoku/blob/main/docs/usages/solve-by-manual) to demonstrate how to solve a puzzle using manual sudoku techniques.
 
 In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10 app project, android app project, bot on common on-line platforms (QQ, Bilibili and so on).
 

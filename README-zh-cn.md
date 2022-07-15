@@ -26,27 +26,7 @@
 
 一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
 
-比如说，你可以使用如下的代码来解一道题：
-
-```csharp
-using System;
-using Sudoku.Concepts.Collections;
-using Sudoku.Solving.Manual;
-
-// 读取一个字符串形式的数独盘面的代码信息，并解析为 'Grid' 类型的对象。
-var grid = Grid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
-
-// 声明实例化一个 'ManualSolver' 类型的实例，用于稍后的解题。
-var solver = new ManualSolver();
-
-// 以同步的形式解题。
-var analysisResult = solver.Solve(grid);
-
-// 输出分析结果。
-// 你也可以使用 ToString 代替 ToDisplayString，它们底层是一样的。
-Console.WriteLine(analysisResult.ToDisplayString());
-//Console.WriteLine(analysisResult.ToString()); // 一样的。
-```
+API 有很多，所以这里给出其中一个[基本解题](https://github.com/SunnieShine/Sudoku/blob/main/docs/usages/solve-by-manual)的操作，提供参考。
 
 以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win11 App 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
