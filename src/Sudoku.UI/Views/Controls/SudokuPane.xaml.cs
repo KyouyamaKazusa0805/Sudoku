@@ -87,7 +87,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _size;
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
 			if (_size.NearlyEquals(value, Epsilon))
@@ -117,7 +116,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _outsideOffset;
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
 			if (_outsideOffset.NearlyEquals(value, Epsilon))
