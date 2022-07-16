@@ -48,8 +48,8 @@ public abstract class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	/// because they are reserved one.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected Node(NodeType nodeType, byte digit, scoped in Cells cells, long otherMask) :
-		this(nodeType, digit, cells) => _other |= otherMask;
+	protected Node(NodeType nodeType, byte digit, scoped in Cells cells, long otherMask) : this(nodeType, digit, cells)
+		=> _other |= otherMask;
 
 	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the basic data.
