@@ -24,7 +24,11 @@
 
 A sudoku handling SDK using brute forces and logical techniques. Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
+### Sample
+
 Here I give you [a sample](https://github.com/SunnieShine/Sudoku/blob/main/docs/usages/solve-by-manual) to demonstrate how to solve a puzzle using manual sudoku techniques.
+
+### Extra description
 
 In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10 app project, android app project, bot on common on-line platforms (QQ, Bilibili and so on).
 
