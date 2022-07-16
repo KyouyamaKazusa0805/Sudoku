@@ -399,7 +399,6 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 								// Found.
 								offToOn[id] = currentId;
 
-								// NOTE: HERE WE PASS THE ARGUMENTS OUT OF ORDER ON PURPOSE!
 								_foundChains.Add((getChainIds(offToOn, onToOff, id), false));
 
 								return;
