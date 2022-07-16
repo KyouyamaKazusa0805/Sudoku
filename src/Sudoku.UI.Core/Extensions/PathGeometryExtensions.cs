@@ -34,7 +34,7 @@ public static class PathGeometryExtensions
 	/// as the property <see cref="GeometryGroup.Children"/>.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Geometry[] WithCustomizedArrawCap(this PathGeometry @this, Point point1, Point point2)
+	public static Geometry[] WithCustomizedArrowCap(this PathGeometry @this, Point point1, Point point2)
 	{
 		var pt1 = point1;
 		var pt2 = point2;

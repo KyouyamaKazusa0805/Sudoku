@@ -152,7 +152,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 								.WithChildren(
 									new LineGeometry()
 										.WithPoints(pt1, pt2)
-										.WithCustomizedArrawCap()
+										.WithCustomizedArrowCap()
 								)
 						)
 				);
@@ -230,7 +230,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 															.WithEndPoint(pt2)
 													)
 											)
-											.WithCustomizedArrawCap(pt1, pt2)
+											.WithCustomizedArrowCap(pt1, pt2)
 									)
 							)
 					);
@@ -248,7 +248,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 									.WithChildren(
 										new LineGeometry()
 											.WithPoints(pt1, pt2)
-											.WithCustomizedArrawCap()
+											.WithCustomizedArrowCap()
 									)
 							)
 					);

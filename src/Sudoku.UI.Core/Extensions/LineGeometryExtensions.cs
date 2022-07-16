@@ -11,7 +11,7 @@ public static class LineGeometryExtensions
 	/// as the property <see cref="GeometryGroup.Children"/>.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Geometry[] WithCustomizedArrawCap(this LineGeometry @this)
+	public static Geometry[] WithCustomizedArrowCap(this LineGeometry @this)
 	{
 		var pt1 = @this.StartPoint;
 		var pt2 = @this.EndPoint;
