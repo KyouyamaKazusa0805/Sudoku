@@ -21,17 +21,20 @@ public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSea
 	/// The inner field of the property <see cref="MaxSize"/>.
 	/// </summary>
 	/// <seealso cref="MaxSize"/>
-	private int _maxSize;
+	private int _maxSize = 9;
 
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is 9.
+	/// </remarks>
 	public int MaxSize
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _maxSize;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => _maxSize = value > 9 ? throw new ArgumentOutOfRangeException(nameof(value)) : value;
+		set => _maxSize = value is < 3 or > 9 ? throw new ArgumentOutOfRangeException(nameof(value)) : value;
 	}
 
 
@@ -62,12 +65,12 @@ public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSea
 				}
 
 				// Iterate on each cell combination.
-				foreach (int[] cells in map & size - 1)
+				foreach (var cells in map & size - 1)
 				{
 					// Check duplicate.
 					// If two cells contain same candidates, the wing can't be formed.
 					bool flag = false;
-					for (int i = 0, length = cells.Length, outerLength = length - 1; i < outerLength; i++)
+					for (int i = 0, length = cells.Count, outerLength = length - 1; i < outerLength; i++)
 					{
 						for (int j = i + 1; j < length; j++)
 						{
@@ -109,7 +112,7 @@ public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSea
 
 					// The pattern should be "az, bz, cz, dz, ... , abcd(z)".
 					int zDigit = TrailingZeroCount(maskToCheck);
-					var petals = new Cells(cells);
+					var petals = cells;
 					if ((petals + pivot & CandidatesMap[zDigit]).Count != (isIncomplete ? size - 1 : size))
 					{
 						continue;
@@ -152,9 +155,7 @@ public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSea
 					}
 
 					var step = new RegularWingStep(
-						ImmutableArray.Create(
-							Conclusion.ToConclusions(elimMap, zDigit, ConclusionType.Elimination)
-						),
+						ImmutableArray.Create(Conclusion.ToConclusions(elimMap, zDigit, ConclusionType.Elimination)),
 						ImmutableArray.Create(View.Empty | candidateOffsets),
 						pivot,
 						PopCount((uint)mask),

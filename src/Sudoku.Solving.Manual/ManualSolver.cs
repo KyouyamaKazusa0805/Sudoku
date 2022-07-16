@@ -18,9 +18,45 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <inheritdoc/>
 	public bool OptimizedApplyingOrder { get; set; }
 
+	/// <inheritdoc cref="IRegularWingStepSearcher.MaxSize"/>
+	public int RegularWingMaxSize
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<IRegularWingStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.MaxSize = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="IAlternatingInferenceChainStepSearcher.MaxCapacity"/>
+	public int ChainingMaxCapacity
+	{
+		set
+		{
+			var searchers = TargetSearcherCollection.OfType<IAlternatingInferenceChainStepSearcher>();
+			foreach (var searcher in searchers)
+			{
+				searcher.MaxCapacity = value;
+			}
+		}
+	}
+
 	/// <inheritdoc/>
 	[DisallowNull]
 	public IStepSearcher[]? CustomSearcherCollection { get; set; }
+
+	/// <summary>
+	/// Indicates the target step searcher collection.
+	/// </summary>
+	private IStepSearcher[] TargetSearcherCollection
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => CustomSearcherCollection ?? StepSearcherPool.Collection;
+	}
 
 
 	/// <inheritdoc/>
@@ -98,7 +134,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		var tempSteps = new List<Step>(20);
 		var recordedSteps = new List<Step>(100);
 		var stepGrids = new List<Grid>(100);
-		var stepSearchers = CustomSearcherCollection ?? StepSearcherPool.Collection;
+		var stepSearchers = TargetSearcherCollection;
 
 		// Bug fix: Sets the solution grid to the step searchers that will use the property value.
 		if (ReferenceEquals(stepSearchers, StepSearcherPool.Collection))

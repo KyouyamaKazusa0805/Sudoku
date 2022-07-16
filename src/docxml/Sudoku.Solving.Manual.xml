@@ -236,8 +236,19 @@
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.RegularWingMaxSize">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher.MaxSize"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.ChainingMaxCapacity">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.MaxCapacity"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CustomSearcherCollection">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.TargetSearcherCollection">
+            <summary>
+            Indicates the target step searcher collection.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -3169,6 +3180,9 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize">
             <inheritdoc/>
+            <remarks>
+            The default value is 9.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
