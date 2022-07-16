@@ -845,12 +845,6 @@
             via the corresponding ID value specified as the index.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.DepthFirstSearching">
-            <inheritdoc/>
-            <remarks>
-            The default value is <see langword="false"/>.
-            </remarks>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.MaxCapacity">
             <inheritdoc/>
             <remarks>
@@ -863,30 +857,10 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.RemoveIdsNotAppearingInLookupDictionary(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.TrimLookup(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
             <summary>
-            Remove all ID values in the lookup dictionary.
+            Remove all ID values not appearing in the lookup dictionary.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.PrintInferences(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}},System.Action{System.String})">
-            <summary>
-            Print the inferences.
-            </summary>
-            <param name="inferences">The table of inferences.</param>
-            <param name="outputHandler">
-            The handler method that used for the invocation on output the result information.
-            For example, the following code is okay for this argument:
-            <code>
-            PrintInferences(
-                // Suppose we output the strong inference dictionary.
-                inferences: _strongInferences,
-            
-                // Here we can call 'Console.WriteLine' to output the result string value.
-                // In addition, you can also write 'static data => Console.WriteLine(data)'.
-                outputHandler: Console.WriteLine
-            );
-            </code>
-            </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.ConstructInference(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
             <summary>
@@ -896,16 +870,16 @@
             <param name="b">The second node to be constructed as a strong inference.</param>
             <param name="inferences">The inferences list you want to add.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.PrintChainData(System.Int32[])">
-            <summary>
-            To print the whole chain via the ID. The method is only used for calling by the debugger.
-            </summary>
-            <param name="chainIds">The IDs.</param>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Bfs">
             <summary>
             Start to construct the chain using breadth-first searching algorithm.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_Sole(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Gather the strong and weak inferences on sole candidate nodes.
+            </summary>
+            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Dfs_StartWithWeak">
             <summary>
@@ -919,23 +893,12 @@
             with the strong inference as the beginning node.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_SoleAndLocked(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Gather the strong and weak inferences on sole candidate nodes and locked candidates nodes.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Options">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher">
             <summary>
             Defines a step searcher that searches for alternating inference chain steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.DepthFirstSearching">
-            <summary>
-            Indicates whether the searcher uses DFS algorithm to search for chains.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.MaxCapacity">
@@ -1007,6 +970,34 @@
             Other typed inferences are being considered, such as an XYZ-Wing node, etc.
             </para>
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.PrintInferences(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}},Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node[],System.Action{System.String})">
+            <summary>
+            Print the inferences.
+            </summary>
+            <param name="inferences">The table of inferences.</param>
+            <param name="nodeLookup">The node lookup table.</param>
+            <param name="outputHandler">
+            The handler method that used for the invocation on output the result information.
+            For example, the following code is okay for this argument:
+            <code>
+            PrintInferences(
+                // Suppose we output the strong inference dictionary.
+                inferences: _strongInferences,
+            
+                // Here we can call 'Console.WriteLine' to output the result string value.
+                // In addition, you can also write 'static data => Console.WriteLine(data)'.
+                outputHandler: Console.WriteLine
+            );
+            </code>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.GetRawChainData(System.Int32[],Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node[])">
+            <summary>
+            To print the whole chain via the ID. The method is only used for calling by the debugger.
+            </summary>
+            <param name="chainIds">The IDs.</param>
+            <param name="nodeLookup">The node lookup table.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IChainStepSearcher">
             <summary>

@@ -123,7 +123,7 @@ public sealed record class AlternatingInferenceChainStep(
 			SoleCandidateNode { Cell: var d },
 			SoleCandidateNode { Cell: var e },
 			SoleCandidateNode { Cell: var f },
-			..
+			_
 		]
 		&& MWing(a, b, c, d, e, f);
 
@@ -141,7 +141,7 @@ public sealed record class AlternatingInferenceChainStep(
 			SoleCandidateNode { Cell: var d },
 			SoleCandidateNode { Cell: var e },
 			SoleCandidateNode { Cell: var f },
-			..
+			_
 		]
 		&& SplitWing(a, b, c, d, e, f);
 
@@ -164,7 +164,7 @@ public sealed record class AlternatingInferenceChainStep(
 			SoleCandidateNode { Cell: var d },
 			SoleCandidateNode { Cell: var e },
 			SoleCandidateNode { Cell: var f },
-			..
+			_
 		]
 		&& HybridWing(a, b, c, d, e, f);
 
@@ -182,7 +182,7 @@ public sealed record class AlternatingInferenceChainStep(
 			SoleCandidateNode { Cell: var d },
 			SoleCandidateNode { Cell: var e },
 			SoleCandidateNode { Cell: var f },
-			..
+			_
 		]
 		&& LocalWing(a, b, c, d, e, f);
 

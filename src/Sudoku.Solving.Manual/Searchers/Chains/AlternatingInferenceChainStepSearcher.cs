@@ -1,7 +1,4 @@
-﻿using static Sudoku.Runtime.AnalysisServices.SearcherNodeTypes;
-using ChainingDictionary = System.Collections.Generic.Dictionary<int, System.Collections.Generic.HashSet<int>?>;
-
-namespace Sudoku.Solving.Manual.Searchers;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with an <b>Alternating Inference Chain</b> step searcher.
@@ -32,9 +29,8 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// </list>
 /// </summary>
 [StepSearcher]
-[SeparatedStepSearcher(0, nameof(NodeTypes), SoleDigit)]
-[SeparatedStepSearcher(1, nameof(NodeTypes), SoleDigit | SoleCell)]
-[SeparatedStepSearcher(2, nameof(NodeTypes), SoleDigit | SoleCell | LockedCandidates)]
+[SeparatedStepSearcher(0, nameof(NodeTypes), SearcherNodeTypes.SoleDigit)]
+[SeparatedStepSearcher(1, nameof(NodeTypes), SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell)]
 public sealed partial class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
 	/// <summary>
@@ -61,7 +57,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="Dictionary{TKey, TValue}"/>
-	private readonly ChainingDictionary _strongInferences = new();
+	private readonly Dictionary<int, HashSet<int>?> _strongInferences = new();
 
 	/// <summary>
 	/// Indicates the field that stores the temporary weak inferences during the searching.
@@ -87,7 +83,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="Dictionary{TKey, TValue}"/>
-	private readonly ChainingDictionary _weakInferences = new();
+	private readonly Dictionary<int, HashSet<int>?> _weakInferences = new();
 
 	/// <summary>
 	/// Indicates the lookup table that can get the target ID value
@@ -115,12 +111,6 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <see langword="false"/>.
-	/// </remarks>
-	public bool DepthFirstSearching { get; set; } = false;
-
-	/// <inheritdoc/>
-	/// <remarks>
 	/// The default value is <c>3000</c>.
 	/// </remarks>
 	public int MaxCapacity { get; set; } = 3000;
@@ -142,32 +132,25 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			_foundChains.Clear();
 
 			// Gather strong and weak links.
-			GatherInferences_SoleAndLocked(grid);
+			GatherInferences_Sole(grid);
 
 			// Remove IDs if they don't appear in the lookup table.
-			RemoveIdsNotAppearingInLookupDictionary(_weakInferences);
-			RemoveIdsNotAppearingInLookupDictionary(_strongInferences);
+			TrimLookup(_weakInferences);
+			TrimLookup(_strongInferences);
 
-#if false
 			// Display the inferences found.
-			PrintInferences(_strongInferences);
-			PrintInferences(_weakInferences);
-#else
+			//IAlternatingInferenceChainStepSearcher.PrintInferences(_strongInferences, _nodeLookup, Console.WriteLine);
+			//IAlternatingInferenceChainStepSearcher.PrintInferences(_weakInferences, _nodeLookup, Console.WriteLine);
+
 			// Construct chains.
-			if (DepthFirstSearching)
-			{
-				Dfs_StartWithWeak();
-				Dfs_StartWithStrong();
-			}
-			else
-			{
-				Bfs();
-			}
+			Bfs();
+			//Dfs_StartWithStrong();
+			//Dfs_StartWithWeak();
 
 			var tempList = new Dictionary<AlternatingInferenceChain, ConclusionList>();
 			foreach (var (nids, startsWithWeak) in _foundChains)
 			{
-				var chain = new AlternatingInferenceChain(from nid in nids select _nodeLookup[nid], startsWithWeak);
+				var chain = new AlternatingInferenceChain(from nid in nids select _nodeLookup[nid], !startsWithWeak);
 				if (chain.GetConclusions(grid) is { Length: not 0 } conclusions && !tempList.ContainsKey(chain))
 				{
 					tempList.Add(chain, conclusions);
@@ -185,8 +168,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							| IChainStepSearcher.GetViewOnLinks(chain)
 					),
 					chain,
-					NodeTypes.Flags(SoleDigit),
-					NodeTypes.Flags(SoleCell)
+					NodeTypes.Flags(SearcherNodeTypes.SoleDigit),
+					NodeTypes.Flags(SearcherNodeTypes.SoleCell)
 				);
 
 				if (onlyFindOne)
@@ -198,7 +181,6 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			}
 
 			return null;
-#endif
 		}
 		finally
 		{
@@ -207,11 +189,10 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		}
 	}
 
-	#region Other methods
 	/// <summary>
-	/// Remove all ID values in the lookup dictionary.
+	/// Remove all ID values not appearing in the lookup dictionary.
 	/// </summary>
-	private void RemoveIdsNotAppearingInLookupDictionary(ChainingDictionary inferences)
+	private void TrimLookup(Dictionary<int, HashSet<int>?> inferences)
 	{
 		foreach (int id in inferences.Keys)
 		{
@@ -223,68 +204,13 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	}
 
 	/// <summary>
-	/// Print the inferences.
-	/// </summary>
-	/// <param name="inferences">The table of inferences.</param>
-	/// <param name="outputHandler">
-	/// The handler method that used for the invocation on output the result information.
-	/// For example, the following code is okay for this argument:
-	/// <code>
-	/// PrintInferences(
-	///     // Suppose we output the strong inference dictionary.
-	///     inferences: _strongInferences,
-	/// 
-	///     // Here we can call 'Console.WriteLine' to output the result string value.
-	///     // In addition, you can also write 'static data => Console.WriteLine(data)'.
-	///     outputHandler: Console.WriteLine
-	/// );
-	/// </code>
-	/// </param>
-	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private void PrintInferences(ChainingDictionary inferences, Action<string> outputHandler)
-	{
-		const string separator = ", ";
-
-		scoped var sb = new StringHandler();
-		foreach (var (id, nextIds) in inferences)
-		{
-			if (_nodeLookup[id] is not { } node)
-			{
-				continue;
-			}
-
-			sb.Append("Node ");
-			sb.Append(node.ToSimpleString());
-			sb.Append(": ");
-
-			if (nextIds is not null)
-			{
-				foreach (int nextId in nextIds)
-				{
-					sb.Append(_nodeLookup[nextId]!.ToSimpleString());
-					sb.Append(separator);
-				}
-
-				sb.RemoveFromEnd(separator.Length);
-			}
-			else
-			{
-				sb.Append("<null>");
-			}
-
-			sb.AppendLine();
-		}
-
-		outputHandler(sb.ToStringAndClear());
-	}
-
-	/// <summary>
 	/// To construct a strong or weak inference from node <paramref name="a"/> to <paramref name="b"/>.
 	/// </summary>
 	/// <param name="a">The first node to be constructed as a strong inference.</param>
 	/// <param name="b">The second node to be constructed as a strong inference.</param>
 	/// <param name="inferences">The inferences list you want to add.</param>
-	private void ConstructInference(Node a, Node b, ChainingDictionary inferences)
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void ConstructInference(Node a, Node b, Dictionary<int, HashSet<int>?> inferences)
 	{
 		int bId;
 		if (_idLookup.TryGetValue(a, out int aId))
@@ -352,17 +278,6 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	}
 
 	/// <summary>
-	/// To print the whole chain via the ID. The method is only used for calling by the debugger.
-	/// </summary>
-	/// <param name="chainIds">The IDs.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private string PrintChainData(int[] chainIds)
-		=> string.Join(" -> ", from id in chainIds select _nodeLookup[id]!.ToString());
-	#endregion
-
-	#region Chaining methods
-	/// <summary>
 	/// Start to construct the chain using breadth-first searching algorithm.
 	/// </summary>
 	private void Bfs()
@@ -406,8 +321,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 		void bfsWeakStart(int[] onToOff, int[] offToOn, int id)
 		{
-			using var pendingOn = new Bag<int>();
-			using var pendingOff = new Bag<int>();
+			using scoped var pendingOn = new Bag<int>();
+			using scoped var pendingOff = new Bag<int>();
 			pendingOn.Add(id);
 			onToOff[id] = id;
 
@@ -463,8 +378,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 		void bfsStrongStart(int[] onToOff, int[] offToOn, int id)
 		{
-			using var pendingOn = new Bag<int>();
-			using var pendingOff = new Bag<int>();
+			using scoped var pendingOn = new Bag<int>();
+			using scoped var pendingOff = new Bag<int>();
 			pendingOff.Add(id);
 			offToOn[id] = id;
 
@@ -536,12 +451,96 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	}
 
 	/// <summary>
+	/// Gather the strong and weak inferences on sole candidate nodes.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	private void GatherInferences_Sole(scoped in Grid grid)
+	{
+		if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
+		{
+			for (byte digit = 0; digit < 9; digit++)
+			{
+				for (int house = 0; house < 27; house++)
+				{
+					var targetDigitMap = CandidatesMap[digit] & HouseMaps[house];
+					if (targetDigitMap is [var cell1, var cell2])
+					{
+						// Both strong and weak inferences.
+						var node1 = new SoleCandidateNode((byte)cell1, digit);
+						var node2 = new SoleCandidateNode((byte)cell2, digit);
+
+						ConstructInference(node1, node2, _strongInferences);
+						ConstructInference(node2, node1, _strongInferences);
+						ConstructInference(node1, node2, _weakInferences);
+						ConstructInference(node2, node1, _weakInferences);
+					}
+					else
+					{
+						// Only weak inferences.
+						foreach (var cellPair in targetDigitMap & 2)
+						{
+							cell1 = cellPair[0];
+							cell2 = cellPair[1];
+
+							var node1 = new SoleCandidateNode((byte)cell1, digit);
+							var node2 = new SoleCandidateNode((byte)cell2, digit);
+
+							ConstructInference(node1, node2, _weakInferences);
+							ConstructInference(node2, node1, _weakInferences);
+						}
+					}
+				}
+			}
+		}
+
+		if (NodeTypes.Flags(SearcherNodeTypes.SoleCell))
+		{
+			// Iterate on each cell, to get all strong relations.
+			foreach (int cell in EmptyCells)
+			{
+				short mask = grid.GetCandidates(cell);
+				if (BivalueCells.Contains(cell))
+				{
+					// Both strong and weak inferences.
+					int d1 = TrailingZeroCount(mask);
+					int d2 = mask.GetNextSet(d1);
+					var node1 = new SoleCandidateNode((byte)cell, (byte)d1);
+					var node2 = new SoleCandidateNode((byte)cell, (byte)d2);
+
+					ConstructInference(node1, node2, _strongInferences);
+					ConstructInference(node2, node1, _strongInferences);
+					ConstructInference(node1, node2, _weakInferences);
+					ConstructInference(node2, node1, _weakInferences);
+				}
+				else
+				{
+					// Only weak inferences.
+					var digits = mask.GetAllSets();
+					for (int i = 0, length = digits.Length; i < length - 1; i++)
+					{
+						for (int j = i + 1; j < length; j++)
+						{
+							var node1 = new SoleCandidateNode((byte)cell, (byte)digits[i]);
+							var node2 = new SoleCandidateNode((byte)cell, (byte)digits[j]);
+
+							ConstructInference(node1, node2, _weakInferences);
+							ConstructInference(node2, node1, _weakInferences);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/// <summary>
 	/// Start to construct the chain using the depth-first searching algorithm,
 	/// with the weak inference as the beginning node.
 	/// </summary>
+	[Obsolete("Use breadth-first searching instead.", false)]
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private void Dfs_StartWithWeak()
 	{
-		var chain = new Bag<int>();
+		scoped var chain = new Bag<int>();
 		foreach (var (id, nextIds) in _weakInferences)
 		{
 			if (_nodeLookup[id]!.IsGroupedNode)
@@ -573,7 +572,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		chain.Dispose();
 
 
-		void nextStrong(ref Bag<int> chain, int id)
+		void nextStrong(scoped ref scoped Bag<int> chain, int id)
 		{
 			if (!_strongInferences.TryGetValue(id, out var nextIds) || nextIds is null)
 			{
@@ -595,7 +594,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			}
 		}
 
-		void nextWeak(ref Bag<int> chain, int id)
+		void nextWeak(scoped ref scoped Bag<int> chain, int id)
 		{
 			if (!_weakInferences.TryGetValue(id, out var nextIds) || nextIds is null)
 			{
@@ -632,9 +631,11 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// Start to construct the chain using the depth-first searching algorithm,
 	/// with the strong inference as the beginning node.
 	/// </summary>
+	[Obsolete("Use breadth-first searching instead.", false)]
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private void Dfs_StartWithStrong()
 	{
-		var chain = new Bag<int>();
+		scoped var chain = new Bag<int>();
 		foreach (var (id, nextIds) in _strongInferences)
 		{
 			if (!_weakInferences.ContainsKey(id))
@@ -664,7 +665,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		chain.Dispose();
 
 
-		void nextWeak(ref Bag<int> chain, int id)
+		void nextWeak(scoped ref scoped Bag<int> chain, int id)
 		{
 			if (!_weakInferences.TryGetValue(id, out var nextIds) || nextIds is null)
 			{
@@ -686,7 +687,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			}
 		}
 
-		void nextStrong(ref Bag<int> chain, int id)
+		void nextStrong(scoped ref scoped Bag<int> chain, int id)
 		{
 			if (!_strongInferences.TryGetValue(id, out var nextIds) || nextIds is null)
 			{
@@ -718,273 +719,4 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			}
 		}
 	}
-	#endregion
-
-	#region Inference-searching methods
-	/// <summary>
-	/// Gather the strong and weak inferences on sole candidate nodes and locked candidates nodes.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	private void GatherInferences_SoleAndLocked(scoped in Grid grid)
-	{
-		// Iterate on each region, to get all possible links.
-		for (byte house = 9; house < 27; house++)
-		{
-			for (byte digit = 0; digit < 9; digit++)
-			{
-				if ((ValuesMap[digit] & HouseMaps[house]) is not [])
-				{
-					// The current house contains the current digit,
-					// which is not allowed in searching for strong and weak inferences.
-					continue;
-				}
-
-				var emptyCells = HouseMaps[house] & CandidatesMap[digit];
-				short blockMask = emptyCells.BlockMask;
-				switch (PopCount((uint)blockMask))
-				{
-					case 2: // Both strong and weak inferences.
-					{
-						int h1 = TrailingZeroCount(blockMask);
-						int h2 = blockMask.GetNextSet(h1);
-						var node1Cells = emptyCells & HouseMaps[h1];
-						var node2Cells = emptyCells & HouseMaps[h2];
-						var node1 = (Node)(
-							node1Cells is [var node1Cell]
-								? new SoleCandidateNode((byte)node1Cell, digit)
-								: new LockedCandidatesNode(digit, node1Cells)
-						);
-						var node2 = (Node)(
-							node2Cells is [var node2Cell]
-								? new SoleCandidateNode((byte)node2Cell, digit)
-								: new LockedCandidatesNode(digit, node2Cells)
-						);
-
-						switch (node1, node2)
-						{
-							case (SoleCandidateNode a, SoleCandidateNode b) when NodeTypes.Flags(SoleDigit):
-							{
-								ConstructInference(a, b, _strongInferences);
-								ConstructInference(b, a, _strongInferences);
-								ConstructInference(a, b, _weakInferences);
-								ConstructInference(b, a, _weakInferences);
-
-								break;
-							}
-							case var _ when NodeTypes.Flags(LockedCandidates):
-							{
-								ConstructInference(node1, node2, _strongInferences);
-								ConstructInference(node2, node1, _strongInferences);
-
-								// TODO: Separate and enumerate all combinations on a locked candidates node.
-								ConstructInference(node1, node2, _weakInferences);
-								ConstructInference(node2, node1, _weakInferences);
-
-								break;
-							}
-						}
-
-						break;
-					}
-					case 3: // Weak inferences.
-					{
-						int h1 = TrailingZeroCount(blockMask);
-						int h2 = blockMask.GetNextSet(h1);
-						int h3 = blockMask.GetNextSet(h2);
-						var node1Cells = emptyCells & HouseMaps[h1];
-						var node2Cells = emptyCells & HouseMaps[h2];
-						var node3Cells = emptyCells & HouseMaps[h3];
-						var node1 = (Node)(
-							node1Cells is [var node1Cell]
-								? new SoleCandidateNode((byte)node1Cell, digit)
-								: new LockedCandidatesNode(digit, node1Cells)
-						);
-						var node2 = (Node)(
-							node2Cells is [var node2Cell]
-								? new SoleCandidateNode((byte)node2Cell, digit)
-								: new LockedCandidatesNode(digit, node2Cells)
-						);
-						var node3 = (Node)(
-							node3Cells is [var node3Cell]
-								? new SoleCandidateNode((byte)node3Cell, digit)
-								: new LockedCandidatesNode(digit, node3Cells)
-						);
-
-						internalAdd(node1, node2);
-						internalAdd(node1, node3);
-						internalAdd(node2, node3);
-
-						break;
-
-
-						void internalAdd(Node node1, Node node2)
-						{
-							switch (node1, node2)
-							{
-								case (SoleCandidateNode a, SoleCandidateNode b) when NodeTypes.Flags(SoleDigit):
-								{
-									ConstructInference(a, b, _weakInferences);
-									ConstructInference(b, a, _weakInferences);
-
-									break;
-								}
-								case var _ when NodeTypes.Flags(LockedCandidates):
-								{
-									// TODO: Separate and enumerate all combinations on a locked candidates node.
-									ConstructInference(node1, node2, _weakInferences);
-									ConstructInference(node2, node1, _weakInferences);
-
-									break;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		for (byte house = 0; house < 9; house++)
-		{
-			for (byte digit = 0; digit < 9; digit++)
-			{
-				if ((ValuesMap[digit] & HouseMaps[house]) is not [])
-				{
-					// The current house contains the current digit,
-					// which is not allowed in searching for strong and weak inferences.
-					continue;
-				}
-
-				var emptyCells = HouseMaps[house] & CandidatesMap[digit];
-				int houseMask = emptyCells.RowMask << 9 | emptyCells.ColumnMask << 18;
-				switch (PopCount((uint)houseMask))
-				{
-					case 2: // Both strong and weak inferences.
-					{
-						int h1 = TrailingZeroCount(houseMask);
-						int h2 = houseMask.GetNextSet(h1);
-						var node1Cells = emptyCells & HouseMaps[h1];
-						var node2Cells = emptyCells & HouseMaps[h2];
-						var node1 = (Node)(
-							node1Cells is [var node1Cell]
-								? new SoleCandidateNode((byte)node1Cell, digit)
-								: new LockedCandidatesNode(digit, node1Cells)
-						);
-						var node2 = (Node)(
-							node2Cells is [var node2Cell]
-								? new SoleCandidateNode((byte)node2Cell, digit)
-								: new LockedCandidatesNode(digit, node2Cells)
-						);
-
-						switch (node1, node2)
-						{
-							case (SoleCandidateNode a, SoleCandidateNode b) when NodeTypes.Flags(SoleDigit):
-							{
-								ConstructInference(a, b, _strongInferences);
-								ConstructInference(b, a, _strongInferences);
-								ConstructInference(a, b, _weakInferences);
-								ConstructInference(b, a, _weakInferences);
-
-								break;
-							}
-							case var _ when NodeTypes.Flags(LockedCandidates):
-							{
-								ConstructInference(node1, node2, _strongInferences);
-								ConstructInference(node2, node1, _strongInferences);
-
-								// TODO: Separate and enumerate all combinations on a locked candidates node.
-								ConstructInference(node1, node2, _weakInferences);
-								ConstructInference(node2, node1, _weakInferences);
-
-								break;
-							}
-						}
-
-						break;
-					}
-					case >= 3: // Weak inferences.
-					{
-						var houses = houseMask.GetAllSets();
-						for (int i = 0, length = houses.Length; i < length - 1; i++)
-						{
-							for (int j = i + 1; j < length; j++)
-							{
-								var node1Cells = emptyCells & HouseMaps[houses[i]];
-								var node2Cells = emptyCells & HouseMaps[houses[j]];
-								var node1 = (Node)(
-									node1Cells is [var node1Cell]
-										? new SoleCandidateNode((byte)node1Cell, digit)
-										: new LockedCandidatesNode(digit, node1Cells)
-								);
-								var node2 = (Node)(
-									node2Cells is [var node2Cell]
-										? new SoleCandidateNode((byte)node2Cell, digit)
-										: new LockedCandidatesNode(digit, node2Cells)
-								);
-
-								switch (node1, node2)
-								{
-									case (SoleCandidateNode a, SoleCandidateNode b) when NodeTypes.Flags(SoleDigit):
-									{
-										ConstructInference(a, b, _weakInferences);
-										ConstructInference(b, a, _weakInferences);
-
-										break;
-									}
-									case var _ when NodeTypes.Flags(LockedCandidates):
-									{
-										// TODO: Separate and enumerate all combinations on a locked candidates node.
-										ConstructInference(node1, node2, _weakInferences);
-										ConstructInference(node2, node1, _weakInferences);
-
-										break;
-									}
-								}
-							}
-						}
-
-						break;
-					}
-				}
-			}
-		}
-
-		// Iterate on each cell, to get all strong relations.
-		if (NodeTypes.Flags(SoleCell))
-		{
-			foreach (int cell in EmptyCells)
-			{
-				short mask = grid.GetCandidates(cell);
-				if (BivalueCells.Contains(cell))
-				{
-					// Both strong and weak inferences.
-					int d1 = TrailingZeroCount(mask);
-					int d2 = mask.GetNextSet(d1);
-					var node1 = new SoleCandidateNode((byte)cell, (byte)d1);
-					var node2 = new SoleCandidateNode((byte)cell, (byte)d2);
-
-					ConstructInference(node1, node2, _strongInferences);
-					ConstructInference(node2, node1, _strongInferences);
-					ConstructInference(node1, node2, _weakInferences);
-					ConstructInference(node2, node1, _weakInferences);
-				}
-				else
-				{
-					// Only weak inferences.
-					var digits = mask.GetAllSets();
-					for (int i = 0, length = digits.Length; i < length - 1; i++)
-					{
-						for (int j = i + 1; j < length; j++)
-						{
-							var node1 = new SoleCandidateNode((byte)cell, (byte)digits[i]);
-							var node2 = new SoleCandidateNode((byte)cell, (byte)digits[j]);
-
-							ConstructInference(node1, node2, _weakInferences);
-							ConstructInference(node2, node1, _weakInferences);
-						}
-					}
-				}
-			}
-		}
-	}
-	#endregion
 }
