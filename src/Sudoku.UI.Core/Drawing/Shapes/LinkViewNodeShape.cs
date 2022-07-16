@@ -132,7 +132,6 @@ public sealed class LinkViewNodeShape : DrawingElement
 			_ = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, start) is var pt1 and var (pt1x, pt1y);
 			_ = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, end) is var pt2 and var (pt2x, pt2y);
 
-			var endCap = inference != Inference.Default ? PenLineCap.Triangle : PenLineCap.Flat;
 			var doubleCollection = inference switch
 			{
 				Inference.Strong => new(),
@@ -144,12 +143,18 @@ public sealed class LinkViewNodeShape : DrawingElement
 			{
 				// Draw the link.
 				result.Add(
-					new Line()
+					new Path()
 						.WithStroke(Preference.LinkColor)
 						.WithStrokeThickness(2)
 						.WithStrokeDashArray(doubleCollection)
-						.WithPoints(pt1, pt2)
-						.WithStrokeEndLineCap(endCap)
+						.WithData(
+							new GeometryGroup()
+								.WithChildren(
+									new LineGeometry()
+										.WithPoints(pt1, pt2)
+										.WithCustomizedArrawCap()
+								)
+						)
 				);
 			}
 			else
@@ -210,19 +215,22 @@ public sealed class LinkViewNodeShape : DrawingElement
 							.WithStroke(Preference.LinkColor)
 							.WithStrokeThickness(2)
 							.WithStrokeDashArray(doubleCollection)
-							.WithStrokeEndLineCap(endCap)
 							.WithData(
-								new PathGeometry()
-									.WithFigures(
-										new PathFigure()
-											.WithStartPoint(pt1)
-											.WithIsClosed(false)
-											.WithIsFilled(false)
-											.WithSegments(
-												new BezierSegment()
-													.WithInterimPoints(bx1, by1, bx2, by2)
-													.WithEndPoint(pt2)
+								new GeometryGroup()
+									.WithChildren(
+										new PathGeometry()
+											.WithFigures(
+												new PathFigure()
+													.WithStartPoint(pt1)
+													.WithIsClosed(false)
+													.WithIsFilled(false)
+													.WithSegments(
+														new BezierSegment()
+															.WithInterimPoints(bx1, by1, bx2, by2)
+															.WithEndPoint(pt2)
+													)
 											)
+											.WithCustomizedArrawCap(pt1, pt2)
 									)
 							)
 					);
@@ -231,12 +239,18 @@ public sealed class LinkViewNodeShape : DrawingElement
 				{
 					// Draw the link.
 					result.Add(
-						new Line()
+						new Path()
 							.WithStroke(Preference.LinkColor)
 							.WithStrokeThickness(2)
 							.WithStrokeDashArray(doubleCollection)
-							.WithPoints(pt1, pt2)
-							.WithStrokeEndLineCap(endCap)
+							.WithData(
+								new GeometryGroup()
+									.WithChildren(
+										new LineGeometry()
+											.WithPoints(pt1, pt2)
+											.WithCustomizedArrawCap()
+									)
+							)
 					);
 				}
 			}

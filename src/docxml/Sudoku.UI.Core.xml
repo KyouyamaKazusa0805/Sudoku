@@ -3168,6 +3168,17 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Media.BezierSegment.Point3"/> with the specified value.
             </summary>
         </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.GeometryGroupExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.GeometryGroup"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.GeometryGroup"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.GeometryGroupExtensions.WithChildren(Microsoft.UI.Xaml.Media.GeometryGroup,Microsoft.UI.Xaml.Media.Geometry[])">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.GeometryGroup.Children"/> with the specified value.
+            </summary>
+        </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.LineExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Line"/>.
@@ -3197,6 +3208,24 @@
         <member name="M:Microsoft.UI.Xaml.Shapes.LineExtensions.WithPoints(Microsoft.UI.Xaml.Shapes.Line,Windows.Foundation.Point,Windows.Foundation.Point)">
             <summary>
             Sets properties <see cref="P:Microsoft.UI.Xaml.Shapes.Line.X1"/>, <see cref="P:Microsoft.UI.Xaml.Shapes.Line.X2"/>, <see cref="P:Microsoft.UI.Xaml.Shapes.Line.Y1"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Line.Y2"/>
+            with the specified values.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.LineGeometryExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.LineGeometry"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.LineGeometry"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.LineGeometryExtensions.WithCustomizedArrawCap(Microsoft.UI.Xaml.Media.LineGeometry)">
+            <summary>
+            Gets the customized arrow cap geometry instances that can be used
+            as the property <see cref="P:Microsoft.UI.Xaml.Media.GeometryGroup.Children"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.LineGeometryExtensions.WithPoints(Microsoft.UI.Xaml.Media.LineGeometry,Windows.Foundation.Point,Windows.Foundation.Point)">
+            <summary>
+            Sets properties <see cref="P:Microsoft.UI.Xaml.Media.LineGeometry.StartPoint"/> and <see cref="P:Microsoft.UI.Xaml.Media.LineGeometry.EndPoint"/>
             with the specified values.
             </summary>
         </member>
@@ -3256,6 +3285,12 @@
         <member name="M:Microsoft.UI.Xaml.Shapes.PathGeometryExtensions.WithFigures(Microsoft.UI.Xaml.Media.PathGeometry,Microsoft.UI.Xaml.Media.PathFigure[])">
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.Media.PathGeometry.Figures"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.PathGeometryExtensions.WithCustomizedArrawCap(Microsoft.UI.Xaml.Media.PathGeometry,Windows.Foundation.Point,Windows.Foundation.Point)">
+            <summary>
+            Gets the customized arrow cap geometry instances that can be used
+            as the property <see cref="P:Microsoft.UI.Xaml.Media.GeometryGroup.Children"/>.
             </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.ShapeExtensions">
