@@ -136,7 +136,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 			var doubleCollection = inference switch
 			{
 				Inference.Strong => new(),
-				Inference.Weak => new() { 6, 3 },
+				Inference.Weak => new() { 3, 1.5 },
 				_ => new DoubleCollection { 3, 3 }
 			};
 
