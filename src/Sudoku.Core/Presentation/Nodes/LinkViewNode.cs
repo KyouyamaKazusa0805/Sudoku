@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a view node that highlights for a link.
 /// </summary>
-public sealed class LinkViewNode : ViewNode
+[AutoDeconstruction(nameof(Start), nameof(End), nameof(Inference))]
+public sealed partial class LinkViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="LinkViewNode"/> instance via the specified identifier,

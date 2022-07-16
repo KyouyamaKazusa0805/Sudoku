@@ -42,6 +42,52 @@ internal static class PointConversions
 	public static double CandidateSize(double paneSize, double outsideOffset) => GridSize(paneSize, outsideOffset) / 27;
 
 	/// <summary>
+	/// Gets the center cursor point of the specified locked target.
+	/// </summary>
+	/// <param name="paneSize">The pane size.</param>
+	/// <param name="outsideOffset">The outside offset.</param>
+	/// <param name="lockedTarget">The locked target.</param>
+	/// <returns>The center cursor point.</returns>
+	public static Point GetMouseCenter(double paneSize, double outsideOffset, LockedTarget lockedTarget)
+	{
+		return lockedTarget switch
+		{
+			{ Cells: [var a, .., var b], Digit: var digit } when f(a, b, digit) is var ((x1, y1), (x2, y2))
+				=> new((x1 + x2) / 2, (y1 + y2) / 2),
+			{ Cells: [var s], Digit: var digit } when s * 9 + digit is var c
+				=> GetMousePointInCenter(paneSize, outsideOffset, c / 9, c % 9),
+			_ => throw new ArgumentException("Cannot get at least 1 cell in the map.")
+		};
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		(Point, Point) f(int a, int b, int digit)
+		{
+			int min = a * 9 + digit;
+			int max = b * 9 + digit;
+			return (
+				GetMousePointInCenter(paneSize, outsideOffset, min / 9, min % 9),
+				GetMousePointInCenter(paneSize, outsideOffset, max / 9, max % 9)
+			);
+		}
+	}
+
+	/// <summary>
+	/// Gets the center mouse cursor point of the specified cell and digit.
+	/// </summary>
+	/// <param name="paneSize">The pane size.</param>
+	/// <param name="outsideOffset">The outside offset.</param>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	/// <returns>The point.</returns>
+	public static Point GetMousePointInCenter(double paneSize, double outsideOffset, int cell, int digit)
+	{
+		double cs = CandidateSize(paneSize, outsideOffset);
+		var (x, y) = GridPoints(paneSize, outsideOffset)[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];
+		return new(x + cs / 2 - outsideOffset, y + cs / 2 - outsideOffset);
+	}
+
+	/// <summary>
 	/// Gets the start and end point that corresponds to the target block line at the specified index.
 	/// </summary>
 	/// <param name="paneSize">The pane size.</param>
@@ -112,6 +158,25 @@ internal static class PointConversions
 		&& GetCell(point, paneSize, outsideOffset) is var cellOffset and not -1
 			? cellOffset * 9 + candidateOffset
 			: -1;
+
+	/// <summary>
+	/// Indicates the grid points.
+	/// </summary>
+	private static Point[,] GridPoints(double paneSize, double outsideOffset)
+	{
+		const int length = 28;
+		double cs = CandidateSize(paneSize, outsideOffset);
+		var result = new Point[length, length];
+		for (int i = 0; i < length; i++)
+		{
+			for (int j = 0; j < length; j++)
+			{
+				result[i, j] = new(cs * i + outsideOffset, cs * j + outsideOffset);
+			}
+		}
+
+		return result;
+	}
 
 	/// <summary>
 	/// Gets the start and end point that corresponds to the target line at the specified index,

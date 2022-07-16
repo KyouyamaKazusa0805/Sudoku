@@ -66,9 +66,9 @@ public sealed class SudokuGrid : DrawingElement
 	private readonly CandidateViewNodeShape[] _candidateViewNodeShapes = new CandidateViewNodeShape[81];
 
 	/// <summary>
-	/// Indicates the house view node shapes.
+	/// Indicates the link view node shapes.
 	/// </summary>
-	private HouseViewNodeShape _houseViewNodeShape = null!;
+	private readonly List<LinkViewNodeShape> _linkViewNodeShapes = new();
 
 	/// <summary>
 	/// Indicates the user preference used.
@@ -120,6 +120,11 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private CandidateMark[]? _candidateMarks;
 #endif
+
+	/// <summary>
+	/// Indicates the house view node shapes.
+	/// </summary>
+	private HouseViewNodeShape _houseViewNodeShape = null!;
 
 	/// <summary>
 	/// Indicates the current displayable unit to be displayed.
@@ -951,6 +956,31 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
+	/// Sets the link view node.
+	/// </summary>
+	/// <param name="linkViewNodes">The link view nodes.</param>
+	public void SetLinkViewNode(IList<LinkViewNode> linkViewNodes)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		var linkShape = new LinkViewNodeShape
+		{
+			PaneSize = PaneSize,
+			OutsideOffset = OutsideOffset,
+			Preference = Preference,
+			Conclusions = DisplayableUnit!.Conclusions,
+			Nodes = linkViewNodes.ToImmutableArray()
+		};
+
+		_linkViewNodeShapes.Add(linkShape);
+
+		_gridLayout.Children.Add(linkShape.GetControl());
+	}
+
+	/// <summary>
 	/// Clears all view nodes.
 	/// </summary>
 	public void ClearViewNodes()
@@ -964,6 +994,7 @@ public sealed class SudokuGrid : DrawingElement
 		Array.ForEach(_cellViewNodeShapes, static s => s.IsVisible = false);
 		Array.ForEach(_candidateViewNodeShapes, static s => Array.ForEach(Digits, d => s.SetIsVisible(d, false)));
 		Array.ForEach(Houses, house => _houseViewNodeShape.SetIsVisible(house, false));
+		_linkViewNodeShapes.ForEach(link => _gridLayout.Children.Remove(link.GetControl()));
 	}
 
 	/// <summary>
@@ -1233,6 +1264,7 @@ public sealed class SudokuGrid : DrawingElement
 		// Rebuild the nodes.
 		foreach (var viewNode in view)
 		{
+			var linkViewNodes = new List<LinkViewNode>();
 			switch (viewNode)
 			{
 				case CellViewNode cellViewNode:
@@ -1250,7 +1282,14 @@ public sealed class SudokuGrid : DrawingElement
 					SetHouseViewNode(houseViewNode);
 					break;
 				}
+				case LinkViewNode linkViewNode:
+				{
+					linkViewNodes.Add(linkViewNode);
+					break;
+				}
 			}
+
+			SetLinkViewNode(linkViewNodes);
 		}
 	}
 
@@ -1269,11 +1308,7 @@ public sealed class SudokuGrid : DrawingElement
 
 		foreach (var conclusion in conclusions)
 		{
-#pragma warning disable CS8794
-			// This pattern-based deconstruction is always return true,
-			// but this assignment statement is on purpose, in order to merge two deconstruction statements.
 			_ = conclusion is var (type, cell, digit) and var (_, candidate);
-#pragma warning restore CS8794
 
 			scoped ref var current = ref _candidateViewNodeShapes[cell];
 

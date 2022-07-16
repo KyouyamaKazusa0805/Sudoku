@@ -2,6 +2,7 @@
 global using System.Collections;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
+global using System.Collections.ObjectModel;
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
@@ -42,6 +43,7 @@ global using Windows.UI;
 global using Windows.UI.Core;
 global using WinRT;
 global using WinRT.Interop;
+global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;

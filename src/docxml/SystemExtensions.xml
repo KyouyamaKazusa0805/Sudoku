@@ -343,6 +343,12 @@
             Release the memory or return the rent memory.
             </summary>
         </member>
+        <member name="M:System.Collections.Generic.Bag`1.GetDebuggerDisplay">
+            <summary>
+            Gets the display view of the type on debugger.
+            </summary>
+            <returns>The string representation of the instance.</returns>
+        </member>
         <member name="T:System.Collections.Generic.Bag`1.Enumerator">
             <summary>
             Indicates the inner enumerator.
@@ -810,6 +816,17 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.ICollection`1"/>
             <seealso cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Immutable.ImmutableArray{``0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the
+            <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="values">
+            The values you want to add to the end of the collection.
+            </param>
         </member>
         <member name="M:System.Collections.Generic.CollectionExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
             <summary>
@@ -1621,24 +1638,6 @@
             that is used or called by the source generator.
             </summary>
         </member>
-        <member name="T:System.ArrayExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Array"/>.
-            </summary>
-            <seealso cref="T:System.Array"/>
-        </member>
-        <member name="M:System.ArrayExtensions.CanFind``1(``0[],System.Predicate{``0})">
-            <summary>
-            Simply encapsulates a method to call method <see cref="M:System.Array.FindIndex``1(``0[],System.Predicate{``0})"/>
-            and returns a <see cref="T:System.Boolean"/> value indicating whether the result is not -1.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">An array with one dimension.</param>
-            <param name="predicate">
-            The predicate that determines whether an element satisfies the user's requirement.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating whether such element can be found.</returns>
-        </member>
         <member name="T:System.Reflection.AssemblyExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Reflection.Assembly"/>.
@@ -2049,7 +2048,7 @@
             <remarks>
             You can use this type like this:
             <code><![CDATA[
-            var sb = new StringHandler(initialCapacity: 100);
+            scoped var sb = new StringHandler(initialCapacity: 100);
             
             sb.Append("Hello");
             sb.Append(',');
@@ -2640,6 +2639,26 @@
             Removes the specified number of characters from the end of the collection.
             </summary>
             <param name="length">The number of characters you want to remove.</param>
+            <remarks>
+            This method can be used for removing the last separator in a whole string, split by separators.
+            For example:
+            <code><![CDATA[
+            const string separator = ", "; // Defines a separator.
+            
+            scoped var sb = new StringHandler(); // Creates a string concatenator.
+            foreach (int element in list)
+            {
+                sb.Append(element); // Append the element.
+                sb.Append(separator); // Append the separator.
+            }
+            
+            // Use the method 'RemoveFromEnd' to remove the last separator.
+            sb.RemoveFromEnd(separator.Length);
+            
+            // Get the final string value and release the temporarily allocated memory.
+            return sb.ToStringAndClear();
+            ]]></code>
+            </remarks>
         </member>
         <member name="M:System.Text.StringHandler.ToStringAndClear">
             <summary>
@@ -2807,7 +2826,12 @@
             Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
             </summary>
             <param name="chars">The characters.</param>
+            <exception cref="T:System.NullReferenceException">
+            Throws when the field <see cref="F:System.Text.StringHandler._chars"/> in argument <paramref name="chars"/>
+            is a <see langword="null"/> reference after having been invoked <see cref="M:System.Span`1.GetPinnableReference"/>.
+            </exception>
             <seealso cref="T:System.Span`1"/>
+            <seealso cref="M:System.Span`1.GetPinnableReference"/>
         </member>
         <member name="P:System.Text.StringHandler.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>

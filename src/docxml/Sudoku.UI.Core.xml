@@ -25,16 +25,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.DiamondMark">
             <summary>
             Defines a diamond mark sign.
@@ -53,16 +43,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.StarMark">
             <summary>
             Defines a star sign.
@@ -79,16 +59,6 @@
         <member name="M:Sudoku.UI.Views.Controls.StarMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.TriangleMark">
@@ -113,16 +83,6 @@
         <member name="M:Sudoku.UI.Views.Controls.TriangleMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Data.Configuration.FontData">
@@ -474,6 +434,25 @@
             <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
             <returns>The candidate size.</returns>
         </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetMouseCenter(System.Double,System.Double,Sudoku.Presentation.LockedTarget)">
+            <summary>
+            Gets the center cursor point of the specified locked target.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="lockedTarget">The locked target.</param>
+            <returns>The center cursor point.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetMousePointInCenter(System.Double,System.Double,System.Int32,System.Int32)">
+            <summary>
+            Gets the center mouse cursor point of the specified cell and digit.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The point.</returns>
+        </member>
         <member name="M:Sudoku.UI.Drawing.PointConversions.GetBlockLine(System.Double,System.Double,System.Byte)">
             <summary>
             Gets the start and end point that corresponds to the target block line at the specified index.
@@ -524,6 +503,11 @@
             The candidate index. If the argument <paramref name="point"/> is invalid,
             the return value will be -1.
             </returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GridPoints(System.Double,System.Double)">
+            <summary>
+            Indicates the grid points.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.PointConversions.GetLine(System.Double,System.Double,System.Byte,System.Int32)">
             <summary>
@@ -2414,6 +2398,85 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape.GetControl">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape">
+            <summary>
+            Defines a link view node shape.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.RotateAngle">
+            <summary>
+            Indicates the rotate angle (45 degrees).
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.SqrtOf2">
+            <summary>
+            Indicates the square root of 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape._paneSize">
+            <summary>
+            Indicates the pane size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape._canvas">
+            <summary>
+            Indicates the canvas.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape._linkViewNodes">
+            <summary>
+            Indicates the link view nodes used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.PaneSize">
+            <summary>
+            Indicates the pane size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.OutsideOffset">
+            <summary>
+            Indicates the outside offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.Nodes">
+            <summary>
+            Indicates the link nodes used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.Conclusions">
+            <summary>
+            Indicates the conclusions used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.Preference">
+            <summary>
+            Indicates the user preference instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.GetControl">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.CreateLinks(System.Collections.ObjectModel.ObservableCollection{Sudoku.Presentation.Nodes.LinkViewNode})">
+            <summary>
+            Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
+            </summary>
+            <param name="nodes">The link view nodes.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">
             <summary>
             Defines an outside rectangle.
@@ -2561,9 +2624,9 @@
             Indicates the candidate view node shapes.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._houseViewNodeShape">
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._linkViewNodeShapes">
             <summary>
-            Indicates the house view node shapes.
+            Indicates the link view node shapes.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._preference">
@@ -2611,6 +2674,11 @@
             <summary>
             Indicates the candidate marks.
             The value won't be <see langword="null"/> if the field <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.AllowMarkups"/> is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._houseViewNodeShape">
+            <summary>
+            Indicates the house view node shapes.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._displayableUnit">
@@ -2800,6 +2868,12 @@
             Sets the house view node.
             </summary>
             <param name="houseViewNode">The house view node.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetLinkViewNode(System.Collections.Generic.IList{Sudoku.Presentation.Nodes.LinkViewNode})">
+            <summary>
+            Sets the link view node.
+            </summary>
+            <param name="linkViewNodes">The link view nodes.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearViewNodes">
             <summary>
@@ -3071,25 +3145,215 @@
         <member name="M:Sudoku.UI.MarkupExtensions.DateOnlyExtension.ProvideValue">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider">
+        <member name="T:Microsoft.UI.Xaml.Shapes.BezierSegmentExtensions">
             <summary>
-            Main class for providing metadata for the app or library
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.BezierSegment"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.BezierSegment"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.BezierSegmentExtensions.WithInterimPoints(Microsoft.UI.Xaml.Media.BezierSegment,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Sets properties <see cref="P:Microsoft.UI.Xaml.Media.BezierSegment.Point1"/> and <see cref="P:Microsoft.UI.Xaml.Media.BezierSegment.Point2"/>
+            with the specified value.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.BezierSegmentExtensions.WithInterimPoints(Microsoft.UI.Xaml.Media.BezierSegment,Windows.Foundation.Point,Windows.Foundation.Point)">
             <summary>
-            GetXamlType(Type)
+            Sets properties <see cref="P:Microsoft.UI.Xaml.Media.BezierSegment.Point1"/> and <see cref="P:Microsoft.UI.Xaml.Media.BezierSegment.Point2"/>
+            with the specified value.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.BezierSegmentExtensions.WithEndPoint(Microsoft.UI.Xaml.Media.BezierSegment,Windows.Foundation.Point)">
             <summary>
-            GetXamlType(String)
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.BezierSegment.Point3"/> with the specified value.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+        <member name="T:Microsoft.UI.Xaml.Shapes.LineExtensions">
             <summary>
-            GetXmlnsDefinitions()
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Line"/>.
             </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Line"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.LineExtensions.WithStartPoint(Microsoft.UI.Xaml.Shapes.Line,System.Double,System.Double)">
+            <summary>
+            Sets properties <see cref="P:Microsoft.UI.Xaml.Shapes.Line.X1"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Line.Y1"/> with the specified values.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.LineExtensions.WithStartPoint(Microsoft.UI.Xaml.Shapes.Line,Windows.Foundation.Point)">
+            <summary>
+            Sets properties <see cref="P:Microsoft.UI.Xaml.Shapes.Line.X1"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Line.Y1"/> with the specified values.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.LineExtensions.WithEndPoint(Microsoft.UI.Xaml.Shapes.Line,System.Double,System.Double)">
+            <summary>
+            Sets properties <see cref="P:Microsoft.UI.Xaml.Shapes.Line.X2"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Line.Y2"/> with the specified values.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.LineExtensions.WithEndPoint(Microsoft.UI.Xaml.Shapes.Line,Windows.Foundation.Point)">
+            <summary>
+            Sets properties <see cref="P:Microsoft.UI.Xaml.Shapes.Line.X2"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Line.Y2"/> with the specified values.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.LineExtensions.WithPoints(Microsoft.UI.Xaml.Shapes.Line,Windows.Foundation.Point,Windows.Foundation.Point)">
+            <summary>
+            Sets properties <see cref="P:Microsoft.UI.Xaml.Shapes.Line.X1"/>, <see cref="P:Microsoft.UI.Xaml.Shapes.Line.X2"/>, <see cref="P:Microsoft.UI.Xaml.Shapes.Line.Y1"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Line.Y2"/>
+            with the specified values.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.PathExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.PathExtensions.WithData``1(Microsoft.UI.Xaml.Shapes.Path,``0)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Path.Data"/> with the specified value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.PathFigureExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.PathFigure"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.PathFigure"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.PathFigureExtensions.WithStartPoint(Microsoft.UI.Xaml.Media.PathFigure,Windows.Foundation.Point)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.PathFigure.StartPoint"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.PathFigureExtensions.WithIsClosed(Microsoft.UI.Xaml.Media.PathFigure,System.Boolean)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.PathFigure.IsClosed"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.PathFigureExtensions.WithIsFilled(Microsoft.UI.Xaml.Media.PathFigure,System.Boolean)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.PathFigure.IsFilled"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.PathFigureExtensions.AddSegment``1(Microsoft.UI.Xaml.Media.PathFigure,``0)">
+            <summary>
+            Adds a new <see cref="T:Microsoft.UI.Xaml.Media.PathSegment"/> into the <see cref="P:Microsoft.UI.Xaml.Media.PathFigure.Segments"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.PathFigureExtensions.WithSegments(Microsoft.UI.Xaml.Media.PathFigure,Microsoft.UI.Xaml.Media.PathSegment[])">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.PathFigure.Segments"/> with the specified value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.PathGeometryExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.PathGeometry"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.PathGeometry"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.PathGeometryExtensions.AddFigure(Microsoft.UI.Xaml.Media.PathGeometry,Microsoft.UI.Xaml.Media.PathFigure)">
+            <summary>
+            Adds a new <see cref="T:Microsoft.UI.Xaml.Media.PathFigure"/> instance into the collection <see cref="P:Microsoft.UI.Xaml.Media.PathGeometry.Figures"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.PathGeometryExtensions.WithFigures(Microsoft.UI.Xaml.Media.PathGeometry,Microsoft.UI.Xaml.Media.PathFigure[])">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.PathGeometry.Figures"/> with the specified value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.ShapeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithFill``1(``0,Windows.UI.Color)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithFill``1(``0,Microsoft.UI.Xaml.Media.Brush)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStroke``1(``0,Windows.UI.Color)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Stroke"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStroke``1(``0,Microsoft.UI.Xaml.Media.Brush)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Stroke"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStrokeThickness``1(``0,System.Double)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeThickness"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStrokeDashArray``1(``0,System.Double[])">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeDashArray"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStrokeDashArray``1(``0,Microsoft.UI.Xaml.Media.DoubleCollection)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeDashArray"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStrokeStartLineCap``1(``0,Microsoft.UI.Xaml.Media.PenLineCap)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeStartLineCap"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStrokeEndLineCap``1(``0,Microsoft.UI.Xaml.Media.PenLineCap)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeEndLineCap"/> with the specified value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE57A11628">
+            <summary>
+            Provides with extension deconstruction methods on this type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE57A11628.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+					public static void Deconstruct(out string name, out int age)
+					{
+					    name = Name;
+					    age = Age;
+					}
+						</code>
+						The following code will be legal.
+						<code>
+					// Use explicitly typed variables to get a deconstruction.
+					(string name, int age) = student;
+
+					// Or use the type inferring to omit the type of each variable having been deconstructed.
+					var (name, age) = student;
+
+					// Of course, you can also use the invocation to get values.
+					student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+					if (student is (name: var name, age: &gt;= 18))
+					{
+					    Console.WriteLine(name);
+					}
+						</code>
+					</para>
+				</remarks>
+			</target>
         </member>
         <member name="T:Microsoft.UI.Xaml.Data.BindingExtensions">
             <summary>
@@ -3343,83 +3607,6 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.ProgressRing.IsActive"/> with the specified value.
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.ShapeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithFill``1(``0,Windows.UI.Color)">
-            <summary>
-            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/> with the specified value.
-            </summary>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithFill``1(``0,Microsoft.UI.Xaml.Media.Brush)">
-            <summary>
-            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/> with the specified value.
-            </summary>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStroke``1(``0,Windows.UI.Color)">
-            <summary>
-            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Stroke"/> with the specified value.
-            </summary>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStroke``1(``0,Microsoft.UI.Xaml.Media.Brush)">
-            <summary>
-            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.Stroke"/> with the specified value.
-            </summary>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.ShapeExtensions.WithStrokeThickness``1(``0,System.Double)">
-            <summary>
-            Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeThickness"/> with the specified value.
-            </summary>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE">
-            <summary>
-            Provides with extension deconstruction methods on this type.
-            </summary>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-					public static void Deconstruct(out string name, out int age)
-					{
-					    name = Name;
-					    age = Age;
-					}
-						</code>
-						The following code will be legal.
-						<code>
-					// Use explicitly typed variables to get a deconstruction.
-					(string name, int age) = student;
-
-					// Or use the type inferring to omit the type of each variable having been deconstructed.
-					var (name, age) = student;
-
-					// Of course, you can also use the invocation to get values.
-					student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-					if (student is (name: var name, age: &gt;= 18))
-					{
-					    Console.WriteLine(name);
-					}
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
         <member name="T:Microsoft.UI.Xaml.StackPanelExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.StackPanel"/>.
@@ -3577,12 +3764,12 @@
             <param name="this">The modifier key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DEF353AC3E">
+        <member name="T:Windows.Foundation.Point_DEFC6B40A8">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEF353AC3E.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEFC6B40A8.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
