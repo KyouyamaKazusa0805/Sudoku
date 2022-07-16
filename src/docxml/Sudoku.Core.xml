@@ -5226,6 +5226,11 @@
             and ends with another strong inference.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.IsRedundant">
+            <summary>
+            Determines whether the chain is redundant.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.Count">
             <inheritdoc/>
         </member>

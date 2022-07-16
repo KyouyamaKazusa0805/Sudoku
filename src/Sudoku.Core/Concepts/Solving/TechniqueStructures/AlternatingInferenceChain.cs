@@ -56,6 +56,35 @@ public sealed class AlternatingInferenceChain : Chain
 	/// </summary>
 	public bool IsStrong { get; }
 
+	/// <summary>
+	/// Determines whether the chain is redundant.
+	/// </summary>
+	public bool IsRedundant
+	{
+		get
+		{
+			if (!IsStrong)
+			{
+				return false;
+			}
+
+			var dic = new Dictionary<Node, int>();
+			foreach (var node in _nodes)
+			{
+				if (!dic.ContainsKey(node))
+				{
+					dic.Add(node, 1);
+				}
+				else
+				{
+					dic[node]++;
+				}
+			}
+
+			return dic.Values.Count(static value => value == 2) > 1;
+		}
+	}
+
 	/// <inheritdoc/>
 	public override int Count
 	{

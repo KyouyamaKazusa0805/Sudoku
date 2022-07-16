@@ -145,7 +145,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			foreach (var (nids, startsWithWeak) in _foundChains)
 			{
 				var chain = new AlternatingInferenceChain(from nid in nids select _nodeLookup[nid], !startsWithWeak);
-				if (chain.GetConclusions(grid) is { Length: not 0 } conclusions && !tempList.ContainsKey(chain))
+				if (chain.GetConclusions(grid) is { Length: not 0 } conclusions && !tempList.ContainsKey(chain)
+					&& !chain.IsRedundant)
 				{
 					tempList.Add(chain, conclusions);
 				}
