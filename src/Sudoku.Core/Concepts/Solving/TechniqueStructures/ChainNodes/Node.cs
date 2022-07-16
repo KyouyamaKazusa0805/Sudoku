@@ -121,7 +121,7 @@ public abstract class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	/// </summary>
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual string ToSimpleString() => $"{Digit + 1}{Cells}";
+	public virtual string ToSimpleString() => $"{Cells}({Digit + 1})";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

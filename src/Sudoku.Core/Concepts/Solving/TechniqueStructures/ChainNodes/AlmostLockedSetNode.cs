@@ -55,7 +55,7 @@ public sealed class AlmostLockedSetNode : Node
 
 
 	/// <inheritdoc/>
-	public override string ToSimpleString() => $"{Digit + 1}{FullCells}";
+	public override string ToSimpleString() => $"{FullCells}({Digit + 1})";
 
 
 	/// <summary>
