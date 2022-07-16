@@ -193,7 +193,8 @@ public sealed class LinkViewNodeShape : DrawingElement
 
 					// The end points are rotated 45 degrees
 					// (counterclockwise for the start point, clockwise for the end point).
-					Point oldPt1 = new(pt1x, pt1y), oldPt2 = new(pt2x, pt2y);
+					var oldPt1 = new Point(pt1x, pt1y);
+					var oldPt2 = new Point(pt2x, pt2y);
 					rotate(oldPt1, ref pt1, -RotateAngle);
 					rotate(oldPt2, ref pt2, RotateAngle);
 

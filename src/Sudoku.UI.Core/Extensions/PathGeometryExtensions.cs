@@ -38,23 +38,23 @@ public static class PathGeometryExtensions
 	{
 		var pt1 = point1;
 		var pt2 = point2;
-		double headlen = 10;
+		double arrowLength = 10;
 		double theta = 30;
 		double arrowX, arrowY;
 		double angle = Atan2(pt1.Y - pt2.Y, pt1.X - pt2.X) * 180 / PI;
-		double angle1 = (angle + theta) * PI / 180;
-		double angle2 = (angle - theta) * PI / 180;
-		double topX = headlen * Cos(angle1);
-		double topY = headlen * Sin(angle1);
-		double botX = headlen * Cos(angle2);
-		double botY = headlen * Sin(angle2);
+		double angle1 = (angle + theta + 22.5) * PI / 180;
+		double angle2 = (angle - theta + 22.5) * PI / 180;
+		double topX = arrowLength * Cos(angle1);
+		double topY = arrowLength * Sin(angle1);
+		double bottomX = arrowLength * Cos(angle2);
+		double bottomY = arrowLength * Sin(angle2);
 
 		arrowX = pt2.X + topX;
 		arrowY = pt2.Y + topY;
 		var a = new LineGeometry().WithPoints(new(arrowX, arrowY), pt2);
 
-		arrowX = pt2.X + botX;
-		arrowY = pt2.Y + botY;
+		arrowX = pt2.X + bottomX;
+		arrowY = pt2.Y + bottomY;
 		var b = new LineGeometry().WithPoints(new(arrowX, arrowY), pt2);
 
 		return new Geometry[] { @this, a, b };
