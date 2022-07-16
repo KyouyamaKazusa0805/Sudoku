@@ -971,34 +971,6 @@
             </para>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.PrintInferences(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}},Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node[],System.Action{System.String})">
-            <summary>
-            Print the inferences.
-            </summary>
-            <param name="inferences">The table of inferences.</param>
-            <param name="nodeLookup">The node lookup table.</param>
-            <param name="outputHandler">
-            The handler method that used for the invocation on output the result information.
-            For example, the following code is okay for this argument:
-            <code>
-            PrintInferences(
-                // Suppose we output the strong inference dictionary.
-                inferences: _strongInferences,
-            
-                // Here we can call 'Console.WriteLine' to output the result string value.
-                // In addition, you can also write 'static data => Console.WriteLine(data)'.
-                outputHandler: Console.WriteLine
-            );
-            </code>
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.GetRawChainData(System.Int32[],Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node[])">
-            <summary>
-            To print the whole chain via the ID. The method is only used for calling by the debugger.
-            </summary>
-            <param name="chainIds">The IDs.</param>
-            <param name="nodeLookup">The node lookup table.</param>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IChainStepSearcher">
             <summary>
             Defines a step searcher that searches for chain steps.
@@ -1019,6 +991,34 @@
             </summary>
             <param name="chain">The chain.</param>
             <returns>An array of presentation data of links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.PrintInferences(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}},Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node[],System.Action{System.String})">
+            <summary>
+            Print the inferences.
+            </summary>
+            <param name="inferences">The table of inferences.</param>
+            <param name="nodeLookup">The node lookup table.</param>
+            <param name="outputHandler">
+            The handler method that used for the invocation on output the result information.
+            For example, the following code is okay for this argument:
+            <code>
+            PrintInferences(
+                // Suppose we output the strong inference dictionary.
+                inferences: _strongInferences,
+            
+                // Here we can call 'Console.WriteLine' to output the result string value.
+                // In addition, you can also write 'static data => Console.WriteLine(data)'.
+                outputHandler: Console.WriteLine
+            );
+            </code>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetRawChainData(System.Int32[],Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node[])">
+            <summary>
+            To print the whole chain via the ID. The method is only used for calling by the debugger.
+            </summary>
+            <param name="chainIds">The IDs.</param>
+            <param name="nodeLookup">The node lookup table.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher">
             <summary>
