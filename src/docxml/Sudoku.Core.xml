@@ -5229,6 +5229,11 @@
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.Count">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.FullChainNodes">
+            <summary>
+            Indicates the full chain nodes.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.RealChainNodes">
             <summary>
             <para>Indicates the nodes that represents the main chain node data for the current chain.</para>

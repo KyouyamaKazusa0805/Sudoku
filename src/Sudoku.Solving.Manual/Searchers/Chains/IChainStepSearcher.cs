@@ -44,19 +44,22 @@ public interface IChainStepSearcher : IStepSearcher
 	protected static sealed LinkViewNode[] GetViewOnLinks(AlternatingInferenceChain chain)
 	{
 		if (
-			chain.RealChainNodes is not (
+			chain is not
+			{
+				IsStrong: var isStrong,
+				RealChainNodes:
 				[
 					{ Cells: var firstCells, Digit: var firstDigit },
 					..,
 					{ Cells: var lastCells, Digit: var lastDigit }
 				] realChainNodes and { Length: var length }
-			)
+			}
 		)
 		{
 			throw new InvalidOperationException("Invalid status.");
 		}
 
-		var result = new LinkViewNode[length + 1];
+		var result = new LinkViewNode[isStrong ? length + 1 : length];
 		for (int i = 0; i < length - 1; i++)
 		{
 			if (realChainNodes[i] is { Cells: var aCells, Digit: var aDigit }
@@ -66,12 +69,15 @@ public interface IChainStepSearcher : IStepSearcher
 			}
 		}
 
-		result[length] = new(
-			DisplayColorKind.Normal,
-			new(lastDigit, lastCells),
-			new(firstDigit, firstCells),
-			Inference.Strong
-		);
+		if (isStrong)
+		{
+			result[length] = new(
+				DisplayColorKind.Normal,
+				new(lastDigit, lastCells),
+				new(firstDigit, firstCells),
+				Inference.Strong
+			);
+		}
 
 		return result;
 	}

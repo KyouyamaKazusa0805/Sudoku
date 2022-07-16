@@ -64,6 +64,15 @@ public sealed class AlternatingInferenceChain : Chain
 	}
 
 	/// <summary>
+	/// Indicates the full chain nodes.
+	/// </summary>
+	public ImmutableArray<Node> FullChainNodes
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ImmutableArray.Create(_nodes);
+	}
+
+	/// <summary>
 	/// <para>Indicates the nodes that represents the main chain node data for the current chain.</para>
 	/// <para>
 	/// The property value will be different if the property <see cref="IsStrong"/> is different.
