@@ -773,7 +773,7 @@
         </member>
         <member name="F:Sudoku.Drawing.IPointCalculator.AnchorsCount">
             <summary>
-            Indicates the number of anchors hold per region.
+            Indicates the number of anchors hold per house.
             </summary>
             <remarks>
             The sudoku grid painter will draw the outlines and the inner lines, and correct the point
@@ -878,9 +878,9 @@
         </member>
         <member name="M:Sudoku.Drawing.IPointCalculator.GetMouseRectangleViaRegion(System.Int32)">
             <summary>
-            Get the rectangle (4 mouse points) via the specified region.
+            Get the rectangle (4 mouse points) via the specified house.
             </summary>
-            <param name="region">The region.</param>
+            <param name="house">The house.</param>
             <returns>The rectangle.</returns>
         </member>
         <member name="M:Sudoku.Drawing.IPointCalculator.GetMousePointInCenter(System.Int32)">
@@ -900,9 +900,9 @@
         </member>
         <member name="M:Sudoku.Drawing.IPointCalculator.GetAnchorsViaRegion(System.Int32)">
             <summary>
-            Gets two points that specifies and represents the anchors of this region.
+            Gets two points that specifies and represents the anchors of this house.
             </summary>
-            <param name="region">The region.</param>
+            <param name="house">The house.</param>
             <returns>The anchor points.</returns>
         </member>
         <member name="M:Sudoku.Drawing.IPointCalculator.CreateConverter(System.Single,System.Single)">
@@ -923,9 +923,9 @@
             Indicates whether the form shows candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.IPreference.ShowLightRegion">
+        <member name="P:Sudoku.Drawing.IPreference.ShowLightHouse">
             <summary>
-            Indicates whether the grid painter will use new algorithm to render a region (lighter).
+            Indicates whether the grid painter will use new algorithm to render a house (lighter).
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.IPreference.ValueScale">
@@ -1156,7 +1156,7 @@
         <member name="P:Sudoku.Drawing.Perference.ShowCandidates">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Drawing.Perference.ShowLightRegion">
+        <member name="P:Sudoku.Drawing.Perference.ShowLightHouse">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Drawing.Perference.ValueScale">

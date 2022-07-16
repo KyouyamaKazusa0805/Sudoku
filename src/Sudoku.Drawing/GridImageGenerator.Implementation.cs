@@ -344,7 +344,7 @@ partial record class GridImageGenerator
 				continue;
 			}
 
-			if (Preferences.ShowLightRegion)
+			if (Preferences.ShowLightHouse)
 			{
 				using var pen = new Pen(color, offset / 3 * 2);
 				switch (house)

@@ -17,7 +17,7 @@ public sealed class Perference : IPreference
 	public bool ShowCandidates { get; set; } = true;
 
 	/// <inheritdoc/>
-	public bool ShowLightRegion { get; set; } = true;
+	public bool ShowLightHouse { get; set; } = true;
 
 	/// <inheritdoc/>
 	public decimal ValueScale { get; set; } = .9M;

@@ -156,22 +156,22 @@ public sealed class PointCalculator : IPointCalculator
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public RectangleF GetMouseRectangleViaRegion(int region)
+	public RectangleF GetMouseRectangleViaRegion(int house)
 	{
-		var (l, r) = GetAnchorsViaRegion(region);
+		var (l, r) = GetAnchorsViaRegion(house);
 		return RectangleMarshal.CreateInstance(l, r);
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public (PointF LeftUp, PointF RightDown) GetAnchorsViaRegion(int region)
-		=> region switch
+	public (PointF LeftUp, PointF RightDown) GetAnchorsViaRegion(int house)
+		=> house switch
 		{
-			>= 0 and < 9 when (region % 3, region / 3) is (var v1, var v2)
+			>= 0 and < 9 when (house % 3, house / 3) is (var v1, var v2)
 				=> (GridPoints[v1 * 9, v2 * 9], GridPoints[v1 * 9 + 9, v2 * 9 + 9]),
-			>= 9 and < 18 when region - 9 is var v => (GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]),
-			>= 18 and < 27 when region - 18 is var v => (GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]),
-			_ => throw new ArgumentOutOfRangeException(nameof(region))
+			>= 9 and < 18 when house - 9 is var v => (GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]),
+			>= 18 and < 27 when house - 18 is var v => (GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]),
+			_ => throw new ArgumentOutOfRangeException(nameof(house))
 		};
 
 	/// <inheritdoc/>

@@ -11,9 +11,9 @@ public interface IPreference : ICloneable
 	public abstract bool ShowCandidates { get; set; }
 
 	/// <summary>
-	/// Indicates whether the grid painter will use new algorithm to render a region (lighter).
+	/// Indicates whether the grid painter will use new algorithm to render a house (lighter).
 	/// </summary>
-	public abstract bool ShowLightRegion { get; set; }
+	public abstract bool ShowLightHouse { get; set; }
 
 	/// <summary>
 	/// Indicates the scale of values.

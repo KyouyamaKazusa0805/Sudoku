@@ -11,7 +11,7 @@ public interface IPointCalculator
 	protected internal const float DefaultOffset = 10F;
 
 	/// <summary>
-	/// Indicates the number of anchors hold per region.
+	/// Indicates the number of anchors hold per house.
 	/// </summary>
 	/// <remarks>
 	/// The sudoku grid painter will draw the outlines and the inner lines, and correct the point
@@ -118,11 +118,11 @@ public interface IPointCalculator
 	public abstract RectangleF GetMouseRectangle(int cell, int digit);
 
 	/// <summary>
-	/// Get the rectangle (4 mouse points) via the specified region.
+	/// Get the rectangle (4 mouse points) via the specified house.
 	/// </summary>
-	/// <param name="region">The region.</param>
+	/// <param name="house">The house.</param>
 	/// <returns>The rectangle.</returns>
-	public abstract RectangleF GetMouseRectangleViaRegion(int region);
+	public abstract RectangleF GetMouseRectangleViaRegion(int house);
 
 	/// <summary>
 	/// Get the mouse point of the center of a cell via its offset.
@@ -140,11 +140,11 @@ public interface IPointCalculator
 	public abstract PointF GetMousePointInCenter(int cell, int digit);
 
 	/// <summary>
-	/// Gets two points that specifies and represents the anchors of this region.
+	/// Gets two points that specifies and represents the anchors of this house.
 	/// </summary>
-	/// <param name="region">The region.</param>
+	/// <param name="house">The house.</param>
 	/// <returns>The anchor points.</returns>
-	public abstract (PointF LeftUp, PointF RightDown) GetAnchorsViaRegion(int region);
+	public abstract (PointF LeftUp, PointF RightDown) GetAnchorsViaRegion(int house);
 
 
 	/// <summary>

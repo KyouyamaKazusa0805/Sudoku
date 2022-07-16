@@ -42,7 +42,7 @@ public static class IttouryuPuzzleChecker
 					var houseCells = HouseMaps[house];
 					if ((tempGrid.ValuesMap[digit] & houseCells) is not [])
 					{
-						// The current region already contains the value of the current digit.
+						// The current house already contains the value of the current digit.
 						continue;
 					}
 
