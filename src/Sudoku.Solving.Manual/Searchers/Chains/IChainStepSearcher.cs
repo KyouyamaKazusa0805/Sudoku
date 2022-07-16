@@ -24,7 +24,7 @@ public interface IChainStepSearcher : IStepSearcher
 				{
 					result.Add(
 						new(
-							(i & 1) switch { 0 => DisplayColorKind.Normal, _ => DisplayColorKind.Auxiliary1 },
+							(i & 1) switch { 0 => DisplayColorKind.Auxiliary1, _ => DisplayColorKind.Normal },
 							cell * 9 + digit
 						)
 					);
