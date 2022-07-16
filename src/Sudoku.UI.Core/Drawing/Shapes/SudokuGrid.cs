@@ -972,7 +972,7 @@ public sealed class SudokuGrid : DrawingElement
 			OutsideOffset = OutsideOffset,
 			Preference = Preference,
 			Conclusions = DisplayableUnit!.Conclusions,
-			Nodes = linkViewNodes.ToImmutableArray()
+			Nodes = linkViewNodes.ToArray()
 		};
 
 		_linkViewNodeShapes.Add(linkShape);
@@ -1262,9 +1262,9 @@ public sealed class SudokuGrid : DrawingElement
 		}
 
 		// Rebuild the nodes.
+		var linkViewNodes = new List<LinkViewNode>();
 		foreach (var viewNode in view)
 		{
-			var linkViewNodes = new List<LinkViewNode>();
 			switch (viewNode)
 			{
 				case CellViewNode cellViewNode:
@@ -1288,7 +1288,10 @@ public sealed class SudokuGrid : DrawingElement
 					break;
 				}
 			}
+		}
 
+		if (linkViewNodes.Count != 0)
+		{
 			SetLinkViewNode(linkViewNodes);
 		}
 	}

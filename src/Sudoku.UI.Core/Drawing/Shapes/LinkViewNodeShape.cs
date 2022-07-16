@@ -29,19 +29,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 	/// <summary>
 	/// Indicates the link view nodes used.
 	/// </summary>
-	private readonly ObservableCollection<LinkViewNode> _linkViewNodes = new();
-
-
-	/// <summary>
-	/// Initializes a <see cref="LinkViewNodeShape"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LinkViewNodeShape()
-		=> _linkViewNodes.CollectionChanged += (_, _) =>
-		{
-			_canvas.Children.Clear();
-			_canvas.Children.AddRange(CreateLinks(_linkViewNodes));
-		};
+	private readonly LinkViewNode[] _linkViewNodes = null!;
 
 
 	/// <summary>
@@ -70,13 +58,19 @@ public sealed class LinkViewNodeShape : DrawingElement
 	/// <summary>
 	/// Indicates the link nodes used.
 	/// </summary>
-	public required ImmutableArray<LinkViewNode> Nodes
+	public required LinkViewNode[] Nodes
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _linkViewNodes.ToImmutableArray();
+		get => _linkViewNodes;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		init => _linkViewNodes.AddRange(value);
+		[MemberNotNull(nameof(_linkViewNodes))]
+		init
+		{
+			_linkViewNodes = value;
+
+			_canvas.Children.AddRange(CreateLinks(value));
+		}
 	}
 
 	/// <summary>
@@ -108,11 +102,10 @@ public sealed class LinkViewNodeShape : DrawingElement
 	/// </summary>
 	/// <param name="nodes">The link view nodes.</param>
 	/// <returns>A <see cref="Shape"/> instance.</returns>
-	private IEnumerable<Shape> CreateLinks(ObservableCollection<LinkViewNode> nodes)
+	private IEnumerable<Shape> CreateLinks(LinkViewNode[] nodes)
 	{
 		var points = new HashSet<Point>();
-		var linkArray = nodes.ToArray();
-		foreach (var linkNode in linkArray)
+		foreach (var linkNode in nodes)
 		{
 			points.Add(PointConversions.GetMouseCenter(PaneSize, OutsideOffset, linkNode.Start));
 			points.Add(PointConversions.GetMouseCenter(PaneSize, OutsideOffset, linkNode.End));
@@ -127,7 +120,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		double cs = PointConversions.CandidateSize(PaneSize, OutsideOffset);
-		foreach (var (start, end, inference) in linkArray)
+		foreach (var (start, end, inference) in nodes)
 		{
 			_ = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, start) is var pt1 and var (pt1x, pt1y);
 			_ = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, end) is var pt2 and var (pt2x, pt2y);

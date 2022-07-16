@@ -2428,11 +2428,6 @@
             Indicates the link view nodes used.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape"/> instance.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.PaneSize">
             <summary>
             Indicates the pane size.
@@ -2470,7 +2465,7 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.GetControl">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.CreateLinks(System.Collections.ObjectModel.ObservableCollection{Sudoku.Presentation.Nodes.LinkViewNode})">
+        <member name="M:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.CreateLinks(Sudoku.Presentation.Nodes.LinkViewNode[])">
             <summary>
             Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
             </summary>
