@@ -881,18 +881,6 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Dfs_StartWithWeak">
-            <summary>
-            Start to construct the chain using the depth-first searching algorithm,
-            with the weak inference as the beginning node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Dfs_StartWithStrong">
-            <summary>
-            Start to construct the chain using the depth-first searching algorithm,
-            with the strong inference as the beginning node.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Options">
             <inheritdoc/>
         </member>

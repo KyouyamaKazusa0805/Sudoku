@@ -116,14 +116,12 @@ public sealed record class AlternatingInferenceChainStep(
 	private bool IsMWing
 		=> Chain.RealChainNodes is
 		[
-			_,
 			SoleCandidateNode { Cell: var a },
 			SoleCandidateNode { Cell: var b },
 			SoleCandidateNode { Cell: var c },
 			SoleCandidateNode { Cell: var d },
 			SoleCandidateNode { Cell: var e },
-			SoleCandidateNode { Cell: var f },
-			_
+			SoleCandidateNode { Cell: var f }
 		]
 		&& MWing(a, b, c, d, e, f);
 
@@ -134,14 +132,12 @@ public sealed record class AlternatingInferenceChainStep(
 	private bool IsSplitWing
 		=> Chain.RealChainNodes is
 		[
-			_,
 			SoleCandidateNode { Cell: var a },
 			SoleCandidateNode { Cell: var b },
 			SoleCandidateNode { Cell: var c },
 			SoleCandidateNode { Cell: var d },
 			SoleCandidateNode { Cell: var e },
-			SoleCandidateNode { Cell: var f },
-			_
+			SoleCandidateNode { Cell: var f }
 		]
 		&& SplitWing(a, b, c, d, e, f);
 
@@ -157,14 +153,12 @@ public sealed record class AlternatingInferenceChainStep(
 	private bool IsHybridWing
 		=> Chain.RealChainNodes is
 		[
-			_,
 			SoleCandidateNode { Cell: var a },
 			SoleCandidateNode { Cell: var b },
 			SoleCandidateNode { Cell: var c },
 			SoleCandidateNode { Cell: var d },
 			SoleCandidateNode { Cell: var e },
-			SoleCandidateNode { Cell: var f },
-			_
+			SoleCandidateNode { Cell: var f }
 		]
 		&& HybridWing(a, b, c, d, e, f);
 
@@ -175,14 +169,12 @@ public sealed record class AlternatingInferenceChainStep(
 	private bool IsLocalWing
 		=> Chain.RealChainNodes is
 		[
-			_,
 			SoleCandidateNode { Cell: var a },
 			SoleCandidateNode { Cell: var b },
 			SoleCandidateNode { Cell: var c },
 			SoleCandidateNode { Cell: var d },
 			SoleCandidateNode { Cell: var e },
-			SoleCandidateNode { Cell: var f },
-			_
+			SoleCandidateNode { Cell: var f }
 		]
 		&& LocalWing(a, b, c, d, e, f);
 
