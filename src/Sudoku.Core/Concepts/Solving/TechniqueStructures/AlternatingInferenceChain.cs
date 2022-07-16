@@ -59,6 +59,11 @@ public sealed class AlternatingInferenceChain : Chain
 	/// <summary>
 	/// Determines whether the chain is redundant.
 	/// </summary>
+	/// <remarks>
+	/// Due to limit of the algorithm, the AIC searcher may find redundant chains,
+	/// which will contain a digit that uses multiple times. This property is aimed to checking
+	/// for this case.
+	/// </remarks>
 	public bool IsRedundant
 	{
 		get
