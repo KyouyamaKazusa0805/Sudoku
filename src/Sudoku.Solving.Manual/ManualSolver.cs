@@ -6,11 +6,28 @@
 /// </summary>
 public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSolverOptions
 {
+	/// <summary>
+	/// The backing field of the property <see cref="IsHodokuMode"/>.
+	/// </summary>
+	/// <seealso cref="IsHodokuMode"/>
+	private bool _isHodokuMode = true;
+
+
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
-	public bool IsHodokuMode { get; set; } = true;
+	/// <exception cref="NotSupportedException">
+	/// Throws when the <see langword="value"/> is <see langword="false"/>.
+	/// </exception>
+	public bool IsHodokuMode
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _isHodokuMode;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => _isHodokuMode = value ? value : throw new NotSupportedException("Other modes are not supported now.");
+	}
 
 	/// <inheritdoc/>
 	public bool IsFastSearching { get; set; }
@@ -230,52 +247,39 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <inheritdoc/>
 	public ManualSolverResult Solve(scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
-		var solverResult = new ManualSolverResult(puzzle);
+		var result = new ManualSolverResult(puzzle);
 		if (puzzle.ExactlyValidate(out var solution, out bool? sukaku))
 		{
 			try
 			{
-				return IsHodokuMode
+				return IsHodokuMode switch
+				{
 					// Hodoku mode.
-					? Solve_HodokuMode(puzzle, solution, sukaku.Value, solverResult, cancellationToken)
+					true => Solve_HodokuMode(puzzle, solution, sukaku.Value, result, cancellationToken),
+
 					// Sudoku explainer mode.
 					// TODO: Implement a sudoku-explainer mode solving module.
-					: throw new NotImplementedException();
-			}
-			catch (NotImplementedException)
-			{
-				return solverResult with { IsSolved = false, FailedReason = FailedReason.NotImplemented };
-			}
-			catch (WrongStepException ex)
-			{
-				return solverResult with
-				{
-					IsSolved = false,
-					FailedReason = FailedReason.WrongStep,
-					WrongStep = ex.WrongStep
+					_ => throw new NotImplementedException()
 				};
-			}
-			catch (OperationCanceledException ex) when (ex.CancellationToken == cancellationToken)
-			{
-				return solverResult with { IsSolved = false, FailedReason = FailedReason.UserCancelled };
-			}
-			catch (OperationCanceledException)
-			{
-				throw;
 			}
 			catch (Exception ex)
 			{
-				return solverResult with
+				return ex switch
 				{
-					IsSolved = false,
-					FailedReason = FailedReason.ExceptionThrown,
-					UnhandledException = ex
+					NotImplementedException
+						=> result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
+					WrongStepException { WrongStep: var ws } castedException
+						=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, WrongStep = ws },
+					OperationCanceledException casted when casted.CancellationToken == cancellationToken
+						=> result with { IsSolved = false, FailedReason = FailedReason.UserCancelled },
+					OperationCanceledException casted => throw casted,
+					_ => result with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown, UnhandledException = ex }
 				};
 			}
 		}
 		else
 		{
-			return solverResult with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid };
+			return result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid };
 		}
 	}
 
@@ -286,7 +290,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <param name="puzzle">The original puzzle to be solved.</param>
 	/// <param name="solution">The solution of the puzzle. Some step searchers will use this value.</param>
 	/// <param name="isSukaku">A <see cref="bool"/> value indicating whether the puzzle is a sukaku.</param>
-	/// <param name="baseSolverResult">The base solver result already included the base information.</param>
+	/// <param name="resultBase">The base solver result already included the base information.</param>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>The solver result.</returns>
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>
@@ -295,7 +299,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		scoped in Grid puzzle,
 		scoped in Grid solution,
 		bool isSukaku,
-		ManualSolverResult baseSolverResult,
+		ManualSolverResult resultBase,
 		CancellationToken cancellationToken = default)
 	{
 		var playground = puzzle;
@@ -355,7 +359,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 						if (
 							RecordStep(
 								recordedSteps, step, ref playground, stopwatch, stepGrids,
-								baseSolverResult, cancellationToken, out var result)
+								resultBase, cancellationToken, out var result)
 						)
 						{
 							return result;
@@ -388,7 +392,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 					if (
 						RecordStep(
 							recordedSteps, step, ref playground, stopwatch, stepGrids,
-							baseSolverResult, cancellationToken, out var result)
+							resultBase, cancellationToken, out var result)
 					)
 					{
 						return result;
@@ -406,7 +410,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		// All solver can't finish the puzzle...
 		// :(
 		stopwatch.Stop();
-		return baseSolverResult with
+		return resultBase with
 		{
 			IsSolved = false,
 			FailedReason = FailedReason.PuzzleIsTooHard,
@@ -433,7 +437,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <param name="playground">The playground.</param>
 	/// <param name="stopwatch">The stopwatch.</param>
 	/// <param name="stepGrids">The step grids.</param>
-	/// <param name="baseSolverResult">Indicates the base solver result.</param>
+	/// <param name="resultBase">Indicates the base solver result.</param>
 	/// <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
 	/// <param name="result">The analysis result.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
@@ -446,7 +450,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		scoped ref Grid playground,
 		Stopwatch stopwatch,
 		ICollection<Grid> stepGrids,
-		ManualSolverResult baseSolverResult,
+		ManualSolverResult resultBase,
 		CancellationToken cancellationToken,
 		[NotNullWhen(true)] out ManualSolverResult? result)
 	{
@@ -476,7 +480,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 			{
 				stopwatch.Stop();
 
-				result = baseSolverResult with
+				result = resultBase with
 				{
 					IsSolved = true,
 					ElapsedTime = stopwatch.Elapsed,

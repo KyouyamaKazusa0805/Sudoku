@@ -224,11 +224,20 @@
             to check and solve a sudoku puzzle.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.ManualSolver._isHodokuMode">
+            <summary>
+            The backing field of the property <see cref="P:Sudoku.Solving.Manual.ManualSolver.IsHodokuMode"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.IsHodokuMode"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.IsHodokuMode">
             <inheritdoc/>
             <remarks>
             The default value is <see langword="true"/>.
             </remarks>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the <see langword="value"/> is <see langword="false"/>.
+            </exception>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.IsFastSearching">
             <inheritdoc/>
@@ -296,7 +305,7 @@
             <param name="puzzle">The original puzzle to be solved.</param>
             <param name="solution">The solution of the puzzle. Some step searchers will use this value.</param>
             <param name="isSukaku">A <see cref="T:System.Boolean"/> value indicating whether the puzzle is a sukaku.</param>
-            <param name="baseSolverResult">The base solver result already included the base information.</param>
+            <param name="resultBase">The base solver result already included the base information.</param>
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>The solver result.</returns>
             <exception cref="T:Sudoku.Solving.Manual.WrongStepException">Throws when found wrong steps to apply.</exception>
@@ -320,7 +329,7 @@
             <param name="playground">The playground.</param>
             <param name="stopwatch">The stopwatch.</param>
             <param name="stepGrids">The step grids.</param>
-            <param name="baseSolverResult">Indicates the base solver result.</param>
+            <param name="resultBase">Indicates the base solver result.</param>
             <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
             <param name="result">The analysis result.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
