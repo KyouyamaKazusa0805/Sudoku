@@ -14,17 +14,19 @@
 /// <list type="bullet">
 /// <item>Discontinuous Nice Loop</item>
 /// <item>Alternating Inference Chain</item>
-/// <!--<item>Continuous Nice Loop</item>-->
+/// <item>Continuous Nice Loop</item>
 /// </list>
 /// </item>
+/// <!--
 /// <item>
 /// Grouped chains (which means the nodes are not limited in sole candidates):
 /// <list type="bullet">
 /// <item>Grouped Discontinuous Nice Loop</item>
 /// <item>Grouped Alternating Inference Chain</item>
-/// <!--<item>Grouped Continuous Nice Loop</item>-->
+/// <item>Grouped Continuous Nice Loop</item>
 /// </list>
 /// </item>
+/// -->
 /// </list>
 /// </summary>
 public sealed class AlternatingInferenceChain : Chain
@@ -43,11 +45,22 @@ public sealed class AlternatingInferenceChain : Chain
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public AlternatingInferenceChain(Node[] nodes, bool isStrong) : base(nodes, InitializeFieldNodeStatus(nodes, isStrong))
-		=> IsStrong = nodes.Length < 3
-			? throw new ArgumentException($"The length of the argument '{nameof(nodes)}' must be greater than 3.", nameof(nodes))
-			: isStrong && nodes[0] != nodes[^1]
-				? throw new ArgumentException("If the alternating inference chain starts with the strong inference, the first and the last node should be the same.")
-				: isStrong;
+	{
+		const string lengthNotEnough = $"The length of the argument '{nameof(nodes)}' must be greater than 3.";
+		const string nodeNotSameStartsWithStrong = "If the alternating inference chain starts with the strong inference, the first and the last node should be the same.";
+
+		IsStrong = nodes switch
+		{
+			{ Length: < 3 } => @throw(lengthNotEnough),
+			[var a, .., var b] when isStrong && a != b => @throw(nodeNotSameStartsWithStrong),
+			_ => isStrong
+		};
+
+
+		[DoesNotReturn]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static bool @throw(string s) => throw new ArgumentException(s, nameof(nodes));
+	}
 
 
 	/// <summary>
@@ -55,6 +68,20 @@ public sealed class AlternatingInferenceChain : Chain
 	/// and ends with another strong inference.
 	/// </summary>
 	public bool IsStrong { get; }
+
+	/// <summary>
+	/// Indicates whether the current chain forms a continuous nice loop.
+	/// </summary>
+	public bool IsContinuousNiceLoop { get; }
+
+	/// <summary>
+	/// Indicates whether the current chain is a grouped chain.
+	/// </summary>
+	public bool IsGrouped
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _nodes.Any(static node => node is not SoleCandidateNode);
+	}
 
 	/// <summary>
 	/// Determines whether the chain is redundant.
@@ -229,7 +256,7 @@ public sealed class AlternatingInferenceChain : Chain
 		for (int i = 0; i < length; i++)
 		{
 			result[i] = current;
-			current ^= true; // Flip.
+			current = !current;
 		}
 
 		return result;
