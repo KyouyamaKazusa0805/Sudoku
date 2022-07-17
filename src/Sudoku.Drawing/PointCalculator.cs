@@ -156,15 +156,15 @@ public sealed class PointCalculator : IPointCalculator
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public RectangleF GetMouseRectangleViaRegion(int house)
+	public RectangleF GetMouseRectangleViaHouse(int house)
 	{
-		var (l, r) = GetAnchorsViaRegion(house);
+		var (l, r) = GetAnchorsViaHouse(house);
 		return RectangleMarshal.CreateInstance(l, r);
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public (PointF LeftUp, PointF RightDown) GetAnchorsViaRegion(int house)
+	public (PointF LeftUp, PointF RightDown) GetAnchorsViaHouse(int house)
 		=> house switch
 		{
 			>= 0 and < 9 when (house % 3, house / 3) is (var v1, var v2)

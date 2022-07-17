@@ -274,31 +274,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-					public static void Deconstruct(out string name, out int age)
-					{
-					    name = Name;
-					    age = Age;
-					}
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
 						</code>
 						The following code will be legal.
 						<code>
-					// Use explicitly typed variables to get a deconstruction.
-					(string name, int age) = student;
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
 
-					// Or use the type inferring to omit the type of each variable having been deconstructed.
-					var (name, age) = student;
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
 
-					// Of course, you can also use the invocation to get values.
-					student.Deconstruct(out string name, out int age);
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-					if (student is (name: var name, age: &gt;= 18))
-					{
-					    Console.WriteLine(name);
-					}
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
 						</code>
 					</para>
 				</remarks>
@@ -320,31 +320,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-					public static void Deconstruct(out string name, out int age)
-					{
-					    name = Name;
-					    age = Age;
-					}
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
 						</code>
 						The following code will be legal.
 						<code>
-					// Use explicitly typed variables to get a deconstruction.
-					(string name, int age) = student;
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
 
-					// Or use the type inferring to omit the type of each variable having been deconstructed.
-					var (name, age) = student;
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
 
-					// Of course, you can also use the invocation to get values.
-					student.Deconstruct(out string name, out int age);
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-					if (student is (name: var name, age: &gt;= 18))
-					{
-					    Console.WriteLine(name);
-					}
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
 						</code>
 					</para>
 				</remarks>
@@ -366,31 +366,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-					public static void Deconstruct(out string name, out int age)
-					{
-					    name = Name;
-					    age = Age;
-					}
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
 						</code>
 						The following code will be legal.
 						<code>
-					// Use explicitly typed variables to get a deconstruction.
-					(string name, int age) = student;
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
 
-					// Or use the type inferring to omit the type of each variable having been deconstructed.
-					var (name, age) = student;
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
 
-					// Of course, you can also use the invocation to get values.
-					student.Deconstruct(out string name, out int age);
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-					if (student is (name: var name, age: &gt;= 18))
-					{
-					    Console.WriteLine(name);
-					}
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
 						</code>
 					</para>
 				</remarks>
@@ -412,31 +412,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-					public static void Deconstruct(out string name, out int age)
-					{
-					    name = Name;
-					    age = Age;
-					}
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
 						</code>
 						The following code will be legal.
 						<code>
-					// Use explicitly typed variables to get a deconstruction.
-					(string name, int age) = student;
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
 
-					// Or use the type inferring to omit the type of each variable having been deconstructed.
-					var (name, age) = student;
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
 
-					// Of course, you can also use the invocation to get values.
-					student.Deconstruct(out string name, out int age);
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-					if (student is (name: var name, age: &gt;= 18))
-					{
-					    Console.WriteLine(name);
-					}
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
 						</code>
 					</para>
 				</remarks>
@@ -458,31 +458,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-					public static void Deconstruct(out string name, out int age)
-					{
-					    name = Name;
-					    age = Age;
-					}
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
 						</code>
 						The following code will be legal.
 						<code>
-					// Use explicitly typed variables to get a deconstruction.
-					(string name, int age) = student;
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
 
-					// Or use the type inferring to omit the type of each variable having been deconstructed.
-					var (name, age) = student;
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
 
-					// Of course, you can also use the invocation to get values.
-					student.Deconstruct(out string name, out int age);
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-					if (student is (name: var name, age: &gt;= 18))
-					{
-					    Console.WriteLine(name);
-					}
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
 						</code>
 					</para>
 				</remarks>
@@ -504,31 +504,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-					public static void Deconstruct(out string name, out int age)
-					{
-					    name = Name;
-					    age = Age;
-					}
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
 						</code>
 						The following code will be legal.
 						<code>
-					// Use explicitly typed variables to get a deconstruction.
-					(string name, int age) = student;
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
 
-					// Or use the type inferring to omit the type of each variable having been deconstructed.
-					var (name, age) = student;
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
 
-					// Of course, you can also use the invocation to get values.
-					student.Deconstruct(out string name, out int age);
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-					if (student is (name: var name, age: &gt;= 18))
-					{
-					    Console.WriteLine(name);
-					}
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
 						</code>
 					</para>
 				</remarks>
@@ -667,9 +667,9 @@
             <param name="g">The graphics.</param>
             <param name="offset">The drawing offsets.</param>
         </member>
-        <member name="M:Sudoku.Drawing.GridImageGenerator.DrawRegions(System.Drawing.Graphics,System.Single)">
+        <member name="M:Sudoku.Drawing.GridImageGenerator.DrawHouses(System.Drawing.Graphics,System.Single)">
             <summary>
-            Draw regions.
+            Draw houses.
             </summary>
             <param name="g">The graphics.</param>
             <param name="offset">The drawing offset.</param>
@@ -876,7 +876,7 @@
             <param name="digit">The digit.</param>
             <returns>The rectangle.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.IPointCalculator.GetMouseRectangleViaRegion(System.Int32)">
+        <member name="M:Sudoku.Drawing.IPointCalculator.GetMouseRectangleViaHouse(System.Int32)">
             <summary>
             Get the rectangle (4 mouse points) via the specified house.
             </summary>
@@ -898,7 +898,7 @@
             <param name="digit">The digit.</param>
             <returns>The mouse point.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.IPointCalculator.GetAnchorsViaRegion(System.Int32)">
+        <member name="M:Sudoku.Drawing.IPointCalculator.GetAnchorsViaHouse(System.Int32)">
             <summary>
             Gets two points that specifies and represents the anchors of this house.
             </summary>
@@ -1354,10 +1354,10 @@
         <member name="M:Sudoku.Drawing.PointCalculator.GetMouseRectangle(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.PointCalculator.GetMouseRectangleViaRegion(System.Int32)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetMouseRectangleViaHouse(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.PointCalculator.GetAnchorsViaRegion(System.Int32)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetAnchorsViaHouse(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.PointCalculator.GetMousePointInCenter(System.Int32)">

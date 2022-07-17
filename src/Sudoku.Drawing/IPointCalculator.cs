@@ -122,7 +122,7 @@ public interface IPointCalculator
 	/// </summary>
 	/// <param name="house">The house.</param>
 	/// <returns>The rectangle.</returns>
-	public abstract RectangleF GetMouseRectangleViaRegion(int house);
+	public abstract RectangleF GetMouseRectangleViaHouse(int house);
 
 	/// <summary>
 	/// Get the mouse point of the center of a cell via its offset.
@@ -144,7 +144,7 @@ public interface IPointCalculator
 	/// </summary>
 	/// <param name="house">The house.</param>
 	/// <returns>The anchor points.</returns>
-	public abstract (PointF LeftUp, PointF RightDown) GetAnchorsViaRegion(int house);
+	public abstract (PointF LeftUp, PointF RightDown) GetAnchorsViaHouse(int house);
 
 
 	/// <summary>

@@ -3955,42 +3955,42 @@
             Indicates the alternating inference chain.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.CellFc">
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.CellForcingChains">
             <summary>
             Indicates the cell forcing chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.RegionFc">
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.RegionForcingChains">
             <summary>
             Indicates the region forcing chains (i.e. house forcing chains).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.ContradictionFc">
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.ContradictionForcingChains">
             <summary>
             Indicates the contradiction forcing chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DoubleFc">
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DoubleForcingChains">
             <summary>
             Indicates the double forcing chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicCellFc">
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicCellForcingChains">
             <summary>
             Indicates the dynamic cell forcing chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicRegionFc">
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicRegionForcingChains">
             <summary>
             Indicates the dynamic region forcing chains (i.e. dynamic house forcing chains).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicContradictionFc">
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicContradictionForcingChains">
             <summary>
             Indicates the dynamic contradiction forcing chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicDoubleFc">
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicDoubleForcingChains">
             <summary>
             Indicates the dynamic double forcing chains.
             </summary>

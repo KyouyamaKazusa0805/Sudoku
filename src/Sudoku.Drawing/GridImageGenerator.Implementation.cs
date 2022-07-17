@@ -80,7 +80,7 @@ partial record class GridImageGenerator
 			return;
 		}
 
-		DrawRegions(g, offset);
+		DrawHouses(g, offset);
 		DrawCells(g);
 		DrawCandidates(g, offset);
 		DrawLinks(g, offset);
@@ -313,12 +313,12 @@ partial record class GridImageGenerator
 	}
 
 	/// <summary>
-	/// Draw regions.
+	/// Draw houses.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
 	/// <param name="offset">The drawing offset.</param>
 	/// <remarks>This method is simply implemented, using cell filling.</remarks>
-	partial void DrawRegions(Graphics g, float offset)
+	partial void DrawHouses(Graphics g, float offset)
 	{
 		if (View is not { HouseNodes: var houseNodes })
 		{
@@ -352,14 +352,14 @@ partial record class GridImageGenerator
 					case >= 0 and < 9:
 					{
 						// Block.
-						var rect = Calculator.GetMouseRectangleViaRegion(house).Zoom(-offset);
+						var rect = Calculator.GetMouseRectangleViaHouse(house).Zoom(-offset);
 						g.DrawRoundedRectangle(pen, rect, offset);
 
 						break;
 					}
 					case >= 9 and < 27:
 					{
-						var (l, r) = Calculator.GetAnchorsViaRegion(house);
+						var (l, r) = Calculator.GetAnchorsViaHouse(house);
 						var (w, h) = Calculator.CellSize;
 						w /= 2;
 						h /= 2;
@@ -374,7 +374,7 @@ partial record class GridImageGenerator
 			}
 			else
 			{
-				var rect = Calculator.GetMouseRectangleViaRegion(house).Zoom(-offset / 3);
+				var rect = Calculator.GetMouseRectangleViaHouse(house).Zoom(-offset / 3);
 				using var brush = new SolidBrush(Color.FromArgb(64, color));
 				g.FillRectangle(brush, rect);
 			}

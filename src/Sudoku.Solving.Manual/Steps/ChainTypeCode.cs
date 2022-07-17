@@ -68,40 +68,40 @@ public enum ChainTypeCode : byte
 	/// <summary>
 	/// Indicates the cell forcing chains.
 	/// </summary>
-	CellFc,
+	CellForcingChains,
 
 	/// <summary>
 	/// Indicates the region forcing chains (i.e. house forcing chains).
 	/// </summary>
-	RegionFc,
+	RegionForcingChains,
 
 	/// <summary>
 	/// Indicates the contradiction forcing chains.
 	/// </summary>
-	ContradictionFc,
+	ContradictionForcingChains,
 
 	/// <summary>
 	/// Indicates the double forcing chains.
 	/// </summary>
-	DoubleFc,
+	DoubleForcingChains,
 
 	/// <summary>
 	/// Indicates the dynamic cell forcing chains.
 	/// </summary>
-	DynamicCellFc,
+	DynamicCellForcingChains,
 
 	/// <summary>
 	/// Indicates the dynamic region forcing chains (i.e. dynamic house forcing chains).
 	/// </summary>
-	DynamicRegionFc,
+	DynamicRegionForcingChains,
 
 	/// <summary>
 	/// Indicates the dynamic contradiction forcing chains.
 	/// </summary>
-	DynamicContradictionFc,
+	DynamicContradictionForcingChains,
 
 	/// <summary>
 	/// Indicates the dynamic double forcing chains.
 	/// </summary>
-	DynamicDoubleFc,
+	DynamicDoubleForcingChains
 }

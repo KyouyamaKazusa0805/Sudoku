@@ -116,7 +116,7 @@ public partial record class GridImageGenerator(
 	partial void DrawEliminations(Graphics g, float offset);
 	partial void DrawCells(Graphics g);
 	partial void DrawCandidates(Graphics g, float offset);
-	partial void DrawRegions(Graphics g, float offset);
+	partial void DrawHouses(Graphics g, float offset);
 	partial void DrawLinks(Graphics g, float offset);
 	partial void DrawDirectLines(Graphics g, float offset);
 	partial void DrawUnknownValue(Graphics g);
