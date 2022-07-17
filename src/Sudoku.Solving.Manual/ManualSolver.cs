@@ -18,6 +18,146 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <inheritdoc/>
 	public bool OptimizedApplyingOrder { get; set; }
 
+	/// <inheritdoc cref="IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
+	public bool CheckAlmostLockedQuadruple
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<IAlmostLockedCandidatesStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.CheckAlmostLockedQuadruple = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="IBivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
+	public bool SearchBivalueUniversalGraveExtendedTypes
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<IBivalueUniversalGraveStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.SearchExtendedTypes = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="IExocetStepSearcher.CheckAdvanced"/>
+	public bool CheckAdvancedJuniorExocets
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<IJuniorExocetStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.CheckAdvanced = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="IExocetStepSearcher.CheckAdvanced"/>
+	public bool CheckAdvancedSeniorExocets
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<ISeniorExocetStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.CheckAdvanced = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="ISingleStepSearcher.EnableFullHouse"/>
+	public bool EnableFullHouse
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<ISingleStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.EnableFullHouse = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="ISingleStepSearcher.EnableLastDigit"/>
+	public bool EnableLastDigit
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<ISingleStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.EnableLastDigit = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="ISingleStepSearcher.HiddenSinglesInBlockFirst"/>
+	public bool HiddenSinglesInBlockFirst
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<ISingleStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.HiddenSinglesInBlockFirst = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="ITemplateStepSearcher.TemplateDeleteOnly"/>
+	public bool TemplateDeleteOnly
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<ITemplateStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.TemplateDeleteOnly = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
+	public bool AllowIncompleteUniqueRectangles
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<IUniqueRectangleStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.AllowIncompleteUniqueRectangles = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
+	public bool SearchForExtendedUniqueRectangles
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<IUniqueRectangleStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.SearchForExtendedUniqueRectangles = value;
+			}
+		}
+	}
+
 	/// <inheritdoc cref="IRegularWingStepSearcher.MaxSize"/>
 	public int RegularWingMaxSize
 	{
@@ -41,6 +181,34 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 			foreach (var searcher in searchers)
 			{
 				searcher.MaxCapacity = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="IBowmanBingoStepSearcher.MaxLength"/>
+	public int BowmanBingoMaxLength
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<IBowmanBingoStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.MaxLength = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="IFishStepSearcher.MaxSize"/>
+	public int ComplexFishMaxSize
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<IComplexFishStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.MaxSize = value;
 			}
 		}
 	}
@@ -136,12 +304,9 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		var stepGrids = new List<Grid>(100);
 		var stepSearchers = TargetSearcherCollection;
 
-		// Bug fix: Sets the solution grid to the step searchers that will use the property value.
-		if (ReferenceEquals(stepSearchers, StepSearcherPool.Collection))
-		{
-			((BruteForceStepSearcher)StepSearcherPool.Collection[^1]).Solution = solution;
-		}
-		else if (stepSearchers.OfType<BruteForceStepSearcher>().FirstOrDefault() is { } stepSearcher)
+		// Sets the solution grid to some step searchers.
+		// Some step searchers will use solution grids to solve a puzzle.
+		foreach (var stepSearcher in stepSearchers.OfType<IStepSearcherRequiresSolution>())
 		{
 			stepSearcher.Solution = solution;
 		}

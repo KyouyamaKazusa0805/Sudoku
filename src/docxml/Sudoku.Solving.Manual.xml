@@ -236,11 +236,47 @@
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckAlmostLockedQuadruple">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.SearchBivalueUniversalGraveExtendedTypes">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IBivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckAdvancedJuniorExocets">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IExocetStepSearcher.CheckAdvanced"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckAdvancedSeniorExocets">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IExocetStepSearcher.CheckAdvanced"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableFullHouse">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableFullHouse"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableLastDigit">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableLastDigit"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.HiddenSinglesInBlockFirst">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.TemplateDeleteOnly">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ITemplateStepSearcher.TemplateDeleteOnly"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowIncompleteUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.SearchForExtendedUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.RegularWingMaxSize">
             <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher.MaxSize"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.ChainingMaxCapacity">
             <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.MaxCapacity"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaxLength">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IBowmanBingoStepSearcher.MaxLength"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.ComplexFishMaxSize">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IFishStepSearcher.MaxSize"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CustomSearcherCollection">
             <inheritdoc/>
@@ -2302,15 +2338,15 @@
             <list type="table">
             <item>
             <term><see langword="true"/></term>
-            <description>If the fish is sashimi.</description>
+            <description>The fish is a sashimi finned fish.</description>
             </item>
             <item>
             <term><see langword="false"/></term>
-            <description>If the fish is a normal finned fish.</description>
+            <description>The fish is a normal finned fish.</description>
             </item>
             <item>
             <term><see langword="null"/></term>
-            <description>If the fish doesn't contain any fin.</description>
+            <description>The fish doesn't contain any fin.</description>
             </item>
             </list>
             </returns>
@@ -2584,6 +2620,16 @@
             </list>
             </returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IStepSearcherRequiresSolution">
+            <summary>
+            Indicates a step searcher that requires a solution grid for the technique searching usages.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IStepSearcherRequiresSolution.Solution">
+            <summary>
+            Indicates the reference of the solution sudoku grid.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher">
             <summary>
             Defines a step searcher that searches for unique loop or bi-value oddagon steps.
@@ -2706,11 +2752,6 @@
             Defines a step searcher that searches for brute force steps.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.IBruteForceStepSearcher.Solution">
-            <summary>
-            Indicates the solution grid. The grid will be used for validating the result.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ILastResortStepSearcher">
             <summary>
             Defines a step searcher that searches for last resort steps.
@@ -2743,14 +2784,6 @@
             <summary>
             Indicates whether the technique searcher only checks template deletes.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.ITemplateStepSearcher.Solution">
-            <summary>
-            Indicates the reference of the solution sudoku grid.
-            </summary>
-            <remarks>
-            Please note that the property will be received a pointer value that points to a <see cref="T:Sudoku.Concepts.Collections.Grid"/>.
-            </remarks>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.PatternOverlayStepSearcher">
             <summary>
@@ -3166,12 +3199,6 @@
             <item>RSTUVWXYZ-Wing</item>
             </list>
             </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher._maxSize">
-            <summary>
-            The inner field of the property <see cref="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize">
             <inheritdoc/>

@@ -22,15 +22,15 @@ public interface IFishStepSearcher : IStepSearcher
 	/// <list type="table">
 	/// <item>
 	/// <term><see langword="true"/></term>
-	/// <description>If the fish is sashimi.</description>
+	/// <description>The fish is a sashimi finned fish.</description>
 	/// </item>
 	/// <item>
 	/// <term><see langword="false"/></term>
-	/// <description>If the fish is a normal finned fish.</description>
+	/// <description>The fish is a normal finned fish.</description>
 	/// </item>
 	/// <item>
 	/// <term><see langword="null"/></term>
-	/// <description>If the fish doesn't contain any fin.</description>
+	/// <description>The fish doesn't contain any fin.</description>
 	/// </item>
 	/// </list>
 	/// </returns>

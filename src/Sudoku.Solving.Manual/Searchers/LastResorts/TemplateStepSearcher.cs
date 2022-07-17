@@ -9,20 +9,20 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class TemplateStepSearcher : ITemplateStepSearcher
+public sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 {
 	/// <inheritdoc/>
 	public bool TemplateDeleteOnly { get; set; }
 
 	/// <inheritdoc/>
-	public Grid* Solution { get; set; }
+	public Grid Solution { get; set; }
 
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// Iterate on each digit.
-		var distributedMapsByDigit = Solution->ValuesMap;
+		var distributedMapsByDigit = Solution.ValuesMap;
 		for (int digit = 0; digit < 9; digit++)
 		{
 			if (!TemplateDeleteOnly)

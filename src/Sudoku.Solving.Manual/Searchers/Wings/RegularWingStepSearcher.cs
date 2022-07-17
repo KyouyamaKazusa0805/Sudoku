@@ -17,25 +17,11 @@
 [StepSearcher]
 public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSearcher
 {
-	/// <summary>
-	/// The inner field of the property <see cref="MaxSize"/>.
-	/// </summary>
-	/// <seealso cref="MaxSize"/>
-	private int _maxSize = 9;
-
-
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is 9.
 	/// </remarks>
-	public int MaxSize
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _maxSize;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => _maxSize = value is < 3 or > 9 ? throw new ArgumentOutOfRangeException(nameof(value)) : value;
-	}
+	public int MaxSize { get; set; } = 9;
 
 
 	/// <inheritdoc/>

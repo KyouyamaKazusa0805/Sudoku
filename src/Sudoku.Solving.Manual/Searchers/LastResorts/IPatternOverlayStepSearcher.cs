@@ -52,7 +52,7 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 	/// Get all possible templates. The total number of all possible pattern overlay templates is 46656.
 	/// </summary>
 	/// <returns>The templates.</returns>
-	protected static IEnumerable<Cells> GetTemplates()
+	protected static sealed IEnumerable<Cells> GetTemplates()
 	{
 #pragma warning disable IDE0011, IDE0055
 		for (int i1 = 0; i1 < 9; i1++)

@@ -51,7 +51,7 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 	/// that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
 	/// </param>
 	/// <returns>All guardians.</returns>
-	protected static Cells CreateGuardianMap(int cell1, int cell2, int digit, scoped in Cells guardians)
+	protected static sealed Cells CreateGuardianMap(int cell1, int cell2, int digit, scoped in Cells guardians)
 	{
 		var tempMap = Cells.Empty;
 		foreach (int coveredHouse in (Cells.Empty + cell1 + cell2).CoveredHouses)

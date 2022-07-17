@@ -36,11 +36,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 			{ 27, 36 }, { 27, 45 }, { 36, 45 }, { 54, 63 }, { 54, 72 }, { 63, 72 }
 		};
 
-		for (
-			int i = 0, n = 0, length = BaseLineIterator.Length, iterationLengthOuter = length >> 1;
-			i < iterationLengthOuter;
-			i++
-		)
+		for (int i = 0, n = 0, length = BaseLineIterator.Length, outerLength = length >> 1; i < outerLength; i++)
 		{
 			bool isRow = i < length >> 2;
 			var baseLineMap = HouseMaps[BaseLineIterator[i, 0]] | HouseMaps[BaseLineIterator[i, 1]];
@@ -55,17 +51,15 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 						continue;
 					}
 
-					var tempMapBlock =
-						HouseMaps[c1.ToHouseIndex(HouseType.Block)]
-							| HouseMaps[c2.ToHouseIndex(HouseType.Block)];
+					var tempMapBlock = HouseMaps[c1.ToHouseIndex(HouseType.Block)]
+						| HouseMaps[c2.ToHouseIndex(HouseType.Block)];
 					if ((baseLineMap & tempMapBlock) is not [])
 					{
 						continue;
 					}
 
-					var tempMapLine =
-						HouseMaps[c1.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)]
-							| HouseMaps[c2.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)];
+					var tempMapLine = HouseMaps[c1.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)]
+						| HouseMaps[c2.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)];
 					var squareMap = baseLineMap & tempMapLine;
 					Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);
 				}
