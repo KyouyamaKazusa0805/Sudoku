@@ -633,6 +633,18 @@
             Defines a value-type sequence list.
             </summary>
             <typeparam name="TUnmanaged">The element type.</typeparam>
+            <remarks>
+            We recommend you use this type like:
+            <code><![CDATA[
+            static int[] Example()
+            {
+                using scoped var list = new ValueList<int>(10);
+                list.Add(3);
+                list.Add(6);
+                return list.ToArray();
+            }
+            ]]></code>
+            </remarks>
         </member>
         <member name="F:System.Collections.Generic.ValueList`1._capacity">
             <summary>
@@ -659,26 +671,6 @@
             to implicitly call the dispose method.
             </remarks>
         </member>
-        <member name="M:System.Collections.Generic.ValueList`1.#ctor(`0@,System.Int32)">
-            <summary>
-            Initializes a list that stores the specified elements.
-            </summary>
-            <param name="list">
-            <para>The reference to the first element in a certain array to add into.</para>
-            <para>
-            <target name="in-parameter">
-				<i>
-					Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
-					for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
-					in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
-					modifier has the same semantic as <see langword="ref readonly var" />
-					instead of <see langword="ref var" />.
-				</i>
-			</target>
-            </para>
-            </param>
-            <param name="length">The length of the list.</param>
-        </member>
         <member name="P:System.Collections.Generic.ValueList`1.Count">
             <summary>
             Indicates the length of the list.
@@ -702,11 +694,24 @@
         <member name="P:System.Collections.Generic.ValueList`1.Item(System.Index)">
             <inheritdoc cref="P:System.Collections.Generic.ValueList`1.Item(System.Byte)"/>
         </member>
+        <member name="M:System.Collections.Generic.ValueList`1.AddIfNotContain(`0,)">
+            <summary>
+            Adds a new element into the collection if the element does not exist in the collection.
+            </summary>
+            <param name="element">The element.</param>
+            <param name="predicate">The predicate checking whether two elements are same.</param>
+        </member>
         <member name="M:System.Collections.Generic.ValueList`1.Add(`0)">
             <summary>
             Adds the element to the current list.
             </summary>
             <param name="element">The element.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.AddRange(System.Collections.Generic.ValueList{`0}@)">
+            <summary>
+            Adds a list of elements into the collection.
+            </summary>
+            <param name="elements">A list of elements.</param>
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.Remove">
             <summary>
@@ -753,13 +758,6 @@
         <member name="M:System.Collections.Generic.ValueList`1.ToArray">
             <summary>
             Converts the current instance into an array of type <typeparamref name="TUnmanaged"/>.
-            </summary>
-            <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.ToArrayAndClear">
-            <summary>
-            Converts the current instance into an array of type <typeparamref name="TUnmanaged"/>,
-            and release the memory.
             </summary>
             <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
         </member>

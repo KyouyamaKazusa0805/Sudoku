@@ -51,6 +51,24 @@ public sealed class AlmostLockedSetNode : Node
 	}
 
 	/// <inheritdoc/>
+	protected internal override Conclusion[] PotentialConclusionsWith(scoped in Grid grid, Node node)
+	{
+		using scoped var result = new ValueList<Conclusion>(50);
+		foreach (int digit in (short)(grid.GetDigitsUnion(FullCells) & ~(1 << Digit | 1 << node.Digit)))
+		{
+			foreach (int cell in !(FullCells & grid.CandidatesMap[digit]))
+			{
+				if (grid.Exists(cell, digit) is true)
+				{
+					result.Add(new(ConclusionType.Elimination, cell, digit));
+				}
+			}
+		}
+
+		return result.ToArray();
+	}
+
+	/// <inheritdoc/>
 	protected override string TypeIdentifier => nameof(AlmostLockedSetNode);
 
 

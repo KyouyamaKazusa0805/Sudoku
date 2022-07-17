@@ -48,7 +48,7 @@ public interface IChainStepSearcher : IStepSearcher
 			chain is not
 			{
 				IsStrong: var isStrong,
-				IsContinuousNiceLoop: _,
+				IsContinuousNiceLoop: var isCnl,
 				RealChainNodes:
 				[
 					{ Cells: var firstCells, Digit: var firstDigit },
@@ -62,7 +62,7 @@ public interface IChainStepSearcher : IStepSearcher
 			throw new InvalidOperationException("Invalid status.");
 		}
 
-		var result = new LinkViewNode[isStrong ? length + 1 : length];
+		var result = new LinkViewNode[isStrong || isCnl ? length + 1 : length];
 		for (int i = 0; i < length - 1; i++)
 		{
 			if (realChainNodes[i] is { Cells: var aCells, Digit: var aDigit }
@@ -72,13 +72,13 @@ public interface IChainStepSearcher : IStepSearcher
 			}
 		}
 
-		if (isStrong)
+		if (isStrong || isCnl)
 		{
 			result[length] = new(
 				DisplayColorKind.Normal,
 				new(lastDigit, lastCells),
 				new(firstDigit, firstCells),
-				Inference.Strong
+				isStrong ? Inference.Strong : Inference.Weak
 			);
 		}
 

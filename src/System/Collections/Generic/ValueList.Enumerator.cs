@@ -36,7 +36,7 @@ partial struct ValueList<TUnmanaged>
 		public readonly TUnmanaged Current
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => Unsafe.AddByteOffset(ref _ptr->_startPtr, (nint)_current);
+			get => _ptr->_startPtr[_current];
 		}
 
 

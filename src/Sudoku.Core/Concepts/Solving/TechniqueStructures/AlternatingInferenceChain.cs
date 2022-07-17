@@ -72,7 +72,34 @@ public sealed class AlternatingInferenceChain : Chain
 	/// <summary>
 	/// Indicates whether the current chain forms a continuous nice loop.
 	/// </summary>
-	public bool IsContinuousNiceLoop { get; }
+	public bool IsContinuousNiceLoop
+		=> this switch
+		{
+			{ IsStrong: false, RealChainNodes: [var a, .., var b] } => (a, b) switch
+			{
+				(
+					(SoleCandidateNode or LockedCandidatesNode or AlmostLockedSetNode) and
+					{
+						Cells: var aCells,
+						Digit: var aDigit
+					},
+					(SoleCandidateNode or LockedCandidatesNode or AlmostLockedSetNode) and
+					{
+						Cells: var bCells,
+						Digit: var bDigit
+					}
+				) => (aCells, bCells) switch
+				{
+					([var aCell], [var bCell])
+						=> aCell == bCell && aDigit != bDigit || aDigit == bDigit && (aCells | bCells).InOneHouse,
+					_ => aDigit == bDigit && (aCells | bCells).InOneHouse
+				},
+				// Reserved for the later usages.
+				_ => false
+			},
+			// The continuous nice loop must starts with weak links due to the design of the current data structure.
+			_ => false
+		};
 
 	/// <summary>
 	/// Indicates whether the current chain is a grouped chain.
@@ -199,41 +226,59 @@ public sealed class AlternatingInferenceChain : Chain
 		=> ImmutableArray.Create(
 			IsStrong switch
 			{
+				// The chain starts and ends with a same node.
 				true => _nodes switch
 				{
+					// Valid deconstruction.
 					[{ Cells: var cells, Digit: var d }, ..] => cells switch
 					{
+						// The node only uses a single cell.
 						[var c] => new Conclusion[] { new(ConclusionType.Assignment, c * 9 + d) },
+
+						// The node uses more than one cell.
 						_ => GetEliminationsSingleDigit(!cells & grid.CandidatesMap[d], d)
 					},
+
+					// Invalid case.
 					_ => null
 				},
-				_ => RealChainNodes switch
+
+				// The chain starts and ends with weak inferences.
+				_ => IsContinuousNiceLoop switch
 				{
-					[{ Cells: var c1, Digit: var d1 }, .., { Cells: var c2, Digit: var d2 }] => (d1 == d2) switch
+					// The chain has formed a continuous nice loop.
+					true => GetEliminationsLoop(grid, RealChainNodes),
+
+					// The chain is a normal chain.
+					_ => RealChainNodes switch
 					{
-						true => (!c1 & !c2 & grid.CandidatesMap[d1]) switch
+						// Valid deconstruction.
+						[{ Cells: var c1, Digit: var d1 }, .., { Cells: var c2, Digit: var d2 }] => (d1 == d2) switch
 						{
-							{ Count: not 0 } elimMap => GetEliminationsSingleDigit(elimMap, d1),
-							_ => null
+							// The chain starts and ends with two different nodes but a same digit.
+							true when (!c1 & !c2 & grid.CandidatesMap[d1]) is var elimMap and not []
+								=> GetEliminationsSingleDigit(elimMap, d1),
+
+							// The chain starts and ends with two different nodes and different digits.
+							_ => (c1, c2) switch
+							{
+								// The start-point and end-point are both a single cell.
+								([var oc1], [var oc2]) => GetEliminationsMultipleDigits(grid, oc1, oc2, d1, d2),
+
+								// The end-point uses multiple cells.
+								([var oc], { Count: > 1 }) when grid.Exists(oc, d2) is true
+									=> new Conclusion[] { new(ConclusionType.Elimination, oc, d2) },
+
+								// The start-point uses multiple cells.
+								({ Count: > 1 }, [var oc]) when grid.Exists(oc, d1) is true
+									=> new Conclusion[] { new(ConclusionType.Elimination, oc, d1) },
+
+								// Both start-point and end-point nodes use multiple cells, no conclusions will be found.
+								_ => null
+							}
 						},
-						_ => (c1, c2) switch
-						{
-							([var oc1], [var oc2]) => GetEliminationsMultipleDigits(grid, oc1, oc2, d1, d2),
-							([var oc], { Count: > 1 }) => grid.Exists(oc, d2) switch
-							{
-								true => new Conclusion[] { new(ConclusionType.Elimination, oc, d2) },
-								_ => null
-							},
-							({ Count: > 1 }, [var oc]) => grid.Exists(oc, d1) switch
-							{
-								true => new Conclusion[] { new(ConclusionType.Elimination, oc, d1) },
-								_ => null
-							},
-							_ => null
-						}
-					},
-					_ => null
+						_ => null
+					}
 				}
 			}
 		);
@@ -260,6 +305,72 @@ public sealed class AlternatingInferenceChain : Chain
 		}
 
 		return result;
+	}
+
+	/// <summary>
+	/// Try to get eliminations, treating the current AIC as a continuous nice loop.
+	/// </summary>
+	/// <param name="grid">The grid as the candidate reference.</param>
+	/// <param name="nodes">The base nodes.</param>
+	/// <returns>The conclusions.</returns>
+	private static unsafe Conclusion[] GetEliminationsLoop(scoped in Grid grid, ImmutableArray<Node> nodes)
+	{
+		using scoped var result = new ValueList<Conclusion>(50);
+		for (int i = 1; i < nodes.Length; i += 2)
+		{
+			var node = nodes[i];
+			var nextNode = nodes[i + 1 is var nextIndex && nextIndex < nodes.Length ? nextIndex : 0];
+			switch (node, nextNode)
+			{
+				case ({ Cells: [var aCell], Digit: var aDigit }, { Cells: [var bCell], Digit: var bDigit })
+				when aCell == bCell:
+				{
+					// Same cell.
+					foreach (int digit in (short)(grid.GetCandidates(aCell) & ~(1 << aDigit | 1 << bDigit)))
+					{
+						result.AddIfNotContain(new(ConclusionType.Elimination, aCell, digit), &cmp);
+					}
+
+					break;
+				}
+				case ({ Cells: var aCells, Digit: var aDigit }, { Cells: var bCells, Digit: var bDigit })
+				when aDigit == bDigit:
+				{
+					if ((aCells | bCells).CoveredHouses is var houses and not 0)
+					{
+						// Same house, same digit.
+						foreach (int house in houses)
+						{
+							foreach (int cell in (grid.CandidatesMap[aDigit] & HouseMaps[house]) - (aCells | bCells))
+							{
+								result.AddIfNotContain(new(ConclusionType.Elimination, cell, aDigit), &cmp);
+							}
+						}
+					}
+					else if ((!aCells & !bCells & grid.CandidatesMap[aDigit]) is var elimMap and not [])
+					{
+						// Same digit but different houses.
+						foreach (int cell in elimMap)
+						{
+							result.AddIfNotContain(new(ConclusionType.Elimination, cell, aDigit), &cmp);
+						}
+					}
+
+					break;
+				}
+			}
+
+			// Gets advanced conclusions.
+			foreach (var advancedConclusion in node.PotentialConclusionsWith(grid, nextNode))
+			{
+				result.AddIfNotContain(advancedConclusion, &cmp);
+			}
+		}
+
+		return result.ToArray();
+
+
+		static bool cmp(Conclusion a, Conclusion b) => a == b;
 	}
 
 	/// <summary>

@@ -6,7 +6,19 @@ namespace System.Collections.Generic;
 /// Defines a value-type sequence list.
 /// </summary>
 /// <typeparam name="TUnmanaged">The element type.</typeparam>
-public ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
+/// <remarks>
+/// We recommend you use this type like:
+/// <code><![CDATA[
+/// static int[] Example()
+/// {
+///     using scoped var list = new ValueList<int>(10);
+///     list.Add(3);
+///     list.Add(6);
+///     return list.ToArray();
+/// }
+/// ]]></code>
+/// </remarks>
+public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
 {
 	/// <summary>
 	/// Indicates the length of the list.
@@ -21,7 +33,7 @@ public ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
 	/// <summary>
 	/// Indicates the pointer that points to the first element.
 	/// </summary>
-	private ref TUnmanaged _startPtr;
+	private TUnmanaged* _startPtr;
 
 
 	/// <summary>
@@ -33,29 +45,10 @@ public ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
 	/// to implicitly call the dispose method.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe ValueList(byte capacity)
+	public ValueList(byte capacity)
 	{
-		_startPtr = ref Unsafe.AsRef<TUnmanaged>(NativeMemory.Alloc((nuint)sizeof(TUnmanaged) * capacity));
+		_startPtr = (TUnmanaged*)(NativeMemory.Alloc((nuint)sizeof(TUnmanaged) * capacity));
 		_capacity = capacity;
-	}
-
-	/// <summary>
-	/// Initializes a list that stores the specified elements.
-	/// </summary>
-	/// <param name="list">
-	/// <para>The reference to the first element in a certain array to add into.</para>
-	/// <para>
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="in-parameter"]'/>
-	/// </para>
-	/// </param>
-	/// <param name="length">The length of the list.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ValueList(in TUnmanaged list, int length)
-	{
-		_startPtr = ref Unsafe.AsRef(list);
-		_capacity = _length = (byte)length;
 	}
 
 
@@ -89,16 +82,30 @@ public ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
 	public readonly ref TUnmanaged this[byte index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ref Unsafe.AddByteOffset(ref _startPtr, index);
+		get => ref _startPtr[index];
 	}
 
 	/// <inheritdoc cref="this[byte]"/>
 	public readonly ref TUnmanaged this[Index index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ref Unsafe.AddByteOffset(ref _startPtr, (nuint)index.GetOffset(_length));
+		get => ref _startPtr[index.GetOffset(_length)];
 	}
 
+
+	/// <summary>
+	/// Adds a new element into the collection if the element does not exist in the collection.
+	/// </summary>
+	/// <param name="element">The element.</param>
+	/// <param name="predicate">The predicate checking whether two elements are same.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void AddIfNotContain(TUnmanaged element, delegate*<TUnmanaged, TUnmanaged, bool> predicate)
+	{
+		if (!Contains(element, predicate))
+		{
+			Add(element);
+		}
+	}
 
 	/// <summary>
 	/// Adds the element to the current list.
@@ -109,8 +116,19 @@ public ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
 	{
 		Argument.ThrowIfInvalid(_length < _capacity, "Cannot add because the collection is full.");
 
-		Unsafe.AddByteOffset(ref _startPtr, _length) = element;
-		_length++;
+		_startPtr[_length++] = element;
+	}
+
+	/// <summary>
+	/// Adds a list of elements into the collection.
+	/// </summary>
+	/// <param name="elements">A list of elements.</param>
+	public void AddRange(scoped in scoped ValueList<TUnmanaged> elements)
+	{
+		foreach (var element in elements)
+		{
+			Add(element);
+		}
 	}
 
 	/// <summary>
@@ -133,14 +151,10 @@ public ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
 	/// </i></remarks>
 	/// <seealso cref="ValueList{TUnmanaged}(byte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe void Dispose()
+	public void Dispose()
 	{
-		fixed (TUnmanaged* d = &_startPtr)
-		{
-			NativeMemory.Free(d);
-		}
-
-		_startPtr = ref Unsafe.NullRef<TUnmanaged>();
+		NativeMemory.Free(_startPtr);
+		_startPtr = null;
 	}
 
 	/// <summary>
@@ -150,7 +164,7 @@ public ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
 	/// <param name="instance">The instance to be determined.</param>
 	/// <param name="predicate">A method that defines whether two instances are considered equal.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public unsafe bool Contains(TUnmanaged instance, delegate*<TUnmanaged, TUnmanaged, bool> predicate)
+	public bool Contains(TUnmanaged instance, delegate*<TUnmanaged, TUnmanaged, bool> predicate)
 	{
 		foreach (var element in this)
 		{
@@ -174,7 +188,7 @@ public ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
 	/// <returns>The string that represents the current object.</returns>
 	/// <exception cref="FormatException">Throws when the specified format is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe string ToString(string? format)
+	public readonly string ToString(string? format)
 	{
 		return format switch
 		{
@@ -209,32 +223,13 @@ public ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
 	/// </summary>
 	/// <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe TUnmanaged[] ToArray()
+	public readonly TUnmanaged[] ToArray()
 	{
 		var result = new TUnmanaged[_length];
-		fixed (TUnmanaged* pResult = result, pStart = &_startPtr)
+		fixed (TUnmanaged* pResult = result)
 		{
-			Unsafe.CopyBlock(pResult, pStart, (uint)(sizeof(TUnmanaged) * _length));
+			Unsafe.CopyBlock(pResult, _startPtr, (uint)(sizeof(TUnmanaged) * _length));
 		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Converts the current instance into an array of type <typeparamref name="TUnmanaged"/>,
-	/// and release the memory.
-	/// </summary>
-	/// <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe TUnmanaged[] ToArrayAndClear()
-	{
-		var result = new TUnmanaged[_length];
-		fixed (TUnmanaged* pResult = result, pStart = &_startPtr)
-		{
-			Unsafe.CopyBlock(pResult, pStart, (uint)(sizeof(TUnmanaged) * _length));
-		}
-
-		Dispose();
 
 		return result;
 	}

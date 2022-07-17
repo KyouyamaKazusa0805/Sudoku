@@ -5305,6 +5305,14 @@
             <returns>The array of type <see cref="T:System.Boolean"/>[].</returns>
             <seealso cref="F:Sudoku.Concepts.Solving.TechniqueStructures.Chain._nodesStatus"/>
         </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.GetEliminationsLoop(Sudoku.Concepts.Collections.Grid@,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node})">
+            <summary>
+            Try to get eliminations, treating the current AIC as a continuous nice loop.
+            </summary>
+            <param name="grid">The grid as the candidate reference.</param>
+            <param name="nodes">The base nodes.</param>
+            <returns>The conclusions.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.GetEliminationsMultipleDigits(Sudoku.Concepts.Collections.Grid@,System.Int32,System.Int32,System.Byte,System.Byte)">
             <summary>
             Try to get eliminations via different digits.
@@ -5444,6 +5452,9 @@
             <summary>
             Indicates the whole ALS map.
             </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.PotentialConclusionsWith(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.TypeIdentifier">
             <inheritdoc/>
@@ -5609,6 +5620,14 @@
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.ToString">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.PotentialConclusionsWith(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
+            <summary>
+            Indicates the potential conclusions that cannot be directly applied, but can be applied when a loop is formed.
+            </summary>
+            <param name="grid">The base sudoku grid that provides with candidates' distribution.</param>
+            <param name="node">The node that connects with the current node.</param>
+            <returns>The possible conclusions found. In default, the property returns an empty array.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.op_Equality(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
             <inheritdoc/>

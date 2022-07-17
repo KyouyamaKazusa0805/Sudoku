@@ -131,6 +131,16 @@ public abstract class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 		return $"{nodeTypeName}: {ToSimpleString()}";
 	}
 
+	/// <summary>
+	/// Indicates the potential conclusions that cannot be directly applied, but can be applied when a loop is formed.
+	/// </summary>
+	/// <param name="grid">The base sudoku grid that provides with candidates' distribution.</param>
+	/// <param name="node">The node that connects with the current node.</param>
+	/// <returns>The possible conclusions found. In default, the property returns an empty array.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	protected internal virtual Conclusion[] PotentialConclusionsWith(scoped in Grid grid, Node node)
+		=> Array.Empty<Conclusion>();
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

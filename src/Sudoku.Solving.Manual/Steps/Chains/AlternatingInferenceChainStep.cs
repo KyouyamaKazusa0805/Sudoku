@@ -45,6 +45,8 @@ public sealed record class AlternatingInferenceChainStep(
 	public override Technique TechniqueCode
 		=> this switch
 		{
+			{ Chain: { IsContinuousNiceLoop: true, IsGrouped: true } } => Technique.GroupedContinuousNiceLoop,
+			{ Chain: { IsContinuousNiceLoop: true, IsGrouped: false } } => Technique.ContinuousNiceLoop,
 			{ IsXChain: true, Chain.IsGrouped: true } => Technique.GroupedXChain,
 			{ IsXChain: true, Chain.IsGrouped: false } => Technique.XChain,
 			{ IsMWing: true, Chain.IsGrouped: true } => Technique.GroupedMWing,
