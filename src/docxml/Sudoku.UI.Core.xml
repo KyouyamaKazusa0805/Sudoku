@@ -3781,18 +3781,19 @@
             </summary>
             <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.FileTypeChoices"/>
         </member>
-        <member name="T:Windows.System.VirtualKeyExtensions">
+        <member name="T:Windows.Foundation.PointExtensions">
             <summary>
-            Provides extension methods on <see cref="T:Windows.System.VirtualKey"/>.
+            Provides with extension methods on <see cref="T:Windows.Foundation.Point"/>.
             </summary>
-            <seealso cref="T:Windows.System.VirtualKey"/>
+            <seealso cref="T:Windows.Foundation.Point"/>
         </member>
-        <member name="M:Windows.System.VirtualKeyExtensions.ModifierKeyIsDown(Windows.System.VirtualKey)">
+        <member name="M:Windows.Foundation.PointExtensions.DistanceTo(Windows.Foundation.Point,Windows.Foundation.Point)">
             <summary>
-            Determines whether the specified modifier key is pressed down.
+            Gets the distance between the two points, starting with the current point, and ending with the specified point.
             </summary>
-            <param name="this">The modifier key.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <param name="this">The current point.</param>
+            <param name="other">The other point.</param>
+            <returns>The distance of the two points.</returns>
         </member>
         <member name="T:Windows.Foundation.Point_DEFC6B40A8">
             <summary>
@@ -3839,6 +3840,19 @@
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="T:Windows.System.VirtualKeyExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.System.VirtualKey"/>.
+            </summary>
+            <seealso cref="T:Windows.System.VirtualKey"/>
+        </member>
+        <member name="M:Windows.System.VirtualKeyExtensions.ModifierKeyIsDown(Windows.System.VirtualKey)">
+            <summary>
+            Determines whether the specified modifier key is pressed down.
+            </summary>
+            <param name="this">The modifier key.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
     </members>
 </doc>

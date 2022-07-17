@@ -84,7 +84,7 @@ internal static class PointConversions
 	{
 		double cs = CandidateSize(paneSize, outsideOffset);
 		var (x, y) = GridPoints(paneSize, outsideOffset)[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];
-		return new(x + cs / 2 - outsideOffset, y + cs / 2 - outsideOffset);
+		return new(x + cs / 2, y + cs / 2);
 	}
 
 	/// <summary>

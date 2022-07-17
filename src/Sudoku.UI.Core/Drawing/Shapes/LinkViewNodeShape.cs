@@ -104,18 +104,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 	/// <returns>A <see cref="Shape"/> instance.</returns>
 	private IEnumerable<Shape> CreateLinks(LinkViewNode[] nodes)
 	{
-		var points = new HashSet<Point>();
-		foreach (var linkNode in nodes)
-		{
-			points.Add(PointConversions.GetMouseCenter(PaneSize, OutsideOffset, linkNode.Start));
-			points.Add(PointConversions.GetMouseCenter(PaneSize, OutsideOffset, linkNode.End));
-		}
-
-		foreach (var conclusion in Conclusions)
-		{
-			points.Add(PointConversions.GetMousePointInCenter(PaneSize, OutsideOffset, conclusion.Cell, conclusion.Digit));
-		}
-
+		var points = getPoints(nodes);
 		var result = new List<Shape>();
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
@@ -135,6 +124,8 @@ public sealed class LinkViewNodeShape : DrawingElement
 			if (inference == Inference.Default)
 			{
 				// Draw the link.
+				correctOffsetOfPoint(ref pt1, OutsideOffset);
+				correctOffsetOfPoint(ref pt2, OutsideOffset);
 				result.Add(
 					new Path()
 						.WithStroke(Preference.LinkColor)
@@ -154,18 +145,19 @@ public sealed class LinkViewNodeShape : DrawingElement
 			{
 				// If the distance of two points is lower than the one of two adjacent candidates,
 				// the link will be emitted to draw because of too narrow.
-				double distance = Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
+				double distance = pt1.DistanceTo(pt2);
 				if (distance <= cs * SqrtOf2 + OutsideOffset || distance <= cs * SqrtOf2 + OutsideOffset)
 				{
 					continue;
 				}
 
-				// Check if another candidate lies in the direct line.
-				double deltaX = pt2x - pt1x, deltaY = pt2y - pt1y;
+				double deltaX = pt2.X - pt1.X, deltaY = pt2.Y - pt1.Y;
 				double alpha = Atan2(deltaY, deltaX);
-				double dx1 = deltaX, dy1 = deltaY;
+				adjust(pt1, pt2, out var p1, out _, alpha, cs, 0);
+
+				// Check if another candidate lies in the direct line.
 				bool through = false;
-				adjust(pt1, pt2, out var p1, out _, alpha, cs, OutsideOffset);
+				double dx1 = deltaX, dy1 = deltaY;
 				foreach (var point in points)
 				{
 					if (point == pt1 || point == pt2)
@@ -185,7 +177,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 				}
 
 				// Now cut the link.
-				cut(ref pt1, ref pt2, OutsideOffset, cs, pt1x, pt1y, pt2x, pt2y);
+				cut(ref pt1, ref pt2, OutsideOffset, cs);
 
 				if (through)
 				{
@@ -198,12 +190,17 @@ public sealed class LinkViewNodeShape : DrawingElement
 					rotate(oldPt1, ref pt1, -RotateAngle);
 					rotate(oldPt2, ref pt2, RotateAngle);
 
-					double aAlpha = alpha - RotateAngle;
-					double bx1 = pt1.X + bezierLength * Cos(aAlpha), by1 = pt1.Y + bezierLength * Sin(aAlpha);
+					double interim1Alpha = alpha - RotateAngle;
+					double bx1 = pt1.X + bezierLength * Cos(interim1Alpha), by1 = pt1.Y + bezierLength * Sin(interim1Alpha);
+					double interim2Alpha = alpha + RotateAngle;
+					double bx2 = pt2.X - bezierLength * Cos(interim2Alpha), by2 = pt2.Y - bezierLength * Sin(interim2Alpha);
 
-					aAlpha = alpha + RotateAngle;
-					double bx2 = pt2.X - bezierLength * Cos(aAlpha), by2 = pt2.Y - bezierLength * Sin(aAlpha);
-
+					correctOffsetOfPoint(ref pt1, OutsideOffset);
+					correctOffsetOfPoint(ref pt2, OutsideOffset);
+					correctOffsetOfDouble(ref bx1, OutsideOffset);
+					correctOffsetOfDouble(ref bx2, OutsideOffset);
+					correctOffsetOfDouble(ref by1, OutsideOffset);
+					correctOffsetOfDouble(ref by2, OutsideOffset);
 					result.Add(
 						new Path()
 							.WithStroke(Preference.LinkColor)
@@ -232,6 +229,8 @@ public sealed class LinkViewNodeShape : DrawingElement
 				else
 				{
 					// Draw the link.
+					correctOffsetOfPoint(ref pt1, OutsideOffset);
+					correctOffsetOfPoint(ref pt2, OutsideOffset);
 					result.Add(
 						new Path()
 							.WithStroke(Preference.LinkColor)
@@ -257,8 +256,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 		static void rotate(scoped in Point pt1, scoped ref Point pt2, double angle)
 		{
 			// Translate 'pt2' to (0, 0).
-			pt2.X -= pt1.X;
-			pt2.Y -= pt1.Y;
+			pt2 = pt2 with { X = pt2.X - pt1.X, Y = pt2.Y - pt1.Y };
 
 			// Rotate.
 			double sinAngle = Sin(angle), cosAngle = Cos(angle);
@@ -266,8 +264,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 			pt2.X = (float)(xAct * cosAngle - yAct * sinAngle);
 			pt2.Y = (float)(xAct * sinAngle + yAct * cosAngle);
 
-			pt2.X += pt1.X;
-			pt2.Y += pt1.Y;
+			pt2 = pt2 with { X = pt2.X + pt1.X, Y = pt2.Y + pt1.Y };
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -275,51 +272,97 @@ public sealed class LinkViewNodeShape : DrawingElement
 			scoped in Point pt1, scoped in Point pt2, out Point p1, out Point p2,
 			double alpha, double candidateSize, double offset)
 		{
-			p1 = pt1;
-			p2 = pt2;
-			double tempDelta = candidateSize / 2 + offset;
+			(p1, p2, double tempDelta) = (pt1, pt2, candidateSize / 2 + offset);
 			int px = (int)(tempDelta * Cos(alpha)), py = (int)(tempDelta * Sin(alpha));
 
-			p1.X += px;
-			p1.Y += py;
-			p2.X -= px;
-			p2.Y -= py;
+			p1 = p1 with { X = p1.X + px, Y = p1.Y + py };
+			p2 = p2 with { X = p2.X - px, Y = p2.Y - py };
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void cut(
-			scoped ref Point pt1, scoped ref Point pt2, double offset, double cs,
-			double pt1x, double pt1y, double pt2x, double pt2y)
+		static void cut(scoped ref Point pt1, scoped ref Point pt2, double offset, double cs)
 		{
+			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
 			double slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
 			double x = cs / (float)Sqrt(1 + slope * slope);
 			double y = cs * (float)Sqrt(slope * slope / (1 + slope * slope));
-
-			double o = offset / 8;
-			if (pt1y > pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y -= cs / 2 - o; pt2.Y += cs / 2 - o; }
-			else if (pt1y < pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y += cs / 2 - o; pt2.Y -= cs / 2 - o; }
-			else if (pt1y.NearlyEquals(pt2y) && pt1x > pt2x) { pt1.X -= cs / 2 - o; pt2.X += cs / 2 - o; }
-			else if (pt1y.NearlyEquals(pt2y) && pt1x < pt2x) { pt1.X += cs / 2 - o; pt2.X -= cs / 2 - o; }
+			double innerOffset = offset / 8;
+			if (pt1y > pt2y && pt1x.NearlyEquals(pt2x))
+			{
+				pt1.Y -= cs / 2 - innerOffset;
+				pt2.Y += cs / 2 - innerOffset;
+			}
+			else if (pt1y < pt2y && pt1x.NearlyEquals(pt2x))
+			{
+				pt1.Y += cs / 2 - innerOffset;
+				pt2.Y -= cs / 2 - innerOffset;
+			}
+			else if (pt1y.NearlyEquals(pt2y) && pt1x > pt2x)
+			{
+				pt1.X -= cs / 2 - innerOffset;
+				pt2.X += cs / 2 - innerOffset;
+			}
+			else if (pt1y.NearlyEquals(pt2y) && pt1x < pt2x)
+			{
+				pt1.X += cs / 2 - innerOffset;
+				pt2.X -= cs / 2 - innerOffset;
+			}
 			else if (pt1y > pt2y && pt1x > pt2x)
 			{
-				pt1.X -= x / 2 - o; pt1.Y -= y / 2 - o;
-				pt2.X += x / 2 - o; pt2.Y += y / 2 - o;
+				pt1.X -= x / 2 - innerOffset; pt1.Y -= y / 2 - innerOffset;
+				pt2.X += x / 2 - innerOffset; pt2.Y += y / 2 - innerOffset;
 			}
 			else if (pt1y > pt2y && pt1x < pt2x)
 			{
-				pt1.X += x / 2 - o; pt1.Y -= y / 2 - o;
-				pt2.X -= x / 2 - o; pt2.Y += y / 2 - o;
+				pt1.X += x / 2 - innerOffset; pt1.Y -= y / 2 - innerOffset;
+				pt2.X -= x / 2 - innerOffset; pt2.Y += y / 2 - innerOffset;
 			}
 			else if (pt1y < pt2y && pt1x > pt2x)
 			{
-				pt1.X -= x / 2 - o; pt1.Y += y / 2 - o;
-				pt2.X += x / 2 - o; pt2.Y -= y / 2 - o;
+				pt1.X -= x / 2 - innerOffset; pt1.Y += y / 2 - innerOffset;
+				pt2.X += x / 2 - innerOffset; pt2.Y -= y / 2 - innerOffset;
 			}
 			else if (pt1y < pt2y && pt1x < pt2x)
 			{
-				pt1.X += x / 2 - o; pt1.Y += y / 2 - o;
-				pt2.X -= x / 2 - o; pt2.Y -= y / 2 - o;
+				pt1.X += x / 2 - innerOffset; pt1.Y += y / 2 - innerOffset;
+				pt2.X -= x / 2 - innerOffset; pt2.Y -= y / 2 - innerOffset;
 			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void correctOffsetOfPoint(scoped ref Point point, double offset)
+			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
+			=> point = point with { X = point.X - offset, Y = point.Y - offset };
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void correctOffsetOfDouble(scoped ref double value, double offset)
+			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
+			=> value -= offset;
+
+		HashSet<Point> getPoints(LinkViewNode[] nodes)
+		{
+			var points = new HashSet<Point>();
+			foreach (var linkNode in nodes)
+			{
+				// Gets the center point.
+				var a = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, linkNode.Start);
+				var b = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, linkNode.End);
+
+				// Adds them to the collection.
+				points.Add(a);
+				points.Add(b);
+			}
+
+			foreach (var conclusion in Conclusions)
+			{
+				// Gets the center point.
+				var c = PointConversions.GetMousePointInCenter(PaneSize, OutsideOffset, conclusion.Cell, conclusion.Digit);
+
+				// Adds them to the collection.
+				points.Add(c);
+			}
+
+			return points;
 		}
 	}
 }
