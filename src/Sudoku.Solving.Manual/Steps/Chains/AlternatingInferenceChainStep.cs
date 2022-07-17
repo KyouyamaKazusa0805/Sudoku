@@ -45,21 +45,34 @@ public sealed record class AlternatingInferenceChainStep(
 	public override Technique TechniqueCode
 		=> this switch
 		{
-			{ IsXChain: true } => Technique.XChain,
-			{ IsMWing: true } => Technique.MWing,
-			{ IsSplitWing: true } => Technique.SplitWing,
-			{ IsHybridWing: true } => Technique.HybridWing,
-			{ IsLocalWing: true } => Technique.LocalWing,
-			{ Chain.RealChainNodes: [{ Digit: var a }, .., { Digit: var b }] } when a == b => IsXyChain switch
+			{ IsXChain: true, Chain.IsGrouped: true } => Technique.GroupedXChain,
+			{ IsXChain: true, Chain.IsGrouped: false } => Technique.XChain,
+			{ IsMWing: true, Chain.IsGrouped: true } => Technique.GroupedMWing,
+			{ IsMWing: true, Chain.IsGrouped: false } => Technique.MWing,
+			{ IsSplitWing: true, Chain.IsGrouped: true } => Technique.GroupedSplitWing,
+			{ IsSplitWing: true, Chain.IsGrouped: false } => Technique.SplitWing,
+			{ IsHybridWing: true, Chain.IsGrouped: true } => Technique.GroupedHybridWing,
+			{ IsHybridWing: true, Chain.IsGrouped: false } => Technique.HybridWing,
+			{ IsLocalWing: true, Chain.IsGrouped: true } => Technique.GroupedLocalWing,
+			{ IsLocalWing: true, Chain.IsGrouped: false } => Technique.LocalWing,
 			{
-				true => Technique.XyChain,
+				Chain:
+				{
+					RealChainNodes: [{ Digit: var a }, .., { Digit: var b }],
+					IsGrouped: var isGrouped
+				},
+				IsXyChain: var isXy
+			} when a == b => (isXy, isGrouped) switch
+			{
+				(true, _) => Technique.XyChain,
+				(_, true) => Technique.GroupedAlternatingInferenceChain,
 				_ => Technique.AlternatingInferenceChain
 			},
-			_ => Conclusions.Length switch
+			{ Chain.IsGrouped: var isGrouped, Conclusions.Length: var conclusionLength } => conclusionLength switch
 			{
-				1 => Technique.DiscontinuousNiceLoop,
-				2 => Technique.XyXChain,
-				_ => Technique.AlternatingInferenceChain
+				1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
+				2 => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain,
+				_ => isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain
 			}
 		};
 
@@ -116,12 +129,12 @@ public sealed record class AlternatingInferenceChainStep(
 	private bool IsMWing
 		=> Chain.RealChainNodes is
 		[
-			SoleCandidateNode { Cell: var a },
-			SoleCandidateNode { Cell: var b },
-			SoleCandidateNode { Cell: var c },
-			SoleCandidateNode { Cell: var d },
-			SoleCandidateNode { Cell: var e },
-			SoleCandidateNode { Cell: var f }
+			SoleCandidateNode { Candidate: var a },
+			SoleCandidateNode { Candidate: var b },
+			SoleCandidateNode { Candidate: var c },
+			SoleCandidateNode { Candidate: var d },
+			SoleCandidateNode { Candidate: var e },
+			SoleCandidateNode { Candidate: var f }
 		]
 		&& MWing(a, b, c, d, e, f);
 
@@ -132,12 +145,12 @@ public sealed record class AlternatingInferenceChainStep(
 	private bool IsSplitWing
 		=> Chain.RealChainNodes is
 		[
-			SoleCandidateNode { Cell: var a },
-			SoleCandidateNode { Cell: var b },
-			SoleCandidateNode { Cell: var c },
-			SoleCandidateNode { Cell: var d },
-			SoleCandidateNode { Cell: var e },
-			SoleCandidateNode { Cell: var f }
+			SoleCandidateNode { Candidate: var a },
+			SoleCandidateNode { Candidate: var b },
+			SoleCandidateNode { Candidate: var c },
+			SoleCandidateNode { Candidate: var d },
+			SoleCandidateNode { Candidate: var e },
+			SoleCandidateNode { Candidate: var f }
 		]
 		&& SplitWing(a, b, c, d, e, f);
 
@@ -153,12 +166,12 @@ public sealed record class AlternatingInferenceChainStep(
 	private bool IsHybridWing
 		=> Chain.RealChainNodes is
 		[
-			SoleCandidateNode { Cell: var a },
-			SoleCandidateNode { Cell: var b },
-			SoleCandidateNode { Cell: var c },
-			SoleCandidateNode { Cell: var d },
-			SoleCandidateNode { Cell: var e },
-			SoleCandidateNode { Cell: var f }
+			SoleCandidateNode { Candidate: var a },
+			SoleCandidateNode { Candidate: var b },
+			SoleCandidateNode { Candidate: var c },
+			SoleCandidateNode { Candidate: var d },
+			SoleCandidateNode { Candidate: var e },
+			SoleCandidateNode { Candidate: var f }
 		]
 		&& HybridWing(a, b, c, d, e, f);
 
@@ -169,12 +182,12 @@ public sealed record class AlternatingInferenceChainStep(
 	private bool IsLocalWing
 		=> Chain.RealChainNodes is
 		[
-			SoleCandidateNode { Cell: var a },
-			SoleCandidateNode { Cell: var b },
-			SoleCandidateNode { Cell: var c },
-			SoleCandidateNode { Cell: var d },
-			SoleCandidateNode { Cell: var e },
-			SoleCandidateNode { Cell: var f }
+			SoleCandidateNode { Candidate: var a },
+			SoleCandidateNode { Candidate: var b },
+			SoleCandidateNode { Candidate: var c },
+			SoleCandidateNode { Candidate: var d },
+			SoleCandidateNode { Candidate: var e },
+			SoleCandidateNode { Candidate: var f }
 		]
 		&& LocalWing(a, b, c, d, e, f);
 
@@ -186,23 +199,40 @@ public sealed record class AlternatingInferenceChainStep(
 	}
 
 
+	/// <summary>
+	/// Determines whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
+	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool MWing(byte a, byte b, byte c, byte d, byte e, byte f)
+	private bool MWing(int a, int b, int c, int d, int e, int f)
 		=> a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == c % 9 && c % 9 == d % 9 && a % 9 == e % 9 && e % 9 == f % 9
 		|| f / 9 == e / 9 && c / 9 == b / 9 && d % 9 == e % 9 && c % 9 == d % 9 && b % 9 == f % 9 && a % 9 == b % 9;
 
+	/// <summary>
+	/// Determines whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
+	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool SplitWing(byte a, byte b, byte c, byte d, byte e, byte f)
+	private bool SplitWing(int a, int b, int c, int d, int e, int f)
 		=> a % 9 == b % 9 && b % 9 == c % 9 && d % 9 == e % 9 && e % 9 == f % 9 && c / 9 == d / 9;
 
+	/// <summary>
+	/// Determines whether the chain is Hybrid-Wing.
+	/// This wing has two types:
+	/// <list type="bullet">
+	/// <item><c>(x = y) - y = (y - z) = z</c></item>
+	/// <item><c>(x = y) - (y = z) - z = z</c></item>
+	/// </list>
+	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool HybridWing(byte a, byte b, byte c, byte d, byte e, byte f)
+	private bool HybridWing(int a, int b, int c, int d, int e, int f)
 		=> a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == c % 9 && c % 9 == d % 9 && e % 9 == f % 9
 		|| e / 9 == f / 9 && b / 9 == c / 9 && d % 9 == e % 9 && c % 9 == d % 9 && a % 9 == b % 9
 		|| a / 9 == b / 9 && c / 9 == d / 9 && b % 9 == c % 9 && d % 9 == e % 9 && e % 9 == f % 9
 		|| e / 9 == f / 9 && c / 9 == d / 9 && d % 9 == e % 9 && b % 9 == c % 9 && a % 9 == b % 9;
 
+	/// <summary>
+	/// Determines whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
+	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool LocalWing(byte a, byte b, byte c, byte d, byte e, byte f)
+	private bool LocalWing(int a, int b, int c, int d, int e, int f)
 		=> b / 9 == c / 9 && d / 9 == e / 9 && a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
 }
