@@ -45,37 +45,37 @@ public sealed record class AlternatingInferenceChainStep(
 	public override Technique TechniqueCode
 		=> this switch
 		{
-			{ Chain: { IsContinuousNiceLoop: true, IsGrouped: true } } => Technique.GroupedContinuousNiceLoop,
-			{ Chain: { IsContinuousNiceLoop: true, IsGrouped: false } } => Technique.ContinuousNiceLoop,
-			{ IsXChain: true, Chain.IsGrouped: true } => Technique.GroupedXChain,
-			{ IsXChain: true, Chain.IsGrouped: false } => Technique.XChain,
-			{ IsMWing: true, Chain.IsGrouped: true } => Technique.GroupedMWing,
-			{ IsMWing: true, Chain.IsGrouped: false } => Technique.MWing,
-			{ IsSplitWing: true, Chain.IsGrouped: true } => Technique.GroupedSplitWing,
-			{ IsSplitWing: true, Chain.IsGrouped: false } => Technique.SplitWing,
-			{ IsHybridWing: true, Chain.IsGrouped: true } => Technique.GroupedHybridWing,
-			{ IsHybridWing: true, Chain.IsGrouped: false } => Technique.HybridWing,
-			{ IsLocalWing: true, Chain.IsGrouped: true } => Technique.GroupedLocalWing,
-			{ IsLocalWing: true, Chain.IsGrouped: false } => Technique.LocalWing,
+			{ Chain: { IsContinuousNiceLoop: true, IsGrouped: var isGrouped } }
+				=> isGrouped ? Technique.GroupedContinuousNiceLoop : Technique.ContinuousNiceLoop,
+			{ IsXChain: true, Chain.IsGrouped: var isGrouped }
+				=> isGrouped ? Technique.GroupedXChain : Technique.XChain,
+			{ IsMWing: true, Chain.IsGrouped: var isGrouped }
+				=> isGrouped ? Technique.GroupedMWing : Technique.MWing,
+			{ IsSplitWing: true, Chain.IsGrouped: var isGrouped }
+				=> isGrouped ? Technique.GroupedSplitWing : Technique.SplitWing,
+			{ IsHybridWing: true, Chain.IsGrouped: var isGrouped }
+				=> isGrouped ? Technique.GroupedHybridWing : Technique.HybridWing,
+			{ IsLocalWing: true, Chain.IsGrouped: var isGrouped }
+				=> isGrouped ? Technique.GroupedLocalWing : Technique.LocalWing,
+			{ Chain: { Count: 5, IsGrouped: var isGrouped } }
+				=> isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
 			{
-				Chain:
-				{
-					RealChainNodes: [{ Digit: var a }, .., { Digit: var b }],
-					IsGrouped: var isGrouped
-				},
+				Chain: { RealChainNodes: [{ Digit: var a }, .., { Digit: var b }], IsGrouped: var isGrouped },
 				IsXyChain: var isXy
-			} when a == b => (isXy, isGrouped) switch
-			{
-				(true, _) => Technique.XyChain,
-				(_, true) => Technique.GroupedAlternatingInferenceChain,
-				_ => Technique.AlternatingInferenceChain
-			},
-			{ Chain.IsGrouped: var isGrouped, Conclusions.Length: var conclusionLength } => conclusionLength switch
-			{
-				1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
-				2 => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain,
-				_ => isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain
-			}
+			} when a == b
+				=> (isXy, isGrouped) switch
+				{
+					(true, _) => Technique.XyChain,
+					(_, true) => Technique.GroupedAlternatingInferenceChain,
+					_ => Technique.AlternatingInferenceChain
+				},
+			{ Chain.IsGrouped: var isGrouped, Conclusions.Length: var conclusionLength }
+				=> conclusionLength switch
+				{
+					1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
+					2 => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain,
+					_ => isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain
+				}
 		};
 
 	/// <inheritdoc/>
@@ -85,9 +85,8 @@ public sealed record class AlternatingInferenceChainStep(
 	public override Rarity Rarity
 		=> TechniqueCode switch
 		{
-			Technique.MWing or Technique.SplitWing or Technique.LocalWing => Rarity.Sometimes,
 			Technique.HybridWing or Technique.XChain or Technique.XyChain or Technique.XyXChain => Rarity.Often,
-			Technique.DiscontinuousNiceLoop or Technique.AlternatingInferenceChain => Rarity.Often
+			_ => Rarity.Sometimes
 		};
 
 	/// <inheritdoc/>
