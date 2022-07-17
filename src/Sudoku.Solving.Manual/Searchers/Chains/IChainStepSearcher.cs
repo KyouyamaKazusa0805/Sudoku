@@ -95,9 +95,9 @@ public interface IChainStepSearcher : IStepSearcher
 	/// </param>
 	/// <remarks>
 	/// For example, the following code is okay for calling this method:
-	/// <code>
+	/// <code><![CDATA[
 	/// PrintInferences(_strongInferences, _nodeLookup, Console.WriteLine);
-	/// </code>
+	/// ]]></code>
 	/// </remarks>
 	protected static sealed void PrintInferences(
 		Dictionary<int, HashSet<int>?> inferences, Node?[] nodeLookup, Action<string> outputHandler)
