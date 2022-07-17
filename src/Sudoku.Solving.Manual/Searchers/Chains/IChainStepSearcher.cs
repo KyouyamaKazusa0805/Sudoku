@@ -92,18 +92,13 @@ public interface IChainStepSearcher : IStepSearcher
 	/// <param name="nodeLookup">The node lookup table.</param>
 	/// <param name="outputHandler">
 	/// The handler method that used for the invocation on output the result information.
-	/// For example, the following code is okay for this argument:
-	/// <code>
-	/// PrintInferences(
-	///     // Suppose we output the strong inference dictionary.
-	///     inferences: _strongInferences,
-	/// 
-	///     // Here we can call 'Console.WriteLine' to output the result string value.
-	///     // In addition, you can also write 'static data => Console.WriteLine(data)'.
-	///     outputHandler: Console.WriteLine
-	/// );
-	/// </code>
 	/// </param>
+	/// <remarks>
+	/// For example, the following code is okay for calling this method:
+	/// <code>
+	/// PrintInferences(_strongInferences, _nodeLookup, Console.WriteLine);
+	/// </code>
+	/// </remarks>
 	protected static sealed void PrintInferences(
 		Dictionary<int, HashSet<int>?> inferences, Node?[] nodeLookup, Action<string> outputHandler)
 	{
