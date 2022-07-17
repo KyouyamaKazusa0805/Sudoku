@@ -277,6 +277,8 @@ public sealed class AlternatingInferenceChain : Chain
 								_ => null
 							}
 						},
+
+						// Invalid case.
 						_ => null
 					}
 				}
