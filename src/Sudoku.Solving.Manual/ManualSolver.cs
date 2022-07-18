@@ -302,6 +302,10 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 					_ => throw new NotImplementedException()
 				};
 			}
+			catch (OperationCanceledException ex) when (ex.CancellationToken != cancellationToken)
+			{
+				throw;
+			}
 			catch (Exception ex)
 			{
 				return ex switch
@@ -310,9 +314,8 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 						=> result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
 					WrongStepException { WrongStep: var ws } castedException
 						=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, WrongStep = ws },
-					OperationCanceledException casted when casted.CancellationToken == cancellationToken
+					OperationCanceledException
 						=> result with { IsSolved = false, FailedReason = FailedReason.UserCancelled },
-					OperationCanceledException casted => throw casted,
 					_ => result with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown, UnhandledException = ex }
 				};
 			}
