@@ -23,13 +23,21 @@ public sealed record class AlternatingInferenceChainStep(
 		=> TechniqueCode switch
 		{
 			Technique.MWing => 4.5M,
+			Technique.GroupedMWing => 4.6M,
 			Technique.SplitWing or Technique.HybridWing or Technique.LocalWing => 4.8M,
+			Technique.GroupedSplitWing or Technique.GroupedHybridWing or Technique.GroupedLocalWing => 4.9M,
+			Technique.PurpleCow => 4.9M,
+			Technique.GroupedPurpleCow => 5.0M,
 			_ => XEnabled && YEnabled ? 5.0M : 4.6M
 		};
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Length", IsIrregularWing ? 0 : IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity)) };
+		=> new[]
+		{
+			("Length", IsIrregularWing ? 0 : IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity)),
+			("Grouped", Chain.IsGrouped ? Chain.RealChainNodes.Sum(NodeDifficultySelector) : 0)
+		};
 
 	/// <inheritdoc/>
 	public override int FlatComplexity => Chain.RealChainNodes.Length;
@@ -56,8 +64,7 @@ public sealed record class AlternatingInferenceChainStep(
 					(false, true) => Technique.FishyCycle,
 					_ => Technique.XChain
 				},
-			{ IsMWing: true, Chain.IsGrouped: var isGrouped }
-				=> isGrouped ? Technique.GroupedMWing : Technique.MWing,
+			{ IsMWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
 			{ IsSplitWing: true, Chain.IsGrouped: var isGrouped }
 				=> isGrouped ? Technique.GroupedSplitWing : Technique.SplitWing,
 			{ IsHybridWing: true, Chain.IsGrouped: var isGrouped }
@@ -245,4 +252,19 @@ public sealed record class AlternatingInferenceChainStep(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private bool LocalWing(int a, int b, int c, int d, int e, int f)
 		=> b / 9 == c / 9 && d / 9 == e / 9 && a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
+
+
+	/// <summary>
+	/// The node difficulty selector.
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns>The difficulty of the node.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static decimal NodeDifficultySelector(Node node)
+		=> node switch
+		{
+			SoleCandidateNode => 0M,
+			LockedCandidatesNode => .1M,
+			AlmostLockedSetNode => .2M
+		};
 }

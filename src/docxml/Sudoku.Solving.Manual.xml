@@ -3927,6 +3927,13 @@
             Determines whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.NodeDifficultySelector(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
+            <summary>
+            The node difficulty selector.
+            </summary>
+            <param name="node">The node.</param>
+            <returns>The difficulty of the node.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.ChainStep">
             <summary>
             Provides with a step that is a <b>Chain</b> technique.
