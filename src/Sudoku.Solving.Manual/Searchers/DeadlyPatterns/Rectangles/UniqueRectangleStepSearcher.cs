@@ -34,10 +34,10 @@
 public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
 	/// <inheritdoc/>
-	public bool AllowIncompleteUniqueRectangles { get; set; }
+	public bool AllowIncompleteUniqueRectangles { get; set; } = true;
 
 	/// <inheritdoc/>
-	public bool SearchForExtendedUniqueRectangles { get; set; }
+	public bool SearchForExtendedUniqueRectangles { get; set; } = true;
 
 
 	/// <inheritdoc/>
@@ -411,6 +411,10 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		if (d2Exists)
 		{
 			conclusions.Add(new(ConclusionType.Elimination, cornerCell, d2));
+		}
+		if (conclusions.Count == 0)
+		{
+			return;
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>(6);
