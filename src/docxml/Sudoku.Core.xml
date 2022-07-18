@@ -5238,6 +5238,11 @@
             Indicates whether the current chain is a grouped chain.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.IsIrregularWing">
+            <summary>
+            Determines whether the current chain is an irregular wing (Chinese: Duan3 Lian4).
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.IsRedundant">
             <summary>
             Determines whether the chain is redundant.
@@ -11639,7 +11644,7 @@
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.FishyCycle">
             <summary>
-            Indicates the fishy cycle.
+            Indicates the fishy cycle (X-Cycle).
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.XyChain">
@@ -11684,7 +11689,7 @@
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.GroupedFishyCycle">
             <summary>
-            Indicates the grouped fishy cycle.
+            Indicates the grouped fishy cycle (grouped X-Cycle).
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.GroupedXyChain">

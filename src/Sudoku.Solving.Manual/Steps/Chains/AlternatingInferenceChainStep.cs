@@ -45,10 +45,17 @@ public sealed record class AlternatingInferenceChainStep(
 	public override Technique TechniqueCode
 		=> this switch
 		{
+			{ Chain: { IsGrouped: true, Count: 3 } } => Technique.GroupedXyWing,
 			{ Chain: { IsContinuousNiceLoop: true, IsGrouped: var isGrouped } }
 				=> isGrouped ? Technique.GroupedContinuousNiceLoop : Technique.ContinuousNiceLoop,
-			{ IsXChain: true, Chain.IsGrouped: var isGrouped }
-				=> isGrouped ? Technique.GroupedXChain : Technique.XChain,
+			{ IsXChain: true, Chain: { IsGrouped: var isGrouped, IsContinuousNiceLoop: var isCnl } }
+				=> (isGrouped, isCnl) switch
+				{
+					(true, true) => Technique.GroupedFishyCycle,
+					(true, false) => Technique.GroupedXChain,
+					(false, true) => Technique.FishyCycle,
+					_ => Technique.XChain
+				},
 			{ IsMWing: true, Chain.IsGrouped: var isGrouped }
 				=> isGrouped ? Technique.GroupedMWing : Technique.MWing,
 			{ IsSplitWing: true, Chain.IsGrouped: var isGrouped }
@@ -57,25 +64,27 @@ public sealed record class AlternatingInferenceChainStep(
 				=> isGrouped ? Technique.GroupedHybridWing : Technique.HybridWing,
 			{ IsLocalWing: true, Chain.IsGrouped: var isGrouped }
 				=> isGrouped ? Technique.GroupedLocalWing : Technique.LocalWing,
-			{ Chain: { Count: 5, IsGrouped: var isGrouped } }
+			{ IsIrregularWing: true, Chain.IsGrouped: var isGrouped }
 				=> isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
 			{
-				Chain: { RealChainNodes: [{ Digit: var a }, .., { Digit: var b }], IsGrouped: var isGrouped },
-				IsXyChain: var isXy
-			} when a == b
-				=> (isXy, isGrouped) switch
+				Chain:
 				{
-					(true, _) => Technique.XyChain,
-					(_, true) => Technique.GroupedAlternatingInferenceChain,
-					_ => Technique.AlternatingInferenceChain
+					RealChainNodes: [{ Digit: var a }, .., { Digit: var b }],
+					IsGrouped: var isGrouped
 				},
-			{ Chain.IsGrouped: var isGrouped, Conclusions.Length: var conclusionLength }
-				=> conclusionLength switch
-				{
-					1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
-					2 => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain,
-					_ => isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain
-				}
+				IsXyChain: var isXy
+			} when a == b => (isXy, isGrouped) switch
+			{
+				(true, _) => Technique.XyChain,
+				(_, true) => Technique.GroupedAlternatingInferenceChain,
+				_ => Technique.AlternatingInferenceChain
+			},
+			{ Chain.IsGrouped: var isGrouped, Conclusions.Length: var conclusionLength } => conclusionLength switch
+			{
+				1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
+				2 => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain,
+				_ => isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain
+			}
 		};
 
 	/// <inheritdoc/>

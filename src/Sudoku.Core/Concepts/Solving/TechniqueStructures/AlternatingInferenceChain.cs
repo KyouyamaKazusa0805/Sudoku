@@ -111,6 +111,15 @@ public sealed class AlternatingInferenceChain : Chain
 	}
 
 	/// <summary>
+	/// Determines whether the current chain is an irregular wing (Chinese: Duan3 Lian4).
+	/// </summary>
+	public bool IsIrregularWing
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => !IsStrong && RealChainNodes.Length == 5;
+	}
+
+	/// <summary>
 	/// Determines whether the chain is redundant.
 	/// </summary>
 	/// <remarks>

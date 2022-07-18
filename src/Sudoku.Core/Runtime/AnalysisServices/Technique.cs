@@ -1137,7 +1137,7 @@ public enum Technique : short
 	YChain,
 
 	/// <summary>
-	/// Indicates the fishy cycle.
+	/// Indicates the fishy cycle (X-Cycle).
 	/// </summary>
 	FishyCycle,
 
@@ -1182,7 +1182,7 @@ public enum Technique : short
 	GroupedXChain,
 
 	/// <summary>
-	/// Indicates the grouped fishy cycle.
+	/// Indicates the grouped fishy cycle (grouped X-Cycle).
 	/// </summary>
 	GroupedFishyCycle,
 
