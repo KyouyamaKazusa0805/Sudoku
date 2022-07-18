@@ -541,8 +541,7 @@ public sealed class SudokuGrid : DrawingElement
 			}
 			else
 			{
-				ViewIndex = 0;
-				var view = value.Views.Length != 0 ? value.Views[ViewIndex] : null;
+				var view = value.Views[ViewIndex = 0];
 
 				SetViewNodes(view);
 				SetConclusion(view, value.Conclusions);
@@ -1249,17 +1248,12 @@ public sealed class SudokuGrid : DrawingElement
 	/// Sets the view instance.
 	/// </summary>
 	/// <param name="view">The view instance.</param>
-	private void SetViewNodes(View? view)
+	private void SetViewNodes(View view)
 	{
 		// TODO: Sets other kinds of view nodes.
 
 		// Clears the current view.
 		ClearViewNodes();
-
-		if (view is null)
-		{
-			return;
-		}
 
 		// Rebuild the nodes.
 		var linkViewNodes = new List<LinkViewNode>();
@@ -1302,7 +1296,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// <param name="currentView">The view to check whether a conclusion is a cannibalism.</param>
 	/// <param name="conclusions">The conclusions.</param>
 	/// <seealso cref="CandidateViewNodeShape"/>
-	private void SetConclusion(View? currentView, ImmutableArray<Conclusion> conclusions)
+	private void SetConclusion(View currentView, ImmutableArray<Conclusion> conclusions)
 	{
 		if (_isMaskMode)
 		{
@@ -1321,7 +1315,7 @@ public sealed class SudokuGrid : DrawingElement
 				(
 					type == ConclusionType.Assignment
 						? _preference.AssignmentColor
-						: currentView?.ConflictWith(candidate) ?? false
+						: currentView.ConflictWith(candidate)
 							? _preference.CannibalismColor
 							: _preference.EliminationColor
 				).AsIdentifier()

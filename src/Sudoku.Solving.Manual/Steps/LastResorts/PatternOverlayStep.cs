@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 public sealed record class PatternOverlayStep(ConclusionList Conclusions) :
-	LastResortStep(Conclusions, ViewList.Empty)
+	LastResortStep(Conclusions, ImmutableArray.Create(View.Empty))
 {
 	/// <summary>
 	/// Indicates the digit.

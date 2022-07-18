@@ -2296,6 +2296,9 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher.MaxSize">
             <inheritdoc/>
+            <remarks>
+            The default value is 5.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
