@@ -591,10 +591,9 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		unsafe void checkFirstFourCases(
-			scoped in Cells cells, byte digit, int offset, delegate*<in Cells, short> houseMaskSelector)
+		void checkFirstFourCases(scoped in Cells cells, byte digit, int offset, delegate*<in Cells, short> maskSelector)
 		{
-			short houseMask = houseMaskSelector(cells);
+			short houseMask = maskSelector(cells);
 			switch (PopCount((uint)houseMask))
 			{
 				case 2:
