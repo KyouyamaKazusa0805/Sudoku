@@ -547,7 +547,11 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(Sudoku.Solving.Manual.SolverResultFormattingOptions)">
-            <inheritdoc cref="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.Manual.SolverResultFormattingOptions)"/>
+            <summary>
+            Returns a string that represents the current object, with the specified formatting options.
+            </summary>
+            <param name="options">The formatting options.</param>
+            <returns>A string that represents the current object.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.GetEnumerator">
             <summary>
@@ -565,31 +569,6 @@
             </param>
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.ManualSolverResult.Formatter">
-            <summary>
-            Provides operations for analysis result formatting.
-            </summary>
-            <param name="Result">Indicates the analysis result.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.#ctor(Sudoku.Solving.Manual.ManualSolverResult)">
-            <summary>
-            Provides operations for analysis result formatting.
-            </summary>
-            <param name="Result">Indicates the analysis result.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Formatter.Result">
-            <summary>Indicates the analysis result.</summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.Manual.SolverResultFormattingOptions)">
-            <summary>
-            Get the string result with the specified formatting options.
-            </summary>
-            <param name="options">The options.</param>
-            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.ModuleInitializer">
             <target name="type">

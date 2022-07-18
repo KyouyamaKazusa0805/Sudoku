@@ -4,7 +4,7 @@
 /// Provides the solver result after <see cref="ManualSolver"/> solves a puzzle.
 /// </summary>
 /// <param name="OriginalPuzzle">Indicates the original sudoku puzzle to solve.</param>
-public sealed unsafe partial record class ManualSolverResult(scoped in Grid OriginalPuzzle)
+public sealed record class ManualSolverResult(scoped in Grid OriginalPuzzle)
 {
 	/// <summary>
 	/// Indicates whether the solver has solved the puzzle.
@@ -22,7 +22,7 @@ public sealed unsafe partial record class ManualSolverResult(scoped in Grid Orig
 	/// </para>
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	public decimal MaxDifficulty => Evaluator(&EnumerableExtensions.Max<Step>, 20.0M);
+	public unsafe decimal MaxDifficulty => Evaluator(&EnumerableExtensions.Max<Step>, 20.0M);
 
 	/// <summary>
 	/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -37,7 +37,7 @@ public sealed unsafe partial record class ManualSolverResult(scoped in Grid Orig
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
 	/// <seealso cref="Steps"/>
-	public decimal TotalDifficulty => Evaluator(&EnumerableExtensions.Sum<Step>, 0);
+	public unsafe decimal TotalDifficulty => Evaluator(&EnumerableExtensions.Sum<Step>, 0);
 
 	/// <summary>
 	/// <para>
@@ -272,11 +272,14 @@ public sealed unsafe partial record class ManualSolverResult(scoped in Grid Orig
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 	/// <seealso cref="Steps"/>
 	public Step this[int index]
-		=> Steps is not [_, ..]
-			? throw new InvalidOperationException("You can't extract any elements because of being null or empty.")
-			: index >= Steps.Length || index < 0
-				? throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range.")
-				: Steps[index];
+		=> Steps switch
+		{
+			{ IsDefaultOrEmpty: true }
+				=> throw new InvalidOperationException("You can't extract any elements because of being null or empty."),
+			{ Length: var length } when index < 0 || index >= length
+				=> throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range."),
+			_ => Steps[index]
+		};
 
 	/// <summary>
 	/// Gets the first <see cref="Step"/> instance that matches the specified technique.
@@ -294,11 +297,227 @@ public sealed unsafe partial record class ManualSolverResult(scoped in Grid Orig
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => new Formatter(this).ToString();
+	public override string ToString()
+		=> ToString(
+			SolverResultFormattingOptions.ShowStepsAfterBottleneck
+				| SolverResultFormattingOptions.ShowSeparators
+				| SolverResultFormattingOptions.ShowDifficulty
+				| SolverResultFormattingOptions.ShowSteps
+		);
 
-	/// <inheritdoc cref="Formatter.ToString(SolverResultFormattingOptions)"/>
+	/// <summary>
+	/// Returns a string that represents the current object, with the specified formatting options.
+	/// </summary>
+	/// <param name="options">The formatting options.</param>
+	/// <returns>A string that represents the current object.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(SolverResultFormattingOptions options) => new Formatter(this).ToString(options);
+	public string ToString(SolverResultFormattingOptions options)
+	{
+		// Get all information.
+		if (
+			this is not
+			{
+				IsSolved: var isSolved,
+				TotalDifficulty: var total,
+				MaxDifficulty: var max,
+				PearlDifficulty: var pearl,
+				DiamondDifficulty: var diamond,
+				OriginalPuzzle: var puzzle,
+				Solution: var solution,
+				ElapsedTime: var elapsed,
+				SolvingStepsCount: var stepsCount,
+				Steps: var steps
+			}
+		)
+		{
+			throw new();
+		}
+
+		// Print header.
+		scoped var sb = new StringHandler();
+		sb.Append(R["AnalysisResultPuzzle"]!);
+		sb.Append(puzzle.ToString("#"));
+		sb.AppendLine();
+
+		// Print solving steps (if worth).
+		if (options.Flags(SolverResultFormattingOptions.ShowSteps) && !steps.IsDefaultOrEmpty)
+		{
+			sb.Append(R["AnalysisResultSolvingSteps"]!);
+			sb.AppendLine();
+
+			if (getBottleneck() is var (bIndex, bInfo))
+			{
+				for (int i = 0, count = steps.Length; i < count; i++)
+				{
+					if (i > bIndex && options.Flags(SolverResultFormattingOptions.ShowStepsAfterBottleneck))
+					{
+						sb.Append(R.EmitPunctuation(Punctuation.Ellipsis));
+						sb.AppendLine();
+
+						break;
+					}
+
+					var info = steps[i];
+					string infoStr = options.Flags(SolverResultFormattingOptions.ShowSimple)
+						? info.ToSimpleString()
+						: info.Formatize();
+					bool showDiff = options.Flags(SolverResultFormattingOptions.ShowDifficulty)
+						&& info.ShowDifficulty;
+
+					string d = $"({info.Difficulty,5:0.0}";
+					string s = $"{i + 1,4}";
+					string labelInfo = (options.Flags(SolverResultFormattingOptions.ShowStepLabel), showDiff) switch
+					{
+						(true, true) => $"{s}, {d}) ",
+						(true, false) => $"{s} ",
+						(false, true) => $"{d}) ",
+						_ => string.Empty,
+					};
+
+					sb.Append(labelInfo);
+					sb.Append(infoStr);
+					sb.AppendLine();
+				}
+
+				if (options.Flags(SolverResultFormattingOptions.ShowBottleneck))
+				{
+					a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
+
+					sb.Append(R["AnalysisResultBottleneckStep"]!);
+
+					if (options.Flags(SolverResultFormattingOptions.ShowStepLabel))
+					{
+						sb.Append(R["AnalysisResultInStep"]!);
+						sb.Append(bIndex + 1);
+						sb.Append(R.EmitPunctuation(Punctuation.Colon));
+					}
+
+					sb.Append(' ');
+					sb.Append(bInfo);
+					sb.AppendLine();
+				}
+
+				a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
+			}
+		}
+
+		// Print solving step statistics (if worth).
+		if (!steps.IsDefault)
+		{
+			sb.Append(R["AnalysisResultTechniqueUsed"]!);
+			sb.AppendLine();
+
+			if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
+			{
+				sb.Append(R["AnalysisResultMin"]!, 6);
+				sb.Append(',');
+				sb.Append(' ');
+				sb.Append(R["AnalysisResultTotal"]!, 6);
+				sb.Append(R["AnalysisResultTechniqueUsing"]!);
+			}
+
+			foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
+			{
+				if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
+				{
+					decimal currentTotal = 0, currentMinimum = decimal.MaxValue;
+					foreach (var solvingStep in solvingStepsGroup)
+					{
+						decimal difficulty = solvingStep.Difficulty;
+						currentTotal += difficulty;
+						currentMinimum = Min(currentMinimum, difficulty);
+					}
+
+					sb.Append(currentMinimum, 6, "0.0");
+					sb.Append(',');
+					sb.Append(' ');
+					sb.Append(currentTotal, 6, "0.0");
+					sb.Append(')');
+					sb.Append(' ');
+				}
+
+				sb.Append(solvingStepsGroup.Count(), 3);
+				sb.Append(" * ");
+				sb.Append(solvingStepsGroup.Key);
+				sb.AppendLine();
+			}
+
+			if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
+			{
+				sb.Append("  (---");
+				sb.Append(total, 8);
+				sb.Append(')');
+				sb.Append(' ');
+			}
+
+			sb.Append(stepsCount, 3);
+			sb.Append(' ');
+			sb.Append(R[stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural"]!);
+			sb.AppendLine();
+
+			a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
+		}
+
+		// Print detail data.
+		sb.Append(R["AnalysisResultPuzzleRating"]!);
+		sb.Append(max, "0.0");
+		sb.Append('/');
+		sb.Append(pearl, "0.0");
+		sb.Append('/');
+		sb.Append(diamond, "0.0");
+		sb.AppendLine();
+
+		// Print the solution (if not null).
+		if (!solution.IsUndefined)
+		{
+			sb.Append(R["AnalysisResultPuzzleSolution"]!);
+			sb.Append(solution.ToString("!"));
+		}
+
+		// Print the elapsed time.
+		sb.Append(R["AnalysisResultPuzzleHas"]!);
+		sb.AppendWhen(!isSolved, R["AnalysisResultNot"]!);
+		sb.Append(R["AnalysisResultBeenSolved"]!);
+		sb.AppendLine();
+		sb.Append(R["AnalysisResultTimeElapsed"]!);
+		sb.Append($@"{elapsed:hh\:mm\:ss\.fff}");
+		sb.AppendLine();
+
+		a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
+
+		return sb.ToStringAndClear();
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void a(scoped ref scoped StringHandler sb, bool showSeparator)
+		{
+			if (showSeparator)
+			{
+				sb.Append('-', 10);
+				sb.AppendLine();
+			}
+		}
+
+		(int, Step)? getBottleneck()
+		{
+			if (this is not { IsSolved: true, Steps: var steps, SolvingStepsCount: var stepsCount })
+			{
+				return null;
+			}
+
+			for (int i = stepsCount - 1; i >= 0; i--)
+			{
+				if (steps[i] is { ShowDifficulty: true } step and not SingleStep)
+				{
+					return (i, step);
+				}
+			}
+
+			// If code goes to here, all steps are more difficult than single techniques.
+			// Get the first one is okay.
+			return (0, steps[0]);
+		}
+	}
 
 	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
@@ -306,6 +525,7 @@ public sealed unsafe partial record class ManualSolverResult(scoped in Grid Orig
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ImmutableArray<Step>.Enumerator GetEnumerator() => Steps.GetEnumerator();
+
 
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).
@@ -316,7 +536,7 @@ public sealed unsafe partial record class ManualSolverResult(scoped in Grid Orig
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	private decimal Evaluator(delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
+	private unsafe decimal Evaluator(delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
 	{
 		return Steps.IsDefaultOrEmpty ? d : executor(Steps, &f);
 
