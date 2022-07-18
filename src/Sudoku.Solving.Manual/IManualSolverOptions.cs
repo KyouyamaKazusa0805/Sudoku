@@ -33,18 +33,6 @@ public interface IManualSolverOptions
 	public abstract bool IsHodokuMode { get; set; }
 
 	/// <summary>
-	/// Indicates whether the solver will use fast searching mode to solve puzzles.
-	/// If the value is <see langword="true"/>, the solver will apply all steps after gathered.
-	/// In the normal case, solver only fetches the first found step to apply.
-	/// </summary>
-	public abstract bool IsFastSearching { get; set; }
-
-	/// <summary>
-	/// Indicates whether the solver will apply the steps via the ascending order.
-	/// </summary>
-	public abstract bool OptimizedApplyingOrder { get; set; }
-
-	/// <summary>
 	/// <para>
 	/// Indicates the custom searcher collection you defined to solve a puzzle. By default,
 	/// the solver will use <see cref="StepSearcherPool.Collection"/> to solve a puzzle.

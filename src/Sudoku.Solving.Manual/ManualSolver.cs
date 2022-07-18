@@ -29,12 +29,6 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		set => _isHodokuMode = value ? value : throw new NotSupportedException("Other modes are not supported now.");
 	}
 
-	/// <inheritdoc/>
-	public bool IsFastSearching { get; set; }
-
-	/// <inheritdoc/>
-	public bool OptimizedApplyingOrder { get; set; }
-
 	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
 	public bool AllowCollisionOnAlsXz
 	{
@@ -349,7 +343,6 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		CancellationToken cancellationToken = default)
 	{
 		var playground = puzzle;
-		var tempSteps = new List<Step>(20);
 		var recordedSteps = new List<Step>(100);
 		var stepGrids = new List<Grid>(100);
 		var stepSearchers = TargetSearcherCollection;
@@ -365,8 +358,6 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		stopwatch.Start();
 
 	TryAgain:
-		tempSteps.Clear();
-
 		InitializeMaps(playground);
 		for (int i = 0, length = stepSearchers.Length; i < length; i++)
 		{
@@ -379,78 +370,29 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 				continue;
 			}
 
-			searcher.GetAll(tempSteps, playground, false);
-			if (tempSteps.Count == 0)
+			var foundStep = searcher.GetAll(null!, playground, true);
+			if (foundStep is null)
 			{
-				// Nothing found.
 				continue;
 			}
 
-			if (IsFastSearching)
+			if (AreConclusionsValid(solution, foundStep))
 			{
-				Step? wrongStep = null;
-				foreach (var tempStep in tempSteps)
+				if (
+					RecordStep(
+						recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
+						resultBase, cancellationToken, out var result)
+				)
 				{
-					if (!AreConclusionsValid(solution, tempStep))
-					{
-						wrongStep = tempStep;
-						break;
-					}
+					return result;
 				}
 
-				if (wrongStep is null)
-				{
-					foreach (var step in tempSteps)
-					{
-						if (
-							RecordStep(
-								recordedSteps, step, ref playground, stopwatch, stepGrids,
-								resultBase, cancellationToken, out var result)
-						)
-						{
-							return result;
-						}
-					}
-
-					// The puzzle has not been finished, we should turn to the first step finder
-					// to continue solving puzzle.
-					goto TryAgain;
-				}
-
-				throw new WrongStepException(puzzle, wrongStep);
+				// The puzzle has not been finished, we should turn to the first step finder
+				// to continue solving puzzle.
+				goto TryAgain;
 			}
-			else
-			{
-				// If the searcher is only used in the fast mode, just skip it.
-				var step = OptimizedApplyingOrder
-					? (from info in tempSteps orderby info.Difficulty select info).FirstOrDefault()
-					: tempSteps[0];
-				if (step is null)
-				{
-					// If current step can't find any steps,
-					// we will turn to the next step finder to
-					// continue solving puzzle.
-					continue;
-				}
 
-				if (AreConclusionsValid(solution, step))
-				{
-					if (
-						RecordStep(
-							recordedSteps, step, ref playground, stopwatch, stepGrids,
-							resultBase, cancellationToken, out var result)
-					)
-					{
-						return result;
-					}
-
-					// The puzzle has not been finished, we should turn to the first step finder
-					// to continue solving puzzle.
-					goto TryAgain;
-				}
-
-				throw new WrongStepException(puzzle, step);
-			}
+			throw new WrongStepException(puzzle, foundStep);
 		}
 
 		// All solver can't finish the puzzle...

@@ -10,7 +10,6 @@ public static class BackdoorSearcher
 	/// </summary>
 	private static readonly ManualSolver SstsSolver = new()
 	{
-		IsFastSearching = true,
 		CustomSearcherCollection = new IStepSearcher[]
 		{
 			new SingleStepSearcher(),

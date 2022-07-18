@@ -178,18 +178,6 @@
             </summary>
             <seealso cref="P:Sudoku.Runtime.AnalysisServices.SearchingOptions.Priority"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.IsFastSearching">
-            <summary>
-            Indicates whether the solver will use fast searching mode to solve puzzles.
-            If the value is <see langword="true"/>, the solver will apply all steps after gathered.
-            In the normal case, solver only fetches the first found step to apply.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.OptimizedApplyingOrder">
-            <summary>
-            Indicates whether the solver will apply the steps via the ascending order.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.CustomSearcherCollection">
             <summary>
             <para>
@@ -238,12 +226,6 @@
             <exception cref="T:System.NotSupportedException">
             Throws when the <see langword="value"/> is <see langword="false"/>.
             </exception>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.IsFastSearching">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowCollisionOnAlsXz">
             <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher.AllowCollision"/>

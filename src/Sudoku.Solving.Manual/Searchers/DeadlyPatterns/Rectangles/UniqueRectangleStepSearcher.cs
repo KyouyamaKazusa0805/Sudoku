@@ -51,7 +51,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 		if (list.Count == 0)
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 		// Sort and remove duplicate instances if worth.
@@ -61,16 +61,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			select step;
 		if (onlyFindOne)
 		{
-			goto ReturnFirstElement;
+			goto ReturnFirst;
 		}
 
 		accumulator.AddRange(resultList);
 
-	ReturnNull:
-		return null;
-
-	ReturnFirstElement:
-		return resultList.First();
+	ReturnFirst:
+		return resultList.FirstOrDefault();
 	}
 
 	/// <summary>
