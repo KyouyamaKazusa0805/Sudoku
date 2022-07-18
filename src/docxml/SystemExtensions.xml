@@ -855,7 +855,10 @@
             by invoking a transform function on each element of the input sequence.
             </summary>
             <typeparam name="T">The type of the elements in the array.</typeparam>
-            <typeparam name="TResult">The result selected.</typeparam>
+            <typeparam name="TResult">
+            The result selected. The type must be a number type that implements interface type <see cref="T:System.INumber`1"/>.
+            For example, a <see cref="T:System.Decimal"/> type.
+            </typeparam>
             <param name="this">The array.</param>
             <param name="selector">
             The selector method that converts each elements to an instance of type <typeparamref name="TResult"/>.

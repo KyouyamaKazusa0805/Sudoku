@@ -51,7 +51,10 @@ public static class ImmutableArrayExtensions
 	/// by invoking a transform function on each element of the input sequence.
 	/// </summary>
 	/// <typeparam name="T">The type of the elements in the array.</typeparam>
-	/// <typeparam name="TResult">The result selected.</typeparam>
+	/// <typeparam name="TResult">
+	/// The result selected. The type must be a number type that implements interface type <see cref="INumber{TSelf}"/>.
+	/// For example, a <see cref="decimal"/> type.
+	/// </typeparam>
 	/// <param name="this">The array.</param>
 	/// <param name="selector">
 	/// The selector method that converts each elements to an instance of type <typeparamref name="TResult"/>.
