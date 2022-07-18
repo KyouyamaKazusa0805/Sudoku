@@ -4190,9 +4190,6 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType2Step.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType2Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType2Step.ExtraDifficultyValues">
             <inheritdoc/>
         </member>

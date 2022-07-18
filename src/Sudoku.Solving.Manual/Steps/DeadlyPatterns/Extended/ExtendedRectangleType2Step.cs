@@ -20,10 +20,8 @@ public sealed record class ExtendedRectangleType2Step(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public new decimal BaseDifficulty => base.Difficulty;
-
-	/// <inheritdoc/>
-	public new (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Extra digit", .1M) };
+	public override (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { base.ExtraDifficultyValues[0], ("Extra digit", .1M) };
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;

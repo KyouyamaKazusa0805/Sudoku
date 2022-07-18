@@ -24,7 +24,7 @@ public abstract record class ExtendedRectangleStep(
 	public decimal BaseDifficulty => 4.5M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Size", ((Cells.Count >> 1) - 2) * .1M) };
+	public virtual (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Size", ((Cells.Count >> 1) - 2) * .1M) };
 
 	/// <inheritdoc/>
 	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"ExtendedRectangleType{Type}");
