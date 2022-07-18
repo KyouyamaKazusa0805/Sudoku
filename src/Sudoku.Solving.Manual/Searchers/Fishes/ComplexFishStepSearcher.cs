@@ -411,11 +411,11 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 								}
 								foreach (int exofin in exofins)
 								{
-									candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, exofin * 9 + digit));
+									candidateOffsets.Add(new(DisplayColorKind.Exofin, exofin * 9 + digit));
 								}
 								foreach (int endofin in endofins)
 								{
-									candidateOffsets.Add(new(DisplayColorKind.Auxiliary3, endofin * 9 + digit));
+									candidateOffsets.Add(new(DisplayColorKind.Endofin, endofin * 9 + digit));
 								}
 
 								// Don't forget the extra cover set.
