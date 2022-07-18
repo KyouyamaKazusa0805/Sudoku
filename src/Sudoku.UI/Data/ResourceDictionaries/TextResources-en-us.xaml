@@ -108,6 +108,7 @@
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Hard">Hard</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Fiendish">Fiendish</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Nightmare">Nightmare</x:String>
+	<x:String x:Key="SudokuPage_AnalysisResultColumn_LastResort">Last Resort</x:String>
 	<x:String x:Key="SettingsPage_DetailDescrption">Here displays the items of settings that may be used in this program.</x:String>
 	<x:String x:Key="SettingsPage_GroupItemName_Basic">Basic</x:String>
 	<x:String x:Key="SettingsPage_GroupItemName_Solving">Solving</x:String>

@@ -11,7 +11,8 @@ internal static class SimpleConverters
 		new(Color.FromArgb(255,   0, 102,   0)),
 		new(Color.FromArgb(255, 102,  51,   0)),
 		new(Color.FromArgb(255, 102,  51,   0)),
-		new(Color.FromArgb(255, 102,   0,   0))
+		new(Color.FromArgb(255, 102,   0,   0)),
+		new(Colors.Black)
 	};
 
 	private static readonly SolidColorBrush[] DifficultyLevel_Backgrounds =
@@ -20,7 +21,8 @@ internal static class SimpleConverters
 		new(Color.FromArgb(255, 100, 255, 100)),
 		new(Color.FromArgb(255, 255, 255, 100)),
 		new(Color.FromArgb(255, 255, 150,  80)),
-		new(Color.FromArgb(255, 255, 100, 100))
+		new(Color.FromArgb(255, 255, 100, 100)),
+		new(Color.FromArgb(255, 220, 220, 220))
 	};
 
 
@@ -75,6 +77,7 @@ internal static class SimpleConverters
 				DifficultyLevel.Hard => R["SudokuPage_AnalysisResultColumn_Hard"],
 				DifficultyLevel.Fiendish => R["SudokuPage_AnalysisResultColumn_Fiendish"],
 				DifficultyLevel.Nightmare => R["SudokuPage_AnalysisResultColumn_Nightmare"],
+				DifficultyLevel.LastResort => R["SudokuPage_AnalysisResultColumn_LastResort"],
 				_ => string.Empty
 			}
 		)!;
@@ -132,14 +135,14 @@ internal static class SimpleConverters
 	public static SolidColorBrush DifficultyLevelToForeground(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			0 or > DifficultyLevel.Nightmare => new(Colors.Transparent),
+			0 or > DifficultyLevel.LastResort => new(Colors.Transparent),
 			_ => DifficultyLevel_Foregrounds[Log2((byte)difficultyLevel)]
 		};
 
 	public static SolidColorBrush DifficultyLevelToBackground(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			0 or > DifficultyLevel.Nightmare => new(Colors.Transparent),
+			0 or > DifficultyLevel.LastResort => new(Colors.Transparent),
 			_ => DifficultyLevel_Backgrounds[Log2((byte)difficultyLevel)]
 		};
 
@@ -194,23 +197,20 @@ internal static class SimpleConverters
 			[
 				var a and >= Key.Number0 and <= Key.Number9,
 				var b and >= Key.NumberPad0 and <= Key.NumberPad9
-			]
-			when a - Key.Number0 == b - Key.NumberPad0 => (a - Key.Number0).ToString(),
+			] when a - Key.Number0 == b - Key.NumberPad0 => (a - Key.Number0).ToString(),
 
 			// If two keys are both digit and same value.
 			[
 				var a and >= Key.NumberPad0 and <= Key.NumberPad9,
 				var b and >= Key.Number0 and <= Key.Number9
-			]
-			when a - Key.NumberPad0 == b - Key.Number0 => (b - Key.Number0).ToString(),
+			] when a - Key.NumberPad0 == b - Key.Number0 => (b - Key.Number0).ToString(),
 
 			// Consecutive digit keys.
 			[
 				>= Key.Number0 and <= Key.Number9 or >= Key.NumberPad0 and <= Key.NumberPad9,
 				..,
 				>= Key.Number0 and <= Key.Number9 or >= Key.NumberPad0 and <= Key.NumberPad9,
-			]
-			when isConsecutiveNumber(virtualKeys, out int a, out int b) => $"{a}-{b}",
+			] when isConsecutiveNumber(virtualKeys, out int a, out int b) => $"{a}-{b}",
 
 			// Consecutive letter keys.
 			[>= Key.A and <= Key.Z, .., >= Key.A and <= Key.Z]

@@ -105,6 +105,7 @@
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Hard">困难</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Fiendish">极难</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Nightmare">地狱</x:String>
+	<x:String x:Key="SudokuPage_AnalysisResultColumn_LastResort">其它</x:String>
 	<x:String x:Key="SettingsPage_DetailDescrption">本页面列举一些可提供你修改程序行为的选项，这样可以提供了操作数独程序处理过程之中的灵活性。</x:String>
 	<x:String x:Key="SettingsPage_GroupItemName_Basic">基本设置项</x:String>
 	<x:String x:Key="SettingsPage_GroupItemName_Solving">解题</x:String>
