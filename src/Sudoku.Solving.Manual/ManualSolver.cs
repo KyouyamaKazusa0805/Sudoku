@@ -240,7 +240,11 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	private IStepSearcher[] TargetSearcherCollection
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CustomSearcherCollection ?? StepSearcherPool.Collection;
+		get => (
+			from searcher in CustomSearcherCollection ?? StepSearcherPool.Collection
+			where searcher.Options.EnabledArea.Flags(EnabledArea.Default)
+			select searcher
+		).ToArray();
 	}
 
 
