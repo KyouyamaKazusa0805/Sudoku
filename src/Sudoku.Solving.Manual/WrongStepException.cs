@@ -16,21 +16,11 @@ public sealed class WrongStepException : Exception
 
 	/// <inheritdoc/>
 	public override string Message
-	{
-		get
-		{
-			return s(
-				$"""
-				The step: may exist bug that causes the wrong handling.
-				Current grid: '{InvalidPuzzle:#}'
-				Current step: '{WrongStep}'
-				"""
-			);
-
-
-			static string s([InterpolatedStringHandlerArgument] ref StringHandler handler) => handler.ToStringAndClear();
-		}
-	}
+		=> $"""
+		The step: may exist bug that causes the wrong handling.
+		Current grid: '{InvalidPuzzle:#}'
+		Current step: '{WrongStep}'
+		""";
 
 	/// <summary>
 	/// Indicates the invalid sudoku grid. This property is also stored in the property
