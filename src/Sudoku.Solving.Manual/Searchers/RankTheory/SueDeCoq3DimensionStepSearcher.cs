@@ -244,9 +244,9 @@ public sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3Di
 				}
 				case [var i, var j, var k]:
 				{
-					list->Add(Cells.Empty + (i + j));
-					list->Add(Cells.Empty + (i + k));
-					list->Add(Cells.Empty + (j + k));
+					list->Add(Cells.Empty + i + j);
+					list->Add(Cells.Empty + i + k);
+					list->Add(Cells.Empty + j + k);
 
 					break;
 				}

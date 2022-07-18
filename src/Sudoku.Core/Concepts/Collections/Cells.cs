@@ -1026,7 +1026,7 @@ public unsafe struct Cells :
 	/// Gets the subsets of the current collection via the specified size
 	/// indicating the number of elements of the each subset.
 	/// </summary>
-	/// <param name="cell">Indicates the base template cells.</param>
+	/// <param name="cells">Indicates the base template cells.</param>
 	/// <param name="subsetSize">The size to get.</param>
 	/// <returns>
 	/// All possible subsets. If:
@@ -1036,13 +1036,13 @@ public unsafe struct Cells :
 	/// <description>Meaning</description>
 	/// </listheader>
 	/// <item>
-	/// <term><c><paramref name="subsetSize"/> &gt; <paramref name="cell"/>.Count</c></term>
+	/// <term><c><paramref name="subsetSize"/> &gt; <paramref name="cells"/>.Count</c></term>
 	/// <description>Will return an empty array</description>
 	/// </item>
 	/// <item>
-	/// <term><c><paramref name="subsetSize"/> == <paramref name="cell"/>.Count</c></term>
+	/// <term><c><paramref name="subsetSize"/> == <paramref name="cells"/>.Count</c></term>
 	/// <description>
-	/// Will return an array that contains only one element, same as the argument <paramref name="cell"/>.
+	/// Will return an array that contains only one element, same as the argument <paramref name="cells"/>.
 	/// </description>
 	/// </item>
 	/// <item>
@@ -1051,23 +1051,28 @@ public unsafe struct Cells :
 	/// </item>
 	/// </list>
 	/// </returns>
+	/// <remarks>
+	/// For example, if the argument <paramref name="cells"/> is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
+	/// and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
+	/// will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells[] operator &(scoped in Cells cell, int subsetSize)
+	public static Cells[] operator &(scoped in Cells cells, int subsetSize)
 	{
-		if (subsetSize == 0 || subsetSize > cell.Count)
+		if (subsetSize == 0 || subsetSize > cells.Count)
 		{
 			return Array.Empty<Cells>();
 		}
 
-		if (subsetSize == cell.Count)
+		if (subsetSize == cells.Count)
 		{
-			return new[] { cell };
+			return new[] { cells };
 		}
 
-		int totalIndex = 0, n = cell.Count;
+		int totalIndex = 0, n = cells.Count;
 		int* buffer = stackalloc int[subsetSize];
 		var result = new Cells[Combinatorials[n - 1, subsetSize - 1]];
-		f(subsetSize, n, subsetSize, cell.Offsets);
+		f(subsetSize, n, subsetSize, cells.Offsets);
 		return result;
 
 
@@ -1103,6 +1108,55 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator &(scoped in Cells left, scoped in Cells right)
 		=> new(left._high & right._high, left._low & right._low);
+
+	/// <summary>
+	/// Gets all subsets of the current collection via the specified size
+	/// indicating the <b>maximum</b> number of elements of the each subset.
+	/// </summary>
+	/// <param name="cells">Indicates the base template cells.</param>
+	/// <param name="subsetSize">The size to get.</param>
+	/// <returns>
+	/// All possible subsets. If:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Condition</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><c><paramref name="subsetSize"/> &gt; <paramref name="cells"/>.Count</c></term>
+	/// <description>Will return an empty array</description>
+	/// </item>
+	/// <item>
+	/// <term>Other cases</term>
+	/// <description>The valid combinations.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	/// <remarks>
+	/// For example, the expression <c>cells | 3</c> is equivalent to all possible cases
+	/// coming from <c><![CDATA[cells & 1]]></c>,
+	/// <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
+	/// </remarks>
+	public static Cells[] operator |(scoped in Cells cells, int subsetSize)
+	{
+		int n = cells.Count;
+
+		int desiredSize = 0;
+		int length = Min(n, subsetSize);
+		for (int i = 1; i <= length; i++)
+		{
+			int target = Combinatorials[n - 1, i - 1];
+			desiredSize += target;
+		}
+
+		var result = new List<Cells>(desiredSize);
+		for (int i = 1; i <= length; i++)
+		{
+			result.AddRange(cells & i);
+		}
+
+		return result.ToArray();
+	}
 
 	/// <summary>
 	/// Combine the elements from <paramref name="left"/> and <paramref name="right"/>,

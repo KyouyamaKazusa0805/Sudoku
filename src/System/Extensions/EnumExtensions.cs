@@ -67,6 +67,7 @@ public static unsafe class EnumExtensions
 	/// are also set in the current instance; otherwise, <see langword="false"/>.
 	/// </returns>
 	/// <exception cref="ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum
 		=> sizeof(TEnum) switch
 		{

@@ -897,9 +897,9 @@
             Remove all ID values not appearing in the lookup dictionary.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.ConstructInference(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.AppendInference(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
             <summary>
-            To construct a strong or weak inference from node <paramref name="a"/> to <paramref name="b"/>.
+            To append a new strong or weak inference that starts with node <paramref name="a"/> to node <paramref name="b"/>.
             </summary>
             <param name="a">The first node to be constructed as a strong inference.</param>
             <param name="b">The second node to be constructed as a strong inference.</param>
@@ -915,6 +915,28 @@
             Gather the strong and weak inferences on sole candidate nodes.
             </summary>
             <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_LockedCandidates">
+            <summary>
+            Gather the strong and weak inferences on locked candidates nodes.
+            </summary>
+            <remarks>
+            <para><b>Developer notes</b></para>
+            <para>
+            When we implement on this, we should consider 5 cases in total:
+            <list type="number">
+            <item><b>One digit lies in 2 blocks in a row.</b></item>
+            <item><b>One digit lies in 2 blocks in a column.</b></item>
+            <item><b>One digit lies in 2 rows in a block.</b></item>
+            <item><b>One digit lies in 2 columns in a block.</b></item>
+            <item>
+            <b>One digit lies in 1 row and 1 column in a block.</b>
+            We should treat it as a special case because the intersection cell may be used
+            in both locked candidates nodes. We should consider on both cases.
+            </item>
+            </list>
+            </para>
+            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Options">
             <inheritdoc/>
@@ -2519,9 +2541,8 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
-            <para>
-            The main idea of this searching operation:
-            </para>
+            <para><b>Developer notes</b></para>
+            <para>The main idea of this searching operation:</para>
             <para>
             <code><![CDATA[
             .-------.-------.-------.

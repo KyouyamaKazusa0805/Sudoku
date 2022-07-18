@@ -13,9 +13,8 @@ public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandida
 {
 	/// <inheritdoc/>
 	/// <remarks>
-	/// <para>
-	/// The main idea of this searching operation:
-	/// </para>
+	/// <para><b>Developer notes</b></para>
+	/// <para>The main idea of this searching operation:</para>
 	/// <para>
 	/// <code><![CDATA[
 	/// .-------.-------.-------.

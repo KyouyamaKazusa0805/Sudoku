@@ -158,26 +158,30 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 								}
 							}
 
-							accumulator.Add(
-								new AlmostLockedSetsWWingStep(
-									ImmutableArray.CreateRange(conclusions),
-									ImmutableArray.Create(
-										View.Empty
-											| candidateOffsets
-											| new HouseViewNode[]
-											{
-												new(DisplayColorKind.AlmostLockedSet1, house1),
-												new(DisplayColorKind.AlmostLockedSet2, house2),
-												new(DisplayColorKind.Normal, TrailingZeroCount(conjugatePair.Houses))
-											}
-									),
-									als1,
-									als2,
-									conjugatePair,
-									wDigitsMask,
-									x
-								)
+							var step = new AlmostLockedSetsWWingStep(
+								ImmutableArray.CreateRange(conclusions),
+								ImmutableArray.Create(
+									View.Empty
+										| candidateOffsets
+										| new HouseViewNode[]
+										{
+											new(DisplayColorKind.AlmostLockedSet1, house1),
+											new(DisplayColorKind.AlmostLockedSet2, house2),
+											new(DisplayColorKind.Normal, TrailingZeroCount(conjugatePair.Houses))
+										}
+								),
+								als1,
+								als2,
+								conjugatePair,
+								wDigitsMask,
+								x
 							);
+							if (onlyFindOne)
+							{
+								return step;
+							}
+
+							accumulator.Add(step);
 						}
 					}
 				}

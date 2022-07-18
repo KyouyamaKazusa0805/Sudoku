@@ -31,6 +31,7 @@
 [StepSearcher]
 [SeparatedStepSearcher(0, nameof(NodeTypes), SearcherNodeTypes.SoleDigit)]
 [SeparatedStepSearcher(1, nameof(NodeTypes), SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell)]
+[SeparatedStepSearcher(2, nameof(NodeTypes), SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell | SearcherNodeTypes.LockedCandidates)]
 public sealed partial class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
 	/// <summary>
@@ -133,6 +134,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 			// Gather strong and weak links.
 			GatherInferences_Sole(grid);
+			GatherInferences_LockedCandidates();
 
 			// Remove IDs if they don't appear in the lookup table.
 			TrimLookup(_weakInferences);
@@ -200,13 +202,13 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	}
 
 	/// <summary>
-	/// To construct a strong or weak inference from node <paramref name="a"/> to <paramref name="b"/>.
+	/// To append a new strong or weak inference that starts with node <paramref name="a"/> to node <paramref name="b"/>.
 	/// </summary>
 	/// <param name="a">The first node to be constructed as a strong inference.</param>
 	/// <param name="b">The second node to be constructed as a strong inference.</param>
 	/// <param name="inferences">The inferences list you want to add.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void ConstructInference(Node a, Node b, Dictionary<int, HashSet<int>?> inferences)
+	private void AppendInference(Node a, Node b, Dictionary<int, HashSet<int>?> inferences)
 	{
 		int bId;
 		if (_idLookup.TryGetValue(a, out int aId))
@@ -464,10 +466,10 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 						var node1 = new SoleCandidateNode((byte)cell1, digit);
 						var node2 = new SoleCandidateNode((byte)cell2, digit);
 
-						ConstructInference(node1, node2, _strongInferences);
-						ConstructInference(node2, node1, _strongInferences);
-						ConstructInference(node1, node2, _weakInferences);
-						ConstructInference(node2, node1, _weakInferences);
+						AppendInference(node1, node2, _strongInferences);
+						AppendInference(node2, node1, _strongInferences);
+						AppendInference(node1, node2, _weakInferences);
+						AppendInference(node2, node1, _weakInferences);
 					}
 					else
 					{
@@ -480,8 +482,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							var node1 = new SoleCandidateNode((byte)cell1, digit);
 							var node2 = new SoleCandidateNode((byte)cell2, digit);
 
-							ConstructInference(node1, node2, _weakInferences);
-							ConstructInference(node2, node1, _weakInferences);
+							AppendInference(node1, node2, _weakInferences);
+							AppendInference(node2, node1, _weakInferences);
 						}
 					}
 				}
@@ -502,15 +504,15 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					var node1 = new SoleCandidateNode((byte)cell, (byte)d1);
 					var node2 = new SoleCandidateNode((byte)cell, (byte)d2);
 
-					ConstructInference(node1, node2, _strongInferences);
-					ConstructInference(node2, node1, _strongInferences);
-					ConstructInference(node1, node2, _weakInferences);
-					ConstructInference(node2, node1, _weakInferences);
+					AppendInference(node1, node2, _strongInferences);
+					AppendInference(node2, node1, _strongInferences);
+					AppendInference(node1, node2, _weakInferences);
+					AppendInference(node2, node1, _weakInferences);
 				}
 				else
 				{
 					// Only weak inferences.
-					var digits = mask.GetAllSets();
+					scoped var digits = mask.GetAllSets();
 					for (int i = 0, length = digits.Length; i < length - 1; i++)
 					{
 						for (int j = i + 1; j < length; j++)
@@ -518,12 +520,172 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							var node1 = new SoleCandidateNode((byte)cell, (byte)digits[i]);
 							var node2 = new SoleCandidateNode((byte)cell, (byte)digits[j]);
 
-							ConstructInference(node1, node2, _weakInferences);
-							ConstructInference(node2, node1, _weakInferences);
+							AppendInference(node1, node2, _weakInferences);
+							AppendInference(node2, node1, _weakInferences);
 						}
 					}
 				}
 			}
 		}
+	}
+
+	/// <summary>
+	/// Gather the strong and weak inferences on locked candidates nodes.
+	/// </summary>
+	/// <remarks>
+	/// <para><b>Developer notes</b></para>
+	/// <para>
+	/// When we implement on this, we should consider 5 cases in total:
+	/// <list type="number">
+	/// <item><b>One digit lies in 2 blocks in a row.</b></item>
+	/// <item><b>One digit lies in 2 blocks in a column.</b></item>
+	/// <item><b>One digit lies in 2 rows in a block.</b></item>
+	/// <item><b>One digit lies in 2 columns in a block.</b></item>
+	/// <item>
+	/// <b>One digit lies in 1 row and 1 column in a block.</b>
+	/// We should treat it as a special case because the intersection cell may be used
+	/// in both locked candidates nodes. We should consider on both cases.
+	/// </item>
+	/// </list>
+	/// </para>
+	/// </remarks>
+	private unsafe void GatherInferences_LockedCandidates()
+	{
+		if (!NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
+		{
+			return;
+		}
+
+		// Check for cases 1, 2, 3 and 4.
+		for (byte house = 0; house < 27; house++)
+		{
+			for (byte digit = 0; digit < 9; digit++)
+			{
+				var cells = CandidatesMap[digit] & HouseMaps[house];
+				if (cells.Count < 3)
+				{
+					// The current house doesn't contain a strong or weak inference related to locked candidates nodes.
+					continue;
+				}
+
+				if (house < 9)
+				{
+					// In a same block. Here we should handle the cases 3 and 4.
+					checkFirstFourCases(cells, digit, 9, &rowMaskSelector);
+					checkFirstFourCases(cells, digit, 18, &columnMaskSelector);
+				}
+				else
+				{
+					// In a same line. Here we should handle the cases 1 and 2.
+					checkFirstFourCases(cells, digit, 0, &blockMaskSelector);
+				}
+			}
+		}
+
+		// TODO: Check for the last case.
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		unsafe void checkFirstFourCases(
+			scoped in Cells cells, byte digit, int offset, delegate*<in Cells, short> houseMaskSelector)
+		{
+			short houseMask = houseMaskSelector(cells);
+			switch (PopCount((uint)houseMask))
+			{
+				case 2:
+				{
+					// Both strong and weak inference.
+					int firstHouse = TrailingZeroCount(houseMask);
+					int secondHouse = houseMask.GetNextSet(firstHouse);
+					var firstHouseCells = cells & HouseMaps[firstHouse + offset];
+					var secondHouseCells = cells & HouseMaps[secondHouse + offset];
+					var node1 = (Node)(
+						firstHouseCells is [var firstHouseCell]
+							? new SoleCandidateNode((byte)firstHouseCell, digit)
+							: new LockedCandidatesNode(digit, firstHouseCells)
+					);
+					var node2 = (Node)(
+						secondHouseCells is [var secondHouseCell]
+							? new SoleCandidateNode((byte)secondHouseCell, digit)
+							: new LockedCandidatesNode(digit, secondHouseCells)
+					);
+
+					AppendInference(node1, node2, _strongInferences);
+					AppendInference(node2, node1, _strongInferences);
+
+					internalAppendWeakInferences(node1, node2, digit);
+
+					break;
+				}
+				case 3 when cells.Count != 3:
+				{
+					// Only weak inference.
+					int firstHouse = TrailingZeroCount(houseMask);
+					int secondHouse = houseMask.GetNextSet(firstHouse);
+					int thirdHouse = houseMask.GetNextSet(secondHouse);
+					var firstHouseCells = cells & HouseMaps[firstHouse + offset];
+					var secondHouseCells = cells & HouseMaps[secondHouse + offset];
+					var thirdHouseCells = cells & HouseMaps[thirdHouse + offset];
+					var node1 = (Node)(
+						firstHouseCells is [var firstHouseCell]
+							? new SoleCandidateNode((byte)firstHouseCell, digit)
+							: new LockedCandidatesNode(digit, firstHouseCells)
+					);
+					var node2 = (Node)(
+						secondHouseCells is [var secondHouseCell]
+							? new SoleCandidateNode((byte)secondHouseCell, digit)
+							: new LockedCandidatesNode(digit, secondHouseCells)
+					);
+					var node3 = (Node)(
+						thirdHouseCells is [var thirdHouseCell]
+							? new SoleCandidateNode((byte)thirdHouseCell, digit)
+							: new LockedCandidatesNode(digit, thirdHouseCells)
+					);
+
+					internalAppendWeakInferences(node1, node2, digit);
+					internalAppendWeakInferences(node1, node3, digit);
+					internalAppendWeakInferences(node2, node3, digit);
+
+					break;
+				}
+			}
+		}
+
+		void internalAppendWeakInferences(Node node1, Node node2, byte digit)
+		{
+			foreach (var node1Cells in node1.Cells | 3)
+			{
+				var tempNode1 = (Node)(
+					node1Cells is [var node1Cell]
+						? new SoleCandidateNode((byte)node1Cell, digit)
+						: new LockedCandidatesNode(digit, node1Cells)
+				);
+
+				foreach (var node2Cells in node2.Cells | 3)
+				{
+					var tempNode2 = (Node)(
+						node2Cells is [var node2Cell]
+							? new SoleCandidateNode((byte)node2Cell, digit)
+							: new LockedCandidatesNode(digit, node2Cells)
+					);
+
+					if ((tempNode1, tempNode2) is (SoleCandidateNode, SoleCandidateNode))
+					{
+						// Both two nodes are sole candidate nodes.
+						// The case has already been handled by another method.
+						continue;
+					}
+
+					AppendInference(tempNode1, tempNode2, _weakInferences);
+					AppendInference(tempNode2, tempNode1, _weakInferences);
+				}
+			}
+		}
+
+		static short blockMaskSelector(in Cells cells) => cells.BlockMask;
+
+		static short rowMaskSelector(in Cells cells) => cells.RowMask;
+
+		static short columnMaskSelector(in Cells cells) => cells.ColumnMask;
 	}
 }
