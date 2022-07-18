@@ -6,19 +6,23 @@
 public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 {
 	/// <summary>
-	/// Check whether the cells form an empty rectangle.
+	/// Determine whether the specified cells in the specified block form an empty rectangle.
 	/// </summary>
-	/// <param name="this">The empty cell grid map.</param>
-	/// <param name="block">The block.</param>
-	/// <param name="row">The row.</param>
-	/// <param name="column">The column.</param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	protected static sealed bool IsEmptyRectangle(scoped in Cells @this, int block, out int row, out int column)
+	/// <param name="cells">The cells to be checked.</param>
+	/// <param name="block">The block where the cells may form an empty rectangle structure.</param>
+	/// <param name="row">The row that the empty rectangle used.</param>
+	/// <param name="column">The column that the empty rectangle used.</param>
+	/// <returns>
+	/// A <see cref="bool"/> value indicating that. If <see langword="true"/>,
+	/// both arguments <paramref name="row"/> and <paramref name="column"/> can be used;
+	/// otherwise, both arguments should be discards.
+	/// </returns>
+	protected internal static sealed bool IsEmptyRectangle(scoped in Cells cells, int block, out int row, out int column)
 	{
 		int r = block / 3 * 3 + 9, c = block % 3 * 3 + 18;
 		for (int i = r, count = 0, rPlus3 = r + 3; i < rPlus3; i++)
 		{
-			if ((@this & HouseMaps[i]) is not [] || ++count <= 1)
+			if ((cells & HouseMaps[i]) is not [] || ++count <= 1)
 			{
 				continue;
 			}
@@ -29,7 +33,7 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 
 		for (int i = c, count = 0, cPlus3 = c + 3; i < cPlus3; i++)
 		{
-			if ((@this & HouseMaps[i]) is not [] || ++count <= 1)
+			if ((cells & HouseMaps[i]) is not [] || ++count <= 1)
 			{
 				continue;
 			}
@@ -42,7 +46,7 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 		{
 			for (int j = c, cPlus3 = c + 3; j < cPlus3; j++)
 			{
-				if (@this > (HouseMaps[i] | HouseMaps[j]))
+				if (cells > (HouseMaps[i] | HouseMaps[j]))
 				{
 					continue;
 				}

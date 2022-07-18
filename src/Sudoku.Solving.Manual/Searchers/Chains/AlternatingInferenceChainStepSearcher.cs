@@ -556,7 +556,6 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			return;
 		}
 
-		// Check for cases 1, 2, 3 and 4.
 		for (byte house = 0; house < 27; house++)
 		{
 			for (byte digit = 0; digit < 9; digit++)
@@ -568,11 +567,19 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					continue;
 				}
 
+				// Check for cases.
 				if (house < 9)
 				{
 					// In a same block. Here we should handle the cases 3 and 4.
 					checkFirstFourCases(cells, digit, 9, &rowMaskSelector);
 					checkFirstFourCases(cells, digit, 18, &columnMaskSelector);
+
+					if (cells.Count is 4 or 5)
+					{
+						// Special: check for the last case.
+						// Here we add a condition 'cells.Count is 4 or 5' because other cases have already been handled.
+						checkLastCase(cells, digit, house);
+					}
 				}
 				else
 				{
@@ -581,8 +588,6 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				}
 			}
 		}
-
-		// TODO: Check for the last case.
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -645,6 +650,92 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					internalAppendWeakInferences(node1, node2, digit);
 					internalAppendWeakInferences(node1, node3, digit);
 					internalAppendWeakInferences(node2, node3, digit);
+
+					break;
+				}
+			}
+		}
+
+		void checkLastCase(scoped in Cells cells, byte digit, byte house)
+		{
+			// Checks for the last case.
+
+			// Generally, all possible sub-cases need handling are:
+			//
+			//     .----------------------------------.
+			//     |   (1)    |    (2)    |    (3)    |
+			//     |  x x x   |   x . x   |   x x x   |
+			//     |  . . .   |   . x .   |   . x .   |
+			//     |  . x .   |   . x .   |   . x .   |
+			//     '----------------------------------'
+			//
+			// We should handle:
+			//     Graph (1) - should only handle one case (r13c2 == r1c13 and r13c2 -- r1c13)
+			//     Graph (2) - should only handle one case (r23c2 == r1c13 and r23c2 -- r1c13)
+			//     Graph (3) - should handle two cases:
+			//         Sub-case 1: r1c123 == r23c2 and r1c123 -- r23c2
+			//         Sub-case 2: r1c13 == r123c2 and r1c13 -- r123c2.
+			//
+			// Luckily, those 3 sub-cases can be pre-checked as empty rectangle.
+			// Therefore, we should call 'IEmptyRectangleStepSearcher.IsEmptyRectangle' at first.
+			if (!IEmptyRectangleStepSearcher.IsEmptyRectangle(cells, house, out int row, out int column))
+			{
+				// The current cells don't form a valid empty rectangle (i.e. case 5).
+				return;
+			}
+
+			int intersectionCell = (HouseMaps[row] & HouseMaps[column])[0];
+			switch (cells.Count)
+			{
+				case 4:
+				{
+					Cells targetRowCells, targetColumnCells;
+					if (cells.Contains(intersectionCell))
+					{
+						var rowCells1 = HouseMaps[row] & cells;
+						var columnCells1 = (HouseMaps[row] & cells) - intersectionCell;
+						var rowCells2 = (HouseMaps[row] & cells) - intersectionCell;
+						var columnCells2 = HouseMaps[column] & cells;
+
+						(targetRowCells, targetColumnCells) = rowCells1.Count == 2 && columnCells1.Count == 2
+							? (rowCells1, columnCells1)
+							: (rowCells2, columnCells2);
+					}
+					else
+					{
+						(targetRowCells, targetColumnCells) = (HouseMaps[row] & cells, HouseMaps[column] & cells);
+					}
+
+					var node1 = new LockedCandidatesNode(digit, targetRowCells);
+					var node2 = new LockedCandidatesNode(digit, targetColumnCells);
+
+					AppendInference(node1, node2, _strongInferences);
+					AppendInference(node2, node1, _strongInferences);
+					AppendInference(node1, node2, _weakInferences);
+					AppendInference(node2, node1, _weakInferences);
+
+					break;
+				}
+				case 5:
+				{
+					var rowCells1 = HouseMaps[row] & cells;
+					var columnCells1 = (HouseMaps[column] & cells) - intersectionCell;
+					var rowCells2 = (HouseMaps[row] & cells) - intersectionCell;
+					var columnCells2 = HouseMaps[column] & cells;
+
+					var case1Node1 = new LockedCandidatesNode(digit, rowCells1);
+					var case1Node2 = new LockedCandidatesNode(digit, columnCells1);
+					var case2Node1 = new LockedCandidatesNode(digit, rowCells2);
+					var case2Node2 = new LockedCandidatesNode(digit, columnCells2);
+
+					AppendInference(case1Node1, case1Node2, _strongInferences);
+					AppendInference(case1Node2, case1Node1, _strongInferences);
+					AppendInference(case1Node1, case1Node2, _weakInferences);
+					AppendInference(case1Node2, case1Node1, _weakInferences);
+					AppendInference(case2Node1, case2Node2, _strongInferences);
+					AppendInference(case2Node2, case2Node1, _strongInferences);
+					AppendInference(case2Node1, case2Node2, _weakInferences);
+					AppendInference(case2Node2, case2Node1, _weakInferences);
 
 					break;
 				}

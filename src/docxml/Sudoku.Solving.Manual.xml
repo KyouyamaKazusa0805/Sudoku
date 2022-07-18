@@ -3027,13 +3027,17 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher.IsEmptyRectangle(Sudoku.Concepts.Collections.Cells@,System.Int32,System.Int32@,System.Int32@)">
             <summary>
-            Check whether the cells form an empty rectangle.
+            Determine whether the specified cells in the specified block form an empty rectangle.
             </summary>
-            <param name="this">The empty cell grid map.</param>
-            <param name="block">The block.</param>
-            <param name="row">The row.</param>
-            <param name="column">The column.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <param name="cells">The cells to be checked.</param>
+            <param name="block">The block where the cells may form an empty rectangle structure.</param>
+            <param name="row">The row that the empty rectangle used.</param>
+            <param name="column">The column that the empty rectangle used.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating that. If <see langword="true"/>,
+            both arguments <paramref name="row"/> and <paramref name="column"/> can be used;
+            otherwise, both arguments should be discards.
+            </returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher">
             <summary>
