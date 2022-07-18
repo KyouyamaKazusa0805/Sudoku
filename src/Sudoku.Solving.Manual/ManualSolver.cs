@@ -35,6 +35,48 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <inheritdoc/>
 	public bool OptimizedApplyingOrder { get; set; }
 
+	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
+	public bool AllowCollisionOnAlsXz
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<IAlmostLockedSetsXzStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.AllowCollision = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="IAlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
+	public bool AllowCollisionOnAlsXyWing
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<IAlmostLockedSetsXyWingStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.AllowCollision = value;
+			}
+		}
+	}
+
+	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
+	public bool AllowLoopedPatternsOnAlsXz
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			var searcher = TargetSearcherCollection.OfType<IAlmostLockedSetsXzStepSearcher>().FirstOrDefault();
+			if (searcher is not null)
+			{
+				searcher.AllowLoopedPatterns = value;
+			}
+		}
+	}
+
 	/// <inheritdoc cref="IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
 	public bool CheckAlmostLockedQuadruple
 	{

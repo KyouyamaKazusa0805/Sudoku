@@ -245,6 +245,15 @@
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowCollisionOnAlsXz">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowCollisionOnAlsXyWing">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowLoopedPatternsOnAlsXz">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckAlmostLockedQuadruple">
             <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
         </member>
@@ -694,6 +703,9 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXyWingStepSearcher.AllowCollision">
             <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXyWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -714,9 +726,15 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher.AllowCollision">
             <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns">
             <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>

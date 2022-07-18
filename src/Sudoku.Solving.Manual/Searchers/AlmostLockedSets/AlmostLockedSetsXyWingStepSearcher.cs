@@ -11,7 +11,10 @@
 public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSetsXyWingStepSearcher
 {
 	/// <inheritdoc/>
-	public bool AllowCollision { get; set; }
+	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
+	public bool AllowCollision { get; set; } = true;
 
 
 	/// <inheritdoc/>
