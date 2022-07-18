@@ -64,7 +64,7 @@ public sealed record class AlternatingInferenceChainStep(
 				=> isGrouped ? Technique.GroupedHybridWing : Technique.HybridWing,
 			{ IsLocalWing: true, Chain.IsGrouped: var isGrouped }
 				=> isGrouped ? Technique.GroupedLocalWing : Technique.LocalWing,
-			{ IsIrregularWing: true, Chain.IsGrouped: var isGrouped }
+			{ Chain: { IsGrouped: var isGrouped, IsIrregularWing: true } }
 				=> isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
 			{
 				Chain:
@@ -105,7 +105,7 @@ public sealed record class AlternatingInferenceChainStep(
 	/// Indicates whether the current chain is irregular wing.
 	/// </summary>
 	private bool IsIrregularWing
-		=> TechniqueCode is Technique.MWing or Technique.SplitWing or Technique.HybridWing or Technique.LocalWing;
+		=> TechniqueCode is Technique.MWing or Technique.SplitWing or Technique.HybridWing or Technique.LocalWing or Technique.PurpleCow;
 
 	/// <summary>
 	/// Indicates whether the specified chain is an XY-Chain.
