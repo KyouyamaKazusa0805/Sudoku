@@ -10202,10 +10202,12 @@
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.FailedReason.PuzzleIsInvalid">
             <summary>
-            Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.
+            <para>Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.</para>
+            <para>
             Different with <see cref="F:Sudoku.Runtime.AnalysisServices.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Runtime.AnalysisServices.FailedReason.PuzzleHasNoSolution"/>,
             this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
             before solving, we should use this field.
+            </para>
             </summary>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.FailedReason.PuzzleHasNoSolution"/>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.FailedReason.PuzzleHasMultipleSolutions"/>
@@ -10227,14 +10229,13 @@
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.FailedReason.NotImplemented">
             <summary>
-            Indicates the failed reason is that the solver doesn't implemented some function
-            that causes the operation can't be finished.
+            Indicates the failed reason is that the solver or some searching module isn't implemented.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.FailedReason.ExceptionThrown">
             <summary>
-            Indicates the failed reason is that the solver has encountered an error and couldn't solve,
-            then an exception thrown.
+            Indicates the failed reason is that the solver has encountered an error and couldn't solve
+            that will cause an exception thrown.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.FailedReason.WrongStep">
@@ -10246,11 +10247,19 @@
             <summary>
             Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
             </summary>
+            <remarks><i>
+            This option becomes deprecated at present because we has already implemented a step searcher
+            that always produces a valid step, guaranteeing that the solver will never give up at all time.
+            </i></remarks>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.FailedReason.Unknown">
             <summary>
             Indicates the other reason to cause the error.
             </summary>
+            <remarks><i>
+            This option becomes deprecated at present because the solver will catch all kinds of exceptions thrown
+            during solving a puzzle. There's no kinds of unexpected error will be encountered now.
+            </i></remarks>
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.NodeType">
             <summary>

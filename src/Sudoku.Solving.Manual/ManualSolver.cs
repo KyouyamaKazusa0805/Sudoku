@@ -299,7 +299,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 
 					// Sudoku explainer mode.
 					// TODO: Implement a sudoku-explainer mode solving module.
-					_ => throw new NotImplementedException()
+					_ => throw new NotSupportedException("I'm sorry that Sudoku Explainer mode is not implemented at present.")
 				};
 			}
 			catch (OperationCanceledException ex) when (ex.CancellationToken != cancellationToken)
@@ -310,7 +310,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 			{
 				return ex switch
 				{
-					NotImplementedException
+					NotImplementedException or NotSupportedException
 						=> result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
 					WrongStepException { WrongStep: var ws } castedException
 						=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, WrongStep = ws },
@@ -401,6 +401,8 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		// All solver can't finish the puzzle...
 		// :(
 		stopwatch.Stop();
+
+#pragma warning disable CS0618
 		return resultBase with
 		{
 			IsSolved = false,
@@ -409,6 +411,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 			Steps = ImmutableArray.CreateRange(recordedSteps),
 			StepGrids = ImmutableArray.CreateRange(stepGrids)
 		};
+#pragma warning restore CS0618
 	}
 
 	/// <summary>
