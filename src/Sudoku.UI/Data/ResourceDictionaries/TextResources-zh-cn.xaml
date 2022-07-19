@@ -164,6 +164,7 @@
 	<x:String x:Key="SettingsPage_ItemName_EndofinColor">内鱼鳍颜色</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CannibalismColor">自噬候选数的颜色</x:String>
 	<x:String x:Key="SettingsPage_ItemName_LinkColor">链、守护者、死环技巧的链条配色</x:String>
+	<x:String x:Key="SettingsPage_ItemName_GroupedLinkNodeColor">结构节点的颜色</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AuxiliaryColors">辅助颜色</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_AuxiliaryColors">用来显示一个技巧结构的辅助使用颜色</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColors">待定数组（ALS）结构颜色</x:String>

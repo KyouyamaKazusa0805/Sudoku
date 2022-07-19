@@ -167,6 +167,7 @@
 	<x:String x:Key="SettingsPage_ItemName_EndofinColor">Color of endo-fins</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CannibalismColor">Color of cannibalisms</x:String>
 	<x:String x:Key="SettingsPage_ItemName_LinkColor">Chain, guardian or oddagon links</x:String>
+	<x:String x:Key="SettingsPage_ItemName_GroupedLinkNodeColor">Grouped link node color</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AuxiliaryColors">Auxiliary colors</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_AuxiliaryColors">The color palette that displays for a technique structure used as the auxiliary ones</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AlmostLockedSetColors">Almost locked sets colors</x:String>
