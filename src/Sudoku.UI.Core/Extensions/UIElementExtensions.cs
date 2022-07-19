@@ -30,6 +30,27 @@ public static class UIElementExtensions
 	}
 
 	/// <summary>
+	/// Calls both methods <see cref="Canvas.SetLeft(UIElement, double)"/>
+	/// and <see cref="Canvas.SetTop(UIElement, double)"/> to set left and top offsets.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TUIElement WithCanvasOffset<TUIElement>(this TUIElement @this, double left, double top)
+		where TUIElement : UIElement
+	{
+		Canvas.SetLeft(@this, left);
+		Canvas.SetTop(@this, top);
+		return @this;
+	}
+
+	/// <summary>
+	/// Calls both methods <see cref="Canvas.SetLeft(UIElement, double)"/>
+	/// and <see cref="Canvas.SetTop(UIElement, double)"/> to set left and top offsets.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TUIElement WithCanvasOffset<TUIElement>(this TUIElement @this, Point topLeft)
+		where TUIElement : UIElement => @this.WithCanvasOffset(topLeft.X, topLeft.Y);
+
+	/// <summary>
 	/// Calls the method <see cref="Canvas.SetZIndex(UIElement, int)"/> to set the Z-index value.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

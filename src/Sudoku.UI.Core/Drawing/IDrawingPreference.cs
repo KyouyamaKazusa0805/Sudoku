@@ -193,6 +193,11 @@ public interface IDrawingPreference
 	/// </summary>
 	public abstract Color PeersFocusedCellColor { get; set; }
 
+	/// <summary>
+	/// Indicates the grouped link node color.
+	/// </summary>
+	public abstract Color GroupedLinkNodeColor { get; set; }
+
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <summary>
 	/// Indicates the author-defined cell rectangle color used for filling.

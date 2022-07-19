@@ -344,11 +344,19 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#FFFF0000</c>.
+	/// The default value is <c>#FFFF0000</c> (Red).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Rendering, 22)]
 	public Color LinkColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <c>#80FFFF00</c> (Yellow with alpha 128).
+	/// </remarks>
+	[Preference<ColorPickerSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 23)]
+	public Color GroupedLinkNodeColor { get; set; } = Colors.Yellow with { A = 128 };
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -360,7 +368,7 @@ public sealed class Preference : IDrawingPreference
 	/// </list>
 	/// </remarks>
 	[Preference<ColorSelectorGroupSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 23)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 24)]
 	public Color[] AuxiliaryColors { get; set; } =
 	{
 		Color.FromArgb(255, 127, 187, 255), // FF7FBBFF
@@ -382,7 +390,7 @@ public sealed class Preference : IDrawingPreference
 	/// <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
 	/// </remarks>
 	[Preference<ColorSelectorGroupSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 24)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 25)]
 	public Color[] AlmostLockedSetColors { get; set; } =
 	{
 		Color.FromArgb(255, 197, 232, 140), // FFC5E88C
@@ -411,7 +419,7 @@ public sealed class Preference : IDrawingPreference
 	/// <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
 	/// </remarks>
 	[Preference<ColorSelectorGroupSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 25)]
+	[PreferenceGroup(PreferenceGroupNames.Rendering, 26)]
 	public Color[] PaletteColors { get; set; } =
 	{
 		Color.FromArgb(255, 255, 192, 89), // FFFFC059

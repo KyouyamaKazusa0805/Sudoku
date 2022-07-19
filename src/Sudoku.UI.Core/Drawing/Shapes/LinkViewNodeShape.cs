@@ -109,6 +109,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		double cs = PointConversions.CandidateSize(PaneSize, OutsideOffset);
+		bool isFirst = true;
 		foreach (var (start, end, inference) in nodes)
 		{
 			_ = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, start) is var pt1 and var (pt1x, pt1y);
@@ -246,6 +247,44 @@ public sealed class LinkViewNodeShape : DrawingElement
 							)
 					);
 				}
+			}
+
+			// Fills the background of the grouped nodes.
+			if (isFirst)
+			{
+				isFirst = false;
+
+				if (start.Cells.Count > 1)
+				{
+					pt1 = PointConversions.GetMouseTopLeft(PaneSize, OutsideOffset, start);
+					pt2 = PointConversions.GetMouseBottomRight(PaneSize, OutsideOffset, start);
+					correctOffsetOfPoint(ref pt1, OutsideOffset);
+					correctOffsetOfPoint(ref pt2, OutsideOffset);
+					result.Add(
+						new Rectangle()
+							.WithRadius(10)
+							.WithCanvasOffset(pt1)
+							.WithWidth(pt2.X - pt1.X)
+							.WithHeight(pt2.Y - pt1.Y)
+							.WithFill(Preference.GroupedLinkNodeColor)
+					);
+				}
+			}
+
+			if (end.Cells.Count > 1)
+			{
+				pt1 = PointConversions.GetMouseTopLeft(PaneSize, OutsideOffset, end);
+				pt2 = PointConversions.GetMouseBottomRight(PaneSize, OutsideOffset, end);
+				correctOffsetOfPoint(ref pt1, OutsideOffset);
+				correctOffsetOfPoint(ref pt2, OutsideOffset);
+				result.Add(
+					new Rectangle()
+						.WithRadius(10)
+						.WithCanvasOffset(pt1)
+						.WithWidth(pt2.X - pt1.X)
+						.WithHeight(pt2.Y - pt1.Y)
+						.WithFill(Preference.GroupedLinkNodeColor)
+				);
 			}
 		}
 

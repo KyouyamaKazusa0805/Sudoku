@@ -42,12 +42,47 @@ internal static class PointConversions
 	public static double CandidateSize(double paneSize, double outsideOffset) => GridSize(paneSize, outsideOffset) / 27;
 
 	/// <summary>
+	/// Gets the top left cursor point of the specified locked target.
+	/// </summary>
+	/// <param name="paneSize">The pane size.</param>
+	/// <param name="outsideOffset">The outside offset.</param>
+	/// <param name="lockedTarget">The locked target.</param>
+	/// <returns>The top left cursor point.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Point GetMouseTopLeft(double paneSize, double outsideOffset, LockedTarget lockedTarget)
+	{
+		double cs = CandidateSize(paneSize, outsideOffset);
+		int cell = lockedTarget.Cells[0];
+		int digit = lockedTarget.Digit;
+		var pt = GetMousePointInCenter(paneSize, outsideOffset, cell, digit);
+		return pt with { X = pt.X - cs / 2, Y = pt.Y - cs / 2 };
+	}
+
+	/// <summary>
+	/// Gets the bottom right cursor point of the specified locked target.
+	/// </summary>
+	/// <param name="paneSize">The pane size.</param>
+	/// <param name="outsideOffset">The outside offset.</param>
+	/// <param name="lockedTarget">The locked target.</param>
+	/// <returns>The bottom right cursor point.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Point GetMouseBottomRight(double paneSize, double outsideOffset, LockedTarget lockedTarget)
+	{
+		double cs = CandidateSize(paneSize, outsideOffset);
+		int cell = lockedTarget.Cells[^1];
+		int digit = lockedTarget.Digit;
+		var pt = GetMousePointInCenter(paneSize, outsideOffset, cell, digit);
+		return pt with { X = pt.X + cs / 2, Y = pt.Y + cs / 2 };
+	}
+
+	/// <summary>
 	/// Gets the center cursor point of the specified locked target.
 	/// </summary>
 	/// <param name="paneSize">The pane size.</param>
 	/// <param name="outsideOffset">The outside offset.</param>
 	/// <param name="lockedTarget">The locked target.</param>
 	/// <returns>The center cursor point.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Point GetMouseCenter(double paneSize, double outsideOffset, LockedTarget lockedTarget)
 	{
 		return lockedTarget switch

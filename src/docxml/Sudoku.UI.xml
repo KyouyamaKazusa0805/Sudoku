@@ -613,7 +613,13 @@
         <member name="P:Sudoku.UI.Data.Configuration.Preference.LinkColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#FFFF0000</c>.
+            The default value is <c>#FFFF0000</c> (Red).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.GroupedLinkNodeColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#80FFFF00</c> (Yellow with alpha 128).
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.AuxiliaryColors">

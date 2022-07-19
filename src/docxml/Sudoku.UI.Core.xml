@@ -310,6 +310,11 @@
             Indicates the peers focused cell color.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.GroupedLinkNodeColor">
+            <summary>
+            Indicates the grouped link node color.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CellRectangleFillColor">
             <summary>
             Indicates the author-defined cell rectangle color used for filling.
@@ -433,6 +438,24 @@
             <param name="paneSize">The pane size.</param>
             <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
             <returns>The candidate size.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetMouseTopLeft(System.Double,System.Double,Sudoku.Presentation.LockedTarget)">
+            <summary>
+            Gets the top left cursor point of the specified locked target.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="lockedTarget">The locked target.</param>
+            <returns>The top left cursor point.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetMouseBottomRight(System.Double,System.Double,Sudoku.Presentation.LockedTarget)">
+            <summary>
+            Gets the bottom right cursor point of the specified locked target.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="lockedTarget">The locked target.</param>
+            <returns>The bottom right cursor point.</returns>
         </member>
         <member name="M:Sudoku.UI.Drawing.PointConversions.GetMouseCenter(System.Double,System.Double,Sudoku.Presentation.LockedTarget)">
             <summary>
@@ -3339,6 +3362,24 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeEndLineCap"/> with the specified value.
             </summary>
         </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.RectangleExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.RectangleExtensions.WithRadius(Microsoft.UI.Xaml.Shapes.Rectangle,System.Double)">
+            <summary>
+            Sets the properties <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusX"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusY"/>
+            with the specified values.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.RectangleExtensions.WithRadius(Microsoft.UI.Xaml.Shapes.Rectangle,System.Double,System.Double)">
+            <summary>
+            Sets the properties <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusX"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusY"/>
+            with the specified values.
+            </summary>
+        </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE57A11628">
             <summary>
             Provides with extension deconstruction methods on this type.
@@ -3679,6 +3720,18 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.UIElement.XamlRoot"/> with the specified value.
             </summary>
             <seealso cref="P:Microsoft.UI.Xaml.UIElement.XamlRoot"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.WithCanvasOffset``1(``0,System.Double,System.Double)">
+            <summary>
+            Calls both methods <see cref="M:Microsoft.UI.Xaml.Controls.Canvas.SetLeft(Microsoft.UI.Xaml.UIElement,System.Double)"/>
+            and <see cref="M:Microsoft.UI.Xaml.Controls.Canvas.SetTop(Microsoft.UI.Xaml.UIElement,System.Double)"/> to set left and top offsets.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.WithCanvasOffset``1(``0,Windows.Foundation.Point)">
+            <summary>
+            Calls both methods <see cref="M:Microsoft.UI.Xaml.Controls.Canvas.SetLeft(Microsoft.UI.Xaml.UIElement,System.Double)"/>
+            and <see cref="M:Microsoft.UI.Xaml.Controls.Canvas.SetTop(Microsoft.UI.Xaml.UIElement,System.Double)"/> to set left and top offsets.
+            </summary>
         </member>
         <member name="M:Microsoft.UI.Xaml.UIElementExtensions.WithCanvasZIndex``1(``0,System.Int32)">
             <summary>
