@@ -3814,6 +3814,11 @@
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.YEnabled">
             <summary>Indicates whether the Y-chain is enabled.</summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Bucket">
+            <summary>
+            Indicates the shared bucket that is used for checking X-Chains.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -3859,6 +3864,12 @@
             Indicates whether the specified chain is an X-Chain.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsWWing">
+            <summary>
+            Indicates whether the chain is W-Wing (<c>(x = y) - y = y - (y = x)</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsMWing">
             <summary>
             Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
@@ -3887,31 +3898,6 @@
             Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.MWing(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Determines whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.SplitWing(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Determines whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.HybridWing(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Determines whether the chain is Hybrid-Wing.
-            This wing has two types:
-            <list type="bullet">
-            <item><c>(x = y) - y = (y - z) = z</c></item>
-            <item><c>(x = y) - (y = z) - z = z</c></item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.LocalWing(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Determines whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
-            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.NodeDifficultySelector(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
             <summary>

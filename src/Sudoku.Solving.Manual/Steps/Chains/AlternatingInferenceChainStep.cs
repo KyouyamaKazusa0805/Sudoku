@@ -15,6 +15,12 @@ public sealed record class AlternatingInferenceChainStep(
 	IChainLikeStep,
 	IStepWithPhasedDifficulty
 {
+	/// <summary>
+	/// Indicates the shared bucket that is used for checking X-Chains.
+	/// </summary>
+	private static readonly bool[] Bucket = { false, false, false, false, false, false, false, false, false };
+
+
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
@@ -64,6 +70,7 @@ public sealed record class AlternatingInferenceChainStep(
 					(false, true) => Technique.FishyCycle,
 					_ => Technique.XChain
 				},
+			{ IsWWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
 			{ IsMWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
 			{ IsSplitWing: true, Chain.IsGrouped: var isGrouped }
 				=> isGrouped ? Technique.GroupedSplitWing : Technique.SplitWing,
@@ -137,39 +144,85 @@ public sealed record class AlternatingInferenceChainStep(
 	/// <summary>
 	/// Indicates whether the specified chain is an X-Chain.
 	/// </summary>
-	private bool IsXChain => XEnabled && !YEnabled;
+	private bool IsXChain
+	{
+		get
+		{
+			Array.Fill(Bucket, false);
+			foreach (var node in Chain.RealChainNodes)
+			{
+				Bucket[node.Digit] = true;
+			}
+
+			return Bucket.Count(static value => value) == 1;
+		}
+	}
+
+#pragma warning disable IDE0055
+	/// <summary>
+	/// Indicates whether the chain is W-Wing (<c>(x = y) - y = y - (y = x)</c>).
+	/// </summary>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	private bool IsWWing
+		=> Chain.RealChainNodes switch
+		{
+			[
+				SoleCandidateNode { Candidate: var a },
+				SoleCandidateNode { Candidate: var b },
+				{ Digit: var digit3 },
+				{ Digit: var digit4 },
+				SoleCandidateNode { Candidate: var e },
+				SoleCandidateNode { Candidate: var f }
+			] when a / 9 == b / 9 && e / 9 == f / 9 && a % 9 == f % 9
+				&& b % 9 == digit3 && digit3 == digit4 && digit4 == e % 9 => true,
+			_ => false
+		};
 
 	/// <summary>
 	/// Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsMWing
-		=> Chain.RealChainNodes is
-		[
-			SoleCandidateNode { Candidate: var a },
-			SoleCandidateNode { Candidate: var b },
-			SoleCandidateNode { Candidate: var c },
-			SoleCandidateNode { Candidate: var d },
-			SoleCandidateNode { Candidate: var e },
-			SoleCandidateNode { Candidate: var f }
-		]
-		&& MWing(a, b, c, d, e, f);
+		=> Chain.RealChainNodes switch
+		{
+			[
+				SoleCandidateNode { Candidate: var a },
+				SoleCandidateNode { Candidate: var b },
+				{ Digit : var digit3 },
+				SoleCandidateNode { Candidate: var d },
+				SoleCandidateNode { Candidate: var e },
+				{ Digit: var digit6 }
+			] when a / 9 == b / 9 && d / 9 == e / 9
+				&& b % 9 == digit3 && digit3 == d % 9 && a % 9 == e % 9 && e % 9 == digit6 => true,
+			[
+				{ Digit: var digit1 },
+				SoleCandidateNode { Candidate: var b },
+				SoleCandidateNode { Candidate: var c },
+				{ Digit: var digit4 },
+				SoleCandidateNode { Candidate: var e },
+				SoleCandidateNode { Candidate: var f }
+			] when b / 9 == c / 9 && e / 9 == f / 9
+				&& b % 9 == c % 9 && c % 9 == digit4 && digit1 == e % 9 && e % 9 == f % 9 => true,
+			_ => false
+		};
 
 	/// <summary>
 	/// Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsSplitWing
-		=> Chain.RealChainNodes is
-		[
-			SoleCandidateNode { Candidate: var a },
-			SoleCandidateNode { Candidate: var b },
-			SoleCandidateNode { Candidate: var c },
-			SoleCandidateNode { Candidate: var d },
-			SoleCandidateNode { Candidate: var e },
-			SoleCandidateNode { Candidate: var f }
-		]
-		&& SplitWing(a, b, c, d, e, f);
+		=> Chain.RealChainNodes switch
+		{
+			[
+				{ Digit: var digit1 },
+				{ Digit: var digit2 },
+				SoleCandidateNode { Candidate: var c },
+				SoleCandidateNode { Candidate: var d },
+				{ Digit: var digit5 },
+				{ Digit: var digit6 }
+			] when digit1 == digit2 && digit2 == c % 9 && d % 9 == digit5 && digit5 == digit6 && c / 9 == d / 9 => true,
+			_ => false
+		};
 
 	/// <summary>
 	/// Indicates whether the chain is Hybrid-Wing.
@@ -181,32 +234,61 @@ public sealed record class AlternatingInferenceChainStep(
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsHybridWing
-		=> Chain.RealChainNodes is
-		[
-			SoleCandidateNode { Candidate: var a },
-			SoleCandidateNode { Candidate: var b },
-			SoleCandidateNode { Candidate: var c },
-			SoleCandidateNode { Candidate: var d },
-			SoleCandidateNode { Candidate: var e },
-			SoleCandidateNode { Candidate: var f }
-		]
-		&& HybridWing(a, b, c, d, e, f);
+		=> Chain.RealChainNodes switch
+		{
+			[
+				SoleCandidateNode { Candidate: var a },
+				SoleCandidateNode { Candidate: var b },
+				{ Digit: var digit3 },
+				SoleCandidateNode { Candidate: var d },
+				SoleCandidateNode { Candidate: var e },
+				{ Digit: var digit6 }
+			] when a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == digit3 && digit3 == d % 9 && e % 9 == digit6 => true,
+			[
+				{ Digit: var digit1 },
+				SoleCandidateNode { Candidate: var b },
+				SoleCandidateNode { Candidate: var c },
+				{ Digit: var digit4 },
+				SoleCandidateNode { Candidate: var e },
+				SoleCandidateNode { Candidate: var f }
+			] when b / 9 == c / 9 && e / 9 == f / 9 && e % 9 == digit4 && digit4 == c % 9 && digit1 == b % 9 => true,
+			[
+				SoleCandidateNode { Candidate: var a },
+				SoleCandidateNode { Candidate: var b },
+				SoleCandidateNode { Candidate: var c },
+				SoleCandidateNode { Candidate: var d },
+				{ Digit: var digit5 },
+				{ Digit: var digit6 }
+			] when a / 9 == b / 9 && c / 9 == d / 9 && b % 9 == c % 9 && d % 9 == digit5 && digit5 == digit6 => true,
+			[
+				{ Digit: var digit1 },
+				{ Digit: var digit2 },
+				SoleCandidateNode { Candidate: var c },
+				SoleCandidateNode { Candidate: var d },
+				SoleCandidateNode { Candidate: var e },
+				SoleCandidateNode { Candidate: var f }
+			] when c / 9 == d / 9 && e / 9 == f / 9 && digit1 == digit2 && digit2 == c % 9 && d % 9 == e % 9 => true,
+			_ => false
+		};
 
 	/// <summary>
 	/// Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsLocalWing
-		=> Chain.RealChainNodes is
-		[
-			SoleCandidateNode { Candidate: var a },
-			SoleCandidateNode { Candidate: var b },
-			SoleCandidateNode { Candidate: var c },
-			SoleCandidateNode { Candidate: var d },
-			SoleCandidateNode { Candidate: var e },
-			SoleCandidateNode { Candidate: var f }
-		]
-		&& LocalWing(a, b, c, d, e, f);
+		=> Chain.RealChainNodes switch
+		{
+			[
+				{ Digit: var digit1 },
+				SoleCandidateNode { Candidate: var b },
+				SoleCandidateNode { Candidate: var c },
+				SoleCandidateNode { Candidate: var d },
+				SoleCandidateNode { Candidate: var e },
+				{ Digit: var digit6 }
+			] when b / 9 == c / 9 && d / 9 == e / 9 && digit1 == b % 9 && c % 9 == d % 9 && e % 9 == digit6 => true,
+			_ => false
+		};
+#pragma warning restore IDE0055
 
 	[FormatItem]
 	internal string ChainStr
@@ -214,44 +296,6 @@ public sealed record class AlternatingInferenceChainStep(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Chain.ToString();
 	}
-
-
-	/// <summary>
-	/// Determines whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool MWing(int a, int b, int c, int d, int e, int f)
-		=> a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == c % 9 && c % 9 == d % 9 && a % 9 == e % 9 && e % 9 == f % 9
-		|| f / 9 == e / 9 && c / 9 == b / 9 && d % 9 == e % 9 && c % 9 == d % 9 && b % 9 == f % 9 && a % 9 == b % 9;
-
-	/// <summary>
-	/// Determines whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool SplitWing(int a, int b, int c, int d, int e, int f)
-		=> a % 9 == b % 9 && b % 9 == c % 9 && d % 9 == e % 9 && e % 9 == f % 9 && c / 9 == d / 9;
-
-	/// <summary>
-	/// Determines whether the chain is Hybrid-Wing.
-	/// This wing has two types:
-	/// <list type="bullet">
-	/// <item><c>(x = y) - y = (y - z) = z</c></item>
-	/// <item><c>(x = y) - (y = z) - z = z</c></item>
-	/// </list>
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool HybridWing(int a, int b, int c, int d, int e, int f)
-		=> a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == c % 9 && c % 9 == d % 9 && e % 9 == f % 9
-		|| e / 9 == f / 9 && b / 9 == c / 9 && d % 9 == e % 9 && c % 9 == d % 9 && a % 9 == b % 9
-		|| a / 9 == b / 9 && c / 9 == d / 9 && b % 9 == c % 9 && d % 9 == e % 9 && e % 9 == f % 9
-		|| e / 9 == f / 9 && c / 9 == d / 9 && d % 9 == e % 9 && b % 9 == c % 9 && a % 9 == b % 9;
-
-	/// <summary>
-	/// Determines whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool LocalWing(int a, int b, int c, int d, int e, int f)
-		=> b / 9 == c / 9 && d / 9 == e / 9 && a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
 
 
 	/// <summary>
