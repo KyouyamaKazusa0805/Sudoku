@@ -26,7 +26,7 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 
 ### Sample
 
-Here I give you [a sample](https://sunnieshine.github.io/Sudoku/usages/solve-by-manual) to demonstrate how to solve a puzzle using manual sudoku techniques.
+Here I give you [a sample](https://sunnieshine.github.io/Sudoku/usages/en/solve-by-manual) to demonstrate how to solve a puzzle using manual sudoku techniques.
 
 ### Extra description
 
