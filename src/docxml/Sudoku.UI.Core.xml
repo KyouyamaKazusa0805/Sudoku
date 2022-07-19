@@ -25,6 +25,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.CrossMark.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.CrossMark.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.DiamondMark">
             <summary>
             Defines a diamond mark sign.
@@ -43,6 +53,16 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.StarMark">
             <summary>
             Defines a star sign.
@@ -59,6 +79,16 @@
         <member name="M:Sudoku.UI.Views.Controls.StarMark.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.StarMark.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.StarMark.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.TriangleMark">
@@ -83,6 +113,16 @@
         <member name="M:Sudoku.UI.Views.Controls.TriangleMark.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Data.Configuration.FontData">
@@ -3163,6 +3203,26 @@
         <member name="M:Sudoku.UI.MarkupExtensions.DateOnlyExtension.ProvideValue">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.BezierSegmentExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.BezierSegment"/>.
@@ -3311,6 +3371,24 @@
             as the property <see cref="P:Microsoft.UI.Xaml.Media.GeometryGroup.Children"/>.
             </summary>
         </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.RectangleExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.RectangleExtensions.WithRadius(Microsoft.UI.Xaml.Shapes.Rectangle,System.Double)">
+            <summary>
+            Sets the properties <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusX"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusY"/>
+            with the specified values.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.RectangleExtensions.WithRadius(Microsoft.UI.Xaml.Shapes.Rectangle,System.Double,System.Double)">
+            <summary>
+            Sets the properties <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusX"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusY"/>
+            with the specified values.
+            </summary>
+        </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.ShapeExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>.
@@ -3362,30 +3440,12 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeEndLineCap"/> with the specified value.
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.RectangleExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.RectangleExtensions.WithRadius(Microsoft.UI.Xaml.Shapes.Rectangle,System.Double)">
-            <summary>
-            Sets the properties <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusX"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusY"/>
-            with the specified values.
-            </summary>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.RectangleExtensions.WithRadius(Microsoft.UI.Xaml.Shapes.Rectangle,System.Double,System.Double)">
-            <summary>
-            Sets the properties <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusX"/> and <see cref="P:Microsoft.UI.Xaml.Shapes.Rectangle.RadiusY"/>
-            with the specified values.
-            </summary>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE57A11628">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE57A11628.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3848,12 +3908,12 @@
             <param name="other">The other point.</param>
             <returns>The distance of the two points.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DEFC6B40A8">
+        <member name="T:Windows.Foundation.Point_DEF353AC3E">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEFC6B40A8.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEF353AC3E.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
