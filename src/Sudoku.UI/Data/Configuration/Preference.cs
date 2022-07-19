@@ -352,11 +352,11 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <c>#80FFFF00</c> (Yellow with alpha 128).
+	/// The default value is <c>#FFFFFF00</c> (Yellow).
 	/// </remarks>
 	[Preference<ColorPickerSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Rendering, 23)]
-	public Color GroupedLinkNodeColor { get; set; } = Colors.Yellow with { A = 128 };
+	public Color GroupedLinkNodeColor { get; set; } = Colors.Yellow;
 
 	/// <inheritdoc/>
 	/// <remarks>

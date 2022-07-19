@@ -619,7 +619,7 @@
         <member name="P:Sudoku.UI.Data.Configuration.Preference.GroupedLinkNodeColor">
             <inheritdoc/>
             <remarks>
-            The default value is <c>#80FFFF00</c> (Yellow with alpha 128).
+            The default value is <c>#FFFFFF00</c> (Yellow).
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.AuxiliaryColors">

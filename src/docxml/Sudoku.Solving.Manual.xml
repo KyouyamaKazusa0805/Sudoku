@@ -781,25 +781,31 @@
             The step searcher will include the following techniques:
             <list type="bullet">
             <item>
-            Short chains:
+            Non-grouped chains:
             <list type="bullet">
-            <item>Irregular Wings</item>
+            <item>
+            Irregular Wings:
+            <list type="bullet">
+            <item>W-Wing (Although it can be searched via <see cref="T:Sudoku.Solving.Manual.Searchers.IIregularWingStepSearcher"/>)</item>
+            <item>M-Wing</item>
+            <item>Split Wing</item>
+            <item>Local Wing</item>
+            <item>Hybrid Wing</item>
+            <item>Purple Cow</item>
             </list>
             </item>
-            <item>
-            Normal chains:
-            <list type="bullet">
             <item>Discontinuous Nice Loop</item>
             <item>Alternating Inference Chain</item>
-            <!--<item>Continuous Nice Loop</item>-->
+            <item>Continuous Nice Loop</item>
             </list>
             </item>
             <item>
-            Grouped chains (which means the nodes are not limited in sole candidates):
+            Grouped chains:
             <list type="bullet">
+            <item>Grouped Irregular Wings</item>
             <item>Grouped Discontinuous Nice Loop</item>
             <item>Grouped Alternating Inference Chain</item>
-            <!--<item>Grouped Continuous Nice Loop</item>-->
+            <item>Grouped Continuous Nice Loop</item>
             </list>
             </item>
             </list>
@@ -938,6 +944,11 @@
             </para>
             </remarks>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_LockedSet">
+            <summary>
+            Gather the strong and weak inferences on locked candidates nodes.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Options">
             <inheritdoc/>
         </member>
@@ -1005,6 +1016,20 @@
             </description>
             </item>
             <item>
+            <term><see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.XyWing"/></term>
+            <description>
+            The strong and weak inferences between 2 nodes, where at least one node
+            is an XY-Wing node.
+            </description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.XyzWing"/></term>
+            <description>
+            The strong and weak inferences between 2 nodes, where at least one node
+            is an XYZ-Wing node.
+            </description>
+            </item>
+            <item>
             <term><see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.Kraken"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node
@@ -1021,12 +1046,14 @@
             Defines a step searcher that searches for chain steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetViewOnCandidates(Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetViewOnCandidates(Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain,Sudoku.Concepts.Collections.Grid@)">
             <summary>
             Creates an array of presentation data of candidates
-            via the specified instance of type <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain"/>.
+            via the specified instance of type <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain"/>
+            and the specified grid as a candidates reference table.
             </summary>
             <param name="chain">The chain.</param>
+            <param name="grid">The grid used.</param>
             <returns>An array of presentation data of candidates.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetViewOnLinks(Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain)">
@@ -3792,27 +3819,17 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Chain">Indicates the whole chain.</param>
-            <param name="XEnabled">Indicates whether the X-chain is enabled.</param>
-            <param name="YEnabled">Indicates whether the Y-chain is enabled.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain)">
             <summary>
             Provides with a step that is an <b>Alternating Inference Chain</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Chain">Indicates the whole chain.</param>
-            <param name="XEnabled">Indicates whether the X-chain is enabled.</param>
-            <param name="YEnabled">Indicates whether the Y-chain is enabled.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Chain">
             <summary>Indicates the whole chain.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.XEnabled">
-            <summary>Indicates whether the X-chain is enabled.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.YEnabled">
-            <summary>Indicates whether the Y-chain is enabled.</summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Bucket">
             <summary>

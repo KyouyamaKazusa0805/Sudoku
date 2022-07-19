@@ -63,6 +63,20 @@ public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 	/// </description>
 	/// </item>
 	/// <item>
+	/// <term><see cref="SearcherNodeTypes.XyWing"/></term>
+	/// <description>
+	/// The strong and weak inferences between 2 nodes, where at least one node
+	/// is an XY-Wing node.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="SearcherNodeTypes.XyzWing"/></term>
+	/// <description>
+	/// The strong and weak inferences between 2 nodes, where at least one node
+	/// is an XYZ-Wing node.
+	/// </description>
+	/// </item>
+	/// <item>
 	/// <term><see cref="SearcherNodeTypes.Kraken"/></term>
 	/// <description>
 	/// The strong and weak inferences between 2 nodes, where at least one node

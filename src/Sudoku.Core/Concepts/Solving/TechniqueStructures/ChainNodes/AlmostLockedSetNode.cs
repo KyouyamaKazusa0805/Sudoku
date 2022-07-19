@@ -51,6 +51,13 @@ public sealed class AlmostLockedSetNode : Node
 	}
 
 	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(AlmostLockedSetNode);
+
+
+	/// <inheritdoc/>
+	public override string ToSimpleString() => $"{FullCells}({Digit + 1})";
+
+	/// <inheritdoc/>
 	protected internal override Conclusion[] PotentialConclusionsWith(scoped in Grid grid, Node node)
 	{
 		using scoped var result = new ValueList<Conclusion>(50);
@@ -67,13 +74,6 @@ public sealed class AlmostLockedSetNode : Node
 
 		return result.ToArray();
 	}
-
-	/// <inheritdoc/>
-	protected override string TypeIdentifier => nameof(AlmostLockedSetNode);
-
-
-	/// <inheritdoc/>
-	public override string ToSimpleString() => $"{FullCells}({Digit + 1})";
 
 
 	/// <summary>

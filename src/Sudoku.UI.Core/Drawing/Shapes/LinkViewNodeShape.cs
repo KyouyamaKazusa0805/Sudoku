@@ -266,7 +266,9 @@ public sealed class LinkViewNodeShape : DrawingElement
 							.WithCanvasOffset(pt1)
 							.WithWidth(pt2.X - pt1.X)
 							.WithHeight(pt2.Y - pt1.Y)
-							.WithFill(Preference.GroupedLinkNodeColor)
+							.WithStroke(Preference.GroupedLinkNodeColor)
+							.WithStrokeThickness(1)
+							.WithFill(Preference.GroupedLinkNodeColor with { A = 32 })
 					);
 				}
 			}
@@ -283,7 +285,9 @@ public sealed class LinkViewNodeShape : DrawingElement
 						.WithCanvasOffset(pt1)
 						.WithWidth(pt2.X - pt1.X)
 						.WithHeight(pt2.Y - pt1.Y)
-						.WithFill(Preference.GroupedLinkNodeColor)
+						.WithStroke(Preference.GroupedLinkNodeColor)
+						.WithStrokeThickness(1)
+						.WithFill(Preference.GroupedLinkNodeColor with { A = 32 })
 				);
 			}
 		}

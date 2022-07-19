@@ -5,33 +5,40 @@
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>
-/// Short chains:
+/// Non-grouped chains:
 /// <list type="bullet">
-/// <item>Irregular Wings</item>
+/// <item>
+/// Irregular Wings:
+/// <list type="bullet">
+/// <item>W-Wing (Although it can be searched via <see cref="IIregularWingStepSearcher"/>)</item>
+/// <item>M-Wing</item>
+/// <item>Split Wing</item>
+/// <item>Local Wing</item>
+/// <item>Hybrid Wing</item>
+/// <item>Purple Cow</item>
 /// </list>
 /// </item>
-/// <item>
-/// Normal chains:
-/// <list type="bullet">
 /// <item>Discontinuous Nice Loop</item>
 /// <item>Alternating Inference Chain</item>
-/// <!--<item>Continuous Nice Loop</item>-->
+/// <item>Continuous Nice Loop</item>
 /// </list>
 /// </item>
 /// <item>
-/// Grouped chains (which means the nodes are not limited in sole candidates):
+/// Grouped chains:
 /// <list type="bullet">
+/// <item>Grouped Irregular Wings</item>
 /// <item>Grouped Discontinuous Nice Loop</item>
 /// <item>Grouped Alternating Inference Chain</item>
-/// <!--<item>Grouped Continuous Nice Loop</item>-->
+/// <item>Grouped Continuous Nice Loop</item>
 /// </list>
 /// </item>
 /// </list>
 /// </summary>
 [StepSearcher]
-[SeparatedStepSearcher(0, nameof(NodeTypes), SearcherNodeTypes.SoleDigit)]
-[SeparatedStepSearcher(1, nameof(NodeTypes), SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell)]
-[SeparatedStepSearcher(2, nameof(NodeTypes), SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell | SearcherNodeTypes.LockedCandidates)]
+[SeparatedStepSearcher(0, nameof(NodeTypes), SearcherNodeTypeLevel.SingleDigit)]
+[SeparatedStepSearcher(1, nameof(NodeTypes), SearcherNodeTypeLevel.Normal)]
+[SeparatedStepSearcher(2, nameof(NodeTypes), SearcherNodeTypeLevel.LockedCandidates)]
+[SeparatedStepSearcher(3, nameof(NodeTypes), SearcherNodeTypeLevel.LockedSets)]
 public sealed partial class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
 	/// <summary>
@@ -135,6 +142,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			// Gather strong and weak links.
 			GatherInferences_Sole(grid);
 			GatherInferences_LockedCandidates();
+			GatherInferences_LockedSet();
 
 			// Remove IDs if they don't appear in the lookup table.
 			TrimLookup(_weakInferences);
@@ -146,30 +154,27 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			var tempList = new Dictionary<AlternatingInferenceChain, ConclusionList>();
 			foreach (var (nids, startsWithWeak) in _foundChains)
 			{
-				var chain = new AlternatingInferenceChain(from nid in nids select _nodeLookup[nid], !startsWithWeak);
-				if (chain.GetConclusions(grid) is var conclusions and not []
-					&& !tempList.ContainsKey(chain)
-					&& !chain.IsRedundant)
+				var aic = new AlternatingInferenceChain(from nid in nids select _nodeLookup[nid], !startsWithWeak);
+				if (aic.GetConclusions(grid) is var conclusions and not []
+					&& !tempList.ContainsKey(aic)
+					&& !aic.IsRedundant)
 				{
-					tempList.Add(chain, conclusions);
+					tempList.Add(aic, conclusions);
 				}
 			}
 
-			foreach (var (chain, conclusions) in from kvp in tempList orderby kvp.Key.Count select kvp)
+			foreach (var (aic, conclusions) in from kvp in tempList orderby kvp.Key.Count select kvp)
 			{
 				// Adds into the accumulator.
 				var step = new AlternatingInferenceChainStep(
 					conclusions,
 					ImmutableArray.Create(
 						View.Empty
-							| IChainStepSearcher.GetViewOnCandidates(chain)
-							| IChainStepSearcher.GetViewOnLinks(chain)
+							| IChainStepSearcher.GetViewOnCandidates(aic, grid)
+							| IChainStepSearcher.GetViewOnLinks(aic)
 					),
-					chain,
-					NodeTypes.Flags(SearcherNodeTypes.SoleDigit),
-					NodeTypes.Flags(SearcherNodeTypes.SoleCell)
+					aic
 				);
-
 				if (onlyFindOne)
 				{
 					return step;
@@ -777,5 +782,18 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		static short rowMaskSelector(in Cells cells) => cells.RowMask;
 
 		static short columnMaskSelector(in Cells cells) => cells.ColumnMask;
+	}
+
+	/// <summary>
+	/// Gather the strong and weak inferences on locked candidates nodes.
+	/// </summary>
+	private void GatherInferences_LockedSet()
+	{
+		if (!NodeTypes.Flags(SearcherNodeTypes.LockedSet))
+		{
+			return;
+		}
+
+
 	}
 }

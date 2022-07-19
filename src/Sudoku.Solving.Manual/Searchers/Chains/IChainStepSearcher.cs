@@ -7,19 +7,23 @@ public interface IChainStepSearcher : IStepSearcher
 {
 	/// <summary>
 	/// Creates an array of presentation data of candidates
-	/// via the specified instance of type <see cref="AlternatingInferenceChain"/>.
+	/// via the specified instance of type <see cref="AlternatingInferenceChain"/>
+	/// and the specified grid as a candidates reference table.
 	/// </summary>
 	/// <param name="chain">The chain.</param>
+	/// <param name="grid">The grid used.</param>
 	/// <returns>An array of presentation data of candidates.</returns>
-	protected static sealed CandidateViewNode[] GetViewOnCandidates(AlternatingInferenceChain chain)
+	protected static sealed CandidateViewNode[] GetViewOnCandidates(AlternatingInferenceChain chain, scoped in Grid grid)
 	{
 		var realChainNodes = chain.RealChainNodes;
 		var result = new List<CandidateViewNode>(realChainNodes.Length);
+
+		byte alsIndex = 0;
 		for (int i = 0; i < realChainNodes.Length; i++)
 		{
-			if (realChainNodes[i] is { Cells: var cells, Digit: var digit })
+			if (realChainNodes[i] is { Cells: var cells, Digit: var digit } currentNode)
 			{
-				// TODO: Get grouped node.
+				// Normal highlight candidates.
 				foreach (int cell in cells)
 				{
 					result.Add(
@@ -28,6 +32,28 @@ public interface IChainStepSearcher : IStepSearcher
 							cell * 9 + digit
 						)
 					);
+				}
+
+				// Special case.
+				switch (currentNode)
+				{
+					case AlmostLockedSetNode { FullCells: var allCells } when i + 1 < realChainNodes.Length:
+					{
+						byte nextNodeDigit = realChainNodes[i + 1].Digit;
+						short potentialDigits = grid.GetDigitsUnion(allCells);
+						short digitsShouldHighlight = (short)(potentialDigits & ~(1 << digit | 1 << nextNodeDigit));
+						foreach (int tempDigit in digitsShouldHighlight)
+						{
+							foreach (int tempCell in grid.CandidatesMap[tempDigit] & allCells)
+							{
+								result.Add(new(DisplayColorKind.AlmostLockedSet1 + alsIndex, tempCell * 9 + tempDigit));
+							}
+						}
+
+						// Sets the ALS to the next color.
+						alsIndex = (byte)((alsIndex + 1) % 5);
+						break;
+					}
 				}
 			}
 		}

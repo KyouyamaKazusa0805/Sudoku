@@ -4,6 +4,9 @@
 /// Defines an alternating inference chain. The data structure can describe the following techniques:
 /// <list type="bullet">
 /// <item>
+/// Normal chains:
+/// <list type="bullet">
+/// <item>
 /// Irregular Wings
 /// <list type="bullet">
 /// <item>W-Wing</item>
@@ -14,9 +17,6 @@
 /// <item>Purple Cow</item>
 /// </list>
 /// </item>
-/// <item>
-/// Normal chains:
-/// <list type="bullet">
 /// <item>Discontinuous Nice Loop</item>
 /// <item>Alternating Inference Chain</item>
 /// <item>Continuous Nice Loop</item>

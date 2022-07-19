@@ -42,7 +42,17 @@ public enum SearcherNodeTypes
 	UniqueRectangle = 1 << 5,
 
 	/// <summary>
+	/// Indicates the searcher can search for almost XY-Wing nodes.
+	/// </summary>
+	XyWing = 1 << 6,
+
+	/// <summary>
+	/// Indicates the searcher can search for almost XYZ-Wing nodes.
+	/// </summary>
+	XyzWing = 1 << 7,
+
+	/// <summary>
 	/// Indicates the searcher can search for kraken fish nodes.
 	/// </summary>
-	Kraken = 1 << 6
+	Kraken = 1 << 8
 }

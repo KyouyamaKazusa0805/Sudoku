@@ -5217,6 +5217,9 @@
             Defines an alternating inference chain. The data structure can describe the following techniques:
             <list type="bullet">
             <item>
+            Normal chains:
+            <list type="bullet">
+            <item>
             Irregular Wings
             <list type="bullet">
             <item>W-Wing</item>
@@ -5227,9 +5230,6 @@
             <item>Purple Cow</item>
             </list>
             </item>
-            <item>
-            Normal chains:
-            <list type="bullet">
             <item>Discontinuous Nice Loop</item>
             <item>Alternating Inference Chain</item>
             <item>Continuous Nice Loop</item>
@@ -5497,13 +5497,13 @@
             Indicates the whole ALS map.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.PotentialConclusionsWith(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.TypeIdentifier">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.ToSimpleString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.PotentialConclusionsWith(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.InitOtherMask(Sudoku.Concepts.Collections.Cells@)">
@@ -10403,6 +10403,16 @@
         <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.UniqueRectangle">
             <summary>
             Indicates the searcher can search for almost rectangle nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.XyWing">
+            <summary>
+            Indicates the searcher can search for almost XY-Wing nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.XyzWing">
+            <summary>
+            Indicates the searcher can search for almost XYZ-Wing nodes.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.Kraken">

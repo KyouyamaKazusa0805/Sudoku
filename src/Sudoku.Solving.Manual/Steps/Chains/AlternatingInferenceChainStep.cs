@@ -6,10 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Chain">Indicates the whole chain.</param>
-/// <param name="XEnabled">Indicates whether the X-chain is enabled.</param>
-/// <param name="YEnabled">Indicates whether the Y-chain is enabled.</param>
-public sealed record class AlternatingInferenceChainStep(
-	ConclusionList Conclusions, ViewList Views, AlternatingInferenceChain Chain, bool XEnabled, bool YEnabled) :
+public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusions, ViewList Views, AlternatingInferenceChain Chain) :
 	ChainStep(Conclusions, Views),
 	IChainStep,
 	IChainLikeStep,
@@ -34,7 +31,8 @@ public sealed record class AlternatingInferenceChainStep(
 			Technique.GroupedSplitWing or Technique.GroupedHybridWing or Technique.GroupedLocalWing => 4.9M,
 			Technique.PurpleCow => 4.9M,
 			Technique.GroupedPurpleCow => 5.0M,
-			_ => XEnabled && YEnabled ? 5.0M : 4.6M
+			Technique.XChain => 4.6M,
+			_ => 5.0M
 		};
 
 	/// <inheritdoc/>
