@@ -3851,7 +3851,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsIrregularWing">
             <summary>
-            Indicates whether the current chain is irregular wing.
+            Indicates whether the current chain is irregular wing, and not grouped.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsXyChain">

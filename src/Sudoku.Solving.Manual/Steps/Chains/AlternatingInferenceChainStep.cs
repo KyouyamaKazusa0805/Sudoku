@@ -116,10 +116,10 @@ public sealed record class AlternatingInferenceChainStep(
 	public override ChainTypeCode SortKey => Enum.Parse<ChainTypeCode>(TechniqueCode.ToString());
 
 	/// <summary>
-	/// Indicates whether the current chain is irregular wing.
+	/// Indicates whether the current chain is irregular wing, and not grouped.
 	/// </summary>
 	private bool IsIrregularWing
-		=> TechniqueCode is Technique.MWing or Technique.SplitWing or Technique.HybridWing or Technique.LocalWing or Technique.PurpleCow;
+		=> TechniqueCode is Technique.WWing or Technique.MWing or Technique.SplitWing or Technique.HybridWing or Technique.LocalWing or Technique.PurpleCow;
 
 	/// <summary>
 	/// Indicates whether the specified chain is an XY-Chain.
