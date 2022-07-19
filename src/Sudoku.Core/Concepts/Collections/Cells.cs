@@ -119,7 +119,7 @@ public unsafe struct Cells :
 	/// </summary>
 	/// <param name="cells">cell offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(Span<int> cells) : this(in cells.GetPinnableReference(), cells.Length)
+	public Cells(scoped Span<int> cells) : this(in cells.GetPinnableReference(), cells.Length)
 	{
 	}
 
@@ -128,7 +128,7 @@ public unsafe struct Cells :
 	/// </summary>
 	/// <param name="cells">cell offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(ReadOnlySpan<int> cells) : this(in cells.GetPinnableReference(), cells.Length)
+	public Cells(scoped ReadOnlySpan<int> cells) : this(in cells.GetPinnableReference(), cells.Length)
 	{
 	}
 
