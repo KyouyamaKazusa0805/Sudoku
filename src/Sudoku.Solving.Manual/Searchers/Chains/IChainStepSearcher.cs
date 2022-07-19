@@ -37,7 +37,7 @@ public interface IChainStepSearcher : IStepSearcher
 				// Special case.
 				switch (currentNode)
 				{
-					case AlmostLockedSetNode { FullCells: var allCells } when i + 1 < realChainNodes.Length:
+					case { Type: NodeType.AlmostLockedSets, FullCells: var allCells } when i + 1 < realChainNodes.Length:
 					{
 						byte nextNodeDigit = realChainNodes[i + 1].Digit;
 						short potentialDigits = grid.GetDigitsUnion(allCells);
@@ -146,7 +146,7 @@ public interface IChainStepSearcher : IStepSearcher
 			{
 				foreach (int nextId in nextIds)
 				{
-					sb.Append(nodeLookup[nextId]!.ToSimpleString());
+					sb.Append(nodeLookup[nextId]!.Value.ToSimpleString());
 					sb.Append(separator);
 				}
 

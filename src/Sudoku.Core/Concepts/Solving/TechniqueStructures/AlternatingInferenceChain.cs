@@ -73,37 +73,31 @@ public sealed class AlternatingInferenceChain : Chain
 	/// </summary>
 	public bool IsStrong { get; }
 
+#pragma warning disable IDE0055
 	/// <summary>
 	/// Indicates whether the current chain forms a continuous nice loop.
 	/// </summary>
 	public bool IsContinuousNiceLoop
 		=> this switch
 		{
-			{ IsStrong: false, RealChainNodes: [var a, .., var b] } => (a, b) switch
 			{
-				(
-					(SoleCandidateNode or LockedCandidatesNode or AlmostLockedSetNode) and
-					{
-						Cells: var aCells,
-						Digit: var aDigit
-					},
-					(SoleCandidateNode or LockedCandidatesNode or AlmostLockedSetNode) and
-					{
-						Cells: var bCells,
-						Digit: var bDigit
-					}
-				) => (aCells, bCells) switch
-				{
-					([var aCell], [var bCell])
-						=> aCell == bCell && aDigit != bDigit || aDigit == bDigit && (aCells | bCells).InOneHouse,
-					_ => aDigit == bDigit && (aCells | bCells).InOneHouse
-				},
-				// Reserved for the later usages.
-				_ => false
+				IsStrong: false,
+				RealChainNodes:
+				[
+					{ Cells: var aCells, Digit: var aDigit },
+					..,
+					{ Cells: var bCells, Digit: var bDigit }
+				]
+			} => (aCells, bCells) switch
+			{
+				([var aCell], [var bCell])
+					=> aCell == bCell && aDigit != bDigit || aDigit == bDigit && (aCells | bCells).InOneHouse,
+				_ => aDigit == bDigit && (aCells | bCells).InOneHouse
 			},
 			// The continuous nice loop must starts with weak links due to the design of the current data structure.
 			_ => false
 		};
+#pragma warning restore IDE0055
 
 	/// <summary>
 	/// Indicates whether the current chain is a grouped chain.
@@ -111,7 +105,7 @@ public sealed class AlternatingInferenceChain : Chain
 	public bool IsGrouped
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _nodes.Any(static node => node is not SoleCandidateNode);
+		get => _nodes.Any(static node => node.Type != NodeType.Sole);
 	}
 
 	/// <summary>
@@ -165,7 +159,7 @@ public sealed class AlternatingInferenceChain : Chain
 	}
 
 	/// <summary>
-	/// Indicates the full chain nodes.
+	/// Indicates the full chain nodes, containing elimination nodes.
 	/// </summary>
 	public ImmutableArray<Node> FullChainNodes
 	{

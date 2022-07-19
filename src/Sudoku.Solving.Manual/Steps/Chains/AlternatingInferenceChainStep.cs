@@ -165,14 +165,13 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 		=> Chain.RealChainNodes switch
 		{
 			[
-				SoleCandidateNode { Candidate: var a },
-				SoleCandidateNode { Candidate: var b },
-				{ Digit: var digit3 },
-				{ Digit: var digit4 },
-				SoleCandidateNode { Candidate: var e },
-				SoleCandidateNode { Candidate: var f }
-			] when a / 9 == b / 9 && e / 9 == f / 9 && a % 9 == f % 9
-				&& b % 9 == digit3 && digit3 == digit4 && digit4 == e % 9 => true,
+				{ Cells: [var c1], Digit: var d1 },
+				{ Cells: [var c2], Digit: var d2 },
+				{ Digit: var d3 },
+				{ Digit: var d4 },
+				{ Cells: [var c5], Digit: var d5 },
+				{ Cells: [var c6], Digit: var d6 }
+			] when c1 == c2 && c5 == c6 && d1 == d6 && d2 == d3 && d3 == d4 && d4 == d5 => true,
 			_ => false
 		};
 
@@ -184,23 +183,21 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 		=> Chain.RealChainNodes switch
 		{
 			[
-				SoleCandidateNode { Candidate: var a },
-				SoleCandidateNode { Candidate: var b },
-				{ Digit : var digit3 },
-				SoleCandidateNode { Candidate: var d },
-				SoleCandidateNode { Candidate: var e },
-				{ Digit: var digit6 }
-			] when a / 9 == b / 9 && d / 9 == e / 9
-				&& b % 9 == digit3 && digit3 == d % 9 && a % 9 == e % 9 && e % 9 == digit6 => true,
+				{ Cells: [var c1], Digit: var d1 },
+				{ Cells: [var c2], Digit: var d2 },
+				{ Digit: var d3 },
+				{ Cells: [var c4], Digit: var d4 },
+				{ Cells: [var c5], Digit: var d5 },
+				{ Digit: var d6 }
+			] when c1 == c2 && c4 == c5 && d2 == d3 && d3 == d4 && d1 == d5 && d5 == d6 => true,
 			[
-				{ Digit: var digit1 },
-				SoleCandidateNode { Candidate: var b },
-				SoleCandidateNode { Candidate: var c },
-				{ Digit: var digit4 },
-				SoleCandidateNode { Candidate: var e },
-				SoleCandidateNode { Candidate: var f }
-			] when b / 9 == c / 9 && e / 9 == f / 9
-				&& b % 9 == c % 9 && c % 9 == digit4 && digit1 == e % 9 && e % 9 == f % 9 => true,
+				{ Digit: var d1 },
+				{ Cells: [var c2], Digit: var d2 },
+				{ Cells: [var c3], Digit: var d3 },
+				{ Digit: var d4 },
+				{ Cells: [var c5], Digit: var d5 },
+				{ Cells: [var c6], Digit: var d6 }
+			] when c2 == c3 && c5 == c6 && d2 == d3 && d3 == d4 && d1 == d5 && d5 == d6 => true,
 			_ => false
 		};
 
@@ -212,13 +209,13 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 		=> Chain.RealChainNodes switch
 		{
 			[
-				{ Digit: var digit1 },
-				{ Digit: var digit2 },
-				SoleCandidateNode { Candidate: var c },
-				SoleCandidateNode { Candidate: var d },
-				{ Digit: var digit5 },
-				{ Digit: var digit6 }
-			] when digit1 == digit2 && digit2 == c % 9 && d % 9 == digit5 && digit5 == digit6 && c / 9 == d / 9 => true,
+				{ Digit: var d1 },
+				{ Digit: var d2 },
+				{ Cells: [var c3], Digit: var d3 },
+				{ Cells: [var c4], Digit: var d4 },
+				{ Digit: var d5 },
+				{ Digit: var d6 }
+			] when d1 == d2 && d2 == d3 && d4 == d5 && d5 == d6 && c3 == c4 => true,
 			_ => false
 		};
 
@@ -235,37 +232,37 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 		=> Chain.RealChainNodes switch
 		{
 			[
-				SoleCandidateNode { Candidate: var a },
-				SoleCandidateNode { Candidate: var b },
-				{ Digit: var digit3 },
-				SoleCandidateNode { Candidate: var d },
-				SoleCandidateNode { Candidate: var e },
-				{ Digit: var digit6 }
-			] when a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == digit3 && digit3 == d % 9 && e % 9 == digit6 => true,
+				{ Cells: [var c1] },
+				{ Cells: [var c2], Digit: var d2 },
+				{ Digit: var d3 },
+				{ Cells: [var c4], Digit: var d4 },
+				{ Cells: [var c5], Digit: var d5 },
+				{ Digit: var d6 }
+			] when c1 == c2 && c4 == c5 && d2 == d3 && d3 == d4 && d5 == d6 => true,
 			[
-				{ Digit: var digit1 },
-				SoleCandidateNode { Candidate: var b },
-				SoleCandidateNode { Candidate: var c },
-				{ Digit: var digit4 },
-				SoleCandidateNode { Candidate: var e },
-				SoleCandidateNode { Candidate: var f }
-			] when b / 9 == c / 9 && e / 9 == f / 9 && e % 9 == digit4 && digit4 == c % 9 && digit1 == b % 9 => true,
+				{ Digit: var d1 },
+				{ Cells: [var c2], Digit: var d2 },
+				{ Cells: [var c3], Digit: var d3 },
+				{ Digit: var d4 },
+				{ Cells: [var c5], Digit: var d5 },
+				{ Cells: [var c6] }
+			] when c2 == c3 && c5 == c6 && d5 == d4 && d4 == d3 && d1 == d2 => true,
 			[
-				SoleCandidateNode { Candidate: var a },
-				SoleCandidateNode { Candidate: var b },
-				SoleCandidateNode { Candidate: var c },
-				SoleCandidateNode { Candidate: var d },
-				{ Digit: var digit5 },
-				{ Digit: var digit6 }
-			] when a / 9 == b / 9 && c / 9 == d / 9 && b % 9 == c % 9 && d % 9 == digit5 && digit5 == digit6 => true,
+				{ Cells: [var c1] },
+				{ Cells: [var c2], Digit: var d2 },
+				{ Cells: [var c3], Digit: var d3 },
+				{ Cells: [var c4], Digit: var d4 },
+				{ Digit: var d5 },
+				{ Digit: var d6 }
+			] when c1 == c2 && c3 == c4 && d2 == d3 && d4 == d5 && d5 == d6 => true,
 			[
-				{ Digit: var digit1 },
-				{ Digit: var digit2 },
-				SoleCandidateNode { Candidate: var c },
-				SoleCandidateNode { Candidate: var d },
-				SoleCandidateNode { Candidate: var e },
-				SoleCandidateNode { Candidate: var f }
-			] when c / 9 == d / 9 && e / 9 == f / 9 && digit1 == digit2 && digit2 == c % 9 && d % 9 == e % 9 => true,
+				{ Digit: var d1 },
+				{ Digit: var d2 },
+				{ Cells: [var c3], Digit: var d3 },
+				{ Cells: [var c4], Digit: var d4 },
+				{ Cells: [var c5], Digit: var d5 },
+				{ Cells: [var c6] }
+			] when c3 == c4 && c5 == c6 && d1 == d2 && d2 == d3 && d4 == d5 => true,
 			_ => false
 		};
 
@@ -277,13 +274,13 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 		=> Chain.RealChainNodes switch
 		{
 			[
-				{ Digit: var digit1 },
-				SoleCandidateNode { Candidate: var b },
-				SoleCandidateNode { Candidate: var c },
-				SoleCandidateNode { Candidate: var d },
-				SoleCandidateNode { Candidate: var e },
-				{ Digit: var digit6 }
-			] when b / 9 == c / 9 && d / 9 == e / 9 && digit1 == b % 9 && c % 9 == d % 9 && e % 9 == digit6 => true,
+				{ Digit: var d1 },
+				{ Cells: [var c2], Digit: var d2 },
+				{ Cells: [var c3], Digit: var d3 },
+				{ Cells: [var c4], Digit: var d4 },
+				{ Cells: [var c5], Digit: var d5 },
+				{ Digit: var d6 }
+			] when c2 == c3 && c4 == c5 && d1 == d2 && d3 == d4 && d5 == d6 => true,
 			_ => false
 		};
 #pragma warning restore IDE0055
@@ -303,10 +300,10 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 	/// <returns>The difficulty of the node.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static decimal NodeDifficultySelector(Node node)
-		=> node switch
+		=> node.Type switch
 		{
-			SoleCandidateNode => 0M,
-			LockedCandidatesNode => .1M,
-			AlmostLockedSetNode => .2M
+			NodeType.Sole => 0M,
+			NodeType.LockedCandidates => .1M,
+			NodeType.AlmostLockedSets => .2M
 		};
 }

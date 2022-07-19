@@ -5247,7 +5247,7 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.#ctor(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node[],System.Boolean)">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.#ctor(Sudoku.Concepts.Solving.TechniqueStructures.Node[],System.Boolean)">
             <summary>
             Initializes an <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain"/> instance via the specified nodes
             and the <see cref="T:System.Boolean"/> value indicating whether the chain starts and ends
@@ -5297,7 +5297,7 @@
         </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.FullChainNodes">
             <summary>
-            Indicates the full chain nodes.
+            Indicates the full chain nodes, containing elimination nodes.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.RealChainNodes">
@@ -5338,7 +5338,7 @@
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.GetConclusions(Sudoku.Concepts.Collections.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.InitializeFieldNodeStatus(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node[],System.Boolean)">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.InitializeFieldNodeStatus(Sudoku.Concepts.Solving.TechniqueStructures.Node[],System.Boolean)">
             <summary>
             Try to initializes the field <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.Chain._nodesStatus"/>.
             </summary>
@@ -5349,7 +5349,7 @@
             <returns>The array of type <see cref="T:System.Boolean"/>[].</returns>
             <seealso cref="F:Sudoku.Concepts.Solving.TechniqueStructures.Chain._nodesStatus"/>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.GetEliminationsLoop(Sudoku.Concepts.Collections.Grid@,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node})">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.GetEliminationsLoop(Sudoku.Concepts.Collections.Grid@,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.TechniqueStructures.Node})">
             <summary>
             Try to get eliminations, treating the current AIC as a continuous nice loop.
             </summary>
@@ -5392,7 +5392,7 @@
             Generally, the first element and the last element are same.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Chain.#ctor(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node[],System.Boolean[])">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Chain.#ctor(Sudoku.Concepts.Solving.TechniqueStructures.Node[],System.Boolean[])">
             <summary>
             Initializes a instance whose type is derived from <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Chain"/>,
             using the specified nodes and their own status respectively.
@@ -5461,247 +5461,13 @@
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Chain.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Chain.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Solving#TechniqueStructures#ChainNodes#Node}#GetEnumerator">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Chain.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Solving#TechniqueStructures#Node}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Chain.op_Equality(Sudoku.Concepts.Solving.TechniqueStructures.Chain,Sudoku.Concepts.Solving.TechniqueStructures.Chain)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Chain.op_Inequality(Sudoku.Concepts.Solving.TechniqueStructures.Chain,Sudoku.Concepts.Solving.TechniqueStructures.Chain)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode">
-            <summary>
-            Defines a chain node that provides with the data for an almost locked set.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.Shifting">
-            <summary>
-            Indicates the shifting bits that each cell stores in the <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._other"/> mask.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._other"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.#ctor(System.Byte,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode"/> instance via the digit used
-            and the cells used.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <param name="cells">The cells used.</param>
-            <param name="extraCells">
-            Indicates the extra cells that the current ALS used, but the current digit doesn't used.
-            </param>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.FullCells">
-            <summary>
-            Indicates the whole ALS map.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.TypeIdentifier">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.ToSimpleString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.PotentialConclusionsWith(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode.InitOtherMask(Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Gets the part of the other mask value that represents the extra cells used.
-            </summary>
-            <param name="extraCells">The extra cells used.</param>
-            <returns>The mask of type <see cref="T:System.Int64"/>.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the number of elements in the argument <paramref name="extraCells"/> is greater than 8.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode">
-            <summary>
-            Defines a chain node that provides with the data for a locked candidates.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode.#ctor(System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode"/> instance via the digit used,
-            and two cells used.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <param name="cell1">The cell 1.</param>
-            <param name="cell2">The cell 2.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode"/> instance via the digit used,
-            and three cells used.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <param name="cell1">The cell 1.</param>
-            <param name="cell2">The cell 2.</param>
-            <param name="cell3">The cell 3.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode.#ctor(System.Byte,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode"/> instance via the digit used and cells used.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <param name="cells">The cells used.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode.TypeIdentifier">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node">
-            <summary>
-            Defines a chain node.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.PreservedBitsCount">
-            <summary>
-            Indicates the number of bits that is preserved by the bit mask field <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._other"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._other"/>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._higher">
-            <summary>
-            Indicates the bits used. <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._higher"/> and <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._lower"/>
-            store the basic data of the cells used.
-            </summary>
-            <remarks>
-            Please note that the lower 7 bits in the field <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._other"/> are reserved ones,
-            which represents the basic data for the digit used, and the type of the node.
-            You cannot modify them.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._lower">
-            <summary>
-            Indicates the bits used. <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._higher"/> and <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._lower"/>
-            store the basic data of the cells used.
-            </summary>
-            <remarks>
-            Please note that the lower 7 bits in the field <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._other"/> are reserved ones,
-            which represents the basic data for the digit used, and the type of the node.
-            You cannot modify them.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._other">
-            <summary>
-            Indicates the bits used. <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._higher"/> and <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._lower"/>
-            store the basic data of the cells used.
-            </summary>
-            <remarks>
-            Please note that the lower 7 bits in the field <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node._other"/> are reserved ones,
-            which represents the basic data for the digit used, and the type of the node.
-            You cannot modify them.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.#ctor(Sudoku.Runtime.AnalysisServices.NodeType,System.Byte,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node"/> instance via the basic data.
-            </summary>
-            <param name="nodeType">The node type.</param>
-            <param name="digit">The digit used.</param>
-            <param name="cells">The cells used.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.#ctor(Sudoku.Runtime.AnalysisServices.NodeType,System.Byte,Sudoku.Concepts.Collections.Cells@,System.Int64)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node"/> instance via the basic data.
-            </summary>
-            <param name="nodeType">The node type.</param>
-            <param name="digit">The digit used.</param>
-            <param name="cells">The cells used.</param>
-            <param name="otherMask">
-            The other mask. Here the mask provided must preserve the lower 7 bits zeroed
-            because they are reserved one.
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.#ctor(System.Int64,System.Int64,System.Int64)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node"/> instance via the basic data.
-            </summary>
-            <param name="higher">The higher 64 bits.</param>
-            <param name="lower">The lower 64 bits.</param>
-            <param name="other">The other 64 bits.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.Digit">
-            <summary>
-            Indicates the digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.IsGroupedNode">
-            <summary>
-            Indicates whether the current node is a grouped node, which means it uses more than 1 cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.Cells">
-            <summary>
-            Indicates the cells used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.Type">
-            <summary>
-            Indicates the type of the node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.TypeIdentifier">
-            <summary>
-            Indicates the type identifier.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.Equals(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.ToSimpleString">
-            <summary>
-            Gets the simplified string value that only displays the important information.
-            </summary>
-            <returns>The string value.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.PotentialConclusionsWith(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
-            <summary>
-            Indicates the potential conclusions that cannot be directly applied, but can be applied when a loop is formed.
-            </summary>
-            <param name="grid">The base sudoku grid that provides with candidates' distribution.</param>
-            <param name="node">The node that connects with the current node.</param>
-            <returns>The possible conclusions found. In default, the property returns an empty array.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.op_Equality(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node.op_Inequality(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode">
-            <summary>
-            Provides with the node that stores a sole candidate.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode.#ctor(System.Byte,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode"/> instance via the candidate and its current status.
-            </summary>
-            <param name="cell">Indicates the cell used.</param>
-            <param name="digit">Indicates the digit used.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode.Cell">
-            <summary>
-            Indicates the cell used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode.Candidate">
-            <summary>
-            Indicates the candidate used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode.TypeIdentifier">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern">
@@ -5866,6 +5632,93 @@
             <summary>
             Indicates the whole map of cells that the technique used.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.Node">
+            <summary>
+            Defines a chain node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.#ctor(Sudoku.Runtime.AnalysisServices.NodeType,System.Byte,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/> instance via the basic data.
+            </summary>
+            <param name="nodeType">The node type.</param>
+            <param name="digit">The digit used.</param>
+            <param name="cell">The cell used.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.#ctor(Sudoku.Runtime.AnalysisServices.NodeType,System.Byte,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/> instance via the basic data.
+            </summary>
+            <param name="nodeType">The node type.</param>
+            <param name="digit">The digit used.</param>
+            <param name="cells">The cells used.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.#ctor(Sudoku.Runtime.AnalysisServices.NodeType,System.Byte,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/> instance via the basic data.
+            </summary>
+            <param name="nodeType">The node type.</param>
+            <param name="digit">The digit used.</param>
+            <param name="cells">The cells used.</param>
+            <param name="extraCells">The extra cells.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.IsGroupedNode">
+            <summary>
+            Indicates whether the current node is a grouped node, which means it uses more than 1 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.FullCells">
+            <summary>
+            Indicates the full cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.Type">
+            <summary>
+            Indicates the type of the node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.Equals(Sudoku.Concepts.Solving.TechniqueStructures.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.ToSimpleString">
+            <summary>
+            Gets the simplified string value that only displays the important information.
+            </summary>
+            <returns>The string value.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.PotentialConclusionsWith(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.TechniqueStructures.Node)">
+            <summary>
+            Indicates the potential conclusions that cannot be directly applied, but can be applied when a loop is formed.
+            </summary>
+            <param name="grid">The base sudoku grid that provides with candidates' distribution.</param>
+            <param name="node">The node that connects with the current node.</param>
+            <returns>The possible conclusions found. In default, the property returns an empty array.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.op_Equality(Sudoku.Concepts.Solving.TechniqueStructures.Node,Sudoku.Concepts.Solving.TechniqueStructures.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.op_Inequality(Sudoku.Concepts.Solving.TechniqueStructures.Node,Sudoku.Concepts.Solving.TechniqueStructures.Node)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.QiuDeadlyPattern">
             <summary>
@@ -12256,37 +12109,6 @@
             The blue value.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.Serialization.Converter.AlmostLockedSetNodeJsonConverter">
-            <summary>
-            Defines a JSON converter that is used for the serialization and deserialization
-            on type <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode"/>.
-            </summary>
-            <remarks>
-            JSON Pattern:
-            <code>
-            {
-              "fullCells": [
-                "r1c1",
-                "r1c2",
-                "r1c3"
-              ],
-              "cells": [
-                "r1c1",
-                "r1c2",
-                "r1c3"
-              ],
-              "digit": 2
-            }
-            </code>
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode"/>
-        </member>
-        <member name="M:Sudoku.Runtime.Serialization.Converter.AlmostLockedSetNodeJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.Serialization.Converter.AlmostLockedSetNodeJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.AlmostLockedSetNode,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Runtime.Serialization.Converter.CellsJsonConverter">
             <summary>
             Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Concepts.Collections.Cells"/>.
@@ -12374,54 +12196,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.Serialization.Converter.InferenceJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Inference,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Runtime.Serialization.Converter.LockedCandidatesNodeJsonConverter">
-            <summary>
-            Defines a JSON converter that is used for the serialization and deserialization
-            on type <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode"/>.
-            </summary>
-            <remarks>
-            JSON Pattern:
-            <code>
-            {
-              "cells": [
-                10,
-                20,
-                30
-              ],
-              "digit": 2
-            }
-            </code>
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode"/>
-        </member>
-        <member name="M:Sudoku.Runtime.Serialization.Converter.LockedCandidatesNodeJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.Serialization.Converter.LockedCandidatesNodeJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.LockedCandidatesNode,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Runtime.Serialization.Converter.SoleCandidateNodeJsonConverter">
-            <summary>
-            Defines a JSON converter that is used for the serialization and deserialization
-            on type <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode"/>.
-            </summary>
-            <remarks>
-            JSON Pattern:
-            <code>
-            {
-              "cell": 10,
-              "digit": 2
-            }
-            </code>
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode"/>
-        </member>
-        <member name="M:Sudoku.Runtime.Serialization.Converter.SoleCandidateNodeJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.Serialization.Converter.SoleCandidateNodeJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.SoleCandidateNode,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.Serialization.IdInternal">

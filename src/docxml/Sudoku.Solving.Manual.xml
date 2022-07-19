@@ -866,9 +866,9 @@
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._idLookup">
             <summary>
             Indicates the lookup table that can get the target ID value
-            via the corresponding <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node"/> instance.
+            via the corresponding <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node"/>
+            <seealso cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._foundChains">
             <summary>
@@ -882,7 +882,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._nodeLookup">
             <summary>
-            Indicates the lookup table that can get the target <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node"/> instance
+            Indicates the lookup table that can get the target <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/> instance
             via the corresponding ID value specified as the index.
             </summary>
         </member>
@@ -903,7 +903,7 @@
             Remove all ID values not appearing in the lookup dictionary.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.AppendInference(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.AppendInference(Sudoku.Concepts.Solving.TechniqueStructures.Node@,Sudoku.Concepts.Solving.TechniqueStructures.Node@,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
             <summary>
             To append a new strong or weak inference that starts with node <paramref name="a"/> to node <paramref name="b"/>.
             </summary>
@@ -1064,7 +1064,7 @@
             <param name="chain">The chain.</param>
             <returns>An array of presentation data of links.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.PrintInferences(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}},Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node[],System.Action{System.String})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.PrintInferences(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}},System.Nullable{Sudoku.Concepts.Solving.TechniqueStructures.Node}[],System.Action{System.String})">
             <summary>
             Print the inferences.
             </summary>
@@ -1080,7 +1080,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetRawChainData(System.Int32[],Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node[])">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetRawChainData(System.Int32[],System.Nullable{Sudoku.Concepts.Solving.TechniqueStructures.Node}[])">
             <summary>
             To print the whole chain via the ID. The method is only used for calling by the debugger.
             </summary>
@@ -3916,7 +3916,7 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.NodeDifficultySelector(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.NodeDifficultySelector(Sudoku.Concepts.Solving.TechniqueStructures.Node)">
             <summary>
             The node difficulty selector.
             </summary>
