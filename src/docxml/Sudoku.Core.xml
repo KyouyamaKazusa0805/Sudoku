@@ -5217,9 +5217,14 @@
             Defines an alternating inference chain. The data structure can describe the following techniques:
             <list type="bullet">
             <item>
-            Short chains:
+            Irregular Wings
             <list type="bullet">
-            <item>Irregular Wings</item>
+            <item>W-Wing</item>
+            <item>M-Wing</item>
+            <item>Split Wing</item>
+            <item>Local Wing</item>
+            <item>Hybrid Wing</item>
+            <item>Purple Cow</item>
             </list>
             </item>
             <item>
@@ -5230,16 +5235,15 @@
             <item>Continuous Nice Loop</item>
             </list>
             </item>
-            <!--
             <item>
             Grouped chains (which means the nodes are not limited in sole candidates):
             <list type="bullet">
+            <item>Grouped Wings</item>
             <item>Grouped Discontinuous Nice Loop</item>
             <item>Grouped Alternating Inference Chain</item>
             <item>Grouped Continuous Nice Loop</item>
             </list>
             </item>
-            -->
             </list>
             </summary>
         </member>
