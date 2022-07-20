@@ -5378,7 +5378,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.Chain">
             <summary>
-            Defines a chain.
+            Represents an abstract data structure "Chain".
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.Chain._nodesStatus">
@@ -5670,8 +5670,15 @@
         </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.IsGroupedNode">
             <summary>
-            Indicates whether the current node is a grouped node, which means it uses more than 1 cell.
+            <para>Indicates whether the current node is a grouped node, which means it is not a sole candidate node.</para>
+            <para>
+            This property only checks for the type of the node.
+            If the <see cref="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.Type"/> property doesn't hold the value <see cref="F:Sudoku.Runtime.AnalysisServices.NodeType.Sole"/>,
+            this method will return <see langword="true"/>.
+            </para>
             </summary>
+            <seealso cref="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.Type"/>
+            <seealso cref="T:Sudoku.Runtime.AnalysisServices.NodeType"/>
         </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.Cells">
             <summary>

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Concepts.Solving.TechniqueStructures;
 
 /// <summary>
-/// Defines a chain.
+/// Represents an abstract data structure "Chain".
 /// </summary>
 public abstract class Chain :
 	IEquatable<Chain>,
@@ -63,7 +63,6 @@ public abstract class Chain :
 	public abstract bool Equals([NotNullWhen(true)] Chain? other);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public sealed override int GetHashCode()
 	{
 		var hashCodeHandler = new HashCode();

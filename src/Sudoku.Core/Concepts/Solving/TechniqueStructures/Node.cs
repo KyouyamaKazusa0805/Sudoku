@@ -44,12 +44,19 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	public byte Digit { get; }
 
 	/// <summary>
-	/// Indicates whether the current node is a grouped node, which means it uses more than 1 cell.
+	/// <para>Indicates whether the current node is a grouped node, which means it is not a sole candidate node.</para>
+	/// <para>
+	/// This property only checks for the type of the node.
+	/// If the <see cref="Type"/> property doesn't hold the value <see cref="NodeType.Sole"/>,
+	/// this method will return <see langword="true"/>.
+	/// </para>
 	/// </summary>
+	/// <seealso cref="Type"/>
+	/// <seealso cref="NodeType"/>
 	public bool IsGroupedNode
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.Count >= 2;
+		get => Type != NodeType.Sole;
 	}
 
 	/// <summary>
