@@ -72,9 +72,17 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Node comparer && Equals(comparer);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] Node other)
+	public bool Equals(scoped in Node other) => Cells == other.Cells && Digit == other.Digit;
+
+	/// <summary>
+	/// Determines whether two <see cref="Node"/>s are strictly equal.
+	/// </summary>
+	/// <param name="other">The other instance to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool StrictEquals(scoped in Node other)
 		=> FullCells == other.FullCells && Digit == other.Digit && Type == other.Type;
 
 	/// <inheritdoc/>
@@ -103,7 +111,7 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	/// <param name="node">The node that connects with the current node.</param>
 	/// <returns>The possible conclusions found. In default, the property returns an empty array.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion[] PotentialConclusionsWith(scoped in Grid grid, Node node)
+	public Conclusion[] PotentialConclusionsWith(scoped in Grid grid, scoped in Node node)
 	{
 		switch (Type)
 		{
@@ -130,12 +138,24 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 		}
 	}
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	bool IEquatable<Node>.Equals(Node other) => Equals(other);
+
+
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator =="/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(scoped in Node left, scoped in Node right) => left.Equals(right);
+
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator !="/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(scoped in Node left, scoped in Node right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Node left, Node right) => left.Equals(right);
+	static bool IEqualityOperators<Node, Node>.operator ==(Node left, Node right) => left == right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Node left, Node right) => !(left == right);
+	static bool IEqualityOperators<Node, Node>.operator !=(Node left, Node right) => left != right;
 }

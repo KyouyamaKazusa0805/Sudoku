@@ -5691,8 +5691,15 @@
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.Equals(Sudoku.Concepts.Solving.TechniqueStructures.Node)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.Equals(Sudoku.Concepts.Solving.TechniqueStructures.Node@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.StrictEquals(Sudoku.Concepts.Solving.TechniqueStructures.Node@)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/>s are strictly equal.
+            </summary>
+            <param name="other">The other instance to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.GetHashCode">
             <inheritdoc/>
@@ -5706,7 +5713,7 @@
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.PotentialConclusionsWith(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.TechniqueStructures.Node)">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.PotentialConclusionsWith(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.TechniqueStructures.Node@)">
             <summary>
             Indicates the potential conclusions that cannot be directly applied, but can be applied when a loop is formed.
             </summary>
@@ -5714,10 +5721,19 @@
             <param name="node">The node that connects with the current node.</param>
             <returns>The possible conclusions found. In default, the property returns an empty array.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.op_Equality(Sudoku.Concepts.Solving.TechniqueStructures.Node,Sudoku.Concepts.Solving.TechniqueStructures.Node)">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.System#IEquatable{Sudoku#Concepts#Solving#TechniqueStructures#Node}#Equals(Sudoku.Concepts.Solving.TechniqueStructures.Node)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.op_Inequality(Sudoku.Concepts.Solving.TechniqueStructures.Node,Sudoku.Concepts.Solving.TechniqueStructures.Node)">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.op_Equality(Sudoku.Concepts.Solving.TechniqueStructures.Node@,Sudoku.Concepts.Solving.TechniqueStructures.Node@)">
+            <inheritdoc cref="M:System.IEqualityOperators`2.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.op_Inequality(Sudoku.Concepts.Solving.TechniqueStructures.Node@,Sudoku.Concepts.Solving.TechniqueStructures.Node@)">
+            <inheritdoc cref="M:System.IEqualityOperators`2.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.System#IEqualityOperators{Sudoku#Concepts#Solving#TechniqueStructures#Node,Sudoku#Concepts#Solving#TechniqueStructures#Node}#op_Equality(Sudoku.Concepts.Solving.TechniqueStructures.Node,Sudoku.Concepts.Solving.TechniqueStructures.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.System#IEqualityOperators{Sudoku#Concepts#Solving#TechniqueStructures#Node,Sudoku#Concepts#Solving#TechniqueStructures#Node}#op_Inequality(Sudoku.Concepts.Solving.TechniqueStructures.Node,Sudoku.Concepts.Solving.TechniqueStructures.Node)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.QiuDeadlyPattern">
