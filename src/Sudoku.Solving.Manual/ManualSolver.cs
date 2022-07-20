@@ -417,16 +417,16 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		// :(
 		stopwatch.Stop();
 
-#pragma warning disable CS0618
 		return resultBase with
 		{
 			IsSolved = false,
+#pragma warning disable CS0618
 			FailedReason = FailedReason.PuzzleIsTooHard,
+#pragma warning restore CS0618
 			ElapsedTime = stopwatch.Elapsed,
 			Steps = ImmutableArray.CreateRange(recordedSteps),
 			StepGrids = ImmutableArray.CreateRange(stepGrids)
 		};
-#pragma warning restore CS0618
 	}
 
 	/// <summary>
