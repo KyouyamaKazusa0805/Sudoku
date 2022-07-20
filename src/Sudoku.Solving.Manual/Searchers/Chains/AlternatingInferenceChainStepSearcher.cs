@@ -440,9 +440,12 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		static int[] getChainIds(int[] onToOff, int[] offToOn, int id)
 		{
 			var resultList = new List<int>(12) { id };
-			for (var (i, temp, revisit) = (0, id, false); temp != id || !revisit; i++)
+
+			int i = 0, temp = id;
+			bool revisit = false;
+			while (temp != id || !revisit)
 			{
-				temp = ((i & 1) == 0 ? onToOff : offToOn)[temp];
+				temp = ((i++ & 1) == 0 ? onToOff : offToOn)[temp];
 
 				revisit = true;
 
