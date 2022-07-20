@@ -194,7 +194,7 @@ public sealed class AlternatingInferenceChain : Chain
 	public ImmutableArray<Node> RealChainNodes
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ImmutableArray.Create(_nodes[IsStrong ? .. : 1..^1]);
+		get => ImmutableArray.Create(IsStrong ? _nodes : _nodes[1..^1]);
 	}
 
 
