@@ -10410,6 +10410,12 @@
             </para>
             </summary>
         </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.SearchingOptions.SeparatedStepSearcherPriority">
+            <summary>
+            Indicates the custom priority value. This property is used for a comparison between two step searchers
+            when they hold a same priority value.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.Stableness">
             <summary>
             Defines a stableness of a technique.

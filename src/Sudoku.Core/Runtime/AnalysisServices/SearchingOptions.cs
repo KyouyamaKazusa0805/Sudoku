@@ -35,9 +35,15 @@
 /// when the property <see cref="EnabledArea"/> isn't <see cref="EnabledArea.Default"/>.
 /// </para>
 /// </param>
-[StructLayout(LayoutKind.Explicit)]
 public readonly record struct SearchingOptions(
-	[field: FieldOffset(5)] int Priority,
-	[field: FieldOffset(1)] DisplayingLevel DisplayingLevel,
-	[field: FieldOffset(0)] EnabledArea EnabledArea = EnabledArea.Default | EnabledArea.Gathering,
-	[field: FieldOffset(2)] DisabledReason DisabledReason = DisabledReason.None);
+	int Priority,
+	DisplayingLevel DisplayingLevel,
+	EnabledArea EnabledArea = EnabledArea.Default | EnabledArea.Gathering,
+	DisabledReason DisabledReason = DisabledReason.None)
+{
+	/// <summary>
+	/// Indicates the custom priority value. This property is used for a comparison between two step searchers
+	/// when they hold a same priority value.
+	/// </summary>
+	public int SeparatedStepSearcherPriority { get; init; }
+}

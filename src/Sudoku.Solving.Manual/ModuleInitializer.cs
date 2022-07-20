@@ -85,6 +85,11 @@ internal static class ModuleInitializer
 									).SetValue(instance, propertyValue);
 								}
 
+								instance.Options = instance.Options with
+								{
+									SeparatedStepSearcherPriority = attributeInstance.Priority
+								};
+
 								break;
 							}
 						}
@@ -109,7 +114,15 @@ internal static class ModuleInitializer
 		}
 
 		// Assign the result.
-		listOfStepSearchers.Sort(static (s1, s2) => s1.Options.Priority - s2.Options.Priority);
+		listOfStepSearchers.Sort(stepSearcherOrderingComparison);
 		StepSearcherPool.Collection = listOfStepSearchers.ToArray();
+
+
+		static int stepSearcherOrderingComparison(IStepSearcher s1, IStepSearcher s2)
+		{
+			_ = s1.Options is { Priority: var a1, SeparatedStepSearcherPriority: var a2 };
+			_ = s2.Options is { Priority: var b1, SeparatedStepSearcherPriority: var b2 };
+			return a1 * 1000 + a2 - b1 * 1000 + b2;
+		}
 	}
 }
