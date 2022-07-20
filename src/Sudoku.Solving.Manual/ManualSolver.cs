@@ -310,13 +310,28 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 			{
 				return ex switch
 				{
-					NotImplementedException or NotSupportedException
-						=> result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
-					WrongStepException { WrongStep: var ws } castedException
-						=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, WrongStep = ws },
-					OperationCanceledException
-						=> result with { IsSolved = false, FailedReason = FailedReason.UserCancelled },
-					_ => result with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown, UnhandledException = ex }
+					NotImplementedException or NotSupportedException => result with
+					{
+						IsSolved = false,
+						FailedReason = FailedReason.NotImplemented
+					},
+					WrongStepException { WrongStep: var ws } castedException => result with
+					{
+						IsSolved = false,
+						FailedReason = FailedReason.WrongStep,
+						WrongStep = ws
+					},
+					OperationCanceledException => result with
+					{
+						IsSolved = false,
+						FailedReason = FailedReason.UserCancelled
+					},
+					_ => result with
+					{
+						IsSolved = false,
+						FailedReason = FailedReason.ExceptionThrown,
+						UnhandledException = ex
+					}
 				};
 			}
 		}
