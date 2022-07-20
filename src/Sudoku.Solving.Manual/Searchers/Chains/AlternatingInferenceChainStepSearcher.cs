@@ -94,6 +94,33 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	private readonly Dictionary<int, HashSet<int>?> _weakInferences = new();
 
 	/// <summary>
+	/// Indicates a list of self node conversion table.
+	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// The dictionary stores a list of relations that can converts from the node specified as ID
+	/// to the target node specified as the other ID value, via the specified node relation.
+	/// </para>
+	/// <para>
+	/// This list is used for checking for advanced nodes' relations. For example, ALS node.
+	/// Due to the design of the type <see cref="Node"/>, we can just check what cells and digit being used
+	/// to determine whether two nodes are same. This way of the design is used because we are desired
+	/// to combine advanced nodes to normal nodes. If the rule of the equality checking not only checks
+	/// cells and digit being used, but the kind of the node, the advanced nodes may not be well-combined.
+	/// </para>
+	/// <para>
+	/// When we construct an AIC, we should consider to store the advanced relation rule
+	/// (i.e. the reason why they are formed a strong or weak inference) between two adjacent nodes,
+	/// in order to get the final conversion from the normal node to the advanced node.
+	/// Before forming an real and correct AIC structure, we can only use the normal nodes.
+	/// This is why we should store the advanced relation for this: advanced nodes can be gotten
+	/// from this field. This table is used for this case.
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="Node"/>
+	private readonly Dictionary<int, Dictionary<AdjacentNodesRelation, int>> _advancedSelfNodes = new();
+
+	/// <summary>
 	/// Indicates the lookup table that can get the target ID value
 	/// via the corresponding <see cref="Node"/> instance.
 	/// </summary>
@@ -103,7 +130,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// <summary>
 	/// Indicates all possible found chains, that stores the IDs of the each node.
 	/// </summary>
-	private readonly List<(int[] ChainIds, bool StartsWithWeakInference)> _foundChains = new();
+	private readonly List<(int[] Ids, AdjacentNodesRelation[][]? RelationsMap, bool WeakStart)> _foundChains = new();
 
 	/// <summary>
 	/// Indicates the global ID value.
@@ -126,8 +153,45 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// <inheritdoc/>
 	public SearcherNodeTypes NodeTypes { get; init; }
 
+	/// <summary>
+	/// Determines whether the current step searcher may contains self node relations.
+	/// </summary>
+	private bool MayContainSelfNodes
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => NodeTypes >= SearcherNodeTypes.LockedSet;
+	}
+
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// <para><b>Developer notes</b></para>
+	/// <para>
+	/// This method use a very simple method to search for AICs. We should treat all AICs
+	/// as "specialized" discontinuous nice loops. In this way we can get two kinds of chains:
+	/// <list type="number">
+	/// <item>
+	/// Type 1:
+	/// <code>
+	///   A
+	///  / \
+	/// B===C
+	/// </code>
+	/// (Strong link <c>B == C</c>, eliminate A)
+	/// </item>
+	/// <item>
+	/// Type 2:
+	/// <code>
+	///   A
+	/// // \\
+	/// B---C
+	/// </code>
+	/// (Strong link <c>A == B -- C == A</c>, set A)
+	/// </item>
+	/// </list>
+	/// We should search for those two kinds of chains, and then encapsulates to a human-friendly view.
+	/// </para>
+	/// </remarks>
 	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		try
@@ -143,7 +207,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			// Gather strong and weak links.
 			GatherInferences_Sole(grid);
 			GatherInferences_LockedCandidates();
-			GatherInferences_LockedSet();
+			GatherInferences_LockedSet(grid);
 
 			// Remove IDs if they don't appear in the lookup table.
 			TrimLookup(_weakInferences);
@@ -153,14 +217,20 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			Bfs();
 
 			var tempList = new Dictionary<AlternatingInferenceChain, ConclusionList>();
-			foreach (var (nids, startsWithWeak) in _foundChains)
+			foreach (var (nids, relationsMap, startsWithWeak) in _foundChains)
 			{
-				var aic = new AlternatingInferenceChain(from nid in nids select _nodeLookup[nid]!.Value, !startsWithWeak);
-				if (aic.GetConclusions(grid) is var conclusions and not []
-					&& !tempList.ContainsKey(aic)
-					&& !aic.IsRedundant)
+				var aics = GatherAics(nids, !startsWithWeak, relationsMap);
+				if (aics is null)
 				{
-					tempList.Add(aic, conclusions);
+					continue;
+				}
+
+				foreach (var aic in aics)
+				{
+					if (aic.GetConclusions(grid) is var conclusions and not [] && !tempList.ContainsKey(aic))
+					{
+						tempList.Add(aic, conclusions);
+					}
 				}
 			}
 
@@ -213,8 +283,15 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// <param name="a">The first node to be constructed as a strong inference.</param>
 	/// <param name="b">The second node to be constructed as a strong inference.</param>
 	/// <param name="inferences">The inferences list you want to add.</param>
+	/// <returns>
+	/// Returns a pair of IDs that describes for the two nodes
+	/// <paramref name="a"/> and <paramref name="b"/> registered.
+	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void AppendInference(scoped in Node a, scoped in Node b, Dictionary<int, HashSet<int>?> inferences)
+	private (int AId, int BId) AppendInference(
+		scoped in Node a,
+		scoped in Node b,
+		Dictionary<int, HashSet<int>?> inferences)
 	{
 		int bId;
 		if (_idLookup.TryGetValue(a, out int aId))
@@ -224,10 +301,12 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				if (inferences.ContainsKey(aId))
 				{
 					(inferences[aId] ??= new()).Add(bId);
+					return (aId, bId);
 				}
 				else
 				{
 					inferences.Add(aId, new() { bId });
+					return (aId, bId);
 				}
 			}
 			else
@@ -239,10 +318,12 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				if (inferences.ContainsKey(aId))
 				{
 					(inferences[aId] ??= new()).Add(bId);
+					return (aId, bId);
 				}
 				else
 				{
 					inferences.Add(aId, new() { bId });
+					return (aId, bId);
 				}
 			}
 		}
@@ -257,10 +338,12 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				if (inferences.ContainsKey(aId))
 				{
 					(inferences[aId] ??= new()).Add(bId);
+					return (aId, bId);
 				}
 				else
 				{
 					inferences.Add(aId, new() { bId });
+					return (aId, bId);
 				}
 			}
 			else
@@ -272,12 +355,38 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				if (inferences.ContainsKey(aId))
 				{
 					(inferences[aId] ??= new()).Add(bId);
+					return (aId, bId);
 				}
 				else
 				{
 					inferences.Add(aId, new() { bId });
+					return (aId, bId);
 				}
 			}
+		}
+	}
+
+	/// <summary>
+	/// Append the current node specified as ID value into the field <see cref="_advancedSelfNodes"/>.
+	/// </summary>
+	/// <param name="aId">The specified ID value.</param>
+	/// <param name="bId">The other ID value.</param>
+	/// <param name="relation">
+	/// The advanced relation. The value cannot be <see cref="AdjacentNodesRelation.Normal"/>.
+	/// </param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void AppendAsAdvancedNode(int aId, int bId, AdjacentNodesRelation relation)
+	{
+		if (_advancedSelfNodes.TryGetValue(aId, out var dic))
+		{
+			if (!dic.ContainsKey(relation))
+			{
+				dic.Add(relation, bId);
+			}
+		}
+		else
+		{
+			_advancedSelfNodes.Add(aId, new() { { relation, bId } });
 		}
 	}
 
@@ -286,16 +395,19 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// </summary>
 	private void Bfs()
 	{
-		// Rend the array as the light-weighted linked list,
-		// where the indices correspond to the node IDs.
-		// For example, if the chain uses IDs 1, 3, 6 and 10, the linked list will be like:
-		// [1] -> 3, [3] -> 6, [6] -> 10, [10] -> 1.
 		Unsafe.SkipInit(out int[] onToOff);
 		Unsafe.SkipInit(out int[] offToOn);
+		Unsafe.SkipInit(out AdjacentNodesRelation[][] onToOffRelations);
+		Unsafe.SkipInit(out AdjacentNodesRelation[][] offToOnRelations);
 		try
 		{
+			// Rend the array as the light-weighted linked list, where the indices correspond to the node IDs.
+			// For example, if the chain uses IDs 1, 3, 6 and 10, the linked list will be like:
+			// [1] -> 3, [3] -> 6, [6] -> 10, [10] -> 1.
 			onToOff = ArrayPool<int>.Shared.Rent(MaxCapacity);
 			offToOn = ArrayPool<int>.Shared.Rent(MaxCapacity);
+			onToOffRelations = ArrayPool<AdjacentNodesRelation[]>.Shared.Rent(MaxCapacity);
+			offToOnRelations = ArrayPool<AdjacentNodesRelation[]>.Shared.Rent(MaxCapacity);
 
 			// Iterate on each node to get the chain, using breadth-first searching algorithm.
 			for (int id = 0; id < _globalId; id++)
@@ -304,14 +416,18 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				{
 					Array.Fill(onToOff, -1);
 					Array.Fill(offToOn, -1);
-					bfsWeakStart(onToOff, offToOn, id);
+					Array.Fill(onToOffRelations, null!);
+					Array.Fill(offToOnRelations, null!);
+					bfsWeakStart(onToOff, offToOn, onToOffRelations, offToOnRelations, id);
 				}
 
 				if (_weakInferences.ContainsKey(id))
 				{
 					Array.Fill(onToOff, -1);
 					Array.Fill(offToOn, -1);
-					bfsStrongStart(onToOff, offToOn, id);
+					Array.Fill(onToOffRelations, null!);
+					Array.Fill(offToOnRelations, null!);
+					bfsStrongStart(onToOff, offToOn, onToOffRelations, offToOnRelations, id);
 				}
 			}
 		}
@@ -320,10 +436,17 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			// Return the rent memory.
 			ArrayPool<int>.Shared.Return(onToOff);
 			ArrayPool<int>.Shared.Return(offToOn);
+			ArrayPool<AdjacentNodesRelation[]>.Shared.Return(onToOffRelations);
+			ArrayPool<AdjacentNodesRelation[]>.Shared.Return(offToOnRelations);
 		}
 
 
-		void bfsWeakStart(int[] onToOff, int[] offToOn, int id)
+		void bfsWeakStart(
+			int[] onToOff,
+			int[] offToOn,
+			AdjacentNodesRelation[][] onToOffRelations,
+			AdjacentNodesRelation[][] offToOnRelations,
+			int id)
 		{
 			using scoped var pendingOn = new Bag<int>();
 			using scoped var pendingOff = new Bag<int>();
@@ -345,8 +468,10 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							{
 								// Found.
 								onToOff[id] = currentId;
+								onToOffRelations[id] = GetAdjacentRelations(currentId, id);
 
-								_foundChains.Add((getChainIds(onToOff, offToOn, id), true));
+								var (a, b) = getChainIdAndRelations(onToOff, offToOn, onToOffRelations, offToOnRelations, id);
+								_foundChains.Add((a, b, true));
 
 								return;
 							}
@@ -354,6 +479,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							if (onToOff[nextId] == -1)
 							{
 								onToOff[nextId] = currentId;
+								onToOffRelations[nextId] = GetAdjacentRelations(currentId, nextId);
 								pendingOff.Add(nextId);
 							}
 						}
@@ -372,6 +498,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							if (offToOn[nextId] == -1)
 							{
 								offToOn[nextId] = currentId;
+								offToOnRelations[nextId] = GetAdjacentRelations(currentId, nextId);
 								pendingOn.Add(nextId);
 							}
 						}
@@ -380,7 +507,12 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			}
 		}
 
-		void bfsStrongStart(int[] onToOff, int[] offToOn, int id)
+		void bfsStrongStart(
+			int[] onToOff,
+			int[] offToOn,
+			AdjacentNodesRelation[][] onToOffRelations,
+			AdjacentNodesRelation[][] offToOnRelations,
+			int id)
 		{
 			using scoped var pendingOn = new Bag<int>();
 			using scoped var pendingOff = new Bag<int>();
@@ -402,8 +534,10 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							{
 								// Found.
 								offToOn[id] = currentId;
+								offToOnRelations[id] = GetAdjacentRelations(currentId, id);
 
-								_foundChains.Add((getChainIds(offToOn, onToOff, id), false));
+								var (a, b) = getChainIdAndRelations(offToOn, onToOff, offToOnRelations, onToOffRelations, id);
+								_foundChains.Add((a, b, false));
 
 								return;
 							}
@@ -411,6 +545,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							if (offToOn[nextId] == -1)
 							{
 								offToOn[nextId] = currentId;
+								offToOnRelations[nextId] = GetAdjacentRelations(currentId, nextId);
 								pendingOn.Add(nextId);
 							}
 						}
@@ -429,6 +564,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							if (onToOff[nextId] == -1)
 							{
 								onToOff[nextId] = currentId;
+								onToOffRelations[nextId] = GetAdjacentRelations(currentId, nextId);
 								pendingOff.Add(nextId);
 							}
 						}
@@ -437,23 +573,138 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			}
 		}
 
-		static int[] getChainIds(int[] onToOff, int[] offToOn, int id)
+		static (int[], AdjacentNodesRelation[][]) getChainIdAndRelations(
+			int[] onToOff,
+			int[] offToOn,
+			AdjacentNodesRelation[][] onToOffRelations,
+			AdjacentNodesRelation[][] offToOnRelations,
+			int id)
 		{
 			var resultList = new List<int>(12) { id };
+			var resultRelations = new List<AdjacentNodesRelation[]>(12);
 
 			int i = 0, temp = id;
 			bool revisit = false;
 			while (temp != id || !revisit)
 			{
-				temp = ((i++ & 1) == 0 ? onToOff : offToOn)[temp];
+				temp = ((i & 1) == 0 ? onToOff : offToOn)[temp];
 
 				revisit = true;
 
 				resultList.Add(temp);
+				resultRelations.Add(((i & 1) == 0 ? onToOffRelations : offToOnRelations)[temp]);
+
+				i++;
 			}
 
-			return resultList.ToArray();
+			resultRelations.Insert(0, resultRelations.Remove());
+
+			return (resultList.ToArray(), resultRelations.ToArray());
 		}
+	}
+
+	/// <summary>
+	/// Gets all possible advanced relations between <paramref name="aId"/> and <paramref name="bId"/>.
+	/// If those two nodes don't hold any advanced relations, this method will return an array
+	/// of a single element <see cref="AdjacentNodesRelation.Normal"/>
+	/// (i.e. code <c><![CDATA[new[] { AdjacentNodesRelation.Normal }]]></c>).
+	/// </summary>
+	/// <param name="aId">The first node ID.</param>
+	/// <param name="bId">The second node ID.</param>
+	/// <returns>All possible adjacent node relations.</returns>
+	/// <seealso cref="AdjacentNodesRelation.Normal"/>
+	private AdjacentNodesRelation[] GetAdjacentRelations(int aId, int bId)
+		=> !_advancedSelfNodes.TryGetValue(aId, out var dic)
+			? new[] { AdjacentNodesRelation.Normal }
+			: (from kvp in dic where kvp.Value == bId select kvp.Key).ToArray();
+
+	/// <summary>
+	/// Gather AICs.
+	/// </summary>
+	/// <param name="nodeIds">The node IDs.</param>
+	/// <param name="isStrong">Indicates whether the AIC starts with strong inference.</param>
+	/// <param name="relationsMap">The relation map.</param>
+	/// <returns>The final list of AICs.</returns>
+	private List<AlternatingInferenceChain>? GatherAics(
+		int[] nodeIds,
+		bool isStrong,
+		AdjacentNodesRelation[][]? relationsMap)
+	{
+		if (IsNodesRedundant(nodeIds))
+		{
+			return null;
+		}
+
+		var result = new List<AlternatingInferenceChain>();
+		if (MayContainSelfNodes)
+		{
+			if (relationsMap is null)
+			{
+				relationsMap = new AdjacentNodesRelation[nodeIds.Length][];
+				Array.Fill(relationsMap, Array.Empty<AdjacentNodesRelation>());
+			}
+
+			if (relationsMap.All(static array => array.Length == 0))
+			{
+				return new() { new(from id in nodeIds select _nodeLookup[id]!.Value, isStrong) };
+			}
+
+			var selfNodeProjections = new Dictionary<int, (int Index, int Id)[]>();
+			for (int i = 0; i < nodeIds.Length; i++)
+			{
+				int nodeId = nodeIds[i];
+				if (_advancedSelfNodes.TryGetValue(nodeId, out var dic) && i < nodeIds.Length - 1)
+				{
+					selfNodeProjections.Add(
+						nodeId,
+						(
+							from kvp in dic
+							where Array.IndexOf(relationsMap[i], kvp.Key) != -1
+							select (i, kvp.Value)
+						).ToArray()
+					);
+				}
+			}
+
+			var valuesToProduceCombinations = new (int Index, int Id)[selfNodeProjections.Count][];
+			int tempIndex = 0;
+			foreach (var (_, array) in selfNodeProjections)
+			{
+				valuesToProduceCombinations[tempIndex++] = array;
+			}
+			var combinations = Combinatorics.GetExtractedCombinations(valuesToProduceCombinations).ToArray();
+			var finalListOfIds = new List<int[]>();
+			for (int i = 0; i < combinations.Length; i++)
+			{
+				int[] currentArray = new int[nodeIds.Length];
+				Array.Copy(nodeIds, 0, currentArray, 0, nodeIds.Length);
+
+				for (int j = 0; j < combinations[i].Length; j++)
+				{
+					var (index, convertedId) = combinations[i][j];
+					currentArray[index] = convertedId;
+				}
+
+				finalListOfIds.Add(currentArray);
+			}
+
+			foreach (int[] ids in finalListOfIds)
+			{
+				var resultNodes = new Node[ids.Length];
+				for (int i = 0; i < ids.Length; i++)
+				{
+					resultNodes[i] = _nodeLookup[ids[i]]!.Value;
+				}
+
+				result.Add(new(resultNodes, isStrong));
+			}
+		}
+		else
+		{
+			result.Add(new(from id in nodeIds select _nodeLookup[id]!.Value, isStrong));
+		}
+
+		return result;
 	}
 
 	/// <summary>
@@ -600,7 +851,11 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		void checkFirstFourCases(scoped in Cells cells, byte digit, int offset, delegate*<in Cells, short> maskSelector)
+		void checkFirstFourCases(
+			scoped in Cells cells,
+			byte digit,
+			int offset,
+			delegate*<in Cells, short> maskSelector)
 		{
 			short houseMask = maskSelector(cells);
 			switch (PopCount((uint)houseMask))
@@ -704,8 +959,14 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 						(targetRowCells, targetColumnCells) = (HouseMaps[row] & cells, HouseMaps[column] & cells);
 					}
 
-					var node1 = new Node(NodeType.LockedCandidates, digit, targetRowCells);
-					var node2 = new Node(NodeType.LockedCandidates, digit, targetColumnCells);
+					var node1 = new Node(
+						targetRowCells.Count == 1 ? NodeType.Sole : NodeType.LockedCandidates,
+						digit, targetRowCells
+					);
+					var node2 = new Node(
+						targetColumnCells.Count == 1 ? NodeType.Sole : NodeType.LockedCandidates,
+						digit, targetColumnCells
+					);
 
 					AppendInference(node1, node2, _strongInferences);
 					AppendInference(node2, node1, _strongInferences);
@@ -777,13 +1038,69 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// <summary>
 	/// Gather the strong and weak inferences on locked candidates nodes.
 	/// </summary>
-	private void GatherInferences_LockedSet()
+	/// <param name="grid">The grid.</param>
+	private void GatherInferences_LockedSet(scoped in Grid grid)
 	{
 		if (!NodeTypes.Flags(SearcherNodeTypes.LockedSet))
 		{
 			return;
 		}
 
+		int aId, bId;
+		foreach (var als in AlmostLockedSet.Gather(grid))
+		{
+			if (als.IsBivalueCell)
+			{
+				// This case has been handled.
+				continue;
+			}
 
+			var map = als.Map;
+			foreach (short strongInferenceList in als.StrongLinksMask)
+			{
+				int digit1 = TrailingZeroCount(strongInferenceList);
+				int digit2 = strongInferenceList.GetNextSet(digit1);
+				var cells1 = map & CandidatesMap[digit1];
+				var cells2 = map & CandidatesMap[digit2];
+				var node1 = new Node(NodeType.AlmostLockedSets, (byte)digit1, cells1);
+				var node2 = new Node(NodeType.AlmostLockedSets, (byte)digit2, cells2);
+
+				(aId, bId) = AppendInference(node1, node2, _strongInferences);
+				if (cells1.InOneHouse)
+				{
+					AppendAsAdvancedNode(aId, bId, AdjacentNodesRelation.AlmostLockedSet);
+				}
+				(aId, bId) = AppendInference(node2, node1, _strongInferences);
+				if (cells2.InOneHouse)
+				{
+					AppendAsAdvancedNode(aId, bId, AdjacentNodesRelation.AlmostLockedSet);
+				}
+			}
+		}
+	}
+
+
+	/// <summary>
+	/// Checks whether the node list is redundant, which means the list contains duplicate link node IDs
+	/// in the non- endpoint nodes.
+	/// </summary>
+	/// <param name="ids">The list of node IDs.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	private static bool IsNodesRedundant(int[] ids)
+	{
+		var dic = new Dictionary<int, int>();
+		foreach (int id in ids)
+		{
+			if (!dic.ContainsKey(id))
+			{
+				dic.Add(id, 1);
+			}
+			else
+			{
+				dic[id]++;
+			}
+		}
+
+		return dic.Values.Count(static value => value >= 2) > 1;
 	}
 }

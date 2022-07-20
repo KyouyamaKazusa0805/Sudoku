@@ -18,7 +18,7 @@ public sealed class AlmostLockedSet :
 	/// The field is only unused in the property <see cref="StrongLinksMask"/>.
 	/// </summary>
 	/// <seealso cref="StrongLinksMask"/>
-	private static readonly int[] StrongRelationsCount = { 0, 1, 3, 6, 10, 15, 21, 34, 45 };
+	private static readonly int[] StrongRelationsCount = { 0, 1, 3, 6, 10, 15, 21, 28, 36, 45 };
 
 
 	/// <summary>

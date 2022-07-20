@@ -120,9 +120,24 @@ internal static class ModuleInitializer
 
 		static int stepSearcherOrderingComparison(IStepSearcher s1, IStepSearcher s2)
 		{
-			_ = s1.Options is { Priority: var a1, SeparatedStepSearcherPriority: var a2 };
-			_ = s2.Options is { Priority: var b1, SeparatedStepSearcherPriority: var b2 };
-			return a1 * 1000 + a2 - b1 * 1000 + b2;
+			if (s1.Options.Priority > s2.Options.Priority)
+			{
+				return 1;
+			}
+			else if (s1.Options.Priority < s2.Options.Priority)
+			{
+				return -1;
+			}
+			else if (s1.Options.SeparatedStepSearcherPriority > s2.Options.SeparatedStepSearcherPriority)
+			{
+				return 1;
+			}
+			else if (s1.Options.SeparatedStepSearcherPriority < s2.Options.SeparatedStepSearcherPriority)
+			{
+				return -1;
+			}
+
+			return 0;
 		}
 	}
 }

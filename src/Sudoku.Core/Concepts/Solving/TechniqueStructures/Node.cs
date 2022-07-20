@@ -83,18 +83,9 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(scoped in Node other) => Cells == other.Cells && Digit == other.Digit;
 
-	/// <summary>
-	/// Determines whether two <see cref="Node"/>s are strictly equal.
-	/// </summary>
-	/// <param name="other">The other instance to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool StrictEquals(scoped in Node other)
-		=> FullCells == other.FullCells && Digit == other.Digit && Type == other.Type;
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Cells, Digit, Type);
+	public override int GetHashCode() => HashCode.Combine(Cells, Digit);
 
 	/// <summary>
 	/// Gets the simplified string value that only displays the important information.

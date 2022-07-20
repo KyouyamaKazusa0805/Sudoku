@@ -1,4 +1,4 @@
-﻿namespace System;
+﻿namespace System.Collections;
 
 /// <summary>
 /// Provides extension methods on <see cref="BitArray"/>.

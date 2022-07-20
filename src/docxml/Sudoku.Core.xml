@@ -5287,6 +5287,13 @@
             and ends with another strong inference.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.HasNodeCollision">
+            <summary>
+            Indicates whether the chain has a collision, encountered between start and end node.
+            This property should be satisfied at least the chain is a grouped chain, and at least one of
+            the first and the last node is a grouped node.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.IsContinuousNiceLoop">
             <summary>
             Indicates whether the current chain forms a continuous nice loop.
@@ -5301,16 +5308,6 @@
             <summary>
             Determines whether the current chain is an irregular wing (Chinese: Duan3 Lian4).
             </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.IsRedundant">
-            <summary>
-            Determines whether the chain is redundant.
-            </summary>
-            <remarks>
-            Due to limit of the algorithm, the AIC searcher may find redundant chains,
-            which will contain a digit that uses multiple times. This property is aimed to checking
-            for this case.
-            </remarks>
         </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.Count">
             <inheritdoc/>
@@ -5720,13 +5717,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.Equals(Sudoku.Concepts.Solving.TechniqueStructures.Node@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.StrictEquals(Sudoku.Concepts.Solving.TechniqueStructures.Node@)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/>s are strictly equal.
-            </summary>
-            <param name="other">The other instance to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.GetHashCode">
             <inheritdoc/>
@@ -8603,6 +8593,11 @@
         <member name="P:Sudoku.Resources.Resources.NishioForcingChains">
             <summary>
               Looks up a localized string similar to Nishio Forcing Chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.NodeCollision">
+            <summary>
+              Looks up a localized string similar to Node Collision.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.OrKeywordWithSpaces">
@@ -11685,6 +11680,12 @@
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.GroupedAlternatingInferenceChain">
             <summary>
             Indicates the grouped alternating inference chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.NodeCollision">
+            <summary>
+            Indicates the special case that a grouped alternating inference chain has a collision
+            between start and end node.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.NishioForcingChains">

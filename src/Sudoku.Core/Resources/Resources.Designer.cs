@@ -1699,6 +1699,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Node Collision.
+        /// </summary>
+        internal static string NodeCollision {
+            get {
+                return ResourceManager.GetString("NodeCollision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  or .
         /// </summary>
         internal static string OrKeywordWithSpaces {

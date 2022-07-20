@@ -48,10 +48,15 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup
-		=> this switch { { IsIrregularWing: true } => TechniqueGroup.Wing, _ => TechniqueGroup.AlternatingInferenceChain };
+		=> this switch
+		{
+			{ IsIrregularWing: true } => TechniqueGroup.Wing,
+			_ => TechniqueGroup.AlternatingInferenceChain
+		};
 
 	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags => IsIrregularWing ? TechniqueTags.Wings : TechniqueTags.LongChaining;
+	public override TechniqueTags TechniqueTags
+		=> IsIrregularWing ? TechniqueTags.Wings : TechniqueTags.LongChaining;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode
@@ -78,6 +83,7 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 				=> isGrouped ? Technique.GroupedLocalWing : Technique.LocalWing,
 			{ Chain: { IsGrouped: var isGrouped, IsIrregularWing: true } }
 				=> isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
+			{ Chain.HasNodeCollision: true } => Technique.NodeCollision,
 			{
 				Chain:
 				{

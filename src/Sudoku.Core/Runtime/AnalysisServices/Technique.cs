@@ -1222,6 +1222,12 @@ public enum Technique : short
 	GroupedAlternatingInferenceChain,
 
 	/// <summary>
+	/// Indicates the special case that a grouped alternating inference chain has a collision
+	/// between start and end node.
+	/// </summary>
+	NodeCollision,
+
+	/// <summary>
 	/// Indicates the nishio forcing chains.
 	/// </summary>
 	NishioForcingChains,

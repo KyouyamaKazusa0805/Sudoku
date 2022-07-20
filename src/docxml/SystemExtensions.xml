@@ -837,6 +837,32 @@
             The values you want to add to the end of the collection.
             </param>
         </member>
+        <member name="T:System.Collections.Generic.ListExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.List`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.Remove``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Removes the last element of the list, and return that removed element.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="this">The removed list.</param>
+        </member>
+        <member name="T:System.Collections.BitArrayExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
+            </summary>
+            <seealso cref="T:System.Collections.BitArray"/>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.GetCardinality(System.Collections.BitArray)">
+            <summary>
+            Get the cardinality of the specified <see cref="T:System.Collections.BitArray"/>.
+            </summary>
+            <param name="this">The array.</param>
+            <returns>The total number of bits set <see langword="true"/>.</returns>
+        </member>
         <member name="T:System.Collections.Immutable.ImmutableArrayExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
@@ -1699,19 +1725,6 @@
             <param name="this">The <see cref="T:System.Reflection.MemberInfo"/> instance.</param>
             <param name="genericAttributeType">The generic attribute type.</param>
             <returns>The types of the generic type arguments.</returns>
-        </member>
-        <member name="T:System.BitArrayExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
-            </summary>
-            <seealso cref="T:System.Collections.BitArray"/>
-        </member>
-        <member name="M:System.BitArrayExtensions.GetCardinality(System.Collections.BitArray)">
-            <summary>
-            Get the cardinality of the specified <see cref="T:System.Collections.BitArray"/>.
-            </summary>
-            <param name="this">The array.</param>
-            <returns>The total number of bits set <see langword="true"/>.</returns>
         </member>
         <member name="T:System.DelegateExtensions">
             <summary>

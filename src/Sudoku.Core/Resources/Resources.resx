@@ -1311,4 +1311,7 @@
   <data name="BruteForce" xml:space="preserve">
     <value>Brute Force</value>
   </data>
+  <data name="NodeCollision" xml:space="preserve">
+    <value>Node Collision</value>
+  </data>
 </root>

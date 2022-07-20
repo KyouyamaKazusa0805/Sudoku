@@ -1585,4 +1585,7 @@
     <value>计算机试数</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="NodeCollision" xml:space="preserve">
+    <value>节点重叠</value>
+  </data>
 </root>

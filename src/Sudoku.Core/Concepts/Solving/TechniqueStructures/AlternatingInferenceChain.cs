@@ -75,6 +75,23 @@ public sealed class AlternatingInferenceChain : Chain
 
 #pragma warning disable IDE0055
 	/// <summary>
+	/// Indicates whether the chain has a collision, encountered between start and end node.
+	/// This property should be satisfied at least the chain is a grouped chain, and at least one of
+	/// the first and the last node is a grouped node.
+	/// </summary>
+	public bool HasNodeCollision
+		=> this is
+		{
+			IsStrong: false,
+			RealChainNodes:
+			[
+				{ Cells: var aCells, Digit: var aDigit },
+				..,
+				{ Cells: var bCells, Digit: var bDigit }
+			]
+		} && aDigit == bDigit && (aCells | bCells).InOneHouse && (aCells & bCells) is not [];
+
+	/// <summary>
 	/// Indicates whether the current chain forms a continuous nice loop.
 	/// </summary>
 	public bool IsContinuousNiceLoop
@@ -92,7 +109,7 @@ public sealed class AlternatingInferenceChain : Chain
 			{
 				([var aCell], [var bCell])
 					=> aCell == bCell && aDigit != bDigit || aDigit == bDigit && (aCells | bCells).InOneHouse,
-				_ => aDigit == bDigit && (aCells | bCells).InOneHouse
+				_ => aDigit == bDigit && (aCells | bCells).InOneHouse && (aCells & bCells) is []
 			},
 			// The continuous nice loop must starts with weak links due to the design of the current data structure.
 			_ => false
@@ -115,40 +132,6 @@ public sealed class AlternatingInferenceChain : Chain
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => !IsStrong && RealChainNodes.Length == 5;
-	}
-
-	/// <summary>
-	/// Determines whether the chain is redundant.
-	/// </summary>
-	/// <remarks>
-	/// Due to limit of the algorithm, the AIC searcher may find redundant chains,
-	/// which will contain a digit that uses multiple times. This property is aimed to checking
-	/// for this case.
-	/// </remarks>
-	public bool IsRedundant
-	{
-		get
-		{
-			if (!IsStrong)
-			{
-				return false;
-			}
-
-			var dic = new Dictionary<Node, int>();
-			foreach (var node in _nodes)
-			{
-				if (!dic.ContainsKey(node))
-				{
-					dic.Add(node, 1);
-				}
-				else
-				{
-					dic[node]++;
-				}
-			}
-
-			return dic.Values.Count(static value => value == 2) > 1;
-		}
 	}
 
 	/// <inheritdoc/>
