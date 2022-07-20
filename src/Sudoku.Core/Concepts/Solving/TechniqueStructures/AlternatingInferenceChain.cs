@@ -105,7 +105,7 @@ public sealed class AlternatingInferenceChain : Chain
 	public bool IsGrouped
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _nodes.Any(static node => node.Type != NodeType.Sole);
+		get => _nodes.Any(static node => node.IsGroupedNode);
 	}
 
 	/// <summary>
