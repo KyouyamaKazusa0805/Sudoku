@@ -5111,6 +5111,26 @@
         <member name="M:Sudoku.Concepts.Solving.Step.Formatize(System.Boolean)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation">
+            <summary>
+            Represents a relation between two adjacent nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation.Normal">
+            <summary>
+            Indicates the relation is normal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation.AlmostLockedSet">
+            <summary>
+            Indicates the relation is almost locked set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation.AlmostHiddenSet">
+            <summary>
+            Indicates the relation is almost hidden set.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet">
             <summary>
             Defines a data structure that describes an ALS.
