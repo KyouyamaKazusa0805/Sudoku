@@ -639,10 +639,10 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 		if (nodeIds.Length <= 4)
 		{
-			// Bug fix (But bug is not fixed, only filtered by this condition.
-			// This bug is a weird bug that I can't find out how to reproduce the bug).
-			// At present, the step searcher will find some weird "Normal" AICs that only uses 4 nodes,
-			// but some adjacent node pairs of all nodes are not "Normal" or even incorrect strong or weak
+			// Bug fix (But bug is not fixed, only filtered by this condition).
+			// This bug is a weird one that I can't find out how to reproduce it.
+			// The step searcher may find some weird "Normal" AICs that only contains 4 nodes.
+			// Some adjacent node pairs of this chain are not "Normal" or even incorrect strong or weak
 			// inferences.
 			return null;
 		}
