@@ -357,7 +357,7 @@ public unsafe struct Cells :
 	/// Indicates the covered line.
 	/// </summary>
 	/// <remarks>
-	/// When the covered house can't be found, it'll return <see cref="InvalidFirstSet"/>.
+	/// If the covered house can't be found, it'll return <see cref="InvalidFirstSet"/>.
 	/// </remarks>
 	/// <seealso cref="InvalidFirstSet"/>
 	public readonly int CoveredLine

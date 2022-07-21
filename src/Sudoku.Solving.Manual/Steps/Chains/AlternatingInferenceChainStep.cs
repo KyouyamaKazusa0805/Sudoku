@@ -62,7 +62,6 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 	public override Technique TechniqueCode
 		=> this switch
 		{
-			{ Chain: { IsGrouped: true, Count: 3 } } => Technique.GroupedXyWing,
 			{ Chain: { IsContinuousNiceLoop: true, IsGrouped: var isGrouped } }
 				=> isGrouped ? Technique.GroupedContinuousNiceLoop : Technique.ContinuousNiceLoop,
 			{ IsXChain: true, Chain: { IsGrouped: var isGrouped, IsContinuousNiceLoop: var isCnl } }
@@ -73,6 +72,7 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 					(false, true) => Technique.FishyCycle,
 					_ => Technique.XChain
 				},
+			{ Chain: { IsGrouped: true, Count: 3 } } => Technique.GroupedXyWing,
 			{ IsWWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
 			{ IsMWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
 			{ IsSplitWing: true, Chain.IsGrouped: var isGrouped }

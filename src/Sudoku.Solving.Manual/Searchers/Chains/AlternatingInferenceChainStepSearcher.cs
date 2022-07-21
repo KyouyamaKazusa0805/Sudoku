@@ -39,6 +39,7 @@
 [SeparatedStepSearcher(1, nameof(NodeTypes), SearcherNodeTypeLevel.Normal)]
 [SeparatedStepSearcher(2, nameof(NodeTypes), SearcherNodeTypeLevel.LockedCandidates)]
 [SeparatedStepSearcher(3, nameof(NodeTypes), SearcherNodeTypeLevel.LockedSets)]
+[SeparatedStepSearcher(4, nameof(NodeTypes), SearcherNodeTypeLevel.HiddenSets)]
 public sealed partial class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
 	/// <summary>
@@ -208,6 +209,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			GatherInferences_Sole(grid);
 			GatherInferences_LockedCandidates();
 			GatherInferences_LockedSet(grid);
+			GatherInferences_HiddenSet(grid);
 
 			// Remove IDs if they don't appear in the lookup table.
 			TrimLookup(_weakInferences);
@@ -1036,7 +1038,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	}
 
 	/// <summary>
-	/// Gather the strong and weak inferences on locked candidates nodes.
+	/// Gather strong inferences on almost locked sets nodes.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	private void GatherInferences_LockedSet(scoped in Grid grid)
@@ -1056,7 +1058,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			}
 
 			var map = als.Map;
-			foreach (short strongInferenceList in als.StrongLinksMask)
+			foreach (short strongInferenceList in als.StrongLinks)
 			{
 				int digit1 = TrailingZeroCount(strongInferenceList);
 				int digit2 = strongInferenceList.GetNextSet(digit1);
@@ -1074,6 +1076,39 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				if (cells2.InOneHouse)
 				{
 					AppendAsAdvancedNode(aId, bId, AdjacentNodesRelation.AlmostLockedSet);
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Gather weak inferences on almost hidden set nodes.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	private void GatherInferences_HiddenSet(scoped in Grid grid)
+	{
+		if (!NodeTypes.Flags(SearcherNodeTypes.HiddenSet))
+		{
+			return;
+		}
+
+		int aId, bId;
+		foreach (var ahs in AlmostHiddenSet.Gather(grid))
+		{
+			foreach (var (digit1, cells1, digit2, cells2) in ahs.WeakLinks)
+			{
+				var node1 = new Node(NodeType.AlmostHiddenSets, (byte)digit1, cells1);
+				var node2 = new Node(NodeType.AlmostHiddenSets, (byte)digit2, cells2);
+
+				(aId, bId) = AppendInference(node1, node2, _weakInferences);
+				if (cells1.InOneHouse)
+				{
+					AppendAsAdvancedNode(aId, bId, AdjacentNodesRelation.AlmostHiddenSet);
+				}
+				(aId, bId) = AppendInference(node2, node1, _weakInferences);
+				if (cells2.InOneHouse)
+				{
+					AppendAsAdvancedNode(aId, bId, AdjacentNodesRelation.AlmostHiddenSet);
 				}
 			}
 		}

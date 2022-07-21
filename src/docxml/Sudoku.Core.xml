@@ -890,7 +890,7 @@
             Indicates the covered line.
             </summary>
             <remarks>
-            When the covered house can't be found, it'll return <see cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.InvalidFirstSet"/>.
+            If the covered house can't be found, it'll return <see cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.InvalidFirstSet"/>.
             </remarks>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.InvalidFirstSet"/>
         </member>
@@ -5131,6 +5131,75 @@
             Indicates the relation is almost hidden set.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet">
+            <summary>
+            Defines a data structure that describes an AHS.
+            </summary>
+            <remarks>
+            An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
+            only <c>n</c> digits can be filled into <c>n + 1</c> cells in a house.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.#ctor(System.Int16,System.Int16,Sudoku.Concepts.Collections.Cells@,System.Nullable{Sudoku.Concepts.Collections.Cells}[])">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet"/> instance
+            via the specified digit mask and the map of cells.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="allDigitsMask">All digits appearing in the AHS structure..</param>
+            <param name="map">The map.</param>
+            <param name="digitsMap">The digits' distribution maps.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.House">
+            <summary>
+            Indicates the house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.AllDigitsMask">
+            <summary>
+            Indicates the mask of all digits appeared in the AHS structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.DigitsMask">
+            <summary>
+            Indicates the mask of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.WeakLinks">
+            <summary>
+            Indicates all weak links in this AHS. The return value is described as an array of quadruples,
+            indicating two digits, and cells used in the weak link.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.DigitsMap">
+            <summary>
+            Indicates a dictionary of elements, indicating the cells of digits' own distribution.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.Equals(Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.Gather(Sudoku.Concepts.Collections.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.op_Equality(Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet,Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.op_Inequality(Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet,Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet">
             <summary>
             Defines a data structure that describes an ALS.
@@ -5144,9 +5213,9 @@
         <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.StrongRelationsCount">
             <summary>
             Indicates an array of the total number of the strong relations in an ALS of the different size.
-            The field is only unused in the property <see cref="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.StrongLinksMask"/>.
+            The field is only unused in the property <see cref="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.StrongLinks"/>.
             </summary>
-            <seealso cref="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.StrongLinksMask"/>
+            <seealso cref="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.StrongLinks"/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
             <summary>
@@ -5174,10 +5243,10 @@
             Indicates the mask of digits used.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.StrongLinksMask">
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.StrongLinks">
             <summary>
-            Indicates all strong links in this ALS. The result will be represented
-            as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
+            Indicates all strong links in this ALS.
+            The result will be represented as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.Map">
@@ -5220,11 +5289,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.Gather(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Gathers all possible <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet"/>s in the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>All possible found <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.op_Equality(Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet,Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet)">
             <inheritdoc/>
@@ -5638,6 +5703,19 @@
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ITechniquePatternGatherable`1">
+            <summary>
+            Describes a technique pattern that can be gather-able.
+            </summary>
+            <typeparam name="TTechniquePattern">The type of the technique pattern.</typeparam>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ITechniquePatternGatherable`1.Gather(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Gathers all possible <typeparamref name="TTechniquePattern"/>s in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All possible found <typeparamref name="TTechniquePattern"/>.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ITechniquePattern`1">
             <summary>
@@ -10209,6 +10287,11 @@
         <member name="F:Sudoku.Runtime.AnalysisServices.NodeType.AlmostLockedSets">
             <summary>
             Indicates the node type is an almost locked sets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.NodeType.AlmostHiddenSets">
+            <summary>
+            Indicates the node type is an almost hidden set.
             </summary>
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.Rarity">

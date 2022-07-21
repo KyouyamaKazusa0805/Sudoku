@@ -23,4 +23,10 @@ public enum NodeType
 	/// </summary>
 	[EnumSwitchExpressionArm("GetName", "Almost locked set")]
 	AlmostLockedSets,
+
+	/// <summary>
+	/// Indicates the node type is an almost hidden set.
+	/// </summary>
+	[EnumSwitchExpressionArm("GetName", "Almost hidden set")]
+	AlmostHiddenSets,
 }

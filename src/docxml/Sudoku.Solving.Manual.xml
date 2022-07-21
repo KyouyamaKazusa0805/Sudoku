@@ -1041,7 +1041,13 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_LockedSet(Sudoku.Concepts.Collections.Grid@)">
             <summary>
-            Gather the strong and weak inferences on locked candidates nodes.
+            Gather strong inferences on almost locked sets nodes.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_HiddenSet(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Gather weak inferences on almost hidden set nodes.
             </summary>
             <param name="grid">The grid.</param>
         </member>

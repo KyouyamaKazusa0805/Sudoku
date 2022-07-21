@@ -11,13 +11,14 @@
 public sealed class AlmostLockedSet :
 	IEquatable<AlmostLockedSet>,
 	IEqualityOperators<AlmostLockedSet, AlmostLockedSet>,
-	ITechniquePattern<AlmostLockedSet>
+	ITechniquePattern<AlmostLockedSet>,
+	ITechniquePatternGatherable<AlmostLockedSet>
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
-	/// The field is only unused in the property <see cref="StrongLinksMask"/>.
+	/// The field is only unused in the property <see cref="StrongLinks"/>.
 	/// </summary>
-	/// <seealso cref="StrongLinksMask"/>
+	/// <seealso cref="StrongLinks"/>
 	private static readonly int[] StrongRelationsCount = { 0, 1, 3, 6, 10, 15, 21, 28, 36, 45 };
 
 
@@ -31,7 +32,7 @@ public sealed class AlmostLockedSet :
 	/// Indicates the possible cells that can be as the elimination.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public AlmostLockedSet(short digitMask, scoped in Cells map, scoped in Cells possibleEliminationMap)
+	internal AlmostLockedSet(short digitMask, scoped in Cells map, scoped in Cells possibleEliminationMap)
 		=> (DigitsMask, Map, PossibleEliminationMap) = (digitMask, map, possibleEliminationMap);
 
 
@@ -63,10 +64,10 @@ public sealed class AlmostLockedSet :
 	public short DigitsMask { get; }
 
 	/// <summary>
-	/// Indicates all strong links in this ALS. The result will be represented
-	/// as a <see cref="short"/> mask of 9 bits indicating which bits used.
+	/// Indicates all strong links in this ALS.
+	/// The result will be represented as a <see cref="short"/> mask of 9 bits indicating which bits used.
 	/// </summary>
-	public short[] StrongLinksMask
+	public short[] StrongLinks
 	{
 		get
 		{
@@ -161,11 +162,7 @@ public sealed class AlmostLockedSet :
 	}
 
 
-	/// <summary>
-	/// Gathers all possible <see cref="AlmostLockedSet"/>s in the specified grid.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <returns>All possible found <see cref="AlmostLockedSet"/>.</returns>
+	/// <inheritdoc/>
 	public static AlmostLockedSet[] Gather(scoped in Grid grid)
 	{
 		_ = grid is { EmptyCells: var emptyMap, BivalueCells: var bivalueMap };
@@ -178,9 +175,9 @@ public sealed class AlmostLockedSet :
 		}
 
 		// Get all non-bi-value-cell ALSes.
-		for (int houseIndex = 0; houseIndex < 27; houseIndex++)
+		for (int house = 0; house < 27; house++)
 		{
-			if ((HouseMaps[houseIndex] & emptyMap) is not { Count: >= 3 } tempMap)
+			if ((HouseMaps[house] & emptyMap) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
@@ -190,7 +187,7 @@ public sealed class AlmostLockedSet :
 				foreach (var map in tempMap & size)
 				{
 					short blockMask = map.BlockMask;
-					if (IsPow2(blockMask) && houseIndex >= 9)
+					if (IsPow2(blockMask) && house >= 9)
 					{
 						// All ALS cells lying on a box-row or a box-column
 						// will be processed as a block ALS.
@@ -213,8 +210,8 @@ public sealed class AlmostLockedSet :
 						new(
 							digitsMask,
 							map,
-							houseIndex < 9 && coveredLine is >= 9 and not InvalidFirstSet
-								? ((HouseMaps[houseIndex] | HouseMaps[coveredLine]) & emptyMap) - map
+							house < 9 && coveredLine is >= 9 and not InvalidFirstSet
+								? ((HouseMaps[house] | HouseMaps[coveredLine]) & emptyMap) - map
 								: tempMap - map
 						)
 					);
