@@ -1045,14 +1045,6 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.IsNodesRedundant(System.Int32[])">
-            <summary>
-            Checks whether the node list is redundant, which means the list contains duplicate link node IDs
-            in the non- endpoint nodes.
-            </summary>
-            <param name="ids">The list of node IDs.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Options">
             <inheritdoc/>
         </member>
@@ -1144,6 +1136,14 @@
             Other typed inferences are being considered, such as an XYZ-Wing node, etc.
             </para>
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.IsNodesRedundant(System.Int32[])">
+            <summary>
+            Checks whether the node list is redundant, which means the list contains duplicate link node IDs
+            in the non- endpoint nodes.
+            </summary>
+            <param name="ids">The list of node IDs.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IChainStepSearcher">
             <summary>

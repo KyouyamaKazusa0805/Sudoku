@@ -630,7 +630,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		bool isStrong,
 		AdjacentNodesRelation[][]? relationsMap)
 	{
-		if (IsNodesRedundant(nodeIds))
+		if (IAlternatingInferenceChainStepSearcher.IsNodesRedundant(nodeIds))
 		{
 			return null;
 		}
@@ -1077,30 +1077,5 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				}
 			}
 		}
-	}
-
-
-	/// <summary>
-	/// Checks whether the node list is redundant, which means the list contains duplicate link node IDs
-	/// in the non- endpoint nodes.
-	/// </summary>
-	/// <param name="ids">The list of node IDs.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	private static bool IsNodesRedundant(int[] ids)
-	{
-		var dic = new Dictionary<int, int>();
-		foreach (int id in ids)
-		{
-			if (!dic.ContainsKey(id))
-			{
-				dic.Add(id, 1);
-			}
-			else
-			{
-				dic[id]++;
-			}
-		}
-
-		return dic.Values.Count(static value => value >= 2) > 1;
 	}
 }
