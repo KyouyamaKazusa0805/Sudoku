@@ -305,11 +305,5 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 	/// <param name="node">The node.</param>
 	/// <returns>The difficulty of the node.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static decimal NodeDifficultySelector(Node node)
-		=> node.Type switch
-		{
-			NodeType.Sole => 0M,
-			NodeType.LockedCandidates => .1M,
-			NodeType.AlmostLockedSets => .2M
-		};
+	private static decimal NodeDifficultySelector(Node node) => (int)node.Type * .1M;
 }
