@@ -197,7 +197,7 @@ public static class Combinatorics
 	[SkipLocalsInit]
 	public static unsafe IEnumerable<T[]> GetExtractedCombinations<T>(this T[][] @this)
 	{
-		int length = @this.GetLength(0), resultCount = 1;
+		int length = @this.Length, resultCount = 1;
 		int* tempArray = stackalloc int[length];
 		for (int i = 0; i < length; i++)
 		{
