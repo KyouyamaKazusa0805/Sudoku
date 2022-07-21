@@ -134,6 +134,56 @@ public sealed class AlternatingInferenceChain : Chain
 		get => !IsStrong && RealChainNodes.Length == 5;
 	}
 
+	/// <summary>
+	/// Determines whether the chain only uses ALS grouped node as the strong inferences.
+	/// </summary>
+	public bool IsAlmostLockedSetsOnly
+	{
+		get
+		{
+			if (!IsStrong)
+			{
+				return false;
+			}
+
+			var nodes = RealChainNodes;
+			for (int i = 0; i < nodes.Length; i += 2)
+			{
+				if (nodes[i].Type != NodeType.AlmostLockedSets)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+	}
+
+	/// <summary>
+	/// Determines whether the chain only uses AHS grouped node as the weak inferences.
+	/// </summary>
+	public bool IsAlmostHiddenSetsOnly
+	{
+		get
+		{
+			if (!IsStrong)
+			{
+				return false;
+			}
+
+			var nodes = RealChainNodes;
+			for (int i = 1; i < nodes.Length; i += 2)
+			{
+				if (nodes[i].Type != NodeType.AlmostHiddenSets)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+	}
+
 	/// <inheritdoc/>
 	public override int Count
 	{

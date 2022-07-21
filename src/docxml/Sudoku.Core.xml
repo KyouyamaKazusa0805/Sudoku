@@ -5374,6 +5374,16 @@
             Determines whether the current chain is an irregular wing (Chinese: Duan3 Lian4).
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.IsAlmostLockedSetsOnly">
+            <summary>
+            Determines whether the chain only uses ALS grouped node as the strong inferences.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.IsAlmostHiddenSetsOnly">
+            <summary>
+            Determines whether the chain only uses AHS grouped node as the weak inferences.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain.Count">
             <inheritdoc/>
         </member>
@@ -7763,6 +7773,11 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.AlmostHiddenSetsChain">
+            <summary>
+              Looks up a localized string similar to Almost Hidden Sets Chain.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.AlmostLockedPair">
             <summary>
               Looks up a localized string similar to Almost Locked Pair.
@@ -7771,6 +7786,11 @@
         <member name="P:Sudoku.Resources.Resources.AlmostLockedQuadruple">
             <summary>
               Looks up a localized string similar to Almost Locked Quadruple.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.AlmostLockedSetsChain">
+            <summary>
+              Looks up a localized string similar to Almost Locked Sets Chain.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.AlmostLockedSetsWWing">
@@ -11839,6 +11859,16 @@
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.AlmostLockedSetsWWing">
             <summary>
             Indicates the ALS-W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.AlmostLockedSetsChain">
+            <summary>
+            Indicates the ALS chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.AlmostHiddenSetsChain">
+            <summary>
+            Indicates the AHS chain.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.DeathBlossom">

@@ -1314,4 +1314,10 @@
   <data name="NodeCollision" xml:space="preserve">
     <value>Node Collision</value>
   </data>
+  <data name="AlmostLockedSetsChain" xml:space="preserve">
+    <value>Almost Locked Sets Chain</value>
+  </data>
+  <data name="AlmostHiddenSetsChain" xml:space="preserve">
+    <value>Almost Hidden Sets Chain</value>
+  </data>
 </root>

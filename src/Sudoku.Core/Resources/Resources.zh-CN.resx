@@ -1588,4 +1588,12 @@
   <data name="NodeCollision" xml:space="preserve">
     <value>节点重叠</value>
   </data>
+  <data name="AlmostLockedSetsChain" xml:space="preserve">
+    <value>待定数组・链</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="AlmostHiddenSetsChain" xml:space="preserve">
+    <value>隐性待定数组・链</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

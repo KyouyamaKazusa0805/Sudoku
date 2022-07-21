@@ -73,8 +73,10 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 					_ => Technique.XChain
 				},
 			{ Chain: { IsGrouped: true, Count: 3 } } => Technique.GroupedXyWing,
-			{ IsWWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
-			{ IsMWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
+			{ IsWWing: true, Chain.IsGrouped: var isGrouped }
+				=> isGrouped ? Technique.GroupedWWing : Technique.WWing,
+			{ IsMWing: true, Chain.IsGrouped: var isGrouped }
+				=> isGrouped ? Technique.GroupedMWing : Technique.MWing,
 			{ IsSplitWing: true, Chain.IsGrouped: var isGrouped }
 				=> isGrouped ? Technique.GroupedSplitWing : Technique.SplitWing,
 			{ IsHybridWing: true, Chain.IsGrouped: var isGrouped }
@@ -83,6 +85,8 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 				=> isGrouped ? Technique.GroupedLocalWing : Technique.LocalWing,
 			{ Chain: { IsGrouped: var isGrouped, IsIrregularWing: true } }
 				=> isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
+			{ Chain.IsAlmostLockedSetsOnly: true } => Technique.AlmostLockedSetsChain,
+			{ Chain.IsAlmostHiddenSetsOnly: true } => Technique.AlmostHiddenSetsChain,
 			{ Chain.HasNodeCollision: true } => Technique.NodeCollision,
 			{
 				Chain:

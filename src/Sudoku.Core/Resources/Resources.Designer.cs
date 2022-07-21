@@ -61,6 +61,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Almost Hidden Sets Chain.
+        /// </summary>
+        internal static string AlmostHiddenSetsChain {
+            get {
+                return ResourceManager.GetString("AlmostHiddenSetsChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Almost Locked Pair.
         /// </summary>
         internal static string AlmostLockedPair {
@@ -75,6 +84,15 @@ namespace Sudoku.Resources {
         internal static string AlmostLockedQuadruple {
             get {
                 return ResourceManager.GetString("AlmostLockedQuadruple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Sets Chain.
+        /// </summary>
+        internal static string AlmostLockedSetsChain {
+            get {
+                return ResourceManager.GetString("AlmostLockedSetsChain", resourceCulture);
             }
         }
         

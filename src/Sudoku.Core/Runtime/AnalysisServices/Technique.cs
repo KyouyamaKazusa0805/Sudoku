@@ -1298,6 +1298,16 @@ public enum Technique : short
 	AlmostLockedSetsWWing,
 
 	/// <summary>
+	/// Indicates the ALS chain.
+	/// </summary>
+	AlmostLockedSetsChain,
+
+	/// <summary>
+	/// Indicates the AHS chain.
+	/// </summary>
+	AlmostHiddenSetsChain,
+
+	/// <summary>
 	/// Indicates the death blossom.
 	/// </summary>
 	DeathBlossom,
