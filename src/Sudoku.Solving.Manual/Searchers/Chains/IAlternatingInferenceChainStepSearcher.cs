@@ -96,21 +96,6 @@ public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 	/// </summary>
 	/// <param name="ids">The list of node IDs.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	protected static sealed bool IsNodesRedundant(int[] ids)
-	{
-		var dic = new Dictionary<int, int>();
-		foreach (int id in ids)
-		{
-			if (!dic.ContainsKey(id))
-			{
-				dic.Add(id, 1);
-			}
-			else
-			{
-				dic[id]++;
-			}
-		}
-
-		return dic.Values.Count(static value => value >= 2) > 1;
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	protected static sealed bool IsNodesRedundant(int[] ids) => ids[0] == ids[^1] && ids[1] == ids[^2];
 }

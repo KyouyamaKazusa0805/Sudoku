@@ -637,6 +637,16 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			return null;
 		}
 
+		if (nodeIds.Length <= 4)
+		{
+			// Bug fix (But bug is not fixed, only filtered by this condition.
+			// This bug is a weird bug that I can't find out how to reproduce the bug).
+			// At present, the step searcher will find some weird "Normal" AICs that only uses 4 nodes,
+			// but some adjacent node pairs of all nodes are not "Normal" or even incorrect strong or weak
+			// inferences.
+			return null;
+		}
+
 		var result = new List<AlternatingInferenceChain>();
 		if (MayContainSelfNodes)
 		{
