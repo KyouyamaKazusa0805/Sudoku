@@ -141,7 +141,7 @@ public sealed class AlternatingInferenceChain : Chain
 	{
 		get
 		{
-			if (!IsStrong)
+			if (IsStrong)
 			{
 				return false;
 			}
@@ -166,7 +166,7 @@ public sealed class AlternatingInferenceChain : Chain
 	{
 		get
 		{
-			if (!IsStrong)
+			if (IsStrong)
 			{
 				return false;
 			}

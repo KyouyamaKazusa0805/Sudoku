@@ -154,15 +154,6 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// <inheritdoc/>
 	public SearcherNodeTypes NodeTypes { get; init; }
 
-	/// <summary>
-	/// Determines whether the current step searcher may contains self node relations.
-	/// </summary>
-	private bool MayContainSelfNodes
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => NodeTypes >= SearcherNodeTypes.LockedSet;
-	}
-
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -219,9 +210,9 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			Bfs();
 
 			var tempList = new Dictionary<AlternatingInferenceChain, ConclusionList>();
-			foreach (var (nids, relationsMap, startsWithWeak) in _foundChains)
+			foreach (var (nids, _, startsWithWeak) in _foundChains)
 			{
-				var aics = GatherAics(nids, !startsWithWeak, relationsMap);
+				var aics = GatherAics(nids, !startsWithWeak);
 				if (aics is null)
 				{
 					continue;
@@ -625,12 +616,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// </summary>
 	/// <param name="nodeIds">The node IDs.</param>
 	/// <param name="isStrong">Indicates whether the AIC starts with strong inference.</param>
-	/// <param name="relationsMap">The relation map.</param>
 	/// <returns>The final list of AICs.</returns>
-	private List<AlternatingInferenceChain>? GatherAics(
-		int[] nodeIds,
-		bool isStrong,
-		AdjacentNodesRelation[][]? relationsMap)
+	private List<AlternatingInferenceChain>? GatherAics(int[] nodeIds, bool isStrong)
 	{
 		if (IAlternatingInferenceChainStepSearcher.IsNodesRedundant(nodeIds))
 		{
@@ -647,76 +634,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			return null;
 		}
 
-		var result = new List<AlternatingInferenceChain>();
-		if (MayContainSelfNodes)
-		{
-			if (relationsMap is null)
-			{
-				relationsMap = new AdjacentNodesRelation[nodeIds.Length][];
-				Array.Fill(relationsMap, Array.Empty<AdjacentNodesRelation>());
-			}
-
-			if (relationsMap.All(static array => array.Length == 0))
-			{
-				return new() { new(from id in nodeIds select _nodeLookup[id]!.Value, isStrong) };
-			}
-
-			var selfNodeProjections = new Dictionary<int, (int Index, int Id)[]>();
-			for (int i = 0; i < nodeIds.Length; i++)
-			{
-				int nodeId = nodeIds[i];
-				if (_advancedSelfNodes.TryGetValue(nodeId, out var dic) && i < nodeIds.Length - 1)
-				{
-					selfNodeProjections.Add(
-						nodeId,
-						(
-							from kvp in dic
-							where Array.IndexOf(relationsMap[i], kvp.Key) != -1
-							select (i, kvp.Value)
-						).ToArray()
-					);
-				}
-			}
-
-			var valuesToProduceCombinations = new (int Index, int Id)[selfNodeProjections.Count][];
-			int tempIndex = 0;
-			foreach (var (_, array) in selfNodeProjections)
-			{
-				valuesToProduceCombinations[tempIndex++] = array;
-			}
-			var combinations = Combinatorics.GetExtractedCombinations(valuesToProduceCombinations).ToArray();
-			var finalListOfIds = new List<int[]>();
-			for (int i = 0; i < combinations.Length; i++)
-			{
-				int[] currentArray = new int[nodeIds.Length];
-				Array.Copy(nodeIds, 0, currentArray, 0, nodeIds.Length);
-
-				for (int j = 0; j < combinations[i].Length; j++)
-				{
-					var (index, convertedId) = combinations[i][j];
-					currentArray[index] = convertedId;
-				}
-
-				finalListOfIds.Add(currentArray);
-			}
-
-			foreach (int[] ids in finalListOfIds)
-			{
-				var resultNodes = new Node[ids.Length];
-				for (int i = 0; i < ids.Length; i++)
-				{
-					resultNodes[i] = _nodeLookup[ids[i]]!.Value;
-				}
-
-				result.Add(new(resultNodes, isStrong));
-			}
-		}
-		else
-		{
-			result.Add(new(from id in nodeIds select _nodeLookup[id]!.Value, isStrong));
-		}
-
-		return result;
+		return new() { new(from id in nodeIds select _nodeLookup[id]!.Value, isStrong) };
 	}
 
 	/// <summary>
@@ -1077,15 +995,64 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				var node1 = new Node(NodeType.AlmostLockedSets, (byte)digit1, cells1);
 				var node2 = new Node(NodeType.AlmostLockedSets, (byte)digit2, cells2);
 
+				// Strong inferences.
 				(aId, bId) = AppendInference(node1, node2, _strongInferences);
-				if (cells1.InOneHouse)
+				if (cells1.IsInIntersection)
 				{
 					AppendAsAdvancedNode(aId, bId, AdjacentNodesRelation.AlmostLockedSet);
 				}
 				(aId, bId) = AppendInference(node2, node1, _strongInferences);
-				if (cells2.InOneHouse)
+				if (cells2.IsInIntersection)
 				{
 					AppendAsAdvancedNode(aId, bId, AdjacentNodesRelation.AlmostLockedSet);
+				}
+
+				// Weak inferences if worth.
+				if (PopCount((uint)cells1.CoveredHouses) == 1)
+				{
+					int coveredHouse = TrailingZeroCount(cells1.CoveredHouses);
+					var uncoveredCells = HouseMaps[coveredHouse] - cells1;
+					foreach (var cells in uncoveredCells | uncoveredCells.Count)
+					{
+						if (!cells.IsInIntersection)
+						{
+							// Filters the cases that the target elimination node are not locked candidates.
+							// They can also be used in chaining, but most of scenarios they are useless.
+							continue;
+						}
+
+						var tempNode = new Node(
+							cells.Count == 1 ? NodeType.Sole : NodeType.LockedCandidates,
+							(byte)digit1,
+							cells
+						);
+
+						AppendInference(node1, tempNode, _weakInferences);
+						AppendInference(tempNode, node1, _weakInferences);
+					}
+				}
+				if (PopCount((uint)cells2.CoveredHouses) == 1)
+				{
+					int coveredHouse = TrailingZeroCount(cells2.CoveredHouses);
+					var uncoveredCells = HouseMaps[coveredHouse] - cells2;
+					foreach (var cells in uncoveredCells | uncoveredCells.Count)
+					{
+						if (!cells.IsInIntersection)
+						{
+							// Filters the cases that the target elimination node are not locked candidates.
+							// They can also be used in chaining, but most of scenarios they are useless.
+							continue;
+						}
+						
+						var tempNode = new Node(
+							cells.Count == 1 ? NodeType.Sole : NodeType.LockedCandidates,
+							(byte)digit2,
+							cells
+						);
+
+						AppendInference(node2, tempNode, _weakInferences);
+						AppendInference(tempNode, node2, _weakInferences);
+					}
 				}
 			}
 		}

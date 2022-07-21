@@ -858,6 +858,12 @@
             </summary>
             <seealso cref="M:Sudoku.Concepts.Collections.Cells.AllSetsAreInOneHouse(System.Int32@)"/>
         </member>
+        <member name="P:Sudoku.Concepts.Collections.Cells.IsInIntersection">
+            <summary>
+            Determines whether the current list of cells are all lie in an intersection area,
+            i.e. a locked candidates.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Collections.Cells.BlockMask">
             <summary>
             Indicates the mask of block that all cells in this collection spanned.

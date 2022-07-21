@@ -273,6 +273,16 @@ public unsafe struct Cells :
 	}
 
 	/// <summary>
+	/// Determines whether the current list of cells are all lie in an intersection area,
+	/// i.e. a locked candidates.
+	/// </summary>
+	public bool IsInIntersection
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Count <= 3 && PopCount((uint)CoveredHouses) == 2;
+	}
+
+	/// <summary>
 	/// Indicates the mask of block that all cells in this collection spanned.
 	/// </summary>
 	/// <remarks>

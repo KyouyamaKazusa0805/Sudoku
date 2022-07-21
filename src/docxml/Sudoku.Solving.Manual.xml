@@ -922,11 +922,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.NodeTypes">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.MayContainSelfNodes">
-            <summary>
-            Determines whether the current step searcher may contains self node relations.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
@@ -1002,13 +997,12 @@
             <returns>All possible adjacent node relations.</returns>
             <seealso cref="F:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation.Normal"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherAics(System.Int32[],System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation[][])">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherAics(System.Int32[],System.Boolean)">
             <summary>
             Gather AICs.
             </summary>
             <param name="nodeIds">The node IDs.</param>
             <param name="isStrong">Indicates whether the AIC starts with strong inference.</param>
-            <param name="relationsMap">The relation map.</param>
             <returns>The final list of AICs.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_Sole(Sudoku.Concepts.Collections.Grid@)">
