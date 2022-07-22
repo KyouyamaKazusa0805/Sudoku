@@ -901,7 +901,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				AppendInference(node2, node1, _strongInferences);
 
 				// Weak inferences if worth.
-				if (PopCount((uint)cells1.CoveredHouses) == 1)
+				if (!cells1.IsInIntersection)
 				{
 					int coveredHouse = TrailingZeroCount(cells1.CoveredHouses);
 					var uncoveredCells = HouseMaps[coveredHouse] - cells1;
@@ -924,7 +924,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 						AppendInference(tempNode, node1, _weakInferences);
 					}
 				}
-				if (PopCount((uint)cells2.CoveredHouses) == 1)
+				if (!cells2.IsInIntersection)
 				{
 					int coveredHouse = TrailingZeroCount(cells2.CoveredHouses);
 					var uncoveredCells = HouseMaps[coveredHouse] - cells2;
@@ -1043,7 +1043,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		bool checkForAurCase1(scoped in Grid grid, int[] cellsArray, short otherDigitsMask)
+		void checkForAurCase1(scoped in Grid grid, int[] cellsArray, short otherDigitsMask)
 		{
 			switch (PopCount((uint)otherDigitsMask))
 			{
@@ -1068,10 +1068,11 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					//
 					// Case 3: PopCount((uint)otherDigitsMask) returns a value greater than 2.
 					// We cannot find any possible AUR nodes in this case.
-					return false;
+					return;
 				}
 			}
 
+			// Strong inferences.
 			int extraDigit1 = TrailingZeroCount(otherDigitsMask);
 			int extraDigit2 = otherDigitsMask.GetNextSet(extraDigit1);
 			var cells1 = CandidatesMap[extraDigit1] & cellsArray;
@@ -1082,7 +1083,36 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			AppendInference(node1, node2, _strongInferences);
 			AppendInference(node2, node1, _strongInferences);
 
-			return true;
+			// Weak inferences if worth.
+			appendWeakInference(cells1, (byte)extraDigit1, node1);
+			appendWeakInference(cells2, (byte)extraDigit2, node2);
+
+
+			void appendWeakInference(scoped in Cells currentCells, byte extraDigit, scoped in Node node)
+			{
+				var uncoveredCells = PopCount((uint)currentCells.CoveredHouses) switch
+				{
+					0 => !currentCells & CandidatesMap[extraDigit],
+					1 => HouseMaps[TrailingZeroCount(currentCells.CoveredHouses)] - currentCells,
+					_ => Cells.Empty
+				};
+				foreach (var cells in uncoveredCells | uncoveredCells.Count)
+				{
+					if (!cells.IsInIntersection)
+					{
+						continue;
+					}
+
+					var tempNode = new Node(
+						cells.Count == 1 ? NodeType.Sole : NodeType.LockedCandidates,
+						extraDigit,
+						cells
+					);
+
+					AppendInference(node, tempNode, _weakInferences);
+					AppendInference(tempNode, node, _weakInferences);
+				}
+			}
 		}
 	}
 }
