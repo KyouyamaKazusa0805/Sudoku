@@ -1027,6 +1027,10 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					// Checks for AUR case 1:
 					// https://github.com/SunnieShine/Sudoku/issues/319#issuecomment-1192217764
 					checkForAurCase1(grid, cellsArray, otherDigitsMask);
+
+					// Checks for AUR case 2:
+					// https://github.com/SunnieShine/Sudoku/issues/319#issuecomment-1192218237
+					checkForAurCase2(grid, cellsArray, comparer);
 				}
 			}
 		}
@@ -1128,6 +1132,51 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					AppendInference(tempNode, node, _weakInferences);
 				}
 			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		void checkForAurCase2(scoped in Grid grid, int[] cellsArray, short digitsMask)
+		{
+			int cellsCountThatContainsOtherDigits = 0;
+			var (extraCell1, extraCell2) = (-1, -1);
+			for (int i = 0; i < 4; i++)
+			{
+				int cell = cellsArray[i];
+				if ((grid.GetCandidates(cell) & ~digitsMask) != 0)
+				{
+					cellsCountThatContainsOtherDigits++;
+					if (cellsCountThatContainsOtherDigits == 1)
+					{
+						extraCell1 = cell;
+					}
+					else if (cellsCountThatContainsOtherDigits == 2)
+					{
+						extraCell2 = cell;
+					}
+					else
+					{
+						// We only check two cells that contains extra digit.
+						return;
+					}
+				}
+			}
+
+			var extraCells = Cells.Empty + extraCell1 + extraCell2;
+			if (PopCount((uint)extraCells.CoveredHouses) != 2)
+			{
+				// They should be a locked candidates.
+				return;
+			}
+
+			int digit1 = TrailingZeroCount(digitsMask);
+			int digit2 = digitsMask.GetNextSet(digit1);
+			var cells1 = CandidatesMap[digit1] & extraCells;
+			var cells2 = CandidatesMap[digit2] & extraCells;
+			var node1 = new Node(NodeType.AlmostUniqueRectangle, (byte)digit1, cells1, (Cells)cellsArray);
+			var node2 = new Node(NodeType.AlmostUniqueRectangle, (byte)digit2, cells2, (Cells)cellsArray);
+
+			AppendInference(node1, node2, _weakInferences);
+			AppendInference(node2, node1, _weakInferences);
 		}
 	}
 }
