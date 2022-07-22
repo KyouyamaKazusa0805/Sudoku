@@ -1026,27 +1026,27 @@
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXyWing" xml:space="preserve">
-    <value>区块 XY-Wing</value>
+    <value>结构 XY-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedWWing" xml:space="preserve">
-    <value>区块 W-Wing</value>
+    <value>结构 W-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedMWing" xml:space="preserve">
-    <value>区块 M-Wing</value>
+    <value>结构 M-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedLocalWing" xml:space="preserve">
-    <value>区块 Local Wing</value>
+    <value>结构 Local Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedSplitWing" xml:space="preserve">
-    <value>区块 Split Wing</value>
+    <value>结构 Split Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedHybridWing" xml:space="preserve">
-    <value>区块 Hybrid Wing</value>
+    <value>结构 Hybrid Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="UniqueRectangleType1" xml:space="preserve">
@@ -1434,27 +1434,27 @@
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXChain" xml:space="preserve">
-    <value>区块同数链</value>
+    <value>同数结构链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedFishyCycle" xml:space="preserve">
-    <value>区块鱼环</value>
+    <value>结构鱼环</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXyChain" xml:space="preserve">
-    <value>区块双值格链</value>
+    <value>双值格结构链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXyCycle" xml:space="preserve">
-    <value>区块双值格环</value>
+    <value>双值格结构环</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXyXChain" xml:space="preserve">
-    <value>区块首尾异数链</value>
+    <value>首尾异数结构链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedPurpleCow" xml:space="preserve">
-    <value>区块 Purple Cow</value>
+    <value>结构 Purple Cow</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedDiscontinuousNiceLoop" xml:space="preserve">
