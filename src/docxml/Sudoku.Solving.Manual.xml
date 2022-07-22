@@ -863,33 +863,6 @@
             </remarks>
             <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._advancedSelfNodes">
-            <summary>
-            Indicates a list of self node conversion table.
-            </summary>
-            <remarks>
-            <para>
-            The dictionary stores a list of relations that can converts from the node specified as ID
-            to the target node specified as the other ID value, via the specified node relation.
-            </para>
-            <para>
-            This list is used for checking for advanced nodes' relations. For example, ALS node.
-            Due to the design of the type <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/>, we can just check what cells and digit being used
-            to determine whether two nodes are same. This way of the design is used because we are desired
-            to combine advanced nodes to normal nodes. If the rule of the equality checking not only checks
-            cells and digit being used, but the kind of the node, the advanced nodes may not be well-combined.
-            </para>
-            <para>
-            When we construct an AIC, we should consider to store the advanced relation rule
-            (i.e. the reason why they are formed a strong or weak inference) between two adjacent nodes,
-            in order to get the final conversion from the normal node to the advanced node.
-            Before forming an real and correct AIC structure, we can only use the normal nodes.
-            This is why we should store the advanced relation for this: advanced nodes can be gotten
-            from this field. This table is used for this case.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._idLookup">
             <summary>
             Indicates the lookup table that can get the target ID value
@@ -951,6 +924,9 @@
             </list>
             We should search for those two kinds of chains, and then encapsulates to a human-friendly view.
             </para>
+            <para><b>
+            TODO: We should record the relations for the advanced nodes, in order to create a good look.
+            </b></para>
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.TrimLookup(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
@@ -970,32 +946,10 @@
             <paramref name="a"/> and <paramref name="b"/> registered.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.AppendAsAdvancedNode(System.Int32,System.Int32,Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation)">
-            <summary>
-            Append the current node specified as ID value into the field <see cref="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._advancedSelfNodes"/>.
-            </summary>
-            <param name="aId">The specified ID value.</param>
-            <param name="bId">The other ID value.</param>
-            <param name="relation">
-            The advanced relation. The value cannot be <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation.Normal"/>.
-            </param>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Bfs">
             <summary>
             Start to construct the chain using breadth-first searching algorithm.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAdjacentRelations(System.Int32,System.Int32)">
-            <summary>
-            Gets all possible advanced relations between <paramref name="aId"/> and <paramref name="bId"/>.
-            If those two nodes don't hold any advanced relations, this method will return an array
-            of a single element <see cref="F:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation.Normal"/>
-            (i.e. code <c><![CDATA[new[] { AdjacentNodesRelation.Normal }]]></c>).
-            </summary>
-            <param name="aId">The first node ID.</param>
-            <param name="bId">The second node ID.</param>
-            <returns>All possible adjacent node relations.</returns>
-            <seealso cref="F:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation.Normal"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherAics(System.Int32[],System.Boolean)">
             <summary>
