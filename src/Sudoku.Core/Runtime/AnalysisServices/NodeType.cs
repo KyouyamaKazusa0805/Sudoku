@@ -29,4 +29,16 @@ public enum NodeType
 	/// </summary>
 	[EnumSwitchExpressionArm("GetName", "Almost hidden set")]
 	AlmostHiddenSets,
+
+	/// <summary>
+	/// Indicates the node type is an almost unique rectangle.
+	/// </summary>
+	[EnumSwitchExpressionArm("GetName", "Almost unique rectangle")]
+	AlmostUniqueRectangle,
+
+	/// <summary>
+	/// Indicates the node type is an almost avoidable rectangle.
+	/// </summary>
+	[EnumSwitchExpressionArm("GetName", "Almost avoidable rectangle")]
+	AlmostAvoidableRectangle,
 }

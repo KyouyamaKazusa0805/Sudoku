@@ -63,6 +63,13 @@ public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 	/// </description>
 	/// </item>
 	/// <item>
+	/// <term><see cref="SearcherNodeTypes.AvoidableRectangle"/></term>
+	/// <description>
+	/// The strong and weak inferences between 2 nodes, where at least one node
+	/// is an almost avoidable rectangle node.
+	/// </description>
+	/// </item>
+	/// <item>
 	/// <term><see cref="SearcherNodeTypes.XyWing"/></term>
 	/// <description>
 	/// The strong and weak inferences between 2 nodes, where at least one node

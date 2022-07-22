@@ -8,6 +8,8 @@ internal static class SearcherNodeTypeLevel
 	public const SearcherNodeTypes LockedSets = LockedCandidates | SearcherNodeTypes.LockedSet;
 	public const SearcherNodeTypes HiddenSets = LockedSets | SearcherNodeTypes.HiddenSet;
 	public const SearcherNodeTypes UniqueRectangles = HiddenSets | SearcherNodeTypes.UniqueRectangle;
-	public const SearcherNodeTypes RegularWings = UniqueRectangles | SearcherNodeTypes.XyWing | SearcherNodeTypes.XyzWing;
+	public const SearcherNodeTypes AvoidableRectangles = UniqueRectangles | SearcherNodeTypes.AvoidableRectangle;
+	public const SearcherNodeTypes Rectangles = HiddenSets | SearcherNodeTypes.UniqueRectangle | SearcherNodeTypes.AvoidableRectangle;
+	public const SearcherNodeTypes RegularWings = AvoidableRectangles | SearcherNodeTypes.XyWing | SearcherNodeTypes.XyzWing;
 	public const SearcherNodeTypes Kraken = RegularWings | SearcherNodeTypes.Kraken;
 }

@@ -40,6 +40,7 @@
 [SeparatedStepSearcher(2, nameof(NodeTypes), SearcherNodeTypeLevel.LockedCandidates)]
 [SeparatedStepSearcher(3, nameof(NodeTypes), SearcherNodeTypeLevel.LockedSets)]
 [SeparatedStepSearcher(4, nameof(NodeTypes), SearcherNodeTypeLevel.HiddenSets)]
+[SeparatedStepSearcher(5, nameof(NodeTypes), SearcherNodeTypeLevel.UniqueRectangles)]
 public sealed partial class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
 	/// <summary>
@@ -177,6 +178,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			GatherInferences_LockedCandidates();
 			GatherInferences_LockedSet(grid);
 			GatherInferences_HiddenSet(grid);
+			GatherInferences_UniqueRectangle(grid);
 
 			// Remove IDs if they don't appear in the lookup table.
 			TrimLookup(_weakInferences);
@@ -970,6 +972,117 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				AppendInference(node1, node2, _weakInferences);
 				AppendInference(node2, node1, _weakInferences);
 			}
+		}
+	}
+
+	/// <summary>
+	/// Gather strong or weak inferences on almost unique rectangle nodes.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	private void GatherInferences_UniqueRectangle(scoped in Grid grid)
+	{
+		if (!NodeTypes.Flags(SearcherNodeTypes.UniqueRectangle))
+		{
+			return;
+		}
+
+		foreach (int[] cellsArray in UniqueRectanglePatterns)
+		{
+			if (!IUniqueRectangleStepSearcher.CheckPreconditions(grid, cellsArray, false))
+			{
+				continue;
+			}
+
+			// Get all candidates that all four cells appeared.
+			short mask = grid.GetDigitsUnion(cellsArray);
+
+			// Iterate on each possible digit combination.
+			scoped var allDigitsInThem = mask.GetAllSets();
+			for (int i = 0, length = allDigitsInThem.Length; i < length - 1; i++)
+			{
+				int digit1 = allDigitsInThem[i];
+				for (int j = i + 1; j < length; j++)
+				{
+					int digit2 = allDigitsInThem[j];
+
+					// All possible UR patterns should contain at least one cell
+					// with both 'd1' and 'd2' containing digits.
+					short comparer = (short)(1 << digit1 | 1 << digit2);
+					bool isNotPossibleUr = true;
+					foreach (int cell in cellsArray)
+					{
+						if (PopCount((uint)(grid.GetCandidates(cell) & comparer)) == 2)
+						{
+							isNotPossibleUr = false;
+							break;
+						}
+					}
+					if (isNotPossibleUr)
+					{
+						continue;
+					}
+
+					short otherDigitsMask = (short)(grid.GetDigitsUnion(cellsArray) & ~comparer);
+
+					// Checks for AUR case 1:
+					// https://github.com/SunnieShine/Sudoku/issues/319#issuecomment-1192217764
+					checkForAurCase1(grid, cellsArray, otherDigitsMask);
+				}
+			}
+		}
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static bool isUniversalUr(scoped in Grid grid, int[] cellsArray)
+		{
+			short m1 = grid.GetCandidates(cellsArray[0]);
+			short m2 = grid.GetCandidates(cellsArray[1]);
+			short m3 = grid.GetCandidates(cellsArray[2]);
+			short m4 = grid.GetCandidates(cellsArray[3]);
+			return PopCount((uint)m1) == 3 && m1 == m2 && m2 == m3 && m3 == m4;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		bool checkForAurCase1(scoped in Grid grid, int[] cellsArray, short otherDigitsMask)
+		{
+			switch (PopCount((uint)otherDigitsMask))
+			{
+				case 0:
+				case 1 when !isUniversalUr(grid, cellsArray):
+				case > 2:
+				{
+					// Invalid case. There are 3 cases to be invalid:
+					//
+					// Case 1: PopCount((uint)otherDigitsMask) returns 0.
+					// The grid is invalid. We can just throw an exception to report about this,
+					// but this will be handled before searching valid steps. I mean, this invalid
+					// case will be found by ManualSolver instance, and directly exits
+					// to search any possible steps.
+					//
+					// Case 2: PopCount((uint)otherDigitsMask) returns 1.
+					// This will cause the structure to be a UR type 2 or 5,
+					// except one case that all four cells containing the extra digit.
+					// The sketch is:
+					//     abc | abc
+					//     abc | abc
+					//
+					// Case 3: PopCount((uint)otherDigitsMask) returns a value greater than 2.
+					// We cannot find any possible AUR nodes in this case.
+					return false;
+				}
+			}
+
+			int extraDigit1 = TrailingZeroCount(otherDigitsMask);
+			int extraDigit2 = otherDigitsMask.GetNextSet(extraDigit1);
+			var cells1 = CandidatesMap[extraDigit1] & cellsArray;
+			var cells2 = CandidatesMap[extraDigit2] & cellsArray;
+			var node1 = new Node(NodeType.AlmostUniqueRectangle, (byte)extraDigit1, cells1);
+			var node2 = new Node(NodeType.AlmostUniqueRectangle, (byte)extraDigit2, cells2);
+
+			AppendInference(node1, node2, _strongInferences);
+			AppendInference(node2, node1, _strongInferences);
+
+			return true;
 		}
 	}
 }

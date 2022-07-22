@@ -84,7 +84,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			int[] urCells = UniqueRectanglePatterns[index];
 
 			// Check preconditions.
-			if (!CheckPreconditions(grid, urCells, arMode))
+			if (!IUniqueRectangleStepSearcher.CheckPreconditions(grid, urCells, arMode))
 			{
 				continue;
 			}
@@ -93,7 +93,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			short mask = grid.GetDigitsUnion(urCells);
 
 			// Iterate on each possible digit combination.
-			var allDigitsInThem = mask.GetAllSets();
+			scoped var allDigitsInThem = mask.GetAllSets();
 			for (int i = 0, length = allDigitsInThem.Length, innerLength = length - 1; i < innerLength; i++)
 			{
 				int d1 = allDigitsInThem[i];
@@ -238,56 +238,6 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		}
 	}
 
-
-	#region Utilized methods
-	/// <summary>
-	/// Check preconditions.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="urCells">All UR cells.</param>
-	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-	/// <returns>Indicates whether the UR is passed to check.</returns>
-	private static bool CheckPreconditions(scoped in Grid grid, int[] urCells, bool arMode)
-	{
-		byte emptyCountWhenArMode = 0, modifiableCount = 0;
-		foreach (int urCell in urCells)
-		{
-			switch (grid.GetStatus(urCell))
-			{
-				case CellStatus.Given:
-				case CellStatus.Modifiable when !arMode:
-				{
-					return false;
-				}
-				case CellStatus.Empty when arMode:
-				{
-					emptyCountWhenArMode++;
-					break;
-				}
-				case CellStatus.Modifiable:
-				{
-					modifiableCount++;
-					break;
-				}
-			}
-		}
-
-		return modifiableCount != 4 && emptyCountWhenArMode != 4;
-	}
-
-	/// <summary>
-	/// To determine whether the specified house forms a conjugate pair
-	/// of the specified digit, and the cells where they contain the digit
-	/// is same as the given map contains.
-	/// </summary>
-	/// <param name="digit">The digit.</param>
-	/// <param name="map">The map.</param>
-	/// <param name="houseIndex">The house index.</param>
-	/// <returns>A <see cref="bool"/> value.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsConjugatePair(int digit, scoped in Cells map, int houseIndex)
-		=> (HouseMaps[houseIndex] & CandidatesMap[digit]) == map;
-
 	/// <summary>
 	/// Check whether the highlight UR candidates is incomplete.
 	/// </summary>
@@ -302,61 +252,6 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		static bool predicate(CandidateViewNode d)
 			=> d.Identifier is { Mode: IdentifierColorMode.Named, NamedKind: DisplayColorKind.Normal };
 	}
-
-	/// <summary>
-	/// Get a cell that can't see each other.
-	/// </summary>
-	/// <param name="urCells">The UR cells.</param>
-	/// <param name="cell">The current cell.</param>
-	/// <returns>The diagonal cell.</returns>
-	/// <exception cref="ArgumentException">
-	/// Throws when the specified argument <paramref name="cell"/> is invalid.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static int GetDiagonalCell(int[] urCells, int cell)
-		=> cell == urCells[0]
-			? urCells[3]
-			: cell == urCells[1]
-				? urCells[2]
-				: cell == urCells[2]
-					? urCells[1]
-					: urCells[0];
-
-	/// <summary>
-	/// Get whether two cells are in a same house.
-	/// </summary>
-	/// <param name="cell1">The cell 1 to check.</param>
-	/// <param name="cell2">The cell 2 to check.</param>
-	/// <param name="houseIndex">
-	/// The result houses that both two cells lie in. If the cell can't be found, this argument will be 0.
-	/// </param>
-	/// <returns>
-	/// The <see cref="bool"/> value indicating whether the another cell is same house as the current one.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsSameHouseCell(int cell1, int cell2, out int houseIndex)
-	{
-		int v = (Cells.Empty + cell1 + cell2).CoveredHouses;
-		(bool r, houseIndex) = v != 0 ? (true, v) : (false, 0);
-		return r;
-	}
-
-	/// <summary>
-	/// Get all highlight cells.
-	/// </summary>
-	/// <param name="urCells">The all UR cells used.</param>
-	/// <returns>The list of highlight cells.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static IEnumerable<CellViewNode> GetHighlightCells(int[] urCells)
-		=> new CellViewNode[]
-		{
-			new(DisplayColorKind.Normal, urCells[0]),
-			new(DisplayColorKind.Normal, urCells[1]),
-			new(DisplayColorKind.Normal, urCells[2]),
-			new(DisplayColorKind.Normal, urCells[3])
-		};
-	#endregion
-
 
 	#region Basic types implementation
 	/// <summary>
@@ -433,7 +328,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				ImmutableArray.CreateRange(conclusions),
 				ImmutableArray.Create(
 					View.Empty
-						| (arMode ? GetHighlightCells(urCells) : null)
+						| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 						| (arMode ? null : candidateOffsets)
 				),
 				d1,
@@ -522,7 +417,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
 				ImmutableArray.Create(
 					View.Empty
-						| (arMode ? GetHighlightCells(urCells) : null)
+						| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 						| candidateOffsets
 				),
 				d1,
@@ -731,7 +626,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 			{
 				int digit = p[digitIndex];
-				if (!IsConjugatePair(digit, otherCellsMap, houseIndex))
+				if (!IUniqueRectangleStepSearcher.IsConjugatePair(digit, otherCellsMap, houseIndex))
 				{
 					continue;
 				}
@@ -785,7 +680,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.Create(conclusions),
 						ImmutableArray.Create(
 							View.Empty
-								| (arMode ? GetHighlightCells(urCells) : null)
+								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
 						),
@@ -836,7 +731,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		// Get the summary mask.
 		short otherCellsMask = grid.GetDigitsUnion(otherCellsMap);
 
-		// Degenerated to type 1.
+		// Degenerate to type 1.
 		short extraMask = (short)(otherCellsMask ^ comparer);
 		if ((extraMask & extraMask - 1) != 0)
 		{
@@ -847,7 +742,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		int extraDigit = TrailingZeroCount(extraMask);
 		var cellsThatContainsExtraDigit = otherCellsMap & CandidatesMap[extraDigit];
 
-		// Degenerated to type 1.
+		// Degenerate to type 1.
 		if (cellsThatContainsExtraDigit.Count == 1)
 		{
 			return;
@@ -869,7 +764,10 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			foreach (int digit in grid.GetCandidates(cell))
 			{
 				candidateOffsets.Add(
-					new(digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + digit)
+					new(
+						digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+						cell * 9 + digit
+					)
 				);
 			}
 		}
@@ -880,10 +778,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 		accumulator.Add(
 			new UniqueRectangleType2Step(
-				ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
+				ImmutableArray.Create(
+					Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)
+				),
 				ImmutableArray.Create(
 					View.Empty
-						| (arMode ? GetHighlightCells(urCells) : null)
+						| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 						| candidateOffsets
 				),
 				d1,
@@ -953,11 +853,11 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			if (
 				!(
 					isRow
-						&& IsConjugatePair(digit, Cells.Empty + corner1 + o1, house1)
-						&& IsConjugatePair(digit, Cells.Empty + corner2 + o2, house2)
+						&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner1 + o1, house1)
+						&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner2 + o2, house2)
 						|| !isRow
-						&& IsConjugatePair(digit, Cells.Empty + corner1 + o2, house1)
-						&& IsConjugatePair(digit, Cells.Empty + corner2 + o1, house2)
+						&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner1 + o2, house1)
+						&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner2 + o1, house2)
 				)
 			)
 			{
@@ -1006,7 +906,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					ImmutableArray.Create(conclusions),
 					ImmutableArray.Create(
 						View.Empty
-							| (arMode ? GetHighlightCells(urCells) : null)
+							| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 							| candidateOffsets
 							| new HouseViewNode[]
 							{
@@ -1061,7 +961,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			return;
 		}
 
-		int abzCell = GetDiagonalCell(urCells, cornerCell);
+		int abzCell = IUniqueRectangleStepSearcher.GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
 		int r = abzCell.ToHouseIndex(HouseType.Row), c = abzCell.ToHouseIndex(HouseType.Column);
@@ -1078,7 +978,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				continue;
 			}
 
-			if (!IsConjugatePair(digit, map1, m1cl) || !IsConjugatePair(digit, map2, m2cl))
+			if (!IUniqueRectangleStepSearcher.IsConjugatePair(digit, map1, m1cl) || !IUniqueRectangleStepSearcher.IsConjugatePair(digit, map2, m2cl))
 			{
 				continue;
 			}
@@ -1138,7 +1038,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, abzCell, elimDigit)),
 					ImmutableArray.Create(
 						View.Empty
-							| (arMode ? GetHighlightCells(urCells) : null)
+							| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 							| candidateOffsets
 							| new HouseViewNode[] { new(DisplayColorKind.Normal, r), new(DisplayColorKind.Normal, c) }
 					),
@@ -1277,7 +1177,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
 						View.Empty
-							| (arMode ? GetHighlightCells(urCells) : null)
+							| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 							| candidateOffsets
 					),
 					arMode ? Technique.AvoidableRectangle2D : Technique.UniqueRectangle2D,
@@ -1336,7 +1236,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			int cell = corners[cellIndex];
 			foreach (int otherCell in otherCellsMap)
 			{
-				if (!IsSameHouseCell(cell, otherCell, out int houses))
+				if (!IUniqueRectangleStepSearcher.IsSameHouseCell(cell, otherCell, out int houses))
 				{
 					continue;
 				}
@@ -1351,7 +1251,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						int digit = digits[digitIndex];
-						if (!IsConjugatePair(digit, Cells.Empty + cell + otherCell, house))
+						if (!IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + cell + otherCell, house))
 						{
 							continue;
 						}
@@ -1446,7 +1346,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								ImmutableArray.CreateRange(conclusions),
 								ImmutableArray.Create(
 									View.Empty
-										| (arMode ? GetHighlightCells(urCells) : null)
+										| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 										| candidateOffsets
 										| new HouseViewNode(DisplayColorKind.Normal, house)
 								),
@@ -1508,7 +1408,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			int cell = corners[cellIndex];
 			foreach (int otherCell in otherCellsMap)
 			{
-				if (!IsSameHouseCell(cell, otherCell, out int houses))
+				if (!IUniqueRectangleStepSearcher.IsSameHouseCell(cell, otherCell, out int houses))
 				{
 					continue;
 				}
@@ -1523,7 +1423,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						int digit = digits[digitIndex];
-						if (!IsConjugatePair(digit, Cells.Empty + cell + otherCell, house))
+						if (!IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + cell + otherCell, house))
 						{
 							continue;
 						}
@@ -1616,7 +1516,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								ImmutableArray.CreateRange(conclusions),
 								ImmutableArray.Create(
 									View.Empty
-										| (arMode ? GetHighlightCells(urCells) : null)
+										| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 										| candidateOffsets
 										| new HouseViewNode(DisplayColorKind.Normal, house)
 								),
@@ -1760,7 +1660,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
 						View.Empty
-							| (arMode ? GetHighlightCells(urCells) : null)
+							| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 							| candidateOffsets
 					),
 					arMode ? Technique.AvoidableRectangle3X : Technique.UniqueRectangle3X,
@@ -1811,7 +1711,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			return;
 		}
 
-		int abzCell = GetDiagonalCell(urCells, cornerCell);
+		int abzCell = IUniqueRectangleStepSearcher.GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var pairs = stackalloc[] { (d1, d2), (d2, d1) };
 		for (int pairIndex = 0; pairIndex < 2; pairIndex++)
@@ -1820,7 +1720,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
 			var map1 = Cells.Empty + abzCell + abxCell;
 			var map2 = Cells.Empty + abzCell + abyCell;
-			if (!IsConjugatePair(b, map1, map1.CoveredLine) || !IsConjugatePair(a, map2, map2.CoveredLine))
+			if (!IUniqueRectangleStepSearcher.IsConjugatePair(b, map1, map1.CoveredLine)
+				|| !IUniqueRectangleStepSearcher.IsConjugatePair(a, map2, map2.CoveredLine))
 			{
 				continue;
 			}
@@ -1879,7 +1780,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
 						View.Empty
-							| (arMode ? GetHighlightCells(urCells) : null)
+							| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 							| candidateOffsets
 							| new HouseViewNode[]
 							{
@@ -1935,7 +1836,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 		// Step 1: Get the diagonal cell of 'cornerCell' and determine
 		// the existence of strong link.
-		int abzCell = GetDiagonalCell(urCells, cornerCell);
+		int abzCell = IUniqueRectangleStepSearcher.GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
 		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
@@ -1948,7 +1849,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
 				var (a, b) = digitPairs[digitPairIndex];
-				if (!IsConjugatePair(b, linkMap, linkMap.CoveredLine))
+				if (!IUniqueRectangleStepSearcher.IsConjugatePair(b, linkMap, linkMap.CoveredLine))
 				{
 					continue;
 				}
@@ -1956,7 +1857,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				// Step 2: Get the link cell that is adjacent to 'cornerCell'
 				// and check the strong link.
 				var secondLinkMap = Cells.Empty + cornerCell + begin;
-				if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
+				if (!IUniqueRectangleStepSearcher.IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
 				{
 					continue;
 				}
@@ -2010,7 +1911,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, end, a)),
 						ImmutableArray.Create(
 							View.Empty
-								| (arMode ? GetHighlightCells(urCells) : null)
+								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
@@ -2065,7 +1966,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			return;
 		}
 
-		int abzCell = GetDiagonalCell(urCells, cornerCell);
+		int abzCell = IUniqueRectangleStepSearcher.GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
 		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
@@ -2077,13 +1978,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
 				var (a, b) = digitPairs[digitPairIndex];
-				if (!IsConjugatePair(b, linkMap, linkMap.CoveredLine))
+				if (!IUniqueRectangleStepSearcher.IsConjugatePair(b, linkMap, linkMap.CoveredLine))
 				{
 					continue;
 				}
 
 				var secondLinkMap = Cells.Empty + cornerCell + end;
-				if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
+				if (!IUniqueRectangleStepSearcher.IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
 				{
 					continue;
 				}
@@ -2136,7 +2037,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, begin, a)),
 						ImmutableArray.Create(
 							View.Empty
-								| (arMode ? GetHighlightCells(urCells) : null)
+								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
@@ -2191,7 +2092,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			return;
 		}
 
-		int abzCell = GetDiagonalCell(urCells, cornerCell);
+		int abzCell = IUniqueRectangleStepSearcher.GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
 		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
@@ -2203,13 +2104,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
 				var (a, b) = digitPairs[digitPairIndex];
-				if (!IsConjugatePair(a, linkMap, linkMap.CoveredLine))
+				if (!IUniqueRectangleStepSearcher.IsConjugatePair(a, linkMap, linkMap.CoveredLine))
 				{
 					continue;
 				}
 
 				var secondLinkMap = Cells.Empty + cornerCell + end;
-				if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
+				if (!IUniqueRectangleStepSearcher.IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
 				{
 					continue;
 				}
@@ -2264,7 +2165,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, abzCell, b)),
 						ImmutableArray.Create(
 							View.Empty
-								| (arMode ? GetHighlightCells(urCells) : null)
+								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
@@ -2320,12 +2221,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 		{
 			var (a, b) = digitPairs[digitPairIndex];
-			if (!IsConjugatePair(a, link1Map, link1Map.CoveredLine))
+			if (!IUniqueRectangleStepSearcher.IsConjugatePair(a, link1Map, link1Map.CoveredLine))
 			{
 				continue;
 			}
 
-			int abwCell = GetDiagonalCell(urCells, corner1);
+			int abwCell = IUniqueRectangleStepSearcher.GetDiagonalCell(urCells, corner1);
 			int abzCell = (otherCellsMap - abwCell)[0];
 			var cellQuadruples = stackalloc[]
 			{
@@ -2337,13 +2238,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			{
 				var (head, begin, end, extra) = cellQuadruples[cellQuadrupleIndex];
 				var link2Map = Cells.Empty + begin + end;
-				if (!IsConjugatePair(b, link2Map, link2Map.CoveredLine))
+				if (!IUniqueRectangleStepSearcher.IsConjugatePair(b, link2Map, link2Map.CoveredLine))
 				{
 					continue;
 				}
 
 				var link3Map = Cells.Empty + end + extra;
-				if (!IsConjugatePair(a, link3Map, link3Map.CoveredLine))
+				if (!IUniqueRectangleStepSearcher.IsConjugatePair(a, link3Map, link3Map.CoveredLine))
 				{
 					continue;
 				}
@@ -2407,7 +2308,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.CreateRange(conclusions),
 						ImmutableArray.Create(
 							View.Empty
-								| (arMode ? GetHighlightCells(urCells) : null)
+								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
@@ -2479,19 +2380,19 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 		{
 			var (a, b) = digitPairs[digitPairIndex];
-			if (!IsConjugatePair(a, link1Map, link1Map.CoveredLine))
+			if (!IUniqueRectangleStepSearcher.IsConjugatePair(a, link1Map, link1Map.CoveredLine))
 			{
 				continue;
 			}
 
-			int end = GetDiagonalCell(urCells, corner1);
+			int end = IUniqueRectangleStepSearcher.GetDiagonalCell(urCells, corner1);
 			int extra = (otherCellsMap - end)[0];
 			var cellQuadruples = stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) };
 			for (int cellQuadrupleIndex = 0; cellQuadrupleIndex < 2; cellQuadrupleIndex++)
 			{
 				var (abx, aby, abw, abz) = cellQuadruples[cellQuadrupleIndex];
 				var link2Map = Cells.Empty + aby + abw;
-				if (!IsConjugatePair(a, link2Map, link2Map.CoveredLine))
+				if (!IUniqueRectangleStepSearcher.IsConjugatePair(a, link2Map, link2Map.CoveredLine))
 				{
 					continue;
 				}
@@ -2503,7 +2404,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				for (int i = 0; i < 2; i++)
 				{
 					var linkMap = innerMaps[i];
-					if (!IsConjugatePair(b, link3Map1, link3Map1.CoveredLine))
+					if (!IUniqueRectangleStepSearcher.IsConjugatePair(b, link3Map1, link3Map1.CoveredLine))
 					{
 						continue;
 					}
@@ -2570,7 +2471,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, aby, b)),
 							ImmutableArray.Create(
 								View.Empty
-									| (arMode ? GetHighlightCells(urCells) : null)
+									| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 									| candidateOffsets
 									| new HouseViewNode[]
 									{
@@ -2771,7 +2672,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								),
 								ImmutableArray.Create(
 									View.Empty
-										| (arMode ? GetHighlightCells(urCells) : null)
+										| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 										| candidateOffsets
 								),
 								arMode ? Technique.AvoidableRectangleXyWing : Technique.UniqueRectangleXyWing,
@@ -2904,7 +2805,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 										),
 										ImmutableArray.Create(
 											View.Empty
-												| (arMode ? GetHighlightCells(urCells) : null)
+												| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 												| candidateOffsets
 										),
 										arMode
@@ -3044,7 +2945,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 											),
 											ImmutableArray.Create(
 												View.Empty
-													| (arMode ? GetHighlightCells(urCells) : null)
+													| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 													| candidateOffsets
 											),
 											arMode
@@ -3359,7 +3260,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						ImmutableArray.CreateRange(conclusions),
 						ImmutableArray.Create(
 							View.Empty
-								| (arMode ? GetHighlightCells(urCells) : null)
+								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
@@ -3499,7 +3400,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						int resultCell = (cells - urCellInSameBlock - anotherCell - targetCell)[0];
 						var map = Cells.Empty + targetCell + resultCell;
 						int line = map.CoveredLine;
-						if (!IsConjugatePair(extraDigit, map, line))
+						if (!IUniqueRectangleStepSearcher.IsConjugatePair(extraDigit, map, line))
 						{
 							continue;
 						}
@@ -3600,7 +3501,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						// The extra digit should form a conjugate pair in that line.
 						var anotherMap = Cells.Empty + urCellInSameBlock + anotherCell;
 						int anotherLine = anotherMap.CoveredLine;
-						if (!IsConjugatePair(extraDigit, anotherMap, anotherLine))
+						if (!IUniqueRectangleStepSearcher.IsConjugatePair(extraDigit, anotherMap, anotherLine))
 						{
 							continue;
 						}
