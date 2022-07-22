@@ -280,19 +280,18 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 	/// Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private bool IsLocalWing
-		=> Chain.RealChainNodes switch
-		{
-			[
-				{ Digit: var d1 },
-				{ Cells: [var c2], Digit: var d2 },
-				{ Cells: [var c3], Digit: var d3 },
-				{ Cells: [var c4], Digit: var d4 },
-				{ Cells: [var c5], Digit: var d5 },
-				{ Digit: var d6 }
-			] when c2 == c3 && c4 == c5 && d1 == d2 && d3 == d4 && d5 == d6 => true,
-			_ => false
-		};
+	private bool IsLocalWing => Chain.RealChainNodes switch
+	{
+		[
+			{ Digit: var d1 },
+			{ Cells: [var c2], Digit: var d2 },
+			{ Cells: [var c3], Digit: var d3 },
+			{ Cells: [var c4], Digit: var d4 },
+			{ Cells: [var c5], Digit: var d5 },
+			{ Digit: var d6 }
+		] when c2 == c3 && c4 == c5 && d1 == d2 && d3 == d4 && d5 == d6 => true,
+		_ => false
+	};
 #pragma warning restore IDE0055
 
 	[FormatItem]
@@ -309,5 +308,14 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 	/// <param name="node">The node.</param>
 	/// <returns>The difficulty of the node.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static decimal NodeDifficultySelector(Node node) => (int)node.Type * .1M;
+	private static decimal NodeDifficultySelector(Node node)
+		=> node.Type switch
+		{
+			NodeType.Sole => 0,
+			NodeType.LockedCandidates => .1M,
+			NodeType.AlmostLockedSets => .2M,
+			NodeType.AlmostHiddenSets => .3M,
+			NodeType.AlmostUniqueRectangle => .4M,
+			NodeType.AlmostAvoidableRectangle => .5M
+		};
 }
