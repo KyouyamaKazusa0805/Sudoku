@@ -18,7 +18,9 @@ public interface IChainStepSearcher : IStepSearcher
 		var realChainNodes = chain.RealChainNodes;
 		var result = new List<CandidateViewNode>(realChainNodes.Length);
 
+#if false
 		byte alsIndex = 0, urIndex = 0;
+#endif
 		for (int i = 0; i < realChainNodes.Length; i++)
 		{
 			if (realChainNodes[i] is { Cells: var cells, Digit: var digit } currentNode)
@@ -34,6 +36,7 @@ public interface IChainStepSearcher : IStepSearcher
 					);
 				}
 
+#if false
 				// Special case.
 				switch (currentNode)
 				{
@@ -79,6 +82,7 @@ public interface IChainStepSearcher : IStepSearcher
 						break;
 					}
 				}
+#endif
 			}
 		}
 
