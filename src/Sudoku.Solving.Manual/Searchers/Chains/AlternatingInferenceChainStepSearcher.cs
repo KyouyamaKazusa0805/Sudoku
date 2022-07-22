@@ -1077,8 +1077,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			int extraDigit2 = otherDigitsMask.GetNextSet(extraDigit1);
 			var cells1 = CandidatesMap[extraDigit1] & cellsArray;
 			var cells2 = CandidatesMap[extraDigit2] & cellsArray;
-			var node1 = new Node(NodeType.AlmostUniqueRectangle, (byte)extraDigit1, cells1);
-			var node2 = new Node(NodeType.AlmostUniqueRectangle, (byte)extraDigit2, cells2);
+			var node1 = new Node(NodeType.AlmostUniqueRectangle, (byte)extraDigit1, cells1, (Cells)cellsArray - cells1);
+			var node2 = new Node(NodeType.AlmostUniqueRectangle, (byte)extraDigit2, cells2, (Cells)cellsArray - cells2);
 
 			AppendInference(node1, node2, _strongInferences);
 			AppendInference(node2, node1, _strongInferences);

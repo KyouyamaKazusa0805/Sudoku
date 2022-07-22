@@ -18,7 +18,7 @@ public interface IChainStepSearcher : IStepSearcher
 		var realChainNodes = chain.RealChainNodes;
 		var result = new List<CandidateViewNode>(realChainNodes.Length);
 
-		byte alsIndex = 0;
+		byte alsIndex = 0, urIndex = 0;
 		for (int i = 0; i < realChainNodes.Length; i++)
 		{
 			if (realChainNodes[i] is { Cells: var cells, Digit: var digit } currentNode)
@@ -37,21 +37,45 @@ public interface IChainStepSearcher : IStepSearcher
 				// Special case.
 				switch (currentNode)
 				{
-					case { Type: NodeType.AlmostLockedSets, FullCells: var allCells } when i + 1 < realChainNodes.Length:
+					case { Type: NodeType.AlmostLockedSets, FullCells: var allCells }:
 					{
-						byte nextNodeDigit = realChainNodes[i + 1].Digit;
 						short potentialDigits = grid.GetDigitsUnion(allCells);
-						short digitsShouldHighlight = (short)(potentialDigits & ~(1 << digit | 1 << nextNodeDigit));
+						short digitsShouldHighlight = (short)(potentialDigits & ~(1 << digit));
 						foreach (int tempDigit in digitsShouldHighlight)
 						{
 							foreach (int tempCell in grid.CandidatesMap[tempDigit] & allCells)
 							{
-								result.Add(new(DisplayColorKind.AlmostLockedSet1 + alsIndex, tempCell * 9 + tempDigit));
+								result.Add(
+									new(
+										DisplayColorKind.AlmostLockedSet1 + alsIndex,
+										tempCell * 9 + tempDigit
+									)
+								);
 							}
 						}
 
 						// Sets the ALS to the next color.
 						alsIndex = (byte)((alsIndex + 1) % 5);
+						break;
+					}
+					case { Type: NodeType.AlmostUniqueRectangle, FullCells: var allCells }:
+					{
+						short digitsShouldHighlight = grid.GetDigitsUnion(allCells);
+						foreach (int tempDigit in digitsShouldHighlight & ~(1 << digit))
+						{
+							foreach (int tempCell in grid.CandidatesMap[tempDigit] & allCells)
+							{
+								result.Add(
+									new(
+										DisplayColorKind.Auxiliary1 + urIndex,
+										tempCell * 9 + tempDigit
+									)
+								);
+							}
+						}
+
+						// Sets the AUR to the next color.
+						urIndex = (byte)((urIndex + 1) % 3);
 						break;
 					}
 				}
