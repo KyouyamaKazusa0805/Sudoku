@@ -129,6 +129,37 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 
 				return result.ToArray();
 			}
+			case NodeType.AlmostUniqueRectangle:
+			{
+				// It's very difficult to describe about how to eliminate eliminations for AUR nodes in loop.
+				// Please see the sketch:
+				//
+				//                      Case 1 |  Case 2
+				//                             |
+				// -ab                 -ab -ab | -ab
+				// -ab                 -ab -ab | -ab
+				//  ab abc    Cases     ab  ab |  ab   c
+				// --------  ======>  ---------|----------
+				// abd  ab               d  ab |  ab  ab
+				//     -ab                 -ab | -ab -ab
+				//     -ab                 -ab | -ab -ab
+				using scoped var result = new ValueList<Conclusion>(8);
+				int thisDigit = Digit;
+				int otherDigit = node.Digit;
+				short urDigits = (short)(grid.GetDigitsUnion(Cells) & ~(1 << thisDigit | 1 << otherDigit));
+				foreach (int digit in urDigits)
+				{
+					foreach (int cell in !Cells & !node.Cells & grid.CandidatesMap[digit])
+					{
+						if (grid.Exists(cell, digit) is true)
+						{
+							result.Add(new(ConclusionType.Elimination, cell, digit));
+						}
+					}
+				}
+
+				return result.ToArray();
+			}
 			default:
 			{
 				return Array.Empty<Conclusion>();
