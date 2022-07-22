@@ -1090,12 +1090,27 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 			void appendWeakInference(scoped in Cells currentCells, byte extraDigit, scoped in Node node)
 			{
-				var uncoveredCells = PopCount((uint)currentCells.CoveredHouses) switch
+				if (
+					PopCount((uint)currentCells.CoveredHouses) switch
+					{
+						// No covered houses. e.g.
+						// x x
+						//   x
+						0 => !currentCells & CandidatesMap[extraDigit],
+
+						// One covered house. e.g.
+						// x x | x
+						1 => HouseMaps[TrailingZeroCount(currentCells.CoveredHouses)] - currentCells,
+
+						// Two covered houses. It means it is a locked candidates.
+						// This case should have been handled.
+						_ => Cells.Empty
+					} is not [] uncoveredCells
+				)
 				{
-					0 => !currentCells & CandidatesMap[extraDigit],
-					1 => HouseMaps[TrailingZeroCount(currentCells.CoveredHouses)] - currentCells,
-					_ => Cells.Empty
-				};
+					return;
+				}
+
 				foreach (var cells in uncoveredCells | uncoveredCells.Count)
 				{
 					if (!cells.IsInIntersection)

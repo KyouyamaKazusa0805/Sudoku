@@ -1149,6 +1149,11 @@ public unsafe struct Cells :
 	/// </remarks>
 	public static Cells[] operator |(scoped in Cells cells, int subsetSize)
 	{
+		if (subsetSize == 0 || cells is [])
+		{
+			return Array.Empty<Cells>();
+		}
+
 		int n = cells.Count;
 
 		int desiredSize = 0;
