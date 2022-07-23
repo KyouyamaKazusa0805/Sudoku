@@ -5117,26 +5117,6 @@
         <member name="M:Sudoku.Concepts.Solving.Step.Formatize(System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation">
-            <summary>
-            Represents a relation between two adjacent nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation.Normal">
-            <summary>
-            Indicates the relation is normal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation.AlmostLockedSet">
-            <summary>
-            Indicates the relation is almost locked set.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.TechniqueStructures.AdjacentNodesRelation.AlmostHiddenSet">
-            <summary>
-            Indicates the relation is almost hidden set.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet">
             <summary>
             Defines a data structure that describes an AHS.
@@ -10325,11 +10305,6 @@
             Indicates the node type is an almost unique rectangle.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.NodeType.AlmostAvoidableRectangle">
-            <summary>
-            Indicates the node type is an almost avoidable rectangle.
-            </summary>
-        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.Rarity">
             <summary>
             Indicates the rarity of the technique.
@@ -10413,16 +10388,6 @@
         <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.UniqueRectangle">
             <summary>
             Indicates the searcher can search for almost rectangle nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.AvoidableRectangle">
-            <summary>
-            Indicates the searcher can search for almost avoidable rectangles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.XyWing">
-            <summary>
-            Indicates the searcher can search for almost XY-Wing nodes.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.XyzWing">

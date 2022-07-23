@@ -315,7 +315,6 @@ public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusi
 			NodeType.LockedCandidates => .1M,
 			NodeType.AlmostLockedSets => .2M,
 			NodeType.AlmostHiddenSets => .3M,
-			NodeType.AlmostUniqueRectangle => .4M,
-			NodeType.AlmostAvoidableRectangle => .5M
+			NodeType.AlmostUniqueRectangle => .4M
 		};
 }
