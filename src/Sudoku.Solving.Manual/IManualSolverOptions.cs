@@ -33,6 +33,16 @@ public interface IManualSolverOptions
 	public abstract bool IsHodokuMode { get; set; }
 
 	/// <summary>
+	/// Indicates whether the solver will apply all found steps in a step searcher,
+	/// in order to solve a puzzle faster. If the value is <see langword="true"/>,
+	/// the third argument of <see cref="IStepSearcher.GetAll(ICollection{Step}, in Grid, bool)"/>
+	/// will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
+	/// and all steps will be applied at the same time.
+	/// </summary>
+	/// <seealso cref="IStepSearcher.GetAll(ICollection{Step}, in Grid, bool)"/>
+	public abstract bool IsFullApplying { get; set; }
+
+	/// <summary>
 	/// <para>
 	/// Indicates the custom searcher collection you defined to solve a puzzle. By default,
 	/// the solver will use <see cref="StepSearcherPool.Collection"/> to solve a puzzle.

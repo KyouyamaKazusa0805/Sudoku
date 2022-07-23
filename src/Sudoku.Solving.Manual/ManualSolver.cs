@@ -29,6 +29,12 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		set => _isHodokuMode = value ? value : throw new NotSupportedException("Other modes are not supported now.");
 	}
 
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <see langword="false"/>.
+	/// </remarks>
+	public bool IsFullApplying { get; set; } = false;
+
 	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
 	public bool AllowCollisionOnAlsXz
 	{
@@ -381,7 +387,8 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		for (int i = 0, length = stepSearchers.Length; i < length; i++)
 		{
 			var searcher = stepSearchers[i];
-			if (isSukaku && searcher is IDeadlyPatternStepSearcher || searcher.Options.EnabledArea == EnabledArea.None)
+			if (isSukaku && searcher is IDeadlyPatternStepSearcher
+				|| searcher.Options.EnabledArea == EnabledArea.None)
 			{
 				// Skips on those two cases:
 				// 1. Sukaku puzzles can't use deadly pattern techniques.
@@ -389,29 +396,62 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 				continue;
 			}
 
-			var foundStep = searcher.GetAll(null!, playground, true);
-			if (foundStep is null)
+			if (IsFullApplying)
 			{
-				continue;
-			}
-
-			if (AreConclusionsValid(solution, foundStep))
-			{
-				if (
-					RecordStep(
-						recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
-						resultBase, cancellationToken, out var result)
-				)
+				var accumulator = new List<Step>();
+				searcher.GetAll(accumulator, playground, false);
+				if (accumulator.Count == 0)
 				{
-					return result;
+					continue;
+				}
+
+				foreach (var foundStep in accumulator)
+				{
+					if (AreConclusionsValid(solution, foundStep))
+					{
+						if (
+							RecordStep(
+								recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
+								resultBase, cancellationToken, out var result)
+						)
+						{
+							return result;
+						}
+					}
+
+					throw new WrongStepException(playground, foundStep);
 				}
 
 				// The puzzle has not been finished, we should turn to the first step finder
 				// to continue solving puzzle.
 				goto TryAgain;
 			}
+			else
+			{
+				var foundStep = searcher.GetAll(null!, playground, true);
+				if (foundStep is null)
+				{
+					continue;
+				}
 
-			throw new WrongStepException(playground, foundStep);
+				if (AreConclusionsValid(solution, foundStep))
+				{
+					if (
+						RecordStep(
+							recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
+							resultBase, cancellationToken, out var result)
+					)
+					{
+						return result;
+					}
+
+					// The puzzle has not been finished, we should turn to the first step finder
+					// to continue solving puzzle.
+					goto TryAgain;
+				}
+
+				throw new WrongStepException(playground, foundStep);
+			}
 		}
 
 		// All solver can't finish the puzzle...
@@ -437,9 +477,9 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// here we'll throw an exception and exit the operation directly.
 	/// </para>
 	/// <para>
-	/// Please note that if the argument <paramref name="result"/> isn't <see langword="null"/>, it'll mean
-	/// that the puzzle has been already solved, so this method will stop the stopwatch. Therefore, you don't
-	/// need to stop that stopwatch manually like the code <c>stopwatch.Stop();</c>.
+	/// Please note that if the argument <paramref name="result"/> isn't <see langword="null"/>,
+	/// it'll mean that the puzzle has been already solved, so this method will stop the stopwatch.
+	/// Therefore, you don't need to stop that stopwatch manually like the code <c>stopwatch.Stop();</c>.
 	/// </para>
 	/// </summary>
 	/// <param name="steps">The steps.</param>

@@ -178,6 +178,16 @@
             </summary>
             <seealso cref="P:Sudoku.Runtime.AnalysisServices.SearchingOptions.Priority"/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.IsFullApplying">
+            <summary>
+            Indicates whether the solver will apply all found steps in a step searcher,
+            in order to solve a puzzle faster. If the value is <see langword="true"/>,
+            the third argument of <see cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)"/>
+            will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
+            and all steps will be applied at the same time.
+            </summary>
+            <seealso cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.CustomSearcherCollection">
             <summary>
             <para>
@@ -226,6 +236,12 @@
             <exception cref="T:System.NotSupportedException">
             Throws when the <see langword="value"/> is <see langword="false"/>.
             </exception>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.IsFullApplying">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowCollisionOnAlsXz">
             <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
@@ -310,9 +326,9 @@
             here we'll throw an exception and exit the operation directly.
             </para>
             <para>
-            Please note that if the argument <paramref name="result"/> isn't <see langword="null"/>, it'll mean
-            that the puzzle has been already solved, so this method will stop the stopwatch. Therefore, you don't
-            need to stop that stopwatch manually like the code <c>stopwatch.Stop();</c>.
+            Please note that if the argument <paramref name="result"/> isn't <see langword="null"/>,
+            it'll mean that the puzzle has been already solved, so this method will stop the stopwatch.
+            Therefore, you don't need to stop that stopwatch manually like the code <c>stopwatch.Stop();</c>.
             </para>
             </summary>
             <param name="steps">The steps.</param>
@@ -3212,12 +3228,21 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.EnableFullHouse">
             <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.EnableLastDigit">
             <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.HiddenSinglesInBlockFirst">
             <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
