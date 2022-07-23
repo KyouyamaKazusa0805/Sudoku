@@ -355,7 +355,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			// Iterate on each node to get the chain, using breadth-first searching algorithm.
 			for (int id = 0; id < _globalId; id++)
 			{
-				if (_nodeLookup[id] is { IsGroupedNode: false })
+				if (_nodeLookup[id] is { IsGrouped: false })
 				{
 					Array.Fill(onToOff, -1);
 					Array.Fill(offToOn, -1);
@@ -555,8 +555,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					if (targetDigitMap is [var cell1, var cell2])
 					{
 						// Both strong and weak inferences.
-						var node1 = new Node(NodeType.Sole, digit, (byte)cell1);
-						var node2 = new Node(NodeType.Sole, digit, (byte)cell2);
+						var node1 = new Node(digit, (byte)cell1);
+						var node2 = new Node(digit, (byte)cell2);
 
 						AppendInference(node1, node2, _strongInferences);
 						AppendInference(node2, node1, _strongInferences);
@@ -571,8 +571,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							cell1 = cellPair[0];
 							cell2 = cellPair[1];
 
-							var node1 = new Node(NodeType.Sole, digit, (byte)cell1);
-							var node2 = new Node(NodeType.Sole, digit, (byte)cell2);
+							var node1 = new Node(digit, (byte)cell1);
+							var node2 = new Node(digit, (byte)cell2);
 
 							AppendInference(node1, node2, _weakInferences);
 							AppendInference(node2, node1, _weakInferences);
@@ -593,8 +593,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					// Both strong and weak inferences.
 					int d1 = TrailingZeroCount(mask);
 					int d2 = mask.GetNextSet(d1);
-					var node1 = new Node(NodeType.Sole, (byte)d1, (byte)cell);
-					var node2 = new Node(NodeType.Sole, (byte)d2, (byte)cell);
+					var node1 = new Node((byte)d1, (byte)cell);
+					var node2 = new Node((byte)d2, (byte)cell);
 
 					AppendInference(node1, node2, _strongInferences);
 					AppendInference(node2, node1, _strongInferences);
@@ -609,8 +609,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					{
 						for (int j = i + 1; j < length; j++)
 						{
-							var node1 = new Node(NodeType.Sole, (byte)digits[i], (byte)cell);
-							var node2 = new Node(NodeType.Sole, (byte)digits[j], (byte)cell);
+							var node1 = new Node((byte)digits[i], (byte)cell);
+							var node2 = new Node((byte)digits[j], (byte)cell);
 
 							AppendInference(node1, node2, _weakInferences);
 							AppendInference(node2, node1, _weakInferences);
@@ -699,12 +699,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					int secondHouse = houseMask.GetNextSet(firstHouse);
 					var firstHouseCells = cells & HouseMaps[firstHouse + offset];
 					var secondHouseCells = cells & HouseMaps[secondHouse + offset];
-					var node1 = firstHouseCells is [var firstHouseCell]
-						? new Node(NodeType.Sole, digit, (byte)firstHouseCell)
-						: new Node(NodeType.LockedCandidates, digit, firstHouseCells);
-					var node2 = secondHouseCells is [var secondHouseCell]
-						? new Node(NodeType.Sole, digit, (byte)secondHouseCell)
-						: new Node(NodeType.LockedCandidates, digit, secondHouseCells);
+					var node1 = new Node(digit, firstHouseCells);
+					var node2 = new Node(digit, secondHouseCells);
 
 					AppendInference(node1, node2, _strongInferences);
 					AppendInference(node2, node1, _strongInferences);
@@ -722,15 +718,9 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					var firstHouseCells = cells & HouseMaps[firstHouse + offset];
 					var secondHouseCells = cells & HouseMaps[secondHouse + offset];
 					var thirdHouseCells = cells & HouseMaps[thirdHouse + offset];
-					var node1 = firstHouseCells is [var firstHouseCell]
-						? new Node(NodeType.Sole, digit, (byte)firstHouseCell)
-						: new Node(NodeType.LockedCandidates, digit, firstHouseCells);
-					var node2 = secondHouseCells is [var secondHouseCell]
-						? new Node(NodeType.Sole, digit, (byte)secondHouseCell)
-						: new Node(NodeType.LockedCandidates, digit, secondHouseCells);
-					var node3 = thirdHouseCells is [var thirdHouseCell]
-						? new Node(NodeType.Sole, digit, (byte)thirdHouseCell)
-						: new Node(NodeType.LockedCandidates, digit, thirdHouseCells);
+					var node1 = new Node(digit, firstHouseCells);
+					var node2 = new Node(digit, secondHouseCells);
+					var node3 = new Node(digit, thirdHouseCells);
 
 					internalAppendWeakInferences(node1, node2, digit);
 					internalAppendWeakInferences(node1, node3, digit);
@@ -791,14 +781,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 						(targetRowCells, targetColumnCells) = (HouseMaps[row] & cells, HouseMaps[column] & cells);
 					}
 
-					var node1 = new Node(
-						targetRowCells.Count == 1 ? NodeType.Sole : NodeType.LockedCandidates,
-						digit, targetRowCells
-					);
-					var node2 = new Node(
-						targetColumnCells.Count == 1 ? NodeType.Sole : NodeType.LockedCandidates,
-						digit, targetColumnCells
-					);
+					var node1 = new Node(digit, targetRowCells);
+					var node2 = new Node(digit, targetColumnCells);
 
 					AppendInference(node1, node2, _strongInferences);
 					AppendInference(node2, node1, _strongInferences);
@@ -814,10 +798,10 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					var rowCells2 = (HouseMaps[row] & cells) - intersectionCell;
 					var columnCells2 = HouseMaps[column] & cells;
 
-					var case1Node1 = new Node(NodeType.LockedCandidates, digit, rowCells1);
-					var case1Node2 = new Node(NodeType.LockedCandidates, digit, columnCells1);
-					var case2Node1 = new Node(NodeType.LockedCandidates, digit, rowCells2);
-					var case2Node2 = new Node(NodeType.LockedCandidates, digit, columnCells2);
+					var case1Node1 = new Node(digit, rowCells1);
+					var case1Node2 = new Node(digit, columnCells1);
+					var case2Node1 = new Node(digit, rowCells2);
+					var case2Node2 = new Node(digit, columnCells2);
 
 					AppendInference(case1Node1, case1Node2, _strongInferences);
 					AppendInference(case1Node2, case1Node1, _strongInferences);
@@ -837,17 +821,13 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		{
 			foreach (var node1Cells in node1.Cells | 3)
 			{
-				var tempNode1 = node1Cells is [var node1Cell]
-					? new Node(NodeType.Sole, digit, (byte)node1Cell)
-					: new Node(NodeType.LockedCandidates, digit, node1Cells);
+				var tempNode1 = new Node(digit, node1Cells);
 
 				foreach (var node2Cells in node2.Cells | 3)
 				{
-					var tempNode2 = node2Cells is [var node2Cell]
-						? new Node(NodeType.Sole, digit, (byte)node2Cell)
-						: new Node(NodeType.LockedCandidates, digit, node2Cells);
+					var tempNode2 = new Node(digit, node2Cells);
 
-					if (tempNode1.Type == NodeType.Sole && tempNode2.Type == NodeType.Sole)
+					if (!tempNode1.IsGrouped && !tempNode2.IsGrouped)
 					{
 						// Both two nodes are sole candidate nodes.
 						// The case has already been handled by another method.
@@ -893,8 +873,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				int digit2 = strongInferenceList.GetNextSet(digit1);
 				var cells1 = map & CandidatesMap[digit1];
 				var cells2 = map & CandidatesMap[digit2];
-				var node1 = new Node(NodeType.AlmostLockedSets, (byte)digit1, cells1);
-				var node2 = new Node(NodeType.AlmostLockedSets, (byte)digit2, cells2);
+				var node1 = new Node((byte)digit1, cells1);
+				var node2 = new Node((byte)digit2, cells2);
 
 				// Strong inferences.
 				AppendInference(node1, node2, _strongInferences);
@@ -914,11 +894,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							continue;
 						}
 
-						var tempNode = new Node(
-							cells.Count == 1 ? NodeType.Sole : NodeType.LockedCandidates,
-							(byte)digit1,
-							cells
-						);
+						var tempNode = new Node((byte)digit1, cells);
 
 						AppendInference(node1, tempNode, _weakInferences);
 						AppendInference(tempNode, node1, _weakInferences);
@@ -937,11 +913,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							continue;
 						}
 
-						var tempNode = new Node(
-							cells.Count == 1 ? NodeType.Sole : NodeType.LockedCandidates,
-							(byte)digit2,
-							cells
-						);
+						var tempNode = new Node((byte)digit2, cells);
 
 						AppendInference(node2, tempNode, _weakInferences);
 						AppendInference(tempNode, node2, _weakInferences);
@@ -966,8 +938,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		{
 			foreach (var (digit1, cells1, digit2, cells2) in ahs.WeakLinks)
 			{
-				var node1 = new Node(NodeType.AlmostHiddenSets, (byte)digit1, cells1);
-				var node2 = new Node(NodeType.AlmostHiddenSets, (byte)digit2, cells2);
+				var node1 = new Node((byte)digit1, cells1);
+				var node2 = new Node((byte)digit2, cells2);
 
 				AppendInference(node1, node2, _weakInferences);
 				AppendInference(node2, node1, _weakInferences);
@@ -1081,8 +1053,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			int extraDigit2 = otherDigitsMask.GetNextSet(extraDigit1);
 			var cells1 = CandidatesMap[extraDigit1] & cellsArray;
 			var cells2 = CandidatesMap[extraDigit2] & cellsArray;
-			var node1 = new Node(NodeType.AlmostUniqueRectangle, (byte)extraDigit1, cells1, (Cells)cellsArray - cells1);
-			var node2 = new Node(NodeType.AlmostUniqueRectangle, (byte)extraDigit2, cells2, (Cells)cellsArray - cells2);
+			var node1 = new Node((byte)extraDigit1, cells1, (Cells)cellsArray - cells1);
+			var node2 = new Node((byte)extraDigit2, cells2, (Cells)cellsArray - cells2);
 
 			AppendInference(node1, node2, _strongInferences);
 			AppendInference(node2, node1, _strongInferences);
@@ -1122,11 +1094,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 						continue;
 					}
 
-					var tempNode = new Node(
-						cells.Count == 1 ? NodeType.Sole : NodeType.LockedCandidates,
-						extraDigit,
-						cells
-					);
+					var tempNode = new Node(extraDigit, cells);
 
 					AppendInference(node, tempNode, _weakInferences);
 					AppendInference(tempNode, node, _weakInferences);
@@ -1172,8 +1140,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			int digit2 = digitsMask.GetNextSet(digit1);
 			var cells1 = CandidatesMap[digit1] & extraCells;
 			var cells2 = CandidatesMap[digit2] & extraCells;
-			var node1 = new Node(NodeType.AlmostUniqueRectangle, (byte)digit1, cells1, (Cells)cellsArray);
-			var node2 = new Node(NodeType.AlmostUniqueRectangle, (byte)digit2, cells2, (Cells)cellsArray);
+			var node1 = new Node((byte)digit1, cells1, (Cells)cellsArray);
+			var node2 = new Node((byte)digit2, cells2, (Cells)cellsArray);
 
 			AppendInference(node1, node2, _weakInferences);
 			AppendInference(node2, node1, _weakInferences);

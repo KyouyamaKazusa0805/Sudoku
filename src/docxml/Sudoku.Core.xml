@@ -5729,27 +5729,24 @@
             Defines a chain node.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.#ctor(Sudoku.Runtime.AnalysisServices.NodeType,System.Byte,System.Int32)">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.#ctor(System.Byte,System.Int32)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/> instance via the basic data.
             </summary>
-            <param name="nodeType">The node type.</param>
             <param name="digit">The digit used.</param>
             <param name="cell">The cell used.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.#ctor(Sudoku.Runtime.AnalysisServices.NodeType,System.Byte,Sudoku.Concepts.Collections.Cells@)">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.#ctor(System.Byte,Sudoku.Concepts.Collections.Cells@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/> instance via the basic data.
             </summary>
-            <param name="nodeType">The node type.</param>
             <param name="digit">The digit used.</param>
             <param name="cells">The cells used.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.#ctor(Sudoku.Runtime.AnalysisServices.NodeType,System.Byte,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.#ctor(System.Byte,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.Node"/> instance via the basic data.
             </summary>
-            <param name="nodeType">The node type.</param>
             <param name="digit">The digit used.</param>
             <param name="cells">The cells used.</param>
             <param name="extraCells">The extra cells.</param>
@@ -5759,17 +5756,16 @@
             Indicates the digit used.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.IsGroupedNode">
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.IsGrouped">
             <summary>
-            <para>Indicates whether the current node is a grouped node, which means it is not a sole candidate node.</para>
-            <para>
-            This property only checks for the type of the node.
-            If the <see cref="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.Type"/> property doesn't hold the value <see cref="F:Sudoku.Runtime.AnalysisServices.NodeType.Sole"/>,
-            this method will return <see langword="true"/>.
-            </para>
+            Indicates whether the current node is a grouped node, which means it is not a sole candidate node.
             </summary>
-            <seealso cref="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.Type"/>
-            <seealso cref="T:Sudoku.Runtime.AnalysisServices.NodeType"/>
+            <seealso cref="T:System.Type"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.IsAdvanced">
+            <summary>
+            Indicates whether the node is advanced node (ALS, AHS, AUR nodes, etc.).
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.Cells">
             <summary>
@@ -5779,11 +5775,6 @@
         <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.FullCells">
             <summary>
             Indicates the full cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.Node.Type">
-            <summary>
-            Indicates the type of the node.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Node.Equals(System.Object)">
@@ -10275,36 +10266,6 @@
             during solving a puzzle. There's no kinds of unexpected error will be encountered now.
             </i></remarks>
         </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.NodeType">
-            <summary>
-            Defines a node type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.NodeType.Sole">
-            <summary>
-            Indicates the node type is a sole candidate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.NodeType.LockedCandidates">
-            <summary>
-            Indicates the node type is a locked candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.NodeType.AlmostLockedSets">
-            <summary>
-            Indicates the node type is an almost locked sets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.NodeType.AlmostHiddenSets">
-            <summary>
-            Indicates the node type is an almost hidden set.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.NodeType.AlmostUniqueRectangle">
-            <summary>
-            Indicates the node type is an almost unique rectangle.
-            </summary>
-        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.Rarity">
             <summary>
             Indicates the rarity of the technique.
@@ -12215,18 +12176,6 @@
             </summary>
             <param name="this">The field.</param>
             <returns>The name of the field.</returns>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.NodeType_EnumSwitchExpressionExtensions">
-            <summary>
-            Provides with extension methods for switching on the current type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.NodeType_EnumSwitchExpressionExtensions.GetName(Sudoku.Runtime.AnalysisServices.NodeType)">
-            <summary>
-            Gets the name of the field of the current type.
-            </summary>
-            <param name="this">A node type instance.</param>
-            <returns>The name of the node type.</returns>
         </member>
         <member name="T:Sudoku.Runtime.Reflection.FormatItemAttribute">
             <summary>

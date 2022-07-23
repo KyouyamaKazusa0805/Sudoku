@@ -8,34 +8,30 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the basic data.
 	/// </summary>
-	/// <param name="nodeType">The node type.</param>
 	/// <param name="digit">The digit used.</param>
 	/// <param name="cell">The cell used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(NodeType nodeType, byte digit, int cell) : this(nodeType, digit, Cells.Empty + cell)
+	public Node(byte digit, int cell) : this(digit, Cells.Empty + cell)
 	{
 	}
 
 	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the basic data.
 	/// </summary>
-	/// <param name="nodeType">The node type.</param>
 	/// <param name="digit">The digit used.</param>
 	/// <param name="cells">The cells used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(NodeType nodeType, byte digit, scoped in Cells cells)
-		=> (Digit, Type, Cells, FullCells) = (digit, nodeType, cells, cells);
+	public Node(byte digit, scoped in Cells cells) => (Digit, Cells, FullCells) = (digit, cells, cells);
 
 	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the basic data.
 	/// </summary>
-	/// <param name="nodeType">The node type.</param>
 	/// <param name="digit">The digit used.</param>
 	/// <param name="cells">The cells used.</param>
 	/// <param name="extraCells">The extra cells.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(NodeType nodeType, byte digit, scoped in Cells cells, scoped in Cells extraCells) :
-		this(nodeType, digit, cells) => FullCells = cells | extraCells;
+	public Node(byte digit, scoped in Cells cells, scoped in Cells extraCells) : this(digit, cells)
+		=> FullCells = cells | extraCells;
 
 
 	/// <summary>
@@ -44,19 +40,22 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	public byte Digit { get; }
 
 	/// <summary>
-	/// <para>Indicates whether the current node is a grouped node, which means it is not a sole candidate node.</para>
-	/// <para>
-	/// This property only checks for the type of the node.
-	/// If the <see cref="Type"/> property doesn't hold the value <see cref="NodeType.Sole"/>,
-	/// this method will return <see langword="true"/>.
-	/// </para>
+	/// Indicates whether the current node is a grouped node, which means it is not a sole candidate node.
 	/// </summary>
 	/// <seealso cref="Type"/>
-	/// <seealso cref="NodeType"/>
-	public bool IsGroupedNode
+	public bool IsGrouped
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Type != NodeType.Sole;
+		get => Cells.Count != 1;
+	}
+
+	/// <summary>
+	/// Indicates whether the node is advanced node (ALS, AHS, AUR nodes, etc.).
+	/// </summary>
+	public bool IsAdvanced
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => false;
 	}
 
 	/// <summary>
@@ -68,11 +67,6 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	/// Indicates the full cells.
 	/// </summary>
 	public Cells FullCells { get; }
-
-	/// <summary>
-	/// Indicates the type of the node.
-	/// </summary>
-	public NodeType Type { get; }
 
 
 	/// <inheritdoc/>
@@ -96,11 +90,7 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-	{
-		string nodeTypeName = Type.GetName() ?? "<Unnamed>";
-		return $"{nodeTypeName}: {ToSimpleString()}";
-	}
+	public override string ToString() => ToSimpleString();
 
 	/// <summary>
 	/// Indicates the potential conclusions that cannot be directly applied, but can be applied when a loop is formed.
@@ -111,6 +101,7 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Conclusion[] PotentialConclusionsWith(scoped in Grid grid, scoped in Node node)
 	{
+#if false
 		switch (Type)
 		{
 			case NodeType.AlmostLockedSets:
@@ -165,6 +156,9 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 				return Array.Empty<Conclusion>();
 			}
 		}
+#else
+		return Array.Empty<Conclusion>();
+#endif
 	}
 
 	/// <inheritdoc/>

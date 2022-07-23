@@ -40,7 +40,9 @@ public sealed record AlternatingInferenceChainStep(
 		=> new[]
 		{
 			("Length", IsIrregularWing ? 0 : IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity)),
+#if false
 			("Grouped", Chain.IsGrouped ? Chain.RealChainNodes.Sum(NodeDifficultySelector) : 0)
+#endif
 		};
 
 	/// <inheritdoc/>
@@ -302,6 +304,7 @@ public sealed record AlternatingInferenceChainStep(
 	}
 
 
+#if false
 	/// <summary>
 	/// The node difficulty selector.
 	/// </summary>
@@ -317,4 +320,5 @@ public sealed record AlternatingInferenceChainStep(
 			NodeType.AlmostHiddenSets => .3M,
 			NodeType.AlmostUniqueRectangle => .4M
 		};
+#endif
 }

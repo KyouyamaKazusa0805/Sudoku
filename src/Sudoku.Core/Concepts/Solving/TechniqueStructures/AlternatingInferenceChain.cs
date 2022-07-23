@@ -122,7 +122,7 @@ public sealed class AlternatingInferenceChain : Chain
 	public bool IsGrouped
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _nodes.Any(static node => node.IsGroupedNode);
+		get => _nodes.Any(static node => node.IsGrouped);
 	}
 
 	/// <summary>
@@ -141,6 +141,7 @@ public sealed class AlternatingInferenceChain : Chain
 	{
 		get
 		{
+#if false
 			if (IsStrong)
 			{
 				return false;
@@ -156,6 +157,9 @@ public sealed class AlternatingInferenceChain : Chain
 			}
 
 			return true;
+#else
+			return false;
+#endif
 		}
 	}
 
@@ -166,6 +170,7 @@ public sealed class AlternatingInferenceChain : Chain
 	{
 		get
 		{
+#if false
 			if (IsStrong)
 			{
 				return false;
@@ -181,6 +186,9 @@ public sealed class AlternatingInferenceChain : Chain
 			}
 
 			return true;
+#else
+			return false;
+#endif
 		}
 	}
 
