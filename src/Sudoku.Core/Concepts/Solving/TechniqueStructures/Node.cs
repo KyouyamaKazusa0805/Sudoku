@@ -42,7 +42,6 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	/// <summary>
 	/// Indicates whether the current node is a grouped node, which means it is not a sole candidate node.
 	/// </summary>
-	/// <seealso cref="Type"/>
 	public bool IsGrouped
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
