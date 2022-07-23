@@ -407,10 +407,10 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 
 				foreach (var foundStep in accumulator)
 				{
-					if (AreConclusionsValid(solution, foundStep))
+					if (verifyConclusionValidity(solution, foundStep))
 					{
 						if (
-							RecordStep(
+							recordStep(
 								recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
 								resultBase, cancellationToken, out var result)
 						)
@@ -436,23 +436,25 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 					continue;
 				}
 
-				if (AreConclusionsValid(solution, foundStep))
+				if (verifyConclusionValidity(solution, foundStep))
 				{
 					if (
-						RecordStep(
+						recordStep(
 							recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
 							resultBase, cancellationToken, out var result)
 					)
 					{
 						return result;
 					}
-
-					// The puzzle has not been finished, we should turn to the first step finder
-					// to continue solving puzzle.
-					goto TryAgain;
+				}
+				else
+				{
+					throw new WrongStepException(playground, foundStep);
 				}
 
-				throw new WrongStepException(playground, foundStep);
+				// The puzzle has not been finished, we should turn to the first step finder
+				// to continue solving puzzle.
+				goto TryAgain;
 			}
 		}
 
@@ -470,103 +472,74 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 			Steps = ImmutableArray.CreateRange(recordedSteps),
 			StepGrids = ImmutableArray.CreateRange(stepGrids)
 		};
-	}
 
-	/// <summary>
-	/// <para>
-	/// Records the current found and valid step into the specified collection. This method will also
-	/// check the validity of <paramref name="cancellationToken"/>. If user has canceled the operation,
-	/// here we'll throw an exception and exit the operation directly.
-	/// </para>
-	/// <para>
-	/// Please note that if the argument <paramref name="result"/> isn't <see langword="null"/>,
-	/// it'll mean that the puzzle has been already solved, so this method will stop the stopwatch.
-	/// Therefore, you don't need to stop that stopwatch manually like the code <c>stopwatch.Stop();</c>.
-	/// </para>
-	/// </summary>
-	/// <param name="steps">The steps.</param>
-	/// <param name="step">The step.</param>
-	/// <param name="playground">The playground.</param>
-	/// <param name="stopwatch">The stopwatch.</param>
-	/// <param name="stepGrids">The step grids.</param>
-	/// <param name="resultBase">Indicates the base solver result.</param>
-	/// <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
-	/// <param name="result">The analysis result.</param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	/// <exception cref="OperationCanceledException">
-	/// Throws when the current operation is canceled.
-	/// </exception>
-	private bool RecordStep(
-		ICollection<Step> steps,
-		Step step,
-		scoped ref Grid playground,
-		Stopwatch stopwatch,
-		ICollection<Grid> stepGrids,
-		ManualSolverResult resultBase,
-		CancellationToken cancellationToken,
-		[NotNullWhen(true)] out ManualSolverResult? result)
-	{
-		bool atLeastOneStepIsWorth = false;
-		foreach (var (t, c, d) in step.Conclusions)
+
+		static bool recordStep(
+			ICollection<Step> steps,
+			Step step,
+			scoped ref Grid playground,
+			Stopwatch stopwatch,
+			ICollection<Grid> stepGrids,
+			ManualSolverResult resultBase,
+			CancellationToken cancellationToken,
+			[NotNullWhen(true)] out ManualSolverResult? result)
 		{
-			switch (t)
+			bool atLeastOneStepIsWorth = false;
+			foreach (var (t, c, d) in step.Conclusions)
 			{
-				case ConclusionType.Assignment when playground.GetStatus(c) == CellStatus.Empty:
-				case ConclusionType.Elimination when playground.Exists(c, d) is true:
+				switch (t)
 				{
-					atLeastOneStepIsWorth = true;
+					case ConclusionType.Assignment when playground.GetStatus(c) == CellStatus.Empty:
+					case ConclusionType.Elimination when playground.Exists(c, d) is true:
+					{
+						atLeastOneStepIsWorth = true;
 
-					goto FinalCheck;
+						goto FinalCheck;
+					}
 				}
 			}
-		}
 
-	FinalCheck:
-		if (atLeastOneStepIsWorth)
-		{
-			stepGrids.Add(playground);
-			step.ApplyTo(ref playground);
-			steps.Add(step);
-
-			if (playground.IsSolved)
+		FinalCheck:
+			if (atLeastOneStepIsWorth)
 			{
-				stopwatch.Stop();
+				stepGrids.Add(playground);
+				step.ApplyTo(ref playground);
+				steps.Add(step);
 
-				result = resultBase with
+				if (playground.IsSolved)
 				{
-					IsSolved = true,
-					ElapsedTime = stopwatch.Elapsed,
-					Steps = ImmutableArray.CreateRange(steps),
-					StepGrids = ImmutableArray.CreateRange(stepGrids)
-				};
-				return true;
+					stopwatch.Stop();
+
+					result = resultBase with
+					{
+						IsSolved = true,
+						ElapsedTime = stopwatch.Elapsed,
+						Steps = ImmutableArray.CreateRange(steps),
+						StepGrids = ImmutableArray.CreateRange(stepGrids)
+					};
+					return true;
+				}
 			}
+
+			cancellationToken.ThrowIfCancellationRequested();
+
+			result = null;
+			return false;
 		}
 
-		cancellationToken.ThrowIfCancellationRequested();
-
-		result = null;
-		return false;
-	}
-
-
-	/// <summary>
-	/// Peeks the validity of step, to check whether all conclusions are possibly correct.
-	/// </summary>
-	/// <param name="solution">The solution.</param>
-	/// <param name="step">The step to check.</param>
-	/// <returns>A <see cref="bool"/> indicating that.</returns>
-	private static bool AreConclusionsValid(scoped in Grid solution, Step step)
-	{
-		foreach (var (t, c, d) in step.Conclusions)
+		static bool verifyConclusionValidity(scoped in Grid solution, Step step)
 		{
-			int digit = solution[c];
-			if (t == ConclusionType.Assignment && digit != d || t == ConclusionType.Elimination && digit == d)
+			foreach (var (t, c, d) in step.Conclusions)
 			{
-				return false;
+				int digit = solution[c];
+				if (t == ConclusionType.Assignment && digit != d
+					|| t == ConclusionType.Elimination && digit == d)
+				{
+					return false;
+				}
 			}
-		}
 
-		return true;
+			return true;
+		}
 	}
 }
