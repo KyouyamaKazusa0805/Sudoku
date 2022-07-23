@@ -99,6 +99,7 @@ Global
 		{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}.Debug|ARM64.ActiveCfg = Debug|Any CPU
 		{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}.Debug|ARM64.Build.0 = Debug|Any CPU
 		{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}.Debug|x64.Build.0 = Debug|Any CPU
 		{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}.Debug|x86.Build.0 = Debug|Any CPU
 		{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -339,8 +340,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 EndGlobal
