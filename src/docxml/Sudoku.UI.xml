@@ -2240,6 +2240,13 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="args">The event arguments provided.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InfoBar_DoubleTapped(System.Object,Microsoft.UI.Xaml.Input.DoubleTappedRoutedEventArgs)">
+            <summary>
+            Triggers when the info bar is double tapped.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.ListView_ItemClick(System.Object,Microsoft.UI.Xaml.Controls.ItemClickEventArgs)">
             <summary>
             Triggers when the item is clicked.

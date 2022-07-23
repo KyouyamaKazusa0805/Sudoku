@@ -665,29 +665,47 @@ public sealed partial class SudokuPage : Page
 				button.IsEnabled = true;
 
 				// Displays the analysis result info.
-				if (analysisResult.IsSolved)
+				switch (analysisResult)
 				{
-					_cInfoBoard.AddMessage(analysisResult);
-				}
-				else
-				{
-					var failedReason = analysisResult.FailedReason;
-					var wrongStep = analysisResult.WrongStep;
-					string firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
-					string secondPart = R[
-						failedReason switch
-						{
-							FailedReason.UserCancelled => "SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling",
-							FailedReason.NotImplemented => "SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented",
-							FailedReason.ExceptionThrown => "SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown",
-							FailedReason.WrongStep => "SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep",
-#pragma warning disable CS0618
-							FailedReason.PuzzleIsTooHard => "SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard",
-#pragma warning restore CS0618
-						}
-					]!;
+					case { IsSolved: true }:
+					{
+						_cInfoBoard.AddMessage(analysisResult);
 
-					_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}{wrongStep}");
+						break;
+					}
+					case
+					{
+						WrongStep: var wrongStep,
+						FailedReason: var failedReason,
+						UnhandledException: WrongStepException { CurrentInvalidGrid: var invalidGrid }
+					}:
+					{
+						string firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
+						string secondPart =
+							failedReason switch
+							{
+								FailedReason.UserCancelled
+									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling"]!,
+								FailedReason.NotImplemented
+									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented"]!,
+								FailedReason.ExceptionThrown
+									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown"]!,
+								FailedReason.WrongStep
+									=> $"""
+									{R["SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep"]!}
+									
+									{R["SudokuPage_Info_WrongGrid"]!}{invalidGrid:#}
+									""",
+#pragma warning disable CS0618
+								FailedReason.PuzzleIsTooHard
+									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard"]!,
+#pragma warning restore CS0618
+							};
+
+						_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}{wrongStep}");
+
+						break;
+					}
 				}
 
 				break;

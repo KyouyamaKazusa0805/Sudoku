@@ -319,7 +319,8 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 					{
 						IsSolved = false,
 						FailedReason = FailedReason.WrongStep,
-						WrongStep = ws
+						WrongStep = ws,
+						UnhandledException = castedException,
 					},
 					OperationCanceledException => result with
 					{
@@ -410,7 +411,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 				goto TryAgain;
 			}
 
-			throw new WrongStepException(puzzle, foundStep);
+			throw new WrongStepException(playground, foundStep);
 		}
 
 		// All solver can't finish the puzzle...

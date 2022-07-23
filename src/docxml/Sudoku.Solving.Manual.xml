@@ -516,10 +516,12 @@
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.UnhandledException">
             <summary>
             Indicates the unhandled exception thrown. You can visit the property value
-            if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/> is <see cref="F:Sudoku.Runtime.AnalysisServices.FailedReason.ExceptionThrown"/>.
+            if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/> is <see cref="F:Sudoku.Runtime.AnalysisServices.FailedReason.ExceptionThrown"/>
+            or <see cref="F:Sudoku.Runtime.AnalysisServices.FailedReason.WrongStep"/>.
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.FailedReason.ExceptionThrown"/>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.FailedReason.WrongStep"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(System.Int32)">
             <summary>
@@ -8293,7 +8295,7 @@
         <member name="P:Sudoku.Solving.Manual.WrongStepException.Message">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.WrongStepException.InvalidPuzzle">
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.CurrentInvalidGrid">
             <summary>
             Indicates the invalid sudoku grid. This property is also stored in the property
             <see cref="P:System.Exception.Data"/>.

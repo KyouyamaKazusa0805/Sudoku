@@ -254,10 +254,12 @@ public sealed record class ManualSolverResult(scoped in Grid OriginalPuzzle)
 
 	/// <summary>
 	/// Indicates the unhandled exception thrown. You can visit the property value
-	/// if the property <see cref="FailedReason"/> is <see cref="FailedReason.ExceptionThrown"/>.
+	/// if the property <see cref="FailedReason"/> is <see cref="FailedReason.ExceptionThrown"/>
+	/// or <see cref="FailedReason.WrongStep"/>.
 	/// </summary>
 	/// <seealso cref="FailedReason"/>
 	/// <seealso cref="FailedReason.ExceptionThrown"/>
+	/// <seealso cref="FailedReason.WrongStep"/>
 	public Exception? UnhandledException { get; init; }
 
 

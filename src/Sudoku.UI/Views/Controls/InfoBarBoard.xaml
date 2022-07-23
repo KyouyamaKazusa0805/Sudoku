@@ -21,7 +21,8 @@
 								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
 								IsClosable="True" IsOpen="True" IsIconVisible="True" Margin="0,5"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}" Tag="{x:Bind}"
-								CloseButtonClick="InfoBar_CloseButtonClick" />
+								CloseButtonClick="InfoBar_CloseButtonClick"
+								DoubleTapped="InfoBar_DoubleTapped" />
 						</DataTemplate>
 					</dts:InfoBarDataTemplateSelector.PlainMessageTemplate>
 					<dts:InfoBarDataTemplateSelector.HyperlinkMessageTemplate>
@@ -30,7 +31,8 @@
 								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
 								IsClosable="True" IsOpen="True" IsIconVisible="True" Margin="0,5"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}" Tag="{x:Bind}"
-								CloseButtonClick="InfoBar_CloseButtonClick" >
+								CloseButtonClick="InfoBar_CloseButtonClick"
+								DoubleTapped="InfoBar_DoubleTapped">
 								<InfoBar.ActionButton>
 									<HyperlinkButton
 										NavigateUri="{x:Bind Hyperlink}" Content="{x:Bind HyperlinkDescription}" />
@@ -44,7 +46,8 @@
 								Title="{x:Bind data:SimpleConverters.InfoBarTitle(Severity)}"
 								IsClosable="True" IsOpen="True" IsIconVisible="True" Margin="0,5"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}" Tag="{x:Bind}"
-								CloseButtonClick="InfoBar_CloseButtonClick">
+								CloseButtonClick="InfoBar_CloseButtonClick"
+								DoubleTapped="InfoBar_DoubleTapped">
 								<InfoBar.Content>
 									<FlipView
 										UseTouchAnimationsForAllNavigation="True"

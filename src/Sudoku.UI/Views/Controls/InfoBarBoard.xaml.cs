@@ -130,6 +130,25 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 	}
 
 	/// <summary>
+	/// Triggers when the info bar is double tapped.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void InfoBar_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+	{
+		if (sender is not InfoBar { Severity: >= InfoBarSeverity.Warning, Message: var message } infoBar)
+		{
+			return;
+		}
+
+		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+		dataPackage.SetText(message);
+		Clipboard.SetContent(dataPackage);
+
+		ToolTipService.SetToolTip(infoBar, R["CopyDetailsSuccessfully"]!);
+	}
+
+	/// <summary>
 	/// Triggers when the item is clicked.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
