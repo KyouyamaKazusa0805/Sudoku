@@ -3,7 +3,7 @@ using static Sudoku.Drawing.IPointCalculator;
 
 namespace Sudoku.Drawing;
 
-partial record class GridImageGenerator
+partial record GridImageGenerator
 {
 	/// <summary>
 	/// Draw givens, modifiables and candidates, where the values are specified as a grid.

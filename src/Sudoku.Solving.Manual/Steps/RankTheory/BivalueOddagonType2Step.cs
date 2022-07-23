@@ -9,10 +9,14 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit.</param>
-public sealed record class BivalueOddagonType2Step(
-	ConclusionList Conclusions, ViewList Views, scoped in Cells Loop, int Digit1, int Digit2, int ExtraDigit) :
-	BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2),
-	IStepWithPhasedDifficulty
+public sealed record BivalueOddagonType2Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Loop,
+	int Digit1,
+	int Digit2,
+	int ExtraDigit
+) : BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

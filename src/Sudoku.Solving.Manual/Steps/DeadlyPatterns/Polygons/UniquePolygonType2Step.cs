@@ -8,9 +8,13 @@
 /// <param name="Map"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">The extra digit.</param>
-public sealed record class UniquePolygonType2Step(
-	ConclusionList Conclusions, ViewList Views, scoped in Cells Map, short DigitsMask, int ExtraDigit) :
-	UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
+public sealed record UniquePolygonType2Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Map,
+	short DigitsMask,
+	int ExtraDigit
+) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.4M;

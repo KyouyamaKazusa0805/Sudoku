@@ -10,11 +10,15 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
-public sealed record class BivalueOddagonType3Step(
-	ConclusionList Conclusions, ViewList Views, scoped in Cells Loop, int Digit1, int Digit2,
-	scoped in Cells ExtraCells, short ExtraDigitsMask) :
-	BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2),
-	IStepWithPhasedDifficulty
+public sealed record BivalueOddagonType3Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Loop,
+	int Digit1,
+	int Digit2,
+	scoped in Cells ExtraCells,
+	short ExtraDigitsMask
+) : BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

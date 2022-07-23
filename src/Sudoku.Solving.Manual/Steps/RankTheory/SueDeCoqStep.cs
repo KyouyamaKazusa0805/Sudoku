@@ -15,13 +15,20 @@
 /// <param name="BlockCells">The map of block cells.</param>
 /// <param name="LineCells">The map of line cells.</param>
 /// <param name="IntersectionCells">The map of intersection cells.</param>
-public sealed record class SueDeCoqStep(
-	ConclusionList Conclusions, ViewList Views, int Block, int Line, short BlockMask, short LineMask,
-	short IntersectionMask, bool IsCannibalistic, short IsolatedDigitsMask,
-	scoped in Cells BlockCells, scoped in Cells LineCells, scoped in Cells IntersectionCells) :
-	RankTheoryStep(Conclusions, Views),
-	IStepWithRank,
-	IStepWithPhasedDifficulty
+public sealed record SueDeCoqStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Block,
+	int Line,
+	short BlockMask,
+	short LineMask,
+	short IntersectionMask,
+	bool IsCannibalistic,
+	short IsolatedDigitsMask,
+	scoped in Cells BlockCells,
+	scoped in Cells LineCells,
+	scoped in Cells IntersectionCells
+) : RankTheoryStep(Conclusions, Views), IStepWithRank, IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

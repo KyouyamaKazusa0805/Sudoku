@@ -10,10 +10,15 @@
 /// <param name="XDigitsMask">Indicates the X digit used in this ALS-XZ pattern.</param>
 /// <param name="ZDigitsMask">Indicates the Z digit used in this ALS-XZ pattern.</param>
 /// <param name="IsDoublyLinked">Indicates whether the ALS-XZ is doubly-linked.</param>
-public sealed record class AlmostLockedSetsXzStep(
-	ConclusionList Conclusions, ViewList Views, AlmostLockedSet Als1, AlmostLockedSet Als2,
-	short XDigitsMask, short ZDigitsMask, bool? IsDoublyLinked) :
-	AlmostLockedSetsStep(Conclusions, Views)
+public sealed record AlmostLockedSetsXzStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	AlmostLockedSet Als1,
+	AlmostLockedSet Als2,
+	short XDigitsMask,
+	short ZDigitsMask,
+	bool? IsDoublyLinked
+) : AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => IsDoublyLinked is true ? 5.7M : 5.5M;

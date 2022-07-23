@@ -13,9 +13,14 @@
 /// please write this property explicitly.
 /// </param>
 /// <seealso cref="FileCounter"/>
-public sealed record class FileCounterResult(
-	int ResultLines, int FilesCount, long CharactersCount,
-	long Bytes, scoped in TimeSpan Elapsed, IList<string> FileList)
+public sealed record FileCounterResult(
+	int ResultLines,
+	int FilesCount,
+	long CharactersCount,
+	long Bytes,
+	scoped in TimeSpan Elapsed,
+	IList<string> FileList
+)
 {
 	/// <inheritdoc/>
 	public override string ToString()

@@ -5,8 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record class LastResortStep(ConclusionList Conclusions, ViewList Views) :
-	Step(Conclusions, Views)
+public abstract record LastResortStep(ConclusionList Conclusions, ViewList Views) : Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.LastResort;

@@ -35,11 +35,16 @@
 /// </para>
 /// </param>
 /// <seealso cref="Step.TechniqueCode"/>
-public abstract record class UniqueRectangleStep(
-	ConclusionList Conclusions, ViewList Views, Technique TechniqueCode2,
-	int Digit1, int Digit2, scoped in Cells Cells, bool IsAvoidable, int AbsoluteOffset) :
-	DeadlyPatternStep(Conclusions, Views),
-	IDistinctableStep<UniqueRectangleStep>
+public abstract record UniqueRectangleStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	Technique TechniqueCode2,
+	int Digit1,
+	int Digit2,
+	scoped in Cells Cells,
+	bool IsAvoidable,
+	int AbsoluteOffset
+) : DeadlyPatternStep(Conclusions, Views), IDistinctableStep<UniqueRectangleStep>
 {
 	/// <inheritdoc/>
 	public sealed override Technique TechniqueCode

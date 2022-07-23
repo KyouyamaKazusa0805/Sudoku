@@ -11,11 +11,16 @@
 /// <param name="RowCells">The row cells map.</param>
 /// <param name="ColumnCells">The column cells map.</param>
 /// <param name="BlockCells">The block cells map.</param>
-public sealed record class SueDeCoq3DimensionStep(
-	ConclusionList Conclusions, ViewList Views, short RowDigitsMask, short ColumnDigitsMask,
-	short BlockDigitsMask, scoped in Cells RowCells, scoped in Cells ColumnCells, scoped in Cells BlockCells) :
-	RankTheoryStep(Conclusions, Views),
-	IStepWithRank
+public sealed record SueDeCoq3DimensionStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	short RowDigitsMask,
+	short ColumnDigitsMask,
+	short BlockDigitsMask,
+	scoped in Cells RowCells,
+	scoped in Cells ColumnCells,
+	scoped in Cells BlockCells
+) : RankTheoryStep(Conclusions, Views), IStepWithRank
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.5M;

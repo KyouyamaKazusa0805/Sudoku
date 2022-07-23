@@ -8,9 +8,13 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="Candidate">Indicates the true candidate.</param>
-public sealed record class UniqueSquareType1Step(
-	ConclusionList Conclusions, ViewList Views, scoped in Cells Cells, short DigitsMask, int Candidate) :
-	UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
+public sealed record UniqueSquareType1Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Cells,
+	short DigitsMask,
+	int Candidate
+) : UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

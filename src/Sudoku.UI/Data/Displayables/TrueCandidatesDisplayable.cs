@@ -4,7 +4,7 @@
 /// Provides with a displayable unit that display true candidates.
 /// </summary>
 /// <param name="Views"><inheritdoc/></param>
-public sealed record class TrueCandidatesDisplayable(ImmutableArray<View> Views) :
+public sealed record TrueCandidatesDisplayable(ImmutableArray<View> Views) :
 	IDisplayable,
 	IEquatable<TrueCandidatesDisplayable>,
 	IEqualityOperators<TrueCandidatesDisplayable, TrueCandidatesDisplayable>

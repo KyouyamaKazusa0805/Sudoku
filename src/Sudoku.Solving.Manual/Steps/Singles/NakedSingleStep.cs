@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cell"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
-public sealed record class NakedSingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) :
+public sealed record NakedSingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) :
 	SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>

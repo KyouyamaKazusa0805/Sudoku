@@ -12,9 +12,17 @@
 /// <param name="Endofins">The endo-fins.</param>
 /// <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
 /// <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
-public sealed record class ComplexFishStep(
-	ConclusionList Conclusions, ViewList Views, int Digit, int BaseSetsMask, int CoverSetsMask,
-	scoped in Cells Exofins, scoped in Cells Endofins, bool IsFranken, bool? IsSashimi) :
+public sealed record ComplexFishStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit,
+	int BaseSetsMask,
+	int CoverSetsMask,
+	scoped in Cells Exofins,
+	scoped in Cells Endofins,
+	bool IsFranken,
+	bool? IsSashimi
+) :
 	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask),
 	IDistinctableStep<ComplexFishStep>,
 	IStepWithPhasedDifficulty
@@ -100,7 +108,8 @@ public sealed record class ComplexFishStep(
 	/// <summary>
 	/// The shape modifier.
 	/// </summary>
-	private ComplexFishShapeKind ShapeModifier => IsFranken ? ComplexFishShapeKind.Franken : ComplexFishShapeKind.Mutant;
+	private ComplexFishShapeKind ShapeModifier
+		=> IsFranken ? ComplexFishShapeKind.Franken : ComplexFishShapeKind.Mutant;
 
 	/// <summary>
 	/// Indicates the base houses.

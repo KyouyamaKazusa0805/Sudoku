@@ -7,10 +7,12 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the candidates used.</param>
-public sealed record class QiuDeadlyPatternLockedTypeStep(
-	ConclusionList Conclusions, ViewList Views, scoped in QiuDeadlyPattern Pattern, IReadOnlyList<int> Candidates) :
-	QiuDeadlyPatternStep(Conclusions, Views, Pattern),
-	IStepWithPhasedDifficulty
+public sealed record QiuDeadlyPatternLockedTypeStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in QiuDeadlyPattern Pattern,
+	IReadOnlyList<int> Candidates
+) : QiuDeadlyPatternStep(Conclusions, Views, Pattern), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

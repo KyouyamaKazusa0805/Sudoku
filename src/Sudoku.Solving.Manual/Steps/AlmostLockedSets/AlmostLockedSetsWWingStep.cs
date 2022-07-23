@@ -10,10 +10,15 @@
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 /// <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
 /// <param name="X">Indicates the X digit.</param>
-public sealed record class AlmostLockedSetsWWingStep(
-	ConclusionList Conclusions, ViewList Views, AlmostLockedSet Als1,
-	AlmostLockedSet Als2, scoped in Conjugate ConjugatePair, short WDigitsMask, int X) :
-	AlmostLockedSetsStep(Conclusions, Views)
+public sealed record AlmostLockedSetsWWingStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	AlmostLockedSet Als1,
+	AlmostLockedSet Als2,
+	scoped in Conjugate ConjugatePair,
+	short WDigitsMask,
+	int X
+) : AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 6.2M;

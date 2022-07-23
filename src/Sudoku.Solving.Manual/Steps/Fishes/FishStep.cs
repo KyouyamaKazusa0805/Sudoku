@@ -8,11 +8,13 @@
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="BaseSetsMask">Indicates the mask that contains the base sets.</param>
 /// <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
-public abstract record class FishStep(
-	ConclusionList Conclusions, ViewList Views, int Digit, int BaseSetsMask, int CoverSetsMask) :
-	Step(Conclusions, Views),
-	IStepWithSize,
-	IStepWithRank
+public abstract record FishStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit,
+	int BaseSetsMask,
+	int CoverSetsMask
+) : Step(Conclusions, Views), IStepWithSize, IStepWithRank
 {
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;

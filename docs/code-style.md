@@ -133,9 +133,9 @@
 7. 跨线程修饰符：`volatile`；
 8. 异步修饰符：`async`。
 
-记录类型永远写全修饰符：
+记录类型按照简化的写法来书写：
 
-* 记录类类型：`record class`；
+* 记录类类型：`record`（可以写成 `record` 和 `record class`，不过这里为了代码写简单一些，就不写 `class` 了）；
 * 记录结构类型：`record struct`。
 
 其它的修饰符（诸如 `sealed`、`readonly` 等）按照普通类类型和结构类型的规则定义和使用。

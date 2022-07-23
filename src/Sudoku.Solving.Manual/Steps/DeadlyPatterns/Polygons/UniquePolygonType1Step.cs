@@ -7,9 +7,12 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Map"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-public sealed record class UniquePolygonType1Step(
-	ConclusionList Conclusions, ViewList Views, scoped in Cells Map, short DigitsMask) :
-	UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
+public sealed record UniquePolygonType1Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Map,
+	short DigitsMask
+) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

@@ -9,12 +9,14 @@
 /// <param name="PivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
 /// <param name="DigitsMask">Indicates a mask that contains all digits used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
-public sealed record class RegularWingStep(
-	ConclusionList Conclusions, ViewList Views, int Pivot, int PivotCandidatesCount,
-	short DigitsMask, scoped in Cells Petals) :
-	WingStep(Conclusions, Views),
-	IStepWithSize,
-	IStepWithPhasedDifficulty
+public sealed record RegularWingStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Pivot,
+	int PivotCandidatesCount,
+	short DigitsMask,
+	scoped in Cells Petals
+) : WingStep(Conclusions, Views), IStepWithSize, IStepWithPhasedDifficulty
 {
 	/// <summary>
 	/// Indicates whether the structure is incomplete.

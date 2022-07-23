@@ -29,15 +29,35 @@
 /// Indicates the cells in the intersection from houses <see cref="Block"/> and <see cref="Line"/>.
 /// </param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record class UniqueRectangleWithSueDeCoqStep(
-	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, scoped in Cells Cells,
-	bool IsAvoidable, int Block, int Line, short BlockMask, short LineMask, short IntersectionMask,
-	bool IsCannibalistic, short IsolatedDigitsMask, scoped in Cells BlockCells, scoped in Cells LineCells,
-	scoped in Cells IntersectionCells, int AbsoluteOffset) :
+public sealed record UniqueRectangleWithSueDeCoqStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit1,
+	int Digit2,
+	scoped in Cells Cells,
+	bool IsAvoidable,
+	int Block,
+	int Line,
+	short BlockMask,
+	short LineMask,
+	short IntersectionMask,
+	bool IsCannibalistic,
+	short IsolatedDigitsMask,
+	scoped in Cells BlockCells,
+	scoped in Cells LineCells,
+	scoped in Cells IntersectionCells,
+	int AbsoluteOffset
+) :
 	UniqueRectangleStep(
-		Conclusions, Views,
+		Conclusions,
+		Views,
 		IsAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,
-		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset),
+		Digit1,
+		Digit2,
+		Cells,
+		IsAvoidable,
+		AbsoluteOffset
+	),
 	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>

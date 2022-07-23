@@ -26,11 +26,15 @@
 /// </item>
 /// </list>
 /// </param>
-public sealed record class NormalFishStep(
-	ConclusionList Conclusions, ViewList Views, int Digit,
-	int BaseSetsMask, int CoverSetsMask, scoped in Cells Fins, bool? IsSashimi) :
-	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask),
-	IStepWithPhasedDifficulty
+public sealed record NormalFishStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit,
+	int BaseSetsMask,
+	int CoverSetsMask,
+	scoped in Cells Fins,
+	bool? IsSashimi
+) : FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

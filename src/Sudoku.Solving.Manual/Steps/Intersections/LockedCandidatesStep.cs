@@ -8,11 +8,13 @@
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="BaseSet">Indicates the house that the current locked candidates forms.</param>
 /// <param name="CoverSet">Indicates the house that the current locked candidates influences.</param>
-public sealed record class LockedCandidatesStep(
-	ConclusionList Conclusions, ViewList Views, int Digit, int BaseSet, int CoverSet) :
-	IntersectionStep(Conclusions, Views),
-	IElementaryStep,
-	IStepWithRank
+public sealed record LockedCandidatesStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit,
+	int BaseSet,
+	int CoverSet
+) : IntersectionStep(Conclusions, Views), IElementaryStep, IStepWithRank
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;

@@ -7,10 +7,12 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
-public sealed record class BivalueUniversalGraveType2Step(
-	ConclusionList Conclusions, ViewList Views, int Digit, scoped in Cells Cells) :
-	BivalueUniversalGraveStep(Conclusions, Views),
-	IStepWithPhasedDifficulty
+public sealed record BivalueUniversalGraveType2Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit,
+	scoped in Cells Cells
+) : BivalueUniversalGraveStep(Conclusions, Views), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
@@ -19,7 +21,8 @@ public sealed record class BivalueUniversalGraveType2Step(
 	public decimal BaseDifficulty => base.Difficulty;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Extra digit", A002024(Cells.Count) * .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Extra digit", A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType2;

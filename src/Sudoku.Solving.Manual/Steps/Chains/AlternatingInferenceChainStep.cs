@@ -6,11 +6,11 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Chain">Indicates the whole chain.</param>
-public sealed record class AlternatingInferenceChainStep(ConclusionList Conclusions, ViewList Views, AlternatingInferenceChain Chain) :
-	ChainStep(Conclusions, Views),
-	IChainStep,
-	IChainLikeStep,
-	IStepWithPhasedDifficulty
+public sealed record AlternatingInferenceChainStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	AlternatingInferenceChain Chain
+) : ChainStep(Conclusions, Views), IChainStep, IChainLikeStep, IStepWithPhasedDifficulty
 {
 	/// <summary>
 	/// Indicates the shared bucket that is used for checking X-Chains.

@@ -9,16 +9,20 @@
 /// <param name="EndoTargetCell">Indicates the target cell that is embedded into the cross-line cells.</param>
 /// <param name="ExtraHousesMask">Indicates the mask that holds the extra houses used.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
-public sealed record class SeniorExocetStep(
-	ViewList Views, scoped in ExocetPattern Exocet, short DigitsMask, int EndoTargetCell,
-	int[]? ExtraHousesMask, ImmutableArray<ExocetElimination> Eliminations) :
-	ExocetStep(Views, Exocet, DigitsMask, Eliminations),
-	IStepWithPhasedDifficulty
+public sealed record SeniorExocetStep(
+	ViewList Views,
+	scoped in ExocetPattern Exocet,
+	short DigitsMask,
+	int EndoTargetCell,
+	int[]? ExtraHousesMask,
+	ImmutableArray<ExocetElimination> Eliminations
+) : ExocetStep(Views, Exocet, DigitsMask, Eliminations), IStepWithPhasedDifficulty
 {
 	/// <summary>
 	/// Indicates whether the specified instance contains any extra houses.
 	/// </summary>
-	public bool ContainsExtraHouses => ExtraHousesMask is not null && Array.Exists(ExtraHousesMask, static m => m != 0);
+	public bool ContainsExtraHouses
+		=> ExtraHousesMask is not null && Array.Exists(ExtraHousesMask, static m => m != 0);
 
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

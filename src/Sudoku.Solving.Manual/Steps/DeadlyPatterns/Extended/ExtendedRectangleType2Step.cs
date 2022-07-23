@@ -8,10 +8,13 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
-public sealed record class ExtendedRectangleType2Step(
-	ConclusionList Conclusions, ViewList Views, scoped in Cells Cells, short DigitsMask, int ExtraDigit) :
-	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask),
-	IStepWithPhasedDifficulty
+public sealed record ExtendedRectangleType2Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Cells,
+	short DigitsMask,
+	int ExtraDigit
+) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override int Type => 2;

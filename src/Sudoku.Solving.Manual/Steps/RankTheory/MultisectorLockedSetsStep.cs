@@ -6,10 +6,11 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
-public sealed record class MultisectorLockedSetsStep(ConclusionList Conclusions, ViewList Views, scoped in Cells Cells) :
-	RankTheoryStep(Conclusions, Views),
-	IStepWithRank,
-	IStepWithPhasedDifficulty
+public sealed record MultisectorLockedSetsStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Cells
+) : RankTheoryStep(Conclusions, Views), IStepWithRank, IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
@@ -18,7 +19,8 @@ public sealed record class MultisectorLockedSetsStep(ConclusionList Conclusions,
 	public decimal BaseDifficulty => 9.4M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Size", A002024(Cells.Count) * .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Size", A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public int Rank => 0;

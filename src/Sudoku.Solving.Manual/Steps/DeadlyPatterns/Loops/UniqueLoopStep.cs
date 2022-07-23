@@ -1,7 +1,4 @@
-﻿using U3 = Sudoku.Solving.Manual.Steps.UniqueLoopType3Step;
-using U4 = Sudoku.Solving.Manual.Steps.UniqueLoopType4Step;
-
-namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Loop</b> technique.
@@ -11,11 +8,13 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Digit1">Indicates the first digit.</param>
 /// <param name="Digit2">Indicates the second digit.</param>
 /// <param name="Loop">Indicates the loop that the instance used.</param>
-public abstract record class UniqueLoopStep(
-	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, scoped in Cells Loop) :
-	DeadlyPatternStep(Conclusions, Views),
-	IDistinctableStep<UniqueLoopStep>,
-	IStepWithPhasedDifficulty
+public abstract record UniqueLoopStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit1,
+	int Digit2,
+	scoped in Cells Loop
+) : DeadlyPatternStep(Conclusions, Views), IDistinctableStep<UniqueLoopStep>, IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
@@ -30,7 +29,8 @@ public abstract record class UniqueLoopStep(
 		};
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Length", ((Loop.Count >> 1) - 3) * .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Length", ((Loop.Count >> 1) - 3) * .1M) };
 
 	/// <summary>
 	/// Indicates the type.
@@ -86,8 +86,14 @@ public abstract record class UniqueLoopStep(
 			&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
 			&& (left, right) switch
 			{
-				(U3 { SubsetDigitsMask: var a }, U3 { SubsetDigitsMask: var b }) => a == b,
-				(U4 { ConjugatePair: var a }, U4 { ConjugatePair: var b }) => a == b,
+				(
+					UniqueLoopType3Step { SubsetDigitsMask: var a },
+					UniqueLoopType3Step { SubsetDigitsMask: var b }
+				) => a == b,
+				(
+					UniqueLoopType4Step { ConjugatePair: var a },
+					UniqueLoopType4Step { ConjugatePair: var b }
+				) => a == b,
 				_ => true
 			};
 }

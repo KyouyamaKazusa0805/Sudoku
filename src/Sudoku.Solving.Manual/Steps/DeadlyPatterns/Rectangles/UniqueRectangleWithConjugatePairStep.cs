@@ -12,10 +12,27 @@
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public record class UniqueRectangleWithConjugatePairStep(
-	ConclusionList Conclusions, ViewList Views, Technique TechniqueCode2, int Digit1, int Digit2,
-	scoped in Cells Cells, bool IsAvoidable, Conjugate[] ConjugatePairs, int AbsoluteOffset) :
-	UniqueRectangleStep(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset),
+public record UniqueRectangleWithConjugatePairStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	Technique TechniqueCode2,
+	int Digit1,
+	int Digit2,
+	scoped in Cells Cells,
+	bool IsAvoidable,
+	Conjugate[] ConjugatePairs,
+	int AbsoluteOffset
+) :
+	UniqueRectangleStep(
+		Conclusions,
+		Views,
+		TechniqueCode2,
+		Digit1,
+		Digit2,
+		Cells,
+		IsAvoidable,
+		AbsoluteOffset
+	),
 	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>

@@ -6,10 +6,11 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the true candidates.</param>
-public sealed record class BivalueUniversalGraveMultipleStep(
-	ConclusionList Conclusions, ViewList Views, IReadOnlyList<int> Candidates) :
-	BivalueUniversalGraveStep(Conclusions, Views),
-	IStepWithPhasedDifficulty
+public sealed record BivalueUniversalGraveMultipleStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	IReadOnlyList<int> Candidates
+) : BivalueUniversalGraveStep(Conclusions, Views), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override string Name => $"{base.Name} + {Candidates.Count}";

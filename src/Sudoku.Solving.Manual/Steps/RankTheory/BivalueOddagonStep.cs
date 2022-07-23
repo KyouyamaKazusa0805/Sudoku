@@ -8,12 +8,13 @@
 /// <param name="Loop">Indicates the loop used.</param>
 /// <param name="Digit1">Indicates the first digit.</param>
 /// <param name="Digit2">Indicates the second digit.</param>
-public abstract record class BivalueOddagonStep(
-	ConclusionList Conclusions, ViewList Views, scoped in Cells Loop, int Digit1, int Digit2) :
-	RankTheoryStep(Conclusions, Views),
-	IDistinctableStep<BivalueOddagonStep>,
-	ILoopLikeStep,
-	IStepWithRank
+public abstract record BivalueOddagonStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Loop,
+	int Digit1,
+	int Digit2
+) : RankTheoryStep(Conclusions, Views), IDistinctableStep<BivalueOddagonStep>, ILoopLikeStep, IStepWithRank
 {
 	/// <inheritdoc/>
 	public bool? IsNice => null;

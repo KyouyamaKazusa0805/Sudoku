@@ -6,7 +6,7 @@ partial class AutoDeconstructionGenerator
 	/// The inner syntax context receiver instance.
 	/// </summary>
 	/// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-	private sealed record class Receiver(CancellationToken CancellationToken) : ISyntaxContextReceiver
+	private sealed record Receiver(CancellationToken CancellationToken) : ISyntaxContextReceiver
 	{
 		/// <summary>
 		/// Indicates the result collection.

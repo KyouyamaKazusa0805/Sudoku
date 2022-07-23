@@ -9,9 +9,14 @@
 /// <param name="BaseCells">Indicates the base cells.</param>
 /// <param name="TargetCells">Indicates the target cells.</param>
 /// <param name="HasValueCell">Indicates whether the step contains value cells.</param>
-public sealed record class AlmostLockedCandidatesStep(
-	ConclusionList Conclusions, ViewList Views, short DigitsMask,
-	scoped in Cells BaseCells, scoped in Cells TargetCells, bool HasValueCell) :
+public sealed record AlmostLockedCandidatesStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	short DigitsMask,
+	scoped in Cells BaseCells,
+	scoped in Cells TargetCells,
+	bool HasValueCell
+) :
 	IntersectionStep(Conclusions, Views),
 	IStepWithSize,
 	IStepWithPhasedDifficulty

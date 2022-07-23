@@ -71,7 +71,7 @@ internal static class INamedTypeSymbolExtensions
 	internal static string GetTypeKindModifier(this INamedTypeSymbol @this)
 		=> (@this.TypeKind, @this.IsRecord) switch
 		{
-			(TypeKind.Class, true) => "record class",
+			(TypeKind.Class, true) => "record",
 			(TypeKind.Class, _) => "class",
 			(TypeKind.Struct, true) => "record struct",
 			(TypeKind.Struct, _) => "struct",

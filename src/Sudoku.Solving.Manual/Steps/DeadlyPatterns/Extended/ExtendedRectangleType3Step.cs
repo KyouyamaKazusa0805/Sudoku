@@ -10,11 +10,15 @@
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
 /// <param name="House">Indicates the house that extra subset formed.</param>
-public sealed record class ExtendedRectangleType3Step(
-	ConclusionList Conclusions, ViewList Views, scoped in Cells Cells, short DigitsMask,
-	scoped in Cells ExtraCells, short ExtraDigitsMask, int House) :
-	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask),
-	IStepWithPhasedDifficulty
+public sealed record ExtendedRectangleType3Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Cells,
+	short DigitsMask,
+	scoped in Cells ExtraCells,
+	short ExtraDigitsMask,
+	int House
+) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
@@ -23,11 +27,12 @@ public sealed record class ExtendedRectangleType3Step(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public new decimal BaseDifficulty => base.Difficulty;
-
-	/// <inheritdoc/>
-	public new (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Extra digits", PopCount((uint)ExtraDigitsMask) * .1M) };
+	public override (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[]
+		{
+			base.ExtraDifficultyValues[0],
+			("Extra digits", PopCount((uint)ExtraDigitsMask) * .1M)
+		};
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

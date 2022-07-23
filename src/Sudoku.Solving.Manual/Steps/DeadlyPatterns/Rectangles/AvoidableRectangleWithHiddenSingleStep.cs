@@ -12,13 +12,26 @@
 /// <param name="TargetCell"></param>
 /// <param name="House"></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record class AvoidableRectangleWithHiddenSingleStep(
-	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, scoped in Cells Cells,
-	int BaseCell, int TargetCell, int House, int AbsoluteOffset) :
-	UniqueRectangleStep(
-		Conclusions, Views,
-		(Technique)((int)Technique.AvoidableRectangleHiddenSingleBlock + (int)House.ToHouse()),
-		Digit1, Digit2, Cells, true, AbsoluteOffset)
+public sealed record AvoidableRectangleWithHiddenSingleStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit1,
+	int Digit2,
+	scoped in Cells Cells,
+	int BaseCell,
+	int TargetCell,
+	int House,
+	int AbsoluteOffset
+) : UniqueRectangleStep(
+	Conclusions,
+	Views,
+	(Technique)((int)Technique.AvoidableRectangleHiddenSingleBlock + (int)House.ToHouse()),
+	Digit1,
+	Digit2,
+	Cells,
+	true,
+	AbsoluteOffset
+)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 4.7M;

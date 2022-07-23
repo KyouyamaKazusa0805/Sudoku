@@ -8,10 +8,13 @@
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="ExtraCell">Indicates the XZ cell.</param>
-public sealed record class BivalueUniversalGraveXzStep(
-	ConclusionList Conclusions, ViewList Views, short DigitsMask, scoped in Cells Cells, int ExtraCell) :
-	BivalueUniversalGraveStep(Conclusions, Views),
-	IStepWithPhasedDifficulty
+public sealed record BivalueUniversalGraveXzStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	short DigitsMask,
+	scoped in Cells Cells,
+	int ExtraCell
+) : BivalueUniversalGraveStep(Conclusions, Views), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

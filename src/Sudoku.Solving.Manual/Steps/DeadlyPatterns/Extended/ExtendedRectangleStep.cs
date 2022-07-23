@@ -7,10 +7,12 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
-public abstract record class ExtendedRectangleStep(
-	ConclusionList Conclusions, ViewList Views, scoped in Cells Cells, short DigitsMask) :
-	DeadlyPatternStep(Conclusions, Views),
-	IStepWithPhasedDifficulty
+public abstract record ExtendedRectangleStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Cells,
+	short DigitsMask
+) : DeadlyPatternStep(Conclusions, Views), IStepWithPhasedDifficulty
 {
 	/// <summary>
 	/// Indicates the type of the step. The value must be between 1 and 4.

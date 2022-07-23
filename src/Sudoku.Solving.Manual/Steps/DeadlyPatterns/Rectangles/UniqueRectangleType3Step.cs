@@ -32,13 +32,29 @@
 /// </list>
 /// </para>
 /// </param>
-public sealed record class UniqueRectangleType3Step(
-	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, scoped in Cells Cells,
-	scoped in Cells ExtraCells, short ExtraDigitsMask, int House, bool IsAvoidable,
-	int AbsoluteOffset, bool IsNaked = true) :
+public sealed record UniqueRectangleType3Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit1,
+	int Digit2,
+	scoped in Cells Cells,
+	scoped in Cells ExtraCells,
+	short ExtraDigitsMask,
+	int House,
+	bool IsAvoidable,
+	int AbsoluteOffset,
+	bool IsNaked = true
+) :
 	UniqueRectangleStep(
-		Conclusions, Views, IsAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
-		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset),
+		Conclusions,
+		Views,
+		IsAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
+		Digit1,
+		Digit2,
+		Cells,
+		IsAvoidable,
+		AbsoluteOffset
+	),
 	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>

@@ -9,10 +9,14 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraCells">Indicates the extra cells used for forming the subset.</param>
 /// <param name="ExtraDigitsMask">Indicates the extra digits used for forming the subset.</param>
-public sealed record class UniquePolygonType3Step(
-	ConclusionList Conclusions, ViewList Views, scoped in Cells Map, short DigitsMask,
-	scoped in Cells ExtraCells, short ExtraDigitsMask) :
-	UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
+public sealed record UniquePolygonType3Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Map,
+	short DigitsMask,
+	scoped in Cells ExtraCells,
+	short ExtraDigitsMask
+) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.2M + ExtraCells.Count * .1M;

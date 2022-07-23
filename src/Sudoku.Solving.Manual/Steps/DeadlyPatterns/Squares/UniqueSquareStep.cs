@@ -7,9 +7,12 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the digits used.</param>
-public abstract record class UniqueSquareStep(
-	ConclusionList Conclusions, ViewList Views, scoped in Cells Cells, short DigitsMask) :
-	DeadlyPatternStep(Conclusions, Views)
+public abstract record UniqueSquareStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in Cells Cells,
+	short DigitsMask
+) : DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.3M;

@@ -4,7 +4,7 @@
 /// Provides with a displayable unit that display backdoors.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
-public sealed record class BackdoorDisplayable(ImmutableArray<Conclusion> Conclusions) :
+public sealed record BackdoorDisplayable(ImmutableArray<Conclusion> Conclusions) :
 	IDisplayable,
 	IEquatable<BackdoorDisplayable>,
 	IEqualityOperators<BackdoorDisplayable, BackdoorDisplayable>

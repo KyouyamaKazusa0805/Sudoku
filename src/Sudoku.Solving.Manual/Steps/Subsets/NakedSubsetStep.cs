@@ -25,10 +25,14 @@
 /// </item>
 /// </list>
 /// </param>
-public sealed record class NakedSubsetStep(
-	ConclusionList Conclusions, ViewList Views, int House, scoped in Cells Cells, short DigitsMask, bool? IsLocked) :
-	SubsetStep(Conclusions, Views, House, Cells, DigitsMask),
-	IStepWithPhasedDifficulty
+public sealed record NakedSubsetStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int House,
+	scoped in Cells Cells,
+	short DigitsMask,
+	bool? IsLocked
+) : SubsetStep(Conclusions, Views, House, Cells, DigitsMask), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

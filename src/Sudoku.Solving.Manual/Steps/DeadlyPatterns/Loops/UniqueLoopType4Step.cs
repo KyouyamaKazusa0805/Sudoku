@@ -9,10 +9,14 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Loop"><inheritdoc/></param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-public sealed record class UniqueLoopType4Step(
-	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2,
-	scoped in Cells Loop, scoped in Conjugate ConjugatePair) :
-	UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
+public sealed record UniqueLoopType4Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit1,
+	int Digit2,
+	scoped in Cells Loop,
+	scoped in Conjugate ConjugatePair
+) : UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;

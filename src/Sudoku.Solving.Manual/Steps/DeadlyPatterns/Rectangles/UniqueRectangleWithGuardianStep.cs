@@ -12,13 +12,27 @@
 /// <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record class UniqueRectangleWithGuardianStep(
-	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2,
-	scoped in Cells Cells, scoped in Cells GuardianCells,
-	int GuardianDigit, bool IsIncomplete, int AbsoluteOffset) :
+public sealed record UniqueRectangleWithGuardianStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit1,
+	int Digit2,
+	scoped in Cells Cells,
+	scoped in Cells GuardianCells,
+	int GuardianDigit,
+	bool IsIncomplete,
+	int AbsoluteOffset
+) :
 	UniqueRectangleStep(
-		Conclusions, Views, Technique.UniqueRectangleBrokenWing,
-		Digit1, Digit2, Cells, false, AbsoluteOffset),
+		Conclusions,
+		Views,
+		Technique.UniqueRectangleBrokenWing,
+		Digit1,
+		Digit2,
+		Cells,
+		false,
+		AbsoluteOffset
+	),
 	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>

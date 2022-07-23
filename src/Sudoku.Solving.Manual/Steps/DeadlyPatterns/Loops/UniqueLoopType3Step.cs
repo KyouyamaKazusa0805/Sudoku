@@ -12,11 +12,15 @@
 /// Indicates the mask that contains the subset digits used in this instance.
 /// </param>
 /// <param name="SubsetCells">Indicates the subset cells.</param>
-public sealed record class UniqueLoopType3Step(
-	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2,
-	scoped in Cells Loop, short SubsetDigitsMask, scoped in Cells SubsetCells) :
-	UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop),
-	IStepWithPhasedDifficulty
+public sealed record UniqueLoopType3Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int Digit1,
+	int Digit2,
+	scoped in Cells Loop,
+	short SubsetDigitsMask,
+	scoped in Cells SubsetCells
+) : UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

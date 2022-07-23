@@ -14,11 +14,29 @@
 /// <param name="Petals">Indicates the petals used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record class UniqueRectangleWithWingStep(
-	ConclusionList Conclusions, ViewList Views, Technique TechniqueCode2,
-	int Digit1, int Digit2, scoped in Cells Cells, bool IsAvoidable, scoped in Cells Pivots,
-	scoped in Cells Petals, short ExtraDigitsMask, int AbsoluteOffset) :
-	UniqueRectangleStep(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset),
+public sealed record UniqueRectangleWithWingStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	Technique TechniqueCode2,
+	int Digit1,
+	int Digit2,
+	scoped in Cells Cells,
+	bool IsAvoidable,
+	scoped in Cells Pivots,
+	scoped in Cells Petals,
+	short ExtraDigitsMask,
+	int AbsoluteOffset
+) :
+	UniqueRectangleStep(
+		Conclusions,
+		Views,
+		TechniqueCode2,
+		Digit1,
+		Digit2,
+		Cells,
+		IsAvoidable,
+		AbsoluteOffset
+	),
 	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>

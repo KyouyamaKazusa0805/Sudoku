@@ -4322,9 +4322,6 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
@@ -4358,9 +4355,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.ExtraDifficultyValues">

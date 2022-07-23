@@ -8,9 +8,13 @@
 /// <param name="House"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-public sealed record class HiddenSubsetStep(
-	ConclusionList Conclusions, ViewList Views, int House, scoped in Cells Cells, short DigitsMask) :
-	SubsetStep(Conclusions, Views, House, Cells, DigitsMask)
+public sealed record HiddenSubsetStep(
+	ConclusionList Conclusions,
+	ViewList Views,
+	int House,
+	scoped in Cells Cells,
+	short DigitsMask
+) : SubsetStep(Conclusions, Views, House, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => Size switch { 2 => 3.4M, 3 => 4.0M, 4 => 5.4M };

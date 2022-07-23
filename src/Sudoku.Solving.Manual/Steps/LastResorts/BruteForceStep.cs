@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public sealed record class BruteForceStep(ConclusionList Conclusions, ViewList Views) :
+public sealed record BruteForceStep(ConclusionList Conclusions, ViewList Views) :
 	LastResortStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

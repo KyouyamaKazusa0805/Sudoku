@@ -7,9 +7,12 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidate">Indicates the extra candidate used.</param>
-public sealed record class QiuDeadlyPatternType1Step(
-	ConclusionList Conclusions, ViewList Views, scoped in QiuDeadlyPattern Pattern, int Candidate) :
-	QiuDeadlyPatternStep(Conclusions, Views, Pattern)
+public sealed record QiuDeadlyPatternType1Step(
+	ConclusionList Conclusions,
+	ViewList Views,
+	scoped in QiuDeadlyPattern Pattern,
+	int Candidate
+) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;
