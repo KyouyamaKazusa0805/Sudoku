@@ -47,7 +47,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueList(byte capacity)
 	{
-		_startPtr = (TUnmanaged*)(NativeMemory.Alloc((nuint)sizeof(TUnmanaged) * capacity));
+		_startPtr = (TUnmanaged*)NativeMemory.Alloc((nuint)sizeof(TUnmanaged) * capacity);
 		_capacity = capacity;
 	}
 
