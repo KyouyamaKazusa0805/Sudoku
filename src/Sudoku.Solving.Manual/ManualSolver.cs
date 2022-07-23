@@ -33,7 +33,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	public bool IsFullApplying { get; set; } = false;
+	public bool IsFullApplying { get; set; } = true;
 
 	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
 	public bool AllowCollisionOnAlsXz
@@ -396,7 +396,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 				continue;
 			}
 
-			if (IsFullApplying)
+			if (IsFullApplying && searcher is not IBruteForceStepSearcher)
 			{
 				var accumulator = new List<Step>();
 				searcher.GetAll(accumulator, playground, false);
@@ -418,8 +418,10 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 							return result;
 						}
 					}
-
-					throw new WrongStepException(playground, foundStep);
+					else
+					{
+						throw new WrongStepException(playground, foundStep);
+					}
 				}
 
 				// The puzzle has not been finished, we should turn to the first step finder
