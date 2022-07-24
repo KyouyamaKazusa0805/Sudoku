@@ -22,6 +22,7 @@
   * **[相关单元格](peer)（Peer/Buddy）**：表示某个单元格所在的行、列、宫里的别的单元格构成的一组单元格序列。
 * **结构性术语**
   * **[共轭对](conjugate-pair)（Conjugate Pair）**：同一个区域下，只有两处可以填入同一个数字的单元格。
+  * **[严格共享候选数](restricted-common-candidate)（Restricted Common Candidate）**：用于约束 ALS 链式技巧之中的数值间的弱关系。
 * **题目性质术语**
   * **[最小题](minimal-puzzle)、精简题（Minimal Puzzle）**：题目之中的任何一个提示数都不可缺少。
   * **[一刀流题](ittouryu-puzzle)（Ittouryu Puzzle）**：题目可按照数字 1 到 9 次序完成，不跳数字。

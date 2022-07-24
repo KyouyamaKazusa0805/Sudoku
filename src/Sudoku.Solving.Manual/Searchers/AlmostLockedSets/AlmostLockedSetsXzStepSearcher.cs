@@ -26,6 +26,15 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// <para><b>Developer notes</b></para>
+	/// <para>
+	/// This algorithm uses a concept called Restricted Common Candidate (abbr. RCC) to limit the implementation.
+	/// If you don't know that is an RCC,
+	/// <see href="https://sunnieshine.github.io/Sudoku/terms/restricted-common-candidate">this link</see>
+	/// will tell you what is it.
+	/// </para>
+	/// </remarks>
 	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		int* house = stackalloc int[2];
