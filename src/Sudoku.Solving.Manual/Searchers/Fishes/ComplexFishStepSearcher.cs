@@ -66,8 +66,6 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 			int currentDigit = digit;
 
 			// Create a background thread to work on searching for fishes of this digit.
-			// Here we use the local function because all captured objects will be encapsulated
-			// by a struct instead of a class.
 			searchingTasks[count++] = Task.Run(
 				() =>
 				{
