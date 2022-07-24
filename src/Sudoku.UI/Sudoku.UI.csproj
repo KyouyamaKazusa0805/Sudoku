@@ -31,6 +31,7 @@
 		<AppInstallerUri>C:\Apps</AppInstallerUri>
 		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 		<AppxBundlePlatforms>x64</AppxBundlePlatforms>
+		<IncludeNativeLibrariesForSelfExtract>True</IncludeNativeLibrariesForSelfExtract>
 
 		<!--Extra configuration on unpackaged application configuration-->
 		<!--
