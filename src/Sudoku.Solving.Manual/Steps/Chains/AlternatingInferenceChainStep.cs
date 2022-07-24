@@ -103,12 +103,13 @@ public sealed record AlternatingInferenceChainStep(
 				(_, true) => Technique.GroupedAlternatingInferenceChain,
 				_ => Technique.AlternatingInferenceChain
 			},
-			{ Chain.IsGrouped: var isGrouped, Conclusions.Length: var conclusionLength } => conclusionLength switch
-			{
-				1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
-				2 => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain,
-				_ => isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain
-			}
+			{ Chain.IsGrouped: var isGrouped, Conclusions.Length: var conclusionLength }
+				=> conclusionLength switch
+				{
+					1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
+					2 => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain,
+					_ => isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain
+				}
 		};
 
 	/// <inheritdoc/>
