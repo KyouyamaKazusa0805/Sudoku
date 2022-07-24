@@ -39,9 +39,10 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		}
 
 		// Gather the valid attributes data.
-		var foundAttributesData = new List<(INamedTypeSymbol, INamespaceSymbol, int, byte, string, ImmutableArray<KeyValuePair<string, TypedConstant>>)>();
+		var foundAttributesData = new List<FoundAttributeData>();
 		const string comma = ", ";
 		const string attributeTypeName = "Sudoku.Solving.Manual.SearcherConfigurationAttribute<>";
+		int priorityValue = 0;
 		foreach (var attributeData in attributesData)
 		{
 			// Check validity.
@@ -62,11 +63,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 							} stepSearcherTypeSymbol
 						]
 					} attributeClassSymbol,
-					ConstructorArguments:
-					[
-						{ Type.SpecialType: SpecialType.System_Int32, Value: int priority },
-						{ Type.TypeKind: Kind.Enum, Value: byte dl }
-					],
+					ConstructorArguments: [{ Type.TypeKind: Kind.Enum, Value: byte dl }],
 					NamedArguments: var namedArguments
 				}
 #pragma warning restore IDE0055
@@ -84,29 +81,19 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 
 			// Adds the necessary info into the collection.
 			foundAttributesData.Add(
-				(stepSearcherTypeSymbol, containingNamespace, priority, dl, stepSearcherName, namedArguments));
+				new(
+					containingNamespace,
+					priorityValue++,
+					dl,
+					stepSearcherName,
+					namedArguments
+				)
+			);
 		}
-
-#if false
-		// Checks whether the collection has duplicated priority values.
-		for (int i = 0; i < foundAttributesData.Count - 1; i++)
-		{
-			int a = foundAttributesData[i].Priority;
-			for (int j = i + 1; j < foundAttributesData.Count; j++)
-			{
-				int b = foundAttributesData[j].Priority;
-				if (a == b)
-				{
-					throw new InvalidOperationException(
-						"Cannot operate because two found step searchers has a same priority value.");
-				}
-			}
-		}
-#endif
 
 		// Iterate on each valid attribute data, and checks the inner value to be used
 		// by the source generator to output.
-		foreach (var (type, @namespace, priority, level, name, namedArguments) in foundAttributesData)
+		foreach (var (@namespace, priority, level, name, namedArguments) in foundAttributesData)
 		{
 			// Checks whether the attribute has configured any extra options.
 			byte? enabledArea = null;
@@ -172,7 +159,9 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 	}
 
 	private unsafe string CreateExpression<TUnmanaged>(
-		TUnmanaged field, string typeName, IDictionary<byte, string> enabledAreasFields,
+		TUnmanaged field,
+		string typeName,
+		IDictionary<byte, string> enabledAreasFields,
 		IDictionary<short, string> disabledReasonFields)
 		where TUnmanaged : unmanaged
 	{
@@ -217,3 +206,19 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		return string.Join(" | ", targetList);
 	}
 }
+
+/// <summary>
+/// Simply encapsulates a data tuple describing the information of a found attribute.
+/// </summary>
+/// <param name="Namespace">Indicates the namespace symbol of that step searcher.</param>
+/// <param name="PriorityValue">The priority value of the step searcher.</param>
+/// <param name="DifficultyLevel">The difficulty level of the step searcher.</param>
+/// <param name="TypeName">The name of the step searcher type.</param>
+/// <param name="NamedArguments">The named arguments of that attribute.</param>
+internal readonly record struct FoundAttributeData(
+	INamespaceSymbol Namespace,
+	int PriorityValue,
+	byte DifficultyLevel,
+	string TypeName,
+	ImmutableArray<KeyValuePair<string, TypedConstant>> NamedArguments
+) : IEquatable<FoundAttributeData>;

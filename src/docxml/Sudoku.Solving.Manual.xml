@@ -591,12 +591,11 @@
             </summary>
             <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.#ctor(System.Int32,Sudoku.Runtime.AnalysisServices.DisplayingLevel)">
+        <member name="M:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.#ctor(Sudoku.Runtime.AnalysisServices.DisplayingLevel)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1"/> instance
-            via the specified priority.
+            via the specified displaying level.
             </summary>
-            <param name="priority">The priority value. The value must be unique.</param>
             <param name="displayingLevel">The displaying level.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.Priority">
