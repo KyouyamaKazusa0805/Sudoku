@@ -122,6 +122,50 @@
 												</StackPanel>
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.SliderTemplate>
+										<dts:SettingItemDataTemplateSelector.Int32SliderTemplate>
+											<DataTemplate x:DataType="ms:Int32SliderSettingItem">
+												<StackPanel Orientation="Horizontal">
+													<Slider
+														x:Name="_cSlider" TickPlacement="Outside"
+														Width="600"
+														Minimum="{x:Bind MinValue}" Maximum="{x:Bind MaxValue}"
+														TickFrequency="{x:Bind TickFrequency}"
+														StepFrequency="{x:Bind StepFrequency}"
+														Margin="{StaticResource _rSettingItemMargin}"
+														Value="{x:Bind GetPreference(),
+															Mode=TwoWay,
+															UpdateSourceTrigger=PropertyChanged,
+															BindBack=SetPreference}">
+														<Slider.Header>
+															<StackPanel>
+																<TextBlock
+																	Text="{x:Bind Name}"
+																	Style="{ThemeResource _rSettingItemNameTextBlockStyle}" />
+																<TextBlock
+																	Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
+																	Text="{x:Bind Description}"
+																	Margin="{StaticResource _rSettingDescriptionMargin}"
+																	Style="{ThemeResource CaptionTextBlockStyle}" />
+																<TextBlock
+																	Style="{ThemeResource CaptionTextBlockStyle}"
+																	Margin="{StaticResource _rSettingDescriptionMargin}"
+																	Text="{x:Bind data:SimpleConverters.SliderPossibleValueStringInt32(MinValue,MaxValue,StepFrequency,TickFrequency)}" />
+															</StackPanel>
+														</Slider.Header>
+													</Slider>
+													<TextBlock
+														VerticalAlignment="Center"
+														Text="{Binding
+															ElementName=_cSlider,
+															Path=Value,
+															Converter={StaticResource _rToStringConverter},
+															ConverterParameter='0',
+															UpdateSourceTrigger=PropertyChanged,
+															Mode=OneWay}"
+														Style="{StaticResource BoldText}" />
+												</StackPanel>
+											</DataTemplate>
+										</dts:SettingItemDataTemplateSelector.Int32SliderTemplate>
 										<dts:SettingItemDataTemplateSelector.ColorPickerTemplate>
 											<DataTemplate x:DataType="ms:ColorPickerSettingItem">
 												<StackPanel>

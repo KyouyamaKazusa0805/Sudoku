@@ -28,6 +28,56 @@ namespace Sudoku.UI.Data.Configuration;
 /// <seealso cref="PreferenceGroupAttribute"/>
 public sealed class Preference : IDrawingPreference
 {
+	/// <summary>
+	/// Indicates the default solver.
+	/// </summary>
+	[JsonIgnore]
+	public static readonly ManualSolver DefaultSolver = new();
+
+
+	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
+	private bool _allowCollision;
+
+	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
+	private bool _allowDoublyLinkedAls;
+
+	/// <inheritdoc cref="IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
+	private bool _checkAlq;
+
+	/// <inheritdoc cref="IBivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
+	private bool _searchBugExtendedTypes;
+
+	/// <inheritdoc cref="IExocetStepSearcher.CheckAdvanced"/>
+	private bool _checkAdvancedJe;
+
+	/// <inheritdoc cref="IExocetStepSearcher.CheckAdvanced"/>
+	private bool _checkAdvancedSe;
+
+	/// <inheritdoc cref="ISingleStepSearcher.EnableFullHouse"/>
+	private bool _enableFullHouse;
+
+	/// <inheritdoc cref="ISingleStepSearcher.EnableLastDigit"/>
+	private bool _enableLastDigit;
+
+	/// <inheritdoc cref="ISingleStepSearcher.HiddenSinglesInBlockFirst"/>
+	private bool _hiddenSingleHouseFirst;
+
+	/// <inheritdoc cref="ITemplateStepSearcher.TemplateDeleteOnly"/>
+	private bool _templateDeleteOnly;
+
+	/// <inheritdoc cref="IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
+	private bool _allowIncompleteUr;
+
+	/// <inheritdoc cref="IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
+	private bool _searcherUrExtendedTypes;
+
+	/// <inheritdoc cref="IRegularWingStepSearcher.MaxSize"/>
+	private int _regularWingMaxSize;
+
+	/// <inheritdoc cref="IFishStepSearcher.MaxSize"/>
+	private int _complexFishSize;
+
+
 	#region Basic Options
 	/// <inheritdoc/>
 	/// <remarks>
@@ -153,6 +203,259 @@ public sealed class Preference : IDrawingPreference
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Basic, 11)]
 	public bool AlwaysShowHomePageWhenOpen { get; set; } = true;
+	#endregion
+
+	#region Solving Options
+	/// <inheritdoc cref="ManualSolver.IsHodokuMode"/>
+	public bool IsHodokuMode
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => DefaultSolver.IsHodokuMode;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => DefaultSolver.IsHodokuMode = value;
+	}
+
+	/// <inheritdoc cref="ManualSolver.IsFullApplying"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 0)]
+	public bool IsFullApplying
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => DefaultSolver.IsFullApplying;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => DefaultSolver.IsFullApplying = value;
+	}
+
+	/// <inheritdoc cref="ManualSolver.AllowCollisionOnAlsXz"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 1)]
+	public bool AllowCollisionOnChainingAlsTechniques
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _allowCollision;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_allowCollision = value;
+			DefaultSolver.AllowCollisionOnAlsXz = value;
+			DefaultSolver.AllowCollisionOnAlsXyWing = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.AllowLoopedPatternsOnAlsXz"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 2)]
+	public bool AllowDoublyLinkedAls
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _allowDoublyLinkedAls;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_allowDoublyLinkedAls = value;
+			DefaultSolver.AllowLoopedPatternsOnAlsXz = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.CheckAlmostLockedQuadruple"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 3)]
+	public bool CheckAlmostLockedQuadruple
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _checkAlq;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_checkAlq = value;
+			DefaultSolver.CheckAlmostLockedQuadruple = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.SearchBivalueUniversalGraveExtendedTypes"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 4)]
+	public bool SearchBivalueUniversalGraveExtendedTypes
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _searchBugExtendedTypes;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_searchBugExtendedTypes = value;
+			DefaultSolver.SearchBivalueUniversalGraveExtendedTypes = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.CheckAdvancedJuniorExocets"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 5)]
+	public bool CheckAdvancedJuniorExocets
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _checkAdvancedJe;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_checkAdvancedJe = value;
+			DefaultSolver.CheckAdvancedJuniorExocets = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.CheckAdvancedSeniorExocets"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 6)]
+	public bool CheckAdvancedSeniorExocets
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _checkAdvancedSe;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_checkAdvancedSe = value;
+			DefaultSolver.CheckAdvancedSeniorExocets = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.EnableFullHouse"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 7)]
+	public bool EnableFullHouse
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _enableFullHouse;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_enableFullHouse = value;
+			DefaultSolver.EnableFullHouse = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.EnableLastDigit"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 8)]
+	public bool EnableLastDigit
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _enableLastDigit;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_enableLastDigit = value;
+			DefaultSolver.EnableLastDigit = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.HiddenSinglesInBlockFirst"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 9)]
+	public bool HiddenSinglesInBlockFirst
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _hiddenSingleHouseFirst;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_hiddenSingleHouseFirst = value;
+			DefaultSolver.HiddenSinglesInBlockFirst = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.TemplateDeleteOnly"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 10)]
+	public bool TemplateDeleteOnly
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _templateDeleteOnly;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_templateDeleteOnly = value;
+			DefaultSolver.TemplateDeleteOnly = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.AllowIncompleteUniqueRectangles"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 11)]
+	public bool AllowIncompleteUniqueRectangles
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _allowIncompleteUr;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_allowIncompleteUr = value;
+			DefaultSolver.AllowIncompleteUniqueRectangles = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.SearchForExtendedUniqueRectangles"/>
+	[Preference<ToggleSwitchSettingItem>]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 12)]
+	public bool SearchForExtendedUniqueRectangles
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _searcherUrExtendedTypes;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_searcherUrExtendedTypes = value;
+			DefaultSolver.SearchForExtendedUniqueRectangles = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.RegularWingMaxSize"/>
+	[Preference<Int32SliderSettingItem>(
+		nameof(Int32SliderSettingItem.StepFrequency), 1, nameof(Int32SliderSettingItem.TickFrequency), 1,
+		nameof(Int32SliderSettingItem.MinValue), 3, nameof(Int32SliderSettingItem.MaxValue), 9)]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 13)]
+	public int RegularWingMaxSize
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _regularWingMaxSize;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_regularWingMaxSize = value;
+			DefaultSolver.RegularWingMaxSize = value;
+		}
+	}
+
+	/// <inheritdoc cref="ManualSolver.ComplexFishMaxSize"/>
+	[Preference<Int32SliderSettingItem>(
+		nameof(Int32SliderSettingItem.StepFrequency), 1, nameof(Int32SliderSettingItem.TickFrequency), 1,
+		nameof(Int32SliderSettingItem.MinValue), 2, nameof(Int32SliderSettingItem.MaxValue), 7)]
+	[PreferenceGroup(PreferenceGroupNames.Solving, 14)]
+	public int ComplexFishMaxSize
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _complexFishSize;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_complexFishSize = value;
+			DefaultSolver.ComplexFishMaxSize = value;
+		}
+	}
 	#endregion
 
 	#region Rendering Options

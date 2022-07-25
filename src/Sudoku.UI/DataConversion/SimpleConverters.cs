@@ -62,6 +62,9 @@ internal static class SimpleConverters
 			}
 		]!;
 
+	public static string SliderPossibleValueStringInt32(int min, int max, int stepFrequency, int tickFrequency)
+		=> $"{R["SliderPossibleValue"]}{min} - {max}{R["SliderStepFrequency"]}{stepFrequency}{R["SliderTickFrequency"]}{tickFrequency}";
+
 	public static string SliderPossibleValueString(double min, double max, double stepFrequency, double tickFrequency)
 		=> SliderPossibleValueStringWithFormat(min, max, stepFrequency, tickFrequency, "0.0");
 

@@ -130,6 +130,11 @@
             Indicates the template that is used for a slider.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.SettingItemDataTemplateSelector.Int32SliderTemplate">
+            <summary>
+            Indicates the template that is used for a slider.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.SettingItemDataTemplateSelector.ColorPickerTemplate">
             <summary>
             Indicates the template that is used for a color picker.
@@ -397,6 +402,53 @@
             <seealso cref="T:Sudoku.UI.Data.Metadata.PreferenceAttribute`1"/>
             <seealso cref="T:Sudoku.UI.Data.Metadata.PreferenceGroupAttribute"/>
         </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference.DefaultSolver">
+            <summary>
+            Indicates the default solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._allowCollision">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._allowDoublyLinkedAls">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._checkAlq">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._searchBugExtendedTypes">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IBivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._checkAdvancedJe">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IExocetStepSearcher.CheckAdvanced"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._checkAdvancedSe">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IExocetStepSearcher.CheckAdvanced"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._enableFullHouse">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableFullHouse"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._enableLastDigit">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableLastDigit"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._hiddenSingleHouseFirst">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._templateDeleteOnly">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ITemplateStepSearcher.TemplateDeleteOnly"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._allowIncompleteUr">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._searcherUrExtendedTypes">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._regularWingMaxSize">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher.MaxSize"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference._complexFishSize">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IFishStepSearcher.MaxSize"/>
+        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.ShowCandidates">
             <inheritdoc/>
             <remarks>
@@ -477,6 +529,54 @@
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.IsHodokuMode">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.IsHodokuMode"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.IsFullApplying">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.IsFullApplying"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AllowCollisionOnChainingAlsTechniques">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.AllowCollisionOnAlsXz"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AllowDoublyLinkedAls">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.AllowLoopedPatternsOnAlsXz"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CheckAlmostLockedQuadruple">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.CheckAlmostLockedQuadruple"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.SearchBivalueUniversalGraveExtendedTypes">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.SearchBivalueUniversalGraveExtendedTypes"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CheckAdvancedJuniorExocets">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.CheckAdvancedJuniorExocets"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.CheckAdvancedSeniorExocets">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.CheckAdvancedSeniorExocets"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.EnableFullHouse">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.EnableFullHouse"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.EnableLastDigit">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.EnableLastDigit"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.HiddenSinglesInBlockFirst">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.TemplateDeleteOnly">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.TemplateDeleteOnly"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.AllowIncompleteUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.AllowIncompleteUniqueRectangles"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.SearchForExtendedUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.SearchForExtendedUniqueRectangles"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.RegularWingMaxSize">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.RegularWingMaxSize"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.ComplexFishMaxSize">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.ComplexFishMaxSize"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.OutsideBorderWidth">
             <inheritdoc/>
@@ -1729,6 +1829,40 @@
             The property name that references a property in the type <see cref="T:Sudoku.UI.Data.Configuration.Preference"/>.
             </param>
             <returns>A <see cref="T:Sudoku.UI.Models.SettingItems.SettingItem"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Models.SettingItems.Int32SliderSettingItem">
+            <summary>
+            Defines an integer option that is binding with a slider on displaying.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingItems.Int32SliderSettingItem.StepFrequency">
+            <summary>
+            Indicates the step frequency.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingItems.Int32SliderSettingItem.TickFrequency">
+            <summary>
+            Indicates the tick frequency.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingItems.Int32SliderSettingItem.MinValue">
+            <summary>
+            Indicates the minimum value of the slider.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.SettingItems.Int32SliderSettingItem.MaxValue">
+            <summary>
+            Indicates the maximum value of the slider.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.Int32SliderSettingItem.CreateInstance(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.Int32SliderSettingItem.GetPreference">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.GetPreference``1"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.SettingItems.Int32SliderSettingItem.SetPreference(System.Double)">
+            <inheritdoc cref="M:Sudoku.UI.Models.SettingItems.SettingItem.SetPreference``1(``0)"/>
         </member>
         <member name="T:Sudoku.UI.Models.SettingItems.PeerFocusingModeComboBoxSettingItem">
             <summary>
