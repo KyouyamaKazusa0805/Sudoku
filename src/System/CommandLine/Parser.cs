@@ -134,7 +134,7 @@ public static class Parser
 			if (listOfRequiredProperties.Count != 0)
 			{
 				string requiredPropertiesNotAssignedStr = string.Join(
-					"\r\n    ",
+					$"\r\n{new string(' ', 4)}",
 					from propertyInfo in listOfRequiredProperties
 					let name = propertyInfo.Name
 					let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()!
