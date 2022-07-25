@@ -1596,4 +1596,8 @@
     <value>隐性待定数组・链</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="RemotePair" xml:space="preserve">
+    <value>远程数对</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

@@ -8719,6 +8719,11 @@
               Looks up a localized string similar to Region Forcing Chains.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.RemotePair">
+            <summary>
+              Looks up a localized string similar to Remote Pair.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.RstuvwxyzWing">
             <summary>
               Looks up a localized string similar to RSTUVWXYZ-Wing.
@@ -11664,6 +11669,11 @@
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.XyXChain">
             <summary>
             Indicates the XY-X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.RemotePair">
+            <summary>
+            Indicates the remote pair.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.PurpleCow">

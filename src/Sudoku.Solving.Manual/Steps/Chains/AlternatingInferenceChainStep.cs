@@ -87,6 +87,7 @@ public sealed record AlternatingInferenceChainStep(
 				=> isGrouped ? Technique.GroupedLocalWing : Technique.LocalWing,
 			{ Chain: { IsGrouped: var isGrouped, IsIrregularWing: true } }
 				=> isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
+			{ Chain.IsGrouped: false, IsRemotePair: true } => Technique.RemotePair,
 			{ Chain.IsAlmostLockedSetsOnly: true } => Technique.AlmostLockedSetsChain,
 			{ Chain.IsAlmostHiddenSetsOnly: true } => Technique.AlmostHiddenSetsChain,
 			{ Chain.HasNodeCollision: true } => Technique.NodeCollision,
@@ -166,6 +167,28 @@ public sealed record AlternatingInferenceChainStep(
 			}
 
 			return Bucket.Count(static value => value) == 1;
+		}
+	}
+
+	/// <summary>
+	/// Indicates whether the specified chain is a remote pair.
+	/// </summary>
+	private bool IsRemotePair
+	{
+		get
+		{
+			if (!IsXyChain)
+			{
+				return false;
+			}
+
+			Array.Fill(Bucket, false);
+			foreach (var node in Chain.RealChainNodes)
+			{
+				Bucket[node.Digit] = true;
+			}
+
+			return Bucket.Count(static value => value) == 2;
 		}
 	}
 

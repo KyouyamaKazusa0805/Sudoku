@@ -1807,6 +1807,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remote Pair.
+        /// </summary>
+        internal static string RemotePair {
+            get {
+                return ResourceManager.GetString("RemotePair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RSTUVWXYZ-Wing.
         /// </summary>
         internal static string RstuvwxyzWing {

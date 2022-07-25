@@ -1157,6 +1157,11 @@ public enum Technique : short
 	XyXChain,
 
 	/// <summary>
+	/// Indicates the remote pair.
+	/// </summary>
+	RemotePair,
+
+	/// <summary>
 	/// Indicates the purple cow.
 	/// </summary>
 	PurpleCow,

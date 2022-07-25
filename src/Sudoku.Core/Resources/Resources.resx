@@ -1320,4 +1320,7 @@
   <data name="AlmostHiddenSetsChain" xml:space="preserve">
     <value>Almost Hidden Sets Chain</value>
   </data>
+  <data name="RemotePair" xml:space="preserve">
+    <value>Remote Pair</value>
+  </data>
 </root>

@@ -4049,6 +4049,11 @@
             Indicates whether the specified chain is an X-Chain.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsRemotePair">
+            <summary>
+            Indicates whether the specified chain is a remote pair.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsWWing">
             <summary>
             Indicates whether the chain is W-Wing (<c>(x = y) - y = y - (y = x)</c>).
