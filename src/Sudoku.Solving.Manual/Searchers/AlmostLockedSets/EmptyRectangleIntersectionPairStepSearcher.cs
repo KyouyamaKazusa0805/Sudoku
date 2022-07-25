@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
+internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
 	IEmptyRectangleIntersectionPairStepSearcher
 {
 	/// <inheritdoc/>

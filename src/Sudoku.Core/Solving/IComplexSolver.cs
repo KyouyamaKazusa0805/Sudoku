@@ -1,10 +1,15 @@
 ﻿namespace Sudoku.Solving;
 
 /// <summary>
-/// Defines a complex solver.
+/// Defines a complex solver, that uses complex algorithm to solve a puzzle, returning
+/// a complex result type instead of an only <see cref="bool"/> value
+/// indicating whether the puzzle is successfully solved.
 /// </summary>
+/// <typeparam name="TSolver">The solver's type.</typeparam>
 /// <typeparam name="TSolverResult">The type of the target result.</typeparam>
-public interface IComplexSolver<out TSolverResult>
+public interface IComplexSolver<in TSolver, out TSolverResult>
+	where TSolver : IComplexSolver<TSolver, TSolverResult>
+	where TSolverResult : IComplexSolverResult<TSolver, TSolverResult>
 {
 	/// <summary>
 	/// To solve the specified puzzle.

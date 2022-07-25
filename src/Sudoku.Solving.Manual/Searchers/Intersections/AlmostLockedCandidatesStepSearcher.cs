@@ -6,11 +6,13 @@
 /// <list type="bullet">
 /// <item>Almost Locked Pair</item>
 /// <item>Almost Locked Triple</item>
-/// <item>Almost Locked Quadruple</item>
+/// <item>
+/// Almost Locked Quadruple (This is unnecessary one)
+/// </item>
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
+internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>
 	public bool CheckAlmostLockedQuadruple { get; set; }

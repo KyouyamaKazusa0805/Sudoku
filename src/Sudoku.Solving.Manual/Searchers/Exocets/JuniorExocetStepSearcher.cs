@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed partial class JuniorExocetStepSearcher : IJuniorExocetStepSearcher
+internal sealed partial class JuniorExocetStepSearcher : IJuniorExocetStepSearcher
 {
 	/// <inheritdoc/>
 	public bool CheckAdvanced { get; set; }

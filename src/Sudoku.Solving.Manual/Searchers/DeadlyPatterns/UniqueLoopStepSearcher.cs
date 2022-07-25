@@ -11,7 +11,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class UniqueLoopStepSearcher :
+internal sealed unsafe partial class UniqueLoopStepSearcher :
 	IUniqueLoopStepSearcher,
 	IUniqueLoopOrBivalueOddagonStepSearcher
 {

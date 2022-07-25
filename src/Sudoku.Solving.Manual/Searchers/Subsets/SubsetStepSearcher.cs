@@ -17,7 +17,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
+internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 {
 	/// <inheritdoc/>
 	/// <remarks>

@@ -8,12 +8,16 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
+internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 {
 	/// <summary>
 	/// The singles searcher.
 	/// </summary>
-	private readonly SingleStepSearcher _searcher = new() { EnableFullHouse = true, EnableLastDigit = true };
+	private readonly ISingleStepSearcher _searcher = new SingleStepSearcher
+	{
+		EnableFullHouse = true,
+		EnableLastDigit = true
+	};
 
 	/// <summary>
 	/// All temporary conclusions.

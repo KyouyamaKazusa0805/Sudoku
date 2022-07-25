@@ -11,7 +11,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonStepSearcher
+internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonStepSearcher
 {
 	/// <summary>
 	/// Indicates all possible patterns to iterate.

@@ -10,7 +10,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzStepSearcher
+internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzStepSearcher
 {
 	/// <inheritdoc/>
 	/// <remarks>

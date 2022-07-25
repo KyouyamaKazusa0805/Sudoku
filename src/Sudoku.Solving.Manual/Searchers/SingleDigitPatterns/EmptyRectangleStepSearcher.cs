@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
+internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
 {
 	/// <summary>
 	/// Indicates all houses iterating on the specified block forming an empty rectangle.

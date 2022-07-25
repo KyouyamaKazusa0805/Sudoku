@@ -41,7 +41,7 @@
 [SeparatedStepSearcher(3, nameof(NodeTypes), SearcherNodeTypeLevel.LockedSets)]
 [SeparatedStepSearcher(4, nameof(NodeTypes), SearcherNodeTypeLevel.HiddenSets)]
 [SeparatedStepSearcher(5, nameof(NodeTypes), SearcherNodeTypeLevel.UniqueRectangles)]
-public sealed partial class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
+internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
 	/// <summary>
 	/// Indicates the field that stores the temporary strong inferences during the searching.

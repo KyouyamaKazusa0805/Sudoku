@@ -11,7 +11,7 @@
 /// </summary>
 [StepSearcher]
 [StepSearcherOptions(IsDirect = true, IsOptionsFixed = true)]
-public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
+internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 {
 	/// <inheritdoc/>
 	/// <remarks>

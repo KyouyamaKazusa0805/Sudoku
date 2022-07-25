@@ -11,7 +11,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
+internal sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 {
 	/// <summary>
 	/// Indicates the patterns.

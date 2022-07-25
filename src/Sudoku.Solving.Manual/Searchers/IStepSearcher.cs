@@ -6,6 +6,59 @@
 public interface IStepSearcher
 {
 	/// <summary>
+	/// Determines whether the current step searcher is separated one, which mean it can be created
+	/// as many possible instances in a same step searchers pool.
+	/// </summary>
+	public sealed bool IsSeparated
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => GetType().GetCustomAttribute<SeparatedStepSearcherAttribute>() is not null;
+	}
+
+	/// <summary>
+	/// Determines whether the current step searcher is a direct one.
+	/// </summary>
+	/// <remarks>
+	/// If you don't know what is a direct step searcher, please visit the property
+	/// <see cref="StepSearcherOptionsAttribute.IsDirect"/> to learn more information.
+	/// </remarks>
+	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
+	public sealed bool IsDirect
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => GetType().GetCustomAttribute<StepSearcherOptionsAttribute>()?.IsDirect ?? false;
+	}
+
+	/// <summary>
+	/// Determines whether we can adjust the ordering of the current step searcher
+	/// as a customized configuration option before solving a puzzle.
+	/// </summary>
+	/// <remarks>
+	/// If you don't know what is a direct step searcher, please visit the property
+	/// <see cref="StepSearcherOptionsAttribute.IsOptionsFixed"/> to learn more information.
+	/// </remarks>
+	/// <seealso cref="StepSearcherOptionsAttribute.IsOptionsFixed"/>
+	public sealed bool IsOptionsFixed
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => GetType().GetCustomAttribute<StepSearcherOptionsAttribute>()?.IsOptionsFixed ?? false;
+	}
+
+	/// <summary>
+	/// Determines whether the current step searcher is deprecated.
+	/// </summary>
+	/// <remarks>
+	/// If you don't know what is a direct step searcher, please visit the property
+	/// <see cref="StepSearcherOptionsAttribute.IsDeprecated"/> to learn more information.
+	/// </remarks>
+	/// <seealso cref="StepSearcherOptionsAttribute.IsDeprecated"/>
+	public sealed bool IsDeprecated
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => GetType().GetCustomAttribute<StepSearcherOptionsAttribute>()?.IsDeprecated ?? false;
+	}
+
+	/// <summary>
 	/// Indicates the step searching options.
 	/// </summary>
 	public abstract SearchingOptions Options { get; set; }

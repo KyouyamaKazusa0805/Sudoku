@@ -1,17 +1,26 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
+/// <para>
 /// Provides with a <b>Bi-value Oddagon</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <!--<item>Bi-value Oddagon Type 1</item>-->
 /// <item>Bi-value Oddagon Type 2</item>
 /// <item>Bi-value Oddagon Type 3</item>
-/// <!--<item>Bi-value Oddagon Type 4</item>-->
 /// </list>
+/// </para>
+/// <para>
+/// In practicing, type 1 and 4 do not exist. A bi-value oddagon type 1 is a remote pair
+/// and a type 4 cannot be formed as a stable technique structure.
+/// </para>
+/// <para>
+/// A remote pair is a XY-Chain that only uses two digits.
+/// This technique will be resolved by <see cref="IAlternatingInferenceChainStepSearcher"/>.
+/// </para>
 /// </summary>
+/// <seealso cref="IAlternatingInferenceChainStepSearcher"/>
 [StepSearcher]
-public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonStepSearcher
+internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonStepSearcher
 {
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)

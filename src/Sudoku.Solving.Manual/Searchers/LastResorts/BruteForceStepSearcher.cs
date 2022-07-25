@@ -9,11 +9,15 @@
 /// </summary>
 [StepSearcher]
 [StepSearcherOptions(IsOptionsFixed = true, IsDirect = true)]
-public sealed unsafe partial class BruteForceStepSearcher : IBruteForceStepSearcher
+internal sealed unsafe partial class BruteForceStepSearcher : IBruteForceStepSearcher
 {
 	/// <summary>
 	/// The order of cell offsets to get values.
 	/// </summary>
+	/// <remarks>
+	/// For example, the first value is 40, which means the first cell to be tried to be filled
+	/// is the 40th cell in the grid (i.e. the cell <c>r5c5</c>).
+	/// </remarks>
 	private static readonly int[] TryAndErrorOrder =
 	{
 		40, 41, 32, 31, 30, 39, 48, 49, 50,

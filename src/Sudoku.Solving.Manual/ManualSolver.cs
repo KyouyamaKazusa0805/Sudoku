@@ -4,7 +4,7 @@
 /// Provides a manual solver that solves a sudoku puzzle using the human minds and ways
 /// to check and solve a sudoku puzzle.
 /// </summary>
-public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSolverOptions
+public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResult>, IManualSolverOptions
 {
 	/// <summary>
 	/// The backing field of the property <see cref="IsHodokuMode"/>.
@@ -41,7 +41,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<IAlmostLockedSetsXzStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<IAlmostLockedSetsXzStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.AllowCollision = value;
@@ -55,7 +55,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<IAlmostLockedSetsXyWingStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<IAlmostLockedSetsXyWingStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.AllowCollision = value;
@@ -69,7 +69,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<IAlmostLockedSetsXzStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<IAlmostLockedSetsXzStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.AllowLoopedPatterns = value;
@@ -83,7 +83,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<IAlmostLockedCandidatesStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<IAlmostLockedCandidatesStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.CheckAlmostLockedQuadruple = value;
@@ -97,7 +97,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<IBivalueUniversalGraveStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<IBivalueUniversalGraveStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.SearchExtendedTypes = value;
@@ -111,7 +111,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<IJuniorExocetStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<IJuniorExocetStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.CheckAdvanced = value;
@@ -125,7 +125,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<ISeniorExocetStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<ISeniorExocetStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.CheckAdvanced = value;
@@ -139,7 +139,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<ISingleStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<ISingleStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.EnableFullHouse = value;
@@ -153,7 +153,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<ISingleStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<ISingleStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.EnableLastDigit = value;
@@ -167,7 +167,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<ISingleStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<ISingleStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.HiddenSinglesInBlockFirst = value;
@@ -181,7 +181,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<ITemplateStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<ITemplateStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.TemplateDeleteOnly = value;
@@ -195,7 +195,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<IUniqueRectangleStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<IUniqueRectangleStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.AllowIncompleteUniqueRectangles = value;
@@ -209,7 +209,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<IUniqueRectangleStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<IUniqueRectangleStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.SearchForExtendedUniqueRectangles = value;
@@ -223,7 +223,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<IRegularWingStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<IRegularWingStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.MaxSize = value;
@@ -236,7 +236,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 	{
 		set
 		{
-			var searchers = TargetSearcherCollection.OfType<IAlternatingInferenceChainStepSearcher>();
+			var searchers = TargetSearcherCollection.GetOfType<IAlternatingInferenceChainStepSearcher>(true);
 			foreach (var searcher in searchers)
 			{
 				searcher.MaxCapacity = value;
@@ -250,7 +250,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<IBowmanBingoStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<IBowmanBingoStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.MaxLength = value;
@@ -264,7 +264,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			var searcher = TargetSearcherCollection.OfType<IComplexFishStepSearcher>().FirstOrDefault();
+			var searcher = TargetSearcherCollection.GetOfType<IComplexFishStepSearcher>();
 			if (searcher is not null)
 			{
 				searcher.MaxSize = value;

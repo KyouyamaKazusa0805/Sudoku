@@ -31,7 +31,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
+internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
 	/// <inheritdoc/>
 	public bool AllowIncompleteUniqueRectangles { get; set; } = true;

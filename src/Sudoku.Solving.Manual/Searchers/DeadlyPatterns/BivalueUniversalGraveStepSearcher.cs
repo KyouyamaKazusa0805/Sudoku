@@ -4,19 +4,32 @@
 /// Provides with a <b>Bi-value Universal Grave</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
+/// <item>
+/// Basic types:
+/// <list type="bullet">
 /// <item>Bi-value Universal Grave Type 1</item>
 /// <item>Bi-value Universal Grave Type 2</item>
 /// <item>Bi-value Universal Grave Type 3</item>
 /// <item>Bi-value Universal Grave Type 4</item>
+/// </list>
+/// </item>
+/// <item>
+/// Extended types:
+/// <list type="bullet">
 /// <item>Bi-value Universal Grave + n</item>
 /// <item>Bi-value Universal Grave XZ</item>
 /// </list>
+/// </item>
+/// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueUniversalGraveStepSearcher
+internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueUniversalGraveStepSearcher
 {
 	/// <inheritdoc/>
-	public bool SearchExtendedTypes { get; set; }
+	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
+	public bool SearchExtendedTypes { get; set; } = true;
 
 
 	/// <inheritdoc/>

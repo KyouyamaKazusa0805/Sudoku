@@ -11,7 +11,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRectangleStepSearcher
+internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRectangleStepSearcher
 {
 	/// <summary>
 	/// Indicates all possible extended rectangle pattern combinations.

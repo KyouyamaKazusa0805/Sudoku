@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearcher
+internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearcher
 {
 	/// <summary>
 	/// The position table of all SK-loops.

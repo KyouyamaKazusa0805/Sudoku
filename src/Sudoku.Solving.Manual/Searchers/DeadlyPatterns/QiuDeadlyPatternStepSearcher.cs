@@ -12,7 +12,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepSearcher
+internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepSearcher
 {
 	/// <summary>
 	/// All different patterns.

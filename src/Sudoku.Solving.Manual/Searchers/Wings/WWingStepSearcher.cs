@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
+internal sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 {
 	/// <inheritdoc/>
 	/// <remarks>

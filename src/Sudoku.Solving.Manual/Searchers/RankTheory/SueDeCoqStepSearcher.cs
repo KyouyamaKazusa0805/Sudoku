@@ -4,13 +4,13 @@
 /// Provides with a <b>Sue de Coq</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>Sue de Coq Basic Type</item>
-/// <item>Sue de Coq Isolated</item>
+/// <item>Sue de Coq</item>
+/// <item>Sue de Coq with Isolated Digit</item>
 /// <item>Cannibalistic Sue de Coq</item>
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
+internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 {
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)

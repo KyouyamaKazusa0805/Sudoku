@@ -1,14 +1,12 @@
 ﻿namespace Sudoku.Solving.Manual;
 
 /// <summary>
-/// Provides the solver result after <see cref="ManualSolver"/> solves a puzzle.
+/// Provides the solver result after <see cref="ManualSolver"/> solving a puzzle.
 /// </summary>
-/// <param name="OriginalPuzzle">Indicates the original sudoku puzzle to solve.</param>
-public sealed record ManualSolverResult(scoped in Grid OriginalPuzzle)
+/// <param name="Puzzle"><inheritdoc/></param>
+public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverResult<ManualSolver, ManualSolverResult>
 {
-	/// <summary>
-	/// Indicates whether the solver has solved the puzzle.
-	/// </summary>
+	/// <inheritdoc/>
 	public bool IsSolved { get; init; }
 
 	/// <summary>
@@ -144,19 +142,10 @@ public sealed record ManualSolverResult(scoped in Grid OriginalPuzzle)
 		}
 	}
 
-	/// <summary>
-	/// Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
-	/// <see cref="Grid.Undefined"/>.
-	/// </summary>
-	/// <seealso cref="Grid.Undefined"/>
+	/// <inheritdoc/>
 	public Grid Solution { get; init; }
 
-	/// <summary>
-	/// Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
-	/// Some case if the puzzle doesn't contain a valid unique solution, the value may be
-	/// <see cref="TimeSpan.Zero"/>.
-	/// </summary>
-	/// <seealso cref="TimeSpan.Zero"/>
+	/// <inheritdoc/>
 	public TimeSpan ElapsedTime { get; init; }
 
 	/// <summary>
@@ -187,7 +176,7 @@ public sealed record ManualSolverResult(scoped in Grid OriginalPuzzle)
 	/// <para>
 	/// Indicates the wrong step found. In general cases, if the property <see cref="IsSolved"/> keeps
 	/// <see langword="false"/> value, it'll mean the puzzle is invalid to solve, or the solver has found
-	/// one error step to apply, that causes the original puzzle <see cref="OriginalPuzzle"/> become invalid.
+	/// one error step to apply, that causes the original puzzle <see cref="Puzzle"/> become invalid.
 	/// In this case we can check this property to get the wrong information to debug the error,
 	/// or tell the author himself directly, with the inner value of this property held.
 	/// </para>
@@ -215,7 +204,7 @@ public sealed record ManualSolverResult(scoped in Grid OriginalPuzzle)
 	/// </para>
 	/// </summary>
 	/// <seealso cref="IsSolved"/>
-	/// <seealso cref="OriginalPuzzle"/>
+	/// <seealso cref="Puzzle"/>
 	public Step? WrongStep { get; init; }
 
 	/// <summary>
@@ -252,11 +241,12 @@ public sealed record ManualSolverResult(scoped in Grid OriginalPuzzle)
 		}
 	}
 
-	/// <summary>
-	/// Indicates the unhandled exception thrown. You can visit the property value
+	/// <inheritdoc/>
+	/// <remarks>
+	/// You can visit the property value
 	/// if the property <see cref="FailedReason"/> is <see cref="FailedReason.ExceptionThrown"/>
 	/// or <see cref="FailedReason.WrongStep"/>.
-	/// </summary>
+	/// </remarks>
 	/// <seealso cref="FailedReason"/>
 	/// <seealso cref="FailedReason.ExceptionThrown"/>
 	/// <seealso cref="FailedReason.WrongStep"/>
@@ -324,7 +314,7 @@ public sealed record ManualSolverResult(scoped in Grid OriginalPuzzle)
 				MaxDifficulty: var max,
 				PearlDifficulty: var pearl,
 				DiamondDifficulty: var diamond,
-				OriginalPuzzle: var puzzle,
+				Puzzle: var puzzle,
 				Solution: var solution,
 				ElapsedTime: var elapsed,
 				SolvingStepsCount: var stepsCount,

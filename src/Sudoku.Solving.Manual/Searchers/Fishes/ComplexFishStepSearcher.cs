@@ -21,7 +21,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSearcher
+internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSearcher
 {
 	/// <inheritdoc/>
 	/// <remarks>

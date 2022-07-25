@@ -12867,19 +12867,61 @@
             Indicates the pointer that points to the down node.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.IComplexSolver`1">
+        <member name="T:Sudoku.Solving.IComplexSolver`2">
             <summary>
-            Defines a complex solver.
+            Defines a complex solver, that uses complex algorithm to solve a puzzle, returning
+            a complex result type instead of an only <see cref="T:System.Boolean"/> value
+            indicating whether the puzzle is successfully solved.
             </summary>
+            <typeparam name="TSolver">The solver's type.</typeparam>
             <typeparam name="TSolverResult">The type of the target result.</typeparam>
         </member>
-        <member name="M:Sudoku.Solving.IComplexSolver`1.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.IComplexSolver`2.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
             <summary>
             To solve the specified puzzle.
             </summary>
             <param name="puzzle">The puzzle to be solved.</param>
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>The solver result that provides the information after solving.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.IComplexSolverResult`2">
+            <summary>
+            Defines an instance that describes the result after executed the method
+            <see cref="M:Sudoku.Solving.IComplexSolver`2.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)"/>.
+            </summary>
+            <typeparam name="TSolver">The solver's type.</typeparam>
+            <typeparam name="TSolverResult">The type of the target result.</typeparam>
+            <seealso cref="M:Sudoku.Solving.IComplexSolver`2.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="P:Sudoku.Solving.IComplexSolverResult`2.IsSolved">
+            <summary>
+            Indicates whether the solver has solved the puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.IComplexSolverResult`2.ElapsedTime">
+            <summary>
+            Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
+            Some case if the puzzle doesn't contain a valid unique solution, the value may be
+            <see cref="F:System.TimeSpan.Zero"/>.
+            </summary>
+            <seealso cref="F:System.TimeSpan.Zero"/>
+        </member>
+        <member name="P:Sudoku.Solving.IComplexSolverResult`2.Puzzle">
+            <summary>
+            Indicates the original puzzle to be solved.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.IComplexSolverResult`2.Solution">
+            <summary>
+            Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
+            <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Solving.IComplexSolverResult`2.UnhandledException">
+            <summary>
+            Indicates the unhandled exception thrown.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.ISimpleSolver">
             <summary>

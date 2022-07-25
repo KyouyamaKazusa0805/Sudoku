@@ -15,7 +15,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSearcher
+internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSearcher
 {
 	/// <inheritdoc/>
 	/// <remarks>

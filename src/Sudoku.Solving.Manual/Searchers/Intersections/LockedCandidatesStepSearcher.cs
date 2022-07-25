@@ -9,7 +9,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandidatesStepSearcher
+internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>
 	/// <remarks>

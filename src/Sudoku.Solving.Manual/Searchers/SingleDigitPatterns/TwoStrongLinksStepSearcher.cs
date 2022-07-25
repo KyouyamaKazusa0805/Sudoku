@@ -11,7 +11,7 @@
 /// </summary>
 [StepSearcher]
 [StepSearcherOptions(PuzzleNotRelying = true)]
-public sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
+internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
 {
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)

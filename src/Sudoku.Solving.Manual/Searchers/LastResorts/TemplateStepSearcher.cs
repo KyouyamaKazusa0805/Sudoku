@@ -9,7 +9,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed partial class TemplateStepSearcher : ITemplateStepSearcher
+internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 {
 	/// <inheritdoc/>
 	public bool TemplateDeleteOnly { get; set; }
