@@ -34,10 +34,10 @@
 internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
 	/// <inheritdoc/>
-	public bool AllowIncompleteUniqueRectangles { get; set; } = true;
+	public bool AllowIncompleteUniqueRectangles { get; set; }
 
 	/// <inheritdoc/>
-	public bool SearchForExtendedUniqueRectangles { get; set; } = true;
+	public bool SearchForExtendedUniqueRectangles { get; set; }
 
 
 	/// <inheritdoc/>

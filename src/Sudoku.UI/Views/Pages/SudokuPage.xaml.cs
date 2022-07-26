@@ -12,11 +12,6 @@ public sealed partial class SudokuPage : Page
 	private static readonly object SyncRoot = new();
 
 	/// <summary>
-	/// Indicates the internal solver to solve a puzzle.
-	/// </summary>
-	private static readonly ManualSolver Solver = new();
-
-	/// <summary>
 	/// Indicates the fast solver.
 	/// </summary>
 	private static readonly BitwiseSolver FastSolver = new();
@@ -594,7 +589,7 @@ public sealed partial class SudokuPage : Page
 		// Generate the puzzle.
 		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
 		// TODO: May allow the user canceling the puzzle-generating operation.
-		var grid = await Task.Run(static () => { lock (SyncRoot) { return Generator.Generate(); } });
+		var grid = await Task.Run(generate);
 
 		// Enable the control.
 		button.IsEnabled = true;
@@ -612,6 +607,15 @@ public sealed partial class SudokuPage : Page
 		string part1 = R["SudokuPage_InfoBar_GeneratingSuccessfully1"]!;
 		string part2 = R["SudokuPage_InfoBar_GeneratingSuccessfully2"]!;
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{part1}\r\n{part2}{grid.GivensCount}");
+
+
+		static Grid generate()
+		{
+			lock (SyncRoot)
+			{
+				return Generator.Generate();
+			}
+		}
 	}
 
 	/// <summary>
@@ -659,7 +663,7 @@ public sealed partial class SudokuPage : Page
 				button.IsEnabled = false;
 
 				// Solve the puzzle using the manual solver.
-				var analysisResult = await Task.Run(() => { lock (SyncRoot) { return Solver.Solve(grid); } });
+				var analysisResult = await Task.Run(analyze);
 
 				// Enable the control.
 				button.IsEnabled = true;
@@ -709,6 +713,15 @@ public sealed partial class SudokuPage : Page
 				}
 
 				break;
+			}
+
+
+			ManualSolverResult analyze()
+			{
+				lock (SyncRoot)
+				{
+					return Preference.DefaultSolver.Solve(grid);
+				}
 			}
 		}
 	}

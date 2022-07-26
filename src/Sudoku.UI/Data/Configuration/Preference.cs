@@ -36,46 +36,46 @@ public sealed class Preference : IDrawingPreference
 
 
 	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
-	private bool _allowCollision;
+	private bool _allowCollision = true;
 
 	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
-	private bool _allowDoublyLinkedAls;
+	private bool _allowDoublyLinkedAls = true;
 
 	/// <inheritdoc cref="IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
-	private bool _checkAlq;
+	private bool _checkAlq = false;
 
 	/// <inheritdoc cref="IBivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
-	private bool _searchBugExtendedTypes;
+	private bool _searchBugExtendedTypes = true;
 
 	/// <inheritdoc cref="IExocetStepSearcher.CheckAdvanced"/>
-	private bool _checkAdvancedJe;
+	private bool _checkAdvancedJe = false;
 
 	/// <inheritdoc cref="IExocetStepSearcher.CheckAdvanced"/>
-	private bool _checkAdvancedSe;
+	private bool _checkAdvancedSe = false;
 
 	/// <inheritdoc cref="ISingleStepSearcher.EnableFullHouse"/>
-	private bool _enableFullHouse;
+	private bool _enableFullHouse = true;
 
 	/// <inheritdoc cref="ISingleStepSearcher.EnableLastDigit"/>
-	private bool _enableLastDigit;
+	private bool _enableLastDigit = true;
 
 	/// <inheritdoc cref="ISingleStepSearcher.HiddenSinglesInBlockFirst"/>
-	private bool _hiddenSingleHouseFirst;
+	private bool _hiddenSingleHouseFirst = true;
 
 	/// <inheritdoc cref="ITemplateStepSearcher.TemplateDeleteOnly"/>
-	private bool _templateDeleteOnly;
+	private bool _templateDeleteOnly = false;
 
 	/// <inheritdoc cref="IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
-	private bool _allowIncompleteUr;
+	private bool _allowIncompleteUr = true;
 
 	/// <inheritdoc cref="IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
-	private bool _searcherUrExtendedTypes;
+	private bool _searcherUrExtendedTypes = true;
 
 	/// <inheritdoc cref="IRegularWingStepSearcher.MaxSize"/>
-	private int _regularWingMaxSize;
+	private int _regularWingMaxSize = 9;
 
 	/// <inheritdoc cref="IFishStepSearcher.MaxSize"/>
-	private int _complexFishSize;
+	private int _complexFishSize = 5;
 
 
 	#region Basic Options

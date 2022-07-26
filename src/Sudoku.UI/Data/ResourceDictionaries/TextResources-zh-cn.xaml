@@ -138,8 +138,8 @@
 	<x:String x:Key="SettingsPage_ItemDescription_AllowDoublyLinkedAls">和普通的 ALS-XZ 技巧不同，成环之后的 ALS-XZ 是一个连续环结构，将带有更多的删数</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CheckAlmostLockedQuadruple">允许搜索欠一四数组技巧</x:String>
 	<x:String x:Key="SettingsPage_ItemName_SearchBivalueUniversalGraveExtendedTypes">允许搜索全双值格致死解法（BUG）的拓展类型</x:String>
-	<x:String x:Key="SettingsPage_ItemName_CheckAdvancedJuniorExocets">允许搜索初级飞鱼导弹技巧的拓展类型</x:String>
-	<x:String x:Key="SettingsPage_ItemName_CheckAdvancedSeniorExocets">允许搜索高级飞鱼导弹技巧的拓展类型</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CheckAdvancedJuniorExocets">允许搜索初级飞鱼导弹技巧（JE）的拓展类型</x:String>
+	<x:String x:Key="SettingsPage_ItemName_CheckAdvancedSeniorExocets">允许搜索高级飞鱼导弹技巧（SE）的拓展类型</x:String>
 	<x:String x:Key="SettingsPage_ItemName_EnableFullHouse">启用同区域剩余技巧规则</x:String>
 	<x:String x:Key="SettingsPage_ItemName_EnableLastDigit">启用同数剩余技巧规则</x:String>
 	<x:String x:Key="SettingsPage_ItemName_HiddenSinglesInBlockFirst">当搜索排除法技巧的时候，先搜索宫排除</x:String>

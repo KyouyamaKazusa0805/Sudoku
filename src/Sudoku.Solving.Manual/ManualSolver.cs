@@ -33,7 +33,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	public bool IsFullApplying { get; set; } = true;
+	public bool IsFullApplying { get; set; }
 
 	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
 	public bool AllowCollisionOnAlsXz

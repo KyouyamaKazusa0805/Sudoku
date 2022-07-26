@@ -13,16 +13,10 @@
 internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzStepSearcher
 {
 	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <see langword="true"/>.
-	/// </remarks>
-	public bool AllowCollision { get; set; } = true;
+	public bool AllowCollision { get; set; }
 
 	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <see langword="true"/>.
-	/// </remarks>
-	public bool AllowLoopedPatterns { get; set; } = true;
+	public bool AllowLoopedPatterns { get; set; }
 
 
 	/// <inheritdoc/>

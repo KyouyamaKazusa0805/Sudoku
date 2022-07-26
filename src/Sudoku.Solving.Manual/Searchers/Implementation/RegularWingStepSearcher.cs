@@ -18,10 +18,7 @@
 internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSearcher
 {
 	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is 9.
-	/// </remarks>
-	public int MaxSize { get; set; } = 9;
+	public int MaxSize { get; set; }
 
 
 	/// <inheritdoc/>

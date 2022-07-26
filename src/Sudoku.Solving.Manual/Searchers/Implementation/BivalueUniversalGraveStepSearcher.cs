@@ -26,10 +26,7 @@
 internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueUniversalGraveStepSearcher
 {
 	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <see langword="true"/>.
-	/// </remarks>
-	public bool SearchExtendedTypes { get; set; } = true;
+	public bool SearchExtendedTypes { get; set; }
 
 
 	/// <inheritdoc/>

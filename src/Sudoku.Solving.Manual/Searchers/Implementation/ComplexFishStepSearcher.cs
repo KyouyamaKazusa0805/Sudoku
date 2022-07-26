@@ -24,10 +24,7 @@
 internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSearcher
 {
 	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is 5.
-	/// </remarks>
-	public int MaxSize { get; set; } = 5;
+	public int MaxSize { get; set; }
 
 
 	/// <inheritdoc/>

@@ -14,22 +14,13 @@
 internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 {
 	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <see langword="true"/>.
-	/// </remarks>
-	public bool EnableFullHouse { get; set; } = true;
+	public bool EnableFullHouse { get; set; }
 
 	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <see langword="true"/>.
-	/// </remarks>
-	public bool EnableLastDigit { get; set; } = true;
+	public bool EnableLastDigit { get; set; }
 
 	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <see langword="true"/>.
-	/// </remarks>
-	public bool HiddenSinglesInBlockFirst { get; set; } = true;
+	public bool HiddenSinglesInBlockFirst { get; set; }
 
 
 	/// <inheritdoc/>
