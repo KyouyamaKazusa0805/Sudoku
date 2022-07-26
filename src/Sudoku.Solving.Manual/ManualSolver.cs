@@ -384,29 +384,58 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 
 	TryAgain:
 		InitializeMaps(playground);
-		for (int i = 0, length = stepSearchers.Length; i < length; i++)
+		foreach (var searcher in stepSearchers)
 		{
-			var searcher = stepSearchers[i];
-			if (isSukaku && searcher is IDeadlyPatternStepSearcher
-				|| searcher.Options.EnabledArea == EnabledArea.None)
+			switch (isSukaku, searcher, IsFullApplying)
 			{
-				// Skips on those two cases:
-				// 1. Sukaku puzzles can't use deadly pattern techniques.
-				// 2. If the searcher is currently disabled, just skip it.
-				continue;
-			}
-
-			if (IsFullApplying && searcher is not IBruteForceStepSearcher)
-			{
-				var accumulator = new List<Step>();
-				searcher.GetAll(accumulator, playground, false);
-				if (accumulator.Count == 0)
+				case (true, IDeadlyPatternStepSearcher, _):
+				case (_, { Options.EnabledArea: EnabledArea.None }, _):
 				{
+					// Skips on those two cases:
+					// 1. Sukaku puzzles can't use deadly pattern techniques.
+					// 2. If the searcher is currently disabled, just skip it.
 					continue;
 				}
-
-				foreach (var foundStep in accumulator)
+				case (_, not IBruteForceStepSearcher, true):
 				{
+					var accumulator = new List<Step>();
+					searcher.GetAll(accumulator, playground, false);
+					if (accumulator.Count == 0)
+					{
+						continue;
+					}
+
+					foreach (var foundStep in accumulator)
+					{
+						if (verifyConclusionValidity(solution, foundStep))
+						{
+							if (
+								recordStep(
+									recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
+									resultBase, cancellationToken, out var result)
+							)
+							{
+								return result;
+							}
+						}
+						else
+						{
+							throw new WrongStepException(playground, foundStep);
+						}
+					}
+
+					// The puzzle has not been finished, we should turn to the first step finder
+					// to continue solving puzzle.
+					goto TryAgain;
+				}
+				default:
+				{
+					var foundStep = searcher.GetAll(null!, playground, true);
+					if (foundStep is null)
+					{
+						continue;
+					}
+
 					if (verifyConclusionValidity(solution, foundStep))
 					{
 						if (
@@ -422,39 +451,11 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 					{
 						throw new WrongStepException(playground, foundStep);
 					}
-				}
 
-				// The puzzle has not been finished, we should turn to the first step finder
-				// to continue solving puzzle.
-				goto TryAgain;
-			}
-			else
-			{
-				var foundStep = searcher.GetAll(null!, playground, true);
-				if (foundStep is null)
-				{
-					continue;
+					// The puzzle has not been finished, we should turn to the first step finder
+					// to continue solving puzzle.
+					goto TryAgain;
 				}
-
-				if (verifyConclusionValidity(solution, foundStep))
-				{
-					if (
-						recordStep(
-							recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
-							resultBase, cancellationToken, out var result)
-					)
-					{
-						return result;
-					}
-				}
-				else
-				{
-					throw new WrongStepException(playground, foundStep);
-				}
-
-				// The puzzle has not been finished, we should turn to the first step finder
-				// to continue solving puzzle.
-				goto TryAgain;
 			}
 		}
 
