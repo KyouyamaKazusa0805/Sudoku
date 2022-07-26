@@ -75,60 +75,12 @@ public unsafe struct Cells :
 	}
 
 	/// <summary>
-	/// Initializes an instance with the candidate list specified as a pointer.
-	/// </summary>
-	/// <param name="cells">The pointer points to an array of elements.</param>
-	/// <param name="length">The length of the array.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(int* cells, int length) : this(in *cells, length)
-	{
-	}
-
-	/// <summary>
-	/// Same behavior of the constructor as <see cref="Cells(IEnumerable{int})"/>:
-	/// Initializes an instance with the specified array of cells.
-	/// </summary>
-	/// <param name="cells">All cells.</param>
-	/// <remarks>
-	/// This constructor is defined after another constructor with
-	/// <see cref="ReadOnlySpan{T}"/> had defined. Although this constructor
-	/// doesn't initialize something (use the other one instead),
-	/// while initializing with the type <see cref="int"/>[], the compiler
-	/// gives me an error without this constructor (ambiguity of two
-	/// constructors). However, unfortunately, <see cref="ReadOnlySpan{T}"/>
-	/// doesn't implemented the interface <see cref="IEnumerable{T}"/>.
-	/// </remarks>
-	/// <seealso cref="Cells(IEnumerable{int})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(int[] cells) : this(in cells[0], cells.Length)
-	{
-	}
-
-	/// <summary>
 	/// Initializes an instance with the cell offset specified as an <see cref="Index"/>
 	/// (Sets itself and all peers).
 	/// </summary>
 	/// <param name="cellIndex">The cell offset specified as an <see cref="Index"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Cells(Index cellIndex) : this(cellIndex.GetOffset(81))
-	{
-	}
-
-	/// <summary>
-	/// Initializes an instance with a series of cell offsets.
-	/// </summary>
-	/// <param name="cells">cell offsets.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(scoped Span<int> cells) : this(in cells.GetPinnableReference(), cells.Length)
-	{
-	}
-
-	/// <summary>
-	/// Initializes an instance with a series of cell offsets.
-	/// </summary>
-	/// <param name="cells">cell offsets.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(scoped ReadOnlySpan<int> cells) : this(in cells.GetPinnableReference(), cells.Length)
 	{
 	}
 
@@ -167,36 +119,6 @@ public unsafe struct Cells :
 	public Cells(int high, int mid, int low) :
 		this((high & 0x7FFFFFFL) << 13 | mid >> 14 & 0x1FFFL, (mid & 0x3FFFL) << 27 | low & 0x7FFFFFFL)
 	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="Cells"/> instance using the specified reference for the array of cells.
-	/// </summary>
-	/// <param name="cell">
-	/// <para>The reference to the array of cells.</para>
-	/// <para>
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="in-parameter"]'/>
-	/// </para>
-	/// </param>
-	/// <param name="length">The length of the array.</param>
-	/// <remarks>
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="method"]'/>
-	/// </remarks>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="cell"/> is <see langword="null"/> reference.
-	/// </exception>
-	private Cells(scoped in int cell, int length)
-	{
-		Argument.ThrowIfNullRef(cell);
-
-		for (int i = 0; i < length; i++)
-		{
-			Add(Unsafe.AddByteOffset(ref Unsafe.AsRef(cell), (nuint)(i * sizeof(int))));
-		}
 	}
 
 	/// <summary>
@@ -1094,7 +1016,7 @@ public unsafe struct Cells :
 						temp[j] = offsets[buffer[j]];
 					}
 
-					result[totalIndex++] = temp;
+					result[totalIndex++] = (Cells)temp;
 				}
 			}
 		}
@@ -1320,32 +1242,56 @@ public unsafe struct Cells :
 
 
 	/// <summary>
-	/// Implicit cast from <see cref="int"/>[] to <see cref="Cells"/>.
+	/// Implicit cast from <see cref="Cells"/> to <see cref="int"/>[].
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Cells(int[] offsets) => new(offsets);
+	public static implicit operator int[](scoped in Cells offsets) => offsets.ToArray();
 
 	/// <summary>
 	/// Implicit cast from <see cref="Span{T}"/> to <see cref="Cells"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Cells(scoped in scoped Span<int> offsets) => new(offsets);
+	public static implicit operator Cells(scoped in scoped Span<int> offsets)
+	{
+		var result = Empty;
+		foreach (int offset in offsets)
+		{
+			result.Add(offset);
+		}
+
+		return result;
+	}
 
 	/// <summary>
 	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="Cells"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Cells(scoped in scoped ReadOnlySpan<int> offsets) => new(offsets);
+	public static implicit operator Cells(scoped in scoped ReadOnlySpan<int> offsets)
+	{
+		var result = Empty;
+		foreach (int offset in offsets)
+		{
+			result.Add(offset);
+		}
+
+		return result;
+	}
 
 	/// <summary>
-	/// Explicit cast from <see cref="Cells"/> to <see cref="int"/>[].
+	/// Explicit cast from <see cref="int"/>[] to <see cref="Cells"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator int[](scoped in Cells offsets) => offsets.ToArray();
+	public static explicit operator Cells(int[] offsets)
+	{
+		var result = Empty;
+		foreach (int offset in offsets)
+		{
+			result.Add(offset);
+		}
+
+		return result;
+	}
 
 	/// <summary>
 	/// Explicit cast from <see cref="Cells"/> to <see cref="Span{T}"/>.

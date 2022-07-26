@@ -25,7 +25,7 @@ public readonly ref partial struct ConclusionCollection
 	public Cells Cells
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new(from conclusion in _collection select conclusion.Cell);
+		get => (Cells)(from conclusion in _collection select conclusion.Cell);
 	}
 
 	/// <summary>

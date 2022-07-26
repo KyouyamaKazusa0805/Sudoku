@@ -108,7 +108,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		{
 			cells[i++] = candidate / 9;
 		}
-		if (!new Cells(cells) is not { Count: not 0 } map)
+		if (!(Cells)cells is not { Count: not 0 } map)
 		{
 			return null;
 		}
@@ -136,7 +136,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			ImmutableArray.CreateRange(conclusions),
 			ImmutableArray.Create(View.Empty | candidateOffsets),
 			digit,
-			new(cells)
+			(Cells)cells
 		);
 		if (onlyFindOne)
 		{

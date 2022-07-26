@@ -391,6 +391,7 @@ public static partial class CommonReadOnlies
 		18, 19, 20, 21, 22, 23, 24, 25, 26
 	};
 
+#pragma warning disable IDE0230
 	/// <summary>
 	/// <para>The table of all blocks to iterate for each blocks.</para>
 	/// <para>
@@ -419,6 +420,7 @@ public static partial class CommonReadOnlies
 		new byte[] {  5,  8 }, new byte[] {  2,  8 }, new byte[] {  2,  5 },
 		new byte[] {  5,  8 }, new byte[] {  2,  8 }, new byte[] {  2,  5 },
 	};
+#pragma warning restore IDE0230
 
 	/// <summary>
 	/// Indicates the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
@@ -464,13 +466,13 @@ public static partial class CommonReadOnlies
 		PeerMaps = new Cells[81];
 		for (int i = 0; i < 81; i++)
 		{
-			PeerMaps[i] = Peers[i];
+			PeerMaps[i] = (Cells)Peers[i];
 		}
 
 		HouseMaps = new Cells[27];
 		for (int i = 0; i < 27; i++)
 		{
-			HouseMaps[i] = HouseCells[i];
+			HouseMaps[i] = (Cells)HouseCells[i];
 		}
 
 		var r = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });

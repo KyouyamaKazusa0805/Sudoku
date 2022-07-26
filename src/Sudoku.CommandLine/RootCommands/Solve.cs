@@ -77,7 +77,7 @@ public sealed class Solve : IExecutable
 
 					break;
 				}
-				case IComplexSolver<ManualSolverResult> puzzleSolver:
+				case IComplexSolver<ManualSolver, ManualSolverResult> puzzleSolver:
 				{
 					if (puzzleSolver.Solve(Grid) is not { IsSolved: true } solverResult)
 					{

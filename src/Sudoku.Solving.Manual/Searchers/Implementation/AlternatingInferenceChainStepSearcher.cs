@@ -1051,8 +1051,8 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			// Strong inferences.
 			int extraDigit1 = TrailingZeroCount(otherDigitsMask);
 			int extraDigit2 = otherDigitsMask.GetNextSet(extraDigit1);
-			var cells1 = CandidatesMap[extraDigit1] & cellsArray;
-			var cells2 = CandidatesMap[extraDigit2] & cellsArray;
+			var cells1 = CandidatesMap[extraDigit1] & (Cells)cellsArray;
+			var cells2 = CandidatesMap[extraDigit2] & (Cells)cellsArray;
 			var node1 = new Node((byte)extraDigit1, cells1, (Cells)cellsArray - cells1);
 			var node2 = new Node((byte)extraDigit2, cells2, (Cells)cellsArray - cells2);
 

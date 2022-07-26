@@ -292,7 +292,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher :
 						continue;
 					}
 
-					if ((HouseMaps[houseIndex] & EmptyCells) - cells - loop is not { Count: not 0 } elimMap)
+					if ((HouseMaps[houseIndex] & EmptyCells) - (Cells)cells - loop is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}
@@ -345,7 +345,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher :
 						d2,
 						loop,
 						mask,
-						cells
+						(Cells)cells
 					);
 
 					if (onlyFindOne)

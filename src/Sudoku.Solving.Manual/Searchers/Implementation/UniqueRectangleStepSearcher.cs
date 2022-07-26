@@ -135,7 +135,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					for (int c1 = 0; c1 < 4; c1++)
 					{
 						int corner1 = urCells[c1];
-						var otherCellsMap = new Cells(urCells) - corner1;
+						var otherCellsMap = (Cells)urCells - corner1;
 
 						CheckType1(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
 						CheckType5(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
@@ -333,7 +333,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 				),
 				d1,
 				d2,
-				urCells,
+				(Cells)urCells,
 				arMode,
 				index
 			)
@@ -429,7 +429,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					(false, true) => Technique.UniqueRectangleType5,
 					(false, false) => Technique.UniqueRectangleType2
 				},
-				urCells,
+				(Cells)urCells,
 				arMode,
 				extraDigit,
 				index
@@ -567,7 +567,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 							),
 							d1,
 							d2,
-							urCells,
+							(Cells)urCells,
 							iteratedCells,
 							otherDigitsMask,
 							houseIndex,
@@ -687,7 +687,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 						Technique.UniqueRectangleType4,
 						d1,
 						d2,
-						urCells,
+						(Cells)urCells,
 						arMode,
 						new Conjugate[] { new(offsets[0], offsets[1], digit) },
 						index
@@ -789,7 +789,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 				d1,
 				d2,
 				arMode ? Technique.AvoidableRectangleType5 : Technique.UniqueRectangleType5,
-				urCells,
+				(Cells)urCells,
 				arMode,
 				extraDigit,
 				index
@@ -917,7 +917,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					Technique.UniqueRectangleType6,
 					d1,
 					d2,
-					urCells,
+					(Cells)urCells,
 					false,
 					new Conjugate[]
 					{
@@ -1044,7 +1044,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					),
 					d1,
 					d2,
-					urCells,
+					(Cells)urCells,
 					arMode,
 					new Conjugate[] { new(abzCell, abxCell, digit), new(abzCell, abyCell, digit) },
 					index
@@ -1111,7 +1111,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 
 		short xyMask = (short)(o ^ comparer);
 		int x = TrailingZeroCount(xyMask), y = xyMask.GetNextSet(x);
-		var inter = !otherCellsMap - urCells;
+		var inter = !otherCellsMap - (Cells)urCells;
 		foreach (int possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -1183,7 +1183,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					arMode ? Technique.AvoidableRectangle2D : Technique.UniqueRectangle2D,
 					d1,
 					d2,
-					urCells,
+					(Cells)urCells,
 					arMode,
 					x,
 					y,
@@ -1353,7 +1353,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 								Technique.UniqueRectangle2B1,
 								d1,
 								d2,
-								urCells,
+								(Cells)urCells,
 								arMode,
 								new Conjugate[] { new(cell, otherCell, digit) },
 								index
@@ -1523,7 +1523,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 								Technique.UniqueRectangle2D1,
 								d1,
 								d2,
-								urCells,
+								(Cells)urCells,
 								arMode,
 								new Conjugate[] { new(cell, otherCell, digit) },
 								index
@@ -1596,7 +1596,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 
 		short xyMask = (short)(mask ^ comparer);
 		int x = TrailingZeroCount(xyMask), y = xyMask.GetNextSet(x);
-		var inter = !otherCellsMap - urCells;
+		var inter = !otherCellsMap - (Cells)urCells;
 		foreach (int possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -1666,7 +1666,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					arMode ? Technique.AvoidableRectangle3X : Technique.UniqueRectangle3X,
 					d1,
 					d2,
-					urCells,
+					(Cells)urCells,
 					arMode,
 					x,
 					y,
@@ -1791,7 +1791,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					Technique.UniqueRectangle3X2,
 					d1,
 					d2,
-					urCells,
+					(Cells)urCells,
 					arMode,
 					new Conjugate[] { new(abxCell, abzCell, b), new(abyCell, abzCell, a) },
 					index
@@ -1922,7 +1922,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 						Technique.UniqueRectangle3N2,
 						d1,
 						d2,
-						urCells,
+						(Cells)urCells,
 						arMode,
 						conjugatePairs,
 						index
@@ -2048,7 +2048,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 						Technique.UniqueRectangle3U2,
 						d1,
 						d2,
-						urCells,
+						(Cells)urCells,
 						arMode,
 						conjugatePairs,
 						index
@@ -2176,7 +2176,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 						Technique.UniqueRectangle3E2,
 						d1,
 						d2,
-						urCells,
+						(Cells)urCells,
 						arMode,
 						conjugatePairs,
 						index
@@ -2320,7 +2320,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 						Technique.UniqueRectangle4X3,
 						d1,
 						d2,
-						urCells,
+						(Cells)urCells,
 						arMode,
 						conjugatePairs,
 						index
@@ -2483,7 +2483,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 							Technique.UniqueRectangle4C3,
 							d1,
 							d2,
-							urCells,
+							(Cells)urCells,
 							arMode,
 							conjugatePairs,
 							index
@@ -2675,10 +2675,12 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 										| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 										| candidateOffsets
 								),
-								arMode ? Technique.AvoidableRectangleXyWing : Technique.UniqueRectangleXyWing,
+								arMode
+									? Technique.AvoidableRectangleXyWing
+									: Technique.UniqueRectangleXyWing,
 								d1,
 								d2,
-								urCells,
+								(Cells)urCells,
 								arMode,
 								Cells.Empty + c1 + c2,
 								otherCellsMap,
@@ -2813,7 +2815,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 											: Technique.UniqueRectangleXyzWing,
 										d1,
 										d2,
-										urCells,
+										(Cells)urCells,
 										arMode,
 										Cells.Empty + c1 + c2 + c3,
 										otherCellsMap,
@@ -2953,7 +2955,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 												: Technique.UniqueRectangleWxyzWing,
 											d1,
 											d2,
-											urCells,
+											(Cells)urCells,
 											arMode,
 											Cells.Empty + c1 + c2 + c3 + c4,
 											otherCellsMap,
@@ -3109,8 +3111,9 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 								continue;
 							}
 
-							var currentBlockMap = new Cells(selectedCellsInBlock);
-							Cells elimMapBlock = Cells.Empty, elimMapLine = Cells.Empty;
+							var currentBlockMap = selectedCellsInBlock;
+							var elimMapBlock = Cells.Empty;
+							var elimMapLine = Cells.Empty;
 
 							// Get the links of the block.
 							short blockMask = grid.GetDigitsUnion(selectedCellsInBlock);
@@ -3270,7 +3273,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 						),
 						digit1,
 						digit2,
-						urCells,
+						(Cells)urCells,
 						arMode,
 						block,
 						line,
@@ -3335,7 +3338,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 
 		void checkType1(scoped in Grid grid)
 		{
-			var cells = new Cells(urCells);
+			var cells = (Cells)urCells;
 
 			// Check all cells are empty.
 			bool containsValueCells = false;
@@ -3489,7 +3492,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 								),
 								d1,
 								d2,
-								urCells,
+								(Cells)urCells,
 								targetCell,
 								extraDigit,
 								index
@@ -3618,7 +3621,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 								),
 								d1,
 								d2,
-								urCells,
+								(Cells)urCells,
 								targetCell,
 								extraDigit,
 								index
@@ -3651,7 +3654,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, short comparer, int d1, int d2, int index)
 	{
-		var cells = new Cells(urCells);
+		var cells = (Cells)urCells;
 
 		// TODO: fix here to support incomplete types.
 		if ((grid.GetCandidates(urCells[0]) & comparer) != comparer
@@ -3728,7 +3731,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					),
 					d1,
 					d2,
-					urCells,
+					(Cells)urCells,
 					guardianMap,
 					guardianDigit,
 					false,
@@ -3864,7 +3867,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 							),
 							d1,
 							d2,
-							urCells,
+							(Cells)urCells,
 							baseCell,
 							anotherCell,
 							sameHouse,

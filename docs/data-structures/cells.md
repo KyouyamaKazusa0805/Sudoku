@@ -21,13 +21,9 @@ public struct Cells :
     public static readonly Cells Empty;
 
     public Cells(int cell);
-    public Cells(int[] cells);
     public Cells(Index cellIndex);
-    public Cells(Span<int> cells);
-    public Cells(ReadOnlySpan<int> cells);
     public Cells(IEnumerable<int> cells);
     public Cells(Range range);
-    public Cells(int* cells, int length);
     public Cells(long high, long low);
     public Cells(int high, int mid, int low);
 
@@ -84,14 +80,12 @@ public struct Cells :
     public static bool operator !=(Cells left, Cells right);
     public static bool operator <(in Cells left, in Cells right);
     public static bool operator >(in Cells left, in Cells right);
-    public static bool operator true(in Cells offsets);
-    public static bool operator false(in Cells offsets);
 
+    public static implicit operator int[](in Cells offsets);
     public static implicit operator Cells(in ReadOnlySpan<int> offsets);
     public static implicit operator Cells(in Span<int> offsets);
-    public static implicit operator Cells(int[] offsets);
+    public static explicit operator Cells(int[] offsets);
     public static explicit operator Span<int>(in Cells offsets);
-    public static explicit operator int[](in Cells offsets);
     public static explicit operator Range?(in Cells offsets);
     public static explicit operator Cells(Range range);
     public static explicit operator ReadOnlySpan<int>(in Cells offsets);
@@ -145,7 +139,7 @@ void G(Cells cellsList = default(Cells), ...)
 
 详情请自行参考 C# 语法“可选参数”以及“值类型无参构造器的自定义”语法规则和规范。
 
-### 构造器 `Cells(int cell)`
+### 构造器 `Cells(int)`
 
 该构造器将 `Cells` 实例化给出的参数的单元格所在的行、列、宫的所有单元格都加入到当前序列里。很多新人在使用这个 API 的时候，可能对于这个地方不熟悉，还以为是初始化单元格本身。
 
@@ -485,19 +479,6 @@ foreach (int cell in cells)
 这个类型只重载了 `>` 和 `<` 运算符，而 `>=` 和 `<=` 并没有重载。
 
 `>` 运算符会按照数学的定义计算。它表示是否使用符号左边减去右边得到的差集结果仍然还包含元素在其中。`<` 符号则是将刚才的结果取反。即从语法上 `left > right` 等于 `(left - right).Count >= 0`，而 `left < right` 则等于 `(left - right).Count == 0`，或 `!((left - right).Count >= 0)`。
-
-### 逻辑元运算符 `true(in Cells)` 和 `false(in Cells)`
-
-逻辑元运算符是用来简化 `Count` 属性和 0 之间的比较关系的。如果你有一个 `Cells` 类型的对象的话，我们可以使用 `if (a.Count != 0)` 来判断对象是否不空。不过有了这两个运算符后，我们可以简化代码，让它直接当成类 `bool` 类型的调用方式 `if (a)` 来表达同等意思的代码，这样可以简化省略掉 `Count == 0` 部分的内容。
-
-其中：
-
-* `true(in Cells)` 运算符：等价于 `Count != 0` 的比较；
-* `false(in Cells)` 运算符：等价于 `Count == 0` 的比较。
-
-如果你需要比较对象是否为空的话，本应该这么写：`if (!a)`，但因为 `operator !` 在这个数据类型里已经拥有重载版本，它表示不同的意思，因此要想这样去比较的话，请使用 `if (~a)`。
-
-这两个运算符均返回 `bool` 类型，因此你无需担心复杂的逻辑判断，它们仅在这个类型里用作和 `Count == 0` 和 `Count != 0` 的简化。
 
 ### 加减法运算符 `+(Cells, int)` 和 `-(Cells, int)`
 

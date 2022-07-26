@@ -222,7 +222,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 		int index = _random.Next(pattern.Count);
 		int cellToBeDeleted = pattern[index];
 		int[] tempCells = GetCells(cellToBeDeleted / 9, cellToBeDeleted % 9);
-		pattern -= tempCells;
+		pattern -= (Cells)tempCells;
 
 		int newCell;
 		while (true)
@@ -297,6 +297,10 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <returns>The cells.</returns>
 	/// <seealso cref="SymmetryType.Central"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static int[] GetCells(int row, int column)
-		=> row == 4 && column == 4 ? new[] { 40 } : new[] { row * 9 + column, (8 - row) * 9 + 8 - column };
+	private static Cells GetCells(int row, int column)
+		=> (Cells)(
+			row == 4 && column == 4
+				? new[] { 40 }
+				: new[] { row * 9 + column, (8 - row) * 9 + 8 - column }
+		);
 }

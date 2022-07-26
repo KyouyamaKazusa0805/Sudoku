@@ -721,48 +721,12 @@
             </summary>
             <param name="cell">The cell offset.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Int32*,System.Int32)">
-            <summary>
-            Initializes an instance with the candidate list specified as a pointer.
-            </summary>
-            <param name="cells">The pointer points to an array of elements.</param>
-            <param name="length">The length of the array.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Int32[])">
-            <summary>
-            Same behavior of the constructor as <see cref="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>:
-            Initializes an instance with the specified array of cells.
-            </summary>
-            <param name="cells">All cells.</param>
-            <remarks>
-            This constructor is defined after another constructor with
-            <see cref="T:System.ReadOnlySpan`1"/> had defined. Although this constructor
-            doesn't initialize something (use the other one instead),
-            while initializing with the type <see cref="T:System.Int32"/>[], the compiler
-            gives me an error without this constructor (ambiguity of two
-            constructors). However, unfortunately, <see cref="T:System.ReadOnlySpan`1"/>
-            doesn't implemented the interface <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Index)">
             <summary>
             Initializes an instance with the cell offset specified as an <see cref="T:System.Index"/>
             (Sets itself and all peers).
             </summary>
             <param name="cellIndex">The cell offset specified as an <see cref="T:System.Index"/>.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Span{System.Int32})">
-            <summary>
-            Initializes an instance with a series of cell offsets.
-            </summary>
-            <param name="cells">cell offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.#ctor(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Initializes an instance with a series of cell offsets.
-            </summary>
-            <param name="cells">cell offsets.</param>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
@@ -788,51 +752,6 @@
             <param name="high">Higher 27 bits.</param>
             <param name="mid">Medium 27 bits.</param>
             <param name="low">Lower 27 bits.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Int32@,System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Collections.Cells" /> instance using the specified reference for the array of cells.
-            </summary>
-            <param name="cell">
-            <para>The reference to the array of cells.</para>
-            <para>
-            <target name="in-parameter">
-				<i>
-					Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
-					for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
-					in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
-					modifier has the same semantic as <see langword="ref readonly var" />
-					instead of <see langword="ref var" />.
-				</i>
-			</target>
-            </para>
-            </param>
-            <param name="length">The length of the array.</param>
-            <remarks>
-            <target name="method">
-				<i>
-					C# 7.3 introduces a new keyword <see langword="in" /> as the parameter modifier to make the parameter
-					pass by reference and be read-only. Therefore, this keyword contains 2 usages:
-					<list type="number">
-						<item>
-							Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
-							a new copied instance will be created to prevent any modifications on the original variable.
-						</item>
-						<item>
-							Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
-							of this type, and treat the argument as the first element of the whole element series.
-						</item>
-					</list>
-					From the above meaning on this keyword, we can conclude that
-					we should regard it as <see langword="ref readonly" /> parameters,
-					but C# requires us using the keyword <see langword="in" /> as the modifier
-					on a parameter rather than <see langword="ref readonly" />.
-				</i>
-			</target>
-            </remarks>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="cell" /> is <see langword="null" /> reference.
-            </exception>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Int32,System.Boolean)">
             <summary>
@@ -1327,9 +1246,9 @@
         <member name="M:Sudoku.Concepts.Collections.Cells.System#IEqualityOperators{Sudoku#Concepts#Collections#Cells,Sudoku#Concepts#Collections#Cells}#op_Inequality(Sudoku.Concepts.Collections.Cells,Sudoku.Concepts.Collections.Cells)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.op_Implicit(System.Int32[])~Sudoku.Concepts.Collections.Cells">
+        <member name="M:Sudoku.Concepts.Collections.Cells.op_Implicit(Sudoku.Concepts.Collections.Cells@)~System.Int32[]">
             <summary>
-            Implicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Concepts.Collections.Cells"/>.
+            Implicit cast from <see cref="T:Sudoku.Concepts.Collections.Cells"/> to <see cref="T:System.Int32"/>[].
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
@@ -1345,9 +1264,9 @@
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.op_Explicit(Sudoku.Concepts.Collections.Cells@)~System.Int32[]">
+        <member name="M:Sudoku.Concepts.Collections.Cells.op_Explicit(System.Int32[])~Sudoku.Concepts.Collections.Cells">
             <summary>
-            Explicit cast from <see cref="T:Sudoku.Concepts.Collections.Cells"/> to <see cref="T:System.Int32"/>[].
+            Explicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Concepts.Collections.Cells"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
