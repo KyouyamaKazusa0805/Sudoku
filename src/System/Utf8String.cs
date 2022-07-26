@@ -440,6 +440,6 @@ public readonly struct Utf8String :
 	/// </summary>
 	/// <param name="underlyingArray">The underlying array.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Utf8String(ReadOnlySpan<byte> underlyingArray)
+	public static implicit operator Utf8String(scoped ReadOnlySpan<byte> underlyingArray)
 		=> (Utf8String)Encoding.UTF8.GetString(underlyingArray);
 }

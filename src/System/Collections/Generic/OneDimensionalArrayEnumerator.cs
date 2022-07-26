@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines an enumerator that iterates the one-dimensional array.
 /// </summary>
-public ref partial struct OneDimensionalArrayEnumerator<TStruct>
+/// <typeparam name="T">The type of the element.</typeparam>
+public ref partial struct OneDimensionalArrayEnumerator<T>
 {
 	/// <summary>
 	/// Indicates the length of the array to iterate.
@@ -14,7 +15,7 @@ public ref partial struct OneDimensionalArrayEnumerator<TStruct>
 	/// <summary>
 	/// Indicates the array to iterate.
 	/// </summary>
-	private readonly TStruct[] _innerArray;
+	private readonly T[] _innerArray;
 
 	/// <summary>
 	/// Indicates the current index being iterated.
@@ -23,19 +24,19 @@ public ref partial struct OneDimensionalArrayEnumerator<TStruct>
 
 
 	/// <summary>
-	/// Initializes a <see cref="OneDimensionalArrayEnumerator{TStruct}"/> instance
+	/// Initializes a <see cref="OneDimensionalArrayEnumerator{T}"/> instance
 	/// via the specified array to iterate.
 	/// </summary>
 	/// <param name="innerArray">The array to iterate.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal OneDimensionalArrayEnumerator(TStruct[] innerArray)
+	internal OneDimensionalArrayEnumerator(T[] innerArray)
 		=> (_innerArray, _length) = (innerArray, innerArray.Length);
 
 
 	/// <summary>
 	/// Indicates the current instance being iterated. Please note that the value is returned by reference.
 	/// </summary>
-	public readonly TStruct Current
+	public readonly T Current
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _innerArray[_index];
@@ -47,7 +48,7 @@ public ref partial struct OneDimensionalArrayEnumerator<TStruct>
 	/// </summary>
 	/// <returns>The enumerator type.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly OneDimensionalArrayEnumerator<TStruct> GetEnumerator() => this;
+	public readonly OneDimensionalArrayEnumerator<T> GetEnumerator() => this;
 
 	/// <summary>
 	/// Retrieve the iterator to make it points to the next element.

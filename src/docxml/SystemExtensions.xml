@@ -509,6 +509,7 @@
             <summary>
             Defines an enumerator that iterates the one-dimensional array.
             </summary>
+            <typeparam name="T">The type of the element.</typeparam>
         </member>
         <member name="F:System.Collections.Generic.OneDimensionalArrayEnumerator`1._length">
             <summary>

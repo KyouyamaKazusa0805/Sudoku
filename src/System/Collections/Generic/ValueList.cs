@@ -199,7 +199,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 		};
 
 
-		static string toContentString(in ValueList<TUnmanaged> @this)
+		static string toContentString(scoped in scoped ValueList<TUnmanaged> @this)
 		{
 			const string separator = ", ";
 			scoped var sb = new StringHandler();

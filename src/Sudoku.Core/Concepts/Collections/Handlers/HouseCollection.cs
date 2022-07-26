@@ -16,7 +16,7 @@ public readonly ref partial struct HouseCollection
 	/// Initializes an instance with the specified houses.
 	/// </summary>
 	/// <param name="houseIndices">The house indices.</param>
-	public HouseCollection(in ReadOnlySpan<int> houseIndices)
+	public HouseCollection(scoped in scoped ReadOnlySpan<int> houseIndices)
 	{
 		foreach (int houseIndex in houseIndices)
 		{

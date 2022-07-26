@@ -74,13 +74,16 @@ public readonly ref partial struct ConclusionCollection
 		};
 
 
-		unsafe string f(in ReadOnlySpan<Conclusion> collection)
+		string f(scoped in scoped ReadOnlySpan<Conclusion> collection)
 		{
 			var conclusions = collection.ToArray();
 			scoped var sb = new StringHandler(50);
 			if (shouldSort)
 			{
-				conclusions.Sort(&cmp);
+				unsafe
+				{
+					conclusions.Sort(&cmp);
+				}
 
 				var selection =
 					from conclusion in conclusions

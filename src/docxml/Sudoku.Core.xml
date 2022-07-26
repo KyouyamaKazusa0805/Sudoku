@@ -1020,12 +1020,6 @@
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.ToVector">
-            <summary>
-            Gets the <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> instance via the basic data.
-            </summary>
-            <returns>The <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> instance.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.Slice(System.Int32,System.Int32)">
             <summary>
             Gets the <see cref="T:Sudoku.Concepts.Collections.Cells"/> instance that starts with the specified index.

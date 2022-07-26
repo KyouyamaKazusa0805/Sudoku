@@ -1399,7 +1399,7 @@ public unsafe partial struct Grid :
 	/// <returns>The result instance had converted.</returns>
 	/// <seealso cref="Parse(Utf8String, GridParsingOption)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(ReadOnlySpan<byte> str) => new Utf8GridParser(str.ToArray()).Parse();
+	public static Grid Parse(scoped ReadOnlySpan<byte> str) => new Utf8GridParser(str.ToArray()).Parse();
 
 	/// <summary>
 	/// <para>Parses a string value and converts to this type.</para>
@@ -1412,7 +1412,7 @@ public unsafe partial struct Grid :
 	/// <returns>The result instance had converted.</returns>
 	/// <seealso cref="Parse(string, GridParsingOption)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
+	public static Grid Parse(scoped ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out Grid result)

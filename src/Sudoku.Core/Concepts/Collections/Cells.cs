@@ -444,8 +444,6 @@ public unsafe struct Cells :
 		get => (int)BlockMask | RowMask << 9 | ColumnMask << 18;
 	}
 
-	private readonly string BinaryCode => ToString("b");
-
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
@@ -777,13 +775,6 @@ public unsafe struct Cells :
 	public readonly OneDimensionalArrayEnumerator<int> GetEnumerator() => Offsets.EnumerateImmutable();
 
 	/// <summary>
-	/// Gets the <see cref="Vector128{T}"/> instance via the basic data.
-	/// </summary>
-	/// <returns>The <see cref="Vector128{T}"/> instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Vector128<long> ToVector() => Vector128.Create(_high, _low);
-
-	/// <summary>
 	/// Gets the <see cref="Cells"/> instance that starts with the specified index.
 	/// </summary>
 	/// <param name="start">The start index.</param>
@@ -821,7 +812,7 @@ public unsafe struct Cells :
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>
-	public void AddRange(in ReadOnlySpan<int> offsets)
+	public void AddRange(scoped in scoped ReadOnlySpan<int> offsets)
 	{
 		foreach (int cell in offsets)
 		{

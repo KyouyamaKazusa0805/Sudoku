@@ -181,7 +181,7 @@ public sealed partial class RxCyNotation :
 		}
 
 		// Declare the buffer.
-		Span<int> bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
+		scoped Span<int> bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
 
 		// Declare the result variable.
 		var result = Cells.Empty;
