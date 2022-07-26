@@ -50,15 +50,12 @@ public unsafe struct Cells :
 	/// <summary>
 	/// Throws a <see cref="NotSupportedException"/>.
 	/// </summary>
-	/// <exception cref="NotSupportedException">
-	/// The exception will always be thrown.
-	/// </exception>
+	/// <exception cref="NotSupportedException">The exception will always be thrown.</exception>
 	/// <remarks>
 	/// The main idea of the parameterless constructor is to create a new instance
 	/// without any extra information, but the current type is special:
-	/// the author wants to make you use another member instead of it to get a better experience.
-	/// Therefore, the parameterless constructor is disallowed to be invoked
-	/// no matter what kind of invocation, reflection or strongly reference.
+	/// I want you to use <see cref="Empty"/> instead of the syntax <c>new Cells()</c>,
+	/// in order to get a better experience on performance.
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[Obsolete($"Please use the member '{nameof(Empty)}' instead.", true)]
