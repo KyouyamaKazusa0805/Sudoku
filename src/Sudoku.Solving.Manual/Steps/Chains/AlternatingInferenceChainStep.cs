@@ -12,12 +12,6 @@ public sealed record AlternatingInferenceChainStep(
 	AlternatingInferenceChain Chain
 ) : ChainStep(Conclusions, Views), IChainStep, IChainLikeStep, IStepWithPhasedDifficulty
 {
-	/// <summary>
-	/// Indicates the shared bucket that is used for checking X-Chains.
-	/// </summary>
-	private static readonly bool[] Bucket = { false, false, false, false, false, false, false, false, false };
-
-
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
@@ -156,24 +150,33 @@ public sealed record AlternatingInferenceChainStep(
 	/// <summary>
 	/// Indicates whether the specified chain is an X-Chain.
 	/// </summary>
-	private bool IsXChain
+	private unsafe bool IsXChain
 	{
 		get
 		{
-			Array.Fill(Bucket, false);
+			bool* bucket = stackalloc[] { false, false, false, false, false, false, false, false, false };
 			foreach (var node in Chain.RealChainNodes)
 			{
-				Bucket[node.Digit] = true;
+				bucket[node.Digit] = true;
 			}
 
-			return Bucket.Count(static value => value) == 1;
+			int count = 0;
+			for (int i = 0; i < 9; i++)
+			{
+				if (bucket[i] && ++count > 1)
+				{
+					return false;
+				}
+			}
+
+			return count == 1;
 		}
 	}
 
 	/// <summary>
 	/// Indicates whether the specified chain is a remote pair.
 	/// </summary>
-	private bool IsRemotePair
+	private unsafe bool IsRemotePair
 	{
 		get
 		{
@@ -182,13 +185,22 @@ public sealed record AlternatingInferenceChainStep(
 				return false;
 			}
 
-			Array.Fill(Bucket, false);
+			bool* bucket = stackalloc[] { false, false, false, false, false, false, false, false, false };
 			foreach (var node in Chain.RealChainNodes)
 			{
-				Bucket[node.Digit] = true;
+				bucket[node.Digit] = true;
 			}
 
-			return Bucket.Count(static value => value) == 2;
+			int count = 0;
+			for (int i = 0; i < 9; i++)
+			{
+				if (bucket[i] && ++count > 2)
+				{
+					return false;
+				}
+			}
+
+			return count == 2;
 		}
 	}
 

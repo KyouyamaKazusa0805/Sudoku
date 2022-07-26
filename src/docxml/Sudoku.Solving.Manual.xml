@@ -3972,11 +3972,6 @@
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Chain">
             <summary>Indicates the whole chain.</summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Bucket">
-            <summary>
-            Indicates the shared bucket that is used for checking X-Chains.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Difficulty">
             <inheritdoc/>
         </member>
