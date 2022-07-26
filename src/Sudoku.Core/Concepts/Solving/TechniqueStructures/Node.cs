@@ -129,7 +129,7 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 				// -ab                 -ab -ab | -ab
 				// -ab                 -ab -ab | -ab
 				//  ab abc    Cases     ab  ab |  ab   c
-				// --------  ======>  ---------|----------
+				// --------  ======>  ---------+----------
 				// abd  ab               d  ab |  ab  ab
 				//     -ab                 -ab | -ab -ab
 				//     -ab                 -ab | -ab -ab
