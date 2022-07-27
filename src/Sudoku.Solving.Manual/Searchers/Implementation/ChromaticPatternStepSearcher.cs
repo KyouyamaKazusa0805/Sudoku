@@ -187,6 +187,18 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 		}
 	}
 
+	/// <summary>
+	/// Checks for the type 1.
+	/// Here I give you 2 examples to test this method:
+	/// <list type="number">
+	/// <item>
+	/// <see href="http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html#p318380">the first one</see>
+	/// </item>
+	/// <item>
+	/// <see href="http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html#p318378">the second one</see>
+	/// </item>
+	/// </list>
+	/// </summary>
 	private Step? CheckType1(
 		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in Cells pattern, int[] blocks)
