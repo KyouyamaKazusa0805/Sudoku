@@ -348,10 +348,6 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 						);
 					}
 				}
-				foreach (int digit in grid.GetCandidates(extraCell))
-				{
-					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, extraCell * 9 + digit));
-				}
 
 				var step = new ChromaticPatternXzStep(
 					conclusions.ToImmutableArray(),
