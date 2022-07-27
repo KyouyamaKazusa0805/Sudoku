@@ -1,6 +1,5 @@
-﻿#define CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
-
-#pragma warning disable IDE0011
+﻿#pragma warning disable IDE0011
+#pragma warning disable IDE0032
 
 namespace Sudoku.Solving;
 
@@ -11,7 +10,6 @@ namespace Sudoku.Solving;
 /// The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
 /// to handle a sudoku grid, which is efficient.
 /// </remarks>
-[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
 public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 {
 	/// <summary>
@@ -190,9 +188,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	{
 		Argument.ThrowIfNull(grid);
 
-#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
 		ClearStack();
-#endif
 
 		return InternalSolve(grid, null, 2) == 1;
 	}
@@ -252,7 +248,6 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	/// To clear the field <see cref="_stack"/>.
 	/// </summary>
 	/// <seealso cref="_stack"/>
-	[Conditional("CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES")]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void ClearStack()
 #if true

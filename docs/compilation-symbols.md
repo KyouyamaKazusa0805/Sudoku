@@ -4,18 +4,17 @@
 
 ## 单文件的条件编译符号
 
-| 符号名[^1]                                                   | 含义                                                         |
-| :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `IMPLEMENTED`                                                | 表示唯一矩形技巧搜索器是否实现当前技巧的子类型的搜寻功能。   |
-| `DECREASE_INITIALIZATION_MEMORY_ALLOCATION`                  | 表示 `StringHandler` 字符串拼接器对象是否在初始化的时候减少内存分配。[^2] |
-| `DISCARD_INTERPOLATION_INFO`                                 | 表示 `StringHandler` 字符串拼接器对象是否在初始化的时候，忽略掉基本初始化信息（比如字符串内插元素数量以及总长度）。 |
-| `USE_NEWER_CONSTANT_VALUES`                                  | 表示 `StringHandler` 字符串拼接器对象假设内插字符串只有 8 个内插部分（如果不设置此符号的话，则是 11）。 |
-| `CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES` | 表示是否在每一次解题和验证题目之前都刷新一下底层字段的内存空间，以获得最佳效果。如果没有这一步，程序可以运行并且仍然会表现得很好，不过时而也会导致一些 bug，比如问题 [#229](https://github.com/SunnieShine/Sudoku/issues/229)。 |
-| `SOLUTION_DISPLAY_MODIFIABLES`                               | 表示是否显示出终盘里自己填入的数据信息。如果没有该符号的话，所有数字都会被当作提示数显示。 |
-| `GRID_SERIALIZE_STRINGS`                                     | 表示序列化数独盘面信息是按照字符串输出的格式进行序列化的方式。 |
-| `GRID_SERIALIZE_RAW_DATA`                                    | 表示序列化数独盘面信息是按照底层的原始掩码表进行序列化的方式。 |
-| `USE_EQUALITY_COMPARER`                                      | 表示是否使用 `EqualityComparer<T>` 类型来给对象进行比较运算操作。 |
-| `VISIT_SITE_DIRECTLY`                                        | 表示是否直接弹出浏览器显示指定的链接。如果不设置该符号的话，那么就只会输出网址信息到控制台。 |
+| 符号名[^1]                                  | 含义                                                         |
+| :------------------------------------------ | :----------------------------------------------------------- |
+| `IMPLEMENTED`                               | 表示唯一矩形技巧搜索器是否实现当前技巧的子类型的搜寻功能。   |
+| `DECREASE_INITIALIZATION_MEMORY_ALLOCATION` | 表示 `StringHandler` 字符串拼接器对象是否在初始化的时候减少内存分配。[^2] |
+| `DISCARD_INTERPOLATION_INFO`                | 表示 `StringHandler` 字符串拼接器对象是否在初始化的时候，忽略掉基本初始化信息（比如字符串内插元素数量以及总长度）。 |
+| `USE_NEWER_CONSTANT_VALUES`                 | 表示 `StringHandler` 字符串拼接器对象假设内插字符串只有 8 个内插部分（如果不设置此符号的话，则是 11）。 |
+| `SOLUTION_DISPLAY_MODIFIABLES`              | 表示是否显示出终盘里自己填入的数据信息。如果没有该符号的话，所有数字都会被当作提示数显示。 |
+| `GRID_SERIALIZE_STRINGS`                    | 表示序列化数独盘面信息是按照字符串输出的格式进行序列化的方式。 |
+| `GRID_SERIALIZE_RAW_DATA`                   | 表示序列化数独盘面信息是按照底层的原始掩码表进行序列化的方式。 |
+| `USE_EQUALITY_COMPARER`                     | 表示是否使用 `EqualityComparer<T>` 类型来给对象进行比较运算操作。 |
+| `VISIT_SITE_DIRECTLY`                       | 表示是否直接弹出浏览器显示指定的链接。如果不设置该符号的话，那么就只会输出网址信息到控制台。 |
 
 完整的符号引用树状图如下：
 
@@ -38,7 +37,6 @@ graph LR
     subgraph 文件和符号对应关系
         P1 -->|文件| A(Grid.cs)
         P1 -->|文件| D(BitwiseSolver.cs)
-        P1 -->|文件| E(FastSolver.cs)
         P2 -->|文件| C(Bag.cs)
         P2 -->|文件| G(StringHandler.cs)
         P3 -->|文件| F(MainMethod.cs)
@@ -51,14 +49,12 @@ graph LR
         style B fill:#0F8
         style C fill:#0F8
         style D fill:#0F8
-        style E fill:#0F8
         style F fill:#0F8
         style G fill:#0F8
         style H fill:#0F8
         click A "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs" _blank
         click C "https://github.com/SunnieShine/Sudoku/blob/main/src/System/Collections/Generic/Bag.cs" _blank
         click D "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Solving/BitwiseSolver.cs" _blank
-        click E "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Solving/Solving/BruteForces/FastSolver.cs" _blank
         click F "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine/MainMethod.cs" _blank
         click G "https://github.com/SunnieShine/Sudoku/blob/main/src/System/Text/StringHandler.cs" _blank
         click H "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Solving/Solving/Manual/Searchers/DeadlyPatterns/Rectangles/UniqueRectangleStepSearcher.cs" _blank
@@ -68,8 +64,6 @@ graph LR
         B -->|符号| S3(GRID_SERIALIZE_STRINGS)
         B -->|符号| S4(GRID_SERIALIZE_RAW_DATA)
         C -->|符号| S5(USE_EQUALITY_COMPARER)
-        D -->|符号| S6(CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES)
-        E -->|符号| S6
         F -->|符号| S7(VISIT_SITE_DIRECTLY)
         G -->|符号| S8(DECREASE_INITIALIZATION_MEMORY_ALLOCATION)
         G -->|符号| S9(DISCARD_INTERPOLATION_INFO)
@@ -79,7 +73,6 @@ graph LR
         style S3 fill:#CCC
         style S4 fill:#EEE
         style S5 fill:#CCC
-        style S6 fill:#EEE
         style S7 fill:#CCC
         style S8 fill:#EEE
         style S9 fill:#EEE
