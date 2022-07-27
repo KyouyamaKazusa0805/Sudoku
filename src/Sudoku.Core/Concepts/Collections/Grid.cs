@@ -368,7 +368,7 @@ public unsafe partial struct Grid :
 	public readonly bool IsValid
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Solver.CheckValidity(ToString("0"));
+		get => Solver.CheckValidity(ToString(null));
 	}
 
 	/// <summary>

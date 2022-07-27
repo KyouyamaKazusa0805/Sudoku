@@ -175,22 +175,6 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 		}
 	}
 
-#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
-	/// <summary>
-	/// Same as <see cref="CheckValidity(string, out string?)"/>, but doesn't contain
-	/// any <see langword="out"/> parameters.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="clearFirst">
-	/// Indicates whether the memory will be released before solving or validating.
-	/// The default value is <see langword="true"/>.
-	/// </param>
-	/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="grid"/> is <see langword="null"/>.
-	/// </exception>
-	/// <seealso cref="CheckValidity(string, out string?)"/>
-#else
 	/// <summary>
 	/// Same as <see cref="CheckValidity(string, out string?)"/>, but doesn't contain
 	/// any <see langword="out"/> parameters.
@@ -201,23 +185,13 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	/// Throws when the argument <paramref name="grid"/> is <see langword="null"/>.
 	/// </exception>
 	/// <seealso cref="CheckValidity(string, out string?)"/>
-#endif
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool CheckValidity(
-		char* grid
-#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
-		,
-		bool clearFirst = true
-#endif
-	)
+	public bool CheckValidity(char* grid)
 	{
 		Argument.ThrowIfNull(grid);
 
 #if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
-		if (clearFirst)
-		{
-			ClearStack();
-		}
+		ClearStack();
 #endif
 
 		return InternalSolve(grid, null, 2) == 1;
@@ -233,11 +207,9 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool CheckValidity(string grid)
 	{
-		ClearStack();
-
 		fixed (char* puzzle = grid)
 		{
-			return CheckValidity(puzzle, false);
+			return CheckValidity(puzzle);
 		}
 	}
 
@@ -928,7 +900,11 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 		// Kind of dumb, but _way_ fast code.
 		for (int subBand = 0; subBand < 3; subBand++)
 		{
-			if (_g->UnsolvedCells[subBand] == 0) continue;
+			if (_g->UnsolvedCells[subBand] == 0)
+			{
+				continue;
+			}
+
 			uint cellMask = _g->UnsolvedCells[subBand];
 			cellMask &= (uint)-(int)cellMask;
 			int band = subBand;
@@ -937,7 +913,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 				if ((_g->Bands[band] & cellMask) != 0)
 				{
 					// Eliminate option in the current stack entry.
-					Unsafe.CopyBlock(_g + 1, _g, 1);
+					Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(State));
 					_g->Bands[band] ^= cellMask;
 					_g++;
 					SetSolvedMask(band, cellMask); // And try it out in a nested stack entry.
