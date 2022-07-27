@@ -8,6 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
+[StepSearcherOptions(IsDirect = true)]
 internal sealed unsafe partial class PatternOverlayStepSearcher : IPatternOverlayStepSearcher
 {
 	/// <inheritdoc/>
