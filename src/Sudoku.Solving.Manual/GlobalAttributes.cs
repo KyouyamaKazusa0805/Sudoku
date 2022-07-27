@@ -28,6 +28,7 @@ using static Sudoku.Runtime.AnalysisServices.EnabledArea;
 [assembly: SearcherConfiguration<ComplexFishStepSearcher>(B)]
 [assembly: SearcherConfiguration<GuardianStepSearcher>(B)]
 [assembly: SearcherConfiguration<BivalueOddagonStepSearcher>(B)]
+[assembly: SearcherConfiguration<ChromaticPatternStepSearcher>(B)]
 [assembly: SearcherConfiguration<BowmanBingoStepSearcher>(C, EnabledArea = EnabledArea.None, DisabledReason = TooSlow | LastResort)]
 [assembly: SearcherConfiguration<PatternOverlayStepSearcher>(C, EnabledArea = Gathering, DisabledReason = LastResort)]
 [assembly: SearcherConfiguration<TemplateStepSearcher>(C, EnabledArea = EnabledArea.None, DisabledReason = LastResort)]

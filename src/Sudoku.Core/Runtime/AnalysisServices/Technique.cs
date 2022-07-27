@@ -1127,6 +1127,26 @@ public enum Technique : short
 	GroupedBivalueOddagon,
 
 	/// <summary>
+	/// Indicates the chromatic pattern (tri-value oddagon type 1).
+	/// </summary>
+	ChromaticPatternType1,
+
+	/// <summary>
+	/// Indicates the chromatic pattern (tri-value oddagon type 2).
+	/// </summary>
+	ChromaticPatternType2,
+
+	/// <summary>
+	/// Indicates the chromatic pattern (tri-value oddagon type 3).
+	/// </summary>
+	ChromaticPatternType3,
+
+	/// <summary>
+	/// Indicates the chromatic pattern (tri-value oddagon type 4).
+	/// </summary>
+	ChromaticPatternType4,
+
+	/// <summary>
 	/// Indicates the X-Chain.
 	/// </summary>
 	XChain,

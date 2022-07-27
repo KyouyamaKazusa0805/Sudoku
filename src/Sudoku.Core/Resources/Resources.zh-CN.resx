@@ -1600,4 +1600,23 @@
     <value>远程数对</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="ChromaticPatternType1" xml:space="preserve">
+    <value>三值死环类型 1</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ChromaticPatternType2" xml:space="preserve">
+    <value>三值死环类型 2</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ChromaticPatternType3" xml:space="preserve">
+    <value>三值死环类型 3</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ChromaticPatternType4" xml:space="preserve">
+    <value>三值死环类型 4</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_ChromaticPatternType1Step" xml:space="preserve">
+    <value>{Name}：位于第 {BlocksStr} 宫的单元格 {CellsStr} 如果只有数字 {DigitsStr}，结构将直接无解 =&gt; {ElimStr}</value>
+  </data>
 </root>

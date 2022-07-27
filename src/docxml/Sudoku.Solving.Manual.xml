@@ -867,6 +867,15 @@
             <param name="chainIds">The IDs.</param>
             <param name="nodeLookup">The node lookup table.</param>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IChromaticPatternStepSearcher">
+            <summary>
+            Defines a step searcher that searches for chromatic patterns.
+            </summary>
+            <remarks>
+            For more information about a "chromatic pattern",
+            please visit <see href="http://forum.enjoysudoku.com/chromatic-patterns-t39885.html">this link</see>.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IComplexFishStepSearcher">
             <summary>
             Defines a step searcher that searches for complex fish steps.
@@ -1553,6 +1562,49 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher">
+            <summary>
+            Provides with a <b>Chromatic Pattern</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Chromatic Pattern type 1</item>
+            <!--
+            <item>Chromatic Pattern type 2</item>
+            <item>Chromatic Pattern type 3</item>
+            <item>Chromatic Pattern type 4</item>
+            -->
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.BlocksCombinations">
+            <summary>
+            All possible blocks combinations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.PatternOffsets">
+            <summary>
+            The possible pattern offsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.Options">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher">
@@ -7393,6 +7445,81 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.ChromaticPatternStep">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Blocks">The blocks used.</param>
+            <param name="Cells">The cells used.</param>
+            <param name="DigitsMask">The digits mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.Collections.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Blocks">The blocks used.</param>
+            <param name="Cells">The cells used.</param>
+            <param name="DigitsMask">The digits mask.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.Blocks">
+            <summary>The blocks used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.Cells">
+            <summary>The cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.DigitsMask">
+            <summary>The digits mask.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.IsNice">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.Rank">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Blocks"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="ExtraCell">Indicates the extra cell used.</param>
+            <param name="DigitsMask"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.Collections.Cells@,System.Int32,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Blocks"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="ExtraCell">Indicates the extra cell used.</param>
+            <param name="DigitsMask"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step.ExtraCell">
+            <summary>Indicates the extra cell used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.DominoLoopStep">

@@ -7954,6 +7954,26 @@
               Looks up a localized string similar to Cell Forcing Chains.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.ChromaticPatternType1">
+            <summary>
+              Looks up a localized string similar to Chromatic Pattern Type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ChromaticPatternType2">
+            <summary>
+              Looks up a localized string similar to Chromatic Pattern Type 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ChromaticPatternType3">
+            <summary>
+              Looks up a localized string similar to Chromatic Pattern Type 3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ChromaticPatternType4">
+            <summary>
+              Looks up a localized string similar to Chromatic Pattern Type 4.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.Claiming">
             <summary>
               Looks up a localized string similar to Claiming.
@@ -9097,6 +9117,11 @@
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_CellChainingStep">
             <summary>
               Looks up a localized string similar to {Name}: It can be proved using chains that all digits are false from {SourceCellStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ChromaticPatternType1Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Cells {CellsStr} in blocks {BlocksStr} will form an invalid structure if these cells only contain the digits {DigitsStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ComplexFishStep">
@@ -11551,6 +11576,26 @@
             Indicates the grouped bi-value oddagon.
             </summary>
         </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.ChromaticPatternType1">
+            <summary>
+            Indicates the chromatic pattern (tri-value oddagon type 1).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.ChromaticPatternType2">
+            <summary>
+            Indicates the chromatic pattern (tri-value oddagon type 2).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.ChromaticPatternType3">
+            <summary>
+            Indicates the chromatic pattern (tri-value oddagon type 3).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.ChromaticPatternType4">
+            <summary>
+            Indicates the chromatic pattern (tri-value oddagon type 4).
+            </summary>
+        </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.XChain">
             <summary>
             Indicates the X-Chain.
@@ -11925,6 +11970,11 @@
         <member name="F:Sudoku.Runtime.AnalysisServices.TechniqueGroup.BivalueOddagon">
             <summary>
             Indicates the bi-value oddagon technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.TechniqueGroup.TrivalueOddagon">
+            <summary>
+            Indicates the tri-value oddagon technique.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.TechniqueGroup.SueDeCoq">

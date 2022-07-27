@@ -116,6 +116,11 @@ public enum TechniqueGroup : byte
 	BivalueOddagon,
 
 	/// <summary>
+	/// Indicates the tri-value oddagon technique.
+	/// </summary>
+	TrivalueOddagon,
+
+	/// <summary>
 	/// Indicates the sue de coq (SdC) technique.
 	/// </summary>
 	SueDeCoq,

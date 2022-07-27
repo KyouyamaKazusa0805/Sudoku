@@ -592,6 +592,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chromatic Pattern Type 1.
+        /// </summary>
+        internal static string ChromaticPatternType1 {
+            get {
+                return ResourceManager.GetString("ChromaticPatternType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chromatic Pattern Type 2.
+        /// </summary>
+        internal static string ChromaticPatternType2 {
+            get {
+                return ResourceManager.GetString("ChromaticPatternType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chromatic Pattern Type 3.
+        /// </summary>
+        internal static string ChromaticPatternType3 {
+            get {
+                return ResourceManager.GetString("ChromaticPatternType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chromatic Pattern Type 4.
+        /// </summary>
+        internal static string ChromaticPatternType4 {
+            get {
+                return ResourceManager.GetString("ChromaticPatternType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Claiming.
         /// </summary>
         internal static string Claiming {
@@ -2649,6 +2685,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_CellChainingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_CellChainingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} in blocks {BlocksStr} will form an invalid structure if these cells only contain the digits {DigitsStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_ChromaticPatternType1Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ChromaticPatternType1Step", resourceCulture);
             }
         }
         

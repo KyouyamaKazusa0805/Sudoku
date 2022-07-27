@@ -1323,4 +1323,19 @@
   <data name="RemotePair" xml:space="preserve">
     <value>Remote Pair</value>
   </data>
+  <data name="ChromaticPatternType1" xml:space="preserve">
+    <value>Chromatic Pattern Type 1</value>
+  </data>
+  <data name="ChromaticPatternType2" xml:space="preserve">
+    <value>Chromatic Pattern Type 2</value>
+  </data>
+  <data name="ChromaticPatternType3" xml:space="preserve">
+    <value>Chromatic Pattern Type 3</value>
+  </data>
+  <data name="ChromaticPatternType4" xml:space="preserve">
+    <value>Chromatic Pattern Type 4</value>
+  </data>
+  <data name="TechniqueFormat_ChromaticPatternType1Step" xml:space="preserve">
+    <value>{Name}: Cells {CellsStr} in blocks {BlocksStr} will form an invalid structure if these cells only contain the digits {DigitsStr} =&gt; {ElimStr}</value>
+  </data>
 </root>
