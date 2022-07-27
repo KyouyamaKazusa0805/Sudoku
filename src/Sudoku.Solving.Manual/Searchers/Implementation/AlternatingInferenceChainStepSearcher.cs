@@ -34,6 +34,7 @@
 /// </item>
 /// </list>
 /// </summary>
+#if false
 [StepSearcher]
 [SeparatedStepSearcher(0, nameof(NodeTypes), SearcherNodeTypeLevel.SingleDigit)]
 [SeparatedStepSearcher(1, nameof(NodeTypes), SearcherNodeTypeLevel.Normal)]
@@ -41,6 +42,7 @@
 [SeparatedStepSearcher(3, nameof(NodeTypes), SearcherNodeTypeLevel.LockedSets)]
 [SeparatedStepSearcher(4, nameof(NodeTypes), SearcherNodeTypeLevel.HiddenSets)]
 [SeparatedStepSearcher(5, nameof(NodeTypes), SearcherNodeTypeLevel.UniqueRectangles)]
+#endif
 internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
 	/// <summary>

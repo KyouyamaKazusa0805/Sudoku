@@ -18,18 +18,13 @@ public static class MaskMarshal
 			maskSubsets[size - 1] = GetMaskSubsets(value, size);
 		}
 
-		short[] result = new short[9];
-		for (int i = 0; i < 9; i++)
+		var listOfResults = new List<short>();
+		foreach (short[] maskSubset in maskSubsets)
 		{
-			short mask = 0;
-			foreach (short targetMask in maskSubsets[i])
-			{
-				mask |= (short)(1 << targetMask);
-			}
-			result[i] = mask;
+			listOfResults.AddRange(maskSubset);
 		}
 
-		return result;
+		return listOfResults.ToArray();
 	}
 
 	/// <summary>
