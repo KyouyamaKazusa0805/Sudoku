@@ -7974,6 +7974,11 @@
               Looks up a localized string similar to Chromatic Pattern Type 4.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.ChromaticPatternXzRule">
+            <summary>
+              Looks up a localized string similar to Chromatic Pattern XZ Rule.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.Claiming">
             <summary>
               Looks up a localized string similar to Claiming.
@@ -9122,6 +9127,11 @@
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ChromaticPatternType1Step">
             <summary>
               Looks up a localized string similar to {Name}: Cells {CellsStr} in blocks {BlocksStr} will form an invalid structure if these cells only contain the digits {DigitsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ChromaticPatternXzStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} in blocks {BlocksStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ComplexFishStep">
@@ -11578,22 +11588,27 @@
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.ChromaticPatternType1">
             <summary>
-            Indicates the chromatic pattern (tri-value oddagon type 1).
+            Indicates the chromatic pattern (tri-value oddagon) type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.ChromaticPatternType2">
             <summary>
-            Indicates the chromatic pattern (tri-value oddagon type 2).
+            Indicates the chromatic pattern (tri-value oddagon) type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.ChromaticPatternType3">
             <summary>
-            Indicates the chromatic pattern (tri-value oddagon type 3).
+            Indicates the chromatic pattern (tri-value oddagon) type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.ChromaticPatternType4">
             <summary>
-            Indicates the chromatic pattern (tri-value oddagon type 4).
+            Indicates the chromatic pattern (tri-value oddagon) type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.ChromaticPatternXzRule">
+            <summary>
+            Indicates the chromatic pattern (tri-value oddagon) XZ rule.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.XChain">

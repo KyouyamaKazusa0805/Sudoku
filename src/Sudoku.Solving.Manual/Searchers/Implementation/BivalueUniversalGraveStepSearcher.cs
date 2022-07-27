@@ -425,14 +425,14 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 	}
 
 	private static Step? CheckXz(
-		ICollection<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+		ICollection<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates,
+		bool onlyFindOne)
 	{
-		if (trueCandidates.Count > 2)
+		if (trueCandidates is not [var cand1, var cand2])
 		{
 			return null;
 		}
 
-		int cand1 = trueCandidates[0], cand2 = trueCandidates[1];
 		int c1 = cand1 / 9, c2 = cand2 / 9, d1 = cand1 % 9, d2 = cand2 % 9;
 		short mask = (short)(1 << d1 | 1 << d2);
 		foreach (int cell in (PeerMaps[c1] ^ PeerMaps[c2]) & BivalueCells)

@@ -6,13 +6,13 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Blocks">The blocks used.</param>
-/// <param name="Cells">The cells used.</param>
+/// <param name="Pattern">The cells used.</param>
 /// <param name="DigitsMask">The digits mask.</param>
 public abstract record ChromaticPatternStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int[] Blocks,
-	scoped in Cells Cells,
+	scoped in Cells Pattern,
 	short DigitsMask
 ) : RankTheoryStep(Conclusions, Views), ILoopLikeStep, IStepWithRank
 {
@@ -28,6 +28,12 @@ public abstract record ChromaticPatternStep(
 	/// <inheritdoc/>
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.TrivalueOddagon;
 
+	/// <inheritdoc/>
+	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
+
+	/// <inheritdoc/>
+	public sealed override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
+
 
 	[FormatItem]
 	internal string BlocksStr
@@ -40,7 +46,7 @@ public abstract record ChromaticPatternStep(
 	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.ToString();
+		get => Pattern.ToString();
 	}
 
 	[FormatItem]

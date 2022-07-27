@@ -1338,4 +1338,10 @@
   <data name="TechniqueFormat_ChromaticPatternType1Step" xml:space="preserve">
     <value>{Name}: Cells {CellsStr} in blocks {BlocksStr} will form an invalid structure if these cells only contain the digits {DigitsStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="ChromaticPatternXzRule" xml:space="preserve">
+    <value>Chromatic Pattern XZ Rule</value>
+  </data>
+  <data name="TechniqueFormat_ChromaticPatternXzStep" xml:space="preserve">
+    <value>{Name}: Digits {DigitsStr} in cells {CellsStr} in blocks {BlocksStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}</value>
+  </data>
 </root>

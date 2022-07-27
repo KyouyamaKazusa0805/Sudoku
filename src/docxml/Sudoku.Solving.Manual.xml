@@ -1569,12 +1569,23 @@
             Provides with a <b>Chromatic Pattern</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
+            <item>
+            Basic types:
+            <list type="bullet">
             <item>Chromatic Pattern type 1</item>
             <!--
             <item>Chromatic Pattern type 2</item>
             <item>Chromatic Pattern type 3</item>
             <item>Chromatic Pattern type 4</item>
             -->
+            </list>
+            </item>
+            <item>
+            Extended types:
+            <list type="bullet">
+            <item>Chromatic Pattern XZ</item>
+            </list>
+            </item>
             </list>
             </summary>
         </member>
@@ -1614,6 +1625,19 @@
             </item>
             <item>
             <see href="http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html#p318378">the second one</see>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.CheckXz(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Collections.Cells@,System.Int32[])">
+            <summary>
+            Checks for XZ rule.
+            Here I give you 1 example to test this method:
+            <list type="number">
+            <item>
+            <code>
+            0000000010000023400+45013602000+470036000089400004600000012500060403100520560000100:611 711 811 911 712 812 912 915 516 716 816 721 821 921 925 565 568 779 879 979 794 894 994 799 899 999
+            </code>
             </item>
             </list>
             </summary>
@@ -7468,7 +7492,7 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Blocks">The blocks used.</param>
-            <param name="Cells">The cells used.</param>
+            <param name="Pattern">The cells used.</param>
             <param name="DigitsMask">The digits mask.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.Collections.Cells@,System.Int16)">
@@ -7478,13 +7502,13 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Blocks">The blocks used.</param>
-            <param name="Cells">The cells used.</param>
+            <param name="Pattern">The cells used.</param>
             <param name="DigitsMask">The digits mask.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.Blocks">
             <summary>The blocks used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.Cells">
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.Pattern">
             <summary>The cells used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.DigitsMask">
@@ -7502,6 +7526,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.TechniqueGroup">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.Rarity">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern Type 1</b> technique.
@@ -7509,7 +7539,7 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Blocks"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
             <param name="ExtraCell">Indicates the extra cell used.</param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
@@ -7520,7 +7550,7 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Blocks"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
             <param name="ExtraCell">Indicates the extra cell used.</param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
@@ -7530,10 +7560,51 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step.DifficultyLevel">
+        <member name="T:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern XZ</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Blocks"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="Cells">The cells that contains extra digit in the pattern.</param>
+            <param name="ExtraCell">Indicates the extra cell used.</param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraDigitsMask">The extra digits mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,System.Int32,System.Int16,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern XZ</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Blocks"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="Cells">The cells that contains extra digit in the pattern.</param>
+            <param name="ExtraCell">Indicates the extra cell used.</param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraDigitsMask">The extra digits mask.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep.Cells">
+            <summary>The cells that contains extra digit in the pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep.ExtraCell">
+            <summary>Indicates the extra cell used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep.ExtraDigitsMask">
+            <summary>The extra digits mask.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step.Rarity">
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.DominoLoopStep">

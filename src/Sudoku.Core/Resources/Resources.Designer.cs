@@ -628,6 +628,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chromatic Pattern XZ Rule.
+        /// </summary>
+        internal static string ChromaticPatternXzRule {
+            get {
+                return ResourceManager.GetString("ChromaticPatternXzRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Claiming.
         /// </summary>
         internal static string Claiming {
@@ -2694,6 +2703,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_ChromaticPatternType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ChromaticPatternType1Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} in blocks {BlocksStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_ChromaticPatternXzStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ChromaticPatternXzStep", resourceCulture);
             }
         }
         
