@@ -16,11 +16,6 @@
 		<Features>strict</Features>
 	</PropertyGroup>
 
-	<!--Set the root namespaces.-->
-	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
-		<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
-	</PropertyGroup>
-
 	<!--Enables the preview features if the project is not the source generators.-->
 	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='false' And '$(LangVersion)'=='preview'">
 		<EnablePreviewFeatures>true</EnablePreviewFeatures>
@@ -48,21 +43,5 @@
 		</When>
 		-->
 	</Choose>
-
-	<!--Import 'Microsoft.CodeAnalysis.*' packages if the project is a source generator project.-->
-	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
-		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.2.0" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.2.0" />
-	</ItemGroup>
-
-	<!--Import 'GlobalConfiguration.CodeGen' project into the source generator projects.-->
-	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' And '$(MSBuildProjectFile)'!='GlobalConfiguration.CodeGen.csproj'">
-		<AdditionalFiles Include="..\..\Directory.Build.props" />
-		<ProjectReference
-				Include="..\GlobalConfiguration.CodeGen\GlobalConfiguration.CodeGen.csproj"
-				OutputItemType="Analyzer"
-				ReferenceOutputAssembly="true" />
-	</ItemGroup>
 
 </Project>

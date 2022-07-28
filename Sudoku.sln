@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemExtensions", "src\Sys
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Diagnostics.CodeGen", "src\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj", "{D9245FB8-31D4-4ED7-BCAF-DF21033A2D93}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlobalConfiguration.CodeGen", "src\GlobalConfiguration.CodeGen\GlobalConfiguration.CodeGen.csproj", "{906B3060-FD92-41BD-A84D-944AC70B8656}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI", "src\Sudoku.UI\Sudoku.UI.csproj", "{C77EC482-143E-47C1-9524-BC3BAE815838}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving.Manual", "src\Sudoku.Solving.Manual\Sudoku.Solving.Manual.csproj", "{5451F367-F1E0-44AC-9EA1-1819B410050C}"
@@ -142,36 +140,6 @@ Global
 		{D9245FB8-31D4-4ED7-BCAF-DF21033A2D93}.Release|x64.Build.0 = Release|Any CPU
 		{D9245FB8-31D4-4ED7-BCAF-DF21033A2D93}.Release|x86.ActiveCfg = Release|Any CPU
 		{D9245FB8-31D4-4ED7-BCAF-DF21033A2D93}.Release|x86.Build.0 = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Build|Any CPU.ActiveCfg = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Build|Any CPU.Build.0 = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Build|ARM.ActiveCfg = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Build|ARM.Build.0 = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Build|ARM64.ActiveCfg = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Build|ARM64.Build.0 = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Build|x64.ActiveCfg = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Build|x64.Build.0 = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Build|x86.ActiveCfg = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Build|x86.Build.0 = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Debug|ARM.Build.0 = Debug|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Debug|x64.Build.0 = Debug|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Debug|x86.Build.0 = Debug|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Release|Any CPU.Build.0 = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Release|ARM.ActiveCfg = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Release|ARM.Build.0 = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Release|ARM64.Build.0 = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Release|x64.ActiveCfg = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Release|x64.Build.0 = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Release|x86.ActiveCfg = Release|Any CPU
-		{906B3060-FD92-41BD-A84D-944AC70B8656}.Release|x86.Build.0 = Release|Any CPU
 		{C77EC482-143E-47C1-9524-BC3BAE815838}.Build|Any CPU.ActiveCfg = Release|x64
 		{C77EC482-143E-47C1-9524-BC3BAE815838}.Build|Any CPU.Build.0 = Release|x64
 		{C77EC482-143E-47C1-9524-BC3BAE815838}.Build|Any CPU.Deploy.0 = Release|x64
@@ -340,8 +308,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal

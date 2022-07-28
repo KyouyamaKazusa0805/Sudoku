@@ -4,10 +4,9 @@
 
 | 项目名                                                       | 类型         | 介绍                                                         |
 | ------------------------------------------------------------ | ------------ | ------------------------------------------------------------ |
-| [`GlobalConfiguration.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/GlobalConfiguration.CodeGen) | 源生成器[^1] | 会按照 [`Directory.Build.props`](https://github.com/SunnieShine/Sudoku/blob/main/Directory.Build.props) 文件的设置自动生成全局配置代码。 |
 | [`Sudoku.CommandLine`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine) | 控制台       | 提供一个关于数独基本运算和操作的控制台实现，偶尔也被用来调试代码。 |
 | [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core) | 类库         | 提供基本的数独相关的数据结构的实现，如数独盘面的实现 [`Grid`](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs) 类型等。 |
-| [`Sudoku.Diagnostics.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeGen) | 源生成器     | 为解决方案提供一些基本的、不必手写的源代码的功能性扩展。     |
+| [`Sudoku.Diagnostics.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeGen) | 源生成器[^1] | 为解决方案提供一些基本的、不必手写的源代码的功能性扩展。     |
 | [`Sudoku.Drawing`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing) | 类库         | 提供一种简单、轻量级的数独绘图 API。                         |
 | [`Sudoku.Solving.Manual`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Manual) | 类库         | 提供数独关于解题操作和技巧搜寻功能的 API。                   |
 | [`Sudoku.UI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI) | Windows UI   | 用于呈现和使用 API 提供一个具体的 UI 级别实现。**正在更新中。** |
