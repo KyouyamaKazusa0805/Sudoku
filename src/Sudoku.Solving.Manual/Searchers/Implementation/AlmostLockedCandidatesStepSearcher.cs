@@ -1,16 +1,5 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with an <b>Almost Locked Candidates</b> step searcher.
-/// The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>Almost Locked Pair</item>
-/// <item>Almost Locked Triple</item>
-/// <item>
-/// Almost Locked Quadruple (This is unnecessary one)
-/// </item>
-/// </list>
-/// </summary>
 [StepSearcher]
 internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
 {

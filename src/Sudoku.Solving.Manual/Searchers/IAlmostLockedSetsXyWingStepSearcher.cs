@@ -1,7 +1,11 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Defines a step searcher that searches for almost locked sets XY-Wing steps.
+/// Provides with an <b>Almost Locked Sets XY-Wing</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Almost Locked Sets XY-Wing</item>
+/// </list>
 /// </summary>
 public interface IAlmostLockedSetsXyWingStepSearcher : IStepSearcher
 {

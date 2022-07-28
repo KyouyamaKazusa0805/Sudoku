@@ -135,6 +135,22 @@ public static partial class CommonReadOnlies
 	};
 
 	/// <summary>
+	/// Indicates all houses iterating on the specified block forming an empty rectangle.
+	/// </summary>
+	public static readonly int[,] EmptyRectangleLinkIds =
+	{
+		{ 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
+		{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
+		{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 },
+		{  9, 10, 11, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
+		{  9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
+		{  9, 10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23 },
+		{  9, 10, 11, 12, 13, 14, 21, 22, 23, 24, 25, 26 },
+		{  9, 10, 11, 12, 13, 14, 18, 19, 20, 24, 25, 26 },
+		{  9, 10, 11, 12, 13, 14, 18, 19, 20, 21, 22, 23 }
+	};
+
+	/// <summary>
 	/// <para>Indicates a table for each cell's peers.</para>
 	/// </summary>
 	/// <example>
@@ -277,6 +293,36 @@ public static partial class CommonReadOnlies
 		new[] {  6, 15, 24, 33, 42, 51, 60, 69, 78, },
 		new[] {  7, 16, 25, 34, 43, 52, 61, 70, 79, },
 		new[] {  8, 17, 26, 35, 44, 53, 62, 71, 80, },
+	};
+
+	/// <summary>
+	/// All possible blocks combinations being reserved for chromatic pattern searcher's usages.
+	/// </summary>
+	public static readonly short[] ChromaticPatternBlocksCombinations = new short[]
+	{
+		0b000_011_011, 0b000_101_101, 0b000_110_110,
+		0b011_000_011, 0b101_000_101, 0b110_000_110,
+		0b011_011_000, 0b101_101_000, 0b110_110_000
+	};
+
+	/// <summary>
+	/// The order of cell offsets to get values.
+	/// </summary>
+	/// <remarks>
+	/// For example, the first value is 40, which means the first cell to be tried to be filled
+	/// is the 40th cell in the grid (i.e. the cell <c>r5c5</c>).
+	/// </remarks>
+	public static readonly int[] BruteForceTryAndErrorOrder =
+	{
+		40, 41, 32, 31, 30, 39, 48, 49, 50,
+		51, 42, 33, 24, 23, 22, 21, 20, 29,
+		38, 47, 56, 57, 58, 59, 60, 61, 52,
+		43, 34, 25, 16, 15, 14, 13, 12, 11,
+		10, 19, 28, 37, 46, 55, 64, 65, 66,
+		67, 68, 69, 70, 71, 62, 53, 44, 35,
+		26, 17,  8,  7,  6,  5,  4,  3,  2,
+		 1,  0,  9, 18, 27, 36, 45, 54, 63,
+		72, 73, 74, 75, 76, 77, 78, 79, 80
 	};
 
 	/// <summary>

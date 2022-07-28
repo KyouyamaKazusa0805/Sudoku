@@ -1,14 +1,5 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with an <b>Almost Locked Sets XZ</b> step searcher.
-/// The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>Extended Subset Principle</item>
-/// <item>Singly-linked Almost Locked Sets XZ</item>
-/// <item>Doubly-linked Almost Locked Sets XZ</item>
-/// </list>
-/// </summary>
 [StepSearcher]
 internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzStepSearcher
 {

@@ -1,19 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with a <b>Unique Loop</b> step searcher.
-/// The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>Unique Loop Type 1</item>
-/// <item>Unique Loop Type 2</item>
-/// <item>Unique Loop Type 3</item>
-/// <item>Unique Loop Type 4</item>
-/// </list>
-/// </summary>
 [StepSearcher]
-internal sealed unsafe partial class UniqueLoopStepSearcher :
-	IUniqueLoopStepSearcher,
-	IUniqueLoopOrBivalueOddagonStepSearcher
+internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
 {
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)

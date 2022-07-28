@@ -1,7 +1,11 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Defines a step searcher that searches for an empty rectangle step.
+/// Provides with an <b>Empty Rectangle</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Empty Rectangle</item>
+/// </list>
 /// </summary>
 public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 {

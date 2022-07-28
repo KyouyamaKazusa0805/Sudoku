@@ -1,7 +1,11 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Defines a step searcher that searches for pattern overlay steps.
+/// Provides with a <b>Pattern Overlay</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Pattern Overlay</item>
+/// </list>
 /// </summary>
 public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 {

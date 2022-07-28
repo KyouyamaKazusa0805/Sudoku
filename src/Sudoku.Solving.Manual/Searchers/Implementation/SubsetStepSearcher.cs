@@ -1,21 +1,5 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>Locked Pair</item>
-/// <item>Locked Triple</item>
-/// <item>Naked Pair</item>
-/// <item>Naked Triple</item>
-/// <item>Naked Quadruple</item>
-/// <item>Naked Pair (+)</item>
-/// <item>Naked Triple (+)</item>
-/// <item>Naked Quadruple (+)</item>
-/// <item>Hidden Pair</item>
-/// <item>Hidden Triple</item>
-/// <item>Hidden Quadruple</item>
-/// </list>
-/// </summary>
 [StepSearcher]
 internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 {

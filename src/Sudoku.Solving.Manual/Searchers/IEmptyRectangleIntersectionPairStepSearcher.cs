@@ -1,7 +1,11 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Defines a step searcher that searches for empty rectangle intersection pair steps.
+/// Provides with an <b>Empty Rectangle Intersection Pair</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Empty Rectangle Intersection Pair</item>
+/// </list>
 /// </summary>
 public interface IEmptyRectangleIntersectionPairStepSearcher : IAlmostLockedSetsStepSearcher
 {

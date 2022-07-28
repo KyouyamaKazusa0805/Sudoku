@@ -1,7 +1,14 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Defines a step searcher that searches for unique loop steps.
+/// Provides with a <b>Unique Loop</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Unique Loop Type 1</item>
+/// <item>Unique Loop Type 2</item>
+/// <item>Unique Loop Type 3</item>
+/// <item>Unique Loop Type 4</item>
+/// </list>
 /// </summary>
 public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
 {

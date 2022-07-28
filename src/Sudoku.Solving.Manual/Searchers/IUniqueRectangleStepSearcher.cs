@@ -1,7 +1,34 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Defines a step searcher that searches for unique rectangle steps.
+/// Provides with a <b>Unique Rectangle</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>
+/// Basic types:
+/// <list type="bullet">
+/// <item>Unique/Avoidable Rectangle Type 1, 2, 3, 5</item>
+/// <item>Unique Rectangle Type 4, 6</item>
+/// <item>Hidden Unique/Avoidable Rectangle</item>
+/// </list>
+/// </item>
+/// <item>
+/// Unique Rectangle with structures:
+/// <list type="bullet">
+/// <item>Unique Rectangle with Conjugate Pair</item>
+/// <item>Avoidable Rectangle with Hidden Single</item>
+/// <item>Unique Rectangle with Unknown Covering</item>
+/// <item>Unique Rectangle with Sue de Coq</item>
+/// <item>Unique Rectangle with Guardian</item>
+/// </list>
+/// </item>
+/// <item>
+/// Miscellaneous:
+/// <list type="bullet">
+/// <item>Unique Rectangle 2D, 3X</item>
+/// </list>
+/// </item>
+/// </list>
 /// </summary>
 public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 {

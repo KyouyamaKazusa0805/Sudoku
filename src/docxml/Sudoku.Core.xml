@@ -9777,6 +9777,11 @@
             The table of all <b>Unique Rectangle</b> cells.
             </summary>
         </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.EmptyRectangleLinkIds">
+            <summary>
+            Indicates all houses iterating on the specified block forming an empty rectangle.
+            </summary>
+        </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Peers">
             <summary>
             <para>Indicates a table for each cell's peers.</para>
@@ -9809,6 +9814,20 @@
             <example>
             '<c>HouseCells[0]</c>': all cell offsets in the house 0 (block 1).
             </example>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.ChromaticPatternBlocksCombinations">
+            <summary>
+            All possible blocks combinations being reserved for chromatic pattern searcher's usages.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.BruteForceTryAndErrorOrder">
+            <summary>
+            The order of cell offsets to get values.
+            </summary>
+            <remarks>
+            For example, the first value is 40, which means the first cell to be tried to be filled
+            is the 40th cell in the grid (i.e. the cell <c>r5c5</c>).
+            </remarks>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.SubsetNames">
             <summary>

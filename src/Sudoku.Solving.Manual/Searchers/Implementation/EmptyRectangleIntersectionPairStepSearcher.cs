@@ -1,15 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with an <b>Empty Rectangle Intersection Pair</b> step searcher.
-/// The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>Empty Rectangle Intersection Pair</item>
-/// </list>
-/// </summary>
 [StepSearcher]
-internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
-	IEmptyRectangleIntersectionPairStepSearcher
+internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher : IEmptyRectangleIntersectionPairStepSearcher
 {
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)

@@ -1,32 +1,8 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with an <b>Empty Rectangle</b> step searcher.
-/// The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>Empty Rectangle</item>
-/// </list>
-/// </summary>
 [StepSearcher]
 internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
 {
-	/// <summary>
-	/// Indicates all houses iterating on the specified block forming an empty rectangle.
-	/// </summary>
-	private static readonly int[,] LinkIds =
-	{
-		{ 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
-		{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
-		{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 },
-		{  9, 10, 11, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
-		{  9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
-		{  9, 10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23 },
-		{  9, 10, 11, 12, 13, 14, 21, 22, 23, 24, 25, 26 },
-		{  9, 10, 11, 12, 13, 14, 18, 19, 20, 24, 25, 26 },
-		{  9, 10, 11, 12, 13, 14, 18, 19, 20, 21, 22, 23 }
-	};
-
-
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
@@ -46,7 +22,7 @@ internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangl
 				// Search for conjugate pair.
 				for (int i = 0; i < 12; i++)
 				{
-					var linkMap = CandidatesMap[digit] & HouseMaps[LinkIds[block, i]];
+					var linkMap = CandidatesMap[digit] & HouseMaps[EmptyRectangleLinkIds[block, i]];
 					if (linkMap.Count != 2)
 					{
 						continue;

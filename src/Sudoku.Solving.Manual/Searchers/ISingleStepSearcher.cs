@@ -1,7 +1,13 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Defines a step searcher that searches for single steps.
+/// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Full House (If the property <see cref="EnableFullHouse"/> is <see langword="true"/>)</item>
+/// <item>Last Digit (If the property <see cref="EnableLastDigit"/> is <see langword="true"/>)</item>
+/// <item>Hidden Single</item>
+/// <item>Naked Single</item>
+/// </list>
 /// </summary>
 public interface ISingleStepSearcher : IStepSearcher
 {

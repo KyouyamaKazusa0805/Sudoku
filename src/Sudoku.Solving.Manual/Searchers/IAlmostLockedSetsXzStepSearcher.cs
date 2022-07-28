@@ -1,7 +1,13 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Defines a step searcher that searches for almost locked sets XZ steps.
+/// Provides with an <b>Almost Locked Sets XZ Rule</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Extended Subset Principle</item>
+/// <item>Singly-linked Almost Locked Sets XZ Rule</item>
+/// <item>Doubly-linked Almost Locked Sets XZ Rule</item>
+/// </list>
 /// </summary>
 public interface IAlmostLockedSetsXzStepSearcher : IAlmostLockedSetsStepSearcher
 {

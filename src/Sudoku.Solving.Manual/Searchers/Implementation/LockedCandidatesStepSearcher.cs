@@ -1,13 +1,5 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with a <b>Locked Candidates</b> step searcher.
-/// The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>Pointing</item>
-/// <item>Claiming</item>
-/// </list>
-/// </summary>
 [StepSearcher]
 internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandidatesStepSearcher
 {
@@ -73,8 +65,7 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 			foreach (int digit in m)
 			{
 				// Check whether the digit contains any eliminations.
-				Cells elimMap;
-				(r[0], r[1], elimMap) = (a & CandidatesMap[digit]) is []
+				(r[0], r[1], var elimMap) = (a & CandidatesMap[digit]) is []
 					? (baseSet, coverSet, b & CandidatesMap[digit])
 					: (coverSet, baseSet, a & CandidatesMap[digit]);
 				if (elimMap is [])

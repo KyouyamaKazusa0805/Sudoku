@@ -1,7 +1,11 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Defines a step searcher that searches for multi-sector locked sets steps.
+/// Provides with a <b>Multi-sector Locked Sets</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Multi-sector Locked Sets</item>
+/// </list>
 /// </summary>
 public interface IMultisectorLockedSetsStepSearcher : IRankTheoryStepSearcher
 {

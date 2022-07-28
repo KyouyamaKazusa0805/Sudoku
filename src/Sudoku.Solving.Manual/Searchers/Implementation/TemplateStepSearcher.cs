@@ -1,13 +1,5 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with a <b>Template</b> step searcher.
-/// The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>Template Set</item>
-/// <item>Template Delete</item>
-/// </list>
-/// </summary>
 [StepSearcher]
 internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 {

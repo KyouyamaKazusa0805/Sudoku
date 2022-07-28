@@ -1,23 +1,12 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with a <b>Bowman's Bingo</b> step searcher.
-/// The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>Bowman's Bingo</item>
-/// </list>
-/// </summary>
 [StepSearcher]
 internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 {
 	/// <summary>
 	/// The singles searcher.
 	/// </summary>
-	private readonly ISingleStepSearcher _searcher = new SingleStepSearcher
-	{
-		EnableFullHouse = true,
-		EnableLastDigit = true
-	};
+	private readonly ISingleStepSearcher _searcher = new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true };
 
 	/// <summary>
 	/// All temporary conclusions.

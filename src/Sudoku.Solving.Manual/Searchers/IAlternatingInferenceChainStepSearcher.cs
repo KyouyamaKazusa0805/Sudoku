@@ -1,7 +1,38 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Defines a step searcher that searches for alternating inference chain steps.
+/// Provides with an <b>Alternating Inference Chain</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>
+/// Non-grouped chains:
+/// <list type="bullet">
+/// <item>
+/// Irregular Wings:
+/// <list type="bullet">
+/// <item>W-Wing (Although it can be searched via <see cref="IIregularWingStepSearcher"/>)</item>
+/// <item>M-Wing</item>
+/// <item>Split Wing</item>
+/// <item>Local Wing</item>
+/// <item>Hybrid Wing</item>
+/// <item>Purple Cow</item>
+/// </list>
+/// </item>
+/// <item>Discontinuous Nice Loop</item>
+/// <item>Alternating Inference Chain</item>
+/// <item>Continuous Nice Loop</item>
+/// </list>
+/// </item>
+/// <item>
+/// Grouped chains:
+/// <list type="bullet">
+/// <item>Grouped Irregular Wings</item>
+/// <item>Grouped Discontinuous Nice Loop</item>
+/// <item>Grouped Alternating Inference Chain</item>
+/// <item>Grouped Continuous Nice Loop</item>
+/// </list>
+/// </item>
+/// </list>
 /// </summary>
 public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 {

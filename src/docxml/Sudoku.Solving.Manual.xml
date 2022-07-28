@@ -613,7 +613,13 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher">
             <summary>
-            Defines a step searcher that searches for almost locked candidates steps.
+            Provides with an <b>Almost Locked Candidates</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Almost Locked Pair</item>
+            <item>Almost Locked Triple</item>
+            <item>Almost Locked Quadruple (Maybe unnecessary)</item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
@@ -651,12 +657,20 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsWWingStepSearcher">
             <summary>
-            Defines a step searcher that searches for almost locked sets W-Wing steps.
+            Provides with an <b>Almost Locked Sets W-Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Almost Locked Sets W-Wing</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXyWingStepSearcher">
             <summary>
-            Defines a step searcher that searches for almost locked sets XY-Wing steps.
+            Provides with an <b>Almost Locked Sets XY-Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Almost Locked Sets XY-Wing</item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXyWingStepSearcher.AllowCollision">
@@ -666,7 +680,13 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher">
             <summary>
-            Defines a step searcher that searches for almost locked sets XZ steps.
+            Provides with an <b>Almost Locked Sets XZ Rule</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Extended Subset Principle</item>
+            <item>Singly-linked Almost Locked Sets XZ Rule</item>
+            <item>Doubly-linked Almost Locked Sets XZ Rule</item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher.AllowCollision">
@@ -682,7 +702,38 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher">
             <summary>
-            Defines a step searcher that searches for alternating inference chain steps.
+            Provides with an <b>Alternating Inference Chain</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Non-grouped chains:
+            <list type="bullet">
+            <item>
+            Irregular Wings:
+            <list type="bullet">
+            <item>W-Wing (Although it can be searched via <see cref="T:Sudoku.Solving.Manual.Searchers.IIregularWingStepSearcher"/>)</item>
+            <item>M-Wing</item>
+            <item>Split Wing</item>
+            <item>Local Wing</item>
+            <item>Hybrid Wing</item>
+            <item>Purple Cow</item>
+            </list>
+            </item>
+            <item>Discontinuous Nice Loop</item>
+            <item>Alternating Inference Chain</item>
+            <item>Continuous Nice Loop</item>
+            </list>
+            </item>
+            <item>
+            Grouped chains:
+            <list type="bullet">
+            <item>Grouped Irregular Wings</item>
+            <item>Grouped Discontinuous Nice Loop</item>
+            <item>Grouped Alternating Inference Chain</item>
+            <item>Grouped Continuous Nice Loop</item>
+            </list>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.MaxCapacity">
@@ -772,12 +823,47 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IBivalueOddagonStepSearcher">
             <summary>
-            Defines a step searcher that searches for bi-value oddagon steps.
+            <para>
+            Provides with a <b>Bi-value Oddagon</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Bi-value Oddagon Type 2</item>
+            <item>Bi-value Oddagon Type 3</item>
+            </list>
+            </para>
+            <para>
+            In practicing, type 1 and 4 do not exist. A bi-value oddagon type 1 is a remote pair
+            and a type 4 cannot be formed as a stable technique structure.
+            </para>
+            <para>
+            A remote pair is a XY-Chain that only uses two digits.
+            This technique will be resolved by <see cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>.
+            </para>
             </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IBivalueUniversalGraveStepSearcher">
             <summary>
-            Defines a step searcher that searches for bi-value universal grave steps.
+            Provides with a <b>Bi-value Universal Grave</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Basic types:
+            <list type="bullet">
+            <item>Bi-value Universal Grave Type 1</item>
+            <item>Bi-value Universal Grave Type 2</item>
+            <item>Bi-value Universal Grave Type 3</item>
+            <item>Bi-value Universal Grave Type 4</item>
+            </list>
+            </item>
+            <item>
+            Extended types:
+            <list type="bullet">
+            <item>Bi-value Universal Grave + n</item>
+            <item>Bi-value Universal Grave XZ</item>
+            </list>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IBivalueUniversalGraveStepSearcher.SearchExtendedTypes">
@@ -808,7 +894,11 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IBowmanBingoStepSearcher">
             <summary>
-            Defines a step searcher that searches for bowman's bingo steps.
+            Provides with a <b>Bowman's Bingo</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Bowman's Bingo</item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IBowmanBingoStepSearcher.MaxLength">
@@ -818,7 +908,11 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IBruteForceStepSearcher">
             <summary>
-            Defines a step searcher that searches for brute force steps.
+            Provides with a <b>Brute Force</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Brute Force</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IChainStepSearcher">
@@ -869,7 +963,27 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IChromaticPatternStepSearcher">
             <summary>
-            Defines a step searcher that searches for chromatic patterns.
+            Provides with a <b>Chromatic Pattern</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Basic types:
+            <list type="bullet">
+            <item>Chromatic Pattern type 1</item>
+            <!--
+            <item>Chromatic Pattern type 2</item>
+            <item>Chromatic Pattern type 3</item>
+            <item>Chromatic Pattern type 4</item>
+            -->
+            </list>
+            </item>
+            <item>
+            Extended types:
+            <list type="bullet">
+            <item>Chromatic Pattern XZ</item>
+            </list>
+            </item>
+            </list>
             </summary>
             <remarks>
             For more information about a "chromatic pattern",
@@ -878,7 +992,24 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IComplexFishStepSearcher">
             <summary>
-            Defines a step searcher that searches for complex fish steps.
+            Provides with a <b>Complex Fish</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Franken Fishes
+            <list type="bullet">
+            <item>Finned Franken Fish</item>
+            <item>Sashimi Franken Fish</item>
+            </list>
+            </item>
+            <item>
+            Mutant Fishes
+            <list type="bullet">
+            <item>Finned Mutant Fish</item>
+            <item>Sashimi Mutant Fish</item>
+            </list>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IDeadlyPatternStepSearcher">
@@ -888,17 +1019,29 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IDominoLoopStepSearcher">
             <summary>
-            Defines a step searcher that searches for domino loop steps.
+            Provides with a <b>Domino Loop</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Domino Loop</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IEmptyRectangleIntersectionPairStepSearcher">
             <summary>
-            Defines a step searcher that searches for empty rectangle intersection pair steps.
+            Provides with an <b>Empty Rectangle Intersection Pair</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Empty Rectangle Intersection Pair</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher">
             <summary>
-            Defines a step searcher that searches for an empty rectangle step.
+            Provides with an <b>Empty Rectangle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Empty Rectangle</item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher.IsEmptyRectangle(Sudoku.Concepts.Collections.Cells@,System.Int32,System.Int32@,System.Int32@)">
@@ -945,7 +1088,14 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IExtendedRectangleStepSearcher">
             <summary>
-            Defines a searcher that searches for extended rectangle steps.
+            Provides with an <b>Extended Rectangle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Extended Rectangle Type 1</item>
+            <item>Extended Rectangle Type 2</item>
+            <item>Extended Rectangle Type 3</item>
+            <item>Extended Rectangle Type 4</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IFishStepSearcher">
@@ -985,7 +1135,11 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher">
             <summary>
-            Defines a step searcher that searches for guardian steps.
+            Provides with a <b>Guardian</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Guardian</item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
@@ -1017,12 +1171,20 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IIregularWingStepSearcher">
             <summary>
-            Defines a step searcher that searches for irregular wing steps.
+            Provides with a <b>W-Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>W-Wing (George Woods' Wing)</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IJuniorExocetStepSearcher">
             <summary>
-            Defines a step searcher that searches for junior exocet steps.
+            Provides with a <b>Junior Exocet</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Junior Exocet</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ILastResortStepSearcher">
@@ -1032,7 +1194,12 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ILockedCandidatesStepSearcher">
             <summary>
-            Defines a step searcher that searches for locked candidates steps.
+            Provides with a <b>Locked Candidates</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Pointing</item>
+            <item>Claiming</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ILoopLikeStepSearcher">
@@ -1047,19 +1214,6 @@
             <param name="this">The list of cells.</param>
             <param name="offset">The offset. The default value is <c>4</c>.</param>
             <returns>All links.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher">
-            <summary>
-            Provides with an <b>Almost Locked Candidates</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Almost Locked Pair</item>
-            <item>Almost Locked Triple</item>
-            <item>
-            Almost Locked Quadruple (This is unnecessary one)
-            </item>
-            </list>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
             <inheritdoc/>
@@ -1111,29 +1265,11 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsWWingStepSearcher">
-            <summary>
-            Provides with an <b>Almost Locked Sets W-Wing</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Almost Locked Sets W-Wing</item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsWWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsWWingStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXyWingStepSearcher">
-            <summary>
-            Provides with an <b>Almost Locked Sets XY-Wing</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Almost Locked Sets XY-Wing</item>
-            </list>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXyWingStepSearcher.AllowCollision">
             <inheritdoc/>
@@ -1143,17 +1279,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXyWingStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher">
-            <summary>
-            Provides with an <b>Almost Locked Sets XZ</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Extended Subset Principle</item>
-            <item>Singly-linked Almost Locked Sets XZ</item>
-            <item>Doubly-linked Almost Locked Sets XZ</item>
-            </list>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher.AllowCollision">
             <inheritdoc/>
@@ -1175,42 +1300,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher">
-            <summary>
-            Provides with an <b>Alternating Inference Chain</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Non-grouped chains:
-            <list type="bullet">
-            <item>
-            Irregular Wings:
-            <list type="bullet">
-            <item>W-Wing (Although it can be searched via <see cref="T:Sudoku.Solving.Manual.Searchers.IIregularWingStepSearcher"/>)</item>
-            <item>M-Wing</item>
-            <item>Split Wing</item>
-            <item>Local Wing</item>
-            <item>Hybrid Wing</item>
-            <item>Purple Cow</item>
-            </list>
-            </item>
-            <item>Discontinuous Nice Loop</item>
-            <item>Alternating Inference Chain</item>
-            <item>Continuous Nice Loop</item>
-            </list>
-            </item>
-            <item>
-            Grouped chains:
-            <list type="bullet">
-            <item>Grouped Irregular Wings</item>
-            <item>Grouped Discontinuous Nice Loop</item>
-            <item>Grouped Alternating Inference Chain</item>
-            <item>Grouped Continuous Nice Loop</item>
-            </list>
-            </item>
-            </list>
-            </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._strongInferences">
             <summary>
@@ -1409,56 +1498,11 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher">
-            <summary>
-            <para>
-            Provides with a <b>Bi-value Oddagon</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Bi-value Oddagon Type 2</item>
-            <item>Bi-value Oddagon Type 3</item>
-            </list>
-            </para>
-            <para>
-            In practicing, type 1 and 4 do not exist. A bi-value oddagon type 1 is a remote pair
-            and a type 4 cannot be formed as a stable technique structure.
-            </para>
-            <para>
-            A remote pair is a XY-Chain that only uses two digits.
-            This technique will be resolved by <see cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>.
-            </para>
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.BivalueUniversalGraveStepSearcher">
-            <summary>
-            Provides with a <b>Bi-value Universal Grave</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Basic types:
-            <list type="bullet">
-            <item>Bi-value Universal Grave Type 1</item>
-            <item>Bi-value Universal Grave Type 2</item>
-            <item>Bi-value Universal Grave Type 3</item>
-            <item>Bi-value Universal Grave Type 4</item>
-            </list>
-            </item>
-            <item>
-            Extended types:
-            <list type="bullet">
-            <item>Bi-value Universal Grave + n</item>
-            <item>Bi-value Universal Grave XZ</item>
-            </list>
-            </item>
-            </list>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes">
             <inheritdoc/>
@@ -1475,15 +1519,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.BivalueUniversalGraveStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.BowmanBingoStepSearcher">
-            <summary>
-            Provides with a <b>Bowman's Bingo</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Bowman's Bingo</item>
-            </list>
-            </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.BowmanBingoStepSearcher._searcher">
             <summary>
@@ -1537,24 +1572,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.BowmanBingoStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher">
-            <summary>
-            Provides with a <b>Brute Force</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Brute Force</item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher.TryAndErrorOrder">
-            <summary>
-            The order of cell offsets to get values.
-            </summary>
-            <remarks>
-            For example, the first value is 40, which means the first cell to be tried to be filled
-            is the 40th cell in the grid (i.e. the cell <c>r5c5</c>).
-            </remarks>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher.Solution">
             <inheritdoc/>
         </member>
@@ -1563,36 +1580,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher">
-            <summary>
-            Provides with a <b>Chromatic Pattern</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Basic types:
-            <list type="bullet">
-            <item>Chromatic Pattern type 1</item>
-            <!--
-            <item>Chromatic Pattern type 2</item>
-            <item>Chromatic Pattern type 3</item>
-            <item>Chromatic Pattern type 4</item>
-            -->
-            </list>
-            </item>
-            <item>
-            Extended types:
-            <list type="bullet">
-            <item>Chromatic Pattern XZ</item>
-            </list>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.BlocksCombinations">
-            <summary>
-            All possible blocks combinations.
-            </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.PatternOffsets">
             <summary>
@@ -1645,28 +1632,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher">
-            <summary>
-            Provides with a <b>Complex Fish</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Franken Fishes
-            <list type="bullet">
-            <item>Finned Franken Fish</item>
-            <item>Sashimi Franken Fish</item>
-            </list>
-            </item>
-            <item>
-            Mutant Fishes
-            <list type="bullet">
-            <item>Finned Mutant Fish</item>
-            <item>Sashimi Mutant Fish</item>
-            </list>
-            </item>
-            </list>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher.MaxSize">
             <inheritdoc/>
         </member>
@@ -1692,15 +1657,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher">
-            <summary>
-            Provides with a <b>Domino Loop</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Domino Loop</item>
-            </list>
-            </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.SkLoopTable">
             <summary>
@@ -1731,52 +1687,17 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.EmptyRectangleIntersectionPairStepSearcher">
-            <summary>
-            Provides with an <b>Empty Rectangle Intersection Pair</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Empty Rectangle Intersection Pair</item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleIntersectionPairStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.EmptyRectangleIntersectionPairStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher">
-            <summary>
-            Provides with an <b>Empty Rectangle</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Empty Rectangle</item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.LinkIds">
-            <summary>
-            Indicates all houses iterating on the specified block forming an empty rectangle.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher">
-            <summary>
-            Provides with an <b>Extended Rectangle</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Extended Rectangle Type 1</item>
-            <item>Extended Rectangle Type 2</item>
-            <item>Extended Rectangle Type 3</item>
-            <item>Extended Rectangle Type 4</item>
-            </list>
-            </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.PatternInfos">
             <summary>
@@ -1873,29 +1794,11 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher">
-            <summary>
-            Provides with a <b>Guardian</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Guardian</item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher">
-            <summary>
-            Provides with a <b>Junior Exocet</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Junior Exocet</item>
-            </list>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.CheckAdvanced">
             <inheritdoc/>
@@ -1905,16 +1808,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher">
-            <summary>
-            Provides with a <b>Locked Candidates</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Pointing</item>
-            <item>Claiming</item>
-            </list>
-            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -1954,15 +1847,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher">
-            <summary>
-            Provides with a <b>Multi-sector Locked Sets</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Multi-sector Locked Sets</item>
-            </list>
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher.Patterns">
             <summary>
             Indicates the list initialized with the static constructor.
@@ -1986,42 +1870,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher">
-            <summary>
-            Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Normal fishes:
-            <list type="bullet">
-            <item>X-Wing</item>
-            <item>Swordfish</item>
-            <item>Jellyfish</item>
-            </list>
-            </item>
-            <item>
-            Finned fishes:
-            <list type="bullet">
-            <item>
-            Finned normal fishes:
-            <list type="bullet">
-            <item>Finned X-Wing</item>
-            <item>Finned Swordfish</item>
-            <item>Finned Jellyfish</item>
-            </list>
-            </item>
-            <item>
-            Finned sashimi fishes:
-            <list type="bullet">
-            <item>Sashimi X-Wing</item>
-            <item>Sashimi Swordfish</item>
-            <item>Sashimi Jellyfish</item>
-            </list>
-            </item>
-            </list>
-            </item>
-            </list>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.Sudoku#Solving#Manual#Searchers#IFishStepSearcher#MaxSize">
             <inheritdoc/>
@@ -2065,33 +1913,11 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.PatternOverlayStepSearcher">
-            <summary>
-            Provides with a <b>Pattern Overlay</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Pattern Overlay</item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.PatternOverlayStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.PatternOverlayStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.QiuDeadlyPatternStepSearcher">
-            <summary>
-            Provides with a <b>Qiu's Deadly Pattern</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Qiu's Deadly Pattern Type 1</item>
-            <item>Qiu's Deadly Pattern Type 2</item>
-            <item>Qiu's Deadly Pattern Type 3</item>
-            <item>Qiu's Deadly Pattern Type 4</item>
-            <item>Qiu's Deadly Pattern Locked Type</item>
-            </list>
-            </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.QiuDeadlyPatternStepSearcher.Patterns">
             <summary>
@@ -2117,22 +1943,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.QiuDeadlyPatternStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher">
-            <summary>
-            Provides with a <b>Regular Wing</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>XY-Wing</item>
-            <item>XYZ-Wing</item>
-            <item>WXYZ-Wing</item>
-            <item>VWXYZ-Wing</item>
-            <item>UVWXYZ-Wing</item>
-            <item>TUVWXYZ-Wing</item>
-            <item>STUVWXYZ-Wing</item>
-            <item>RSTUVWXYZ-Wing</item>
-            </list>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize">
             <inheritdoc/>
         </member>
@@ -2142,15 +1952,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.SeniorExocetStepSearcher">
-            <summary>
-            Provides with a <b>Senior Exocet</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Senior Exocet</item>
-            </list>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SeniorExocetStepSearcher.CheckAdvanced">
             <inheritdoc/>
         </member>
@@ -2159,17 +1960,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SeniorExocetStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.SingleStepSearcher">
-            <summary>
-            Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Full House</item>
-            <item>Last Digit</item>
-            <item>Hidden Single</item>
-            <item>Naked Single</item>
-            </list>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.EnableFullHouse">
             <inheritdoc/>
@@ -2186,24 +1976,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher">
-            <summary>
-            Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Locked Pair</item>
-            <item>Locked Triple</item>
-            <item>Naked Pair</item>
-            <item>Naked Triple</item>
-            <item>Naked Quadruple</item>
-            <item>Naked Pair (+)</item>
-            <item>Naked Triple (+)</item>
-            <item>Naked Quadruple (+)</item>
-            <item>Hidden Pair</item>
-            <item>Hidden Triple</item>
-            <item>Hidden Quadruple</item>
-            </list>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.Sudoku#Solving#Manual#Searchers#ISubsetStepSearcher#MaxSize">
             <inheritdoc/>
             <remarks>
@@ -2216,47 +1988,17 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.SueDeCoq3DimensionStepSearcher">
-            <summary>
-            Provides with a <b>3-dimensional Sue de Coq</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>3-dimensional Sue de Coq</item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.SueDeCoq3DimensionStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SueDeCoq3DimensionStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.SueDeCoqStepSearcher">
-            <summary>
-            Provides with a <b>Sue de Coq</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Sue de Coq</item>
-            <item>Sue de Coq with Isolated Digit</item>
-            <item>Cannibalistic Sue de Coq</item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.SueDeCoqStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SueDeCoqStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.TemplateStepSearcher">
-            <summary>
-            Provides with a <b>Template</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Template Set</item>
-            <item>Template Delete</item>
-            </list>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.TemplateStepSearcher.TemplateDeleteOnly">
             <inheritdoc/>
@@ -2270,34 +2012,11 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.TemplateStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher">
-            <summary>
-            Provides with a <b>Two-strong Links</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Skyscraper</item>
-            <item>Two-string Kite</item>
-            <item>Turbot Fish</item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher">
-            <summary>
-            Provides with a <b>Unique Loop</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Unique Loop Type 1</item>
-            <item>Unique Loop Type 2</item>
-            <item>Unique Loop Type 3</item>
-            <item>Unique Loop Type 4</item>
-            </list>
-            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -2364,18 +2083,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher">
-            <summary>
-            Provides with a <b>Unique Polygon</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Unique Polygon Type 1</item>
-            <item>Unique Polygon Type 2</item>
-            <item>Unique Polygon Type 3</item>
-            <item>Unique Polygon Type 4</item>
-            </list>
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher.Patterns">
             <summary>
             Indicates all possible patterns to iterate.
@@ -2402,38 +2109,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher">
-            <summary>
-            Provides with a <b>Unique Rectangle</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Basic types:
-            <list type="bullet">
-            <item>Unique/Avoidable Rectangle Type 1, 2, 3, 5</item>
-            <item>Unique Rectangle Type 4, 6</item>
-            <item>Hidden Unique/Avoidable Rectangle</item>
-            </list>
-            </item>
-            <item>
-            Unique Rectangle with structures:
-            <list type="bullet">
-            <item>Unique Rectangle with Conjugate Pair</item>
-            <item>Avoidable Rectangle with Hidden Single</item>
-            <item>Unique Rectangle with Unknown Covering</item>
-            <item>Unique Rectangle with Sue de Coq</item>
-            <item>Unique Rectangle with Guardian</item>
-            </list>
-            </item>
-            <item>
-            Miscellaneous:
-            <list type="bullet">
-            <item>Unique Rectangle 2D, 3X</item>
-            </list>
-            </item>
-            </list>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles">
             <inheritdoc/>
@@ -3064,18 +2739,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher">
-            <summary>
-            Provides with a <b>Unique Square</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Unique Square Type 1</item>
-            <item>Unique Square Type 2</item>
-            <item>Unique Square Type 3</item>
-            <item>Unique Square Type 4</item>
-            </list>
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher.Patterns">
             <summary>
             Indicates the patterns.
@@ -3100,15 +2763,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.WWingStepSearcher">
-            <summary>
-            Provides with a <b>W-Wing</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>W-Wing (George Woods' Wing)</item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.WWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
@@ -3122,17 +2776,56 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IMultisectorLockedSetsStepSearcher">
             <summary>
-            Defines a step searcher that searches for multi-sector locked sets steps.
+            Provides with a <b>Multi-sector Locked Sets</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Multi-sector Locked Sets</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.INormalFishStepSearcher">
             <summary>
-            Defines a step searcher that searches for normal fish steps.
+            Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Normal fishes:
+            <list type="bullet">
+            <item>X-Wing</item>
+            <item>Swordfish</item>
+            <item>Jellyfish</item>
+            </list>
+            </item>
+            <item>
+            Finned fishes:
+            <list type="bullet">
+            <item>
+            Finned normal fishes:
+            <list type="bullet">
+            <item>Finned X-Wing</item>
+            <item>Finned Swordfish</item>
+            <item>Finned Jellyfish</item>
+            </list>
+            </item>
+            <item>
+            Finned sashimi fishes:
+            <list type="bullet">
+            <item>Sashimi X-Wing</item>
+            <item>Sashimi Swordfish</item>
+            <item>Sashimi Jellyfish</item>
+            </list>
+            </item>
+            </list>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IPatternOverlayStepSearcher">
             <summary>
-            Defines a step searcher that searches for pattern overlay steps.
+            Provides with a <b>Pattern Overlay</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Pattern Overlay</item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IPatternOverlayStepSearcher.GetInvalidPos(Sudoku.Concepts.Collections.Grid@)">
@@ -3150,7 +2843,15 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IQiuDeadlyPatternStepSearcher">
             <summary>
-            Defines a step searcher that searches for Qiu's deadly pattern steps.
+            Provides with a <b>Qiu's Deadly Pattern</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Qiu's Deadly Pattern Type 1</item>
+            <item>Qiu's Deadly Pattern Type 2</item>
+            <item>Qiu's Deadly Pattern Type 3</item>
+            <item>Qiu's Deadly Pattern Type 4</item>
+            <item>Qiu's Deadly Pattern Locked Type</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IRankTheoryStepSearcher">
@@ -3160,7 +2861,18 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher">
             <summary>
-            Defines a step searcher that searches for regular wing steps.
+            Provides with a <b>Regular Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>XY-Wing</item>
+            <item>XYZ-Wing</item>
+            <item>WXYZ-Wing</item>
+            <item>VWXYZ-Wing</item>
+            <item>UVWXYZ-Wing</item>
+            <item>TUVWXYZ-Wing</item>
+            <item>STUVWXYZ-Wing</item>
+            <item>RSTUVWXYZ-Wing</item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher.MaxSize">
@@ -3171,7 +2883,11 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ISeniorExocetStepSearcher">
             <summary>
-            Defines a step searcher that searches for senior exocet steps.
+            Provides with a <b>Senior Exocet</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Senior Exocet</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ISingleDigitPatternStepSearcher">
@@ -3181,7 +2897,13 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher">
             <summary>
-            Defines a step searcher that searches for single steps.
+            Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Full House (If the property <see cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableFullHouse"/> is <see langword="true"/>)</item>
+            <item>Last Digit (If the property <see cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableLastDigit"/> is <see langword="true"/>)</item>
+            <item>Hidden Single</item>
+            <item>Naked Single</item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableFullHouse">
@@ -3304,7 +3026,40 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ISubsetStepSearcher">
             <summary>
-            Defines a step searcher that searches for subset steps.
+            Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Locked Subsets:
+            <list type="bullet">
+            <item>Locked Pair</item>
+            <item>Locked Triple</item>
+            </list>
+            </item>
+            <item>
+            Semi-Locked Subsets:
+            <list type="bullet">
+            <item>Naked Pair (+)</item>
+            <item>Naked Triple (+)</item>
+            <item>Naked Quadruple (+)</item>
+            </list>
+            </item>
+            <item>
+            Normal Naked Subsets:
+            <list type="bullet">
+            <item>Naked Pair</item>
+            <item>Naked Triple</item>
+            <item>Naked Quadruple</item>
+            </list>
+            </item>
+            <item>
+            Hidden Subsets:
+            <list type="bullet">
+            <item>Hidden Pair</item>
+            <item>Hidden Triple</item>
+            <item>Hidden Quadruple</item>
+            </list>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.ISubsetStepSearcher.MaxSize">
@@ -3314,17 +3069,32 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ISueDeCoq3DimensionStepSearcher">
             <summary>
-            Defines a step searcher that searches for 3-dimensional sue de coq steps.
+            Provides with a <b>3-dimensional Sue de Coq</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>3-dimensional Sue de Coq</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ISueDeCoqStepSearcher">
             <summary>
-            Defines a step searcher that searches for bi-value oddagon steps.
+            Provides with a <b>Sue de Coq</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Sue de Coq</item>
+            <item>Sue de Coq with Isolated Digit</item>
+            <item>Cannibalistic Sue de Coq</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ITemplateStepSearcher">
             <summary>
-            Defines a step searcher that searches for template steps.
+            Provides with a <b>Template</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Template Set</item>
+            <item>Template Delete</item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.ITemplateStepSearcher.TemplateDeleteOnly">
@@ -3334,7 +3104,13 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ITwoStrongLinksStepSearcher">
             <summary>
-            Defines a step searcher that searches for two-strong-link steps.
+            Provides with a <b>Two-strong Links</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Skyscraper</item>
+            <item>Two-string Kite</item>
+            <item>Turbot Fish</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher">
@@ -3362,7 +3138,14 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueLoopStepSearcher">
             <summary>
-            Defines a step searcher that searches for unique loop steps.
+            Provides with a <b>Unique Loop</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Unique Loop Type 1</item>
+            <item>Unique Loop Type 2</item>
+            <item>Unique Loop Type 3</item>
+            <item>Unique Loop Type 4</item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.IList{System.Int32})">
@@ -3374,12 +3157,46 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniquePolygonStepSearcher">
             <summary>
-            Defines a step that searches for unique polygon steps.
+            Provides with a <b>Unique Polygon</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Unique Polygon Type 1</item>
+            <item>Unique Polygon Type 2</item>
+            <item>Unique Polygon Type 3</item>
+            <item>Unique Polygon Type 4</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher">
             <summary>
-            Defines a step searcher that searches for unique rectangle steps.
+            Provides with a <b>Unique Rectangle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Basic types:
+            <list type="bullet">
+            <item>Unique/Avoidable Rectangle Type 1, 2, 3, 5</item>
+            <item>Unique Rectangle Type 4, 6</item>
+            <item>Hidden Unique/Avoidable Rectangle</item>
+            </list>
+            </item>
+            <item>
+            Unique Rectangle with structures:
+            <list type="bullet">
+            <item>Unique Rectangle with Conjugate Pair</item>
+            <item>Avoidable Rectangle with Hidden Single</item>
+            <item>Unique Rectangle with Unknown Covering</item>
+            <item>Unique Rectangle with Sue de Coq</item>
+            <item>Unique Rectangle with Guardian</item>
+            </list>
+            </item>
+            <item>
+            Miscellaneous:
+            <list type="bullet">
+            <item>Unique Rectangle 2D, 3X</item>
+            </list>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles">
@@ -3458,7 +3275,14 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueSquareStepSearcher">
             <summary>
-            Defines a step searcher that searches for unique square steps.
+            Provides with a <b>Unique Square</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Unique Square Type 1</item>
+            <item>Unique Square Type 2</item>
+            <item>Unique Square Type 3</item>
+            <item>Unique Square Type 4</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniversalStepSearcher">

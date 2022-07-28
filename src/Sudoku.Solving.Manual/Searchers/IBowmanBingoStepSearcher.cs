@@ -1,7 +1,11 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Defines a step searcher that searches for bowman's bingo steps.
+/// Provides with a <b>Bowman's Bingo</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Bowman's Bingo</item>
+/// </list>
 /// </summary>
 public interface IBowmanBingoStepSearcher : ILastResortStepSearcher
 {

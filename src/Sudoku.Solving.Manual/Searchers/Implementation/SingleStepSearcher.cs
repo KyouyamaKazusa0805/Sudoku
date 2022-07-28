@@ -1,14 +1,5 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>Full House</item>
-/// <item>Last Digit</item>
-/// <item>Hidden Single</item>
-/// <item>Naked Single</item>
-/// </list>
-/// </summary>
 [StepSearcher]
 [StepSearcherOptions(IsDirect = true, IsOptionsFixed = true)]
 internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher

@@ -1,41 +1,8 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with a <b>Chromatic Pattern</b> step searcher.
-/// The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>
-/// Basic types:
-/// <list type="bullet">
-/// <item>Chromatic Pattern type 1</item>
-/// <!--
-/// <item>Chromatic Pattern type 2</item>
-/// <item>Chromatic Pattern type 3</item>
-/// <item>Chromatic Pattern type 4</item>
-/// -->
-/// </list>
-/// </item>
-/// <item>
-/// Extended types:
-/// <list type="bullet">
-/// <item>Chromatic Pattern XZ</item>
-/// </list>
-/// </item>
-/// </list>
-/// </summary>
 [StepSearcher]
 internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternStepSearcher
 {
-	/// <summary>
-	/// All possible blocks combinations.
-	/// </summary>
-	private static readonly short[] BlocksCombinations = new short[]
-	{
-		0b000_011_011, 0b000_101_101, 0b000_110_110,
-		0b011_000_011, 0b101_000_101, 0b110_000_110,
-		0b011_011_000, 0b101_101_000, 0b110_110_000
-	};
-
 	/// <summary>
 	/// The possible pattern offsets.
 	/// </summary>
@@ -125,7 +92,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 			}
 
 			bool flag = false;
-			foreach (short tempBlocksMask in BlocksCombinations)
+			foreach (short tempBlocksMask in ChromaticPatternBlocksCombinations)
 			{
 				if ((tempBlocksMask & blocksMask) == blocksMask)
 				{

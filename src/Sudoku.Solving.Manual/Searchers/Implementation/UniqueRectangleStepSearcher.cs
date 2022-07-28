@@ -1,35 +1,5 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
-/// <summary>
-/// Provides with a <b>Unique Rectangle</b> step searcher.
-/// The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>
-/// Basic types:
-/// <list type="bullet">
-/// <item>Unique/Avoidable Rectangle Type 1, 2, 3, 5</item>
-/// <item>Unique Rectangle Type 4, 6</item>
-/// <item>Hidden Unique/Avoidable Rectangle</item>
-/// </list>
-/// </item>
-/// <item>
-/// Unique Rectangle with structures:
-/// <list type="bullet">
-/// <item>Unique Rectangle with Conjugate Pair</item>
-/// <item>Avoidable Rectangle with Hidden Single</item>
-/// <item>Unique Rectangle with Unknown Covering</item>
-/// <item>Unique Rectangle with Sue de Coq</item>
-/// <item>Unique Rectangle with Guardian</item>
-/// </list>
-/// </item>
-/// <item>
-/// Miscellaneous:
-/// <list type="bullet">
-/// <item>Unique Rectangle 2D, 3X</item>
-/// </list>
-/// </item>
-/// </list>
-/// </summary>
 [StepSearcher]
 internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
@@ -178,8 +148,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 							switch (c1, c2)
 							{
 								// Diagonal type.
-								case (0, 3):
-								case (1, 2):
+								case (0, 3) or (1, 2):
 								{
 									if (!arMode)
 									{
@@ -253,7 +222,8 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 			=> d.Identifier is { Mode: IdentifierColorMode.Named, NamedKind: DisplayColorKind.Normal };
 	}
 
-	#region Basic types implementation
+
+	#region Basic types (Type 1, 2, 3, 4, 5, 6 and Hidden)
 	/// <summary>
 	/// Check type 1.
 	/// </summary>
@@ -1054,7 +1024,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 	}
 	#endregion
 
-	#region Extended types implementation
+	#region Extended types (Type 2D, 2B/1SL, 2D/1SL, 3X, 3X/2SL, 3N/2SL, 3U/2SL, 3E/2SL, 4X/3SL, 4C/3SL)
 	/// <summary>
 	/// Check UR+2D.
 	/// </summary>
@@ -2495,7 +2465,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 	}
 	#endregion
 
-	#region With-structured types implementation
+	#region Types with other techniques (+Regular Wings, +SdC, +Unknown Covering, +Guardian, +Hidden Single)
 	/// <summary>
 	/// Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
 	/// </summary>
