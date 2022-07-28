@@ -45,21 +45,10 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ChromaticPatternStepSearcher()
 	{
-		int[][] InnerCombinations = new[]
-		{
-			new[] { 0, 10, 20 },
-			new[] { 1, 11, 18 },
-			new[] { 2,  9, 19 },
-			new[] { 0, 11, 19 },
-			new[] { 1,  9, 20 },
-			new[] { 2, 10, 18 }
-		};
+		int[][] diagonalCases = { new[] { 0, 10, 20 }, new[] { 1, 11, 18 }, new[] { 2, 9, 19 } };
+		int[][] antidiagonalCases = { new[] { 0, 11, 19 }, new[] { 1, 9, 20 }, new[] { 2, 10, 18 } };
 
 		var patternOffsetsList = new List<(int[], int[], int[], int[])>();
-
-		int[][] diagonalCases = InnerCombinations[..3];
-		int[][] antidiagonalCases = InnerCombinations[3..];
-
 		foreach (var (aCase, bCase, cCase, dCase) in stackalloc[]
 		{
 			(true, false, false, false),
