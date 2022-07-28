@@ -156,7 +156,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 
 			foreach (var (a, b, c, d) in PatternOffsets)
 			{
-				var pattern = Cells.Empty | f(a, c1) | f(b, c2) | f(c, c3) | f(d, c4);
+				var pattern = f(a, c1) | f(b, c2) | f(c, c3) | f(d, c4);
 				if ((EmptyCells & pattern) != pattern)
 				{
 					// All cells in this pattern should be empty.
