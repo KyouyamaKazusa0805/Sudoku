@@ -474,6 +474,9 @@ dotnet_diagnostic.IDE0005.severity = suggestion
 # IDE0011: Add braces
 dotnet_diagnostic.IDE0011.severity = suggestion
 
+# IDE0079: Remove unnecessary suppression
+dotnet_diagnostic.IDE0079.severity = none
+
 # IDE0080: Remove unnecessary suppression operator
 dotnet_diagnostic.IDE0080.severity = none
 
