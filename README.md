@@ -51,6 +51,64 @@ UI:
 
 The program is being under construction now!
 
+## Technique Supports
+
+This solution supports many kinds of human-friendly techniques. Here I will list them.
+
+* Singles
+  * Naked Single, Full House
+  * Hidden Single, Last Digit
+* Candidate-Related Techniques
+  * Locked Candidates Family
+    * Locked Candidates
+    * Almost Locked Candidates
+  * Subsets
+    * Naked Subsets
+    * Hidden Subsets
+  * Fishes (including finned types)
+    * Normal Fishes
+    * Complex Fishes (Franken Fishes, Mutant Fishes)
+  * Single-Digit Structures
+    * Two-Strong-Links
+    * Empty Rectangle
+    * Guardian **(Waiting for bugs fixed)**
+  * Wings
+    * Regular Wing (XY-Wing, XYZ-Wing, etc.)
+    * Irregular Wing (W-Wing, M-Wing[^2], etc.)
+  * Uniqueness
+    * Unique Rectangle
+    * Unique Loop **(Waiting for bugs fixed)**
+    * Extended Rectangle (Including fit types and fat types)
+    * Unique Polygon (i.e. Borescoper's Deadly Pattern)
+    * Qiu's Deadly Pattern
+    * Unique Square
+    * Bi-value Universal Grave
+  * Alternating Inference Chains
+    * Single-Digit AICs
+    * Multi-Digit AICs
+    * Grouped AICs **(Waiting for bugs fixed)**
+  * Almost Locked Sets
+    * Chaining ALSes (Including ALS-XZ, ALS-XY-Wing, ALS-W-Wing)
+    * Empty Rectangle Intersection Pair
+  * Positive or 0 -Rank Logics
+    * Sue de Coq (Including basic type, isolated digit type and cannibalistic type)
+    * 3-Dimensional Sue de Coq
+    * Domino Loop
+    * Multi-Sector Locked Sets
+  * Negative Rank Logics
+    * Bi-value Oddagon **(Waiting for bugs fixed)**
+    * Tri-value Oddagon
+  * Symmetrical Placements
+    * Gurth's Symmetrical Placements
+  * Last Resorts
+    * Bowman's Bingo
+    * Computer Algorithms
+      * Pattern Overlay
+      * Templating
+      * Brute Force
+
+Some other techniques will be implemented later, such as exocets, firework subsets, unknown covering, death blossom, forcing chains and dynamic chains.
+
 ## Forks & PRs (Pull Requests) for This Repo
 
 Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the [MIT license](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE). However, due to the copy of the GitHub repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms. Please visit the following part "Basic Information" for learning about more details.
@@ -77,7 +135,7 @@ Please see the file [CODE_OF_CONDUCT](CODE_OF_CONDUCT).
 
 ## Sudoku Technique References
 
-Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links[^2] to learn about more information.
+Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links[^3] to learn about more information.
 
 * [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
 * [标准数独技巧教程（专栏）_bilibili](https://www.bilibili.com/read/readlist/rl291187)
@@ -87,6 +145,6 @@ Here we list some websites about sudoku techniques that I used and referenced. T
 Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University. I mean, a normal university (Pun)
 
 [^1]: The old name of the repository is "Sunnie's Sudoku Solution".
-
-[^2]: I'm sorry that those pages are written in Chinese. However, I may create pages written in other languages in the future.
+[^2]: W-Wing is implemented by a single technique searcher type, while other irregular wing types are implemented by AIC searchers.
+[^3]: I'm sorry that those pages are written in Chinese. However, I may create pages written in other languages in the future.
 
