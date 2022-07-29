@@ -91,12 +91,12 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					{
 						CheckUnknownCoveringUnique(gathered, grid, urCells, comparer, d1, d2, index);
 						CheckGuardianUniqueStandard(gathered, grid, urCells, comparer, d1, d2, index);
-#if IMPLEMENTED
+#if false
 						CheckGuardianAvoidableStandard(gathered, grid, urCells, comparer, d1, d2, index);
 						for (int size = 2; size < 4; size++)
 						{
-							CheckGuardianUniqueSubset(gathered, grid, urCells, comparer, d1, d2, index);
-							CheckGuardianAvoidableSubset(gathered, grid, urCells, comparer, d1, d2, index);
+							CheckGuardianUniqueSubset(gathered, grid, urCells, comparer, d1, d2, index, size);
+							CheckGuardianAvoidableSubset(gathered, grid, urCells, comparer, d1, d2, index, size);
 						}
 #endif
 					}
