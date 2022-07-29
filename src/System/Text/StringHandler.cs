@@ -315,15 +315,6 @@ public unsafe ref partial struct StringHandler
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public void AppendLiteral(string? value)
 	{
-		// TODO: https://github.com/dotnet/runtime/issues/41692#issuecomment-685192193
-
-		// What we really want here is to be able to add a bunch of additional special-cases based on length,
-		// e.g. a switch with a case for each length <= 8, not mark the method as AggressiveInlining, and have
-		// it inlined when provided with a string literal such that all the other cases evaporate but not inlined
-		// if called directly with something that doesn't enable pruning.  Even better, if "literal".TryCopyTo
-		// could be unrolled based on the literal, a.k.a. https://github.com/dotnet/runtime/pull/46392, we might
-		// be able to remove all special-casing here.
-
 		if (value is null)
 		{
 			return;

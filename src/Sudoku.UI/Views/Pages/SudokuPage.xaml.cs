@@ -588,7 +588,6 @@ public sealed partial class SudokuPage : Page
 
 		// Generate the puzzle.
 		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
-		// TODO: May allow the user canceling the puzzle-generating operation.
 		var grid = await Task.Run(generate);
 
 		// Enable the control.
