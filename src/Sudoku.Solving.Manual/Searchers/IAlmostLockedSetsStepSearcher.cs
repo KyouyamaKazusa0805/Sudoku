@@ -5,11 +5,7 @@
 /// </summary>
 public interface IAlmostLockedSetsStepSearcher : IStepSearcher
 {
-	/// <summary>
-	/// Gathers all possible <see cref="AlmostLockedSet"/>s in the specified grid.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <returns>All possible found <see cref="AlmostLockedSet"/>.</returns>
+	/// <inheritdoc cref="AlmostLockedSet.Gather(in Grid)"/>
 	/// <remarks>
 	/// Different with the original method <see cref="AlmostLockedSet.Gather(in Grid)"/>,
 	/// this method will only uses the buffer to determine the info, which is unsafe

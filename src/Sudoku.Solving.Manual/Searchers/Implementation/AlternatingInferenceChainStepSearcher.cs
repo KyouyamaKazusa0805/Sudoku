@@ -824,7 +824,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			return;
 		}
 
-		foreach (var als in AlmostLockedSet.Gather(grid))
+		foreach (var als in IAlmostLockedSetsStepSearcher.Gather(grid))
 		{
 			if (als.IsBivalueCell)
 			{
@@ -900,7 +900,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			return;
 		}
 
-		foreach (var ahs in AlmostHiddenSet.Gather(grid))
+		foreach (var ahs in IAlmostHiddenSetsStepSearcher.Gather(grid))
 		{
 			foreach (var (digit1, cells1, digit2, cells2) in ahs.WeakLinks)
 			{
