@@ -22,7 +22,7 @@ public static class CollectionEnumeration
 	/// Different with the default iteration operation, this type will iterate each element by reference,
 	/// in order that you can write the code like:
 	/// <code><![CDATA[
-	/// foreach (ref int element in new[] { 1, 3, 6, 10 })
+	/// foreach (ref int element in new[] { 1, 3, 6, 10 }.EnumerateRef())
 	/// {
 	///	    Console.WriteLine(++element);
 	/// }
