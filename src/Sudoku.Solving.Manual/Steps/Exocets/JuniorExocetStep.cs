@@ -6,15 +6,19 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Exocet"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
+/// <param name="Eliminations"><inheritdoc/></param>
+#if false
 /// <param name="LockedMemberQ">Indicates the locked member bound with Q cells.</param>
 /// <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
-/// <param name="Eliminations"><inheritdoc/></param>
+#endif
 public sealed record JuniorExocetStep(
 	ViewList Views,
 	scoped in ExocetPattern Exocet,
 	short DigitsMask,
+#if false
 	short LockedMemberQ,
 	short LockedMemberR,
+#endif
 	ImmutableArray<ExocetElimination> Eliminations
 ) : ExocetStep(Views, Exocet, DigitsMask, Eliminations), IStepWithPhasedDifficulty
 {
@@ -41,14 +45,20 @@ public sealed record JuniorExocetStep(
 	/// Indicates the locked member Q string.
 	/// </summary>
 	[FormatItem]
+#if false
 	[NotNullIfNotNull(nameof(LockedMemberQ))]
+#endif
 	internal string LockedMemberQStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
+#if false
 			string? cells = LockedMemberQ == 0 ? null : new DigitCollection(LockedMemberQ).ToString();
 			return $"{R["LockedMember1"]}{cells}";
+#else
+			return string.Empty;
+#endif
 		}
 	}
 
@@ -56,14 +66,20 @@ public sealed record JuniorExocetStep(
 	/// Indicates the locked member R string.
 	/// </summary>
 	[FormatItem]
+#if false
 	[NotNullIfNotNull(nameof(LockedMemberR))]
+#endif
 	internal string LockedMemberRStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
+#if false
 			string? cells = LockedMemberR == 0 ? null : new DigitCollection(LockedMemberR).ToString();
 			return $"{R["LockedMember2"]}{cells}";
+#else
+			return string.Empty;
+#endif
 		}
 	}
 }

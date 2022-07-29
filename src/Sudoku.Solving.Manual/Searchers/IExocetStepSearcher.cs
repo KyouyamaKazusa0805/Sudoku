@@ -75,8 +75,11 @@ public interface IExocetStepSearcher : IStepSearcher
 						tt = tt switch { < 4 => 3 - tt, < 13 => 12 - tt, _ => 21 - tt };
 
 						(t[0], t[1], t[2]) = i < 9 ? (tt, tq1 % 9, tr1 % 9) : (tt, tq1 / 9, tr1 / 9);
-						for (int index1 = 0, r = default, c = default; index1 < 3; index1++)
+						for (int index1 = 0; index1 < 3; index1++)
 						{
+							Unsafe.SkipInit(out int r);
+							Unsafe.SkipInit(out int c);
+
 							(i < 9 ? ref c : ref r) = t[index1];
 							for (int index2 = 0; index2 < 6; index2++)
 							{

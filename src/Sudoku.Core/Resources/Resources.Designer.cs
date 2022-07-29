@@ -2860,6 +2860,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_JuniorExocetStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_JuniorExocetStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
         /// </summary>
         internal static string TechniqueFormat_LastDigit {

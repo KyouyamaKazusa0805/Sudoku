@@ -5602,10 +5602,10 @@
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern.Equals(Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern@)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -9212,6 +9212,11 @@
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_HouseChainingStep">
             <summary>
               Looks up a localized string similar to {Name}: It can be proved using chains that digit {DigitStr} from {HouseStr} are false =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_JuniorExocetStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_LastDigit">

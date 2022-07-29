@@ -1626,4 +1626,7 @@
   <data name="TechniqueFormat_ChromaticPatternXzStep" xml:space="preserve">
     <value>{Name}：位于 {BlocksStr} 的 {CellsStr} 单元格包含数字 {DigitsStr}，额外单元格为 {ExtraCellStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_JuniorExocetStep" xml:space="preserve">
+    <value>{Name}：基准单元格 {BaseCellsStr}，目标单元格 {TargetCellsStr} =&gt; {ElimStr}</value>
+  </data>
 </root>

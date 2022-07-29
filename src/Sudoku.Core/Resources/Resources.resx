@@ -1344,4 +1344,7 @@
   <data name="TechniqueFormat_ChromaticPatternXzStep" xml:space="preserve">
     <value>{Name}: Digits {DigitsStr} in cells {CellsStr} in blocks {BlocksStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_JuniorExocetStep" xml:space="preserve">
+    <value>{Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr} =&gt; {ElimStr}</value>
+  </data>
 </root>

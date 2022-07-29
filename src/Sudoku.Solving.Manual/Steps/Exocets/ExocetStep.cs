@@ -55,7 +55,7 @@ public abstract record ExocetStep(
 	/// Indicates the base map string.
 	/// </summary>
 	[FormatItem]
-	internal string BaseMapStr
+	internal string BaseCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => BaseMap.ToString();
@@ -65,7 +65,7 @@ public abstract record ExocetStep(
 	/// Indicates the target map string.
 	/// </summary>
 	[FormatItem]
-	internal string TargetMapStr
+	internal string TargetCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => TargetMap.ToString();

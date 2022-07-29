@@ -32,7 +32,7 @@ using static Sudoku.Runtime.AnalysisServices.EnabledArea;
 [assembly: SearcherConfiguration<BowmanBingoStepSearcher>(C, EnabledArea = EnabledArea.None, DisabledReason = TooSlow | LastResort)]
 [assembly: SearcherConfiguration<PatternOverlayStepSearcher>(C, EnabledArea = Gathering, DisabledReason = LastResort)]
 [assembly: SearcherConfiguration<TemplateStepSearcher>(C, EnabledArea = EnabledArea.None, DisabledReason = LastResort)]
-[assembly: SearcherConfiguration<JuniorExocetStepSearcher>(D, EnabledArea = EnabledArea.None, DisabledReason = DeprecatedOrNotImplemented)]
+[assembly: SearcherConfiguration<JuniorExocetStepSearcher>(D)]
 [assembly: SearcherConfiguration<SeniorExocetStepSearcher>(D, EnabledArea = EnabledArea.None, DisabledReason = DeprecatedOrNotImplemented)]
 [assembly: SearcherConfiguration<DominoLoopStepSearcher>(D)]
 [assembly: SearcherConfiguration<MultisectorLockedSetsStepSearcher>(D)]

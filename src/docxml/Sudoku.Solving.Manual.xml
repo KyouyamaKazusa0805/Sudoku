@@ -1806,6 +1806,29 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.CheckTargetCells(System.Int32,System.Int32,System.Int16,Sudoku.Concepts.Collections.Grid@,System.Int16@)">
+            <summary>
+            Checks for the validity of the target cells, guaranteeing the target cells is valid in the full exocet map.
+            </summary>
+            <param name="targetCell1">The first target cell to be checked.</param>
+            <param name="targetCell2">The second target cell to be checked.</param>
+            <param name="baseCellsDigitsMask">The mask that holds the digits appearing in the base cells.</param>
+            <param name="grid">The grid to be checked.</param>
+            <param name="resultOtherDigitsMask">
+            The other digits found in the exocet pattern, which means the digits that is not the valid digits
+            as the base digits.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.CheckCrossLineCells(Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern@,System.Int16)">
+            <summary>
+            Checks for the validity of the cross-line cells, guaranteeing the target cells is valid
+            in the full exocet map.
+            </summary>
+            <param name="currentJe">The current JE pattern.</param>
+            <param name="digitsNeedChecking">The digits need checking.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.Options">
             <inheritdoc/>
         </member>
@@ -6231,12 +6254,12 @@
             Indicates the digits string.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.BaseMapStr">
+        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.BaseCellsStr">
             <summary>
             Indicates the base map string.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.TargetMapStr">
+        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.TargetCellsStr">
             <summary>
             Indicates the target map string.
             </summary>
@@ -6267,26 +6290,16 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Exocet"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
-            <param name="LockedMemberQ">Indicates the locked member bound with Q cells.</param>
-            <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.JuniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern@,System.Int16,System.Int16,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Manual.Steps.JuniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
             <summary>
             Provides with a step that is a <b>Junior Exocet</b> technique.
             </summary>
             <param name="Views"><inheritdoc/></param>
             <param name="Exocet"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
-            <param name="LockedMemberQ">Indicates the locked member bound with Q cells.</param>
-            <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
             <param name="Eliminations"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.LockedMemberQ">
-            <summary>Indicates the locked member bound with Q cells.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.LockedMemberR">
-            <summary>Indicates the locked member bound with R cells.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.Difficulty">
             <inheritdoc/>

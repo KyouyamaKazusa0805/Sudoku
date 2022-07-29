@@ -45,9 +45,18 @@
 /// <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
 /// <param name="CrossLine">Indicates the cross-line cells.</param>
 public readonly record struct ExocetPattern(
-	int Base1, int Base2, int TargetQ1, int TargetQ2, int TargetR1, int TargetR2, scoped in Cells CrossLine,
-	scoped in Cells MirrorQ1, scoped in Cells MirrorQ2, scoped in Cells MirrorR1, scoped in Cells MirrorR2) :
-	ITechniquePattern<ExocetPattern>
+	int Base1,
+	int Base2,
+	int TargetQ1,
+	int TargetQ2,
+	int TargetR1,
+	int TargetR2,
+	scoped in Cells CrossLine,
+	scoped in Cells MirrorQ1,
+	scoped in Cells MirrorQ2,
+	scoped in Cells MirrorR1,
+	scoped in Cells MirrorR2
+) : ITechniquePattern<ExocetPattern>
 {
 	/// <inheritdoc/>
 	public Cells Map => CrossLine + TargetQ1 + TargetQ2 + TargetR1 + TargetR2 + Base1 + Base2;
@@ -76,7 +85,7 @@ public readonly record struct ExocetPattern(
 	}
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(in ExocetPattern other)
 		=> Base1 == other.Base1 && Base2 == other.Base2 && TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2
@@ -85,7 +94,7 @@ public readonly record struct ExocetPattern(
 		&& BaseCellsMap == other.BaseCellsMap && TargetCellsMap == other.TargetCellsMap
 		&& CrossLine == other.CrossLine;
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode()
 		=> HashCode.Combine(

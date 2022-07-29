@@ -90,14 +90,17 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Almost Locked Sets
     * Chaining ALSes (Including ALS-XZ, ALS-XY-Wing, ALS-W-Wing)
     * Empty Rectangle Intersection Pair
-  * Positive or 0 -Rank Logics
-    * Sue de Coq (Including basic type, isolated digit type and cannibalistic type)
-    * 3-Dimensional Sue de Coq
-    * Domino Loop
-    * Multi-Sector Locked Sets
-  * Negative Rank Logics
-    * Bi-value Oddagon **(Waiting for bugs fixed)**
-    * Tri-value Oddagon
+  * Rank Logics
+    * Positive or 0 -Rank Logics
+      * Sue de Coq (Including basic type, isolated digit type and cannibalistic type)
+      * 3-Dimensional Sue de Coq
+      * Domino Loop
+      * Exocets
+        * Junior Exocet
+      * Multi-Sector Locked Sets
+    * Negative Rank Logics
+      * Bi-value Oddagon **(Waiting for bugs fixed)**
+      * Tri-value Oddagon
   * Symmetrical Placements
     * Gurth's Symmetrical Placements
   * Last Resorts
@@ -107,7 +110,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Templating
       * Brute Force
 
-Some other techniques will be implemented later, such as exocets, firework subsets, unknown covering, death blossom, forcing chains and dynamic chains.
+Some other techniques will be implemented later, such as senior exocets, firework subsets, unknown covering, death blossom, forcing chains and dynamic chains.
 
 ## Forks & PRs (Pull Requests) for This Repo
 
