@@ -87,16 +87,16 @@ internal sealed partial class JuniorExocetStepSearcher : IJuniorExocetStepSearch
 
 			gatherEliminations(
 				currentJe.TargetQ1, baseCellsDigitsMask, otherDigitsMaskQArea, grid,
-				eliminations, cellOffsets, candidateOffsets);
+				eliminations, candidateOffsets);
 			gatherEliminations(
 				currentJe.TargetQ2, baseCellsDigitsMask, otherDigitsMaskQArea, grid,
-				eliminations, cellOffsets, candidateOffsets);
+				eliminations, candidateOffsets);
 			gatherEliminations(
 				currentJe.TargetR1, baseCellsDigitsMask, otherDigitsMaskRArea, grid,
-				eliminations, cellOffsets, candidateOffsets);
+				eliminations, candidateOffsets);
 			gatherEliminations(
 				currentJe.TargetR2, baseCellsDigitsMask, otherDigitsMaskRArea, grid,
-				eliminations, cellOffsets, candidateOffsets);
+				eliminations, candidateOffsets);
 			if (eliminations.Count == 0)
 			{
 				continue;
@@ -121,21 +121,23 @@ internal sealed partial class JuniorExocetStepSearcher : IJuniorExocetStepSearch
 
 		static void gatherEliminations(
 			int targetCell, short baseCellsDigitsMask, short otherDigitsMask, scoped in Grid grid,
-			List<ExocetElimination> eliminations, List<CellViewNode> cellOffsets,
-			List<CandidateViewNode> candidateOffsets)
+			List<ExocetElimination> eliminations, List<CandidateViewNode> candidateOffsets)
 		{
 			short elimDigitsMask = (short)(grid.GetCandidates(targetCell) & ~(baseCellsDigitsMask | otherDigitsMask));
 
-			if (EmptyCells.Contains(targetCell) && elimDigitsMask != 0
-				&& (grid.GetCandidates(targetCell) & baseCellsDigitsMask) != 0)
+			if (EmptyCells.Contains(targetCell))
 			{
-				cellOffsets.Add(new(DisplayColorKind.Auxiliary1, targetCell));
-
-				foreach (int elimDigit in elimDigitsMask)
+				// Check existence of eliminations.
+				if (elimDigitsMask != 0 && (grid.GetCandidates(targetCell) & baseCellsDigitsMask) != 0)
 				{
-					eliminations.Add(
-						new(Candidates.Empty + (targetCell * 9 + elimDigit), ExocetEliminatedReason.Basic));
+					foreach (int elimDigit in elimDigitsMask)
+					{
+						eliminations.Add(
+							new(Candidates.Empty + (targetCell * 9 + elimDigit), ExocetEliminatedReason.Basic));
+					}
 				}
+
+				// Highlight candidates.
 				foreach (int digit in (short)(grid.GetCandidates(targetCell) & ~elimDigitsMask))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, targetCell * 9 + digit));
