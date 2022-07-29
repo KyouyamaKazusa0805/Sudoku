@@ -39,7 +39,7 @@ public abstract record ExocetStep(
 	public sealed override Stableness Stableness => base.Stableness;
 
 	/// <inheritdoc/>
-	public sealed override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
+	public sealed override Rarity Rarity => Rarity.HardlyEver;
 
 	/// <summary>
 	/// Indicates the digits string.

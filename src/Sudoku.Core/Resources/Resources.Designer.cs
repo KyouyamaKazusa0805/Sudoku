@@ -2860,7 +2860,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr}, digits {DigitsStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_JuniorExocetStep {
             get {

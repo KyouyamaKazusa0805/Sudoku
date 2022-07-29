@@ -1345,6 +1345,6 @@
     <value>{Name}: Digits {DigitsStr} in cells {CellsStr} in blocks {BlocksStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_JuniorExocetStep" xml:space="preserve">
-    <value>{Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr} =&gt; {ElimStr}</value>
+    <value>{Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr}, digits {DigitsStr} =&gt; {ElimStr}</value>
   </data>
 </root>

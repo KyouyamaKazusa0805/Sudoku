@@ -9216,7 +9216,7 @@
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_JuniorExocetStep">
             <summary>
-              Looks up a localized string similar to {Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr} =&gt; {ElimStr}.
+              Looks up a localized string similar to {Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr}, digits {DigitsStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_LastDigit">
