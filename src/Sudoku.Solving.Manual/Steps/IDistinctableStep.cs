@@ -53,7 +53,7 @@ public interface IDistinctableStep<in TStep> : IStep where TStep : Step
 		{
 			[] => Array.Empty<TDistinctableStep>(),
 			[var firstElement] => new[] { firstElement },
-			[var a, var b] when TDistinctableStep.Equals(a, b) => new[] { a },
+			[var a, var b] => TDistinctableStep.Equals(a, b) ? new[] { a } : new[] { a, b },
 			_ => distinctList(list)
 		};
 
