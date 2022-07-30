@@ -2719,19 +2719,18 @@
              </para>
              </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckGuardianUniqueStandard(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckGuardianExternal(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Check UR+Guardian.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
-            <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckGuardianUniqueSubset(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckGuardianExternalSubset(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
             <summary>
             Check UR+Guardian, with the external subset.
             </summary>
@@ -3223,7 +3222,9 @@
             <item>Avoidable Rectangle with Hidden Single</item>
             <item>Unique Rectangle with Unknown Covering</item>
             <item>Unique Rectangle with Sue de Coq</item>
-            <item>Unique Rectangle with Guardian</item>
+            <item>Unique Rectangle with Guardian (Standard)</item>
+            <item>Unique Rectangle with Guardian (External Subset)</item>
+            <!--<item>Unique Rectangle with Guardian (External XY-Wing)</item>-->
             </list>
             </item>
             <item>
@@ -3267,6 +3268,16 @@
             <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
             <returns>Indicates whether the UR is passed to check.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="urCells">The UR cells.</param>
+            <param name="d1">The first digit used.</param>
+            <param name="d2">The second digit used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.IsConjugatePair(System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int32)">
             <summary>
             To determine whether the specified house forms a conjugate pair
@@ -3295,7 +3306,7 @@
             </summary>
             <param name="cell1">The cell 1 to check.</param>
             <param name="cell2">The cell 2 to check.</param>
-            <param name="houseIndex">
+            <param name="houses">
             The result houses that both two cells lie in. If the cell can't be found, this argument will be 0.
             </param>
             <returns>
@@ -5520,6 +5531,66 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Guardians (External Subset)</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="SubsetCells">The extra cells that forms the subset.</param>
+            <param name="SubsetDigitsMask">Indicates the digits that the subset are used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,System.Int16,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Guardians (External Subset)</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="SubsetCells">The extra cells that forms the subset.</param>
+            <param name="SubsetDigitsMask">Indicates the digits that the subset are used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.GuardianCells">
+            <summary>Indicates the cells that the guardians lie in.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.SubsetCells">
+            <summary>The extra cells that forms the subset.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.SubsetDigitsMask">
+            <summary>Indicates the digits that the subset are used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.IsIncomplete">
+            <summary>Indicates whether the rectangle is incomplete.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep">

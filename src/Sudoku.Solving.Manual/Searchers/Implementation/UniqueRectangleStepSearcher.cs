@@ -90,15 +90,8 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					if (SearchForExtendedUniqueRectangles)
 					{
 						CheckUnknownCoveringUnique(gathered, grid, urCells, comparer, d1, d2, index);
-						CheckGuardianUniqueStandard(gathered, grid, urCells, comparer, d1, d2, index);
-#if false
-						CheckGuardianAvoidableStandard(gathered, grid, urCells, comparer, d1, d2, index);
-						for (int size = 2; size < 4; size++)
-						{
-							CheckGuardianUniqueSubset(gathered, grid, urCells, comparer, d1, d2, index, size);
-							CheckGuardianAvoidableSubset(gathered, grid, urCells, comparer, d1, d2, index, size);
-						}
-#endif
+						CheckGuardianExternal(gathered, grid, urCells, d1, d2, index);
+						CheckGuardianExternalSubset(gathered, grid, urCells, comparer, d1, d2, index);
 					}
 
 					// Iterate on each corner of four cells.
@@ -176,9 +169,6 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 								default:
 								{
 									CheckType3Naked(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-#if IMPLEMENTED
-									CheckType3Hidden(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-#endif
 
 									if (!arMode)
 									{
@@ -3602,7 +3592,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 			}
 		}
 
-#if IMPLEMENTED
+#if false
 		void checkType2(scoped in Grid grid)
 		{
 			// TODO: Check type 2.
@@ -3616,21 +3606,16 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="urCells">All UR cells.</param>
-	/// <param name="comparer">The mask comparer.</param>
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
-	private void CheckGuardianUniqueStandard(
+	private void CheckGuardianExternal(
 		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
-		int[] urCells, short comparer, int d1, int d2, int index)
+		int[] urCells, int d1, int d2, int index)
 	{
 		var cells = (Cells)urCells;
 
-		// TODO: fix here to support incomplete types.
-		if ((grid.GetCandidates(urCells[0]) & comparer) != comparer
-			|| (grid.GetCandidates(urCells[1]) & comparer) != comparer
-			|| (grid.GetCandidates(urCells[2]) & comparer) != comparer
-			|| (grid.GetCandidates(urCells[3]) & comparer) != comparer)
+		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -3677,8 +3662,14 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 			var candidateOffsets = new List<CandidateViewNode>(16);
 			foreach (int cell in urCells)
 			{
-				candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
-				candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
+				if (grid.Exists(cell, d1) is true)
+				{
+					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
+				}
+				if (grid.Exists(cell, d2) is true)
+				{
+					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
+				}
 			}
 			foreach (int cell in guardianMap)
 			{
@@ -3704,14 +3695,13 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					(Cells)urCells,
 					guardianMap,
 					guardianDigit,
-					false,
+					IsIncompleteUr(candidateOffsets),
 					index
 				)
 			);
 		}
 	}
 
-#pragma warning disable IDE0060
 	/// <summary>
 	/// Check UR+Guardian, with the external subset.
 	/// </summary>
@@ -3722,14 +3712,152 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
-	private void CheckGuardianUniqueSubset(
+	private void CheckGuardianExternalSubset(
 		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, short comparer, int d1, int d2, int index)
 	{
-		// TODO: Implement this.
+		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		{
+			return;
+		}
 
+		var cells = (Cells)urCells;
+
+		// Iterate on two houses used.
+		foreach (int[] houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
+		{
+			var guardianMap = HouseMaps[houseCombination[0]] | HouseMaps[houseCombination[1]];
+			if ((guardianMap & cells) != cells)
+			{
+				// The houses must contain all 4 UR cells.
+				continue;
+			}
+
+			var guardianCells = guardianMap - cells & EmptyCells;
+			foreach (var guardianCellPair in guardianCells & 2)
+			{
+				int c1 = guardianCellPair[0], c2 = guardianCellPair[1];
+				if (!IUniqueRectangleStepSearcher.IsSameHouseCell(c1, c2, out int houses))
+				{
+					// Those two cells must lie in a same house.
+					continue;
+				}
+
+				short mask = (short)(grid.GetCandidates(c1) | grid.GetCandidates(c2));
+				if ((mask & comparer) != comparer)
+				{
+					// The two cells must contain both two digits.
+					continue;
+				}
+
+				if ((grid.GetCandidates(c1) & comparer) == 0 || (grid.GetCandidates(c2) & comparer) == 0)
+				{
+					// Both two cells chosen must contain at least one of two UR digits.
+					continue;
+				}
+
+				if ((guardianCells & (CandidatesMap[d1] | CandidatesMap[d2])) != guardianCellPair)
+				{
+					// The current map must be equal to the whole guardian full map.
+					continue;
+				}
+
+				foreach (int house in houses)
+				{
+					var houseCells = HouseMaps[house] - cells - guardianCellPair & EmptyCells;
+					for (int size = 2; size <= houseCells.Count; size++)
+					{
+						foreach (var otherCells in houseCells & size - 1)
+						{
+							short subsetDigitsMask = (short)(grid.GetDigitsUnion(otherCells) | comparer);
+							if (PopCount((uint)subsetDigitsMask) != size)
+							{
+								// The subset cannot formed.
+								continue;
+							}
+
+							// UR Guardian External Subsets found. Now check eliminations.
+							var elimMap = (houseCells | guardianCellPair) - otherCells;
+							var conclusions = new List<Conclusion>();
+							foreach (int cell in elimMap)
+							{
+								short elimDigitsMask = guardianCellPair.Contains(cell)
+									? (short)(subsetDigitsMask & ~comparer)
+									: subsetDigitsMask;
+
+								foreach (int digit in elimDigitsMask)
+								{
+									if (CandidatesMap[digit].Contains(cell))
+									{
+										conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+									}
+								}
+							}
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							var candidateOffsets = new List<CandidateViewNode>();
+							foreach (int cell in urCells)
+							{
+								if (grid.Exists(cell, d1) is true)
+								{
+									candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
+								}
+								if (grid.Exists(cell, d2) is true)
+								{
+									candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
+								}
+							}
+							foreach (int cell in guardianCellPair)
+							{
+								if (grid.Exists(cell, d1) is true)
+								{
+									candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + d1));
+								}
+								if (grid.Exists(cell, d2) is true)
+								{
+									candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + d2));
+								}
+							}
+							foreach (int cell in otherCells)
+							{
+								foreach (int digit in grid.GetCandidates(cell))
+								{
+									candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
+								}
+							}
+
+							accumulator.Add(
+								new UniqueRectangleWithGuardianSubsetStep(
+									conclusions.ToImmutableArray(),
+									ImmutableArray.Create(
+										View.Empty
+											| candidateOffsets
+											| new HouseViewNode[]
+											{
+												new(DisplayColorKind.Normal, house),
+												new(DisplayColorKind.Auxiliary2, houseCombination[0]),
+												new(DisplayColorKind.Auxiliary2, houseCombination[1])
+											}
+									),
+									d1,
+									d2,
+									cells,
+									guardianCellPair,
+									otherCells,
+									subsetDigitsMask,
+									IsIncompleteUr(candidateOffsets),
+									index
+								)
+							);
+						}
+					}
+				}
+			}
+		}
 	}
-#pragma warning restore IDE0060
 
 	/// <summary>
 	/// Check AR+Hidden single.

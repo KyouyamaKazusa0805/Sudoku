@@ -837,9 +837,14 @@ public enum Technique : short
 	UniqueRectangleUnknownCovering,
 
 	/// <summary>
-	/// Indicates the unique rectangle guardian.
+	/// Indicates the unique rectangle external type 2.
 	/// </summary>
-	UniqueRectangleBrokenWing,
+	UniqueRectangleExternalType2,
+
+	/// <summary>
+	/// Indicates the unique rectangle external type 3.
+	/// </summary>
+	UniqueRectangleExternalType3,
 
 	/// <summary>
 	/// Indicates the avoidable rectangle type 1.

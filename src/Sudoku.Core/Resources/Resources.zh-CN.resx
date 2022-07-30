@@ -1161,7 +1161,7 @@
     <value>唯一矩形・代数</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="UniqueRectangleBrokenWing" xml:space="preserve">
+  <data name="UniqueRectangleExternalType2" xml:space="preserve">
     <value>唯一矩形・守护者</value>
     <comment>Technique Name</comment>
   </data>
@@ -1628,5 +1628,15 @@
   </data>
   <data name="TechniqueFormat_JuniorExocetStep" xml:space="preserve">
     <value>{Name}：基准单元格 {BaseCellsStr}，目标单元格 {TargetCellsStr}，涉及数字 {DigitsStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_UniqueRectangleWithGuardianStep" xml:space="preserve">
+    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并带有守护者 {GuardianDigitStr} 位于单元格 {GuardianCellsStr} 之中 =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_UniqueRectangleWithGuardianSubsetStep" xml:space="preserve">
+    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并有外侧数组结构，数字为 {DigitsStr}，单元格为 {SubsetCellsStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="UniqueRectangleExternalType3" xml:space="preserve">
+    <value>唯一矩形・守护者数组</value>
+    <comment>Technique Name</comment>
   </data>
 </root>

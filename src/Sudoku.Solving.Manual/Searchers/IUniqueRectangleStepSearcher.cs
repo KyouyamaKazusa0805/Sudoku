@@ -19,7 +19,9 @@
 /// <item>Avoidable Rectangle with Hidden Single</item>
 /// <item>Unique Rectangle with Unknown Covering</item>
 /// <item>Unique Rectangle with Sue de Coq</item>
-/// <item>Unique Rectangle with Guardian</item>
+/// <item>Unique Rectangle with Guardian (Standard)</item>
+/// <item>Unique Rectangle with Guardian (External Subset)</item>
+/// <!--<item>Unique Rectangle with Guardian (External XY-Wing)</item>-->
 /// </list>
 /// </item>
 /// <item>
@@ -92,6 +94,30 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	}
 
 	/// <summary>
+	/// Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="urCells">The UR cells.</param>
+	/// <param name="d1">The first digit used.</param>
+	/// <param name="d2">The second digit used.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	protected internal static sealed bool CheckPreconditionsOnIncomplete(
+		scoped in Grid grid, int[] urCells, int d1, int d2)
+	{
+		// Same-sided cells cannot contain only one digit of two digits 'd1' and 'd2'.
+		foreach (var (a, b) in stackalloc[] { (0, 1), (2, 3), (0, 2), (1, 3) })
+		{
+			short gatheredMask = (short)(grid.GetCandidates(urCells[a]) | grid.GetCandidates(urCells[b]));
+			if ((gatheredMask >> d1 & 1) == 0 || (gatheredMask >> d2 & 1) == 0)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/// <summary>
 	/// To determine whether the specified house forms a conjugate pair
 	/// of the specified digit, and the cells where they contain the digit
 	/// is same as the given map contains.
@@ -128,17 +154,17 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	/// </summary>
 	/// <param name="cell1">The cell 1 to check.</param>
 	/// <param name="cell2">The cell 2 to check.</param>
-	/// <param name="houseIndex">
+	/// <param name="houses">
 	/// The result houses that both two cells lie in. If the cell can't be found, this argument will be 0.
 	/// </param>
 	/// <returns>
 	/// The <see cref="bool"/> value indicating whether the another cell is same house as the current one.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected internal static sealed bool IsSameHouseCell(int cell1, int cell2, out int houseIndex)
+	protected internal static sealed bool IsSameHouseCell(int cell1, int cell2, out int houses)
 	{
 		int v = (Cells.Empty + cell1 + cell2).CoveredHouses;
-		(bool r, houseIndex) = v != 0 ? (true, v) : (false, 0);
+		(bool r, houses) = v != 0 ? (true, v) : (false, 0);
 		return r;
 	}
 

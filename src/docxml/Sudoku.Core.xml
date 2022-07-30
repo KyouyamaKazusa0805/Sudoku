@@ -9374,6 +9374,11 @@
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithGuardianSubsetStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with cells {SubsetCellsStr} for digits {DigitsStr} as subset =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithSueDeCoqStep">
             <summary>
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a generalized Sue de Coq in cells {MergedCellsStr} of digits {DigitsStr} =&gt; {ElimStr}.
@@ -9564,9 +9569,14 @@
               Looks up a localized string similar to Unique Rectangle 4X/3SL.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.UniqueRectangleBrokenWing">
+        <member name="P:Sudoku.Resources.Resources.UniqueRectangleExternalType2">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Guardian.
+              Looks up a localized string similar to Unique Rectangle Guardian (Standard).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.UniqueRectangleExternalType3">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle Guardian (Subset).
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UniqueRectangleSueDeCoq">
@@ -11320,9 +11330,14 @@
             Indicates the unique rectangle unknown covering.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.UniqueRectangleBrokenWing">
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.UniqueRectangleExternalType2">
             <summary>
-            Indicates the unique rectangle guardian.
+            Indicates the unique rectangle external type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.UniqueRectangleExternalType3">
+            <summary>
+            Indicates the unique rectangle external type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.AvoidableRectangleType1">

@@ -3148,6 +3148,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with cells {SubsetCellsStr} for digits {DigitsStr} as subset =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueRectangleWithGuardianSubsetStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithGuardianSubsetStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a generalized Sue de Coq in cells {MergedCellsStr} of digits {DigitsStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_UniqueRectangleWithSueDeCoqStep {
@@ -3490,11 +3499,20 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Guardian.
+        ///   Looks up a localized string similar to Unique Rectangle Guardian (Standard).
         /// </summary>
-        internal static string UniqueRectangleBrokenWing {
+        internal static string UniqueRectangleExternalType2 {
             get {
-                return ResourceManager.GetString("UniqueRectangleBrokenWing", resourceCulture);
+                return ResourceManager.GetString("UniqueRectangleExternalType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Guardian (Subset).
+        /// </summary>
+        internal static string UniqueRectangleExternalType3 {
+            get {
+                return ResourceManager.GetString("UniqueRectangleExternalType3", resourceCulture);
             }
         }
         

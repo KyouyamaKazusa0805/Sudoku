@@ -49,31 +49,32 @@ public interface IDistinctableStep<in TStep> : IStep where TStep : Step
 	public static sealed IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
 		where TDistinctableStep : Step, IDistinctableStep<TDistinctableStep>
 	{
-		if (list.Count == 1)
+		return list switch
 		{
-			// Special case: If the collection only contains a single element,
-			// just add it into the result collection and return.
-#if true
-			return new[] { list[0] };
-#else
-			return list;
-#endif
-		}
+			[] => Array.Empty<TDistinctableStep>(),
+			[var firstElement] => new[] { firstElement },
+			[var a, var b] when TDistinctableStep.Equals(a, b) => new[] { a },
+			_ => distinctList(list)
+		};
 
-		var resultList = new List<TDistinctableStep>();
-		for (int i = 0, length = list.Count, outerLength = length - 1; i < outerLength; i++)
+
+		static IEnumerable<TDistinctableStep> distinctList(IList<TDistinctableStep> list)
 		{
-			var e1 = list[i];
-			for (int j = i + 1; j < length; j++)
+			var resultList = new List<TDistinctableStep>();
+			for (int i = 0, length = list.Count, outerLength = length - 1; i < outerLength; i++)
 			{
-				var e2 = list[j];
-				if (!TDistinctableStep.Equals(e1, e2))
+				var e1 = list[i];
+				for (int j = i + 1; j < length; j++)
 				{
-					resultList.Add(e1);
+					var e2 = list[j];
+					if (!TDistinctableStep.Equals(e1, e2))
+					{
+						resultList.Add(e1);
+					}
 				}
 			}
-		}
 
-		return resultList;
+			return resultList;
+		}
 	}
 }

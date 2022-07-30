@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unique Rectangle with Guardians</b> technique.
+/// Provides with a step that is a <b>Unique Rectangle with Guardians (External Subset)</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
@@ -9,24 +9,26 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
-/// <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
+/// <param name="SubsetCells">The extra cells that forms the subset.</param>
+/// <param name="SubsetDigitsMask">Indicates the digits that the subset are used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record UniqueRectangleWithGuardianStep(
+public sealed record UniqueRectangleWithGuardianSubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
 	int Digit2,
 	scoped in Cells Cells,
 	scoped in Cells GuardianCells,
-	int GuardianDigit,
+	scoped in Cells SubsetCells,
+	short SubsetDigitsMask,
 	bool IsIncomplete,
 	int AbsoluteOffset
 ) :
 	UniqueRectangleStep(
 		Conclusions,
 		Views,
-		Technique.UniqueRectangleExternalType2,
+		Technique.UniqueRectangleExternalType3,
 		Digit1,
 		Digit2,
 		Cells,
@@ -39,13 +41,13 @@ public sealed record UniqueRectangleWithGuardianStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty => 4.5M;
+	public decimal BaseDifficulty => 4.6M;
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[]
 		{
-			("Guardians", (GuardianCells.Count >> 1) * .1M),
+			("Digits", PopCount((uint)SubsetDigitsMask) * .1M),
 			("Incompleteness", IsIncomplete ? .1M : 0)
 		};
 
@@ -56,19 +58,19 @@ public sealed record UniqueRectangleWithGuardianStep(
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.Often;
+	public override Rarity Rarity => Rarity.HardlyEver;
 
 	[FormatItem]
-	internal string GuardianDigitStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (GuardianDigit + 1).ToString();
+		get => new DigitCollection(SubsetDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	internal string GuardianCellsStr
+	internal string SubsetCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => GuardianCells.ToString();
+		get => SubsetCells.ToString();
 	}
 }

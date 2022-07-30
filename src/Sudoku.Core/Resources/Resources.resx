@@ -993,8 +993,8 @@
   <data name="UniqueRectangleUnknownCovering" xml:space="preserve">
     <value>Unique Rectangle Unknown Covering</value>
   </data>
-  <data name="UniqueRectangleBrokenWing" xml:space="preserve">
-    <value>Unique Rectangle Guardian</value>
+  <data name="UniqueRectangleExternalType2" xml:space="preserve">
+    <value>Unique Rectangle Guardian (Standard)</value>
   </data>
   <data name="AvoidableRectangleType1" xml:space="preserve">
     <value>Avoidable Rectangle Type 1</value>
@@ -1346,5 +1346,11 @@
   </data>
   <data name="TechniqueFormat_JuniorExocetStep" xml:space="preserve">
     <value>{Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr}, digits {DigitsStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_UniqueRectangleWithGuardianSubsetStep" xml:space="preserve">
+    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with cells {SubsetCellsStr} for digits {DigitsStr} as subset =&gt; {ElimStr}</value>
+  </data>
+  <data name="UniqueRectangleExternalType3" xml:space="preserve">
+    <value>Unique Rectangle Guardian (Subset)</value>
   </data>
 </root>
