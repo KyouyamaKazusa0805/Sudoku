@@ -367,8 +367,18 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public readonly bool IsValid
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Solver.CheckValidity(ToString(null));
+		get
+		{
+			try
+			{
+				string gridStr = ToString(null);
+				return Solver.CheckValidity(gridStr);
+			}
+			catch (Exception ex) when (ex is InvalidOperationException or FormatException)
+			{
+				return false;
+			}
+		}
 	}
 
 	/// <summary>
@@ -1058,6 +1068,37 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public readonly ref readonly short GetPinnableReference() => ref _values[0];
+
+	/// <summary>
+	/// Gets the mask at the specified position. This method returns the reference of the mask.
+	/// </summary>
+	/// <param name="index">The desired index.</param>
+	/// <returns>The reference to the mask that you want to get.</returns>
+	/// <remarks>
+	/// <para>
+	/// This method returns the reference, which means you can use this method as an lvalue.
+	/// For example, if you want to use bitwise-or operator to update the value, you can use:
+	/// <code><![CDATA[
+	/// // Update the mask.
+	/// short mask = ...;
+	/// grid.GetMaskRefAt(0) |= mask;
+	/// ]]></code>
+	/// The expression <c>grid.GetMaskRefAt(0) |= mask</c> is equivalent to
+	/// <c>grid.GetMaskRefAt(0) = grid.GetMaskRefAt(0) | mask</c>, and it can be replaced
+	/// with the expression <c>grid._values[0] = grid._values[0] | mask</c>,
+	/// meaning we update the mask at the first place (i.e. <c>r1c1</c>).
+	/// </para>
+	/// <para>
+	/// This method is a little bit different with <see cref="GetPinnableReference"/>.
+	/// This method returns an modifiable reference, therefore the return value is
+	/// <see langword="ref"/> <see cref="short"/> instead of <see langword="ref readonly"/> <see cref="short"/>
+	/// being used by that method, which means you cannot use it as an lvalue to update the mask.
+	/// In addition, that method always returns the reference to the <b>first</b> element.
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="GetPinnableReference"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ref short GetMaskRefAt(int index) => ref _values[index];
 
 	/// <summary>
 	/// Get all masks and print them.
