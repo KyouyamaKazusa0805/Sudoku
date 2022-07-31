@@ -114,9 +114,11 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 						}
 
 						// If we aim to a single cell, all four cells should be checked.
-						// Therefore, the 'break' clause should be written here, rather than 'for' loop declaration.
-						// If that declaration is 'for (int c1 = 0; c1 < 3; c1++)',
-						// we'll miss the cases for checking the last cell.
+						// Therefore, the 'break' clause should be written here,
+						// rather than continuing the execution.
+						// In addition, I think you may ask me a question why the outer for loop is limited
+						// the variable 'c1' from 0 to 4 instead of 0 to 3.
+						// If so, we'll miss the cases for checking the last cell.
 						if (c1 == 3)
 						{
 							break;
@@ -202,8 +204,13 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 	/// </summary>
 	/// <param name="list">The list to check.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <remarks>
+	/// This method uses a trick to check a UR structure: to count up the number of "Normal colored"
+	/// candidates used in the current UR structure. If and only if the full structure uses 8 candidates
+	/// colored with normal one, the structure will be complete.
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool IsIncompleteUr(IEnumerable<CandidateViewNode> list)
+	private bool IsIncomplete(IEnumerable<CandidateViewNode> list)
 	{
 		return !AllowIncompleteUniqueRectangles && list.Count(predicate) != 8;
 

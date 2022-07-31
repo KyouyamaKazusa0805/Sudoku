@@ -154,7 +154,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			}
 		}
 
-		if (IsIncompleteUr(candidateOffsets))
+		if (IsIncomplete(candidateOffsets))
 		{
 			return;
 		}
@@ -519,7 +519,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				);
 			}
 		}
-		if (IsIncompleteUr(candidateOffsets))
+		if (IsIncomplete(candidateOffsets))
 		{
 			return;
 		}
@@ -913,7 +913,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, possibleXyCell * 9 + digit));
 			}
 
-			if (IsIncompleteUr(candidateOffsets))
+			if (IsIncomplete(candidateOffsets))
 			{
 				return;
 			}
@@ -1396,7 +1396,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, possibleXyCell * 9 + digit));
 			}
-			if (IsIncompleteUr(candidateOffsets))
+			if (IsIncomplete(candidateOffsets))
 			{
 				return;
 			}
@@ -2404,7 +2404,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								)
 							);
 						}
-						if (IsIncompleteUr(candidateOffsets))
+						if (IsIncomplete(candidateOffsets))
 						{
 							return;
 						}
@@ -2535,7 +2535,7 @@ unsafe partial class UniqueRectangleStepSearcher
 										)
 									);
 								}
-								if (IsIncompleteUr(candidateOffsets))
+								if (IsIncomplete(candidateOffsets))
 								{
 									return;
 								}
@@ -2675,7 +2675,7 @@ unsafe partial class UniqueRectangleStepSearcher
 											)
 										);
 									}
-									if (IsIncompleteUr(candidateOffsets))
+									if (IsIncomplete(candidateOffsets))
 									{
 										return;
 									}
@@ -3479,7 +3479,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					(Cells)urCells,
 					guardianMap,
 					guardianDigit,
-					IsIncompleteUr(candidateOffsets),
+					IsIncomplete(candidateOffsets),
 					index
 				)
 			);
@@ -3632,7 +3632,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									guardianCellPair,
 									otherCells,
 									subsetDigitsMask,
-									IsIncompleteUr(candidateOffsets),
+									IsIncomplete(candidateOffsets),
 									index
 								)
 							);

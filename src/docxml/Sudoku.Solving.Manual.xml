@@ -2146,12 +2146,17 @@
             <param name="grid">The grid.</param>
             <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.IsIncompleteUr(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.CandidateViewNode})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.IsIncomplete(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.CandidateViewNode})">
             <summary>
             Check whether the highlight UR candidates is incomplete.
             </summary>
             <param name="list">The list to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            This method uses a trick to check a UR structure: to count up the number of "Normal colored"
+            candidates used in the current UR structure. If and only if the full structure uses 8 candidates
+            colored with normal one, the structure will be complete.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int32)">
             <summary>
