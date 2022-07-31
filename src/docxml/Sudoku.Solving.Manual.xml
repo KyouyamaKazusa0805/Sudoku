@@ -3200,9 +3200,14 @@
             <item>Avoidable Rectangle with Hidden Single</item>
             <item>Unique Rectangle with Unknown Covering</item>
             <item>Unique Rectangle with Sue de Coq</item>
-            <item>Unique Rectangle with Guardian (Standard)</item>
-            <item>Unique Rectangle with Guardian (External Subset)</item>
-            <!--<item>Unique Rectangle with Guardian (External XY-Wing)</item>-->
+            <item>
+            Unique Rectangle with Guardian (i.e. Unique Rectangle External Types):
+            <list type="bullet">
+            <item>Unique Rectangle External Type 2</item>
+            <item>Unique Rectangle External Type 3</item>
+            <!--<item>Unique Rectangle External Type with XY-Wing</item>-->
+            </list>
+            </item>
             </list>
             </item>
             <item>
