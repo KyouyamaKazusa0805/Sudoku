@@ -22,7 +22,8 @@
 		<!--The control is the main item in the current window-->
 		<NavigationView
 			x:Name="_cViewRouter" Header="{StaticResource ProgramName}" IsBackButtonVisible="Collapsed"
-			Grid.Row="1" IsBackEnabled="False" PaneDisplayMode="Left" IsSettingsVisible="False" CacheMode="BitmapCache"
+			Grid.Row="1" IsBackEnabled="False" PaneDisplayMode="LeftCompact" IsSettingsVisible="False"
+			IsPaneToggleButtonVisible="False" CacheMode="BitmapCache"
 			Loaded="ViewRouter_LoadedAsync" ItemInvoked="ViewRouter_ItemInvoked"
 			SelectionChanged="ViewRouter_SelectionChanged">
 			<NavigationView.AutoSuggestBox>
