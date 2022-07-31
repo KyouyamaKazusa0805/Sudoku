@@ -158,6 +158,9 @@
 	<x:String x:Key="SettingsPage_ItemName_CellBorderWidth">单元格格线粗细</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateBorderWidth">候选数边框线粗细</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateBorderWidth">该设置项只会在显示了候选数线条的时候生效。</x:String>
+	<x:String x:Key="SettingsPage_ItemName_UnknownValueFont">代数字母的字体缩放比例</x:String>
+	<x:String x:Key="SettingsPage_ItemName_UnknownValueColor">代数字母的颜色</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_UnknownValueColor">该设置用于显示跟代数有关的技巧的内容</x:String>
 	<x:String x:Key="SettingsPage_ItemName_OutsideBorderColor">外框线颜色</x:String>
 	<x:String x:Key="SettingsPage_ItemName_GridBackgroundFillColor">盘面背景色</x:String>
 	<x:String x:Key="SettingsPage_ItemName_BlockBorderColor">宫线颜色</x:String>
@@ -291,6 +294,8 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_BlockBorderWidth">粗细;宫;边框|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CellBorderWidth">粗细;单元格;边框|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateBorderWidth">粗细;候选数;边框|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_UnknownValueFont">字体;缩放比例;未知数;代数;字母|设置页 -> 绘图和渲染</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_UnknownValueColor">颜色;未知数;代数;字母|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_OutsideBorderColor">外侧;边框;颜色|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_GridBackgroundFillColor">盘面;背景;颜色|设置页 -> 绘图和渲染</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_BlockBorderColor">宫线;边框;颜色|设置页 -> 绘图和渲染</x:String>

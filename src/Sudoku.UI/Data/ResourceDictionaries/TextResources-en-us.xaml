@@ -161,6 +161,9 @@
 	<x:String x:Key="SettingsPage_ItemName_CellBorderWidth">Size of the cell borders</x:String>
 	<x:String x:Key="SettingsPage_ItemName_CandidateBorderWidth">Size of the candidate borders</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_CandidateBorderWidth">This property is valid only if the candidate border displays.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_UnknownValueFont">Font scale of unknown marks</x:String>
+	<x:String x:Key="SettingsPage_ItemName_UnknownValueColor">The color of unknown marks</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_UnknownValueColor">This option is used by displaying unknown covering related techniques</x:String>
 	<x:String x:Key="SettingsPage_ItemName_OutsideBorderColor">Outside border color</x:String>
 	<x:String x:Key="SettingsPage_ItemName_GridBackgroundFillColor">Grid background color</x:String>
 	<x:String x:Key="SettingsPage_ItemName_BlockBorderColor">Block border color</x:String>
@@ -294,6 +297,8 @@
 	<x:String x:Key="Query_SettingsPage_ItemName_BlockBorderWidth">size;block;border|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CellBorderWidth">size;cell;border|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_CandidateBorderWidth">size;candidate;border|Settings Page -> Rendering options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_UnknownValueFont">font;scale;unknown|Settings Page -> Rendering options</x:String>
+	<x:String x:Key="Query_SettingsPage_ItemName_UnknownValueColor">color;unknown|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_OutsideBorderColor">outside;border;color|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_GridBackgroundFillColor">grid;background;color|Settings Page -> Rendering options</x:String>
 	<x:String x:Key="Query_SettingsPage_ItemName_BlockBorderColor">block;border;color|Settings Page -> Rendering options</x:String>
