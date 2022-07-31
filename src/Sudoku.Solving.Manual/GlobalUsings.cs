@@ -29,6 +29,7 @@ global using Sudoku.Solving.Manual.Buffers;
 global using Sudoku.Solving.Manual.Searchers;
 global using Sudoku.Solving.Manual.Searchers.Specialized;
 global using Sudoku.Solving.Manual.Steps;
+global using Sudoku.Solving.Manual.Steps.Specialized;
 global using static System.Algorithm.Combinatorics;
 global using static System.Algorithm.Sequences;
 global using static System.Math;

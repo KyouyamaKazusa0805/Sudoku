@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Solving.Manual.Steps.Specialized;
 
 /// <summary>
 /// Defines a step that can be distinctable.

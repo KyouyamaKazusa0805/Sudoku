@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Solving.Manual.Steps.Specialized;
 
 /// <summary>
 /// Defines a type that holds an extra property to control advanced rule with extra difficulty value.

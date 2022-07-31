@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Solving.Manual.Steps.Specialized;
 
 /// <summary>
 /// Defines a step type that contains the property <c>Size</c>.

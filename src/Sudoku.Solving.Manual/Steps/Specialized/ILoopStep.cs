@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Solving.Manual.Steps.Specialized;
 
 /// <summary>
 /// Defines the step whose technique used is the loop.
