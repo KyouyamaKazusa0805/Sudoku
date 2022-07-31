@@ -89,7 +89,7 @@ public sealed class LinkViewNodeShape : DrawingElement
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other) =>
-		other is LinkViewNodeShape comparer && Nodes == comparer.Nodes;
+		other is LinkViewNodeShape comparer && ReferenceEquals(Nodes, comparer.Nodes);
 
 	/// <inheritdoc/>
 	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, Nodes);

@@ -25,16 +25,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.DiamondMark">
             <summary>
             Defines a diamond mark sign.
@@ -53,16 +43,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.StarMark">
             <summary>
             Defines a star sign.
@@ -79,16 +59,6 @@
         <member name="M:Sudoku.UI.Views.Controls.StarMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.TriangleMark">
@@ -113,16 +83,6 @@
         <member name="M:Sudoku.UI.Views.Controls.TriangleMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Data.Configuration.FontData">
@@ -250,6 +210,11 @@
             Indicates the candidate font.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.UnknownValueFont">
+            <summary>
+            Indicates the unknown value font.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.OutsideBorderColor">
             <summary>
             Indicates the color of the outside borders.
@@ -353,6 +318,11 @@
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.GroupedLinkNodeColor">
             <summary>
             Indicates the grouped link node color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.UnknownValueColor">
+            <summary>
+            Indicates the unknown value color.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CellRectangleFillColor">
@@ -2687,6 +2657,11 @@
             Indicates the link view node shapes.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._unknownValueViewNodeShapes">
+            <summary>
+            Indicates the unknown value view node shapes.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._preference">
             <summary>
             Indicates the user preference used.
@@ -2927,6 +2902,12 @@
             </summary>
             <param name="houseViewNode">The house view node.</param>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetUnknownViewNode(Sudoku.Presentation.Nodes.UnknownViewNode)">
+            <summary>
+            Sets the unknown view node.
+            </summary>
+            <param name="unknownViewNode">The unknown view node.</param>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetLinkViewNode(System.Collections.Generic.IList{Sudoku.Presentation.Nodes.LinkViewNode})">
             <summary>
             Sets the link view node.
@@ -3035,11 +3016,54 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetConclusion(Sudoku.Presentation.View,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion})">
             <summary>
-            Sets the conclusions. The conclusions will be displayed using also <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape"/>s.
+            Sets the conclusions. The conclusions will be displayed
+            using also <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape"/>s.
             </summary>
             <param name="currentView">The view to check whether a conclusion is a cannibalism.</param>
             <param name="conclusions">The conclusions.</param>
             <seealso cref="T:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape"/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.UnknownValueViewNodeShape">
+            <summary>
+            Defines a unknown value view node shape.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.UnknownValueViewNodeShape._textBlock">
+            <summary>
+            The inner control.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.UnknownValueViewNodeShape._preference">
+            <summary>
+            Indicates the preference.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.UnknownValueViewNodeShape._char">
+            <summary>
+            The character.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.UnknownValueViewNodeShape.UnknownCharacter">
+            <summary>
+            Indicates the unknown character used. If you want to hide the control, assign <c>(Utf8Char)'\0'</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.UnknownValueViewNodeShape.Preference">
+            <summary>
+            Indicates the preference instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.UnknownValueViewNodeShape.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.UnknownValueViewNodeShape.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.UnknownValueViewNodeShape.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.UnknownValueViewNodeShape.GetControl">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.SimpleControlFactory">
             <summary>
@@ -3202,26 +3226,6 @@
         </member>
         <member name="M:Sudoku.UI.MarkupExtensions.DateOnlyExtension.ProvideValue">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.BezierSegmentExtensions">
             <summary>
@@ -3440,12 +3444,12 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeEndLineCap"/> with the specified value.
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE57A11628">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE57A11628.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3635,6 +3639,51 @@
         <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithForeground(Microsoft.UI.Xaml.Controls.TextBlock,Microsoft.UI.Xaml.Media.Brush)">
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Foreground"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithText(Microsoft.UI.Xaml.Controls.TextBlock,System.String)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Text"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithText``1(Microsoft.UI.Xaml.Controls.TextBlock,``0)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Text"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithFontFamily(Microsoft.UI.Xaml.Controls.TextBlock,System.String)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.FontFamily"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithFontFamily(Microsoft.UI.Xaml.Controls.TextBlock,Microsoft.UI.Xaml.Media.FontFamily)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.FontFamily"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithFontSize(Microsoft.UI.Xaml.Controls.TextBlock,System.Double)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.FontSize"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithFontWeight(Microsoft.UI.Xaml.Controls.TextBlock,Windows.UI.Text.FontWeight)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.FontWeight"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithFontStyle(Microsoft.UI.Xaml.Controls.TextBlock,Windows.UI.Text.FontStyle)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.FontStyle"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithHorizontalTextAlignment(Microsoft.UI.Xaml.Controls.TextBlock,Microsoft.UI.Xaml.TextAlignment)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.HorizontalTextAlignment"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.WithTextAlignment(Microsoft.UI.Xaml.Controls.TextBlock,Microsoft.UI.Xaml.TextAlignment)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.TextAlignment"/> with the specified value.
             </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.FrameworkElementExtensions">
@@ -3908,12 +3957,12 @@
             <param name="other">The other point.</param>
             <returns>The distance of the two points.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DEF353AC3E">
+        <member name="T:Windows.Foundation.Point_DEFC6B40A8">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEF353AC3E.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEFC6B40A8.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

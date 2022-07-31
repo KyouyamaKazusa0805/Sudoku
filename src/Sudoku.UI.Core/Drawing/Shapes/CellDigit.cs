@@ -254,29 +254,28 @@ internal sealed class CellDigit : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _preference;
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[MemberNotNull(nameof(_textBlock), nameof(_maskEllipse))]
 		init
 		{
 			_preference = value;
 
-			_textBlock ??= new()
-			{
-				Text = _digit == byte.MaxValue ? string.Empty : (_digit + 1).ToString(),
-				FontSize = 60 * value.ValueFont.FontScale,
-				FontFamily = new(value.ValueFont.FontName),
-				TextAlignment = TextAlignment.Center,
-				HorizontalTextAlignment = TextAlignment.Center,
-				Foreground = new SolidColorBrush(GetColor(_isGiven, value))
-			};
-			_maskEllipse ??= new()
-			{
-				Fill = new SolidColorBrush(value.MaskEllipseColor),
-				Width = 60 * value.ValueFont.FontScale,
-				Height = 60 * value.ValueFont.FontScale,
-				HorizontalAlignment = HorizontalAlignment.Center,
-				VerticalAlignment = VerticalAlignment.Center,
-				Visibility = _isMaskMode ? Visibility.Visible : Visibility.Collapsed
-			};
+			_textBlock ??= new TextBlock()
+				.WithText(_digit == byte.MaxValue ? string.Empty : (_digit + 1).ToString())
+				.WithFontSize(60 * value.ValueFont.FontScale)
+				.WithFontFamily(value.ValueFont.FontName)
+				.WithTextAlignment(TextAlignment.Center)
+				.WithHorizontalTextAlignment(TextAlignment.Center)
+				.WithHorizontalAlignment(HorizontalAlignment.Center)
+				.WithVerticalAlignment(VerticalAlignment.Center)
+				.WithForeground(GetColor(_isGiven, value));
+			_maskEllipse ??= new Ellipse()
+				.WithFill(value.MaskEllipseColor)
+				.WithWidth(60 * value.ValueFont.FontScale)
+				.WithHeight(60 * value.ValueFont.FontScale)
+				.WithHorizontalAlignment(HorizontalAlignment.Center)
+				.WithVerticalAlignment(VerticalAlignment.Center)
+				.WithVisibility(_isMaskMode ? Visibility.Visible : Visibility.Collapsed);
 		}
 	}
 

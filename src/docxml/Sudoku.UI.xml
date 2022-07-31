@@ -602,6 +602,18 @@
             The default value is <c>1</c>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.UnknownValueFont">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>{ FontName = "Times New Roman", FontScale = .8 }</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.UnknownValueColor">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>#FFFF0000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Red"/>).
+            </remarks>
+        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.OutsideBorderColor">
             <inheritdoc/>
             <remarks>

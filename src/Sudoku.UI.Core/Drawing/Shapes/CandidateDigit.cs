@@ -186,17 +186,16 @@ internal sealed class CandidateDigit : DrawingElement
 
 				for (byte digit = 0; digit < 9; digit++)
 				{
-					var digitBlock = new TextBlock
-					{
-						Text = (digit + 1).ToString(),
-						FontFamily = new(value.CandidateFont.FontName),
-						FontSize = 60 * value.CandidateFont.FontScale,
-						TextAlignment = TextAlignment.Center,
-						HorizontalTextAlignment = TextAlignment.Center
-					};
+					var digitBlock = new TextBlock()
+						.WithText(digit + 1)
+						.WithFontFamily(value.CandidateFont.FontName)
+						.WithFontSize(60 * value.CandidateFont.FontScale)
+						.WithHorizontalAlignment(HorizontalAlignment.Center)
+						.WithVerticalAlignment(VerticalAlignment.Center)
+						.WithTextAlignment(TextAlignment.Center)
+						.WithHorizontalTextAlignment(TextAlignment.Center)
+						.WithGridLayout(row: digit / 3, column: digit % 3);
 
-					GridLayout.SetRow(digitBlock, digit / 3);
-					GridLayout.SetColumn(digitBlock, digit % 3);
 					textBlocks[digit] = digitBlock;
 					grid.Children.Add(digitBlock);
 				}

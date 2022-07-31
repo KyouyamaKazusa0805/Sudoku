@@ -94,6 +94,11 @@ public interface IDrawingPreference
 	public abstract FontData CandidateFont { get; set; }
 
 	/// <summary>
+	/// Indicates the unknown value font.
+	/// </summary>
+	public abstract FontData UnknownValueFont { get; set; }
+
+	/// <summary>
 	/// Indicates the color of the outside borders.
 	/// </summary>
 	public abstract Color OutsideBorderColor { get; set; }
@@ -197,6 +202,11 @@ public interface IDrawingPreference
 	/// Indicates the grouped link node color.
 	/// </summary>
 	public abstract Color GroupedLinkNodeColor { get; set; }
+
+	/// <summary>
+	/// Indicates the unknown value color.
+	/// </summary>
+	public abstract Color UnknownValueColor { get; set; }
 
 #if AUTHOR_FEATURE_CELL_MARKS
 	/// <summary>

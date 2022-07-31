@@ -71,6 +71,11 @@ public sealed class SudokuGrid : DrawingElement
 	private readonly List<LinkViewNodeShape> _linkViewNodeShapes = new();
 
 	/// <summary>
+	/// Indicates the unknown value view node shapes.
+	/// </summary>
+	private readonly UnknownValueViewNodeShape[] _unknownValueViewNodeShapes = new UnknownValueViewNodeShape[81];
+
+	/// <summary>
 	/// Indicates the user preference used.
 	/// </summary>
 	private readonly IDrawingPreference _preference = null!;
@@ -475,6 +480,10 @@ public sealed class SudokuGrid : DrawingElement
 					s = new() { Preference = preference };
 					Array.ForEach(Digits, digit => _candidateViewNodeShapes[i].SetIsVisible(digit, false));
 					_gridLayout.Children.Add(s.GetControl().WithGridLayout(row: i / 9, column: i % 9));
+
+					scoped ref var u = ref _unknownValueViewNodeShapes[i];
+					u = new() { Preference = preference };
+					_gridLayout.Children.Add(u.GetControl().WithGridLayout(row: i / 9, column: i % 9));
 
 #if AUTHOR_FEATURE_CELL_MARKS
 					if (AllowMarkups)
@@ -955,6 +964,23 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
+	/// Sets the unknown view node.
+	/// </summary>
+	/// <param name="unknownViewNode">The unknown view node.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetUnknownViewNode(UnknownViewNode unknownViewNode)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		int cell = unknownViewNode.Cell;
+		var @char = unknownViewNode.UnknownValueChar;
+		_unknownValueViewNodeShapes[cell].UnknownCharacter = @char;
+	}
+
+	/// <summary>
 	/// Sets the link view node.
 	/// </summary>
 	/// <param name="linkViewNodes">The link view nodes.</param>
@@ -989,11 +1015,11 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		// TODO: Sets other kinds of view nodes.
 		Array.ForEach(_cellViewNodeShapes, static s => s.IsVisible = false);
 		Array.ForEach(_candidateViewNodeShapes, static s => Array.ForEach(Digits, d => s.SetIsVisible(d, false)));
 		Array.ForEach(Houses, house => _houseViewNodeShape.SetIsVisible(house, false));
 		_linkViewNodeShapes.ForEach(link => _gridLayout.Children.Remove(link.GetControl()));
+		Array.ForEach(_unknownValueViewNodeShapes, static s => s.UnknownCharacter = (Utf8Char)'\0');
 	}
 
 	/// <summary>
@@ -1250,8 +1276,6 @@ public sealed class SudokuGrid : DrawingElement
 	/// <param name="view">The view instance.</param>
 	private void SetViewNodes(View view)
 	{
-		// TODO: Sets other kinds of view nodes.
-
 		// Clears the current view.
 		ClearViewNodes();
 
@@ -1281,6 +1305,11 @@ public sealed class SudokuGrid : DrawingElement
 					linkViewNodes.Add(linkViewNode);
 					break;
 				}
+				case UnknownViewNode unknownViewNode:
+				{
+					SetUnknownViewNode(unknownViewNode);
+					break;
+				}
 			}
 		}
 
@@ -1291,7 +1320,8 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
-	/// Sets the conclusions. The conclusions will be displayed using also <see cref="CandidateViewNodeShape"/>s.
+	/// Sets the conclusions. The conclusions will be displayed
+	/// using also <see cref="CandidateViewNodeShape"/>s.
 	/// </summary>
 	/// <param name="currentView">The view to check whether a conclusion is a cannibalism.</param>
 	/// <param name="conclusions">The conclusions.</param>
