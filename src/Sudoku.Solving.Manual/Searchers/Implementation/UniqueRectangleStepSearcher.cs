@@ -3274,7 +3274,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 	///           c
 	///      ↑targetCell
 	/// ]]></code>
-	/// Where the digit <c>a</c> and <c>b</c> in the down-left cell <c>abcx</c> can be removed.
+	/// Where the digit <c>a</c> and <c>b</c> in the bottom-left cell <c>abcx</c> can be removed.
 	/// </para>
 	/// <para>
 	/// Subtype 2:
