@@ -2217,7 +2217,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int32)">
             <summary>
             Check type 3.
             </summary>
@@ -2616,7 +2616,7 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckWing(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckRegularWing(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int32,System.Int32)">
             <summary>
             Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
             </summary>
@@ -2655,7 +2655,7 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckSdc(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckSueDeCoq(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int32)">
             <summary>
             Check UR+SdC.
             </summary>
@@ -2719,7 +2719,7 @@
              </para>
              </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckGuardianExternal(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckExternalType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Check UR+Guardian.
             </summary>
@@ -2730,7 +2730,7 @@
             <param name="d2">The digit 2 used in UR.</param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckGuardianExternalSubset(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckExternalType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Collections.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
             <summary>
             Check UR+Guardian, with the external subset.
             </summary>
