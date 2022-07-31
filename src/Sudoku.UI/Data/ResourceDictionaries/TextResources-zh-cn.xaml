@@ -4,7 +4,7 @@
 	<x:String x:Key="ProgramVersion">版本 0.12</x:String>
 
 	<!--页面数据-->
-	<x:String x:Key="HomePage_PlayingAndAnalyzing">题目分析</x:String>
+	<x:String x:Key="HomePage_PlayingAndAnalyzing">分析</x:String>
 	<x:String x:Key="HomePage_Sudoku">数独</x:String>
 	<x:String x:Key="HomePage_Keyboard">快捷键</x:String>
 	<x:String x:Key="HomePage_Settings">设置</x:String>

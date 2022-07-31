@@ -5,7 +5,7 @@
 	<x:String x:Key="ProgramVersion">Version 0.12</x:String>
 
 	<!--Page inner data-->
-	<x:String x:Key="HomePage_PlayingAndAnalyzing">Playing &amp; Analyzing</x:String>
+	<x:String x:Key="HomePage_PlayingAndAnalyzing">Analyze</x:String>
 	<x:String x:Key="HomePage_Sudoku">Sudoku</x:String>
 	<x:String x:Key="HomePage_Settings">Settings</x:String>
 	<x:String x:Key="HomePage_Keyboard">Keyboard</x:String>

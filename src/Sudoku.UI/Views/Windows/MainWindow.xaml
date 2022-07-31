@@ -23,9 +23,24 @@
 		<NavigationView
 			x:Name="_cViewRouter" Header="{StaticResource ProgramName}" IsBackButtonVisible="Collapsed"
 			Grid.Row="1" IsBackEnabled="False" PaneDisplayMode="LeftCompact" IsSettingsVisible="False"
-			IsPaneToggleButtonVisible="False" CacheMode="BitmapCache"
+			IsPaneToggleButtonVisible="False" CacheMode="BitmapCache" OverflowLabelMode="MoreLabel"
+			CompactModeThresholdWidth="72" CompactPaneLength="72"
 			Loaded="ViewRouter_LoadedAsync" ItemInvoked="ViewRouter_ItemInvoked"
 			SelectionChanged="ViewRouter_SelectionChanged">
+			<NavigationView.Resources>
+				<Style x:Key="_rNavigationViewItemTextBlockStyle" TargetType="TextBlock">
+					<Setter Property="FontSize" Value="11" />
+					<Setter Property="HorizontalAlignment" Value="Center" />
+					<Setter Property="Margin" Value="0,3,0,0" />
+				</Style>
+				<Style x:Key="_rNavigationViewItemNavigationViewItemStyle" TargetType="NavigationViewItem">
+					<Setter Property="Width" Value="64" />
+					<Setter Property="Height" Value="64" />
+				</Style>
+				<Style x:Key="_rNavigationViewItemStackPanelStyle" TargetType="StackPanel">
+					<Setter Property="Margin" Value="0,0,9,0" />
+				</Style>
+			</NavigationView.Resources>
 			<NavigationView.AutoSuggestBox>
 				<AutoSuggestBox
 					QueryIcon="Find" PlaceholderText="{StaticResource HomePage_Search}" VerticalAlignment="Center"
@@ -54,16 +69,61 @@
 				</AutoSuggestBox>
 			</NavigationView.AutoSuggestBox>
 			<NavigationView.MenuItems>
-				<NavigationViewItem Icon="Home" Tag="HomePage" Content="{StaticResource HomePage_Home}" />
+				<NavigationViewItem Tag="HomePage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
+					<NavigationViewItem.Content>
+						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
+							<SymbolIcon Symbol="Home" />
+							<TextBlock
+								Text="{StaticResource HomePage_Home}"
+								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
+						</StackPanel>
+					</NavigationViewItem.Content>
+				</NavigationViewItem>
 				<NavigationViewItemSeparator />
 				<NavigationViewItemHeader Content="{StaticResource HomePage_Sudoku}" />
-				<NavigationViewItem Icon="ViewAll" Tag="SudokuPage" Content="{StaticResource HomePage_PlayingAndAnalyzing}" />
+				<NavigationViewItem Tag="SudokuPage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
+					<NavigationViewItem.Content>
+						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
+							<SymbolIcon Symbol="ViewAll" />
+							<TextBlock
+								Text="{StaticResource HomePage_PlayingAndAnalyzing}"
+								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
+						</StackPanel>
+					</NavigationViewItem.Content>
+				</NavigationViewItem>
 			</NavigationView.MenuItems>
 			<NavigationView.FooterMenuItems>
-				<NavigationViewItem Icon="Setting" Tag="SettingsPage" Content="{StaticResource HomePage_Settings}" />
+				<NavigationViewItem Tag="SettingsPage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
+					<NavigationViewItem.Content>
+						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
+							<SymbolIcon Symbol="Setting" />
+							<TextBlock
+								Text="{StaticResource HomePage_Settings}"
+								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
+						</StackPanel>
+					</NavigationViewItem.Content>
+				</NavigationViewItem>
 				<NavigationViewItemSeparator />
-				<NavigationViewItem Icon="Keyboard" Tag="KeyboardPage" Content="{StaticResource HomePage_Keyboard}" />
-				<NavigationViewItem Icon="People" Tag="AboutPage" Content="{StaticResource HomePage_About}" />
+				<NavigationViewItem Tag="KeyboardPage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
+					<NavigationViewItem.Content>
+						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
+							<SymbolIcon Symbol="Keyboard" />
+							<TextBlock
+								Text="{StaticResource HomePage_Keyboard}"
+								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
+						</StackPanel>
+					</NavigationViewItem.Content>
+				</NavigationViewItem>
+				<NavigationViewItem Tag="AboutPage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
+					<NavigationViewItem.Content>
+						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
+							<SymbolIcon Symbol="People" />
+							<TextBlock
+								Text="{StaticResource HomePage_About}"
+								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
+						</StackPanel>
+					</NavigationViewItem.Content>
+				</NavigationViewItem>
 			</NavigationView.FooterMenuItems>
 
 			<Frame
