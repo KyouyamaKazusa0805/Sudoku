@@ -367,18 +367,8 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public readonly bool IsValid
 	{
-		get
-		{
-			try
-			{
-				string gridStr = ToString(null);
-				return Solver.CheckValidity(gridStr);
-			}
-			catch (Exception ex) when (ex is InvalidOperationException or FormatException)
-			{
-				return false;
-			}
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Solver.CheckValidity(ToString());
 	}
 
 	/// <summary>
