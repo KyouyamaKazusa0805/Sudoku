@@ -611,23 +611,6 @@
             </summary>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.EnabledArea.None"/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostHiddenSetsStepSearcher">
-            <summary>
-            Provides with an <b>Almost Hidden Sets</b> step searcher.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IAlmostHiddenSetsStepSearcher.Gather(Sudoku.Concepts.Collections.Grid@)">
-            <inheritdoc cref="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>
-            <remarks>
-            Different with the original method <see cref="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>,
-            this method will only uses the buffer to determine the info, which is unsafe
-            when calling the method without having initialized those maps in the buffer type,
-            <see cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>.
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet"/>
-            <seealso cref="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher">
             <summary>
             Provides with an <b>Almost Locked Candidates</b> step searcher.
@@ -3049,16 +3032,6 @@
             </list>
             </returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IStepSearcherRequiresSolution">
-            <summary>
-            Indicates a step searcher that requires a solution grid for the technique searching usages.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.IStepSearcherRequiresSolution.Solution">
-            <summary>
-            Indicates the reference of the solution sudoku grid.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ISubsetStepSearcher">
             <summary>
             Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
@@ -3340,6 +3313,33 @@
         <member name="T:Sudoku.Solving.Manual.Searchers.IWingStepSearcher">
             <summary>
             Defines a step searcher that searches for wing steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IAlmostHiddenSetsStepSearcher">
+            <summary>
+            Provides with an <b>Almost Hidden Sets</b> step searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.IAlmostHiddenSetsStepSearcher.Gather(Sudoku.Concepts.Collections.Grid@)">
+            <inheritdoc cref="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>
+            <remarks>
+            Different with the original method <see cref="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>,
+            this method will only uses the buffer to determine the info, which is unsafe
+            when calling the method without having initialized those maps in the buffer type,
+            <see cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>.
+            </remarks>
+            <seealso cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet"/>
+            <seealso cref="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostHiddenSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IStepSearcherRequiresSolution">
+            <summary>
+            Indicates a step searcher that requires a solution grid for the technique searching usages.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Specialized.IStepSearcherRequiresSolution.Solution">
+            <summary>
+            Indicates the reference of the solution sudoku grid.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute">

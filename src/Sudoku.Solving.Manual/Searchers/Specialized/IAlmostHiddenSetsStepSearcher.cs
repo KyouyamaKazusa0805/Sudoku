@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers;
+﻿namespace Sudoku.Solving.Manual.Searchers.Specialized;
 
 /// <summary>
 /// Provides with an <b>Almost Hidden Sets</b> step searcher.

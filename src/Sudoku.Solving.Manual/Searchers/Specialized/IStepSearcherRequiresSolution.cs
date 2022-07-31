@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers;
+﻿namespace Sudoku.Solving.Manual.Searchers.Specialized;
 
 /// <summary>
 /// Indicates a step searcher that requires a solution grid for the technique searching usages.
