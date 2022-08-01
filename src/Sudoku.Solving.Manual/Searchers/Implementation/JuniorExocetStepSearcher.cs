@@ -133,7 +133,11 @@ internal sealed partial class JuniorExocetStepSearcher : IJuniorExocetStepSearch
 					foreach (int elimDigit in elimDigitsMask)
 					{
 						eliminations.Add(
-							new(Candidates.Empty + (targetCell * 9 + elimDigit), ExocetEliminatedReason.Basic));
+							new(
+								new Conclusion[] { new(ConclusionType.Elimination, targetCell, elimDigit) },
+								ExocetEliminatedReason.Basic
+							)
+						);
 					}
 				}
 

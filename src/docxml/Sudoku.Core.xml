@@ -4732,7 +4732,7 @@
             <param name="Eliminations">Indicates the eliminations.</param>
             <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.ExocetElimination.#ctor(Sudoku.Concepts.Collections.Candidates@,Sudoku.Runtime.AnalysisServices.ExocetEliminatedReason)">
+        <member name="M:Sudoku.Concepts.Solving.ExocetElimination.#ctor(Sudoku.Concepts.Solving.Conclusion[],Sudoku.Runtime.AnalysisServices.ExocetEliminatedReason)">
             <summary>
             Represents a data structure that describes the eliminations that are created and proved
             by the exocet technique.
@@ -4745,11 +4745,6 @@
         </member>
         <member name="P:Sudoku.Concepts.Solving.ExocetElimination.Reason">
             <summary>Indicates the reason why these candidates can be eliminated.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.ExocetElimination.Count">
-            <summary>
-            Indicates how many eliminations the instance contains.
-            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Solving.ExocetElimination.Equals(Sudoku.Concepts.Solving.ExocetElimination@)">
             <inheritdoc/>
@@ -4766,30 +4761,8 @@
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.ExocetElimination.ToArray">
-            <summary>
-            Converts all elements to <see cref="T:Sudoku.Concepts.Solving.Conclusion"/>.
-            </summary>
-            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:Sudoku.Concepts.Solving.Conclusion"/>.</returns>
-            <seealso cref="T:System.ReadOnlySpan`1"/>
-            <seealso cref="T:Sudoku.Concepts.Solving.Conclusion"/>
-        </member>
         <member name="M:Sudoku.Concepts.Solving.ExocetElimination.System#IEquatable{Sudoku#Concepts#Solving#ExocetElimination}#Equals(Sudoku.Concepts.Solving.ExocetElimination)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.ExocetElimination.op_BitwiseOr(Sudoku.Concepts.Solving.ExocetElimination@,Sudoku.Concepts.Solving.ExocetElimination@)">
-            <summary>
-            To merge two different instances, and return the merged result.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>
-            The merged result. The result will contain all eliminations from two instances, and
-            the reason should be same.
-            </returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when two instances contains different eliminated reason.
-            </exception>
         </member>
         <member name="T:Sudoku.Concepts.Solving.IStep">
             <summary>
