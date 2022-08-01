@@ -1639,4 +1639,15 @@
     <value>唯一矩形・守护者数组</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="FireworkQuadruple" xml:space="preserve">
+    <value>花火四数组</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="FireworkTriple" xml:space="preserve">
+    <value>花火三数组</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_FireworkTripleStep" xml:space="preserve">
+    <value>{Name}：单元格 {CellsStr} 里必须构成关于数字 {DigitsStr} 的跨区三数组结构 =&gt; {ElimStr}</value>
+  </data>
 </root>

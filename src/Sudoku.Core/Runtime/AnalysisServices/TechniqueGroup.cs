@@ -66,6 +66,11 @@ public enum TechniqueGroup : byte
 	AlmostLockedCandidates,
 
 	/// <summary>
+	/// Indicates the firework technique.
+	/// </summary>
+	Firework,
+
+	/// <summary>
 	/// Indicates the alternating inference chain (AIC) technique.
 	/// </summary>
 	AlternatingInferenceChain,

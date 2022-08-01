@@ -1353,4 +1353,13 @@
   <data name="UniqueRectangleExternalType3" xml:space="preserve">
     <value>Unique Rectangle Guardian (Subset)</value>
   </data>
+  <data name="FireworkQuadruple" xml:space="preserve">
+    <value>Firework Quadruple</value>
+  </data>
+  <data name="FireworkTriple" xml:space="preserve">
+    <value>Firework Triple</value>
+  </data>
+  <data name="TechniqueFormat_FireworkTripleStep" xml:space="preserve">
+    <value>{Name}: Cells {CellsStr} Must form a subset of digits {DigitsStr} in multi- houses =&gt; {ElimStr}</value>
+  </data>
 </root>

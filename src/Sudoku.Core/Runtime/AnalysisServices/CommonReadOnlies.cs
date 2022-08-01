@@ -34,6 +34,11 @@ public static partial class CommonReadOnlies
 	public const int ExocetTemplatesCount = 1458;
 
 	/// <summary>
+	/// Indicates the total number of firework subset patterns.
+	/// </summary>
+	public const int FireworkSubsetCount = 2187;
+
+	/// <summary>
 	/// Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
 	/// </summary>
 	public const int BdpTemplatesSize3Count = 14580;

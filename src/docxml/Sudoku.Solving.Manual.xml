@@ -1094,6 +1094,43 @@
             </list>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IFireworkStepSearcher">
+            <summary>
+            Defines a step searcher that searches for firework steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IFireworkSubsetStepSearcher">
+            <summary>
+            Provides with a <b>Firework</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Subset types:
+            <list type="bullet">
+            <item>Firework Triple</item>
+            <item>Firework Quadruple</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IFireworkSubsetStepSearcher.Patterns">
+            <summary>
+            Indicates the patterns used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IFireworkSubsetStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IFishStepSearcher">
             <summary>
             Defines a step searcher that searches for fish steps.
@@ -1788,6 +1825,22 @@
             <returns>The first found step if worth.</returns>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckTriple(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int16,System.Int32)">
+            <summary>
+            Checks for firework triple steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckQuadruple(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@)">
+            <summary>
+            Checks for firework quadruple steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.Options">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
@@ -6779,6 +6832,62 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.FireworkStep">
+            <summary>
+            Provides with a step that is a <b>Firework</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.FireworkStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+            <summary>
+            Provides with a step that is a <b>Firework</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.FireworkTripleStep">
+            <summary>
+            Provides with a step that is a <b>Firework Triple</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">The cells used.</param>
+            <param name="DigitsMask">The digits used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.FireworkTripleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Collections.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Firework Triple</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">The cells used.</param>
+            <param name="DigitsMask">The digits used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkTripleStep.Cells">
+            <summary>The cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkTripleStep.DigitsMask">
+            <summary>The digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkTripleStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkTripleStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.IntersectionStep">

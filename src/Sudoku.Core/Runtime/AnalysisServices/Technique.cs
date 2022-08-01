@@ -67,6 +67,16 @@ public enum Technique : short
 	AlmostLockedQuadruple,
 
 	/// <summary>
+	/// Indicates the firework triple.
+	/// </summary>
+	FireworkTriple,
+
+	/// <summary>
+	/// Indicates the firework quadruple.
+	/// </summary>
+	FireworkQuadruple,
+
+	/// <summary>
 	/// Indicates the naked pair.
 	/// </summary>
 	NakedPair,

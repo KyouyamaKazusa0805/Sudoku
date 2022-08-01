@@ -62,6 +62,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Locked Candidates Family
     * Locked Candidates
     * Almost Locked Candidates
+    * Firework Subsets (Hanabi)
   * Subsets
     * Naked Subsets
     * Hidden Subsets
@@ -110,7 +111,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Templating
       * Brute Force
 
-Some other techniques will be implemented later, such as senior exocets, firework subsets, unknown covering, death blossom, forcing chains and dynamic chains.
+Some other techniques will be implemented later, such as senior exocets, unknown covering, death blossom, forcing chains and dynamic chains.
 
 ## Forks & PRs (Pull Requests) for This Repo
 

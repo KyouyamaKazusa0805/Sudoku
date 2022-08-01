@@ -5632,6 +5632,62 @@
         <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern">
+            <summary>
+            Indicates a firework pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | B . . | . C . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | A . . | .(D). |
+            '-------'-------'-------'
+            ]]></code>
+            </summary>
+            <param name="Map"><inheritdoc/></param>
+            <param name="Pivot">
+            The pivot cell. This property can be <see langword="null"/> if four cells are used.
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern.#ctor(Sudoku.Concepts.Collections.Cells@,System.Nullable{System.Int32})">
+            <summary>
+            Indicates a firework pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | B . . | . C . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | A . . | .(D). |
+            '-------'-------'-------'
+            ]]></code>
+            </summary>
+            <param name="Map"><inheritdoc/></param>
+            <param name="Pivot">
+            The pivot cell. This property can be <see langword="null"/> if four cells are used.
+            </param>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern.Map">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern.Pivot">
+            <summary>
+            The pivot cell. This property can be <see langword="null"/> if four cells are used.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.TechniqueStructures.ITechniquePatternGatherable`1">
             <summary>
             Describes a technique pattern that can be gather-able.
@@ -8261,6 +8317,16 @@
               Looks up a localized string similar to Finned X-Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.FireworkQuadruple">
+            <summary>
+              Looks up a localized string similar to Firework Quadruple.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.FireworkTriple">
+            <summary>
+              Looks up a localized string similar to Firework Triple.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.FishyCycle">
             <summary>
               Looks up a localized string similar to Fishy Cycle.
@@ -9211,6 +9277,11 @@
               Looks up a localized string similar to {Name}: All digits can&apos;t be duplicate in cells {CellsStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FireworkTripleStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Cells {CellsStr} Must form a subset of digits {DigitsStr} in multi- houses =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FullHouseStep">
             <summary>
               Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
@@ -9772,6 +9843,11 @@
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.ExocetTemplatesCount">
             <summary>
             Indicates the total number of exocet patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.FireworkSubsetCount">
+            <summary>
+            Indicates the total number of firework subset patterns.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.BdpTemplatesSize3Count">
@@ -10580,6 +10656,16 @@
             <summary>
             Indicates the almost locked quadruple.
             The technique may not be useful because it'll be replaced with Sue de Coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.FireworkTriple">
+            <summary>
+            Indicates the firework triple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.FireworkQuadruple">
+            <summary>
+            Indicates the firework quadruple.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.NakedPair">
@@ -11996,6 +12082,11 @@
         <member name="F:Sudoku.Runtime.AnalysisServices.TechniqueGroup.AlmostLockedCandidates">
             <summary>
             Indicates the almost locked candidates (ALC) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.TechniqueGroup.Firework">
+            <summary>
+            Indicates the firework technique.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.TechniqueGroup.AlternatingInferenceChain">

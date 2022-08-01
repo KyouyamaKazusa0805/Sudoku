@@ -1105,6 +1105,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Firework Quadruple.
+        /// </summary>
+        internal static string FireworkQuadruple {
+            get {
+                return ResourceManager.GetString("FireworkQuadruple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Firework Triple.
+        /// </summary>
+        internal static string FireworkTriple {
+            get {
+                return ResourceManager.GetString("FireworkTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fishy Cycle.
         /// </summary>
         internal static string FishyCycle {
@@ -2811,6 +2829,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} Must form a subset of digits {DigitsStr} in multi- houses =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_FireworkTripleStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_FireworkTripleStep", resourceCulture);
             }
         }
         
