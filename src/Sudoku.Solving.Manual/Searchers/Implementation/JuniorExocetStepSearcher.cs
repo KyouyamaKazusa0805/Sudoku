@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 [StepSearcher]
-internal sealed partial class JuniorExocetStepSearcher : IJuniorExocetStepSearcher
+internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetStepSearcher
 {
 	/// <inheritdoc/>
 	public bool CheckAdvanced { get; set; }
@@ -162,7 +162,7 @@ internal sealed partial class JuniorExocetStepSearcher : IJuniorExocetStepSearch
 	/// as the base digits.
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private unsafe bool CheckTargetCells(
+	private bool CheckTargetCells(
 		int targetCell1, int targetCell2, short baseCellsDigitsMask, scoped in Grid grid,
 		out short resultOtherDigitsMask)
 	{
