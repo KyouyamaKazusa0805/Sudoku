@@ -67,6 +67,16 @@ public enum Technique : short
 	AlmostLockedQuadruple,
 
 	/// <summary>
+	/// Indicates the firework pair type 1.
+	/// </summary>
+	FireworkPairType1,
+
+	/// <summary>
+	/// Indicates the firework pair type 2.
+	/// </summary>
+	FireworkPairType2,
+
+	/// <summary>
 	/// Indicates the firework triple.
 	/// </summary>
 	FireworkTriple,

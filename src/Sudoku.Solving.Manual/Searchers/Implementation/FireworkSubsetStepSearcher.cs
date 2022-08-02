@@ -25,9 +25,14 @@ internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSe
 			{
 				case { } pivot when PopCount((uint)digitsMask) >= 3:
 				{
-					if (CheckTriple(accumulator, grid, onlyFindOne, pattern, digitsMask, pivot) is { } step)
+					if (CheckPairType1(accumulator, grid, onlyFindOne, pattern, digitsMask, pivot) is { } stepPairType1)
 					{
-						return step;
+						return stepPairType1;
+					}
+
+					if (CheckTriple(accumulator, grid, onlyFindOne, pattern, digitsMask, pivot) is { } stepTriple)
+					{
+						return stepTriple;
 					}
 
 					break;
@@ -40,6 +45,131 @@ internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSe
 					}
 
 					break;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Checks for firework pair type 1 steps.
+	/// </summary>
+	private Step? CheckPairType1(
+		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne,
+		scoped in FireworkPattern pattern, short digitsMask, int pivot)
+	{
+		var map = pattern.Map;
+		var nonPivotCells = map - pivot;
+		int cell1 = nonPivotCells[0], cell2 = nonPivotCells[1];
+		short satisfiedDigitsMask = IFireworkStepSearcher.GetFireworkDigits(
+			cell1,
+			cell2,
+			pivot,
+			grid,
+			out var house1CellsExcluded,
+			out var house2CellsExcluded
+		);
+		if (PopCount((uint)satisfiedDigitsMask) < 2)
+		{
+			// No possible digits found as a firework digit.
+			return null;
+		}
+
+		foreach (int[] digits in digitsMask.GetAllSets().GetSubsets(2))
+		{
+			short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
+			int cell1TheOtherLine = cell1.ToHouseIndex(
+				(Cells.Empty + cell1 + pivot).CoveredLine.ToHouse() == HouseType.Row
+					? HouseType.Column
+					: HouseType.Row
+			);
+			int cell2TheOtherLine = cell2.ToHouseIndex(
+				(Cells.Empty + cell2 + pivot).CoveredLine.ToHouse() == HouseType.Row
+					? HouseType.Column
+					: HouseType.Row
+			);
+
+			foreach (int extraCell1 in (HouseMaps[cell1TheOtherLine] & EmptyCells) - cell1)
+			{
+				foreach (int extraCell2 in (HouseMaps[cell2TheOtherLine] & EmptyCells) - cell2)
+				{
+					if (grid.GetCandidates(extraCell1) != currentDigitsMask
+						|| grid.GetCandidates(extraCell2) != currentDigitsMask)
+					{
+						continue;
+					}
+
+					// Firework pair type 1 found.
+					var elimMap = PeerMaps[extraCell1] & PeerMaps[extraCell2] & EmptyCells;
+					if (elimMap is [])
+					{
+						// No elimination cells.
+						continue;
+					}
+
+					var conclusions = new List<Conclusion>(4);
+					foreach (int cell in elimMap)
+					{
+						if (CandidatesMap[digits[0]].Contains(cell))
+						{
+							conclusions.Add(new(ConclusionType.Elimination, cell * 9 + digits[0]));
+						}
+						if (CandidatesMap[digits[1]].Contains(cell))
+						{
+							conclusions.Add(new(ConclusionType.Elimination, cell * 9 + digits[1]));
+						}
+					}
+					if (conclusions.Count == 0)
+					{
+						// No eliminations found.
+						continue;
+					}
+
+					var candidateOffsets = new List<CandidateViewNode>(10);
+					foreach (int cell in map)
+					{
+						foreach (int digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
+						{
+							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+						}
+					}
+					foreach (int digit in grid.GetCandidates(extraCell1))
+					{
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, extraCell1 * 9 + digit));
+					}
+					foreach (int digit in grid.GetCandidates(extraCell2))
+					{
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, extraCell2 * 9 + digit));
+					}
+
+					var cellOffsets = new List<CellViewNode>();
+					foreach (int cell in house1CellsExcluded)
+					{
+						cellOffsets.Add(new(DisplayColorKind.Elimination, cell));
+					}
+					foreach (int cell in house2CellsExcluded)
+					{
+						cellOffsets.Add(new(DisplayColorKind.Elimination, cell));
+					}
+
+					var step = new FireworkPairType1Step(
+						conclusions.ToImmutableArray(),
+						ImmutableArray.Create(
+							View.Empty | candidateOffsets,
+							View.Empty | candidateOffsets | cellOffsets
+						),
+						map,
+						currentDigitsMask,
+						extraCell1,
+						extraCell2
+					);
+					if (onlyFindOne)
+					{
+						return step;
+					}
+
+					accumulator.Add(step);
 				}
 			}
 		}

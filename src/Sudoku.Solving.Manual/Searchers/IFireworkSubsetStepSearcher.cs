@@ -4,6 +4,8 @@
 /// Provides with a <b>Firework</b> step searcher. The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>
+/// <item>Firework Pair Type 1 (Single Firework)</item>
+/// <item>Firework Pair Type 2 (Double Fireworks)</item>
 /// <item>Firework Triple</item>
 /// <item>Firework Quadruple</item>
 /// </item>

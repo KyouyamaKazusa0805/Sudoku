@@ -1365,4 +1365,16 @@
   <data name="TechniqueFormat_FireworkQuadrupleStep" xml:space="preserve">
     <value>{Name}: Cells {CellsStr} must form a hidden quadruple of digits {DigitsStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="FireworkPairType1" xml:space="preserve">
+    <value>Firework Pair Type 1</value>
+  </data>
+  <data name="FireworkPairType2" xml:space="preserve">
+    <value>Firework Pair Type 2</value>
+  </data>
+  <data name="TechniqueFormat_FireworkPairType1Step" xml:space="preserve">
+    <value>{Name}: Two of three cells {CellsStr} must form a hidden pair of digits {DigitsStr}, therefore one of cells {ExtraCell1Str} and {ExtraCell2Str} should be a naked pair with that firework =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_FireworkPairType2Step" xml:space="preserve">
+    <value>{Name}: Two fireworks {Firework1Str} and {Firework2Str} of digits {DigitsStr}, and an extra cell {ExtraCellStr} =&gt; {ElimStr}</value>
+  </data>
 </root>

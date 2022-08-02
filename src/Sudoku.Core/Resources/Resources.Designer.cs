@@ -1105,6 +1105,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Firework Pair Type 1.
+        /// </summary>
+        internal static string FireworkPairType1 {
+            get {
+                return ResourceManager.GetString("FireworkPairType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Firework Pair Type 2.
+        /// </summary>
+        internal static string FireworkPairType2 {
+            get {
+                return ResourceManager.GetString("FireworkPairType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Firework Quadruple.
         /// </summary>
         internal static string FireworkQuadruple {
@@ -2829,6 +2847,24 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Two of three cells {CellsStr} must form a hidden pair of digits {DigitsStr}, therefore one of cells {ExtraCell1Str} and {ExtraCell2Str} should be a naked pair with that firework =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_FireworkPairType1Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_FireworkPairType1Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Two fireworks {Firework1Str} and {Firework2Str} of digits {DigitsStr}, and an extra cell {ExtraCellStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_FireworkPairType2Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_FireworkPairType2Step", resourceCulture);
             }
         }
         

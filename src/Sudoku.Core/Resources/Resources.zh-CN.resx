@@ -1653,4 +1653,18 @@
   <data name="TechniqueFormat_FireworkQuadrupleStep" xml:space="preserve">
     <value>{Name}：单元格 {CellsStr} 里必须构成关于数字 {DigitsStr} 的跨区四数组结构 =&gt; {ElimStr}</value>
   </data>
+  <data name="FireworkPairType1" xml:space="preserve">
+    <value>花火数对・单身</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="FireworkPairType2" xml:space="preserve">
+    <value>花火数对・鸳鸯</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_FireworkPairType1Step" xml:space="preserve">
+    <value>{Name}：单元格 {CellsStr} 里的其中之二会构成关于数字 {DigitsStr} 的隐性数对，因此 {ExtraCell1Str} 和 {ExtraCell2Str} 的其一会和此结构构成显性数对 =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_FireworkPairType2Step" xml:space="preserve">
+    <value>{Name}：花火结构 {Firework1Str} 和 {Firework2Str} 使用数字 {DigitsStr}，并带有额外单元格 {ExtraCellStr} =&gt; {ElimStr}</value>
+  </data>
 </root>

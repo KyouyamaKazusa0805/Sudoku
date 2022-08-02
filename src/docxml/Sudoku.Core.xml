@@ -8317,6 +8317,16 @@
               Looks up a localized string similar to Finned X-Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.FireworkPairType1">
+            <summary>
+              Looks up a localized string similar to Firework Pair Type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.FireworkPairType2">
+            <summary>
+              Looks up a localized string similar to Firework Pair Type 2.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.FireworkQuadruple">
             <summary>
               Looks up a localized string similar to Firework Quadruple.
@@ -9275,6 +9285,16 @@
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate">
             <summary>
               Looks up a localized string similar to {Name}: All digits can&apos;t be duplicate in cells {CellsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FireworkPairType1Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Two of three cells {CellsStr} must form a hidden pair of digits {DigitsStr}, therefore one of cells {ExtraCell1Str} and {ExtraCell2Str} should be a naked pair with that firework =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FireworkPairType2Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Two fireworks {Firework1Str} and {Firework2Str} of digits {DigitsStr}, and an extra cell {ExtraCellStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FireworkQuadrupleStep">
@@ -10661,6 +10681,16 @@
             <summary>
             Indicates the almost locked quadruple.
             The technique may not be useful because it'll be replaced with Sue de Coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.FireworkPairType1">
+            <summary>
+            Indicates the firework pair type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.FireworkPairType2">
+            <summary>
+            Indicates the firework pair type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.FireworkTriple">
