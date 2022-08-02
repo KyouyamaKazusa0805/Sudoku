@@ -1360,6 +1360,9 @@
     <value>Firework Triple</value>
   </data>
   <data name="TechniqueFormat_FireworkTripleStep" xml:space="preserve">
-    <value>{Name}: Cells {CellsStr} Must form a subset of digits {DigitsStr} in multi- houses =&gt; {ElimStr}</value>
+    <value>{Name}: Cells {CellsStr} Must form a hidden triple of digits {DigitsStr} in multi- houses =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_FireworkQuadrupleStep" xml:space="preserve">
+    <value>{Name}: Cells {CellsStr} must form a hidden quadruple of digits {DigitsStr} =&gt; {ElimStr}</value>
   </data>
 </root>

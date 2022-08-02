@@ -6852,6 +6852,39 @@
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.FireworkQuadrupleStep">
+            <summary>
+            Provides with a step that is a <b>Firework Quadruple</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">The cells used.</param>
+            <param name="DigitsMask">The digits used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.FireworkQuadrupleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Collections.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Firework Quadruple</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">The cells used.</param>
+            <param name="DigitsMask">The digits used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkQuadrupleStep.Cells">
+            <summary>The cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkQuadrupleStep.DigitsMask">
+            <summary>The digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkQuadrupleStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkQuadrupleStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkQuadrupleStep.Rarity">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.FireworkStep">
             <summary>
             Provides with a step that is a <b>Firework</b> technique.
@@ -6901,6 +6934,9 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FireworkTripleStep.DigitsMask">
             <summary>The digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkTripleStep.Difficulty">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FireworkTripleStep.TechniqueCode">
             <inheritdoc/>

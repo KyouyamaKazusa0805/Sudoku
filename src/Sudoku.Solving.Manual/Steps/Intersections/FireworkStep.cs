@@ -9,7 +9,7 @@ public abstract record FireworkStep(ConclusionList Conclusions, ViewList Views) 
 	IntersectionStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 6.0M;
+	public override decimal Difficulty => 5.9M;
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

@@ -1650,4 +1650,7 @@
   <data name="TechniqueFormat_FireworkTripleStep" xml:space="preserve">
     <value>{Name}：单元格 {CellsStr} 里必须构成关于数字 {DigitsStr} 的跨区三数组结构 =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_FireworkQuadrupleStep" xml:space="preserve">
+    <value>{Name}：单元格 {CellsStr} 里必须构成关于数字 {DigitsStr} 的跨区四数组结构 =&gt; {ElimStr}</value>
+  </data>
 </root>

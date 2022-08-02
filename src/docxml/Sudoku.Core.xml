@@ -9277,9 +9277,14 @@
               Looks up a localized string similar to {Name}: All digits can&apos;t be duplicate in cells {CellsStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FireworkQuadrupleStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Cells {CellsStr} must form a hidden quadruple of digits {DigitsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FireworkTripleStep">
             <summary>
-              Looks up a localized string similar to {Name}: Cells {CellsStr} Must form a subset of digits {DigitsStr} in multi- houses =&gt; {ElimStr}.
+              Looks up a localized string similar to {Name}: Cells {CellsStr} Must form a hidden triple of digits {DigitsStr} in multi- houses =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FullHouseStep">

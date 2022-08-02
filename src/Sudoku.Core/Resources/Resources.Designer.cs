@@ -2833,7 +2833,16 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} Must form a subset of digits {DigitsStr} in multi- houses =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} must form a hidden quadruple of digits {DigitsStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_FireworkQuadrupleStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_FireworkQuadrupleStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} Must form a hidden triple of digits {DigitsStr} in multi- houses =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_FireworkTripleStep {
             get {
