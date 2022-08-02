@@ -685,6 +685,20 @@ public sealed partial class SudokuPage : Page
 					{
 						string firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
 						string secondPart =
+							$"""
+							{R["SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep"]!}
+									
+							{R["SudokuPage_Info_WrongGrid"]!}{invalidGrid:#}
+							""";
+
+						_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}{wrongStep}");
+
+						break;
+					}
+					case { FailedReason: var failedReason, UnhandledException: var unhandledException }:
+					{
+						string firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
+						string secondPart =
 							failedReason switch
 							{
 								FailedReason.UserCancelled
@@ -692,12 +706,11 @@ public sealed partial class SudokuPage : Page
 								FailedReason.NotImplemented
 									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented"]!,
 								FailedReason.ExceptionThrown
-									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown"]!,
-								FailedReason.WrongStep
 									=> $"""
-									{R["SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep"]!}
-									
-									{R["SudokuPage_Info_WrongGrid"]!}{invalidGrid:#}
+									{R["SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown"]!}
+
+									{R["SudokuPage_Info_ExceptionIs"]!}
+									{unhandledException!.Message}
 									""",
 #pragma warning disable CS0618
 								FailedReason.PuzzleIsTooHard
@@ -705,7 +718,7 @@ public sealed partial class SudokuPage : Page
 #pragma warning restore CS0618
 							};
 
-						_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}{wrongStep}");
+						_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}");
 
 						break;
 					}

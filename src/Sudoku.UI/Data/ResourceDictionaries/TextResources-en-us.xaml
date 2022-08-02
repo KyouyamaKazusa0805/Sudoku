@@ -99,6 +99,7 @@
 	<x:String x:Key="SudokuPage_Info_WillClearSudokuGrid">Click me will remove the sudoku grid to the empty status. Do you want to continue?</x:String>
 	<x:String x:Key="SudokuPage_Info_SolvingSteps">Solving steps:</x:String>
 	<x:String x:Key="SudokuPage_Info_WrongGrid">Invalid grid:</x:String>
+	<x:String x:Key="SudokuPage_Info_ExceptionIs">Exception details:</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_TechniqueName">Technique Name</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Count">Count</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_DifficultyRating">Difficulty Rating</x:String>

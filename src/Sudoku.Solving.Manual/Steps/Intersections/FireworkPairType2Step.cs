@@ -5,7 +5,6 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-/// <param name="Cells">The cells used.</param>
 /// <param name="DigitsMask">The digits used.</param>
 /// <param name="Pattern1">The first pattern used.</param>
 /// <param name="Pattern2">The second pattern used.</param>
@@ -13,7 +12,6 @@
 public sealed record FireworkPairType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
 	short DigitsMask,
 	scoped in FireworkPattern Pattern1,
 	scoped in FireworkPattern Pattern2,

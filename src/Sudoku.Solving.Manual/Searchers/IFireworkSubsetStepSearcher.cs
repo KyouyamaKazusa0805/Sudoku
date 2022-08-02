@@ -16,7 +16,12 @@ public interface IFireworkSubsetStepSearcher : IFireworkStepSearcher
 	/// <summary>
 	/// Indicates the patterns used.
 	/// </summary>
-	public static readonly FireworkPattern[] Patterns = new FireworkPattern[FireworkSubsetCount];
+	protected static readonly FireworkPattern[] Patterns = new FireworkPattern[FireworkSubsetCount];
+
+	/// <summary>
+	/// Indicates the pattern pairs. This field is used for checking the technique firework pair type 2.
+	/// </summary>
+	protected static readonly (FireworkPattern First, FireworkPattern Second, int MeetCell)[] PatternPairs = new (FireworkPattern, FireworkPattern, int)[PairFireworksCount];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -71,6 +76,37 @@ public interface IFireworkSubsetStepSearcher : IFireworkStepSearcher
 						}
 					}
 				}
+			}
+		}
+
+		i = 0;
+		for (int firstIndex = 0; firstIndex < Patterns.Length - 1; firstIndex++)
+		{
+			for (int secondIndex = firstIndex + 1; secondIndex < Patterns.Length; secondIndex++)
+			{
+				scoped ref readonly var a = ref Patterns[firstIndex];
+				scoped ref readonly var b = ref Patterns[secondIndex];
+				if ((a, b) is not ((var aMap, { } aPivot), (var bMap, { } bPivot)))
+				{
+					continue;
+				}
+
+				if ((aMap & bMap) is not [])
+				{
+					continue;
+				}
+
+				if (aPivot.ToHouseIndex(HouseType.Block) == bPivot.ToHouseIndex(HouseType.Block))
+				{
+					continue;
+				}
+
+				if ((!(aMap - aPivot) & !(bMap - bPivot)) is not [var meetCell])
+				{
+					continue;
+				}
+
+				PatternPairs[i++] = (a, b, meetCell);
 			}
 		}
 	}

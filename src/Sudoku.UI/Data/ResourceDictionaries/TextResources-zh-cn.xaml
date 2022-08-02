@@ -96,6 +96,7 @@
 	<x:String x:Key="SudokuPage_Info_WillClearSudokuGrid">点击按钮会清空盘面，这意味着这个题目会被丢弃掉，然后程序直接恢复到空盘的环境。你确定要这么做吗？</x:String>
 	<x:String x:Key="SudokuPage_Info_SolvingSteps">解题步骤：</x:String>
 	<x:String x:Key="SudokuPage_Info_WrongGrid">错误盘面：</x:String>
+	<x:String x:Key="SudokuPage_Info_ExceptionIs">异常错误信息：</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_TechniqueName">技巧名</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Count">数量</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_DifficultyRating">难度等级</x:String>

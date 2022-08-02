@@ -49,6 +49,11 @@ public static partial class CommonReadOnlies
 	public const int BdpTemplatesSize4Count = 11664;
 
 	/// <summary>
+	/// Indicates the total number of pair fireworks.
+	/// </summary>
+	public const int PairFireworksCount = 34263;
+
+	/// <summary>
 	/// Indicates the total number of multi-sector locked sets possible templates.
 	/// </summary>
 	public const int MultisectorLockedSetsTemplatesCount = 74601;

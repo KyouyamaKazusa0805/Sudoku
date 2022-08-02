@@ -49,6 +49,11 @@ internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSe
 			}
 		}
 
+		if (CheckPairType2(accumulator, grid, onlyFindOne) is { } stepPairType2)
+		{
+			return stepPairType2;
+		}
+
 		return null;
 	}
 
@@ -94,6 +99,12 @@ internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSe
 			{
 				foreach (int extraCell2 in (HouseMaps[cell2TheOtherLine] & EmptyCells) - cell2)
 				{
+					if (extraCell1 == extraCell2)
+					{
+						// Cannot be a same cell.
+						continue;
+					}
+
 					if (grid.GetCandidates(extraCell1) != currentDigitsMask
 						|| grid.GetCandidates(extraCell2) != currentDigitsMask)
 					{
@@ -171,6 +182,164 @@ internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSe
 
 					accumulator.Add(step);
 				}
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Checks for firework pair type 2 steps.
+	/// </summary>
+	private Step? CheckPairType2(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	{
+		foreach (var (a, b, meetCell) in IFireworkSubsetStepSearcher.PatternPairs)
+		{
+			if ((a, b) is not ((var aMap, { } aPivot), (var bMap, { } bPivot)))
+			{
+				continue;
+			}
+
+			var nonPivotCells1 = aMap - aPivot;
+			int cell11 = nonPivotCells1[0], cell21 = nonPivotCells1[1];
+			short satisfiedDigitsMask1 = IFireworkStepSearcher.GetFireworkDigits(
+				cell11,
+				cell21,
+				aPivot,
+				grid,
+				out var house1CellsExcluded1,
+				out var house2CellsExcluded1
+			);
+
+			var nonPivotCells2 = bMap - bPivot;
+			int cell12 = nonPivotCells2[0], cell22 = nonPivotCells2[1];
+			short satisfiedDigitsMask2 = IFireworkStepSearcher.GetFireworkDigits(
+				cell12,
+				cell22,
+				bPivot,
+				grid,
+				out var house1CellsExcluded2,
+				out var house2CellsExcluded2
+			);
+			short intersection = (short)(satisfiedDigitsMask1 & satisfiedDigitsMask2);
+			if (PopCount((uint)intersection) < 2)
+			{
+				continue;
+			}
+
+			foreach (int[] digits in intersection.GetAllSets().GetSubsets(2))
+			{
+				short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
+				if (grid.GetCandidates(meetCell) != currentDigitsMask)
+				{
+					continue;
+				}
+
+				// Firework pair type 2 found.
+				var untouchedCrossCells = (
+					HouseMaps[meetCell.ToHouseIndex(HouseType.Row)]
+						| HouseMaps[meetCell.ToHouseIndex(HouseType.Column)]
+				) - meetCell - nonPivotCells1 - nonPivotCells2;
+
+				var conclusions = new List<Conclusion>();
+				foreach (int cell in
+					untouchedCrossCells & EmptyCells & (CandidatesMap[digits[0]] | CandidatesMap[digits[1]]))
+				{
+					if (CandidatesMap[digits[0]].Contains(cell))
+					{
+						conclusions.Add(new(ConclusionType.Elimination, cell * 9 + digits[0]));
+					}
+					if (CandidatesMap[digits[1]].Contains(cell))
+					{
+						conclusions.Add(new(ConclusionType.Elimination, cell * 9 + digits[1]));
+					}
+				}
+				foreach (int digit in (short)(grid.GetCandidates(aPivot) & ~currentDigitsMask))
+				{
+					conclusions.Add(new(ConclusionType.Elimination, aPivot, digit));
+				}
+				foreach (int digit in (short)(grid.GetCandidates(bPivot) & ~currentDigitsMask))
+				{
+					conclusions.Add(new(ConclusionType.Elimination, bPivot, digit));
+				}
+				if (conclusions.Count == 0)
+				{
+					// No eliminations found.
+					continue;
+				}
+
+				var candidateOffsets = new List<CandidateViewNode>(14);
+				var candidateOffsetsOnlyContainFirework1 = new List<CandidateViewNode>(6);
+				var candidateOffsetsOnlyContainFirework2 = new List<CandidateViewNode>(6);
+				foreach (int cell in aMap)
+				{
+					foreach (int digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
+					{
+						var node = new CandidateViewNode(DisplayColorKind.Normal, cell * 9 + digit);
+						candidateOffsets.Add(node);
+						candidateOffsetsOnlyContainFirework1.Add(node);
+					}
+				}
+				foreach (int cell in bMap)
+				{
+					foreach (int digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
+					{
+						var node = new CandidateViewNode(DisplayColorKind.Auxiliary1, cell * 9 + digit);
+						candidateOffsets.Add(node);
+						candidateOffsetsOnlyContainFirework2.Add(node);
+					}
+				}
+				foreach (int digit in grid.GetCandidates(meetCell))
+				{
+					candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, meetCell * 9 + digit));
+				}
+
+				var cellOffsetsView2 = new List<CellViewNode>();
+				foreach (int cell in house1CellsExcluded1)
+				{
+					cellOffsetsView2.Add(new(DisplayColorKind.Elimination, cell));
+				}
+				foreach (int cell in house2CellsExcluded1)
+				{
+					cellOffsetsView2.Add(new(DisplayColorKind.Elimination, cell));
+				}
+				var cellOffsetsView3 = new List<CellViewNode>();
+				foreach (int cell in house1CellsExcluded2)
+				{
+					cellOffsetsView3.Add(new(DisplayColorKind.Elimination, cell));
+				}
+				foreach (int cell in house2CellsExcluded2)
+				{
+					cellOffsetsView3.Add(new(DisplayColorKind.Elimination, cell));
+				}
+
+				var step = new FireworkPairType2Step(
+					conclusions.ToImmutableArray(),
+					ImmutableArray.Create(
+						View.Empty | candidateOffsets,
+						View.Empty | candidateOffsetsOnlyContainFirework1 | cellOffsetsView2,
+						View.Empty | candidateOffsetsOnlyContainFirework2 | cellOffsetsView3,
+						View.Empty
+							| candidateOffsetsOnlyContainFirework1
+							| candidateOffsetsOnlyContainFirework2
+							| new UnknownViewNode[]
+							{
+								new(DisplayColorKind.Normal, aPivot, (Utf8Char)'x', currentDigitsMask),
+								new(DisplayColorKind.Normal, bPivot, (Utf8Char)'x', currentDigitsMask),
+								new(DisplayColorKind.Normal, meetCell, (Utf8Char)'x', currentDigitsMask)
+							}
+					),
+					currentDigitsMask,
+					a,
+					b,
+					meetCell
+				);
+				if (onlyFindOne)
+				{
+					return step;
+				}
+
+				accumulator.Add(step);
 			}
 		}
 

@@ -1209,6 +1209,11 @@
             Indicates the patterns used.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IFireworkSubsetStepSearcher.PatternPairs">
+            <summary>
+            Indicates the pattern pairs. This field is used for checking the technique firework pair type 2.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IFireworkSubsetStepSearcher.#cctor">
             <static-constructor>
 		<summary>
@@ -1847,6 +1852,11 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckPairType1(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int16,System.Int32)">
             <summary>
             Checks for firework pair type 1 steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckPairType2(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
+            <summary>
+            Checks for firework pair type 2 steps.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckTriple(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int16,System.Int32)">
@@ -6902,26 +6912,21 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-            <param name="Cells">The cells used.</param>
             <param name="DigitsMask">The digits used.</param>
             <param name="Pattern1">The first pattern used.</param>
             <param name="Pattern2">The second pattern used.</param>
             <param name="ExtraCell">The extra cell used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.FireworkPairType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Collections.Cells@,System.Int16,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.FireworkPairType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 2</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-            <param name="Cells">The cells used.</param>
             <param name="DigitsMask">The digits used.</param>
             <param name="Pattern1">The first pattern used.</param>
             <param name="Pattern2">The second pattern used.</param>
             <param name="ExtraCell">The extra cell used.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.FireworkPairType2Step.Cells">
-            <summary>The cells used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FireworkPairType2Step.DigitsMask">
             <summary>The digits used.</summary>
