@@ -54,72 +54,32 @@ internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSe
 		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in FireworkPattern pattern, short digitsMask, int pivot)
 	{
+		var nonPivotCells = pattern.Map - pivot;
+		int cell1 = nonPivotCells[0], cell2 = nonPivotCells[1];
+		short satisfiedDigitsMask = IFireworkSubsetStepSearcher.IsFirework(
+			cell1,
+			cell2,
+			pivot,
+			grid,
+			out var house1CellsExcluded,
+			out var house2CellsExcluded
+		);
+		if (satisfiedDigitsMask == 0)
+		{
+			// No possible digits found as a firework digit.
+			return null;
+		}
+
 		foreach (int[] digits in digitsMask.GetAllSets().GetSubsets(3))
 		{
 			short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
-
-			var otherCells = pattern.Map - pivot;
-			int cell1 = otherCells[0], cell2 = otherCells[1];
-			var cell1Map = Cells.Empty + cell1 + pivot;
-			var cell2Map = Cells.Empty + cell2 + pivot;
-			int pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
-			int house1 = cell1Map.CoveredLine;
-			int house2 = cell2Map.CoveredLine;
-			var house1CellsExcluded = HouseMaps[house1] - HouseMaps[pivotCellBlock] - cell1;
-			var house2CellsExcluded = HouseMaps[house2] - HouseMaps[pivotCellBlock] - cell2;
-
-			bool isFormed = true;
-			foreach (int house1CellExcluded in house1CellsExcluded)
-			{
-				if (
-					!(
-						grid[house1CellExcluded] is var cellValue
-						// This cell is filled by a digit value.
-						&& cellValue != -1
-						// This cell is not filled the digits appeared in the firework subset.
-						&& (currentDigitsMask >> cellValue & 1) == 0
-						// Or this cell is an empty cell.
-						|| cellValue == -1
-						&& grid.GetCandidates(house1CellExcluded) is var house1CellExcludedDigitsMask
-						// This cell doesn't contain any possible candidates appeared in the firework subset.
-						&& (currentDigitsMask & house1CellExcludedDigitsMask) == 0
-					)
-				)
-				{
-					isFormed = false;
-					break;
-				}
-			}
-			if (isFormed)
-			{
-				foreach (int house2CellExcluded in house2CellsExcluded)
-				{
-					if (
-						!(
-							grid[house2CellExcluded] is var cellValue
-							// This cell is filled by a digit value.
-							&& cellValue != -1
-							// This cell is not filled the digits appeared in the firework subset.
-							&& (currentDigitsMask >> cellValue & 1) == 0
-							// Or this cell is an empty cell.
-							|| cellValue == -1
-							&& grid.GetCandidates(house2CellExcluded) is var house2CellExcludedDigitsMask
-							// This cell doesn't contain any possible candidates appeared in the firework subset.
-							&& (currentDigitsMask & house2CellExcludedDigitsMask) == 0
-						)
-					)
-					{
-						isFormed = false;
-						break;
-					}
-				}
-			}
-			if (!isFormed)
+			if (satisfiedDigitsMask != currentDigitsMask)
 			{
 				continue;
 			}
 
 			// Firework Triple is found.
+			int pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
 			var pivotRowCells = HouseMaps[pivot.ToHouseIndex(HouseType.Row)];
 			var pivotColumnCells = HouseMaps[pivot.ToHouseIndex(HouseType.Column)];
 
@@ -176,6 +136,8 @@ internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSe
 			}
 
 			var unknowns = new List<UnknownViewNode>(4);
+			int house1 = (Cells.Empty + cell1 + pivot).CoveredLine;
+			int house2 = (Cells.Empty + cell2 + pivot).CoveredLine;
 			foreach (int cell in (HouseMaps[house1] & HouseMaps[pivotCellBlock] & EmptyCells) - pivot)
 			{
 				unknowns.Add(new(DisplayColorKind.Normal, cell, (Utf8Char)'y', currentDigitsMask));
