@@ -1099,16 +1099,33 @@
             Defines a step searcher that searches for firework steps.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IFireworkStepSearcher.GetFireworkDigits(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            <para>Checks for all digits which the cells containing form a firework pattern.</para>
+            <para>
+            This method returns the digits that satisfied the condition. If none found,
+            this method will return 0.
+            </para>
+            </summary>
+            <param name="c1">The cell 1 used in this pattern.</param>
+            <param name="c2">The cell 2 used in this pattern.</param>
+            <param name="pivot">The pivot cell.</param>
+            <param name="grid">The grid.</param>
+            <param name="house1CellsExcluded">
+            The excluded cells that is out of the firework structure in the <paramref name="c1"/>'s house.
+            </param>
+            <param name="house2CellsExcluded">
+            The excluded cells that is out of the firework structure in the <paramref name="c2"/>'s house.
+            </param>
+            <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IFireworkSubsetStepSearcher">
             <summary>
             Provides with a <b>Firework</b> step searcher. The step searcher will include the following techniques:
             <list type="bullet">
             <item>
-            Subset types:
-            <list type="bullet">
             <item>Firework Triple</item>
             <item>Firework Quadruple</item>
-            </list>
             </item>
             </list>
             </summary>
@@ -1130,24 +1147,6 @@
 			</para>
 		</summary>
 	</static-constructor>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IFireworkSubsetStepSearcher.IsFirework(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Determines whether the specified pattern forms a valid firework pattern.
-            This method returns the digits that satisfied the condition. If none found,
-            this method will return 0.
-            </summary>
-            <param name="c1">The cell 1 used in this pattern.</param>
-            <param name="c2">The cell 2 used in this pattern.</param>
-            <param name="pivot">The pivot cell.</param>
-            <param name="grid">The grid.</param>
-            <param name="house1CellsExcluded">
-            The excluded cells that is out of the firework structure in the <paramref name="c1"/>'s house.
-            </param>
-            <param name="house2CellsExcluded">
-            The excluded cells that is out of the firework structure in the <paramref name="c2"/>'s house.
-            </param>
-            <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IFishStepSearcher">
             <summary>

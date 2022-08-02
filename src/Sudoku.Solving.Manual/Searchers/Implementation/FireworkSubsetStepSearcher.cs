@@ -56,7 +56,7 @@ internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSe
 	{
 		var nonPivotCells = pattern.Map - pivot;
 		int cell1 = nonPivotCells[0], cell2 = nonPivotCells[1];
-		short satisfiedDigitsMask = IFireworkSubsetStepSearcher.IsFirework(
+		short satisfiedDigitsMask = IFireworkStepSearcher.GetFireworkDigits(
 			cell1,
 			cell2,
 			pivot,
@@ -237,7 +237,7 @@ internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSe
 				{
 					short pair1DigitsMask = (short)(1 << d1 | 1 << d2);
 					short pair2DigitsMask = (short)(1 << d3 | 1 << d4);
-					short satisfiedDigitsMaskPivot1 = IFireworkSubsetStepSearcher.IsFirework(
+					short satisfiedDigitsMaskPivot1 = IFireworkStepSearcher.GetFireworkDigits(
 						cell1Pivot1,
 						cell2Pivot1,
 						pivot1,
@@ -245,7 +245,7 @@ internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSe
 						out var house1CellsExcludedPivot1,
 						out var house2CellsExcludedPivot1
 					);
-					short satisfiedDigitsMaskPivot2 = IFireworkSubsetStepSearcher.IsFirework(
+					short satisfiedDigitsMaskPivot2 = IFireworkStepSearcher.GetFireworkDigits(
 						cell1Pivot2,
 						cell2Pivot2,
 						pivot2,
