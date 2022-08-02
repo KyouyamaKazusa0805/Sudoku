@@ -3,62 +3,6 @@
 [StepSearcher]
 internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternStepSearcher
 {
-	/// <summary>
-	/// The possible pattern offsets.
-	/// </summary>
-	private static readonly (int[], int[], int[], int[])[] PatternOffsets;
-
-
-	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
-	static ChromaticPatternStepSearcher()
-	{
-		int[][] diagonalCases = { new[] { 0, 10, 20 }, new[] { 1, 11, 18 }, new[] { 2, 9, 19 } };
-		int[][] antidiagonalCases = { new[] { 0, 11, 19 }, new[] { 1, 9, 20 }, new[] { 2, 10, 18 } };
-
-		var patternOffsetsList = new List<(int[], int[], int[], int[])>();
-		foreach (var (aCase, bCase, cCase, dCase) in stackalloc[]
-		{
-			(true, false, false, false),
-			(false, true, false, false),
-			(false, false, true, false),
-			(false, false, false, true)
-		})
-		{
-			// Phase 1.
-			foreach (int[] a in aCase ? diagonalCases : antidiagonalCases)
-			{
-				foreach (int[] b in bCase ? diagonalCases : antidiagonalCases)
-				{
-					foreach (int[] c in cCase ? diagonalCases : antidiagonalCases)
-					{
-						foreach (int[] d in dCase ? diagonalCases : antidiagonalCases)
-						{
-							patternOffsetsList.Add((a, b, c, d));
-						}
-					}
-				}
-			}
-
-			// Phase 2.
-			foreach (int[] a in aCase ? antidiagonalCases : diagonalCases)
-			{
-				foreach (int[] b in bCase ? antidiagonalCases : diagonalCases)
-				{
-					foreach (int[] c in cCase ? antidiagonalCases : diagonalCases)
-					{
-						foreach (int[] d in dCase ? antidiagonalCases : diagonalCases)
-						{
-							patternOffsetsList.Add((a, b, c, d));
-						}
-					}
-				}
-			}
-		}
-
-		PatternOffsets = patternOffsetsList.ToArray();
-	}
-
-
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
@@ -110,7 +54,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 			int c3 = HouseCells[blocks[2]][0];
 			int c4 = HouseCells[blocks[3]][0];
 
-			foreach (var (a, b, c, d) in PatternOffsets)
+			foreach (var (a, b, c, d) in IChromaticPatternStepSearcher.PatternOffsets)
 			{
 				var pattern = f(a, c1) | f(b, c2) | f(c, c3) | f(d, c4);
 				if ((EmptyCells & pattern) != pattern)

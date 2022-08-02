@@ -29,4 +29,58 @@
 /// </remarks>
 public interface IChromaticPatternStepSearcher : IRankTheoryStepSearcher
 {
+	/// <summary>
+	/// The possible pattern offsets.
+	/// </summary>
+	protected static readonly (int[], int[], int[], int[])[] PatternOffsets;
+
+
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
+	static IChromaticPatternStepSearcher()
+	{
+		int[][] diagonalCases = { new[] { 0, 10, 20 }, new[] { 1, 11, 18 }, new[] { 2, 9, 19 } };
+		int[][] antidiagonalCases = { new[] { 0, 11, 19 }, new[] { 1, 9, 20 }, new[] { 2, 10, 18 } };
+
+		var patternOffsetsList = new List<(int[], int[], int[], int[])>();
+		foreach (var (aCase, bCase, cCase, dCase) in stackalloc[]
+		{
+			(true, false, false, false),
+			(false, true, false, false),
+			(false, false, true, false),
+			(false, false, false, true)
+		})
+		{
+			// Phase 1.
+			foreach (int[] a in aCase ? diagonalCases : antidiagonalCases)
+			{
+				foreach (int[] b in bCase ? diagonalCases : antidiagonalCases)
+				{
+					foreach (int[] c in cCase ? diagonalCases : antidiagonalCases)
+					{
+						foreach (int[] d in dCase ? diagonalCases : antidiagonalCases)
+						{
+							patternOffsetsList.Add((a, b, c, d));
+						}
+					}
+				}
+			}
+
+			// Phase 2.
+			foreach (int[] a in aCase ? antidiagonalCases : diagonalCases)
+			{
+				foreach (int[] b in bCase ? antidiagonalCases : diagonalCases)
+				{
+					foreach (int[] c in cCase ? antidiagonalCases : diagonalCases)
+					{
+						foreach (int[] d in dCase ? antidiagonalCases : diagonalCases)
+						{
+							patternOffsetsList.Add((a, b, c, d));
+						}
+					}
+				}
+			}
+		}
+
+		PatternOffsets = patternOffsetsList.ToArray();
+	}
 }

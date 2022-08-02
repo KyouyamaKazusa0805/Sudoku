@@ -986,6 +986,24 @@
             please visit <see href="http://forum.enjoysudoku.com/chromatic-patterns-t39885.html">this link</see>.
             </remarks>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IChromaticPatternStepSearcher.PatternOffsets">
+            <summary>
+            The possible pattern offsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChromaticPatternStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IComplexFishStepSearcher">
             <summary>
             Provides with a <b>Complex Fish</b> step searcher.
@@ -1021,6 +1039,24 @@
             <item>Domino Loop</item>
             </list>
             </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IDominoLoopStepSearcher.SkLoopTable">
+            <summary>
+            The position table of all SK-loops.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IDominoLoopStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IEmptyRectangleIntersectionPairStepSearcher">
             <summary>
@@ -1093,6 +1129,42 @@
             <item>Extended Rectangle Type 4</item>
             </list>
             </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IExtendedRectangleStepSearcher.PatternInfos">
+            <summary>
+            Indicates all possible extended rectangle pattern combinations.
+            </summary>
+            <remarks>
+            <para>The list contains two types of <b>Extended Rectangle</b>s:</para>
+            <para>
+            Fit type (2 blocks spanned):
+            <code><![CDATA[
+            ab | ab
+            bc | bc
+            ac | ac
+            ]]></code>
+            </para>
+            <para>
+            Fat type (3 blocks spanned):
+            <code><![CDATA[
+            ab | ac | bc
+            ab | ac | bc
+            ]]></code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IExtendedRectangleStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IFireworkStepSearcher">
             <summary>
@@ -1631,24 +1703,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.PatternOffsets">
-            <summary>
-            The possible pattern offsets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -1708,29 +1762,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.SkLoopTable">
-            <summary>
-            The position table of all SK-loops.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.HouseMaps">
-            <summary>
-            The house maps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -1748,42 +1779,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.PatternInfos">
-            <summary>
-            Indicates all possible extended rectangle pattern combinations.
-            </summary>
-            <remarks>
-            <para>The list contains two types of <b>Extended Rectangle</b>s:</para>
-            <para>
-            Fit type (2 blocks spanned):
-            <code><![CDATA[
-            ab | ab
-            bc | bc
-            ac | ac
-            ]]></code>
-            </para>
-            <para>
-            Fat type (3 blocks spanned):
-            <code><![CDATA[
-            ab | ac | bc
-            ab | ac | bc
-            ]]></code>
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -1936,24 +1931,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher.Patterns">
-            <summary>
-            Indicates the list initialized with the static constructor.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -2007,24 +1984,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.PatternOverlayStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.QiuDeadlyPatternStepSearcher.Patterns">
-            <summary>
-            All different patterns.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.QiuDeadlyPatternStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.QiuDeadlyPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -2171,27 +2130,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher.Patterns">
-            <summary>
-            Indicates all possible patterns to iterate.
-            </summary>
-            <remarks>
-            Please note that all possible heptagons and octagons are in here.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -2832,24 +2770,6 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher.Patterns">
-            <summary>
-            Indicates the patterns.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -2875,6 +2795,24 @@
             <item>Multi-sector Locked Sets</item>
             </list>
             </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IMultisectorLockedSetsStepSearcher.Patterns">
+            <summary>
+            Indicates the list initialized with the static constructor.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IMultisectorLockedSetsStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.INormalFishStepSearcher">
             <summary>
@@ -2946,6 +2884,24 @@
             <item>Qiu's Deadly Pattern Locked Type</item>
             </list>
             </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IQiuDeadlyPatternStepSearcher.Patterns">
+            <summary>
+            All different patterns.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IQiuDeadlyPatternStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IRankTheoryStepSearcher">
             <summary>
@@ -3250,6 +3206,27 @@
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IUniquePolygonStepSearcher.Patterns">
+            <summary>
+            Indicates all possible patterns to iterate.
+            </summary>
+            <remarks>
+            Please note that all possible heptagons and octagons are in here.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IUniquePolygonStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher">
             <summary>
             Provides with a <b>Unique Rectangle</b> step searcher.
@@ -3384,6 +3361,24 @@
             <item>Unique Square Type 4</item>
             </list>
             </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IUniqueSquareStepSearcher.Patterns">
+            <summary>
+            Indicates the patterns.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueSquareStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniversalStepSearcher">
             <summary>
