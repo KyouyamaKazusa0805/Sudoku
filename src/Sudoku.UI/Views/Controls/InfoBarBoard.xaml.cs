@@ -136,7 +136,7 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 	/// <param name="e">The event arguments provided.</param>
 	private void InfoBar_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
 	{
-		if (sender is not InfoBar { Severity: >= InfoBarSeverity.Warning, Message: var message } infoBar)
+		if (sender is not InfoBar { Message: var message })
 		{
 			return;
 		}
@@ -144,8 +144,6 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
 		dataPackage.SetText(message);
 		Clipboard.SetContent(dataPackage);
-
-		ToolTipService.SetToolTip(infoBar, R["CopyDetailsSuccessfully"]!);
 	}
 
 	/// <summary>
