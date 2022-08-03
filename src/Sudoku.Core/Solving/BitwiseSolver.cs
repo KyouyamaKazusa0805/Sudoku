@@ -12,7 +12,7 @@ using static FileLocalType_Constants;
 /// The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
 /// to handle a sudoku grid, which is efficient.
 /// </remarks>
-public sealed unsafe partial class BitwiseSolver : ISimpleSolver
+public sealed unsafe class BitwiseSolver : ISimpleSolver
 {
 	/// <summary>
 	/// The buffer length of a solution puzzle.
