@@ -21,7 +21,7 @@ using static Sudoku.Runtime.AnalysisServices.EnabledArea;
 [assembly: SearcherConfiguration<QiuDeadlyPatternStepSearcher>(B)]
 [assembly: SearcherConfiguration<BivalueUniversalGraveStepSearcher>(B)]
 [assembly: SearcherConfiguration<EmptyRectangleIntersectionPairStepSearcher>(B)]
-[assembly: SearcherConfiguration<FireworkSubsetStepSearcher>(B)]
+[assembly: SearcherConfiguration<FireworkStepSearcher>(B)]
 [assembly: SearcherConfiguration<AlmostLockedSetsXzStepSearcher>(B)]
 [assembly: SearcherConfiguration<AlmostLockedSetsXyWingStepSearcher>(B)]
 [assembly: SearcherConfiguration<AlmostLockedSetsWWingStepSearcher>(B)]

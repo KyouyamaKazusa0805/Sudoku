@@ -1168,8 +1168,43 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IFireworkStepSearcher">
             <summary>
-            Defines a step searcher that searches for firework steps.
+            Provides with a <b>Firework</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Firework Pair:
+            <list type="bullet">
+            <item>Firework Pair Type 1 (Single Firework + 2 Bi-value cells)</item>
+            <item>Firework Pair Type 2 (Double Fireworks)</item>
+            <item>Firework Pair Type 3 (Single Fireworks + Empty Rectangle)</item>
+            </list>
+            </item>
+            <item>Firework Triple</item>
+            <item>Firework Quadruple</item>
+            </list>
             </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IFireworkStepSearcher.Patterns">
+            <summary>
+            Indicates the patterns used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IFireworkStepSearcher.PatternPairs">
+            <summary>
+            Indicates the pattern pairs. This field is used for checking the technique firework pair type 2.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IFireworkStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IFireworkStepSearcher.GetFireworkDigits(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
             <summary>
@@ -1190,46 +1225,6 @@
             The excluded cells that is out of the firework structure in the <paramref name="c2"/>'s house.
             </param>
             <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IFireworkSubsetStepSearcher">
-            <summary>
-            Provides with a <b>Firework</b> step searcher. The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Firework Pair:
-            <list type="bullet">
-            <item>Firework Pair Type 1 (Single Firework + 2 Bi-value cells)</item>
-            <item>Firework Pair Type 2 (Double Fireworks)</item>
-            <item>Firework Pair Type 3 (Single Fireworks + Empty Rectangle)</item>
-            </list>
-            </item>
-            <item>Firework Triple</item>
-            <item>Firework Quadruple</item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.IFireworkSubsetStepSearcher.Patterns">
-            <summary>
-            Indicates the patterns used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.IFireworkSubsetStepSearcher.PatternPairs">
-            <summary>
-            Indicates the pattern pairs. This field is used for checking the technique firework pair type 2.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IFireworkSubsetStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IFishStepSearcher">
             <summary>
@@ -1850,35 +1845,35 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckPairType1(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckPairType1(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int16,System.Int32)">
             <summary>
             Checks for firework pair type 1 steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckPairType2(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckPairType2(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <summary>
             Checks for firework pair type 2 steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckPairType3(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckPairType3(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int16,System.Int32)">
             <summary>
             Checks for firework pair type 3 steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckTriple(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckTriple(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int16,System.Int32)">
             <summary>
             Checks for firework triple steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckQuadruple(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckQuadruple(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@)">
             <summary>
             Checks for firework quadruple steps.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.Options">
+        <member name="P:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.Options">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">

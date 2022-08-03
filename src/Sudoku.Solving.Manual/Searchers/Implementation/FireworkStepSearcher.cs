@@ -1,12 +1,12 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 [StepSearcher]
-internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSearcher
+internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 {
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		foreach (var pattern in IFireworkSubsetStepSearcher.Patterns)
+		foreach (var pattern in IFireworkStepSearcher.Patterns)
 		{
 			if ((EmptyCells & pattern.Map) != pattern.Map)
 			{
@@ -198,7 +198,7 @@ internal sealed partial class FireworkSubsetStepSearcher : IFireworkSubsetStepSe
 	/// </summary>
 	private Step? CheckPairType2(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		foreach (var (a, b, meetCell) in IFireworkSubsetStepSearcher.PatternPairs)
+		foreach (var (a, b, meetCell) in IFireworkStepSearcher.PatternPairs)
 		{
 			if ((a, b) is not ((var aMap, { } aPivot), (var bMap, { } bPivot)))
 			{
