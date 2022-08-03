@@ -3740,13 +3740,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepsGatherer.Search(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            Search for all possible steps in a grid.
-            </summary>
-            <param name="puzzle">The puzzle grid.</param>
-            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
-            <returns>The result grouped by technique names.</returns>
-            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSetsStep">
             <summary>

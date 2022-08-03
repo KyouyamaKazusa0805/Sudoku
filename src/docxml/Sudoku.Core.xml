@@ -13158,6 +13158,38 @@
             </list>
             </returns>
         </member>
+        <member name="T:Sudoku.Solving.IStepGatherableSearcher`3">
+            <summary>
+            Defines a special step searcher that can gather all possible steps of various techniques, in a step.
+            </summary>
+            <typeparam name="TElement">
+            The type of the element. The type must be derived from <see cref="T:System.Linq.IGrouping`2"/>
+            in order to allow grouping the steps up by the technique kind.
+            </typeparam>
+            <typeparam name="TGroupingKey">
+            <para>
+            The key that is used for grouping different step kinds. Generally this type can be a <see cref="T:System.String"/>.
+            </para>
+            <para>
+            The reason why the base type is <see cref="T:System.IComparable`1"/> rather than <see cref="T:System.IEquatable`1"/>
+            is that the type may be used for sorting different kinds of steps by their own key.
+            Sorting operations generally rely on comparable objects.
+            </para>
+            </typeparam>
+            <typeparam name="TGroupingValue">
+            The value of the gathered steps. The type must be derived from the interface type <see cref="T:Sudoku.Concepts.Solving.IStep"/>
+            and be a reference type.
+            </typeparam>
+        </member>
+        <member name="M:Sudoku.Solving.IStepGatherableSearcher`3.Search(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Search for all possible steps in a grid.
+            </summary>
+            <param name="puzzle">The puzzle grid.</param>
+            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
+            <returns>The result grouped by technique names.</returns>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
+        </member>
         <member name="T:Sudoku.Solving.LinqSolver">
             <summary>
             Defines a solver that can solve a sudoku puzzle, using LINQ.

@@ -3,21 +3,16 @@
 /// <summary>
 /// Defines a steps gatherer.
 /// </summary>
-public sealed class StepsGatherer : IStepsGathererOptions
+public sealed class StepsGatherer :
+	IStepGatherableSearcher<IGrouping<string, Step>, string, Step>,
+	IStepsGathererOptions
 {
 	/// <inheritdoc/>
 	public bool OnlyShowSameLevelTechniquesInFindAllSteps { get; set; }
 
 
-	/// <summary>
-	/// Search for all possible steps in a grid.
-	/// </summary>
-	/// <param name="puzzle">The puzzle grid.</param>
-	/// <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
-	/// <returns>The result grouped by technique names.</returns>
-	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
-	public IEnumerable<IGrouping<string, Step>> Search(
-		scoped in Grid puzzle, CancellationToken cancellationToken = default)
+	/// <inheritdoc/>
+	public IEnumerable<IGrouping<string, Step>> Search(scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out bool? sukaku))
 		{
