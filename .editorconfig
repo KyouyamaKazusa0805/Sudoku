@@ -142,7 +142,7 @@ csharp_style_unused_value_assignment_preference = discard_variable:suggestion
 csharp_style_unused_value_expression_statement_preference = discard_variable:silent
 
 # 'using' directive preferences
-csharp_using_directive_placement = outside_namespace:suggestion
+csharp_using_directive_placement = outside_namespace:silent
 
 # miscellaneous preferences
 csharp_style_prefer_utf8_string_literals = true:suggestion
@@ -473,6 +473,9 @@ dotnet_diagnostic.IDE0005.severity = suggestion
 
 # IDE0011: Add braces
 dotnet_diagnostic.IDE0011.severity = suggestion
+
+# IDE0065: Misplaced using directive
+dotnet_diagnostic.IDE0065.severity = silent
 
 # IDE0079: Remove unnecessary suppression
 dotnet_diagnostic.IDE0079.severity = none

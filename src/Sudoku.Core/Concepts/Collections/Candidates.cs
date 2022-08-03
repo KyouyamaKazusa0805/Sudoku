@@ -3,7 +3,7 @@
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-public unsafe partial struct Candidates :
+public unsafe struct Candidates :
 	IEnumerable<int>,
 	IEquatable<Candidates>,
 	ISimpleFormattable,

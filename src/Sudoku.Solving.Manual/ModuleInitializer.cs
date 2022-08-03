@@ -46,7 +46,7 @@ internal static class ModuleInitializer
 				case { Length: not 0 } optionalAssignments:
 				{
 					// Sort the attribute instances via the priority.
-					Array.Sort(optionalAssignments, new SeparatedStepSearcherAttributeComparer());
+					Array.Sort(optionalAssignments, new FileLocalType_SeparatedStepSearcherAttributeComparer());
 
 					// Iterate on each attribute instances.
 					foreach (var attributeInstance in optionalAssignments)
@@ -140,4 +140,21 @@ internal static class ModuleInitializer
 			return 0;
 		}
 	}
+}
+
+/// <summary>
+/// Defines a comparer instance that compares two instances of type <see cref="SeparatedStepSearcherAttribute"/>.
+/// </summary>
+/// <seealso cref="SeparatedStepSearcherAttribute"/>
+internal sealed class FileLocalType_SeparatedStepSearcherAttributeComparer : IComparer<SeparatedStepSearcherAttribute>
+{
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public int Compare(SeparatedStepSearcherAttribute? x, SeparatedStepSearcherAttribute? y)
+		=> (x, y) switch
+		{
+			(null, null) => 0, // Same.
+			(not null, not null) => ((IComparable<SeparatedStepSearcherAttribute>)x).CompareTo(y),
+			_ => throw new InvalidOperationException($"The method requires both arguments {nameof(x)} and {nameof(y)} are null, or not null.")
+		};
 }

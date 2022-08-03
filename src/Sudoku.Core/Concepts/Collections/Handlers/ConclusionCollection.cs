@@ -47,13 +47,11 @@ public readonly ref partial struct ConclusionCollection
 
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// This method only compares for two collection's inner reference to their own array of conclusions.
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ConclusionCollection other)
-#if true
-		=> ReferenceEquals(_collection, other._collection);
-#else
-		=> _collection.Length == other._collection.Length && Enumerable.SequenceEqual(_collection, other._collection);
-#endif
+	public bool Equals(ConclusionCollection other) => ReferenceEquals(_collection, other._collection);
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() => ToString(true, ", ");
@@ -117,7 +115,7 @@ public readonly ref partial struct ConclusionCollection
 			}
 			else
 			{
-				sb.AppendRangeWithSeparator(conclusions, static c => c.ToString(), separator);
+				sb.AppendRangeWithSeparator(conclusions, StringHandler.ElementToStringConverter, separator);
 			}
 
 			return sb.ToStringAndClear();

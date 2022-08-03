@@ -1491,18 +1491,6 @@
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
         </member>
-        <member name="T:System.CommonComparers.Equality.MatchLengthComparer">
-            <summary>
-            Indicates the inner equality comparer to determine the equality of length
-            of 2 <see cref="T:System.Text.RegularExpressions.Match"/>es to compare.
-            </summary>
-        </member>
-        <member name="M:System.CommonComparers.Equality.MatchLengthComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.CommonComparers.Equality.MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
-            <inheritdoc/>
-        </member>
         <member name="T:System.Diagnostics.CodeGen.AutoDeconstructionAttribute">
             <summary>
             Defines an attribute that is used for controlling the source generation on deconstruction methods.

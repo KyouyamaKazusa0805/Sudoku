@@ -533,7 +533,7 @@ public static partial class CommonReadOnlies
 
 		var r = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
 		var c = (stackalloc[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 });
-		var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells, byte[])>(new ValueTupleComparer());
+		var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells, byte[])>(new FileLocalType_ValueTupleComparer());
 		for (byte bs = 9; bs < 27; bs++)
 		{
 			for (byte j = 0; j < 3; j++)
@@ -548,4 +548,15 @@ public static partial class CommonReadOnlies
 
 		IntersectionMaps = dic;
 	}
+}
+
+internal sealed class FileLocalType_ValueTupleComparer : IEqualityComparer<(byte Value1, byte Value2)>
+{
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals((byte Value1, byte Value2) x, (byte Value1, byte Value2) y) => x == y;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public int GetHashCode((byte Value1, byte Value2) obj) => obj.Value1 << 5 | obj.Value2;
 }

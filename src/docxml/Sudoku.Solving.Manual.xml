@@ -574,6 +574,15 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:Sudoku.Solving.Manual.FileLocalType_SeparatedStepSearcherAttributeComparer">
+            <summary>
+            Defines a comparer instance that compares two instances of type <see cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.FileLocalType_SeparatedStepSearcherAttributeComparer.Compare(Sudoku.Solving.Manual.SeparatedStepSearcherAttribute,Sudoku.Solving.Manual.SeparatedStepSearcherAttribute)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1">
             <summary>
             Defines an attribute that can be applied to the solving assembly,
@@ -3470,15 +3479,6 @@
         <member name="M:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute.System#IComparable{Sudoku#Solving#Manual#SeparatedStepSearcherAttribute}#CompareTo(Sudoku.Solving.Manual.SeparatedStepSearcherAttribute)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttributeComparer">
-            <summary>
-            Defines a comparer instance that compares two instances of type <see cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.SeparatedStepSearcherAttributeComparer.Compare(Sudoku.Solving.Manual.SeparatedStepSearcherAttribute,Sudoku.Solving.Manual.SeparatedStepSearcherAttribute)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.SolverResultFormattingOptions">
             <summary>
             Indicates the formatting options of <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance.
@@ -3736,6 +3736,9 @@
             Defines a steps gatherer.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.StepsGatherer.Search(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
             <summary>
             Search for all possible steps in a grid.
@@ -3744,9 +3747,6 @@
             <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
             <returns>The result grouped by technique names.</returns>
             <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSetsStep">
             <summary>

@@ -56,7 +56,7 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 			from attributeData in typeSymbol.GetAttributes()
 			where SymbolEqualityComparer.Default.Equals(attributeData.AttributeClass, switchExprRoot)
 			select attributeData
-		).Distinct(new AttributeDataComparerDistinctByKey()).ToArray();
+		).Distinct(new FileLocalType_AttributeDataComparerDistinctByKey()).ToArray();
 		if (typeAttributesData.Length == 0)
 		{
 			return null;
@@ -182,27 +182,23 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 	}
 
 	private static bool NodePredicate(SyntaxNode node, CancellationToken _) => node is EnumDeclarationSyntax;
+}
 
-
-	/// <summary>
-	/// Defines a comparer that compares for the inner key.
-	/// </summary>
-	private sealed class AttributeDataComparerDistinctByKey : IEqualityComparer<AttributeData>
+internal sealed class FileLocalType_AttributeDataComparerDistinctByKey : IEqualityComparer<AttributeData>
+{
+	/// <inheritdoc/>
+	public bool Equals(AttributeData x, AttributeData y)
 	{
-		/// <inheritdoc/>
-		public bool Equals(AttributeData x, AttributeData y)
+		if (!SymbolEqualityComparer.Default.Equals(x.AttributeClass, y.AttributeClass))
 		{
-			if (!SymbolEqualityComparer.Default.Equals(x.AttributeClass, y.AttributeClass))
-			{
-				return false;
-			}
-
-			string? key = (string?)x.ConstructorArguments[0].Value;
-			string? another = (string?)y.ConstructorArguments[0].Value;
-			return key == another;
+			return false;
 		}
 
-		/// <inheritdoc/>
-		public int GetHashCode(AttributeData obj) => SymbolEqualityComparer.Default.GetHashCode(obj.AttributeClass);
+		string? key = (string?)x.ConstructorArguments[0].Value;
+		string? another = (string?)y.ConstructorArguments[0].Value;
+		return key == another;
 	}
+
+	/// <inheritdoc/>
+	public int GetHashCode(AttributeData obj) => SymbolEqualityComparer.Default.GetHashCode(obj.AttributeClass);
 }

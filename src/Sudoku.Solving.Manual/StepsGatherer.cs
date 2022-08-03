@@ -3,8 +3,12 @@
 /// <summary>
 /// Defines a steps gatherer.
 /// </summary>
-public sealed partial class StepsGatherer
+public sealed class StepsGatherer : IStepsGathererOptions
 {
+	/// <inheritdoc/>
+	public bool OnlyShowSameLevelTechniquesInFindAllSteps { get; set; }
+
+
 	/// <summary>
 	/// Search for all possible steps in a grid.
 	/// </summary>

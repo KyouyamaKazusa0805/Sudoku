@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents as a dancing link.
 /// </summary>
-internal sealed partial class DancingLink
+internal sealed class DancingLink
 {
 	/// <summary>
 	/// Initializes a <see cref="DancingLink"/> instance via the specified root node.
@@ -61,7 +61,7 @@ internal sealed partial class DancingLink
 	/// Links the row.
 	/// </summary>
 	/// <param name="d">The matrix row instance.</param>
-	private void LinkRow(ref MatrixRow d)
+	private void LinkRow(ref FileLocalType_MatrixRow d)
 	{
 		d.Cell.Right = d.Column;
 		d.Cell.Left = d.Block;
@@ -104,7 +104,7 @@ internal sealed partial class DancingLink
 		var row = new DataNode(x * 81 + y * 9 + d, columns[81 + x * 9 + d]);
 		var column = new DataNode(x * 81 + y * 9 + d, columns[162 + y * 9 + d]);
 		var block = new DataNode(x * 81 + y * 9 + d, columns[243 + (3 * (x / 3) + y / 3) * 9 + d]);
-		var matrixRow = new MatrixRow(cell, row, column, block);
+		var matrixRow = new FileLocalType_MatrixRow(cell, row, column, block);
 
 		LinkRow(ref matrixRow);
 		LinkRowToColumn(matrixRow.Cell);
@@ -113,3 +113,12 @@ internal sealed partial class DancingLink
 		LinkRowToColumn(matrixRow.Block);
 	}
 }
+
+/// <summary>
+/// Represents a matrix row.
+/// </summary>
+/// <param name="Cell">Indicates the node that represents the current cell.</param>
+/// <param name="Row">Indicates the nodes at the current row.</param>
+/// <param name="Column">Indicates the nodes at the current column.</param>
+/// <param name="Block">Indicates the nodes at the current block.</param>
+internal record struct FileLocalType_MatrixRow(DataNode Cell, DataNode Row, DataNode Column, DataNode Block);

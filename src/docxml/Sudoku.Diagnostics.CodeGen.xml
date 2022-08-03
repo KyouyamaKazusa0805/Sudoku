@@ -52,27 +52,27 @@
             <param name="attributesData">The attributes data, and the corresponding location.</param>
             <returns>The collection of raw code parts for instance deconstruction methods.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.Receiver">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_Receiver">
             <summary>
             The inner syntax context receiver instance.
             </summary>
             <param name="CancellationToken">The cancellation token to cancel the operation.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.Receiver.#ctor(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_Receiver.#ctor(System.Threading.CancellationToken)">
             <summary>
             The inner syntax context receiver instance.
             </summary>
             <param name="CancellationToken">The cancellation token to cancel the operation.</param>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.Receiver.CancellationToken">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_Receiver.CancellationToken">
             <summary>The cancellation token to cancel the operation.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.Receiver.Collection">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_Receiver.Collection">
             <summary>
             Indicates the result collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator">
@@ -160,15 +160,10 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.GenerateSource(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,Microsoft.CodeAnalysis.AttributeData,System.Collections.Generic.IEnumerable{System.ValueTuple{Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.AttributeData}}}[]}}})">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.AttributeDataComparerDistinctByKey">
-            <summary>
-            Defines a comparer that compares for the inner key.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.AttributeDataComparerDistinctByKey.Equals(Microsoft.CodeAnalysis.AttributeData,Microsoft.CodeAnalysis.AttributeData)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_AttributeDataComparerDistinctByKey.Equals(Microsoft.CodeAnalysis.AttributeData,Microsoft.CodeAnalysis.AttributeData)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.AttributeDataComparerDistinctByKey.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_AttributeDataComparerDistinctByKey.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator">
@@ -219,27 +214,27 @@
             <param name="symbol">The symbol to be determined.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_RefStructOverridensGenerator_Receiver">
             <summary>
             The inner syntax context receiver instance.
             </summary>
             <param name="CancellationToken">The cancellation token to cancel the operation.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver.#ctor(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_RefStructOverridensGenerator_Receiver.#ctor(System.Threading.CancellationToken)">
             <summary>
             The inner syntax context receiver instance.
             </summary>
             <param name="CancellationToken">The cancellation token to cancel the operation.</param>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver.CancellationToken">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_RefStructOverridensGenerator_Receiver.CancellationToken">
             <summary>The cancellation token to cancel the operation.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver.Collection">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_RefStructOverridensGenerator_Receiver.Collection">
             <summary>
             Indicates the result collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_RefStructOverridensGenerator_Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator">

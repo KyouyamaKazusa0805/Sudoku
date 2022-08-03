@@ -4,7 +4,7 @@
 /// Defines a source generator that generates deconstruction methods of a type.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
+public sealed class AutoDeconstructionGenerator : ISourceGenerator
 {
 	/// <summary>
 	/// Defines the pattern that matches for an expression.
@@ -19,7 +19,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: Receiver { Collection: var collection },
+				SyntaxContextReceiver: FileLocalType_Receiver { Collection: var collection },
 				Compilation: { Assembly: var assembly } compilation
 			}
 		)
@@ -161,7 +161,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new FileLocalType_Receiver(context.CancellationToken));
 
 	/// <summary>
 	/// Get for assembly-targeted attributes on generation.
@@ -437,5 +437,65 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 		}
 
 		return result;
+	}
+}
+
+/// <summary>
+/// The inner syntax context receiver instance.
+/// </summary>
+/// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+internal sealed record FileLocalType_Receiver(CancellationToken CancellationToken) : ISyntaxContextReceiver
+{
+	/// <summary>
+	/// Indicates the result collection.
+	/// </summary>
+	public ICollection<(bool IsExtension, INamedTypeSymbol Symbol, AttributeData AttributeData)> Collection { get; } =
+		new List<(bool IsExtension, INamedTypeSymbol Symbol, AttributeData AttributeData)>();
+
+
+	/// <inheritdoc/>
+	public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
+	{
+		const string attributeFullName = "System.Diagnostics.CodeGen.AutoDeconstructionAttribute";
+
+		if (
+			context is not
+			{
+				Node: TypeDeclarationSyntax { Modifiers: var modifiers and not [] } n,
+				SemanticModel: { Compilation: { } compilation } semanticModel
+			}
+		)
+		{
+			return;
+		}
+
+		if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { ContainingType: null } typeSymbol)
+		{
+			return;
+		}
+
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(attributeFullName);
+		var attributesData = (
+			from e in typeSymbol.GetAttributes()
+			where SymbolEqualityComparer.Default.Equals(e.AttributeClass, attributeTypeSymbol)
+			select e
+		).ToArray();
+		if (attributesData.Length == 0)
+		{
+			return;
+		}
+
+		if (!modifiers.Any(SyntaxKind.PartialKeyword))
+		{
+			return;
+		}
+
+		if (!Collection.Any(t => SymbolEqualityComparer.Default.Equals(t.Symbol, typeSymbol)))
+		{
+			foreach (var attributeData in attributesData)
+			{
+				Collection.Add((false, typeSymbol, attributeData));
+			}
+		}
 	}
 }
