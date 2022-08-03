@@ -1,6 +1,6 @@
-﻿using static Sudoku.Drawing.IGridImageGenerator;
+﻿namespace Sudoku.Drawing;
 
-namespace Sudoku.Drawing;
+using static IGridImageGenerator;
 
 /// <summary>
 /// Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.

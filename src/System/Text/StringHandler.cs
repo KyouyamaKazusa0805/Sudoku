@@ -2,8 +2,6 @@
 #define DISCARD_INTERPOLATION_INFO
 #define USE_NEWER_CONSTANT_VALUES
 
-using Isha = System.Runtime.CompilerServices.InterpolatedStringHandlerArgumentAttribute;
-
 namespace System.Text;
 
 /// <summary>
@@ -468,7 +466,8 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc cref="AppendFormatted(in StringHandler)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append([Isha] scoped in scoped StringHandler handler) => AppendFormatted(handler);
+	public void Append([InterpolatedStringHandlerArgument] scoped in scoped StringHandler handler)
+		=> AppendFormatted(handler);
 
 	/// <summary>
 	/// Writes the specified interpolated string with the specified format provider into the handler.
@@ -478,7 +477,7 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append(
 		IFormatProvider? provider,
-		[Isha(nameof(provider))] scoped ref scoped DefaultInterpolatedStringHandler handler
+		[InterpolatedStringHandlerArgument(nameof(provider))] scoped ref scoped DefaultInterpolatedStringHandler handler
 	) => AppendFormatted(string.Create(provider, ref handler));
 
 	/// <summary>
@@ -491,7 +490,7 @@ public unsafe ref partial struct StringHandler
 	public void Append(
 		IFormatProvider? provider,
 		scoped Span<char> initialBuffer,
-		[Isha(nameof(provider), nameof(initialBuffer))] scoped ref scoped DefaultInterpolatedStringHandler handler
+		[InterpolatedStringHandlerArgument(nameof(provider), nameof(initialBuffer))] scoped ref scoped DefaultInterpolatedStringHandler handler
 	) => AppendFormatted(string.Create(provider, initialBuffer, ref handler));
 
 	/// <inheritdoc cref="AppendFormatted{T}(T)"/>
@@ -508,7 +507,8 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc cref="AppendFormatted{T}(T, int, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append<T>(T value, int alignment, string? format = null) => AppendFormatted(value, alignment, format);
+	public void Append<T>(T value, int alignment, string? format = null)
+		=> AppendFormatted(value, alignment, format);
 
 	/// <summary>
 	/// Append a new line string <see cref="Environment.NewLine"/>.

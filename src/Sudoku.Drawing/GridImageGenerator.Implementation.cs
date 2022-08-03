@@ -1,7 +1,7 @@
-﻿using static Sudoku.Drawing.IGridImageGenerator;
-using static Sudoku.Drawing.IPointCalculator;
+﻿namespace Sudoku.Drawing;
 
-namespace Sudoku.Drawing;
+using static IGridImageGenerator;
+using static IPointCalculator;
 
 partial record GridImageGenerator
 {

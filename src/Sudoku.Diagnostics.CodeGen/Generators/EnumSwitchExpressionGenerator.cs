@@ -1,13 +1,13 @@
-﻿using DataTuple = System.ValueTuple<
-	/*TypeSymbol*/ Microsoft.CodeAnalysis.INamedTypeSymbol,
-	/*MethodName*/ string,
-	/*RootAttributeData*/ Microsoft.CodeAnalysis.AttributeData,
-	System.Collections.Generic.IEnumerable<
-		System.ValueTuple<
-			/*FieldSymbol*/ Microsoft.CodeAnalysis.IFieldSymbol,
-			/*FieldAttributeData*/ Microsoft.CodeAnalysis.AttributeData>>>;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
-namespace Sudoku.Diagnostics.CodeGen.Generators;
+using DataTuple = ValueTuple<
+	/*TypeSymbol*/ INamedTypeSymbol,
+	/*MethodName*/ string,
+	/*RootAttributeData*/ AttributeData,
+	IEnumerable<
+		ValueTuple<
+			/*FieldSymbol*/ IFieldSymbol,
+			/*FieldAttributeData*/ AttributeData>>>;
 
 /// <summary>
 /// Defines a source generator that generates the method and the corresponding values,

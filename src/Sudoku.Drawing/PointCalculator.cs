@@ -1,6 +1,6 @@
-﻿using static Sudoku.Drawing.IPointCalculator;
+﻿namespace Sudoku.Drawing;
 
-namespace Sudoku.Drawing;
+using static IPointCalculator;
 
 /// <summary>
 /// Defines a point calculator that interacts with the UI projects.
