@@ -8327,6 +8327,11 @@
               Looks up a localized string similar to Firework Pair Type 2.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.FireworkPairType3">
+            <summary>
+              Looks up a localized string similar to Firework Pair Type 3.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.FireworkQuadruple">
             <summary>
               Looks up a localized string similar to Firework Quadruple.
@@ -9295,6 +9300,11 @@
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FireworkPairType2Step">
             <summary>
               Looks up a localized string similar to {Name}: Two fireworks {Firework1Str} and {Firework2Str} of digits {DigitsStr}, and an extra cell {ExtraCellStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FireworkPairType3Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Cells {CellsStr} of digits {DigitsStr} is a firework, with empty rectangle in house {EmptyRectangleStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FireworkQuadrupleStep">
@@ -10696,6 +10706,11 @@
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.FireworkPairType2">
             <summary>
             Indicates the firework pair type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Technique.FireworkPairType3">
+            <summary>
+            Indicates the firework pair type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.Technique.FireworkTriple">

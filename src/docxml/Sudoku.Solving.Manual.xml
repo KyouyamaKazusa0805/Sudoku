@@ -1196,11 +1196,15 @@
             Provides with a <b>Firework</b> step searcher. The step searcher will include the following techniques:
             <list type="bullet">
             <item>
-            <item>Firework Pair Type 1 (Single Firework)</item>
+            Firework Pair:
+            <list type="bullet">
+            <item>Firework Pair Type 1 (Single Firework + 2 Bi-value cells)</item>
             <item>Firework Pair Type 2 (Double Fireworks)</item>
+            <item>Firework Pair Type 3 (Single Fireworks + Empty Rectangle)</item>
+            </list>
+            </item>
             <item>Firework Triple</item>
             <item>Firework Quadruple</item>
-            </item>
             </list>
             </summary>
         </member>
@@ -1857,6 +1861,11 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckPairType2(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <summary>
             Checks for firework pair type 2 steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckPairType3(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int16,System.Int32)">
+            <summary>
+            Checks for firework pair type 3 steps.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.FireworkSubsetStepSearcher.CheckTriple(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Concepts.Solving.TechniqueStructures.FireworkPattern@,System.Int16,System.Int32)">
@@ -6947,6 +6956,44 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FireworkPairType2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.FireworkPairType3Step">
+            <summary>
+            Provides with a step that is a <b>Firework Pair Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">The cells used.</param>
+            <param name="DigitsMask">The digits used.</param>
+            <param name="EmptyRectangleBlock">The empty rectangle block used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.FireworkPairType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Collections.Cells@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Firework Pair Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">The cells used.</param>
+            <param name="DigitsMask">The digits used.</param>
+            <param name="EmptyRectangleBlock">The empty rectangle block used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkPairType3Step.Cells">
+            <summary>The cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkPairType3Step.DigitsMask">
+            <summary>The digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkPairType3Step.EmptyRectangleBlock">
+            <summary>The empty rectangle block used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkPairType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkPairType3Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FireworkPairType3Step.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.FireworkQuadrupleStep">

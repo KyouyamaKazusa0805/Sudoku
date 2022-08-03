@@ -1654,11 +1654,11 @@
     <value>{Name}：单元格 {CellsStr} 里必须构成关于数字 {DigitsStr} 的跨区四数组结构 =&gt; {ElimStr}</value>
   </data>
   <data name="FireworkPairType1" xml:space="preserve">
-    <value>花火数对・单身</value>
+    <value>花火数对・双值格对</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FireworkPairType2" xml:space="preserve">
-    <value>花火数对・鸳鸯</value>
+    <value>花火数对・鸳鸯花火</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_FireworkPairType1Step" xml:space="preserve">
@@ -1666,5 +1666,12 @@
   </data>
   <data name="TechniqueFormat_FireworkPairType2Step" xml:space="preserve">
     <value>{Name}：花火结构 {Firework1Str} 和 {Firework2Str} 使用数字 {DigitsStr}，并带有额外单元格 {ExtraCellStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="FireworkPairType3" xml:space="preserve">
+    <value>花火数对・空矩形</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_FireworkPairType3Step" xml:space="preserve">
+    <value>{Name}：单元格 {CellsStr} 里的数字 {DigitsStr} 构成花火数组结构，带有空矩形结构位于 {EmptyRectangleStr} =&gt; {ElimStr}</value>
   </data>
 </root>

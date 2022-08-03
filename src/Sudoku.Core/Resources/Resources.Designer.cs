@@ -1123,6 +1123,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Firework Pair Type 3.
+        /// </summary>
+        internal static string FireworkPairType3 {
+            get {
+                return ResourceManager.GetString("FireworkPairType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Firework Quadruple.
         /// </summary>
         internal static string FireworkQuadruple {
@@ -2865,6 +2874,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_FireworkPairType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_FireworkPairType2Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} of digits {DigitsStr} is a firework, with empty rectangle in house {EmptyRectangleStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_FireworkPairType3Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_FireworkPairType3Step", resourceCulture);
             }
         }
         

@@ -4,11 +4,15 @@
 /// Provides with a <b>Firework</b> step searcher. The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>
-/// <item>Firework Pair Type 1 (Single Firework)</item>
+/// Firework Pair:
+/// <list type="bullet">
+/// <item>Firework Pair Type 1 (Single Firework + 2 Bi-value cells)</item>
 /// <item>Firework Pair Type 2 (Double Fireworks)</item>
+/// <item>Firework Pair Type 3 (Single Fireworks + Empty Rectangle)</item>
+/// </list>
+/// </item>
 /// <item>Firework Triple</item>
 /// <item>Firework Quadruple</item>
-/// </item>
 /// </list>
 /// </summary>
 public interface IFireworkSubsetStepSearcher : IFireworkStepSearcher

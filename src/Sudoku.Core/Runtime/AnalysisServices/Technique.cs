@@ -77,6 +77,11 @@ public enum Technique : short
 	FireworkPairType2,
 
 	/// <summary>
+	/// Indicates the firework pair type 3.
+	/// </summary>
+	FireworkPairType3,
+
+	/// <summary>
 	/// Indicates the firework triple.
 	/// </summary>
 	FireworkTriple,

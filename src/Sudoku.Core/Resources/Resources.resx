@@ -1377,4 +1377,10 @@
   <data name="TechniqueFormat_FireworkPairType2Step" xml:space="preserve">
     <value>{Name}: Two fireworks {Firework1Str} and {Firework2Str} of digits {DigitsStr}, and an extra cell {ExtraCellStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="FireworkPairType3" xml:space="preserve">
+    <value>Firework Pair Type 3</value>
+  </data>
+  <data name="TechniqueFormat_FireworkPairType3Step" xml:space="preserve">
+    <value>{Name}: Cells {CellsStr} of digits {DigitsStr} is a firework, with empty rectangle in house {EmptyRectangleStr} =&gt; {ElimStr}</value>
+  </data>
 </root>
