@@ -4,11 +4,9 @@
 
 ```csharp
 public struct Grid :
-    IDefaultable<Grid>,
     ISimpleFormattable,
-    ISimpleParseable<Grid>,
-    IEquatable<Grid>,
-    IEqualityOperators<Grid, Grid>
+	ISimpleParseable<Grid>,
+	IEqualityOperators<Grid, Grid>
 {
     public const short DefaultMask = 1023;
     public const short MaxCandidatesMask = 511;

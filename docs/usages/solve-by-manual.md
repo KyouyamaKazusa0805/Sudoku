@@ -4,7 +4,7 @@
 
 ```csharp
 using System;
-using Sudoku.Concepts.Collections;
+using Sudoku.Concepts;
 using Sudoku.Solving.Manual;
 
 // 这里获取一个解题的字符串代码。

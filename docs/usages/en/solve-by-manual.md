@@ -6,7 +6,7 @@ The method is simple. You should firstly get an encapsulated data of type `Grid`
 
 ```csharp
 using System;
-using Sudoku.Concepts.Collections;
+using Sudoku.Concepts;
 using Sudoku.Solving.Manual;
 
 // This is a string text that represents a sudoku grid.
