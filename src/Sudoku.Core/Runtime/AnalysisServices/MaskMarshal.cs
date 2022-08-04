@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Runtime.AnalysisServices;
 
 /// <summary>
 /// Provides with a serial of methods that handles with masks.
