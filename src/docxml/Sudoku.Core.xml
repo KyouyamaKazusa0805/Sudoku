@@ -123,6 +123,65 @@
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>All true candidates.</returns>
         </member>
+        <member name="T:Sudoku.Compatibilities.HodokuLibraryCompatiblity">
+            <summary>
+            Represents some methods that are used for get the details supported and defined
+            by another program called <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Compatibilities.HodokuLibraryCompatiblity.GetHodokuPrefix(Sudoku.Solving.DataRepresentation.Technique)">
+            <summary>
+            Try to get the prefix of the specified technique. The return value will be a four-digit value
+            represented as a <see cref="T:System.String"/> value. For more information please visit
+            <see href="https://sourceforge.net/p/hodoku/code/HEAD/tree/HoDoKu/trunk/reglib-1.4.txt">this link</see>.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            <para>
+            A <see cref="T:System.String"/> value using a four-digit value to describe a technique used
+            in a sudoku grid, which is defined by the project Hodoku.
+            </para>
+            <para>
+            If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
+            </para>
+            </returns>
+            <remarks>
+            <para>
+            Please note that some technique fields are separated into multiple sub-types, but they all
+            belong to a same type of a technique supported by Hodoku. For example,
+            <see cref="F:Sudoku.Solving.DataRepresentation.Technique.SueDeCoq"/> and <see cref="F:Sudoku.Solving.DataRepresentation.Technique.SueDeCoqIsolated"/> are supported by
+            Hodoku as one technique "Sue de Coq", so if you get the prefix from the two fields, the return value
+            are same (i.e. the <see cref="T:System.String"/> value <c>"1101"</c>).
+            </para>
+            <para>
+            However, if a sub-type is not supported by Hodoku (e.g. the field
+            <see cref="F:Sudoku.Solving.DataRepresentation.Technique.UniqueRectangle2B1"/>), this method will still return <see langword="null"/>
+            indicating the "Not supported" state.
+            </para>
+            </remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Solving.DataRepresentation.Technique"/>,
+            or the value is <see cref="F:Sudoku.Solving.DataRepresentation.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Solving.DataRepresentation.Technique"/>
+        </member>
+        <member name="T:Sudoku.Compatibilities.HodokuTechniquePrefixAttribute">
+            <summary>
+            Defines an attribute that is applied to a field in type <see cref="T:Sudoku.Solving.DataRepresentation.Technique"/>,
+            indicating a compatible prefix value defined by Hodoku.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Compatibilities.HodokuTechniquePrefixAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Compatibilities.HodokuTechniquePrefixAttribute"/> via the specified prefix value.
+            </summary>
+            <param name="prefix">The prefix value.</param>
+        </member>
+        <member name="P:Sudoku.Compatibilities.HodokuTechniquePrefixAttribute.Prefix">
+            <summary>
+            The prefix value.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Candidates">
             <summary>
             Encapsulates a map that contains 729 positions to represent a candidate.

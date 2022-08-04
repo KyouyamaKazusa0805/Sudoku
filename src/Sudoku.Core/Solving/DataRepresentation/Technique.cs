@@ -13,41 +13,49 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the full house.
 	/// </summary>
+	[HodokuTechniquePrefix("0000")]
 	FullHouse,
 
 	/// <summary>
 	/// Indicates the last digit.
 	/// </summary>
+	[HodokuTechniquePrefix("0001")]
 	LastDigit,
 
 	/// <summary>
 	/// Indicates the hidden single (in block).
 	/// </summary>
+	[HodokuTechniquePrefix("0002")]
 	HiddenSingleBlock,
 
 	/// <summary>
 	/// Indicates the hidden single (in row).
 	/// </summary>
+	[HodokuTechniquePrefix("0002")]
 	HiddenSingleRow,
 
 	/// <summary>
 	/// Indicates the hidden single (in column).
 	/// </summary>
+	[HodokuTechniquePrefix("0002")]
 	HiddenSingleColumn,
 
 	/// <summary>
 	/// Indicates the naked single.
 	/// </summary>
+	[HodokuTechniquePrefix("0003")]
 	NakedSingle,
 
 	/// <summary>
 	/// Indicates the pointing.
 	/// </summary>
+	[HodokuTechniquePrefix("0100")]
 	Pointing,
 
 	/// <summary>
 	/// Indicates the claiming.
 	/// </summary>
+	[HodokuTechniquePrefix("0101")]
 	Claiming,
 
 	/// <summary>
@@ -94,6 +102,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the naked pair.
 	/// </summary>
+	[HodokuTechniquePrefix("0200")]
 	NakedPair,
 
 	/// <summary>
@@ -104,16 +113,19 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the locked pair.
 	/// </summary>
+	[HodokuTechniquePrefix("0110")]
 	LockedPair,
 
 	/// <summary>
 	/// Indicates the hidden pair.
 	/// </summary>
+	[HodokuTechniquePrefix("0210")]
 	HiddenPair,
 
 	/// <summary>
 	/// Indicates the naked triple.
 	/// </summary>
+	[HodokuTechniquePrefix("0201")]
 	NakedTriple,
 
 	/// <summary>
@@ -124,16 +136,19 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the locked triple.
 	/// </summary>
+	[HodokuTechniquePrefix("0111")]
 	LockedTriple,
 
 	/// <summary>
 	/// Indicates the hidden triple.
 	/// </summary>
+	[HodokuTechniquePrefix("0211")]
 	HiddenTriple,
 
 	/// <summary>
 	/// Indicates the naked quadruple.
 	/// </summary>
+	[HodokuTechniquePrefix("0202")]
 	NakedQuadruple,
 
 	/// <summary>
@@ -144,21 +159,25 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the hidden quadruple.
 	/// </summary>
+	[HodokuTechniquePrefix("0212")]
 	HiddenQuadruple,
 
 	/// <summary>
 	/// Indicates the X-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0300")]
 	XWing,
 
 	/// <summary>
 	/// Indicates the finned X-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0310")]
 	FinnedXWing,
 
 	/// <summary>
 	/// Indicates the sashimi X-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0320")]
 	SashimiXWing,
 
 	/// <summary>
@@ -174,11 +193,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the franken X-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0330")]
 	FrankenXWing,
 
 	/// <summary>
 	/// Indicates the finned franken X-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0340")]
 	FinnedFrankenXWing,
 
 	/// <summary>
@@ -199,11 +220,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the mutant X-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0350")]
 	MutantXWing,
 
 	/// <summary>
 	/// Indicates the finned mutant X-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0360")]
 	FinnedMutantXWing,
 
 	/// <summary>
@@ -224,16 +247,19 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the swordfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0301")]
 	Swordfish,
 
 	/// <summary>
 	/// Indicates the finned swordfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0311")]
 	FinnedSwordfish,
 
 	/// <summary>
 	/// Indicates the sashimi swordfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0321")]
 	SashimiSwordfish,
 
 	/// <summary>
@@ -249,11 +275,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the swordfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0331")]
 	FrankenSwordfish,
 
 	/// <summary>
 	/// Indicates the finned franken swordfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0341")]
 	FinnedFrankenSwordfish,
 
 	/// <summary>
@@ -274,11 +302,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the mutant swordfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0351")]
 	MutantSwordfish,
 
 	/// <summary>
 	/// Indicates the finned mutant swordfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0361")]
 	FinnedMutantSwordfish,
 
 	/// <summary>
@@ -299,16 +329,19 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the jellyfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0302")]
 	Jellyfish,
 
 	/// <summary>
 	/// Indicates the finned jellyfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0312")]
 	FinnedJellyfish,
 
 	/// <summary>
 	/// Indicates the sashimi jellyfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0322")]
 	SashimiJellyfish,
 
 	/// <summary>
@@ -324,11 +357,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the franken jellyfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0332")]
 	FrankenJellyfish,
 
 	/// <summary>
 	/// Indicates the finned franken jellyfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0342")]
 	FinnedFrankenJellyfish,
 
 	/// <summary>
@@ -349,11 +384,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the mutant jellyfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0352")]
 	MutantJellyfish,
 
 	/// <summary>
 	/// Indicates the finned mutant jellyfish.
 	/// </summary>
+	[HodokuTechniquePrefix("0362")]
 	FinnedMutantJellyfish,
 
 	/// <summary>
@@ -374,16 +411,19 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the squirmbag.
 	/// </summary>
+	[HodokuTechniquePrefix("0303")]
 	Squirmbag,
 
 	/// <summary>
 	/// Indicates the finned squirmbag.
 	/// </summary>
+	[HodokuTechniquePrefix("0313")]
 	FinnedSquirmbag,
 
 	/// <summary>
 	/// Indicates the sashimi squirmbag.
 	/// </summary>
+	[HodokuTechniquePrefix("0323")]
 	SashimiSquirmbag,
 
 	/// <summary>
@@ -399,11 +439,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the franken squirmbag.
 	/// </summary>
+	[HodokuTechniquePrefix("0333")]
 	FrankenSquirmbag,
 
 	/// <summary>
 	/// Indicates the finned franken squirmbag.
 	/// </summary>
+	[HodokuTechniquePrefix("0343")]
 	FinnedFrankenSquirmbag,
 
 	/// <summary>
@@ -424,11 +466,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the mutant squirmbag.
 	/// </summary>
+	[HodokuTechniquePrefix("0353")]
 	MutantSquirmbag,
 
 	/// <summary>
 	/// Indicates the finned mutant squirmbag.
 	/// </summary>
+	[HodokuTechniquePrefix("0363")]
 	FinnedMutantSquirmbag,
 
 	/// <summary>
@@ -449,16 +493,19 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the whale.
 	/// </summary>
+	[HodokuTechniquePrefix("0304")]
 	Whale,
 
 	/// <summary>
 	/// Indicates the finned whale.
 	/// </summary>
+	[HodokuTechniquePrefix("0314")]
 	FinnedWhale,
 
 	/// <summary>
 	/// Indicates the sashimi whale.
 	/// </summary>
+	[HodokuTechniquePrefix("0324")]
 	SashimiWhale,
 
 	/// <summary>
@@ -474,11 +521,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the franken whale.
 	/// </summary>
+	[HodokuTechniquePrefix("0334")]
 	FrankenWhale,
 
 	/// <summary>
 	/// Indicates the finned franken whale.
 	/// </summary>
+	[HodokuTechniquePrefix("0344")]
 	FinnedFrankenWhale,
 
 	/// <summary>
@@ -499,11 +548,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the mutant whale.
 	/// </summary>
+	[HodokuTechniquePrefix("0354")]
 	MutantWhale,
 
 	/// <summary>
 	/// Indicates the finned mutant whale.
 	/// </summary>
+	[HodokuTechniquePrefix("0364")]
 	FinnedMutantWhale,
 
 	/// <summary>
@@ -524,16 +575,19 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the leviathan.
 	/// </summary>
+	[HodokuTechniquePrefix("0305")]
 	Leviathan,
 
 	/// <summary>
 	/// Indicates the finned leviathan.
 	/// </summary>
+	[HodokuTechniquePrefix("0315")]
 	FinnedLeviathan,
 
 	/// <summary>
 	/// Indicates the sashimi leviathan.
 	/// </summary>
+	[HodokuTechniquePrefix("0325")]
 	SashimiLeviathan,
 
 	/// <summary>
@@ -549,11 +603,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the franken leviathan.
 	/// </summary>
+	[HodokuTechniquePrefix("0335")]
 	FrankenLeviathan,
 
 	/// <summary>
 	/// Indicates the finned franken leviathan.
 	/// </summary>
+	[HodokuTechniquePrefix("0345")]
 	FinnedFrankenLeviathan,
 
 	/// <summary>
@@ -574,11 +630,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the mutant leviathan.
 	/// </summary>
+	[HodokuTechniquePrefix("0355")]
 	MutantLeviathan,
 
 	/// <summary>
 	/// Indicates the finned mutant leviathan.
 	/// </summary>
+	[HodokuTechniquePrefix("0365")]
 	FinnedMutantLeviathan,
 
 	/// <summary>
@@ -599,16 +657,19 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the XY-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0800")]
 	XyWing,
 
 	/// <summary>
 	/// Indicates the XYZ-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0801")]
 	XyzWing,
 
 	/// <summary>
 	/// Indicates the WXYZ-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0802")]
 	WxyzWing,
 
 	/// <summary>
@@ -669,6 +730,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the W-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0803")]
 	WWing,
 
 	/// <summary>
@@ -724,36 +786,43 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the unique rectangle type 1.
 	/// </summary>
+	[HodokuTechniquePrefix("0600")]
 	UniqueRectangleType1,
 
 	/// <summary>
 	/// Indicates the unique rectangle type 2.
 	/// </summary>
+	[HodokuTechniquePrefix("0601")]
 	UniqueRectangleType2,
 
 	/// <summary>
 	/// Indicates the unique rectangle type 3.
 	/// </summary>
+	[HodokuTechniquePrefix("0602")]
 	UniqueRectangleType3,
 
 	/// <summary>
 	/// Indicates the unique rectangle type 4.
 	/// </summary>
+	[HodokuTechniquePrefix("0603")]
 	UniqueRectangleType4,
 
 	/// <summary>
 	/// Indicates the unique rectangle type 5.
 	/// </summary>
+	[HodokuTechniquePrefix("0604")]
 	UniqueRectangleType5,
 
 	/// <summary>
 	/// Indicates the unique rectangle type 6.
 	/// </summary>
+	[HodokuTechniquePrefix("0605")]
 	UniqueRectangleType6,
 
 	/// <summary>
 	/// Indicates the hidden unique rectangle.
 	/// </summary>
+	[HodokuTechniquePrefix("0606")]
 	HiddenUniqueRectangle,
 
 	/// <summary>
@@ -874,11 +943,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the avoidable rectangle type 1.
 	/// </summary>
+	[HodokuTechniquePrefix("0607")]
 	AvoidableRectangleType1,
 
 	/// <summary>
 	/// Indicates the avoidable rectangle type 2.
 	/// </summary>
+	[HodokuTechniquePrefix("0608")]
 	AvoidableRectangleType2,
 
 	/// <summary>
@@ -969,26 +1040,39 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the extended rectangle type 1.
 	/// </summary>
+#if false
+	[HodokuTechniquePrefix("0620")]
+#endif
 	ExtendedRectangleType1,
 
 	/// <summary>
 	/// Indicates the extended rectangle type 2.
 	/// </summary>
+#if false
+	[HodokuTechniquePrefix("0621")]
+#endif
 	ExtendedRectangleType2,
 
 	/// <summary>
 	/// Indicates the extended rectangle type 3.
 	/// </summary>
+#if false
+	[HodokuTechniquePrefix("0622")]
+#endif
 	ExtendedRectangleType3,
 
 	/// <summary>
 	/// Indicates the extended rectangle type 4.
 	/// </summary>
+#if false
+	[HodokuTechniquePrefix("0623")]
+#endif
 	ExtendedRectangleType4,
 
 	/// <summary>
 	/// Indicates the bi-value universal grave type 1.
 	/// </summary>
+	[HodokuTechniquePrefix("0610")]
 	BivalueUniversalGraveType1,
 
 	/// <summary>
@@ -1094,11 +1178,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the sue de coq.
 	/// </summary>
+	[HodokuTechniquePrefix("1101")]
 	SueDeCoq,
 
 	/// <summary>
 	/// Indicates the sue de coq with isolated digit.
 	/// </summary>
+	[HodokuTechniquePrefix("1101")]
 	SueDeCoqIsolated,
 
 	/// <summary>
@@ -1114,26 +1200,31 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the skyscraper.
 	/// </summary>
+	[HodokuTechniquePrefix("0400")]
 	Skyscraper,
 
 	/// <summary>
 	/// Indicates the two-string kite.
 	/// </summary>
+	[HodokuTechniquePrefix("0401")]
 	TwoStringKite,
 
 	/// <summary>
 	/// Indicates the turbot fish.
 	/// </summary>
+	[HodokuTechniquePrefix("0403")]
 	TurbotFish,
 
 	/// <summary>
 	/// Indicates the empty rectangle.
 	/// </summary>
+	[HodokuTechniquePrefix("0402")]
 	EmptyRectangle,
 
 	/// <summary>
 	/// Indicates the broken wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0705")]
 	BrokenWing,
 
 	/// <summary>
@@ -1184,21 +1275,27 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the X-Chain.
 	/// </summary>
+	[HodokuTechniquePrefix("0701")]
 	XChain,
 
 	/// <summary>
 	/// Indicates the Y-Chain.
 	/// </summary>
+#if false
+	[HodokuTechniquePrefix("0702")]
+#endif
 	YChain,
 
 	/// <summary>
 	/// Indicates the fishy cycle (X-Cycle).
 	/// </summary>
+	[HodokuTechniquePrefix("0704")]
 	FishyCycle,
 
 	/// <summary>
 	/// Indicates the XY-Chain.
 	/// </summary>
+	[HodokuTechniquePrefix("0702")]
 	XyChain,
 
 	/// <summary>
@@ -1214,6 +1311,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the remote pair.
 	/// </summary>
+	[HodokuTechniquePrefix("0703")]
 	RemotePair,
 
 	/// <summary>
@@ -1224,16 +1322,19 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the discontinuous nice loop.
 	/// </summary>
+	[HodokuTechniquePrefix("0707")]
 	DiscontinuousNiceLoop,
 
 	/// <summary>
 	/// Indicates the continuous nice loop.
 	/// </summary>
+	[HodokuTechniquePrefix("0706")]
 	ContinuousNiceLoop,
 
 	/// <summary>
 	/// Indicates the alternating inference chain.
 	/// </summary>
+	[HodokuTechniquePrefix("0708")]
 	AlternatingInferenceChain,
 
 	/// <summary>
@@ -1269,16 +1370,19 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the grouped discontinuous nice loop.
 	/// </summary>
+	[HodokuTechniquePrefix("0710")]
 	GroupedDiscontinuousNiceLoop,
 
 	/// <summary>
 	/// Indicates the grouped continuous nice loop.
 	/// </summary>
+	[HodokuTechniquePrefix("0709")]
 	GroupedContinuousNiceLoop,
 
 	/// <summary>
 	/// Indicates the grouped alternating inference chain.
 	/// </summary>
+	[HodokuTechniquePrefix("0711")]
 	GroupedAlternatingInferenceChain,
 
 	/// <summary>
@@ -1295,31 +1399,37 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the region forcing chains (i.e. house forcing chains).
 	/// </summary>
+	[HodokuTechniquePrefix("1301")]
 	RegionForcingChains,
 
 	/// <summary>
 	/// Indicates the cell forcing chains.
 	/// </summary>
+	[HodokuTechniquePrefix("1301")]
 	CellForcingChains,
 
 	/// <summary>
 	/// Indicates the dynamic region forcing chains (i.e. dynamic house forcing chains).
 	/// </summary>
+	[HodokuTechniquePrefix("1303")]
 	DynamicRegionForcingChains,
 
 	/// <summary>
 	/// Indicates the dynamic cell forcing chains.
 	/// </summary>
+	[HodokuTechniquePrefix("1303")]
 	DynamicCellForcingChains,
 
 	/// <summary>
 	/// Indicates the dynamic contradiction forcing chains.
 	/// </summary>
+	[HodokuTechniquePrefix("1304")]
 	DynamicContradictionForcingChains,
 
 	/// <summary>
 	/// Indicates the dynamic double forcing chains.
 	/// </summary>
+	[HodokuTechniquePrefix("1304")]
 	DynamicDoubleForcingChains,
 
 	/// <summary>
@@ -1335,21 +1445,25 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the extended subset principle.
 	/// </summary>
+	[HodokuTechniquePrefix("1102")]
 	ExtendedSubsetPrinciple,
 
 	/// <summary>
 	/// Indicates the singly linked ALS-XZ.
 	/// </summary>
+	[HodokuTechniquePrefix("0901")]
 	SinglyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
 	/// Indicates the doubly linked ALS-XZ.
 	/// </summary>
+	[HodokuTechniquePrefix("0901")]
 	DoublyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
 	/// Indicates the ALS-XY-Wing.
 	/// </summary>
+	[HodokuTechniquePrefix("0902")]
 	AlmostLockedSetsXyWing,
 
 	/// <summary>
@@ -1360,6 +1474,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the ALS chain.
 	/// </summary>
+	[HodokuTechniquePrefix("0903")]
 	AlmostLockedSetsChain,
 
 	/// <summary>
@@ -1370,6 +1485,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the death blossom.
 	/// </summary>
+	[HodokuTechniquePrefix("0904")]
 	DeathBlossom,
 
 	/// <summary>
@@ -1425,11 +1541,13 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates the template set.
 	/// </summary>
+	[HodokuTechniquePrefix("1201")]
 	TemplateSet,
 
 	/// <summary>
 	/// Indicates the template delete.
 	/// </summary>
+	[HodokuTechniquePrefix("1202")]
 	TemplateDelete,
 
 	/// <summary>
