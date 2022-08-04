@@ -4,7 +4,7 @@
 /// Indicates a reason why the searcher is disabled.
 /// </summary>
 [Flags]
-public enum DisabledReason : short
+public enum SearcherDisabledReason : short
 {
 	/// <summary>
 	/// Indicates the searcher is normal one and isn't disabled.

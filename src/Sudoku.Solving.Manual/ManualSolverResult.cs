@@ -115,7 +115,7 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 	/// keeps the <see langword="true"/> value.
 	/// </summary>
 	/// <seealso cref="IsSolved"/>
-	public FailedReason FailedReason { get; init; }
+	public SearcherFailedReason FailedReason { get; init; }
 
 	/// <summary>
 	/// Indicates the difficulty level of the puzzle.
@@ -244,12 +244,12 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 	/// <inheritdoc/>
 	/// <remarks>
 	/// You can visit the property value
-	/// if the property <see cref="FailedReason"/> is <see cref="FailedReason.ExceptionThrown"/>
-	/// or <see cref="FailedReason.WrongStep"/>.
+	/// if the property <see cref="FailedReason"/> is <see cref="SearcherFailedReason.ExceptionThrown"/>
+	/// or <see cref="SearcherFailedReason.WrongStep"/>.
 	/// </remarks>
 	/// <seealso cref="FailedReason"/>
-	/// <seealso cref="FailedReason.ExceptionThrown"/>
-	/// <seealso cref="FailedReason.WrongStep"/>
+	/// <seealso cref="SearcherFailedReason.ExceptionThrown"/>
+	/// <seealso cref="SearcherFailedReason.WrongStep"/>
 	public Exception? UnhandledException { get; init; }
 
 

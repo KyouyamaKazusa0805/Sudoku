@@ -61,7 +61,7 @@ public interface IStepSearcher
 	/// <summary>
 	/// Indicates the step searching options.
 	/// </summary>
-	public abstract SearchingOptions Options { get; set; }
+	public abstract SearcherInitializationOptions Options { get; set; }
 
 
 	/// <summary>

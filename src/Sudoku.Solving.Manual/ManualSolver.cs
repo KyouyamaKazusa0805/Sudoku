@@ -284,7 +284,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (
 			from searcher in CustomSearcherCollection ?? StepSearcherPool.Collection
-			where searcher.Options.EnabledArea.Flags(EnabledArea.Default)
+			where searcher.Options.EnabledArea.Flags(SearcherEnabledArea.Default)
 			select searcher
 		).ToArray();
 	}
@@ -319,24 +319,24 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 					NotImplementedException or NotSupportedException => result with
 					{
 						IsSolved = false,
-						FailedReason = FailedReason.NotImplemented
+						FailedReason = SearcherFailedReason.NotImplemented
 					},
 					WrongStepException { WrongStep: var ws } castedException => result with
 					{
 						IsSolved = false,
-						FailedReason = FailedReason.WrongStep,
+						FailedReason = SearcherFailedReason.WrongStep,
 						WrongStep = ws,
 						UnhandledException = castedException,
 					},
 					OperationCanceledException => result with
 					{
 						IsSolved = false,
-						FailedReason = FailedReason.UserCancelled
+						FailedReason = SearcherFailedReason.UserCancelled
 					},
 					_ => result with
 					{
 						IsSolved = false,
-						FailedReason = FailedReason.ExceptionThrown,
+						FailedReason = SearcherFailedReason.ExceptionThrown,
 						UnhandledException = ex
 					}
 				};
@@ -344,7 +344,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 		}
 		else
 		{
-			return result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid };
+			return result with { IsSolved = false, FailedReason = SearcherFailedReason.PuzzleIsInvalid };
 		}
 	}
 
@@ -389,7 +389,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 			switch (isSukaku, searcher, IsFullApplying)
 			{
 				case (true, IDeadlyPatternStepSearcher, _):
-				case (_, { Options.EnabledArea: EnabledArea.None }, _):
+				case (_, { Options.EnabledArea: SearcherEnabledArea.None }, _):
 				{
 					// Skips on those two cases:
 					// 1. Sukaku puzzles can't use deadly pattern techniques.
@@ -467,7 +467,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 		{
 			IsSolved = false,
 #pragma warning disable CS0618
-			FailedReason = FailedReason.PuzzleIsTooHard,
+			FailedReason = SearcherFailedReason.PuzzleIsTooHard,
 #pragma warning restore CS0618
 			ElapsedTime = stopwatch.Elapsed,
 			Steps = ImmutableArray.CreateRange(recordedSteps),

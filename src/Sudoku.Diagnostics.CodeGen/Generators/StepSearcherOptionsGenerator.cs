@@ -7,6 +7,17 @@
 [Generator(LanguageNames.CSharp)]
 public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 {
+	/// <summary>
+	/// Indicates the property name of <c>EnabledArea</c>.
+	/// </summary>
+	private const string EnabledAreaPropertyName = "EnabledArea";
+
+	/// <summary>
+	/// Indicates the property name of <c>DisabledReason</c>.
+	/// </summary>
+	private const string DisabledReasonPropertyName = "DisabledReason";
+
+
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(context.CompilationProvider, CreateSourceGeneration);
@@ -24,8 +35,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 			return;
 		}
 
-		var enabledAreaTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Runtime.AnalysisServices.EnabledArea")!;
-		var disabledReasonTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Runtime.AnalysisServices.DisabledReason")!;
+		var enabledAreaTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Runtime.AnalysisServices.SearcherEnabledArea")!;
+		var disabledReasonTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Runtime.AnalysisServices.SearcherDisabledReason")!;
 
 		var enabledAreasFields = new Dictionary<byte, string>();
 		var disabledReasonFields = new Dictionary<short, string>();
@@ -104,12 +115,12 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				{
 					switch (kvp)
 					{
-						case ("EnabledArea", { Value: byte ea }):
+						case (EnabledAreaPropertyName, { Value: byte ea }):
 						{
 							enabledArea = ea;
 							break;
 						}
-						case ("DisabledReason", { Value: short dr }):
+						case (DisabledReasonPropertyName, { Value: short dr }):
 						{
 							disabledReason = dr;
 							break;
@@ -125,13 +136,13 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				sb = new StringBuilder().Append(comma);
 				if (enabledArea is { } ea)
 				{
-					string targetStr = CreateExpression(ea, "EnabledArea", enabledAreasFields, disabledReasonFields);
-					sb.Append($"EnabledArea: {targetStr}{comma}");
+					string targetStr = CreateExpression(ea, $"Searcher{EnabledAreaPropertyName}", enabledAreasFields, disabledReasonFields);
+					sb.Append($"{EnabledAreaPropertyName}: {targetStr}{comma}");
 				}
 				if (disabledReason is { } dr)
 				{
-					string targetStr = CreateExpression(dr, "DisabledReason", enabledAreasFields, disabledReasonFields);
-					sb.Append($"DisabledReason: {targetStr}{comma}");
+					string targetStr = CreateExpression(dr, $"Searcher{DisabledReasonPropertyName}", enabledAreasFields, disabledReasonFields);
+					sb.Append($"{DisabledReasonPropertyName}: {targetStr}{comma}");
 				}
 
 				sb.Remove(sb.Length - comma.Length, comma.Length);
@@ -150,8 +161,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 					/// <inheritdoc/>
 					[global::{{typeof(GeneratedCodeAttribute).FullName}}("{{typeof(StepSearcherOptionsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::{{typeof(CompilerGeneratedAttribute).FullName}}]
-					public global::Sudoku.Runtime.AnalysisServices.SearchingOptions Options { get; set; } =
-						new({{priority}}, global::Sudoku.Runtime.AnalysisServices.DisplayingLevel.{{(char)(level + 'A' - 1)}}{{sb}});
+					public global::Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions Options { get; set; } =
+						new({{priority}}, global::Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.{{(char)(level + 'A' - 1)}}{{sb}});
 				}
 				"""
 			);
@@ -188,15 +199,17 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 
 			switch (typeName)
 			{
-				case "EnabledArea" when enabledAreasFields[(byte)(1 << i)] is var fieldValue:
+				case $"Searcher{EnabledAreaPropertyName}"
+				when enabledAreasFields[(byte)(1 << i)] is var fieldValue:
 				{
-					targetList.Add($"global::Sudoku.Runtime.AnalysisServices.EnabledArea.{fieldValue}");
+					targetList.Add($"global::Sudoku.Runtime.AnalysisServices.Searcher{EnabledAreaPropertyName}.{fieldValue}");
 
 					break;
 				}
-				case "DisabledReason" when disabledReasonFields[(short)(1 << i)] is var fieldValue:
+				case $"Searcher{DisabledReasonPropertyName}"
+				when disabledReasonFields[(short)(1 << i)] is var fieldValue:
 				{
-					targetList.Add($"global::Sudoku.Runtime.AnalysisServices.DisabledReason.{fieldValue}");
+					targetList.Add($"global::Sudoku.Runtime.AnalysisServices.Searcher{DisabledReasonPropertyName}.{fieldValue}");
 
 					break;
 				}

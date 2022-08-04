@@ -6,7 +6,8 @@
 /// <param name="Priority">Indicates the priority of this technique.</param>
 /// <param name="EnabledArea">
 /// Indicates which areas the step searcher is enabled and works well.
-/// The default value is both <see cref="EnabledArea.Default"/> and <see cref="EnabledArea.Gathering"/>.
+/// The default value is both <see cref="SearcherEnabledArea.Default"/>
+/// and <see cref="SearcherEnabledArea.Gathering"/>.
 /// </param>
 /// <param name="DisplayingLevel">
 /// <para>Indicates the displaying level of this technique.</para>
@@ -17,8 +18,8 @@
 /// </para>
 /// <para>
 /// In order to enhance the performance, this attribute is used on a step gatherer.
-/// For example, if Alternating Inference Chain (AIC) is at the level <see cref="DisplayingLevel.D"/>
-/// but Forcing Chains (FC) is at the level <see cref="DisplayingLevel.E"/>,
+/// For example, if Alternating Inference Chain (AIC) is at the level <see cref="SearcherDisplayingLevel.D"/>
+/// but Forcing Chains (FC) is at the level <see cref="SearcherDisplayingLevel.E"/>,
 /// when we find any AIC technique instances, FC won't be checked at the same time.
 /// </para>
 /// <para>
@@ -31,15 +32,18 @@
 /// the searcher is (or should be) disabled.
 /// </para>
 /// <para>
-/// The property <b>must</b> contain a value that differs with <see cref="DisabledReason.None"/>
-/// when the property <see cref="EnabledArea"/> isn't <see cref="EnabledArea.Default"/>.
+/// The property <b>must</b> contain a value that differs with <see cref="SearcherDisabledReason.None"/>
+/// when the property <see cref="EnabledArea"/> isn't <see cref="SearcherEnabledArea.Default"/>.
 /// </para>
 /// </param>
-public readonly record struct SearchingOptions(
+public readonly record struct SearcherInitializationOptions(
 	int Priority,
-	DisplayingLevel DisplayingLevel,
-	EnabledArea EnabledArea = EnabledArea.Default | EnabledArea.Gathering,
-	DisabledReason DisabledReason = DisabledReason.None)
+	SearcherDisplayingLevel DisplayingLevel,
+	SearcherEnabledArea EnabledArea = SearcherEnabledArea.Default | SearcherEnabledArea.Gathering,
+	SearcherDisabledReason DisabledReason = SearcherDisabledReason.None
+) :
+	IEquatable<SearcherInitializationOptions>,
+	IEqualityOperators<SearcherInitializationOptions, SearcherInitializationOptions>
 {
 	/// <summary>
 	/// Indicates the custom priority value. This property is used for a comparison between two step searchers

@@ -4,7 +4,7 @@
 /// Indicates the difficulty level of the step.
 /// This enumeration type is used for the displaying of the step information list.
 /// </summary>
-public enum DisplayingLevel : byte
+public enum SearcherDisplayingLevel : byte
 {
 	/// <summary>
 	/// Indicates the level is none.

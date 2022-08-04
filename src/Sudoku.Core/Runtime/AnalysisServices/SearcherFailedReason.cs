@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a reason why the puzzle is failed to be solved.
 /// </summary>
-public enum FailedReason : byte
+public enum SearcherFailedReason : byte
 {
 	/// <summary>
 	/// Indicates nothing goes wrong.

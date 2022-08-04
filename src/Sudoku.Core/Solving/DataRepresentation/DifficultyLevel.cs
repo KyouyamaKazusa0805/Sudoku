@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Runtime.AnalysisServices;
+﻿namespace Sudoku.Solving.DataRepresentation;
 
 /// <summary>
 /// Provides a difficulty kind for a puzzle.

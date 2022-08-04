@@ -20,13 +20,13 @@ public sealed class StepsGatherer :
 		}
 
 		InitializeMaps(puzzle);
-		var i = (DisplayingLevel)255;
+		var i = (SearcherDisplayingLevel)255;
 		var bag = new List<Step>();
 		foreach (var searcher in StepSearcherPool.Collection)
 		{
 			switch (searcher)
 			{
-				case { Options.EnabledArea: var enabledArea } when !enabledArea.Flags(EnabledArea.Gathering):
+				case { Options.EnabledArea: var enabledArea } when !enabledArea.Flags(SearcherEnabledArea.Gathering):
 				{
 					// Skip the searcher that is disabled in this case.
 					continue;
@@ -43,7 +43,7 @@ public sealed class StepsGatherer :
 					// the searcher will be skipped to search steps.
 					if (OnlyShowSameLevelTechniquesInFindAllSteps)
 					{
-						if (i != (DisplayingLevel)255 && i != currentLevel)
+						if (i != (SearcherDisplayingLevel)255 && i != currentLevel)
 						{
 							continue;
 						}

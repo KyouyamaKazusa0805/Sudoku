@@ -22,6 +22,7 @@ global using Sudoku.Presentation.Nodes;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Runtime.Reflection;
+global using Sudoku.Solving.DataRepresentation;
 global using Sudoku.Solving.Manual;
 global using Sudoku.Solving.Manual.Buffers;
 global using Sudoku.Solving.Manual.Searchers;

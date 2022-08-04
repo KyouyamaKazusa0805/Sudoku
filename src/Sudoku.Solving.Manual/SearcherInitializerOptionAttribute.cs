@@ -14,7 +14,7 @@ public sealed class SearcherConfigurationAttribute<TStepSearcher> : Attribute
 	/// via the specified displaying level.
 	/// </summary>
 	/// <param name="displayingLevel">The displaying level.</param>
-	public SearcherConfigurationAttribute(DisplayingLevel displayingLevel)
+	public SearcherConfigurationAttribute(SearcherDisplayingLevel displayingLevel)
 		=> DisplayingLevel = displayingLevel;
 
 
@@ -27,17 +27,17 @@ public sealed class SearcherConfigurationAttribute<TStepSearcher> : Attribute
 	/// <summary>
 	/// Indicates the level of the step searcher.
 	/// </summary>
-	public DisplayingLevel DisplayingLevel { get; }
+	public SearcherDisplayingLevel DisplayingLevel { get; }
 
 	/// <summary>
 	/// Indicates the area that the step searcher can be used and available.
 	/// </summary>
-	public EnabledArea EnabledArea { get; init; } = EnabledArea.Default | EnabledArea.Gathering;
+	public SearcherEnabledArea EnabledArea { get; init; } = SearcherEnabledArea.Default | SearcherEnabledArea.Gathering;
 
 	/// <summary>
 	/// Indicates why the step searcher is disabled, which means the property <see cref="EnabledArea"/>
-	/// is <see cref="EnabledArea.None"/>.
+	/// is <see cref="SearcherEnabledArea.None"/>.
 	/// </summary>
-	/// <seealso cref="EnabledArea.None"/>
-	public DisabledReason DisabledReason { get; init; } = DisabledReason.None;
+	/// <seealso cref="SearcherEnabledArea.None"/>
+	public SearcherDisabledReason DisabledReason { get; init; } = SearcherDisabledReason.None;
 }

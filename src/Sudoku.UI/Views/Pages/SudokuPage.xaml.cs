@@ -701,11 +701,11 @@ public sealed partial class SudokuPage : Page
 						string secondPart =
 							failedReason switch
 							{
-								FailedReason.UserCancelled
+								SearcherFailedReason.UserCancelled
 									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling"]!,
-								FailedReason.NotImplemented
+								SearcherFailedReason.NotImplemented
 									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented"]!,
-								FailedReason.ExceptionThrown
+								SearcherFailedReason.ExceptionThrown
 									=> $"""
 									{R["SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown"]!}
 
@@ -713,7 +713,7 @@ public sealed partial class SudokuPage : Page
 									{unhandledException!.Message}
 									""",
 #pragma warning disable CS0618
-								FailedReason.PuzzleIsTooHard
+								SearcherFailedReason.PuzzleIsTooHard
 									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard"]!,
 #pragma warning restore CS0618
 							};

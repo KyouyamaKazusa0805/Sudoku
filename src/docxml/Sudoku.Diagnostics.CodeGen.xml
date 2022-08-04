@@ -243,6 +243,16 @@
             on a step searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.EnabledAreaPropertyName">
+            <summary>
+            Indicates the property name of <c>EnabledArea</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.DisabledReasonPropertyName">
+            <summary>
+            Indicates the property name of <c>DisabledReason</c>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>

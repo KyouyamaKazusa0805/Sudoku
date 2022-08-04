@@ -11,7 +11,7 @@ public interface IManualSolverOptions
 	/// <para>
 	/// <b>Hodoku mode</b> is a mode that imitates a sudoku-solving program called <i>Hodoku</i>
 	/// to solve a puzzle. In this case, all enabled step searchers will be in ascending order via their's own
-	/// priority, i.e. the value of the property <see cref="SearchingOptions.Priority"/>. On the other hand,
+	/// priority, i.e. the value of the property <see cref="SearcherInitializationOptions.Priority"/>. On the other hand,
 	/// this option provides a basic and normal processing behavior of a <see cref="ManualSolver"/> instance.
 	/// </para>
 	/// <para>
@@ -29,7 +29,7 @@ public interface IManualSolverOptions
 	/// <see langword="true"/> value.
 	/// </para>
 	/// </summary>
-	/// <seealso cref="SearchingOptions.Priority"/>
+	/// <seealso cref="SearcherInitializationOptions.Priority"/>
 	public abstract bool IsHodokuMode { get; set; }
 
 	/// <summary>

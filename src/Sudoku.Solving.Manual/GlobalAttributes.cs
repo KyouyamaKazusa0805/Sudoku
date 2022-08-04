@@ -1,6 +1,6 @@
-﻿using static Sudoku.Runtime.AnalysisServices.DisabledReason;
-using static Sudoku.Runtime.AnalysisServices.DisplayingLevel;
-using static Sudoku.Runtime.AnalysisServices.EnabledArea;
+﻿using static Sudoku.Runtime.AnalysisServices.SearcherDisabledReason;
+using static Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel;
+using static Sudoku.Runtime.AnalysisServices.SearcherEnabledArea;
 
 [assembly: SearcherConfiguration<SingleStepSearcher>(A)]
 [assembly: SearcherConfiguration<LockedCandidatesStepSearcher>(A)]
@@ -30,12 +30,12 @@ using static Sudoku.Runtime.AnalysisServices.EnabledArea;
 [assembly: SearcherConfiguration<GuardianStepSearcher>(B)]
 [assembly: SearcherConfiguration<BivalueOddagonStepSearcher>(B)]
 [assembly: SearcherConfiguration<ChromaticPatternStepSearcher>(B)]
-[assembly: SearcherConfiguration<BowmanBingoStepSearcher>(C, EnabledArea = EnabledArea.None, DisabledReason = TooSlow | LastResort)]
+[assembly: SearcherConfiguration<BowmanBingoStepSearcher>(C, EnabledArea = SearcherEnabledArea.None, DisabledReason = TooSlow | LastResort)]
 [assembly: SearcherConfiguration<PatternOverlayStepSearcher>(C, EnabledArea = Gathering, DisabledReason = LastResort)]
-[assembly: SearcherConfiguration<TemplateStepSearcher>(C, EnabledArea = EnabledArea.None, DisabledReason = LastResort)]
+[assembly: SearcherConfiguration<TemplateStepSearcher>(C, EnabledArea = SearcherEnabledArea.None, DisabledReason = LastResort)]
 [assembly: SearcherConfiguration<JuniorExocetStepSearcher>(D)]
-[assembly: SearcherConfiguration<SeniorExocetStepSearcher>(D, EnabledArea = EnabledArea.None, DisabledReason = DeprecatedOrNotImplemented)]
+[assembly: SearcherConfiguration<SeniorExocetStepSearcher>(D, EnabledArea = SearcherEnabledArea.None, DisabledReason = DeprecatedOrNotImplemented)]
 [assembly: SearcherConfiguration<DominoLoopStepSearcher>(D)]
 [assembly: SearcherConfiguration<MultisectorLockedSetsStepSearcher>(D)]
-[assembly: SearcherConfiguration<BruteForceStepSearcher>(DisplayingLevel.E, EnabledArea = Default, DisabledReason = LastResort)]
+[assembly: SearcherConfiguration<BruteForceStepSearcher>(SearcherDisplayingLevel.E, EnabledArea = Default, DisabledReason = LastResort)]
 [module: SkipLocalsInit]

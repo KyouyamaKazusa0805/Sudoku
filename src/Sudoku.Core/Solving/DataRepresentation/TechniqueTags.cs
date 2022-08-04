@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Runtime.AnalysisServices;
+﻿namespace Sudoku.Solving.DataRepresentation;
 
 /// <summary>
 /// Provides a series of tags to mark on a technique.

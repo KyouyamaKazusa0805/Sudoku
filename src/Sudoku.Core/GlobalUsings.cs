@@ -31,6 +31,7 @@ global using Sudoku.Runtime.Reflection;
 global using Sudoku.Runtime.Serialization.Converter;
 global using Sudoku.Solving;
 global using Sudoku.Solving.DancingLinx;
+global using Sudoku.Solving.DataRepresentation;
 global using static System.Algorithm.Sequences;
 global using static System.Algorithm.Sorting;
 global using static System.Math;
