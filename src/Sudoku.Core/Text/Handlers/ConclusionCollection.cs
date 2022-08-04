@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Handlers;
+﻿namespace Sudoku.Text.Handlers;
 
 /// <summary>
 /// Provides a collection that contains the conclusions.
@@ -17,7 +17,7 @@ public readonly ref partial struct ConclusionCollection
 	/// <param name="collection">The collection.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ConclusionCollection(Conclusion[] collection) : this() => _collection = collection;
-	
+
 
 	/// <summary>
 	/// Indicates all cells used in this conclusions list.
