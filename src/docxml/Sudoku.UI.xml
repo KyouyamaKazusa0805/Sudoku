@@ -921,7 +921,7 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion})">
+        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
             <summary>
             Provides with a displayable unit that display backdoors.
             </summary>
@@ -930,7 +930,7 @@
         <member name="P:Sudoku.UI.Data.Displayables.BackdoorDisplayable.Conclusions">
             <summary><inheritdoc/></summary>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.#ctor(Sudoku.Concepts.Solving.Conclusion[])">
+        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.#ctor(Sudoku.Solving.Conclusion[])">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Data.Displayables.BackdoorDisplayable"/> instance via the specified conclusions as possible backdoors.
             </summary>
@@ -1567,7 +1567,7 @@
             </summary>
             <returns>The string value.</returns>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStep.Deconstruct(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Solving.Step@)">
+        <member name="M:Sudoku.UI.Models.ManualStep.Deconstruct(Sudoku.Concepts.Collections.Grid@,Sudoku.Solving.Step@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

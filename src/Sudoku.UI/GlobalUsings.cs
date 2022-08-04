@@ -42,7 +42,6 @@ global using Microsoft.Windows.System.Power;
 global using Sudoku.Checking;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Notations;
-global using Sudoku.Concepts.Solving;
 global using Sudoku.Generating.Puzzlers;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;

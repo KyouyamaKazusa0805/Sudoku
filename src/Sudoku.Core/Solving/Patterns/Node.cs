@@ -1,9 +1,9 @@
-﻿namespace Sudoku.Concepts.Solving.TechniqueStructures;
+﻿namespace Sudoku.Solving.Patterns;
 
 /// <summary>
 /// Defines a chain node.
 /// </summary>
-public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
+public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>, ITechniquePattern<Node>
 {
 	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the basic data.
@@ -66,6 +66,9 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	/// Indicates the full cells.
 	/// </summary>
 	public Cells FullCells { get; }
+
+	/// <inheritdoc/>
+	Cells ITechniquePattern<Node>.Map => FullCells;
 
 
 	/// <inheritdoc/>

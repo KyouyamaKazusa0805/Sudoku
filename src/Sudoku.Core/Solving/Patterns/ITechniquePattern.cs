@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving.TechniqueStructures;
+﻿namespace Sudoku.Solving.Patterns;
 
 /// <summary>
 /// Defines a pattern that is a technique.

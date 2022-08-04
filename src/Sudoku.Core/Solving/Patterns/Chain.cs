@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving.TechniqueStructures;
+﻿namespace Sudoku.Solving.Patterns;
 
 /// <summary>
 /// Represents an abstract data structure "Chain".

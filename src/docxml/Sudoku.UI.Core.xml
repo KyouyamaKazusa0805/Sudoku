@@ -3054,7 +3054,7 @@
             </summary>
             <param name="view">The view instance.</param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetConclusion(Sudoku.Presentation.View,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion})">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetConclusion(Sudoku.Presentation.View,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
             <summary>
             Sets the conclusions. The conclusions will be displayed
             using also <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape"/>s.

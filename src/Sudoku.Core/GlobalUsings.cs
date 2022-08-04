@@ -23,7 +23,6 @@ global using Sudoku.Concepts;
 global using Sudoku.Concepts.Collections;
 global using Sudoku.Concepts.Collections.Handlers;
 global using Sudoku.Concepts.Notations;
-global using Sudoku.Concepts.Solving;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Resources;

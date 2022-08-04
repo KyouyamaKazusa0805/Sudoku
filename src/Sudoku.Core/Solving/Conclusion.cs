@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving;
+﻿namespace Sudoku.Solving;
 
 /// <summary>
 /// Encapsulates a conclusion representation while solving in logic.
