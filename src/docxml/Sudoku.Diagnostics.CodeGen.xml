@@ -246,7 +246,7 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData">
             <summary>
             Simply encapsulates a data tuple describing the information of a found attribute.
             </summary>
@@ -256,7 +256,7 @@
             <param name="TypeName">The name of the step searcher type.</param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
             <summary>
             Simply encapsulates a data tuple describing the information of a found attribute.
             </summary>
@@ -266,19 +266,19 @@
             <param name="TypeName">The name of the step searcher type.</param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.Namespace">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.Namespace">
             <summary>Indicates the namespace symbol of that step searcher.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.PriorityValue">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.PriorityValue">
             <summary>The priority value of the step searcher.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.DifficultyLevel">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.DifficultyLevel">
             <summary>The difficulty level of the step searcher.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.TypeName">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.TypeName">
             <summary>The name of the step searcher type.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.NamedArguments">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.NamedArguments">
             <summary>The named arguments of that attribute.</summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Shortcuts">
