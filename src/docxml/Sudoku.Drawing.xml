@@ -548,7 +548,7 @@
             </param>
             <param name="Puzzle">Indicates the puzzle.</param>
         </member>
-        <member name="M:Sudoku.Drawing.GridImageGenerator.#ctor(Sudoku.Drawing.IPointCalculator,Sudoku.Drawing.IPreference,Sudoku.Concepts.Collections.Grid@)">
+        <member name="M:Sudoku.Drawing.GridImageGenerator.#ctor(Sudoku.Drawing.IPointCalculator,Sudoku.Drawing.IPreference,Sudoku.Concepts.Grid@)">
             <summary>
             Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
             </summary>
@@ -837,7 +837,7 @@
             <param name="point">The mouse point.</param>
             <returns>The candidate offset.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.IPointCalculator.GetMouseCenter(Sudoku.Concepts.Collections.Candidates@)">
+        <member name="M:Sudoku.Drawing.IPointCalculator.GetMouseCenter(Sudoku.Concepts.Candidates@)">
             <summary>
             Get the center mouse point of all candidates.
             </summary>
@@ -853,7 +853,7 @@
             <returns>The center mouse point.</returns>
             <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.IPointCalculator.GetMouseRectangle(Sudoku.Concepts.Collections.Candidates@)">
+        <member name="M:Sudoku.Drawing.IPointCalculator.GetMouseRectangle(Sudoku.Concepts.Candidates@)">
             <summary>
             Get the rectangle from all candidates.
             </summary>
@@ -1339,13 +1339,13 @@
         <member name="M:Sudoku.Drawing.PointCalculator.GetCandidate(System.Drawing.PointF@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.PointCalculator.GetMouseCenter(Sudoku.Concepts.Collections.Candidates@)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetMouseCenter(Sudoku.Concepts.Candidates@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.PointCalculator.GetMouseCenter(Sudoku.Presentation.LockedTarget@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.PointCalculator.GetMouseRectangle(Sudoku.Concepts.Collections.Candidates@)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetMouseRectangle(Sudoku.Concepts.Candidates@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.PointCalculator.GetMouseRectangleViaCell(System.Int32)">

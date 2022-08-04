@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Collections;
+﻿namespace Sudoku.Concepts;
 
 /// <summary>
 /// Provides methods for <see cref="Grid"/> instances on transformations.

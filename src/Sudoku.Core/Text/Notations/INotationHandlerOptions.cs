@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Notations;
+﻿namespace Sudoku.Text.Notations;
 
 /// <summary>
 /// Defines a type that provides the extra options that is used by the <see cref="INotationHandler"/> instance.

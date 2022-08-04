@@ -11,7 +11,6 @@ global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.Versioning;
 global using Sudoku.Concepts;
-global using Sudoku.Concepts.Collections;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Solving;

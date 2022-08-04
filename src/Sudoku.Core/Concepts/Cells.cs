@@ -1,6 +1,6 @@
 ﻿#pragma warning disable IDE0011
 
-namespace Sudoku.Concepts.Collections;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Encapsulates a binary series of cell status table.

@@ -49,7 +49,7 @@ global using static System.Numerics.BitOperations;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
-global using Grid = Sudoku.Concepts.Collections.Grid;
+global using Grid = Sudoku.Concepts.Grid;
 global using Point = Windows.Foundation.Point;
 global using WinsysDispatcherQueue = Windows.System.DispatcherQueue;
 global using WinsysDispatcherQueueController = Windows.System.DispatcherQueueController;

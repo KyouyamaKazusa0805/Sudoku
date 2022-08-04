@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Collections;
+﻿namespace Sudoku.Concepts;
 
 partial struct Grid
 {

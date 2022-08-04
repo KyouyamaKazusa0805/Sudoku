@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Notations;
+﻿namespace Sudoku.Text.Notations;
 
 /// <summary>
 /// Defines a type that handles using the current notation.

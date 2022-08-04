@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Parsing;
+﻿namespace Sudoku.Text.Parsing;
 
 /// <summary>
 /// Defines a range of cells.

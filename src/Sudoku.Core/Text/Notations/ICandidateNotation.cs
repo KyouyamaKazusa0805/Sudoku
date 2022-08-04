@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Notations;
+﻿namespace Sudoku.Text.Notations;
 
 /// <summary>
 /// Defines a type that can convert a <see cref="Candidates"/> instance into a result <see cref="string"/>

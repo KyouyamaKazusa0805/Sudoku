@@ -2892,7 +2892,7 @@
             will be cleared.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ReplaceGrid(Sudoku.Concepts.Collections.Grid@)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ReplaceGrid(Sudoku.Concepts.Grid@)">
             <summary>
             To replace with the new grid.
             </summary>
@@ -3037,7 +3037,7 @@
             Throws when the current sudoku grid doesn't support drawing.
             </exception>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.AddStep(Sudoku.Concepts.Collections.Grid@)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.AddStep(Sudoku.Concepts.Grid@)">
             <summary>
             Adds the specified step into the collection.
             </summary>

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Notations;
+﻿namespace Sudoku.Text.Notations;
 
 /// <summary>
 /// Provides with a type that is used for displaying a cell list, using K9 notation.

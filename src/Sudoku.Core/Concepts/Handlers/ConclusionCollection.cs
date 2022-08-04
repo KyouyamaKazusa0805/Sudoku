@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Collections.Handlers;
+﻿namespace Sudoku.Concepts.Handlers;
 
 /// <summary>
 /// Provides a collection that contains the conclusions.

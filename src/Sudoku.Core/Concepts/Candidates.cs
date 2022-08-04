@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Collections;
+﻿namespace Sudoku.Concepts;
 
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.

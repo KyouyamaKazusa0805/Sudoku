@@ -1567,7 +1567,7 @@
             </summary>
             <returns>The string value.</returns>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStep.Deconstruct(Sudoku.Concepts.Collections.Grid@,Sudoku.Solving.Step@)">
+        <member name="M:Sudoku.UI.Models.ManualStep.Deconstruct(Sudoku.Concepts.Grid@,Sudoku.Solving.Step@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -2577,7 +2577,7 @@
             To reset the grid, to revert the grid to the initial status.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ReplaceGridUndoable(Sudoku.Concepts.Collections.Grid@)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ReplaceGridUndoable(Sudoku.Concepts.Grid@)">
             <summary>
             To replace the grid with the new one, in order to make the current operation undoable.
             </summary>
@@ -3125,7 +3125,7 @@
             </summary>
             <param name="format">The format.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CopySudokuCode(Sudoku.Concepts.Collections.Grid@,System.String)">
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CopySudokuCode(Sudoku.Concepts.Grid@,System.String)">
             <summary>
             Copy the string text that represents the current sudoku grid used, to the clipboard,
             with the specified grid and the format.
@@ -3207,7 +3207,7 @@
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.OpenFileAsync">
             <summary>
-            Asynchronously opening the file, and get the inner content to be parsed to a <see cref="T:Sudoku.Concepts.Collections.Grid"/> result
+            Asynchronously opening the file, and get the inner content to be parsed to a <see cref="T:Sudoku.Concepts.Grid"/> result
             to display.
             </summary>
             <returns>

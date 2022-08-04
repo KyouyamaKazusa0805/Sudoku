@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Notations;
+﻿namespace Sudoku.Text.Notations;
 
 /// <summary>
 /// Represents a notation.

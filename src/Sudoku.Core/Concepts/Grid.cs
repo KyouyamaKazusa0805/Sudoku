@@ -1,7 +1,6 @@
 ﻿#define SOLUTION_DISPLAY_MODIFIABLES
 
-
-namespace Sudoku.Concepts.Collections;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
