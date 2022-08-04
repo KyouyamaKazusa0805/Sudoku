@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Compatibilities;
+﻿namespace Sudoku.Compatibility;
 
 /// <summary>
 /// Represents some methods that are used for get the details supported and defined

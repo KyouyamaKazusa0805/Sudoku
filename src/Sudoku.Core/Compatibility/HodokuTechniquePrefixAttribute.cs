@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Compatibilities;
+﻿namespace Sudoku.Compatibility;
 
 /// <summary>
 /// Defines an attribute that is applied to a field in type <see cref="Technique"/>,

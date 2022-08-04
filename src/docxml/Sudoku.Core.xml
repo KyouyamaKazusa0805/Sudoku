@@ -123,13 +123,13 @@
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>All true candidates.</returns>
         </member>
-        <member name="T:Sudoku.Compatibilities.HodokuLibraryCompatiblity">
+        <member name="T:Sudoku.Compatibility.HodokuLibraryCompatiblity">
             <summary>
             Represents some methods that are used for get the details supported and defined
             by another program called <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
             </summary>
         </member>
-        <member name="M:Sudoku.Compatibilities.HodokuLibraryCompatiblity.GetHodokuPrefix(Sudoku.Solving.DataRepresentation.Technique)">
+        <member name="M:Sudoku.Compatibility.HodokuLibraryCompatiblity.GetHodokuPrefix(Sudoku.Solving.DataRepresentation.Technique)">
             <summary>
             Try to get the prefix of the specified technique. The return value will be a four-digit value
             represented as a <see cref="T:System.String"/> value. For more information please visit
@@ -165,19 +165,19 @@
             </exception>
             <seealso cref="T:Sudoku.Solving.DataRepresentation.Technique"/>
         </member>
-        <member name="T:Sudoku.Compatibilities.HodokuTechniquePrefixAttribute">
+        <member name="T:Sudoku.Compatibility.HodokuTechniquePrefixAttribute">
             <summary>
             Defines an attribute that is applied to a field in type <see cref="T:Sudoku.Solving.DataRepresentation.Technique"/>,
             indicating a compatible prefix value defined by Hodoku.
             </summary>
         </member>
-        <member name="M:Sudoku.Compatibilities.HodokuTechniquePrefixAttribute.#ctor(System.String)">
+        <member name="M:Sudoku.Compatibility.HodokuTechniquePrefixAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Compatibilities.HodokuTechniquePrefixAttribute"/> via the specified prefix value.
+            Initializes a <see cref="T:Sudoku.Compatibility.HodokuTechniquePrefixAttribute"/> via the specified prefix value.
             </summary>
             <param name="prefix">The prefix value.</param>
         </member>
-        <member name="P:Sudoku.Compatibilities.HodokuTechniquePrefixAttribute.Prefix">
+        <member name="P:Sudoku.Compatibility.HodokuTechniquePrefixAttribute.Prefix">
             <summary>
             The prefix value.
             </summary>
