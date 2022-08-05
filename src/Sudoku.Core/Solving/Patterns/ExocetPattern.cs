@@ -56,15 +56,26 @@ public readonly record struct ExocetPattern(
 	scoped in Cells MirrorQ2,
 	scoped in Cells MirrorR1,
 	scoped in Cells MirrorR2
-) : ITechniquePattern<ExocetPattern>
+) :
+	IEquatable<ExocetPattern>,
+	IEqualityOperators<ExocetPattern, ExocetPattern>,
+	ITechniquePattern<ExocetPattern>
 {
 	/// <inheritdoc/>
-	public Cells Map => CrossLine + TargetQ1 + TargetQ2 + TargetR1 + TargetR2 + Base1 + Base2;
+	public Cells Map
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => CrossLine + TargetQ1 + TargetQ2 + TargetR1 + TargetR2 + Base1 + Base2;
+	}
 
 	/// <summary>
 	/// Indicates the full map, with mirror cells.
 	/// </summary>
-	public Cells MapWithMirrors => Map | MirrorQ1 | MirrorQ2 | MirrorR1 | MirrorR2;
+	public Cells MapWithMirrors
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Map | MirrorQ1 | MirrorQ2 | MirrorR1 | MirrorR2;
+	}
 
 	/// <summary>
 	/// Indicates the base cells.
@@ -87,7 +98,7 @@ public readonly record struct ExocetPattern(
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in ExocetPattern other)
+	public bool Equals(scoped in ExocetPattern other)
 		=> Base1 == other.Base1 && Base2 == other.Base2 && TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2
 		&& TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2 && MirrorQ1 == other.MirrorQ1
 		&& MirrorQ2 == other.MirrorQ2 && MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2

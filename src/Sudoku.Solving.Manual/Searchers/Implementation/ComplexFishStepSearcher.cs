@@ -220,7 +220,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						}
 
 						// Now record the cover sets into the cover table.
-						var coverTable = z.GetAllSets();
+						scoped var coverTable = z.GetAllSets();
 
 						// Iterate on each cover sets combination.
 						foreach (int[] coverSets in coverTable.GetSubsets(size - 1))

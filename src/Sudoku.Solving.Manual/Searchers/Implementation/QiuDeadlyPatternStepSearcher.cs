@@ -491,7 +491,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		int block = TrailingZeroCount(square.BlockMask);
 		var otherCellsMap = (HouseMaps[block] & EmptyCells) - square;
 		var tempMap = Cells.Empty;
-		var pairDigits = comparer.GetAllSets();
+		scoped var pairDigits = comparer.GetAllSets();
 
 		bool flag = false;
 		foreach (int digit in pairDigits)
