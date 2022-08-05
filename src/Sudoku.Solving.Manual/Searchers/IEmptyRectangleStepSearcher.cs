@@ -50,7 +50,7 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 		{
 			for (int j = c, cPlus3 = c + 3; j < cPlus3; j++)
 			{
-				if (cells > (HouseMaps[i] | HouseMaps[j]))
+				if (cells >> (HouseMaps[i] | HouseMaps[j]))
 				{
 					continue;
 				}

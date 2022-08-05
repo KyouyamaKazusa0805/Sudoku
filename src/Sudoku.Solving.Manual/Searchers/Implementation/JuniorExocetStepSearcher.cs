@@ -265,7 +265,7 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 			{
 				foreach (int currentColumn in currentDigitSegment.ColumnMask)
 				{
-					if (currentDigitSegment < (HouseMaps[currentRow + 9] | HouseMaps[currentColumn + 18]))
+					if (currentDigitSegment << (HouseMaps[currentRow + 9] | HouseMaps[currentColumn + 18]))
 					{
 						flag = true;
 						goto CheckFlag;

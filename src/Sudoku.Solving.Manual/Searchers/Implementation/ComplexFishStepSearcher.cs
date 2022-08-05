@@ -233,7 +233,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 							}
 
 							// All cells in base sets should lie in cover sets.
-							if (baseMap > coverMap)
+							if (baseMap >> coverMap)
 							{
 								continue;
 							}

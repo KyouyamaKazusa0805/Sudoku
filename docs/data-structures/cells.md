@@ -13,6 +13,7 @@ public struct Cells :
     IAdditionOperators<Cells, int, Cells>,
     ISubtractionOperators<Cells, int, Cells>,
     ISubtractionOperators<Cells, Cells, Cells>,
+    IComparisonOperators<Cells, Cells>,
     IDivisionOperators<Cells, int, short>,
     IModulusOperators<Cells, Cells, Cells>,
     IBitwiseOperators<Cells, Cells, Cells>,
@@ -23,11 +24,8 @@ public struct Cells :
     public Cells(int cell);
     public Cells(Index cellIndex);
     public Cells(IEnumerable<int> cells);
-    public Cells(Range range);
     public Cells(long high, long low);
     public Cells(int high, int mid, int low);
-
-    public readonly int this[int index] { get; }
 
     public readonly bool InOneHouse { get; }
     public readonly bool IsEmpty { get; }
@@ -39,56 +37,56 @@ public struct Cells :
     public readonly short RowMask { get; }
     public readonly short BlockMask { get; }
 
+    public readonly int this[int index] { get; }
+
     public static Cells Parse(string str);
     public static bool TryParse(string str, out Cells result);
     public void Add(int offset);
     public void Add(string offset);
-    public void AddAnyway(int offset);
-    public void AddRange(in ReadOnlySpan<int> offsets);
+    public void AddRange(scoped in ReadOnlySpan<int> offsets);
     public void AddRange(IEnumerable<int> offsets);
     public readonly bool AllSetsAreInOneHouse(out int house);
     public void Clear();
-    public readonly int CompareTo(in Cells other);
+    public readonly int CompareTo(scoped in Cells other);
     public readonly bool Contains(int offset);
     public readonly void CopyTo(int* arr, int length);
-    public readonly void CopyTo(ref Span<int> span);
+    public readonly void CopyTo(scoped ref Span<int> span);
     public override bool Equals([NotNullWhen(true)] object? obj);
-    public readonly bool Equals(in Cells other);
+    public readonly bool Equals(scoped in Cells other);
     public readonly Candidates Expand(int digit);
     public readonly OneDimensionalArrayEnumerator<int> GetEnumerator();
     public readonly override int GetHashCode();
     public readonly short GetSubviewMask(int house);
-    public readonly Cells PeerIntersectionLimitsWith(in Cells limit);
+    public readonly Cells PeerIntersectionLimitsWith(scoped in Cells limit);
     public void Remove(int offset);
     public readonly int[] ToArray();
     public readonly override string ToString();
     public readonly string ToString(string? format);
 
-    public static Cells operator +(Cells collection, int offset);
-    public static Cells operator -(Cells collection, int offset);
-    public static Cells operator -(in Cells left, in Cells right);
-    public static Cells operator ~(in Cells offsets);
+    public static short operator /(scoped in Cells map, int house);
+    public static Cells operator +(scoped in Cells collection, int offset);
+    public static Cells operator -(scoped in Cells collection, int offset);
+    public static Cells operator -(scoped in Cells left, scoped in Cells right);
+    public static Cells operator ~(scoped in Cells offsets);
+    public static Cells operator %(scoped in Cells @base, scoped in Cells template);
+    public static Cells operator !(scoped in Cells offsets);
+    public static Cells operator &(scoped in Cells left, scoped in Cells right);
+    public static Cells operator |(scoped in Cells left, scoped in Cells right);
+    public static Cells operator ^(scoped in Cells left, scoped in Cells right);
+    public static Cells[] operator &(scoped in Cells cell, int subsetSize);
+    public static Cells[] operator |(scoped in Cells cell, int subsetSize);
     public static Candidates operator *(in Cells @base, int digit);
-    public static short operator /(in Cells map, int house);
-    public static Cells operator %(in Cells @base, in Cells template);
-    public static Cells operator !(in Cells offsets);
-    public static Cells[] operator &(in Cells cell, int subsetSize);
-    public static Cells operator &(in Cells left, in Cells right);
-    public static Cells operator |(in Cells left, in Cells right);
-    public static Cells operator ^(in Cells left, in Cells right);
-    public static bool operator ==(Cells left, Cells right);
-    public static bool operator !=(Cells left, Cells right);
-    public static bool operator <(in Cells left, in Cells right);
-    public static bool operator >(in Cells left, in Cells right);
+    public static bool operator ==(scoped in Cells left, scoped in Cells right);
+    public static bool operator !=(scoped in Cells left, scoped in Cells right);
+    public static bool operator >>(scoped in Cells left, scoped in Cells right);
+    public static bool operator <<(scoped in Cells left, scoped in Cells right);
 
-    public static implicit operator int[](in Cells offsets);
-    public static implicit operator Cells(in ReadOnlySpan<int> offsets);
-    public static implicit operator Cells(in Span<int> offsets);
+    public static implicit operator int[](scoped in Cells offsets);
+    public static implicit operator Cells(scoped in ReadOnlySpan<int> offsets);
+    public static implicit operator Cells(scoped in Span<int> offsets);
     public static explicit operator Cells(int[] offsets);
-    public static explicit operator Span<int>(in Cells offsets);
-    public static explicit operator Range?(in Cells offsets);
-    public static explicit operator Cells(Range range);
-    public static explicit operator ReadOnlySpan<int>(in Cells offsets);
+    public static explicit operator Span<int>(scoped in Cells offsets);
+    public static explicit operator ReadOnlySpan<int>(scoped in Cells offsets);
 }
 ```
 
@@ -151,12 +149,6 @@ void G(Cells cellsList = default(Cells), ...)
 var cells = new Cells(0);
 ```
 
-如果你只是想初始化一个只包含一个单元格的序列的话，请使用集合初始化器语法：
-
-```csharp
-var cells = new Cells { 1 }; // Adds cell r1c2 into the collection.
-```
-
 另外，如果你想要在初始化的时候，不初始化它自己，实际上整个解决方案已经预先定义了一组只读量，你可以使用 `Sudoku.Constants.Tables.PeerMap` 这个只读量。它是一个 `Cells[]` 的数组类型，即每一个元素是 `Cells` 类型。这个 `PeerMap` 字段是静态只读字段，它的长度恰好是 81，对应了第 1 行第 1 个单元格到第 9 行第 9 个单元格，每一个单元格的所在行、列、宫全部涉及的单元格（不含它自己）的序列。比如，`PeerMap[0]` 表示的 `Cells` 对象就是不含它自己的第 1 行、第 1 列和第 1 个宫里的其它单元格。也就是说，`PeerMap[0]` 和 `new Cells(0)` 的区别是，`new Cells(0)` 多包含一个元素，即为编号 0 的第一行第一个单元格，这个坐标在 `PeerMap[0]` 里是不包含的。
 
 ### 构造器 `Cells(long, long)` 和 `Cells(int, int, int)`
@@ -186,7 +178,7 @@ public Cells(int high, int mid, int low) :
 `Count` 属性用来获取这个集合里到底有多少个已经录入（也就是说选中了）的单元格信息。
 
 ```csharp
-var cells = new Cells { 1, 3, 6, 10 };
+var cells = (Cells)new[] { 1, 3, 6, 10 };
 int count = cells.Count; // 4
 
 // Another example
@@ -229,11 +221,11 @@ bool isEmpty = cells is [];
 因此，如果你要考虑性能的使用的话，如果不使用这个 `out` 参数的数值，你可以考虑使用属性代替掉方法的调用：
 
 ```csharp
-var cells = new Cells { 1, 3, 6 };
+var cells = (Cells)new[] { 1, 3, 6 };
 bool condition = cells.AllSetsAreInOneHouse(out _); // Here.
 
 // We suggest you change the code to:
-var cells = new Cells { 1, 3, 6 };
+var cells = (Cells)new[] { 1, 3, 6 };
 bool condition = cells.InOneHouse;
 ```
 
@@ -246,7 +238,7 @@ bool condition = cells.InOneHouse;
 也就是说，按照刚才举的例子来看，`BlockMask`、`RowMask` 和 `ColumnMask` 分别返回的是 000000001、000000001 和 000000011 这三个结果：
 
 ```csharp
-var cells = new Cells { 1, 2 };
+var cells = (Cells)new[] { 1, 2 };
 int blocks = cells.BlockMask; // 000000001 (1 in decimal)
 int rows = cells.RowMask; // 000000001 (1 in decimal)
 int columns = cells.ColumnMask; // 000000011 (3 in decimal)
@@ -255,7 +247,7 @@ int columns = cells.ColumnMask; // 000000011 (3 in decimal)
 最后，`Houses` 属性获取的结果是将这三个九位二进制结果进行叠加整合在一起之后得到的最终数值。也就是说，比如前面给出的 `cells` 是 { 1, 2 } 两个单元格，那么：
 
 ```csharp
-var cells = new Cells { 1, 2 };
+var cells = (Cells)new[] { 1, 2 };
 int blocks = cells.Houses; // 000000011_000000001_000000001 (786945 in decimal)
 ```
 
@@ -266,7 +258,7 @@ int blocks = cells.Houses; // 000000011_000000001_000000001 (786945 in decimal)
 其中，`CoveredHouses` 属性会得到这个集合涉及的行、列、宫。比如说：
 
 ```csharp
-var cells = new Cells { 0, 1 }; // Block 1 and Row 1.
+var cells = (Cells)new[] { 0, 1 }; // Block 1 and Row 1.
 int coveredHouses = cells.CoveredHouses; // 000000000_000000001_000000001 (513 in decimal)
 ```
 
@@ -275,7 +267,7 @@ int coveredHouses = cells.CoveredHouses; // 000000000_000000001_000000001 (513 i
 不过，`CoveredLine` 属性会将 `CoveredHouses` 属性的结果作为基本数据进行再一次地处理，使得结果只是行或列的情况。按照数独的基本技巧的搜寻原则和存在的情况的规律性，技巧结构（例如区块）就会出现类似刚才的 { 0, 1 } 这样的单元格的情况；而这样的情况一定是属于一个宫和一个行（或列）的，因此 `CoveredLine` 属性的处理操作只会取出对应的行（或列）的准确结果。换句话说，就 { 0, 1 } 这个集合的话，`CoveredLine` 属性的结果应该是准确的结果数值 9，而不是二进制数 1000000000（二进制下的 1 后面 9 个 0）。
 
 ```csharp
-var cells = new Cells { 0, 1 }; // Block 1 and Row 1.
+var cells = (Cells)new[] { 0, 1 }; // Block 1 and Row 1.
 int coveredHouses = cells.CoveredLine; // 9
 ```
 
@@ -288,7 +280,7 @@ int coveredHouses = cells.CoveredLine; // 9
 该数据类型提供了 `int` 和 `Index` 作为参数的索引器使用。这两个索引器获取的是第几个被记录的单元格的编号。比如说是使用 { 0, 1, 3, 6, 10 } 这几个单元格构成的 `Cells` 集合对象的话，那么：
 
 ```csharp
-var cells = new Cells { 0, 1, 3, 6, 10 };
+var cells = (Cells)new[] { 0, 1, 3, 6, 10 };
 int first = cells[0]; // 0
 int second = cells[1]; // 1
 int third = cells[2]; // 3
@@ -329,7 +321,7 @@ if (cells is [var first, var second, .., var penultimate, _])
 
 ```csharp
 string s;
-var cells = new Cells { 0, 1, 2, 3, 4 };
+var cells = (Cells)new[] { 0, 1, 2, 3, 4 };
 
 s = cells.ToString(); // r1c12345
 s = cells.ToString("n"); // r1c12345
@@ -341,7 +333,7 @@ s = $"{cells:n}"; // r1c12345
 这个方法不必关心怎么去调用和使用，你只需要知道 C# 语法允许我们使用实现良好的 `GetEnumerator` 方法允许对象使用 `foreach` 循环的语法即可：
 
 ```csharp
-var cells = new Cells { 0, 1, 3, 6, 10 };
+var cells = (Cells)new[] { 0, 1, 3, 6, 10 };
 foreach (int cell in cells)
 {
     // ...
@@ -360,7 +352,7 @@ foreach (int cell in cells)
 集合初始化器语法的使用规则规范请参考 C# 基本语法。
 
 ```csharp
-var cells = new Cells { 0, "r1c2", 2, "r1c4", 4 }; // 0, 1, 2, 3, 4
+var cells = (Cells)new object[] { 0, "r1c2", 2, "r1c4", 4 }; // 0, 1, 2, 3, 4
 ```
 
 这等价于
@@ -374,39 +366,22 @@ cells.Add("r1c4"); // 3
 cells.Add(4);
 ```
 
-另外，集合初始化器语法还允许我们在初始化的时候对原始单元格删除一部分单元格。比如：
+### 方法 `Add(int)`、`AddRange(IEnumerable<int>)` 和 `AddRange(ReadOnlySpan<int>)`
+
+这个方法才是用来手动调用以追加元素的。`Add` 方法允许传入 `int` 参数，表示添加一个编号对应的单元格到集合里去。如果重复添加的话，不会产生任何编译器错误或异常信息，但这个方法此时什么事都不做。
+
+它和 `+` 运算符的效果类似。而 `AddRange` 方法则是添加一系列的单元格编号到集合里去。如果你需要追加一组单元格编号的话，可以用这个方法。
 
 ```csharp
-int[] list = { 1, 2, 3 };
-var cells = new Cells(list) { ~1 };
+int a = 1, b = 2, c = 3, d = 4;
+var cells = Cells.Empty;
+cells.Add(a);
+cells += b;
+cells.AddRange(stackalloc[] { c });
+cells.AddRange(new[] { d });
 ```
 
-这样的语法将会产生一个新的列表对象 `cells`，其中集合初始化器语法 `~1` 表示删除、去除从构造器传入的 { 1, 2, 3 } 序列的 1。因此，`cells` 序列最后的结果是 { 2, 3 }。
-
-请注意，这种反向追加元素的语法（带有位取反运算符 `~` 的这个表达式）的原理仍然是调用 `Add` 方法，因此它可以在任何实例化 `Cells` 对象的地方使用该表达式作为初始化器的一部分：
-
-```csharp
-var cells = new Cells { ~1 };
-```
-
-比如这样的语法格式（直接尝试对一个本身就是空的集合里去去掉单元格）。当然，这也不会产生编译器错误或异常抛出的问题，只不过我们需要避免这种写法，因为它没有任何意义。
-
-### 方法 `AddAnyway(int)`、`AddRange(IEnumerable<int>)` 和 `AddRange(ReadOnlySpan<int>)`
-
-这个方法才是用来手动调用以追加元素的。`AddAnyway` 方法允许传入 `int` 参数，表示添加一个编号对应的单元格到集合里去。如果重复添加的话，不会产生任何编译器错误或异常信息，但这个方法此时什么事都不做。
-
-`AddRange` 方法则是添加一系列的单元格编号到集合里去。如果你需要追加一组单元格编号的话，可以用这个方法。不过请你注意，参数类型是 `IEnumerable<int>`，是一个接口类型，因此不建议随时随地使用，这样会导致性能损失；如果非得需要用的话，可以使用 C# 8 提供的“适用于任何地方的 `stackalloc` 初始化”语法来产生一个 `ReadOnlySpan<int>` 对象的语法，然后调用 `AddRange` 方法。
-
-```csharp
-int a = 1, b = 2, c = 3;
-var cells = new Cells { a, b, c };
-var cells = new Cells(new[] { a, b, c });
-var cells = new Cells(stackalloc[] { a, b, c });
-var cells = Cells.Empty.AddRange(stackalloc[] { a, b, c });
-var cells = Cells.Empty.AddRange(new[] { a, b, c });
-```
-
-这些方式都可以产生一个集合包含 { 1, 2, 3 } 的 `Cells` 对象。但是这几种语法下我们只建议使用第一种使用集合初始化器的语法来初始化序列，因为它不会产生额外的内存分配。
+这些方式都可以正确往集合里追加元素。
 
 ### 方法 `Remove(int)`
 
@@ -415,11 +390,6 @@ var cells = Cells.Empty.AddRange(new[] { a, b, c });
 ### 方法 `Clear`
 
 该方法用于清空列表。换句话说，从代码的含义上讲，它等价于 `this = Cells.Empty` 的赋值。
-
-```csharp
-var cells = new Cells { ... };
-cells.Clear();
-```
 
 ### 静态方法 `Parse(string)` 和 `TryParse(string, out Cells)`
 
@@ -474,18 +444,28 @@ foreach (int cell in cells)
 
 因此，对这个集合来说，位异或运算符等价于数学概念的差集。
 
-### 比较运算符 `>(in Cells, in Cells)` 和 `<(in Cells, in Cells)`
+### 枚举运算 `&(in Cells, int)` 和 `|(in Cells, int)`
 
-这个类型只重载了 `>` 和 `<` 运算符，而 `>=` 和 `<=` 并没有重载。
+这两种运算符用于枚举这个集合里的全部排列情况。其中 `&` 只为指定个数的集合进行枚举，而 `|` 会枚举所有组合，每个组合的元素个数是从 1 到这个数的。比如，`map & 3` 只枚举 `map` 里所有的排列情况，其情况的元素数是 3；而 `map | 3` 等价于 `map & 1`、`map & 2` 和 `map & 3` 的全部情况。
 
-`>` 运算符会按照数学的定义计算。它表示是否使用符号左边减去右边得到的差集结果仍然还包含元素在其中。`<` 符号则是将刚才的结果取反。即从语法上 `left > right` 等于 `(left - right).Count >= 0`，而 `left < right` 则等于 `(left - right).Count == 0`，或 `!((left - right).Count >= 0)`。
+### 比较运算符 `>(in Cells, in Cells)`、`<(in Cells, in Cells)`、`>=(in Cells, in Cells)` 和 `<=(in Cells, in Cells)`
+
+这四个比较运算符用于按照 `CompareTo` 的基本运算规则进行计算。如果左边包含比右边更多的元素，那么执行“左 - 右”仍包含元素，此时我们就认为“左 > 右”。
+
+这些运算符被显式实现，防止用户错误实用它们。不过你可以实用强制类型转换，或是实用 `>>` 运算符来代替。`a > b` 等于 `a >> b`，而 `a < b` 则等于 `b >> a`，`a >= b` 等于 `a == b || a >> b`，而 `a <= b` 则等于 `a == b || b >> a`。
+
+### 比较运算符 `>>(in Cells, in Cells)` 和 `<<(in Cells, in Cells)`
+
+`>>` 运算符会按照数学的定义计算。它表示是否使用符号左边减去右边得到的差集结果仍然还包含元素在其中。`<<` 符号则是将刚才的结果取反。即从语法上 `left >> right` 等于 `(left - right).Count >= 0`，而 `left << right` 则等于 `(left - right).Count == 0`，或 `!((left - right).Count >= 0)`。
+
+对于 `<<` 运算符而言，操作和 `<` 不同；但 `>>` 和 `>` 则是一样的。
 
 ### 加减法运算符 `+(Cells, int)` 和 `-(Cells, int)`
 
 这两个运算符用于追加和删除元素。不过这两个是运算符，因此不完全等价于 `Add` 和 `Remove` 方法，而等价于移除和添加元素后，将这个追加和删除了元素之后的结果返回出来；而这个操作不影响原始数据。比如：
 
 ```csharp
-var cells = new Cells { 0, 1, 2 };
+var cells = (Cells)new[] { 0, 1, 2 };
 var cells2 = cells - 2; // 0, 1
 var cells3 = cells - 1 - 2; // 0
 var cells4 = cells + 3; // 0, 1, 2, 3
