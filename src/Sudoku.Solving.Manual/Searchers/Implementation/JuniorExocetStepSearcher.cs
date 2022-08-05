@@ -84,18 +84,10 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 				}
 			}
 
-			gatherEliminations(
-				currentJe.TargetQ1, baseCellsDigitsMask, otherDigitsMaskQArea, grid,
-				eliminations, candidateOffsets);
-			gatherEliminations(
-				currentJe.TargetQ2, baseCellsDigitsMask, otherDigitsMaskQArea, grid,
-				eliminations, candidateOffsets);
-			gatherEliminations(
-				currentJe.TargetR1, baseCellsDigitsMask, otherDigitsMaskRArea, grid,
-				eliminations, candidateOffsets);
-			gatherEliminations(
-				currentJe.TargetR2, baseCellsDigitsMask, otherDigitsMaskRArea, grid,
-				eliminations, candidateOffsets);
+			gatherEliminations(currentJe.TargetQ1, baseCellsDigitsMask, otherDigitsMaskQArea, grid);
+			gatherEliminations(currentJe.TargetQ2, baseCellsDigitsMask, otherDigitsMaskQArea, grid);
+			gatherEliminations(currentJe.TargetR1, baseCellsDigitsMask, otherDigitsMaskRArea, grid);
+			gatherEliminations(currentJe.TargetR2, baseCellsDigitsMask, otherDigitsMaskRArea, grid);
 			if (eliminations.Count == 0)
 			{
 				continue;
@@ -113,40 +105,38 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 			}
 
 			accumulator.Add(step);
-		}
-
-		return null;
 
 
-		static void gatherEliminations(
-			int targetCell, short baseCellsDigitsMask, short otherDigitsMask, scoped in Grid grid,
-			List<ExocetElimination> eliminations, List<CandidateViewNode> candidateOffsets)
-		{
-			short elimDigitsMask = (short)(grid.GetCandidates(targetCell) & ~(baseCellsDigitsMask | otherDigitsMask));
-
-			if (EmptyCells.Contains(targetCell))
+			void gatherEliminations(int targetCell, short baseCellsDigits, short otherDigits, scoped in Grid grid)
 			{
-				// Check existence of eliminations.
-				if (elimDigitsMask != 0 && (grid.GetCandidates(targetCell) & baseCellsDigitsMask) != 0)
-				{
-					foreach (int elimDigit in elimDigitsMask)
-					{
-						eliminations.Add(
-							new(
-								new Conclusion[] { new(ConclusionType.Elimination, targetCell, elimDigit) },
-								ExocetEliminatedReason.Basic
-							)
-						);
-					}
-				}
+				short elimDigitsMask = (short)(grid.GetCandidates(targetCell) & ~(baseCellsDigits | otherDigits));
 
-				// Highlight candidates.
-				foreach (int digit in (short)(grid.GetCandidates(targetCell) & ~elimDigitsMask))
+				if (EmptyCells.Contains(targetCell))
 				{
-					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, targetCell * 9 + digit));
+					// Check existence of eliminations.
+					if (elimDigitsMask != 0 && (grid.GetCandidates(targetCell) & baseCellsDigits) != 0)
+					{
+						foreach (int elimDigit in elimDigitsMask)
+						{
+							eliminations.Add(
+								new(
+									new Conclusion[] { new(ConclusionType.Elimination, targetCell, elimDigit) },
+									ExocetEliminatedReason.Basic
+								)
+							);
+						}
+					}
+
+					// Highlight candidates.
+					foreach (int digit in (short)(grid.GetCandidates(targetCell) & ~elimDigitsMask))
+					{
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, targetCell * 9 + digit));
+					}
 				}
 			}
 		}
+
+		return null;
 	}
 
 	/// <summary>

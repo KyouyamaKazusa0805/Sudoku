@@ -111,7 +111,7 @@ public abstract record ExocetStep(
 		var result = new List<Conclusion>();
 		foreach (var eliminationInstance in eliminations)
 		{
-			result.AddRange(eliminationInstance.Eliminations);
+			result.AddRange(eliminationInstance.Conclusions);
 		}
 
 		return ImmutableArray.CreateRange(result);
