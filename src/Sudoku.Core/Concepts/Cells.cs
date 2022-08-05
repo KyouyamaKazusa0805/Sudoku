@@ -13,7 +13,6 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(CellsJsonConverter))]
 public unsafe struct Cells :
-	IComparable<Cells>,
 	IEnumerable<int>,
 	IEquatable<Cells>,
 	ISimpleFormattable,
@@ -22,7 +21,6 @@ public unsafe struct Cells :
 	ISubtractionOperators<Cells, int, Cells>,
 	ISubtractionOperators<Cells, Cells, Cells>,
 	IMultiplyOperators<Cells, int, Candidates>,
-	IComparisonOperators<Cells, Cells>,
 	IDivisionOperators<Cells, int, short>,
 	IModulusOperators<Cells, Cells, Cells>,
 	IBitwiseOperators<Cells, Cells, Cells>,
@@ -587,12 +585,6 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly int GetHashCode() => HashCode.Combine(_low, _high);
 
-	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly int CompareTo(scoped in Cells other)
-		// 'other > this' is different with 'this < other'.
-		=> this >> other ? 1 : other >> this ? -1 : 0;
-
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
 	/// </summary>
@@ -774,17 +766,6 @@ public unsafe struct Cells :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly bool IEquatable<Cells>.Equals(Cells other) => Equals(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly int IComparable.CompareTo(object? obj)
-		=> obj is Cells comparer
-			? CompareTo(comparer)
-			: throw new ArgumentException($"The argument must be of type '{nameof(Cells)}'.", nameof(obj));
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly int IComparable<Cells>.CompareTo(Cells other) => CompareTo(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1188,46 +1169,6 @@ public unsafe struct Cells :
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <<(scoped in Cells left, scoped in Cells right) => (left - right).Count == 0;
-
-	/// <summary>
-	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count != 0</c>.
-	/// </summary>
-	/// <param name="left">The subtrahend.</param>
-	/// <param name="right">The subtractor.</param>
-	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<Cells, Cells>.operator >(Cells left, Cells right) => left >> right;
-
-	/// <summary>
-	/// The syntactic sugar for <c>(<paramref name="right"/> - <paramref name="left"/>).Count != 0</c>.
-	/// </summary>
-	/// <param name="left">The subtrahend.</param>
-	/// <param name="right">The subtractor.</param>
-	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<Cells, Cells>.operator <(Cells left, Cells right) => right >> left;
-
-	/// <summary>
-	/// The syntactic sugar for <c><paramref name="left"/> == <paramref name="right"/>
-	/// || <paramref name="left"/> &gt; <paramref name="right"/></c>.
-	/// </summary>
-	/// <param name="left">The subtrahend.</param>
-	/// <param name="right">The subtractor.</param>
-	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<Cells, Cells>.operator >=(Cells left, Cells right)
-		=> left.CompareTo(right) >= 0;
-
-	/// <summary>
-	/// The syntactic sugar for <c><paramref name="left"/> == <paramref name="right"/>
-	/// || <paramref name="left"/> &lt; <paramref name="right"/></c>.
-	/// </summary>
-	/// <param name="left">The subtrahend.</param>
-	/// <param name="right">The subtractor.</param>
-	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<Cells, Cells>.operator <=(Cells left, Cells right)
-		=> left.CompareTo(right) <= 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

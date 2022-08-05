@@ -4,8 +4,6 @@
 
 ```csharp
 public struct Cells :
-    IComparable<Cells>,
-    IDefaultable<Cells>,
     IEnumerable<int>,
     IEquatable<Cells>,
     ISimpleFormattable,
@@ -448,17 +446,9 @@ foreach (int cell in cells)
 
 这两种运算符用于枚举这个集合里的全部排列情况。其中 `&` 只为指定个数的集合进行枚举，而 `|` 会枚举所有组合，每个组合的元素个数是从 1 到这个数的。比如，`map & 3` 只枚举 `map` 里所有的排列情况，其情况的元素数是 3；而 `map | 3` 等价于 `map & 1`、`map & 2` 和 `map & 3` 的全部情况。
 
-### 比较运算符 `>(in Cells, in Cells)`、`<(in Cells, in Cells)`、`>=(in Cells, in Cells)` 和 `<=(in Cells, in Cells)`
-
-这四个比较运算符用于按照 `CompareTo` 的基本运算规则进行计算。如果左边包含比右边更多的元素，那么执行“左 - 右”仍包含元素，此时我们就认为“左 > 右”。
-
-这些运算符被显式实现，防止用户错误实用它们。不过你可以实用强制类型转换，或是实用 `>>` 运算符来代替。`a > b` 等于 `a >> b`，而 `a < b` 则等于 `b >> a`，`a >= b` 等于 `a == b || a >> b`，而 `a <= b` 则等于 `a == b || b >> a`。
-
 ### 比较运算符 `>>(in Cells, in Cells)` 和 `<<(in Cells, in Cells)`
 
 `>>` 运算符会按照数学的定义计算。它表示是否使用符号左边减去右边得到的差集结果仍然还包含元素在其中。`<<` 符号则是将刚才的结果取反。即从语法上 `left >> right` 等于 `(left - right).Count >= 0`，而 `left << right` 则等于 `(left - right).Count == 0`，或 `!((left - right).Count >= 0)`。
-
-对于 `<<` 运算符而言，操作和 `<` 不同；但 `>>` 和 `>` 则是一样的。
 
 ### 加减法运算符 `+(Cells, int)` 和 `-(Cells, int)`
 

@@ -965,9 +965,6 @@
         <member name="M:Sudoku.Concepts.Cells.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.CompareTo(Sudoku.Concepts.Cells@)">
-            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
-        </member>
         <member name="M:Sudoku.Concepts.Cells.ToArray">
             <summary>
             Get all offsets whose bits are set <see langword="true"/>.
@@ -1021,12 +1018,6 @@
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Cells.System#IEquatable{Sudoku#Concepts#Cells}#Equals(Sudoku.Concepts.Cells)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IComparable#CompareTo(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IComparable{Sudoku#Concepts#Cells}#CompareTo(Sudoku.Concepts.Cells)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Cells.System#Collections#IEnumerable#GetEnumerator">
@@ -1249,40 +1240,6 @@
         <member name="M:Sudoku.Concepts.Cells.op_LeftShift(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
             <summary>
             The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
-            </summary>
-            <param name="left">The subtrahend.</param>
-            <param name="right">The subtractor.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IComparisonOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_GreaterThan(Sudoku.Concepts.Cells,Sudoku.Concepts.Cells)">
-            <summary>
-            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count != 0</c>.
-            </summary>
-            <param name="left">The subtrahend.</param>
-            <param name="right">The subtractor.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IComparisonOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_LessThan(Sudoku.Concepts.Cells,Sudoku.Concepts.Cells)">
-            <summary>
-            The syntactic sugar for <c>(<paramref name="right"/> - <paramref name="left"/>).Count != 0</c>.
-            </summary>
-            <param name="left">The subtrahend.</param>
-            <param name="right">The subtractor.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IComparisonOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_GreaterThanOrEqual(Sudoku.Concepts.Cells,Sudoku.Concepts.Cells)">
-            <summary>
-            The syntactic sugar for <c><paramref name="left"/> == <paramref name="right"/>
-            || <paramref name="left"/> &gt; <paramref name="right"/></c>.
-            </summary>
-            <param name="left">The subtrahend.</param>
-            <param name="right">The subtractor.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IComparisonOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_LessThanOrEqual(Sudoku.Concepts.Cells,Sudoku.Concepts.Cells)">
-            <summary>
-            The syntactic sugar for <c><paramref name="left"/> == <paramref name="right"/>
-            || <paramref name="left"/> &lt; <paramref name="right"/></c>.
             </summary>
             <param name="left">The subtrahend.</param>
             <param name="right">The subtractor.</param>
