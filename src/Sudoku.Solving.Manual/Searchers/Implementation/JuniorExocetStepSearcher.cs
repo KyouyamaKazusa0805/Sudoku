@@ -66,7 +66,6 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 				new(DisplayColorKind.Auxiliary1, currentJe.TargetR2)
 			};
 			var candidateOffsets = new List<CandidateViewNode>();
-
 			foreach (int digit in grid.GetCandidates(currentJe.Base1))
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Normal, currentJe.Base1 * 9 + digit));
