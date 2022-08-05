@@ -130,7 +130,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		ICollection<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		// Check whether all true candidates lie in a same house.
-		var map = new Cells(from c in trueCandidates group c by c / 9 into z select z.Key);
+		var map = Cells.Empty + from c in trueCandidates group c by c / 9 into z select z.Key;
 		if (!map.InOneHouse)
 		{
 			return null;
@@ -239,7 +239,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			cells.Add(candGroupByCell.Key);
 		}
 
-		int houses = new Cells(cells).CoveredHouses;
+		int houses = (Cells.Empty + cells).CoveredHouses;
 		if (houses != 0)
 		{
 			return null;
@@ -336,7 +336,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 							| new HouseViewNode(DisplayColorKind.Normal, house)
 					),
 					digitsMask,
-					new(cells),
+					Cells.Empty + cells,
 					new(c1, c2, conjuagtePairDigit)
 				);
 				if (onlyFindOne)

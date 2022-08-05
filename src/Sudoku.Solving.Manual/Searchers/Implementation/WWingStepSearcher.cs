@@ -28,8 +28,8 @@ internal sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearch
 			}
 
 			// Iterate on each cells which are not peers in 'c1'.
-			var digits = grid.GetCandidates(c1).GetAllSets();
-			foreach (int c2 in BivalueCells - new Cells(c1))
+			scoped var digits = grid.GetCandidates(c1).GetAllSets();
+			foreach (int c2 in BivalueCells - (PeerMaps[c1] + c1))
 			{
 				if (c2 < c1)
 				{

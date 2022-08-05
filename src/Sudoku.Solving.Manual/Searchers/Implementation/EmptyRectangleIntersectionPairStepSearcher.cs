@@ -37,7 +37,7 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 
 				// Check the block that two cells both see.
 				var interMap = !(Cells.Empty + c1 + c2);
-				var unionMap = new Cells(c1) | new Cells(c2);
+				var unionMap = (PeerMaps[c1] | PeerMaps[c2]) + c1 + c2;
 				foreach (int interCell in interMap)
 				{
 					int block = interCell.ToHouseIndex(HouseType.Block);

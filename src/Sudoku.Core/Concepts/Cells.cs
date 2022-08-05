@@ -6,10 +6,19 @@ namespace Sudoku.Concepts;
 /// Encapsulates a binary series of cell status table.
 /// </summary>
 /// <remarks>
-/// The instance stores two <see cref="long"/> values, consisting of 81 bits,
-/// where <see langword="true"/> bit (1) is for the cell having that digit,
-/// and the <see langword="false"/> bit (0) is for the cell not containing
-/// the digit.
+/// This type holds a <see langword="static readonly"/> field called <see cref="Empty"/>,
+/// it is the only field provided to be used as the entry to create or update collection.
+/// If you want to add elements into it, you can use <see cref="Add(int)"/>, <see cref="AddRange(IEnumerable{int})"/>
+/// or just <see cref="operator +(in Cells, int)"/> or <see cref="operator +(in Cells, IEnumerable{int})"/>:
+/// <code><![CDATA[
+/// var cellsMap = Cells.Empty;
+/// cellsMap += 0; // Adds 'r1c1' into the collection.
+/// cellsMap.Add(0); // Adds 'r1c2' into the collection.
+/// cellsMap.AddRange(stackalloc[] { 2, 3, 4 }); // Adds 'r1c345' into the collection.
+/// cellsMap |= anotherCellsMap; // Adds a list of another instance of type 'Cells' into the current collection.
+/// ]]></code>
+/// If you want to learn more information about this type, please visit
+/// <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
 /// </remarks>
 [JsonConverter(typeof(CellsJsonConverter))]
 public unsafe struct Cells :
@@ -41,13 +50,23 @@ public unsafe struct Cells :
 	/// <summary>
 	/// Indicates the internal two <see cref="long"/> values,
 	/// which represents 81 bits. <see cref="_high"/> represent the higher
-	/// 40 bits and <see cref="_low"/> represents the lower 41 bits.
+	/// 40 bits and <see cref="_low"/> represents the lower 41 bits, where each bit is:
+	/// <list type="table">
+	/// <item>
+	/// <term><see langword="true"/> bit (1)</term>
+	/// <description>The corresponding cell is contained in this collection</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/> bit (0)</term>
+	/// <description>The corresponding cell is not contained in this collection</description>
+	/// </item>
+	/// </list>
 	/// </summary>
-	private long _high = 0, _low = 0;
+	private long _high, _low;
 
 
 	/// <summary>
-	/// Throws a <see cref="NotSupportedException"/>.
+	/// Throws a <see cref="NotSupportedException"/>-typed instance.
 	/// </summary>
 	/// <exception cref="NotSupportedException">The exception will always be thrown.</exception>
 	/// <remarks>
@@ -59,91 +78,6 @@ public unsafe struct Cells :
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[Obsolete($"Please use the member '{nameof(Empty)}' instead.", true)]
 	public Cells() => throw new NotSupportedException();
-
-	/// <summary>
-	/// Initializes an instance with the specified cell offset
-	/// (Sets itself and all peers).
-	/// </summary>
-	/// <param name="cell">The cell offset.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(int cell) : this(cell, true)
-	{
-	}
-
-	/// <summary>
-	/// Initializes an instance with the cell offset specified as an <see cref="Index"/>
-	/// (Sets itself and all peers).
-	/// </summary>
-	/// <param name="cellIndex">The cell offset specified as an <see cref="Index"/>.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(Index cellIndex) : this(cellIndex.GetOffset(81))
-	{
-	}
-
-	/// <summary>
-	/// Initializes an instance with a series of cell offsets.
-	/// </summary>
-	/// <param name="cells">cell offsets.</param>
-	/// <remarks>
-	/// Note that all offsets will be set <see langword="true"/>, but their own peers
-	/// won't be set <see langword="true"/>.
-	/// </remarks>
-	public Cells(IEnumerable<int> cells)
-	{
-		this = default;
-		foreach (int offset in cells)
-		{
-			Add(offset);
-		}
-	}
-
-	/// <summary>
-	/// Initializes an instance with two binary values.
-	/// </summary>
-	/// <param name="high">Higher 40 bits.</param>
-	/// <param name="low">Lower 41 bits.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(long high, long low) => (_high, _low, Count) = (high, low, PopCount((ulong)high) + PopCount((ulong)low));
-
-	/// <summary>
-	/// Initializes an instance with three binary values.
-	/// </summary>
-	/// <param name="high">Higher 27 bits.</param>
-	/// <param name="mid">Medium 27 bits.</param>
-	/// <param name="low">Lower 27 bits.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(int high, int mid, int low) :
-		this((high & 0x7FFFFFFL) << 13 | mid >> 14 & 0x1FFFL, (mid & 0x3FFFL) << 27 | low & 0x7FFFFFFL)
-	{
-	}
-
-	/// <summary>
-	/// Initializes an instance with the specified cell offset.
-	/// This will set all bits of all peers of this cell. Another
-	/// <see cref="bool"/> value indicates whether this initialization
-	/// will set the bit of itself.
-	/// </summary>
-	/// <param name="cell">The cell offset.</param>
-	/// <param name="setItself">
-	/// A <see cref="bool"/> value indicating whether this initialization
-	/// will set the bit of itself.
-	/// </param>
-	/// <remarks>
-	/// If you want to use this constructor, please use <see cref="PeerMaps"/> instead.
-	/// </remarks>
-	/// <seealso cref="PeerMaps"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Cells(int cell, bool setItself)
-	{
-		// Don't merge those two to one.
-		//(this = PeerMaps[cell]).InternalAdd(cell, setItself);
-		// This is a bug for the compiler, see sharplab http://bitly.ws/fRdf
-		this = PeerMaps[cell];
-		if (setItself)
-		{
-			Add(cell);
-		}
-	}
 
 
 	/// <summary>
@@ -741,6 +675,29 @@ public unsafe struct Cells :
 		}
 	}
 
+	/// <inheritdoc cref="AddRange(in ReadOnlySpan{int})"/>
+	/// <remarks>
+	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
+	/// also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
+	/// this method will throw an exception to report about this.
+	/// </remarks>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when found at least one cell offset invalid.
+	/// </exception>
+	public void AddRangeChecked(IEnumerable<int> offsets)
+	{
+		foreach (int cell in offsets)
+		{
+			if (cell is < 0 or >= 81)
+			{
+				throw new InvalidOperationException(
+					"The value cannot be added because the cell offset is an invalid value.");
+			}
+
+			Add(cell);
+		}
+	}
+
 	/// <summary>
 	/// Set the specified offset as <see langword="false"/> value.
 	/// </summary>
@@ -775,6 +732,32 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
 
+
+	/// <summary>
+	/// Initializes an instance with two binary values.
+	/// </summary>
+	/// <param name="high">Higher 40 bits.</param>
+	/// <param name="low">Lower 41 bits.</param>
+	public static Cells CreateByBits(long high, long low)
+	{
+		var result = Empty;
+		(result._high, result._low, result.Count) = (high, low, PopCount((ulong)high) + PopCount((ulong)low));
+
+		return result;
+	}
+
+	/// <summary>
+	/// Initializes an instance with three binary values.
+	/// </summary>
+	/// <param name="high">Higher 27 bits.</param>
+	/// <param name="mid">Medium 27 bits.</param>
+	/// <param name="low">Lower 27 bits.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells CreateByBits(int high, int mid, int low)
+		=> CreateByBits(
+			(high & 0x7FFFFFFL) << 13 | mid >> 14 & 0x1FFFL,
+			(mid & 0x3FFFL) << 27 | low & 0x7FFFFFFL
+		);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -817,7 +800,7 @@ public unsafe struct Cells :
 			}
 		}
 
-		return new(higherBits, lowerBits);
+		return CreateByBits(higherBits, lowerBits);
 	}
 
 	/// <summary>
@@ -829,7 +812,7 @@ public unsafe struct Cells :
 	/// <returns>The negative result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator ~(scoped in Cells offsets)
-		=> new(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
+		=> CreateByBits(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
 
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
@@ -854,7 +837,8 @@ public unsafe struct Cells :
 
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
-	/// and returns the added result. This operator will check the validity of the argument <paramref name="offset"/>.
+	/// and returns the added result.
+	/// This operator will check the validity of the argument <paramref name="offset"/>.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be added.</param>
@@ -865,6 +849,35 @@ public unsafe struct Cells :
 		Argument.ThrowIfInvalid(offset is >= 0 and < 81, "The offset is invalid.");
 
 		return collection + offset;
+	}
+
+	/// <summary>
+	/// Adds the specified list of <paramref name="cells"/> to the <paramref name="collection"/>,
+	/// and returns the added result.
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	/// <param name="cells">A list of cells to be added.</param>
+	/// <returns>The result collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells operator +(scoped in Cells collection, IEnumerable<int> cells)
+	{
+		collection.AddRange(cells);
+		return collection;
+	}
+
+	/// <summary>
+	/// Adds the specified list of <paramref name="cells"/> to the <paramref name="collection"/>,
+	/// and returns the added result.
+	/// This operator will check the validity of the argument <paramref name="cells"/>.
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	/// <param name="cells">A list of cells to be added.</param>
+	/// <returns>The result collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells operator checked +(scoped in Cells collection, IEnumerable<int> cells)
+	{
+		collection.AddRangeChecked(cells);
+		return collection;
 	}
 
 	/// <summary>
@@ -998,7 +1011,7 @@ public unsafe struct Cells :
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator &(scoped in Cells left, scoped in Cells right)
-		=> new(left._high & right._high, left._low & right._low);
+		=> CreateByBits(left._high & right._high, left._low & right._low);
 
 	/// <summary>
 	/// Gets all subsets of the current collection via the specified size
@@ -1063,7 +1076,7 @@ public unsafe struct Cells :
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator |(scoped in Cells left, scoped in Cells right)
-		=> new(left._high | right._high, left._low | right._low);
+		=> CreateByBits(left._high | right._high, left._low | right._low);
 
 	/// <summary>
 	/// Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
@@ -1073,7 +1086,7 @@ public unsafe struct Cells :
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator ^(scoped in Cells left, scoped in Cells right)
-		=> new(left._high ^ right._high, left._low ^ right._low);
+		=> CreateByBits(left._high ^ right._high, left._low ^ right._low);
 
 	/// <summary>
 	/// <para>Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.</para>

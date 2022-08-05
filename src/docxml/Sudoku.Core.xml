@@ -719,10 +719,19 @@
             Encapsulates a binary series of cell status table.
             </summary>
             <remarks>
-            The instance stores two <see cref="T:System.Int64"/> values, consisting of 81 bits,
-            where <see langword="true"/> bit (1) is for the cell having that digit,
-            and the <see langword="false"/> bit (0) is for the cell not containing
-            the digit.
+            This type holds a <see langword="static readonly"/> field called <see cref="F:Sudoku.Concepts.Cells.Empty"/>,
+            it is the only field provided to be used as the entry to create or update collection.
+            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.Cells.Add(System.Int32)"/>, <see cref="M:Sudoku.Concepts.Cells.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>
+            or just <see cref="M:Sudoku.Concepts.Cells.op_Addition(Sudoku.Concepts.Cells@,System.Int32)"/> or <see cref="M:Sudoku.Concepts.Cells.op_Addition(Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{System.Int32})"/>:
+            <code><![CDATA[
+            var cellsMap = Cells.Empty;
+            cellsMap += 0; // Adds 'r1c1' into the collection.
+            cellsMap.Add(0); // Adds 'r1c2' into the collection.
+            cellsMap.AddRange(stackalloc[] { 2, 3, 4 }); // Adds 'r1c345' into the collection.
+            cellsMap |= anotherCellsMap; // Adds a list of another instance of type 'Cells' into the current collection.
+            ]]></code>
+            If you want to learn more information about this type, please visit
+            <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Cells.Shifting">
@@ -739,19 +748,39 @@
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
             which represents 81 bits. <see cref="F:Sudoku.Concepts.Cells._high"/> represent the higher
-            40 bits and <see cref="F:Sudoku.Concepts.Cells._low"/> represents the lower 41 bits.
+            40 bits and <see cref="F:Sudoku.Concepts.Cells._low"/> represents the lower 41 bits, where each bit is:
+            <list type="table">
+            <item>
+            <term><see langword="true"/> bit (1)</term>
+            <description>The corresponding cell is contained in this collection</description>
+            </item>
+            <item>
+            <term><see langword="false"/> bit (0)</term>
+            <description>The corresponding cell is not contained in this collection</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Cells._low">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
             which represents 81 bits. <see cref="F:Sudoku.Concepts.Cells._high"/> represent the higher
-            40 bits and <see cref="F:Sudoku.Concepts.Cells._low"/> represents the lower 41 bits.
+            40 bits and <see cref="F:Sudoku.Concepts.Cells._low"/> represents the lower 41 bits, where each bit is:
+            <list type="table">
+            <item>
+            <term><see langword="true"/> bit (1)</term>
+            <description>The corresponding cell is contained in this collection</description>
+            </item>
+            <item>
+            <term><see langword="false"/> bit (0)</term>
+            <description>The corresponding cell is not contained in this collection</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Cells.#ctor">
             <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>.
+            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
             </summary>
             <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
             <remarks>
@@ -760,62 +789,6 @@
             I want you to use <see cref="F:Sudoku.Concepts.Cells.Empty"/> instead of the syntax <c>new Cells()</c>,
             in order to get a better experience on performance.
             </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified cell offset
-            (Sets itself and all peers).
-            </summary>
-            <param name="cell">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.#ctor(System.Index)">
-            <summary>
-            Initializes an instance with the cell offset specified as an <see cref="T:System.Index"/>
-            (Sets itself and all peers).
-            </summary>
-            <param name="cellIndex">The cell offset specified as an <see cref="T:System.Index"/>.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with a series of cell offsets.
-            </summary>
-            <param name="cells">cell offsets.</param>
-            <remarks>
-            Note that all offsets will be set <see langword="true"/>, but their own peers
-            won't be set <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.#ctor(System.Int64,System.Int64)">
-            <summary>
-            Initializes an instance with two binary values.
-            </summary>
-            <param name="high">Higher 40 bits.</param>
-            <param name="low">Lower 41 bits.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.#ctor(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Initializes an instance with three binary values.
-            </summary>
-            <param name="high">Higher 27 bits.</param>
-            <param name="mid">Medium 27 bits.</param>
-            <param name="low">Lower 27 bits.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.#ctor(System.Int32,System.Boolean)">
-            <summary>
-            Initializes an instance with the specified cell offset.
-            This will set all bits of all peers of this cell. Another
-            <see cref="T:System.Boolean"/> value indicates whether this initialization
-            will set the bit of itself.
-            </summary>
-            <param name="cell">The cell offset.</param>
-            <param name="setItself">
-            A <see cref="T:System.Boolean"/> value indicating whether this initialization
-            will set the bit of itself.
-            </param>
-            <remarks>
-            If you want to use this constructor, please use <see cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.PeerMaps"/> instead.
-            </remarks>
-            <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.PeerMaps"/>
         </member>
         <member name="P:Sudoku.Concepts.Cells.InOneHouse">
             <summary>
@@ -1006,6 +979,17 @@
         <member name="M:Sudoku.Concepts.Cells.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc cref="M:Sudoku.Concepts.Cells.AddRange(System.ReadOnlySpan{System.Int32}@)"/>
         </member>
+        <member name="M:Sudoku.Concepts.Cells.AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.Cells.AddRange(System.ReadOnlySpan{System.Int32}@)"/>
+            <remarks>
+            Different with the method <see cref="M:Sudoku.Concepts.Cells.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
+            also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
+            this method will throw an exception to report about this.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when found at least one cell offset invalid.
+            </exception>
+        </member>
         <member name="M:Sudoku.Concepts.Cells.Remove(System.Int32)">
             <summary>
             Set the specified offset as <see langword="false"/> value.
@@ -1025,6 +1009,21 @@
         </member>
         <member name="M:Sudoku.Concepts.Cells.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Cells.CreateByBits(System.Int64,System.Int64)">
+            <summary>
+            Initializes an instance with two binary values.
+            </summary>
+            <param name="high">Higher 40 bits.</param>
+            <param name="low">Lower 41 bits.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Cells.CreateByBits(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with three binary values.
+            </summary>
+            <param name="high">Higher 27 bits.</param>
+            <param name="mid">Medium 27 bits.</param>
+            <param name="low">Lower 27 bits.</param>
         </member>
         <member name="M:Sudoku.Concepts.Cells.Parse(System.String)">
             <inheritdoc/>
@@ -1063,10 +1062,30 @@
         <member name="M:Sudoku.Concepts.Cells.op_CheckedAddition(Sudoku.Concepts.Cells@,System.Int32)">
             <summary>
             Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
-            and returns the added result. This operator will check the validity of the argument <paramref name="offset"/>.
+            and returns the added result.
+            This operator will check the validity of the argument <paramref name="offset"/>.
             </summary>
             <param name="collection">The collection.</param>
             <param name="offset">The offset to be added.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Cells.op_Addition(Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Adds the specified list of <paramref name="cells"/> to the <paramref name="collection"/>,
+            and returns the added result.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="cells">A list of cells to be added.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Cells.op_CheckedAddition(Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Adds the specified list of <paramref name="cells"/> to the <paramref name="collection"/>,
+            and returns the added result.
+            This operator will check the validity of the argument <paramref name="cells"/>.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="cells">A list of cells to be added.</param>
             <returns>The result collection.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Cells.op_Subtraction(Sudoku.Concepts.Cells@,System.Int32)">

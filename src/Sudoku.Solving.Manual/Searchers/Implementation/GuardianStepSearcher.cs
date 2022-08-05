@@ -32,7 +32,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 			{
 				var loops = new List<(Cells, Cells, IEnumerable<LinkViewNode>)>();
 				var tempLoop = new List<int>();
-				var globalMap = CandidatesMap[digit] - new Cells(elimination);
+				var globalMap = CandidatesMap[digit] - (PeerMaps[elimination] + elimination);
 				foreach (int cell in globalMap)
 				{
 					var loopMap = Cells.Empty;

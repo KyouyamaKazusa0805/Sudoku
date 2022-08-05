@@ -95,7 +95,7 @@ public readonly ref partial struct ConclusionCollection
 						from conclusion in typeGroup
 						group conclusion by conclusion.Digit)
 					{
-						sb.Append(new Cells(from conclusion in digitGroup select conclusion.Cell));
+						sb.Append(Cells.Empty + from conclusion in digitGroup select conclusion.Cell);
 						sb.Append(op);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(separator);

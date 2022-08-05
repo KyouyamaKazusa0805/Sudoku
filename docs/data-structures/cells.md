@@ -19,11 +19,7 @@ public struct Cells :
 {
     public static readonly Cells Empty;
 
-    public Cells(int cell);
-    public Cells(Index cellIndex);
     public Cells(IEnumerable<int> cells);
-    public Cells(long high, long low);
-    public Cells(int high, int mid, int low);
 
     public readonly bool InOneHouse { get; }
     public readonly bool IsEmpty { get; }
@@ -37,6 +33,8 @@ public struct Cells :
 
     public readonly int this[int index] { get; }
 
+    public static Cells CreateByBits(long high, long low);
+    public static Cells CreateByBits(int high, int mid, int low);
     public static Cells Parse(string str);
     public static bool TryParse(string str, out Cells result);
     public void Add(int offset);
@@ -62,8 +60,13 @@ public struct Cells :
     public readonly string ToString(string? format);
 
     public static short operator /(scoped in Cells map, int house);
+    public static short operator checked /(scoped in Cells map, int house);
     public static Cells operator +(scoped in Cells collection, int offset);
+    public static Cells operator checked +(scoped in Cells collection, int offset);
+    public static Cells operator +(scoped in Cells collection, IEnumerable<int> offsets);
+    public static Cells operator checked +(scoped in Cells collection, IEnumerable<int> offsets);
     public static Cells operator -(scoped in Cells collection, int offset);
+    public static Cells operator checked -(scoped in Cells collection, int offset);
     public static Cells operator -(scoped in Cells left, scoped in Cells right);
     public static Cells operator ~(scoped in Cells offsets);
     public static Cells operator %(scoped in Cells @base, scoped in Cells template);
@@ -74,6 +77,7 @@ public struct Cells :
     public static Cells[] operator &(scoped in Cells cell, int subsetSize);
     public static Cells[] operator |(scoped in Cells cell, int subsetSize);
     public static Candidates operator *(in Cells @base, int digit);
+    public static Candidates operator checked *(in Cells @base, int digit);
     public static bool operator ==(scoped in Cells left, scoped in Cells right);
     public static bool operator !=(scoped in Cells left, scoped in Cells right);
     public static bool operator >>(scoped in Cells left, scoped in Cells right);

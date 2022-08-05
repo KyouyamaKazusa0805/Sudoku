@@ -122,10 +122,10 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 				{
 					// Try to assume the digit is true in the current cell,
 					// and we can get a map of all possible cells that can be filled with the digit.
-					var possibleMap = CandidatesMap[digit] - new Cells(cell);
+					var possibleMap = CandidatesMap[digit] - PeerMaps[cell] - cell;
 
 					// Get the table of all possible houses that contains that digit.
-					var baseTable = possibleMap.Houses.GetAllSets();
+					scoped var baseTable = possibleMap.Houses.GetAllSets();
 
 					// If the 'table.Length' property is lower than '2 * size',
 					// we can't find any possible complex fish now. Just skip it.
