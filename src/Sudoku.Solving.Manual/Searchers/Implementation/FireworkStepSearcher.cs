@@ -4,7 +4,7 @@
 internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		foreach (var pattern in IFireworkStepSearcher.Patterns)
 		{
@@ -65,8 +65,8 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 	/// <summary>
 	/// Checks for firework pair type 1 steps.
 	/// </summary>
-	private Step? CheckPairType1(
-		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne,
+	private IStep? CheckPairType1(
+		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in FireworkPattern pattern, short digitsMask, int pivot)
 	{
 		var map = pattern.Map;
@@ -196,7 +196,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 	/// <summary>
 	/// Checks for firework pair type 2 steps.
 	/// </summary>
-	private Step? CheckPairType2(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	private IStep? CheckPairType2(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		foreach (var (a, b, meetCell) in IFireworkStepSearcher.PatternPairs)
 		{
@@ -354,8 +354,8 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 	/// <summary>
 	/// Checks for firework pair type 3 steps.
 	/// </summary>
-	private Step? CheckPairType3(
-		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne,
+	private IStep? CheckPairType3(
+		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in FireworkPattern pattern, short digitsMask, int pivot)
 	{
 		var map = pattern.Map;
@@ -488,8 +488,8 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 	/// <summary>
 	/// Checks for firework triple steps.
 	/// </summary>
-	private Step? CheckTriple(
-		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne,
+	private IStep? CheckTriple(
+		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in FireworkPattern pattern, short digitsMask, int pivot)
 	{
 		var nonPivotCells = pattern.Map - pivot;
@@ -631,8 +631,8 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 	/// <summary>
 	/// Checks for firework quadruple steps.
 	/// </summary>
-	private Step? CheckQuadruple(
-		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne,
+	private IStep? CheckQuadruple(
+		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in FireworkPattern pattern)
 	{
 		if (pattern is not { Map: [var c1, var c2, var c3, var c4] map })

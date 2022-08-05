@@ -11,7 +11,7 @@
 /// <param name="EnableAndIsLastDigit">
 /// Indicates whether the current step is a <b>Last Digit</b> technique usage.
 /// </param>
-public sealed record HiddenSingleStep(
+internal sealed record HiddenSingleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Cell,

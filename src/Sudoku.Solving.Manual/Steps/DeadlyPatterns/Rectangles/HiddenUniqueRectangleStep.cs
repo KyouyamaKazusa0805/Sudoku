@@ -11,7 +11,7 @@
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="ConjugatePairs"><inheritdoc/></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record HiddenUniqueRectangleStep(
+internal sealed record HiddenUniqueRectangleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

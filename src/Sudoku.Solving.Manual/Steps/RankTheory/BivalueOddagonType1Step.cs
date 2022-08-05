@@ -9,7 +9,7 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraCell">Indicates the extra cell.</param>
-public sealed record BivalueOddagonType1Step(
+internal sealed record BivalueOddagonType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Loop,

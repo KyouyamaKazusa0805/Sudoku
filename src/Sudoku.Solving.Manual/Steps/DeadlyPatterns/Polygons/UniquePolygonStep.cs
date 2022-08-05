@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Map">The map that contains the cells used for this technique.</param>
 /// <param name="DigitsMask">The mask that contains all digits used.</param>
-public abstract record UniquePolygonStep(
+internal abstract record UniquePolygonStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Map,

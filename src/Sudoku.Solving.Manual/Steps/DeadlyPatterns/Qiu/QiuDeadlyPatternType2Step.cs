@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
-public sealed record QiuDeadlyPatternType2Step(
+internal sealed record QiuDeadlyPatternType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in QiuDeadlyPattern Pattern,

@@ -4,7 +4,7 @@
 internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher : IEmptyRectangleIntersectionPairStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		for (int i = 0, length = BivalueCells.Count, iterationLength = length - 1; i < iterationLength; i++)
 		{

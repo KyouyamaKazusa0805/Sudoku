@@ -4,7 +4,7 @@
 internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		if (EmptyCells.Count < 7)
 		{
@@ -52,8 +52,8 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 	}
 
 
-	private static Step? CheckType1(
-		ICollection<Step> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+	private static IStep? CheckType1(
+		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -122,8 +122,8 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 		return null;
 	}
 
-	private static Step? CheckType2(
-		ICollection<Step> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+	private static IStep? CheckType2(
+		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -187,8 +187,8 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 		return null;
 	}
 
-	private static Step? CheckType3(
-		ICollection<Step> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+	private static IStep? CheckType3(
+		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -300,8 +300,8 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 		return null;
 	}
 
-	private static Step? CheckType4(
-		ICollection<Step> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+	private static IStep? CheckType4(
+		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
 	{
 		// The type 4 may be complex and terrible to process.

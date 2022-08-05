@@ -10,7 +10,7 @@
 /// <param name="House">The house that forms the dual empty rectangle.</param>
 /// <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
 /// <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
-public sealed record EmptyRectangleIntersectionPairStep(
+internal sealed record EmptyRectangleIntersectionPairStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int StartCell,

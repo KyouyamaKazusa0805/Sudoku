@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public sealed record BivalueUniversalGraveType1Step(ConclusionList Conclusions, ViewList Views) :
+internal sealed record BivalueUniversalGraveType1Step(ConclusionList Conclusions, ViewList Views) :
 	BivalueUniversalGraveStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

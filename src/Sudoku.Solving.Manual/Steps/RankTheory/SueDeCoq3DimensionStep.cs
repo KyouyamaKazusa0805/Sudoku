@@ -11,7 +11,7 @@
 /// <param name="RowCells">The row cells map.</param>
 /// <param name="ColumnCells">The column cells map.</param>
 /// <param name="BlockCells">The block cells map.</param>
-public sealed record SueDeCoq3DimensionStep(
+internal sealed record SueDeCoq3DimensionStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short RowDigitsMask,

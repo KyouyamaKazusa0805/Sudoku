@@ -25,7 +25,7 @@
 /// </item>
 /// </list>
 /// </param>
-public sealed record NakedSubsetStep(
+internal sealed record NakedSubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int House,

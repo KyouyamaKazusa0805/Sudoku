@@ -1567,7 +1567,7 @@
             </summary>
             <returns>The string value.</returns>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStep.Deconstruct(Sudoku.Concepts.Grid@,Sudoku.Solving.Step@)">
+        <member name="M:Sudoku.UI.Models.ManualStep.Deconstruct(Sudoku.Concepts.Grid@,Sudoku.Solving.IStep@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

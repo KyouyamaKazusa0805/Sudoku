@@ -11,7 +11,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		for (int size = 2, maxSize = CheckAlmostLockedQuadruple ? 4 : 3; size <= maxSize; size++)
 		{
@@ -70,8 +70,8 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 	/// and the elimination is <c>z</c> (in ALP) and <c>y</c> and <c>z</c> (in ALT).
 	/// </para>
 	/// </remarks>
-	private static Step? GetAll(
-		ICollection<Step> result, scoped in Grid grid, int size, int baseSet, int coverSet,
+	private static IStep? GetAll(
+		ICollection<IStep> result, scoped in Grid grid, int size, int baseSet, int coverSet,
 		scoped in Cells a, scoped in Cells b, scoped in Cells c, bool onlyFindOne)
 	{
 		// Iterate on each cell combination.

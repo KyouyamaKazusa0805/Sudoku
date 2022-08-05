@@ -4,7 +4,7 @@
 /// Defines a steps gatherer.
 /// </summary>
 public sealed class StepsGatherer :
-	IStepGatherableSearcher<IGrouping<string, Step>, string, Step>,
+	IStepGatherableSearcher<IGrouping<string, IStep>, string, IStep>,
 	IStepsGathererOptions
 {
 	/// <inheritdoc/>
@@ -12,16 +12,16 @@ public sealed class StepsGatherer :
 
 
 	/// <inheritdoc/>
-	public IEnumerable<IGrouping<string, Step>> Search(scoped in Grid puzzle, CancellationToken cancellationToken = default)
+	public IEnumerable<IGrouping<string, IStep>> Search(scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out bool? sukaku))
 		{
-			return Array.Empty<IGrouping<string, Step>>();
+			return Array.Empty<IGrouping<string, IStep>>();
 		}
 
 		InitializeMaps(puzzle);
 		var i = (SearcherDisplayingLevel)255;
-		var bag = new List<Step>();
+		var bag = new List<IStep>();
 		foreach (var searcher in StepSearcherPool.Collection)
 		{
 			switch (searcher)
@@ -52,7 +52,7 @@ public sealed class StepsGatherer :
 					cancellationToken.ThrowIfCancellationRequested();
 
 					// Searching.
-					var tempBag = new List<Step>();
+					var tempBag = new List<IStep>();
 					searcher.GetAll(tempBag, puzzle, false);
 
 					// Gather the technique steps, and record the current level of the searcher.

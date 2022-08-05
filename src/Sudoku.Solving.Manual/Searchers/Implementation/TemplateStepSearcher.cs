@@ -11,7 +11,7 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// Iterate on each digit.
 		var distributedMapsByDigit = Solution.ValuesMap;

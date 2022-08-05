@@ -11,7 +11,7 @@
 /// <param name="ExtraDigitsMask">
 /// Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
 /// </param>
-public sealed record UniqueSquareType3Step(
+internal sealed record UniqueSquareType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,

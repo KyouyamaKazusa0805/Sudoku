@@ -127,7 +127,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 	/// TODO: We should record the relations for the advanced nodes, in order to create a good look.
 	/// </b></para>
 	/// </remarks>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		try
 		{

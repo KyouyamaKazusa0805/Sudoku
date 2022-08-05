@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
-public abstract record ExtendedRectangleStep(
+internal abstract record ExtendedRectangleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,

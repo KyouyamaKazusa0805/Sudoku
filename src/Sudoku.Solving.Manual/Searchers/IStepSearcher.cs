@@ -85,7 +85,7 @@ public interface IStepSearcher
 	/// </param>
 	/// <param name="grid">The grid to search for techniques.</param>
 	/// <param name="onlyFindOne">
-	/// Indicates whether the method only searches for one <see cref="Step"/> instance.
+	/// Indicates whether the method only searches for one <see cref="IStep"/> instance.
 	/// </param>
 	/// <returns>
 	/// Returns the first found step. The nullability of the return value are as belows:
@@ -108,5 +108,5 @@ public interface IStepSearcher
 	/// </item>
 	/// </list>
 	/// </returns>
-	public abstract Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne);
+	public abstract IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne);
 }

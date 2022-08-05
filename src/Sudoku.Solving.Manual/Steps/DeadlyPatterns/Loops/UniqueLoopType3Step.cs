@@ -12,7 +12,7 @@
 /// Indicates the mask that contains the subset digits used in this instance.
 /// </param>
 /// <param name="SubsetCells">Indicates the subset cells.</param>
-public sealed record UniqueLoopType3Step(
+internal sealed record UniqueLoopType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

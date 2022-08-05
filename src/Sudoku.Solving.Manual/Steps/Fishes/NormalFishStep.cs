@@ -26,7 +26,7 @@
 /// </item>
 /// </list>
 /// </param>
-public sealed record NormalFishStep(
+internal sealed record NormalFishStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,

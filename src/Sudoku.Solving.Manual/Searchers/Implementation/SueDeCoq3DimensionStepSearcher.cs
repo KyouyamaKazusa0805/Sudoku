@@ -4,7 +4,7 @@
 internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3DimensionStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		using scoped ValueList<Cells> rbList = new(3), cbList = new(3);
 		foreach (int pivot in EmptyCells)

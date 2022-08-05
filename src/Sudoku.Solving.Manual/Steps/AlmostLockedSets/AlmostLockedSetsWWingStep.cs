@@ -10,7 +10,7 @@
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 /// <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
 /// <param name="X">Indicates the X digit.</param>
-public sealed record AlmostLockedSetsWWingStep(
+internal sealed record AlmostLockedSetsWWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	AlmostLockedSet Als1,

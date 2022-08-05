@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Map"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-public sealed record UniquePolygonType1Step(
+internal sealed record UniquePolygonType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Map,

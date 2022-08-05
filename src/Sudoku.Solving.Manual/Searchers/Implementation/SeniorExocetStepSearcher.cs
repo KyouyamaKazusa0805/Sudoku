@@ -8,7 +8,7 @@ internal sealed partial class SeniorExocetStepSearcher : ISeniorExocetStepSearch
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// TODO: Re-implement SE.
 		return null;

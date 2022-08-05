@@ -9,7 +9,7 @@ internal sealed unsafe partial class BruteForceStepSearcher : IBruteForceStepSea
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		if (Solution.IsUndefined)
 		{

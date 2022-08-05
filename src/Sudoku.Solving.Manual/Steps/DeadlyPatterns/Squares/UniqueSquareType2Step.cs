@@ -8,7 +8,7 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
-public sealed record UniqueSquareType2Step(
+internal sealed record UniqueSquareType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,

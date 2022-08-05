@@ -8,7 +8,7 @@
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="BaseSet">Indicates the house that the current locked candidates forms.</param>
 /// <param name="CoverSet">Indicates the house that the current locked candidates influences.</param>
-public sealed record LockedCandidatesStep(
+internal sealed record LockedCandidatesStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,

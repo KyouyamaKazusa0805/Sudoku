@@ -11,7 +11,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		var list = new List<UniqueRectangleStep>();
 

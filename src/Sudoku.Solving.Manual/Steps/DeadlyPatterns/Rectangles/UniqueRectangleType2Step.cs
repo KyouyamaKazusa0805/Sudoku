@@ -12,7 +12,7 @@
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record UniqueRectangleType2Step(
+internal sealed record UniqueRectangleType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

@@ -12,7 +12,7 @@
 /// <param name="TargetCell"></param>
 /// <param name="House"></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record AvoidableRectangleWithHiddenSingleStep(
+internal sealed record AvoidableRectangleWithHiddenSingleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

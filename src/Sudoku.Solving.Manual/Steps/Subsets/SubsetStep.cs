@@ -8,7 +8,7 @@
 /// <param name="House">The house that structure lies in.</param>
 /// <param name="Cells">All cells used.</param>
 /// <param name="DigitsMask">The mask that contains all digits used.</param>
-public abstract record SubsetStep(
+internal abstract record SubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int House,

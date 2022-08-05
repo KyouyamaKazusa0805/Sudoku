@@ -12,7 +12,7 @@
 /// <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record UniqueRectangleWithGuardianStep(
+internal sealed record UniqueRectangleWithGuardianStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

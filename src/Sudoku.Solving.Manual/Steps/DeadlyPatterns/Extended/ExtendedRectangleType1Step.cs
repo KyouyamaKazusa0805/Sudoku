@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-public sealed record ExtendedRectangleType1Step(
+internal sealed record ExtendedRectangleType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,

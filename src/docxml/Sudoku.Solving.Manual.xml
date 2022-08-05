@@ -182,11 +182,11 @@
             <summary>
             Indicates whether the solver will apply all found steps in a step searcher,
             in order to solve a puzzle faster. If the value is <see langword="true"/>,
-            the third argument of <see cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)"/>
+            the third argument of <see cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>
             will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
             and all steps will be applied at the same time.
             </summary>
-            <seealso cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.CustomSearcherCollection">
             <summary>
@@ -438,7 +438,7 @@
             If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
             the return value of the property will be always the <see langword="default"/> expression of type
             <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>, of <see cref="T:System.ValueTuple`2"/>
-            of types <see cref="T:Sudoku.Concepts.Grid"/> and <see cref="T:Sudoku.Solving.Step"/>.
+            of types <see cref="T:Sudoku.Concepts.Grid"/> and <see cref="T:Sudoku.Solving.IStep"/>.
             </para>
             </summary>
         </member>
@@ -497,7 +497,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(System.Int32)">
             <summary>
-            Gets the <see cref="T:Sudoku.Solving.Step"/> instance at the specified index.
+            Gets the <see cref="T:Sudoku.Solving.IStep"/> instance at the specified index.
             </summary>
             <param name="index">The index.</param>
             <returns>The step information.</returns>
@@ -509,7 +509,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(Sudoku.Solving.DataRepresentation.Technique)">
             <summary>
-            Gets the first <see cref="T:Sudoku.Solving.Step"/> instance that matches the specified technique.
+            Gets the first <see cref="T:Sudoku.Solving.IStep"/> instance that matches the specified technique.
             </summary>
             <param name="code">The technique code to check and fetch.</param>
             <returns>The step information instance as the result.</returns>
@@ -1358,10 +1358,10 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.Sudoku#Solving#Manual#Searchers#IAlmostLockedCandidatesStepSearcher#CheckForValues">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Boolean)">
              <summary>
              Process the calculation.
              </summary>
@@ -1402,7 +1402,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsWWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsWWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsWWingStepSearcher.Options">
@@ -1411,7 +1411,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXyWingStepSearcher.AllowCollision">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXyWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXyWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXyWingStepSearcher.Options">
@@ -1423,7 +1423,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
             <para><b>Developer notes</b></para>
@@ -1522,7 +1522,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.NodeTypes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
             <para><b>Developer notes</b></para>
@@ -1635,7 +1635,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher.Options">
@@ -1644,7 +1644,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.BivalueUniversalGraveStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.BivalueUniversalGraveStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.BivalueUniversalGraveStepSearcher.CheckSingleDigit(System.Collections.Generic.IReadOnlyList{System.Int32})">
@@ -1670,7 +1670,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.BowmanBingoStepSearcher.MaxLength">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.BowmanBingoStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.BowmanBingoStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.BowmanBingoStepSearcher.GetLinks">
@@ -1712,16 +1712,16 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher.Solution">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.Cells@,System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.Cells@,System.Int32[])">
             <summary>
             Checks for the type 1.
             Here I give you 2 examples to test this method:
@@ -1735,7 +1735,7 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.CheckXz(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.Cells@,System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.CheckXz(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.Cells@,System.Int32[])">
             <summary>
             Checks for XZ rule.
             Here I give you 1 example to test this method:
@@ -1754,7 +1754,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher.MaxSize">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.ComplexFishStep},Sudoku.Concepts.Grid@,System.Collections.Generic.IList{Sudoku.Solving.Conclusion}[],System.Int32,System.Boolean)">
@@ -1777,28 +1777,28 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleIntersectionPairStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleIntersectionPairStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.EmptyRectangleIntersectionPairStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Boolean)">
             <summary>
             Check type 1.
             </summary>
@@ -1811,7 +1811,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Boolean)">
             <summary>
             Check type 2.
             </summary>
@@ -1824,7 +1824,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,System.Int16,System.Int16,Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,System.Int16,System.Int16,Sudoku.Concepts.Cells@,System.Boolean)">
             <summary>
             Check type 3.
             </summary>
@@ -1837,10 +1837,10 @@
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType14(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType14(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Cells@,System.Boolean)">
             <summary>
             Check type 4 and a part of type 1 that the method
-            <see cref="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Boolean)"/>
+            <see cref="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Boolean)"/>
             cannot be found.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
@@ -1854,30 +1854,30 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckPairType1(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Patterns.FireworkPattern@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckPairType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Patterns.FireworkPattern@,System.Int16,System.Int32)">
             <summary>
             Checks for firework pair type 1 steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckPairType2(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckPairType2(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Checks for firework pair type 2 steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckPairType3(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Patterns.FireworkPattern@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckPairType3(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Patterns.FireworkPattern@,System.Int16,System.Int32)">
             <summary>
             Checks for firework pair type 3 steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckTriple(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Patterns.FireworkPattern@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckTriple(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Patterns.FireworkPattern@,System.Int16,System.Int32)">
             <summary>
             Checks for firework triple steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckQuadruple(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Patterns.FireworkPattern@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckQuadruple(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Patterns.FireworkPattern@)">
             <summary>
             Checks for firework quadruple steps.
             </summary>
@@ -1885,7 +1885,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.Options">
@@ -1894,7 +1894,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.CheckAdvanced">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.CheckTargetCells(System.Int32,System.Int32,System.Int16,Sudoku.Concepts.Grid@,System.Int16@)">
@@ -1923,7 +1923,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
             <para><b>Developer notes</b></para>
@@ -1961,7 +1961,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher.Options">
@@ -1973,10 +1973,10 @@
             I hide this member on purpose because 4 is the maximum size of subsets found in practice.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Get all possible normal fishes.
             </summary>
@@ -2009,13 +2009,13 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.PatternOverlayStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.PatternOverlayStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.PatternOverlayStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.QiuDeadlyPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.QiuDeadlyPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.QiuDeadlyPatternStepSearcher.Options">
@@ -2024,7 +2024,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.Options">
@@ -2033,7 +2033,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.SeniorExocetStepSearcher.CheckAdvanced">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.SeniorExocetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.SeniorExocetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SeniorExocetStepSearcher.Options">
@@ -2048,7 +2048,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.HiddenSinglesInBlockFirst">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.Options">
@@ -2060,19 +2060,19 @@
             I hide this member on purpose because 4 is the maximum size of subsets found in practice.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.SueDeCoq3DimensionStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.SueDeCoq3DimensionStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SueDeCoq3DimensionStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.SueDeCoqStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.SueDeCoqStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SueDeCoqStepSearcher.Options">
@@ -2084,19 +2084,19 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.TemplateStepSearcher.Solution">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.TemplateStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.TemplateStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.TemplateStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.LinkViewNode},Sudoku.Concepts.Cells@,System.Boolean)">
@@ -2161,7 +2161,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher.Options">
@@ -2173,7 +2173,7 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Boolean)">
@@ -2800,13 +2800,13 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.WWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.WWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
             In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
@@ -3047,7 +3047,7 @@
             Indicates the step searching options.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Accumulate all possible steps into the argument <paramref name="accumulator"/> if
             the argument <paramref name="onlyFindOne"/> is <see langword="false"/>,
@@ -3069,7 +3069,7 @@
             </param>
             <param name="grid">The grid to search for techniques.</param>
             <param name="onlyFindOne">
-            Indicates whether the method only searches for one <see cref="T:Sudoku.Solving.Step"/> instance.
+            Indicates whether the method only searches for one <see cref="T:Sudoku.Solving.IStep"/> instance.
             </param>
             <returns>
             Returns the first found step. The nullability of the return value are as belows:
@@ -3650,13 +3650,13 @@
             <para>
             Indicates the technique searcher can or can't be used in some scenarios
             where they aren't in traversing mode to call
-            <see cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)"/>
+            <see cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>
             in <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>s one by one.
             </para>
             <para>
             If <see langword="true"/>, the searcher can't use those <see langword="static"/>
             properties such as <see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.CandidatesMap"/> in its method
-            <see cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Step},Sudoku.Concepts.Grid@,System.Boolean)"/>.
+            <see cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>.
             </para>
             <para><i>The default value is <see langword="false"/>.</i></para>
             </summary>
@@ -8793,7 +8793,7 @@
             Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Solving.Step)">
+        <member name="M:Sudoku.Solving.Manual.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Solving.IStep)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Manual.WrongStepException"/> with the specified invalid grid and the wrong step.
             </summary>

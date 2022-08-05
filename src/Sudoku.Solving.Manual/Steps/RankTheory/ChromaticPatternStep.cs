@@ -8,7 +8,7 @@
 /// <param name="Blocks">The blocks used.</param>
 /// <param name="Pattern">The cells used.</param>
 /// <param name="DigitsMask">The digits mask.</param>
-public abstract record ChromaticPatternStep(
+internal abstract record ChromaticPatternStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int[] Blocks,

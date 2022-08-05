@@ -9,7 +9,7 @@ internal sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearch
 	/// be found in another searcher. In addition, these wings are not elementary and necessary techniques
 	/// so we doesn't need to list them.
 	/// </remarks>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// The grid with possible W-Wing structure should contain
 		// at least two empty cells (start and end cell).

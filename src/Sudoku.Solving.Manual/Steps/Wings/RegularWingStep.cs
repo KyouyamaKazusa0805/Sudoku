@@ -9,7 +9,7 @@
 /// <param name="PivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
 /// <param name="DigitsMask">Indicates a mask that contains all digits used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
-public sealed record RegularWingStep(
+internal sealed record RegularWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Pivot,

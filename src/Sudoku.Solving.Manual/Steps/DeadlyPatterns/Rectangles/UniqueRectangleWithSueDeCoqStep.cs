@@ -29,7 +29,7 @@
 /// Indicates the cells in the intersection from houses <see cref="Block"/> and <see cref="Line"/>.
 /// </param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record UniqueRectangleWithSueDeCoqStep(
+internal sealed record UniqueRectangleWithSueDeCoqStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

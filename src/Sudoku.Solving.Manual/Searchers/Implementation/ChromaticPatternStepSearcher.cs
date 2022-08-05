@@ -4,7 +4,7 @@
 internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		if (EmptyCells.Count < 12)
 		{
@@ -115,8 +115,8 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 	/// </item>
 	/// </list>
 	/// </summary>
-	private Step? CheckType1(
-		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne,
+	private IStep? CheckType1(
+		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in Cells pattern, int[] blocks)
 	{
 		foreach (int extraCell in pattern)
@@ -184,8 +184,8 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 	/// </item>
 	/// </list>
 	/// </summary>
-	private Step? CheckXz(
-		ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne,
+	private IStep? CheckXz(
+		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in Cells pattern, int[] blocks)
 	{
 		short allDigitsMask = grid.GetDigitsUnion(pattern);

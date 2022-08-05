@@ -8,7 +8,7 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		var exocetPatterns = IExocetStepSearcher.Patterns;
 		foreach (/*scoped*/ ref readonly var currentJe in exocetPatterns.EnumerateRef())

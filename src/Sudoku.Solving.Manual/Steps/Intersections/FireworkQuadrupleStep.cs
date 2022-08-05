@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">The cells used.</param>
 /// <param name="DigitsMask">The digits used.</param>
-public sealed record FireworkQuadrupleStep(
+internal sealed record FireworkQuadrupleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,

@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the digits used.</param>
-public abstract record UniqueSquareStep(
+internal abstract record UniqueSquareStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,

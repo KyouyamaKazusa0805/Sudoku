@@ -11,7 +11,7 @@ public sealed class WrongStepException : Exception
 	/// <param name="grid">The invalid sudoku grid.</param>
 	/// <param name="wrongStep">The wrong step.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public WrongStepException(scoped in Grid grid, Step wrongStep)
+	public WrongStepException(scoped in Grid grid, IStep wrongStep)
 		=> (CurrentInvalidGrid, WrongStep) = (grid, wrongStep);
 
 
@@ -33,5 +33,5 @@ public sealed class WrongStepException : Exception
 	/// <summary>
 	/// Indicates the wrong step.
 	/// </summary>
-	public Step WrongStep { get; }
+	public IStep WrongStep { get; }
 }

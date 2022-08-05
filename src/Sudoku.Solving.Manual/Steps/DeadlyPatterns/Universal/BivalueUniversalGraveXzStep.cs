@@ -8,7 +8,7 @@
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="ExtraCell">Indicates the XZ cell.</param>
-public sealed record BivalueUniversalGraveXzStep(
+internal sealed record BivalueUniversalGraveXzStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short DigitsMask,

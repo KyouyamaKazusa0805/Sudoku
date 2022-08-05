@@ -8,7 +8,7 @@
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-public sealed record BivalueUniversalGraveType4Step(
+internal sealed record BivalueUniversalGraveType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short DigitsMask,

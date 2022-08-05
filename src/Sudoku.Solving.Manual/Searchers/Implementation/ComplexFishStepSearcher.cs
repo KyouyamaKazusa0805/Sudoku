@@ -8,7 +8,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// Gather the POM eliminations to get all possible fish eliminations.
 		var pomElims = GetPomEliminationsFirstly(grid);
@@ -27,7 +27,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 		}
 
 		using var cts = new CancellationTokenSource();
-		Step? firstPossibleStep = null;
+		IStep? firstPossibleStep = null;
 		var tempList = new List<ComplexFishStep>();
 		var searchingTasks = new Task[count];
 		count = 0;
@@ -82,7 +82,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 	/// <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
 	/// <param name="digit">The current digit used.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
-	private Step? GetAll(
+	private IStep? GetAll(
 		ICollection<ComplexFishStep> accumulator, scoped in Grid grid,
 		IList<Conclusion>?[] pomElims, int digit, bool onlyFindOne)
 	{
@@ -454,7 +454,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 	/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
 	private static IList<Conclusion>?[] GetPomEliminationsFirstly(scoped in Grid grid)
 	{
-		var tempList = new List<Step>();
+		var tempList = new List<IStep>();
 		new PatternOverlayStepSearcher().GetAll(tempList, grid, false);
 
 		var result = new IList<Conclusion>?[9];

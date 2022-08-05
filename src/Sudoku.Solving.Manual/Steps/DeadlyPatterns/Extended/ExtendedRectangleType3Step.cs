@@ -10,7 +10,7 @@
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
 /// <param name="House">Indicates the house that extra subset formed.</param>
-public sealed record ExtendedRectangleType3Step(
+internal sealed record ExtendedRectangleType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,

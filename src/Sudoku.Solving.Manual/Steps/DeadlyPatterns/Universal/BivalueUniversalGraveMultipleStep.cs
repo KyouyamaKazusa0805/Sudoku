@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the true candidates.</param>
-public sealed record BivalueUniversalGraveMultipleStep(
+internal sealed record BivalueUniversalGraveMultipleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	IReadOnlyList<int> Candidates

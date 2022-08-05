@@ -8,7 +8,7 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="Candidate">Indicates the true candidate.</param>
-public sealed record UniqueSquareType1Step(
+internal sealed record UniqueSquareType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,

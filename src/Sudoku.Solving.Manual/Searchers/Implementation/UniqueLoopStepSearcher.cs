@@ -4,7 +4,7 @@
 internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		if (BivalueCells.Count < 5)
 		{
@@ -117,7 +117,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
-	private Step? CheckType1(
+	private IStep? CheckType1(
 		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
 		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, bool onlyFindOne)
 	{
@@ -175,7 +175,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
-	private Step? CheckType2(
+	private IStep? CheckType2(
 		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
 		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
@@ -236,7 +236,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
-	private Step? CheckType3(
+	private IStep? CheckType3(
 		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
 		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
@@ -363,7 +363,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
-	private Step? CheckType4(
+	private IStep? CheckType4(
 		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
 		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{

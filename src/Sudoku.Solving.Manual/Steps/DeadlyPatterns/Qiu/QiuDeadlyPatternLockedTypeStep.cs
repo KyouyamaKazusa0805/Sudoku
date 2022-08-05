@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the candidates used.</param>
-public sealed record QiuDeadlyPatternLockedTypeStep(
+internal sealed record QiuDeadlyPatternLockedTypeStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in QiuDeadlyPattern Pattern,

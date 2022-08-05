@@ -4,12 +4,12 @@
 internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// Check POM eliminations first.
 		var eliminationMaps = stackalloc Cells[9];
 		Unsafe.InitBlock(eliminationMaps, 0, (uint)sizeof(Cells) * 9);
-		var pomSteps = new List<Step>();
+		var pomSteps = new List<IStep>();
 		new PatternOverlayStepSearcher().GetAll(pomSteps, grid, onlyFindOne: false);
 		foreach (PatternOverlayStep step in pomSteps)
 		{

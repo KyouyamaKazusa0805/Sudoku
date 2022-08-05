@@ -4,7 +4,7 @@
 internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		if (BivalueCells.Count < 4)
 		{
@@ -115,7 +115,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		}
 	}
 
-	private Step? CheckType1(
+	private IStep? CheckType1(
 		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
 		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, bool onlyFindOne)
 	{
@@ -161,7 +161,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		return null;
 	}
 
-	private Step? CheckType2(
+	private IStep? CheckType2(
 		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
 		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
@@ -208,7 +208,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		return null;
 	}
 
-	private Step? CheckType3(
+	private IStep? CheckType3(
 		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
 		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{

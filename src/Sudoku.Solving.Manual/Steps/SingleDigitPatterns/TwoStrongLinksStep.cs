@@ -8,7 +8,7 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="BaseHouse">Indicates the base house used.</param>
 /// <param name="TargetHouse">Indicates the target house used.</param>
-public sealed record TwoStrongLinksStep(
+internal sealed record TwoStrongLinksStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,

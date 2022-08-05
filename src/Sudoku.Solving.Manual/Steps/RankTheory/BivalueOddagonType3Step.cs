@@ -10,7 +10,7 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
-public sealed record BivalueOddagonType3Step(
+internal sealed record BivalueOddagonType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Loop,

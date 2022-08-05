@@ -8,7 +8,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		if (!IBivalueUniversalGraveStepSearcher.FindTrueCandidates(grid, out var trueCandidates))
 		{
@@ -77,8 +77,8 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private static Step? CheckType2(
-		ICollection<Step> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	private static IStep? CheckType2(
+		ICollection<IStep> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		scoped var cells = (stackalloc int[trueCandidates.Count]);
 		int i = 0;
@@ -126,8 +126,9 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private static Step? CheckType3Naked(
-		ICollection<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	private static IStep? CheckType3Naked(
+		ICollection<IStep> accumulator, scoped in Grid grid,
+		IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		// Check whether all true candidates lie in a same house.
 		var map = Cells.Empty + from c in trueCandidates group c by c / 9 into z select z.Key;
@@ -222,8 +223,9 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private static Step? CheckType4(
-		ICollection<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	private static IStep? CheckType4(
+		ICollection<IStep> accumulator, scoped in Grid grid,
+		IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		// Conjugate pairs should lie in two cells.
 		var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
@@ -351,8 +353,9 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private static Step? CheckMultiple(
-		ICollection<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	private static IStep? CheckMultiple(
+		ICollection<IStep> accumulator, scoped in Grid grid,
+		IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		if (trueCandidates.Count > 18)
 		{
@@ -402,9 +405,9 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private static Step? CheckXz(
-		ICollection<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates,
-		bool onlyFindOne)
+	private static IStep? CheckXz(
+		ICollection<IStep> accumulator, scoped in Grid grid,
+		IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		if (trueCandidates is not [var cand1, var cand2])
 		{

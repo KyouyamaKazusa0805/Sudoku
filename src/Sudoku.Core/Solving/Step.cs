@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) : IStep
+internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) : IStep
 {
 	/// <inheritdoc/>
 	public virtual bool ShowDifficulty => true;

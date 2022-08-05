@@ -4,7 +4,7 @@
 internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// A valid SdC needs at least 4 cells like:
 		//

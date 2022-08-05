@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Chain">Indicates the whole chain.</param>
-public sealed record AlternatingInferenceChainStep(
+internal sealed record AlternatingInferenceChainStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	AlternatingInferenceChain Chain

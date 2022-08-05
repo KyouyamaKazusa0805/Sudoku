@@ -9,7 +9,7 @@
 /// in order that multiple steps of the same type can be recognized by the relative methods,
 /// to filter and remove same-value instances.
 /// </remarks>
-public interface IDistinctableStep<in TStep> : IStep where TStep : Step
+internal interface IDistinctableStep<in TStep> : IStep where TStep : Step
 {
 	/// <summary>
 	/// To compare 2 instances of type <typeparamref name="TStep"/>,

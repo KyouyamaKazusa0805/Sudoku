@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record IntersectionStep(ConclusionList Conclusions, ViewList Views) : Step(Conclusions, Views)
+internal abstract record IntersectionStep(ConclusionList Conclusions, ViewList Views) : Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;

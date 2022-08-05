@@ -8,7 +8,7 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-public sealed record ExtendedRectangleType4Step(
+internal sealed record ExtendedRectangleType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,

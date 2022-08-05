@@ -9,7 +9,7 @@
 /// <param name="DigitsMask">The digits used.</param>
 /// <param name="ExtraCell1">The extra cell 1.</param>
 /// <param name="ExtraCell2">The extra cell 2.</param>
-public sealed record FireworkPairType1Step(
+internal sealed record FireworkPairType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,

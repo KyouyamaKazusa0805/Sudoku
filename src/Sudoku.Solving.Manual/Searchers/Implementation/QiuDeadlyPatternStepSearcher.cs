@@ -4,7 +4,7 @@
 internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		for (int i = 0, length = IQiuDeadlyPatternStepSearcher.Patterns.Length; i < length; i++)
 		{
@@ -150,8 +150,8 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		return null;
 	}
 
-	private static Step? CheckType1(
-		ICollection<Step> accumulator, scoped in Grid grid, bool isRow, scoped in Cells pair,
+	private static IStep? CheckType1(
+		ICollection<IStep> accumulator, scoped in Grid grid, bool isRow, scoped in Cells pair,
 		scoped in Cells square, scoped in Cells baseLine, scoped in QiuDeadlyPattern pattern,
 		short comparer, short otherDigitsMask, bool onlyFindOne)
 	{
@@ -224,8 +224,8 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		return null;
 	}
 
-	private static Step? CheckType2(
-		ICollection<Step> accumulator, scoped in Grid grid, bool isRow,
+	private static IStep? CheckType2(
+		ICollection<IStep> accumulator, scoped in Grid grid, bool isRow,
 		scoped in Cells pair, scoped in Cells square, scoped in Cells baseLine, scoped in QiuDeadlyPattern pattern,
 		short comparer, short otherDigitsMask, bool onlyFindOne)
 	{
@@ -295,10 +295,10 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		return null;
 	}
 
-	private static Step? CheckType3(
-		ICollection<Step> accumulator, scoped in Grid grid, bool isRow,
-		scoped in Cells pair, scoped in Cells square, scoped in Cells baseLine, scoped in QiuDeadlyPattern pattern,
-		short comparer, short otherDigitsMask, bool onlyFindOne)
+	private static IStep? CheckType3(
+		ICollection<IStep> accumulator, scoped in Grid grid, bool isRow,
+		scoped in Cells pair, scoped in Cells square, scoped in Cells baseLine,
+		scoped in QiuDeadlyPattern pattern, short comparer, short otherDigitsMask, bool onlyFindOne)
 	{
 		foreach (int houseIndex in pair.CoveredHouses)
 		{
@@ -395,8 +395,8 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		return null;
 	}
 
-	private static Step? CheckType4(
-		ICollection<Step> accumulator, bool isRow, scoped in Cells pair, scoped in Cells square,
+	private static IStep? CheckType4(
+		ICollection<IStep> accumulator, bool isRow, scoped in Cells pair, scoped in Cells square,
 		scoped in Cells baseLine, scoped in QiuDeadlyPattern pattern, short comparer, bool onlyFindOne)
 	{
 		foreach (int houseIndex in pair.CoveredHouses)
@@ -482,10 +482,10 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		return null;
 	}
 
-	private static Step? CheckLockedType(
-		ICollection<Step> accumulator, scoped in Grid grid, bool isRow,
-		scoped in Cells pair, scoped in Cells square, scoped in Cells baseLine, scoped in QiuDeadlyPattern pattern,
-		short comparer, bool onlyFindOne)
+	private static IStep? CheckLockedType(
+		ICollection<IStep> accumulator, scoped in Grid grid, bool isRow,
+		scoped in Cells pair, scoped in Cells square, scoped in Cells baseLine,
+		scoped in QiuDeadlyPattern pattern, short comparer, bool onlyFindOne)
 	{
 		// Firstly, we should check the cells in the block that the square cells lying on.
 		int block = TrailingZeroCount(square.BlockMask);

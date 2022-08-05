@@ -8,7 +8,7 @@ internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepS
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// Iterate on the size.
 		// Note that the greatest size is determined by two factors: the size that you specified

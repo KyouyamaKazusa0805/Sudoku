@@ -4,7 +4,7 @@
 internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		short* pairs = stackalloc short[8], tempLink = stackalloc short[8];
 		int* linkHouse = stackalloc int[8];

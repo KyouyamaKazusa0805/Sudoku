@@ -9,7 +9,7 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Loop"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit.</param>
-public sealed record UniqueLoopType2Step(
+internal sealed record UniqueLoopType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

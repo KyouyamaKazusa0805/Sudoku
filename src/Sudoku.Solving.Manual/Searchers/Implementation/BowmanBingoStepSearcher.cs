@@ -19,7 +19,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		var tempAccumulator = new List<BowmanBingoStep>();
 		var tempGrid = grid;
@@ -71,7 +71,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 		return null;
 	}
 
-	private Step? GetAll(
+	private IStep? GetAll(
 		ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, int startCand, int length)
 	{
 		if (length == 0 || _searcher.GetAll(null!, grid, true) is not SingleStep singleInfo)

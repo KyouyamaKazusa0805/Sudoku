@@ -4,7 +4,8 @@
 /// Provides the solver result after <see cref="ManualSolver"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle"><inheritdoc/></param>
-public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverResult<ManualSolver, ManualSolverResult>
+public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
+	IComplexSolverResult<ManualSolver, ManualSolverResult>
 {
 	/// <inheritdoc/>
 	public bool IsSolved { get; init; }
@@ -20,7 +21,7 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 	/// </para>
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	public unsafe decimal MaxDifficulty => Evaluator(&EnumerableExtensions.Max<Step>, 20.0M);
+	public decimal MaxDifficulty => Evaluator(&EnumerableExtensions.Max<IStep>, 20.0M);
 
 	/// <summary>
 	/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -35,7 +36,7 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
 	/// <seealso cref="Steps"/>
-	public unsafe decimal TotalDifficulty => Evaluator(&EnumerableExtensions.Sum<Step>, 0);
+	public decimal TotalDifficulty => Evaluator(&EnumerableExtensions.Sum<IStep>, 0);
 
 	/// <summary>
 	/// <para>
@@ -158,7 +159,7 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 	/// Indicates all solving steps that the solver has recorded.
 	/// </summary>
 	/// <seealso cref="StepGrids"/>
-	public ImmutableArray<Step> Steps { get; init; }
+	public ImmutableArray<IStep> Steps { get; init; }
 
 	/// <summary>
 	/// <para>Indicates a list of pairs of information about each step.</para>
@@ -166,11 +167,11 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 	/// If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
 	/// the return value of the property will be always the <see langword="default"/> expression of type
 	/// <see cref="ImmutableArray{T}"/>, of <see cref="ValueTuple{T1, T2}"/>
-	/// of types <see cref="Grid"/> and <see cref="Step"/>.
+	/// of types <see cref="Grid"/> and <see cref="IStep"/>.
 	/// </para>
 	/// </summary>
-	public ImmutableArray<(Grid SteppingGrid, Step Step)> SolvingPath
-		=> IsSolved ? StepGrids.Zip(Steps) : default(ImmutableArray<(Grid, Step)>);
+	public ImmutableArray<(Grid SteppingGrid, IStep Step)> SolvingPath
+		=> IsSolved ? StepGrids.Zip(Steps) : default(ImmutableArray<(Grid, IStep)>);
 
 	/// <summary>
 	/// <para>
@@ -205,14 +206,14 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 	/// </summary>
 	/// <seealso cref="IsSolved"/>
 	/// <seealso cref="Puzzle"/>
-	public Step? WrongStep { get; init; }
+	public IStep? WrongStep { get; init; }
 
 	/// <summary>
 	/// Gets the bottleneck during the whole grid solving. Returns <see langword="null"/> if the property
 	/// <see cref="Steps"/> is default case (not initialized or empty).
 	/// </summary>
 	/// <seealso cref="Steps"/>
-	public Step? Bottleneck
+	public IStep? Bottleneck
 	{
 		get
 		{
@@ -254,7 +255,7 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 
 
 	/// <summary>
-	/// Gets the <see cref="Step"/> instance at the specified index.
+	/// Gets the <see cref="IStep"/> instance at the specified index.
 	/// </summary>
 	/// <param name="index">The index.</param>
 	/// <returns>The step information.</returns>
@@ -263,7 +264,7 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 	/// </exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 	/// <seealso cref="Steps"/>
-	public Step this[int index]
+	public IStep this[int index]
 		=> Steps switch
 		{
 			{ IsDefaultOrEmpty: true }
@@ -274,14 +275,14 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 		};
 
 	/// <summary>
-	/// Gets the first <see cref="Step"/> instance that matches the specified technique.
+	/// Gets the first <see cref="IStep"/> instance that matches the specified technique.
 	/// </summary>
 	/// <param name="code">The technique code to check and fetch.</param>
 	/// <returns>The step information instance as the result.</returns>
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the list doesn't contain any valid instance to get.
 	/// </exception>
-	public Step this[Technique code]
+	public IStep this[Technique code]
 		=> IsSolved
 			? Steps.First(step => step.TechniqueCode == code)
 			: throw new InvalidOperationException("The specified instance can't get the result.");
@@ -490,7 +491,7 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 			}
 		}
 
-		(int, Step)? getBottleneck()
+		(int, IStep)? getBottleneck()
 		{
 			if (this is not { IsSolved: true, Steps: var steps, SolvingStepsCount: var stepsCount })
 			{
@@ -516,7 +517,7 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ImmutableArray<Step>.Enumerator GetEnumerator() => Steps.GetEnumerator();
+	public ImmutableArray<IStep>.Enumerator GetEnumerator() => Steps.GetEnumerator();
 
 
 	/// <summary>
@@ -528,11 +529,13 @@ public sealed record ManualSolverResult(scoped in Grid Puzzle) : IComplexSolverR
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	private unsafe decimal Evaluator(delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
+	private decimal Evaluator(
+		delegate*<IEnumerable<IStep>, delegate*<IStep, decimal>, decimal> executor,
+		decimal d)
 	{
 		return Steps.IsDefaultOrEmpty ? d : executor(Steps, &f);
 
 
-		static decimal f(Step step) => step.ShowDifficulty ? step.Difficulty : 0;
+		static decimal f(IStep step) => step.ShowDifficulty ? step.Difficulty : 0;
 	}
 }

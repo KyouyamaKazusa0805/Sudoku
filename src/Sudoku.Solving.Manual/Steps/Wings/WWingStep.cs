@@ -10,7 +10,7 @@
 /// <param name="ConjugatePair">
 /// Indicates the conjugate pair that connects cells <see cref="StartCell"/> and <see cref="EndCell"/>.
 /// </param>
-public sealed record WWingStep(
+internal sealed record WWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int StartCell,

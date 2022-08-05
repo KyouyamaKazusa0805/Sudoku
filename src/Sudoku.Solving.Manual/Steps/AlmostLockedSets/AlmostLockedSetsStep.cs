@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record AlmostLockedSetsStep(ConclusionList Conclusions, ViewList Views) :
+internal abstract record AlmostLockedSetsStep(ConclusionList Conclusions, ViewList Views) :
 	Step(Conclusions, Views)
 {
 	/// <inheritdoc/>

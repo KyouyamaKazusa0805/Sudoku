@@ -4,7 +4,7 @@
 internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisectorLockedSetsStepSearcher
 {
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		short* linkForEachHouse = stackalloc short[27];
 		var linkForEachDigit = stackalloc Cells[9];

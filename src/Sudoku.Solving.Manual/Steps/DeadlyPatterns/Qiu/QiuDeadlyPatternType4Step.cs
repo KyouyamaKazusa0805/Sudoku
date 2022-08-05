@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-public sealed record QiuDeadlyPatternType4Step(
+internal sealed record QiuDeadlyPatternType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in QiuDeadlyPattern Pattern,

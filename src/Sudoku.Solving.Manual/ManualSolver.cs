@@ -368,7 +368,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 		CancellationToken cancellationToken = default)
 	{
 		var playground = puzzle;
-		var recordedSteps = new List<Step>(100);
+		var recordedSteps = new List<IStep>(100);
 		var stepGrids = new List<Grid>(100);
 		var stepSearchers = TargetSearcherCollection;
 
@@ -398,7 +398,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 				}
 				case (_, not IBruteForceStepSearcher, true):
 				{
-					var accumulator = new List<Step>();
+					var accumulator = new List<IStep>();
 					searcher.GetAll(accumulator, playground, false);
 					if (accumulator.Count == 0)
 					{
@@ -476,8 +476,8 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 
 
 		static bool recordStep(
-			ICollection<Step> steps,
-			Step step,
+			ICollection<IStep> steps,
+			IStep step,
 			scoped ref Grid playground,
 			Stopwatch stopwatch,
 			ICollection<Grid> stepGrids,
@@ -528,7 +528,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResu
 			return false;
 		}
 
-		static bool verifyConclusionValidity(scoped in Grid solution, Step step)
+		static bool verifyConclusionValidity(scoped in Grid solution, IStep step)
 		{
 			foreach (var (t, c, d) in step.Conclusions)
 			{

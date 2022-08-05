@@ -11,7 +11,7 @@
 /// <param name="TargetCell">Indicates the target cell.</param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record UniqueRectangleWithUnknownCoveringStep(
+internal sealed record UniqueRectangleWithUnknownCoveringStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

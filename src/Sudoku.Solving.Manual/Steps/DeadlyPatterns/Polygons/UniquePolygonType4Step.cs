@@ -9,7 +9,7 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ConjugateHouse">Indicates the cells that forms the conjugate house.</param>
 /// <param name="ExtraMask">Indicates the extra digits mask.</param>
-public sealed record UniquePolygonType4Step(
+internal sealed record UniquePolygonType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Map,

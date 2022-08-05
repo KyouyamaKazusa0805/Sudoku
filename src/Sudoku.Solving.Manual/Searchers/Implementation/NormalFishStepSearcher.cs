@@ -11,7 +11,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		int** r = stackalloc int*[9], c = stackalloc int*[9];
 		Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
@@ -99,8 +99,8 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 	/// </param>
 	/// <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
 	/// <returns>The first found step.</returns>
-	private unsafe Step? GetAll(
-		ICollection<Step> accumulator, scoped in Grid grid, int size, int** r, int** c,
+	private IStep? GetAll(
+		ICollection<IStep> accumulator, scoped in Grid grid, int size, int** r, int** c,
 		bool withFin, bool searchRow, bool onlyFindOne)
 	{
 		// Iterate on each digit.

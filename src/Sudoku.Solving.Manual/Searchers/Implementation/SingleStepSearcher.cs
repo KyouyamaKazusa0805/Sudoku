@@ -15,7 +15,7 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		if (!EnableFullHouse)
 		{
@@ -163,7 +163,7 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 		return null;
 
 
-		Step? g(scoped in Grid grid, int digit, int house)
+		IStep? g(scoped in Grid grid, int digit, int house)
 		{
 			// The main idea of hidden single is to search for a digit can only appear once in a house,
 			// so we should check all possibilities in a house to found whether the house exists a digit

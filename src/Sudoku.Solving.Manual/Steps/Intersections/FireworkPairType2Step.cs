@@ -9,7 +9,7 @@
 /// <param name="Pattern1">The first pattern used.</param>
 /// <param name="Pattern2">The second pattern used.</param>
 /// <param name="ExtraCell">The extra cell used.</param>
-public sealed record FireworkPairType2Step(
+internal sealed record FireworkPairType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short DigitsMask,

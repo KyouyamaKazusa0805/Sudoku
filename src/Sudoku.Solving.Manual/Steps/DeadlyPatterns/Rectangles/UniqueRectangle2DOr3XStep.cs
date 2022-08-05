@@ -14,7 +14,7 @@
 /// <param name="YDigit">Indicates the digit Y.</param>
 /// <param name="XyCell">Indicates the cell XY.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record UniqueRectangle2DOr3XStep(
+internal sealed record UniqueRectangle2DOr3XStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	Technique TechniqueCode2,

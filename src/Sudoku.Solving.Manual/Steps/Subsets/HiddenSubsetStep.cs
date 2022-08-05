@@ -8,7 +8,7 @@
 /// <param name="House"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-public sealed record HiddenSubsetStep(
+internal sealed record HiddenSubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int House,

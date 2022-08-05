@@ -32,7 +32,7 @@
 /// </list>
 /// </para>
 /// </param>
-public sealed record UniqueRectangleType3Step(
+internal sealed record UniqueRectangleType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

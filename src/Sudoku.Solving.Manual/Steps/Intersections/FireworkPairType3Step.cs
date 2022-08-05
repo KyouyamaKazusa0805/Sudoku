@@ -8,7 +8,7 @@
 /// <param name="Cells">The cells used.</param>
 /// <param name="DigitsMask">The digits used.</param>
 /// <param name="EmptyRectangleBlock">The empty rectangle block used.</param>
-public sealed record FireworkPairType3Step(
+internal sealed record FireworkPairType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,

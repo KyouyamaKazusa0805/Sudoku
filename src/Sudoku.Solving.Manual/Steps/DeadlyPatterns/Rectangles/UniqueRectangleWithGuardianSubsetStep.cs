@@ -13,7 +13,7 @@
 /// <param name="SubsetDigitsMask">Indicates the digits that the subset are used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record UniqueRectangleWithGuardianSubsetStep(
+internal sealed record UniqueRectangleWithGuardianSubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

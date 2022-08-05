@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
-public sealed record BivalueUniversalGraveType2Step(
+internal sealed record BivalueUniversalGraveType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,

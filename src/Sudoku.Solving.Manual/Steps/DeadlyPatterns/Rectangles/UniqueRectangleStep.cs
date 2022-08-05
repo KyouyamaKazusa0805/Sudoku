@@ -35,7 +35,7 @@
 /// </para>
 /// </param>
 /// <seealso cref="Step.TechniqueCode"/>
-public abstract record UniqueRectangleStep(
+internal abstract record UniqueRectangleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	Technique TechniqueCode2,

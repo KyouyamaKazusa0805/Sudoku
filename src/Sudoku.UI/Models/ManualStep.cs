@@ -14,7 +14,7 @@ public sealed partial class ManualStep
 	/// <summary>
 	/// Indicates the step.
 	/// </summary>
-	public required Step Step { get; set; }
+	public required IStep Step { get; set; }
 
 
 	/// <summary>
