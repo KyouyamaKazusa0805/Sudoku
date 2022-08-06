@@ -13,5 +13,6 @@ public interface ITemplateStepSearcher : IStepSearcher, IStepSearcherRequiresSol
 	/// <summary>
 	/// Indicates whether the technique searcher only checks template deletes.
 	/// </summary>
+	[SearcherProperty]
 	public abstract bool TemplateDeleteOnly { get; set; }
 }

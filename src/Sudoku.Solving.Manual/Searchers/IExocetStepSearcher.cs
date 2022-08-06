@@ -14,6 +14,7 @@ public interface IExocetStepSearcher : IStepSearcher
 	/// <summary>
 	/// Indicates whether the searcher will find advanced eliminations.
 	/// </summary>
+	[SearcherProperty]
 	public abstract bool CheckAdvanced { get; set; }
 
 

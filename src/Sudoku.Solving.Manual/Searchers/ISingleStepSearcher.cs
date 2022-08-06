@@ -14,15 +14,18 @@ public interface ISingleStepSearcher : IStepSearcher
 	/// <summary>
 	/// Indicates whether the solver enables the technique full house.
 	/// </summary>
+	[SearcherProperty]
 	public abstract bool EnableFullHouse { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver enables the technique last digit.
 	/// </summary>
+	[SearcherProperty]
 	public abstract bool EnableLastDigit { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver checks for hidden single in block firstly.
 	/// </summary>
+	[SearcherProperty]
 	public abstract bool HiddenSinglesInBlockFirst { get; set; }
 }

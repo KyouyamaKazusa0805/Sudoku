@@ -8745,6 +8745,14 @@
             Indicates the pointer that points to the down node.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.DataBinding.SearcherPropertyAttribute">
+            <summary>
+            Defines an attribute that can be applied to a property in step searcher interface type,
+            indicating the property is represented as a setting property, that can interact
+            with the <see cref="T:Sudoku.Solving.IComplexSolver`2"/> type.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.IComplexSolver`2"/>
+        </member>
         <member name="T:Sudoku.Solving.DataRepresentation.ComplexFishFinKind">
             <summary>
             Indicates a fin modifier that is used for a complex fish structure.

@@ -28,6 +28,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 	/// Indicates whether the searcher should call the extended BUG checker
 	/// to search for all true candidates no matter how difficult searching.
 	/// </summary>
+	[SearcherProperty]
 	public abstract bool SearchExtendedTypes { get; set; }
 
 

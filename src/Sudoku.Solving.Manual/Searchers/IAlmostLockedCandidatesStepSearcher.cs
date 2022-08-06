@@ -14,6 +14,7 @@ public interface IAlmostLockedCandidatesStepSearcher : IIntersectionStepSearcher
 	/// <summary>
 	/// Indicates whether the user checks the almost locked quadruple.
 	/// </summary>
+	[SearcherProperty]
 	public abstract bool CheckAlmostLockedQuadruple { get; set; }
 
 	/// <summary>

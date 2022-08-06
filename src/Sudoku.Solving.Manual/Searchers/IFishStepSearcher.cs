@@ -8,6 +8,7 @@ public interface IFishStepSearcher : IStepSearcher
 	/// <summary>
 	/// Indicates the maximum size the searcher can search for.
 	/// </summary>
+	[SearcherProperty]
 	public abstract int MaxSize { get; set; }
 
 
