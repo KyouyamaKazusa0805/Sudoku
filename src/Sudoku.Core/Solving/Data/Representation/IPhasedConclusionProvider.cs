@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.DataRepresentation;
+﻿namespace Sudoku.Solving.Data.Representation;
 
 /// <summary>
 /// Defines a data structure that describes for a phased conclusion list.

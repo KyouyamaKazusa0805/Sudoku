@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.DataRepresentation;
+﻿namespace Sudoku.Solving.Data.Representation;
 
 /// <summary>
 /// Provides a series of tags to mark on a technique.

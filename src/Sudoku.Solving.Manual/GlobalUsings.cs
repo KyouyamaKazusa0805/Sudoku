@@ -19,7 +19,7 @@ global using Sudoku.Presentation.Nodes;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving.Data.Binding;
-global using Sudoku.Solving.DataRepresentation;
+global using Sudoku.Solving.Data.Representation;
 global using Sudoku.Solving.Manual;
 global using Sudoku.Solving.Manual.Buffers;
 global using Sudoku.Solving.Manual.Searchers;

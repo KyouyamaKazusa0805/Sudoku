@@ -410,7 +410,7 @@
             <summary>
             Indicates the difficulty level of the puzzle.
             If the puzzle has not solved or solved by other solvers,
-            this value will be <see cref="F:Sudoku.Solving.DataRepresentation.DifficultyLevel.Unknown"/>.
+            this value will be <see cref="F:Sudoku.Solving.Data.Representation.DifficultyLevel.Unknown"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Solution">
@@ -507,7 +507,7 @@
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(Sudoku.Solving.DataRepresentation.Technique)">
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(Sudoku.Solving.Data.Representation.Technique)">
             <summary>
             Gets the first <see cref="T:Sudoku.Solving.IStep"/> instance that matches the specified technique.
             </summary>
@@ -5152,7 +5152,7 @@
             <param name="XyCell">Indicates the cell XY.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangle2DOr3XStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.DataRepresentation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangle2DOr3XStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
             </summary>
@@ -5226,7 +5226,7 @@
             </param>
             <seealso cref="P:Sudoku.Solving.Step.TechniqueCode"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.DataRepresentation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle</b> technique.
             </summary>
@@ -5375,7 +5375,7 @@
             <param name="ExtraDigit">Indicates the extra digit used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Solving.DataRepresentation.Technique,Sudoku.Concepts.Cells@,System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Solving.Data.Representation.Technique,Sudoku.Concepts.Cells@,System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
             </summary>
@@ -5528,7 +5528,7 @@
             <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.DataRepresentation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
             </summary>
@@ -5862,7 +5862,7 @@
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.DataRepresentation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
             </summary>
@@ -6692,12 +6692,12 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.FishStep.GetComplexFishTechniqueCodeFromName(System.String)">
             <summary>
-            Try to get the <see cref="T:Sudoku.Solving.DataRepresentation.Technique"/> code instance from the specified name, where the name belongs
+            Try to get the <see cref="T:Sudoku.Solving.Data.Representation.Technique"/> code instance from the specified name, where the name belongs
             to a complex fish name, such as "Finned Franken Swordfish".
             </summary>
             <param name="name">The name.</param>
-            <returns>The <see cref="T:Sudoku.Solving.DataRepresentation.Technique"/> code instance.</returns>
-            <seealso cref="T:Sudoku.Solving.DataRepresentation.Technique"/>
+            <returns>The <see cref="T:Sudoku.Solving.Data.Representation.Technique"/> code instance.</returns>
+            <seealso cref="T:Sudoku.Solving.Data.Representation.Technique"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.NormalFishStep">
             <summary>

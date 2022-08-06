@@ -28,7 +28,7 @@ global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Runtime.Serialization.Converter;
 global using Sudoku.Solving;
 global using Sudoku.Solving.DancingLinx;
-global using Sudoku.Solving.DataRepresentation;
+global using Sudoku.Solving.Data.Representation;
 global using Sudoku.Text;
 global using Sudoku.Text.Handlers;
 global using Sudoku.Text.Notations;

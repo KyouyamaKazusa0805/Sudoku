@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.DataRepresentation;
+﻿namespace Sudoku.Solving.Data.Representation;
 
 /// <summary>
 /// Indicates the rarity of the technique.

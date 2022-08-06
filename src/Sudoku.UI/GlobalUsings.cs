@@ -46,7 +46,7 @@ global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving;
-global using Sudoku.Solving.DataRepresentation;
+global using Sudoku.Solving.Data.Representation;
 global using Sudoku.Solving.Manual;
 global using Sudoku.Solving.Manual.Searchers;
 global using Sudoku.Text.Notations;
