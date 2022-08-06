@@ -24,7 +24,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 
 	private void CreateSourceGeneration(SourceProductionContext spc, Compilation compilation)
 	{
-		if (compilation is not { Assembly: { Name: "Sudoku.Solving.Manual" } assemblySymbol })
+		if (compilation is not { Assembly: { Name: Projects.ManualSolving } assemblySymbol })
 		{
 			return;
 		}
@@ -52,7 +52,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		// Gather the valid attributes data.
 		var foundAttributesData = new List<FileLocalType_FoundAttributeData>();
 		const string comma = ", ";
-		const string attributeTypeName = "Sudoku.Solving.Manual.SearcherConfigurationAttribute<>";
+		const string attributeTypeName = $"{Projects.ManualSolving}.SearcherConfigurationAttribute<>";
 		int priorityValue = 0;
 		foreach (var attributeData in attributesData)
 		{

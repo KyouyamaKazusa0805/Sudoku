@@ -299,6 +299,11 @@
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.NamedArguments">
             <summary>The named arguments of that attribute.</summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Projects">
+            <summary>
+            Defines a list of project names to be used.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Shortcuts">
             <summary>
             Defines the shortcuts of the source generators.

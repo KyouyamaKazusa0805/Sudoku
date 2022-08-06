@@ -49,7 +49,7 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 	/// </param>
 	private void GenerateSource(SourceProductionContext spc, Compilation compilation)
 	{
-		if (compilation.Assembly.Name != "SystemExtensions")
+		if (compilation.Assembly.Name != Projects.System)
 		{
 			return;
 		}
