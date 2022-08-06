@@ -89,6 +89,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 	/// <remarks>
 	/// The default value is <c>3000</c>.
 	/// </remarks>
+	[SearcherProperty]
 	public int MaxCapacity { get; set; } = 3000;
 
 	/// <inheritdoc/>

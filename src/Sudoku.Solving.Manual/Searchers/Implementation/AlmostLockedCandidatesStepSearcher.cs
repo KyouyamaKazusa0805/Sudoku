@@ -4,6 +4,7 @@
 internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool CheckAlmostLockedQuadruple { get; set; }
 
 	/// <inheritdoc/>

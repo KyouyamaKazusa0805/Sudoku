@@ -4,9 +4,11 @@
 internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzStepSearcher
 {
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool AllowCollision { get; set; }
 
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool AllowLoopedPatterns { get; set; }
 
 

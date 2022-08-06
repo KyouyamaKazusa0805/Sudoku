@@ -166,6 +166,14 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_AttributeDataComparerDistinctByKey.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.ManualSolverOperationsGenerator">
+            <summary>
+            Defines a source generator that generates the source code that are options used in manual solver type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ManualSolverOperationsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator">
             <summary>
             Indicates the generator that generates the default overridden methods in a <see langword="ref struct"/>.
@@ -385,6 +393,33 @@
             Throws when the current named type symbol holds an invalid case that doesn't contain
             any possible type kind modifier.
             </exception>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.INamespaceSymbolExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.CodeAnalysis.INamespaceSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.INamespaceSymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamespaceSymbolExtensions.GetAllNestedTypes(Microsoft.CodeAnalysis.INamespaceSymbol)">
+            <summary>
+            Try to fetch all possible types that is from the specified namespace and its children namespaces.
+            </summary>
+            <param name="this">The namespace.</param>
+            <returns>All found types.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.ISymbolExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.ContainsAttribute``1(``0,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Determines whether the specified <see cref="T:Microsoft.CodeAnalysis.ISymbol"/> instance has marked the specified attribute type.
+            </summary>
+            <typeparam name="TSymbol">The type of the symbol.</typeparam>
+            <param name="this">The instance.</param>
+            <param name="attributeType">The attribute type.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Microsoft.CodeAnalysis.StringExtensions">
             <summary>

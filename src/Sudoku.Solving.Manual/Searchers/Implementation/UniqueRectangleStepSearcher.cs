@@ -4,9 +4,11 @@
 internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool AllowIncompleteUniqueRectangles { get; set; }
 
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool SearchForExtendedUniqueRectangles { get; set; }
 
 

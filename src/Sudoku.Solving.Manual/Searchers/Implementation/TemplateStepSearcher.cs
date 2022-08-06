@@ -4,6 +4,7 @@
 internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 {
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool TemplateDeleteOnly { get; set; }
 
 	/// <inheritdoc/>

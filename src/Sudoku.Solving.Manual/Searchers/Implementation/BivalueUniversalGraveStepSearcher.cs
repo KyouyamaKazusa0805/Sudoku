@@ -4,6 +4,7 @@
 internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueUniversalGraveStepSearcher
 {
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool SearchExtendedTypes { get; set; }
 
 

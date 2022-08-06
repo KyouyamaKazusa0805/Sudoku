@@ -4,6 +4,7 @@
 internal sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSetsXyWingStepSearcher
 {
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool AllowCollision { get; set; }
 
 

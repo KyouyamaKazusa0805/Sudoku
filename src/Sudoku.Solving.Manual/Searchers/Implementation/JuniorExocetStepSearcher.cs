@@ -4,6 +4,7 @@
 internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetStepSearcher
 {
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool CheckAdvanced { get; set; }
 
 

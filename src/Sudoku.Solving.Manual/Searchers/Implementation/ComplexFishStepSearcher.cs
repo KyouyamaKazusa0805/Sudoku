@@ -4,6 +4,7 @@
 internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSearcher
 {
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public int MaxSize { get; set; }
 
 

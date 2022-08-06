@@ -243,57 +243,6 @@
             The default value is <see langword="false"/>.
             </remarks>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowCollisionOnAlsXz">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowCollisionOnAlsXyWing">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowLoopedPatternsOnAlsXz">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckAlmostLockedQuadruple">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.SearchBivalueUniversalGraveExtendedTypes">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IBivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckAdvancedJuniorExocets">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IExocetStepSearcher.CheckAdvanced"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckAdvancedSeniorExocets">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IExocetStepSearcher.CheckAdvanced"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableFullHouse">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableFullHouse"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableLastDigit">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableLastDigit"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.HiddenSinglesInBlockFirst">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.HiddenSinglesInBlockFirst"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.TemplateDeleteOnly">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ITemplateStepSearcher.TemplateDeleteOnly"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowIncompleteUniqueRectangles">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.SearchForExtendedUniqueRectangles">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.RegularWingMaxSize">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher.MaxSize"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.ChainingMaxCapacity">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.MaxCapacity"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaxLength">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IBowmanBingoStepSearcher.MaxLength"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.ComplexFishMaxSize">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IFishStepSearcher.MaxSize"/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CustomSearcherCollection">
             <inheritdoc/>
         </member>
@@ -317,6 +266,57 @@
             <returns>The solver result.</returns>
             <exception cref="T:Sudoku.Solving.Manual.WrongStepException">Throws when found wrong steps to apply.</exception>
             <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AlmostLockedSetsXyWingStepSearcher_AllowCollision">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AlmostLockedSetsXzStepSearcher_AllowCollision">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AlternatingInferenceChainStepSearcher_MaxCapacity">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.MaxCapacity"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IBivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoStepSearcher_MaxLength">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IBowmanBingoStepSearcher.MaxLength"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.ComplexFishStepSearcher_MaxSize">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IFishStepSearcher.MaxSize"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.JuniorExocetStepSearcher_CheckAdvanced">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IExocetStepSearcher.CheckAdvanced"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.RegularWingStepSearcher_MaxSize">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher.MaxSize"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.SeniorExocetStepSearcher_CheckAdvanced">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IExocetStepSearcher.CheckAdvanced"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.SingleStepSearcher_EnableFullHouse">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableFullHouse"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.SingleStepSearcher_EnableLastDigit">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableLastDigit"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.SingleStepSearcher_HiddenSinglesInBlockFirst">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.TemplateStepSearcher_TemplateDeleteOnly">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.ITemplateStepSearcher.TemplateDeleteOnly"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.ManualSolverResult">
             <summary>

@@ -4,6 +4,7 @@
 internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSearcher
 {
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public int MaxSize { get; set; }
 
 

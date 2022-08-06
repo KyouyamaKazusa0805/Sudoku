@@ -4,6 +4,7 @@
 internal sealed partial class SeniorExocetStepSearcher : ISeniorExocetStepSearcher
 {
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool CheckAdvanced { get; set; }
 
 

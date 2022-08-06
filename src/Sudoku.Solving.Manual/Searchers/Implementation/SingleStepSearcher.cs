@@ -5,12 +5,15 @@
 internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 {
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool EnableFullHouse { get; set; }
 
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool EnableLastDigit { get; set; }
 
 	/// <inheritdoc/>
+	[SearcherProperty]
 	public bool HiddenSinglesInBlockFirst { get; set; }
 
 
