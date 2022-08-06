@@ -228,7 +228,7 @@ public sealed class Preference : IDrawingPreference
 		set => DefaultSolver.IsFullApplying = value;
 	}
 
-	/// <inheritdoc cref="ManualSolver.AllowCollisionOnAlsXz"/>
+	/// <inheritdoc cref="ManualSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 1)]
 	public bool AllowCollisionOnChainingAlsTechniques
@@ -240,12 +240,12 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_allowCollision = value;
-			DefaultSolver.AllowCollisionOnAlsXz = value;
-			DefaultSolver.AllowCollisionOnAlsXyWing = value;
+			DefaultSolver.AlmostLockedSetsXzStepSearcher_AllowCollision = value;
+			DefaultSolver.AlmostLockedSetsXyWingStepSearcher_AllowCollision = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.AllowLoopedPatternsOnAlsXz"/>
+	/// <inheritdoc cref="ManualSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 2)]
 	public bool AllowDoublyLinkedAls
@@ -257,11 +257,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_allowDoublyLinkedAls = value;
-			DefaultSolver.AllowLoopedPatternsOnAlsXz = value;
+			DefaultSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.CheckAlmostLockedQuadruple"/>
+	/// <inheritdoc cref="ManualSolver.AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 3)]
 	public bool CheckAlmostLockedQuadruple
@@ -273,11 +273,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_checkAlq = value;
-			DefaultSolver.CheckAlmostLockedQuadruple = value;
+			DefaultSolver.AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.SearchBivalueUniversalGraveExtendedTypes"/>
+	/// <inheritdoc cref="ManualSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 4)]
 	public bool SearchBivalueUniversalGraveExtendedTypes
@@ -289,11 +289,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_searchBugExtendedTypes = value;
-			DefaultSolver.SearchBivalueUniversalGraveExtendedTypes = value;
+			DefaultSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.CheckAdvancedJuniorExocets"/>
+	/// <inheritdoc cref="ManualSolver.JuniorExocetStepSearcher_CheckAdvanced"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 5)]
 	public bool CheckAdvancedJuniorExocets
@@ -305,11 +305,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_checkAdvancedJe = value;
-			DefaultSolver.CheckAdvancedJuniorExocets = value;
+			DefaultSolver.JuniorExocetStepSearcher_CheckAdvanced = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.CheckAdvancedSeniorExocets"/>
+	/// <inheritdoc cref="ManualSolver.SeniorExocetStepSearcher_CheckAdvanced"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 6)]
 	public bool CheckAdvancedSeniorExocets
@@ -321,11 +321,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_checkAdvancedSe = value;
-			DefaultSolver.CheckAdvancedSeniorExocets = value;
+			DefaultSolver.SeniorExocetStepSearcher_CheckAdvanced = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.EnableFullHouse"/>
+	/// <inheritdoc cref="ManualSolver.SingleStepSearcher_EnableFullHouse"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 7)]
 	public bool EnableFullHouse
@@ -337,11 +337,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_enableFullHouse = value;
-			DefaultSolver.EnableFullHouse = value;
+			DefaultSolver.SingleStepSearcher_EnableFullHouse = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.EnableLastDigit"/>
+	/// <inheritdoc cref="ManualSolver.SingleStepSearcher_EnableLastDigit"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 8)]
 	public bool EnableLastDigit
@@ -353,11 +353,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_enableLastDigit = value;
-			DefaultSolver.EnableLastDigit = value;
+			DefaultSolver.SingleStepSearcher_EnableLastDigit = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.HiddenSinglesInBlockFirst"/>
+	/// <inheritdoc cref="ManualSolver.SingleStepSearcher_HiddenSinglesInBlockFirst"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 9)]
 	public bool HiddenSinglesInBlockFirst
@@ -369,11 +369,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_hiddenSingleHouseFirst = value;
-			DefaultSolver.HiddenSinglesInBlockFirst = value;
+			DefaultSolver.SingleStepSearcher_HiddenSinglesInBlockFirst = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.TemplateDeleteOnly"/>
+	/// <inheritdoc cref="ManualSolver.TemplateStepSearcher_TemplateDeleteOnly"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 10)]
 	public bool TemplateDeleteOnly
@@ -385,11 +385,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_templateDeleteOnly = value;
-			DefaultSolver.TemplateDeleteOnly = value;
+			DefaultSolver.TemplateStepSearcher_TemplateDeleteOnly = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.AllowIncompleteUniqueRectangles"/>
+	/// <inheritdoc cref="ManualSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 11)]
 	public bool AllowIncompleteUniqueRectangles
@@ -401,11 +401,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_allowIncompleteUr = value;
-			DefaultSolver.AllowIncompleteUniqueRectangles = value;
+			DefaultSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.SearchForExtendedUniqueRectangles"/>
+	/// <inheritdoc cref="ManualSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 12)]
 	public bool SearchForExtendedUniqueRectangles
@@ -417,11 +417,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_searcherUrExtendedTypes = value;
-			DefaultSolver.SearchForExtendedUniqueRectangles = value;
+			DefaultSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.RegularWingMaxSize"/>
+	/// <inheritdoc cref="ManualSolver.RegularWingStepSearcher_MaxSize"/>
 	[Preference<Int32SliderSettingItem>(
 		nameof(Int32SliderSettingItem.StepFrequency), 1, nameof(Int32SliderSettingItem.TickFrequency), 1,
 		nameof(Int32SliderSettingItem.MinValue), 3, nameof(Int32SliderSettingItem.MaxValue), 9)]
@@ -435,11 +435,11 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_regularWingMaxSize = value;
-			DefaultSolver.RegularWingMaxSize = value;
+			DefaultSolver.RegularWingStepSearcher_MaxSize = value;
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.ComplexFishMaxSize"/>
+	/// <inheritdoc cref="ManualSolver.ComplexFishStepSearcher_MaxSize"/>
 	[Preference<Int32SliderSettingItem>(
 		nameof(Int32SliderSettingItem.StepFrequency), 1, nameof(Int32SliderSettingItem.TickFrequency), 1,
 		nameof(Int32SliderSettingItem.MinValue), 2, nameof(Int32SliderSettingItem.MaxValue), 7)]
@@ -453,7 +453,7 @@ public sealed class Preference : IDrawingPreference
 		set
 		{
 			_complexFishSize = value;
-			DefaultSolver.ComplexFishMaxSize = value;
+			DefaultSolver.ComplexFishStepSearcher_MaxSize = value;
 		}
 	}
 	#endregion
