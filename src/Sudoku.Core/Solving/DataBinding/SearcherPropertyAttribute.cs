@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.DataBinding;
+﻿namespace Sudoku.Solving.Data.Binding;
 
 /// <summary>
 /// Defines an attribute that can be applied to a property in step searcher interface type,

@@ -38,7 +38,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 			return;
 		}
 
-		var attributeType = compilation.GetTypeByMetadataName("Sudoku.Solving.DataBinding.SearcherPropertyAttribute");
+		var attributeType = compilation.GetTypeByMetadataName("Sudoku.Solving.Data.Binding.SearcherPropertyAttribute");
 		if (attributeType is not { TypeKind: Kind.Class, IsSealed: true })
 		{
 			// Same reason as above.
