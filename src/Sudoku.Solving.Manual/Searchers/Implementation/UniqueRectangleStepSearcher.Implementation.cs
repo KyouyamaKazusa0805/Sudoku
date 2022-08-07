@@ -2716,7 +2716,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		}
 		else
 		{
-			// TODO: Finish processing Subtype 2.
+			// TODO: Check for subtype 2 on UR/AR Wings.
 		}
 	}
 
