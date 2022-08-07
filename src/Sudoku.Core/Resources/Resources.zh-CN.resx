@@ -1162,7 +1162,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="UniqueRectangleExternalType2" xml:space="preserve">
-    <value>唯一矩形・守护者</value>
+    <value>唯一矩形外部类型 2</value>
     <comment>Technique Name</comment>
   </data>
   <data name="AvoidableRectangleType1" xml:space="preserve">
@@ -1633,10 +1633,10 @@
     <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并带有守护者 {GuardianDigitStr} 位于单元格 {GuardianCellsStr} 之中 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithGuardianSubsetStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并有外侧数组结构，数字为 {DigitsStr}，单元格为 {SubsetCellsStr} =&gt; {ElimStr}</value>
+    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并有外部数组结构，数字为 {DigitsStr}，单元格为 {SubsetCellsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="UniqueRectangleExternalType3" xml:space="preserve">
-    <value>唯一矩形・守护者数组</value>
+    <value>唯一矩形外部类型 3</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FireworkQuadruple" xml:space="preserve">
@@ -1673,5 +1673,15 @@
   </data>
   <data name="TechniqueFormat_FireworkPairType3Step" xml:space="preserve">
     <value>{Name}：单元格 {CellsStr} 里的数字 {DigitsStr} 构成花火数组结构，带有空矩形结构位于 {EmptyRectangleStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_UniqueRectangleWithGuardianConjugatePairStep" xml:space="preserve">
+    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并有外部共轭对 {ConjugatePairStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="UniqueRectangleExternalType1" xml:space="preserve">
+    <value>唯一矩形外部类型 1</value>
+  </data>
+  <data name="UniqueRectangleExternalType4" xml:space="preserve">
+    <value>唯一矩形外部类型 4</value>
+    <comment>Technique Name</comment>
   </data>
 </root>

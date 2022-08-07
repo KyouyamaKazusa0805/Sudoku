@@ -3229,6 +3229,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with conjugate pair {ConjugatePairStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueRectangleWithGuardianConjugatePairStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithGuardianConjugatePairStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_UniqueRectangleWithGuardianStep {
@@ -3589,7 +3598,16 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Guardian (Standard).
+        ///   Looks up a localized string similar to Unique Rectangle External Type 1.
+        /// </summary>
+        internal static string UniqueRectangleExternalType1 {
+            get {
+                return ResourceManager.GetString("UniqueRectangleExternalType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle External Type 2.
         /// </summary>
         internal static string UniqueRectangleExternalType2 {
             get {
@@ -3598,11 +3616,20 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Guardian (Subset).
+        ///   Looks up a localized string similar to Unique Rectangle External Type 3.
         /// </summary>
         internal static string UniqueRectangleExternalType3 {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle External Type 4.
+        /// </summary>
+        internal static string UniqueRectangleExternalType4 {
+            get {
+                return ResourceManager.GetString("UniqueRectangleExternalType4", resourceCulture);
             }
         }
         

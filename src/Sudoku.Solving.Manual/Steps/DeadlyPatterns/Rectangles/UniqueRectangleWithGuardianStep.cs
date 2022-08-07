@@ -1,7 +1,8 @@
 ﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unique Rectangle with Guardians</b> technique.
+/// Provides with a step that is a <b>Unique Rectangle with Guardians</b>
+/// (i.e. Unique Rectangle External Type 2) technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
@@ -26,7 +27,7 @@ internal sealed record UniqueRectangleWithGuardianStep(
 	UniqueRectangleStep(
 		Conclusions,
 		Views,
-		Technique.UniqueRectangleExternalType2,
+		GuardianCells.Count == 1 ? Technique.UniqueRectangleExternalType1 : Technique.UniqueRectangleExternalType2,
 		Digit1,
 		Digit2,
 		Cells,

@@ -2368,7 +2368,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2D(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
             <summary>
-            Check UR+2D.
+            Check UR + 2D.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2393,7 +2393,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2B1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
             <summary>
-            Check UR+2B/1SL.
+            Check UR + 2B/1SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2420,7 +2420,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2D1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
             <summary>
-            Check UR+2D/1SL.
+            Check UR + 2D/1SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2448,7 +2448,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
             <summary>
-            Check UR+3X.
+            Check UR + 3X.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2472,7 +2472,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3X2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
             <summary>
-            Check UR+3X/2SL.
+            Check UR + 3X/2SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2498,7 +2498,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3N2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
             <summary>
-            Check UR+3N/2SL.
+            Check UR + 3N/2SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2524,7 +2524,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3U2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
              <summary>
-             Check UR+3U/2SL.
+             Check UR + 3U/2SL.
              </summary>
              <param name="accumulator">The technique accumulator.</param>
              <param name="grid">The grid.</param>
@@ -2550,7 +2550,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3E2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
              <summary>
-             Check UR+3E/2SL.
+             Check UR + 3E/2SL.
              </summary>
              <param name="accumulator">The technique accumulator.</param>
              <param name="grid">The grid.</param>
@@ -2576,7 +2576,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check4X3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
             <summary>
-            Check UR+4X/3SL.
+            Check UR + 4X/3SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2603,7 +2603,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check4C3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
             <summary>
-            Check UR+4C/3SL.
+            Check UR + 4C/3SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2683,7 +2683,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckSueDeCoq(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
             <summary>
-            Check UR+SdC.
+            Check UR + SdC.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2710,7 +2710,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckUnknownCoveringUnique(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
              <summary>
-             Check UR+Unknown covering.
+             Check UR + Unknown covering.
              </summary>
              <param name="accumulator">The technique accumulator.</param>
              <param name="grid">The grid.</param>
@@ -2745,9 +2745,12 @@
              </para>
              </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckExternalType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckExternalType1Or2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32)">
             <summary>
-            Check UR+Guardian.
+            <para>Check UR + Guardian (i.e. UR External Type 2) and UR External Type 1.</para>
+            <para>
+            A UR external type 1 is a special case for type 2, which means only one guardian cell will be used.
+            </para>
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2758,7 +2761,19 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckExternalType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Check UR+Guardian, with the external subset.
+            Check UR + Guardian, with external subset (i.e. UR External Type 3).
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckExternalType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Check UR + Guardian, with external conjugate pair (i.e. UR External Type 4).
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2770,7 +2785,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
             <summary>
-            Check AR+Hidden single.
+            Check AR + Hidden single.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -5568,9 +5583,67 @@
             Indicates the conjugate pair string.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Guardians (External Conjugate Pair)</b>
+            (i.e. Unique Rectangle External Type 4) technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Conjugate,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Guardians (External Conjugate Pair)</b>
+            (i.e. Unique Rectangle External Type 4) technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.GuardianCells">
+            <summary>Indicates the cells that the guardians lie in.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.ConjugatePair">
+            <summary>Indicates the conjugate pair used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.IsIncomplete">
+            <summary>Indicates whether the rectangle is incomplete.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.Rarity">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep">
             <summary>
-            Provides with a step that is a <b>Unique Rectangle with Guardians</b> technique.
+            Provides with a step that is a <b>Unique Rectangle with Guardians</b>
+            (i.e. Unique Rectangle External Type 2) technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5584,7 +5657,8 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32,System.Boolean,System.Int32)">
             <summary>
-            Provides with a step that is a <b>Unique Rectangle with Guardians</b> technique.
+            Provides with a step that is a <b>Unique Rectangle with Guardians</b>
+            (i.e. Unique Rectangle External Type 2) technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5625,7 +5699,8 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep">
             <summary>
-            Provides with a step that is a <b>Unique Rectangle with Guardians (External Subset)</b> technique.
+            Provides with a step that is a <b>Unique Rectangle with Guardians (External Subset)</b>
+            (i.e. Unique Rectangle External Type 3) technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5640,7 +5715,8 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Boolean,System.Int32)">
             <summary>
-            Provides with a step that is a <b>Unique Rectangle with Guardians (External Subset)</b> technique.
+            Provides with a step that is a <b>Unique Rectangle with Guardians (External Subset)</b>
+            (i.e. Unique Rectangle External Type 3) technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>

@@ -92,8 +92,9 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 					if (SearchForExtendedUniqueRectangles)
 					{
 						CheckUnknownCoveringUnique(gathered, grid, urCells, comparer, d1, d2, index);
-						CheckExternalType2(gathered, grid, urCells, d1, d2, index);
+						CheckExternalType1Or2(gathered, grid, urCells, d1, d2, index);
 						CheckExternalType3(gathered, grid, urCells, comparer, d1, d2, index);
+						CheckExternalType4(gathered, grid, urCells, comparer, d1, d2, index);
 					}
 
 					// Iterate on each corner of four cells.
@@ -241,7 +242,8 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 	partial void CheckRegularWing(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, scoped in Cells otherCellsMap, int size, int index);
 	partial void CheckSueDeCoq(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, scoped in Cells otherCellsMap, int index);
 	partial void CheckUnknownCoveringUnique(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
-	partial void CheckExternalType2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int index);
+	partial void CheckExternalType1Or2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int index);
 	partial void CheckExternalType3(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
+	partial void CheckExternalType4(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
 	partial void CheckHiddenSingleAvoidable(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int corner1, int corner2, scoped in Cells otherCellsMap, int index);
 }

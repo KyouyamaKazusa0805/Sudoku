@@ -931,6 +931,11 @@ public enum Technique : short
 	UniqueRectangleUnknownCovering,
 
 	/// <summary>
+	/// Indicates the unique rectangle external type 1.
+	/// </summary>
+	UniqueRectangleExternalType1,
+
+	/// <summary>
 	/// Indicates the unique rectangle external type 2.
 	/// </summary>
 	UniqueRectangleExternalType2,
@@ -939,6 +944,11 @@ public enum Technique : short
 	/// Indicates the unique rectangle external type 3.
 	/// </summary>
 	UniqueRectangleExternalType3,
+
+	/// <summary>
+	/// Indicates the unique rectangle external type 4.
+	/// </summary>
+	UniqueRectangleExternalType4,
 
 	/// <summary>
 	/// Indicates the avoidable rectangle type 1.

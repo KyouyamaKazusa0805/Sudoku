@@ -802,7 +802,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+2D.
+	/// Check UR + 2D.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -941,7 +941,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+2B/1SL.
+	/// Check UR + 2B/1SL.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -1112,7 +1112,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+2D/1SL.
+	/// Check UR + 2D/1SL.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -1282,7 +1282,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+3X.
+	/// Check UR + 3X.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -1424,7 +1424,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+3X/2SL.
+	/// Check UR + 3X/2SL.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -1547,7 +1547,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+3N/2SL.
+	/// Check UR + 3N/2SL.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -1679,7 +1679,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+3U/2SL.
+	/// Check UR + 3U/2SL.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -1805,7 +1805,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+3E/2SL.
+	/// Check UR + 3E/2SL.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -1933,7 +1933,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+4X/3SL.
+	/// Check UR + 4X/3SL.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -2077,7 +2077,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+4C/3SL.
+	/// Check UR + 4C/3SL.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -2721,7 +2721,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+SdC.
+	/// Check UR + SdC.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -2770,7 +2770,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		// Check whether the corners spanned two blocks. If so, UR+SdC can't be found.
+		// Check whether the corners spanned two blocks. If so, UR + SdC can't be found.
 		short blockMaskInOtherCells = otherCellsMap.BlockMask;
 		if (!IsPow2(blockMaskInOtherCells))
 		{
@@ -3037,7 +3037,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+Unknown covering.
+	/// Check UR + Unknown covering.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -3385,7 +3385,10 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+Guardian.
+	/// <para>Check UR + Guardian (i.e. UR External Type 2) and UR External Type 1.</para>
+	/// <para>
+	/// A UR external type 1 is a special case for type 2, which means only one guardian cell will be used.
+	/// </para>
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -3393,7 +3396,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
-	partial void CheckExternalType2(
+	partial void CheckExternalType1Or2(
 		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
 		int[] urCells, int d1, int d2, int index)
 	{
@@ -3487,7 +3490,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR+Guardian, with the external subset.
+	/// Check UR + Guardian, with external subset (i.e. UR External Type 3).
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -3644,7 +3647,155 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check AR+Hidden single.
+	/// Check UR + Guardian, with external conjugate pair (i.e. UR External Type 4).
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="comparer">The mask comparer.</param>
+	/// <param name="d1">The digit 1 used in UR.</param>
+	/// <param name="d2">The digit 2 used in UR.</param>
+	/// <param name="index">The index.</param>
+	partial void CheckExternalType4(
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
+		short comparer, int d1, int d2, int index)
+	{
+		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		{
+			return;
+		}
+
+		var cells = (Cells)urCells;
+
+		// Iterate on two houses used.
+		foreach (int[] houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
+		{
+			var guardianMap = HouseMaps[houseCombination[0]] | HouseMaps[houseCombination[1]];
+			if ((guardianMap & cells) != cells)
+			{
+				// The houses must contain all 4 UR cells.
+				continue;
+			}
+
+			var guardianCells = guardianMap - cells & EmptyCells;
+			foreach (var guardianCellPair in guardianCells & 2)
+			{
+				int c1 = guardianCellPair[0], c2 = guardianCellPair[1];
+				if (!IUniqueRectangleStepSearcher.IsSameHouseCell(c1, c2, out int houses))
+				{
+					// Those two cells must lie in a same house.
+					continue;
+				}
+
+				short mask = (short)(grid.GetCandidates(c1) | grid.GetCandidates(c2));
+				if ((mask & comparer) != comparer)
+				{
+					// The two cells must contain both two digits.
+					continue;
+				}
+
+				if ((grid.GetCandidates(c1) & comparer) == 0 || (grid.GetCandidates(c2) & comparer) == 0)
+				{
+					// Both two cells chosen must contain at least one of two UR digits.
+					continue;
+				}
+
+				if ((guardianCells & (CandidatesMap[d1] | CandidatesMap[d2])) != guardianCellPair)
+				{
+					// The current map must be equal to the whole guardian full map.
+					continue;
+				}
+
+				short possibleConjugatePairDigitsMask = (short)(grid.GetDigitsUnion(guardianCellPair) & ~comparer);
+				foreach (int house in houses)
+				{
+					foreach (int conjugatePairDigit in possibleConjugatePairDigitsMask)
+					{
+						if (!CandidatesMap[conjugatePairDigit].Contains(c1)
+							|| !CandidatesMap[conjugatePairDigit].Contains(c2))
+						{
+							// The conjugate pair can be formed if and only if both guardian cells
+							// must contain that digit.
+							continue;
+						}
+
+						if ((CandidatesMap[conjugatePairDigit] & HouseMaps[house]) != guardianCellPair)
+						{
+							// The house cannot contain any other cells containing that digit.
+							continue;
+						}
+
+						var conclusions = new List<Conclusion>();
+						short elimDigitsMask = (short)(possibleConjugatePairDigitsMask & ~(1 << conjugatePairDigit));
+						foreach (int elimDigit in elimDigitsMask)
+						{
+							foreach (int cell in CandidatesMap[elimDigit] & guardianCellPair)
+							{
+								conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
+							}
+						}
+						if (conclusions.Count == 0)
+						{
+							// No eliminations found.
+							continue;
+						}
+
+						var candidateOffsets = new List<CandidateViewNode>();
+						foreach (int cell in urCells)
+						{
+							if (grid.Exists(cell, d1) is true)
+							{
+								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
+							}
+							if (grid.Exists(cell, d2) is true)
+							{
+								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
+							}
+						}
+						foreach (int cell in guardianCellPair)
+						{
+							if (grid.Exists(cell, d1) is true)
+							{
+								candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + d1));
+							}
+							if (grid.Exists(cell, d2) is true)
+							{
+								candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + d2));
+							}
+
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + conjugatePairDigit));
+						}
+
+						accumulator.Add(
+							new UniqueRectangleWithGuardianConjugatePairStep(
+								conclusions.ToImmutableArray(),
+								ImmutableArray.Create(
+									View.Empty
+										| candidateOffsets
+										| new HouseViewNode[]
+										{
+											new(DisplayColorKind.Normal, house),
+											new(DisplayColorKind.Auxiliary2, houseCombination[0]),
+											new(DisplayColorKind.Auxiliary2, houseCombination[1])
+										}
+								),
+								d1,
+								d2,
+								cells,
+								guardianCellPair,
+								new(guardianCellPair, conjugatePairDigit),
+								IsIncomplete(candidateOffsets),
+								index
+							)
+						);
+					}
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Check AR + Hidden single.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>

@@ -6816,6 +6816,11 @@
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with {Prefix}conjugate pair{Suffix} {ConjPairsStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithGuardianConjugatePairStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with conjugate pair {ConjugatePairStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithGuardianStep">
             <summary>
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}.
@@ -7016,14 +7021,24 @@
               Looks up a localized string similar to Unique Rectangle 4X/3SL.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.UniqueRectangleExternalType1">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle External Type 1.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.UniqueRectangleExternalType2">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Guardian (Standard).
+              Looks up a localized string similar to Unique Rectangle External Type 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UniqueRectangleExternalType3">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Guardian (Subset).
+              Looks up a localized string similar to Unique Rectangle External Type 3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.UniqueRectangleExternalType4">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle External Type 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UniqueRectangleSueDeCoq">
@@ -9853,6 +9868,11 @@
             Indicates the unique rectangle unknown covering.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleExternalType1">
+            <summary>
+            Indicates the unique rectangle external type 1.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleExternalType2">
             <summary>
             Indicates the unique rectangle external type 2.
@@ -9861,6 +9881,11 @@
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleExternalType3">
             <summary>
             Indicates the unique rectangle external type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleExternalType4">
+            <summary>
+            Indicates the unique rectangle external type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleType1">
