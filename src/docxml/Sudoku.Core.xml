@@ -9029,1449 +9029,1449 @@
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FullHouse">
             <summary>
-            Indicates the full house.
+            Indicates full house.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.LastDigit">
             <summary>
-            Indicates the last digit.
+            Indicates last digit.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.HiddenSingleBlock">
             <summary>
-            Indicates the hidden single (in block).
+            Indicates hidden single (in block).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.HiddenSingleRow">
             <summary>
-            Indicates the hidden single (in row).
+            Indicates hidden single (in row).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.HiddenSingleColumn">
             <summary>
-            Indicates the hidden single (in column).
+            Indicates hidden single (in column).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.NakedSingle">
             <summary>
-            Indicates the naked single.
+            Indicates naked single.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.Pointing">
             <summary>
-            Indicates the pointing.
+            Indicates pointing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.Claiming">
             <summary>
-            Indicates the claiming.
+            Indicates claiming.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AlmostLockedPair">
             <summary>
-            Indicates the almost locked pair.
+            Indicates almost locked pair.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AlmostLockedTriple">
             <summary>
-            Indicates the almost locked triple.
+            Indicates almost locked triple.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AlmostLockedQuadruple">
             <summary>
-            Indicates the almost locked quadruple.
+            Indicates almost locked quadruple.
             The technique may not be useful because it'll be replaced with Sue de Coq.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FireworkPairType1">
             <summary>
-            Indicates the firework pair type 1.
+            Indicates firework pair type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FireworkPairType2">
             <summary>
-            Indicates the firework pair type 2.
+            Indicates firework pair type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FireworkPairType3">
             <summary>
-            Indicates the firework pair type 3.
+            Indicates firework pair type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FireworkTriple">
             <summary>
-            Indicates the firework triple.
+            Indicates firework triple.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FireworkQuadruple">
             <summary>
-            Indicates the firework quadruple.
+            Indicates firework quadruple.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.NakedPair">
             <summary>
-            Indicates the naked pair.
+            Indicates naked pair.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.NakedPairPlus">
             <summary>
-            Indicates the naked pair plus (naked pair (+)).
+            Indicates naked pair plus (naked pair (+)).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.LockedPair">
             <summary>
-            Indicates the locked pair.
+            Indicates locked pair.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.HiddenPair">
             <summary>
-            Indicates the hidden pair.
+            Indicates hidden pair.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.NakedTriple">
             <summary>
-            Indicates the naked triple.
+            Indicates naked triple.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.NakedTriplePlus">
             <summary>
-            Indicates the naked triple plus (naked triple (+)).
+            Indicates naked triple plus (naked triple (+)).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.LockedTriple">
             <summary>
-            Indicates the locked triple.
+            Indicates locked triple.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.HiddenTriple">
             <summary>
-            Indicates the hidden triple.
+            Indicates hidden triple.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.NakedQuadruple">
             <summary>
-            Indicates the naked quadruple.
+            Indicates naked quadruple.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.NakedQuadruplePlus">
             <summary>
-            Indicates the naked quadruple plus (naked quadruple (+)).
+            Indicates naked quadruple plus (naked quadruple (+)).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.HiddenQuadruple">
             <summary>
-            Indicates the hidden quadruple.
+            Indicates hidden quadruple.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.XWing">
             <summary>
-            Indicates the X-Wing.
+            Indicates X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedXWing">
             <summary>
-            Indicates the finned X-Wing.
+            Indicates finned X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiXWing">
             <summary>
-            Indicates the sashimi X-Wing.
+            Indicates sashimi X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedXWing">
             <summary>
-            Indicates the siamese finned X-Wing.
+            Indicates siamese finned X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiXWing">
             <summary>
-            Indicates the siamese sashimi X-Wing.
+            Indicates siamese sashimi X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FrankenXWing">
             <summary>
-            Indicates the franken X-Wing.
+            Indicates franken X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedFrankenXWing">
             <summary>
-            Indicates the finned franken X-Wing.
+            Indicates finned franken X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiFrankenXWing">
             <summary>
-            Indicates the sashimi franken X-Wing.
+            Indicates sashimi franken X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedFrankenXWing">
             <summary>
-            Indicates the siamese finned franken X-Wing.
+            Indicates siamese finned franken X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiFrankenXWing">
             <summary>
-            Indicates the siamese sashimi franken X-Wing.
+            Indicates siamese sashimi franken X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.MutantXWing">
             <summary>
-            Indicates the mutant X-Wing.
+            Indicates mutant X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedMutantXWing">
             <summary>
-            Indicates the finned mutant X-Wing.
+            Indicates finned mutant X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiMutantXWing">
             <summary>
-            Indicates the sashimi mutant X-Wing.
+            Indicates sashimi mutant X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedMutantXWing">
             <summary>
-            Indicates the siamese finned mutant X-Wing.
+            Indicates siamese finned mutant X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiMutantXWing">
             <summary>
-            Indicates the siamese sashimi mutant X-Wing.
+            Indicates siamese sashimi mutant X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.Swordfish">
             <summary>
-            Indicates the swordfish.
+            Indicates swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedSwordfish">
             <summary>
-            Indicates the finned swordfish.
+            Indicates finned swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiSwordfish">
             <summary>
-            Indicates the sashimi swordfish.
+            Indicates sashimi swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedSwordfish">
             <summary>
-            Indicates the siamese finned swordfish.
+            Indicates siamese finned swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiSwordfish">
             <summary>
-            Indicates the siamese sashimi swordfish.
+            Indicates siamese sashimi swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FrankenSwordfish">
             <summary>
-            Indicates the swordfish.
+            Indicates swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedFrankenSwordfish">
             <summary>
-            Indicates the finned franken swordfish.
+            Indicates finned franken swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiFrankenSwordfish">
             <summary>
-            Indicates the sashimi franken swordfish.
+            Indicates sashimi franken swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedFrankenSwordfish">
             <summary>
-            Indicates the siamese finned franken swordfish.
+            Indicates siamese finned franken swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiFrankenSwordfish">
             <summary>
-            Indicates the siamese sashimi franken swordfish.
+            Indicates siamese sashimi franken swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.MutantSwordfish">
             <summary>
-            Indicates the mutant swordfish.
+            Indicates mutant swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedMutantSwordfish">
             <summary>
-            Indicates the finned mutant swordfish.
+            Indicates finned mutant swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiMutantSwordfish">
             <summary>
-            Indicates the sashimi mutant swordfish.
+            Indicates sashimi mutant swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedMutantSwordfish">
             <summary>
-            Indicates the siamese finned mutant swordfish.
+            Indicates siamese finned mutant swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiMutantSwordfish">
             <summary>
-            Indicates the siamese sashimi mutant swordfish.
+            Indicates siamese sashimi mutant swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.Jellyfish">
             <summary>
-            Indicates the jellyfish.
+            Indicates jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedJellyfish">
             <summary>
-            Indicates the finned jellyfish.
+            Indicates finned jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiJellyfish">
             <summary>
-            Indicates the sashimi jellyfish.
+            Indicates sashimi jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedJellyfish">
             <summary>
-            Indicates the siamese finned jellyfish.
+            Indicates siamese finned jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiJellyfish">
             <summary>
-            Indicates the siamese sashimi jellyfish.
+            Indicates siamese sashimi jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FrankenJellyfish">
             <summary>
-            Indicates the franken jellyfish.
+            Indicates franken jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedFrankenJellyfish">
             <summary>
-            Indicates the finned franken jellyfish.
+            Indicates finned franken jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiFrankenJellyfish">
             <summary>
-            Indicates the sashimi franken jellyfish.
+            Indicates sashimi franken jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedFrankenJellyfish">
             <summary>
-            Indicates the siamese finned franken jellyfish.
+            Indicates siamese finned franken jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiFrankenJellyfish">
             <summary>
-            Indicates the siamese sashimi franken jellyfish.
+            Indicates siamese sashimi franken jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.MutantJellyfish">
             <summary>
-            Indicates the mutant jellyfish.
+            Indicates mutant jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedMutantJellyfish">
             <summary>
-            Indicates the finned mutant jellyfish.
+            Indicates finned mutant jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiMutantJellyfish">
             <summary>
-            Indicates the sashimi mutant jellyfish.
+            Indicates sashimi mutant jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedMutantJellyfish">
             <summary>
-            Indicates the siamese finned mutant jellyfish.
+            Indicates siamese finned mutant jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiMutantJellyfish">
             <summary>
-            Indicates the siamese sashimi mutant jellyfish.
+            Indicates siamese sashimi mutant jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.Squirmbag">
             <summary>
-            Indicates the squirmbag.
+            Indicates squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedSquirmbag">
             <summary>
-            Indicates the finned squirmbag.
+            Indicates finned squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiSquirmbag">
             <summary>
-            Indicates the sashimi squirmbag.
+            Indicates sashimi squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedSquirmbag">
             <summary>
-            Indicates the siamese finned squirmbag.
+            Indicates siamese finned squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiSquirmbag">
             <summary>
-            Indicates the siamese sashimi squirmbag.
+            Indicates siamese sashimi squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FrankenSquirmbag">
             <summary>
-            Indicates the franken squirmbag.
+            Indicates franken squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedFrankenSquirmbag">
             <summary>
-            Indicates the finned franken squirmbag.
+            Indicates finned franken squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiFrankenSquirmbag">
             <summary>
-            Indicates the sashimi franken squirmbag.
+            Indicates sashimi franken squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedFrankenSquirmbag">
             <summary>
-            Indicates the siamese finned franken squirmbag.
+            Indicates siamese finned franken squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiFrankenSquirmbag">
             <summary>
-            Indicates the siamese sashimi franken squirmbag.
+            Indicates siamese sashimi franken squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.MutantSquirmbag">
             <summary>
-            Indicates the mutant squirmbag.
+            Indicates mutant squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedMutantSquirmbag">
             <summary>
-            Indicates the finned mutant squirmbag.
+            Indicates finned mutant squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiMutantSquirmbag">
             <summary>
-            Indicates the sashimi mutant squirmbag.
+            Indicates sashimi mutant squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedMutantSquirmbag">
             <summary>
-            Indicates the siamese finned mutant squirmbag.
+            Indicates siamese finned mutant squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiMutantSquirmbag">
             <summary>
-            Indicates the siamese sashimi mutant squirmbag.
+            Indicates siamese sashimi mutant squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.Whale">
             <summary>
-            Indicates the whale.
+            Indicates whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedWhale">
             <summary>
-            Indicates the finned whale.
+            Indicates finned whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiWhale">
             <summary>
-            Indicates the sashimi whale.
+            Indicates sashimi whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedWhale">
             <summary>
-            Indicates the siamese finned whale.
+            Indicates siamese finned whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiWhale">
             <summary>
-            Indicates the siamese sashimi whale.
+            Indicates siamese sashimi whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FrankenWhale">
             <summary>
-            Indicates the franken whale.
+            Indicates franken whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedFrankenWhale">
             <summary>
-            Indicates the finned franken whale.
+            Indicates finned franken whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiFrankenWhale">
             <summary>
-            Indicates the sashimi franken whale.
+            Indicates sashimi franken whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedFrankenWhale">
             <summary>
-            Indicates the siamese finned franken whale.
+            Indicates siamese finned franken whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiFrankenWhale">
             <summary>
-            Indicates the siamese sashimi franken whale.
+            Indicates siamese sashimi franken whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.MutantWhale">
             <summary>
-            Indicates the mutant whale.
+            Indicates mutant whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedMutantWhale">
             <summary>
-            Indicates the finned mutant whale.
+            Indicates finned mutant whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiMutantWhale">
             <summary>
-            Indicates the sashimi mutant whale.
+            Indicates sashimi mutant whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedMutantWhale">
             <summary>
-            Indicates the siamese finned mutant whale.
+            Indicates siamese finned mutant whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiMutantWhale">
             <summary>
-            Indicates the siamese sashimi mutant whale.
+            Indicates siamese sashimi mutant whale.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.Leviathan">
             <summary>
-            Indicates the leviathan.
+            Indicates leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedLeviathan">
             <summary>
-            Indicates the finned leviathan.
+            Indicates finned leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiLeviathan">
             <summary>
-            Indicates the sashimi leviathan.
+            Indicates sashimi leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedLeviathan">
             <summary>
-            Indicates the siamese finned leviathan.
+            Indicates siamese finned leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiLeviathan">
             <summary>
-            Indicates the siamese sashimi leviathan.
+            Indicates siamese sashimi leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FrankenLeviathan">
             <summary>
-            Indicates the franken leviathan.
+            Indicates franken leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedFrankenLeviathan">
             <summary>
-            Indicates the finned franken leviathan.
+            Indicates finned franken leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiFrankenLeviathan">
             <summary>
-            Indicates the sashimi franken leviathan.
+            Indicates sashimi franken leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedFrankenLeviathan">
             <summary>
-            Indicates the siamese finned franken leviathan.
+            Indicates siamese finned franken leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiFrankenLeviathan">
             <summary>
-            Indicates the siamese sashimi franken leviathan.
+            Indicates siamese sashimi franken leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.MutantLeviathan">
             <summary>
-            Indicates the mutant leviathan.
+            Indicates mutant leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FinnedMutantLeviathan">
             <summary>
-            Indicates the finned mutant leviathan.
+            Indicates finned mutant leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SashimiMutantLeviathan">
             <summary>
-            Indicates the sashimi mutant leviathan.
+            Indicates sashimi mutant leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseFinnedMutantLeviathan">
             <summary>
-            Indicates the siamese finned mutant leviathan.
+            Indicates siamese finned mutant leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSashimiMutantLeviathan">
             <summary>
-            Indicates the siamese sashimi mutant leviathan.
+            Indicates siamese sashimi mutant leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.XyWing">
             <summary>
-            Indicates the XY-Wing.
+            Indicates XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.XyzWing">
             <summary>
-            Indicates the XYZ-Wing.
+            Indicates XYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.WxyzWing">
             <summary>
-            Indicates the WXYZ-Wing.
+            Indicates WXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.VwxyzWing">
             <summary>
-            Indicates the VWXYZ-Wing.
+            Indicates VWXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UvwxyzWing">
             <summary>
-            Indicates the UVWXYZ-Wing.
+            Indicates UVWXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.TuvwxyzWing">
             <summary>
-            Indicates the TUVWXYZ-Wing.
+            Indicates TUVWXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.StuvwxyzWing">
             <summary>
-            Indicates the STUVWXYZ-Wing.
+            Indicates STUVWXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.RstuvwxyzWing">
             <summary>
-            Indicates the RSTUVWXYZ-Wing.
+            Indicates RSTUVWXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.IncompleteWxyzWing">
             <summary>
-            Indicates the incomplete WXYZ-Wing.
+            Indicates incomplete WXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.IncompleteVwxyzWing">
             <summary>
-            Indicates the incomplete VWXYZ-Wing.
+            Indicates incomplete VWXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.IncompleteUvwxyzWing">
             <summary>
-            Indicates the incomplete UVWXYZ-Wing.
+            Indicates incomplete UVWXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.IncompleteTuvwxyzWing">
             <summary>
-            Indicates the incomplete TUVWXYZ-Wing.
+            Indicates incomplete TUVWXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.IncompleteStuvwxyzWing">
             <summary>
-            Indicates the incomplete STUVWXYZ-Wing.
+            Indicates incomplete STUVWXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.IncompleteRstuvwxyzWing">
             <summary>
-            Indicates the incomplete RSTUVWXYZ-Wing.
+            Indicates incomplete RSTUVWXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.WWing">
             <summary>
-            Indicates the W-Wing.
+            Indicates W-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.MWing">
             <summary>
-            Indicates the M-Wing.
+            Indicates M-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.LocalWing">
             <summary>
-            Indicates the local wing.
+            Indicates local wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SplitWing">
             <summary>
-            Indicates the split wing.
+            Indicates split wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.HybridWing">
             <summary>
-            Indicates the hybrid wing.
+            Indicates hybrid wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedXyWing">
             <summary>
-            Indicates the grouped XY-Wing.
+            Indicates grouped XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedWWing">
             <summary>
-            Indicates the grouped W-Wing.
+            Indicates grouped W-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedMWing">
             <summary>
-            Indicates the grouped M-Wing.
+            Indicates grouped M-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedLocalWing">
             <summary>
-            Indicates the grouped local wing.
+            Indicates grouped local wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedSplitWing">
             <summary>
-            Indicates the grouped split wing.
+            Indicates grouped split wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedHybridWing">
             <summary>
-            Indicates the grouped hybrid wing.
+            Indicates grouped hybrid wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleType1">
             <summary>
-            Indicates the unique rectangle type 1.
+            Indicates unique rectangle type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleType2">
             <summary>
-            Indicates the unique rectangle type 2.
+            Indicates unique rectangle type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleType3">
             <summary>
-            Indicates the unique rectangle type 3.
+            Indicates unique rectangle type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleType4">
             <summary>
-            Indicates the unique rectangle type 4.
+            Indicates unique rectangle type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleType5">
             <summary>
-            Indicates the unique rectangle type 5.
+            Indicates unique rectangle type 5.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleType6">
             <summary>
-            Indicates the unique rectangle type 6.
+            Indicates unique rectangle type 6.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.HiddenUniqueRectangle">
             <summary>
-            Indicates the hidden unique rectangle.
+            Indicates hidden unique rectangle.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle2D">
             <summary>
-            Indicates the unique rectangle + 2D.
+            Indicates unique rectangle + 2D.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle2B1">
             <summary>
-            Indicates the unique rectangle + 2B / 1SL.
+            Indicates unique rectangle + 2B / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle2D1">
             <summary>
-            Indicates the unique rectangle + 2D / 1SL.
+            Indicates unique rectangle + 2D / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle3X">
             <summary>
-            Indicates the unique rectangle + 3X.
+            Indicates unique rectangle + 3X.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle3X1L">
             <summary>
-            Indicates the unique rectangle + 3x / 1SL.
+            Indicates unique rectangle + 3x / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle3X1U">
             <summary>
-            Indicates the unique rectangle + 3X / 1SL.
+            Indicates unique rectangle + 3X / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle3X2">
             <summary>
-            Indicates the unique rectangle + 3X / 2SL.
+            Indicates unique rectangle + 3X / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle3N2">
             <summary>
-            Indicates the unique rectangle + 3N / 2SL.
+            Indicates unique rectangle + 3N / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle3U2">
             <summary>
-            Indicates the unique rectangle + 3U / 2SL.
+            Indicates unique rectangle + 3U / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle3E2">
             <summary>
-            Indicates the unique rectangle + 3E / 2SL.
+            Indicates unique rectangle + 3E / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle4X1L">
             <summary>
-            Indicates the unique rectangle + 4x / 1SL.
+            Indicates unique rectangle + 4x / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle4X1U">
             <summary>
-            Indicates the unique rectangle + 4X / 1SL.
+            Indicates unique rectangle + 4X / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle4X2L">
             <summary>
-            Indicates the unique rectangle + 4x / 2SL.
+            Indicates unique rectangle + 4x / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle4X2U">
             <summary>
-            Indicates the unique rectangle + 4X / 2SL.
+            Indicates unique rectangle + 4X / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle4X3">
             <summary>
-            Indicates the unique rectangle + 4X / 3SL.
+            Indicates unique rectangle + 4X / 3SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangle4C3">
             <summary>
-            Indicates the unique rectangle + 4C / 3SL.
+            Indicates unique rectangle + 4C / 3SL.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleXyWing">
             <summary>
-            Indicates the unique rectangle-XY-Wing.
+            Indicates unique rectangle-XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleXyzWing">
             <summary>
-            Indicates the unique rectangle-XYZ-Wing.
+            Indicates unique rectangle-XYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleWxyzWing">
             <summary>
-            Indicates the unique rectangle-WXYZ-Wing.
+            Indicates unique rectangle-WXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleSueDeCoq">
             <summary>
-            Indicates the unique rectangle sue de coq.
+            Indicates unique rectangle sue de coq.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleUnknownCovering">
             <summary>
-            Indicates the unique rectangle unknown covering.
+            Indicates unique rectangle unknown covering.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleExternalType1">
             <summary>
-            Indicates the unique rectangle external type 1.
+            Indicates unique rectangle external type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleExternalType2">
             <summary>
-            Indicates the unique rectangle external type 2.
+            Indicates unique rectangle external type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleExternalType3">
             <summary>
-            Indicates the unique rectangle external type 3.
+            Indicates unique rectangle external type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueRectangleExternalType4">
             <summary>
-            Indicates the unique rectangle external type 4.
+            Indicates unique rectangle external type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleType1">
             <summary>
-            Indicates the avoidable rectangle type 1.
+            Indicates avoidable rectangle type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleType2">
             <summary>
-            Indicates the avoidable rectangle type 2.
+            Indicates avoidable rectangle type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleType3">
             <summary>
-            Indicates the avoidable rectangle type 3.
+            Indicates avoidable rectangle type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleType5">
             <summary>
-            Indicates the avoidable rectangle type 5.
+            Indicates avoidable rectangle type 5.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.HiddenAvoidableRectangle">
             <summary>
-            Indicates the hidden avoidable rectangle.
+            Indicates hidden avoidable rectangle.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangle2D">
             <summary>
-            Indicates the avoidable rectangle + 2D.
+            Indicates avoidable rectangle + 2D.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangle3X">
             <summary>
-            Indicates the avoidable rectangle + 3X.
+            Indicates avoidable rectangle + 3X.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleXyWing">
             <summary>
-            Indicates the avoidable rectangle XY-Wing.
+            Indicates avoidable rectangle XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleXyzWing">
             <summary>
-            Indicates the avoidable rectangle XYZ-Wing.
+            Indicates avoidable rectangle XYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleWxyzWing">
             <summary>
-            Indicates the avoidable rectangle WXYZ-Wing.
+            Indicates avoidable rectangle WXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleSueDeCoq">
             <summary>
-            Indicates the avoidable rectangle sue de coq.
+            Indicates avoidable rectangle sue de coq.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleBrokenWing">
             <summary>
-            Indicates the avoidable rectangle guardian.
+            Indicates avoidable rectangle guardian.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleHiddenSingleBlock">
             <summary>
-            Indicates the avoidable rectangle hidden single in block.
+            Indicates avoidable rectangle hidden single in block.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleHiddenSingleRow">
             <summary>
-            Indicates the avoidable rectangle hidden single in row.
+            Indicates avoidable rectangle hidden single in row.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AvoidableRectangleHiddenSingleColumn">
             <summary>
-            Indicates the avoidable rectangle hidden single in column.
+            Indicates avoidable rectangle hidden single in column.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueLoopType1">
             <summary>
-            Indicates the unique loop type 1.
+            Indicates unique loop type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueLoopType2">
             <summary>
-            Indicates the unique loop type 2.
+            Indicates unique loop type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueLoopType3">
             <summary>
-            Indicates the unique loop type 3.
+            Indicates unique loop type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueLoopType4">
             <summary>
-            Indicates the unique loop type 4.
+            Indicates unique loop type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ExtendedRectangleType1">
             <summary>
-            Indicates the extended rectangle type 1.
+            Indicates extended rectangle type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ExtendedRectangleType2">
             <summary>
-            Indicates the extended rectangle type 2.
+            Indicates extended rectangle type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ExtendedRectangleType3">
             <summary>
-            Indicates the extended rectangle type 3.
+            Indicates extended rectangle type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ExtendedRectangleType4">
             <summary>
-            Indicates the extended rectangle type 4.
+            Indicates extended rectangle type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGraveType1">
             <summary>
-            Indicates the bi-value universal grave type 1.
+            Indicates bi-value universal grave type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGraveType2">
             <summary>
-            Indicates the bi-value universal grave type 2.
+            Indicates bi-value universal grave type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGraveType3">
             <summary>
-            Indicates the bi-value universal grave type 3.
+            Indicates bi-value universal grave type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGraveType4">
             <summary>
-            Indicates the bi-value universal grave type 4.
+            Indicates bi-value universal grave type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGravePlusN">
             <summary>
-            Indicates the bi-value universal grave + n.
+            Indicates bi-value universal grave + n.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGraveFalseCandidateType">
             <summary>
-            Indicates the bi-value universal grave false candidate type.
+            Indicates bi-value universal grave false candidate type.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGravePlusNForcingChains">
             <summary>
-            Indicates the bi-value universal grave + n with forcing chains.
+            Indicates bi-value universal grave + n with forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGraveXzRule">
             <summary>
-            Indicates the bi-value universal grave XZ rule.
+            Indicates bi-value universal grave XZ rule.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGraveXyWing">
             <summary>
-            Indicates the bi-value universal grave XY-Wing.
+            Indicates bi-value universal grave XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquePolygonType1">
             <summary>
-            Indicates the unique polygon type 1.
+            Indicates unique polygon type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquePolygonType2">
             <summary>
-            Indicates the unique polygon type 2.
+            Indicates unique polygon type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquePolygonType3">
             <summary>
-            Indicates the unique polygon type 3.
+            Indicates unique polygon type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquePolygonType4">
             <summary>
-            Indicates the unique polygon type 4.
+            Indicates unique polygon type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.QiuDeadlyPatternType1">
             <summary>
-            Indicates the Qiu's deadly pattern type 1.
+            Indicates Qiu's deadly pattern type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.QiuDeadlyPatternType2">
             <summary>
-            Indicates the Qiu's deadly pattern type 2.
+            Indicates Qiu's deadly pattern type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.QiuDeadlyPatternType3">
             <summary>
-            Indicates the Qiu's deadly pattern type 3.
+            Indicates Qiu's deadly pattern type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.QiuDeadlyPatternType4">
             <summary>
-            Indicates the Qiu's deadly pattern type 4.
+            Indicates Qiu's deadly pattern type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.LockedQiuDeadlyPattern">
             <summary>
-            Indicates the locked Qiu's deadly pattern.
+            Indicates locked Qiu's deadly pattern.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueSquareType1">
             <summary>
-            Indicates the unique square type 1.
+            Indicates unique square type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueSquareType2">
             <summary>
-            Indicates the unique square type 2.
+            Indicates unique square type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueSquareType3">
             <summary>
-            Indicates the unique square type 3.
+            Indicates unique square type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueSquareType4">
             <summary>
-            Indicates the unique square type 4.
+            Indicates unique square type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SueDeCoq">
             <summary>
-            Indicates the sue de coq.
+            Indicates sue de coq.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SueDeCoqIsolated">
             <summary>
-            Indicates the sue de coq with isolated digit.
+            Indicates sue de coq with isolated digit.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SueDeCoq3Dimension">
             <summary>
-            Indicates the 3-dimensional sue de coq.
+            Indicates 3-dimensional sue de coq.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SueDeCoqCannibalism">
             <summary>
-            Indicates the sue de coq cannibalism.
+            Indicates sue de coq cannibalism.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.Skyscraper">
             <summary>
-            Indicates the skyscraper.
+            Indicates skyscraper.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.TwoStringKite">
             <summary>
-            Indicates the two-string kite.
+            Indicates two-string kite.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.TurbotFish">
             <summary>
-            Indicates the turbot fish.
+            Indicates turbot fish.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.EmptyRectangle">
             <summary>
-            Indicates the empty rectangle.
+            Indicates empty rectangle.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BrokenWing">
             <summary>
-            Indicates the broken wing.
+            Indicates broken wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueOddagonType1">
             <summary>
-            Indicates the bi-value oddagon type 1.
+            Indicates bi-value oddagon type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueOddagonType2">
             <summary>
-            Indicates the bi-value oddagon type 2.
+            Indicates bi-value oddagon type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueOddagonType3">
             <summary>
-            Indicates the bi-value oddagon type 3.
+            Indicates bi-value oddagon type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedBivalueOddagon">
             <summary>
-            Indicates the grouped bi-value oddagon.
+            Indicates grouped bi-value oddagon.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ChromaticPatternType1">
             <summary>
-            Indicates the chromatic pattern (tri-value oddagon) type 1.
+            Indicates chromatic pattern (tri-value oddagon) type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ChromaticPatternType2">
             <summary>
-            Indicates the chromatic pattern (tri-value oddagon) type 2.
+            Indicates chromatic pattern (tri-value oddagon) type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ChromaticPatternType3">
             <summary>
-            Indicates the chromatic pattern (tri-value oddagon) type 3.
+            Indicates chromatic pattern (tri-value oddagon) type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ChromaticPatternType4">
             <summary>
-            Indicates the chromatic pattern (tri-value oddagon) type 4.
+            Indicates chromatic pattern (tri-value oddagon) type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ChromaticPatternXzRule">
             <summary>
-            Indicates the chromatic pattern (tri-value oddagon) XZ rule.
+            Indicates chromatic pattern (tri-value oddagon) XZ rule.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.XChain">
             <summary>
-            Indicates the X-Chain.
+            Indicates X-Chain.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.YChain">
             <summary>
-            Indicates the Y-Chain.
+            Indicates Y-Chain.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.FishyCycle">
             <summary>
-            Indicates the fishy cycle (X-Cycle).
+            Indicates fishy cycle (X-Cycle).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.XyChain">
             <summary>
-            Indicates the XY-Chain.
+            Indicates XY-Chain.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.XyCycle">
             <summary>
-            Indicates the XY-Cycle.
+            Indicates XY-Cycle.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.XyXChain">
             <summary>
-            Indicates the XY-X-Chain.
+            Indicates XY-X-Chain.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.RemotePair">
             <summary>
-            Indicates the remote pair.
+            Indicates remote pair.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.PurpleCow">
             <summary>
-            Indicates the purple cow.
+            Indicates purple cow.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.DiscontinuousNiceLoop">
             <summary>
-            Indicates the discontinuous nice loop.
+            Indicates discontinuous nice loop.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ContinuousNiceLoop">
             <summary>
-            Indicates the continuous nice loop.
+            Indicates continuous nice loop.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AlternatingInferenceChain">
             <summary>
-            Indicates the alternating inference chain.
+            Indicates alternating inference chain.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedXChain">
             <summary>
-            Indicates the grouped X-Chain.
+            Indicates grouped X-Chain.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedFishyCycle">
             <summary>
-            Indicates the grouped fishy cycle (grouped X-Cycle).
+            Indicates grouped fishy cycle (grouped X-Cycle).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedXyChain">
             <summary>
-            Indicates the grouped XY-Chain.
+            Indicates grouped XY-Chain.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedXyCycle">
             <summary>
-            Indicates the grouped XY-Cycle.
+            Indicates grouped XY-Cycle.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedXyXChain">
             <summary>
-            Indicates the grouped XY-X-Chain.
+            Indicates grouped XY-X-Chain.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedPurpleCow">
             <summary>
-            Indicates the grouped purple cow.
+            Indicates grouped purple cow.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedDiscontinuousNiceLoop">
             <summary>
-            Indicates the grouped discontinuous nice loop.
+            Indicates grouped discontinuous nice loop.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedContinuousNiceLoop">
             <summary>
-            Indicates the grouped continuous nice loop.
+            Indicates grouped continuous nice loop.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GroupedAlternatingInferenceChain">
             <summary>
-            Indicates the grouped alternating inference chain.
+            Indicates grouped alternating inference chain.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.NodeCollision">
             <summary>
-            Indicates the special case that a grouped alternating inference chain has a collision
+            Indicates special case that a grouped alternating inference chain has a collision
             between start and end node.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.NishioForcingChains">
             <summary>
-            Indicates the nishio forcing chains.
+            Indicates nishio forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.RegionForcingChains">
             <summary>
-            Indicates the region forcing chains (i.e. house forcing chains).
+            Indicates region forcing chains (i.e. house forcing chains).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.CellForcingChains">
             <summary>
-            Indicates the cell forcing chains.
+            Indicates cell forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.DynamicRegionForcingChains">
             <summary>
-            Indicates the dynamic region forcing chains (i.e. dynamic house forcing chains).
+            Indicates dynamic region forcing chains (i.e. dynamic house forcing chains).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.DynamicCellForcingChains">
             <summary>
-            Indicates the dynamic cell forcing chains.
+            Indicates dynamic cell forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.DynamicContradictionForcingChains">
             <summary>
-            Indicates the dynamic contradiction forcing chains.
+            Indicates dynamic contradiction forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.DynamicDoubleForcingChains">
             <summary>
-            Indicates the dynamic double forcing chains.
+            Indicates dynamic double forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.DynamicForcingChains">
             <summary>
-            Indicates the dynamic forcing chains.
+            Indicates dynamic forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.EmptyRectangleIntersectionPair">
             <summary>
-            Indicates the empty rectangle intersection pair.
+            Indicates empty rectangle intersection pair.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ExtendedSubsetPrinciple">
             <summary>
-            Indicates the extended subset principle.
+            Indicates extended subset principle.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SinglyLinkedAlmostLockedSetsXzRule">
             <summary>
-            Indicates the singly linked ALS-XZ.
+            Indicates singly linked ALS-XZ.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.DoublyLinkedAlmostLockedSetsXzRule">
             <summary>
-            Indicates the doubly linked ALS-XZ.
+            Indicates doubly linked ALS-XZ.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AlmostLockedSetsXyWing">
             <summary>
-            Indicates the ALS-XY-Wing.
+            Indicates ALS-XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AlmostLockedSetsWWing">
             <summary>
-            Indicates the ALS-W-Wing.
+            Indicates ALS-W-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AlmostLockedSetsChain">
             <summary>
-            Indicates the ALS chain.
+            Indicates ALS chain.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.AlmostHiddenSetsChain">
             <summary>
-            Indicates the AHS chain.
+            Indicates AHS chain.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.DeathBlossom">
             <summary>
-            Indicates the death blossom.
+            Indicates death blossom.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GurthSymmetricalPlacement">
             <summary>
-            Indicates the Gurth's symmetrical placement.
+            Indicates Gurth's symmetrical placement.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ExtendedGurthSymmetricalPlacement">
             <summary>
-            Indicates the extended Gurth's symmetrical placement.
+            Indicates extended Gurth's symmetrical placement.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.JuniorExocet">
             <summary>
-            Indicates the junior exocet.
+            Indicates junior exocet.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SeniorExocet">
             <summary>
-            Indicates the senior exocet.
+            Indicates senior exocet.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.ComplexSeniorExocet">
             <summary>
-            Indicates the complex senior exocet.
+            Indicates complex senior exocet.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseJuniorExocet">
             <summary>
-            Indicates the siamese junior exocet.
+            Indicates siamese junior exocet.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SiameseSeniorExocet">
             <summary>
-            Indicates the siamese senior exocet.
+            Indicates siamese senior exocet.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.DominoLoop">
             <summary>
-            Indicates the domino loop.
+            Indicates domino loop.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.MultisectorLockedSets">
             <summary>
-            Indicates the multi-sector locked sets.
+            Indicates multi-sector locked sets.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.PatternOverlay">
             <summary>
-            Indicates the pattern overlay method.
+            Indicates pattern overlay method.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.TemplateSet">
             <summary>
-            Indicates the template set.
+            Indicates template set.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.TemplateDelete">
             <summary>
-            Indicates the template delete.
+            Indicates template delete.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BowmanBingo">
             <summary>
-            Indicates the bowman's bingo.
+            Indicates bowman's bingo.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BruteForce">
             <summary>
-            Indicates the brute force.
+            Indicates brute force.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Data.Representation.TechniqueGroup">
