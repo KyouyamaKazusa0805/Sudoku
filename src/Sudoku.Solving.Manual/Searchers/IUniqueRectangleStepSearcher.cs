@@ -7,32 +7,36 @@
 /// <item>
 /// Basic types:
 /// <list type="bullet">
-/// <item>Unique/Avoidable Rectangle Type 1, 2, 3, 5</item>
-/// <item>Unique Rectangle Type 4, 6</item>
-/// <item>Hidden Unique/Avoidable Rectangle</item>
+/// <item>Unique Rectangle Type 1, 2, 3, 4, 5, 6</item>
+/// <item>Avoidable Rectangle Type 1, 2, 3, 5</item>
+/// <item>Hidden Unique Rectangle</item>
+/// <item>Hidden Avoidable Rectangle</item>
 /// </list>
 /// </item>
 /// <item>
-/// Unique Rectangle with structures:
+/// Structured types:
 /// <list type="bullet">
-/// <item>Unique Rectangle with Conjugate Pair</item>
-/// <item>Avoidable Rectangle with Hidden Single</item>
-/// <item>Unique Rectangle with Unknown Covering</item>
-/// <item>Unique Rectangle with Sue de Coq</item>
+/// <item>Unique Rectangle + Conjugate Pair (also called "Unique Rectangle + Strong Link")</item>
+/// <item>Avoidable Rectangle + Hidden Single</item>
+/// <item>Unique Rectangle + Unknown Covering</item>
+/// <item>Unique Rectangle + Sue de Coq</item>
 /// <item>
-/// Unique Rectangle with Guardian (i.e. Unique Rectangle External Types):
+/// Unique Rectangle + Guardian (This program call it "Unique Rectangle External Types"):
 /// <list type="bullet">
+/// <item>Unique Rectangle External Type 1</item>
 /// <item>Unique Rectangle External Type 2</item>
 /// <item>Unique Rectangle External Type 3</item>
+/// <item>Unique Rectangle External Type 4</item>
 /// <!--<item>Unique Rectangle External Type with XY-Wing</item>-->
 /// </list>
 /// </item>
 /// </list>
 /// </item>
 /// <item>
-/// Miscellaneous:
+/// Miscellaneous types:
 /// <list type="bullet">
-/// <item>Unique Rectangle 2D, 3X</item>
+/// <item>Unique Rectangle 2D</item>
+/// <item>Unique Rectangle 3X</item>
 /// </list>
 /// </item>
 /// </list>
