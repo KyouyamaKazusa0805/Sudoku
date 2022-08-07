@@ -1130,24 +1130,19 @@
             </summary>
             <param name="ViewItemTag">The tag of the view item.</param>
             <param name="PageType">The page type.</param>
-            <param name="DisplayTitle">The displaying title.</param>
         </member>
-        <member name="M:Sudoku.UI.Data.Navigation.NavigationInfo.#ctor(System.String,System.Type,System.Boolean)">
+        <member name="M:Sudoku.UI.Data.Navigation.NavigationInfo.#ctor(System.String,System.Type)">
             <summary>
             Defines a navigation information instance.
             </summary>
             <param name="ViewItemTag">The tag of the view item.</param>
             <param name="PageType">The page type.</param>
-            <param name="DisplayTitle">The displaying title.</param>
         </member>
         <member name="P:Sudoku.UI.Data.Navigation.NavigationInfo.ViewItemTag">
             <summary>The tag of the view item.</summary>
         </member>
         <member name="P:Sudoku.UI.Data.Navigation.NavigationInfo.PageType">
             <summary>The page type.</summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.Navigation.NavigationInfo.DisplayTitle">
-            <summary>The displaying title.</summary>
         </member>
         <member name="M:Sudoku.UI.Data.Navigation.NavigationInfo.GetPages">
             <summary>
@@ -2853,6 +2848,12 @@
             Defines a customized title bar.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Controls.TitleBar.TitleTextProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.TitleBar.TitleText"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.TitleBar.TitleText"/>
+        </member>
         <member name="F:Sudoku.UI.Views.Controls.TitleBar._appWindow">
             <summary>
             Indicates the application window.
@@ -2866,6 +2867,11 @@
         <member name="M:Sudoku.UI.Views.Controls.TitleBar.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.TitleBar"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.TitleBar.TitleText">
+            <summary>
+            Indicates the title text.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.TitleBar.SetDragRegionForCustomTitleBar(Microsoft.UI.Windowing.AppWindow)">

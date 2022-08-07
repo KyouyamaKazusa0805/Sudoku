@@ -6,11 +6,6 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded">
-	<UserControl.Resources>
-		<Thickness x:Key="_rMargin">12,0,0,0</Thickness>
-		<VerticalAlignment x:Key="_rCenterVerticalAlignment">Center</VerticalAlignment>
-	</UserControl.Resources>
-
 	<Grid x:Name="_cAppTitleBar" Grid.Row="0" Height="64">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition x:Name="_cLeftPaddingColumn" Width="0" />
@@ -19,12 +14,10 @@
 			<ColumnDefinition x:Name="_cRightPaddingColumn" Width="0" />
 		</Grid.ColumnDefinitions>
 		<Image
-			x:Name="_cTitleBarIcon" Grid.Column="1" HorizontalAlignment="Left"
-			VerticalAlignment="{StaticResource _rCenterVerticalAlignment}"
-			Source="/Assets/images/logo.png" Width="44" Height="44" Margin="{StaticResource _rMargin}" />
+			x:Name="_cTitleBarIcon" Grid.Column="1" HorizontalAlignment="Left" Width="44" Height="44"
+			VerticalAlignment="Center" Source="/Assets/images/logo.png" Margin="12,0,0,0" />
 		<TextBlock
-			x:Name="_cTitleTextBlock" Grid.Column="2" VerticalAlignment="{StaticResource _rCenterVerticalAlignment}"
-			Text="{StaticResource ProgramName}" Style="{StaticResource CaptionTextBlockStyle}"
-			Margin="{StaticResource _rMargin}" />
+			x:Name="_cTitleTextBlock" Grid.Column="2" Margin="12,0,0,0" FontSize="24"
+			VerticalAlignment="Center" />
 	</Grid>
 </UserControl>

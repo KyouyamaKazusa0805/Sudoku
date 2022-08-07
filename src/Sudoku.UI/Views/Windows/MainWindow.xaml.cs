@@ -143,7 +143,7 @@ public sealed partial class MainWindow : Window
 	/// <param name="transitionInfo">The transition information.</param>
 	private void OnNavigate(string tag, NavigationTransitionInfo transitionInfo)
 	{
-		var (_, pageType, displayTitle) = Array.Find(NavigationPairs, p => p.ViewItemTag == tag);
+		var (_, pageType) = Array.Find(NavigationPairs, p => p.ViewItemTag == tag);
 
 		// Get the page type before navigation so you can prevent duplicate entries in the back-stack.
 		// Only navigate if the selected page isn't currently loaded.
@@ -152,8 +152,6 @@ public sealed partial class MainWindow : Window
 		{
 			_cViewRouterFrame.Navigate(pageType, null, transitionInfo);
 		}
-
-		_cViewRouter.AlwaysShowHeader = displayTitle;
 	}
 
 	/// <summary>
@@ -419,11 +417,12 @@ public sealed partial class MainWindow : Window
 			return;
 		}
 
-		var (tag, _, _) = Array.Find(NavigationPairs, p => p.PageType == sourcePageType);
+		var (tag, _) = Array.Find(NavigationPairs, p => p.PageType == sourcePageType);
 		var item = menuItems.Concat(footerMenuItems).OfType<NavigationViewItem>().First(n => n.Tag as string == tag);
 		_cViewRouter.SelectedItem = item;
-		_cViewRouter.Header = item.Content switch
+		_cTitleBar.TitleText = item.Content switch
 		{
+			string text => text,
 			StackPanel { Children: [_, TextBlock { Text: var text }] } => text,
 			_ => string.Empty
 		};

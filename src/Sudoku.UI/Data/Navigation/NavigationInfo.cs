@@ -5,8 +5,7 @@
 /// </summary>
 /// <param name="ViewItemTag">The tag of the view item.</param>
 /// <param name="PageType">The page type.</param>
-/// <param name="DisplayTitle">The displaying title.</param>
-internal readonly record struct NavigationInfo(string ViewItemTag, Type PageType, bool DisplayTitle)
+internal readonly record struct NavigationInfo(string ViewItemTag, Type PageType)
 {
 	/// <summary>
 	/// Get navigation information instances of pages.
@@ -15,8 +14,7 @@ internal readonly record struct NavigationInfo(string ViewItemTag, Type PageType
 	public static NavigationInfo[] GetPages()
 		=> (
 			from type in typeof(MainWindow).Assembly.GetDerivedTypes<Page>()
-			let attribute = type.GetCustomAttribute<PageAttribute>()
-			where attribute is not null
-			select new NavigationInfo(type.Name, type, attribute.DisplayTitle)
+			where type.GetCustomAttribute<PageAttribute>() is not null
+			select new NavigationInfo(type.Name, type)
 		).ToArray();
 }

@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a home page.
 /// </summary>
-[Page(DisplayTitle = false)]
+[Page]
 public sealed partial class HomePage : Page
 {
 	/// <summary>

@@ -6,6 +6,14 @@
 public sealed partial class TitleBar : UserControl
 {
 	/// <summary>
+	/// Defines a dependency property that binds with the property <see cref="TitleText"/>.
+	/// </summary>
+	/// <seealso cref="TitleText"/>
+	public static readonly DependencyProperty TitleTextProperty =
+		DependencyProperty.Register(nameof(TitleText), typeof(string), typeof(TitleBar), new(string.Empty));
+
+
+	/// <summary>
 	/// Indicates the application window.
 	/// </summary>
 	private AppWindow _appWindow = null!;
@@ -21,6 +29,19 @@ public sealed partial class TitleBar : UserControl
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public TitleBar() => InitializeComponent();
+
+
+	/// <summary>
+	/// Indicates the title text.
+	/// </summary>
+	public string TitleText
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _cTitleTextBlock.Text;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => _cTitleTextBlock.Text = value;
+	}
 
 
 	/// <summary>
