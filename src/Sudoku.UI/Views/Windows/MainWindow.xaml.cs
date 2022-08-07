@@ -422,7 +422,11 @@ public sealed partial class MainWindow : Window
 		var (tag, _, _) = Array.Find(NavigationPairs, p => p.PageType == sourcePageType);
 		var item = menuItems.Concat(footerMenuItems).OfType<NavigationViewItem>().First(n => n.Tag as string == tag);
 		_cViewRouter.SelectedItem = item;
-		_cViewRouter.Header = item.Content?.ToString();
+		_cViewRouter.Header = item.Content switch
+		{
+			StackPanel { Children: [_, TextBlock { Text: var text }] } => text,
+			_ => string.Empty
+		};
 	}
 
 	/// <summary>
