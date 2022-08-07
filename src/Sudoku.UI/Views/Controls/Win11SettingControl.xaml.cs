@@ -3,6 +3,7 @@
 /// <summary>
 /// Defines a control that represents a setting that uses Win11 setting style.
 /// </summary>
+[ContentProperty(Name = nameof(SettingActionableElement))]
 public sealed partial class Win11SettingControl : UserControl
 {
 	/// <summary>
