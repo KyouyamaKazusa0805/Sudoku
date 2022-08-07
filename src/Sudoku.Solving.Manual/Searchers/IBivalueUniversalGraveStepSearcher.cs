@@ -20,6 +20,7 @@
 /// <item>Bi-value Universal Grave XZ</item>
 /// </list>
 /// </item>
+/// <item>Bi-value Universal Grave False Candidate Type</item>
 /// </list>
 /// </summary>
 public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher

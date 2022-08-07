@@ -15,6 +15,9 @@ internal sealed record BivalueUniversalGraveFalseCandidateTypeStep(
 ) : BivalueUniversalGraveStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
+	public override decimal Difficulty => base.Difficulty + .1M;
+
+	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveFalseCandidateType;
 
 	/// <inheritdoc/>

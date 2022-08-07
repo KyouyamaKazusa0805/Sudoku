@@ -868,6 +868,7 @@
             <item>Bi-value Universal Grave XZ</item>
             </list>
             </item>
+            <item>Bi-value Universal Grave False Candidate Type</item>
             </list>
             </summary>
         </member>
@@ -6218,6 +6219,9 @@
             <summary>
             Indicates the false candidate that will cause a BUG deadly pattern if it is true.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveFalseCandidateTypeStep.Difficulty">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveFalseCandidateTypeStep.TechniqueCode">
             <inheritdoc/>
