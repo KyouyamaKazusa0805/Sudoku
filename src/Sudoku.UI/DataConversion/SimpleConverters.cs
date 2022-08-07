@@ -193,6 +193,7 @@ internal static class SimpleConverters
 				Key.Back => R["VirtualKey_Backspace"]!,
 				Key.Subtract => R["VirtualKey_Subtract"]!,
 				(Key)187 => R["VirtualKey_187"]!,
+				(Key)189 => R["VirtualKey_189"]!,
 				_ => virtualKey.ToString()
 			},
 
