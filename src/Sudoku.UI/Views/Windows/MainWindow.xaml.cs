@@ -111,7 +111,7 @@ public sealed partial class MainWindow : Window
 			where groupAttribute is not null // Exists the attribute describing the grouping information
 			let groupName = groupAttribute.Name
 			let groupOrderingIndex = groupAttribute.OrderingIndex
-			let gnr = R[$"SettingsPage_GroupItemName_{groupName}"] ?? throw new()
+			let gnr = R[$"SettingsPage_GroupItemName_{groupName}"] ?? throw new TypeLoadException()
 			let gnd = R[$"SettingsPage_GroupItemDescription_{groupName}"]
 			select new PreferenceItemInfo(gnr, gnd, groupName, settingItem, groupOrderingIndex) into info
 			group info by (info.Name, info.RawName, info.Description) into groupedTuple // Raw name is used for grouping
