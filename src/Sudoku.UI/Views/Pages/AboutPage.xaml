@@ -130,6 +130,10 @@
 					Name="{StaticResource AboutPage_SpecialThanks_WinUIEx}" OpenSourceLicense="MIT"
 					Site="https://github.com/dotMorten/WinUIEx" IconPath="/Assets/images/repo-winuiex.png"
 					IsForReference="True" />
+				<m:RepositoryInfo
+					Name="{StaticResource AboutPage_SpecialThanks_DevToys}" OpenSourceLicense="MIT"
+					Site="https://github.com/veler/DevToys" IconPath="/Assets/images/logo-devtoys.png"
+					IsForReference="True" />
 			</ListView>
 		</StackPanel>
 	</ScrollViewer>

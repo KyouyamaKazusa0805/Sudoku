@@ -71,6 +71,9 @@
 		<EmbeddedResource Include="Assets\images\getting-started-3.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\logo-devtoys.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<EmbeddedResource Include="Assets\images\logo.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
