@@ -430,6 +430,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bivalue Universal Grave False Candidate.
+        /// </summary>
+        internal static string BivalueUniversalGraveFalseCandidateType {
+            get {
+                return ResourceManager.GetString("BivalueUniversalGraveFalseCandidateType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bi-value Universal Grave + n.
         /// </summary>
         internal static string BivalueUniversalGravePlusN {
@@ -2658,6 +2667,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_BivalueOddagonType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType3Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: If {FalseCandidateStr} is true, the grid will be reduced to a BUG deadly pattern =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep", resourceCulture);
             }
         }
         

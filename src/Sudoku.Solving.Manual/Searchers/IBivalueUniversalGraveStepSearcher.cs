@@ -49,7 +49,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the puzzle contains multiple solutions or even no solution.
 	/// </exception>
-	public static sealed unsafe bool FindTrueCandidates(
+	protected internal static sealed unsafe bool FindTrueCandidates(
 		scoped in Grid grid, [NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
 		int maximumCellsToCheck = 20)
 	{
@@ -209,5 +209,47 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 	ReturnFalse:
 		trueCandidates = null;
 		return false;
+	}
+
+	/// <summary>
+	/// Checks whether the specified grid forms a BUG deadly pattern.
+	/// This method does not use the cached buffers in type <see cref="FastProperties"/>.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <seealso cref="FastProperties"/>
+	protected internal static sealed bool FormsPattern(scoped in Grid grid)
+	{
+		_ = grid is
+		{
+			BivalueCells: var bivalueCells,
+			EmptyCells: var emptyCells,
+			CandidatesMap: var candidatesMap
+		};
+		if (bivalueCells != emptyCells)
+		{
+			return false;
+		}
+
+		var housesCount = (stackalloc int[3]);
+		foreach (int cell in emptyCells)
+		{
+			foreach (int digit in grid.GetCandidates(cell))
+			{
+				housesCount.Fill(0);
+
+				for (int i = 0; i < 3; i++)
+				{
+					housesCount[i] = (candidatesMap[digit] & HouseMaps[cell.ToHouseIndex((HouseType)i)]).Count;
+				}
+
+				if (housesCount is not [2, 2, 2])
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 }

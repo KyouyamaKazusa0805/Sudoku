@@ -897,6 +897,15 @@
             Throws when the puzzle contains multiple solutions or even no solution.
             </exception>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IBivalueUniversalGraveStepSearcher.FormsPattern(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the specified grid forms a BUG deadly pattern.
+            This method does not use the cached buffers in type <see cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IBowmanBingoStepSearcher">
             <summary>
             Provides with a <b>Bowman's Bingo</b> step searcher.
@@ -6183,6 +6192,37 @@
             <summary>Indicates the cells used as the conjugate house.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="FalseCandidate">
+            Indicates the false candidate that will cause a BUG deadly pattern if it is true.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveFalseCandidateTypeStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="FalseCandidate">
+            Indicates the false candidate that will cause a BUG deadly pattern if it is true.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveFalseCandidateTypeStep.FalseCandidate">
+            <summary>
+            Indicates the false candidate that will cause a BUG deadly pattern if it is true.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveFalseCandidateTypeStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveFalseCandidateTypeStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveMultipleStep">

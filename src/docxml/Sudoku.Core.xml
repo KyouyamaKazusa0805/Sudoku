@@ -5261,6 +5261,11 @@
               Looks up a localized string similar to Bi-value Oddagon Type 3.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.BivalueUniversalGraveFalseCandidateType">
+            <summary>
+              Looks up a localized string similar to Bivalue Universal Grave False Candidate.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.BivalueUniversalGravePlusN">
             <summary>
               Looks up a localized string similar to Bi-value Universal Grave + n.
@@ -6499,6 +6504,11 @@
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_BivalueOddagonType3Step">
             <summary>
               Looks up a localized string similar to {Name}: To avoid the structure {LoopStr} of digits {Digit1Str} and {Digit2Str} error, the only way is to form the subset (digits {DigitsStr} in cells {ExtraCellsStr}) =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep">
+            <summary>
+              Looks up a localized string similar to {Name}: If {FalseCandidateStr} is true, the grid will be reduced to a BUG deadly pattern =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_BivalueUniversalGraveMultipleStep">
@@ -10026,6 +10036,11 @@
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGravePlusN">
             <summary>
             Indicates the bi-value universal grave + n.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGraveFalseCandidateType">
+            <summary>
+            Indicates the bi-value universal grave false candidate type.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.BivalueUniversalGravePlusNForcingChains">

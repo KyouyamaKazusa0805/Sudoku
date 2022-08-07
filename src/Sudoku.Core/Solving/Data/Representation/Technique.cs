@@ -1106,6 +1106,11 @@ public enum Technique : short
 	BivalueUniversalGravePlusN,
 
 	/// <summary>
+	/// Indicates the bi-value universal grave false candidate type.
+	/// </summary>
+	BivalueUniversalGraveFalseCandidateType,
+
+	/// <summary>
 	/// Indicates the bi-value universal grave + n with forcing chains.
 	/// </summary>
 	BivalueUniversalGravePlusNForcingChains,

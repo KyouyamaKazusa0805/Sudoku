@@ -1392,4 +1392,10 @@
   <data name="UniqueRectangleExternalType4" xml:space="preserve">
     <value>Unique Rectangle External Type 4</value>
   </data>
+  <data name="BivalueUniversalGraveFalseCandidateType" xml:space="preserve">
+    <value>Bivalue Universal Grave False Candidate</value>
+  </data>
+  <data name="TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep" xml:space="preserve">
+    <value>{Name}: If {FalseCandidateStr} is true, the grid will be reduced to a BUG deadly pattern =&gt; {ElimStr}</value>
+  </data>
 </root>

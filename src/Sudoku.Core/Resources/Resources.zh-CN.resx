@@ -1684,4 +1684,11 @@
     <value>唯一矩形外部类型 4</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="BivalueUniversalGraveFalseCandidateType" xml:space="preserve">
+    <value>全双值格致死解法・假数</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep" xml:space="preserve">
+    <value>{Name}：如果 {FalseCandidateStr} 为真，则盘面会变为 BUG 致命形式 =&gt; {ElimStr}</value>
+  </data>
 </root>
