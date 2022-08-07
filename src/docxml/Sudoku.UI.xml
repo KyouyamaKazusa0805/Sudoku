@@ -240,6 +240,27 @@
         <member name="M:Sudoku.UI.DataConversion.ValueConverters.Int32ToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.UI.DataConversion.ValueConverters.NullToBooleanConverter">
+            <summary>
+            Converts a null value to a <see cref="T:System.Boolean"/> value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.DataConversion.ValueConverters.NullToBooleanConverter.IsInverted">
+            <summary>
+            Indicates whether the value conversion is reverted.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.DataConversion.ValueConverters.NullToBooleanConverter.EnforceNonWhiteSpaceString">
+            <summary>
+            Indicates whether the converter will handle for whitespaces.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.NullToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.NullToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.DataConversion.ValueConverters.UndoOrRedoStackToIsEnabledConverter">
             <summary>
             Defines a value converter that allows the one-way binding from the undo-stack or redo-stack
@@ -2901,6 +2922,175 @@
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.TitleBar.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Views.Controls.Win11SettingControl">
+            <summary>
+            Defines a control that represents a setting that uses Win11 setting style.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.Win11SettingControl.IsExpandedProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.Win11SettingControl.IsExpanded"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.Win11SettingControl.IsExpanded"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.Win11SettingControl.ExpandableContentProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.Win11SettingControl.ExpandableContent"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.Win11SettingControl.ExpandableContent"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.Win11SettingControl.IconProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.Win11SettingControl.Icon"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.Win11SettingControl.Icon"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.Win11SettingControl.DescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.Win11SettingControl.Description"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.Win11SettingControl.Description"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.Win11SettingControl.TitleProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.Win11SettingControl.Title"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.Win11SettingControl.Title"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingControl.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Controls.Win11SettingControl"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.Win11SettingControl.IsExpanded">
+            <summary>
+            Indicates whether the setting control is expanded.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.Win11SettingControl.Title">
+            <inheritdoc cref="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Title"/>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.Win11SettingControl.Description">
+            <inheritdoc cref="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Description"/>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.Win11SettingControl.ExpandableContent">
+            <summary>
+            Indicates the expandable content.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.Win11SettingControl.Icon">
+            <inheritdoc cref="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Icon"/>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.Win11SettingControl.SettingActionableElement">
+            <inheritdoc cref="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.SettingActionableElement"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingControl.Expander_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the expander is loaded.
+            </summary>
+            <param name="sender">The object that triggers this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingControl.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingControl.UnloadObject(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            UnloadObject(DependencyObject)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingControl.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingControl.DisconnectUnloadedObject(System.Int32)">
+            <summary>
+            DisconnectUnloadedObject(int connectionId)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingControl.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Views.Controls.Win11SettingHeaderControl">
+            <summary>
+            Defines a control that represents a setting header that uses Win11 setting style.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.TitleProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Title"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Title"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.DescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Description"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Description"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.IconProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Icon"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Icon"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Controls.Win11SettingHeaderControl"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Title">
+            <summary>
+            Indicates the title of the control.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Description">
+            <summary>
+            Indicates the description of the control.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Icon">
+            <summary>
+            Indicates the icon.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.MainPanel_SizeChanged(System.Object,Microsoft.UI.Xaml.SizeChangedEventArgs)">
+            <summary>
+            Triggers when the size is changed of the main panel.
+            </summary>
+            <param name="sender">The object that triggers this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.UnloadObject(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            UnloadObject(DependencyObject)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.DisconnectUnloadedObject(System.Int32)">
+            <summary>
+            DisconnectUnloadedObject(int connectionId)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.Win11SettingHeaderControl.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
