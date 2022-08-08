@@ -465,7 +465,7 @@ public sealed partial class SudokuPage : Page
 
 				break;
 			}
-			
+
 
 			void reportUserOutputResult(FileUpdateStatus status, string fileName)
 			{
