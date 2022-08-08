@@ -110,22 +110,6 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private Grid _grid;
 
-#if AUTHOR_FEATURE_CELL_MARKS
-	/// <summary>
-	/// Indicates the cell marks.
-	/// The value won't be <see langword="null"/> if the field <see cref="AllowMarkups"/> is <see langword="true"/>.
-	/// </summary>
-	private CellMark[]? _cellMarks;
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-	/// <summary>
-	/// Indicates the candidate marks.
-	/// The value won't be <see langword="null"/> if the field <see cref="AllowMarkups"/> is <see langword="true"/>.
-	/// </summary>
-	private CandidateMark[]? _candidateMarks;
-#endif
-
 	/// <summary>
 	/// Indicates the house view node shapes.
 	/// </summary>
@@ -136,24 +120,6 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private IDisplayable? _displayableUnit;
 
-
-	/// <summary>
-	/// Indicates whether allow users drawing.
-	/// </summary>
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-	[MemberNotNullWhen(
-		true
-#if AUTHOR_FEATURE_CELL_MARKS
-		,
-		nameof(_cellMarks)
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-		,
-		nameof(_candidateMarks)
-#endif
-	)]
-#endif
-	public required bool AllowMarkups { get; init; }
 
 	/// <summary>
 	/// <para>Indicates whether the grid displays for candidates.</para>
@@ -369,15 +335,6 @@ public sealed class SudokuGrid : DrawingElement
 			// Update the view.
 			UpdateView();
 
-#if AUTHOR_FEATURE_CELL_MARKS
-			// Clears the cell marks.
-			Array.ForEach(CellIndices, ClearCellMark);
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-			// Clears the candidate marks.
-			Array.ForEach(CellIndices, cell => Array.ForEach(Digits, digit => ClearCandidateMark(cell, digit)));
-#endif
-
 			// The operation must clear two stacks, and trigger the handler '_undoRedoStepsUpdatedCallback'.
 			_undoSteps.Clear();
 			_redoSteps.Clear();
@@ -437,18 +394,6 @@ public sealed class SudokuGrid : DrawingElement
 
 			void initializeValues(IDrawingPreference preference)
 			{
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-				if (AllowMarkups)
-				{
-#if AUTHOR_FEATURE_CELL_MARKS
-					_cellMarks = new CellMark[81];
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-					_candidateMarks = new CandidateMark[81];
-#endif
-				}
-#endif
-
 				for (int i = 0; i < 81; i++)
 				{
 					scoped ref var p = ref _cellDigits[i];
@@ -484,29 +429,6 @@ public sealed class SudokuGrid : DrawingElement
 					scoped ref var u = ref _unknownValueViewNodeShapes[i];
 					u = new() { Preference = preference };
 					_gridLayout.Children.Add(u.GetControl().WithGridLayout(row: i / 9, column: i % 9));
-
-#if AUTHOR_FEATURE_CELL_MARKS
-					if (AllowMarkups)
-					{
-						// Initializes for the cell marks.
-						scoped ref var cellMark = ref _cellMarks[i];
-						cellMark = new(preference);
-						foreach (var cellMarkControl in cellMark.GetControls())
-						{
-							_gridLayout.Children.Add(cellMarkControl.WithGridLayout(row: i / 9, column: i % 9));
-						}
-					}
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-					if (AllowMarkups)
-					{
-						// Initializes for the candidate marks.
-						scoped ref var candidateMark = ref _candidateMarks[i];
-						candidateMark = new(preference);
-						_gridLayout.Children.Add(candidateMark.GetControl().WithGridLayout(row: i / 9, column: i % 9));
-					}
-#endif
 
 					// Initializes for the items to render the focusing elements.
 					if (_focusedCell == i)
@@ -763,13 +685,6 @@ public sealed class SudokuGrid : DrawingElement
 		// Update the grid and view.
 		_grid.Reset();
 		UpdateView();
-
-#if AUTHOR_FEATURE_CELL_MARKS
-		Array.ForEach(CellIndices, ClearCellMark);
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-		Array.ForEach(CellIndices, cell => Array.ForEach(Digits, digit => ClearCandidateMark(cell, digit)));
-#endif
 	}
 
 	/// <summary>
@@ -791,13 +706,6 @@ public sealed class SudokuGrid : DrawingElement
 		// Update the grid and view.
 		_grid = grid;
 		UpdateView();
-
-#if AUTHOR_FEATURE_CELL_MARKS
-		Array.ForEach(CellIndices, ClearCellMark);
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-		Array.ForEach(CellIndices, cell => Array.ForEach(Digits, digit => ClearCandidateMark(cell, digit)));
-#endif
 	}
 
 	/// <summary>
@@ -809,18 +717,6 @@ public sealed class SudokuGrid : DrawingElement
 		_isMaskMode = true;
 		Array.ForEach(_cellDigits, static element => element.IsMaskMode = true);
 		Array.ForEach(_candidateDigits, static element => element.IsMaskMode = true);
-
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-		if (AllowMarkups)
-		{
-#if AUTHOR_FEATURE_CELL_MARKS
-			Array.ForEach(_cellMarks, static element => element.ShowMark = false);
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-			Array.ForEach(Digits, i => Array.ForEach(_candidateMarks, element => element.SetShowMark(i, false)));
-#endif
-		}
-#endif
 	}
 
 	/// <summary>
@@ -832,18 +728,6 @@ public sealed class SudokuGrid : DrawingElement
 		_isMaskMode = false;
 		Array.ForEach(_cellDigits, static element => element.IsMaskMode = false);
 		Array.ForEach(_candidateDigits, static element => element.IsMaskMode = false);
-
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-		if (AllowMarkups)
-		{
-#if AUTHOR_FEATURE_CELL_MARKS
-			Array.ForEach(_cellMarks, static element => element.ShowMark = true);
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-			Array.ForEach(Digits, i => Array.ForEach(_candidateMarks, element => element.SetShowMark(i, true)));
-#endif
-		}
-#endif
 	}
 
 	/// <summary>
@@ -1067,70 +951,6 @@ public sealed class SudokuGrid : DrawingElement
 		_houseViewNodeShape.SetIsVisible(houseIndex, false);
 	}
 
-#if AUTHOR_FEATURE_CELL_MARKS
-	/// <summary>
-	/// Sets the mark shape at the specified cell index.
-	/// </summary>
-	/// <param name="cellIndex">The cell index.</param>
-	/// <param name="shapeKind">
-	/// The shape kind you want to assign. If the value is <see cref="ShapeKind.None"/>,
-	/// the method will clear the displaying of the shape. In this case you can also call the method
-	/// <see cref="ClearCellMark(int)"/>. They are same.
-	/// </param>
-	/// <seealso cref="ClearCellMark(int)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetCellMark(int cellIndex, ShapeKind shapeKind)
-	{
-		if (_isMaskMode || !AllowMarkups)
-		{
-			return;
-		}
-
-		_cellMarks[cellIndex].ShapeKind = shapeKind;
-	}
-
-	/// <summary>
-	/// Clears the mark shape at the specified cell index.
-	/// </summary>
-	/// <param name="cellIndex">The cell index.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ClearCellMark(int cellIndex)
-	{
-		if (_isMaskMode)
-		{
-			return;
-		}
-
-		SetCellMark(cellIndex, ShapeKind.None);
-	}
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-	/// <summary>
-	/// Sets the shape at the specified candidate index.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <param name="digit">The digit.</param>
-	/// <param name="shapeKind">The shape kind.</param>
-	public void SetCandidateMark(int cell, int digit, ShapeKind shapeKind)
-	{
-		if (_isMaskMode || !AllowMarkups)
-		{
-			return;
-		}
-
-		_candidateMarks[cell].SetShapeKind(digit, shapeKind);
-	}
-
-	/// <summary>
-	/// Clears the mark at the specified candidate index.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <param name="digit">The digit.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ClearCandidateMark(int cell, int digit) => SetCandidateMark(cell, digit, ShapeKind.None);
-#endif
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
@@ -1143,32 +963,6 @@ public sealed class SudokuGrid : DrawingElement
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override GridLayout GetControl() => _gridLayout;
-
-#if AUTHOR_FEATURE_CELL_MARKS
-	/// <summary>
-	/// Try to get the inner field <c>_cellMarks</c>.
-	/// </summary>
-	/// <returns>The cell marks.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the current sudoku grid doesn't support drawing.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal CellMark[] GetCellMarks()
-		=> _cellMarks ?? throw new InvalidOperationException("The current sudoku grid doesn't support drawing.");
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-	/// <summary>
-	/// Try to get the inner field <c>_candidateMarks</c>.
-	/// </summary>
-	/// <returns>The candidate marks.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the current sudoku grid doesn't support drawing.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal CandidateMark[] GetCandidateMarks()
-		=> _candidateMarks ?? throw new InvalidOperationException("The current sudoku grid doesn't support drawing.");
-#endif
 
 	/// <summary>
 	/// Adds the specified step into the collection.

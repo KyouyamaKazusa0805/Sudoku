@@ -8,7 +8,6 @@
 		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
 		<UseWinUI>true</UseWinUI>
 		<DocumentationFile>..\docxml\Sudoku.UI.Core.xml</DocumentationFile>
-		<DefineConstants>AUTHOR_FEATURE_CELL_MARKS;AUTHOR_FEATURE_CANDIDATE_MARKS</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

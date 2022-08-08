@@ -180,16 +180,6 @@
             Indicates the width of the candidate border lines. The value cannot be negative.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CrossMarkStrokeThickness">
-            <summary>
-            Indicates the thickness of the stroke lines of the cross mark.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CandidateMarkStrokeThickness">
-            <summary>
-            Indicates the candidate mark stroke thickness.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.HouseViewNodeStrokeThickness">
             <summary>
             Indicates the stroke thickness of a house view node.
@@ -325,41 +315,6 @@
             Indicates the unknown value color.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CellRectangleFillColor">
-            <summary>
-            Indicates the author-defined cell rectangle color used for filling.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CellCircleFillColor">
-            <summary>
-            Indicates the author-defined cell circle color used for filling.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CrossMarkStrokeColor">
-            <summary>
-            Indicates the author-defined cross mark stroke color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__StarFillColor">
-            <summary>
-            Indicates the author-defined cell star color used for filling.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__TriangleFillColor">
-            <summary>
-            Indicates the author-defined cell triangle color used for filling.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__DiamondFillColor">
-            <summary>
-            Indicates the author-defined cell diamond color used for filling.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.IDrawingPreference.__CandidateMarkStrokeColor">
-            <summary>
-            Indicates the stroke color of the mark applied to a candidate.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Drawing.IDrawingPreference.AuxiliaryColors">
             <summary>
             Indicates the auxiliary color that marks and describes the extra highlight candidates.
@@ -389,28 +344,6 @@
             </summary>
             <typeparam name="TPreference">The type of the drawing preference.</typeparam>
             <param name="preference">The preference instance.</param>
-        </member>
-        <member name="T:Sudoku.UI.Drawing.Metadata.ShapeAttribute">
-            <summary>
-            Defines a type that marks a field, indicating the field binding with a shape kind.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Metadata.ShapeAttribute.#ctor(Sudoku.UI.Drawing.ShapeKind)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Metadata.ShapeAttribute"/> instance via the specified shape kind.
-            </summary>
-            <param name="kind">The shape kind.</param>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Metadata.ShapeAttribute.Kind">
-            <summary>
-            Indicates the shape kind.
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Drawing.Metadata.NotSupportedCandidateMarkAttribute">
-            <summary>
-            Indicates the specified shape kind is not supported in <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateMark"/>.
-            </summary>
-            <seealso cref="T:Sudoku.UI.Drawing.Shapes.CandidateMark"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
@@ -552,46 +485,6 @@
             <param name="i">The index of the target line.</param>
             <param name="w">The weight of the line type. The value must be 3, 9 or 27.</param>
             <returns>The two points indicating the start and end point of the line.</returns>
-        </member>
-        <member name="T:Sudoku.UI.Drawing.ShapeKind">
-            <summary>
-            Defines a shape kind that is used for a mark-like drawing element.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.None">
-            <summary>
-            Indicates none of shapes will be displayed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.Rectangle">
-            <summary>
-            Indicates the shape kind is a rectangle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.Circle">
-            <summary>
-            Indicates the shape kind is a circle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.CrossMark">
-            <summary>
-            Indicates the shape kind is a cross mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.Star">
-            <summary>
-            Indicates the shape kind is a star.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.Triangle">
-            <summary>
-            Indicates the shape kind is a triangle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.ShapeKind.Diamond">
-            <summary>
-            Indicates the shape kind is a diamond.
-            </summary>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.BlockLine">
             <summary>
@@ -845,118 +738,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.GetControl">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.UI.Drawing.Shapes.CandidateMark">
-            <summary>
-            Defines a candidate mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark.SupportedShapes">
-            <summary>
-            Indicates the supported shapes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._showMarkStates">
-            <summary>
-            Indicates the states of showing marks.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._previousVisibilities">
-            <summary>
-            Indicates the previous visibilities.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._shapeKinds">
-            <summary>
-            Indicates the shape kinds.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._gridLayout">
-            <summary>
-            Indicates the grid layout.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._currentControls">
-            <summary>
-            Indicates the current control.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._pool">
-            <summary>
-            Indicates the list of controls.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateMark._userPreference">
-            <summary>
-            Indicates the user preference instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.#ctor(Sudoku.UI.Drawing.IDrawingPreference)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateMark"/> instance via the specified stroke thickness.
-            </summary>
-            <param name="userPreference">The user preference instance.</param>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateMark.TypeIdentifier">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.SetStrokeThickness(System.Int32,System.Double)">
-            <summary>
-            Sets the stroke thickness value at the specified digit's place.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="strokeThickness">The stroke thickness.</param>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.SetShapeKind(System.Int32,Sudoku.UI.Drawing.ShapeKind)">
-            <summary>
-            Sets the specified shape.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="shapeKind">The shape kind.</param>
-            <exception cref="T:System.NotSupportedException">Throws when the specified shape kind is not supported.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.SetShowMark(System.Int32,System.Boolean)">
-            <summary>
-            Sets the show mark value at the specified digit's place.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="showMark">Indicates whether the candidate mark will be shown.</param>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.HideDigit(System.Int32)">
-            <summary>
-            Hides the circle control at the specified digit's place.
-            </summary>
-            <param name="digit">The digit.</param>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetShowMark(System.Int32)">
-            <summary>
-            Gets the state that describes whether the current digit shows marks.
-            </summary>
-            <param name="digit">The digit.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetStrokeThickness(System.Int32)">
-            <summary>
-            Gets the stroke thickness at the specified digit's place.
-            </summary>
-            <param name="digit">The digit.</param>
-            <returns>The stroke thickness.</returns>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetShapeKind(System.Int32)">
-            <summary>
-            Gets the shape at the specified digit's place.
-            </summary>
-            <param name="digit">The digit.</param>
-            <returns>The shape kind.</returns>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateMark.GetControl">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape">
@@ -1252,134 +1033,6 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.GetControl">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.UI.Drawing.Shapes.CellMark">
-            <summary>
-            Defines a cell mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark.DefaultMargin">
-            <summary>
-            Indicates the default margin.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark.BuiltinShapeDefaultMargin">
-            <summary>
-            Indicates the default margin value that is applied to a built-in control.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlRectangle">
-            <summary>
-            Indicates the inner rectangle.
-            </summary>
-            <remarks><b>
-            The prefix <c>_control</c> is appended on purpose, which is used for
-            checking in method <see cref="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControls"/>.
-            </b></remarks>
-            <seealso cref="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControls"/>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlCircle">
-            <summary>
-            Indicates the inner circle.
-            </summary>
-            <remarks><b>
-            The prefix <c>_control</c> is appended on purpose, which is used for
-            checking in method <see cref="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControls"/>.
-            </b></remarks>
-            <seealso cref="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControls"/>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlCrossMark">
-            <summary>
-            Indicates the inner cross mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlStarMark">
-            <summary>
-            Indicates the inner star mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlTriangleMark">
-            <summary>
-            Indicates the inner triangle mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._controlDiamondMark">
-            <summary>
-            Indicates the inner diamond mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._userPreference">
-            <summary>
-            Indicates the user preference.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._showMark">
-            <summary>
-            Indicates whether the cell mark is shown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._shapeKind">
-            <summary>
-            Indicates the shape kind.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._previousVisibilityState">
-            <summary>
-            Indicates the previous state of the visibility case.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellMark._shape">
-            <summary>
-            Indicates the target shape.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.#ctor(Sudoku.UI.Drawing.IDrawingPreference)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellMark"/> instance via the specified user preference.
-            </summary>
-            <param name="userPreference">The user preference instance.</param>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.#ctor(Sudoku.UI.Drawing.ShapeKind,Sudoku.UI.Drawing.IDrawingPreference)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellMark"/> instance via the specified shape kind.
-            </summary>
-            <param name="shapeKind">The shape kind.</param>
-            <param name="userPreference">The user preference instance.</param>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.ShowMark">
-            <summary>
-            Indicates the visibility of the shape.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.ShapeKind">
-            <summary>
-            Indicates the shape kind.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CellMark.TypeIdentifier">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControl">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControls">
-            <summary>
-            Try to get all controls used.
-            </summary>
-            <returns>All controls.</returns>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellMark.GetControlViaShapeKind(Sudoku.UI.Drawing.ShapeKind)">
-            <summary>
-            Gets the control via the specified shape kind.
-            </summary>
-            <param name="shapeKind">The shape kind.</param>
-            <returns>The target control. If none found, <see langword="null"/>.</returns>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellViewNodeShape">
             <summary>
@@ -2697,18 +2350,6 @@
             Indicates the inner grid.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._cellMarks">
-            <summary>
-            Indicates the cell marks.
-            The value won't be <see langword="null"/> if the field <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.AllowMarkups"/> is <see langword="true"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._candidateMarks">
-            <summary>
-            Indicates the candidate marks.
-            The value won't be <see langword="null"/> if the field <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.AllowMarkups"/> is <see langword="true"/>.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._houseViewNodeShape">
             <summary>
             Indicates the house view node shapes.
@@ -2717,11 +2358,6 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._displayableUnit">
             <summary>
             Indicates the current displayable unit to be displayed.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.AllowMarkups">
-            <summary>
-            Indicates whether allow users drawing.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ShowCandidates">
@@ -2937,39 +2573,6 @@
             </summary>
             <param name="houseIndex">The house index.</param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetCellMark(System.Int32,Sudoku.UI.Drawing.ShapeKind)">
-            <summary>
-            Sets the mark shape at the specified cell index.
-            </summary>
-            <param name="cellIndex">The cell index.</param>
-            <param name="shapeKind">
-            The shape kind you want to assign. If the value is <see cref="F:Sudoku.UI.Drawing.ShapeKind.None"/>,
-            the method will clear the displaying of the shape. In this case you can also call the method
-            <see cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearCellMark(System.Int32)"/>. They are same.
-            </param>
-            <seealso cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearCellMark(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearCellMark(System.Int32)">
-            <summary>
-            Clears the mark shape at the specified cell index.
-            </summary>
-            <param name="cellIndex">The cell index.</param>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetCandidateMark(System.Int32,System.Int32,Sudoku.UI.Drawing.ShapeKind)">
-            <summary>
-            Sets the shape at the specified candidate index.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <param name="shapeKind">The shape kind.</param>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearCandidateMark(System.Int32,System.Int32)">
-            <summary>
-            Clears the mark at the specified candidate index.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
@@ -2978,24 +2581,6 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetControl">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetCellMarks">
-            <summary>
-            Try to get the inner field <c>_cellMarks</c>.
-            </summary>
-            <returns>The cell marks.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the current sudoku grid doesn't support drawing.
-            </exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetCandidateMarks">
-            <summary>
-            Try to get the inner field <c>_candidateMarks</c>.
-            </summary>
-            <returns>The candidate marks.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the current sudoku grid doesn't support drawing.
-            </exception>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.AddStep(Sudoku.Concepts.Grid@)">
             <summary>

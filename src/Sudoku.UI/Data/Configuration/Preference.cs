@@ -1,8 +1,4 @@
-﻿#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-#pragma warning disable IDE1006
-#endif
-
-namespace Sudoku.UI.Data.Configuration;
+﻿namespace Sudoku.UI.Data.Configuration;
 
 /// <summary>
 /// Defines the user preferences in the program.
@@ -172,18 +168,6 @@ public sealed class Preference : IDrawingPreference
 		FontScale = .25
 	};
 
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-	/// <summary>
-	/// Indicates whether the old shape should be covered when diffused.
-	/// </summary>
-	/// <remarks>
-	/// The default value is <see langword="false"/>.
-	/// </remarks>
-	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 9)]
-	public bool __CoverOldShapeWhenDiffused { get; set; } = false;
-#endif
-
 	/// <summary>
 	/// Indicates whether the picture will also be saved when a drawing data file is saved to local.
 	/// </summary>
@@ -191,7 +175,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 10)]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 9)]
 	public bool AlsoSavePictureWhenSaveDrawingData { get; set; } = true;
 
 	/// <summary>
@@ -201,7 +185,7 @@ public sealed class Preference : IDrawingPreference
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Basic, 11)]
+	[PreferenceGroup(PreferenceGroupNames.Basic, 10)]
 	public bool AlwaysShowHomePageWhenOpen { get; set; } = true;
 	#endregion
 
@@ -784,70 +768,6 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[BackgroundPreference]
 	public bool IsFirstMeet { get; set; } = true;
-	#endregion
-
-	#region Deprecated Options
-#if AUTHOR_FEATURE_CELL_MARKS
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>4</c>.
-	/// </remarks>
-	public double __CrossMarkStrokeThickness { get; set; } = 4;
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>2</c>.
-	/// </remarks>
-	public double __CandidateMarkStrokeThickness { get; set; } = 2;
-#endif
-
-#if AUTHOR_FEATURE_CELL_MARKS
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
-	/// </remarks>
-	public Color __CellRectangleFillColor { get; set; } = Colors.Black with { A = 64 };
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
-	/// </remarks>
-	public Color __CellCircleFillColor { get; set; } = Colors.Black with { A = 64 };
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
-	/// </remarks>
-	public Color __CrossMarkStrokeColor { get; set; } = Colors.Black with { A = 64 };
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
-	/// </remarks>
-	public Color __StarFillColor { get; set; } = Colors.Black with { A = 64 };
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
-	/// </remarks>
-	public Color __TriangleFillColor { get; set; } = Colors.Black with { A = 64 };
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#40000000</c> (i.e. <see cref="Colors.Black"/> with alpha 64).
-	/// </remarks>
-	public Color __DiamondFillColor { get; set; } = Colors.Black with { A = 64 };
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <c>#80000000</c> (i.e. <see cref="Colors.Black"/> with alpha 128).
-	/// </remarks>
-	public Color __CandidateMarkStrokeColor { get; set; } = Colors.Black with { A = 128 };
-#endif
 	#endregion
 
 

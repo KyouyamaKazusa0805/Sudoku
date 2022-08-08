@@ -10,12 +10,10 @@ internal sealed class WindowInitialInfo
 	/// </summary>
 	public bool FromPreferenceFile { get; internal set; } = false;
 
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
 	/// <summary>
 	/// Indicates the raw value of the drawing data. The default value is <see langword="null"/>.
 	/// </summary>
 	public string? DrawingDataRawValue { get; internal set; } = null;
-#endif
 
 	/// <summary>
 	/// Indicates the first sudoku grid. The default value is <see langword="null"/>.
@@ -35,9 +33,7 @@ internal sealed class WindowInitialInfo
 		=> this switch
 		{
 			{ FirstGrid: not null } => nameof(SudokuPage),
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
 			{ DrawingDataRawValue: not null } => nameof(SudokuPage),
-#endif
 			{ FromPreferenceFile: true } => nameof(SettingsPage),
 			_ => ((App)Application.Current).UserPreference.AlwaysShowHomePageWhenOpen switch
 			{

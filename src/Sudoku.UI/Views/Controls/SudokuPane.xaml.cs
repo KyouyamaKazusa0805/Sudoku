@@ -292,187 +292,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ClearViews() => GetSudokuGridViewModel().ClearViewNodes();
 
-#if AUTHOR_FEATURE_CELL_MARKS
-	/// <summary>
-	/// Sets the cell mark at the specified cell index.
-	/// </summary>
-	/// <param name="cellIndex">The cell index.</param>
-	/// <param name="shapeKind">The shape kind you want to set.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetCellMark(int cellIndex, ShapeKind shapeKind)
-		=> GetSudokuGridViewModel().SetCellMark(cellIndex, shapeKind);
-
-	/// <summary>
-	/// Expands the cell mark at the specified cell to all cells in the specified house.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <param name="houseType">The house type.</param>
-	public void DiffuseCellMark(int cell, HouseType houseType)
-	{
-		var cellMarks = GetSudokuGridViewModel().GetCellMarks();
-		var shapeKind = cellMarks[cell].ShapeKind;
-		if (shapeKind == ShapeKind.None)
-		{
-			// The cell doesn't contain any cell marks.
-			return;
-		}
-
-		bool coverOldShapeWhenDiffused = ((App)Application.Current).UserPreference.__CoverOldShapeWhenDiffused;
-		foreach (int currentCell in HouseMaps[cell.ToHouseIndex(houseType)])
-		{
-			if (currentCell == cell)
-			{
-				// Skips for the current cell.
-				continue;
-			}
-
-			if (!coverOldShapeWhenDiffused && cellMarks[currentCell].ShapeKind != ShapeKind.None)
-			{
-				// Skips for the cell that is filled by a certain shape.
-				continue;
-			}
-
-			SetCellMark(currentCell, shapeKind);
-		}
-	}
-
-	/// <summary>
-	/// Clears the cell mark at the specified cell index.
-	/// </summary>
-	/// <param name="cell">The cell index.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ClearCellMark(int cell) => SetCellMark(cell, ShapeKind.None);
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-	/// <summary>
-	/// Sets the candidate mark at the specified candidate index.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <param name="digit">The digit.</param>
-	/// <param name="shapeKind">The shape kind.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetCandidateMark(int cell, int digit, ShapeKind shapeKind)
-		=> GetSudokuGridViewModel().SetCandidateMark(cell, digit, shapeKind);
-
-	/// <summary>
-	/// Expands the candidate mark at the specified cell and the digit to all candidates in the specified house.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <param name="digit">The digit.</param>
-	/// <param name="houseType">The house type.</param>
-	public void DiffuseCandidateMark(int cell, int digit, HouseType houseType)
-	{
-		var candidateMarks = GetSudokuGridViewModel().GetCandidateMarks();
-		var shapeKind = candidateMarks[cell].GetShapeKind(digit);
-		if (shapeKind == ShapeKind.None)
-		{
-			// The candidate doesn't contain any candidate marks.
-			return;
-		}
-
-		bool coverOldShapeWhenDiffused = ((App)Application.Current).UserPreference.__CoverOldShapeWhenDiffused;
-		var grid = Grid;
-		foreach (int currentCell in HouseMaps[cell.ToHouseIndex(houseType)])
-		{
-			if (currentCell == cell)
-			{
-				// Skips for the current cell.
-				continue;
-			}
-
-			if (grid.Exists(currentCell, digit) is not true)
-			{
-				// Skips for the cell that doesn't contain the digit.
-				continue;
-			}
-
-			if (!coverOldShapeWhenDiffused && candidateMarks[currentCell].GetShapeKind(digit) != ShapeKind.None)
-			{
-				// Skips for the candidate that is filled by a certain shape.
-				continue;
-			}
-
-			SetCandidateMark(currentCell, digit, shapeKind);
-		}
-	}
-
-	/// <summary>
-	/// Clears the candidate mark at the specified candidate index.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <param name="digit">The digit.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ClearCandidateMark(int cell, int digit) => SetCandidateMark(cell, digit, ShapeKind.None);
-#endif
-
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-	/// <summary>
-	/// Try to get drawing data.
-	/// </summary>
-	/// <returns>The drawing data.</returns>
-	public string GetDrawingData()
-	{
-		var sudokuGrid = GetSudokuGridViewModel();
-
-#if AUTHOR_FEATURE_CELL_MARKS
-		var cellMarks = sudokuGrid.GetCellMarks();
-		var listOfCellMarks = new List<CellMarkInfo>(81);
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-		var candidateMarks = sudokuGrid.GetCandidateMarks();
-		var listOfCandidateMarks = new List<CandidateMarkInfo>(729);
-
-		var up = ((App)Application.Current).UserPreference;
-#endif
-		for (int cellIndex = 0; cellIndex < 81; cellIndex++)
-		{
-#if AUTHOR_FEATURE_CELL_MARKS
-			var cellMark = cellMarks[cellIndex];
-			var cellShapeKind = cellMark.ShapeKind;
-			if (cellShapeKind != ShapeKind.None)
-			{
-				listOfCellMarks.Add(new() { CellIndex = cellIndex, ShapeKindRawValue = (int)cellShapeKind });
-			}
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-			var candidateMark = candidateMarks[cellIndex];
-			for (int digit = 0; digit < 9; digit++)
-			{
-				var candidateShapeKind = candidateMark.GetShapeKind(digit);
-				if (candidateShapeKind != ShapeKind.None)
-				{
-					listOfCandidateMarks.Add(
-						new()
-						{
-							CellIndex = cellIndex,
-							DigitIndex = digit,
-							ShapeKindRawValue = (int)candidateShapeKind
-						}
-					);
-				}
-			}
-#endif
-		}
-
-		return JsonSerializer.Serialize(
-			new DrawingData
-			{
-#if AUTHOR_FEATURE_CELL_MARKS
-				CellData = listOfCellMarks,
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-				CandidateData = listOfCandidateMarks,
-#endif
-				ShowCandidates = sudokuGrid.UserShowCandidates,
-				GridRawValue = Grid.ToString("#")
-			},
-			CommonSerializerOptions.CamelCasing
-		);
-	}
-#endif
-
 	/// <summary>
 	/// Gets the view index.
 	/// </summary>
@@ -524,20 +343,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				int digit = key - Key.Number0 - 1;
 				switch (pressedData)
 				{
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-					case (true, true, false): // Control + Shift.
-					{
-						d(_candidate, key == Key.Back ? 0 : key - Key.Number0);
-						break;
-					}
-#endif
-#if AUTHOR_FEATURE_CELL_MARKS
-					case (true, false, false): // Control.
-					{
-						c(_cell, key == Key.Back ? -1 : digit);
-						break;
-					}
-#endif
 					case (false, true, false) when key != Key.Back: // Shift.
 					{
 						EliminateDigit(_cell, digit);
@@ -557,20 +362,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				int digit = key - Key.NumberPad0 - 1;
 				switch (pressedData)
 				{
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-					case (true, true, false): // Control + Shift.
-					{
-						d(_candidate, key == Key.Back ? 0 : key - Key.NumberPad0);
-						break;
-					}
-#endif
-#if AUTHOR_FEATURE_CELL_MARKS
-					case (true, false, false): // Control.
-					{
-						c(_cell, key == Key.Back ? -1 : digit);
-						break;
-					}
-#endif
 					case (false, true, false) when key != Key.Back: // Shift.
 					{
 						EliminateDigit(_cell, digit);
@@ -585,34 +376,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-			case var key and (Key.Up or Key.Down or Key.Left or Key.Right):
-			{
-				switch (pressedData)
-				{
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-					case (true, true, false): // Control + Shift.
-					{
-						var houseType = key is Key.Up or Key.Down ? HouseType.Column : HouseType.Row;
-						DiffuseCandidateMark(_candidate / 9, _candidate % 9, houseType);
-
-						break;
-					}
-#endif
-#if AUTHOR_FEATURE_CELL_MARKS
-					case (true, false, false): // Control.
-					{
-						var houseType = key is Key.Up or Key.Down ? HouseType.Column : HouseType.Row;
-						DiffuseCellMark(_cell, houseType);
-
-						break;
-					}
-#endif
-				}
-
-				break;
-			}
-#endif
 			default: // Other cases.
 			{
 				// Here we must set the value to 'false', in order to process keyboard accelerators.
@@ -620,27 +383,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				e.Handled = false;
 				return;
 			}
-
-
-#if AUTHOR_FEATURE_CELL_MARKS
-			void c(int cell, int shapeKindIndex) => SetCellMark(cell, (ShapeKind)(byte)(shapeKindIndex + 1));
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-			void d(int candidate, int shapeKindIndex)
-			{
-				if (shapeKindIndex >= CandidateMark.SupportedShapes.Length)
-				{
-					return;
-				}
-
-				if (Grid.Exists(candidate) is not true)
-				{
-					return;
-				}
-
-				SetCandidateMark(candidate / 9, candidate % 9, CandidateMark.SupportedShapes[shapeKindIndex]);
-			}
-#endif
 		}
 	}
 
@@ -689,65 +431,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-			case { DrawingDataRawValue: { } rawDataValue } initialInfo:
-			{
-				// Handles the raw data value.
-				if (
-					JsonSerializer.Deserialize<DrawingData>(rawDataValue, CommonSerializerOptions.CamelCasing) is not (
-						var gridRawValue,
-						var showCandidates
-#if AUTHOR_FEATURE_CELL_MARKS
-						,
-						var cellData
-#endif
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-						,
-						var candidateData
-#endif
-					)
-				)
-				{
-					break;
-				}
-
-				if (!Grid.TryParse(gridRawValue, out var grid))
-				{
-					break;
-				}
-
-				var a = ShowCandidates;
-				var b = HideCandidates;
-
-				Grid = grid;
-				(showCandidates ? a : b)();
-
-#if AUTHOR_FEATURE_CELL_MARKS
-				if (cellData.Count != 0)
-				{
-					foreach (var (cellIndex, shapeKindRaw) in cellData)
-					{
-						SetCellMark(cellIndex, (ShapeKind)(byte)shapeKindRaw);
-					}
-				}
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-				if (candidateData.Count != 0)
-				{
-					foreach (var (cellIndex, digitIndex, shapeKindRaw) in candidateData)
-					{
-						SetCandidateMark(cellIndex, digitIndex, (ShapeKind)(byte)shapeKindRaw);
-					}
-				}
-#endif
-
-				// Remove the value to avoid re-triggering.
-				initialInfo.DrawingDataRawValue = null;
-
-				break;
-			}
-#endif
 		}
 	}
 
@@ -889,7 +572,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		=> _drawingElements.Add(
 			new SudokuGrid
 			{
-				AllowMarkups = true,
 				Preference = up,
 				PaneSize = Size,
 				OutsideOffset = OutsideOffset,

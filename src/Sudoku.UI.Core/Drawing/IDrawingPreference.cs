@@ -1,8 +1,4 @@
-﻿#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-#pragma warning disable IDE1006
-#endif
-
-namespace Sudoku.UI.Drawing;
+﻿namespace Sudoku.UI.Drawing;
 
 /// <summary>
 /// Defines the drawing-related preferences in the program.
@@ -58,20 +54,6 @@ public interface IDrawingPreference
 	/// Indicates the width of the candidate border lines. The value cannot be negative.
 	/// </summary>
 	public abstract double CandidateBorderWidth { get; set; }
-
-#if AUTHOR_FEATURE_CELL_MARKS
-	/// <summary>
-	/// Indicates the thickness of the stroke lines of the cross mark.
-	/// </summary>
-	public abstract double __CrossMarkStrokeThickness { get; set; }
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-	/// <summary>
-	/// Indicates the candidate mark stroke thickness.
-	/// </summary>
-	public abstract double __CandidateMarkStrokeThickness { get; set; }
-#endif
 
 	/// <summary>
 	/// Indicates the stroke thickness of a house view node.
@@ -207,45 +189,6 @@ public interface IDrawingPreference
 	/// Indicates the unknown value color.
 	/// </summary>
 	public abstract Color UnknownValueColor { get; set; }
-
-#if AUTHOR_FEATURE_CELL_MARKS
-	/// <summary>
-	/// Indicates the author-defined cell rectangle color used for filling.
-	/// </summary>
-	public abstract Color __CellRectangleFillColor { get; set; }
-
-	/// <summary>
-	/// Indicates the author-defined cell circle color used for filling.
-	/// </summary>
-	public abstract Color __CellCircleFillColor { get; set; }
-
-	/// <summary>
-	/// Indicates the author-defined cross mark stroke color.
-	/// </summary>
-	public abstract Color __CrossMarkStrokeColor { get; set; }
-
-	/// <summary>
-	/// Indicates the author-defined cell star color used for filling.
-	/// </summary>
-	public abstract Color __StarFillColor { get; set; }
-
-	/// <summary>
-	/// Indicates the author-defined cell triangle color used for filling.
-	/// </summary>
-	public abstract Color __TriangleFillColor { get; set; }
-
-	/// <summary>
-	/// Indicates the author-defined cell diamond color used for filling.
-	/// </summary>
-	public abstract Color __DiamondFillColor { get; set; }
-#endif
-
-#if AUTHOR_FEATURE_CANDIDATE_MARKS
-	/// <summary>
-	/// Indicates the stroke color of the mark applied to a candidate.
-	/// </summary>
-	public abstract Color __CandidateMarkStrokeColor { get; set; }
-#endif
 
 	/// <summary>
 	/// Indicates the auxiliary color that marks and describes the extra highlight candidates.

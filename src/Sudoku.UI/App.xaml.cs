@@ -1,6 +1,6 @@
-﻿using Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo;
+﻿namespace Sudoku.UI;
 
-namespace Sudoku.UI;
+using Sudoku_UI_Core_XamlTypeInfo;
 
 /// <summary>
 /// Provides application-specific behavior to supplement the default <see cref="Application"/> class.
@@ -54,32 +54,24 @@ public partial class App : Application
 
 		// Handle and assign the initial value, to control the initial page information.
 		(
-			(Action<WindowInitialInfo, WindowRuntimeInfo>?)(
-				AppInstance.GetCurrent().GetActivatedEventArgs() switch
+			AppInstance.GetCurrent().GetActivatedEventArgs() switch
+			{
 				{
-					{
-						Kind: ExtendedActivationKind.File,
-						Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: var fileType } file, ..] }
-					} => fileType switch
-					{
-						CommonFileExtensions.Sudoku => async (i, _) => i.FirstGrid = Grid.Parse(await readAsync(file)),
-						CommonFileExtensions.PreferenceBackup => async (i, r) => await backPreferenceFiles(i, r, file),
-#if AUTHOR_FEATURE_CELL_MARKS || AUTHOR_FEATURE_CANDIDATE_MARKS
-						CommonFileExtensions.DrawingData => async (i, _) => i.DrawingDataRawValue = await readAsync(file),
-#endif
-						_ => null
-					},
+					Kind: ExtendedActivationKind.File,
+					Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: var fileType } file, ..] }
+				} => fileType switch
+				{
+					CommonFileExtensions.Sudoku => async (i, _) => i.FirstGrid = Grid.Parse(await readAsync(file)),
+					CommonFileExtensions.PreferenceBackup => async (i, r) => await backPreferenceFiles(i, r, file),
+					CommonFileExtensions.DrawingData => async (i, _) => i.DrawingDataRawValue = await readAsync(file),
 					_ => null
-				}
-			)
+				},
+				_ => default(Action<WindowInitialInfo, WindowRuntimeInfo>?)
+			}
 		)?.Invoke(InitialInfo, RuntimeInfo);
 
-#if true
 		var splashScreen = new MySplashScreen(typeof(MainWindow));
 		splashScreen.Completed += (_, e) => RuntimeInfo.MainWindow = (MainWindow)e!;
-#else
-		(RuntimeInfo.MainWindow = new()).Activate();
-#endif
 
 
 		static string? valueSelector(string key)

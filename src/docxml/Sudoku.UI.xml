@@ -527,14 +527,6 @@
             The default value is <c>{ FontName = "Cascadia Mono", FontScale = .25 }</c> in debugging mode.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CoverOldShapeWhenDiffused">
-            <summary>
-            Indicates whether the old shape should be covered when diffused.
-            </summary>
-            <remarks>
-            The default value is <see langword="false"/>.
-            </remarks>
-        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.AlsoSavePictureWhenSaveDrawingData">
             <summary>
             Indicates whether the picture will also be saved when a drawing data file is saved to local.
@@ -822,60 +814,6 @@
             </summary>
             <remarks>
             The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CrossMarkStrokeThickness">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>4</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CandidateMarkStrokeThickness">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>2</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CellRectangleFillColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CellCircleFillColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CrossMarkStrokeColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__StarFillColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__TriangleFillColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__DiamondFillColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#40000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 64).
-            </remarks>
-        </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.__CandidateMarkStrokeColor">
-            <inheritdoc/>
-            <remarks>
-            The default value is <c>#80000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/> with alpha 128).
             </remarks>
         </member>
         <member name="M:Sudoku.UI.Data.Configuration.Preference.CoverPreferenceBy(Sudoku.UI.Data.Configuration.Preference)">
@@ -1233,123 +1171,6 @@
             </param>
             <returns>The result list of <see cref="T:Sudoku.UI.Models.AnalysisResultRow"/>-typed elements.</returns>
         </member>
-        <member name="T:Sudoku.UI.Models.CandidateMarkInfo">
-            <summary>
-            Indicates the candidate mark info that describes a candidate.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.CandidateMarkInfo.CellIndex">
-            <summary>
-            Indicates the cell index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.CandidateMarkInfo.DigitIndex">
-            <summary>
-            Indicates the digit index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.CandidateMarkInfo.ShapeKindRawValue">
-            <summary>
-            Indicates the shape kind raw value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Models.CandidateMarkInfo.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
-						</code>
-						The following code will be legal.
-						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
-
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
-
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="T:Sudoku.UI.Models.CellMarkInfo">
-            <summary>
-            Indicates the cell mark info that describes a single cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.CellMarkInfo.CellIndex">
-            <summary>
-            Indicates the cell index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.CellMarkInfo.ShapeKindRawValue">
-            <summary>
-            Indicates the shape kind raw value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Models.CellMarkInfo.Deconstruct(System.Int32@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
-						</code>
-						The following code will be legal.
-						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
-
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
-
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
         <member name="T:Sudoku.UI.Models.ColorSelectorGroupInfo">
             <summary>
             Defines a pair of info that describes for a color selector group.
@@ -1377,72 +1198,6 @@
         </member>
         <member name="E:Sudoku.UI.Models.ColorSelectorGroupInfo.PropertyChanged">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.UI.Models.DrawingData">
-            <summary>
-            Indicates the serializable drawing data of a complete sudoku grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.DrawingData.GridRawValue">
-            <summary>
-            Indicates the grid raw value. The format is <c>"#"</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.DrawingData.ShowCandidates">
-            <summary>
-            Indicates whether the sudoku grid currently displays for candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.DrawingData.CellData">
-            <summary>
-            Indicates the full cell data.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.DrawingData.CandidateData">
-            <summary>
-            Indicates the full candidate data.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Models.DrawingData.Deconstruct(System.String@,System.Boolean@,System.Collections.Generic.List{Sudoku.UI.Models.CellMarkInfo}@,System.Collections.Generic.List{Sudoku.UI.Models.CandidateMarkInfo}@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
-						</code>
-						The following code will be legal.
-						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
-
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
-
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
-						</code>
-					</para>
-				</remarks>
-			</target>
         </member>
         <member name="T:Sudoku.UI.Models.GettingStartedItem">
             <summary>
@@ -2639,55 +2394,6 @@
             <summary>
             Clear all view nodes.
             </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetCellMark(System.Int32,Sudoku.UI.Drawing.ShapeKind)">
-            <summary>
-            Sets the cell mark at the specified cell index.
-            </summary>
-            <param name="cellIndex">The cell index.</param>
-            <param name="shapeKind">The shape kind you want to set.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.DiffuseCellMark(System.Int32,Sudoku.Concepts.HouseType)">
-            <summary>
-            Expands the cell mark at the specified cell to all cells in the specified house.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="houseType">The house type.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ClearCellMark(System.Int32)">
-            <summary>
-            Clears the cell mark at the specified cell index.
-            </summary>
-            <param name="cell">The cell index.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetCandidateMark(System.Int32,System.Int32,Sudoku.UI.Drawing.ShapeKind)">
-            <summary>
-            Sets the candidate mark at the specified candidate index.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <param name="shapeKind">The shape kind.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.DiffuseCandidateMark(System.Int32,System.Int32,Sudoku.Concepts.HouseType)">
-            <summary>
-            Expands the candidate mark at the specified cell and the digit to all candidates in the specified house.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <param name="houseType">The house type.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ClearCandidateMark(System.Int32,System.Int32)">
-            <summary>
-            Clears the candidate mark at the specified candidate index.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetDrawingData">
-            <summary>
-            Try to get drawing data.
-            </summary>
-            <returns>The drawing data.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetViewIndex">
             <summary>
