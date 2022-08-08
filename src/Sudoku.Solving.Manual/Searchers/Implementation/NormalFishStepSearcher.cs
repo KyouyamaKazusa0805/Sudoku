@@ -252,15 +252,14 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 		{
 			foreach (int cell in HouseMaps[baseSet])
 			{
-				switch (grid.Exists(cell, digit))
+				switch (CandidatesMap[digit].Contains(cell))
 				{
 					case true when fins.Contains(cell):
 					{
 						cellOffsets.Add(new(DisplayColorKind.Auxiliary1, cell));
 						break;
 					}
-					case false:
-					case null:
+					default:
 					{
 						bool flag = false;
 						foreach (int c in ValuesMap[digit])

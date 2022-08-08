@@ -50,7 +50,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 					}
 					case 1:
 					{
-						if (CheckType1(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, onlyFindOne) is { } step1)
+						if (CheckType1(resultAccumulator, d1, d2, currentLoop, links, extraCellsMap, onlyFindOne) is { } step1)
 						{
 							return step1;
 						}
@@ -109,7 +109,6 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// Check type 1.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
-	/// <param name="grid">The grid.</param>
 	/// <param name="d1">The digit 1.</param>
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="loop">The loop.</param>
@@ -118,16 +117,16 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
 	private IStep? CheckType1(
-		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
-		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, bool onlyFindOne)
+		ICollection<UniqueLoopStep> accumulator, int d1, int d2, scoped in Cells loop, IEnumerable<LinkViewNode> links,
+		scoped in Cells extraCellsMap, bool onlyFindOne)
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>(2);
-		if (grid.Exists(extraCell, d1) is true)
+		if (CandidatesMap[d1].Contains(extraCell))
 		{
 			conclusions.Add(new(ConclusionType.Elimination, extraCell, d1));
 		}
-		if (grid.Exists(extraCell, d2) is true)
+		if (CandidatesMap[d2].Contains(extraCell))
 		{
 			conclusions.Add(new(ConclusionType.Elimination, extraCell, d2));
 		}
@@ -386,11 +385,11 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 
 				int first = extraCellsMap[0], second = extraCellsMap[1];
 				var conclusions = new List<Conclusion>(2);
-				if (grid.Exists(first, otherDigit) is true)
+				if (CandidatesMap[otherDigit].Contains(first))
 				{
 					conclusions.Add(new(ConclusionType.Elimination, first, otherDigit));
 				}
-				if (grid.Exists(second, otherDigit) is true)
+				if (CandidatesMap[otherDigit].Contains(second))
 				{
 					conclusions.Add(new(ConclusionType.Elimination, second, otherDigit));
 				}

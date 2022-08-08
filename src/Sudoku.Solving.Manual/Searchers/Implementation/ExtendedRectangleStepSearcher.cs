@@ -354,7 +354,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 				var conclusions = new List<Conclusion>();
 				foreach (int digit in normalDigits)
 				{
-					if (grid.Exists(extraCell, digit) is true)
+					if (CandidatesMap[digit].Contains(extraCell))
 					{
 						conclusions.Add(new(ConclusionType.Elimination, extraCell, digit));
 					}

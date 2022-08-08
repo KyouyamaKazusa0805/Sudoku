@@ -68,7 +68,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 				{
 					if (SearchExtendedTypes)
 					{
-						if (CheckMultiple(accumulator, grid, trueCandidates, onlyFindOne) is { } typeMultipleStep)
+						if (CheckMultiple(accumulator, trueCandidates, onlyFindOne) is { } typeMultipleStep)
 						{
 							return typeMultipleStep;
 						}
@@ -82,7 +82,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 					{
 						return type3Step;
 					}
-					if (CheckType4(accumulator, grid, trueCandidates, onlyFindOne) is { } type4Step)
+					if (CheckType4(accumulator, trueCandidates, onlyFindOne) is { } type4Step)
 					{
 						return type4Step;
 					}
@@ -286,8 +286,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckType4(
-		ICollection<IStep> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	private IStep? CheckType4(ICollection<IStep> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		// Conjugate pairs should lie in two cells.
 		var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
@@ -361,7 +360,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 					// Bitwise not.
 					foreach (int d in digitMask = (short)(~digitMask & Grid.MaxCandidatesMask))
 					{
-						if (conjuagtePairDigit == d || grid.Exists(cell, d) is not true)
+						if (conjuagtePairDigit == d || !CandidatesMap[d].Contains(cell))
 						{
 							continue;
 						}
@@ -415,8 +414,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckMultiple(
-		ICollection<IStep> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	private IStep? CheckMultiple(ICollection<IStep> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		if (trueCandidates.Count > 18)
 		{
@@ -433,7 +431,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		var conclusions = new List<Conclusion>(mapCount);
 		foreach (int candidate in map)
 		{
-			if (grid.Exists(candidate / 9, candidate % 9) is true)
+			if (CandidatesMap[candidate % 9].Contains(candidate / 9))
 			{
 				conclusions.Add(new(ConclusionType.Elimination, candidate));
 			}
@@ -490,7 +488,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			int anotherDigit = condition ? d2 : d1;
 			foreach (int peer in !(Cells.Empty + cell + anotherCell))
 			{
-				if (grid.Exists(peer, anotherDigit) is true)
+				if (CandidatesMap[anotherDigit].Contains(peer))
 				{
 					conclusions.Add(new(ConclusionType.Elimination, peer, anotherDigit));
 				}

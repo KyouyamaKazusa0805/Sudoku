@@ -44,7 +44,7 @@ internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangl
 						continue;
 					}
 
-					if (grid.Exists(elimCell, digit) is not true)
+					if (!CandidatesMap[digit].Contains(elimCell))
 					{
 						continue;
 					}

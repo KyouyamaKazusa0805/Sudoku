@@ -521,7 +521,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		{
 			foreach (int digit in pairDigits)
 			{
-				if (grid.Exists(cell, digit) is true)
+				if (CandidatesMap[digit].Contains(cell))
 				{
 					candidates.Add(cell * 9 + digit);
 				}
@@ -536,7 +536,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		var conclusions = new List<Conclusion>();
 		foreach (int candidate in elimMap)
 		{
-			if (grid.Exists(candidate / 9, candidate % 9) is true)
+			if (CandidatesMap[candidate % 9].Contains(candidate % 9))
 			{
 				conclusions.Add(new(ConclusionType.Elimination, candidate));
 			}

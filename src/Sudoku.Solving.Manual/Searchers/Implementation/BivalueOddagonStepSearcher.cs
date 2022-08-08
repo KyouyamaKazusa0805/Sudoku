@@ -121,11 +121,11 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>(2);
-		if (grid.Exists(extraCell, d1) is true)
+		if (CandidatesMap[d1].Contains(extraCell))
 		{
 			conclusions.Add(new(ConclusionType.Elimination, extraCell, d1));
 		}
-		if (grid.Exists(extraCell, d2) is true)
+		if (CandidatesMap[d2].Contains(extraCell))
 		{
 			conclusions.Add(new(ConclusionType.Elimination, extraCell, d2));
 		}

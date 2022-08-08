@@ -2109,12 +2109,11 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.LinkViewNode},Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.LinkViewNode},Sudoku.Concepts.Cells@,System.Boolean)">
             <summary>
             Check type 1.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">The loop.</param>

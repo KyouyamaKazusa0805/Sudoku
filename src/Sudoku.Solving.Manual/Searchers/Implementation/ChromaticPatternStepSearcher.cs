@@ -223,7 +223,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 				int anotherDigit = condition ? d1 : d2;
 				foreach (int peer in !(Cells.Empty + extraCell + anotherCell))
 				{
-					if (grid.Exists(peer, anotherDigit) is true)
+					if (CandidatesMap[anotherDigit].Contains(peer))
 					{
 						conclusions.Add(new(ConclusionType.Elimination, peer, anotherDigit));
 					}

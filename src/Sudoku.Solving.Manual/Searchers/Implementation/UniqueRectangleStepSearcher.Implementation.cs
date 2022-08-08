@@ -36,8 +36,8 @@ unsafe partial class UniqueRectangleStepSearcher
 		}
 
 		// Type 1 found. Now check elimination.
-		bool d1Exists = grid.Exists(cornerCell, d1) is true;
-		bool d2Exists = grid.Exists(cornerCell, d2) is true;
+		bool d1Exists = CandidatesMap[d1].Contains(cornerCell);
+		bool d2Exists = CandidatesMap[d2].Contains(cornerCell);
 		if (!d1Exists && d2Exists)
 		{
 			return;
@@ -397,11 +397,11 @@ unsafe partial class UniqueRectangleStepSearcher
 
 					if (otherCellsMap.Contains(cell))
 					{
-						if (d1 != elimDigit && grid.Exists(cell, d1) is true)
+						if (d1 != elimDigit && CandidatesMap[d1].Contains(cell))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + d1));
 						}
-						if (d2 != elimDigit && grid.Exists(cell, d2) is true)
+						if (d2 != elimDigit && CandidatesMap[d2].Contains(cell))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + d2));
 						}
@@ -623,11 +623,11 @@ unsafe partial class UniqueRectangleStepSearcher
 			{
 				if (otherCellsMap.Contains(cell))
 				{
-					if (d1 != digit && grid.Exists(cell, d1) is true)
+					if (d1 != digit && CandidatesMap[d1].Contains(cell))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
 					}
-					if (d2 != digit && grid.Exists(cell, d2) is true)
+					if (d2 != digit && CandidatesMap[d2].Contains(cell))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
 					}
@@ -733,7 +733,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			// Hidden UR found. Now check eliminations.
 			int elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
-			if (grid.Exists(abzCell, elimDigit) is not true)
+			if (!CandidatesMap[elimDigit].Contains(abzCell))
 			{
 				continue;
 			}
@@ -748,7 +748,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 				if (otherCellsMap.Contains(cell))
 				{
-					if ((cell != abzCell || d1 != elimDigit) && grid.Exists(cell, d1) is true)
+					if ((cell != abzCell || d1 != elimDigit) && CandidatesMap[d1].Contains(cell))
 					{
 						candidateOffsets.Add(
 							new(
@@ -757,7 +757,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							)
 						);
 					}
-					if ((cell != abzCell || d2 != elimDigit) && grid.Exists(cell, d2) is true)
+					if ((cell != abzCell || d2 != elimDigit) && CandidatesMap[d2].Contains(cell))
 					{
 						candidateOffsets.Add(
 							new(
@@ -871,11 +871,11 @@ unsafe partial class UniqueRectangleStepSearcher
 			var conclusions = new List<Conclusion>(10);
 			foreach (int cell in elimMap)
 			{
-				if (grid.Exists(cell, x) is true)
+				if (CandidatesMap[x].Contains(cell))
 				{
 					conclusions.Add(new(ConclusionType.Elimination, cell, x));
 				}
-				if (grid.Exists(cell, y) is true)
+				if (CandidatesMap[y].Contains(cell))
 				{
 					conclusions.Add(new(ConclusionType.Elimination, cell, y));
 				}
@@ -1003,14 +1003,14 @@ unsafe partial class UniqueRectangleStepSearcher
 						}
 
 						int elimCell = (otherCellsMap - otherCell)[0];
-						if (grid.Exists(otherCell, digit) is not true)
+						if (!CandidatesMap[digit].Contains(otherCell))
 						{
 							continue;
 						}
 
 						int elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
 						var conclusions = new List<Conclusion>(4);
-						if (grid.Exists(elimCell, elimDigit) is true)
+						if (CandidatesMap[elimDigit].Contains(elimCell))
 						{
 							conclusions.Add(new(ConclusionType.Elimination, elimCell, elimDigit));
 						}
@@ -1047,7 +1047,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							}
 							else if (urCell == otherCell || urCell == elimCell)
 							{
-								if (grid.Exists(urCell, d1) is true)
+								if (CandidatesMap[d1].Contains(urCell))
 								{
 									if (urCell != elimCell || d1 != elimDigit)
 									{
@@ -1063,7 +1063,7 @@ unsafe partial class UniqueRectangleStepSearcher
 										);
 									}
 								}
-								if (grid.Exists(urCell, d2) is true)
+								if (CandidatesMap[d2].Contains(urCell))
 								{
 									if (urCell != elimCell || d2 != elimDigit)
 									{
@@ -1175,13 +1175,13 @@ unsafe partial class UniqueRectangleStepSearcher
 						}
 
 						int elimCell = (otherCellsMap - otherCell)[0];
-						if (grid.Exists(otherCell, digit) is not true)
+						if (!CandidatesMap[digit].Contains(otherCell))
 						{
 							continue;
 						}
 
 						var conclusions = new List<Conclusion>(4);
-						if (grid.Exists(elimCell, digit) is true)
+						if (CandidatesMap[digit].Contains(elimCell))
 						{
 							conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
 						}
@@ -1227,7 +1227,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							}
 							else if (urCell == otherCell || urCell == elimCell)
 							{
-								if (grid.Exists(urCell, d1) is true && (urCell != elimCell || d1 != digit))
+								if (CandidatesMap[d1].Contains(urCell) && (urCell != elimCell || d1 != digit))
 								{
 									candidateOffsets.Add(
 										new(
@@ -1238,7 +1238,7 @@ unsafe partial class UniqueRectangleStepSearcher
 										)
 									);
 								}
-								if (grid.Exists(urCell, d2) is true && (urCell != elimCell || d2 != digit))
+								if (CandidatesMap[d2].Contains(urCell) && (urCell != elimCell || d2 != digit))
 								{
 									candidateOffsets.Add(
 										new(
@@ -1355,11 +1355,11 @@ unsafe partial class UniqueRectangleStepSearcher
 			var conclusions = new List<Conclusion>(10);
 			foreach (int cell in inter & PeerMaps[possibleXyCell])
 			{
-				if (grid.Exists(cell, x) is true)
+				if (CandidatesMap[x].Contains(cell))
 				{
 					conclusions.Add(new(ConclusionType.Elimination, cell, x));
 				}
-				if (grid.Exists(cell, y) is true)
+				if (CandidatesMap[y].Contains(cell))
 				{
 					conclusions.Add(new(ConclusionType.Elimination, cell, y));
 				}
@@ -1473,11 +1473,11 @@ unsafe partial class UniqueRectangleStepSearcher
 			}
 
 			var conclusions = new List<Conclusion>(2);
-			if (grid.Exists(abxCell, a) is true)
+			if (CandidatesMap[a].Contains(abxCell))
 			{
 				conclusions.Add(new(ConclusionType.Elimination, abxCell, a));
 			}
-			if (grid.Exists(abyCell, b) is true)
+			if (CandidatesMap[b].Contains(abyCell))
 			{
 				conclusions.Add(new(ConclusionType.Elimination, abyCell, b));
 			}
@@ -1609,7 +1609,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				}
 
 				// Step 3: Check eliminations.
-				if (grid.Exists(end, a) is not true)
+				if (!CandidatesMap[a].Contains(end))
 				{
 					continue;
 				}
@@ -1625,7 +1625,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 				{
 					int d = digits[digitIndex];
-					if (grid.Exists(abzCell, d) is true)
+					if (CandidatesMap[d].Contains(abzCell))
 					{
 						candidateOffsets.Add(
 							new(d == b ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, abzCell * 9 + d)
@@ -1735,7 +1735,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				if (grid.Exists(begin, a) is not true)
+				if (!CandidatesMap[a].Contains(begin))
 				{
 					continue;
 				}
@@ -1861,7 +1861,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				if (grid.Exists(abzCell, b) is not true)
+				if (!CandidatesMap[b].Contains(abzCell))
 				{
 					continue;
 				}
@@ -1996,11 +1996,11 @@ unsafe partial class UniqueRectangleStepSearcher
 				}
 
 				var conclusions = new List<Conclusion>(2);
-				if (grid.Exists(head, b) is true)
+				if (CandidatesMap[b].Contains(head))
 				{
 					conclusions.Add(new(ConclusionType.Elimination, head, b));
 				}
-				if (grid.Exists(extra, b) is true)
+				if (CandidatesMap[b].Contains(extra))
 				{
 					conclusions.Add(new(ConclusionType.Elimination, extra, b));
 				}
@@ -2155,7 +2155,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						continue;
 					}
 
-					if (grid.Exists(aby, b) is not true)
+					if (!CandidatesMap[b].Contains(aby))
 					{
 						continue;
 					}
@@ -2843,7 +2843,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							{
 								foreach (int cell in selectedCellsInBlock)
 								{
-									if (grid.Exists(cell, digit) is true)
+									if (CandidatesMap[digit].Contains(cell))
 									{
 										flag = true;
 										break;
@@ -3177,15 +3177,15 @@ unsafe partial class UniqueRectangleStepSearcher
 						{
 							new(DisplayColorKind.Auxiliary1, targetCell * 9 + extraDigit)
 						};
-						if (grid.Exists(resultCell, d1) is true)
+						if (CandidatesMap[d1].Contains(resultCell))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, resultCell * 9 + d1));
 						}
-						if (grid.Exists(resultCell, d2) is true)
+						if (CandidatesMap[d2].Contains(resultCell))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, resultCell * 9 + d2));
 						}
-						if (grid.Exists(resultCell, extraDigit) is true)
+						if (CandidatesMap[extraDigit].Contains(resultCell))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, resultCell * 9 + extraDigit));
 						}
@@ -3272,15 +3272,15 @@ unsafe partial class UniqueRectangleStepSearcher
 						{
 							new(DisplayColorKind.Auxiliary1, targetCell * 9 + extraDigit)
 						};
-						if (grid.Exists(resultCell, d1) is true)
+						if (CandidatesMap[d1].Contains(resultCell))
 						{
 							candidateOffsetsAnotherSubtype.Add(new(DisplayColorKind.Normal, resultCell * 9 + d1));
 						}
-						if (grid.Exists(resultCell, d2) is true)
+						if (CandidatesMap[d2].Contains(resultCell))
 						{
 							candidateOffsetsAnotherSubtype.Add(new(DisplayColorKind.Normal, resultCell * 9 + d2));
 						}
-						if (grid.Exists(resultCell, extraDigit) is true)
+						if (CandidatesMap[extraDigit].Contains(resultCell))
 						{
 							candidateOffsetsAnotherSubtype.Add(
 								new(DisplayColorKind.Auxiliary1, resultCell * 9 + extraDigit)
@@ -3449,11 +3449,11 @@ unsafe partial class UniqueRectangleStepSearcher
 			var candidateOffsets = new List<CandidateViewNode>(16);
 			foreach (int cell in urCells)
 			{
-				if (grid.Exists(cell, d1) is true)
+				if (CandidatesMap[d1].Contains(cell))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
 				}
-				if (grid.Exists(cell, d2) is true)
+				if (CandidatesMap[d2].Contains(cell))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
 				}
@@ -3588,22 +3588,22 @@ unsafe partial class UniqueRectangleStepSearcher
 							var candidateOffsets = new List<CandidateViewNode>();
 							foreach (int cell in urCells)
 							{
-								if (grid.Exists(cell, d1) is true)
+								if (CandidatesMap[d1].Contains(cell))
 								{
 									candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
 								}
-								if (grid.Exists(cell, d2) is true)
+								if (CandidatesMap[d2].Contains(cell))
 								{
 									candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
 								}
 							}
 							foreach (int cell in guardianCellPair)
 							{
-								if (grid.Exists(cell, d1) is true)
+								if (CandidatesMap[d1].Contains(cell))
 								{
 									candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + d1));
 								}
-								if (grid.Exists(cell, d2) is true)
+								if (CandidatesMap[d2].Contains(cell))
 								{
 									candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + d2));
 								}
@@ -3743,22 +3743,22 @@ unsafe partial class UniqueRectangleStepSearcher
 						var candidateOffsets = new List<CandidateViewNode>();
 						foreach (int cell in urCells)
 						{
-							if (grid.Exists(cell, d1) is true)
+							if (CandidatesMap[d1].Contains(cell))
 							{
 								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
 							}
-							if (grid.Exists(cell, d2) is true)
+							if (CandidatesMap[d2].Contains(cell))
 							{
 								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
 							}
 						}
 						foreach (int cell in guardianCellPair)
 						{
-							if (grid.Exists(cell, d1) is true)
+							if (CandidatesMap[d1].Contains(cell))
 							{
 								candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + d1));
 							}
-							if (grid.Exists(cell, d2) is true)
+							if (CandidatesMap[d2].Contains(cell))
 							{
 								candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + d2));
 							}
@@ -3869,7 +3869,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 					// Possible hidden single found.
 					// If the elimination doesn't exist, just skip it.
-					if (grid.Exists(baseCell, otherDigit) is not true)
+					if (!CandidatesMap[otherDigit].Contains(baseCell))
 					{
 						continue;
 					}

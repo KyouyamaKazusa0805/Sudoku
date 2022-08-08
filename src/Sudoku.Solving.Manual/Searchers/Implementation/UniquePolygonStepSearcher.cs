@@ -377,7 +377,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 					{
 						foreach (int digit in finalDigits)
 						{
-							if (grid.Exists(cell, digit) is true)
+							if (CandidatesMap[digit].Contains(cell))
 							{
 								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}

@@ -1231,8 +1231,6 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static Cells IBitwiseOperators<Cells, Cells, Cells>.operator ^(Cells left, Cells right) => left ^ right;
 
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<Cells, Cells>.operator ==(Cells left, Cells right) => left == right;

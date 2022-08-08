@@ -66,11 +66,11 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 					var c2Map = HouseMaps[(Cells.Empty + z + c2).CoveredLine];
 					foreach (int elimCell in (c1Map | c2Map) - c1 - c2 - erMap)
 					{
-						if (grid.Exists(elimCell, d1) is true)
+						if (CandidatesMap[d1].Contains(elimCell))
 						{
 							conclusions.Add(new(ConclusionType.Elimination, elimCell, d1));
 						}
-						if (grid.Exists(elimCell, d2) is true)
+						if (CandidatesMap[d2].Contains(elimCell))
 						{
 							conclusions.Add(new(ConclusionType.Elimination, elimCell, d2));
 						}

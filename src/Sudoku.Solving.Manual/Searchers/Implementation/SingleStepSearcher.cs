@@ -175,7 +175,7 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			bool flag = true;
 			foreach (int cell in HouseMaps[house])
 			{
-				if (grid.Exists(cell, digit) is true)
+				if (grid.Exists(cell, digit) is true) // Don't replace here by 'CandidatesMap[digit].Contains(cell)'.
 				{
 					resultCell = cell;
 					if (++count > 1)
