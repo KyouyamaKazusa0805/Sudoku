@@ -2365,7 +2365,7 @@
             </param>
             <returns>The result instance had converted.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Text.GridParsingOption)">
+        <member name="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Text.Parsing.GridParsingOption)">
             <summary>
             Parses a string value and converts to this type, using a specified grid parsing type.
             </summary>
@@ -2389,37 +2389,37 @@
         <member name="M:Sudoku.Concepts.Grid.Parse(System.Utf8String,System.Boolean)">
             <inheritdoc cref="M:Sudoku.Concepts.Grid.Parse(System.String,System.Boolean)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Parse(System.Utf8String,Sudoku.Text.GridParsingOption)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Text.GridParsingOption)"/>
+        <member name="M:Sudoku.Concepts.Grid.Parse(System.Utf8String,Sudoku.Text.Parsing.GridParsingOption)">
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Text.Parsing.GridParsingOption)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.ReadOnlySpan{System.Byte})">
             <summary>
             <para>Parses a string value and converts to this type.</para>
             <para>
             If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Concepts.Grid.Parse(System.Utf8String,Sudoku.Text.GridParsingOption)"/> instead of this method.
+            <see cref="M:Sudoku.Concepts.Grid.Parse(System.Utf8String,Sudoku.Text.Parsing.GridParsingOption)"/> instead of this method.
             </para>
             </summary>
             <param name="str">The string.</param>
             <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.Utf8String,Sudoku.Text.GridParsingOption)"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.Utf8String,Sudoku.Text.Parsing.GridParsingOption)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.ReadOnlySpan{System.Char})">
             <summary>
             <para>Parses a string value and converts to this type.</para>
             <para>
             If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Text.GridParsingOption)"/> instead of this method.
+            <see cref="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Text.Parsing.GridParsingOption)"/> instead of this method.
             </para>
             </summary>
             <param name="str">The string.</param>
             <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Text.GridParsingOption)"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Text.Parsing.GridParsingOption)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Text.GridParsingOption,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Text.Parsing.GridParsingOption,Sudoku.Concepts.Grid@)">
             <summary>
             Try to parse a string and converts to this type, and returns a
             <see cref="T:System.Boolean"/> value indicating the result of the conversion.
@@ -2436,8 +2436,8 @@
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.Utf8String,Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.Grid@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.TryParse(System.Utf8String,Sudoku.Text.GridParsingOption,Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Text.GridParsingOption,Sudoku.Concepts.Grid@)"/>
+        <member name="M:Sudoku.Concepts.Grid.TryParse(System.Utf8String,Sudoku.Text.Parsing.GridParsingOption,Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Text.Parsing.GridParsingOption,Sudoku.Concepts.Grid@)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.MaskToStatus(System.Int16)">
             <summary>
@@ -2559,592 +2559,6 @@
         <member name="M:Sudoku.Concepts.Grid.MaskCollectionEnumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Concepts.FileLocalType_GridFormatter">
-            <summary>
-            Provides a formatter that gathers the main information for a <see cref="T:Sudoku.Concepts.Grid"/> instance,
-            and convert it to a <see cref="T:System.String"/> value as the result.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.FileLocalType_GridFormatter._flags">
-            <summary>
-            Indicates the inner mask that stores the flags.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.#ctor(System.Boolean)">
-            <summary>
-            Initializes an instance with a <see cref="T:System.Boolean"/> value
-            indicating multi-line.
-            </summary>
-            <param name="multiline">
-            The multi-line identifier. If the value is <see langword="true"/>, the output will
-            be multi-line.
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.#ctor(System.Int16)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.FileLocalType_GridFormatter"/> instance using the specified mask storing all possible flags.
-            </summary>
-            <param name="flags">The flags.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.#ctor(System.Char,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Initialize an instance with the specified information.
-            </summary>
-            <param name="placeholder">The placeholder.</param>
-            <param name="multiline">Indicates whether the formatter will use multiple lines mode.</param>
-            <param name="withModifiables">Indicates whether the formatter will output modifiables.</param>
-            <param name="withCandidates">
-            Indicates whether the formatter will output candidates list.
-            </param>
-            <param name="treatValueAsGiven">
-            Indicates whether the formatter will treat values as givens always.
-            </param>
-            <param name="subtleGridLines">
-            Indicates whether the formatter will process outline corner of the multi-line grid.
-            </param>
-            <param name="hodokuCompatible">
-            Indicates whether the formatter will use hodoku library mode to output.
-            </param>
-            <param name="sukaku">Indicates whether the formatter will output as sukaku.</param>
-            <param name="excel">Indicates whether the formatter will output as excel.</param>
-            <param name="openSudoku">
-            Indicates whether the formatter will output as open sudoku format.
-            </param>
-            <param name="shortenSusser">
-            Indicates whether the formatter will shorten the susser format.
-            </param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="placeholder"/> is not supported.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_GridFormatter.Placeholder">
-            <summary>
-            The place holder.
-            </summary>
-            <returns>The result placeholder text.</returns>
-            <value>The value to assign. The value must be 46 (<c>'.'</c>) or 48 (<c>'0'</c>).</value>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <see langword="value"/> is not supported.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_GridFormatter.Multiline">
-            <summary>
-            Indicates whether the output should be multi-line.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_GridFormatter.WithModifiables">
-            <summary>
-            Indicates the output should be with modifiable values.
-            </summary>
-            <returns>The output should be with modifiable values.</returns>
-            <value>A <see cref="T:System.Boolean"/> value to set.</value>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_GridFormatter.WithCandidates">
-            <summary>
-            <para>
-            Indicates the output should be with candidates.
-            If the output is single line, the candidates will indicate
-            the candidates-have-eliminated before the current grid status;
-            if the output is multi-line, the candidates will indicate
-            the real candidate at the current grid status.
-            </para>
-            <para>
-            If the output is single line, the output will append the candidates
-            value at the tail of the string in '<c>:candidate list</c>'. In addition,
-            candidates will be represented as 'digit', 'row offset' and
-            'column offset' in order.
-            </para>
-            </summary>
-            <returns>The output should be with candidates.</returns>
-            <value>A <see cref="T:System.Boolean"/> value to set.</value>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_GridFormatter.TreatValueAsGiven">
-            <summary>
-            Indicates the output will treat modifiable values as given ones.
-            If the output is single line, the output will remove all plus marks '+'.
-            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
-            of '<c>*digit*</c>'.
-            </summary>
-            <returns>The output will treat modifiable values as given ones.</returns>
-            <value>A <see cref="T:System.Boolean"/> value to set.</value>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_GridFormatter.SubtleGridLines">
-            <summary>
-            Indicates whether need to handle all grid outlines while outputting.
-            </summary>
-            <returns>
-            The <see cref="T:System.Boolean"/> result indicating whether need to handle all grid outlines while outputting.
-            </returns>
-            <value>A <see cref="T:System.Boolean"/> value to set.</value>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_GridFormatter.HodokuCompatible">
-            <summary>
-            Indicates whether the output will be compatible with Hodoku library format.
-            </summary>
-            <returns>
-            The <see cref="T:System.Boolean"/> result indicating whether the output will be compatible
-            with Hodoku library format.
-            </returns>
-            <value>A <see cref="T:System.Boolean"/> value to set.</value>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_GridFormatter.Sukaku">
-            <summary>
-            Indicates the output will be sukaku format (all single-valued digit will
-            be all treated as candidates).
-            </summary>
-            <returns>
-            The output will be sukaku format (all single-valued digit will
-            be all treated as candidates).
-            </returns>
-            <value>A <see cref="T:System.Boolean"/> value to set.</value>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_GridFormatter.Excel">
-            <summary>
-            Indicates the output will be Excel format.
-            </summary>
-            <returns>The output will be Excel format.</returns>
-            <value>A <see cref="T:System.Boolean"/> value to set.</value>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_GridFormatter.OpenSudoku">
-            <summary>
-            Indicates whether the current output mode is aiming to open sudoku format.
-            </summary>
-            <returns>
-            The <see cref="T:System.Boolean"/> result indicating whether the current output mode
-            is aiming to open sudoku format.
-            </returns>
-            <value>A <see cref="T:System.Boolean"/> value to set.</value>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_GridFormatter.ShortenSusser">
-            <summary>
-            Indicates whether the current output mode will shorten the susser format.
-            </summary>
-            <returns>
-            The <see cref="T:System.Boolean"/> result indicating whether the current output mode
-            will shorten the susser format.
-            </returns>
-            <value>A <see cref="T:System.Boolean"/> value to set.</value>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.ToString(Sudoku.Concepts.Grid@)">
-            <summary>
-            Represents a string value indicating this instance.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.ToString(Sudoku.Concepts.Grid@,System.String)">
-            <summary>
-            Represents a string value indicating this instance, with the specified format string.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="format">The string format.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.ToExcelString(Sudoku.Concepts.Grid@)">
-            <summary>
-            To Excel format string.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.ToOpenSudokuString(Sudoku.Concepts.Grid@)">
-            <summary>
-            To open sudoku format string.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The string.</returns>
-            <exception cref="T:System.FormatException">Throws when the specified grid is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.ToHodokuLibraryFormatString(Sudoku.Concepts.Grid@)">
-            <summary>
-            To string with Hodoku library format compatible string.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.ToSukakuString(Sudoku.Concepts.Grid@)">
-            <summary>
-            To string with the sukaku format.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The string.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the puzzle is an invalid sukaku puzzle (at least one cell is given or modifiable).
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.ToSingleLineStringCore(Sudoku.Concepts.Grid@)">
-            <summary>
-            To single line string.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.ToMultiLineStringCore(Sudoku.Concepts.Grid@)">
-            <summary>
-            To multi-line string with candidates.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.ToMultiLineSimpleGridCore(Sudoku.Concepts.Grid@)">
-            <summary>
-            To multi-line normal grid string without any candidates.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.Create(Sudoku.Text.GridFormattingOptions)">
-            <summary>
-            Create a <see cref="T:Sudoku.Concepts.FileLocalType_GridFormatter"/> according to the specified grid output options.
-            </summary>
-            <param name="gridOutputOption">The grid output options.</param>
-            <returns>The grid formatter.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatter.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Concepts.GridParser">
-            <summary>
-            Encapsulates a grid parser that can parse a string value and convert it
-            into a valid <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridParser.ParseFunctions">
-            <summary>
-            The list of all methods to parse.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridParser.MultilineParseFunctions">
-            <summary>
-            The list of all methods to parse multiple-line grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.#ctor(System.String)">
-            <summary>
-            Initializes an instance with parsing data.
-            </summary>
-            <param name="parsingValue">The string to parse.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.#ctor(System.String,System.Boolean)">
-            <summary>
-            Initializes an instance with parsing data and a bool value
-            indicating whether the parsing operation should use compatible mode.
-            </summary>
-            <param name="parsingValue">The string to parse.</param>
-            <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check
-            PM grid. See <see cref="P:Sudoku.Concepts.GridParser.CompatibleFirst"/> to learn more.
-            </param>
-            <seealso cref="P:Sudoku.Concepts.GridParser.CompatibleFirst"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.#ctor(System.String,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes an instance with parsing data and a bool value
-            indicating whether the parsing operation should use compatible mode.
-            </summary>
-            <param name="parsingValue">The string to parse.</param>
-            <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check
-            PM grid. See <see cref="P:Sudoku.Concepts.GridParser.CompatibleFirst"/> to learn more.
-            </param>
-            <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
-            <seealso cref="P:Sudoku.Concepts.GridParser.CompatibleFirst"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="P:Sudoku.Concepts.GridParser.ParsingValue">
-            <summary>
-            The string value to parse.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.GridParser.CompatibleFirst">
-            <summary>
-            Indicates whether the parser will change the execution order of PM grid.
-            If the value is <see langword="true"/>, the parser will check compatible one
-            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.GridParser.ShortenSusserFormat">
-            <summary>
-            Indicates whether the parser will use shorten mode to parse a susser format grid.
-            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
-            <c>.</c>s or <c>0</c>s to a <c>*</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.Parse">
-            <summary>
-            To parse the value.
-            </summary>
-            <returns>The grid.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.Parse(Sudoku.Text.GridParsingOption)">
-            <summary>
-            To parse the value with a specified grid parsing type.
-            </summary>
-            <param name="gridParsingOption">A specified parsing type.</param>
-            <returns>The grid.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="gridParsingOption"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.OnParsingSimpleMultilineGrid(Sudoku.Concepts.GridParser@)">
-            <summary>
-            Parse the value using multi-line simple grid (without any candidates).
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.OnParsingExcel(Sudoku.Concepts.GridParser@)">
-            <summary>
-            Parse the Excel format.
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.OnParsingOpenSudoku(Sudoku.Concepts.GridParser@)">
-            <summary>
-            Parse the open sudoku format grid.
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.OnParsingPencilMarked(Sudoku.Concepts.GridParser@)">
-            <summary>
-            Parse the PM grid.
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.OnParsingSimpleTable(Sudoku.Concepts.GridParser@)">
-            <summary>
-            Parse the simple table format string (Sudoku explainer format).
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The grid.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.OnParsingSusser(Sudoku.Concepts.GridParser@,System.Boolean)">
-            <summary>
-            Parse the susser format string.
-            </summary>
-            <param name="parser">The parser.</param>
-            <param name="shortenSusser">Indicates whether the parser will shorten the susser format.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.OnParsingSukaku(Sudoku.Concepts.GridParser@,System.Boolean)">
-            <summary>
-            Parse the sukaku format string.
-            </summary>
-            <param name="parser">The parser.</param>
-            <param name="compatibleFirst">
-            Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
-            </param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.GridParser.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Concepts.FileLocalType_Utf8GridParser">
-            <summary>
-            Encapsulates a grid parser that can parse a <see cref="T:System.Utf8String"/> value and convert it
-            into a valid <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.FileLocalType_Utf8GridParser.ParseFunctions">
-            <summary>
-            The list of all methods to parse.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.FileLocalType_Utf8GridParser.MultilineParseFunctions">
-            <summary>
-            The list of all methods to parse multiple-line grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.#ctor(System.Utf8String)">
-            <summary>
-            Initializes an instance with parsing data.
-            </summary>
-            <param name="parsingValue">The string to parse.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.#ctor(System.Utf8String,System.Boolean)">
-            <summary>
-            Initializes an instance with parsing data and a bool value
-            indicating whether the parsing operation should use compatible mode.
-            </summary>
-            <param name="parsingValue">The string to parse.</param>
-            <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check
-            PM grid. See <see cref="P:Sudoku.Concepts.FileLocalType_Utf8GridParser.CompatibleFirst"/> to learn more.
-            </param>
-            <seealso cref="P:Sudoku.Concepts.FileLocalType_Utf8GridParser.CompatibleFirst"/>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.#ctor(System.Utf8String,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes an instance with parsing data and a bool value
-            indicating whether the parsing operation should use compatible mode.
-            </summary>
-            <param name="parsingValue">The string to parse.</param>
-            <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check
-            PM grid. See <see cref="P:Sudoku.Concepts.FileLocalType_Utf8GridParser.CompatibleFirst"/> to learn more.
-            </param>
-            <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
-            <seealso cref="P:Sudoku.Concepts.FileLocalType_Utf8GridParser.CompatibleFirst"/>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_Utf8GridParser.ParsingValue">
-            <summary>
-            The string value to parse.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_Utf8GridParser.CompatibleFirst">
-            <summary>
-            Indicates whether the parser will change the execution order of PM grid.
-            If the value is <see langword="true"/>, the parser will check compatible one
-            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.FileLocalType_Utf8GridParser.ShortenSusserFormat">
-            <summary>
-            Indicates whether the parser will use shorten mode to parse a susser format grid.
-            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
-            <c>.</c>s or <c>0</c>s to a <c>*</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.Parse">
-            <summary>
-            To parse the value.
-            </summary>
-            <returns>The grid.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.Parse(Sudoku.Text.GridParsingOption)">
-            <summary>
-            To parse the value with a specified grid parsing type.
-            </summary>
-            <param name="gridParsingOption">A specified parsing type.</param>
-            <returns>The grid.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="gridParsingOption"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.OnParsingSimpleMultilineGrid(Sudoku.Concepts.FileLocalType_Utf8GridParser@)">
-            <summary>
-            Parse the value using multi-line simple grid (without any candidates).
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.OnParsingExcel(Sudoku.Concepts.FileLocalType_Utf8GridParser@)">
-            <summary>
-            Parse the Excel format.
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.OnParsingOpenSudoku(Sudoku.Concepts.FileLocalType_Utf8GridParser@)">
-            <summary>
-            Parse the open sudoku format grid.
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.OnParsingPencilMarked(Sudoku.Concepts.FileLocalType_Utf8GridParser@)">
-            <summary>
-            Parse the PM grid.
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.OnParsingSimpleTable(Sudoku.Concepts.FileLocalType_Utf8GridParser@)">
-            <summary>
-            Parse the simple table format string (Sudoku explainer format).
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The grid.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.OnParsingSusser(Sudoku.Concepts.FileLocalType_Utf8GridParser@,System.Boolean)">
-            <summary>
-            Parse the susser format string.
-            </summary>
-            <param name="parser">The parser.</param>
-            <param name="shortenSusser">Indicates whether the parser will shorten the susser format.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.OnParsingSukaku(Sudoku.Concepts.FileLocalType_Utf8GridParser@,System.Boolean)">
-            <summary>
-            Parse the sukaku format string.
-            </summary>
-            <param name="parser">The parser.</param>
-            <param name="compatibleFirst">
-            Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
-            </param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_Utf8GridParser.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Concepts.FileLocalType_GridFormatterFactory">
-            <summary>
-            Indicates the factory that creates the grid formatter.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_GridFormatterFactory.Create(System.String)">
-            <summary>
-            Create a <see cref="T:Sudoku.Concepts.FileLocalType_GridFormatter"/> according to the specified format.
-            </summary>
-            <param name="format">The format.</param>
-            <returns>The grid formatter.</returns>
-            <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
         </member>
         <member name="M:Sudoku.Concepts.FileLocalType_MatchLengthComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
             <inheritdoc/>
@@ -12408,22 +11822,288 @@
             Marks on a property to tell the user the property is only used for the formatting.
             </summary>
         </member>
-        <member name="T:Sudoku.Text.GridFormattingOptions">
+        <member name="T:Sudoku.Text.Formatting.GridFormatter">
+            <summary>
+            Provides a formatter that gathers the main information for a <see cref="T:Sudoku.Concepts.Grid"/> instance,
+            and convert it to a <see cref="T:System.String"/> value as the result.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.GridFormatter._flags">
+            <summary>
+            Indicates the inner mask that stores the flags.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.#ctor(System.Boolean)">
+            <summary>
+            Initializes an instance with a <see cref="T:System.Boolean"/> value
+            indicating multi-line.
+            </summary>
+            <param name="multiline">
+            The multi-line identifier. If the value is <see langword="true"/>, the output will
+            be multi-line.
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.#ctor(System.Int16)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Text.Formatting.GridFormatter"/> instance using the specified mask storing all possible flags.
+            </summary>
+            <param name="flags">The flags.</param>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.#ctor(System.Char,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initialize an instance with the specified information.
+            </summary>
+            <param name="placeholder">The placeholder.</param>
+            <param name="multiline">Indicates whether the formatter will use multiple lines mode.</param>
+            <param name="withModifiables">Indicates whether the formatter will output modifiables.</param>
+            <param name="withCandidates">
+            Indicates whether the formatter will output candidates list.
+            </param>
+            <param name="treatValueAsGiven">
+            Indicates whether the formatter will treat values as givens always.
+            </param>
+            <param name="subtleGridLines">
+            Indicates whether the formatter will process outline corner of the multi-line grid.
+            </param>
+            <param name="hodokuCompatible">
+            Indicates whether the formatter will use hodoku library mode to output.
+            </param>
+            <param name="sukaku">Indicates whether the formatter will output as sukaku.</param>
+            <param name="excel">Indicates whether the formatter will output as excel.</param>
+            <param name="openSudoku">
+            Indicates whether the formatter will output as open sudoku format.
+            </param>
+            <param name="shortenSusser">
+            Indicates whether the formatter will shorten the susser format.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="placeholder"/> is not supported.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridFormatter.Placeholder">
+            <summary>
+            The place holder.
+            </summary>
+            <returns>The result placeholder text.</returns>
+            <value>The value to assign. The value must be 46 (<c>'.'</c>) or 48 (<c>'0'</c>).</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <see langword="value"/> is not supported.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridFormatter.Multiline">
+            <summary>
+            Indicates whether the output should be multi-line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridFormatter.WithModifiables">
+            <summary>
+            Indicates the output should be with modifiable values.
+            </summary>
+            <returns>The output should be with modifiable values.</returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridFormatter.WithCandidates">
+            <summary>
+            <para>
+            Indicates the output should be with candidates.
+            If the output is single line, the candidates will indicate
+            the candidates-have-eliminated before the current grid status;
+            if the output is multi-line, the candidates will indicate
+            the real candidate at the current grid status.
+            </para>
+            <para>
+            If the output is single line, the output will append the candidates
+            value at the tail of the string in '<c>:candidate list</c>'. In addition,
+            candidates will be represented as 'digit', 'row offset' and
+            'column offset' in order.
+            </para>
+            </summary>
+            <returns>The output should be with candidates.</returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridFormatter.TreatValueAsGiven">
+            <summary>
+            Indicates the output will treat modifiable values as given ones.
+            If the output is single line, the output will remove all plus marks '+'.
+            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
+            of '<c>*digit*</c>'.
+            </summary>
+            <returns>The output will treat modifiable values as given ones.</returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridFormatter.SubtleGridLines">
+            <summary>
+            Indicates whether need to handle all grid outlines while outputting.
+            </summary>
+            <returns>
+            The <see cref="T:System.Boolean"/> result indicating whether need to handle all grid outlines while outputting.
+            </returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridFormatter.HodokuCompatible">
+            <summary>
+            Indicates whether the output will be compatible with Hodoku library format.
+            </summary>
+            <returns>
+            The <see cref="T:System.Boolean"/> result indicating whether the output will be compatible
+            with Hodoku library format.
+            </returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridFormatter.Sukaku">
+            <summary>
+            Indicates the output will be sukaku format (all single-valued digit will
+            be all treated as candidates).
+            </summary>
+            <returns>
+            The output will be sukaku format (all single-valued digit will
+            be all treated as candidates).
+            </returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridFormatter.Excel">
+            <summary>
+            Indicates the output will be Excel format.
+            </summary>
+            <returns>The output will be Excel format.</returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridFormatter.OpenSudoku">
+            <summary>
+            Indicates whether the current output mode is aiming to open sudoku format.
+            </summary>
+            <returns>
+            The <see cref="T:System.Boolean"/> result indicating whether the current output mode
+            is aiming to open sudoku format.
+            </returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridFormatter.ShortenSusser">
+            <summary>
+            Indicates whether the current output mode will shorten the susser format.
+            </summary>
+            <returns>
+            The <see cref="T:System.Boolean"/> result indicating whether the current output mode
+            will shorten the susser format.
+            </returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.ToString(Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents a string value indicating this instance.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.ToString(Sudoku.Concepts.Grid@,System.String)">
+            <summary>
+            Represents a string value indicating this instance, with the specified format string.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="format">The string format.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.ToExcelString(Sudoku.Concepts.Grid@)">
+            <summary>
+            To Excel format string.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.ToOpenSudokuString(Sudoku.Concepts.Grid@)">
+            <summary>
+            To open sudoku format string.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The string.</returns>
+            <exception cref="T:System.FormatException">Throws when the specified grid is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.ToHodokuLibraryFormatString(Sudoku.Concepts.Grid@)">
+            <summary>
+            To string with Hodoku library format compatible string.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.ToSukakuString(Sudoku.Concepts.Grid@)">
+            <summary>
+            To string with the sukaku format.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The string.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the puzzle is an invalid sukaku puzzle (at least one cell is given or modifiable).
+            </exception>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.ToSingleLineStringCore(Sudoku.Concepts.Grid@)">
+            <summary>
+            To single line string.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.ToMultiLineStringCore(Sudoku.Concepts.Grid@)">
+            <summary>
+            To multi-line string with candidates.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.ToMultiLineSimpleGridCore(Sudoku.Concepts.Grid@)">
+            <summary>
+            To multi-line normal grid string without any candidates.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.Create(Sudoku.Text.Formatting.GridFormattingOptions)">
+            <summary>
+            Create a <see cref="T:Sudoku.Text.Formatting.GridFormatter"/> according to the specified grid output options.
+            </summary>
+            <param name="gridOutputOption">The grid output options.</param>
+            <returns>The grid formatter.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatter.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.GridFormatterFactory">
+            <summary>
+            Indicates the factory that creates the grid formatter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatterFactory.Create(System.String)">
+            <summary>
+            Create a <see cref="T:Sudoku.Text.Formatting.GridFormatter"/> according to the specified format.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The grid formatter.</returns>
+            <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.GridFormattingOptions">
             <summary>
             Provides a grid format option.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.None">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.None">
             <summary>
             Indicates the default settings (a single-line string text).
             </summary>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.WithModifiers">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.WithModifiers">
             <summary>
             Indicates the output should be with modifiable values.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.WithCandidates">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.WithCandidates">
             <summary>
             <para>
             Indicates the output should be with candidates.
@@ -12440,7 +12120,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.TreatValueAsGiven">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.TreatValueAsGiven">
             <summary>
             Indicates the output will treat modifiable values as given ones.
             If the output is single line, the output will remove all plus marks '+'.
@@ -12448,7 +12128,7 @@
             instead of '<c>*digit*</c>'.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.SubtleGridLines">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.SubtleGridLines">
             <summary>
             Indicates whether need to handle all grid outlines while outputting.
             Visit the page
@@ -12460,34 +12140,34 @@
             for more information.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.HodokuCompatible">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.HodokuCompatible">
             <summary>
             Indicates whether the output will be compatible with Hodoku library format.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.DotPlaceholder">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.DotPlaceholder">
             <summary>
             Indicates the placeholder must be '.' instead of '0'.
             If the value is <see langword="true"/>, the placeholder will be '.';
             otherwise, '0'.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.Multiline">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.Multiline">
             <summary>
             Indicates the output should be multi-line.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.Sukaku">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.Sukaku">
             <summary>
             Indicates the output will be sukaku format.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.Excel">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.Excel">
             <summary>
             Indicates the output will be Excel format.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.OpenSudoku">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.OpenSudoku">
             <summary>
             Indicates the open sudoku format.
             </summary>
@@ -12498,188 +12178,9 @@
             if the cell is empty, the triplet is always <c>001</c>.
             </remarks>
         </member>
-        <member name="F:Sudoku.Text.GridFormattingOptions.Shorten">
+        <member name="F:Sudoku.Text.Formatting.GridFormattingOptions.Shorten">
             <summary>
             Indicates the shorten susser format.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Text.GridParsingOption">
-            <summary>
-            Represents a grid parsing type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.GridParsingOption.Susser">
-            <summary>
-            <para>
-            Indicates the susser format, which means all grid values
-            will be displayed in one line with empty cell character
-            <c>'0'</c> or <c>'.'</c>.
-            </para>
-            <para>
-            For example:
-            </para>
-            <para>
-            1) <c>080630040200085009090000081000300800000020000006001000970000030400850007010094050</c>
-            </para>
-            <para>
-            2) <c>4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997</c>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.GridParsingOption.ShortenSusser">
-            <summary>
-            <para>
-            Indicates the shorten susser format, which means all grid values
-            will be displayed in one line with empty cell character <c>'0'</c> or <c>'.'</c>.
-            Different with the option <see cref="F:Sudoku.Text.GridParsingOption.Susser"/>, this option will continue
-            shortening the code. The option will omit the continuous empty cells to a <c>*</c>
-            in a single line. For example, the code
-            <code>
-            080630040200085009090000081000300800000020000006001000970000030400850007010094050
-            </code>
-            will be displayed as
-            <code>
-            08063*40,2*85009,09*81,*300800,*2*,006001*,97*30,40085*7,01*94050
-            </code>
-            via this option. We use the colon <c>,</c> to separate each line of 9 numbers,
-            and then omit the most continuous empty cells to a <c>*</c>.
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.GridParsingOption.PencilMarked">
-            <summary>
-            <para>
-            Indicates the pencil marked grid (PM grid), which means all
-            grid candidates will be displayed using a table.
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[
-            +-------------------+-----------------+--------------------+
-            | <8>   12459  249  | *6*  <7>   259  | 1245    245   *3*  |
-            | 1457  1245   <6>  | 58   125   <3>  | 124578  2458  <9>  |
-            | 1579  <3>    279  | <4>  1259  2589 | 12578   *6*   78   |
-            +-------------------+-----------------+--------------------+
-            | *2*   <7>    *3*  | <1>  <8>   45   | 456     <9>   46   |
-            | <6>   458    48   | <2>  59    459  | <3>     *7*   *1*  |
-            | 1459  1459   49   | *3*  *6*   <7>  | 458     458   <2>  |
-            +-------------------+-----------------+--------------------+
-            | <3>   2489   <1>  | 578  25    <6>  | 24789   248   478  |
-            | 79    <6>    2789 | 78   <4>   *1*  | 289     *3*   <5>  |
-            | 47    248    <5>  | <9>  *3*   28   | 2678    <1>   4678 |
-            +-------------------+-----------------+--------------------+
-            ]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.GridParsingOption.Table">
-            <summary>
-            <para>
-            Indicates the table format, which means all grid values
-            will be displayed using a table with empty cell character
-            <c>'0'</c> or <c>'.'</c>.
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[
-            .----------.----------.----------.
-            |  .  4  6 |  . +1  . |  3 +7 +5 |
-            | +3 +8  1 | +5  4  7 | +2 +9 +6 |
-            |  .  .  5 |  .  3  . | +1 +4  8 |
-            :----------+----------+----------:
-            |  8  .  4 |  . +5  . | +7  6  . |
-            |  .  9  . |  .  2  . | +8  5 +4 |
-            |  .  5  . |  .  .  . |  9  .  3 |
-            :----------+----------+----------:
-            |  5  .  . |  .  8  . |  6  . +9 |
-            | +4  .  8 |  1  9  . |  5  .  . |
-            |  .  .  9 |  .  . +5 |  4  8  . |
-            '----------'----------'----------'
-            ]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.GridParsingOption.SimpleTable">
-            <summary>
-            <para>
-            Sudoku explainer format (9 characters in a row, and 9 rows).
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[
-            080630040
-            200085009
-            090000081
-            000300800
-            000020000
-            006001000
-            970000030
-            400850007
-            010094050
-            ]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.GridParsingOption.Sukaku">
-            <summary>
-            <para>
-            Sukaku sudoku format (only contains the digits and the whitespace).
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[
-             23456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789  23456789
-             23456789 123456789 123456789  23456789  23456789  23456789  23456789  23456789  23456789
-             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789 123456789
-            123456789  23456789  23456789 123456789 123456789  23456789  23456789  23456789 123456789
-             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789  23456789
-            123456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789 123456789
-             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
-             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
-             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
-            ]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.GridParsingOption.SukakuSingleLine">
-            <summary>
-            <para>Sukaku single line format, which uses '0' to be a placeholder.</para>
-            <para>
-            For example:
-            <code><![CDATA[023406789123456700003050780120050789003006009123456009100056089023456080123000789003456789023006700023006700120056780100006789120400780000406789103000080020450000003406089020056709120050080100000700120056780120000709123056000123050080000450089123050709100456089003400780100450009003400009120400009123056709003000700023406000000406009123006000000056709003406700120050009103056089103456709003056009120456009123456780023400000103406709003056789020406700100050009020400000100006789020006789020456780123056080120400700000406789120400080023456789003006080020456789103450709123400009123400080023406700123406709103400080123456009120456789023406709023450080100406080103056009100400009123000789100400709100406780123050700000050080023406009]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.GridParsingOption.Excel">
-            <summary>
-            <para>
-            Excel sudoku format (only contains the digits and the tab character).
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[
-            1			7	8	9	4	5	6
-            4	5	6	1	2	3	7	8	9
-            7	8	9	4	5	6	1	2	
-            9	1	2	6		8	3	4	
-            3	4	5				6	7	8
-            	7	8	3		5	9	1	2
-            	9	1	5	6	7	2	3	4
-            2	3	4	8	9	1	5	6	7
-            5	6	7	2	3	4			1
-            ]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.GridParsingOption.OpenSudoku">
-            <summary>
-            <para>
-            Open sudoku format.
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[0|0|1|1|0|0|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|9|0|0|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|2|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|9|0|0|2|0|0|6|0|0|0|0|1|0|0|1|8|0|0|0|0|1|0|0|1|7|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|5|0|0|0|0|1|6|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|1|0|0|0|0|1|0|0|1|1|0|0|7|0|0|0|0|1|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|6|0|0|0|0|1|0|0|1|3|0|0|0|0|1|9|0|0|0|0|1|0|0|1|7|0|0]]></code>
-            </para>
             </summary>
         </member>
         <member name="T:Sudoku.Text.Handlers.ConclusionCollection">
@@ -13479,6 +12980,505 @@
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="T:Sudoku.Text.Parsing.GridParser">
+            <summary>
+            Encapsulates a grid parser that can parse a string value and convert it
+            into a valid <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.GridParser.ParseFunctions">
+            <summary>
+            The list of all methods to parse.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.GridParser.MultilineParseFunctions">
+            <summary>
+            The list of all methods to parse multiple-line grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.#ctor(System.String)">
+            <summary>
+            Initializes an instance with parsing data.
+            </summary>
+            <param name="parsingValue">The string to parse.</param>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes an instance with parsing data and a bool value
+            indicating whether the parsing operation should use compatible mode.
+            </summary>
+            <param name="parsingValue">The string to parse.</param>
+            <param name="compatibleFirst">
+            Indicates whether the parsing operation should use compatible mode to check
+            PM grid. See <see cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/> to learn more.
+            </param>
+            <seealso cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.#ctor(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with parsing data and a bool value
+            indicating whether the parsing operation should use compatible mode.
+            </summary>
+            <param name="parsingValue">The string to parse.</param>
+            <param name="compatibleFirst">
+            Indicates whether the parsing operation should use compatible mode to check
+            PM grid. See <see cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/> to learn more.
+            </param>
+            <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
+            <seealso cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="P:Sudoku.Text.Parsing.GridParser.ParsingValue">
+            <summary>
+            The string value to parse.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst">
+            <summary>
+            Indicates whether the parser will change the execution order of PM grid.
+            If the value is <see langword="true"/>, the parser will check compatible one
+            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsing.GridParser.ShortenSusserFormat">
+            <summary>
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.Parse">
+            <summary>
+            To parse the value.
+            </summary>
+            <returns>The grid.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.Parse(Sudoku.Text.Parsing.GridParsingOption)">
+            <summary>
+            To parse the value with a specified grid parsing type.
+            </summary>
+            <param name="gridParsingOption">A specified parsing type.</param>
+            <returns>The grid.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="gridParsingOption"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.OnParsingSimpleMultilineGrid(Sudoku.Text.Parsing.GridParser@)">
+            <summary>
+            Parse the value using multi-line simple grid (without any candidates).
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.OnParsingExcel(Sudoku.Text.Parsing.GridParser@)">
+            <summary>
+            Parse the Excel format.
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.OnParsingOpenSudoku(Sudoku.Text.Parsing.GridParser@)">
+            <summary>
+            Parse the open sudoku format grid.
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.OnParsingPencilMarked(Sudoku.Text.Parsing.GridParser@)">
+            <summary>
+            Parse the PM grid.
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.OnParsingSimpleTable(Sudoku.Text.Parsing.GridParser@)">
+            <summary>
+            Parse the simple table format string (Sudoku explainer format).
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The grid.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.OnParsingSusser(Sudoku.Text.Parsing.GridParser@,System.Boolean)">
+            <summary>
+            Parse the susser format string.
+            </summary>
+            <param name="parser">The parser.</param>
+            <param name="shortenSusser">Indicates whether the parser will shorten the susser format.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.OnParsingSukaku(Sudoku.Text.Parsing.GridParser@,System.Boolean)">
+            <summary>
+            Parse the sukaku format string.
+            </summary>
+            <param name="parser">The parser.</param>
+            <param name="compatibleFirst">
+            Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
+            </param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Text.Parsing.GridParsingOption">
+            <summary>
+            Represents a grid parsing type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.GridParsingOption.Susser">
+            <summary>
+            <para>
+            Indicates the susser format, which means all grid values
+            will be displayed in one line with empty cell character
+            <c>'0'</c> or <c>'.'</c>.
+            </para>
+            <para>
+            For example:
+            </para>
+            <para>
+            1) <c>080630040200085009090000081000300800000020000006001000970000030400850007010094050</c>
+            </para>
+            <para>
+            2) <c>4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997</c>
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.GridParsingOption.ShortenSusser">
+            <summary>
+            <para>
+            Indicates the shorten susser format, which means all grid values
+            will be displayed in one line with empty cell character <c>'0'</c> or <c>'.'</c>.
+            Different with the option <see cref="F:Sudoku.Text.Parsing.GridParsingOption.Susser"/>, this option will continue
+            shortening the code. The option will omit the continuous empty cells to a <c>*</c>
+            in a single line. For example, the code
+            <code>
+            080630040200085009090000081000300800000020000006001000970000030400850007010094050
+            </code>
+            will be displayed as
+            <code>
+            08063*40,2*85009,09*81,*300800,*2*,006001*,97*30,40085*7,01*94050
+            </code>
+            via this option. We use the colon <c>,</c> to separate each line of 9 numbers,
+            and then omit the most continuous empty cells to a <c>*</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.GridParsingOption.PencilMarked">
+            <summary>
+            <para>
+            Indicates the pencil marked grid (PM grid), which means all
+            grid candidates will be displayed using a table.
+            </para>
+            <para>
+            For example:
+            <code><![CDATA[
+            +-------------------+-----------------+--------------------+
+            | <8>   12459  249  | *6*  <7>   259  | 1245    245   *3*  |
+            | 1457  1245   <6>  | 58   125   <3>  | 124578  2458  <9>  |
+            | 1579  <3>    279  | <4>  1259  2589 | 12578   *6*   78   |
+            +-------------------+-----------------+--------------------+
+            | *2*   <7>    *3*  | <1>  <8>   45   | 456     <9>   46   |
+            | <6>   458    48   | <2>  59    459  | <3>     *7*   *1*  |
+            | 1459  1459   49   | *3*  *6*   <7>  | 458     458   <2>  |
+            +-------------------+-----------------+--------------------+
+            | <3>   2489   <1>  | 578  25    <6>  | 24789   248   478  |
+            | 79    <6>    2789 | 78   <4>   *1*  | 289     *3*   <5>  |
+            | 47    248    <5>  | <9>  *3*   28   | 2678    <1>   4678 |
+            +-------------------+-----------------+--------------------+
+            ]]></code>
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.GridParsingOption.Table">
+            <summary>
+            <para>
+            Indicates the table format, which means all grid values
+            will be displayed using a table with empty cell character
+            <c>'0'</c> or <c>'.'</c>.
+            </para>
+            <para>
+            For example:
+            <code><![CDATA[
+            .----------.----------.----------.
+            |  .  4  6 |  . +1  . |  3 +7 +5 |
+            | +3 +8  1 | +5  4  7 | +2 +9 +6 |
+            |  .  .  5 |  .  3  . | +1 +4  8 |
+            :----------+----------+----------:
+            |  8  .  4 |  . +5  . | +7  6  . |
+            |  .  9  . |  .  2  . | +8  5 +4 |
+            |  .  5  . |  .  .  . |  9  .  3 |
+            :----------+----------+----------:
+            |  5  .  . |  .  8  . |  6  . +9 |
+            | +4  .  8 |  1  9  . |  5  .  . |
+            |  .  .  9 |  .  . +5 |  4  8  . |
+            '----------'----------'----------'
+            ]]></code>
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.GridParsingOption.SimpleTable">
+            <summary>
+            <para>
+            Sudoku explainer format (9 characters in a row, and 9 rows).
+            </para>
+            <para>
+            For example:
+            <code><![CDATA[
+            080630040
+            200085009
+            090000081
+            000300800
+            000020000
+            006001000
+            970000030
+            400850007
+            010094050
+            ]]></code>
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.GridParsingOption.Sukaku">
+            <summary>
+            <para>
+            Sukaku sudoku format (only contains the digits and the whitespace).
+            </para>
+            <para>
+            For example:
+            <code><![CDATA[
+             23456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789  23456789
+             23456789 123456789 123456789  23456789  23456789  23456789  23456789  23456789  23456789
+             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789 123456789
+            123456789  23456789  23456789 123456789 123456789  23456789  23456789  23456789 123456789
+             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789  23456789
+            123456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789 123456789
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+            ]]></code>
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.GridParsingOption.SukakuSingleLine">
+            <summary>
+            <para>Sukaku single line format, which uses '0' to be a placeholder.</para>
+            <para>
+            For example:
+            <code><![CDATA[023406789123456700003050780120050789003006009123456009100056089023456080123000789003456789023006700023006700120056780100006789120400780000406789103000080020450000003406089020056709120050080100000700120056780120000709123056000123050080000450089123050709100456089003400780100450009003400009120400009123056709003000700023406000000406009123006000000056709003406700120050009103056089103456709003056009120456009123456780023400000103406709003056789020406700100050009020400000100006789020006789020456780123056080120400700000406789120400080023456789003006080020456789103450709123400009123400080023406700123406709103400080123456009120456789023406709023450080100406080103056009100400009123000789100400709100406780123050700000050080023406009]]></code>
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.GridParsingOption.Excel">
+            <summary>
+            <para>
+            Excel sudoku format (only contains the digits and the tab character).
+            </para>
+            <para>
+            For example:
+            <code><![CDATA[
+            1			7	8	9	4	5	6
+            4	5	6	1	2	3	7	8	9
+            7	8	9	4	5	6	1	2	
+            9	1	2	6		8	3	4	
+            3	4	5				6	7	8
+            	7	8	3		5	9	1	2
+            	9	1	5	6	7	2	3	4
+            2	3	4	8	9	1	5	6	7
+            5	6	7	2	3	4			1
+            ]]></code>
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.GridParsingOption.OpenSudoku">
+            <summary>
+            <para>
+            Open sudoku format.
+            </para>
+            <para>
+            For example:
+            <code><![CDATA[0|0|1|1|0|0|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|9|0|0|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|2|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|9|0|0|2|0|0|6|0|0|0|0|1|0|0|1|8|0|0|0|0|1|0|0|1|7|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|5|0|0|0|0|1|6|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|1|0|0|0|0|1|0|0|1|1|0|0|7|0|0|0|0|1|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|6|0|0|0|0|1|0|0|1|3|0|0|0|0|1|9|0|0|0|0|1|0|0|1|7|0|0]]></code>
+            </para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Parsing.Utf8GridParser">
+            <summary>
+            Encapsulates a grid parser that can parse a <see cref="T:System.Utf8String"/> value and convert it
+            into a valid <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.Utf8GridParser.ParseFunctions">
+            <summary>
+            The list of all methods to parse.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.Utf8GridParser.MultilineParseFunctions">
+            <summary>
+            The list of all methods to parse multiple-line grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.#ctor(System.Utf8String)">
+            <summary>
+            Initializes an instance with parsing data.
+            </summary>
+            <param name="parsingValue">The string to parse.</param>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.#ctor(System.Utf8String,System.Boolean)">
+            <summary>
+            Initializes an instance with parsing data and a bool value
+            indicating whether the parsing operation should use compatible mode.
+            </summary>
+            <param name="parsingValue">The string to parse.</param>
+            <param name="compatibleFirst">
+            Indicates whether the parsing operation should use compatible mode to check
+            PM grid. See <see cref="P:Sudoku.Text.Parsing.Utf8GridParser.CompatibleFirst"/> to learn more.
+            </param>
+            <seealso cref="P:Sudoku.Text.Parsing.Utf8GridParser.CompatibleFirst"/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.#ctor(System.Utf8String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with parsing data and a bool value
+            indicating whether the parsing operation should use compatible mode.
+            </summary>
+            <param name="parsingValue">The string to parse.</param>
+            <param name="compatibleFirst">
+            Indicates whether the parsing operation should use compatible mode to check
+            PM grid. See <see cref="P:Sudoku.Text.Parsing.Utf8GridParser.CompatibleFirst"/> to learn more.
+            </param>
+            <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
+            <seealso cref="P:Sudoku.Text.Parsing.Utf8GridParser.CompatibleFirst"/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="P:Sudoku.Text.Parsing.Utf8GridParser.ParsingValue">
+            <summary>
+            The string value to parse.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsing.Utf8GridParser.CompatibleFirst">
+            <summary>
+            Indicates whether the parser will change the execution order of PM grid.
+            If the value is <see langword="true"/>, the parser will check compatible one
+            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsing.Utf8GridParser.ShortenSusserFormat">
+            <summary>
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.Parse">
+            <summary>
+            To parse the value.
+            </summary>
+            <returns>The grid.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.Parse(Sudoku.Text.Parsing.GridParsingOption)">
+            <summary>
+            To parse the value with a specified grid parsing type.
+            </summary>
+            <param name="gridParsingOption">A specified parsing type.</param>
+            <returns>The grid.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="gridParsingOption"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingSimpleMultilineGrid(Sudoku.Text.Parsing.Utf8GridParser@)">
+            <summary>
+            Parse the value using multi-line simple grid (without any candidates).
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingExcel(Sudoku.Text.Parsing.Utf8GridParser@)">
+            <summary>
+            Parse the Excel format.
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingOpenSudoku(Sudoku.Text.Parsing.Utf8GridParser@)">
+            <summary>
+            Parse the open sudoku format grid.
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingPencilMarked(Sudoku.Text.Parsing.Utf8GridParser@)">
+            <summary>
+            Parse the PM grid.
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingSimpleTable(Sudoku.Text.Parsing.Utf8GridParser@)">
+            <summary>
+            Parse the simple table format string (Sudoku explainer format).
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The grid.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingSusser(Sudoku.Text.Parsing.Utf8GridParser@,System.Boolean)">
+            <summary>
+            Parse the susser format string.
+            </summary>
+            <param name="parser">The parser.</param>
+            <param name="shortenSusser">Indicates whether the parser will shorten the susser format.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingSukaku(Sudoku.Text.Parsing.Utf8GridParser@,System.Boolean)">
+            <summary>
+            Parse the sukaku format string.
+            </summary>
+            <param name="parser">The parser.</param>
+            <param name="compatibleFirst">
+            Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
+            </param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
     </members>
 </doc>

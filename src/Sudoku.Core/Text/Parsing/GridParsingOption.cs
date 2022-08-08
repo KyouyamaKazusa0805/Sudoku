@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text;
+﻿namespace Sudoku.Text.Parsing;
 
 /// <summary>
 /// Represents a grid parsing type.
