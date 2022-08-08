@@ -221,7 +221,7 @@ public interface IDrawingPreference
 	/// <typeparam name="TPreference">The type of the drawing preference.</typeparam>
 	/// <param name="preference">The preference instance.</param>
 	protected internal sealed void CoverPreferenceBy<TPreference>(TPreference preference)
-		where TPreference : IDrawingPreference
+		where TPreference : class, IDrawingPreference
 	{
 		foreach (var propertyInfo in GetType().GetProperties())
 		{
