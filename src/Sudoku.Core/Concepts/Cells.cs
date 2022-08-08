@@ -775,6 +775,7 @@ public unsafe struct Cells :
 	/// <returns>The result list that is the peer intersection of the current instance.</returns>
 	/// <remarks>
 	/// A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
+	/// For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
 	/// </remarks>
 	public static Cells operator !(scoped in Cells offsets)
 	{
