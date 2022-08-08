@@ -686,15 +686,10 @@ public unsafe struct Cells :
 	/// </exception>
 	public void AddRangeChecked(IEnumerable<int> offsets)
 	{
+		const string error = "The value cannot be added because the cell offset is an invalid value.";
 		foreach (int cell in offsets)
 		{
-			if (cell is < 0 or >= 81)
-			{
-				throw new InvalidOperationException(
-					"The value cannot be added because the cell offset is an invalid value.");
-			}
-
-			Add(cell);
+			Add(cell is < 0 or >= 81 ? throw new InvalidOperationException(error) : cell);
 		}
 	}
 
