@@ -1,6 +1,4 @@
-﻿#define SOLUTION_DISPLAY_MODIFIABLES
-
-namespace Sudoku.Concepts;
+﻿namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -591,21 +589,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
 	/// </summary>
-	public readonly Grid ResetGrid
-	{
-		get
-		{
-			scoped var arr = (stackalloc int[81]);
-			arr.Fill(-1);
-
-			foreach (int cell in GivenCells)
-			{
-				arr[cell] = this[cell];
-			}
-
-			return new(arr);
-		}
-	}
+	public readonly Grid ResetGrid => this << GivenCells;
 
 	/// <summary>
 	/// Indicates the solution of the grid. If failed to solve (for example,
@@ -613,38 +597,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <see cref="Undefined"/>
 	public readonly Grid Solution
-	{
-#if !SOLUTION_DISPLAY_MODIFIABLES
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-		get
-		{
-			// Gets the solution grid. The current result grid may be undefined if the grid is invalid.
-			var solution = Solver.Solve(this);
-
-#if SOLUTION_DISPLAY_MODIFIABLES
-			// Checks for the grid validity.
-			if (solution.IsUndefined)
-			{
-				return solution;
-			}
-
-			// Displays modifiable values if worth.
-			var result = Empty;
-			for (int i = 0; i < 81; i++)
-			{
-				result[i] = solution[i];
-				if (GivenCells.Contains(i))
-				{
-					result.SetStatus(i, CellStatus.Given);
-				}
-			}
-#endif
-
-			// Return the result.
-			return result;
-		}
-	}
+		=> Solver.Solve(this) is { IsUndefined: false } solution ? solution >> GivenCells : Undefined;
 
 
 	/// <summary>
@@ -1383,11 +1336,6 @@ public unsafe partial struct Grid :
 	public static Grid Parse(string str, GridParsingOption gridParsingOption)
 		=> new GridParser(str).Parse(gridParsingOption);
 
-	/// <inheritdoc cref="Parse(string)"/>
-	/// <param name="handler">The string handler.</param>
-	public static Grid Parse([InterpolatedStringHandlerArgument] ref StringHandler handler)
-		=> Parse(handler.ToStringAndClear());
-
 	/// <summary>
 	/// Parses a pointer that points to a <see cref="Utf8String"/> value and converts to this type.
 	/// </summary>
@@ -1536,12 +1484,40 @@ public unsafe partial struct Grid :
 	/// <param name="grid">The grid.</param>
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The result grid.</returns>
-	public static Grid operator &(scoped in Grid grid, scoped in Cells pattern)
+	public static Grid operator <<(scoped in Grid grid, scoped in Cells pattern)
 	{
 		var result = grid;
 		foreach (int cell in ~pattern)
 		{
 			result[cell] = -1;
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Gets a sudoku grid, replacing all digits with modifiable
+	/// if it doesn't appear in the specified <paramref name="pattern"/>.
+	/// The argument <paramref name="solution"/> must be solved.
+	/// </summary>
+	/// <param name="solution">The solution as the base grid.</param>
+	/// <param name="pattern">The pattern.</param>
+	/// <returns>The result grid.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the grid is not solved.</exception>
+	public static Grid operator >>(scoped in Grid solution, scoped in Cells pattern)
+	{
+		if (!solution.IsSolved)
+		{
+			throw new InvalidOperationException("The grid must be solved.");
+		}
+
+		var result = solution;
+		foreach (int cell in ~pattern)
+		{
+			if (result.GetStatus(cell) == CellStatus.Given)
+			{
+				result.SetStatus(cell, CellStatus.Modifiable);
+			}
 		}
 
 		return result;
@@ -2045,7 +2021,7 @@ internal readonly ref partial struct FileLocalType_GridFormatter
 	private string ToSingleLineStringCore(scoped in Grid grid)
 	{
 		scoped var sb = new StringHandler(162);
-		var originalGrid = WithCandidates && !ShortenSusser ? Grid.Parse($"{grid:.+}") : Grid.Undefined;
+		var originalGrid = WithCandidates && !ShortenSusser ? Grid.Parse(grid.ToString(".+")) : Grid.Undefined;
 
 		var eliminatedCandidates = Candidates.Empty;
 		for (int c = 0; c < 81; c++)

@@ -2373,10 +2373,6 @@
             <param name="gridParsingOption">The grid parsing type.</param>
             <returns>The result instance had converted.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Parse(System.Text.StringHandler@)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
-            <param name="handler">The string handler.</param>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.Utf8Char*)">
             <summary>
             Parses a pointer that points to a <see cref="T:System.Utf8String"/> value and converts to this type.
@@ -2455,7 +2451,7 @@
             Indicates the eliminations in the extended susser format.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.op_BitwiseAnd(Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.Grid.op_LeftShift(Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@)">
             <summary>
             Gets a sudoku grid, removing all digits filled in the cells
             that doesn't appear in the specified <paramref name="pattern"/>.
@@ -2463,6 +2459,17 @@
             <param name="grid">The grid.</param>
             <param name="pattern">The pattern.</param>
             <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.op_RightShift(Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@)">
+            <summary>
+            Gets a sudoku grid, replacing all digits with modifiable
+            if it doesn't appear in the specified <paramref name="pattern"/>.
+            The argument <paramref name="solution"/> must be solved.
+            </summary>
+            <param name="solution">The solution as the base grid.</param>
+            <param name="pattern">The pattern.</param>
+            <returns>The result grid.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the grid is not solved.</exception>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_Equality(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>

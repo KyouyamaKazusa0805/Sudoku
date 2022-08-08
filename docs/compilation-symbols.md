@@ -10,7 +10,6 @@
 | `DECREASE_INITIALIZATION_MEMORY_ALLOCATION` | 表示 `StringHandler` 字符串拼接器对象是否在初始化的时候减少内存分配。[^2] |
 | `DISCARD_INTERPOLATION_INFO`                | 表示 `StringHandler` 字符串拼接器对象是否在初始化的时候，忽略掉基本初始化信息（比如字符串内插元素数量以及总长度）。 |
 | `USE_NEWER_CONSTANT_VALUES`                 | 表示 `StringHandler` 字符串拼接器对象假设内插字符串只有 8 个内插部分（如果不设置此符号的话，则是 11）。 |
-| `SOLUTION_DISPLAY_MODIFIABLES`              | 表示是否显示出终盘里自己填入的数据信息。如果没有该符号的话，所有数字都会被当作提示数显示。 |
 | `GRID_SERIALIZE_STRINGS`                    | 表示序列化数独盘面信息是按照字符串输出的格式进行序列化的方式。 |
 | `GRID_SERIALIZE_RAW_DATA`                   | 表示序列化数独盘面信息是按照底层的原始掩码表进行序列化的方式。 |
 | `USE_EQUALITY_COMPARER`                     | 表示是否使用 `EqualityComparer<T>` 类型来给对象进行比较运算操作。 |
@@ -59,7 +58,6 @@ graph LR
         click G "https://github.com/SunnieShine/Sudoku/blob/main/src/System/Text/StringHandler.cs" _blank
         click H "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Solving/Solving/Manual/Searchers/DeadlyPatterns/Rectangles/UniqueRectangleStepSearcher.cs" _blank
 
-        A -->|符号| S2(SOLUTION_DISPLAY_MODIFIABLES)
         A -->|嵌套类文件| B(Grid.JsonConverter.cs)
         B -->|符号| S3(GRID_SERIALIZE_STRINGS)
         B -->|符号| S4(GRID_SERIALIZE_RAW_DATA)
@@ -69,7 +67,6 @@ graph LR
         G -->|符号| S9(DISCARD_INTERPOLATION_INFO)
         G -->|符号| S10(USE_NEWER_CONSTANT_VALUES)
         H -->|符号| S11(IMPLEMENTED)
-        style S2 fill:#EEE
         style S3 fill:#CCC
         style S4 fill:#EEE
         style S5 fill:#CCC
