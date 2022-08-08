@@ -112,8 +112,8 @@ public sealed class LinkViewNodeShape : DrawingElement
 		bool isFirst = true;
 		foreach (var (start, end, inference) in nodes)
 		{
-			_ = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, start) is var pt1 and var (pt1x, pt1y);
-			_ = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, end) is var pt2 and var (pt2x, pt2y);
+			_ = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, start) is (var pt1x, var pt1y) pt1;
+			_ = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, end) is (var pt2x, var pt2y) pt2;
 
 			var doubleCollection = inference switch
 			{
@@ -374,12 +374,14 @@ public sealed class LinkViewNodeShape : DrawingElement
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void correctOffsetOfPoint(scoped ref Point point, double offset)
-			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
+			// We should correct the offset because canvas storing link view nodes are not aligned
+			// as the sudoku pane.
 			=> point = point with { X = point.X - offset, Y = point.Y - offset };
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void correctOffsetOfDouble(scoped ref double value, double offset)
-			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
+			// We should correct the offset because canvas storing link view nodes are not aligned
+			// as the sudoku pane.
 			=> value -= offset;
 
 		HashSet<Point> getPoints(LinkViewNode[] nodes)
