@@ -75,6 +75,13 @@
 					<FontIcon Glyph="&#xE8A7;" />
 				</HyperlinkButton>
 			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource AboutPage_CompilationInfo}"
+				Description="{x:Bind data:SimpleConverters.GetCompilationInfo()}">
+				<c:Win11SettingControl.Icon>
+					<ImageIcon Source="/Assets/images/logo.png" Height="24" />
+				</c:Win11SettingControl.Icon>
+			</c:Win11SettingControl>
 
 			<!--Special thanks-->
 			<c:Win11SettingControl

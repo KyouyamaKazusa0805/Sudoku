@@ -104,9 +104,6 @@
 		<EmbeddedResource Include="Assets\images\text-bilibili.svg">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Include="Assets\images\text-gitee.svg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</EmbeddedResource>
 		<EmbeddedResource Include="Assets\images\text-github.svg">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>

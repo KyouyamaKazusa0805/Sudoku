@@ -117,6 +117,8 @@ internal static class SimpleConverters
 		}
 	}
 
+	public static string GetCompilationInfo() => $"{R["ProgramVersion"]!} | x64 | Release";
+
 	/// <summary>
 	/// Gets the date value from the raw string.
 	/// </summary>

@@ -265,6 +265,7 @@
 	<x:String x:Key="AboutPage_FrameworkDescription">This application uses .NET 7 + Windows UI.</x:String>
 	<x:String x:Key="AboutPage_Framework_WindowsUI" xml:space="preserve">Windows App SDK: </x:String>
 	<x:String x:Key="AboutPage_Framework_DotnetRuntime">.NET APIs</x:String>
+	<x:String x:Key="AboutPage_CompilationInfo">Compilation Info</x:String>
 
 	<!--Query keywords-->
 	<x:String x:Key="QueryResult_Empty">No results found</x:String>
