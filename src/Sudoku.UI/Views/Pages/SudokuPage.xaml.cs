@@ -68,32 +68,30 @@ public sealed partial class SudokuPage : Page
 		void routeHandler(KeyRoutedEventArgs e)
 		{
 			(
-				(Action?)(
-					ModifierKeyDownData.FromCurrentState() switch
+				ModifierKeyDownData.FromCurrentState() switch
+				{
+					(true, true, false) => e.Key switch { Key.Tab => FixGrid, _ => null },
+					(true, _, false) => e.Key switch
 					{
-						(true, true, false) => e.Key switch { Key.Tab => FixGrid, _ => null },
-						(true, _, false) => e.Key switch
-						{
-							Key.O when EnsureUnsnapped() => async () => await OpenFileAsync(),
-							Key.S when EnsureUnsnapped() => async () => await SaveFileAsync(),
-							Key.C => CopySudokuCode,
-							Key.V => async () => await PasteAsync(),
-							Key.Tab => FixGrid,
-							Key.Z => Undo,
-							Key.Y => Redo,
-							Key.H => () => GenerateAsync(_cButtonGenerate),
-							_ => null
-						},
-						(false, false, false) => e.Key switch
-						{
-							(Key)189 => SetPreviousView,
-							(Key)187 => SetNextView,
-							Key.Escape => ClearViews,
-							_ => null
-						},
+						Key.O when EnsureUnsnapped() => async () => await OpenFileAsync(),
+						Key.S when EnsureUnsnapped() => async () => await SaveFileAsync(),
+						Key.C => CopySudokuCode,
+						Key.V => async () => await PasteAsync(),
+						Key.Tab => FixGrid,
+						Key.Z => Undo,
+						Key.Y => Redo,
+						Key.H => () => GenerateAsync(_cButtonGenerate),
 						_ => null
-					}
-				)
+					},
+					(false, false, false) => e.Key switch
+					{
+						(Key)189 => SetPreviousView,
+						(Key)187 => SetNextView,
+						Key.Escape => ClearViews,
+						_ => null
+					},
+					_ => default(Action?)
+				}
 			)?.Invoke();
 
 			// Make the property value 'false' to allow the handler continuously routes to the inner controls.
@@ -1007,13 +1005,12 @@ public sealed partial class SudokuPage : Page
 	/// <param name="e">The event arguments provided.</param>
 	private void Pane_FailedReceivedDroppedFile(object sender, FailedReceivedDroppedFileEventArgs e)
 		=> (
-			(Action)(
-				e.Reason switch
-				{
-					FailedReceivedDroppedFileReason.FileIsEmpty => EmitFileIsEmptyInfo,
-					FailedReceivedDroppedFileReason.FileIsTooLarge => EmitFileIsTooLarge,
-				}
-			)
+			e.Reason switch
+			{
+				FailedReceivedDroppedFileReason.FileIsEmpty => EmitFileIsEmptyInfo,
+				FailedReceivedDroppedFileReason.FileIsTooLarge => EmitFileIsTooLarge,
+				_ => default(Action?)!
+			}
 		).Invoke();
 
 	/// <summary>
