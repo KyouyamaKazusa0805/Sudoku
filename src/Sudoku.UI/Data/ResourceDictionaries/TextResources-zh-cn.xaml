@@ -241,9 +241,7 @@
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>
-	<x:String x:Key="AboutPage_AuthorMoreInfo">作者联系方式</x:String>
-	<x:String x:Key="AboutPage_Platform">平台</x:String>
-	<x:String x:Key="AboutPage_Site">网站</x:String>
+	<x:String x:Key="AboutPage_AuthorMoreInfo">联系方式</x:String>
 	<x:String x:Key="AboutPage_GitHub">GitHub</x:String>
 	<x:String x:Key="AboutPage_Gitee">Gitee</x:String>
 	<x:String x:Key="AboutPage_Bilibili">哔哩哔哩</x:String>
@@ -260,8 +258,6 @@
 	<x:String x:Key="AboutPage_License">开源协议</x:String>
 	<x:String x:Key="AboutPage_Framework">程序框架</x:String>
 	<x:String x:Key="AboutPage_FrameworkDescription">本应用程序使用 .NET 7 + Windows UI 框架搭建。</x:String>
-	<x:String x:Key="AboutPage_Framework_WindowsUI">Windows 应用 SDK：</x:String>
-	<x:String x:Key="AboutPage_Framework_DotnetRuntime">.NET 框架 API</x:String>
 	<x:String x:Key="AboutPage_CompilationInfo">编译信息</x:String>
 
 	<!--查询用关键词-->

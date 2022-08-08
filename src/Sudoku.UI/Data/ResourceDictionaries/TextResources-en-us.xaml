@@ -244,9 +244,7 @@
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>
-	<x:String x:Key="AboutPage_AuthorMoreInfo">Platforms</x:String>
-	<x:String x:Key="AboutPage_Platform">Platform</x:String>
-	<x:String x:Key="AboutPage_Site">Site</x:String>
+	<x:String x:Key="AboutPage_AuthorMoreInfo">Contacts</x:String>
 	<x:String x:Key="AboutPage_GitHub">GitHub</x:String>
 	<x:String x:Key="AboutPage_Gitee">Gitee</x:String>
 	<x:String x:Key="AboutPage_Bilibili">Bilibili</x:String>
@@ -263,8 +261,6 @@
 	<x:String x:Key="AboutPage_License">License</x:String>
 	<x:String x:Key="AboutPage_Framework">Programming Framework</x:String>
 	<x:String x:Key="AboutPage_FrameworkDescription">This application uses .NET 7 + Windows UI.</x:String>
-	<x:String x:Key="AboutPage_Framework_WindowsUI" xml:space="preserve">Windows App SDK: </x:String>
-	<x:String x:Key="AboutPage_Framework_DotnetRuntime">.NET APIs</x:String>
 	<x:String x:Key="AboutPage_CompilationInfo">Compilation Info</x:String>
 
 	<!--Query keywords-->

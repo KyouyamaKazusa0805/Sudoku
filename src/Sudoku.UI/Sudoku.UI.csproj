@@ -101,12 +101,6 @@
 		<EmbeddedResource Include="Assets\images\splash-screen.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Include="Assets\images\text-bilibili.svg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</EmbeddedResource>
-		<EmbeddedResource Include="Assets\images\text-github.svg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</EmbeddedResource>
 		<EmbeddedResource Include="Assets\images\zh-CN\icon-config-backup-file.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>

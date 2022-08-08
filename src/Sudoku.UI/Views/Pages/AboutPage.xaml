@@ -29,27 +29,17 @@
 				<c:Win11SettingControl.Icon>
 					<SymbolIcon Symbol="Contact" />
 				</c:Win11SettingControl.Icon>
-				<c:Win11SettingControl.ExpandableContent>
-					<StackPanel Margin="40,6,10,6">
-						<StackPanel.ChildrenTransitions>
-							<TransitionCollection>
-								<EntranceThemeTransition IsStaggeringEnabled="True" />
-							</TransitionCollection>
-						</StackPanel.ChildrenTransitions>
-
-						<HyperlinkButton NavigateUri="https://github.com/SunnieShine">
-							<Image
-								Source="/Assets/images/text-github.svg" Stretch="Uniform" Height="36"
-								VerticalAlignment="Center" />
-						</HyperlinkButton>
-						<HyperlinkButton NavigateUri="https://space.bilibili.com/23736703">
-							<Image
-								Source="/Assets/images/text-bilibili.svg" Stretch="Uniform" Height="36"
-								VerticalAlignment="Center" />
-						</HyperlinkButton>
-						<HyperlinkButton NavigateUri="https://gitee.com/SunnieShine" Content="{StaticResource AboutPage_Gitee}" />
-					</StackPanel>
-				</c:Win11SettingControl.ExpandableContent>
+				<StackPanel Orientation="Horizontal">
+					<HyperlinkButton
+						NavigateUri="https://github.com/SunnieShine" Content="{StaticResource AboutPage_GitHub}" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton
+						NavigateUri="https://space.bilibili.com/23736703"
+						Content="{StaticResource AboutPage_Bilibili}" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton
+						NavigateUri="https://gitee.com/SunnieShine" Content="{StaticResource AboutPage_Gitee}" />
+				</StackPanel>
 			</c:Win11SettingControl>
 
 			<!--Framework info-->
@@ -59,21 +49,17 @@
 				<c:Win11SettingControl.Icon>
 					<SymbolIcon Symbol="Library" />
 				</c:Win11SettingControl.Icon>
-				<HyperlinkButton
-					x:Name="_winUILink" NavigateUri="https://github.com/microsoft/microsoft-ui-xaml"
-					Margin="{StaticResource ParagraphOffset}">
-					<FontIcon Glyph="&#xE8A7;" />
-				</HyperlinkButton>
-			</c:Win11SettingControl>
-			<c:Win11SettingControl Title="{StaticResource AboutPage_Framework_DotnetRuntime}">
-				<c:Win11SettingControl.Icon>
-					<SymbolIcon Symbol="Library" />
-				</c:Win11SettingControl.Icon>
-				<HyperlinkButton
-					x:Name="_dotnetRuntimeLink" NavigateUri="https://github.com/dotnet/runtime"
-					Margin="{StaticResource ParagraphOffset}">
-					<FontIcon Glyph="&#xE8A7;" />
-				</HyperlinkButton>
+				<StackPanel Orientation="Horizontal">
+					<HyperlinkButton
+						NavigateUri="https://github.com/microsoft/microsoft-ui-xaml"
+						Content="WinUI 3" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton
+						NavigateUri="https://github.com/microsoft/WindowsAppSDK" Content="Windows App SDK" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton
+						NavigateUri="https://github.com/dotnet/runtime" Content=".NET Runtime" />
+				</StackPanel>
 			</c:Win11SettingControl>
 			<c:Win11SettingControl
 				Title="{StaticResource AboutPage_CompilationInfo}"
