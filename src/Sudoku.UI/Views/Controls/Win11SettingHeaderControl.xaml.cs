@@ -14,7 +14,7 @@ public sealed partial class Win11SettingHeaderControl : UserControl
 		nameof(Title),
 		typeof(string),
 		typeof(Win11SettingHeaderControl),
-		new(string.Empty, (d, e) => AutomationProperties.SetName(d, (string)e.NewValue))
+		new(string.Empty, static (d, e) => AutomationProperties.SetName(d, (string)e.NewValue))
 	);
 
 	/// <summary>
@@ -25,7 +25,7 @@ public sealed partial class Win11SettingHeaderControl : UserControl
 		nameof(Description),
 		typeof(string),
 		typeof(Win11SettingHeaderControl),
-		new(string.Empty, (d, e) => AutomationProperties.SetHelpText(d, (string)e.NewValue))
+		new(string.Empty, static (d, e) => AutomationProperties.SetHelpText(d, (string)e.NewValue))
 	);
 
 	/// <summary>
@@ -88,9 +88,11 @@ public sealed partial class Win11SettingHeaderControl : UserControl
 		set => SetValue(IconProperty, value);
 	}
 
-#pragma warning disable CS1591
+	/// <summary>
+	/// Indicates the control that is displayed at the right side,
+	/// representing a detail information displayer control.
+	/// </summary>
 	public FrameworkElement? SettingActionableElement { get; set; }
-#pragma warning restore CS1591
 
 
 	/// <summary>
