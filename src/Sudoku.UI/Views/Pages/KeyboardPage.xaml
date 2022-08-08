@@ -10,24 +10,21 @@
 	mc:Ignorable="d">
 	<ScrollViewer>
 		<StackPanel>
-			<TextBlock Text="{StaticResource KeyboardPage_DetailDescription}" Style="{ThemeResource PlainText}" />
-			<ListView
-				SelectionMode="None" HorizontalAlignment="Stretch" Margin="40,20,10,30"
-				ItemsSource="{x:Bind _data}">
+			<TextBlock Text="{StaticResource KeyboardPage_DetailDescription}" Margin="40,20,10,12" />
+			<ListView SelectionMode="None" ItemsSource="{x:Bind _data}" Margin="25,0,10,30">
 				<ListView.Transitions>
 					<TransitionCollection>
-						<EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50" />
+						<EntranceThemeTransition IsStaggeringEnabled="True" />
 					</TransitionCollection>
 				</ListView.Transitions>
 				<ListView.ItemTemplate>
 					<DataTemplate x:DataType="m:KeyboardKeyHintInfo">
-						<c:Win11SettingControl Title="{x:Bind KeyName}" Margin="0,4">
+						<c:Win11SettingControl
+							Title="{x:Bind KeyName}" Margin="0,2"
+							Description="{x:Bind data:SimpleConverters.GetText(KeyboardPair.ModifierKeys,KeyboardPair.VirtualKeys)}">
 							<c:Win11SettingControl.Icon>
-								<FontIcon Glyph="&#xF4DA;" />
+								<SymbolIcon Symbol="Keyboard" />
 							</c:Win11SettingControl.Icon>
-							<TextBlock
-								FontFamily="Consolas"
-								Text="{x:Bind data:SimpleConverters.GetText(KeyboardPair.ModifierKeys,KeyboardPair.VirtualKeys)}" />
 						</c:Win11SettingControl>
 					</DataTemplate>
 				</ListView.ItemTemplate>

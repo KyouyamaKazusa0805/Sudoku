@@ -4,137 +4,153 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:Sudoku.UI.Views.Controls"
 	xmlns:data="using:Sudoku.UI.DataConversion"
 	xmlns:m="using:Sudoku.UI.Models"
 	mc:Ignorable="d">
 	<ScrollViewer>
-		<StackPanel>
-			<!--Program description-->
-			<TextBlock Text="{StaticResource AboutPage_DetailDescription}" Style="{ThemeResource PlainText}" />
+		<StackPanel Margin="40,20,10,30" Spacing="4">
+			<StackPanel.ChildrenTransitions>
+				<TransitionCollection>
+					<EntranceThemeTransition IsStaggeringEnabled="True" />
+				</TransitionCollection>
+			</StackPanel.ChildrenTransitions>
+
+			<TextBlock Text="{StaticResource AboutPage_DetailDescription}" Margin="0,0,0,12" />
 
 			<!--Author info-->
-			<TextBlock Text="{StaticResource AboutPage_Author}" Style="{ThemeResource Header2Text}" />
-			<TextBlock Text="{StaticResource AboutPage_AuthorName}" Style="{ThemeResource BoldText}" />
-			<TextBlock Text="{StaticResource AboutPage_AuthorMoreInfo}" Style="{ThemeResource PlainText}" />
-			<Grid HorizontalAlignment="Left" Margin="{StaticResource ParagraphOffset}">
-				<Grid.RowDefinitions>
-					<RowDefinition />
-					<RowDefinition />
-					<RowDefinition />
-					<RowDefinition />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition />
-					<ColumnDefinition />
-				</Grid.ColumnDefinitions>
+			<c:Win11SettingControl Title="{StaticResource AboutPage_Author}">
+				<c:Win11SettingControl.Icon>
+					<SymbolIcon Symbol="People" />
+				</c:Win11SettingControl.Icon>
+				<TextBlock Text="{StaticResource AboutPage_AuthorName}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource AboutPage_AuthorMoreInfo}">
+				<c:Win11SettingControl.Icon>
+					<SymbolIcon Symbol="Contact" />
+				</c:Win11SettingControl.Icon>
+				<c:Win11SettingControl.ExpandableContent>
+					<StackPanel Margin="40,6,10,6">
+						<StackPanel.ChildrenTransitions>
+							<TransitionCollection>
+								<EntranceThemeTransition IsStaggeringEnabled="True" />
+							</TransitionCollection>
+						</StackPanel.ChildrenTransitions>
 
-				<!--Border lines-->
-				<Border Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
-				<Border Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
-				<Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
-				<Border Grid.Row="3" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,1" />
-
-				<!--Table rows-->
-				<TextBlock
-					Grid.Row="0" Grid.Column="0" Text="{StaticResource AboutPage_Platform}"
-					Style="{ThemeResource TableHeader}" />
-				<TextBlock
-					Grid.Row="0" Grid.Column="1" Text="{StaticResource AboutPage_Site}"
-					Style="{ThemeResource TableHeader}" />
-				<TextBlock
-					Grid.Row="1" Grid.Column="0" Text="{StaticResource AboutPage_GitHub}"
-					HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
-				<HyperlinkButton
-					x:Name="_githubLink" Grid.Row="1" Grid.Column="1" NavigateUri="https://github.com/SunnieShine"
-					Content="{x:Bind _githubLink.NavigateUri}" />
-				<TextBlock
-					Grid.Row="2" Grid.Column="0" Text="{StaticResource AboutPage_Gitee}"
-					HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
-				<HyperlinkButton
-					x:Name="_giteeLink" Grid.Row="2" Grid.Column="1" NavigateUri="https://gitee.com/SunnieShine"
-					Content="{x:Bind _giteeLink.NavigateUri}" />
-				<TextBlock
-					Grid.Row="3" Grid.Column="0" Text="{StaticResource AboutPage_Bilibili}"
-					HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
-				<HyperlinkButton
-					x:Name="_bilibiliLink" Grid.Row="3" Grid.Column="1" NavigateUri="https://space.bilibili.com/23736703"
-					Content="{x:Bind _bilibiliLink.NavigateUri}" />
-			</Grid>
+						<HyperlinkButton NavigateUri="https://github.com/SunnieShine">
+							<Image
+								Source="/Assets/images/text-github.svg" Stretch="Uniform" Height="36"
+								VerticalAlignment="Center" />
+						</HyperlinkButton>
+						<HyperlinkButton NavigateUri="https://space.bilibili.com/23736703">
+							<Image
+								Source="/Assets/images/text-bilibili.svg" Stretch="Uniform" Height="36"
+								VerticalAlignment="Center" />
+						</HyperlinkButton>
+						<HyperlinkButton NavigateUri="https://gitee.com/SunnieShine" Content="{StaticResource AboutPage_Gitee}" />
+					</StackPanel>
+				</c:Win11SettingControl.ExpandableContent>
+			</c:Win11SettingControl>
 
 			<!--Framework info-->
-			<TextBlock Text="{StaticResource AboutPage_Framework}" Style="{ThemeResource Header2Text}" />
-			<TextBlock Text="{StaticResource AboutPage_FrameworkDescription}" Style="{ThemeResource PlainText}" />
-			<TextBlock Text="{StaticResource AboutPage_Framework_WindowsUI}" Style="{ThemeResource BoldText}" />
-			<HyperlinkButton
-				x:Name="_winUILink" NavigateUri="https://github.com/microsoft/microsoft-ui-xaml"
-				Margin="{StaticResource ParagraphOffset}" Content="{x:Bind _winUILink.NavigateUri}" />
-			<TextBlock Text="{StaticResource AboutPage_Framework_DotnetRuntime}" Style="{ThemeResource BoldText}" />
-			<HyperlinkButton
-				x:Name="_dotnetRuntimeLink" NavigateUri="https://github.com/dotnet/runtime"
-				Margin="{StaticResource ParagraphOffset}" Content="{x:Bind _dotnetRuntimeLink.NavigateUri}" />
+			<c:Win11SettingControl
+				Title="{StaticResource AboutPage_Framework}"
+				Description="{StaticResource AboutPage_FrameworkDescription}">
+				<c:Win11SettingControl.Icon>
+					<SymbolIcon Symbol="Library" />
+				</c:Win11SettingControl.Icon>
+				<HyperlinkButton
+					x:Name="_winUILink" NavigateUri="https://github.com/microsoft/microsoft-ui-xaml"
+					Margin="{StaticResource ParagraphOffset}">
+					<FontIcon Glyph="&#xE8A7;" />
+				</HyperlinkButton>
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource AboutPage_Framework_DotnetRuntime}">
+				<c:Win11SettingControl.Icon>
+					<SymbolIcon Symbol="Library" />
+				</c:Win11SettingControl.Icon>
+				<HyperlinkButton
+					x:Name="_dotnetRuntimeLink" NavigateUri="https://github.com/dotnet/runtime"
+					Margin="{StaticResource ParagraphOffset}">
+					<FontIcon Glyph="&#xE8A7;" />
+				</HyperlinkButton>
+			</c:Win11SettingControl>
 
 			<!--Special thanks-->
-			<TextBlock Text="{StaticResource AboutPage_SpecialThanks}" Style="{ThemeResource Header2Text}" />
-			<TextBlock Text="{StaticResource AboutPage_SpecialThanksDescription}" Style="{ThemeResource PlainText}" />
-			<ListView Margin="{StaticResource ParagraphOffset}" SelectionMode="None">
-				<ListView.ItemTemplate>
-					<DataTemplate x:DataType="m:RepositoryInfo">
-						<Grid>
-							<Grid.RowDefinitions>
-								<RowDefinition />
-								<RowDefinition />
-								<RowDefinition />
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition />
-							</Grid.ColumnDefinitions>
+			<c:Win11SettingControl
+				Title="{StaticResource AboutPage_SpecialThanks}"
+				Description="{StaticResource AboutPage_SpecialThanksDescription}">
+				<c:Win11SettingControl.Icon>
+					<SymbolIcon Symbol="Link" />
+				</c:Win11SettingControl.Icon>
+				<c:Win11SettingControl.ExpandableContent>
+					<ListView SelectionMode="None" Margin="40,20,10,30">
+						<ListView.ItemTemplate>
+							<DataTemplate x:DataType="m:RepositoryInfo">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition />
+										<RowDefinition />
+										<RowDefinition />
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition />
+									</Grid.ColumnDefinitions>
 
-							<PersonPicture
-								Grid.RowSpan="3" Width="48" Height="48" Margin="6" HorizontalAlignment="Center"
-								VerticalAlignment="Center" ProfilePicture="{x:Bind IconPath}"
-								Initials="{x:Bind Initials}" />
-							<TextBlock
-								Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,6,0,0"
-								Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
-							<TextBlock
-								Grid.Row="1" Grid.Column="1" Margin="12,6,0,0" Style="{StaticResource BodyTextBlockStyle}"
-								Text="{x:Bind data:SimpleConverters.License(OpenSourceLicense)}" />
-							<TextBlock
-								Grid.Row="1" Grid.Column="2" Margin="12,6,0,0" Style="{StaticResource BaseTextBlockStyle}"
-								Text="{x:Bind data:SimpleConverters.ForReference(IsForReference)}" />
-							<HyperlinkButton
-								Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,0,0,6" Content="{x:Bind Site}"
-								NavigateUri="{x:Bind Site}" Style="{StaticResource BodyTextBlockStyle}" />
-						</Grid>
-					</DataTemplate>
-				</ListView.ItemTemplate>
+									<PersonPicture
+										Grid.RowSpan="3" Width="48" Height="48" Margin="6"
+										HorizontalAlignment="Center" Initials="{x:Bind Initials}"
+										VerticalAlignment="Center" ProfilePicture="{x:Bind IconPath}" />
+									<TextBlock
+										Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,6,0,0"
+										Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
+									<TextBlock
+										Grid.Row="1" Grid.Column="1" Margin="12,6,0,0"
+										Style="{StaticResource BodyTextBlockStyle}"
+										Text="{x:Bind data:SimpleConverters.License(OpenSourceLicense)}" />
+									<TextBlock
+										Grid.Row="1" Grid.Column="2" Margin="12,6,0,0"
+										Style="{StaticResource BaseTextBlockStyle}"
+										Text="{x:Bind data:SimpleConverters.ForReference(IsForReference)}" />
+									<HyperlinkButton
+										Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,0,0,6"
+										NavigateUri="{x:Bind Site}">
+										<FontIcon Glyph="&#xE8A7;" />
+									</HyperlinkButton>
+								</Grid>
+							</DataTemplate>
+						</ListView.ItemTemplate>
 
-				<m:RepositoryInfo
-					Name="{StaticResource AboutPage_SpecialThanks_DotnetRuntime}" OpenSourceLicense="MIT"
-					IconPath="/Assets/images/repo-dotnet.png" Site="https://github.com/dotnet/runtime" />
-				<m:RepositoryInfo
-					Name="{StaticResource AboutPage_SpecialThanks_LearnWinUI3}" OpenSourceLicense="MIT"
-					Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0" Initials="LW" IsForReference="True" />
-				<m:RepositoryInfo
-					Name="{StaticResource AboutPage_SpecialThanks_WpfSamples}" OpenSourceLicense="MIT"
-					Site="https://github.com/microsoft/WPF-Samples" Initials="WS" IsForReference="True" />
-				<m:RepositoryInfo
-					Name="{StaticResource AboutPage_SpecialThanks_UWPSamples}" OpenSourceLicense="MIT"
-					Site="https://github.com/microsoft/Windows-universal-samples" Initials="US" IsForReference="True" />
-				<m:RepositoryInfo
-					Name="{StaticResource AboutPage_SpecialThanks_WinUI3Gallary}" OpenSourceLicense="MIT"
-					Site="https://github.com/microsoft/WinUI-Gallery" Initials="WG" />
-				<m:RepositoryInfo
-					Name="{StaticResource AboutPage_SpecialThanks_WinUIEx}" OpenSourceLicense="MIT"
-					Site="https://github.com/dotMorten/WinUIEx" IconPath="/Assets/images/repo-winuiex.png"
-					IsForReference="True" />
-				<m:RepositoryInfo
-					Name="{StaticResource AboutPage_SpecialThanks_DevToys}" OpenSourceLicense="MIT"
-					Site="https://github.com/veler/DevToys" IconPath="/Assets/images/logo-devtoys.png"
-					IsForReference="True" />
-			</ListView>
+						<m:RepositoryInfo
+							Name="{StaticResource AboutPage_SpecialThanks_DotnetRuntime}" OpenSourceLicense="MIT"
+							IconPath="/Assets/images/repo-dotnet.png" Site="https://github.com/dotnet/runtime" />
+						<m:RepositoryInfo
+							Name="{StaticResource AboutPage_SpecialThanks_LearnWinUI3}" OpenSourceLicense="MIT"
+							Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0" Initials="LW"
+							IsForReference="True" />
+						<m:RepositoryInfo
+							Name="{StaticResource AboutPage_SpecialThanks_WpfSamples}" OpenSourceLicense="MIT"
+							Site="https://github.com/microsoft/WPF-Samples" Initials="WS" IsForReference="True" />
+						<m:RepositoryInfo
+							Name="{StaticResource AboutPage_SpecialThanks_UWPSamples}" OpenSourceLicense="MIT"
+							Site="https://github.com/microsoft/Windows-universal-samples" Initials="US"
+							IsForReference="True" />
+						<m:RepositoryInfo
+							Name="{StaticResource AboutPage_SpecialThanks_WinUI3Gallary}" OpenSourceLicense="MIT"
+							Site="https://github.com/microsoft/WinUI-Gallery" Initials="WG" />
+						<m:RepositoryInfo
+							Name="{StaticResource AboutPage_SpecialThanks_WinUIEx}" OpenSourceLicense="MIT"
+							Site="https://github.com/dotMorten/WinUIEx" IconPath="/Assets/images/repo-winuiex.png"
+							IsForReference="True" />
+						<m:RepositoryInfo
+							Name="{StaticResource AboutPage_SpecialThanks_DevToys}" OpenSourceLicense="MIT"
+							Site="https://github.com/veler/DevToys" IconPath="/Assets/images/logo-devtoys.png"
+							IsForReference="True" />
+					</ListView>
+				</c:Win11SettingControl.ExpandableContent>
+			</c:Win11SettingControl>
 		</StackPanel>
 	</ScrollViewer>
 </Page>
