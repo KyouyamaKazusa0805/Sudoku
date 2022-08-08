@@ -4002,6 +4002,16 @@
         <member name="M:Sudoku.UI.Views.Windows.MySplashScreen.OnLoading">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Views.Windows.MySplashScreen.SetProgramNameToTitle">
+            <summary>
+            Try to set the title.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MySplashScreen.SetIconFromAssetFile">
+            <summary>
+            Sets the icon from assets file.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Windows.MySplashScreen.InitializeComponent">
             <summary>
             InitializeComponent()
