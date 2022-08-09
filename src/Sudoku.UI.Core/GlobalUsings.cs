@@ -13,6 +13,7 @@ global using System.Runtime.InteropServices;
 global using System.Runtime.InteropServices.WindowsRuntime;
 global using System.Text;
 global using System.Threading.Tasks;
+global using Microsoft.UI;
 global using Microsoft.UI.Input;
 global using Microsoft.UI.Text;
 global using Microsoft.UI.Windowing;

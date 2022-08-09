@@ -86,6 +86,36 @@ public sealed class CandidateViewNodeShape : DrawingElement
 		_ellipses[digit].Fill = new SolidColorBrush(identifier.AsColor(_preference));
 	}
 
+	/// <summary>
+	/// Sets the storyboard onto the specified digits.
+	/// </summary>
+	/// <param name="digit">The digit.</param>
+	/// <param name="playingPeriodTimes">The count of times that the animation playing.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetAnimation(int digit, int playingPeriodTimes = 3)
+	{
+		var color = _identifiers[digit].AsColor(_preference);
+		var animation = new ColorAnimation
+		{
+			From = color,
+			To = color,
+			By = Colors.White,
+			EnableDependentAnimation = true,
+			Duration = TimeSpan.FromSeconds(2)
+		};
+
+		Storyboard.SetTarget(animation, _ellipses[digit]);
+		Storyboard.SetTargetProperty(animation, $"({nameof(Shape)}.{nameof(Shape.Fill)}).({nameof(SolidColorBrush)}.{nameof(SolidColorBrush.Color)})");
+
+		var storyboard = new Storyboard
+		{
+			Duration = TimeSpan.Zero,
+			RepeatBehavior = new() { Count = playingPeriodTimes }
+		};
+		storyboard.Children.Add(animation);
+		storyboard.Begin();
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other) =>

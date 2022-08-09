@@ -1148,6 +1148,8 @@ public sealed class SudokuGrid : DrawingElement
 							: _preference.EliminationColor
 				).AsIdentifier()
 			);
+
+			current.SetAnimation(digit);
 		}
 	}
 }

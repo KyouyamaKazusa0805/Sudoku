@@ -857,8 +857,9 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator +(scoped in Cells collection, IEnumerable<int> cells)
 	{
-		collection.AddRange(cells);
-		return collection;
+		var result = collection;
+		result.AddRange(cells);
+		return result;
 	}
 
 	/// <summary>
@@ -872,8 +873,9 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator checked +(scoped in Cells collection, IEnumerable<int> cells)
 	{
-		collection.AddRangeChecked(cells);
-		return collection;
+		var result = collection;
+		result.AddRangeChecked(cells);
+		return result;
 	}
 
 	/// <summary>
