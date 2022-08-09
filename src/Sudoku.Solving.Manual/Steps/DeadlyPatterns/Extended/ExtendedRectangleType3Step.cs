@@ -41,7 +41,7 @@ internal sealed record ExtendedRectangleType3Step(
 	internal string ExtraDigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(ExtraDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]
@@ -55,6 +55,6 @@ internal sealed record ExtendedRectangleType3Step(
 	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(House).ToString();
+		get => HouseFormatter.Format(1 << House);
 	}
 }

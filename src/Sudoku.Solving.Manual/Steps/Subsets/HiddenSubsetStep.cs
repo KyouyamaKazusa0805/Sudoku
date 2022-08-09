@@ -27,13 +27,13 @@ internal sealed record HiddenSubsetStep(
 	internal string DigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(DigitsMask).ToString();
+		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]
 	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(House).ToString();
+		get => HouseFormatter.Format(1 << House);
 	}
 }

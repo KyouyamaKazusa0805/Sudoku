@@ -109,14 +109,14 @@ internal sealed record NormalFishStep(
 	internal string BaseSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(BaseSetsMask.GetAllSets()).ToString();
+		get => HouseFormatter.Format(BaseSetsMask);
 	}
 
 	[FormatItem]
 	internal string CoverSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(CoverSetsMask.GetAllSets()).ToString();
+		get => HouseFormatter.Format(CoverSetsMask);
 	}
 
 	[FormatItem]

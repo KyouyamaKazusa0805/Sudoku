@@ -96,6 +96,6 @@ internal sealed record UniqueRectangleWithSueDeCoqStep(
 	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection((short)(LineMask | BlockMask)).ToString();
+		get => DigitMaskFormatter.Format((short)(LineMask | BlockMask), FormattingMode.Normal);
 	}
 }

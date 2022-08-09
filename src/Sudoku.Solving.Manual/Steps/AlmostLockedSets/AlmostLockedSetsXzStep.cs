@@ -83,13 +83,13 @@ internal sealed record AlmostLockedSetsXzStep(
 	internal string XStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(XDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(XDigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]
 	internal string ZResultStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ZDigitsMask != 0 ? $", Z = {new DigitCollection(ZDigitsMask).ToString()}" : string.Empty;
+		get => ZDigitsMask != 0 ? $"{R["Comma"]!}Z = {DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal)}" : string.Empty;
 	}
 }

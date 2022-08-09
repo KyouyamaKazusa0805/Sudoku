@@ -45,13 +45,13 @@ internal sealed record LockedCandidatesStep(
 	internal string BaseSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(BaseSet).ToString();
+		get => HouseFormatter.Format(1 << BaseSet);
 	}
 
 	[FormatItem]
 	internal string CoverSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(CoverSet).ToString();
+		get => HouseFormatter.Format(1 << CoverSet);
 	}
 }

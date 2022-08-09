@@ -62,14 +62,14 @@ internal sealed record NakedSubsetStep(
 	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(DigitsMask).ToString();
+		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]
 	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(House).ToString();
+		get => HouseFormatter.Format(1 << House);
 	}
 
 	[FormatItem]

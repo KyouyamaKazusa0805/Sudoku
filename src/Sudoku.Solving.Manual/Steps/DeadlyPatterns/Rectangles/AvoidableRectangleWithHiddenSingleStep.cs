@@ -63,7 +63,7 @@ internal sealed record AvoidableRectangleWithHiddenSingleStep(
 	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(House).ToString();
+		get => HouseFormatter.Format(1 << House);
 	}
 
 	[FormatItem]

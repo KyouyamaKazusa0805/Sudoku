@@ -63,7 +63,7 @@ internal sealed record AlmostLockedSetsWWingStep(
 	internal string WStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(WDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(WDigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]

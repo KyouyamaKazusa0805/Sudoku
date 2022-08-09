@@ -17,7 +17,7 @@ public readonly record struct ExocetElimination(Conclusion[] Conclusions, Exocet
 	{
 		string header = R[$"Exocet{Reason}EliminationName"]!;
 		string snippet = R["ExocetElimination"]!;
-		string elim = new ConclusionCollection(Conclusions).ToString();
+		string elim = ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
 		return $"* {header}{snippet}{elim}";
 	}
 }

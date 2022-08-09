@@ -156,8 +156,8 @@ public sealed class AlmostLockedSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string digitsStr = new DigitCollection(DigitsMask).ToSimpleString();
-		string houseStr = new HouseCollection(House).ToString();
+		string digitsStr = DigitMaskFormatter.Format(DigitsMask);
+		string houseStr = HouseFormatter.Format(1 << House);
 		return IsBivalueCell ? $"{digitsStr}/{Map}" : $"{digitsStr}/{Map} {R["KeywordIn"]} {houseStr}";
 	}
 

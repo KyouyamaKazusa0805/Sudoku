@@ -28,7 +28,7 @@ internal sealed record UniquePolygonType4Step(
 	internal string ExtraCombStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(ExtraMask).ToString();
+		get => DigitMaskFormatter.Format(ExtraMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]

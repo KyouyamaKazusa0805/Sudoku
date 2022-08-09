@@ -58,7 +58,7 @@ internal sealed record SeniorExocetStep(
 					}
 
 					sb.Append(digit + 1);
-					sb.Append(new HouseCollection(mask.GetAllSets()).ToString());
+					sb.Append(HouseFormatter.Format(mask));
 					sb.Append(separator);
 
 					count++;

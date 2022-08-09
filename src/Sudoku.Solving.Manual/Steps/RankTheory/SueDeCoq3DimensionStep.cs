@@ -54,7 +54,7 @@ internal sealed record SueDeCoq3DimensionStep(
 	internal string Digits1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(RowDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(RowDigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]
@@ -68,7 +68,7 @@ internal sealed record SueDeCoq3DimensionStep(
 	internal string Digits2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(ColumnDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(ColumnDigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]
@@ -82,6 +82,6 @@ internal sealed record SueDeCoq3DimensionStep(
 	internal string Digits3Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(BlockDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(BlockDigitsMask, FormattingMode.Normal);
 	}
 }

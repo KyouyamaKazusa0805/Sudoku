@@ -31,7 +31,6 @@ global using Sudoku.Solving.DancingLinx;
 global using Sudoku.Solving.Data.Representation;
 global using Sudoku.Text;
 global using Sudoku.Text.Formatting;
-global using Sudoku.Text.Handlers;
 global using Sudoku.Text.Notations;
 global using Sudoku.Text.Parsing;
 global using static System.Algorithm.Sequences;

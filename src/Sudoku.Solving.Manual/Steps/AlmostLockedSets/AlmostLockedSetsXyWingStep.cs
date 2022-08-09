@@ -65,20 +65,20 @@ internal sealed record AlmostLockedSetsXyWingStep(
 	internal string XStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(XDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(XDigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]
 	internal string YStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(YDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(YDigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]
 	internal string ZStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(ZDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal);
 	}
 }

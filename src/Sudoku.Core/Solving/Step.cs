@@ -43,7 +43,7 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 	internal string ElimStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new ConclusionCollection(Conclusions.ToArray()).ToString();
+		get => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
 	}
 
 	/// <inheritdoc/>

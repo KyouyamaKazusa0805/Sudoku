@@ -65,7 +65,7 @@ internal sealed record UniqueRectangleWithGuardianSubsetStep(
 	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(SubsetDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]

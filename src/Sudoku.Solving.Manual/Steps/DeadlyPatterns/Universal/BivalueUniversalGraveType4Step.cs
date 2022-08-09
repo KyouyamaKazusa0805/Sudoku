@@ -35,7 +35,7 @@ internal sealed record BivalueUniversalGraveType4Step(
 	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(DigitsMask).ToString();
+		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]

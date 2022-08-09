@@ -67,6 +67,6 @@ internal sealed record EmptyRectangleIntersectionPairStep(
 	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(House).ToString();
+		get => HouseFormatter.Format(1 << House);
 	}
 }

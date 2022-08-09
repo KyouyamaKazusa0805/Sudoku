@@ -1691,4 +1691,10 @@
   <data name="TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep" xml:space="preserve">
     <value>{Name}：如果 {FalseCandidateStr} 为真，则盘面会变为 BUG 致命形式 =&gt; {ElimStr}</value>
   </data>
+  <data name="ChineseComma" xml:space="preserve">
+    <value>、</value>
+  </data>
+  <data name="Comma" xml:space="preserve">
+    <value>，</value>
+  </data>
 </root>

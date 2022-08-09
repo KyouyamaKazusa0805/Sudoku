@@ -42,6 +42,6 @@ internal sealed record BowmanBingoStep(
 	internal string ContradictionSeriesStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new ConclusionCollection(ContradictionLinks.ToArray()).ToString(false, " -> ");
+		get => ConclusionFormatter.Format(ContradictionLinks.ToArray(), " -> ", false);
 	}
 }

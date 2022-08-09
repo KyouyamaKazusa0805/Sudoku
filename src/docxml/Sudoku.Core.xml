@@ -4778,6 +4778,11 @@
               Looks up a localized string similar to Cell Forcing Chains.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.ChineseComma">
+            <summary>
+              Looks up a localized string similar to , .
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.ChromaticPatternType1">
             <summary>
               Looks up a localized string similar to Chromatic Pattern Type 1.
@@ -4811,6 +4816,11 @@
         <member name="P:Sudoku.Resources.Resources.Colon">
             <summary>
               Looks up a localized string similar to :.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.Comma">
+            <summary>
+              Looks up a localized string similar to , .
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.ComplexSeniorExocet">
@@ -11822,6 +11832,95 @@
             Marks on a property to tell the user the property is only used for the formatting.
             </summary>
         </member>
+        <member name="T:Sudoku.Text.Formatting.ConclusionFormatter">
+            <summary>
+            Provides with a formatter that can format a list of <see cref="T:Sudoku.Solving.Conclusion"/>s,
+            represented as a <see cref="T:System.String"/> value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.#ctor">
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Format(Sudoku.Solving.Conclusion[],System.String,System.Boolean)">
+            <summary>
+            Formats a list of conclusions as the string representation.
+            </summary>
+            <param name="conclusions">The list of conclusions to be formatted.</param>
+            <param name="separator">The separator.</param>
+            <param name="shouldSort">
+            Indicates whether the list of conclusions should be sorted before formatting.
+            </param>
+            <returns>The <see cref="T:System.String"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Format(Sudoku.Solving.Conclusion[],Sudoku.Text.Formatting.FormattingMode)">
+            <inheritdoc cref="M:Sudoku.Text.Formatting.ConclusionFormatter.Format(Sudoku.Solving.Conclusion[],System.String,System.Boolean)"/>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="formattingMode">The formatting mode.</param>
+            <returns><inheritdoc/></returns>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the argument <paramref name="formattingMode"/> is <see cref="F:Sudoku.Text.Formatting.FormattingMode.Full"/>.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="formattingMode"/> is not defined.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.DigitMaskFormatter">
+            <summary>
+            Provides with a formatter that can format a mask that represents for a list of digits.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.#ctor">
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.Format(System.Int16,System.String)">
+            <summary>
+            Gets a <see cref="T:System.String"/> value that can describes for a list of digits that is represented
+            as a <see cref="T:System.Int16"/> mask.
+            </summary>
+            <param name="digitsMask">The digits mask.</param>
+            <param name="separator">The separator used.</param>
+            <returns>The <see cref="T:System.String"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.Format(System.Int16,Sudoku.Text.Formatting.FormattingMode)">
+            <inheritdoc cref="M:Sudoku.Text.Formatting.DigitMaskFormatter.Format(System.Int16,System.String)"/>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="formattingMode">The formatting mode.</param>
+            <returns><inheritdoc/></returns>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the argument <paramref name="formattingMode"/> is <see cref="F:Sudoku.Text.Formatting.FormattingMode.Full"/>.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="formattingMode"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.Sudoku#Text#Formatting#ICollectionFormatter{System#Int32}#Format(System.Collections.Generic.IEnumerable{System.Int32},System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.Sudoku#Text#Formatting#ICollectionFormatter{System#Int32}#Format(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Text.Formatting.FormattingMode)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.FormattingMode">
+            <summary>
+            Represents for a formatting mode (simple, normal or full). The modes will correspond to the methods
+            <c>ToSimpleString</c>, <c>ToString</c> and <c>ToFullString</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.FormattingMode.Simple">
+            <summary>
+            Indicates the formatting mode is simple, which means the result string will be more simple
+            that options <see cref="F:Sudoku.Text.Formatting.FormattingMode.Normal"/> or <see cref="F:Sudoku.Text.Formatting.FormattingMode.Full"/> behaves.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.FormattingMode.Normal">
+            <summary>
+            Indicates the formatting mode is normal, which means all important data will be displayed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.FormattingMode.Full">
+            <summary>
+            Indicates the formatting mode is full, which means all possible data will be displayed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Text.Formatting.GridFormatter">
             <summary>
             Provides a formatter that gathers the main information for a <see cref="T:Sudoku.Concepts.Grid"/> instance,
@@ -12183,228 +12282,88 @@
             Indicates the shorten susser format.
             </summary>
         </member>
-        <member name="T:Sudoku.Text.Handlers.ConclusionCollection">
+        <member name="T:Sudoku.Text.Formatting.HouseFormatter">
             <summary>
-            Provides a collection that contains the conclusions.
+            Provides with a formatter that can format a mask that represents for a list of houses.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.Handlers.ConclusionCollection._collection">
+        <member name="M:Sudoku.Text.Formatting.HouseFormatter.#ctor">
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Format(System.Int32)">
             <summary>
-            The internal collection.
+            Gets a <see cref="T:System.String"/> value that can describes for a list of houses that is represented
+            as an <see cref="T:System.Int32"/> mask.
             </summary>
+            <param name="housesMask">The houses mask.</param>
+            <returns>The <see cref="T:System.String"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Text.Handlers.ConclusionCollection.#ctor(Sudoku.Solving.Conclusion[])">
+        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Format(System.Int32,Sudoku.Text.Formatting.FormattingMode)">
+            <inheritdoc cref="M:Sudoku.Text.Formatting.HouseFormatter.Format(System.Int32)"/>
+            <param name="housesMask"><inheritdoc/></param>
+            <param name="formattingMode">The formatting mode.</param>
+            <returns><inheritdoc/></returns>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the argument <paramref name="formattingMode"/> is <see cref="F:Sudoku.Text.Formatting.FormattingMode.Full"/>.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="formattingMode"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Format(System.ReadOnlySpan{System.Int32}@)">
             <summary>
-            Initializes an instance with the specified collection.
+            <para>
+            Gets a <see cref="T:System.String"/> value that can describes for a list of houses that is represented
+            as a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> elements.
+            </para>
+            <para>
+            Although the argument <paramref name="houses"/> is of type <see cref="T:System.ReadOnlySpan`1"/>, you can still
+            pass an array of <see cref="T:System.Int32"/> elements as the value.
+            </para>
             </summary>
-            <param name="collection">The collection.</param>
+            <param name="houses">The houses.</param>
+            <returns>The <see cref="T:System.String"/> result.</returns>
         </member>
-        <member name="P:Sudoku.Text.Handlers.ConclusionCollection.Cells">
-            <summary>
-            Indicates all cells used in this conclusions list.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Handlers.ConclusionCollection.Digits">
-            <summary>
-            Indicates all digits used in this conclusions list, represented as a mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.ConclusionCollection.Equals(Sudoku.Text.Handlers.ConclusionCollection)">
-            <inheritdoc/>
-            <remarks>
-            This method only compares for two collection's inner reference to their own array of conclusions.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.ConclusionCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.ConclusionCollection.ToString(System.Boolean,System.String)">
-            <summary>
-            Converts the current instance to <see cref="T:System.String"/> with the specified separator.
-            </summary>
-            <param name="shouldSort">Indicates whether the specified collection should be sorted first.</param>
-            <param name="separator">The separator.</param>
-            <returns>The string result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.ConclusionCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.ConclusionCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Text.Handlers.DigitCollection">
-            <summary>
-            Indicates a collection that contains the several digits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Handlers.DigitCollection._mask">
-            <summary>
-            Indicates the inner mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.#ctor(System.Int16)">
-            <summary>
-            Initializes the collection using a mask.
-            </summary>
-            <param name="mask">The mask.</param>
-        </member>
-        <member name="P:Sudoku.Text.Handlers.DigitCollection.Count">
-            <summary>
-            Get the number of digits in the collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.Contains(System.Int32)">
-            <summary>
-            Indicates whether the specified collection contains the digit.
-            </summary>
-            <param name="digit">The digit.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.ToString">
+        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Sudoku#Text#Formatting#ICollectionFormatter{System#Int32}#Format(System.Collections.Generic.IEnumerable{System.Int32},System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.ToSimpleString">
-            <summary>
-            Returns a string that represents the current object without the specified format string.
-            </summary>
-            <returns>The string result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.ToString(System.String)">
-            <summary>
-            Returns a string that represents the current object with the specified format string.
-            </summary>
-            <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
-            <returns>The string result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.GetEnumerator">
-            <summary>
-            Get the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.op_OnesComplement(Sudoku.Text.Handlers.DigitCollection)">
-            <summary>
-            Make all <see langword="true"/> bits to be set <see langword="false"/>,
-            and make all <see langword="false"/> bits to be set <see langword="true"/>.
-            </summary>
-            <param name="collection">The instance to negate.</param>
-            <returns>The negative result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.op_Subtraction(Sudoku.Text.Handlers.DigitCollection,Sudoku.Text.Handlers.DigitCollection)">
-            <summary>
-            Apply the subtraction with <paramref name="left"/> as the subtrahend,
-            and <paramref name="right"/> as the subtractor.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.op_BitwiseAnd(Sudoku.Text.Handlers.DigitCollection,Sudoku.Text.Handlers.DigitCollection)">
-            <summary>
-            Apply the intersection from two <see cref="T:Sudoku.Text.Handlers.DigitCollection"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.op_BitwiseOr(Sudoku.Text.Handlers.DigitCollection,Sudoku.Text.Handlers.DigitCollection)">
-            <summary>
-            Apply the union of two <see cref="T:Sudoku.Text.Handlers.DigitCollection"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.op_ExclusiveOr(Sudoku.Text.Handlers.DigitCollection,Sudoku.Text.Handlers.DigitCollection)">
-            <summary>
-            Apply the exclusive union of two <see cref="T:Sudoku.Text.Handlers.DigitCollection"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.DigitCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Text.Handlers.HouseCollection">
-            <summary>
-            Indicates a house collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.HouseCollection.#ctor(System.Int32)">
-            <summary>
-            Initializes an empty collection and add one house into the list.
-            </summary>
-            <param name="houseIndex">The house index.</param>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.HouseCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Initializes an instance with the specified houses.
-            </summary>
-            <param name="houseIndices">The house indices.</param>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.HouseCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with the specified houses.
-            </summary>
-            <param name="houseIndices">The house indices.</param>
-        </member>
-        <member name="P:Sudoku.Text.Handlers.HouseCollection.Count">
-            <summary>
-            Indicates the number of houses that contain in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Handlers.HouseCollection.Mask">
-            <summary>
-            Indicates the mask used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Handlers.HouseCollection.Item(System.Int32)">
-            <summary>
-            Gets a <see cref="T:System.Boolean"/> value indicating whether the bit
-            of the corresponding specified house is set <see langword="true"/>.
-            </summary>
-            <param name="houseIndex">The house index.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.HouseCollection.Equals(Sudoku.Text.Handlers.HouseCollection)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.HouseCollection.GetHashCode">
+        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Sudoku#Text#Formatting#ICollectionFormatter{System#Int32}#Format(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Text.Formatting.FormattingMode)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Handlers.HouseCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.HouseCollection.ToSimpleString">
-            <summary>
-            To string but only output the labels ('r', 'c' or 'b').
-            </summary>
-            <returns>The labels.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.HouseCollection.GetEnumerator">
-            <summary>
-            Gets the enumerator of the instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Handlers.HouseCollection.GetLabel(System.Int32)">
+        <member name="M:Sudoku.Text.Formatting.HouseFormatter.GetLabel(System.Int32)">
             <summary>
             Get the label of each house.
             </summary>
             <param name="houseIndex">The house index.</param>
             <returns>The label.</returns>
         </member>
-        <member name="M:Sudoku.Text.Handlers.HouseCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        <member name="T:Sudoku.Text.Formatting.ICollectionFormatter`1">
+            <summary>
+            Defines a formatter that can create a <see cref="T:System.String"/> value representing the current instances
+            of type <typeparamref name="TElement"/>.
+            </summary>
+            <typeparam name="TElement">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.ICollectionFormatter`1.Format(System.Collections.Generic.IEnumerable{`0},System.String)">
+            <summary>
+            Try to format a list of <typeparamref name="TElement"/> instances, split by <paramref name="separator"/>s
+            between two adjacent elements.
+            </summary>
+            <param name="elements">The elements to be formatted.</param>
+            <param name="separator">
+            The separator that will be inserted into each two adjacent elements in this collection.
+            </param>
+            <returns>A <see cref="T:System.String"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.ICollectionFormatter`1.Format(System.Collections.Generic.IEnumerable{`0},Sudoku.Text.Formatting.FormattingMode)">
+            <summary>
+            Try to format a list of <typeparamref name="TElement"/> instances using the specified formatting mode.
+            </summary>
+            <param name="elements">The elements to be formatted.</param>
+            <param name="formattingMode">
+            The formatting mode. The default value is <see cref="F:Sudoku.Text.Formatting.FormattingMode.Simple"/>.
+            </param>
+            <returns>A <see cref="T:System.String"/> result.</returns>
         </member>
         <member name="T:Sudoku.Text.Notations.EliminationNotation">
             <summary>

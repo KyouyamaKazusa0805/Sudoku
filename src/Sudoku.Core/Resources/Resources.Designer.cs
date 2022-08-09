@@ -601,6 +601,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to , .
+        /// </summary>
+        internal static string ChineseComma {
+            get {
+                return ResourceManager.GetString("ChineseComma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chromatic Pattern Type 1.
         /// </summary>
         internal static string ChromaticPatternType1 {
@@ -660,6 +669,15 @@ namespace Sudoku.Resources {
         internal static string Colon {
             get {
                 return ResourceManager.GetString("Colon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , .
+        /// </summary>
+        internal static string Comma {
+            get {
+                return ResourceManager.GetString("Comma", resourceCulture);
             }
         }
         

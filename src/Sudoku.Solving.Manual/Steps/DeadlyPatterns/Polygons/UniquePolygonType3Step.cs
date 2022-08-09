@@ -28,7 +28,7 @@ internal sealed record UniquePolygonType3Step(
 	internal string ExtraDigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(ExtraDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]

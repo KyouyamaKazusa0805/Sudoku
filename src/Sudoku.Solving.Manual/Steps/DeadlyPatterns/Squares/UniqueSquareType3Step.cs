@@ -44,7 +44,7 @@ internal sealed record UniqueSquareType3Step(
 	internal string ExtraDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(ExtraDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]

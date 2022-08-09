@@ -1398,4 +1398,10 @@
   <data name="TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep" xml:space="preserve">
     <value>{Name}: If {FalseCandidateStr} is true, the grid will be reduced to a BUG deadly pattern =&gt; {ElimStr}</value>
   </data>
+  <data name="ChineseComma" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="Comma" xml:space="preserve">
+    <value>, </value>
+  </data>
 </root>

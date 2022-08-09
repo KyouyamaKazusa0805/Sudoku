@@ -2002,17 +2002,14 @@
             <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
             <returns>The first found step.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetDirectView(Sudoku.Concepts.Grid@,System.Int32,System.Int32[],System.Int32[],Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetDirectView(System.Int32,System.Int32[],System.Int32[],Sudoku.Concepts.Cells@,System.Boolean)">
             <summary>
             Get the direct fish view with the specified grid and the base sets.
             </summary>
-            <param name="grid">The grid.</param>
             <param name="digit">The digit.</param>
             <param name="baseSets">The base sets.</param>
             <param name="coverSets">The cover sets.</param>
-            <param name="fins">
-            The cells of the fin in the current fish.
-            </param>
+            <param name="fins">The cells of the fin in the current fish.</param>
             <param name="searchRow">Indicates whether the current searcher searches row.</param>
             <returns>The view.</returns>
         </member>

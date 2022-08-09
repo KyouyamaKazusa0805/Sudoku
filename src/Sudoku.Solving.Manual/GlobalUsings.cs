@@ -28,7 +28,7 @@ global using Sudoku.Solving.Manual.Steps;
 global using Sudoku.Solving.Manual.Steps.Specialized;
 global using Sudoku.Solving.Patterns;
 global using Sudoku.Text;
-global using Sudoku.Text.Handlers;
+global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;
 global using static System.Algorithm.Combinatorics;
 global using static System.Algorithm.Sequences;

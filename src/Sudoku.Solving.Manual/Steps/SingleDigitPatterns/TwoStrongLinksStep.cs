@@ -57,13 +57,13 @@ internal sealed record TwoStrongLinksStep(
 	internal string BaseHouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(BaseHouse).ToString();
+		get => HouseFormatter.Format(1 << BaseHouse);
 	}
 
 	[FormatItem]
 	internal string TargetHouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(TargetHouse).ToString();
+		get => HouseFormatter.Format(1 << TargetHouse);
 	}
 }

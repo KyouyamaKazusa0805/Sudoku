@@ -34,6 +34,6 @@ internal sealed record FireworkTripleStep(
 	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(DigitsMask).ToString();
+		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 	}
 }

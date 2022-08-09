@@ -54,7 +54,7 @@ internal sealed record UniqueRectangleWithUnknownCoveringStep(
 	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection((short)(1 << Digit1 | 1 << Digit2)).ToString(R["OrKeywordWithSpaces"]);
+		get => DigitMaskFormatter.Format((short)(1 << Digit1 | 1 << Digit2), R["OrKeywordWithSpaces"]!);
 	}
 
 	[FormatItem]

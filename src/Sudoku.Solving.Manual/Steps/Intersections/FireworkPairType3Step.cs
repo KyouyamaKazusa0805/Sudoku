@@ -36,13 +36,13 @@ internal sealed record FireworkPairType3Step(
 	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(DigitsMask).ToString();
+		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]
 	internal string EmptyRectangleStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(EmptyRectangleBlock).ToString();
+		get => HouseFormatter.Format(1 << EmptyRectangleBlock);
 	}
 }

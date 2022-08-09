@@ -38,7 +38,7 @@ internal sealed record FireworkPairType2Step(
 	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(DigitsMask).ToString();
+		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]
@@ -48,7 +48,7 @@ internal sealed record FireworkPairType2Step(
 		get
 		{
 			string cells = Pattern1.Map.ToString();
-			string digits = new DigitCollection(DigitsMask).ToString();
+			string digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 			return $"{cells}({digits})";
 		}
 	}
@@ -60,7 +60,7 @@ internal sealed record FireworkPairType2Step(
 		get
 		{
 			string cells = Pattern2.Map.ToString();
-			string digits = new DigitCollection(DigitsMask).ToString();
+			string digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 			return $"{cells}({digits})";
 		}
 	}

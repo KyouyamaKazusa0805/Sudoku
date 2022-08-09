@@ -48,7 +48,7 @@ internal sealed record EmptyRectangleStep(
 	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(Block).ToString();
+		get => HouseFormatter.Format(1 << Block);
 	}
 
 	[FormatItem]

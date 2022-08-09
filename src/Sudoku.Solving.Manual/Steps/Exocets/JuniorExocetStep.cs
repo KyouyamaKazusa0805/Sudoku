@@ -54,7 +54,7 @@ internal sealed record JuniorExocetStep(
 		get
 		{
 #if false
-			string? cells = LockedMemberQ == 0 ? null : new DigitCollection(LockedMemberQ).ToString();
+			string? cells = LockedMemberQ == 0 ? null : DigitMaskFormatter.Format(LockedMemberQ, FormattingMode.Normal);
 			return $"{R["LockedMember1"]}{cells}";
 #else
 			return string.Empty;
@@ -75,7 +75,7 @@ internal sealed record JuniorExocetStep(
 		get
 		{
 #if false
-			string? cells = LockedMemberR == 0 ? null : new DigitCollection(LockedMemberR).ToString();
+			string? cells = LockedMemberR == 0 ? null : DigitMaskFormatter.Format(LockedMemberR, FormattingMode.Normal);
 			return $"{R["LockedMember2"]}{cells}";
 #else
 			return string.Empty;

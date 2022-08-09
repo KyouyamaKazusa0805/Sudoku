@@ -82,6 +82,6 @@ internal sealed record UniqueRectangleWithWingStep(
 	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(ExtraDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 	}
 }

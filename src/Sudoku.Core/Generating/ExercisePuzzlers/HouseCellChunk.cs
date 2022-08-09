@@ -139,7 +139,7 @@ public readonly unsafe partial struct HouseCellChunk :
 	{
 		int resultCand = ResultCandidate;
 		int cell = resultCand / 9, digit = resultCand % 9;
-		string houseStr = new HouseCollection(House).ToString();
+		string houseStr = HouseFormatter.Format(1 << House);
 		string cellStr = RxCyNotation.ToCellString(cell);
 		string digitStr = (digit + 1).ToString();
 		return $$"""{{nameof(HouseCellChunk)}} { {{nameof(House)}} = {{houseStr}}, {{nameof(ResultCandidate)}} = {{cellStr}}({{digitStr}}) }""";

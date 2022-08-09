@@ -27,6 +27,6 @@ internal sealed record BruteForceStep(ConclusionList Conclusions, ViewList Views
 	internal string AssignmentStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new ConclusionCollection(Conclusions.ToArray()).ToString();
+		get => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
 	}
 }

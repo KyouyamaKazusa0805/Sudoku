@@ -201,6 +201,16 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 						houseOffsets.Add(new(DisplayColorKind.Auxiliary2, coverSet));
 					}
 
+					int baseSetsMask = 0, coverSetsMask = 0;
+					foreach (int baseSet in bs)
+					{
+						baseSetsMask |= baseSet;
+					}
+					foreach (int coverSet in cs)
+					{
+						coverSetsMask |= coverSet;
+					}
+
 					// Gather the result.
 					var step = new NormalFishStep(
 						ImmutableArray.Create(
@@ -208,11 +218,11 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 						),
 						ImmutableArray.Create(
 							View.Empty | candidateOffsets | houseOffsets,
-							GetDirectView(grid, digit, bs, cs, fins, searchRow)
+							GetDirectView(digit, bs, cs, fins, searchRow)
 						),
 						digit,
-						new HouseCollection(bs).Mask,
-						new HouseCollection(cs).Mask,
+						baseSetsMask,
+						coverSetsMask,
 						fins,
 						IFishStepSearcher.IsSashimi(bs, fins, digit)
 					);
@@ -233,17 +243,13 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 	/// <summary>
 	/// Get the direct fish view with the specified grid and the base sets.
 	/// </summary>
-	/// <param name="grid">The grid.</param>
 	/// <param name="digit">The digit.</param>
 	/// <param name="baseSets">The base sets.</param>
 	/// <param name="coverSets">The cover sets.</param>
-	/// <param name="fins">
-	/// The cells of the fin in the current fish.
-	/// </param>
+	/// <param name="fins">The cells of the fin in the current fish.</param>
 	/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 	/// <returns>The view.</returns>
-	private static View GetDirectView(
-		scoped in Grid grid, int digit, int[] baseSets, int[] coverSets, scoped in Cells fins, bool searchRow)
+	private static View GetDirectView(int digit, int[] baseSets, int[] coverSets, scoped in Cells fins, bool searchRow)
 	{
 		// Get the highlight cells (necessary).
 		var cellOffsets = new List<CellViewNode>();

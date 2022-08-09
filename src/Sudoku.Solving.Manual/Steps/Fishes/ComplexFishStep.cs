@@ -158,14 +158,14 @@ internal sealed record ComplexFishStep(
 	internal string BaseSetsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(BaseHouses).ToString();
+		get => HouseFormatter.Format(BaseHouses);
 	}
 
 	[FormatItem]
 	internal string CoverSetsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new HouseCollection(CoverHouses).ToString();
+		get => HouseFormatter.Format(CoverHouses);
 	}
 
 	[FormatItem]

@@ -35,7 +35,7 @@ internal sealed record QiuDeadlyPatternType3Step(
 	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(ExtraDigitsMask).ToString();
+		get => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 	}
 
 	[FormatItem]
