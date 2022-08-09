@@ -21,6 +21,7 @@ global using Microsoft.UI.Xaml.Controls;
 global using Microsoft.UI.Xaml.Data;
 global using Microsoft.UI.Xaml.Markup;
 global using Microsoft.UI.Xaml.Media;
+global using Microsoft.UI.Xaml.Media.Animation;
 global using Microsoft.UI.Xaml.Media.Imaging;
 global using Microsoft.UI.Xaml.Shapes;
 global using Sudoku.Concepts;

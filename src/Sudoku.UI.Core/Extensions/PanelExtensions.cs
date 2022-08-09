@@ -36,4 +36,15 @@ public static class PanelExtensions
 		@this.Children.Add(control);
 		return @this;
 	}
+
+	/// <summary>
+	/// Sets the property <see cref="Panel.ChildrenTransitions"/> with the specified value.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TPanel WithChildrenTransitions<TPanel>(this TPanel @this, TransitionCollection transitions)
+		where TPanel : Panel
+	{
+		@this.ChildrenTransitions = transitions;
+		return @this;
+	}
 }

@@ -28,7 +28,11 @@ public sealed class SudokuGrid : DrawingElement
 		.WithRowDefinitionsCount(9)
 		.WithColumnDefinitionsCount(9)
 		.WithHorizontalAlignment(HorizontalAlignment.Center)
-		.WithVerticalAlignment(VerticalAlignment.Center);
+		.WithVerticalAlignment(VerticalAlignment.Center)
+		.WithChildrenTransitions(
+			new TransitionCollection()
+				.Append(new EntranceThemeTransition())
+		);
 
 	/// <summary>
 	/// Indicates the cell digits.
