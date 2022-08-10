@@ -434,7 +434,7 @@ public unsafe struct Cells :
 	/// The target <see cref="Span{T}"/> instance.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly void CopyTo(scoped ref scoped Span<int> span)
+	public readonly void CopyTo(scoped ref Span<int> span)
 	{
 		fixed (int* arr = span)
 		{
@@ -658,7 +658,7 @@ public unsafe struct Cells :
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>
-	public void AddRange(scoped in scoped ReadOnlySpan<int> offsets)
+	public void AddRange(scoped in ReadOnlySpan<int> offsets)
 	{
 		foreach (int cell in offsets)
 		{
@@ -1249,7 +1249,7 @@ public unsafe struct Cells :
 	/// Implicit cast from <see cref="Span{T}"/> to <see cref="Cells"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	public static implicit operator Cells(scoped in scoped Span<int> offsets)
+	public static implicit operator Cells(scoped in Span<int> offsets)
 	{
 		var result = Empty;
 		foreach (int offset in offsets)
@@ -1264,7 +1264,7 @@ public unsafe struct Cells :
 	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="Cells"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	public static implicit operator Cells(scoped in scoped ReadOnlySpan<int> offsets)
+	public static implicit operator Cells(scoped in ReadOnlySpan<int> offsets)
 	{
 		var result = Empty;
 		foreach (int offset in offsets)

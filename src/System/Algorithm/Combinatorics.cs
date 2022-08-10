@@ -11,7 +11,7 @@ public static class Combinatorics
 	/// <param name="this">The array.</param>
 	/// <param name="count">The number of elements you want to take.</param>
 	/// <returns>All subsets.</returns>
-	public static IReadOnlyCollection<T[]> GetSubsets<T>(this scoped in scoped Span<T> @this, int count)
+	public static IReadOnlyCollection<T[]> GetSubsets<T>(this scoped in Span<T> @this, int count)
 	{
 		if (count == 0)
 		{
@@ -24,8 +24,8 @@ public static class Combinatorics
 
 
 		static void g(
-			int last, int count, int index, scoped in scoped Span<int> tempArray,
-			scoped in scoped Span<T> @this, in IList<T[]> resultList)
+			int last, int count, int index, scoped in Span<int> tempArray,
+			scoped in Span<T> @this, in IList<T[]> resultList)
 		{
 			for (int i = last; i >= index; i--)
 			{
@@ -54,7 +54,7 @@ public static class Combinatorics
 	/// <param name="this">The array.</param>
 	/// <param name="count">The number of elements you want to take.</param>
 	/// <returns>All subsets.</returns>
-	public static IReadOnlyCollection<T[]> GetSubsets<T>(this scoped in scoped ReadOnlySpan<T> @this, int count)
+	public static IReadOnlyCollection<T[]> GetSubsets<T>(this scoped in ReadOnlySpan<T> @this, int count)
 	{
 		if (count == 0)
 		{
@@ -67,8 +67,8 @@ public static class Combinatorics
 
 
 		static void g(
-			int last, int count, int index, scoped in scoped Span<int> tempArray,
-			scoped in scoped ReadOnlySpan<T> @this, in IList<T[]> resultList)
+			int last, int count, int index, scoped in Span<int> tempArray,
+			scoped in ReadOnlySpan<T> @this, in IList<T[]> resultList)
 		{
 			for (int i = last; i >= index; i--)
 			{
@@ -149,7 +149,7 @@ public static class Combinatorics
 
 
 		static void g(
-			int last, int count, int index, scoped in scoped Span<int> tempArray,
+			int last, int count, int index, scoped in Span<int> tempArray,
 			IReadOnlyList<T> @this, in IList<T[]> resultList)
 		{
 			for (int i = last; i >= index; i--)

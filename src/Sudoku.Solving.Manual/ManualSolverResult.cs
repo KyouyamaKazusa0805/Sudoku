@@ -482,7 +482,7 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void a(scoped ref scoped StringHandler sb, bool showSeparator)
+		static void a(scoped ref StringHandler sb, bool showSeparator)
 		{
 			if (showSeparator)
 			{

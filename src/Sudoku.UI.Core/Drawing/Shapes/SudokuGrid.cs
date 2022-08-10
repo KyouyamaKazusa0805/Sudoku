@@ -386,7 +386,7 @@ public sealed class SudokuGrid : DrawingElement
 
 			static void initializePeerRectangles(Rectangle[] rectangles, IDrawingPreference preference)
 			{
-				foreach (ref scoped var rectangle in rectangles.EnumerateRef())
+				foreach (ref var rectangle in rectangles.EnumerateRef())
 				{
 					rectangle = new Rectangle()
 						.WithFill(preference.PeersFocusedCellColor)

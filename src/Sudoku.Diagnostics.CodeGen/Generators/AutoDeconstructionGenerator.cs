@@ -250,7 +250,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			{
 				true => type switch
 				{
-					{ IsRefLikeType: true } => "scoped in scoped ",
+					{ IsRefLikeType: true } => "scoped in ",
 					{ TypeKind: Kind.Struct or Kind.Enum } => "scoped in ",
 					_ => "in "
 				},

@@ -743,7 +743,7 @@ public readonly ref partial struct GridFormatter
 
 
 					static void p(
-						scoped in GridFormatter formatter, scoped ref scoped StringHandler sb,
+						scoped in GridFormatter formatter, scoped ref StringHandler sb,
 						IList<short> valuesByRow, char c1, char c2, int* maxLengths)
 					{
 						sb.Append(c1);
@@ -757,9 +757,8 @@ public readonly ref partial struct GridFormatter
 
 
 						static void printValues(
-							scoped in GridFormatter formatter,
-							scoped ref scoped StringHandler sb, IList<short> valuesByRow,
-							int start, int end, int* maxLengths)
+							scoped in GridFormatter formatter, scoped ref StringHandler sb,
+							IList<short> valuesByRow, int start, int end, int* maxLengths)
 						{
 							sb.Append(' ');
 							for (int i = start; i <= end; i++)
@@ -813,7 +812,7 @@ public readonly ref partial struct GridFormatter
 		return sb.ToString();
 
 
-		static void printTabLines(scoped ref scoped StringHandler sb, char c1, char c2, char fillingChar, int* m)
+		static void printTabLines(scoped ref StringHandler sb, char c1, char c2, char fillingChar, int* m)
 		{
 			sb.Append(c1);
 			sb.Append(string.Empty.PadRight(m[0] + m[1] + m[2] + 6, fillingChar));

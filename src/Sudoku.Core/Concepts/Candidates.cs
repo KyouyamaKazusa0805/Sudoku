@@ -196,7 +196,7 @@ public unsafe struct Candidates :
 	/// </summary>
 	/// <param name="candidates">The candidates.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Candidates(scoped in scoped ReadOnlySpan<int> candidates)
+	public Candidates(scoped in ReadOnlySpan<int> candidates)
 	{
 		this = default;
 		AddRange(candidates);
@@ -333,7 +333,7 @@ public unsafe struct Candidates :
 	/// The target <see cref="Span{T}"/> instance.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly void CopyTo(scoped ref scoped Span<int> span)
+	public readonly void CopyTo(scoped ref Span<int> span)
 	{
 		fixed (int* arr = span)
 		{
@@ -535,7 +535,7 @@ public unsafe struct Candidates :
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>
-	public void AddRange(scoped in scoped ReadOnlySpan<int> offsets)
+	public void AddRange(scoped in ReadOnlySpan<int> offsets)
 	{
 		foreach (int candidate in offsets)
 		{
@@ -989,14 +989,14 @@ public unsafe struct Candidates :
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Candidates(scoped in scoped Span<int> offsets) => new(offsets);
+	public static implicit operator Candidates(scoped in Span<int> offsets) => new(offsets);
 
 	/// <summary>
 	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="Candidates"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Candidates(scoped in scoped ReadOnlySpan<int> offsets) => new(offsets);
+	public static implicit operator Candidates(scoped in ReadOnlySpan<int> offsets) => new(offsets);
 
 	/// <summary>
 	/// Explicit cast from <see cref="Candidates"/> to <see cref="int"/>[].

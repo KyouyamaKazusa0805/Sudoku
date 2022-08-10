@@ -16,7 +16,7 @@ public static class SpanEnumerable
 	/// <param name="this">The list.</param>
 	/// <param name="selector">The selector that is used for conversion.</param>
 	/// <returns>The array of target result elements.</returns>
-	public static TResult[] Select<T, TResult>(this scoped in scoped Span<T> @this, Func<T, TResult> selector)
+	public static TResult[] Select<T, TResult>(this scoped in Span<T> @this, Func<T, TResult> selector)
 	{
 		var result = new TResult[@this.Length];
 		int i = 0;
@@ -37,7 +37,7 @@ public static class SpanEnumerable
 	/// <param name="this">The list.</param>
 	/// <param name="selector">The selector that is used for conversion.</param>
 	/// <returns>The array of target result elements.</returns>
-	public static TResult[] Select<T, TResult>(this scoped in scoped ReadOnlySpan<T> @this, Func<T, TResult> selector)
+	public static TResult[] Select<T, TResult>(this scoped in ReadOnlySpan<T> @this, Func<T, TResult> selector)
 	{
 		var result = new TResult[@this.Length];
 		int i = 0;

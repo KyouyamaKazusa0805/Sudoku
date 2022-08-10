@@ -233,7 +233,7 @@ public unsafe ref partial struct StringHandler
 	/// Copies the current collection into the specified collection.
 	/// </summary>
 	/// <param name="handler">The collection.</param>
-	public readonly void CopyTo(scoped ref scoped StringHandler handler)
+	public readonly void CopyTo(scoped ref StringHandler handler)
 	{
 		fixed (char* old = _chars, @new = handler._chars)
 		{
@@ -248,7 +248,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(scoped in scoped StringHandler other) => Equals(this, other);
+	public readonly bool Equals(scoped in StringHandler other) => Equals(this, other);
 
 	/// <include
 	///	    file="../../global-doc-comments.xml"
@@ -466,7 +466,7 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc cref="AppendFormatted(in StringHandler)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append([InterpolatedStringHandlerArgument] scoped in scoped StringHandler handler)
+	public void Append([InterpolatedStringHandlerArgument] scoped in StringHandler handler)
 		=> AppendFormatted(handler);
 
 	/// <summary>
@@ -477,7 +477,7 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append(
 		IFormatProvider? provider,
-		[InterpolatedStringHandlerArgument(nameof(provider))] scoped ref scoped DefaultInterpolatedStringHandler handler
+		[InterpolatedStringHandlerArgument(nameof(provider))] scoped ref DefaultInterpolatedStringHandler handler
 	) => AppendFormatted(string.Create(provider, ref handler));
 
 	/// <summary>
@@ -489,8 +489,8 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append(
 		IFormatProvider? provider,
-		scoped Span<char> initialBuffer,
-		[InterpolatedStringHandlerArgument(nameof(provider), nameof(initialBuffer))] scoped ref scoped DefaultInterpolatedStringHandler handler
+		Span<char> initialBuffer,
+		[InterpolatedStringHandlerArgument(nameof(provider), nameof(initialBuffer))] scoped ref DefaultInterpolatedStringHandler handler
 	) => AppendFormatted(string.Create(provider, initialBuffer, ref handler));
 
 	/// <inheritdoc cref="AppendFormatted{T}(T)"/>
@@ -961,7 +961,7 @@ public unsafe ref partial struct StringHandler
 	/// Writes the specified interpolated string into the handler.
 	/// </summary>
 	/// <param name="handler">The handler that creates the interpolated string as this argument.</param>
-	public void AppendFormatted([InterpolatedStringHandlerArgument] scoped in scoped StringHandler handler)
+	public void AppendFormatted([InterpolatedStringHandlerArgument] scoped in StringHandler handler)
 	{
 		string result = handler.ToStringAndClear();
 		if (result.TryCopyTo(_chars[Length..]))
@@ -1425,7 +1425,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool Equals(scoped in scoped StringHandler left, scoped in scoped StringHandler right)
+	public static bool Equals(scoped in StringHandler left, scoped in StringHandler right)
 	{
 		if (left.Length != right.Length)
 		{
@@ -1476,11 +1476,11 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(scoped in scoped StringHandler left, scoped in scoped StringHandler right)
+	public static bool operator ==(scoped in StringHandler left, scoped in StringHandler right)
 		=> left.Equals(right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(scoped in scoped StringHandler left, scoped in scoped StringHandler right)
+	public static bool operator !=(scoped in StringHandler left, scoped in StringHandler right)
 		=> !(left == right);
 }

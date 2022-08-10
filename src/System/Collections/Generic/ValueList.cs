@@ -123,7 +123,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// Adds a list of elements into the collection.
 	/// </summary>
 	/// <param name="elements">A list of elements.</param>
-	public void AddRange(scoped in scoped ValueList<TUnmanaged> elements)
+	public void AddRange(scoped in ValueList<TUnmanaged> elements)
 	{
 		foreach (var element in elements)
 		{
@@ -199,7 +199,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 		};
 
 
-		static string toContentString(scoped in scoped ValueList<TUnmanaged> @this)
+		static string toContentString(scoped in ValueList<TUnmanaged> @this)
 		{
 			const string separator = ", ";
 			scoped var sb = new StringHandler();

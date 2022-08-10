@@ -2560,12 +2560,6 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_MatchLengthComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.FileLocalType_MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>
             Indicates the grid creating option.
@@ -6932,10 +6926,15 @@
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.FileLocalType_ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
+        <member name="T:Sudoku.Runtime.AnalysisServices.ValueTupleComparer">
+            <summary>
+            Represents a comparer instance that compares two tuples.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.FileLocalType_ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
+        <member name="M:Sudoku.Runtime.AnalysisServices.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.MaskMarshal">
@@ -7721,62 +7720,67 @@
             <param name="map">The map.</param>
             <returns>The position.</returns>
         </member>
-        <member name="T:Sudoku.Solving.FileLocalType_State">
+        <member name="T:Sudoku.Solving.BitwiseSolver.State">
             <summary>
             To describe a state for a current grid using binary values.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.FileLocalType_State.Bands">
+        <member name="F:Sudoku.Solving.BitwiseSolver.State.Bands">
             <summary>
             Pencil marks in bands by digit.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.FileLocalType_State.PrevBands">
+        <member name="F:Sudoku.Solving.BitwiseSolver.State.PrevBands">
             <summary>
             Value of bands last time it was calculated.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.FileLocalType_State.UnsolvedCells">
+        <member name="F:Sudoku.Solving.BitwiseSolver.State.UnsolvedCells">
             <summary>
             Bit vector of unsolved cells.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.FileLocalType_State.UnsolvedRows">
+        <member name="F:Sudoku.Solving.BitwiseSolver.State.UnsolvedRows">
             <summary>
             Bit vector of unsolved rows - three bits per band.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.FileLocalType_State.Pairs">
+        <member name="F:Sudoku.Solving.BitwiseSolver.State.Pairs">
             <summary>
             Bit vector of cells with exactly two pencil marks.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.FileLocalType_Constants.TblComplexMask">
+        <member name="T:Sudoku.Solving.Constants">
+            <summary>
+            Represents for a list of constants.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Constants.TblComplexMask">
             <summary>
             To keep mini rows still valid.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.FileLocalType_Constants.TblMaskSingle">
+        <member name="F:Sudoku.Solving.Constants.TblMaskSingle">
             <summary>
             Kill in other blocks locked column/box.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.FileLocalType_Constants.TblShrinkSingle">
+        <member name="F:Sudoku.Solving.Constants.TblShrinkSingle">
             <summary>
             Keep only rows with single.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.FileLocalType_Constants.TblRowUniq">
+        <member name="F:Sudoku.Solving.Constants.TblRowUniq">
             <remarks>
             1 is row not defined in block mode <c>1</c> to <c>111</c>.
             </remarks>
         </member>
-        <member name="F:Sudoku.Solving.FileLocalType_Constants.TblColumnSingle">
+        <member name="F:Sudoku.Solving.Constants.TblColumnSingle">
             <summary>
             Single in column applied to shrunk block.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.FileLocalType_Constants.TblRowMask">
+        <member name="F:Sudoku.Solving.Constants.TblRowMask">
             <summary>
             Rows where single found: <c>000</c> to <c>111</c>.
             </summary>
@@ -8064,6 +8068,80 @@
             </summary>
             <returns>The chosen next column node.</returns>
         </member>
+        <member name="T:Sudoku.Solving.DancingLink">
+            <summary>
+            Represents as a dancing link.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLink.#ctor(Sudoku.Solving.DancingLinx.ColumnNode)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.DancingLink"/> instance via the specified root node.
+            </summary>
+            <param name="root">The root node.</param>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLink.Root">
+            <summary>
+            Indicates the root node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLink.CreateLinkedList(System.Int32[])">
+            <summary>
+            Creates the links.
+            </summary>
+            <param name="gridArray">The grid array.</param>
+            <returns>The column node for the root node.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLink.LinkRow(Sudoku.Solving.MatrixRow@)">
+            <summary>
+            Links the row.
+            </summary>
+            <param name="d">The matrix row instance.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLink.LinkRowToColumn(Sudoku.Solving.DancingLinx.DataNode)">
+            <summary>
+            Links the row to the column.
+            </summary>
+            <param name="section">The section.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLink.FormLinx(System.Collections.Generic.List{Sudoku.Solving.DancingLinx.ColumnNode},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            To form the links via the specified columns, the cell index and the digit used.
+            </summary>
+            <param name="columns">The columns having been stored.</param>
+            <param name="x">The current row index.</param>
+            <param name="y">The current column index.</param>
+            <param name="d">The current digit.</param>
+        </member>
+        <member name="T:Sudoku.Solving.MatrixRow">
+            <summary>
+            Represents a matrix row.
+            </summary>
+            <param name="Cell">Indicates the node that represents the current cell.</param>
+            <param name="Row">Indicates the nodes at the current row.</param>
+            <param name="Column">Indicates the nodes at the current column.</param>
+            <param name="Block">Indicates the nodes at the current block.</param>
+        </member>
+        <member name="M:Sudoku.Solving.MatrixRow.#ctor(Sudoku.Solving.DancingLinx.DataNode,Sudoku.Solving.DancingLinx.DataNode,Sudoku.Solving.DancingLinx.DataNode,Sudoku.Solving.DancingLinx.DataNode)">
+            <summary>
+            Represents a matrix row.
+            </summary>
+            <param name="Cell">Indicates the node that represents the current cell.</param>
+            <param name="Row">Indicates the nodes at the current row.</param>
+            <param name="Column">Indicates the nodes at the current column.</param>
+            <param name="Block">Indicates the nodes at the current block.</param>
+        </member>
+        <member name="P:Sudoku.Solving.MatrixRow.Cell">
+            <summary>Indicates the node that represents the current cell.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.MatrixRow.Row">
+            <summary>Indicates the nodes at the current row.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.MatrixRow.Column">
+            <summary>Indicates the nodes at the current column.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.MatrixRow.Block">
+            <summary>Indicates the nodes at the current block.</summary>
+        </member>
         <member name="T:Sudoku.Solving.DancingLinx.ColumnNode">
             <summary>
             Represents a column node.
@@ -8079,80 +8157,6 @@
             <summary>
             Indicates the size of the node.
             </summary>
-        </member>
-        <member name="T:Sudoku.Solving.DancingLinx.DancingLink">
-            <summary>
-            Represents as a dancing link.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.DancingLinx.DancingLink.#ctor(Sudoku.Solving.DancingLinx.ColumnNode)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.DancingLinx.DancingLink"/> instance via the specified root node.
-            </summary>
-            <param name="root">The root node.</param>
-        </member>
-        <member name="P:Sudoku.Solving.DancingLinx.DancingLink.Root">
-            <summary>
-            Indicates the root node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.DancingLinx.DancingLink.CreateLinkedList(System.Int32[])">
-            <summary>
-            Creates the links.
-            </summary>
-            <param name="gridArray">The grid array.</param>
-            <returns>The column node for the root node.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.DancingLinx.DancingLink.LinkRow(Sudoku.Solving.DancingLinx.FileLocalType_MatrixRow@)">
-            <summary>
-            Links the row.
-            </summary>
-            <param name="d">The matrix row instance.</param>
-        </member>
-        <member name="M:Sudoku.Solving.DancingLinx.DancingLink.LinkRowToColumn(Sudoku.Solving.DancingLinx.DataNode)">
-            <summary>
-            Links the row to the column.
-            </summary>
-            <param name="section">The section.</param>
-        </member>
-        <member name="M:Sudoku.Solving.DancingLinx.DancingLink.FormLinx(System.Collections.Generic.List{Sudoku.Solving.DancingLinx.ColumnNode},System.Int32,System.Int32,System.Int32)">
-            <summary>
-            To form the links via the specified columns, the cell index and the digit used.
-            </summary>
-            <param name="columns">The columns having been stored.</param>
-            <param name="x">The current row index.</param>
-            <param name="y">The current column index.</param>
-            <param name="d">The current digit.</param>
-        </member>
-        <member name="T:Sudoku.Solving.DancingLinx.FileLocalType_MatrixRow">
-            <summary>
-            Represents a matrix row.
-            </summary>
-            <param name="Cell">Indicates the node that represents the current cell.</param>
-            <param name="Row">Indicates the nodes at the current row.</param>
-            <param name="Column">Indicates the nodes at the current column.</param>
-            <param name="Block">Indicates the nodes at the current block.</param>
-        </member>
-        <member name="M:Sudoku.Solving.DancingLinx.FileLocalType_MatrixRow.#ctor(Sudoku.Solving.DancingLinx.DataNode,Sudoku.Solving.DancingLinx.DataNode,Sudoku.Solving.DancingLinx.DataNode,Sudoku.Solving.DancingLinx.DataNode)">
-            <summary>
-            Represents a matrix row.
-            </summary>
-            <param name="Cell">Indicates the node that represents the current cell.</param>
-            <param name="Row">Indicates the nodes at the current row.</param>
-            <param name="Column">Indicates the nodes at the current column.</param>
-            <param name="Block">Indicates the nodes at the current block.</param>
-        </member>
-        <member name="P:Sudoku.Solving.DancingLinx.FileLocalType_MatrixRow.Cell">
-            <summary>Indicates the node that represents the current cell.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.DancingLinx.FileLocalType_MatrixRow.Row">
-            <summary>Indicates the nodes at the current row.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.DancingLinx.FileLocalType_MatrixRow.Column">
-            <summary>Indicates the nodes at the current column.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.DancingLinx.FileLocalType_MatrixRow.Block">
-            <summary>Indicates the nodes at the current block.</summary>
         </member>
         <member name="T:Sudoku.Solving.DancingLinx.DataNode">
             <summary>
@@ -12173,6 +12177,17 @@
         <member name="M:Sudoku.Text.Formatting.GridFormatter.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.MatchLengthComparer">
+            <summary>
+            Represents a comparer instance that compares two <see cref="T:System.Text.RegularExpressions.Match"/> instances via their length.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.MatchLengthComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Formatting.GridFormatterFactory">
             <summary>

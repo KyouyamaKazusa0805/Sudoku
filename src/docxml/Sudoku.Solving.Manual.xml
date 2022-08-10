@@ -574,13 +574,13 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Sudoku.Solving.Manual.FileLocalType_SeparatedStepSearcherAttributeComparer">
+        <member name="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttributeComparer">
             <summary>
             Defines a comparer instance that compares two instances of type <see cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>.
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.FileLocalType_SeparatedStepSearcherAttributeComparer.Compare(Sudoku.Solving.Manual.SeparatedStepSearcherAttribute,Sudoku.Solving.Manual.SeparatedStepSearcherAttribute)">
+        <member name="M:Sudoku.Solving.Manual.SeparatedStepSearcherAttributeComparer.Compare(Sudoku.Solving.Manual.SeparatedStepSearcherAttribute,Sudoku.Solving.Manual.SeparatedStepSearcherAttribute)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1">
