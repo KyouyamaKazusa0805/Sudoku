@@ -51,7 +51,8 @@ public sealed class HouseViewNodeShape : DrawingElement
 				_gridLayout.AddChildren(
 					_rectangles[i] = new Rectangle()
 						.WithGridLayout(row: i / 3 * 3, column: i % 3 * 3, rowSpan: 3, columnSpan: 3)
-						.WithVisibility(Visibility.Collapsed)
+						.WithOpacity(0)
+						.WithOpacityTransition(TimeSpan.FromMilliseconds(500))
 				);
 
 				i++;
@@ -61,7 +62,8 @@ public sealed class HouseViewNodeShape : DrawingElement
 				_gridLayout.AddChildren(
 					_rectangles[i] = new Rectangle()
 						.WithGridLayout(row: i - 9, columnSpan: 9)
-						.WithVisibility(Visibility.Collapsed)
+						.WithOpacity(0)
+						.WithOpacityTransition(TimeSpan.FromMilliseconds(500))
 				);
 
 				i++;
@@ -71,7 +73,8 @@ public sealed class HouseViewNodeShape : DrawingElement
 				_gridLayout.AddChildren(
 					_rectangles[i] = new Rectangle()
 						.WithGridLayout(column: i - 18, rowSpan: 9)
-						.WithVisibility(Visibility.Collapsed)
+						.WithOpacity(0)
+						.WithOpacityTransition(TimeSpan.FromMilliseconds(500))
 				);
 
 				i++;
@@ -92,7 +95,7 @@ public sealed class HouseViewNodeShape : DrawingElement
 	public void SetIsVisible(int house, bool isVisible)
 	{
 		_isVisibleTable[house] = isVisible;
-		_rectangles[house].Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+		_rectangles[house].Opacity = isVisible ? 1 : 0;
 	}
 
 	/// <summary>

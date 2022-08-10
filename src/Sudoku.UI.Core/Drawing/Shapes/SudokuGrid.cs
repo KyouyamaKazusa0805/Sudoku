@@ -275,8 +275,8 @@ public sealed class SudokuGrid : DrawingElement
 				{
 					_focusedCell = value;
 
-					_focusedRectangle.Visibility = Visibility.Collapsed;
-					Array.ForEach(_peerFocusedRectangle, CommonMethods.HideControl);
+					_focusedRectangle.Opacity = 0;
+					Array.ForEach(_peerFocusedRectangle, static c => c.Opacity = 0);
 
 					break;
 				}
@@ -287,7 +287,7 @@ public sealed class SudokuGrid : DrawingElement
 						var rectangle = _peerFocusedRectangle[i];
 						int cell = Peers[value][i];
 
-						rectangle.Visibility = Visibility.Visible;
+						rectangle.Opacity = 1;
 						GridLayout.SetRow(rectangle, cell / 9);
 						GridLayout.SetColumn(rectangle, cell % 9);
 					}
@@ -298,7 +298,7 @@ public sealed class SudokuGrid : DrawingElement
 				case (_, PeerFocusingMode.FocusedCell):
 				Previous:
 				{
-					_focusedRectangle.Visibility = Visibility.Visible;
+					_focusedRectangle.Opacity = 1;
 					GridLayout.SetRow(_focusedRectangle, value / 9);
 					GridLayout.SetColumn(_focusedRectangle, value % 9);
 
@@ -367,9 +367,10 @@ public sealed class SudokuGrid : DrawingElement
 
 			_focusedRectangle = new Rectangle()
 				.WithFill(value.FocusedCellColor)
-				.WithVisibility(Visibility.Collapsed)
 				.WithGridLayout(row: 4, column: 4)
-				.WithCanvasZIndex(-1);
+				.WithCanvasZIndex(-1)
+				.WithOpacity(0)
+				.WithOpacityTransition(TimeSpan.FromMilliseconds(100));
 
 			_showsCandidates = value.ShowCandidates;
 
@@ -390,9 +391,10 @@ public sealed class SudokuGrid : DrawingElement
 				{
 					rectangle = new Rectangle()
 						.WithFill(preference.PeersFocusedCellColor)
-						.WithVisibility(Visibility.Collapsed)
 						.WithGridLayout(row: 4, column: 4)
-						.WithCanvasZIndex(-1);
+						.WithCanvasZIndex(-1)
+						.WithOpacity(0)
+						.WithOpacityTransition(TimeSpan.FromMilliseconds(100));
 				}
 			}
 
@@ -1148,8 +1150,6 @@ public sealed class SudokuGrid : DrawingElement
 							: _preference.EliminationColor
 				).AsIdentifier()
 			);
-
-			current.SetAnimation(digit);
 		}
 	}
 }

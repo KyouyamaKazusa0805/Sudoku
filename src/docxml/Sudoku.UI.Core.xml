@@ -25,16 +25,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.DiamondMark">
             <summary>
             Defines a diamond mark sign.
@@ -53,16 +43,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.StarMark">
             <summary>
             Defines a star sign.
@@ -79,16 +59,6 @@
         <member name="M:Sudoku.UI.Views.Controls.StarMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.TriangleMark">
@@ -113,16 +83,6 @@
         <member name="M:Sudoku.UI.Views.Controls.TriangleMark.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:Sudoku.UI.Data.Configuration.FontData">
@@ -697,6 +657,19 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.GetControl">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.SetGridVisibility(System.Boolean)">
+            <summary>
+            Sets the visibility to the current grid.
+            </summary>
+            <param name="isVisible">The visibility.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.SetDigitVisibility(System.Int32,System.Boolean)">
+            <summary>
+            Sets the visibility to the current digit.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="isVisible">The visibility.</param>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CandidateLine">
             <summary>
             Defines a candidate line.
@@ -831,13 +804,6 @@
             </summary>
             <param name="digit">The digit.</param>
             <param name="identifier">The color identifier.</param>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape.SetAnimation(System.Int32,System.Int32)">
-            <summary>
-            Sets the storyboard onto the specified digits.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="playingPeriodTimes">The count of times that the animation playing.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateViewNodeShape.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
@@ -989,6 +955,18 @@
             Gets the control of the mask ellipse.
             </summary>
             <returns>The mask ellipse control.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.SetTextBlockVisibility(System.Boolean)">
+            <summary>
+            Sets the specified visibility.
+            </summary>
+            <param name="isVisible">The visibility.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.SetMaskEllipseVisibility(System.Boolean)">
+            <summary>
+            Sets the specified visibility.
+            </summary>
+            <param name="isVisible">The visibility.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.GetColor(System.Nullable{System.Boolean},Sudoku.UI.Drawing.IDrawingPreference)">
             <summary>
@@ -2859,26 +2837,6 @@
         <member name="M:Sudoku.UI.MarkupExtensions.DateOnlyExtension.ProvideValue">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Sudoku_UI_Core_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.BezierSegmentExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.BezierSegment"/>.
@@ -3096,12 +3054,12 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeEndLineCap"/> with the specified value.
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE57A11628">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE57A11628.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3177,18 +3135,6 @@
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.Data.Binding.Mode"/> with the specified value.
             </summary>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.CommonMethods">
-            <summary>
-            Defines a set of commonly-used methods.
-            </summary>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.CommonMethods.HideControl``1(``0)">
-            <summary>
-            To hide a control.
-            </summary>
-            <typeparam name="TUIElement">The type of the control.</typeparam>
-            <param name="control">The control instance.</param>
         </member>
         <member name="T:Microsoft.UI.Xaml.Controls.ContentControlExtensions">
             <summary>
@@ -3526,6 +3472,24 @@
             Calls the method <see cref="M:Microsoft.UI.Xaml.Controls.Canvas.SetZIndex(Microsoft.UI.Xaml.UIElement,System.Int32)"/> to set the Z-index value.
             </summary>
         </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.WithOpacity``1(``0,System.Double)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.UIElement.Opacity"/> with the specified value.
+            </summary>
+            <seealso cref="P:Microsoft.UI.Xaml.UIElement.Opacity"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.WithOpacityTransition``1(``0)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.UIElement.OpacityTransition"/> with the specified value.
+            </summary>
+            <seealso cref="P:Microsoft.UI.Xaml.UIElement.OpacityTransition"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.WithOpacityTransition``1(``0,System.TimeSpan)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.UIElement.OpacityTransition"/> with the specified value.
+            </summary>
+            <seealso cref="P:Microsoft.UI.Xaml.UIElement.OpacityTransition"/>
+        </member>
         <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``1(``0,Windows.Storage.StorageFile)">
             <summary>
             Renders the specified UI control to the target file as a picture.
@@ -3636,12 +3600,12 @@
             <param name="other">The other point.</param>
             <returns>The distance of the two points.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DEF353AC3E">
+        <member name="T:Windows.Foundation.Point_DEFC6B40A8">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEF353AC3E.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEFC6B40A8.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

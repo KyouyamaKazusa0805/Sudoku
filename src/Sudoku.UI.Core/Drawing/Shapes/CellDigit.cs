@@ -114,8 +114,8 @@ internal sealed class CellDigit : DrawingElement
 			ArgumentNullException.ThrowIfNull(_textBlock);
 
 			_isMaskMode = value;
-			_maskEllipse.Visibility = value && _isGiven is true ? Visibility.Visible : Visibility.Collapsed;
-			_textBlock.Visibility = value ? Visibility.Collapsed : Visibility.Visible;
+			SetMaskEllipseVisibility(value && _isGiven is true);
+			SetTextBlockVisibility(!value);
 		}
 	}
 
@@ -268,14 +268,17 @@ internal sealed class CellDigit : DrawingElement
 				.WithHorizontalTextAlignment(TextAlignment.Center)
 				.WithHorizontalAlignment(HorizontalAlignment.Center)
 				.WithVerticalAlignment(VerticalAlignment.Center)
-				.WithForeground(GetColor(_isGiven, value));
+				.WithForeground(GetColor(_isGiven, value))
+				.WithOpacity(1)
+				.WithOpacityTransition(TimeSpan.FromMilliseconds(500));
 			_maskEllipse ??= new Ellipse()
 				.WithFill(value.MaskEllipseColor)
 				.WithWidth(60 * value.ValueFont.FontScale)
 				.WithHeight(60 * value.ValueFont.FontScale)
 				.WithHorizontalAlignment(HorizontalAlignment.Center)
 				.WithVerticalAlignment(VerticalAlignment.Center)
-				.WithVisibility(_isMaskMode ? Visibility.Visible : Visibility.Collapsed);
+				.WithOpacity(_isMaskMode ? 1 : 0)
+				.WithOpacityTransition(TimeSpan.FromMilliseconds(500));
 		}
 	}
 
@@ -335,6 +338,36 @@ internal sealed class CellDigit : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Ellipse GetMaskEllipseControl()
 		=> _maskEllipse ?? throw new InvalidOperationException("The value cannot be null.");
+
+	/// <summary>
+	/// Sets the specified visibility.
+	/// </summary>
+	/// <param name="isVisible">The visibility.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void SetTextBlockVisibility(bool isVisible)
+	{
+		if (_textBlock is null)
+		{
+			return;
+		}
+
+		_textBlock.Opacity = isVisible ? 1 : 0;
+	}
+
+	/// <summary>
+	/// Sets the specified visibility.
+	/// </summary>
+	/// <param name="isVisible">The visibility.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void SetMaskEllipseVisibility(bool isVisible)
+	{
+		if (_maskEllipse is null)
+		{
+			return;
+		}
+
+		_maskEllipse.Opacity = isVisible ? 1 : 0;
+	}
 
 
 	/// <summary>

@@ -52,6 +52,8 @@ public sealed class CandidateViewNodeShape : DrawingElement
 					_ellipses[i] = new Ellipse()
 						.WithMargin(1)
 						.WithGridLayout(row: i / 3, column: i % 3)
+						.WithOpacity(0)
+						.WithOpacityTransition(TimeSpan.FromMilliseconds(500))
 				);
 			}
 		}
@@ -70,8 +72,13 @@ public sealed class CandidateViewNodeShape : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetIsVisible(int digit, bool isVisible)
 	{
+		if (_isVisibleValues[digit] == isVisible)
+		{
+			return;
+		}
+
 		_isVisibleValues[digit] = isVisible;
-		_ellipses[digit].Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+		_ellipses[digit].Opacity = isVisible ? 1 : 0;
 	}
 
 	/// <summary>
@@ -84,36 +91,6 @@ public sealed class CandidateViewNodeShape : DrawingElement
 	{
 		_identifiers[digit] = identifier;
 		_ellipses[digit].Fill = new SolidColorBrush(identifier.AsColor(_preference));
-	}
-
-	/// <summary>
-	/// Sets the storyboard onto the specified digits.
-	/// </summary>
-	/// <param name="digit">The digit.</param>
-	/// <param name="playingPeriodTimes">The count of times that the animation playing.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetAnimation(int digit, int playingPeriodTimes = 3)
-	{
-		var color = _identifiers[digit].AsColor(_preference);
-		var animation = new ColorAnimation
-		{
-			From = color,
-			To = color,
-			By = Colors.White,
-			EnableDependentAnimation = true,
-			Duration = TimeSpan.FromSeconds(2)
-		};
-
-		Storyboard.SetTarget(animation, _ellipses[digit]);
-		Storyboard.SetTargetProperty(animation, $"({nameof(Shape)}.{nameof(Shape.Fill)}).({nameof(SolidColorBrush)}.{nameof(SolidColorBrush.Color)})");
-
-		var storyboard = new Storyboard
-		{
-			Duration = TimeSpan.Zero,
-			RepeatBehavior = new() { Count = playingPeriodTimes }
-		};
-		storyboard.Children.Add(animation);
-		storyboard.Begin();
 	}
 
 	/// <inheritdoc/>

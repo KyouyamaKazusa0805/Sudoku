@@ -62,7 +62,7 @@ internal sealed class CandidateDigit : DrawingElement
 			}
 
 			_preference.ShowCandidates = value;
-			_grid.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+			SetGridVisibility(value);
 		}
 	}
 
@@ -83,7 +83,7 @@ internal sealed class CandidateDigit : DrawingElement
 			}
 
 			_showsCandidates = value;
-			_grid.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+			SetGridVisibility(value);
 		}
 	}
 
@@ -109,7 +109,7 @@ internal sealed class CandidateDigit : DrawingElement
 			}
 
 			_isMaskMode = value;
-			_grid.Visibility = value || !_showsCandidates ? Visibility.Collapsed : Visibility.Visible;
+			SetGridVisibility(value);
 		}
 	}
 
@@ -128,8 +128,7 @@ internal sealed class CandidateDigit : DrawingElement
 			_candidateMask = value;
 			for (byte digit = 0; digit < 9; digit++)
 			{
-				_digitBlocks[digit].Visibility =
-					((value | _wrongDigitMask) >> digit & 1) != 0 ? Visibility.Visible : Visibility.Collapsed;
+				SetDigitVisibility(digit, ((value | _wrongDigitMask) >> digit & 1) != 0);
 			}
 		}
 	}
@@ -150,8 +149,7 @@ internal sealed class CandidateDigit : DrawingElement
 			for (byte digit = 0; digit < 9; digit++)
 			{
 				scoped ref var current = ref _digitBlocks[digit];
-				current.Visibility =
-					((_candidateMask | value) >> digit & 1) != 0 ? Visibility.Visible : Visibility.Collapsed;
+				SetDigitVisibility(digit, ((_candidateMask | value) >> digit & 1) != 0);
 				current.Foreground = new SolidColorBrush(
 					(_wrongDigitMask >> digit & 1) != 0
 						? _preference.CandidateDeltaColor
@@ -177,12 +175,14 @@ internal sealed class CandidateDigit : DrawingElement
 			_showsCandidates = _preference.ShowCandidates;
 			_grid ??= createGrid(_digitBlocks, value);
 
+
 			static GridLayout createGrid(TextBlock[] textBlocks, IDrawingPreference value)
 			{
 				var grid = new GridLayout()
-					.WithVisibility(value.ShowCandidates ? Visibility.Visible : Visibility.Collapsed)
 					.WithRowDefinitionsCount(3)
-					.WithColumnDefinitionsCount(3);
+					.WithColumnDefinitionsCount(3)
+					.WithOpacity(value.ShowCandidates ? 1 : 0)
+					.WithOpacityTransition(TimeSpan.FromMilliseconds(500));
 
 				for (byte digit = 0; digit < 9; digit++)
 				{
@@ -194,7 +194,9 @@ internal sealed class CandidateDigit : DrawingElement
 						.WithVerticalAlignment(VerticalAlignment.Center)
 						.WithTextAlignment(TextAlignment.Center)
 						.WithHorizontalTextAlignment(TextAlignment.Center)
-						.WithGridLayout(row: digit / 3, column: digit % 3);
+						.WithGridLayout(row: digit / 3, column: digit % 3)
+						.WithOpacity(value.ShowCandidates ? 1 : 0)
+						.WithOpacityTransition(TimeSpan.FromMilliseconds(500));
 
 					textBlocks[digit] = digitBlock;
 					grid.Children.Add(digitBlock);
@@ -250,4 +252,35 @@ internal sealed class CandidateDigit : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override GridLayout GetControl()
 		=> _grid ?? throw new InvalidOperationException("The value cannot be null.");
+
+	/// <summary>
+	/// Sets the visibility to the current grid.
+	/// </summary>
+	/// <param name="isVisible">The visibility.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void SetGridVisibility(bool isVisible)
+	{
+		if (_grid is null)
+		{
+			return;
+		}
+
+		_grid.Opacity = isVisible ? 1 : 0;
+	}
+
+	/// <summary>
+	/// Sets the visibility to the current digit.
+	/// </summary>
+	/// <param name="digit">The digit.</param>
+	/// <param name="isVisible">The visibility.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void SetDigitVisibility(int digit, bool isVisible)
+	{
+		if (_digitBlocks[digit] is not { } block)
+		{
+			return;
+		}
+
+		block.Opacity = isVisible ? 1 : 0;
+	}
 }

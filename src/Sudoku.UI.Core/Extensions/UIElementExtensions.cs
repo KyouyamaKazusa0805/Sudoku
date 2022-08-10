@@ -54,9 +54,42 @@ public static class UIElementExtensions
 	/// Calls the method <see cref="Canvas.SetZIndex(UIElement, int)"/> to set the Z-index value.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TUIElement WithCanvasZIndex<TUIElement>(this TUIElement @this, int zIndex) where TUIElement : UIElement
+	public static TUIElement WithCanvasZIndex<TUIElement>(this TUIElement @this, int zIndex)
+		where TUIElement : UIElement
 	{
 		Canvas.SetZIndex(@this, zIndex);
+		return @this;
+	}
+
+	/// <summary>
+	/// Sets the property <see cref="UIElement.Opacity"/> with the specified value.
+	/// </summary>
+	/// <seealso cref="UIElement.Opacity"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TUIElement WithOpacity<TUIElement>(this TUIElement @this, double opacity)
+		where TUIElement : UIElement
+	{
+		@this.Opacity = opacity;
+		return @this;
+	}
+
+	/// <summary>
+	/// Sets the property <see cref="UIElement.OpacityTransition"/> with the specified value.
+	/// </summary>
+	/// <seealso cref="UIElement.OpacityTransition"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TUIElement WithOpacityTransition<TUIElement>(this TUIElement @this)
+		where TUIElement : UIElement => @this.WithOpacityTransition(TimeSpan.FromSeconds(1));
+
+	/// <summary>
+	/// Sets the property <see cref="UIElement.OpacityTransition"/> with the specified value.
+	/// </summary>
+	/// <seealso cref="UIElement.OpacityTransition"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TUIElement WithOpacityTransition<TUIElement>(this TUIElement @this, TimeSpan duration)
+		where TUIElement : UIElement
+	{
+		@this.OpacityTransition = new() { Duration = duration };
 		return @this;
 	}
 

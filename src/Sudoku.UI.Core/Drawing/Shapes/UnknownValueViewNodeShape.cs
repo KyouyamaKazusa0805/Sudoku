@@ -14,7 +14,9 @@ public sealed class UnknownValueViewNodeShape : DrawingElement
 		.WithHorizontalAlignment(HorizontalAlignment.Center)
 		.WithVerticalAlignment(VerticalAlignment.Center)
 		.WithTextAlignment(TextAlignment.Center)
-		.WithHorizontalTextAlignment(TextAlignment.Center);
+		.WithHorizontalTextAlignment(TextAlignment.Center)
+		.WithOpacity(1)
+		.WithOpacityTransition(TimeSpan.FromMilliseconds(500));
 
 	/// <summary>
 	/// Indicates the preference.
@@ -41,11 +43,11 @@ public sealed class UnknownValueViewNodeShape : DrawingElement
 			_char = value;
 			if (value == (byte)'\0')
 			{
-				_textBlock.Visibility = Visibility.Collapsed;
+				_textBlock.Opacity = 0;
 			}
 			else
 			{
-				_textBlock.Visibility = Visibility.Visible;
+				_textBlock.Opacity = 1;
 				_textBlock.Text = value.ToString();
 			}
 		}
