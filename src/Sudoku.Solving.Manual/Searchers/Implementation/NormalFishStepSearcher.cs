@@ -204,11 +204,11 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 					int baseSetsMask = 0, coverSetsMask = 0;
 					foreach (int baseSet in bs)
 					{
-						baseSetsMask |= baseSet;
+						baseSetsMask |= 1 << baseSet;
 					}
 					foreach (int coverSet in cs)
 					{
-						coverSetsMask |= coverSet;
+						coverSetsMask |= 1 << coverSet;
 					}
 
 					// Gather the result.
