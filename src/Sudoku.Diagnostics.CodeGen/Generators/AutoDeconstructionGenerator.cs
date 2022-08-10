@@ -19,7 +19,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: FileLocalType_Receiver { Collection: var collection },
+				SyntaxContextReceiver: Receiver { Collection: var collection },
 				Compilation: { Assembly: var assembly } compilation
 			}
 		)
@@ -161,7 +161,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new FileLocalType_Receiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 
 	/// <summary>
 	/// Get for assembly-targeted attributes on generation.
@@ -444,7 +444,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 /// The inner syntax context receiver instance.
 /// </summary>
 /// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-internal sealed record FileLocalType_Receiver(CancellationToken CancellationToken) : ISyntaxContextReceiver
+file sealed record Receiver(CancellationToken CancellationToken) : ISyntaxContextReceiver
 {
 	/// <summary>
 	/// Indicates the result collection.

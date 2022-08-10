@@ -12,7 +12,7 @@ public sealed partial class RefStructOverridensGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: FileLocalType_RefStructOverridensGenerator_Receiver { Collection: var symbolsFound },
+				SyntaxContextReceiver: Receiver { Collection: var symbolsFound },
 				Compilation: var compilation
 			}
 		)
@@ -32,7 +32,7 @@ public sealed partial class RefStructOverridensGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new FileLocalType_RefStructOverridensGenerator_Receiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 
 	/// <summary>
 	/// Generates for top-leveled <see langword="ref struct"/> types.
@@ -343,8 +343,7 @@ public sealed partial class RefStructOverridensGenerator : ISourceGenerator
 /// The inner syntax context receiver instance.
 /// </summary>
 /// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-internal sealed record FileLocalType_RefStructOverridensGenerator_Receiver(CancellationToken CancellationToken) :
-	ISyntaxContextReceiver
+file sealed record Receiver(CancellationToken CancellationToken) : ISyntaxContextReceiver
 {
 	/// <summary>
 	/// Indicates the result collection.

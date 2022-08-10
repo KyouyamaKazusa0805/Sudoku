@@ -562,7 +562,7 @@ public readonly ref partial struct GridFormatter
 				}
 				else
 				{
-					var set = new HashSet<Match>(collection, new FileLocalType_MatchLengthComparer());
+					var set = new HashSet<Match>(collection, new MatchLengthComparer());
 					if (set.Count == 1)
 					{
 						// All matches are same-length.
@@ -902,4 +902,16 @@ public readonly ref partial struct GridFormatter
 				Placeholder = gridOutputOption.Flags(GridFormattingOptions.DotPlaceholder) ? '.' : '0'
 			}
 		};
+}
+
+/// <summary>
+/// Represents a comparer instance that compares two <see cref="Match"/> instances via their length.
+/// </summary>
+file sealed class MatchLengthComparer : IEqualityComparer<Match>
+{
+	/// <inheritdoc/>
+	public bool Equals(Match? x, Match? y) => (x?.Value.Length ?? -1) == (y?.Value.Length ?? -1);
+
+	/// <inheritdoc/>
+	public int GetHashCode([DisallowNull] Match? obj) => obj?.Value.Length ?? -1;
 }

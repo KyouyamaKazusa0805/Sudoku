@@ -533,7 +533,7 @@ public static partial class CommonReadOnlies
 
 		var r = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
 		var c = (stackalloc[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 });
-		var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells, byte[])>(new FileLocalType_ValueTupleComparer());
+		var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells, byte[])>(new ValueTupleComparer());
 		for (byte bs = 9; bs < 27; bs++)
 		{
 			for (byte j = 0; j < 3; j++)
@@ -550,7 +550,10 @@ public static partial class CommonReadOnlies
 	}
 }
 
-internal sealed class FileLocalType_ValueTupleComparer : IEqualityComparer<(byte Value1, byte Value2)>
+/// <summary>
+/// Represents a comparer instance that compares two tuples.
+/// </summary>
+file sealed class ValueTupleComparer : IEqualityComparer<(byte Value1, byte Value2)>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

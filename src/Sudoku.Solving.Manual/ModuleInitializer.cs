@@ -46,7 +46,7 @@ internal static class ModuleInitializer
 				case { Length: not 0 } optionalAssignments:
 				{
 					// Sort the attribute instances via the priority.
-					Array.Sort(optionalAssignments, new FileLocalType_SeparatedStepSearcherAttributeComparer());
+					Array.Sort(optionalAssignments, new SeparatedStepSearcherAttributeComparer());
 
 					// Iterate on each attribute instances.
 					foreach (var attributeInstance in optionalAssignments)
@@ -146,7 +146,7 @@ internal static class ModuleInitializer
 /// Defines a comparer instance that compares two instances of type <see cref="SeparatedStepSearcherAttribute"/>.
 /// </summary>
 /// <seealso cref="SeparatedStepSearcherAttribute"/>
-internal sealed class FileLocalType_SeparatedStepSearcherAttributeComparer : IComparer<SeparatedStepSearcherAttribute>
+file sealed class SeparatedStepSearcherAttributeComparer : IComparer<SeparatedStepSearcherAttribute>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

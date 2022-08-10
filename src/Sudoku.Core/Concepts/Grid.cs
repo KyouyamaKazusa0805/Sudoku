@@ -1539,12 +1539,3 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<Grid, Grid>.operator !=(Grid left, Grid right) => left != right;
 }
-
-internal sealed class FileLocalType_MatchLengthComparer : IEqualityComparer<Match>
-{
-	/// <inheritdoc/>
-	public bool Equals(Match? x, Match? y) => (x?.Value.Length ?? -1) == (y?.Value.Length ?? -1);
-
-	/// <inheritdoc/>
-	public int GetHashCode([DisallowNull] Match? obj) => obj?.Value.Length ?? -1;
-}

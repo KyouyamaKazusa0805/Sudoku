@@ -3,7 +3,7 @@
 
 namespace Sudoku.Solving;
 
-using static FileLocalType_Constants;
+using static Constants;
 
 /// <summary>
 /// Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.
@@ -12,7 +12,7 @@ using static FileLocalType_Constants;
 /// The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
 /// to handle a sudoku grid, which is efficient.
 /// </remarks>
-public sealed unsafe class BitwiseSolver : ISimpleSolver
+public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 {
 	/// <summary>
 	/// The buffer length of a solution puzzle.
@@ -28,7 +28,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 	/// <summary>
 	/// Stack to store current and previous states.
 	/// </summary>
-	private readonly FileLocalType_State[] _stack = new FileLocalType_State[50];
+	private readonly State[] _stack = new State[50];
 
 	/// <summary>
 	/// Nasty global flag telling if <see cref="ApplySingleOrEmptyCells"/> found anything.
@@ -57,7 +57,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 	/// <summary>
 	/// Pointer to the currently active slot.
 	/// </summary>
-	private FileLocalType_State* _g;
+	private State* _g;
 
 
 	/// <summary>
@@ -342,7 +342,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 	/// <returns>The <see cref="bool"/> result.</returns>
 	private bool InitSudoku(char* puzzle)
 	{
-		fixed (FileLocalType_State* g = _stack)
+		fixed (State* g = _stack)
 		{
 			_numSolutions = 0;
 			for (int band = 0; band < 27; band++)
@@ -867,7 +867,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 						if (--tries != 0)
 						{
 							// First of pair.
-							Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(FileLocalType_State));
+							Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(State));
 							_g->Bands[band] ^= map;
 							_g++;
 							SetSolvedMask(band, map);
@@ -910,7 +910,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 				if ((_g->Bands[band] & cellMask) != 0)
 				{
 					// Eliminate option in the current stack entry.
-					Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(FileLocalType_State));
+					Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(State));
 					_g->Bands[band] ^= cellMask;
 					_g++;
 					SetSolvedMask(band, cellMask); // And try it out in a nested stack entry.
@@ -1001,37 +1001,9 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 }
 
 /// <summary>
-/// To describe a state for a current grid using binary values.
+/// Represents for a list of constants.
 /// </summary>
-internal unsafe struct FileLocalType_State
-{
-	/// <summary>
-	/// Pencil marks in bands by digit.
-	/// </summary>
-	public fixed uint Bands[3 * 9];
-
-	/// <summary>
-	/// Value of bands last time it was calculated.
-	/// </summary>
-	public fixed uint PrevBands[3 * 9];
-
-	/// <summary>
-	/// Bit vector of unsolved cells.
-	/// </summary>
-	public fixed uint UnsolvedCells[3];
-
-	/// <summary>
-	/// Bit vector of unsolved rows - three bits per band.
-	/// </summary>
-	public fixed uint UnsolvedRows[3];
-
-	/// <summary>
-	/// Bit vector of cells with exactly two pencil marks.
-	/// </summary>
-	public fixed uint Pairs[3];
-}
-
-internal static class FileLocalType_Constants
+file static class Constants
 {
 	public static readonly byte[] TblShrinkMask =
 	{

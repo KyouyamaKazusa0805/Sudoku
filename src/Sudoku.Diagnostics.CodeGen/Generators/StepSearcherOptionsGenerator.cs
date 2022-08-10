@@ -50,7 +50,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		}
 
 		// Gather the valid attributes data.
-		var foundAttributesData = new List<FileLocalType_FoundAttributeData>();
+		var foundAttributesData = new List<FoundAttributeData>();
 		const string comma = ", ";
 		const string attributeTypeName = $"{Projects.ManualSolving}.SearcherConfigurationAttribute<>";
 		int priorityValue = 0;
@@ -228,7 +228,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 /// <param name="DifficultyLevel">The difficulty level of the step searcher.</param>
 /// <param name="TypeName">The name of the step searcher type.</param>
 /// <param name="NamedArguments">The named arguments of that attribute.</param>
-internal readonly record struct FileLocalType_FoundAttributeData(
+file readonly record struct FoundAttributeData(
 	INamespaceSymbol Namespace,
 	int PriorityValue,
 	byte DifficultyLevel,

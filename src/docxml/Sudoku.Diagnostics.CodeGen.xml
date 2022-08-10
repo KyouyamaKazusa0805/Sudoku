@@ -52,27 +52,27 @@
             <param name="attributesData">The attributes data, and the corresponding location.</param>
             <returns>The collection of raw code parts for instance deconstruction methods.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_Receiver">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Receiver">
             <summary>
             The inner syntax context receiver instance.
             </summary>
             <param name="CancellationToken">The cancellation token to cancel the operation.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_Receiver.#ctor(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Receiver.#ctor(System.Threading.CancellationToken)">
             <summary>
             The inner syntax context receiver instance.
             </summary>
             <param name="CancellationToken">The cancellation token to cancel the operation.</param>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_Receiver.CancellationToken">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Receiver.CancellationToken">
             <summary>The cancellation token to cancel the operation.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_Receiver.Collection">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Receiver.Collection">
             <summary>
             Indicates the result collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator">
@@ -160,10 +160,16 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.GenerateSource(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,Microsoft.CodeAnalysis.AttributeData,System.Collections.Generic.IEnumerable{System.ValueTuple{Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.AttributeData}}}[]}}})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_AttributeDataComparerDistinctByKey.Equals(Microsoft.CodeAnalysis.AttributeData,Microsoft.CodeAnalysis.AttributeData)">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AttributeDataComparer">
+            <summary>
+            Represents a comparer instance that compares two <see cref="T:Microsoft.CodeAnalysis.AttributeData"/> instances
+            via their own first arguments.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AttributeDataComparer.Equals(Microsoft.CodeAnalysis.AttributeData,Microsoft.CodeAnalysis.AttributeData)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_AttributeDataComparerDistinctByKey.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AttributeDataComparer.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.ManualSolverOperationsGenerator">
@@ -222,27 +228,27 @@
             <param name="symbol">The symbol to be determined.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_RefStructOverridensGenerator_Receiver">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Receiver">
             <summary>
             The inner syntax context receiver instance.
             </summary>
             <param name="CancellationToken">The cancellation token to cancel the operation.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_RefStructOverridensGenerator_Receiver.#ctor(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Receiver.#ctor(System.Threading.CancellationToken)">
             <summary>
             The inner syntax context receiver instance.
             </summary>
             <param name="CancellationToken">The cancellation token to cancel the operation.</param>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_RefStructOverridensGenerator_Receiver.CancellationToken">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Receiver.CancellationToken">
             <summary>The cancellation token to cancel the operation.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_RefStructOverridensGenerator_Receiver.Collection">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Receiver.Collection">
             <summary>
             Indicates the result collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_RefStructOverridensGenerator_Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator">
@@ -264,7 +270,7 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData">
             <summary>
             Simply encapsulates a data tuple describing the information of a found attribute.
             </summary>
@@ -274,7 +280,7 @@
             <param name="TypeName">The name of the step searcher type.</param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
             <summary>
             Simply encapsulates a data tuple describing the information of a found attribute.
             </summary>
@@ -284,19 +290,19 @@
             <param name="TypeName">The name of the step searcher type.</param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.Namespace">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.Namespace">
             <summary>Indicates the namespace symbol of that step searcher.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.PriorityValue">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.PriorityValue">
             <summary>The priority value of the step searcher.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.DifficultyLevel">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.DifficultyLevel">
             <summary>The difficulty level of the step searcher.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.TypeName">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.TypeName">
             <summary>The name of the step searcher type.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FileLocalType_FoundAttributeData.NamedArguments">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.NamedArguments">
             <summary>The named arguments of that attribute.</summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Projects">

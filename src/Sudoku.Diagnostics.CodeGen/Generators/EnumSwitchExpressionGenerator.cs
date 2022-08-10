@@ -56,7 +56,7 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 			from attributeData in typeSymbol.GetAttributes()
 			where SymbolEqualityComparer.Default.Equals(attributeData.AttributeClass, switchExprRoot)
 			select attributeData
-		).Distinct(new FileLocalType_AttributeDataComparerDistinctByKey()).ToArray();
+		).Distinct(new AttributeDataComparer()).ToArray();
 		if (typeAttributesData.Length == 0)
 		{
 			return null;
@@ -184,7 +184,11 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 	private static bool NodePredicate(SyntaxNode node, CancellationToken _) => node is EnumDeclarationSyntax;
 }
 
-internal sealed class FileLocalType_AttributeDataComparerDistinctByKey : IEqualityComparer<AttributeData>
+/// <summary>
+/// Represents a comparer instance that compares two <see cref="AttributeData"/> instances
+/// via their own first arguments.
+/// </summary>
+file sealed class AttributeDataComparer : IEqualityComparer<AttributeData>
 {
 	/// <inheritdoc/>
 	public bool Equals(AttributeData x, AttributeData y)
