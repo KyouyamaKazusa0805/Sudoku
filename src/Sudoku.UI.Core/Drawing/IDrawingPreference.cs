@@ -207,7 +207,8 @@ public interface IDrawingPreference
 
 
 	/// <summary>
-	/// Gets the color at the specified index of the palette color list, i.e. the property <see cref="PaletteColors"/>s.
+	/// Gets the color at the specified index of the palette color list,
+	/// i.e. the property <see cref="PaletteColors"/>s.
 	/// </summary>
 	/// <param name="paletteColorIndex">The index.</param>
 	/// <returns>The color result.</returns>
