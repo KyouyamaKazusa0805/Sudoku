@@ -9,7 +9,11 @@ public readonly struct Utf8Char :
 	IComparisonOperators<Utf8Char, Utf8Char>,
 	IEquatable<Utf8Char>,
 	IEqualityOperators<Utf8Char, Utf8Char>,
-	IMinMaxValue<Utf8Char>
+	IMinMaxValue<Utf8Char>,
+	IAdditionOperators<Utf8Char, byte, Utf8Char>,
+	ISubtractionOperators<Utf8Char, byte, Utf8Char>,
+	IIncrementOperators<Utf8Char>,
+	IDecrementOperators<Utf8Char>
 {
 	/// <summary>
 	/// Indicates the minimum-valued instance of the current type.
@@ -143,6 +147,40 @@ public readonly struct Utf8Char :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <=(Utf8Char left, Utf8Char right) => left.CompareTo(right) <= 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Utf8Char operator +(Utf8Char @char, byte offset) => (Utf8Char)(byte)(@char._char + offset);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Utf8Char operator checked +(Utf8Char @char, byte offset)
+		=> (Utf8Char)checked((byte)(@char._char + offset));
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Utf8Char operator -(Utf8Char @char, byte offset) => (Utf8Char)(byte)(@char._char - offset);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Utf8Char operator checked -(Utf8Char @char, byte offset)
+		=> (Utf8Char)checked((byte)(@char._char - offset));
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Utf8Char operator ++(Utf8Char @char) => @char + 1;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Utf8Char operator checked ++(Utf8Char @char) => checked(@char + 1);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Utf8Char operator --(Utf8Char @char) => @char - 1;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Utf8Char operator checked --(Utf8Char @char) => checked(@char - 1);
 
 
 	/// <summary>

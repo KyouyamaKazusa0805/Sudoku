@@ -3561,6 +3561,30 @@
         <member name="M:System.Utf8Char.op_LessThanOrEqual(System.Utf8Char,System.Utf8Char)">
             <inheritdoc/>
         </member>
+        <member name="M:System.Utf8Char.op_Addition(System.Utf8Char,System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_CheckedAddition(System.Utf8Char,System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_Subtraction(System.Utf8Char,System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_CheckedSubtraction(System.Utf8Char,System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_Increment(System.Utf8Char)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_CheckedIncrement(System.Utf8Char)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_Decrement(System.Utf8Char)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_CheckedDecrement(System.Utf8Char)">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Utf8Char.op_Explicit(System.Char)~System.Utf8Char">
             <summary>
             Explicitly cast from <see cref="T:System.Char"/> instance to <see cref="T:System.Utf8Char"/> instance.
