@@ -2474,11 +2474,8 @@
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Grid">
             <summary>
-            Gets or sets the grid. If you want to get the inner sudoku grid puzzle instance,
-            we suggest you use the property <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.GridRef"/> instead of using the accessor
-            <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Grid"/>.<see langword="get"/> because that property (i.e. <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.GridRef"/>) copies by reference.
+            Gets or sets the grid.
             </summary>
-            <seealso cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.GridRef"/>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.UndoRedoStepsUpdatedCallback">
             <summary>
@@ -2504,11 +2501,6 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.RedoStepsCount">
             <summary>
             Indicates the number of available redoable steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.GridRef">
-            <summary>
-            Gets the reference of the grid. The method is used for getting the grid instance by reference.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.TypeIdentifier">

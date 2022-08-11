@@ -310,11 +310,8 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
-	/// Gets or sets the grid. If you want to get the inner sudoku grid puzzle instance,
-	/// we suggest you use the property <see cref="GridRef"/> instead of using the accessor
-	/// <see cref="Grid"/>.<see langword="get"/> because that property (i.e. <see cref="GridRef"/>) copies by reference.
+	/// Gets or sets the grid.
 	/// </summary>
-	/// <seealso cref="GridRef"/>
 	public Grid Grid
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -495,15 +492,6 @@ public sealed class SudokuGrid : DrawingElement
 	/// Indicates the number of available redoable steps.
 	/// </summary>
 	internal int RedoStepsCount => _redoSteps.Count;
-
-	/// <summary>
-	/// Gets the reference of the grid. The method is used for getting the grid instance by reference.
-	/// </summary>
-	internal ref readonly Grid GridRef
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ref _grid;
-	}
 
 	/// <inheritdoc/>
 	protected override string TypeIdentifier => nameof(SudokuGrid);
@@ -763,7 +751,7 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetNextView()
 	{
-		if (DisplayableUnit is not { Views: { Length: var viewLength and not 0 } views })
+		if (DisplayableUnit is not { Views: { Length: var viewLength } views and not [] })
 		{
 			return;
 		}
