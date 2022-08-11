@@ -83,18 +83,8 @@ public sealed class LinkViewNodeShape : DrawingElement
 					animation,
 					pathKind switch
 					{
-						PathKind.Straight
-							=>
-							$"({nameof(Path)}.{nameof(Path.Data)})." +
-							$"({nameof(GeometryGroup)}.{nameof(GeometryGroup.Children)})[0]." +
-							$"({nameof(LineGeometry)}.{nameof(LineGeometry.EndPoint)})",
-						PathKind.Curve
-							=>
-							$"({nameof(Path)}.{nameof(Path.Data)})." +
-							$"({nameof(GeometryGroup)}.{nameof(GeometryGroup.Children)})[0]." +
-							$"({nameof(PathGeometry)}.{nameof(PathGeometry.Figures)})[0]." +
-							$"{nameof(PathFigure.Segments)}[0]." +
-							$"({nameof(BezierSegment)}.{nameof(BezierSegment.Point3)})"
+						PathKind.Straight => $"({nameof(Path)}.{nameof(Path.Data)}).({nameof(GeometryGroup)}.{nameof(GeometryGroup.Children)})[0].({nameof(LineGeometry)}.{nameof(LineGeometry.EndPoint)})",
+						PathKind.Curve => $"({nameof(Path)}.{nameof(Path.Data)}).({nameof(GeometryGroup)}.{nameof(GeometryGroup.Children)})[0].({nameof(PathGeometry)}.{nameof(PathGeometry.Figures)})[0].{nameof(PathFigure.Segments)}[0].({nameof(BezierSegment)}.{nameof(BezierSegment.Point3)})"
 					}
 				);
 				storyboard.Children.Add(animation);
