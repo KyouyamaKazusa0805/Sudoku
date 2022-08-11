@@ -24,6 +24,65 @@
         <member name="P:Sudoku.UI.Data.Configuration.FontData.FontScale">
             <summary>Indicates the font scale.</summary>
         </member>
+        <member name="T:Sudoku.UI.Data.PropertyPathBuilder">
+            <summary>
+            Defines a property path builder that can creates a property path.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.PropertyPathBuilder._sb">
+            <summary>
+            Indicates the inner builder.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.PropertyPathBuilder"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.Equals(Sudoku.UI.Data.PropertyPathBuilder)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.AppendProperty``1(System.String)">
+            <summary>
+            Appends the specified property into the builder.
+            </summary>
+            <typeparam name="T">
+            The type of the argument <paramref name="propertyName"/> references to.
+            </typeparam>
+            <param name="propertyName">
+            The name of the property. Generally using <see langword="nameof"/> expression is okay.
+            </param>
+            <returns>The current instance. This return value and be used as chaining invocations.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when generic type argument <typeparamref name="T"/> is a generic type.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.AppendIndex(System.Int32)">
+            <summary>
+            Appends the specified index into the builder.
+            </summary>
+            <param name="index">The index value.</param>
+            <returns>The current instance. This return value and be used as chaining invocations.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the index is a negative value.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.op_Equality(Sudoku.UI.Data.PropertyPathBuilder,Sudoku.UI.Data.PropertyPathBuilder)">
+            <inheritdoc cref="M:System.IEqualityOperators`2.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.op_Inequality(Sudoku.UI.Data.PropertyPathBuilder,Sudoku.UI.Data.PropertyPathBuilder)">
+            <inheritdoc cref="M:System.IEqualityOperators`2.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.UI.Drawing.ColorMarshal">
             <summary>
             Provides with the color-related marshaling methods.

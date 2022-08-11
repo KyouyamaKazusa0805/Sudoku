@@ -83,8 +83,24 @@ public sealed class LinkViewNodeShape : DrawingElement
 					animation,
 					pathKind switch
 					{
-						PathKind.Straight => $"({nameof(Path)}.{nameof(Path.Data)}).({nameof(GeometryGroup)}.{nameof(GeometryGroup.Children)})[0].({nameof(LineGeometry)}.{nameof(LineGeometry.EndPoint)})",
-						PathKind.Curve => $"({nameof(Path)}.{nameof(Path.Data)}).({nameof(GeometryGroup)}.{nameof(GeometryGroup.Children)})[0].({nameof(PathGeometry)}.{nameof(PathGeometry.Figures)})[0].{nameof(PathFigure.Segments)}[0].({nameof(BezierSegment)}.{nameof(BezierSegment.Point3)})"
+						PathKind.Straight =>
+							new PropertyPathBuilder()
+								.AppendProperty<Path>(nameof(Path.Data))
+								.AppendProperty<GeometryGroup>(nameof(GeometryGroup.Children))
+								.AppendIndex(0)
+								.AppendProperty<LineGeometry>(nameof(LineGeometry.EndPoint))
+								.ToString(),
+						PathKind.Curve =>
+							new PropertyPathBuilder()
+								.AppendProperty<Path>(nameof(Path.Data))
+								.AppendProperty<GeometryGroup>(nameof(GeometryGroup.Children))
+								.AppendIndex(0)
+								.AppendProperty<PathGeometry>(nameof(PathGeometry.Figures))
+								.AppendIndex(0)
+								.AppendProperty<PathFigure>(nameof(PathFigure.Segments))
+								.AppendIndex(0)
+								.AppendProperty<BezierSegment>(nameof(BezierSegment.Point3))
+								.ToString()
 					}
 				);
 				storyboard.Children.Add(animation);
