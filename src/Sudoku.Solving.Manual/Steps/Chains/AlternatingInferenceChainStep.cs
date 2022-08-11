@@ -33,9 +33,15 @@ internal sealed record AlternatingInferenceChainStep(
 	public (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[]
 		{
-			("Length", IsIrregularWing ? 0 : IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity)),
+			(
+				PhasedDifficultyRatingKinds.Length,
+				IsIrregularWing ? 0 : IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity)
+			),
 #if false
-			("Grouped", Chain.IsGrouped ? Chain.RealChainNodes.Sum(NodeDifficultySelector) : 0)
+			(
+				PhasedDifficultyRatingKinds.GroupedChains,
+				Chain.IsGrouped ? Chain.RealChainNodes.Sum(NodeDifficultySelector) : 0
+			)
 #endif
 		};
 

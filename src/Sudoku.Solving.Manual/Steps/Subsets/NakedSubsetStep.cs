@@ -42,7 +42,13 @@ internal sealed record NakedSubsetStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Locked", IsLocked switch { true => Size switch { 2 => -1.0M, 3 => -1.1M }, false => .1M, _ => 0 }) };
+		=> new[]
+		{
+			(
+				PhasedDifficultyRatingKinds.Locked,
+				IsLocked switch { true => Size switch { 2 => -1.0M, 3 => -1.1M }, false => .1M, _ => 0 }
+			)
+		};
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode

@@ -21,7 +21,8 @@ internal sealed record QiuDeadlyPatternType4Step(
 	public decimal BaseDifficulty => base.Difficulty;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Conjugate pair", .2M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { (PhasedDifficultyRatingKinds.ConjugatePair, .2M) };
 
 	/// <inheritdoc/>
 	public override int Type => 4;

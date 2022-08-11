@@ -32,10 +32,22 @@ internal sealed record JuniorExocetStep(
 	public (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[]
 		{
-			("Mirror", Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.Mirror) ? .1M : 0),
-			("Bi-bi pattern", Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.BiBiPattern) ? .3M : 0),
-			("Target pair", Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.TargetPair) ? .1M : 0),
-			("Generalized swordfish", Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.GeneralizedSwordfish) ? .2M : 0)
+			(
+				PhasedDifficultyRatingKinds.Mirror,
+				Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.Mirror) ? .1M : 0
+			),
+			(
+				PhasedDifficultyRatingKinds.BiBiPattern,
+				Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.BiBiPattern) ? .3M : 0
+			),
+			(
+				PhasedDifficultyRatingKinds.TargetPair,
+				Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.TargetPair) ? .1M : 0
+			),
+			(
+				PhasedDifficultyRatingKinds.GeneralizedSwordfish,
+				Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.GeneralizedSwordfish) ? .2M : 0
+			)
 		};
 
 	/// <inheritdoc/>

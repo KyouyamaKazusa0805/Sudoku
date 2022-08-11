@@ -48,8 +48,8 @@ internal sealed record UniqueRectangleWithGuardianSubsetStep(
 	public (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[]
 		{
-			("Digits", PopCount((uint)SubsetDigitsMask) * .1M),
-			("Incompleteness", IsIncomplete ? .1M : 0)
+			(PhasedDifficultyRatingKinds.ExtraDigit, PopCount((uint)SubsetDigitsMask) * .1M),
+			(PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 
 	/// <inheritdoc/>

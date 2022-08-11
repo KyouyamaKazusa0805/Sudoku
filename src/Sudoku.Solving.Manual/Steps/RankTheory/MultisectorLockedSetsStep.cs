@@ -20,7 +20,7 @@ internal sealed record MultisectorLockedSetsStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Size", A002024(Cells.Count) * .1M) };
+		=> new[] { (PhasedDifficultyRatingKinds.Size, A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public int Rank => 0;

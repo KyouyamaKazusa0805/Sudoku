@@ -50,7 +50,13 @@ internal sealed record NormalFishStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Sashimi", IsSashimi switch { true => Size switch { 2 or 3 => .3M, 4 => .4M, }, false => .2M, _ => 0 }) };
+		=> new[]
+		{
+			(
+				PhasedDifficultyRatingKinds.Sashimi,
+				IsSashimi switch { true => Size switch { 2 or 3 => .3M, 4 => .4M, }, false => .2M, _ => 0 }
+			)
+		};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

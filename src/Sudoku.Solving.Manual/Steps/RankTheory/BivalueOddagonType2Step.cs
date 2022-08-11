@@ -25,7 +25,8 @@ internal sealed record BivalueOddagonType2Step(
 	public decimal BaseDifficulty => base.Difficulty;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Extra digit", .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { (PhasedDifficultyRatingKinds.ExtraDigit, .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueOddagonType2;

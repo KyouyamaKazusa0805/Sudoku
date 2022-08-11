@@ -31,26 +31,26 @@ internal sealed record ComplexFishStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty => new[] { 0, 0, 3.2M, 3.8M, 5.2M, 6.0M, 6.0M, 6.6M, 7.0M }[Size];
+	public decimal BaseDifficulty => stackalloc[] { 0, 0, 3.2M, 3.8M, 5.2M, 6.0M, 6.0M, 6.6M, 7.0M }[Size];
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[]
 		{
 			(
-				"Sashimi",
+				PhasedDifficultyRatingKinds.Sashimi,
 				IsSashimi switch
 				{
-					false => new[] { 0, 0, .2M, .2M, .2M, .3M, .3M, .3M, .4M }[Size],
-					true => new[] { 0, 0, .3M, .3M, .4M, .4M, .5M, .6M, .7M }[Size],
+					false => stackalloc[] { 0, 0, .2M, .2M, .2M, .3M, .3M, .3M, .4M }[Size],
+					true => stackalloc[] { 0, 0, .3M, .3M, .4M, .4M, .5M, .6M, .7M }[Size],
 					_ => 0
 				}
 			),
 			(
-				"Shape",
+				PhasedDifficultyRatingKinds.FishShape,
 				IsFranken
-					? new[] { 0, 0, .2M, 1.2M, 1.2M, 1.3M, 1.3M, 1.3M, 1.4M }[Size]
-					: new[] { 0, 0, .3M, 1.4M, 1.4M, 1.5M, 1.5M, 1.5M, 1.6M }[Size]
+					? stackalloc[] { 0, 0, .2M, 1.2M, 1.2M, 1.3M, 1.3M, 1.3M, 1.4M }[Size]
+					: stackalloc[] { 0, 0, .3M, 1.4M, 1.4M, 1.5M, 1.5M, 1.5M, 1.6M }[Size]
 			)
 		};
 

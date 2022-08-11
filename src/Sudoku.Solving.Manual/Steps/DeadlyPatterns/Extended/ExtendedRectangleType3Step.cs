@@ -31,7 +31,7 @@ internal sealed record ExtendedRectangleType3Step(
 		=> new[]
 		{
 			base.ExtraDifficultyValues[0],
-			("Extra digits", PopCount((uint)ExtraDigitsMask) * .1M)
+			(PhasedDifficultyRatingKinds.ExtraDigit, PopCount((uint)ExtraDigitsMask) * .1M)
 		};
 
 	/// <inheritdoc/>

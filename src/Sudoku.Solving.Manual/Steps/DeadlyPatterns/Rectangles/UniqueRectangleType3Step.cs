@@ -65,7 +65,7 @@ internal sealed record UniqueRectangleType3Step(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Size", PopCount((uint)ExtraDigitsMask) * .1M) };
+		=> new[] { (PhasedDifficultyRatingKinds.Size, PopCount((uint)ExtraDigitsMask) * .1M) };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

@@ -20,7 +20,13 @@ internal sealed record BowmanBingoStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Length", IChainLikeStep.GetExtraDifficultyByLength(ContradictionLinks.Length)) };
+		=> new[]
+		{
+			(
+				PhasedDifficultyRatingKinds.Length,
+				IChainLikeStep.GetExtraDifficultyByLength(ContradictionLinks.Length)
+			)
+		};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;

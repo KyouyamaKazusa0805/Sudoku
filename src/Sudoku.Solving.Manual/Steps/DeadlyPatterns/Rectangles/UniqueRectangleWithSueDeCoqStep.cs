@@ -70,10 +70,10 @@ internal sealed record UniqueRectangleWithSueDeCoqStep(
 	public (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[]
 		{
-			("Sue de Coq base", (LineCells | BlockCells).Count * .1M),
-			("Isolated", !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),
-			("Cannibalism", IsCannibalistic ? .1M : 0),
-			("Avoidable rectangle", IsAvoidable ? .1M : 0)
+			(PhasedDifficultyRatingKinds.Size, (LineCells | BlockCells).Count * .1M),
+			(PhasedDifficultyRatingKinds.Isolated, !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),
+			(PhasedDifficultyRatingKinds.Cannibalism, IsCannibalistic ? .1M : 0),
+			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0)
 		};
 
 	/// <inheritdoc/>

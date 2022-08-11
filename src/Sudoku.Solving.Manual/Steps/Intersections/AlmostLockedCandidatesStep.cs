@@ -32,7 +32,10 @@ internal sealed record AlmostLockedCandidatesStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Extra", HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0) };
+		=> new[]
+		{
+			(PhasedDifficultyRatingKinds.ValueCell, HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0)
+		};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

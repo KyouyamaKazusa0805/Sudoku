@@ -49,9 +49,9 @@ internal sealed record UniqueRectangleWithWingStep(
 	public (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[]
 		{
-			("Avoidable rectangle", IsAvoidable ? .1M : 0),
+			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0),
 			(
-				"Wing",
+				PhasedDifficultyRatingKinds.WingSize,
 				TechniqueCode switch
 				{
 					Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => .2M,

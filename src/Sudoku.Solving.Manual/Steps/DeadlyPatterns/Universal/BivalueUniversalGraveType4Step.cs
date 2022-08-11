@@ -23,7 +23,8 @@ internal sealed record BivalueUniversalGraveType4Step(
 	public decimal BaseDifficulty => base.Difficulty;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Conjugate pair", .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { (PhasedDifficultyRatingKinds.ConjugatePair, .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType4;

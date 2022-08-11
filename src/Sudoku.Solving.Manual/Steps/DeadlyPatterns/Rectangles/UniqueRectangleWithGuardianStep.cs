@@ -46,8 +46,8 @@ internal sealed record UniqueRectangleWithGuardianStep(
 	public (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[]
 		{
-			("Guardians", (GuardianCells.Count >> 1) * .1M),
-			("Incompleteness", IsIncomplete ? .1M : 0)
+			(PhasedDifficultyRatingKinds.Guardian, A004526(GuardianCells.Count) * .1M),
+			(PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 
 	/// <inheritdoc/>

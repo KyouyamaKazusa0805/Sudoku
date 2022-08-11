@@ -19,11 +19,11 @@ internal sealed record BivalueUniversalGraveMultipleStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty => base.Difficulty;
+	public decimal BaseDifficulty => base.Difficulty + .1M;
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Offset", .1M), ("Size", A002024(Candidates.Count) * .1M) };
+		=> new[] { (PhasedDifficultyRatingKinds.Size, A002024(Candidates.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGravePlusN;

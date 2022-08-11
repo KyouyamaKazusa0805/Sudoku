@@ -32,7 +32,7 @@ internal sealed record SeniorExocetStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Extra house", ContainsExtraHouses ? 0 : .2M) };
+		=> new[] { (PhasedDifficultyRatingKinds.ExtraHouse, ContainsExtraHouses ? 0 : .2M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode

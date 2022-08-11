@@ -81,7 +81,7 @@ internal sealed record RegularWingStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Incompleteness", IsIncomplete ? Size == 3 ? .2M : .1M : 0) };
+		=> new[] { (PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? Size == 3 ? .2M : .1M : 0) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode

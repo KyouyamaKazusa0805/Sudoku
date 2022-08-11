@@ -32,7 +32,7 @@ internal sealed record GuardianStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Loop length", (Loop.Count + (Guardians.Count >> 1) >> 1) * .1M) };
+		=> new[] { (PhasedDifficultyRatingKinds.Size, A004526(Loop.Count + A004526(Guardians.Count)) * .1M) };
 
 	/// <inheritdoc/>
 	public int Rank => -1;

@@ -28,7 +28,7 @@ internal sealed record UniqueSquareType3Step(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Extra digits", PopCount((uint)ExtraDigitsMask) * .1M) };
+		=> new[] { (PhasedDifficultyRatingKinds.ExtraDigit, PopCount((uint)ExtraDigitsMask) * .1M) };
 
 	/// <inheritdoc/>
 	public override int Type => 3;

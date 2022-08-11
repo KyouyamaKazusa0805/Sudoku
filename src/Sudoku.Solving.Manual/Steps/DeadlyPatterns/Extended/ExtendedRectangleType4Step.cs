@@ -24,7 +24,11 @@ internal sealed record ExtendedRectangleType4Step(
 
 	/// <inheritdoc/>
 	public override (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { base.ExtraDifficultyValues[0], ("Conjugate pair", .1M) };
+		=> new[]
+		{
+			base.ExtraDifficultyValues[0],
+			(PhasedDifficultyRatingKinds.ConjugatePair, .1M)
+		};
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;

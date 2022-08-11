@@ -30,7 +30,7 @@ internal abstract record UniqueLoopStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Length", ((Loop.Count >> 1) - 3) * .1M) };
+		=> new[] { (PhasedDifficultyRatingKinds.Size, (A004526(Loop.Count) - 3) * .1M) };
 
 	/// <summary>
 	/// Indicates the type.

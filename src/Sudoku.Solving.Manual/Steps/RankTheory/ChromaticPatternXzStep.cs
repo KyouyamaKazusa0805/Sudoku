@@ -29,7 +29,8 @@ internal sealed record ChromaticPatternXzStep(
 	public decimal BaseDifficulty => base.Difficulty;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Extra digit", .2M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { (PhasedDifficultyRatingKinds.ExtraDigit, .2M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.ChromaticPatternXzRule;

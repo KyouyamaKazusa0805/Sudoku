@@ -43,7 +43,7 @@ internal record UniqueRectangleWithConjugatePairStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Conjugate pairs", ConjugatePairs.Length * .2M) };
+		=> new[] { (PhasedDifficultyRatingKinds.ConjugatePair, ConjugatePairs.Length * .2M) };
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

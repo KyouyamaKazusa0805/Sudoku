@@ -22,7 +22,7 @@ internal sealed record BivalueUniversalGraveType2Step(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Extra digit", A002024(Cells.Count) * .1M) };
+		=> new[] { (PhasedDifficultyRatingKinds.ExtraDigit, A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType2;

@@ -26,7 +26,11 @@ internal sealed record BivalueUniversalGraveType3Step(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Subset", Size * .1M), ("Hidden subset", IsNaked ? 0 : .1M) };
+		=> new[]
+		{
+			(PhasedDifficultyRatingKinds.Size, Size * .1M),
+			(PhasedDifficultyRatingKinds.Hidden, IsNaked ? 0 : .1M)
+		};
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType3;

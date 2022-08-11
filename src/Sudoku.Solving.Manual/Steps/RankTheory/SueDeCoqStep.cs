@@ -40,8 +40,8 @@ internal sealed record SueDeCoqStep(
 	public (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[]
 		{
-			("Isolated", IsolatedDigitsMask != 0 ? .1M : 0),
-			("Cannibal", IsCannibalistic ? .2M : 0)
+			(PhasedDifficultyRatingKinds.Isolated, IsolatedDigitsMask != 0 ? .1M : 0),
+			(PhasedDifficultyRatingKinds.Cannibalism, IsCannibalistic ? .2M : 0)
 		};
 
 	/// <inheritdoc/>
@@ -51,7 +51,8 @@ internal sealed record SueDeCoqStep(
 	public override TechniqueTags TechniqueTags => TechniqueTags.RankTheory | TechniqueTags.Als;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => IsCannibalistic ? Technique.SueDeCoqCannibalism : Technique.SueDeCoq;
+	public override Technique TechniqueCode
+		=> IsCannibalistic ? Technique.SueDeCoqCannibalism : Technique.SueDeCoq;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

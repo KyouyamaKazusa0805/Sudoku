@@ -44,7 +44,7 @@ internal sealed record UniqueRectangleWithGuardianConjugatePairStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { ("Incompleteness", IsIncomplete ? .1M : 0) };
+		=> new[] { (PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? .1M : 0) };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

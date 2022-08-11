@@ -8390,6 +8390,127 @@
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds">
+            <summary>
+            Provides with the kinds of the phased difficulty rating that is used
+            for the calculations the total rating of a step.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Size">
+            <summary>
+            Indicates the kind is the size. This field is used for sized techniques,
+            such as deadly patterns of type 3, naked or hidden subsets, fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.ExtraDigit">
+            <summary>
+            Indicates the kind is the extra digit. This field is used for deadly patterns of type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Sashimi">
+            <summary>
+            Indicates the kind is the sashimi. This field is only used for fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.FishShape">
+            <summary>
+            Indicates the kind is the fish shape. This field is only used for complex fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Hidden">
+            <summary>
+            Indicates the kind is the hidden. This field is used for some techniques that has hidden views.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Locked">
+            <summary>
+            Indicates the kind is the locked. This field is only used for naked subsets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.LockedDigit">
+            <summary>
+            Indicates the kind is the locked digit. This field is only used for Locked Qiu's Deadly Pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Length">
+            <summary>
+            Indicates the kind is the length. This field is used for variable-length chaining techniques.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.GroupedChains">
+            <summary>
+            Indicates the kind is the grouped chains. This field is used for grouped AIC and loops.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.ConjugatePair">
+            <summary>
+            Indicates the kind is the conjugate pair. This field is used for deadly patterns of type 4,
+            or advanced Unique Rectangle techniques.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Guardian">
+            <summary>
+            Indicates the kind is the guardian. This field is used for some guardian-related techniques,
+            such as guardian itself, Unique Rectangle + Guardian (i.e. Unique Rectangle External Types).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.ValueCell">
+            <summary>
+            Indicates the kind is the value cell used in the pattern. This field is used for Almost Locked Candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Incompleteness">
+            <summary>
+            Indicates the kind is the incompleteness. This field is used for Unique Rectangle incomplete types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Avoidable">
+            <summary>
+            Indicates the kind is the avoidable. This field is used for avoidable rectangles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.WingSize">
+            <summary>
+            Indicates the kind is the wing size. This field is used for Unique Rectangle + Wings,
+            or Regular Wing technique itself.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Isolated">
+            <summary>
+            Indicates the kind is the isolated digits. This field is used for Sue de Coq variant types,
+            or Unique Rectangle + Sue de Coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Cannibalism">
+            <summary>
+            Indicates the kind is the cannibalism. This field is used for Sue de Coq variant types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Mirror">
+            <summary>
+            Indicates the kind is the mirror eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.BiBiPattern">
+            <summary>
+            Indicates the kind is the Bi-Bi pattern eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.TargetPair">
+            <summary>
+            Indicates the kind is the target pair eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.GeneralizedSwordfish">
+            <summary>
+            Indicates the kind is the generalized swordfish eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.ExtraHouse">
+            <summary>
+            Indicates the kind is the extra house. This field is only used for complex senior exocets.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Data.Representation.Rarity">
             <summary>
             Indicates the rarity of the technique.
