@@ -36,6 +36,12 @@ public interface IDrawingPreference
 	public abstract bool DescendingOrderedInfoBarBoard { get; set; }
 
 	/// <summary>
+	/// Indicates the cell size that is used for rendering a digit text
+	/// (e.g. cell digits, candidate digits or unknown characters).
+	/// </summary>
+	public abstract int RenderingCellSize { get; set; }
+
+	/// <summary>
 	/// Indicates the outside border width. The value cannot be negative.
 	/// </summary>
 	public abstract double OutsideBorderWidth { get; set; }

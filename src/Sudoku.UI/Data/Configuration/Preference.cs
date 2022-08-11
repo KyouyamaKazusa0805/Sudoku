@@ -768,6 +768,10 @@ public sealed class Preference : IDrawingPreference
 	/// </remarks>
 	[BackgroundPreference]
 	public bool IsFirstMeet { get; set; } = true;
+
+	/// <inheritdoc/>
+	[BackgroundPreference]
+	public int RenderingCellSize { get; set; } = 60;
 	#endregion
 
 

@@ -30,8 +30,10 @@ public sealed class UnknownValueViewNodeShape : DrawingElement
 
 
 	/// <summary>
-	/// Indicates the unknown character used. If you want to hide the control, assign <c>(Utf8Char)'\0'</c>.
+	/// Indicates the unknown character used. If you want to hide the control, assign <c>(Utf8Char)'\0'</c>
+	/// or call method <see cref="SetVisibilityCollapsed"/>.
 	/// </summary>
+	/// <seealso cref="SetVisibilityCollapsed"/>
 	public Utf8Char UnknownCharacter
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -69,7 +71,7 @@ public sealed class UnknownValueViewNodeShape : DrawingElement
 			UnknownCharacter = (Utf8Char)'\0';
 			_textBlock
 				.WithFontFamily(value.UnknownValueFont.FontName)
-				.WithFontSize(60 * value.UnknownValueFont.FontScale)
+				.WithFontSize(value.RenderingCellSize * value.UnknownValueFont.FontScale)
 				.WithForeground(value.UnknownValueColor);
 		}
 	}
@@ -77,6 +79,14 @@ public sealed class UnknownValueViewNodeShape : DrawingElement
 	/// <inheritdoc/>
 	protected override string TypeIdentifier => nameof(UnknownValueViewNodeShape);
 
+
+	/// <summary>
+	/// Sets the visibility to collapsed. This operation is equal to assigning <c>(Utf8Char)'\0'</c>
+	/// to the property <see cref="UnknownCharacter"/>.
+	/// </summary>
+	/// <seealso cref="UnknownCharacter"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetVisibilityCollapsed() => UnknownCharacter = (Utf8Char)'\0';
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)

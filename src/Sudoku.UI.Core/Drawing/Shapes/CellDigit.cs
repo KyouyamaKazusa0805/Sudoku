@@ -262,7 +262,7 @@ internal sealed class CellDigit : DrawingElement
 
 			_textBlock ??= new TextBlock()
 				.WithText(_digit == byte.MaxValue ? string.Empty : (_digit + 1).ToString())
-				.WithFontSize(60 * value.ValueFont.FontScale)
+				.WithFontSize(value.RenderingCellSize * value.ValueFont.FontScale)
 				.WithFontFamily(value.ValueFont.FontName)
 				.WithTextAlignment(TextAlignment.Center)
 				.WithHorizontalTextAlignment(TextAlignment.Center)
@@ -273,8 +273,8 @@ internal sealed class CellDigit : DrawingElement
 				.WithOpacityTransition(TimeSpan.FromMilliseconds(500));
 			_maskEllipse ??= new Ellipse()
 				.WithFill(value.MaskEllipseColor)
-				.WithWidth(60 * value.ValueFont.FontScale)
-				.WithHeight(60 * value.ValueFont.FontScale)
+				.WithWidth(value.RenderingCellSize * value.ValueFont.FontScale)
+				.WithHeight(value.RenderingCellSize * value.ValueFont.FontScale)
 				.WithHorizontalAlignment(HorizontalAlignment.Center)
 				.WithVerticalAlignment(VerticalAlignment.Center)
 				.WithOpacity(_isMaskMode ? 1 : 0)

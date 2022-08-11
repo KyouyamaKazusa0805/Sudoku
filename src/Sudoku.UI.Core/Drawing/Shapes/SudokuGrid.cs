@@ -896,8 +896,8 @@ public sealed class SudokuGrid : DrawingElement
 		Array.ForEach(_cellViewNodeShapes, static s => s.IsVisible = false);
 		Array.ForEach(_candidateViewNodeShapes, static s => Array.ForEach(Digits, d => s.SetIsVisible(d, false)));
 		Array.ForEach(Houses, house => _houseViewNodeShape.SetIsVisible(house, false));
-		_linkViewNodeShapes.ForEach(link => _gridLayout.Children.Remove(link.GetControl()));
-		Array.ForEach(_unknownValueViewNodeShapes, static s => s.UnknownCharacter = (Utf8Char)'\0');
+		_linkViewNodeShapes.ForEach(link => _gridLayout.RemoveChildren(link.GetControl()));
+		Array.ForEach(_unknownValueViewNodeShapes, static s => s.SetVisibilityCollapsed());
 	}
 
 	/// <summary>

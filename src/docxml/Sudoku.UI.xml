@@ -816,6 +816,9 @@
             The default value is <see langword="true"/>.
             </remarks>
         </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.RenderingCellSize">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Data.Configuration.Preference.CoverPreferenceBy(Sudoku.UI.Data.Configuration.Preference)">
             <summary>
             Covers the config file by the specified preference instance.

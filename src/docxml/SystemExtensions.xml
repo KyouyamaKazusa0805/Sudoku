@@ -3544,10 +3544,20 @@
             <inheritdoc/>
         </member>
         <member name="M:System.Utf8Char.op_Equality(System.Utf8Char,System.Utf8Char)">
-            <inheritdoc/>
+            <summary>
+            Determines whether two characters with UTF-8 format are considered equal.
+            </summary>
+            <param name="left">The first <see cref="T:System.Utf8Char"/> instance to be compared.</param>
+            <param name="right">The second <see cref="T:System.Utf8Char"/> instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:System.Utf8Char.op_Inequality(System.Utf8Char,System.Utf8Char)">
-            <inheritdoc/>
+            <summary>
+            Determines whether two characters with UTF-8 format are not considered equal.
+            </summary>
+            <param name="left">The first <see cref="T:System.Utf8Char"/> instance to be compared.</param>
+            <param name="right">The second <see cref="T:System.Utf8Char"/> instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:System.Utf8Char.op_GreaterThan(System.Utf8Char,System.Utf8Char)">
             <inheritdoc/>

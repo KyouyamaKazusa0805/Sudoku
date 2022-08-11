@@ -38,6 +38,17 @@ public static class PanelExtensions
 	}
 
 	/// <summary>
+	/// Removes the specified control from the children collection of the current panel.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TPanel RemoveChildren<TPanel, TUIElement>(this TPanel @this, TUIElement control)
+		where TPanel : Panel where TUIElement : UIElement
+	{
+		@this.Children.Remove(control);
+		return @this;
+	}
+
+	/// <summary>
 	/// Sets the property <see cref="Panel.ChildrenTransitions"/> with the specified value.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
