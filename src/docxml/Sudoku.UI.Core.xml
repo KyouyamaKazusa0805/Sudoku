@@ -4,87 +4,6 @@
         <name>Sudoku.UI.Core</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.UI.Views.Controls.CrossMark">
-            <summary>
-            Defines a cross mark sign.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Views.Controls.CrossMark"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Views.Controls.CrossMark.StrokeThickness">
-            <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeThickness"/>
-        </member>
-        <member name="P:Sudoku.UI.Views.Controls.CrossMark.Stroke">
-            <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.Stroke"/>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.CrossMark.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Views.Controls.DiamondMark">
-            <summary>
-            Defines a diamond mark sign.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Views.Controls.DiamondMark"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Views.Controls.DiamondMark.Fill">
-            <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DiamondMark.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Views.Controls.StarMark">
-            <summary>
-            Defines a star sign.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Views.Controls.StarMark"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Views.Controls.StarMark.Fill">
-            <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.StarMark.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Views.Controls.TriangleMark">
-            <summary>
-            Defines a star sign.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Views.Controls.TriangleMark"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Views.Controls.TriangleMark.StrokeThickness">
-            <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeThickness"/>
-        </member>
-        <member name="P:Sudoku.UI.Views.Controls.TriangleMark.Stroke">
-            <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.Stroke"/>
-        </member>
-        <member name="P:Sudoku.UI.Views.Controls.TriangleMark.Fill">
-            <inheritdoc cref="P:Microsoft.UI.Xaml.Shapes.Shape.Fill"/>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.TriangleMark.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Data.Configuration.FontData">
             <summary>
             Defines a font data.
@@ -3062,12 +2981,12 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeEndLineCap"/> with the specified value.
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE57A11628">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE57A11628.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3613,12 +3532,12 @@
             <param name="other">The other point.</param>
             <returns>The distance of the two points.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DEFC6B40A8">
+        <member name="T:Windows.Foundation.Point_DEF353AC3E">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEFC6B40A8.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEF353AC3E.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
