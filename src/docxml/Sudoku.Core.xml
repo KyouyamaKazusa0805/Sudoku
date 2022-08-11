@@ -3521,6 +3521,28 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Linq.CellEnumerable">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Cells"/> type, around LINQ.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Cells"/>
+        </member>
+        <member name="M:Sudoku.Linq.CellEnumerable.Select``1(Sudoku.Concepts.Cells@,System.Func{System.Int32,``0})">
+            <summary>
+            Projects each element of a sequence into a new form.
+            </summary>
+            <typeparam name="TResult">
+            The type of the value returned by <paramref name="selector"/>.
+            This type must be an <see langword="unmanaged"/> type in order to make optimization
+            in the future release of C# versions.
+            </typeparam>
+            <param name="source">A sequence of values to invoke a transform function on.</param>
+            <param name="selector">A transform function to apply to each element.</param>
+            <returns>
+            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result
+            of invoking the transform function on each element of <paramref name="source"/>.
+            </returns>
+        </member>
         <member name="T:Sudoku.Presentation.DisplayColorKind">
             <summary>
             Defines a display color kind.
@@ -7877,16 +7899,6 @@
         </member>
         <member name="M:Sudoku.Solving.Conclusion.System#IComparable#CompareTo(System.Object)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.ToConclusions(Sudoku.Concepts.Cells@,System.Int32,Sudoku.Solving.ConclusionType)">
-            <summary>
-            Gets the conclusion list whose inner value is from the specified cells,
-            the specified digit used and the specified conclusion type.
-            </summary>
-            <param name="cells">The cells that the conclusions are used.</param>
-            <param name="digit">The digit used.</param>
-            <param name="type">The type of the conclusion.</param>
-            <returns>An array of type <see cref="T:Sudoku.Solving.Conclusion"/>.</returns>
         </member>
         <member name="M:Sudoku.Solving.Conclusion.op_Equality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
             <inheritdoc/>

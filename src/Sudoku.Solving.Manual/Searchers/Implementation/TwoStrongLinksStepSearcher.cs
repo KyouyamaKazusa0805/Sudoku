@@ -70,14 +70,14 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 					// Two strong link found.
 					// Record all eliminations.
 					int head = cells1[headIndex], tail = cells2[tailIndex];
-					if ((PeerMaps[head] & PeerMaps[tail] & CandidatesMap[digit]) is not (var gridMap and not []))
+					if ((PeerMaps[head] & PeerMaps[tail] & CandidatesMap[digit]) is not (var elimMap and not []))
 					{
 						continue;
 					}
 
 					var step = new TwoStrongLinksStep(
 						ImmutableArray.Create(
-							Conclusion.ToConclusions(gridMap, digit, ConclusionType.Elimination)
+							from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, digit)
 						),
 						ImmutableArray.Create(
 							View.Empty

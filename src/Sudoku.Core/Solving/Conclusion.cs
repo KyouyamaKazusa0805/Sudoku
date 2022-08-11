@@ -151,19 +151,6 @@ public readonly partial struct Conclusion :
 			: throw new ArgumentException($"The argument must be of type '{nameof(Conclusion)}'", nameof(obj));
 
 
-	/// <summary>
-	/// Gets the conclusion list whose inner value is from the specified cells,
-	/// the specified digit used and the specified conclusion type.
-	/// </summary>
-	/// <param name="cells">The cells that the conclusions are used.</param>
-	/// <param name="digit">The digit used.</param>
-	/// <param name="type">The type of the conclusion.</param>
-	/// <returns>An array of type <see cref="Conclusion"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Conclusion[] ToConclusions(scoped in Cells cells, int digit, ConclusionType type)
-		=> from cell in cells.ToArray() select new Conclusion(type, cell, digit);
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);

@@ -214,7 +214,9 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 		}
 
 		var step = new ExtendedRectangleType2Step(
-			ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
+			ImmutableArray.Create(
+				from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, extraDigit)
+			),
 			ImmutableArray.Create(View.Empty | candidateOffsets),
 			allCellsMap,
 			normalDigits,

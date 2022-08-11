@@ -189,7 +189,9 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		}
 
 		var step = new BivalueOddagonType2Step(
-			ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
+			ImmutableArray.Create(
+				from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, extraDigit)
+			),
 			ImmutableArray.Create(View.Empty | candidateOffsets | links),
 			loop,
 			d1,

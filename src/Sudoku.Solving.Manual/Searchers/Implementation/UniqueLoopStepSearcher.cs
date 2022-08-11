@@ -197,13 +197,18 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 			foreach (int digit in grid.GetCandidates(cell))
 			{
 				candidateOffsets.Add(
-					new(digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + digit)
+					new(
+						digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+						cell * 9 + digit
+					)
 				);
 			}
 		}
 
 		var step = new UniqueLoopType2Step(
-			ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
+			ImmutableArray.Create(
+				from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, extraDigit)
+			),
 			ImmutableArray.Create(View.Empty | candidateOffsets | links),
 			d1,
 			d2,
