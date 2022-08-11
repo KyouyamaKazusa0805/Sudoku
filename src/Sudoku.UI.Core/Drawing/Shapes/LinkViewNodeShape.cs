@@ -6,17 +6,6 @@
 public sealed class LinkViewNodeShape : DrawingElement
 {
 	/// <summary>
-	/// Indicates the rotate angle (45 degrees).
-	/// </summary>
-	private const double RotateAngle = PI / 4;
-
-	/// <summary>
-	/// Indicates the square root of 2.
-	/// </summary>
-	private const double SqrtOf2 = 1.4142135623730951;
-
-
-	/// <summary>
 	/// Indicates the pane size.
 	/// </summary>
 	private readonly double _paneSize;
@@ -69,7 +58,49 @@ public sealed class LinkViewNodeShape : DrawingElement
 		{
 			_linkViewNodes = value;
 
-			_canvas.Children.AddRange(CreateLinks(value));
+			_canvas.Children.AddRange(
+				new PathConstructor
+				{
+					PaneSize = PaneSize,
+					OutsideOffset = OutsideOffset,
+					Preference = Preference,
+					Conclusions = Conclusions
+				}.CreateLinks(value, out var pointPairs)
+			);
+
+			var storyboard = new Storyboard();
+			foreach (var (path, (pt1, pt2), pathKind) in pointPairs)
+			{
+				var animation = new PointAnimation
+				{
+					From = pt1,
+					To = pt2,
+					Duration = TimeSpan.FromMilliseconds(500)
+				};
+
+				Storyboard.SetTarget(animation, path);
+				Storyboard.SetTargetProperty(
+					animation,
+					pathKind switch
+					{
+						PathKind.Straight
+							=>
+							$"({nameof(Path)}.{nameof(Path.Data)})." +
+							$"({nameof(GeometryGroup)}.{nameof(GeometryGroup.Children)})[0]." +
+							$"({nameof(LineGeometry)}.{nameof(LineGeometry.EndPoint)})",
+						PathKind.Curve
+							=>
+							$"({nameof(Path)}.{nameof(Path.Data)})." +
+							$"({nameof(GeometryGroup)}.{nameof(GeometryGroup.Children)})[0]." +
+							$"({nameof(PathGeometry)}.{nameof(PathGeometry.Figures)})[0]." +
+							$"{nameof(PathFigure.Segments)}[0]." +
+							$"({nameof(BezierSegment)}.{nameof(BezierSegment.Point3)})"
+					}
+				);
+				storyboard.Children.Add(animation);
+			}
+
+			storyboard.Begin();
 		}
 	}
 
@@ -96,16 +127,50 @@ public sealed class LinkViewNodeShape : DrawingElement
 
 	/// <inheritdoc/>
 	public override Canvas GetControl() => _canvas;
+}
+
+/// <summary>
+/// Extracted type that constructs the links.
+/// </summary>
+file sealed class PathConstructor
+{
+	/// <summary>
+	/// Indicates the rotate angle (45 degrees).
+	/// </summary>
+	private const double RotateAngle = PI / 4;
+
+	/// <summary>
+	/// Indicates the square root of 2.
+	/// </summary>
+	private const double SqrtOf2 = 1.4142135623730951;
+
+
+	/// <inheritdoc cref="LinkViewNodeShape.PaneSize"/>
+	public required double PaneSize { get; init; }
+
+	/// <inheritdoc cref="LinkViewNodeShape.OutsideOffset"/>
+	public required double OutsideOffset { get; init; }
+
+	/// <inheritdoc cref="LinkViewNodeShape.Conclusions"/>
+	public required ImmutableArray<Conclusion> Conclusions { get; init; }
+
+	/// <inheritdoc cref="LinkViewNodeShape.Preference"/>
+	public required IDrawingPreference Preference { get; init; }
+
 
 	/// <summary>
 	/// Creates a list of <see cref="Shape"/> instances via the specified link view nodes.
 	/// </summary>
 	/// <param name="nodes">The link view nodes.</param>
+	/// <param name="pointPairs">The point pairs that are used for animate the line.</param>
 	/// <returns>A <see cref="Shape"/> instance.</returns>
-	private IEnumerable<Shape> CreateLinks(LinkViewNode[] nodes)
+	public IEnumerable<Shape> CreateLinks(
+		LinkViewNode[] nodes,
+		out IList<(Path, (Point, Point), PathKind)> pointPairs)
 	{
 		var points = getPoints(nodes);
 		var result = new List<Shape>();
+		pointPairs = new List<(Path, (Point, Point), PathKind)>();
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		double cs = PointConversions.CandidateSize(PaneSize, OutsideOffset);
@@ -127,20 +192,21 @@ public sealed class LinkViewNodeShape : DrawingElement
 				// Draw the link.
 				correctOffsetOfPoint(ref pt1, OutsideOffset);
 				correctOffsetOfPoint(ref pt2, OutsideOffset);
-				result.Add(
-					new Path()
-						.WithStroke(Preference.LinkColor)
-						.WithStrokeThickness(2)
-						.WithStrokeDashArray(doubleCollection)
-						.WithData(
-							new GeometryGroup()
-								.WithChildren(
-									new LineGeometry()
-										.WithPoints(pt1, pt2)
-										.WithCustomizedArrowCap()
-								)
-						)
-				);
+
+				var shape = new Path()
+					.WithStroke(Preference.LinkColor)
+					.WithStrokeThickness(2)
+					.WithStrokeDashArray(doubleCollection)
+					.WithData(
+						new GeometryGroup()
+							.WithChildren(
+								new LineGeometry()
+									.WithPoints(pt1, pt2)
+									.WithCustomizedArrowCap()
+							)
+					);
+				result.Add(shape);
+				pointPairs.Add((shape, (pt1, pt2), PathKind.Straight));
 			}
 			else
 			{
@@ -202,50 +268,52 @@ public sealed class LinkViewNodeShape : DrawingElement
 					correctOffsetOfDouble(ref bx2, OutsideOffset);
 					correctOffsetOfDouble(ref by1, OutsideOffset);
 					correctOffsetOfDouble(ref by2, OutsideOffset);
-					result.Add(
-						new Path()
-							.WithStroke(Preference.LinkColor)
-							.WithStrokeThickness(2)
-							.WithStrokeDashArray(doubleCollection)
-							.WithData(
-								new GeometryGroup()
-									.WithChildren(
-										new PathGeometry()
-											.WithFigures(
-												new PathFigure()
-													.WithStartPoint(pt1)
-													.WithIsClosed(false)
-													.WithIsFilled(false)
-													.WithSegments(
-														new BezierSegment()
-															.WithInterimPoints(bx1, by1, bx2, by2)
-															.WithEndPoint(pt2)
-													)
-											)
-											.WithCustomizedArrowCap(pt1, pt2)
-									)
-							)
-					);
+
+					var shape = new Path()
+						.WithStroke(Preference.LinkColor)
+						.WithStrokeThickness(2)
+						.WithStrokeDashArray(doubleCollection)
+						.WithData(
+							new GeometryGroup()
+								.WithChildren(
+									new PathGeometry()
+										.WithFigures(
+											new PathFigure()
+												.WithStartPoint(pt1)
+												.WithIsClosed(false)
+												.WithIsFilled(false)
+												.WithSegments(
+													new BezierSegment()
+														.WithInterimPoints(bx1, by1, bx2, by2)
+														.WithEndPoint(pt2)
+												)
+										)
+										.WithCustomizedArrowCap(pt1, pt2)
+								)
+						);
+					result.Add(shape);
+					pointPairs.Add((shape, (pt1, pt2), PathKind.Curve));
 				}
 				else
 				{
 					// Draw the link.
 					correctOffsetOfPoint(ref pt1, OutsideOffset);
 					correctOffsetOfPoint(ref pt2, OutsideOffset);
-					result.Add(
-						new Path()
-							.WithStroke(Preference.LinkColor)
-							.WithStrokeThickness(2)
-							.WithStrokeDashArray(doubleCollection)
-							.WithData(
-								new GeometryGroup()
-									.WithChildren(
-										new LineGeometry()
-											.WithPoints(pt1, pt2)
-											.WithCustomizedArrowCap()
-									)
-							)
-					);
+
+					var shape = new Path()
+						.WithStroke(Preference.LinkColor)
+						.WithStrokeThickness(2)
+						.WithStrokeDashArray(doubleCollection)
+						.WithData(
+							new GeometryGroup()
+								.WithChildren(
+									new LineGeometry()
+										.WithPoints(pt1, pt2)
+										.WithCustomizedArrowCap()
+								)
+						);
+					result.Add(shape);
+					pointPairs.Add((shape, (pt1, pt2), PathKind.Straight));
 				}
 			}
 
@@ -410,4 +478,20 @@ public sealed class LinkViewNodeShape : DrawingElement
 			return points;
 		}
 	}
+}
+
+/// <summary>
+/// Defines a chain line kind.
+/// </summary>
+file enum PathKind
+{
+	/// <summary>
+	/// Indicates the line is a straight line.
+	/// </summary>
+	Straight,
+
+	/// <summary>
+	/// Indicates the line is a curve (Bezier).
+	/// </summary>
+	Curve
 }

@@ -2040,16 +2040,6 @@
             Defines a link view node shape.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.RotateAngle">
-            <summary>
-            Indicates the rotate angle (45 degrees).
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.SqrtOf2">
-            <summary>
-            Indicates the square root of 2.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape._paneSize">
             <summary>
             Indicates the pane size.
@@ -2102,12 +2092,55 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.GetControl">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.CreateLinks(Sudoku.Presentation.Nodes.LinkViewNode[])">
+        <member name="T:Sudoku.UI.Drawing.Shapes.PathConstructor">
+            <summary>
+            Extracted type that constructs the links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.PathConstructor.RotateAngle">
+            <summary>
+            Indicates the rotate angle (45 degrees).
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.PathConstructor.SqrtOf2">
+            <summary>
+            Indicates the square root of 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.PathConstructor.PaneSize">
+            <inheritdoc cref="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.PaneSize"/>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.PathConstructor.OutsideOffset">
+            <inheritdoc cref="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.OutsideOffset"/>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.PathConstructor.Conclusions">
+            <inheritdoc cref="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.Conclusions"/>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.PathConstructor.Preference">
+            <inheritdoc cref="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.Preference"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.PathConstructor.CreateLinks(Sudoku.Presentation.Nodes.LinkViewNode[],System.Collections.Generic.IList{System.ValueTuple{Microsoft.UI.Xaml.Shapes.Path,System.ValueTuple{Windows.Foundation.Point,Windows.Foundation.Point},Sudoku.UI.Drawing.Shapes.PathKind}}@)">
             <summary>
             Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
             </summary>
             <param name="nodes">The link view nodes.</param>
+            <param name="pointPairs">The point pairs that are used for animate the line.</param>
             <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.PathKind">
+            <summary>
+            Defines a chain line kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.PathKind.Straight">
+            <summary>
+            Indicates the line is a straight line.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.PathKind.Curve">
+            <summary>
+            Indicates the line is a curve (Bezier).
+            </summary>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">
             <summary>
