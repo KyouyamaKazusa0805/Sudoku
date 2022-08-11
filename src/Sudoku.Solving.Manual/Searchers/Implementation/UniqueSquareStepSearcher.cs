@@ -116,7 +116,7 @@ internal sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareSte
 			}
 
 			int extraDigit = TrailingZeroCount(mask & ~digitsMask);
-			if (pattern % CandidatesMap[extraDigit] is not { Count: not 0 } elimMap)
+			if (pattern % CandidatesMap[extraDigit] is not (var elimMap and not []))
 			{
 				continue;
 			}

@@ -132,7 +132,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 		// Type 2 or 5 found. Now check elimination.
 		int extraDigit = TrailingZeroCount(extraMask);
-		if ((!(Cells.Empty + corner1 + corner2) & CandidatesMap[extraDigit]) is not { Count: not 0 } elimMap)
+		if ((!(Cells.Empty + corner1 + corner2) & CandidatesMap[extraDigit]) is not (var elimMap and not []))
 		{
 			return;
 		}
@@ -382,7 +382,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				// Yes, Type 4 found.
 				// Now check elimination.
 				int elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
-				if ((otherCellsMap & CandidatesMap[elimDigit]) is not { Count: not 0 } elimMap)
+				if ((otherCellsMap & CandidatesMap[elimDigit]) is not (var elimMap and not []))
 				{
 					continue;
 				}
@@ -496,7 +496,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		if ((!cellsThatContainsExtraDigit & CandidatesMap[extraDigit]) is not { Count: not 0 } elimMap)
+		if ((!cellsThatContainsExtraDigit & CandidatesMap[extraDigit]) is not (var elimMap and not []))
 		{
 			return;
 		}
@@ -613,7 +613,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			}
 
 			// Check eliminations.
-			if ((otherCellsMap & CandidatesMap[digit]) is not { Count: not 0 } elimMap)
+			if ((otherCellsMap & CandidatesMap[digit]) is not (var elimMap and not []))
 			{
 				return;
 			}
@@ -2359,7 +2359,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 						// Now check eliminations.
 						int elimDigit = TrailingZeroCount(m);
-						if ((!(Cells.Empty + c1 + c2) & CandidatesMap[elimDigit]) is not { Count: not 0 } elimMap)
+						if ((!(Cells.Empty + c1 + c2) & CandidatesMap[elimDigit]) is not (var elimMap and not []))
 						{
 							continue;
 						}
@@ -3427,13 +3427,13 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			int guardianDigit = -1;
 			Cells? targetElimMap = null, targetGuardianMap = null;
-			if (guardian1 is not [] && (!guardian1 & CandidatesMap[d1]) is { Count: not 0 } a)
+			if (guardian1 is not [] && (!guardian1 & CandidatesMap[d1]) is var a and not [])
 			{
 				targetElimMap = a;
 				guardianDigit = d1;
 				targetGuardianMap = guardian1;
 			}
-			else if (guardian2 is not [] && (!guardian2 & CandidatesMap[d2]) is { Count: not 0 } b)
+			else if (guardian2 is not [] && (!guardian2 & CandidatesMap[d2]) is var b and not [])
 			{
 				targetElimMap = b;
 				guardianDigit = d2;

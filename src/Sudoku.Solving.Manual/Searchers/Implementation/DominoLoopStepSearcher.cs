@@ -115,7 +115,7 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 				var map = (Cells)cells & EmptyCells;
 				for (k = 0; k < 8; k++)
 				{
-					if ((HouseMaps[linkHouse[k]] & EmptyCells) - map is not { Count: not 0 } elimMap)
+					if ((HouseMaps[linkHouse[k]] & EmptyCells) - map is not (var elimMap and not []))
 					{
 						continue;
 					}

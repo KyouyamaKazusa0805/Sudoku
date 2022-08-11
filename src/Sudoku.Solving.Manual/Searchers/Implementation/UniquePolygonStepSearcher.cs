@@ -143,7 +143,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 			int otherDigit = TrailingZeroCount(orMask & ~tempMask);
 			var mapContainingThatDigit = map & CandidatesMap[otherDigit];
-			if (((!mapContainingThatDigit - map) & CandidatesMap[otherDigit]) is not { Count: not 0 } elimMap)
+			if (((!mapContainingThatDigit - map) & CandidatesMap[otherDigit]) is not (var elimMap and not []))
 			{
 				continue;
 			}
@@ -229,7 +229,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in comparer)
 						{
-							if ((iterationCellsMap & CandidatesMap[digit]) is not { Count: not 0 } cells)
+							if ((iterationCellsMap & CandidatesMap[digit]) is not (var cells and not []))
 							{
 								continue;
 							}
@@ -367,7 +367,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 					{
 						possibleCandMaps |= CandidatesMap[finalDigit];
 					}
-					if ((combinationMap & possibleCandMaps) is not { Count: not 0 } elimMap)
+					if ((combinationMap & possibleCandMaps) is not (var elimMap and not []))
 					{
 						continue;
 					}

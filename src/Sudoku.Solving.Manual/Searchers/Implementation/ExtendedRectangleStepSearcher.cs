@@ -197,7 +197,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 		ICollection<IStep> accumulator, scoped in Grid grid, scoped in Cells allCellsMap,
 		scoped in Cells extraCells, short normalDigits, int extraDigit, bool onlyFindOne)
 	{
-		if ((!extraCells & CandidatesMap[extraDigit]) is not { Count: not 0 } elimMap)
+		if ((!extraCells & CandidatesMap[extraDigit]) is not (var elimMap and not []))
 		{
 			goto ReturnNull;
 		}

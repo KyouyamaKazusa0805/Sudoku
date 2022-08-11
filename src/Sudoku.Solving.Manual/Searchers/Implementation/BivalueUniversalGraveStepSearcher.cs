@@ -149,13 +149,13 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		{
 			cells[i++] = candidate / 9;
 		}
-		if (!(Cells)cells is not { Count: not 0 } map)
+		if (!(Cells)cells is not (var map and not []))
 		{
 			return null;
 		}
 
 		int digit = trueCandidates[0] % 9;
-		if ((map & CandidatesMap[digit]) is not { Count: not 0 } elimMap)
+		if ((map & CandidatesMap[digit]) is not (var elimMap and not []))
 		{
 			return null;
 		}
@@ -211,7 +211,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		foreach (int house in map.CoveredHouses)
 		{
 			var houseMap = HouseMaps[house];
-			if ((houseMap & EmptyCells) - map is not { Count: not 0 } otherCellsMap)
+			if ((houseMap & EmptyCells) - map is not (var otherCellsMap and not []))
 			{
 				continue;
 			}
@@ -227,7 +227,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 						continue;
 					}
 
-					if (((houseMap - cells - map) & EmptyCells) is not { Count: not 0 } elimMap)
+					if (((houseMap - cells - map) & EmptyCells) is not (var elimMap and not []))
 					{
 						continue;
 					}

@@ -88,7 +88,7 @@ internal sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearch
 
 						// Check for eliminations.
 						int anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
-						if ((CandidatesMap[anotherDigit] & !(Cells.Empty + c1 + c2)) is not { Count: not 0 } elimMap)
+						if ((CandidatesMap[anotherDigit] & !(Cells.Empty + c1 + c2)) is not (var elimMap and not []))
 						{
 							continue;
 						}

@@ -89,7 +89,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 				var conclusions = new List<Conclusion>();
 				foreach (int elimDigit in z)
 				{
-					if (map % CandidatesMap[elimDigit] is not { Count: not 0 } elimMap)
+					if (map % CandidatesMap[elimDigit] is not (var elimMap and not []))
 					{
 						continue;
 					}
@@ -108,12 +108,12 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					isDoublyLinked = true;
 					foreach (int elimDigit in z & ~rccMask)
 					{
-						if ((CandidatesMap[elimDigit] & map1) is not { Count: not 0 } zMap)
+						if ((CandidatesMap[elimDigit] & map1) is not (var zMap and not []))
 						{
 							continue;
 						}
 
-						if ((!zMap & CandidatesMap[elimDigit] & map2) is not { Count: not 0 } elimMap)
+						if ((!zMap & CandidatesMap[elimDigit] & map2) is not (var elimMap and not []))
 						{
 							continue;
 						}

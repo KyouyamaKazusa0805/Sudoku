@@ -10,7 +10,7 @@ internal sealed unsafe partial class PatternOverlayStepSearcher : IPatternOverla
 		var templates = IPatternOverlayStepSearcher.GetInvalidPos(grid);
 		for (int digit = 0; digit < 9; digit++)
 		{
-			if (templates[digit] is not { Count: var templateCount and not 0 } template)
+			if (templates[digit] is not ({ Count: var templateCount } template and not []))
 			{
 				continue;
 			}

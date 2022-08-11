@@ -50,7 +50,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 					}
 					case 1:
 					{
-						if (CheckType1(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, onlyFindOne) is { } step1)
+						if (CheckType1(resultAccumulator, d1, d2, currentLoop, links, extraCellsMap, onlyFindOne) is { } step1)
 						{
 							return step1;
 						}
@@ -116,7 +116,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 	}
 
 	private IStep? CheckType1(
-		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
+		ICollection<BivalueOddagonStep> accumulator, int d1, int d2, scoped in Cells loop,
 		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, bool onlyFindOne)
 	{
 		int extraCell = extraCellsMap[0];
@@ -172,7 +172,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		}
 
 		int extraDigit = TrailingZeroCount(mask);
-		if (extraCellsMap % CandidatesMap[extraDigit] is not { Count: not 0 } elimMap)
+		if (extraCellsMap % CandidatesMap[extraDigit] is not (var elimMap and not []))
 		{
 			goto ReturnNull;
 		}
@@ -253,7 +253,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 						continue;
 					}
 
-					if ((HouseMaps[house] & EmptyCells) - cells - loop is not { Count: not 0 } elimMap)
+					if ((HouseMaps[house] & EmptyCells) - cells - loop is not (var elimMap and not []))
 					{
 						continue;
 					}

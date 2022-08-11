@@ -94,7 +94,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 							// Iterate on each digit as the digit 'w'.
 							foreach (int w in mask & ~(1 << x))
 							{
-								if ((map1 | map2) % CandidatesMap[w] is not { Count: not 0 } tempMap)
+								if ((map1 | map2) % CandidatesMap[w] is not (var tempMap and not []))
 								{
 									continue;
 								}

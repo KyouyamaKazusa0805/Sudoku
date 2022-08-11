@@ -37,7 +37,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 			}
 
 			int houseIndex = cell.ToHouseIndex(houseType);
-			if ((HouseMaps[houseIndex] & EmptyCells - cell) is not { Count: not 0 } cellsMap)
+			if ((HouseMaps[houseIndex] & EmptyCells - cell) is not (var cellsMap and not []))
 			{
 				continue;
 			}

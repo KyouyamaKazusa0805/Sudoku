@@ -21,7 +21,7 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 			if (!TemplateDeleteOnly)
 			{
 				// Check template sets.
-				if ((distributedMapsByDigit[digit] & CandidatesMap[digit]) is not { Count: not 0 } templateSetMap)
+				if ((distributedMapsByDigit[digit] & CandidatesMap[digit]) is not (var templateSetMap and not []))
 				{
 					continue;
 				}
@@ -54,7 +54,7 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 			}
 
 			// Then check template deletes.
-			if (CandidatesMap[digit] - distributedMapsByDigit[digit] is not { Count: not 0 } templateDeleteMap)
+			if (CandidatesMap[digit] - distributedMapsByDigit[digit] is not (var templateDeleteMap and not []))
 			{
 				continue;
 			}

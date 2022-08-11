@@ -33,11 +33,11 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 			for (int j = 0, house = isRow ? 18 : 9; j < 9; j++, house++)
 			{
 				var houseMap = HouseMaps[house];
-				if ((baseLine & houseMap) is { Count: not 0 } tempMap)
+				if ((baseLine & houseMap) is var tempMap and not [])
 				{
 					f(grid, tempMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
 				}
-				else if ((square & houseMap) is { Count: not 0 } squareMap)
+				else if ((square & houseMap) is var squareMap and not [])
 				{
 					// Don't forget to record the square cells.
 					f(grid, squareMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
@@ -236,7 +236,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 
 		int extraDigit = TrailingZeroCount(otherDigitsMask);
 		var map = pair & CandidatesMap[extraDigit];
-		if ((!map & CandidatesMap[extraDigit]) is not { Count: not 0 } elimMap)
+		if ((!map & CandidatesMap[extraDigit]) is not (var elimMap and not []))
 		{
 			return null;
 		}
@@ -510,7 +510,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		}
 
 		otherCellsMap &= tempMap;
-		if (otherCellsMap is { Count: 0 or > 5 })
+		if (otherCellsMap is [] or { Count: > 5 })
 		{
 			return null;
 		}

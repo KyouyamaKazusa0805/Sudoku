@@ -70,7 +70,7 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 					// Two strong link found.
 					// Record all eliminations.
 					int head = cells1[headIndex], tail = cells2[tailIndex];
-					if ((PeerMaps[head] & PeerMaps[tail] & CandidatesMap[digit]) is not { Count: not 0 } gridMap)
+					if ((PeerMaps[head] & PeerMaps[tail] & CandidatesMap[digit]) is not (var gridMap and not []))
 					{
 						continue;
 					}

@@ -23,7 +23,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 		var resultAccumulator = new List<GuardianStep>();
 		for (int digit = 0; digit < 9; digit++)
 		{
-			if (eliminationMaps[digit] is not { Count: not 0 } eliminations)
+			if (eliminationMaps[digit] is not (var eliminations and not []))
 			{
 				continue;
 			}
@@ -47,7 +47,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 
 					foreach (var (map, guardians, links) in loops)
 					{
-						if ((!guardians & CandidatesMap[digit]) is not { Count: not 0 } elimMap)
+						if ((!guardians & CandidatesMap[digit]) is not (var elimMap and not []))
 						{
 							continue;
 						}

@@ -279,7 +279,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 						continue;
 					}
 
-					if ((HouseMaps[houseIndex] & EmptyCells) - (Cells)cells - loop is not { Count: not 0 } elimMap)
+					if ((HouseMaps[houseIndex] & EmptyCells) - (Cells)cells - loop is not (var elimMap and not []))
 					{
 						continue;
 					}

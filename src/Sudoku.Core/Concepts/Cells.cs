@@ -303,7 +303,7 @@ public unsafe struct Cells :
 	{
 		get
 		{
-			if (Count == 0)
+			if (this is [])
 			{
 				return Array.Empty<int>();
 			}
@@ -348,7 +348,7 @@ public unsafe struct Cells :
 	{
 		get
 		{
-			if (Count == 0)
+			if (this is [])
 			{
 				return -1;
 			}
@@ -396,7 +396,7 @@ public unsafe struct Cells :
 	{
 		Argument.ThrowIfNull(arr);
 
-		if (Count == 0)
+		if (this is [])
 		{
 			return;
 		}
@@ -1170,7 +1170,7 @@ public unsafe struct Cells :
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >>(scoped in Cells left, scoped in Cells right) => (left - right).Count != 0;
+	public static bool operator >>(scoped in Cells left, scoped in Cells right) => left - right is not [];
 
 	/// <summary>
 	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
@@ -1179,7 +1179,7 @@ public unsafe struct Cells :
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <<(scoped in Cells left, scoped in Cells right) => (left - right).Count == 0;
+	public static bool operator <<(scoped in Cells left, scoped in Cells right) => left - right is [];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
