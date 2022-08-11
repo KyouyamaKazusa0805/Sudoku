@@ -135,7 +135,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 												if ((blockMask >> digit & 1) != 0)
 												{
 													conclusions.Add(
-														new(ConclusionType.Elimination, cell, digit)
+														new(Elimination, cell, digit)
 													);
 												}
 											}
@@ -147,7 +147,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 												if ((lineMask >> digit & 1) != 0)
 												{
 													conclusions.Add(
-														new(ConclusionType.Elimination, cell, digit)
+														new(Elimination, cell, digit)
 													);
 												}
 											}
@@ -155,7 +155,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 										foreach (int cell in elimMapIsolated)
 										{
 											conclusions.Add(
-												new(ConclusionType.Elimination, cell, digitIsolated)
+												new(Elimination, cell, digitIsolated)
 											);
 										}
 										if (conclusions.Count == 0)

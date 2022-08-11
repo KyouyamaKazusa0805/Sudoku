@@ -253,8 +253,8 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 			{
 				switch (t)
 				{
-					case ConclusionType.Assignment when playground.GetStatus(c) == CellStatus.Empty:
-					case ConclusionType.Elimination when playground.Exists(c, d) is true:
+					case Assignment when playground.GetStatus(c) == CellStatus.Empty:
+					case Elimination when playground.Exists(c, d) is true:
 					{
 						atLeastOneStepIsWorth = true;
 
@@ -296,8 +296,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 			foreach (var (t, c, d) in step.Conclusions)
 			{
 				int digit = solution[c];
-				if (t == ConclusionType.Assignment && digit != d
-					|| t == ConclusionType.Elimination && digit == d)
+				if (t == Assignment && digit != d || t == Elimination && digit == d)
 				{
 					return false;
 				}

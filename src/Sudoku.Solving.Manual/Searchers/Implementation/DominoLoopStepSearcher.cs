@@ -127,7 +127,7 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 						{
 							foreach (int digit in cands)
 							{
-								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 					}

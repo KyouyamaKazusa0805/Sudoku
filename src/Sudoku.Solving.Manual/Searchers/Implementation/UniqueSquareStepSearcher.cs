@@ -69,7 +69,7 @@ internal sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareSte
 			var conclusions = new List<Conclusion>(4);
 			foreach (int digit in elimMask)
 			{
-				conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
+				conclusions.Add(new(Elimination, elimCell, digit));
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>();
@@ -124,7 +124,7 @@ internal sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareSte
 			var conclusions = new List<Conclusion>(4);
 			foreach (int cell in elimMap)
 			{
-				conclusions.Add(new(ConclusionType.Elimination, cell, extraDigit));
+				conclusions.Add(new(Elimination, cell, extraDigit));
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>();
@@ -200,7 +200,7 @@ internal sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareSte
 						{
 							foreach (int cell in (allCells - cells) & CandidatesMap[digit])
 							{
-								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -312,7 +312,7 @@ internal sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareSte
 				{
 					foreach (int cell in compareMap & CandidatesMap[digit])
 					{
-						conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+						conclusions.Add(new(Elimination, cell, digit));
 					}
 				}
 				if (conclusions.Count == 0)

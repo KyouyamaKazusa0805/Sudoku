@@ -129,11 +129,11 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 					{
 						if (CandidatesMap[digits[0]].Contains(cell))
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell * 9 + digits[0]));
+							conclusions.Add(new(Elimination, cell * 9 + digits[0]));
 						}
 						if (CandidatesMap[digits[1]].Contains(cell))
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell * 9 + digits[1]));
+							conclusions.Add(new(Elimination, cell * 9 + digits[1]));
 						}
 					}
 					if (conclusions.Count == 0)
@@ -252,20 +252,20 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 				{
 					if (CandidatesMap[digits[0]].Contains(cell))
 					{
-						conclusions.Add(new(ConclusionType.Elimination, cell * 9 + digits[0]));
+						conclusions.Add(new(Elimination, cell * 9 + digits[0]));
 					}
 					if (CandidatesMap[digits[1]].Contains(cell))
 					{
-						conclusions.Add(new(ConclusionType.Elimination, cell * 9 + digits[1]));
+						conclusions.Add(new(Elimination, cell * 9 + digits[1]));
 					}
 				}
 				foreach (int digit in (short)(grid.GetCandidates(aPivot) & ~currentDigitsMask))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, aPivot, digit));
+					conclusions.Add(new(Elimination, aPivot, digit));
 				}
 				foreach (int digit in (short)(grid.GetCandidates(bPivot) & ~currentDigitsMask))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, bPivot, digit));
+					conclusions.Add(new(Elimination, bPivot, digit));
 				}
 				if (conclusions.Count == 0)
 				{
@@ -424,11 +424,11 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 				{
 					if (CandidatesMap[digits[0]].Contains(cell))
 					{
-						conclusions.Add(new(ConclusionType.Elimination, cell * 9 + digits[0]));
+						conclusions.Add(new(Elimination, cell * 9 + digits[0]));
 					}
 					if (CandidatesMap[digits[1]].Contains(cell))
 					{
-						conclusions.Add(new(ConclusionType.Elimination, cell * 9 + digits[1]));
+						conclusions.Add(new(Elimination, cell * 9 + digits[1]));
 					}
 				}
 				if (conclusions.Count == 0)
@@ -525,22 +525,22 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			var conclusions = new List<Conclusion>(18);
 			foreach (int digit in (short)(grid.GetCandidates(pivot) & ~currentDigitsMask))
 			{
-				conclusions.Add(new(ConclusionType.Elimination, pivot, digit));
+				conclusions.Add(new(Elimination, pivot, digit));
 			}
 			foreach (int digit in (short)(grid.GetCandidates(cell1) & ~currentDigitsMask))
 			{
-				conclusions.Add(new(ConclusionType.Elimination, cell1, digit));
+				conclusions.Add(new(Elimination, cell1, digit));
 			}
 			foreach (int digit in (short)(grid.GetCandidates(cell2) & ~currentDigitsMask))
 			{
-				conclusions.Add(new(ConclusionType.Elimination, cell2, digit));
+				conclusions.Add(new(Elimination, cell2, digit));
 			}
 			foreach (int digit in currentDigitsMask)
 			{
 				var possibleBlockCells = HouseMaps[pivotCellBlock] & EmptyCells & CandidatesMap[digit];
 				foreach (int cell in possibleBlockCells - pivotRowCells - pivotColumnCells)
 				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+					conclusions.Add(new(Elimination, cell, digit));
 				}
 			}
 			if (conclusions.Count == 0)
@@ -703,17 +703,17 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 					var conclusions = new List<Conclusion>(20);
 					foreach (int digit in (short)(grid.GetCandidates(pivot1) & ~pair1DigitsMask))
 					{
-						conclusions.Add(new(ConclusionType.Elimination, pivot1, digit));
+						conclusions.Add(new(Elimination, pivot1, digit));
 					}
 					foreach (int digit in (short)(grid.GetCandidates(pivot2) & ~pair2DigitsMask))
 					{
-						conclusions.Add(new(ConclusionType.Elimination, pivot2, digit));
+						conclusions.Add(new(Elimination, pivot2, digit));
 					}
 					foreach (int cell in map - pivot1 - pivot2)
 					{
 						foreach (int digit in (short)(grid.GetCandidates(cell) & ~fourDigitsMask))
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					foreach (int cell in
@@ -725,7 +725,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 					{
 						foreach (int digit in (short)(grid.GetCandidates(cell) & pair1DigitsMask))
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					foreach (int cell in
@@ -737,7 +737,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 					{
 						foreach (int digit in (short)(grid.GetCandidates(cell) & pair2DigitsMask))
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					if (conclusions.Count == 0)

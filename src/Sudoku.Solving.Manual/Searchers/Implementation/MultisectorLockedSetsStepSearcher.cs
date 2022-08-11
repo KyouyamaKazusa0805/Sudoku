@@ -87,7 +87,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 							canL[digit].Add(cell);
 						}
 
-						conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+						conclusions.Add(new(Elimination, cell, digit));
 					}
 				}
 

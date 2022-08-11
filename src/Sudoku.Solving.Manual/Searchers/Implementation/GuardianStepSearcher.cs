@@ -56,7 +56,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 						int i = 0;
 						foreach (int c in elimMap)
 						{
-							conclusions[i++] = new(ConclusionType.Elimination, c, digit);
+							conclusions[i++] = new(Elimination, c, digit);
 						}
 
 						var candidateOffsets = new List<CandidateViewNode>();

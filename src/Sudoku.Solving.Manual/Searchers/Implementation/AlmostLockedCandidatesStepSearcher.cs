@@ -130,14 +130,14 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 
 				foreach (int digit in mask & grid.GetCandidates(aCell))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, aCell, digit));
+					conclusions.Add(new(Elimination, aCell, digit));
 				}
 			}
 			foreach (int digit in Grid.MaxCandidatesMask & ~mask)
 			{
 				foreach (int ahsCell in ahsCells & CandidatesMap[digit])
 				{
-					conclusions.Add(new(ConclusionType.Elimination, ahsCell, digit));
+					conclusions.Add(new(Elimination, ahsCell, digit));
 				}
 			}
 

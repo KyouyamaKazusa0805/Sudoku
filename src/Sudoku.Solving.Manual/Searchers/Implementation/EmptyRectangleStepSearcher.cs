@@ -63,7 +63,7 @@ internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangl
 					}
 
 					var step = new EmptyRectangleStep(
-						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, elimCell, digit)),
+						ImmutableArray.Create(new Conclusion(Elimination, elimCell, digit)),
 						ImmutableArray.Create(
 							View.Empty
 								| candidateOffsets

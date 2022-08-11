@@ -68,11 +68,11 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 					{
 						if (CandidatesMap[d1].Contains(elimCell))
 						{
-							conclusions.Add(new(ConclusionType.Elimination, elimCell, d1));
+							conclusions.Add(new(Elimination, elimCell, d1));
 						}
 						if (CandidatesMap[d2].Contains(elimCell))
 						{
-							conclusions.Add(new(ConclusionType.Elimination, elimCell, d2));
+							conclusions.Add(new(Elimination, elimCell, d2));
 						}
 					}
 					if (conclusions.Count == 0)

@@ -124,11 +124,11 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 		var conclusions = new List<Conclusion>(2);
 		if (CandidatesMap[d1].Contains(extraCell))
 		{
-			conclusions.Add(new(ConclusionType.Elimination, extraCell, d1));
+			conclusions.Add(new(Elimination, extraCell, d1));
 		}
 		if (CandidatesMap[d2].Contains(extraCell))
 		{
-			conclusions.Add(new(ConclusionType.Elimination, extraCell, d2));
+			conclusions.Add(new(Elimination, extraCell, d2));
 		}
 		if (conclusions.Count == 0)
 		{
@@ -207,7 +207,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 
 		var step = new UniqueLoopType2Step(
 			ImmutableArray.Create(
-				from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, extraDigit)
+				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)
 			),
 			ImmutableArray.Create(View.Empty | candidateOffsets | links),
 			d1,
@@ -294,7 +294,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 					{
 						foreach (int cell in elimMap & CandidatesMap[digit])
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					if (conclusions.Count == 0)
@@ -392,11 +392,11 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 				var conclusions = new List<Conclusion>(2);
 				if (CandidatesMap[otherDigit].Contains(first))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, first, otherDigit));
+					conclusions.Add(new(Elimination, first, otherDigit));
 				}
 				if (CandidatesMap[otherDigit].Contains(second))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, second, otherDigit));
+					conclusions.Add(new(Elimination, second, otherDigit));
 				}
 				if (conclusions.Count == 0)
 				{

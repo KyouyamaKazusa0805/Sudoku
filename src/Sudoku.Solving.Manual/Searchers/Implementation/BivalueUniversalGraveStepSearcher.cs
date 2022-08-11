@@ -40,7 +40,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			{
 				// BUG + 1 found.
 				var step = new BivalueUniversalGraveType1Step(
-					ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, trueCandidate)),
+					ImmutableArray.Create(new Conclusion(Assignment, trueCandidate)),
 					ImmutableArray.Create(
 						View.Empty
 							| new CandidateViewNode(DisplayColorKind.Normal, trueCandidate)
@@ -125,7 +125,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 				}
 
 				var step = new BivalueUniversalGraveFalseCandidateTypeStep(
-					ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, cell, digit)),
+					ImmutableArray.Create(new Conclusion(Elimination, cell, digit)),
 					ImmutableArray.Create(View.Empty | cellOffsets),
 					cell * 9 + digit
 				);
@@ -163,7 +163,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		var conclusions = new List<Conclusion>(elimMap.Count);
 		foreach (int cell in elimMap)
 		{
-			conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+			conclusions.Add(new(Elimination, cell, digit));
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>(trueCandidates.Count);
@@ -239,7 +239,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 						{
 							if ((mask >> digit & 1) != 0)
 							{
-								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 					}
@@ -365,7 +365,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 							continue;
 						}
 
-						conclusions.Add(new(ConclusionType.Elimination, cell, d));
+						conclusions.Add(new(Elimination, cell, d));
 					}
 				}
 
@@ -433,7 +433,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		{
 			if (CandidatesMap[candidate % 9].Contains(candidate / 9))
 			{
-				conclusions.Add(new(ConclusionType.Elimination, candidate));
+				conclusions.Add(new(Elimination, candidate));
 			}
 		}
 		if (conclusions.Count == 0)
@@ -490,7 +490,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			{
 				if (CandidatesMap[anotherDigit].Contains(peer))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, peer, anotherDigit));
+					conclusions.Add(new(Elimination, peer, anotherDigit));
 				}
 			}
 			if (conclusions.Count == 0)

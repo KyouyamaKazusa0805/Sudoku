@@ -37,7 +37,7 @@ global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
+global using static Sudoku.Solving.ConclusionType;
 global using static Sudoku.Solving.Manual.Buffers.FastProperties;
 global using ViewList = System.Collections.Immutable.ImmutableArray<Sudoku.Presentation.View>;
 global using ConclusionList = System.Collections.Immutable.ImmutableArray<Sudoku.Solving.Conclusion>;
-//global using static Sudoku.Solving.ConclusionType;

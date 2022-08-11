@@ -63,12 +63,12 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 	/// <para>
 	/// When the puzzle is solved, the value will be the difficulty rating
 	/// of the first step before the first one whose conclusion is
-	/// <see cref="ConclusionType.Assignment"/>. If the puzzle has not solved
+	/// <see cref="Assignment"/>. If the puzzle has not solved
 	/// or solved by other solvers, this value will be <c>20.0M</c>.
 	/// </para>
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	/// <seealso cref="ConclusionType"/>
+	/// <seealso cref="Assignment"/>
 	public decimal DiamondDifficulty
 	{
 		get

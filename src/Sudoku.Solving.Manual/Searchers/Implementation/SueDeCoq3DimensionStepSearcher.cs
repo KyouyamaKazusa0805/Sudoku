@@ -133,21 +133,21 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 												{
 													foreach (int cell in elimMapBlock & CandidatesMap[digit])
 													{
-														conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+														conclusions.Add(new(Elimination, cell, digit));
 													}
 												}
 												foreach (int digit in rowMask)
 												{
 													foreach (int cell in elimMapRow & CandidatesMap[digit])
 													{
-														conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+														conclusions.Add(new(Elimination, cell, digit));
 													}
 												}
 												foreach (int digit in columnMask)
 												{
 													foreach (int cell in elimMapColumn & CandidatesMap[digit])
 													{
-														conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+														conclusions.Add(new(Elimination, cell, digit));
 													}
 												}
 												if (conclusions.Count == 0)

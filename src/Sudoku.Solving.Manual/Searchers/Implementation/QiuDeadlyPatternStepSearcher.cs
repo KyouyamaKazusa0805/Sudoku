@@ -176,7 +176,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		var conclusions = new List<Conclusion>();
 		foreach (int digit in mask)
 		{
-			conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
+			conclusions.Add(new(Elimination, elimCell, digit));
 		}
 
 		var cellsMap = square | pair;
@@ -244,7 +244,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		var conclusions = new List<Conclusion>();
 		foreach (int cell in elimMap)
 		{
-			conclusions.Add(new(ConclusionType.Elimination, cell, extraDigit));
+			conclusions.Add(new(Elimination, cell, extraDigit));
 		}
 
 		var cellsMap = square | pair;
@@ -322,7 +322,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 					{
 						foreach (int cell in allCellsMap - cells & CandidatesMap[digit])
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					if (conclusions.Count == 0)
@@ -434,7 +434,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in elimMap)
 				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
+					conclusions.Add(new(Elimination, cell, elimDigit));
 				}
 
 				var cellsMap = square | pair;
@@ -538,7 +538,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		{
 			if (CandidatesMap[candidate % 9].Contains(candidate % 9))
 			{
-				conclusions.Add(new(ConclusionType.Elimination, candidate));
+				conclusions.Add(new(Elimination, candidate));
 			}
 		}
 		if (conclusions.Count == 0)

@@ -48,7 +48,7 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 
 			int digit = TrailingZeroCount(grid.GetCandidates(resultCell));
 			var step = new FullHouseStep(
-				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, resultCell, digit)),
+				ImmutableArray.Create(new Conclusion(Assignment, resultCell, digit)),
 				ImmutableArray.Create(
 					View.Empty
 						| new CandidateViewNode(DisplayColorKind.Normal, resultCell * 9 + digit)
@@ -146,11 +146,8 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			int digit = TrailingZeroCount(mask);
 
 			var step = new NakedSingleStep(
-				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, cell, digit)),
-				ImmutableArray.Create(
-					View.Empty
-						| new CandidateViewNode(DisplayColorKind.Normal, cell * 9 + digit)
-				),
+				ImmutableArray.Create(new Conclusion(Assignment, cell, digit)),
+				ImmutableArray.Create(View.Empty | new CandidateViewNode(DisplayColorKind.Normal, cell * 9 + digit)),
 				cell,
 				digit
 			);
@@ -213,7 +210,7 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			}
 
 			return new HiddenSingleStep(
-				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, resultCell, digit)),
+				ImmutableArray.Create(new Conclusion(Assignment, resultCell, digit)),
 				ImmutableArray.Create(
 					View.Empty
 						| (enableAndIsLastDigit ? cellOffsets : null)

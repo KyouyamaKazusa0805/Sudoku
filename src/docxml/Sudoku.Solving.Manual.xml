@@ -392,7 +392,7 @@
             </para>
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
-            <seealso cref="T:Sudoku.Solving.ConclusionType"/>
+            <seealso cref="F:Sudoku.Solving.ConclusionType.Assignment"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.SolvingStepsCount">
             <summary>

@@ -87,7 +87,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 			var conclusions = new List<Conclusion>(4);
 			foreach (int digit in elimMask)
 			{
-				conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
+				conclusions.Add(new(Elimination, elimCell, digit));
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>();
@@ -151,7 +151,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 			var conclusions = new List<Conclusion>();
 			foreach (int cell in elimMap)
 			{
-				conclusions.Add(new(ConclusionType.Elimination, cell, otherDigit));
+				conclusions.Add(new(Elimination, cell, otherDigit));
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>();
@@ -236,7 +236,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 							foreach (int cell in cells)
 							{
-								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -379,7 +379,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 						{
 							if (CandidatesMap[digit].Contains(cell))
 							{
-								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 					}

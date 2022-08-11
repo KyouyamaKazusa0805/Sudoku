@@ -28,7 +28,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 		{
 			foreach (int cell in CandidatesMap[digit])
 			{
-				_tempConclusions.Add(new(ConclusionType.Assignment, cell, digit));
+				_tempConclusions.Add(new(Assignment, cell, digit));
 				var (candList, mask) = RecordUndoInfo(tempGrid, cell, digit);
 
 				// Try to fill this cell.
@@ -50,7 +50,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 
 					tempAccumulator.Add(
 						new BowmanBingoStep(
-							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, startCandidate)),
+							ImmutableArray.Create(new Conclusion(Elimination, startCandidate)),
 							ImmutableArray.Create(View.Empty | candidateOffsets | GetLinks()),
 							ImmutableArray.CreateRange(_tempConclusions)
 						)
@@ -110,7 +110,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 			}
 
 			var step = new BowmanBingoStep(
-				ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, startCand)),
+				ImmutableArray.Create(new Conclusion(Elimination, startCand)),
 				ImmutableArray.Create(View.Empty | candidateOffsets | GetLinks()),
 				ImmutableArray.CreateRange(_tempConclusions)
 			);

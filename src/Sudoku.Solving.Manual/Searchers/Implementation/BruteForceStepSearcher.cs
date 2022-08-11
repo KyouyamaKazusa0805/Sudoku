@@ -22,7 +22,7 @@ internal sealed unsafe partial class BruteForceStepSearcher : IBruteForceStepSea
 			{
 				int cand = offset * 9 + Solution[offset];
 				var step = new BruteForceStep(
-					ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, cand)),
+					ImmutableArray.Create(new Conclusion(Assignment, cand)),
 					ImmutableArray.Create(View.Empty | new CandidateViewNode(DisplayColorKind.Normal, cand))
 				);
 				if (onlyFindOne)

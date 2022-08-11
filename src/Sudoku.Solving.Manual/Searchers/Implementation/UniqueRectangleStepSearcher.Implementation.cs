@@ -46,11 +46,11 @@ unsafe partial class UniqueRectangleStepSearcher
 		var conclusions = new List<Conclusion>(2);
 		if (d1Exists)
 		{
-			conclusions.Add(new(ConclusionType.Elimination, cornerCell, d1));
+			conclusions.Add(new(Elimination, cornerCell, d1));
 		}
 		if (d2Exists)
 		{
-			conclusions.Add(new(ConclusionType.Elimination, cornerCell, d2));
+			conclusions.Add(new(Elimination, cornerCell, d2));
 		}
 		if (conclusions.Count == 0)
 		{
@@ -163,7 +163,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				ImmutableArray.Create(
-					from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, extraDigit)
+					from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)
 				),
 				ImmutableArray.Create(
 					View.Empty
@@ -263,7 +263,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					{
 						foreach (int cell in (iterationMap - iteratedCells) & CandidatesMap[digit])
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					if (conclusions.Count == 0)
@@ -420,7 +420,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 				scoped var conclusions =
 					from cell in elimMap
-					select new Conclusion(ConclusionType.Elimination, cell, elimDigit);
+					select new Conclusion(Elimination, cell, elimDigit);
 				if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Length) != (6, 2))
 				{
 					continue;
@@ -531,7 +531,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				ImmutableArray.Create(
-					from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, extraDigit)
+					from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)
 				),
 				ImmutableArray.Create(
 					View.Empty
@@ -649,7 +649,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			scoped var conclusions =
 				from cell in elimMap
-				select new Conclusion(ConclusionType.Elimination, cell, digit);
+				select new Conclusion(Elimination, cell, digit);
 			if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Length) != (6, 2))
 			{
 				return;
@@ -789,7 +789,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			accumulator.Add(
 				new HiddenUniqueRectangleStep(
-					ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, abzCell, elimDigit)),
+					ImmutableArray.Create(new Conclusion(Elimination, abzCell, elimDigit)),
 					ImmutableArray.Create(
 						View.Empty
 							| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
@@ -879,11 +879,11 @@ unsafe partial class UniqueRectangleStepSearcher
 			{
 				if (CandidatesMap[x].Contains(cell))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, x));
+					conclusions.Add(new(Elimination, cell, x));
 				}
 				if (CandidatesMap[y].Contains(cell))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, y));
+					conclusions.Add(new(Elimination, cell, y));
 				}
 			}
 			if (conclusions.Count == 0)
@@ -1018,7 +1018,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						var conclusions = new List<Conclusion>(4);
 						if (CandidatesMap[elimDigit].Contains(elimCell))
 						{
-							conclusions.Add(new(ConclusionType.Elimination, elimCell, elimDigit));
+							conclusions.Add(new(Elimination, elimCell, elimDigit));
 						}
 						if (conclusions.Count == 0)
 						{
@@ -1189,7 +1189,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						var conclusions = new List<Conclusion>(4);
 						if (CandidatesMap[digit].Contains(elimCell))
 						{
-							conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
+							conclusions.Add(new(Elimination, elimCell, digit));
 						}
 						if (conclusions.Count == 0)
 						{
@@ -1363,11 +1363,11 @@ unsafe partial class UniqueRectangleStepSearcher
 			{
 				if (CandidatesMap[x].Contains(cell))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, x));
+					conclusions.Add(new(Elimination, cell, x));
 				}
 				if (CandidatesMap[y].Contains(cell))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, y));
+					conclusions.Add(new(Elimination, cell, y));
 				}
 			}
 			if (conclusions.Count == 0)
@@ -1481,11 +1481,11 @@ unsafe partial class UniqueRectangleStepSearcher
 			var conclusions = new List<Conclusion>(2);
 			if (CandidatesMap[a].Contains(abxCell))
 			{
-				conclusions.Add(new(ConclusionType.Elimination, abxCell, a));
+				conclusions.Add(new(Elimination, abxCell, a));
 			}
 			if (CandidatesMap[b].Contains(abyCell))
 			{
-				conclusions.Add(new(ConclusionType.Elimination, abyCell, b));
+				conclusions.Add(new(Elimination, abyCell, b));
 			}
 			if (conclusions.Count == 0)
 			{
@@ -1660,7 +1660,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				var conjugatePairs = new Conjugate[] { new(cornerCell, begin, a), new(begin, abzCell, b) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, end, a)),
+						ImmutableArray.Create(new Conclusion(Elimination, end, a)),
 						ImmutableArray.Create(
 							View.Empty
 								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
@@ -1786,7 +1786,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				var conjugatePairs = new Conjugate[] { new(cornerCell, end, a), new(begin, abzCell, b) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, begin, a)),
+						ImmutableArray.Create(new Conclusion(Elimination, begin, a)),
 						ImmutableArray.Create(
 							View.Empty
 								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
@@ -1914,7 +1914,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				var conjugatePairs = new Conjugate[] { new(cornerCell, end, a), new(begin, abzCell, a) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, abzCell, b)),
+						ImmutableArray.Create(new Conclusion(Elimination, abzCell, b)),
 						ImmutableArray.Create(
 							View.Empty
 								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
@@ -2004,11 +2004,11 @@ unsafe partial class UniqueRectangleStepSearcher
 				var conclusions = new List<Conclusion>(2);
 				if (CandidatesMap[b].Contains(head))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, head, b));
+					conclusions.Add(new(Elimination, head, b));
 				}
 				if (CandidatesMap[b].Contains(extra))
 				{
-					conclusions.Add(new(ConclusionType.Elimination, extra, b));
+					conclusions.Add(new(Elimination, extra, b));
 				}
 				if (conclusions.Count == 0)
 				{
@@ -2220,7 +2220,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					};
 					accumulator.Add(
 						new UniqueRectangleWithConjugatePairStep(
-							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, aby, b)),
+							ImmutableArray.Create(new Conclusion(Elimination, aby, b)),
 							ImmutableArray.Create(
 								View.Empty
 									| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
@@ -2419,7 +2419,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							new UniqueRectangleWithWingStep(
 								ImmutableArray.Create(
 									from cell in elimMap
-									select new Conclusion(ConclusionType.Elimination, cell, elimDigit)
+									select new Conclusion(Elimination, cell, elimDigit)
 								),
 								ImmutableArray.Create(
 									View.Empty
@@ -2551,7 +2551,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									new UniqueRectangleWithWingStep(
 										ImmutableArray.Create(
 											from cell in elimMap
-											select new Conclusion(ConclusionType.Elimination, cell, elimDigit)
+											select new Conclusion(Elimination, cell, elimDigit)
 										),
 										ImmutableArray.Create(
 											View.Empty
@@ -2688,7 +2688,7 @@ unsafe partial class UniqueRectangleStepSearcher
 										new UniqueRectangleWithWingStep(
 											ImmutableArray.Create(
 												from cell in elimMap
-												select new Conclusion(ConclusionType.Elimination, cell, elimDigit)
+												select new Conclusion(Elimination, cell, elimDigit)
 											),
 											ImmutableArray.Create(
 												View.Empty
@@ -2933,7 +2933,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					{
 						if ((blockMask >> digit & 1) != 0)
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 				}
@@ -2943,13 +2943,13 @@ unsafe partial class UniqueRectangleStepSearcher
 					{
 						if ((lineMask >> digit & 1) != 0)
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 				}
 				foreach (int cell in elimMapIsolated)
 				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, digitIsolated));
+					conclusions.Add(new(Elimination, cell, digitIsolated));
 				}
 				if (conclusions.Count == 0)
 				{
@@ -3165,7 +3165,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						{
 							if (digit == d1 || digit == d2)
 							{
-								conclusions.Add(new(ConclusionType.Elimination, targetCell, digit));
+								conclusions.Add(new(Elimination, targetCell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -3260,7 +3260,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						{
 							if (digit == d1 || digit == d2)
 							{
-								conclusionsAnotherSubType.Add(new(ConclusionType.Elimination, targetCell, digit));
+								conclusionsAnotherSubType.Add(new(Elimination, targetCell, digit));
 							}
 						}
 						if (conclusionsAnotherSubType.Count == 0)
@@ -3468,7 +3468,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				new UniqueRectangleWithGuardianStep(
 					ImmutableArray.Create(
 						from cell in elimMap
-						select new Conclusion(ConclusionType.Elimination, cell, guardianDigit)
+						select new Conclusion(Elimination, cell, guardianDigit)
 					),
 					ImmutableArray.Create(
 						View.Empty
@@ -3578,7 +3578,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								{
 									if (CandidatesMap[digit].Contains(cell))
 									{
-										conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+										conclusions.Add(new(Elimination, cell, digit));
 									}
 								}
 							}
@@ -3733,7 +3733,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						{
 							foreach (int cell in CandidatesMap[elimDigit] & guardianCellPair)
 							{
-								conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
+								conclusions.Add(new(Elimination, cell, elimDigit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -3893,7 +3893,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 					accumulator.Add(
 						new AvoidableRectangleWithHiddenSingleStep(
-							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, baseCell, otherDigit)),
+							ImmutableArray.Create(new Conclusion(Elimination, baseCell, otherDigit)),
 							ImmutableArray.Create(
 								View.Empty
 									| cellOffsets

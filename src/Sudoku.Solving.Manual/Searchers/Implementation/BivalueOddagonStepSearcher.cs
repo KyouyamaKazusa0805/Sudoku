@@ -123,11 +123,11 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		var conclusions = new List<Conclusion>(2);
 		if (CandidatesMap[d1].Contains(extraCell))
 		{
-			conclusions.Add(new(ConclusionType.Elimination, extraCell, d1));
+			conclusions.Add(new(Elimination, extraCell, d1));
 		}
 		if (CandidatesMap[d2].Contains(extraCell))
 		{
-			conclusions.Add(new(ConclusionType.Elimination, extraCell, d2));
+			conclusions.Add(new(Elimination, extraCell, d2));
 		}
 		if (conclusions.Count == 0)
 		{
@@ -190,7 +190,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 
 		var step = new BivalueOddagonType2Step(
 			ImmutableArray.Create(
-				from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, extraDigit)
+				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)
 			),
 			ImmutableArray.Create(View.Empty | candidateOffsets | links),
 			loop,
@@ -265,7 +265,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 					{
 						foreach (int cell in elimMap & CandidatesMap[digit])
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					if (conclusions.Count == 0)

@@ -96,7 +96,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 
 					foreach (int cell in elimMap)
 					{
-						conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
+						conclusions.Add(new(Elimination, cell, elimDigit));
 					}
 
 					finalZ |= (short)(1 << elimDigit);
@@ -127,7 +127,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					{
 						foreach (int cell in (HouseMaps[house[k]] & CandidatesMap[digit]) - map)
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 
 						k++;
@@ -145,7 +145,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					{
 						foreach (int digit in grid.GetCandidates(cell) & (mask1 & ~rccMask))
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					tempMap = CandidatesMap[TrailingZeroCount(mask2)];
@@ -158,7 +158,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					{
 						foreach (int digit in grid.GetCandidates(cell) & (mask2 & ~rccMask))
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 				}

@@ -375,7 +375,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 								var conclusions = new List<Conclusion>();
 								foreach (int elimCell in elimMap)
 								{
-									conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
+									conclusions.Add(new(Elimination, elimCell, digit));
 								}
 
 								// Collect highlighting candidates.

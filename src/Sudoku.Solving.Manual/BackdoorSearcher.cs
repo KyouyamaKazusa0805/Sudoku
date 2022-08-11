@@ -61,7 +61,7 @@ public static class BackdoorSearcher
 				continue;
 			}
 
-			assignmentBackdoors.Add(new(ConclusionType.Assignment, cell, solution[cell]));
+			assignmentBackdoors.Add(new(Assignment, cell, solution[cell]));
 
 			// Case 2: Eliminations.
 			foreach (int digit in grid.GetCandidates(cell) & ~(1 << solution[cell]))
@@ -74,7 +74,7 @@ public static class BackdoorSearcher
 					continue;
 				}
 
-				eliminationBackdoors.Add(new(ConclusionType.Elimination, cell, digit));
+				eliminationBackdoors.Add(new(Elimination, cell, digit));
 			}
 		}
 

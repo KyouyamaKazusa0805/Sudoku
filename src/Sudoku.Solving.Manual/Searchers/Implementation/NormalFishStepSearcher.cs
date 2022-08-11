@@ -214,7 +214,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 					// Gather the result.
 					var step = new NormalFishStep(
 						ImmutableArray.Create(
-							from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, digit)
+							from cell in elimMap select new Conclusion(Elimination, cell, digit)
 						),
 						ImmutableArray.Create(
 							View.Empty | candidateOffsets | houseOffsets,

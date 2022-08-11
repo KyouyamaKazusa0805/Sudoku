@@ -97,7 +97,7 @@ internal sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearch
 						var step = new WWingStep(
 							ImmutableArray.Create(
 								from cell in elimMap
-								select new Conclusion(ConclusionType.Elimination, cell, anotherDigit)
+								select new Conclusion(Elimination, cell, anotherDigit)
 							),
 							ImmutableArray.Create(
 								View.Empty

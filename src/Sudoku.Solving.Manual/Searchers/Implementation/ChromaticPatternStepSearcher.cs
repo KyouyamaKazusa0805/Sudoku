@@ -138,7 +138,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 			var conclusions = new List<Conclusion>();
 			foreach (int digit in elimDigitsMask)
 			{
-				conclusions.Add(new(ConclusionType.Elimination, extraCell, digit));
+				conclusions.Add(new(Elimination, extraCell, digit));
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>((12 - 1) * 3);
@@ -225,7 +225,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 				{
 					if (CandidatesMap[anotherDigit].Contains(peer))
 					{
-						conclusions.Add(new(ConclusionType.Elimination, peer, anotherDigit));
+						conclusions.Add(new(Elimination, peer, anotherDigit));
 					}
 				}
 				if (conclusions.Count == 0)

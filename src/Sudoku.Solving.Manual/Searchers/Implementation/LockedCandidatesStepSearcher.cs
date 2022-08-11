@@ -82,9 +82,7 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 
 				// Okay, now accumulate into the collection.
 				var step = new LockedCandidatesStep(
-					ImmutableArray.Create(
-						from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, digit)
-					),
+					ImmutableArray.Create(from cell in elimMap select new Conclusion(Elimination, cell, digit)),
 					ImmutableArray.Create(
 						View.Empty
 							| candidateOffsets

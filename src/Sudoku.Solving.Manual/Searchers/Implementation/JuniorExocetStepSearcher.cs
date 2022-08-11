@@ -121,7 +121,7 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 						{
 							eliminations.Add(
 								new(
-									new Conclusion[] { new(ConclusionType.Elimination, targetCell, elimDigit) },
+									new Conclusion[] { new(Elimination, targetCell, elimDigit) },
 									ExocetEliminatedReason.Basic
 								)
 							);

@@ -102,7 +102,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 								wDigitsMask |= (short)(1 << w);
 								foreach (int cell in tempMap)
 								{
-									conclusions.Add(new(ConclusionType.Elimination, cell, w));
+									conclusions.Add(new(Elimination, cell, w));
 								}
 							}
 

@@ -42,7 +42,7 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 
 						foreach (int cell in map)
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					if (conclusions.Count == 0)
@@ -119,7 +119,7 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					{
 						foreach (int cell in map & CandidatesMap[digit])
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					if (conclusions.Count == 0)

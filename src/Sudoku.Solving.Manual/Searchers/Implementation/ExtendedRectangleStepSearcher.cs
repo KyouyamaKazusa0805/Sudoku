@@ -146,7 +146,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 				{
 					if (digit != extraDigit)
 					{
-						conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+						conclusions.Add(new(Elimination, cell, digit));
 					}
 				}
 			}
@@ -215,7 +215,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 
 		var step = new ExtendedRectangleType2Step(
 			ImmutableArray.Create(
-				from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, extraDigit)
+				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)
 			),
 			ImmutableArray.Create(View.Empty | candidateOffsets),
 			allCellsMap,
@@ -272,7 +272,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 					{
 						foreach (int cell in elimMap & CandidatesMap[digit])
 						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					if (conclusions.Count == 0)
@@ -358,7 +358,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 				{
 					if (CandidatesMap[digit].Contains(extraCell))
 					{
-						conclusions.Add(new(ConclusionType.Elimination, extraCell, digit));
+						conclusions.Add(new(Elimination, extraCell, digit));
 					}
 				}
 
@@ -424,7 +424,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 						{
 							foreach (int cell in extraCellsMap & CandidatesMap[digit])
 							{
-								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)

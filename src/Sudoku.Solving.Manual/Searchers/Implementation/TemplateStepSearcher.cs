@@ -30,7 +30,7 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 				var templateSetConclusions = new Conclusion[templateSetMap.Count];
 				foreach (int cell in templateSetMap)
 				{
-					templateSetConclusions[templateSetIndex++] = new(ConclusionType.Assignment, cell, digit);
+					templateSetConclusions[templateSetIndex++] = new(Assignment, cell, digit);
 				}
 
 				var candidateOffsets = new CandidateViewNode[templateSetConclusions.Length];
@@ -63,7 +63,7 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 			int templateDeleteIndex = 0;
 			foreach (int cell in templateDeleteMap)
 			{
-				templateDeleteConclusions[templateDeleteIndex++] = new(ConclusionType.Elimination, cell, digit);
+				templateDeleteConclusions[templateDeleteIndex++] = new(Elimination, cell, digit);
 			}
 
 			var templateDeleteStep = new TemplateStep(

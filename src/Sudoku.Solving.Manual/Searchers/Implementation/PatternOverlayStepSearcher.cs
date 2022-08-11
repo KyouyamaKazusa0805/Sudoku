@@ -19,7 +19,7 @@ internal sealed unsafe partial class PatternOverlayStepSearcher : IPatternOverla
 			int i = 0;
 			foreach (int cell in template)
 			{
-				conclusions[i++] = new(ConclusionType.Elimination, cell, digit);
+				conclusions[i++] = new(Elimination, cell, digit);
 			}
 
 			var step = new PatternOverlayStep(ImmutableArray.Create(conclusions));
