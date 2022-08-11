@@ -71,39 +71,34 @@ public sealed class LinkViewNodeShape : DrawingElement
 			var storyboard = new Storyboard();
 			foreach (var (path, (pt1, pt2), pathKind) in pointPairs)
 			{
-				var animation = new PointAnimation
-				{
-					From = pt1,
-					To = pt2,
-					Duration = TimeSpan.FromMilliseconds(500)
-				};
-
-				Storyboard.SetTarget(animation, path);
-				Storyboard.SetTargetProperty(
-					animation,
-					pathKind switch
-					{
-						PathKind.Straight =>
+				storyboard.AddChildren(
+					new PointAnimation()
+						.WithPoints(pt1, pt2)
+						.WithDuration(500)
+						.WithTarget(path)
+						.WithTargetPropertyIf(
+							pathKind == PathKind.Straight,
 							new PropertyPathBuilder()
 								.AppendProperty<Path>(nameof(Path.Data))
 								.AppendProperty<GeometryGroup>(nameof(GeometryGroup.Children))
-								.AppendIndex(0)
+								.AppendZeroIndex()
 								.AppendProperty<LineGeometry>(nameof(LineGeometry.EndPoint))
-								.ToString(),
-						PathKind.Curve =>
+								.ToString()
+						)
+						.WithTargetPropertyIf(
+							pathKind == PathKind.Curve,
 							new PropertyPathBuilder()
 								.AppendProperty<Path>(nameof(Path.Data))
 								.AppendProperty<GeometryGroup>(nameof(GeometryGroup.Children))
-								.AppendIndex(0)
+								.AppendZeroIndex()
 								.AppendProperty<PathGeometry>(nameof(PathGeometry.Figures))
-								.AppendIndex(0)
+								.AppendZeroIndex()
 								.AppendProperty<PathFigure>(nameof(PathFigure.Segments))
-								.AppendIndex(0)
+								.AppendZeroIndex()
 								.AppendProperty<BezierSegment>(nameof(BezierSegment.Point3))
 								.ToString()
-					}
+						)
 				);
-				storyboard.Children.Add(animation);
 			}
 
 			storyboard.Begin();

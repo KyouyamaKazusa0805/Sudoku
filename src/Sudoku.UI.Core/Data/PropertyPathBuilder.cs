@@ -58,6 +58,18 @@ public ref partial struct PropertyPathBuilder
 	}
 
 	/// <summary>
+	/// Appends the zero index <c>[0]</c> into the builder.
+	/// </summary>
+	/// <returns>The current instance. This return value and be used as chaining invocations.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public PropertyPathBuilder AppendZeroIndex()
+	{
+		_sb.RemoveFromEnd(1);
+		_sb.Append("[0].");
+		return this;
+	}
+
+	/// <summary>
 	/// Appends the specified index into the builder.
 	/// </summary>
 	/// <param name="index">The index value.</param>

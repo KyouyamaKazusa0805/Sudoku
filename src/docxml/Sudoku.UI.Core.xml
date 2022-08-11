@@ -63,6 +63,12 @@
             Throws when generic type argument <typeparamref name="T"/> is a generic type.
             </exception>
         </member>
+        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.AppendZeroIndex">
+            <summary>
+            Appends the zero index <c>[0]</c> into the builder.
+            </summary>
+            <returns>The current instance. This return value and be used as chaining invocations.</returns>
+        </member>
         <member name="M:Sudoku.UI.Data.PropertyPathBuilder.AppendIndex(System.Int32)">
             <summary>
             Appends the specified index into the builder.
@@ -3312,6 +3318,61 @@
         <member name="M:Microsoft.UI.Xaml.Media.Animation.EntranceThemeTransitionExtensions.WithIsStaggeringEnabled(Microsoft.UI.Xaml.Media.Animation.EntranceThemeTransition,System.Boolean)">
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.Media.Animation.EntranceThemeTransition.IsStaggeringEnabled"/> with the specified value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Media.Animation.PointAnimationExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Media.Animation.PointAnimation"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.Animation.PointAnimation"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.Animation.PointAnimationExtensions.WithPoints(Microsoft.UI.Xaml.Media.Animation.PointAnimation,Windows.Foundation.Point,Windows.Foundation.Point)">
+            <summary>
+            Sets the properties <see cref="P:Microsoft.UI.Xaml.Media.Animation.PointAnimation.From"/> and <see cref="P:Microsoft.UI.Xaml.Media.Animation.PointAnimation.To"/>
+            with the specified value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Media.Animation.StoryboardExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.Animation.Storyboard"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.Animation.Storyboard"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.Animation.StoryboardExtensions.AddChildren``1(Microsoft.UI.Xaml.Media.Animation.Storyboard,``0)">
+            <summary>
+            Adds the specified element into the current collection.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Media.Animation.TimelineExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.Animation.Timeline"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.Animation.Timeline"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.Animation.TimelineExtensions.WithDuration``1(``0,System.Double)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.Animation.Timeline.Duration"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.Animation.TimelineExtensions.WithDuration``1(``0,Microsoft.UI.Xaml.Duration)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.Animation.Timeline.Duration"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.Animation.TimelineExtensions.WithTarget``2(``0,``1)">
+            <summary>
+            Calls the method <see cref="M:Microsoft.UI.Xaml.Media.Animation.Storyboard.SetTarget(Microsoft.UI.Xaml.Media.Animation.Timeline,Microsoft.UI.Xaml.DependencyObject)"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.Animation.TimelineExtensions.WithTargetProperty``1(``0,System.String)">
+            <summary>
+            Calls the method <see cref="M:Microsoft.UI.Xaml.Media.Animation.Storyboard.SetTargetProperty(Microsoft.UI.Xaml.Media.Animation.Timeline,System.String)"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.Animation.TimelineExtensions.WithTargetPropertyIf``1(``0,System.Boolean,System.String)">
+            <summary>
+            Calls the method <see cref="M:Microsoft.UI.Xaml.Media.Animation.Storyboard.SetTargetProperty(Microsoft.UI.Xaml.Media.Animation.Timeline,System.String)"/>
+            if the specified <paramref name="condition"/> is <see langword="true"/>.
             </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.Media.Animation.TransitionCollectionExtensions">
