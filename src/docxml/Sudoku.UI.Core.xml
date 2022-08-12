@@ -3505,6 +3505,11 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Media.Animation.TransitionCollection"/>
         </member>
+        <member name="M:Microsoft.UI.Xaml.Media.Animation.TransitionCollectionExtensions.Append``1(Microsoft.UI.Xaml.Media.Animation.TransitionCollection)">
+            <summary>
+            Adds an element into the collection.
+            </summary>
+        </member>
         <member name="M:Microsoft.UI.Xaml.Media.Animation.TransitionCollectionExtensions.Append(Microsoft.UI.Xaml.Media.Animation.TransitionCollection,Microsoft.UI.Xaml.Media.Animation.Transition)">
             <summary>
             Adds an element into the collection.

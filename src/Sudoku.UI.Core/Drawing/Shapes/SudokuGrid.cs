@@ -31,7 +31,7 @@ public sealed class SudokuGrid : DrawingElement
 		.WithVerticalAlignment(VerticalAlignment.Center)
 		.WithChildrenTransitions(
 			new TransitionCollection()
-				.Append(new EntranceThemeTransition())
+				.Append<EntranceThemeTransition>()
 		);
 
 	/// <summary>
