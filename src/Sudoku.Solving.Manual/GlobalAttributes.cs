@@ -20,6 +20,7 @@ using static Sudoku.Runtime.AnalysisServices.SearcherEnabledArea;
 [assembly: SearcherConfiguration<UniquePolygonStepSearcher>(B)]
 [assembly: SearcherConfiguration<QiuDeadlyPatternStepSearcher>(B)]
 [assembly: SearcherConfiguration<BivalueUniversalGraveStepSearcher>(B)]
+[assembly: SearcherConfiguration<UniquenessClueCoverStepSearcher>(B)]
 [assembly: SearcherConfiguration<EmptyRectangleIntersectionPairStepSearcher>(B)]
 [assembly: SearcherConfiguration<FireworkStepSearcher>(B)]
 [assembly: SearcherConfiguration<AlmostLockedSetsXzStepSearcher>(B)]

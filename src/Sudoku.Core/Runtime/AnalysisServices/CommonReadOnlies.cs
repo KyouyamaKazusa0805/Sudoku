@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a type holding some common read-only fields used by runtime or compiling-time.
 /// </summary>
-public static partial class CommonReadOnlies
+public static class CommonReadOnlies
 {
 	/// <summary>
 	/// Indicates the invalid first set value
@@ -336,6 +336,19 @@ public static partial class CommonReadOnlies
 	};
 
 	/// <summary>
+	/// Indicates the chute houses.
+	/// </summary>
+	public static readonly (int First, int Second, int Third)[] ChuteHouses =
+	{
+		(9, 10, 11),
+		(12, 13, 14),
+		(15, 16, 17),
+		(18, 19, 20),
+		(21, 22, 23),
+		(24, 25, 26)
+	};
+
+	/// <summary>
 	/// <para>The names of all subsets by their sizes.</para>
 	/// <para>
 	/// For example, if you want to get the name of the size 3, the code will be
@@ -385,6 +398,11 @@ public static partial class CommonReadOnlies
 	/// </summary>
 	/// <seealso cref="Peers"/>
 	public static readonly Cells[] PeerMaps;
+
+	/// <summary>
+	/// Indicates the chute maps.
+	/// </summary>
+	public static readonly (Cells Cells, bool IsRow, short HousesMask)[] Chutes;
 
 	/// <summary>
 	/// Indicates the possible house types to iterate.
@@ -531,8 +549,26 @@ public static partial class CommonReadOnlies
 			HouseMaps[i] = (Cells)HouseCells[i];
 		}
 
-		var r = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
-		var c = (stackalloc[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 });
+		Chutes = new (Cells, bool, short)[6];
+		for (int i = 0; i < 3; i++)
+		{
+			var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[i], ChuteHouses[i + 3]);
+			(Chutes[i], Chutes[i + 3]) = (
+				(
+					HouseMaps[r1] | HouseMaps[r2] | HouseMaps[r3],
+					true,
+					(short)(1 << r1 - 9 | 1 << r2 - 9 | i << r3 - 9)
+				),
+				(
+					HouseMaps[c1] | HouseMaps[c2] | HouseMaps[c3],
+					false,
+					(short)(1 << c1 - 18 | 1 << c2 - 18 | i << c3 - 18)
+				)
+			);
+		}
+
+		scoped var r = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
+		scoped var c = (stackalloc[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 });
 		var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells, byte[])>(new ValueTupleComparer());
 		for (byte bs = 9; bs < 27; bs++)
 		{

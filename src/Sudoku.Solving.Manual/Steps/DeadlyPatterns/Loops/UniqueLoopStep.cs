@@ -83,17 +83,13 @@ internal abstract record UniqueLoopStep(
 	/// <inheritdoc/>
 	public static bool Equals(UniqueLoopStep left, UniqueLoopStep right)
 		=> left.Type == right.Type && left.Loop == right.Loop
-			&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
-			&& (left, right) switch
-			{
-				(
-					UniqueLoopType3Step { SubsetDigitsMask: var a },
-					UniqueLoopType3Step { SubsetDigitsMask: var b }
-				) => a == b,
-				(
-					UniqueLoopType4Step { ConjugatePair: var a },
-					UniqueLoopType4Step { ConjugatePair: var b }
-				) => a == b,
-				_ => true
-			};
+		&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
+		&& (left, right) switch
+		{
+			(UniqueLoopType3Step { SubsetDigitsMask: var a }, UniqueLoopType3Step { SubsetDigitsMask: var b })
+				=> a == b,
+			(UniqueLoopType4Step { ConjugatePair: var a }, UniqueLoopType4Step { ConjugatePair: var b })
+				=> a == b,
+			_ => true
+		};
 }

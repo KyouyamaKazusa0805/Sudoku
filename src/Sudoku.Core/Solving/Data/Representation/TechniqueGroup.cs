@@ -111,6 +111,11 @@ public enum TechniqueGroup : byte
 	ReverseBivalueUniversalGrave,
 
 	/// <summary>
+	/// Indicates the uniqueness clue cover.
+	/// </summary>
+	UniquenessClueCover,
+
+	/// <summary>
 	/// Indicates the deadly pattern technique.
 	/// </summary>
 	DeadlyPattern,

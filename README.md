@@ -84,6 +84,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Qiu's Deadly Pattern
     * Unique Square
     * Bi-value Universal Grave
+    * Uniqueness Clue Cover (Some types)
   * Alternating Inference Chains
     * Single-Digit AICs
     * Multi-Digit AICs

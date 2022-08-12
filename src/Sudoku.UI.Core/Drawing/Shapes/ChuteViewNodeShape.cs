@@ -1,19 +1,19 @@
 ﻿namespace Sudoku.UI.Drawing.Shapes;
 
 /// <summary>
-/// Defines a house view node shape.
+/// Defines a chute view node shape.
 /// </summary>
-public sealed class HouseViewNodeShape : DrawingElement
+public sealed class ChuteViewNodeShape : DrawingElement
 {
 	/// <summary>
 	/// Indicates the visible table.
 	/// </summary>
-	private readonly bool[] _isVisibleTable = new bool[27];
+	private readonly bool[] _isVisibleTable = new bool[6];
 
 	/// <summary>
 	/// Indicates the color identifiers.
 	/// </summary>
-	private readonly Identifier[] _identifiers = new Identifier[27];
+	private readonly Identifier[] _identifiers = new Identifier[6];
 
 	/// <summary>
 	/// Indicates the grid layout.
@@ -25,7 +25,7 @@ public sealed class HouseViewNodeShape : DrawingElement
 	/// <summary>
 	/// Indicates the inner rectangles.
 	/// </summary>
-	private readonly Rectangle[] _rectangles = new Rectangle[27];
+	private readonly Rectangle[] _rectangles = new Rectangle[6];
 
 	/// <summary>
 	/// Indicates the user preference instance.
@@ -46,33 +46,22 @@ public sealed class HouseViewNodeShape : DrawingElement
 			_preference = value;
 
 			int i = 0;
-			while (i < 9)
+			while (i < 3)
 			{
 				_gridLayout.AddChildren(
 					_rectangles[i] = new Rectangle()
-						.WithGridLayout(row: i / 3 * 3, column: i % 3 * 3, rowSpan: 3, columnSpan: 3)
+						.WithGridLayout(row: i * 3, rowSpan: 3, columnSpan: 9)
 						.WithOpacity(0)
 						.WithOpacityTransition(TimeSpan.FromMilliseconds(500))
 				);
 
 				i++;
 			}
-			while (i < 18)
+			while (i < 6)
 			{
 				_gridLayout.AddChildren(
 					_rectangles[i] = new Rectangle()
-						.WithGridLayout(row: i - 9, columnSpan: 9)
-						.WithOpacity(0)
-						.WithOpacityTransition(TimeSpan.FromMilliseconds(500))
-				);
-
-				i++;
-			}
-			while (i < 27)
-			{
-				_gridLayout.AddChildren(
-					_rectangles[i] = new Rectangle()
-						.WithGridLayout(column: i - 18, rowSpan: 9)
+						.WithGridLayout(column: (i - 3) * 3, rowSpan: 9, columnSpan: 3)
 						.WithOpacity(0)
 						.WithOpacityTransition(TimeSpan.FromMilliseconds(500))
 				);
@@ -83,7 +72,7 @@ public sealed class HouseViewNodeShape : DrawingElement
 	}
 
 	/// <inheritdoc/>
-	protected override string TypeIdentifier => nameof(HouseViewNodeShape);
+	protected override string TypeIdentifier => nameof(ChuteViewNodeShape);
 
 
 	/// <summary>
@@ -116,22 +105,8 @@ public sealed class HouseViewNodeShape : DrawingElement
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
-		=> other is HouseViewNodeShape comparer && Enumerable.SequenceEqual(comparer._identifiers, _identifiers)
+		=> other is ChuteViewNodeShape comparer && Enumerable.SequenceEqual(comparer._identifiers, _identifiers)
 		&& Enumerable.SequenceEqual(comparer._identifiers, _identifiers);
-
-	/// <inheritdoc/>
-	public override int GetHashCode()
-	{
-		var result = new HashCode();
-		result.Add(TypeIdentifier);
-
-		for (int i = 0; i < 27; i++)
-		{
-			result.Add(_rectangles[i]);
-		}
-
-		return result.ToHashCode();
-	}
 
 	/// <summary>
 	/// Gets the visibility at the specified house.
@@ -141,13 +116,19 @@ public sealed class HouseViewNodeShape : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool GetVisible(int house) => _isVisibleTable[house];
 
-	/// <summary>
-	/// Gets the color identifier at the specified house.
-	/// </summary>
-	/// <param name="house">The house.</param>
-	/// <returns>The color identifier.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Identifier GetIdentifier(int house) => _identifiers[house];
+	/// <inheritdoc/>
+	public override int GetHashCode()
+	{
+		var result = new HashCode();
+		result.Add(TypeIdentifier);
+
+		for (int i = 0; i < 6; i++)
+		{
+			result.Add(_rectangles[i]);
+		}
+
+		return result.ToHashCode();
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

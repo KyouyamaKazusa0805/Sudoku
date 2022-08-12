@@ -1404,4 +1404,10 @@
   <data name="Comma" xml:space="preserve">
     <value>, </value>
   </data>
+  <data name="TechniqueFormat_UniquenessClueCoverType2Step" xml:space="preserve">
+    <value>{Name}: Enumerates all possible cases filling the chute {ChuteIndexStr} (i.e. houses {HousesStr}), we can find two digits that cannot cover =&gt; {ElimStr}</value>
+  </data>
+  <data name="UniquenessClueCoverType2" xml:space="preserve">
+    <value>Uniqueness Clue Cover Type 2</value>
+  </data>
 </root>

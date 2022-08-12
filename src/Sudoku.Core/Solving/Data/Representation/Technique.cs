@@ -1126,6 +1126,11 @@ public enum Technique : short
 	BivalueUniversalGraveXyWing,
 
 	/// <summary>
+	/// Indicates the uniqueness clue cover type 2.
+	/// </summary>
+	UniquenessClueCoverType2,
+
+	/// <summary>
 	/// Indicates unique polygon type 1.
 	/// </summary>
 	UniquePolygonType1,

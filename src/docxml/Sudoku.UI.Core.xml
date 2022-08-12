@@ -1105,6 +1105,74 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.CellViewNodeShape.GetControl">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape">
+            <summary>
+            Defines a chute view node shape.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape._isVisibleTable">
+            <summary>
+            Indicates the visible table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape._identifiers">
+            <summary>
+            Indicates the color identifiers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape._gridLayout">
+            <summary>
+            Indicates the grid layout.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape._rectangles">
+            <summary>
+            Indicates the inner rectangles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape._preference">
+            <summary>
+            Indicates the user preference instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape.Preference">
+            <summary>
+            Indicates the user preference instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape.SetIsVisible(System.Int32,System.Boolean)">
+            <summary>
+            Sets the visibility at the specified house.
+            </summary>
+            <param name="house">The house.</param>
+            <param name="isVisible">The visibility.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape.SetIdentifier(System.Int32,Sudoku.Presentation.Identifier)">
+            <summary>
+            Sets the color identifier at the specified house.
+            </summary>
+            <param name="house">The house.</param>
+            <param name="colorIdentifier">The color identifier.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape.GetVisible(System.Int32)">
+            <summary>
+            Gets the visibility at the specified house.
+            </summary>
+            <param name="house">The house.</param>
+            <returns>The visibility.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.ChuteViewNodeShape.GetControl">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElement">
             <summary>
             Defines a drawing element that represents a sudoku information.
@@ -2443,6 +2511,11 @@
             Indicates the house view node shapes.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._chuteViewNodeShape">
+            <summary>
+            Indicates the chute view node shapes.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._displayableUnit">
             <summary>
             Indicates the current displayable unit to be displayed.
@@ -2618,6 +2691,12 @@
             </summary>
             <param name="houseViewNode">The house view node.</param>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetChuteViewNode(Sudoku.Presentation.Nodes.ChuteViewNode)">
+            <summary>
+            Sets the chute view node.
+            </summary>
+            <param name="chuteViewNode">The chute view node.</param>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetUnknownViewNode(Sudoku.Presentation.Nodes.UnknownViewNode)">
             <summary>
             Sets the unknown view node.
@@ -2652,6 +2731,12 @@
             Clears the house view node.
             </summary>
             <param name="houseIndex">The house index.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ClearChuteViewNode(System.Int32)">
+            <summary>
+            Clears the chute view node.
+            </summary>
+            <param name="chuteIndex">The chute index.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>

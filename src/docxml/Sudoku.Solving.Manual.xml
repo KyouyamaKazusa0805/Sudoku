@@ -2167,6 +2167,59 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.Options">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniquenessClueCoverStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <inheritdoc/>
+            <remarks>
+            <para><b>Developer notes</b></para>
+            <para>
+            The technique is very complex that I cannot enumerate all possible cases.
+            Here I only give you some cases that satisfy the pattern:
+            <see href="http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html">this link</see>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniquenessClueCoverStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Checks for the type 1. The sketch is like:
+            <code><![CDATA[
+            +----------+------------+----------+
+            | *1  .  . | *4   .   . | *5 -3 -3 |
+            | *2  .  . | *1 -35 -35 | *4  .  . |
+            | *3 -5 -5 | *2   .   . | *1  .  . |
+            +----------+------------+----------+
+            ]]></code>
+            In the sketch, the notation <c>*n</c> means the value cell is filled with that digit <c>n</c>,
+            and the notation <c>-n</c> means the digit <c>n</c> is the elimination.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniquenessClueCoverStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Checks for the type 2. The sketch is like:
+            <code><![CDATA[
+            +----------+---------+----------+
+            |  .  .  . | .  .  . | *1  .  . |
+            | =1  .  . | .  .  . | =2  .  . |
+            | *2  .  . | .  .  . |  .  .  . |
+            +----------+---------+----------+
+            ]]></code>
+            In the sketch, the notation <c>*n</c> means the value cell is filled with that digit <c>n</c>,
+            and the notation <c>=n</c> means the digit <c>n</c> is the correct value.
+            <para>
+            The test examples:
+            <list type="bullet">
+            <item>
+            <c>000000000000000002000001000001030040005607300030020008002060500650008904900400007</c>
+            </item>
+            <item>
+            <c>000000000000000001000002000002300400005600017080009003040+20700805310070072095006+4:815 816 825 826 835 977 978 981</c>
+            </item>
+            </list>
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.UniquenessClueCoverStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -3245,6 +3298,15 @@
             <param name="loopCells">The loop cells.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IUniquenessClueCoverStepSearcher">
+            <summary>
+            Provides with a <b>Uniqueness Clue Cover</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Uniqueness Clue Cover</item>
+            </list>
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniquePolygonStepSearcher">
             <summary>
             Provides with a <b>Unique Polygon</b> step searcher.
@@ -4158,6 +4220,96 @@
             <summary>
             Indicates the dynamic double forcing chains.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep">
+            <summary>
+            Provides with a step that is a <b>Unique Clue Cover</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@)">
+            <summary>
+            Provides with a step that is a <b>Unique Clue Cover</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.ExtraCells">
+            <summary>Indicates the extra cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.Type">
+            <summary>
+            Indicates the type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.UniquenessClueCoverType2Step">
+            <summary>
+            Provides with a step that is a <b>Unique Clue Cover Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1">Indicates the first digit.</param>
+            <param name="Digit2">Indicates the second digit.</param>
+            <param name="Cell1">Indicates the first cell used.</param>
+            <param name="Cell2">Indicates the second cell used.</param>
+            <param name="ChuteIndex">Indicates the global chute index.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.UniquenessClueCoverType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Clue Cover Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1">Indicates the first digit.</param>
+            <param name="Digit2">Indicates the second digit.</param>
+            <param name="Cell1">Indicates the first cell used.</param>
+            <param name="Cell2">Indicates the second cell used.</param>
+            <param name="ChuteIndex">Indicates the global chute index.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverType2Step.Digit1">
+            <summary>Indicates the first digit.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverType2Step.Digit2">
+            <summary>Indicates the second digit.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverType2Step.Cell1">
+            <summary>Indicates the first cell used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverType2Step.Cell2">
+            <summary>Indicates the second cell used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverType2Step.ChuteIndex">
+            <summary>Indicates the global chute index.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverType2Step.Rarity">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatternStep">
             <summary>

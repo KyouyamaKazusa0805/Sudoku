@@ -1697,4 +1697,11 @@
   <data name="Comma" xml:space="preserve">
     <value>，</value>
   </data>
+  <data name="TechniqueFormat_UniquenessClueCoverType2Step" xml:space="preserve">
+    <value>{Name}：列举第 {ChuteIndexStr} 并排三宫（即 {HousesStr} 这些区域）的全部填数情况，可以发现仍有两个数字无法覆盖 =&gt; {ElimStr}</value>
+  </data>
+  <data name="UniquenessClueCoverType2" xml:space="preserve">
+    <value>唯一性确定值覆盖类型 2</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

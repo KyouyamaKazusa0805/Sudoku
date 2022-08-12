@@ -4009,6 +4009,55 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.ChuteViewNode">
+            <summary>
+            Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/> instance via the identifier and the highlight chute.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="chuteIndex">The chute index.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.IsRow">
+            <summary>
+            Indicates whether the chute is in a row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.ChuteIndex">
+            <summary>
+            Indicates the chute index. The value can be between 0 and 5.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.HousesMask">
+            <summary>
+            <para>
+            Indicates a <see cref="T:System.Int16"/> mask that represents for the houses used.
+            The result mask is a 27-bit digit that represents every possible houses using cases.
+            </para>
+            <para>
+            Please note that the first 9-bit always keep the zero value because they is reserved bits
+            for block houses, but all chutes don't use them.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.HouseViewNode">
             <summary>
             Defines a view node that highlights for a house.
@@ -6229,6 +6278,11 @@
               Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the conjugate pair {ConjStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniquenessClueCoverType2Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Enumerates all possible cases filling the chute {ChuteIndexStr} (i.e. houses {HousesStr}), we can find two digits that cannot cover =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniquePolygonType1Step">
             <summary>
               Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} =&gt; {ElimStr}.
@@ -6377,6 +6431,11 @@
         <member name="P:Sudoku.Resources.Resources.UniqueLoopType4">
             <summary>
               Looks up a localized string similar to Unique Loop Type 4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.UniquenessClueCoverType2">
+            <summary>
+              Looks up a localized string similar to Uniqueness Clue Cover Type 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UniquePolygonType1">
@@ -6860,6 +6919,11 @@
             is the 40th cell in the grid (i.e. the cell <c>r5c5</c>).
             </remarks>
         </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.ChuteHouses">
+            <summary>
+            Indicates the chute houses.
+            </summary>
+        </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.SubsetNames">
             <summary>
             <para>The names of all subsets by their sizes.</para>
@@ -6898,6 +6962,11 @@
             Indicates the peer maps using <see cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Peers"/> table.
             </summary>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Peers"/>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Chutes">
+            <summary>
+            Indicates the chute maps.
+            </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.HouseTypes">
             <summary>
@@ -9627,6 +9696,11 @@
             Indicates bi-value universal grave XY-Wing.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquenessClueCoverType2">
+            <summary>
+            Indicates the uniqueness clue cover type 2.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquePolygonType1">
             <summary>
             Indicates unique polygon type 1.
@@ -10151,6 +10225,11 @@
         <member name="F:Sudoku.Solving.Data.Representation.TechniqueGroup.ReverseBivalueUniversalGrave">
             <summary>
             Indicates the reverse bi-value universal grave (Reverse BUG) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.TechniqueGroup.UniquenessClueCover">
+            <summary>
+            Indicates the uniqueness clue cover.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.TechniqueGroup.DeadlyPattern">

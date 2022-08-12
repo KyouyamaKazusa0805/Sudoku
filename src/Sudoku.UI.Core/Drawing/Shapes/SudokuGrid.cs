@@ -120,6 +120,11 @@ public sealed class SudokuGrid : DrawingElement
 	private HouseViewNodeShape _houseViewNodeShape = null!;
 
 	/// <summary>
+	/// Indicates the chute view node shapes.
+	/// </summary>
+	private ChuteViewNodeShape _chuteViewNodeShape = null!;
+
+	/// <summary>
 	/// Indicates the current displayable unit to be displayed.
 	/// </summary>
 	private IDisplayable? _displayableUnit;
@@ -357,7 +362,7 @@ public sealed class SudokuGrid : DrawingElement
 		get => _preference;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[MemberNotNull(nameof(_preference), nameof(_focusedRectangle), nameof(_houseViewNodeShape))]
+		[MemberNotNull(nameof(_preference), nameof(_focusedRectangle), nameof(_houseViewNodeShape), nameof(_chuteViewNodeShape))]
 		init
 		{
 			_preference = value;
@@ -373,8 +378,15 @@ public sealed class SudokuGrid : DrawingElement
 
 			_houseViewNodeShape = new() { Preference = value };
 			Array.ForEach(Houses, house => _houseViewNodeShape.SetIsVisible(house, false));
-			_gridLayout.Children.Add(
+			_gridLayout.AddChildren(
 				_houseViewNodeShape.GetControl()
+					.WithGridLayout(rowSpan: 9, columnSpan: 9)
+			);
+
+			_chuteViewNodeShape = new() { Preference = value };
+			Array.ForEach(new[] { 0, 1, 2, 3, 4, 5 }, chuteIndex => _chuteViewNodeShape.SetIsVisible(chuteIndex, false));
+			_gridLayout.AddChildren(
+				_chuteViewNodeShape.GetControl()
 					.WithGridLayout(rowSpan: 9, columnSpan: 9)
 			);
 
@@ -842,6 +854,23 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
+	/// Sets the chute view node.
+	/// </summary>
+	/// <param name="chuteViewNode">The chute view node.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetChuteViewNode(ChuteViewNode chuteViewNode)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		int chuteIndex = chuteViewNode.ChuteIndex;
+		_chuteViewNodeShape.SetIsVisible(chuteIndex, true);
+		_chuteViewNodeShape.SetIdentifier(chuteIndex, chuteViewNode.Identifier);
+	}
+
+	/// <summary>
 	/// Sets the unknown view node.
 	/// </summary>
 	/// <param name="unknownViewNode">The unknown view node.</param>
@@ -896,6 +925,7 @@ public sealed class SudokuGrid : DrawingElement
 		Array.ForEach(_cellViewNodeShapes, static s => s.IsVisible = false);
 		Array.ForEach(_candidateViewNodeShapes, static s => Array.ForEach(Digits, d => s.SetIsVisible(d, false)));
 		Array.ForEach(Houses, house => _houseViewNodeShape.SetIsVisible(house, false));
+		Array.ForEach(new[] { 0, 1, 2, 3, 4, 5 }, index => _chuteViewNodeShape.SetIsVisible(index, false));
 		_linkViewNodeShapes.ForEach(link => _gridLayout.RemoveChildren(link.GetControl()));
 		Array.ForEach(_unknownValueViewNodeShapes, static s => s.SetVisibilityCollapsed());
 	}
@@ -943,6 +973,21 @@ public sealed class SudokuGrid : DrawingElement
 		}
 
 		_houseViewNodeShape.SetIsVisible(houseIndex, false);
+	}
+
+	/// <summary>
+	/// Clears the chute view node.
+	/// </summary>
+	/// <param name="chuteIndex">The chute index.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ClearChuteViewNode(int chuteIndex)
+	{
+		if (_isMaskMode)
+		{
+			return;
+		}
+
+		_chuteViewNodeShape.SetIsVisible(chuteIndex, false);
 	}
 
 	/// <inheritdoc/>
@@ -1086,6 +1131,11 @@ public sealed class SudokuGrid : DrawingElement
 				case HouseViewNode houseViewNode:
 				{
 					SetHouseViewNode(houseViewNode);
+					break;
+				}
+				case ChuteViewNode chuteViewNode:
+				{
+					SetChuteViewNode(chuteViewNode);
 					break;
 				}
 				case LinkViewNode linkViewNode:
