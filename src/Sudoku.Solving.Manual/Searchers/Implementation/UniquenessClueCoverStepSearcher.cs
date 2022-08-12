@@ -14,34 +14,11 @@ internal sealed partial class UniquenessClueCoverStepSearcher : IUniquenessClueC
 	/// </remarks>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		if (CheckType1(accumulator, grid, onlyFindOne) is { } type1Step)
-		{
-			return type1Step;
-		}
 		if (CheckType2(accumulator, grid, onlyFindOne) is { } type2Step)
 		{
 			return type2Step;
 		}
 
-		return null;
-	}
-
-	/// <summary>
-	/// Checks for the type 1. The sketch is like:
-	/// <code><![CDATA[
-	/// +----------+------------+----------+
-	/// | *1  .  . | *4   .   . | *5 -3 -3 |
-	/// | *2  .  . | *1 -35 -35 | *4  .  . |
-	/// | *3 -5 -5 | *2   .   . | *1  .  . |
-	/// +----------+------------+----------+
-	/// ]]></code>
-	/// In the sketch, the notation <c>*n</c> means the value cell is filled with that digit <c>n</c>,
-	/// and the notation <c>-n</c> means the digit <c>n</c> is the elimination.
-	/// </summary>
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	private IStep? CheckType1(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
-	{
-		// TODO: Implement this.
 		return null;
 	}
 

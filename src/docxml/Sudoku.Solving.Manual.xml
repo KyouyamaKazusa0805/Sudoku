@@ -2178,20 +2178,6 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniquenessClueCoverStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Checks for the type 1. The sketch is like:
-            <code><![CDATA[
-            +----------+------------+----------+
-            | *1  .  . | *4   .   . | *5 -3 -3 |
-            | *2  .  . | *1 -35 -35 | *4  .  . |
-            | *3 -5 -5 | *2   .   . | *1  .  . |
-            +----------+------------+----------+
-            ]]></code>
-            In the sketch, the notation <c>*n</c> means the value cell is filled with that digit <c>n</c>,
-            and the notation <c>-n</c> means the digit <c>n</c> is the elimination.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniquenessClueCoverStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Checks for the type 2. The sketch is like:
