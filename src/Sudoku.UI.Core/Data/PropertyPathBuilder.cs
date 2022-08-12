@@ -42,6 +42,14 @@ public ref partial struct PropertyPathBuilder
 	/// The name of the property. Generally using <see langword="nameof"/> expression is okay.
 	/// </param>
 	/// <returns>The current instance. This return value and be used as chaining invocations.</returns>
+	/// <remarks>
+	/// For example, if the method invocation is <c><![CDATA[AppendProperty<Path>(nameof(Path.Data))]]></c>,
+	/// the expanded property path will be <c>(Path.Data)</c>. Please note that the argument is always
+	/// a <see langword="nameof"/> expression, due to C# language design, the <see langword="nameof"/>
+	/// expression will only keep the property name part <c>Data</c> as the string result instead of
+	/// the full name <c>Path.Data</c>. This is why we should use an extra generic type parameter
+	/// to expand the property path.
+	/// </remarks>
 	/// <exception cref="InvalidOperationException">
 	/// Throws when generic type argument <typeparamref name="T"/> is a generic type.
 	/// </exception>
