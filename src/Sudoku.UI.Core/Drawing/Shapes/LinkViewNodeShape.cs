@@ -165,13 +165,11 @@ file sealed class PathConstructor
 	/// <param name="nodes">The link view nodes.</param>
 	/// <param name="pointPairs">The point pairs that are used for animate the line.</param>
 	/// <returns>A <see cref="Shape"/> instance.</returns>
-	public IEnumerable<Shape> CreateLinks(
-		LinkViewNode[] nodes,
-		out IList<(Path, (Point, Point), PathKind)> pointPairs)
+	public IEnumerable<Shape> CreateLinks(LinkViewNode[] nodes, out IList<PointPairData> pointPairs)
 	{
 		var points = getPoints(nodes);
 		var result = new List<Shape>();
-		pointPairs = new List<(Path, (Point, Point), PathKind)>();
+		pointPairs = new List<PointPairData>();
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		double cs = PointConversions.CandidateSize(PaneSize, OutsideOffset);
@@ -207,7 +205,7 @@ file sealed class PathConstructor
 							)
 					);
 				result.Add(shape);
-				pointPairs.Add((shape, (pt1, pt2), PathKind.Straight));
+				pointPairs.Add(new(shape, (pt1, pt2), PathKind.Straight));
 			}
 			else
 			{
@@ -293,7 +291,7 @@ file sealed class PathConstructor
 								)
 						);
 					result.Add(shape);
-					pointPairs.Add((shape, (pt1, pt2), PathKind.Curve));
+					pointPairs.Add(new(shape, (pt1, pt2), PathKind.Curve));
 				}
 				else
 				{
@@ -314,7 +312,7 @@ file sealed class PathConstructor
 								)
 						);
 					result.Add(shape);
-					pointPairs.Add((shape, (pt1, pt2), PathKind.Straight));
+					pointPairs.Add(new(shape, (pt1, pt2), PathKind.Straight));
 				}
 			}
 
@@ -496,3 +494,13 @@ file enum PathKind
 	/// </summary>
 	Curve
 }
+
+/// <summary>
+/// Defines a point pair data.
+/// </summary>
+/// <param name="Path">
+/// The path instance. The path can be a normal straight line or a curve (e.g. a Bezier curve).
+/// </param>
+/// <param name="PointPair">The start and end point of the line.</param>
+/// <param name="Kind">The point kind.</param>
+file readonly record struct PointPairData(Path Path, (Point Start, Point End) PointPair, PathKind Kind);

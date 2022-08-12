@@ -2192,7 +2192,7 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.PathConstructor.Preference">
             <inheritdoc cref="P:Sudoku.UI.Drawing.Shapes.LinkViewNodeShape.Preference"/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.PathConstructor.CreateLinks(Sudoku.Presentation.Nodes.LinkViewNode[],System.Collections.Generic.IList{System.ValueTuple{Microsoft.UI.Xaml.Shapes.Path,System.ValueTuple{Windows.Foundation.Point,Windows.Foundation.Point},Sudoku.UI.Drawing.Shapes.PathKind}}@)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.PathConstructor.CreateLinks(Sudoku.Presentation.Nodes.LinkViewNode[],System.Collections.Generic.IList{Sudoku.UI.Drawing.Shapes.PointPairData}@)">
             <summary>
             Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
             </summary>
@@ -2214,6 +2214,37 @@
             <summary>
             Indicates the line is a curve (Bezier).
             </summary>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.PointPairData">
+            <summary>
+            Defines a point pair data.
+            </summary>
+            <param name="Path">
+            The path instance. The path can be a normal straight line or a curve (e.g. a Bezier curve).
+            </param>
+            <param name="PointPair">The start and end point of the line.</param>
+            <param name="Kind">The point kind.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.PointPairData.#ctor(Microsoft.UI.Xaml.Shapes.Path,System.ValueTuple{Windows.Foundation.Point,Windows.Foundation.Point},Sudoku.UI.Drawing.Shapes.PathKind)">
+            <summary>
+            Defines a point pair data.
+            </summary>
+            <param name="Path">
+            The path instance. The path can be a normal straight line or a curve (e.g. a Bezier curve).
+            </param>
+            <param name="PointPair">The start and end point of the line.</param>
+            <param name="Kind">The point kind.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.PointPairData.Path">
+            <summary>
+            The path instance. The path can be a normal straight line or a curve (e.g. a Bezier curve).
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.PointPairData.PointPair">
+            <summary>The start and end point of the line.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.PointPairData.Kind">
+            <summary>The point kind.</summary>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">
             <summary>
