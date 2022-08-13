@@ -127,7 +127,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 
 									var elimMapIsolated = Cells.Empty;
 									int digitIsolated = TrailingZeroCount(maskIsolated);
-									if (digitIsolated != InvalidFirstSet)
+									if (digitIsolated != InvalidValidOfTrailingZeroCountMethodFallback)
 									{
 										elimMapIsolated = (
 											cannibalMode

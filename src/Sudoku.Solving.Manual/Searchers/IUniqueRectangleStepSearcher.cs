@@ -1166,8 +1166,8 @@ unsafe partial class UniqueRectangleStepSearcher
 			int digit = p[digitIndex];
 			var map1 = Cells.Empty + abzCell + abxCell;
 			var map2 = Cells.Empty + abzCell + abyCell;
-			if (map1.CoveredLine is not (var m1cl and not InvalidFirstSet)
-				|| map2.CoveredLine is not (var m2cl and not InvalidFirstSet))
+			if (map1.CoveredLine is not (var m1cl and not InvalidValidOfTrailingZeroCountMethodFallback)
+				|| map2.CoveredLine is not (var m2cl and not InvalidValidOfTrailingZeroCountMethodFallback))
 			{
 				// There's no common covered line to display.
 				continue;
@@ -3354,7 +3354,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			var elimMapIsolated = Cells.Empty;
 			int digitIsolated = TrailingZeroCount(maskIsolated);
-			if (digitIsolated != InvalidFirstSet)
+			if (digitIsolated != InvalidValidOfTrailingZeroCountMethodFallback)
 			{
 				elimMapIsolated = (
 					cannibalMode
@@ -3554,7 +3554,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				// Check all bi-value cells.
 				foreach (int bivalueCellToCheck in bivalueCellsToCheck)
 				{
-					if ((Cells.Empty + bivalueCellToCheck + targetCell).CoveredLine != InvalidFirstSet)
+					if ((Cells.Empty + bivalueCellToCheck + targetCell).CoveredLine != InvalidValidOfTrailingZeroCountMethodFallback)
 					{
 						// 'targetCell' and 'bivalueCellToCheck' can't lie on a same line.
 						continue;
@@ -3568,7 +3568,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 					int urCellInSameBlock = ((HouseMaps[block] & cells) - targetCell)[0];
 					int coveredLine = (Cells.Empty + bivalueCellToCheck + urCellInSameBlock).CoveredLine;
-					if (coveredLine == InvalidFirstSet)
+					if (coveredLine == InvalidValidOfTrailingZeroCountMethodFallback)
 					{
 						// The bi-value cell 'bivalueCellToCheck' should be lie on a same house
 						// as 'urCellInSameBlock'.

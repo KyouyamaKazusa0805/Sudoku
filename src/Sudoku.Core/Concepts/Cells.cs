@@ -219,9 +219,9 @@ public unsafe struct Cells :
 	/// Indicates the covered line.
 	/// </summary>
 	/// <remarks>
-	/// If the covered house can't be found, it'll return <see cref="InvalidFirstSet"/>.
+	/// If the covered house can't be found, it'll return <see cref="InvalidValidOfTrailingZeroCountMethodFallback"/>.
 	/// </remarks>
-	/// <seealso cref="InvalidFirstSet"/>
+	/// <seealso cref="InvalidValidOfTrailingZeroCountMethodFallback"/>
 	public readonly int CoveredLine
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

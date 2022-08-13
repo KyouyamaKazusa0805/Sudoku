@@ -6,17 +6,19 @@
 public static class CommonReadOnlies
 {
 	/// <summary>
-	/// Indicates the invalid first set value
-	/// after called <see cref="TrailingZeroCount(int)"/> and <see cref="TrailingZeroCount(uint)"/>.
+	/// Indicates the invalid fallback value
+	/// of methods <see cref="TrailingZeroCount(int)"/> and <see cref="TrailingZeroCount(uint)"/>,
+	/// which means that if the method returns an invalid value, that value must be equal to this.
+	/// In other words, you can use this field to check whether the method invocation executes correctly.
 	/// </summary>
 	/// <remarks>
 	/// For more details you want to learn about, please visit
-	/// <see href="https://github.com/dotnet/runtime/blob/a67d5680186ead0c9afdab7e004389c979d5fc1f/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L467">this link</see>
+	/// <see href="https://github.com/dotnet/runtime/blob/bff7c3d522cfd6845d8452544ef2d4b81d1e5fb4/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L555">this link</see>
 	/// to get the inner code.
 	/// </remarks>
 	/// <seealso cref="TrailingZeroCount(int)"/>
 	/// <seealso cref="TrailingZeroCount(uint)"/>
-	public const int InvalidFirstSet = 32;
+	public const int InvalidValidOfTrailingZeroCountMethodFallback = 32;
 
 	/// <summary>
 	/// Indicates the total number of unique square patterns.

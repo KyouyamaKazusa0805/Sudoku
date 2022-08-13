@@ -60,7 +60,7 @@ public interface IAlmostLockedSetsStepSearcher : IStepSearcher
 						new(
 							digitsMask,
 							map,
-							houseIndex < 9 && coveredLine is >= 9 and not InvalidFirstSet
+							houseIndex < 9 && coveredLine is >= 9 and not InvalidValidOfTrailingZeroCountMethodFallback
 								? ((HouseMaps[houseIndex] | HouseMaps[coveredLine]) & EmptyCells) - map
 								: tempMap - map
 						)
