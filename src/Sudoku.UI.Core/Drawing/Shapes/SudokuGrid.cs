@@ -20,6 +20,11 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private static readonly int[] Houses = Enumerable.Range(0, 27).ToArray();
 
+	/// <summary>
+	/// Indicates the chute indices.
+	/// </summary>
+	private static readonly int[] ChuteIndices = { 0, 1, 2, 3, 4, 5 };
+
 
 	/// <summary>
 	/// Indicates the inner grid layout control.
@@ -384,7 +389,7 @@ public sealed class SudokuGrid : DrawingElement
 			);
 
 			_chuteViewNodeShape = new() { Preference = value };
-			Array.ForEach(new[] { 0, 1, 2, 3, 4, 5 }, chuteIndex => _chuteViewNodeShape.SetIsVisible(chuteIndex, false));
+			Array.ForEach(ChuteIndices, index => _chuteViewNodeShape.SetIsVisible(index, false));
 			_gridLayout.AddChildren(
 				_chuteViewNodeShape.GetControl()
 					.WithGridLayout(rowSpan: 9, columnSpan: 9)
@@ -925,7 +930,7 @@ public sealed class SudokuGrid : DrawingElement
 		Array.ForEach(_cellViewNodeShapes, static s => s.IsVisible = false);
 		Array.ForEach(_candidateViewNodeShapes, static s => Array.ForEach(Digits, d => s.SetIsVisible(d, false)));
 		Array.ForEach(Houses, house => _houseViewNodeShape.SetIsVisible(house, false));
-		Array.ForEach(new[] { 0, 1, 2, 3, 4, 5 }, index => _chuteViewNodeShape.SetIsVisible(index, false));
+		Array.ForEach(ChuteIndices, index => _chuteViewNodeShape.SetIsVisible(index, false));
 		_linkViewNodeShapes.ForEach(link => _gridLayout.RemoveChildren(link.GetControl()));
 		Array.ForEach(_unknownValueViewNodeShapes, static s => s.SetVisibilityCollapsed());
 	}

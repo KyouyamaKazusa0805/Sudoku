@@ -2416,6 +2416,11 @@
             Indicates the house labels.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid.ChuteIndices">
+            <summary>
+            Indicates the chute indices.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._gridLayout">
             <summary>
             Indicates the inner grid layout control.
