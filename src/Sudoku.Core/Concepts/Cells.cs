@@ -1181,11 +1181,21 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <<(scoped in Cells left, scoped in Cells right) => left - right is [];
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Determines whether two <see cref="Cells"/> instances are considered equal.
+	/// </summary>
+	/// <param name="left">The first instance to be compared.</param>
+	/// <param name="right">The second instance to be compared.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether they are equal.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(scoped in Cells left, scoped in Cells right) => left.Equals(right);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Determines whether two <see cref="Cells"/> instances are not totally equal.
+	/// </summary>
+	/// <param name="left">The first instance to be compared.</param>
+	/// <param name="right">The second instance to be compared.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether they are not equal.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(scoped in Cells left, scoped in Cells right) => !(left == right);
 
