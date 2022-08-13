@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers;
+﻿namespace Sudoku.Solving.Manual.Searchers.Specialized;
 
 /// <summary>
 /// Defines a step searcher that searches for unique loop or bi-value oddagon steps.
@@ -56,7 +56,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 					// Incomplete ULs can't be found at present.
 					short nextCellMask = grid.GetCandidates(nextCell);
 					exDigitsMask |= nextCellMask;
-					exDigitsMask &= (short)~((1 << d1) | (1 << d2));
+					exDigitsMask &= (short)~(1 << d1 | 1 << d2);
 					int digitsCount = PopCount((uint)nextCellMask);
 
 					// We can continue if:

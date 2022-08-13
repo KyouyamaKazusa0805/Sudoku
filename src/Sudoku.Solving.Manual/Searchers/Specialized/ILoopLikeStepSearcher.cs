@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers;
+﻿namespace Sudoku.Solving.Manual.Searchers.Specialized;
 
 /// <summary>
 /// Defines a step searcher that searches for loop-like steps.
