@@ -61,7 +61,7 @@ internal sealed record BivalueUniversalGraveType3Step(
 	internal string SizeStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => SubsetNames[Size].ToLower(null);
+		get => R[$"SubsetNames{Size}"]!;
 	}
 
 	[FormatItem]

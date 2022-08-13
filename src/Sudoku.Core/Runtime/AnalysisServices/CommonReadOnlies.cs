@@ -310,7 +310,7 @@ public static class CommonReadOnlies
 	/// <summary>
 	/// All possible blocks combinations being reserved for chromatic pattern searcher's usages.
 	/// </summary>
-	public static readonly short[] ChromaticPatternBlocksCombinations = new short[]
+	public static readonly short[] ChromaticPatternBlocksCombinations =
 	{
 		0b000_011_011, 0b000_101_101, 0b000_110_110,
 		0b011_000_011, 0b101_000_101, 0b110_000_110,
@@ -351,41 +351,9 @@ public static class CommonReadOnlies
 	};
 
 	/// <summary>
-	/// <para>The names of all subsets by their sizes.</para>
-	/// <para>
-	/// For example, if you want to get the name of the size 3, the code will be
-	/// <code><![CDATA[string name = SubsetNames[3];]]></code>
-	/// Here the digit <c>3</c> is the size you want to get.
-	/// </para>
-	/// </summary>
-	public static readonly string[] SubsetNames =
-	{
-		string.Empty, "Single", "Pair", "Triple", "Quadruple",
-		"Quintuple", "Sextuple", "Septuple"
-	};
-
-	/// <summary>
 	/// The names of all fishes by their sizes.
 	/// </summary>
-	public static readonly string[] FishNames =
-	{
-		string.Empty, "Cyclopsfish", "X-Wing", "Swordfish", "Jellyfish",
-		"Squirmbag", "Whale", "Leviathan"
-	};
-
-	/// <summary>
-	/// <para>The names of all regular wings by their sizes.</para>
-	/// <para>
-	/// For example, if you want to get the name of the size 3, the code will be
-	/// <code><![CDATA[string name = RegularWingNames[3];]]></code>
-	/// Here the digit <c>3</c> is the size you want to get.
-	/// </para>
-	/// </summary>
-	public static readonly string[] RegularWingNames =
-	{
-		string.Empty, string.Empty, string.Empty, string.Empty, "WXYZ-Wing", "VWXYZ-Wing",
-		"UVWXYZ-Wing", "TUVWXYZ-Wing", "STUVWXYZ-Wing", "RSTUVWXYZ-Wing"
-	};
+	public static readonly string[] FishNames = { string.Empty, "Cyclopsfish", "X-Wing", "Swordfish", "Jellyfish", "Squirmbag", "Whale", "Leviathan" };
 
 	/// <summary>
 	/// Indicates all grid maps that a grid contains.
@@ -467,7 +435,6 @@ public static class CommonReadOnlies
 		18, 19, 20, 21, 22, 23, 24, 25, 26
 	};
 
-#pragma warning disable IDE0230
 	/// <summary>
 	/// <para>The table of all blocks to iterate for each blocks.</para>
 	/// <para>
@@ -496,7 +463,6 @@ public static class CommonReadOnlies
 		new byte[] {  5,  8 }, new byte[] {  2,  8 }, new byte[] {  2,  5 },
 		new byte[] {  5,  8 }, new byte[] {  2,  8 }, new byte[] {  2,  5 },
 	};
-#pragma warning restore IDE0230
 
 	/// <summary>
 	/// Indicates the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.

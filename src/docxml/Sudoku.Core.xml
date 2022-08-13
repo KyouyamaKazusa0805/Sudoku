@@ -6936,29 +6936,9 @@
             Indicates the chute houses.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.SubsetNames">
-            <summary>
-            <para>The names of all subsets by their sizes.</para>
-            <para>
-            For example, if you want to get the name of the size 3, the code will be
-            <code><![CDATA[string name = SubsetNames[3];]]></code>
-            Here the digit <c>3</c> is the size you want to get.
-            </para>
-            </summary>
-        </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.FishNames">
             <summary>
             The names of all fishes by their sizes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.RegularWingNames">
-            <summary>
-            <para>The names of all regular wings by their sizes.</para>
-            <para>
-            For example, if you want to get the name of the size 3, the code will be
-            <code><![CDATA[string name = RegularWingNames[3];]]></code>
-            Here the digit <c>3</c> is the size you want to get.
-            </para>
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.HouseMaps">
