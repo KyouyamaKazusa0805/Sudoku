@@ -61,7 +61,6 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 			_ => throw new ArgumentOutOfRangeException(nameof(formattingMode))
 		};
 
-
 	/// <inheritdoc/>
 	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, string separator)
 	{

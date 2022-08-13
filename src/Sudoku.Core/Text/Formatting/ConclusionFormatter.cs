@@ -95,17 +95,18 @@ public abstract class ConclusionFormatter : ICollectionFormatter<Conclusion>
 		{
 			FormattingMode.Simple
 				=> EliminationNotation.ToCandidatesString(
-					new(from conclusion in conclusions select (conclusion.Cell * 9 + conclusion.Digit))
+					new(from conclusion in conclusions select conclusion.Cell * 9 + conclusion.Digit)
 				),
 			FormattingMode.Normal => Format(conclusions, R["Comma"]!, true),
 			FormattingMode.Full => throw new NotSupportedException("The full-formatting mode is not supported on conclusion collections."),
 			_ => throw new ArgumentOutOfRangeException(nameof(formattingMode))
 		};
 
-
+	/// <inheritdoc/>
 	static string ICollectionFormatter<Conclusion>.Format(IEnumerable<Conclusion> elements, string separator)
 		=> Format(elements.ToArray(), separator, false);
 
+	/// <inheritdoc/>
 	static string ICollectionFormatter<Conclusion>.Format(IEnumerable<Conclusion> elements, FormattingMode formattingMode)
 		=> Format(elements.ToArray(), formattingMode);
 }

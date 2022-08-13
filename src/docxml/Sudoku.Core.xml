@@ -12171,6 +12171,12 @@
             Throws when the argument <paramref name="formattingMode"/> is not defined.
             </exception>
         </member>
+        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Sudoku#Text#Formatting#ICollectionFormatter{Sudoku#Solving#Conclusion}#Format(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion},System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Sudoku#Text#Formatting#ICollectionFormatter{Sudoku#Solving#Conclusion}#Format(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion},Sudoku.Text.Formatting.FormattingMode)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Text.Formatting.DigitMaskFormatter">
             <summary>
             Provides with a formatter that can format a mask that represents for a list of digits.
