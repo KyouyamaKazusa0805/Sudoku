@@ -7,7 +7,8 @@
 	xmlns:c="using:Sudoku.UI.Views.Controls"
 	xmlns:data="using:Sudoku.UI.DataConversion"
 	xmlns:m="using:Sudoku.UI.Models"
-	mc:Ignorable="d">
+	mc:Ignorable="d"
+	NavigationCacheMode="Required">
 	<ScrollViewer>
 		<StackPanel>
 			<TextBlock Text="{StaticResource KeyboardPage_DetailDescription}" Margin="40,20,10,12" />

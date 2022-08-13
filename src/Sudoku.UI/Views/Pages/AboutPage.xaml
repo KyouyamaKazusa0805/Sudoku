@@ -7,7 +7,8 @@
 	xmlns:c="using:Sudoku.UI.Views.Controls"
 	xmlns:data="using:Sudoku.UI.DataConversion"
 	xmlns:m="using:Sudoku.UI.Models"
-	mc:Ignorable="d">
+	mc:Ignorable="d"
+	NavigationCacheMode="Required">
 	<ScrollViewer>
 		<StackPanel Margin="40,20,10,30" Spacing="4">
 			<StackPanel.ChildrenTransitions>

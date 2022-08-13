@@ -8,7 +8,8 @@
 	xmlns:data="using:Sudoku.UI.DataConversion"
 	xmlns:m="using:Sudoku.UI.Models"
 	xmlns:markup="using:Sudoku.UI.MarkupExtensions"
-	mc:Ignorable="d">
+	mc:Ignorable="d"
+	NavigationCacheMode="Required">
 	<Grid>
 		<GridView Margin="31,0,0,0" IsSwipeEnabled="False" SelectionMode="None">
 			<GridView.Header>
