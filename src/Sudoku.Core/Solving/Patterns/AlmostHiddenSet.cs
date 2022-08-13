@@ -28,10 +28,9 @@ public sealed class AlmostHiddenSet :
 		var tempDic = new Dictionary<int, Cells>(9);
 		for (int i = 0; i < digitsMap.Length; i++)
 		{
-			var currentDigitMap = digitsMap[i];
-			if (currentDigitMap is { } digitMapNotNull)
+			if (digitsMap[i] is { } digitMap)
 			{
-				tempDic.Add(i, digitMapNotNull);
+				tempDic.Add(i, digitMap);
 			}
 		}
 
@@ -112,6 +111,7 @@ public sealed class AlmostHiddenSet :
 	public override bool Equals(object? obj) => Equals(obj as AlmostHiddenSet);
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] AlmostHiddenSet? other)
 		=> other is not null && DigitsMask == other.DigitsMask && Map == other.Map;
 
