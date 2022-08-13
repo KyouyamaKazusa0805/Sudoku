@@ -18,7 +18,7 @@ public interface IExocetStepSearcher : IStepSearcher
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor'/>
-	static unsafe IExocetStepSearcher()
+	static IExocetStepSearcher()
 	{
 		int[,] s = { { 3, 4, 5, 6, 7, 8 }, { 0, 1, 2, 6, 7, 8 }, { 0, 1, 2, 3, 4, 5 } };
 		int[,] b =
@@ -47,7 +47,7 @@ public interface IExocetStepSearcher : IStepSearcher
 			{ 3, 6 }, { 0, 6 }, { 0, 3 }, { 4, 7 }, { 1, 7 }, { 1, 4 }, { 5, 8 }, { 2, 8 }, { 2, 5 }
 		};
 
-		int* t = stackalloc int[3];
+		var t = (stackalloc int[3]);
 		scoped var crossline = (stackalloc int[25]); // Only use [7..24].
 		int n = 0;
 		for (int i = 0; i < 18; i++)
