@@ -20,7 +20,7 @@ internal sealed record SueDeCoq3DimensionStep(
 	scoped in Cells RowCells,
 	scoped in Cells ColumnCells,
 	scoped in Cells BlockCells
-) : RankTheoryStep(Conclusions, Views), IStepWithRank
+) : NonnegativeRankStep(Conclusions, Views), IStepWithRank
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.5M;

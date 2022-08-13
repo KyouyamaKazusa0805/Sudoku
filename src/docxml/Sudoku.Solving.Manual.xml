@@ -3007,6 +3007,11 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.TemplateStepSearcher.Options">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IRankTheoryStepSearcher">
+            <summary>
+            Defines a step searcher that searches for rank theory steps.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IBivalueOddagonStepSearcher">
             <summary>
             <para>
@@ -3114,6 +3119,48 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.Options">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher">
+            <summary>
+            Provides with a <b>Guardian</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Guardian</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+            <summary>
+            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
+            </summary>
+            <param name="cells">The list of cells.</param>
+            <param name="offset">The offset. The default value is 4.</param>
+            <returns>All links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher.CreateGuardianMap(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@)">
+            <summary>
+            Create the guardian map.
+            </summary>
+            <param name="cell1">The first cell.</param>
+            <param name="cell2">The second cell.</param>
+            <param name="digit">The current digit.</param>
+            <param name="guardians">
+            The current guardian cells.
+            This map may not contain cells that lies in the house
+            that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
+            </param>
+            <returns>All guardians.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.INegativeRankStepSearcher">
+            <summary>
+            Defines a step searcher that searches for negative rank steps.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IDominoLoopStepSearcher">
             <summary>
             Provides with a <b>Domino Loop</b> step searcher.
@@ -3180,9 +3227,9 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IRankTheoryStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.INonnegativeRankStepSearcher">
             <summary>
-            Defines a step searcher that searches for rank theory steps.
+            Defines a step searcher that searches for non-negative rank steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ISueDeCoq3DimensionStepSearcher">
@@ -3244,43 +3291,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.Options">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher">
-            <summary>
-            Provides with a <b>Guardian</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Guardian</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
-            <summary>
-            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
-            </summary>
-            <param name="cells">The list of cells.</param>
-            <param name="offset">The offset. The default value is 4.</param>
-            <returns>All links.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher.CreateGuardianMap(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@)">
-            <summary>
-            Create the guardian map.
-            </summary>
-            <param name="cell1">The first cell.</param>
-            <param name="cell2">The second cell.</param>
-            <param name="digit">The current digit.</param>
-            <param name="guardians">
-            The current guardian cells.
-            This map may not contain cells that lies in the house
-            that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
-            </param>
-            <returns>All guardians.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.Options">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ISingleDigitPatternStepSearcher">
@@ -7769,6 +7779,82 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.GuardianStep">
+            <summary>
+            Provides with a step that is a <b>Guardian</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="Loop">Indicates the loop cells used.</param>
+            <param name="Guardians">Indicates the guardian cells used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.GuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+            <summary>
+            Provides with a step that is a <b>Guardian</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="Loop">Indicates the loop cells used.</param>
+            <param name="Guardians">Indicates the guardian cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Digit">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Loop">
+            <summary>Indicates the loop cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Guardians">
+            <summary>Indicates the guardian cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.IsNice">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Rank">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.GuardianStep.Equals(Sudoku.Solving.Manual.Steps.GuardianStep,Sudoku.Solving.Manual.Steps.GuardianStep)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.NegativeRankStep">
+            <summary>
+            Provides with a step that is a <b>Negative Rank</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.NegativeRankStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+            <summary>
+            Provides with a step that is a <b>Negative Rank</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.DominoLoopStep">
             <summary>
             Provides with a step that is a <b>Domino Loop</b> technique.
@@ -7855,34 +7941,19 @@
         <member name="P:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.RankTheoryStep">
+        <member name="T:Sudoku.Solving.Manual.Steps.NonnegativeRankStep">
             <summary>
-            Provides with a step that is a <b>Rank Theory</b> technique.
+            Provides with a step that is a <b>Non-negative Rank</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.RankTheoryStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Manual.Steps.NonnegativeRankStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
             <summary>
-            Provides with a step that is a <b>Rank Theory</b> technique.
+            Provides with a step that is a <b>Non-negative Rank</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.ShowDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.Stableness">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep">
             <summary>
@@ -8040,6 +8111,35 @@
         <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.RankTheoryStep">
+            <summary>
+            Provides with a step that is a <b>Rank Theory</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheoryStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+            <summary>
+            Provides with a step that is a <b>Rank Theory</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.Stableness">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.EmptyRectangleStep">
             <summary>
             Provides with a step that is an <b>Empty Rectangle</b> technique.
@@ -8085,65 +8185,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleStep.Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.GuardianStep">
-            <summary>
-            Provides with a step that is a <b>Guardian</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Digit"><inheritdoc/></param>
-            <param name="Loop">Indicates the loop cells used.</param>
-            <param name="Guardians">Indicates the guardian cells used.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.GuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
-            <summary>
-            Provides with a step that is a <b>Guardian</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Digit"><inheritdoc/></param>
-            <param name="Loop">Indicates the loop cells used.</param>
-            <param name="Guardians">Indicates the guardian cells used.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Loop">
-            <summary>Indicates the loop cells used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Guardians">
-            <summary>Indicates the guardian cells used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.IsNice">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Rank">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.GuardianStep.Equals(Sudoku.Solving.Manual.Steps.GuardianStep,Sudoku.Solving.Manual.Steps.GuardianStep)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.SingleDigitPatternStep">

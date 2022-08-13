@@ -19,7 +19,7 @@
 /// </para>
 /// </summary>
 /// <seealso cref="IAlternatingInferenceChainStepSearcher"/>
-public interface IBivalueOddagonStepSearcher : IRankTheoryStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
+public interface IBivalueOddagonStepSearcher : INegativeRankStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
 {
 }
 

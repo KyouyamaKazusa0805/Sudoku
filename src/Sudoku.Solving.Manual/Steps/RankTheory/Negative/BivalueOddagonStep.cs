@@ -14,7 +14,7 @@ internal abstract record BivalueOddagonStep(
 	scoped in Cells Loop,
 	int Digit1,
 	int Digit2
-) : RankTheoryStep(Conclusions, Views), IDistinctableStep<BivalueOddagonStep>, ILoopLikeStep, IStepWithRank
+) : NegativeRankStep(Conclusions, Views), IDistinctableStep<BivalueOddagonStep>, ILoopLikeStep, IStepWithRank
 {
 	/// <inheritdoc/>
 	public bool? IsNice => null;

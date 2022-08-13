@@ -15,7 +15,7 @@ internal sealed record GuardianStep(
 	scoped in Cells Loop,
 	scoped in Cells Guardians
 ) :
-	SingleDigitPatternStep(Conclusions, Views, Digit),
+	NegativeRankStep(Conclusions, Views),
 	IDistinctableStep<GuardianStep>,
 	ILoopLikeStep,
 	IStepWithRank,

@@ -14,7 +14,7 @@ internal abstract record ChromaticPatternStep(
 	int[] Blocks,
 	scoped in Cells Pattern,
 	short DigitsMask
-) : RankTheoryStep(Conclusions, Views), ILoopLikeStep, IStepWithRank
+) : NegativeRankStep(Conclusions, Views), ILoopLikeStep, IStepWithRank
 {
 	/// <inheritdoc/>
 	public bool? IsNice => null;

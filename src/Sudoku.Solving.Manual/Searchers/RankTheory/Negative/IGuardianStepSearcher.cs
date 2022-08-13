@@ -7,7 +7,7 @@
 /// <item>Guardian</item>
 /// </list>
 /// </summary>
-public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
+public interface IGuardianStepSearcher : INegativeRankStepSearcher
 {
 	/// <summary>
 	/// Converts all cells to the links that is used in drawing ULs or Reverse BUGs.

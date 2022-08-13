@@ -28,7 +28,7 @@ internal sealed record SueDeCoqStep(
 	scoped in Cells BlockCells,
 	scoped in Cells LineCells,
 	scoped in Cells IntersectionCells
-) : RankTheoryStep(Conclusions, Views), IStepWithRank, IStepWithPhasedDifficulty
+) : NonnegativeRankStep(Conclusions, Views), IStepWithRank, IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

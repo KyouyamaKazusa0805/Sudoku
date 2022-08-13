@@ -27,7 +27,7 @@
 /// For more information about a "chromatic pattern",
 /// please visit <see href="http://forum.enjoysudoku.com/chromatic-patterns-t39885.html">this link</see>.
 /// </remarks>
-public interface IChromaticPatternStepSearcher : IRankTheoryStepSearcher
+public interface IChromaticPatternStepSearcher : INegativeRankStepSearcher
 {
 	/// <summary>
 	/// The possible pattern offsets.

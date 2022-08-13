@@ -10,7 +10,7 @@ internal sealed record MultisectorLockedSetsStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells
-) : RankTheoryStep(Conclusions, Views), IStepWithRank, IStepWithPhasedDifficulty
+) : NonnegativeRankStep(Conclusions, Views), IStepWithRank, IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
