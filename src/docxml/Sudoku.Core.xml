@@ -9690,7 +9690,7 @@
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquenessClueCoverType2">
             <summary>
-            Indicates the uniqueness clue cover type 2.
+            Indicates uniqueness clue cover type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquePolygonType1">
