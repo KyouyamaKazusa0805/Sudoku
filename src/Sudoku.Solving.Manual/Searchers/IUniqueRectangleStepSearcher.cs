@@ -197,11 +197,11 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool AllowIncompleteUniqueRectangles { get; set; }
 
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool SearchForExtendedUniqueRectangles { get; set; }
 
 

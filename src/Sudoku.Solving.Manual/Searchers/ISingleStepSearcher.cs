@@ -32,15 +32,15 @@ public interface ISingleStepSearcher : IStepSearcher
 internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 {
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool EnableFullHouse { get; set; }
 
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool EnableLastDigit { get; set; }
 
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool HiddenSinglesInBlockFirst { get; set; }
 
 

@@ -27,7 +27,7 @@ public interface IRegularWingStepSearcher : IWingStepSearcher
 internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSearcher
 {
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public int MaxSize { get; set; }
 
 

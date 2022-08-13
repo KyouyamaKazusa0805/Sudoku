@@ -27,11 +27,11 @@ public interface IAlmostLockedSetsXzStepSearcher : IAlmostLockedSetsStepSearcher
 internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzStepSearcher
 {
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool AllowCollision { get; set; }
 
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool AllowLoopedPatterns { get; set; }
 
 

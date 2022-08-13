@@ -259,7 +259,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueUniversalGraveStepSearcher
 {
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool SearchExtendedTypes { get; set; }
 
 

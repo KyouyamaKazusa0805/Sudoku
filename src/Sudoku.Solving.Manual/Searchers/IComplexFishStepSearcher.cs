@@ -28,7 +28,7 @@ public interface IComplexFishStepSearcher : IFishStepSearcher
 internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSearcher
 {
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public int MaxSize { get; set; }
 
 

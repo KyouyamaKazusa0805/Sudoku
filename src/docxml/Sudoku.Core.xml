@@ -8297,7 +8297,7 @@
             Indicates the pointer that points to the down node.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Data.Binding.SearcherPropertyAttribute">
+        <member name="T:Sudoku.Solving.Data.Binding.StepSearcherPropertyAttribute">
             <summary>
             Defines an attribute that can be applied to a property in step searcher interface type,
             indicating the property is represented as a setting property, that can interact

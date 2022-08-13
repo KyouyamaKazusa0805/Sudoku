@@ -30,7 +30,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 
 
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public int MaxLength { get; set; }
 
 

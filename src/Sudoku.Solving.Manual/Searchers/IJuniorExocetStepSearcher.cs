@@ -15,7 +15,7 @@ public interface IJuniorExocetStepSearcher : IExocetStepSearcher
 internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetStepSearcher
 {
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool CheckAdvanced { get; set; }
 
 

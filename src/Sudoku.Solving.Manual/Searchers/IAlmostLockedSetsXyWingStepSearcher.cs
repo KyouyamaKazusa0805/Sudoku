@@ -19,7 +19,7 @@ public interface IAlmostLockedSetsXyWingStepSearcher : IStepSearcher
 internal sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSetsXyWingStepSearcher
 {
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool AllowCollision { get; set; }
 
 

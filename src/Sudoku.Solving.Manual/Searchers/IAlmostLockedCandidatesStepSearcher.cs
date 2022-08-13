@@ -28,7 +28,7 @@ public interface IAlmostLockedCandidatesStepSearcher : IIntersectionStepSearcher
 internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool CheckAlmostLockedQuadruple { get; set; }
 
 	/// <inheritdoc/>

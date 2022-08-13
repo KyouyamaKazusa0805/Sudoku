@@ -7,6 +7,6 @@
 /// </summary>
 /// <seealso cref="IComplexSolver{TSolver, TSolverResult}"/>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class SearcherPropertyAttribute : Attribute
+public sealed class StepSearcherPropertyAttribute : Attribute
 {
 }

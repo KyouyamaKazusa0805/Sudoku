@@ -15,7 +15,7 @@ public interface ISeniorExocetStepSearcher : IExocetStepSearcher
 internal sealed partial class SeniorExocetStepSearcher : ISeniorExocetStepSearcher
 {
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool CheckAdvanced { get; set; }
 
 

@@ -20,7 +20,7 @@ public interface ITemplateStepSearcher : IStepSearcher, IStepSearcherRequiresSol
 internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 {
 	/// <inheritdoc/>
-	[SearcherProperty]
+	[StepSearcherProperty]
 	public bool TemplateDeleteOnly { get; set; }
 
 	/// <inheritdoc/>
