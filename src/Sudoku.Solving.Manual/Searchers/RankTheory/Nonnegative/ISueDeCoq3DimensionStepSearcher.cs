@@ -7,7 +7,7 @@
 /// <item>3-dimensional Sue de Coq</item>
 /// </list>
 /// </summary>
-public interface ISueDeCoq3DimensionStepSearcher : IRankTheoryStepSearcher
+public interface ISueDeCoq3DimensionStepSearcher : INonnegativeRankStepSearcher
 {
 }
 

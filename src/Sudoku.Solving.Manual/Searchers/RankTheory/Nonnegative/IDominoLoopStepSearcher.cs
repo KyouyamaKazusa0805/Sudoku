@@ -7,7 +7,7 @@
 /// <item>Domino Loop</item>
 /// </list>
 /// </summary>
-public interface IDominoLoopStepSearcher : IRankTheoryStepSearcher
+public interface IDominoLoopStepSearcher : INonnegativeRankStepSearcher
 {
 	/// <summary>
 	/// The position table of all SK-loops.

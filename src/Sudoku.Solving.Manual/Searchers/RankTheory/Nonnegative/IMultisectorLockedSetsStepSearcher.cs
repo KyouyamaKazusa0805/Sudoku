@@ -7,7 +7,7 @@
 /// <item>Multi-sector Locked Sets</item>
 /// </list>
 /// </summary>
-public interface IMultisectorLockedSetsStepSearcher : IRankTheoryStepSearcher
+public interface IMultisectorLockedSetsStepSearcher : INonnegativeRankStepSearcher
 {
 	/// <summary>
 	/// Indicates the list initialized with the static constructor.

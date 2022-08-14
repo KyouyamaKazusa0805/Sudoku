@@ -9,7 +9,7 @@
 /// <item>Cannibalistic Sue de Coq</item>
 /// </list>
 /// </summary>
-public interface ISueDeCoqStepSearcher : IRankTheoryStepSearcher
+public interface ISueDeCoqStepSearcher : INonnegativeRankStepSearcher
 {
 }
 
