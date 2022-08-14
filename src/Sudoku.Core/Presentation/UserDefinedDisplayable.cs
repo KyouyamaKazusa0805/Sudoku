@@ -45,7 +45,8 @@ public sealed class UserDefinedDisplayable : IDisplayable, IEnumerable<ViewNode>
 			{
 				if (_cellsUsedMap.Contains(c))
 				{
-					var foundNode = _view.Contains(n => n is CellViewNode { Cell: var c2 } && c == c2);
+					bool predicate(ViewNode n) => n is CellViewNode { Cell: var c2 } && c == c2;
+					var foundNode = _view.Contains(predicate);
 					if (foundNode is not null)
 					{
 						_cellsUsedMap.Remove(c);
@@ -68,7 +69,8 @@ public sealed class UserDefinedDisplayable : IDisplayable, IEnumerable<ViewNode>
 			{
 				if (_candidatesUsedMap.Contains(c))
 				{
-					var foundNode = _view.Contains(n => n is CandidateViewNode { Candidate: var c2 } && c == c2);
+					bool predicate(ViewNode n) => n is CandidateViewNode { Candidate: var c2 } && c == c2;
+					var foundNode = _view.Contains(predicate);
 					if (foundNode is not null)
 					{
 						_candidatesUsedMap.Remove(c);
