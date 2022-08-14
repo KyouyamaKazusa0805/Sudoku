@@ -4280,6 +4280,52 @@
         <member name="M:Sudoku.Presentation.Nodes.ViewNode.op_Inequality(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.UserDefinedDisplayable">
+            <summary>
+            Defines a displayable item that is user-defined.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.UserDefinedDisplayable._view">
+            <summary>
+            Indicates the inner view.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.UserDefinedDisplayable._cellsUsedMap">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.UserDefinedDisplayable._candidatesUsedMap">
+            <summary>
+            Indicates the candidates used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.Sudoku#Presentation#IDisplayable#Conclusions">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.Sudoku#Presentation#IDisplayable#Views">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.AddRemove(Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Adds or removes the view node. If the node exists in the collection, remove it;
+            otherwise, add it.
+            </summary>
+            <param name="viewNode">The view node to be removed or added.</param>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the argument <paramref name="viewNode"/> is not <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
+            or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.View">
             <summary>
             Provides with a data structure that displays a view for basic information.
@@ -4349,12 +4395,25 @@
             </summary>
             <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
         </member>
+        <member name="M:Sudoku.Presentation.View.Remove(Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Removes the specified <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> from the collection.
+            </summary>
+            <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
+        </member>
         <member name="M:Sudoku.Presentation.View.Contains(Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
             Determines whether an element is in the current collection.
             </summary>
             <param name="node">The node.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Contains(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Determines whether an element satisfying the specified condition is in the current collection.
+            </summary>
+            <param name="predicate">The predicate.</param>
+            <returns>If found, the first found node will be returned; otherwise, <see langword="null"/>.</returns>
         </member>
         <member name="M:Sudoku.Presentation.View.ConflictWith(System.Int32)">
             <summary>

@@ -2347,6 +2347,24 @@
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetCellMark(System.Int32,System.Int32)">
+            <summary>
+            To set the mark at the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="colorPaletteIndex">
+            The index that corresponds to the real color stored in the palette.
+            </param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetCandidateMark(System.Int32,System.Int32)">
+            <summary>
+            To set the mark at the specified candidate.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <param name="colorPaletteIndex">
+            The index that corresponds to the real color stored in the palette.
+            </param>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.FixGrid">
             <summary>
             To fix the grid, to change all modifiable values to given ones.

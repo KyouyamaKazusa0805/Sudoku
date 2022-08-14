@@ -90,12 +90,44 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	}
 
 	/// <summary>
+	/// Removes the specified <see cref="ViewNode"/> from the collection.
+	/// </summary>
+	/// <param name="node">The <see cref="ViewNode"/> instance.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Remove(ViewNode node)
+	{
+		if (_nodes.Contains(node))
+		{
+			_nodes.Remove(node);
+		}
+	}
+
+	/// <summary>
 	/// Determines whether an element is in the current collection.
 	/// </summary>
 	/// <param name="node">The node.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Contains(ViewNode node) => _nodes.Contains(node);
+
+	/// <summary>
+	/// Determines whether an element satisfying the specified condition is in the current collection.
+	/// </summary>
+	/// <param name="predicate">The predicate.</param>
+	/// <returns>If found, the first found node will be returned; otherwise, <see langword="null"/>.</returns>
+	public ViewNode? Contains(Predicate<ViewNode> predicate)
+	{
+		for (int i = 0; i < _nodes.Count; i++)
+		{
+			var node = _nodes[i];
+			if (predicate(node))
+			{
+				return node;
+			}
+		}
+
+		return null;
+	}
 
 	/// <summary>
 	/// <para>Determines whether the current view contains a view node using the specified candidate value.</para>

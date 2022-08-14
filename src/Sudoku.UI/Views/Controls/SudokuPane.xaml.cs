@@ -218,6 +218,76 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public void EliminateDigit(int cell, int digit) => GetSudokuGridViewModel().EliminateDigit(cell, digit);
 
 	/// <summary>
+	/// To set the mark at the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="colorPaletteIndex">
+	/// The index that corresponds to the real color stored in the palette.
+	/// </param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetCellMark(int cell, int colorPaletteIndex)
+	{
+		var (a, r, g, b) = ((App)Application.Current).UserPreference.PaletteColors[colorPaletteIndex];
+		var node = new CellViewNode(Identifier.FromColor(a, r, g, b), cell);
+		switch (GetDisplayableUnit())
+		{
+			case null:
+			{
+				var newView = new UserDefinedDisplayable();
+				newView.AddRemove(node);
+
+				SetDisplayableUnit(newView);
+
+				break;
+			}
+			case UserDefinedDisplayable view:
+			{
+				view.AddRemove(node);
+
+				// Refresh the view. This is just a trick.
+				SetDisplayableUnit(view);
+
+				break;
+			}
+		}
+	}
+
+	/// <summary>
+	/// To set the mark at the specified candidate.
+	/// </summary>
+	/// <param name="candidate">The candidate.</param>
+	/// <param name="colorPaletteIndex">
+	/// The index that corresponds to the real color stored in the palette.
+	/// </param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetCandidateMark(int candidate, int colorPaletteIndex)
+	{
+		var (a, r, g, b) = ((App)Application.Current).UserPreference.PaletteColors[colorPaletteIndex];
+		var node = new CandidateViewNode(Identifier.FromColor(a, r, g, b), candidate);
+		switch (GetDisplayableUnit())
+		{
+			case null:
+			{
+				var newView = new UserDefinedDisplayable();
+				newView.AddRemove(node);
+
+				SetDisplayableUnit(newView);
+
+				break;
+			}
+			case UserDefinedDisplayable view:
+			{
+				view.AddRemove(node);
+
+				// Refresh the view. This is just a trick.
+				SetDisplayableUnit(view);
+
+				break;
+			}
+		}
+	}
+
+	/// <summary>
 	/// To fix the grid, to change all modifiable values to given ones.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -338,41 +408,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		var pressedData = ModifierKeyDownData.FromCurrentState();
 		switch (e.Key)
 		{
-			case var key and (>= Key.Number0 and <= Key.Number9 or Key.Back):
+			case var key and (>= Key.Number0 and <= Key.Number9 or >= Key.NumberPad0 and <= Key.NumberPad9 or Key.Back):
 			{
-				int digit = key - Key.Number0 - 1;
-				switch (pressedData)
-				{
-					case (false, true, false) when key != Key.Back: // Shift.
-					{
-						EliminateDigit(_cell, digit);
-						break;
-					}
-					case (false, false, false):
-					{
-						MakeDigit(_cell, key == Key.Back ? -1 : digit);
-						break;
-					}
-				}
-
-				break;
-			}
-			case var key and (>= Key.NumberPad0 and <= Key.NumberPad9 or Key.Back):
-			{
-				int digit = key - Key.NumberPad0 - 1;
-				switch (pressedData)
-				{
-					case (false, true, false) when key != Key.Back: // Shift.
-					{
-						EliminateDigit(_cell, digit);
-						break;
-					}
-					case (false, false, false):
-					{
-						MakeDigit(_cell, key == Key.Back ? -1 : digit);
-						break;
-					}
-				}
+				handleDigitOperation(
+					key,
+					key is >= Key.Number0 and <= Key.Number9 ? Key.Number0 : Key.NumberPad0,
+					pressedData
+				);
 
 				break;
 			}
@@ -382,6 +424,35 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				// If we set 'e.Handled = true', the keyboard accelerators in the base page won't be triggered.
 				e.Handled = false;
 				return;
+			}
+
+
+			void handleDigitOperation(Key key, Key firstDigit, ModifierKeyDownData pressedData)
+			{
+				int digit = key - firstDigit - 1;
+				switch (pressedData)
+				{
+					case (false, true, false) when key != Key.Back: // Shift.
+					{
+						EliminateDigit(_cell, digit);
+						break;
+					}
+					case (false, false, true): // Alt.
+					{
+						SetCellMark(_cell, digit);
+						break;
+					}
+					case (false, true, true): // Shift + Alt.
+					{
+						SetCandidateMark(_candidate, digit);
+						break;
+					}
+					case (false, false, false):
+					{
+						MakeDigit(_cell, key == Key.Back ? -1 : digit);
+						break;
+					}
+				}
 			}
 		}
 	}
@@ -645,31 +716,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			return;
 		}
 
-		// Extracts the values from resource dictionary.
-		// The variable extraction is required in multi-threading.
-		string phase1Str = R["LoadingSeparateParts"]!;
-		string phase2Str = R["LoadingSudokuGrid"]!;
-
 		// Initialize controls.
-#if false
-		_cLoading.Visibility = Visibility.Visible;
-		var up = ((App)Application.Current).UserPreference;
-
-		_cLoadingText.Text = phase1Str;
-
-		InitializeOutsideRectangle(up);
-		InitializeBorderLines(up);
-
-		_cLoadingText.Text = phase2Str;
-
-		InitializeSudokuGrid(up);
-
-		AddIntoCanvas();
-		LoadFirstGridIfWorth();
-		MakeLoadingOperationCompleted();
-
-		_cLoading.Visibility = Visibility.Collapsed;
-#else
 		var up = ((App)Application.Current).UserPreference;
 
 		InitializeOutsideRectangle(up);
@@ -678,7 +725,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		AddIntoCanvas();
 		LoadFirstGridIfWorth();
 		MakeLoadingOperationCompleted();
-#endif
 	}
 
 	/// <summary>
