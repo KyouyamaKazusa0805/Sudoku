@@ -632,7 +632,7 @@ public sealed partial class SudokuPage : Page
 
 						break;
 					}
-					case { FailedReason: var failedReason, UnhandledException: var unhandledException }:
+					case { FailedReason: var failedReason, UnhandledException: var ex }:
 					{
 						string firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
 						string secondPart =
@@ -642,12 +642,12 @@ public sealed partial class SudokuPage : Page
 									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling"]!,
 								SearcherFailedReason.NotImplemented
 									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented"]!,
-								SearcherFailedReason.ExceptionThrown
+								SearcherFailedReason.ExceptionThrown when ex is { Message: var message }
 									=> $"""
 									{R["SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown"]!}
 
 									{R["SudokuPage_Info_ExceptionIs"]!}
-									{unhandledException!.Message}
+									{message}
 									""",
 #pragma warning disable CS0618
 								SearcherFailedReason.PuzzleIsTooHard
