@@ -84,22 +84,14 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 		}
 
 		Unsafe.SkipInit(out result);
-		switch (solutions)
+		(_, bool? @return) = solutions switch
 		{
-			case 0:
-			{
-				return null;
-			}
-			case 1:
-			{
-				result = Grid.Parse(new ReadOnlySpan<char>(solutionStr, BufferLength));
-				return true;
-			}
-			default:
-			{
-				return false;
-			}
-		}
+			0 => (Grid.Undefined, null),
+			1 => (result = Grid.Parse(new ReadOnlySpan<char>(solutionStr, BufferLength)), true),
+			_ => (Grid.Undefined, (bool?)false)
+		};
+
+		return @return;
 	}
 
 	/// <summary>
