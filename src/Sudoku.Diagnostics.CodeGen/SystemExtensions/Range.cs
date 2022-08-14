@@ -45,7 +45,7 @@ internal readonly struct Range : IEquatable<Range>
 	public override int GetHashCode() => Start.GetHashCode() << 17 ^ End.GetHashCode();
 
 	/// <summary>Converts the value of the current Range object to its equivalent string representation.</summary>
-	public override string ToString() => Start.ToString() + ".." + End.ToString();
+	public override string ToString() => $"{Start}..{End}";
 
 	/// <summary>Create a Range object starting from start index to the end of the collection.</summary>
 	public static Range StartAt(Index start) => new(start, Index.End);

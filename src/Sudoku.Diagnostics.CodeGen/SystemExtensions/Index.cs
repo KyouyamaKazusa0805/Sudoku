@@ -116,7 +116,7 @@ internal readonly struct Index : IEquatable<Index>
 	/// <summary>Converts the value of the current Index object to its equivalent string representation.</summary>
 	public override string ToString() => IsFromEnd ? ToStringFromEnd() : ((uint)Value).ToString();
 
-	private string ToStringFromEnd() => '^' + Value.ToString();
+	private string ToStringFromEnd() => $"^{Value}";
 
 
 	/// <summary>Converts integer number to an Index.</summary>
