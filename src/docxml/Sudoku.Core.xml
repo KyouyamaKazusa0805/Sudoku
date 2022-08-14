@@ -3914,6 +3914,25 @@
         <member name="M:Sudoku.Presentation.LockedTarget.System#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.ViewNodeAddBehavior">
+            <summary>
+            Represents an enumeration type that stores some kinds of possible behaviors on adding a view node
+            into a view node collection such as <see cref="T:Sudoku.Presentation.UserDefinedDisplayable"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.UserDefinedDisplayable"/>
+        </member>
+        <member name="F:Sudoku.Presentation.ViewNodeAddBehavior.ForceAdd">
+            <summary>
+            Indicates the view node will be added without any reason.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.ViewNodeAddBehavior.ReplaceIfDuplicate">
+            <summary>
+            Indicates replace the view node if a new duplicate one should be added.
+            This option is used when the method <see cref="M:Sudoku.Presentation.View.Contains(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})"/> is called.
+            </summary>
+            <seealso cref="M:Sudoku.Presentation.View.Contains(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})"/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.CandidateViewNode">
             <summary>
             Defines a view node that highlights for a candidate.
@@ -4300,11 +4319,65 @@
             Indicates the candidates used.
             </summary>
         </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.UserDefinedDisplayable"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.UserDefinedDisplayable"/> instance via the specified view nodes.
+            </summary>
+            <param name="viewNodes">A list of view nodes.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.Count">
+            <summary>
+            Indicates the number of elements stored in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.CellNodes">
+            <summary>
+            Indicates the cell nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.CandidateNodes">
+            <summary>
+            Indicates the candidate nodes.
+            </summary>
+        </member>
         <member name="P:Sudoku.Presentation.UserDefinedDisplayable.Sudoku#Presentation#IDisplayable#Conclusions">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Presentation.UserDefinedDisplayable.Sudoku#Presentation#IDisplayable#Views">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.Item(System.Int32)">
+            <summary>
+            Gets the view node at the specified index stored in this collection.
+            </summary>
+            <param name="index">The index that you want to get.</param>
+            <returns>The view node at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.Add(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.ViewNodeAddBehavior)">
+            <summary>
+            Adds a view node into the current collection, with the specified behavior
+            to control the duplicate items.
+            </summary>
+            <param name="viewNode">The view node to be added.</param>
+            <param name="behavior">The behavior on determining the duplicate items added.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="behavior"/> is not defined in the enumeration type.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.ForceAdd(Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Adds the view node into the collection no matter what status the collection is.
+            </summary>
+            <param name="viewNode">The view node to be added.</param>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the argument <paramref name="viewNode"/> is not <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
+            or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
+            </exception>
         </member>
         <member name="M:Sudoku.Presentation.UserDefinedDisplayable.AddRemove(Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
@@ -4317,8 +4390,14 @@
             or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
             </exception>
         </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.Clone">
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+        </member>
         <member name="M:Sudoku.Presentation.UserDefinedDisplayable.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.System#ICloneable#Clone">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.UserDefinedDisplayable.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
