@@ -2980,7 +2980,8 @@
         </member>
         <member name="F:Sudoku.UI.Views.Pages.SudokuPage.SyncRoot">
             <summary>
-            Indicates the object that is only used for synchronize an operation, especially a long-time operation.
+            Indicates the object that is only used for synchronizing an operation,
+            especially a long-time operation.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Views.Pages.SudokuPage.FastSolver">
@@ -2995,7 +2996,8 @@
         </member>
         <member name="F:Sudoku.UI.Views.Pages.SudokuPage._isFirstLoad">
             <summary>
-            Indicates whether the
+            Indicates whether the page is the first loading. If false, we can skip some duplicate operations
+            such as creating a welcome message.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Views.Pages.SudokuPage._printManager">

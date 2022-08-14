@@ -7,7 +7,8 @@
 public sealed partial class SudokuPage : Page
 {
 	/// <summary>
-	/// Indicates the object that is only used for synchronize an operation, especially a long-time operation.
+	/// Indicates the object that is only used for synchronizing an operation,
+	/// especially a long-time operation.
 	/// </summary>
 	private static readonly object SyncRoot = new();
 
@@ -23,7 +24,8 @@ public sealed partial class SudokuPage : Page
 
 
 	/// <summary>
-	/// Indicates whether the
+	/// Indicates whether the page is the first loading. If false, we can skip some duplicate operations
+	/// such as creating a welcome message.
 	/// </summary>
 	private bool _isFirstLoad = true;
 
