@@ -302,19 +302,18 @@ public sealed class SudokuGrid : DrawingElement
 						GridLayout.SetColumn(rectangle, cell % 9);
 					}
 
-					goto Previous;
-				}
-#pragma warning disable IDE0055
-				case (_, PeerFocusingMode.FocusedCell):
-				Previous:
-				{
-					_focusedRectangle.Opacity = 1;
-					GridLayout.SetRow(_focusedRectangle, value / 9);
-					GridLayout.SetColumn(_focusedRectangle, value % 9);
-
+					setFocusedCell(_focusedRectangle);
 					break;
 				}
-#pragma warning restore IDE0055
+				case (_, PeerFocusingMode.FocusedCell):
+				{
+					setFocusedCell(_focusedRectangle);
+					break;
+				}
+
+
+				void setFocusedCell(Rectangle r)
+					=> r.WithOpacity(1).WithGridLayout(row: value / 9, column: value % 9);
 			}
 		}
 	}
