@@ -22,20 +22,6 @@ public interface IDrawingPreference
 	public abstract bool EnableDeltaValuesDisplaying { get; set; }
 
 	/// <summary>
-	/// <para>
-	/// Indicates whether the info bar controls will always be updated and inserted into the first place
-	/// of the whole info bar board. If <see langword="true"/>, descending ordered mode will be enabled,
-	/// the behavior will be like the above; otherwise, the new controls will be appended into the last place
-	/// of the board.
-	/// </para>
-	/// <para>
-	/// Sets the value to <see langword="true"/> may help you check new hints more quickly than
-	/// the case setting the value to <see langword="false"/>.
-	/// </para>
-	/// </summary>
-	public abstract bool DescendingOrderedInfoBarBoard { get; set; }
-
-	/// <summary>
 	/// Indicates the cell size that is used for rendering a digit text
 	/// (e.g. cell digits, candidate digits or unknown characters).
 	/// </summary>
