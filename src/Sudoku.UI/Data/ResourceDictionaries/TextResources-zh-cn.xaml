@@ -81,6 +81,7 @@
 	<x:String x:Key="SudokuPage_InfoBar_PasteSuccessfully">粘贴的题目解析完成。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SaveSuccessfully1">文件“</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SaveSuccessfully2">”已成功保存。</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SaveFailedReason_CurrentDisplayableTypeIsNotSupported">当前页面呈现的视图不支持导出。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_CannotSnapTheSample">读取或保存文件的操作要求相同程序不可合并为一个图标组（在任务栏里）的时候才能使用，否则将无法区分程序使用情况。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_GeneratingSuccessfully1">题目生成完成。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_GeneratingSuccessfully2">提示数个数：</x:String>
@@ -337,6 +338,7 @@
 	<x:String x:Key="FileExtension_Configuration">用户设置文件</x:String>
 	<x:String x:Key="FileExtension_DrawingData">绘图文件</x:String>
 	<x:String x:Key="FileExtension_Picture">图片文件</x:String>
+	<x:String x:Key="ReasonIs">，原因：</x:String>
 	<x:String x:Key="Close">关闭</x:String>
 	<x:String x:Key="Info">提示信息</x:String>
 	<x:String x:Key="Sudoku">数独</x:String>

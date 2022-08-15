@@ -16,6 +16,7 @@ public abstract class ViewNode : ICloneable, IEquatable<ViewNode>, IEqualityOper
 	/// <summary>
 	/// Indicates the identifier used.
 	/// </summary>
+	[JsonInclude]
 	public Identifier Identifier { get; protected set; }
 
 	/// <summary>

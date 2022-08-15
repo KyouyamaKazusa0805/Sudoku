@@ -233,18 +233,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			case null:
 			{
-				SetDisplayableUnit(
-					new UserDefinedDisplayable
-					{
-						{ node, ViewNodeAddBehavior.ReplaceIfDuplicate }
-					}
-				);
+				SetDisplayableUnit(new UserDefinedDisplayable { node });
 
 				break;
 			}
 			case UserDefinedDisplayable view:
 			{
-				view.Add(node, ViewNodeAddBehavior.ReplaceIfDuplicate);
+				view.Add(node);
 
 				// Refresh the view. This is just a trick.
 				SetDisplayableUnit(view);
@@ -270,18 +265,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			case null:
 			{
-				SetDisplayableUnit(
-					new UserDefinedDisplayable
-					{
-						{ node, ViewNodeAddBehavior.ReplaceIfDuplicate }
-					}
-				);
+				SetDisplayableUnit(new UserDefinedDisplayable { node });
 
 				break;
 			}
 			case UserDefinedDisplayable view:
 			{
-				view.Add(node, ViewNodeAddBehavior.ReplaceIfDuplicate);
+				view.Add(node);
 
 				// Refresh the view. This is just a trick.
 				SetDisplayableUnit(view);

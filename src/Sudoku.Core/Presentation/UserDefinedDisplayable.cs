@@ -45,7 +45,7 @@ public sealed class UserDefinedDisplayable :
 	{
 		foreach (var node in viewNodes)
 		{
-			AddRemove(node);
+			Add(node);
 		}
 	}
 
@@ -53,6 +53,7 @@ public sealed class UserDefinedDisplayable :
 	/// <summary>
 	/// Indicates the number of elements stored in this collection.
 	/// </summary>
+	[JsonIgnore]
 	public int Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -72,7 +73,7 @@ public sealed class UserDefinedDisplayable :
 		{
 			foreach (var node in value)
 			{
-				AddRemove(node);
+				Add(node);
 			}
 		}
 	}
@@ -90,7 +91,7 @@ public sealed class UserDefinedDisplayable :
 		{
 			foreach (var node in value)
 			{
-				AddRemove(node);
+				Add(node);
 			}
 		}
 	}
@@ -115,70 +116,15 @@ public sealed class UserDefinedDisplayable :
 
 
 	/// <summary>
-	/// Adds a view node into the current collection, with the specified behavior
-	/// to control the duplicate items.
+	/// Adds a view node into the current collection.
 	/// </summary>
 	/// <param name="viewNode">The view node to be added.</param>
-	/// <param name="behavior">The behavior on determining the duplicate items added.</param>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="behavior"/> is not defined in the enumeration type.
+	/// <exception cref="NotSupportedException">
+	/// Throws when the specified view node kind is invalid (Not a <see cref="CellViewNode"/>
+	/// or <see cref="CandidateViewNode"/>).
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Add(ViewNode viewNode, ViewNodeAddBehavior behavior)
-		=> (
-			(Action<ViewNode>)(
-				behavior switch
-				{
-					ViewNodeAddBehavior.ForceAdd => ForceAdd,
-					ViewNodeAddBehavior.ReplaceIfDuplicate => AddRemove,
-					_ => throw new ArgumentOutOfRangeException(nameof(behavior))
-				}
-			)
-		)(viewNode);
-
-	/// <summary>
-	/// Adds the view node into the collection no matter what status the collection is.
-	/// </summary>
-	/// <param name="viewNode">The view node to be added.</param>
-	/// <exception cref="NotSupportedException">
-	/// Throws when the argument <paramref name="viewNode"/> is not <see cref="CellViewNode"/>
-	/// or <see cref="CandidateViewNode"/>.
-	/// </exception>
-	public void ForceAdd(ViewNode viewNode)
-	{
-		switch (viewNode)
-		{
-			case CellViewNode { Cell: var c }:
-			{
-				_cellsUsedMap.Add(c);
-				_view.Add(viewNode);
-
-				break;
-			}
-			case CandidateViewNode { Candidate: var c }:
-			{
-				_candidatesUsedMap.Add(c);
-				_view.Add(viewNode);
-
-				break;
-			}
-			default:
-			{
-				throw new NotSupportedException("The specified node kind is not supported at present.");
-			}
-		}
-	}
-
-	/// <summary>
-	/// Adds or removes the view node. If the node exists in the collection, remove it;
-	/// otherwise, add it.
-	/// </summary>
-	/// <param name="viewNode">The view node to be removed or added.</param>
-	/// <exception cref="NotSupportedException">
-	/// Throws when the argument <paramref name="viewNode"/> is not <see cref="CellViewNode"/>
-	/// or <see cref="CandidateViewNode"/>.
-	/// </exception>
-	public void AddRemove(ViewNode viewNode)
+	public void Add(ViewNode viewNode)
 	{
 		switch (viewNode)
 		{
@@ -237,6 +183,46 @@ public sealed class UserDefinedDisplayable :
 		}
 	}
 
+	/// <summary>
+	/// Removes a view node from the current collection.
+	/// </summary>
+	/// <param name="viewNode">The view node to be removed.</param>
+	/// <exception cref="NotSupportedException">
+	/// Throws when the specified view node kind is invalid (Not a <see cref="CellViewNode"/>
+	/// or <see cref="CandidateViewNode"/>).
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Remove(ViewNode viewNode)
+	{
+		switch (viewNode)
+		{
+			case CellViewNode { Cell: var c }:
+			{
+				if (_cellsUsedMap.Contains(c))
+				{
+					_cellsUsedMap.Remove(c);
+					_view.Remove(viewNode);
+				}
+
+				break;
+			}
+			case CandidateViewNode { Candidate: var c }:
+			{
+				if (_candidatesUsedMap.Contains(c))
+				{
+					_candidatesUsedMap.Remove(c);
+					_view.Remove(viewNode);
+				}
+
+				break;
+			}
+			default:
+			{
+				throw new NotSupportedException("The specified node kind is not supported at present.");
+			}
+		}
+	}
+
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public UserDefinedDisplayable Clone() => new(_view);
@@ -256,4 +242,60 @@ public sealed class UserDefinedDisplayable :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<ViewNode> IEnumerable<ViewNode>.GetEnumerator() => GetEnumerator();
+
+
+	/// <summary>
+	/// Converts the <see cref="UserDefinedDisplayable"/> instance to the <see cref="View"/> instance. 
+	/// </summary>
+	/// <param name="baseDisplayable">The base displayable instance.</param>
+	[return: NotNullIfNotNull(nameof(baseDisplayable))]
+	public static implicit operator View?(UserDefinedDisplayable? baseDisplayable)
+	{
+		if (baseDisplayable is null)
+		{
+			return null;
+		}
+
+		var result = View.Empty;
+		if (baseDisplayable.Count == 0)
+		{
+			return result;
+		}
+
+		foreach (var viewNode in baseDisplayable)
+		{
+			result.Add(viewNode);
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Converts the <see cref="View"/> instance to the <see cref="UserDefinedDisplayable"/> instance. 
+	/// </summary>
+	/// <param name="baseView">The base view instance.</param>
+	[return: NotNullIfNotNull(nameof(baseView))]
+	public static explicit operator UserDefinedDisplayable?(View? baseView)
+	{
+		if (baseView is null)
+		{
+			return null;
+		}
+
+		var result = new UserDefinedDisplayable();
+		if (baseView.Count == 0)
+		{
+			return result;
+		}
+
+		foreach (var viewNode in baseView)
+		{
+			if (viewNode is CellViewNode or CandidateViewNode)
+			{
+				result.Add(viewNode);
+			}
+		}
+
+		return result;
+	}
 }

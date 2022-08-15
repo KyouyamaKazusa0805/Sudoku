@@ -84,6 +84,7 @@
 	<x:String x:Key="SudokuPage_InfoBar_SaveSuccessfully2">" is saved successfully.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SaveFailed1">File "</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SaveFailed2">" is failed to save.</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SaveFailedReason_CurrentDisplayableTypeIsNotSupported">The current displayable type is not supported.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_CannotSnapTheSample">The program is snapped by a group and cannot be unsnapped.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_GeneratingSuccessfully1">Successfully generated the puzzle!</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_GeneratingSuccessfully2">Givens:</x:String>
@@ -344,6 +345,7 @@
 	<x:String x:Key="FileExtension_Configuration">User preference file</x:String>
 	<x:String x:Key="FileExtension_DrawingData">Drawing data file</x:String>
 	<x:String x:Key="FileExtension_Picture">Picture file</x:String>
+	<x:String x:Key="ReasonIs" xml:space="preserve">, reason: </x:String>
 	<x:String x:Key="Close">Close</x:String>
 	<x:String x:Key="Info">Info</x:String>
 	<x:String x:Key="Sudoku">Sudoku</x:String>

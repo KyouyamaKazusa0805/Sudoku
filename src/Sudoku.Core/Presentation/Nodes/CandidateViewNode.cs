@@ -17,6 +17,7 @@ public sealed class CandidateViewNode : ViewNode
 	/// <summary>
 	/// Indicates the candidate highlighted.
 	/// </summary>
+	[JsonInclude]
 	public int Candidate { get; }
 
 	/// <inheritdoc/>

@@ -18,6 +18,7 @@ public sealed partial class CellViewNode : ViewNode
 	/// <summary>
 	/// Indicates the cell highlighted.
 	/// </summary>
+	[JsonInclude]
 	public int Cell { get; }
 
 	/// <inheritdoc/>

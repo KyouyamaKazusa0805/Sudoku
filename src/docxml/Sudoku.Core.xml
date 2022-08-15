@@ -4358,36 +4358,24 @@
             <param name="index">The index that you want to get.</param>
             <returns>The view node at the specified index.</returns>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.Add(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.ViewNodeAddBehavior)">
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.Add(Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
-            Adds a view node into the current collection, with the specified behavior
-            to control the duplicate items.
-            </summary>
-            <param name="viewNode">The view node to be added.</param>
-            <param name="behavior">The behavior on determining the duplicate items added.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="behavior"/> is not defined in the enumeration type.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.ForceAdd(Sudoku.Presentation.Nodes.ViewNode)">
-            <summary>
-            Adds the view node into the collection no matter what status the collection is.
+            Adds a view node into the current collection.
             </summary>
             <param name="viewNode">The view node to be added.</param>
             <exception cref="T:System.NotSupportedException">
-            Throws when the argument <paramref name="viewNode"/> is not <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
-            or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
+            Throws when the specified view node kind is invalid (Not a <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
+            or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>).
             </exception>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.AddRemove(Sudoku.Presentation.Nodes.ViewNode)">
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.Remove(Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
-            Adds or removes the view node. If the node exists in the collection, remove it;
-            otherwise, add it.
+            Removes a view node from the current collection.
             </summary>
-            <param name="viewNode">The view node to be removed or added.</param>
+            <param name="viewNode">The view node to be removed.</param>
             <exception cref="T:System.NotSupportedException">
-            Throws when the argument <paramref name="viewNode"/> is not <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
-            or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
+            Throws when the specified view node kind is invalid (Not a <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
+            or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>).
             </exception>
         </member>
         <member name="M:Sudoku.Presentation.UserDefinedDisplayable.Clone">
@@ -4404,6 +4392,18 @@
         </member>
         <member name="M:Sudoku.Presentation.UserDefinedDisplayable.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.op_Implicit(Sudoku.Presentation.UserDefinedDisplayable)~Sudoku.Presentation.View">
+            <summary>
+            Converts the <see cref="T:Sudoku.Presentation.UserDefinedDisplayable"/> instance to the <see cref="T:Sudoku.Presentation.View"/> instance. 
+            </summary>
+            <param name="baseDisplayable">The base displayable instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.op_Explicit(Sudoku.Presentation.View)~Sudoku.Presentation.UserDefinedDisplayable">
+            <summary>
+            Converts the <see cref="T:Sudoku.Presentation.View"/> instance to the <see cref="T:Sudoku.Presentation.UserDefinedDisplayable"/> instance. 
+            </summary>
+            <param name="baseView">The base view instance.</param>
         </member>
         <member name="T:Sudoku.Presentation.View">
             <summary>
