@@ -3298,13 +3298,6 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the current page is unloaded.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Pane_GridRefreshed(System.Object,System.Object)">
             <summary>
             Triggers when the pane is refreshed the sudoku grid.

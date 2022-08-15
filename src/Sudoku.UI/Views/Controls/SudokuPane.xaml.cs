@@ -496,6 +496,27 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
+			case { DrawingDataRawValue: { } drawingDataRawValue } initialInfo:
+			{
+				var displayable = JsonSerializer.Deserialize<UserDefinedDisplayable>(
+					drawingDataRawValue,
+					CommonSerializerOptions.CamelCasing
+				);
+
+				if (displayable is null)
+				{
+					// Something goes wrong.
+					break;
+				}
+
+				// Sets the value.
+				SetDisplayableUnit(displayable);
+
+				// Remove the value to avoid re-triggering.
+				initialInfo.DrawingDataRawValue = null;
+
+				break;
+			}
 		}
 	}
 

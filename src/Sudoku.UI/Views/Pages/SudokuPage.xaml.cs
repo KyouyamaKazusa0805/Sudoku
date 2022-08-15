@@ -155,14 +155,17 @@ public sealed partial class SudokuPage : Page
 	{
 		if (_isFirstLoad)
 		{
-			_cInfoBoard.AddMessage(
-				InfoBarSeverity.Informational,
-				R["SudokuPage_InfoBar_Welcome"]!,
-				R["Link_SudokuTutorial"]!,
-				R["Link_SudokuTutorialDescription"]!
-			);
+			lock (SyncRoot)
+			{
+				_cInfoBoard.AddMessage(
+					InfoBarSeverity.Informational,
+					R["SudokuPage_InfoBar_Welcome"]!,
+					R["Link_SudokuTutorial"]!,
+					R["Link_SudokuTutorialDescription"]!
+				);
 
-			_isFirstLoad = false;
+				_isFirstLoad = false;
+			}
 		}
 	}
 
@@ -923,16 +926,6 @@ public sealed partial class SudokuPage : Page
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
 	private void Page_Loaded(object sender, RoutedEventArgs e) => InitialAddSudokuTechniqueInfoBar();
-
-	/// <summary>
-	/// Triggers when the current page is unloaded.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void Page_Unloaded(object sender, RoutedEventArgs e)
-	{
-		// TODO: Dispose the release if worth.
-	}
 
 	/// <summary>
 	/// Triggers when the pane is refreshed the sudoku grid.

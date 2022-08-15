@@ -7,8 +7,7 @@
 	xmlns:c="using:Sudoku.UI.Views.Controls"
 	xmlns:cvt="using:Sudoku.UI.DataConversion.ValueConverters"
 	xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
-	mc:Ignorable="d"
-	NavigationCacheMode="Required" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+	mc:Ignorable="d" NavigationCacheMode="Required" Loaded="Page_Loaded">
 	<ScrollViewer>
 		<Grid>
 			<Grid.Resources>
