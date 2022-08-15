@@ -1143,6 +1143,44 @@
             indicating the result value after the operation handled, or <see langword="null"/> if failed to fetch.
             </returns>
         </member>
+        <member name="T:Sudoku.UI.LocalStorages.SudokuItemSavingHelper">
+            <summary>
+            Represents a list of methods that handles and saves the files with supported sudoku formats.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.LocalStorages.SudokuItemSavingHelper.PlainTextSaveAsync(Windows.Storage.StorageFile,Sudoku.UI.Views.Pages.SudokuPage)">
+            <summary>
+            Saves with plain text format.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="page">The page control.</param>
+            <returns>
+            The asynchronous task that can return the <see cref="T:System.Boolean"/> result
+            indicating whether the operation is succeeded.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.LocalStorages.SudokuItemSavingHelper.PictureSaveAsync(Windows.Storage.StorageFile,Sudoku.UI.Views.Pages.SudokuPage)">
+            <summary>
+            Saves with picture format.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="page">The page control.</param>
+            <returns>
+            The asynchronous task that can return the <see cref="T:System.Boolean"/> result
+            indicating whether the operation is succeeded.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.LocalStorages.SudokuItemSavingHelper.DrawingDataSaveAsync(Windows.Storage.StorageFile,Sudoku.UI.Views.Pages.SudokuPage)">
+            <summary>
+            Saves with drawing data format.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="page">The page control.</param>
+            <returns>
+            The asynchronous task that can return the <see cref="T:System.Boolean"/> result
+            indicating whether the operation is succeeded.
+            </returns>
+        </member>
         <member name="T:Sudoku.UI.Models.AnalysisResultRow">
             <summary>
             Defines a row that used for displaying the information about a technique,

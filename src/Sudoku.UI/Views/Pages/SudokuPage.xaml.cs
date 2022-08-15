@@ -411,7 +411,7 @@ public sealed partial class SudokuPage : Page
 	/// <returns>
 	/// The typical awaitable instance that holds the task to save the file to the local position.
 	/// </returns>
-	private async Task SaveFileAsync()
+	private async Task<bool> SaveFileAsync()
 	{
 		var fsp = new FileSavePicker()
 			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
@@ -422,108 +422,20 @@ public sealed partial class SudokuPage : Page
 			.AddFileTypeChoice(R["FileExtension_DrawingData"]!, CommonFileExtensions.DrawingData)
 			.WithAwareHandleOnWin32();
 
-		if (await fsp.PickSaveFileAsync() is not { Path: var filePath, Name: var fileName } file)
+		return await fsp.PickSaveFileAsync() switch
 		{
-			return;
-		}
-
-		switch (SioPath.GetExtension(filePath))
-		{
-			case CommonFileExtensions.Text:
-			case CommonFileExtensions.Sudoku:
+			{ Path: var filePath } file => SioPath.GetExtension(filePath) switch
 			{
-				// Prevent updates to the remote version of the file until we finish making changes
-				// and call CompleteUpdatesAsync.
-				CachedFileManager.DeferUpdates(file);
-
-				// Writes to the file.
-				await FileIO.WriteTextAsync(file, _cPane.Grid.ToString("#"));
-
-				// Let Windows know that we're finished changing the file so the other app can update
-				// the remote version of the file.
-				// Completing updates may require Windows to ask for user input.
-				var status = await CachedFileManager.CompleteUpdatesAsync(file);
-				reportUserOutputResult(status, fileName);
-
-				break;
-			}
-			case CommonFileExtensions.DrawingData:
-			{
-				switch (_cPane.GetDisplayableUnit())
-				{
-					case null:
-					{
-						// Just return because the view is empty.
-						return;
-					}
-					case UserDefinedDisplayable displayable:
-					{
-						string json = JsonSerializer.Serialize(displayable, CommonSerializerOptions.CamelCasing);
-
-						await SioFile.WriteAllTextAsync(filePath, json);
-						string a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
-						string b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
-						_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
-
-						break;
-					}
-					default:
-					{
-						// Specified view is not supported.
-						string theFile = R["SudokuPage_InfoBar_SaveFailed1"]!;
-						string isFailedToBeSaved = R["SudokuPage_InfoBar_SaveFailed2"]!;
-						string theReasonIs = R["ReasonIs"]!;
-						string currentDisplayableTypeIsNotSupported = R["SudokuPage_InfoBar_SaveFailedReason_CurrentDisplayableTypeIsNotSupported"]!;
-						_cInfoBoard.AddMessage(
-							InfoBarSeverity.Error,
-							$"""
-							{theFile}{fileName}{isFailedToBeSaved}{theReasonIs}
-							{currentDisplayableTypeIsNotSupported}
-							"""
-						);
-
-						break;
-					}
-				}
-
-				break;
-			}
-			case CommonFileExtensions.PortablePicture:
-			{
-				// Prevent updates to the remote version of the file until we finish making changes
-				// and call CompleteUpdatesAsync.
-				CachedFileManager.DeferUpdates(file);
-
-				// Writes to the file.
-				// Render to an image at the current system scale and retrieve pixel contents.
-				await _cPane.RenderToAsync(file);
-
-				// Let Windows know that we're finished changing the file so the other app can update
-				// the remote version of the file.
-				// Completing updates may require Windows to ask for user input.
-				var drawingDataStatus = await CachedFileManager.CompleteUpdatesAsync(file);
-				reportUserOutputResult(drawingDataStatus, fileName);
-
-				break;
-			}
-
-
-			void reportUserOutputResult(FileUpdateStatus status, string fileName)
-			{
-				if (status == FileUpdateStatus.Complete)
-				{
-					string a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
-					string b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
-					_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
-				}
-				else
-				{
-					string a = R["SudokuPage_InfoBar_SaveFailed1"]!;
-					string b = R["SudokuPage_InfoBar_SaveFailed2"]!;
-					_cInfoBoard.AddMessage(InfoBarSeverity.Error, $"{a}{fileName}{b}");
-				}
-			}
-		}
+				CommonFileExtensions.Text or CommonFileExtensions.Sudoku
+					=> await SudokuItemSavingHelper.PlainTextSaveAsync(file, this),
+				CommonFileExtensions.DrawingData
+					=> await SudokuItemSavingHelper.DrawingDataSaveAsync(file, this),
+				CommonFileExtensions.PortablePicture
+					=> await SudokuItemSavingHelper.PictureSaveAsync(file, this),
+				_ => false
+			},
+			_ => false
+		};
 	}
 
 	/// <summary>

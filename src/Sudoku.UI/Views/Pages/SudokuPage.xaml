@@ -274,7 +274,7 @@
 			<!--Sudoku grid-->
 			<StackPanel x:Name="_cPaneParent" Orientation="Vertical" Grid.Row="1" Margin="25,25,0,0">
 				<c:SudokuPane
-					x:Name="_cPane" Size="560" OutsideOffset="10"
+					x:Name="_cPane" x:FieldModifier="internal" Size="560" OutsideOffset="10"
 					GridRefreshed="Pane_GridRefreshed" FailedReceivedDroppedFile="Pane_FailedReceivedDroppedFile"
 					SuccessfullyReceivedDroppedFile="Pane_SuccessfullyReceivedDroppedFile" />
 				<PipsPager
@@ -285,7 +285,7 @@
 
 			<!--Info bar board at the right side of the sudoku grid-->
 			<c:InfoBarBoard
-				x:Name="_cInfoBoard" Grid.Row="1" Grid.Column="1" Margin="25,30,25,0"
+				x:Name="_cInfoBoard" x:FieldModifier="internal" Grid.Row="1" Grid.Column="1" Margin="25,30,25,0"
 				CollectionChanged="InfoBoard_CollectionChanged" ChosenStepChanged="InfoBoard_ChosenStepChanged" />
 		</Grid>
 	</ScrollViewer>
