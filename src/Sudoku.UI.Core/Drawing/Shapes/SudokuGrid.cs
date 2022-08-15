@@ -746,7 +746,7 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetPreviousView()
 	{
-		if (ViewIndex - 1 < 0)
+		if (ViewIndex < 1)
 		{
 			return;
 		}
