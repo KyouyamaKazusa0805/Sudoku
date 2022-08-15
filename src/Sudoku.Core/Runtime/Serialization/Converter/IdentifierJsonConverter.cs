@@ -70,7 +70,7 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 				throw new JsonException();
 			}
 
-			var raw = JsonSerializer.Deserialize<IdInternal>(ref reader, options);
+			var raw = Deserialize<IdInternal>(ref reader, options);
 			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
 			{
 				throw new JsonException();
@@ -87,7 +87,7 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 				throw new JsonException();
 			}
 
-			var raw = JsonSerializer.Deserialize<ColorInternal>(ref reader, options);
+			var raw = Deserialize<ColorInternal>(ref reader, options);
 			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
 			{
 				throw new JsonException();
@@ -104,7 +104,7 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 				throw new JsonException();
 			}
 
-			var raw = JsonSerializer.Deserialize<NamedKindInternal>(ref reader, options);
+			var raw = Deserialize<NamedKindInternal>(ref reader, options);
 			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
 			{
 				throw new JsonException();

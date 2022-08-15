@@ -59,7 +59,7 @@ public sealed partial class SettingsPage : Page
 
 		// Writes to the file.
 		var up = ((App)Application.Current).UserPreference;
-		await FileIO.WriteTextAsync(file, JsonSerializer.Serialize(up, CommonSerializerOptions.CamelCasing));
+		await FileIO.WriteTextAsync(file, Serialize(up, CamelCasing));
 
 		// Let Windows know that we're finished changing the file so the other app can update
 		// the remote version of the file.
@@ -110,7 +110,7 @@ public sealed partial class SettingsPage : Page
 
 		try
 		{
-			var tempPref = JsonSerializer.Deserialize<Preference>(content, CommonSerializerOptions.CamelCasing);
+			var tempPref = Deserialize<Preference>(content, CamelCasing);
 
 			((App)Application.Current).UserPreference.CoverPreferenceBy(tempPref);
 		}

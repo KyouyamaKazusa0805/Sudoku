@@ -83,6 +83,8 @@ global using WinRT;
 global using WinRT.Interop;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
+global using static System.Text.Json.CommonSerializerOptions;
+global using static System.Text.Json.JsonSerializer;
 global using static Sudoku.Resources.MergedResources;
 global using MsDispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue;
 global using MsLaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;

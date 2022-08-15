@@ -30,7 +30,7 @@ internal static class PreferenceSavingLoading
 			SioDirectory.CreateDirectory(StorageFolder);
 		}
 
-		string jsonBody = JsonSerializer.Serialize(up, CommonSerializerOptions.CamelCasing);
+		string jsonBody = Serialize(up, CommonSerializerOptions.CamelCasing);
 		await SioFile.WriteAllTextAsync(
 			$"""{StorageFolder}\{GlobalConfigFileName}""",
 			$"""
@@ -65,7 +65,7 @@ internal static class PreferenceSavingLoading
 			string content = await SioFile.ReadAllTextAsync(path);
 			return string.IsNullOrWhiteSpace(content)
 				? null
-				: JsonSerializer.Deserialize<Preference>(content, CommonSerializerOptions.CamelCasing);
+				: Deserialize<Preference>(content, CommonSerializerOptions.CamelCasing);
 		}
 		catch (Exception ex) when (ex is FileNotFoundException or JsonException or NotSupportedException)
 		{

@@ -89,7 +89,7 @@ internal static class SudokuItemSavingHelper
 			}
 			case UserDefinedDisplayable displayable:
 			{
-				string json = JsonSerializer.Serialize(displayable, CommonSerializerOptions.CamelCasing);
+				string json = Serialize(displayable, CommonSerializerOptions.CamelCasing);
 
 				await SioFile.WriteAllTextAsync(filePath, json);
 

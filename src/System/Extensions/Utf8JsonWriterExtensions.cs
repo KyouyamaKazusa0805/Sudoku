@@ -15,7 +15,7 @@ public static class Utf8JsonWriterExtensions
 	/// <param name="options">The options.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void WriteNestedObject<T>(this Utf8JsonWriter @this, T instance, JsonSerializerOptions? options = null)
-		=> JsonSerializer.Serialize(@this, instance, options);
+		=> Serialize(@this, instance, options);
 
 	/// <summary>
 	/// Writes a string text value specified as a <see cref="StringHandler"/> instance as an element
@@ -23,6 +23,6 @@ public static class Utf8JsonWriterExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="Utf8JsonWriter"/> instance.</param>
 	/// <param name="handler">The string handler.</param>
-	public static void WriteStringValue(this Utf8JsonWriter @this, [InterpolatedStringHandlerArgument] ref StringHandler handler)
+	public static void WriteStringValue(this Utf8JsonWriter @this, [InterpolatedStringHandlerArgument] scoped ref StringHandler handler)
 		=> @this.WriteStringValue(handler.ToStringAndClear());
 }

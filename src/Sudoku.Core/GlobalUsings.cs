@@ -37,5 +37,6 @@ global using static System.Algorithm.Sequences;
 global using static System.Algorithm.Sorting;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
+global using static System.Text.Json.JsonSerializer;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
