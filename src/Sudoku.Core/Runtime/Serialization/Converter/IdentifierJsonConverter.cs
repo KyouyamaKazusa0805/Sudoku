@@ -36,13 +36,13 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 
 		if (!reader.Read()
 			|| reader.TokenType != JsonTokenType.PropertyName
-			|| reader.GetString() != nameof(Identifier.Mode))
+			|| reader.GetString() != ConvertName(nameof(Identifier.Mode), options))
 		{
 			throw new JsonException();
 		}
 
 		if (!reader.Read() || reader.TokenType != JsonTokenType.PropertyName
-			|| reader.GetString() != ValuePropertyName)
+			|| reader.GetString() != ConvertName(ValuePropertyName, options))
 		{
 			throw new JsonException();
 		}
@@ -52,24 +52,25 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 			throw new JsonException();
 		}
 
-		return Enum.Parse<IdentifierColorMode>(reader.GetString() ?? throw new JsonException()) switch
+		var mode = Enum.Parse<IdentifierColorMode>(reader.GetString() ?? throw new JsonException(), true);
+		return mode switch
 		{
-			IdentifierColorMode.Id => getId(ref reader),
-			IdentifierColorMode.Raw => getColor(ref reader),
-			IdentifierColorMode.Named => getNamedKind(ref reader),
+			IdentifierColorMode.Id => getId(ref reader, options),
+			IdentifierColorMode.Raw => getColor(ref reader, options),
+			IdentifierColorMode.Named => getNamedKind(ref reader, options),
 			_ => throw new JsonException()
 		};
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static int getId(ref Utf8JsonReader reader)
+		static int getId(ref Utf8JsonReader reader, JsonSerializerOptions options)
 		{
 			if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
 			{
 				throw new JsonException();
 			}
 
-			var raw = JsonSerializer.Deserialize<IdInternal>(ref reader);
+			var raw = JsonSerializer.Deserialize<IdInternal>(ref reader, options);
 			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
 			{
 				throw new JsonException();
@@ -79,14 +80,14 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static (byte, byte, byte, byte) getColor(ref Utf8JsonReader reader)
+		static (byte, byte, byte, byte) getColor(ref Utf8JsonReader reader, JsonSerializerOptions options)
 		{
 			if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
 			{
 				throw new JsonException();
 			}
 
-			var raw = JsonSerializer.Deserialize<ColorInternal>(ref reader);
+			var raw = JsonSerializer.Deserialize<ColorInternal>(ref reader, options);
 			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
 			{
 				throw new JsonException();
@@ -96,20 +97,20 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static DisplayColorKind getNamedKind(ref Utf8JsonReader reader)
+		static DisplayColorKind getNamedKind(ref Utf8JsonReader reader, JsonSerializerOptions options)
 		{
 			if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
 			{
 				throw new JsonException();
 			}
 
-			var raw = JsonSerializer.Deserialize<NamedKindInternal>(ref reader);
+			var raw = JsonSerializer.Deserialize<NamedKindInternal>(ref reader, options);
 			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
 			{
 				throw new JsonException();
 			}
 
-			return Enum.Parse<DisplayColorKind>(raw.NamedKind);
+			return Enum.Parse<DisplayColorKind>(raw.NamedKind, true);
 		}
 	}
 
@@ -117,8 +118,8 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 	public override void Write(Utf8JsonWriter writer, Identifier value, JsonSerializerOptions options)
 	{
 		writer.WriteStartObject();
-		writer.WriteString(nameof(value.Mode), value.Mode.ToString());
-		writer.WritePropertyName(ValuePropertyName);
+		writer.WriteString(ConvertName(nameof(value.Mode), options), value.Mode.ToString());
+		writer.WritePropertyName(ConvertName(ValuePropertyName, options));
 		writer.WriteStartObject();
 		switch (value.Mode)
 		{
@@ -129,19 +130,31 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 			}
 			case IdentifierColorMode.Raw:
 			{
-				writer.WriteNumber(nameof(value.A), value.A);
-				writer.WriteNumber(nameof(value.R), value.R);
-				writer.WriteNumber(nameof(value.G), value.G);
-				writer.WriteNumber(nameof(value.B), value.B);
+				writer.WriteNumber(ConvertName(nameof(value.A), options), value.A);
+				writer.WriteNumber(ConvertName(nameof(value.R), options), value.R);
+				writer.WriteNumber(ConvertName(nameof(value.G), options), value.G);
+				writer.WriteNumber(ConvertName(nameof(value.B), options), value.B);
 				break;
 			}
 			case IdentifierColorMode.Named:
 			{
-				writer.WriteString(nameof(value.NamedKind), value.NamedKind.ToString());
+				writer.WriteString(ConvertName(nameof(value.NamedKind), options), value.NamedKind.ToString());
 				break;
 			}
 		}
 		writer.WriteEndObject();
 		writer.WriteEndObject();
 	}
+
+
+	/// <summary>
+	/// Try to convert the specified string value as the specified naming policy
+	/// specified in argument <paramref name="options"/>.
+	/// </summary>
+	/// <param name="base">The string to convert.</param>
+	/// <param name="options">The options.</param>
+	/// <returns>The value converted.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static string ConvertName(string @base, JsonSerializerOptions options)
+		=> options.PropertyNamingPolicy?.ConvertName(@base) ?? @base;
 }

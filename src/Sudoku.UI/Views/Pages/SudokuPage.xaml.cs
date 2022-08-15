@@ -460,25 +460,10 @@ public sealed partial class SudokuPage : Page
 					{
 						string json = JsonSerializer.Serialize(displayable, CommonSerializerOptions.CamelCasing);
 
-#if false
-						// Prevent updates to the remote version of the file until we finish making changes
-						// and call CompleteUpdatesAsync.
-						CachedFileManager.DeferUpdates(file);
-
-						// Writes to the file.
-						await FileIO.WriteTextAsync(file, json);
-
-						// Let Windows know that we're finished changing the file so the other app can update
-						// the remote version of the file.
-						// Completing updates may require Windows to ask for user input.
-						var drawingDataStatus = await CachedFileManager.CompleteUpdatesAsync(file);
-						reportUserOutputResult(drawingDataStatus, fileName);
-#else
 						await SioFile.WriteAllTextAsync(filePath, json);
 						string a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
 						string b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
 						_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
-#endif
 
 						break;
 					}

@@ -7618,6 +7618,15 @@
         <member name="M:Sudoku.Runtime.Serialization.Converter.IdentifierJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Identifier,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Runtime.Serialization.Converter.IdentifierJsonConverter.ConvertName(System.String,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Try to convert the specified string value as the specified naming policy
+            specified in argument <paramref name="options"/>.
+            </summary>
+            <param name="base">The string to convert.</param>
+            <param name="options">The options.</param>
+            <returns>The value converted.</returns>
+        </member>
         <member name="T:Sudoku.Runtime.Serialization.Converter.InferenceJsonConverter">
             <summary>
             Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Concepts.Inference"/>.
