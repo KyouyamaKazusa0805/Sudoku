@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Runtime.Serialization.Converter;
+﻿namespace Sudoku.Text.Serialization.Specialized;
 
 /// <summary>
 /// Defines a JSON converter that is used for the serialization and deserialization on type <see cref="Identifier"/>.
