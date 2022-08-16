@@ -233,4 +233,11 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 
 		return result;
 	}
+
+	/// <summary>
+	/// Converts the current instance into an immutable array of type <typeparamref name="TUnmanaged"/>.
+	/// </summary>
+	/// <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly ImmutableArray<TUnmanaged> ToImmutableArray() => ImmutableArray.Create(ToArray());
 }

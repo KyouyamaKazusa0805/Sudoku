@@ -1126,6 +1126,46 @@ public enum Technique : short
 	BivalueUniversalGraveXyWing,
 
 	/// <summary>
+	/// Indicates reverse unique rectangle type 1.
+	/// </summary>
+	ReverseUniqueRectangleType1,
+
+	/// <summary>
+	/// Indicates reverse unique rectangle type 2.
+	/// </summary>
+	ReverseUniqueRectangleType2,
+
+	/// <summary>
+	/// Indicates reverse unique rectangle type 3.
+	/// </summary>
+	ReverseUniqueRectangleType3,
+
+	/// <summary>
+	/// Indicates reverse unique rectangle type 4.
+	/// </summary>
+	ReverseUniqueRectangleType4,
+
+	/// <summary>
+	/// Indicates reverse unique loop type 1.
+	/// </summary>
+	ReverseUniqueLoopType1,
+
+	/// <summary>
+	/// Indicates reverse unique loop type 2.
+	/// </summary>
+	ReverseUniqueLoopType2,
+
+	/// <summary>
+	/// Indicates reverse unique loop type 3.
+	/// </summary>
+	ReverseUniqueLoopType3,
+
+	/// <summary>
+	/// Indicates reverse unique loop type 4.
+	/// </summary>
+	ReverseUniqueLoopType4,
+
+	/// <summary>
 	/// Indicates uniqueness clue cover type 2.
 	/// </summary>
 	UniquenessClueCoverType2,

@@ -2191,6 +2191,36 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Options">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IReverseBivalueUniversalGraveStepSearcher">
+            <summary>
+            Provides with a <b>Reverse Bi-value Universal Grave</b> step searcher.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IReverseUniqueRectangleStepSearcher">
+            <summary>
+            Provides with a <b>Reverse Unique Rectangle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Reverse Unique Rectangle Type 1</item>
+            <!--
+            <item>Reverse Unique Rectangle Type 2</item>
+            <item>Reverse Unique Rectangle Type 3</item>
+            <item>Reverse Unique Rectangle Type 4</item>
+            -->
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ReverseBivalueUniversalGraveStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ReverseBivalueUniversalGraveStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},System.Boolean,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32,System.Int16)">
+            <summary>
+            Checks for type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.ReverseBivalueUniversalGraveStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueSquareStepSearcher">
             <summary>
             Provides with a <b>Unique Square</b> step searcher.
@@ -6038,6 +6068,112 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.DigitsMask">
+            <summary>Indicates the digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.Type">
+            <summary>
+            Indicates the type of the step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.DigitsStr">
+            <summary>
+            Indicates the digits string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.CellsStr">
+            <summary>
+            Indicates the cells string.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleStep">
+            <summary>
+            Provides with a step that is a <b>Reverse Unique Rectangle</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Reverse Unique Rectangle</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleType1Step">
+            <summary>
+            Provides with a step that is a <b>Reverse Unique Rectangle Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="TargetCell">The target cell used.</param>
+            <param name="TargetDigit">The target digit used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Reverse Unique Rectangle Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="TargetCell">The target cell used.</param>
+            <param name="TargetDigit">The target digit used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleType1Step.TargetCell">
+            <summary>The target cell used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleType1Step.TargetDigit">
+            <summary>The target digit used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleType1Step.Type">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.UniqueSquareStep">

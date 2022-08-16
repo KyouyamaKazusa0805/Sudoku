@@ -84,7 +84,8 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Qiu's Deadly Pattern
     * Unique Square
     * Bi-value Universal Grave
-    * Uniqueness Clue Cover (Some types)
+    * Reverse Unique Rectangle
+    * Uniqueness Clue Cover (Only for type 2[^3])
   * Alternating Inference Chains
     * Single-Digit AICs
     * Multi-Digit AICs
@@ -140,7 +141,7 @@ Please see the file [CODE_OF_CONDUCT](CODE_OF_CONDUCT).
 
 ## Sudoku Technique References
 
-Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links[^3] to learn about more information.
+Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links[^4] to learn about more information.
 
 * [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
 * [标准数独技巧教程（专栏）_bilibili](https://www.bilibili.com/read/readlist/rl291187)
@@ -150,6 +151,10 @@ Here we list some websites about sudoku techniques that I used and referenced. T
 Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University. I mean, a normal university (Pun)
 
 [^1]: The old name of the repository is "Sunnie's Sudoku Solution".
+
 [^2]: W-Wing is implemented by a single technique searcher type, while other irregular wing types are implemented by AIC searchers.
-[^3]: I'm sorry that those pages are written in Chinese. However, I may create pages written in other languages in the future.
+
+[^3]: Because only type 2 contains a valid test example.
+
+[^4]: I'm sorry that those pages are written in Chinese. However, I may create pages written in other languages in the future.
 

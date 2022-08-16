@@ -17,7 +17,7 @@ public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IUniqueLo
 	/// </summary>
 	/// <param name="loopCells">The loop cells.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	protected static sealed bool IsValidLoop(IList<int> loopCells)
+	protected internal static sealed bool IsValidLoop(IList<int> loopCells)
 	{
 		int visitedOddHouses = 0, visitedEvenHouses = 0;
 

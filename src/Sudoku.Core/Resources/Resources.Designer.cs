@@ -1933,6 +1933,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reverse Unique Rectangle Type 1.
+        /// </summary>
+        internal static string ReverseUniqueRectangleType1 {
+            get {
+                return ResourceManager.GetString("ReverseUniqueRectangleType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverse Unique Rectangle Type 2.
+        /// </summary>
+        internal static string ReverseUniqueRectangleType2 {
+            get {
+                return ResourceManager.GetString("ReverseUniqueRectangleType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverse Unique Rectangle Type 3.
+        /// </summary>
+        internal static string ReverseUniqueRectangleType3 {
+            get {
+                return ResourceManager.GetString("ReverseUniqueRectangleType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverse Unique Rectangle Type 4.
+        /// </summary>
+        internal static string ReverseUniqueRectangleType4 {
+            get {
+                return ResourceManager.GetString("ReverseUniqueRectangleType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RSTUVWXYZ-Wing.
         /// </summary>
         internal static string RstuvwxyzWing {
@@ -3108,6 +3144,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_RegularWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_RegularWingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Only cells {CellsStr} gives the value of digits {DigitsStr}, meaning digits will be a deadly pattern if the target cell {TargetCellStr} is filled with {TargetDigitStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_ReverseUniqueRectangleType1Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ReverseUniqueRectangleType1Step", resourceCulture);
             }
         }
         

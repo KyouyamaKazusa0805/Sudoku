@@ -1704,4 +1704,23 @@
     <value>唯一性确定值覆盖类型 2</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="ReverseUniqueRectangleType1" xml:space="preserve">
+    <value>反转唯一矩形类型 1</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ReverseUniqueRectangleType2" xml:space="preserve">
+    <value>反转唯一矩形类型 2</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ReverseUniqueRectangleType3" xml:space="preserve">
+    <value>反转唯一矩形类型 3</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ReverseUniqueRectangleType4" xml:space="preserve">
+    <value>反转唯一矩形类型 4</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_ReverseUniqueRectangleType1Step" xml:space="preserve">
+    <value>{Name}：只有 {CellsStr} 包含数字 {DigitsStr}，那么如果 {TargetCellStr} 填入 {TargetDigitStr} 的话，就会构成致命结构 =&gt; {ElimStr}</value>
+  </data>
 </root>

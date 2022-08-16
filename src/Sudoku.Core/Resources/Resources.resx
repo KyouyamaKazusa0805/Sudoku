@@ -1410,4 +1410,19 @@
   <data name="UniquenessClueCoverType2" xml:space="preserve">
     <value>Uniqueness Clue Cover Type 2</value>
   </data>
+  <data name="ReverseUniqueRectangleType1" xml:space="preserve">
+    <value>Reverse Unique Rectangle Type 1</value>
+  </data>
+  <data name="ReverseUniqueRectangleType2" xml:space="preserve">
+    <value>Reverse Unique Rectangle Type 2</value>
+  </data>
+  <data name="ReverseUniqueRectangleType3" xml:space="preserve">
+    <value>Reverse Unique Rectangle Type 3</value>
+  </data>
+  <data name="ReverseUniqueRectangleType4" xml:space="preserve">
+    <value>Reverse Unique Rectangle Type 4</value>
+  </data>
+  <data name="TechniqueFormat_ReverseUniqueRectangleType1Step" xml:space="preserve">
+    <value>{Name}: Only cells {CellsStr} gives the value of digits {DigitsStr}, meaning digits will be a deadly pattern if the target cell {TargetCellStr} is filled with {TargetDigitStr} =&gt; {ElimStr}</value>
+  </data>
 </root>

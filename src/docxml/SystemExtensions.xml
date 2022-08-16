@@ -771,6 +771,12 @@
             </summary>
             <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
         </member>
+        <member name="M:System.Collections.Generic.ValueList`1.ToImmutableArray">
+            <summary>
+            Converts the current instance into an immutable array of type <typeparamref name="TUnmanaged"/>.
+            </summary>
+            <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
+        </member>
         <member name="T:System.Collections.Generic.ValueList`1.Enumerator">
             <summary>
             Defines the enumerator of this type.
