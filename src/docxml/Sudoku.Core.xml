@@ -6472,6 +6472,11 @@
               Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the conjugate pair {ConjStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniquenessClueCoverRwTypeStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniquenessClueCoverType2Step">
             <summary>
               Looks up a localized string similar to {Name}: Enumerates all possible cases filling the chute {ChuteIndexStr} (i.e. houses {HousesStr}), we can find two digits that cannot cover =&gt; {ElimStr}.
@@ -6625,6 +6630,11 @@
         <member name="P:Sudoku.Resources.Resources.UniqueLoopType4">
             <summary>
               Looks up a localized string similar to Unique Loop Type 4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.UniquenessClueCoverRwType">
+            <summary>
+              Looks up a localized string similar to Uniqueness Clue Cover RW&apos;s Type.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UniquenessClueCoverType2">
@@ -9781,6 +9791,11 @@
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquenessClueCoverType2">
             <summary>
             Indicates uniqueness clue cover type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquenessClueCoverRwType">
+            <summary>
+            Indicates uniqueness clue cover RW's type.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquePolygonType1">

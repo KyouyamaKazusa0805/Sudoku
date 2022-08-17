@@ -1171,6 +1171,11 @@ public enum Technique : short
 	UniquenessClueCoverType2,
 
 	/// <summary>
+	/// Indicates uniqueness clue cover RW's type.
+	/// </summary>
+	UniquenessClueCoverRwType,
+
+	/// <summary>
 	/// Indicates unique polygon type 1.
 	/// </summary>
 	UniquePolygonType1,

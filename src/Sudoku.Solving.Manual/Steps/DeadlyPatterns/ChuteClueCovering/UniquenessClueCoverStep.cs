@@ -28,7 +28,7 @@ internal abstract record UniquenessClueCoverStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UniquenessClueCoverType{Type}");
+	public override Technique TechniqueCode => Enum.Parse<Technique>($"UniquenessClueCoverType{Type}");
 
 	/// <inheritdoc/>
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UniquenessClueCover;

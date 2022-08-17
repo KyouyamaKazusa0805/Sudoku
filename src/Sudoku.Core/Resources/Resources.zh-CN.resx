@@ -1726,4 +1726,11 @@
   <data name="TechniqueFormat_ReverseUniqueRectangleType2Step" xml:space="preserve">
     <value>{Name}：数字 {DigitsStr}，位于单元格 {CellsStr} 里，并带有额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_UniquenessClueCoverRwTypeStep" xml:space="preserve">
+    <value>{Name}：单元格 {CellsStr}，数字 {DigitsStr} =&gt; {ElimsStr}</value>
+  </data>
+  <data name="UniquenessClueCoverRwType" xml:space="preserve">
+    <value>唯一性确定值覆盖・RW 类型</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

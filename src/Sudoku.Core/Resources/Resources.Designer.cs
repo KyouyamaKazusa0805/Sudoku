@@ -3238,6 +3238,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniquenessClueCoverRwTypeStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniquenessClueCoverRwTypeStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Enumerates all possible cases filling the chute {ChuteIndexStr} (i.e. houses {HousesStr}), we can find two digits that cannot cover =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_UniquenessClueCoverType2Step {
@@ -3513,6 +3522,15 @@ namespace Sudoku.Resources {
         internal static string UniqueLoopType4 {
             get {
                 return ResourceManager.GetString("UniqueLoopType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uniqueness Clue Cover RW&apos;s Type.
+        /// </summary>
+        internal static string UniquenessClueCoverRwType {
+            get {
+                return ResourceManager.GetString("UniquenessClueCoverRwType", resourceCulture);
             }
         }
         
