@@ -3157,6 +3157,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} of digits {DigitsStr}, with an extra digit {ExtraDigitStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_ReverseUniqueRectangleType2Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ReverseUniqueRectangleType2Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_SueDeCoq3DimensionStep {

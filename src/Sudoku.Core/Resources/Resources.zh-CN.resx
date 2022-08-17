@@ -1723,4 +1723,7 @@
   <data name="TechniqueFormat_ReverseUniqueRectangleType1Step" xml:space="preserve">
     <value>{Name}：只有 {CellsStr} 包含数字 {DigitsStr}，那么如果 {TargetCellStr} 填入 {TargetDigitStr} 的话，就会构成致命结构 =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_ReverseUniqueRectangleType2Step" xml:space="preserve">
+    <value>{Name}：数字 {DigitsStr}，位于单元格 {CellsStr} 里，并带有额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
+  </data>
 </root>

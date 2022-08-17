@@ -28,6 +28,7 @@ internal sealed record ReverseUniqueRectangleType1Step(
 		get => RxCyNotation.ToCellString(TargetCell);
 	}
 
+	[FormatItem]
 	internal string TargetDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

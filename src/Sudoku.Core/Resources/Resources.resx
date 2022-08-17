@@ -1425,4 +1425,7 @@
   <data name="TechniqueFormat_ReverseUniqueRectangleType1Step" xml:space="preserve">
     <value>{Name}: Only cells {CellsStr} gives the value of digits {DigitsStr}, meaning digits will be a deadly pattern if the target cell {TargetCellStr} is filled with {TargetDigitStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_ReverseUniqueRectangleType2Step" xml:space="preserve">
+    <value>{Name}: Cells {CellsStr} of digits {DigitsStr}, with an extra digit {ExtraDigitStr} =&gt; {ElimStr}</value>
+  </data>
 </root>

@@ -1087,12 +1087,28 @@ public unsafe struct Cells :
 		=> CreateByBits(left._high ^ right._high, left._low ^ right._low);
 
 	/// <summary>
-	/// <para>Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.</para>
-	/// <para>The operator is used for searching for and checking eliminations.</para>
+	/// Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.
 	/// </summary>
 	/// <param name="base">The base map.</param>
 	/// <param name="template">The template map that the base map to check and cover.</param>
 	/// <returns>The result map.</returns>
+	/// <remarks>
+	/// <para>
+	/// The operator is commonly used for checking eliminations, especially in type 2 of deadly patterns. 
+	/// </para>
+	/// <para>
+	/// For example, if we should check the eliminations
+	/// of digit <c>d</c>, we may use the expression
+	/// <code><![CDATA[
+	/// !(urCells & grid.CandidatesMap[d]) & grid.CandidatesMap[d]
+	/// ]]></code>
+	/// to express the eliminations are the peer intersection of cells of digit <c>d</c>
+	/// appeared in <c>urCells</c>. This expression can be simplified to
+	/// <code><![CDATA[
+	/// urCells % grid.CandidatesMap[d]
+	/// ]]></code>
+	/// </para>
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator %(scoped in Cells @base, scoped in Cells template)
 		=> !(@base & template) & template;

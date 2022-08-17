@@ -5,8 +5,8 @@
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>Reverse Unique Rectangle Type 1</item>
-/// <!--
 /// <item>Reverse Unique Rectangle Type 2</item>
+/// <!--
 /// <item>Reverse Unique Rectangle Type 3</item>
 /// <item>Reverse Unique Rectangle Type 4</item>
 /// -->
@@ -37,14 +37,11 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 				continue;
 			}
 
-			if (pattern - nonemptyCells is not [var emptyCell])
-			{
-				continue;
-			}
-
 			int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
 			short comparer = (short)(1 << d1 | 1 << d2);
-			short gathered = grid.GetCandidates(emptyCell);
+
+			var emptyCells = pattern - nonemptyCells;
+			short gathered = grid.GetDigitsUnion(emptyCells);
 			if ((gathered & comparer) == 0)
 			{
 				continue;
@@ -58,9 +55,14 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 				continue;
 			}
 
-			if (CheckType1(accumulator, onlyFindOne, d1, d2, pattern, emptyCell, comparer) is { } type1Step)
+			if (emptyCells is [var emptyCell]
+				&& CheckType1(accumulator, onlyFindOne, d1, d2, pattern, emptyCell, comparer) is { } type1Step)
 			{
 				return type1Step;
+			}
+			if (CheckType2(accumulator, onlyFindOne, grid, pattern, emptyCells, comparer) is { } type2Step)
+			{
+				return type2Step;
 			}
 		}
 
@@ -101,6 +103,63 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 			comparer,
 			emptyCell,
 			CandidatesMap[d1].Contains(emptyCell) ? d1 : d2
+		);
+		if (onlyFindOne)
+		{
+			return step;
+		}
+
+		accumulator.Add(step);
+		return null;
+	}
+
+	/// <summary>
+	/// Checks for type 2. In this type we also check the generalized case that looks like a UR type 5.
+	/// </summary>
+	private IStep? CheckType2(
+		ICollection<IStep> accumulator, bool onlyFindOne, scoped in Grid grid,
+		scoped in Cells pattern, scoped in Cells emptyCells, short comparer)
+	{
+		short mask = grid.GetDigitsUnion(emptyCells);
+		short extraDigitMask = (short)(mask & ~comparer);
+		if (!IsPow2(extraDigitMask))
+		{
+			return null;
+		}
+
+		int extraDigit = TrailingZeroCount(extraDigitMask);
+		if (emptyCells % CandidatesMap[extraDigit] is not (var elimMap and not []))
+		{
+			return null;
+		}
+
+		scoped var conclusions = from cell in elimMap select new Conclusion(Elimination, cell, extraDigit);
+		var cellOffsets = new List<CellViewNode>(4);
+		foreach (int cell in pattern)
+		{
+			cellOffsets.Add(new(DisplayColorKind.Normal, cell));
+		}
+		var candidateOffsets = new List<CandidateViewNode>(4);
+		foreach (int cell in emptyCells)
+		{
+			foreach (int digit in grid.GetCandidates(cell))
+			{
+				candidateOffsets.Add(
+					new(
+						digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+						cell * 9 + digit
+					)
+				);
+			}
+		}
+
+		var step = new ReverseUniqueRectangleType2Step(
+			conclusions.ToImmutableArray(),
+			ImmutableArray.Create(View.Empty | cellOffsets | candidateOffsets),
+			pattern,
+			comparer,
+			extraDigit,
+			emptyCells & CandidatesMap[extraDigit]
 		);
 		if (onlyFindOne)
 		{
