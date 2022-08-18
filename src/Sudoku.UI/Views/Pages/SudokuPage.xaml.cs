@@ -607,10 +607,8 @@ public sealed partial class SudokuPage : Page
 									{R["SudokuPage_Info_ExceptionIs"]!}
 									{message}
 									""",
-#pragma warning disable CS0618
 								SearcherFailedReason.PuzzleIsTooHard
 									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard"]!,
-#pragma warning restore CS0618
 							};
 
 						_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}");

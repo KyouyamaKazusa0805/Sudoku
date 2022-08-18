@@ -7,32 +7,6 @@
 public interface IManualSolverOptions
 {
 	/// <summary>
-	/// <para>Indicates whether the solver uses Hodoku mode to solve a sudoku.</para>
-	/// <para>
-	/// <b>Hodoku mode</b> is a mode that imitates a sudoku-solving program called <i>Hodoku</i>
-	/// to solve a puzzle. In this case, all enabled step searchers will be in ascending order via their's own
-	/// priority, i.e. the value of the property <see cref="SearcherInitializationOptions.Priority"/>. On the other hand,
-	/// this option provides a basic and normal processing behavior of a <see cref="ManualSolver"/> instance.
-	/// </para>
-	/// <para>
-	/// However, in this case the difficulty order (ascending or descending order) of steps
-	/// won't be guaranteed. For example, the possible difficulty rating of a step searched via a UR searcher
-	/// is between 4.5 and 4.8, and another rating of a step via a chain searcher is between 4.6 and 5.1.
-	/// If the UR searcher has a larger priority than chain searcher, the solver may find all UR steps firstly
-	/// in this case, and secondly searches for chains. In some cases, some UR steps found
-	/// has a larger difficulty rating value than some chain steps found, so the difficulty ratings
-	/// are not strictly-handled (i.e. steps are out of ordered).
-	/// </para>
-	/// <para>
-	/// If you want to strictly handle the difficulty rating, we recommend you set this property value
-	/// as <see langword="false"/>, but the solver will be processed slower than the case setting the
-	/// <see langword="true"/> value.
-	/// </para>
-	/// </summary>
-	/// <seealso cref="SearcherInitializationOptions.Priority"/>
-	public abstract bool IsHodokuMode { get; set; }
-
-	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher,
 	/// in order to solve a puzzle faster. If the value is <see langword="true"/>,
 	/// the third argument of <see cref="IStepSearcher.GetAll(ICollection{IStep}, in Grid, bool)"/>

@@ -60,16 +60,5 @@ public enum SearcherFailedReason : byte
 	/// This option becomes deprecated at present because we has already implemented a step searcher
 	/// that always produces a valid step, guaranteeing that the solver will never give up at all time.
 	/// </i></remarks>
-	[Obsolete("This option becomes deprecated because we can guarantee the solver not give up.", false)]
-	PuzzleIsTooHard,
-
-	/// <summary>
-	/// Indicates the other reason to cause the error.
-	/// </summary>
-	/// <remarks><i>
-	/// This option becomes deprecated at present because the solver will catch all kinds of exceptions thrown
-	/// during solving a puzzle. There's no kinds of unexpected error will be encountered now.
-	/// </i></remarks>
-	[Obsolete("This option becomes deprecated because all kinds of exceptions will be caught in searching method.", false)]
-	Unknown
+	PuzzleIsTooHard
 }

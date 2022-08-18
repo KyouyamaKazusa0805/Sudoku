@@ -190,16 +190,6 @@ public sealed class Preference : IDrawingPreference
 	#endregion
 
 	#region Solving Options
-	/// <inheritdoc cref="ManualSolver.IsHodokuMode"/>
-	public bool IsHodokuMode
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DefaultSolver.IsHodokuMode;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => DefaultSolver.IsHodokuMode = value;
-	}
-
 	/// <inheritdoc cref="ManualSolver.IsFullApplying"/>
 	[Preference<ToggleSwitchSettingItem>]
 	[PreferenceGroup(PreferenceGroupNames.Solving, 0)]

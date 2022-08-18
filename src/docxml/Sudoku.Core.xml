@@ -7396,15 +7396,6 @@
             that always produces a valid step, guaranteeing that the solver will never give up at all time.
             </i></remarks>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.Unknown">
-            <summary>
-            Indicates the other reason to cause the error.
-            </summary>
-            <remarks><i>
-            This option becomes deprecated at present because the solver will catch all kinds of exceptions thrown
-            during solving a puzzle. There's no kinds of unexpected error will be encountered now.
-            </i></remarks>
-        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions">
             <summary>
             Indicates the options for a step searcher used while searching.

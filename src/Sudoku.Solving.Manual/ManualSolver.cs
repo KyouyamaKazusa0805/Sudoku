@@ -1,34 +1,13 @@
 ﻿namespace Sudoku.Solving.Manual;
 
+using static SearcherFailedReason;
+
 /// <summary>
 /// Provides a manual solver that solves a sudoku puzzle using the human minds and ways
 /// to check and solve a sudoku puzzle.
 /// </summary>
 public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResult>, IManualSolverOptions
 {
-	/// <summary>
-	/// The backing field of the property <see cref="IsHodokuMode"/>.
-	/// </summary>
-	/// <seealso cref="IsHodokuMode"/>
-	private bool _isHodokuMode = true;
-
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The default value is <see langword="true"/>.
-	/// </remarks>
-	/// <exception cref="NotSupportedException">
-	/// Throws when the <see langword="value"/> is <see langword="false"/>.
-	/// </exception>
-	public bool IsHodokuMode
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _isHodokuMode;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => _isHodokuMode = value ? value : throw new NotSupportedException("Other modes are not supported now.");
-	}
-
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
@@ -61,15 +40,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 		{
 			try
 			{
-				return IsHodokuMode switch
-				{
-					// Hodoku mode.
-					true => Solve_HodokuMode(puzzle, solution, sukaku.Value, result, cancellationToken),
-
-					// Sudoku explainer mode.
-					// TODO: Implement a sudoku-explainer mode solving module.
-					_ => throw new NotSupportedException("I'm sorry that Sudoku Explainer mode is not implemented at present.")
-				};
+				return InternalSolve(puzzle, solution, sukaku.Value, result, cancellationToken);
 			}
 			catch (OperationCanceledException ex) when (ex.CancellationToken != cancellationToken)
 			{
@@ -77,37 +48,23 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 			}
 			catch (Exception ex)
 			{
+				result = result with { IsSolved = false };
 				return ex switch
 				{
-					NotImplementedException or NotSupportedException => result with
-					{
-						IsSolved = false,
-						FailedReason = SearcherFailedReason.NotImplemented
-					},
-					WrongStepException { WrongStep: var ws } castedException => result with
-					{
-						IsSolved = false,
-						FailedReason = SearcherFailedReason.WrongStep,
-						WrongStep = ws,
-						UnhandledException = castedException,
-					},
-					OperationCanceledException => result with
-					{
-						IsSolved = false,
-						FailedReason = SearcherFailedReason.UserCancelled
-					},
-					_ => result with
-					{
-						IsSolved = false,
-						FailedReason = SearcherFailedReason.ExceptionThrown,
-						UnhandledException = ex
-					}
+					NotImplementedException or NotSupportedException
+						=> result with { FailedReason = NotImplemented },
+					WrongStepException { WrongStep: var ws }
+						=> result with { FailedReason = WrongStep, WrongStep = ws, UnhandledException = ex },
+					OperationCanceledException
+						=> result with { FailedReason = UserCancelled },
+					_
+						=> result with { FailedReason = ExceptionThrown, UnhandledException = ex }
 				};
 			}
 		}
 		else
 		{
-			return result with { IsSolved = false, FailedReason = SearcherFailedReason.PuzzleIsInvalid };
+			return result with { IsSolved = false, FailedReason = PuzzleIsInvalid };
 		}
 	}
 
@@ -123,7 +80,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 	/// <returns>The solver result.</returns>
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>
 	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
-	private ManualSolverResult Solve_HodokuMode(
+	private ManualSolverResult InternalSolve(
 		scoped in Grid puzzle,
 		scoped in Grid solution,
 		bool isSukaku,
@@ -229,9 +186,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 		return resultBase with
 		{
 			IsSolved = false,
-#pragma warning disable CS0618
-			FailedReason = SearcherFailedReason.PuzzleIsTooHard,
-#pragma warning restore CS0618
+			FailedReason = PuzzleIsTooHard,
 			ElapsedTime = stopwatch.Elapsed,
 			Steps = ImmutableArray.CreateRange(recordedSteps),
 			StepGrids = ImmutableArray.CreateRange(stepGrids)
