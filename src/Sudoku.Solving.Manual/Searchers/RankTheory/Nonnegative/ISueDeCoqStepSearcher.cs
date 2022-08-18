@@ -115,12 +115,9 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 											: selectedInterMask & ~(blockMask | lineMask)
 									);
 									short maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
-									if (
-										!cannibalMode && (
-											(blockMask & lineMask) != 0
-											|| maskIsolated != 0 && !IsPow2(maskIsolated)
-										) || cannibalMode && !IsPow2(maskIsolated)
-									)
+									if (!cannibalMode
+										&& ((blockMask & lineMask) != 0 || maskIsolated != 0 && !IsPow2(maskIsolated))
+										|| cannibalMode && !IsPow2(maskIsolated))
 									{
 										continue;
 									}

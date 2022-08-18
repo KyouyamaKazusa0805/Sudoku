@@ -76,13 +76,12 @@ public sealed class EliminationNotation :
 		var result = Candidates.Empty;
 		foreach (string segment in segments)
 		{
-			if (
-				segment is not [
+			if (segment is not
+				[
 					var digitChar and >= '1' and <= '9',
 					var rowChar and >= '1' and <= '9',
 					var columnChar and >= '1' and <= '9'
-				]
-			)
+				])
 			{
 				throw new FormatException("Each candidate segment contains invalid character.");
 			}

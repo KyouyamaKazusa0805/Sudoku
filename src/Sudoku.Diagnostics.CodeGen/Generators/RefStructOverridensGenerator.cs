@@ -9,13 +9,11 @@ public sealed partial class RefStructOverridensGenerator : ISourceGenerator
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (
-			context is not
+		if (context is not
 			{
 				SyntaxContextReceiver: Receiver { Collection: var symbolsFound },
 				Compilation: var compilation
-			}
-		)
+			})
 		{
 			return;
 		}
@@ -354,13 +352,11 @@ file sealed record Receiver(CancellationToken CancellationToken) : ISyntaxContex
 	/// <inheritdoc/>
 	public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
 	{
-		if (
-			context is not
+		if (context is not
 			{
 				Node: StructDeclarationSyntax { Modifiers: var modifiers and not [] } n,
 				SemanticModel: { Compilation: { } compilation } semanticModel
-			}
-		)
+			})
 		{
 			return;
 		}

@@ -45,19 +45,15 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 				continue;
 			}
 
-			if (
-				!CheckTargetCells(
+			if (!CheckTargetCells(
 					currentJe.TargetQ1, currentJe.TargetQ2, baseCellsDigitsMask,
-					grid, out short otherDigitsMaskQArea)
-			)
+					grid, out short otherDigitsMaskQArea))
 			{
 				continue;
 			}
-			if (
-				!CheckTargetCells(
+			if (!CheckTargetCells(
 					currentJe.TargetR1, currentJe.TargetR2, baseCellsDigitsMask,
-					grid, out short otherDigitsMaskRArea)
-			)
+					grid, out short otherDigitsMaskRArea))
 			{
 				continue;
 			}

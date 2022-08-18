@@ -57,9 +57,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		foreach (var attributeData in attributesData)
 		{
 			// Check validity.
-			if (
 #pragma warning disable IDE0055
-				attributeData is not
+			if (attributeData is not
 				{
 					AttributeClass:
 					{
@@ -76,9 +75,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 					} attributeClassSymbol,
 					ConstructorArguments: [{ Type.TypeKind: Kind.Enum, Value: byte dl }],
 					NamedArguments: var namedArguments
-				}
+				})
 #pragma warning restore IDE0055
-			)
 			{
 				continue;
 			}

@@ -1043,16 +1043,13 @@ unsafe partial class UniqueRectangleStepSearcher
 
 		void gather(scoped in Grid grid, scoped in Cells otherCellsMap, bool isRow, int digit, int house1, int house2)
 		{
-			if (
-				!(
-					isRow
-						&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner1 + o1, house1)
-						&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner2 + o2, house2)
-						|| !isRow
-						&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner1 + o2, house1)
-						&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner2 + o1, house2)
-				)
-			)
+			bool precheck = isRow
+				&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner1 + o1, house1)
+				&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner2 + o2, house2)
+				|| !isRow
+				&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner1 + o2, house1)
+				&& IUniqueRectangleStepSearcher.IsConjugatePair(digit, Cells.Empty + corner2 + o1, house2);
+			if (!precheck)
 			{
 				return;
 			}
@@ -1283,21 +1280,9 @@ unsafe partial class UniqueRectangleStepSearcher
 
 		short o1 = grid.GetCandidates(otherCellsMap[0]), o2 = grid.GetCandidates(otherCellsMap[1]);
 		short o = (short)(o1 | o2);
-		if (
-			(
-				TotalNumbersCount: PopCount((uint)o),
-				OtherCell1NumbersCount: PopCount((uint)o1),
-				OtherCell2NumbersCount: PopCount((uint)o2),
-				OtherCell1Intersetion: o1 & comparer,
-				OtherCell2Intersetion: o2 & comparer
-			) is not (
-				TotalNumbersCount: 4,
-				OtherCell1NumbersCount: <= 3,
-				OtherCell2NumbersCount: <= 3,
-				OtherCell1Intersetion: not 0,
-				OtherCell2Intersetion: not 0
-			) || (o & comparer) != comparer
-		)
+		if (PopCount((uint)o) != 4 || PopCount((uint)o1) > 3 || PopCount((uint)o2) > 3
+			|| (o1 & comparer) == 0 || (o2 & comparer) == 0
+			|| (o & comparer) != comparer)
 		{
 			return;
 		}
@@ -1764,25 +1749,10 @@ unsafe partial class UniqueRectangleStepSearcher
 		short m1 = grid.GetCandidates(c1), m2 = grid.GetCandidates(c2), m3 = grid.GetCandidates(c3);
 		short mask = (short)((short)(m1 | m2) | m3);
 
-		if (
-			(
-				TotalNumbersCount: PopCount((uint)mask),
-				Cell1NumbersCount: PopCount((uint)m1),
-				Cell2NumbersCount: PopCount((uint)m2),
-				Cell3NumbersCount: PopCount((uint)m3),
-				Cell1Intersection: m1 & comparer,
-				Cell2Intersection: m2 & comparer,
-				Cell3Intersection: m3 & comparer
-			) is not (
-				TotalNumbersCount: 4,
-				Cell1NumbersCount: <= 3,
-				Cell2NumbersCount: <= 3,
-				Cell3NumbersCount: <= 3,
-				Cell1Intersection: not 0,
-				Cell2Intersection: not 0,
-				Cell3Intersection: not 0
-			) || (mask & comparer) != comparer
-		)
+		if (PopCount((uint)mask) != 4
+			|| PopCount((uint)m1) > 3 || PopCount((uint)m2) > 3 || PopCount((uint)m3) > 3
+			|| (m1 & comparer) == 0 || (m2 & comparer) == 0 || (m3 & comparer) == 0
+			|| (mask & comparer) != comparer)
 		{
 			return;
 		}
@@ -3342,12 +3312,8 @@ unsafe partial class UniqueRectangleStepSearcher
 			short maskIsolated = (short)(
 				cannibalMode ? (lineMask & blockMask & selectedInterMask) : maskOnlyInInter
 			);
-			if (
-				!cannibalMode && (
-					(blockMask & lineMask) != 0
-					|| maskIsolated != 0 && !IsPow2(maskIsolated)
-				) || cannibalMode && !IsPow2(maskIsolated)
-			)
+			if (!cannibalMode && ((blockMask & lineMask) != 0 || maskIsolated != 0 && !IsPow2(maskIsolated))
+				|| cannibalMode && !IsPow2(maskIsolated))
 			{
 				return;
 			}
@@ -3356,11 +3322,9 @@ unsafe partial class UniqueRectangleStepSearcher
 			int digitIsolated = TrailingZeroCount(maskIsolated);
 			if (digitIsolated != InvalidValidOfTrailingZeroCountMethodFallback)
 			{
-				elimMapIsolated = (
-					cannibalMode
-						? currentBlockMap | currentLineMap
-						: currentInterMap
-				) % CandidatesMap[digitIsolated] & EmptyCells;
+				elimMapIsolated = (cannibalMode ? currentBlockMap | currentLineMap : currentInterMap)
+					% CandidatesMap[digitIsolated]
+					& EmptyCells;
 			}
 
 			if (currentInterMap.Count + i + j + 1 == PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)

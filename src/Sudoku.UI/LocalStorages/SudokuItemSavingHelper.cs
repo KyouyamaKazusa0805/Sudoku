@@ -16,14 +16,12 @@ internal static class SudokuItemSavingHelper
 	/// </returns>
 	public static async Task<bool> PlainTextSaveAsync(StorageFile file, SudokuPage page)
 	{
-		if (
+		if ((file, page) is not (
 #pragma warning disable IDE0055
-			(file, page) is not (
 				{ Name: var fileName, Path: var filePath },
 				{ _cPane.Grid: var grid, _cInfoBoard: var board }
-			)
+			))
 #pragma warning restore IDE0055
-		)
 		{
 			return false;
 		}
@@ -89,7 +87,7 @@ internal static class SudokuItemSavingHelper
 			}
 			case UserDefinedDisplayable displayable:
 			{
-				string json = Serialize(displayable, CommonSerializerOptions.CamelCasing);
+				string json = Serialize(displayable, CamelCasing);
 
 				await SioFile.WriteAllTextAsync(filePath, json);
 

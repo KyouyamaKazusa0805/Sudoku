@@ -1157,8 +1157,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 
 			void appendWeakInference(scoped in Cells currentCells, byte extraDigit, scoped in Node node)
 			{
-				if (
-					PopCount((uint)currentCells.CoveredHouses) switch
+				if (PopCount((uint)currentCells.CoveredHouses) switch
 					{
 						// No covered houses. e.g.
 						// x x
@@ -1172,8 +1171,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 						// Two covered houses. It means it is a locked candidates.
 						// This case should have been handled.
 						_ => Cells.Empty
-					} is not [] uncoveredCells
-				)
+					} is not [] uncoveredCells)
 				{
 					return;
 				}

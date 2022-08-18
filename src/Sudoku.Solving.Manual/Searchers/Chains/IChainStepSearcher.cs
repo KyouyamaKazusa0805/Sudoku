@@ -97,9 +97,8 @@ public interface IChainStepSearcher : IStepSearcher
 	/// <returns>An array of presentation data of links.</returns>
 	protected static sealed LinkViewNode[] GetViewOnLinks(AlternatingInferenceChain chain)
 	{
-		if (
 #pragma warning disable IDE0055
-			chain is not
+		if (chain is not
 			{
 				IsStrong: var isStrong,
 				IsContinuousNiceLoop: var isCnl,
@@ -109,9 +108,8 @@ public interface IChainStepSearcher : IStepSearcher
 					..,
 					{ Cells: var lastCells, Digit: var lastDigit }
 				] realChainNodes and { Length: var length }
-			}
+			})
 #pragma warning restore IDE0055
-		)
 		{
 			throw new InvalidOperationException("Invalid status.");
 		}

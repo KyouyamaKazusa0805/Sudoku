@@ -16,13 +16,11 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 	public void Execute(GeneratorExecutionContext context)
 	{
 		// Check values.
-		if (
-			context is not
+		if (context is not
 			{
 				SyntaxContextReceiver: Receiver { Collection: var collection },
 				Compilation: { Assembly: var assembly } compilation
-			}
-		)
+			})
 		{
 			return;
 		}
@@ -225,9 +223,8 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			// Checks whether the number of constructor arguments is 2.
 			// If so, check whether the validity of the first argument (must be 'System.Type')
 			// and the second argument (must be 'params string[]').
-			if (
 #pragma warning disable IDE0055
-				attributeData is not
+			if (attributeData is not
 				{
 					ConstructorArguments:
 					[
@@ -235,9 +232,8 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 						{ Values: var typedConstants and not [] }
 					],
 					NamedArguments: var namedArgs
-				}
+				})
 #pragma warning restore IDE0055
-			)
 			{
 				// Invalid case.
 				continue;
@@ -458,13 +454,11 @@ file sealed record Receiver(CancellationToken CancellationToken) : ISyntaxContex
 	{
 		const string attributeFullName = "System.Diagnostics.CodeGen.AutoDeconstructionAttribute";
 
-		if (
-			context is not
+		if (context is not
 			{
 				Node: TypeDeclarationSyntax { Modifiers: var modifiers and not [] } n,
 				SemanticModel: { Compilation: { } compilation } semanticModel
-			}
-		)
+			})
 		{
 			return;
 		}

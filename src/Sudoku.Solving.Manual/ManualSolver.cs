@@ -128,11 +128,9 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 					{
 						if (verifyConclusionValidity(solution, foundStep))
 						{
-							if (
-								recordStep(
+							if (recordStep(
 									recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
-									resultBase, cancellationToken, out var result)
-							)
+									resultBase, cancellationToken, out var result))
 							{
 								return result;
 							}
@@ -157,11 +155,9 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 
 					if (verifyConclusionValidity(solution, foundStep))
 					{
-						if (
-							recordStep(
+						if (recordStep(
 								recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
-								resultBase, cancellationToken, out var result)
-						)
+								resultBase, cancellationToken, out var result))
 						{
 							return result;
 						}

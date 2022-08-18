@@ -307,8 +307,7 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 	public string ToString(SolverResultFormattingOptions options)
 	{
 		// Get all information.
-		if (
-			this is not
+		if (this is not
 			{
 				IsSolved: var isSolved,
 				TotalDifficulty: var total,
@@ -320,8 +319,7 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 				ElapsedTime: var elapsed,
 				SolvingStepsCount: var stepsCount,
 				Steps: var steps
-			}
-		)
+			})
 		{
 			throw new();
 		}

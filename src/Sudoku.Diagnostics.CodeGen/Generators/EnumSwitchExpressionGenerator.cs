@@ -34,13 +34,11 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 
 	private (INamedTypeSymbol, DataTuple[])? Transform(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
-		if (
-			gsc is not
+		if (gsc is not
 			{
 				Node: EnumDeclarationSyntax enumDeclarationSyntaxNode,
 				SemanticModel: { Compilation: var compilation } semanticModel
-			}
-		)
+			})
 		{
 			return null;
 		}

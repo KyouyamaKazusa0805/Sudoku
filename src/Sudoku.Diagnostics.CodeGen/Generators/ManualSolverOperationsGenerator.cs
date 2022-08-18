@@ -12,12 +12,10 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 
 	private void CreateSourceGeneration(SourceProductionContext spc, Compilation compilation)
 	{
-		if (
-			compilation is not
+		if (compilation is not
 			{
 				Assembly: { Name: Projects.ManualSolving, GlobalNamespace: var @namespace } assemblySymbol
-			}
-		)
+			})
 		{
 			return;
 		}
@@ -64,25 +62,19 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 					continue;
 				}
 
-				if (
-					property is not
+				if (property is not
 					{
 						ExplicitInterfaceImplementations: [],
 						ContainingType.Name: var searcherTypeName,
 						Name: var propertyName
-					}
-				)
+					})
 				{
 					continue;
 				}
 
 				string searcherFullTypeName = $"{Projects.ManualSolving}.Searchers.I{searcherTypeName}";
-				if (
-					compilation.GetTypeByMetadataName(searcherFullTypeName) is not
-					{
-						AllInterfaces: var interfaceBaseInterfaces
-					} interfaceType
-				)
+				var interfaceType = compilation.GetTypeByMetadataName(searcherFullTypeName);
+				if (interfaceType is not { AllInterfaces: var interfaceBaseInterfaces })
 				{
 					continue;
 				}

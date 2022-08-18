@@ -57,7 +57,7 @@
 `nameof` 表达式：
 
 1. 总是用 `nameof` 表达式来代替成员引用的名称、参数和临时变量名称，除非它不可引用；
-2. 如果是泛型类型的成员名称引用的话，也使用 `nameof` 表达式，不过因为语法不支持的关系，我们默认可对泛型参数插入 `object` 补充，比如 `A<T1, T2>` 类型下有一个字段 `Name`，要引用它的话可以使用 `nameof(A<object, object>.Name)` 来引用；
+2. 如果是泛型类型的成员名称引用的话，也使用 `nameof` 表达式，不过因为语法不支持的关系，我们可创建一个该类型的实例（引用类型常量），赋值 `null!`，然后往里调用对象。比如 `A<T1, T2>` 类型下有一个字段 `Name`，要引用它的话可以创建 `const A<T1, T2> o = null!;` 后，对 `o` 使用 `nameof(o.Name)` 来引用；
 3. 如果是复杂一点的类型名称引用的话，按照 `nameof` 表达式的表现原理，我们可以逐层表达出来，比如 `A.B.C` 可以用 `$"{nameof(A)}.{nameof(A.B)}.{nameof(A.B.C)}"` 的方式表示 `"A.B.C"`；
 4. `typeof(T).Name` 当且仅当不可代替的时候不使用 `nameof`，否则均代替为 `nameof(T)` 代替 `typeof(T).Name`。
 
@@ -124,7 +124,7 @@
 
 修饰符顺序按照 Visual Studio 默认提供的排序顺序对修饰符排序：
 
-1. 访问修饰符：`public`、`internal`、`protected`、`protected internal`、`private protected`、`private`；
+1. 访问修饰符：`public`、`internal`、`protected`、`protected internal`、`private protected`、`private`、`file`；
 2. 静态修饰符：`static`；
 3. 外部修饰符：`extern`；
 4. 继承控制修饰符：`new`、`virtual`、`abstract`、`sealed`、`override`；
@@ -199,7 +199,7 @@ Lambda 风格的成员表述语法下，`=>` 符号总是放在和成员声明�
 
 避免任何排版之前忘记的插入空格，比如说 `if` 和 `(` 之间的空格、`a + b` 表达式里 `a` 和 `+` 符号之间的空格以及 `+` 和 `b` 之间的空格等等。
 
-所有带有类型的文件（除了 `Globals` 文件只存储 `global` 引用指令以及程序集级别特性），默认在文件末尾都会带有一行空行。
+所有带有类型的文件（除了 `GlobalUsings` 文件只存储 `global` 引用指令以及程序集级别特性），默认在文件末尾都会带有一行空行。
 
 如果是非 ASCII 字符作为代码的一部分的话（即使是放在字符串里），如果它比较常见，比如 `` `，可以直接写字面量，否则总是使用 `\u数字` 的方式引用该字符。
 
@@ -209,13 +209,13 @@ Lambda 风格的成员表述语法下，`=>` 符号总是放在和成员声明�
 
 如果类型带有泛型参数，那么类型名称会很长的时候，它是特殊情况，可以不换行。但我更建议对于这种类型单独写一行 `using` 指令代替掉长类型名。
 
-在模式匹配里，大括号 `{}` 书写要遵循 Allman 缩进方式，而小括号 `()` 则不遵循；同样地，中括号 `[]` 看你自己，可以换行也可以不换行，但我建议和小括号一致，不换行。
+在模式匹配里，大括号 `{}` 书写要遵循 Allman 缩进方式，而小括号 `()` 则不遵循；同样地，中括号 `[]` 看你自己，可以换行也可以不换行，但我建议和大括号一致，换行。
 
 如果 `if` 条件里的代码较长需要换行的时候，需要遵循如下的规则：
 
-1. 如果所有的内容只包含布尔条件之间的 `&&`、`||`、`&`、`|`、`^` 以及 `!` 这些基本运算，而不包括小括号的时候，可以将每一个条件单独写在一行里，第一个条件直接跟在 `if(` 的开小括号 `(` 之后书写，而后面的条件则直接换行到下一行；后面的条件同理；
+1. 如果所有的内容只包含布尔条件之间的 `&&`、`||`、`&`、`|`、`^` 以及 `!` 这些基本运算，而不包括小括号的时候，可以将每一个条件单独写在一行里，第一个条件直接跟在 `if (` 的开小括号 `(` 之后书写，而后面的条件则直接换行到下一行；后面的条件同理；
 2. 如果条件包含组合情况（小括号），则考虑将小括号单独列成一行书写，而小括号里的内容单独写在下面的行里，并增加一层缩进；
-3. 如果条件包含模式匹配等复杂运算的，建议按照这些复杂运算过程的规则排版之后，将 `if(...)` 条件的 `if(` 和 `)` 两个部分单独列成一行，而条件部分不再跟着 `(` 后直接书写，而不是跟着 `(` 之后。
+3. 如果条件包含模式匹配等复杂运算的，如果不是单表达式，一般都直接接着 `if (` 的小括号后写，然后换行、换行、换行。最后的闭小括号 `)` 放在最后一个表达式部分的末尾，而不单独换行。
 
 如果 `for` 循环的初始化部分、条件部分或增量部分包含复杂代码，一律按照 `if` 如此的排版规则将其单独成行放置，而 `for` 循环每一个部分末尾的分号 `;` 跟着当前部分的最后一部分代码后直接书写，而不单独换行；
 
@@ -444,13 +444,13 @@ public readonly record struct Conclusion(int Mask) :
 
     /// <inheritdoc cref="object.ToString"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override string ToString() =>
-        $"{Cells.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
+    public override string ToString()
+        => $"{Cells.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
 
     /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    int IComparable.CompareTo(object? obj) =>
-        obj is Conclusion comparer
+    int IComparable.CompareTo(object? obj)
+        => obj is Conclusion comparer
             ? CompareTo(comparer)
             : throw new ArgumentException($"The argument must be of type '{nameof(Conclusion)}'", nameof(obj));
 

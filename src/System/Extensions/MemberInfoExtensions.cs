@@ -18,24 +18,20 @@ public static class MemberInfoExtensions
 	{
 		if (genericAttributeType is not { IsGenericType: true, FullName: { } genericTypeName })
 		{
-			goto ReturnEmptyArray;
+			return Array.Empty<Type>();
 		}
 
-		if (
-			(
-				from a in @this.GetCustomAttributes()
-				where a.GetType() is { IsGenericType: var g, FullName: { } f } && g && p(genericTypeName) == p(f)
-				select a
-			).ToArray() is not [var attribute]
-		)
+		var attributes = (
+			from a in @this.GetCustomAttributes()
+			where a.GetType() is { IsGenericType: var g, FullName: { } f } && g && p(genericTypeName) == p(f)
+			select a
+		).ToArray();
+		if (attributes is not [var attribute])
 		{
-			goto ReturnEmptyArray;
+			return Array.Empty<Type>();
 		}
 
 		return attribute.GetType().GenericTypeArguments;
-
-	ReturnEmptyArray:
-		return Array.Empty<Type>();
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -53,80 +53,87 @@ public static class Parser
 		{
 			// Gets the name of the command.
 			string currentArg = otherArgs[i];
-			if (globalOptions.FullCommandNamePrefix is var fullCommandNamePrefix
-				&& currentArg.StartsWith(fullCommandNamePrefix)
-				&& currentArg.Length > fullCommandNamePrefix.Length)
+			switch (globalOptions)
 			{
-				// Okay. Long name.
-				string realSubcommand = currentArg[fullCommandNamePrefix.Length..];
-
-				// Then find property in the type.
-				var properties = (
-					from propertyInfo in typeOfRootCommand.GetProperties()
-					where propertyInfo is { CanRead: true, CanWrite: true }
-					let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()
-					where attribute?.FullName.Equals(realSubcommand, StringComparison.OrdinalIgnoreCase) ?? false
-					select propertyInfo
-				).ToArray();
-				if (properties is not [{ PropertyType: var propertyType } property])
+				case { FullCommandNamePrefix: var fullCommandNamePrefix }
+				when currentArg.StartsWith(fullCommandNamePrefix)
+					&& currentArg.Length > fullCommandNamePrefix.Length:
 				{
-					throw new CommandLineParserException(CommandLineInternalError.ArgumentsAmbiguousMatchedOrMismatched);
+					// Okay. Long name.
+					string realSubcommand = currentArg[fullCommandNamePrefix.Length..];
+
+					// Then find property in the type.
+					var properties = (
+						from propertyInfo in typeOfRootCommand.GetProperties()
+						where propertyInfo is { CanRead: true, CanWrite: true }
+						let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()
+						where attribute?.FullName.Equals(realSubcommand, StringComparison.OrdinalIgnoreCase) ?? false
+						select propertyInfo
+					).ToArray();
+					if (properties is not [{ PropertyType: var propertyType } property])
+					{
+						throw new CommandLineParserException(CommandLineInternalError.ArgumentsAmbiguousMatchedOrMismatched);
+					}
+
+					// Assign the real value.
+					assignPropertyValue(property, propertyType, i + 1);
+
+					// Advances the move.
+					i += 2;
+
+					break;
 				}
-
-				// Assign the real value.
-				assignPropertyValue(property, propertyType, i + 1);
-
-				// Advances the move.
-				i += 2;
-			}
-			else if (
-				globalOptions.ShortCommandNamePrefix is var shortCommandNamePrefix
-				&& currentArg.StartsWith(shortCommandNamePrefix)
-				&& currentArg.Length == shortCommandNamePrefix.Length + 1
-			)
-			{
-				// Okay. Short name.
-				char realSubcommand = currentArg[^1];
-
-				// Then find property in the type.
-				var properties = (
-					from propertyInfo in typeOfRootCommand.GetProperties()
-					where propertyInfo is { CanRead: true, CanWrite: true }
-					let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()
-					where attribute?.ShortName == realSubcommand
-					select propertyInfo
-				).ToArray();
-				if (properties is not [{ PropertyType: var propertyType } property])
+				case { ShortCommandNamePrefix: var shortCommandNamePrefix }
+				when currentArg.StartsWith(shortCommandNamePrefix)
+					&& currentArg.Length == shortCommandNamePrefix.Length + 1:
 				{
-					throw new CommandLineParserException(CommandLineInternalError.ArgumentsAmbiguousMatchedOrMismatched);
+					// Okay. Short name.
+					char realSubcommand = currentArg[^1];
+
+					// Then find property in the type.
+					var properties = (
+						from propertyInfo in typeOfRootCommand.GetProperties()
+						where propertyInfo is { CanRead: true, CanWrite: true }
+						let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()
+						where attribute?.ShortName == realSubcommand
+						select propertyInfo
+					).ToArray();
+					if (properties is not [{ PropertyType: var propertyType } property])
+					{
+						throw new CommandLineParserException(CommandLineInternalError.ArgumentsAmbiguousMatchedOrMismatched);
+					}
+
+					// Assign the real value.
+					assignPropertyValue(property, propertyType, i + 1);
+
+					// Advances the move.
+					i += 2;
+
+					break;
 				}
-
-				// Assign the real value.
-				assignPropertyValue(property, propertyType, i + 1);
-
-				// Advances the move.
-				i += 2;
-			}
-			else
-			{
-				// Try to treat the argument as the single-argument command.
-				var properties = (
-					from propertyInfo in typeOfRootCommand.GetProperties()
-					where propertyInfo is { CanRead: true, CanWrite: true }
-					let attribute = propertyInfo.GetCustomAttribute<SingleArgumentCommandAttribute>()
-					where attribute is not null
-					select propertyInfo
-				).ToArray();
-				if (properties is not [{ PropertyType: var propertyType } property])
+				default:
 				{
-					throw new CommandLineParserException(CommandLineInternalError.MultipleSingleArgumentCommandPropertiesFound);
+					// Try to treat the argument as the single-argument command.
+					var properties = (
+						from propertyInfo in typeOfRootCommand.GetProperties()
+						where propertyInfo is { CanRead: true, CanWrite: true }
+						let attribute = propertyInfo.GetCustomAttribute<SingleArgumentCommandAttribute>()
+						where attribute is not null
+						select propertyInfo
+					).ToArray();
+					if (properties is not [{ PropertyType: var propertyType } property])
+					{
+						throw new CommandLineParserException(CommandLineInternalError.MultipleSingleArgumentCommandPropertiesFound);
+					}
+
+					// Assign the real value.
+					assignPropertyValue(property, propertyType, i);
+
+					// Advances the move.
+					i++;
+
+					break;
 				}
-
-				// Assign the real value.
-				assignPropertyValue(property, propertyType, i);
-
-				// Advances the move.
-				i++;
 			}
 
 			// Checks whether all required properties are assigned explicitly.
@@ -144,7 +151,8 @@ public static class Parser
 
 				throw new CommandLineParserException(
 					CommandLineInternalError.NotAllRequiredPropertiesAreAssigned,
-					$"Required properties not assigned: {requiredPropertiesNotAssignedStr}");
+					$"Required properties not assigned: {requiredPropertiesNotAssignedStr}"
+				);
 			}
 
 

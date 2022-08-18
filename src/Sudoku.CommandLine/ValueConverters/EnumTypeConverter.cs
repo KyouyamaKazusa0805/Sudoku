@@ -40,13 +40,8 @@ public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unm
 			Unsafe.SkipInit(out result);
 			foreach (var fieldInfo in typeof(TEnum).GetFields())
 			{
-				if (
-					fieldInfo.GetCustomAttribute<SupportedArgumentsAttribute>() is not
-					{
-						SupportedArguments: var supportedNames,
-						IgnoreCase: var ignoreCase
-					}
-				)
+				var attr = fieldInfo.GetCustomAttribute<SupportedArgumentsAttribute>();
+				if (attr is not { SupportedArguments: var supportedNames, IgnoreCase: var ignoreCase })
 				{
 					continue;
 				}
