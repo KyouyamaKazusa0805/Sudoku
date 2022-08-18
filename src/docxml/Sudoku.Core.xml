@@ -12026,21 +12026,21 @@
             <summary>
             Provides with a manual solving step that is a technique usage, and contains the conclusions.
             </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
+            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Conclusions" path="/summary"/></param>
+            <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Views" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Solving.Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
             <summary>
             Provides with a manual solving step that is a technique usage, and contains the conclusions.
             </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
+            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Conclusions" path="/summary"/></param>
+            <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Views" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Solving.Step.Conclusions">
-            <summary><inheritdoc/></summary>
+            <summary><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Conclusions" path="/summary"/></summary>
         </member>
         <member name="P:Sudoku.Solving.Step.Views">
-            <summary><inheritdoc/></summary>
+            <summary><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Views" path="/summary"/></summary>
         </member>
         <member name="P:Sudoku.Solving.Step.ShowDifficulty">
             <inheritdoc/>
@@ -12071,9 +12071,6 @@
         </member>
         <member name="P:Sudoku.Solving.Step.Rarity">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Step.ElimStr">
-            <inheritdoc cref="P:Sudoku.Solving.IStep.ElimStr"/>
         </member>
         <member name="P:Sudoku.Solving.Step.Sudoku#Solving#IStep#ElimStr">
             <inheritdoc/>

@@ -3,8 +3,8 @@
 /// <summary>
 /// Provides with a manual solving step that is a technique usage, and contains the conclusions.
 /// </summary>
-/// <param name="Conclusions"><inheritdoc/></param>
-/// <param name="Views"><inheritdoc/></param>
+/// <param name="Conclusions"><inheritdoc cref="IDisplayable.Conclusions" path="/summary"/></param>
+/// <param name="Views"><inheritdoc cref="IDisplayable.Views" path="/summary"/></param>
 internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) : IStep
 {
 	/// <inheritdoc/>
@@ -33,12 +33,11 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 	public abstract DifficultyLevel DifficultyLevel { get; }
 
 	/// <inheritdoc/>
-	public virtual Stableness Stableness { get; } = Stableness.Stable;
+	public virtual Stableness Stableness => Stableness.Stable;
 
 	/// <inheritdoc/>
 	public abstract Rarity Rarity { get; }
 
-	/// <inheritdoc cref="IStep.ElimStr"/>
 	[FormatItem]
 	internal string ElimStr
 	{

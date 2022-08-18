@@ -3827,7 +3827,7 @@
             <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
             <param name="X">Indicates the X digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Patterns.AlmostLockedSet,Sudoku.Solving.Patterns.AlmostLockedSet,Sudoku.Concepts.Conjugate@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Patterns.AlmostLockedSet,Sudoku.Solving.Patterns.AlmostLockedSet,Sudoku.Concepts.Conjugate,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>

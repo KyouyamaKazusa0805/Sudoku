@@ -15,7 +15,7 @@ internal sealed record AlmostLockedSetsWWingStep(
 	ViewList Views,
 	AlmostLockedSet Als1,
 	AlmostLockedSet Als2,
-	scoped in Conjugate ConjugatePair,
+	Conjugate ConjugatePair,
 	short WDigitsMask,
 	int X
 ) : AlmostLockedSetsStep(Conclusions, Views)
