@@ -5772,6 +5772,11 @@
               Looks up a localized string similar to RSTUVWXYZ-Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.RwNPlus1Theory">
+            <summary>
+              Looks up a localized string similar to RW&apos;s n + 1 Theory.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.SashimiFrankenJellyfish">
             <summary>
               Looks up a localized string similar to Sashimi Franken Jellyfish.
@@ -6432,6 +6437,11 @@
               Looks up a localized string similar to {Name}: Cells {CellsStr} of digits {DigitsStr}, with an extra digit {ExtraDigitStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_RwNPlus1TheoryStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_SueDeCoq3DimensionStep">
             <summary>
               Looks up a localized string similar to {Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
@@ -6470,11 +6480,6 @@
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueLoopType4Step">
             <summary>
               Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the conjugate pair {ConjStr} =&gt; {ElimStr}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniquenessClueCoverRwTypeStep">
-            <summary>
-              Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniquenessClueCoverType2Step">
@@ -6630,11 +6635,6 @@
         <member name="P:Sudoku.Resources.Resources.UniqueLoopType4">
             <summary>
               Looks up a localized string similar to Unique Loop Type 4.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.UniquenessClueCoverRwType">
-            <summary>
-              Looks up a localized string similar to Uniqueness Clue Cover RW&apos;s Type.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UniquenessClueCoverType2">
@@ -9784,9 +9784,9 @@
             Indicates uniqueness clue cover type 2.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquenessClueCoverRwType">
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.RwNPlus1Theory">
             <summary>
-            Indicates uniqueness clue cover RW's type.
+            Indicates RW's "n + 1" deadly pattern theory.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquePolygonType1">

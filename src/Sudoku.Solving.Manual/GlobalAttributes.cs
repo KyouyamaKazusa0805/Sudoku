@@ -18,6 +18,7 @@
 [assembly: SearcherConfiguration<BivalueUniversalGraveStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<ReverseBivalueUniversalGraveStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<UniquenessClueCoverStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<RwNPlus1TheoryStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<EmptyRectangleIntersectionPairStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<FireworkStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<AlmostLockedSetsXzStepSearcher>(SearcherDisplayingLevel.B)]

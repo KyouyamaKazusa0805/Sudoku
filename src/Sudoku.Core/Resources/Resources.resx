@@ -1428,10 +1428,10 @@
   <data name="TechniqueFormat_ReverseUniqueRectangleType2Step" xml:space="preserve">
     <value>{Name}: Cells {CellsStr} of digits {DigitsStr}, with an extra digit {ExtraDigitStr} =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_UniquenessClueCoverRwTypeStep" xml:space="preserve">
+  <data name="TechniqueFormat_RwNPlus1TheoryStep" xml:space="preserve">
     <value>{Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}</value>
   </data>
-  <data name="UniquenessClueCoverRwType" xml:space="preserve">
-    <value>Uniqueness Clue Cover RW's Type</value>
+  <data name="RwNPlus1Theory" xml:space="preserve">
+    <value>RW's n + 1 Theory</value>
   </data>
 </root>

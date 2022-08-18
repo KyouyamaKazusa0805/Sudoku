@@ -1978,6 +1978,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RW&apos;s n + 1 Theory.
+        /// </summary>
+        internal static string RwNPlus1Theory {
+            get {
+                return ResourceManager.GetString("RwNPlus1Theory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sashimi Franken Jellyfish.
         /// </summary>
         internal static string SashimiFrankenJellyfish {
@@ -3166,6 +3175,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}.
+        /// </summary>
+        internal static string TechniqueFormat_RwNPlus1TheoryStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_RwNPlus1TheoryStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_SueDeCoq3DimensionStep {
@@ -3234,15 +3252,6 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_UniqueLoopType4Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueLoopType4Step", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}.
-        /// </summary>
-        internal static string TechniqueFormat_UniquenessClueCoverRwTypeStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniquenessClueCoverRwTypeStep", resourceCulture);
             }
         }
         
@@ -3522,15 +3531,6 @@ namespace Sudoku.Resources {
         internal static string UniqueLoopType4 {
             get {
                 return ResourceManager.GetString("UniqueLoopType4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Uniqueness Clue Cover RW&apos;s Type.
-        /// </summary>
-        internal static string UniquenessClueCoverRwType {
-            get {
-                return ResourceManager.GetString("UniquenessClueCoverRwType", resourceCulture);
             }
         }
         

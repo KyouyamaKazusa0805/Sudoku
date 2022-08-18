@@ -86,6 +86,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Bi-value Universal Grave
     * Reverse Unique Rectangle
     * Uniqueness Clue Cover (Only for type 2[^3])
+    * RW's Deadly Pattern Theory ("n + 1" theory)
   * Alternating Inference Chains
     * Single-Digit AICs
     * Multi-Digit AICs

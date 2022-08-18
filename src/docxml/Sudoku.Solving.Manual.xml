@@ -1062,7 +1062,6 @@
             The step searcher will include the following techniques:
             <list type="bullet">
             <item>Uniqueness Clue Cover Type 2</item>
-            <item>Unique Clue Cover RW's Type</item>
             </list>
             </summary>
         </member>
@@ -1074,23 +1073,10 @@
             The technique is very complex that I cannot enumerate all possible cases.
             Here I only give you some cases that satisfy the pattern:
             <list type="bullet">
-            <item><see href="http://forum.enjoysudoku.com/yet-another-crazy-uniqueness-technique-t5589.html"/></item>
             <item><see href="http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html"/></item>
             </list>
             </para>
-            <para>
-            This implementation is based on the theory mentioned from RW:
-            </para>
-            <para><b>
-            If a group of all instances of N different digits in a chute is spread
-            over max N+1 mini- rows/columns, then the group will contain at least one unavoidable set.
-            </b></para>
             </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniquenessClueCoverStepSearcher.CheckRwType(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Checks for RW's type.
-            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniquenessClueCoverStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
@@ -1313,6 +1299,35 @@
             <returns>The step is worth.</returns>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IRwNPlus1TheoryStepSearcher">
+            <summary>
+            Provides with a <b>RW's N + 1 Deadly Pattern Theory</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>RW's N + 1 Deadly Pattern Theory</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.RwNPlus1TheoryStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <inheritdoc/>
+            <remarks>
+            <para><b>Developer Notes</b></para>
+            <para>
+            This implementation is based on the theory mentioned from RW:
+            </para>
+            <para>
+            If a group of all instances of N different digits in a chute is spread
+            over max N+1 mini- rows/columns, then the group will contain at least one unavoidable set.
+            </para>
+            <para>
+            This technique too complex to be proved, but I find this link to describe about this technique:
+            <see href="http://forum.enjoysudoku.com/yet-another-crazy-uniqueness-technique-t5589.html"/>
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.RwNPlus1TheoryStepSearcher.Options">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniquePolygonStepSearcher">
@@ -4233,44 +4248,6 @@
             Indicates the dynamic double forcing chains.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.UniquenessClueCoverRwTypeStep">
-            <summary>
-            Provides with a step that is a <b>Unique Clue Cover RW's Type</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Pattern">Indicates the pattern.</param>
-            <param name="DigitsMask">Indicates the digits used.</param>
-            <param name="ChuteIndex">Indicates the global chute index.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniquenessClueCoverRwTypeStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Unique Clue Cover RW's Type</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Pattern">Indicates the pattern.</param>
-            <param name="DigitsMask">Indicates the digits used.</param>
-            <param name="ChuteIndex">Indicates the global chute index.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverRwTypeStep.Pattern">
-            <summary>Indicates the pattern.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverRwTypeStep.DigitsMask">
-            <summary>Indicates the digits used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverRwTypeStep.ChuteIndex">
-            <summary>Indicates the global chute index.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverRwTypeStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverRwTypeStep.Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniquenessClueCoverRwTypeStep.Rarity">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep">
             <summary>
             Provides with a step that is a <b>Unique Clue Cover</b> technique.
@@ -4802,6 +4779,47 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType4Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep">
+            <summary>
+            Provides with a step that is a <b>RW's "n + 1" Theory</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern">Indicates the pattern.</param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+            <param name="ChuteIndex">Indicates the global chute index.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>RW's "n + 1" Theory</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern">Indicates the pattern.</param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+            <param name="ChuteIndex">Indicates the global chute index.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.Pattern">
+            <summary>Indicates the pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.DigitsMask">
+            <summary>Indicates the digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.ChuteIndex">
+            <summary>Indicates the global chute index.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.UniquePolygonStep">

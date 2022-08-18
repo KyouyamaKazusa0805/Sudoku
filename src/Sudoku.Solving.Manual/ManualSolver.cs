@@ -68,7 +68,6 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 		}
 	}
 
-
 	/// <summary>
 	/// The inner solving operation method.
 	/// </summary>

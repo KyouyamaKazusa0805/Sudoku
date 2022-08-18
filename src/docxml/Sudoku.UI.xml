@@ -543,9 +543,6 @@
             The default value is <see langword="false"/>.
             </remarks>
         </member>
-        <member name="P:Sudoku.UI.Data.Configuration.Preference.IsHodokuMode">
-            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.IsHodokuMode"/>
-        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.IsFullApplying">
             <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.IsFullApplying"/>
         </member>
