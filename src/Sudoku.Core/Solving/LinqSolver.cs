@@ -13,22 +13,13 @@ public sealed class LinqSolver : ISimpleSolver
 	public bool? Solve(scoped in Grid grid, out Grid result)
 	{
 		Unsafe.SkipInit(out result);
-		switch (solve(grid.ToString("0")))
+		var (_, @return) = solve(grid.ToString("0")) switch
 		{
-			case []:
-			{
-				return null;
-			}
-			case [var resultString]:
-			{
-				result = Grid.Parse(resultString);
-				return true;
-			}
-			default:
-			{
-				return false;
-			}
-		}
+			[] => (Grid.Undefined, default(bool?)),
+			[var resultString] => (result = Grid.Parse(resultString), true),
+			_ => (Grid.Undefined, false)
+		};
+		return @return;
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
