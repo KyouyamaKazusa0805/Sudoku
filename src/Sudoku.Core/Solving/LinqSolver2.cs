@@ -236,7 +236,8 @@ public sealed class LinqSolver2 : ISimpleSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private Dictionary<string, string>? Assign(Dictionary<string, string> values, string s, string d)
 		=> AllNotNull(
-			from d2 in values[s] where d2.ToString() != d
+			from d2 in values[s]
+			where d2.ToString() != d
 			select Eliminate(values, s, d2.ToString())
 		) ? values : null;
 
@@ -281,10 +282,10 @@ public sealed class LinqSolver2 : ISimpleSolver
 				return null;
 			}
 
-			if (dplaces.Count() == 1)
+			if (dplaces.HasOnlyOneElement())
 			{
 				// d can only be in one place in unit; assign it there.
-				if (Assign(values, dplaces.First(), d) == null)
+				if (Assign(values, dplaces.First(), d) is null)
 				{
 					return null;
 				}
