@@ -36,11 +36,11 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 	public ManualSolverResult Solve(scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
 		var result = new ManualSolverResult(puzzle);
-		if (puzzle.ExactlyValidate(out var solution, out bool? sukaku))
+		if (puzzle.ExactlyValidate(out var solution, out bool? sukaku) && sukaku is { } s)
 		{
 			try
 			{
-				return InternalSolve(puzzle, solution, sukaku.Value, result, cancellationToken);
+				return InternalSolve(puzzle, solution, s, result, cancellationToken);
 			}
 			catch (OperationCanceledException ex) when (ex.CancellationToken != cancellationToken)
 			{
