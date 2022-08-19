@@ -41,7 +41,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
-		IOrderedEnumerable<BivalueOddagonStep> resultList = default!;
+		IOrderedEnumerable<BivalueOddagonStep> resultList = null!;
 		foreach (int cell in BivalueCells)
 		{
 			short mask = grid.GetCandidates(cell);
