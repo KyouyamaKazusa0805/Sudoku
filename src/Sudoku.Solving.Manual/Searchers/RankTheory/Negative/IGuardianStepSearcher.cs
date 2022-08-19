@@ -77,16 +77,16 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// Check POM eliminations first.
-		var eliminationMaps = stackalloc Cells[9];
-		Unsafe.InitBlock(eliminationMaps, 0, (uint)sizeof(Cells) * 9);
+		scoped var eliminationMaps = (stackalloc Cells[9]);
+		eliminationMaps.Fill(Cells.Empty);
 		var pomSteps = new List<IStep>();
 		new PatternOverlayStepSearcher().GetAll(pomSteps, grid, onlyFindOne: false);
 		foreach (PatternOverlayStep step in pomSteps)
 		{
-			var pMap = eliminationMaps + step.Digit;
+			scoped ref var currentMap = ref eliminationMaps[step.Digit];
 			foreach (var conclusion in step.Conclusions)
 			{
-				pMap->Add(conclusion.Cell);
+				currentMap.Add(conclusion.Cell);
 			}
 		}
 
@@ -95,6 +95,8 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 		{
 			if (eliminationMaps[digit] is not (var eliminations and not []))
 			{
+				// Using global view, we cannot find any eliminations for this digit.
+				// Just skip to the next loop.
 				continue;
 			}
 
