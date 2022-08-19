@@ -12,7 +12,7 @@
 [assembly: SearcherConfiguration<UniqueLoopStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<ExtendedRectangleStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<EmptyRectangleStepSearcher>(SearcherDisplayingLevel.B)]
-[assembly: SearcherConfiguration<UniqueSquareStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<UniqueMatrixStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<UniquePolygonStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<QiuDeadlyPatternStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<BivalueUniversalGraveStepSearcher>(SearcherDisplayingLevel.B)]

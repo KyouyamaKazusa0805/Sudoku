@@ -8,13 +8,13 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
-internal sealed record UniqueSquareType2Step(
+internal sealed record UniqueMatrixType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,
 	short DigitsMask,
 	int ExtraDigit
-) : UniqueSquareStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty
+) : UniqueMatrixStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

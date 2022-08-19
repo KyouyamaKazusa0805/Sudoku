@@ -1,13 +1,13 @@
 ﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unique Square</b> technique.
+/// Provides with a step that is a <b>Unique Matrix</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the digits used.</param>
-internal abstract record UniqueSquareStep(
+internal abstract record UniqueMatrixStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,
@@ -32,7 +32,7 @@ internal abstract record UniqueSquareStep(
 	public sealed override TechniqueTags TechniqueTags => TechniqueTags.DeadlyPattern;
 
 	/// <inheritdoc/>
-	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UniqueSquareType{Type}");
+	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UniqueMatrixType{Type}");
 
 	/// <inheritdoc/>
 	public sealed override Rarity Rarity => Rarity.HardlyEver;

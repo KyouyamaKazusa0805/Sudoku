@@ -11,14 +11,14 @@
 /// <param name="ExtraDigitsMask">
 /// Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
 /// </param>
-internal sealed record UniqueSquareType3Step(
+internal sealed record UniqueMatrixType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,
 	short DigitsMask,
 	short ExtraDigitsMask,
 	scoped in Cells ExtraCells
-) : UniqueSquareStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty
+) : UniqueMatrixStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

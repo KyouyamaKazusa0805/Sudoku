@@ -6482,6 +6482,26 @@
               Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the conjugate pair {ConjStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueMatrixType1Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the candidate {CandidateStr} is false =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueMatrixType2Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the extra digit {ExtraDigitStr} is all false in the pattern =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueMatrixType3Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueMatrixType4Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate house {ConjStr} can&apos;t set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniquenessClueCoverType2Step">
             <summary>
               Looks up a localized string similar to {Name}: Enumerates all possible cases filling the chute {ChuteIndexStr} (i.e. houses {HousesStr}), we can find two digits that cannot cover =&gt; {ElimStr}.
@@ -6562,26 +6582,6 @@
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a wing (pivots: {PivotsStr}, with digits: {DigitsStr} in cells {CellsStr}) =&gt; {ElimStr}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueSquareType1Step">
-            <summary>
-              Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the candidate {CandidateStr} is false =&gt; {ElimStr}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueSquareType2Step">
-            <summary>
-              Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the extra digit {ExtraDigitStr} is all false in the pattern =&gt; {ElimStr}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueSquareType3Step">
-            <summary>
-              Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} =&gt; {ElimStr}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueSquareType4Step">
-            <summary>
-              Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate house {ConjStr} can&apos;t set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_WWingStep">
             <summary>
               Looks up a localized string similar to {Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
@@ -6635,6 +6635,26 @@
         <member name="P:Sudoku.Resources.Resources.UniqueLoopType4">
             <summary>
               Looks up a localized string similar to Unique Loop Type 4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.UniqueMatrixType1">
+            <summary>
+              Looks up a localized string similar to Unique Matrix Type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.UniqueMatrixType2">
+            <summary>
+              Looks up a localized string similar to Unique Matrix Type 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.UniqueMatrixType3">
+            <summary>
+              Looks up a localized string similar to Unique Matrix Type 3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.UniqueMatrixType4">
+            <summary>
+              Looks up a localized string similar to Unique Matrix Type 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UniquenessClueCoverType2">
@@ -6815,26 +6835,6 @@
         <member name="P:Sudoku.Resources.Resources.UniqueRectangleXyzWing">
             <summary>
               Looks up a localized string similar to Unique Rectangle XYZ-Wing.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.UniqueSquareType1">
-            <summary>
-              Looks up a localized string similar to Unique Square Type 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.UniqueSquareType2">
-            <summary>
-              Looks up a localized string similar to Unique Square Type 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.UniqueSquareType3">
-            <summary>
-              Looks up a localized string similar to Unique Square Type 3.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.UniqueSquareType4">
-            <summary>
-              Looks up a localized string similar to Unique Square Type 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UvwxyzWing">
@@ -9834,22 +9834,22 @@
             Indicates locked Qiu's deadly pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueSquareType1">
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueMatrixType1">
             <summary>
             Indicates unique square type 1.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueSquareType2">
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueMatrixType2">
             <summary>
             Indicates unique square type 2.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueSquareType3">
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueMatrixType3">
             <summary>
             Indicates unique square type 3.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueSquareType4">
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueMatrixType4">
             <summary>
             Indicates unique square type 4.
             </summary>

@@ -1,16 +1,16 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Provides with a <b>Unique Square</b> step searcher.
+/// Provides with a <b>Unique Matrix</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>Unique Square Type 1</item>
-/// <item>Unique Square Type 2</item>
-/// <item>Unique Square Type 3</item>
-/// <item>Unique Square Type 4</item>
+/// <item>Unique Matrix Type 1</item>
+/// <item>Unique Matrix Type 2</item>
+/// <item>Unique Matrix Type 3</item>
+/// <item>Unique Matrix Type 4</item>
 /// </list>
 /// </summary>
-public interface IUniqueSquareStepSearcher : IDeadlyPatternStepSearcher
+public interface IUniqueMatrixStepSearcher : IDeadlyPatternStepSearcher
 {
 	/// <summary>
 	/// Indicates the patterns.
@@ -19,7 +19,7 @@ public interface IUniqueSquareStepSearcher : IDeadlyPatternStepSearcher
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
-	static IUniqueSquareStepSearcher()
+	static IUniqueMatrixStepSearcher()
 	{
 		int[,] ChuteIterator =
 		{
@@ -63,12 +63,12 @@ public interface IUniqueSquareStepSearcher : IDeadlyPatternStepSearcher
 }
 
 [StepSearcher]
-internal sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
+internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixStepSearcher
 {
 	/// <inheritdoc/>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		foreach (var pattern in IUniqueSquareStepSearcher.Patterns)
+		foreach (var pattern in IUniqueMatrixStepSearcher.Patterns)
 		{
 			if ((EmptyCells & pattern) != pattern)
 			{
@@ -143,7 +143,7 @@ internal sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareSte
 				}
 			}
 
-			var step = new UniqueSquareType1Step(
+			var step = new UniqueMatrixType1Step(
 				ImmutableArray.CreateRange(conclusions),
 				ImmutableArray.Create(View.Empty | candidateOffsets),
 				pattern,
@@ -202,7 +202,7 @@ internal sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareSte
 				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + extraDigit));
 			}
 
-			var step = new UniqueSquareType2Step(
+			var step = new UniqueMatrixType2Step(
 				ImmutableArray.CreateRange(conclusions),
 				ImmutableArray.Create(View.Empty | candidateOffsets),
 				pattern,
@@ -293,7 +293,7 @@ internal sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareSte
 							}
 						}
 
-						var step = new UniqueSquareType3Step(
+						var step = new UniqueMatrixType3Step(
 							ImmutableArray.CreateRange(conclusions),
 							ImmutableArray.Create(
 								View.Empty
@@ -399,7 +399,7 @@ internal sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareSte
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + d2));
 				}
 
-				var step = new UniqueSquareType4Step(
+				var step = new UniqueMatrixType4Step(
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
 						View.Empty

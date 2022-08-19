@@ -480,16 +480,16 @@
   <data name="TechniqueFormat_UniqueRectangleWithWingStep" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a wing (pivots: {PivotsStr}, with digits: {DigitsStr} in cells {CellsStr}) =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_UniqueSquareType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueMatrixType1Step" xml:space="preserve">
     <value>{Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the candidate {CandidateStr} is false =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_UniqueSquareType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueMatrixType2Step" xml:space="preserve">
     <value>{Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the extra digit {ExtraDigitStr} is all false in the pattern =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_UniqueSquareType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueMatrixType3Step" xml:space="preserve">
     <value>{Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_UniqueSquareType4Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueMatrixType4Step" xml:space="preserve">
     <value>{Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate house {ConjStr} can't set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_WWingStep" xml:space="preserve">
@@ -1116,17 +1116,17 @@
   <data name="LockedQiuDeadlyPattern" xml:space="preserve">
     <value>Locked Qiu's Deadly Pattern</value>
   </data>
-  <data name="UniqueSquareType1" xml:space="preserve">
-    <value>Unique Square Type 1</value>
+  <data name="UniqueMatrixType1" xml:space="preserve">
+    <value>Unique Matrix Type 1</value>
   </data>
-  <data name="UniqueSquareType2" xml:space="preserve">
-    <value>Unique Square Type 2</value>
+  <data name="UniqueMatrixType2" xml:space="preserve">
+    <value>Unique Matrix Type 2</value>
   </data>
-  <data name="UniqueSquareType3" xml:space="preserve">
-    <value>Unique Square Type 3</value>
+  <data name="UniqueMatrixType3" xml:space="preserve">
+    <value>Unique Matrix Type 3</value>
   </data>
-  <data name="UniqueSquareType4" xml:space="preserve">
-    <value>Unique Square Type 4</value>
+  <data name="UniqueMatrixType4" xml:space="preserve">
+    <value>Unique Matrix Type 4</value>
   </data>
   <data name="SueDeCoq" xml:space="preserve">
     <value>Sue de Coq</value>

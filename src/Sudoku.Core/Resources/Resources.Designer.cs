@@ -3256,6 +3256,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the candidate {CandidateStr} is false =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueMatrixType1Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueMatrixType1Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the extra digit {ExtraDigitStr} is all false in the pattern =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueMatrixType2Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueMatrixType2Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueMatrixType3Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueMatrixType3Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate house {ConjStr} can&apos;t set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueMatrixType4Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueMatrixType4Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Enumerates all possible cases filling the chute {ChuteIndexStr} (i.e. houses {HousesStr}), we can find two digits that cannot cover =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_UniquenessClueCoverType2Step {
@@ -3400,42 +3436,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the candidate {CandidateStr} is false =&gt; {ElimStr}.
-        /// </summary>
-        internal static string TechniqueFormat_UniqueSquareType1Step {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueSquareType1Step", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the extra digit {ExtraDigitStr} is all false in the pattern =&gt; {ElimStr}.
-        /// </summary>
-        internal static string TechniqueFormat_UniqueSquareType2Step {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueSquareType2Step", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} =&gt; {ElimStr}.
-        /// </summary>
-        internal static string TechniqueFormat_UniqueSquareType3Step {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueSquareType3Step", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate house {ConjStr} can&apos;t set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}.
-        /// </summary>
-        internal static string TechniqueFormat_UniqueSquareType4Step {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueSquareType4Step", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_WWingStep {
@@ -3531,6 +3531,42 @@ namespace Sudoku.Resources {
         internal static string UniqueLoopType4 {
             get {
                 return ResourceManager.GetString("UniqueLoopType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Matrix Type 1.
+        /// </summary>
+        internal static string UniqueMatrixType1 {
+            get {
+                return ResourceManager.GetString("UniqueMatrixType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Matrix Type 2.
+        /// </summary>
+        internal static string UniqueMatrixType2 {
+            get {
+                return ResourceManager.GetString("UniqueMatrixType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Matrix Type 3.
+        /// </summary>
+        internal static string UniqueMatrixType3 {
+            get {
+                return ResourceManager.GetString("UniqueMatrixType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Matrix Type 4.
+        /// </summary>
+        internal static string UniqueMatrixType4 {
+            get {
+                return ResourceManager.GetString("UniqueMatrixType4", resourceCulture);
             }
         }
         
@@ -3855,42 +3891,6 @@ namespace Sudoku.Resources {
         internal static string UniqueRectangleXyzWing {
             get {
                 return ResourceManager.GetString("UniqueRectangleXyzWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Square Type 1.
-        /// </summary>
-        internal static string UniqueSquareType1 {
-            get {
-                return ResourceManager.GetString("UniqueSquareType1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Square Type 2.
-        /// </summary>
-        internal static string UniqueSquareType2 {
-            get {
-                return ResourceManager.GetString("UniqueSquareType2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Square Type 3.
-        /// </summary>
-        internal static string UniqueSquareType3 {
-            get {
-                return ResourceManager.GetString("UniqueSquareType3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Square Type 4.
-        /// </summary>
-        internal static string UniqueSquareType4 {
-            get {
-                return ResourceManager.GetString("UniqueSquareType4", resourceCulture);
             }
         }
         

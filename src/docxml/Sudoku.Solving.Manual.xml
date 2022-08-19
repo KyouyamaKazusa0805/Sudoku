@@ -1301,6 +1301,42 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.Options">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueMatrixStepSearcher">
+            <summary>
+            Provides with a <b>Unique Matrix</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Unique Matrix Type 1</item>
+            <item>Unique Matrix Type 2</item>
+            <item>Unique Matrix Type 3</item>
+            <item>Unique Matrix Type 4</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.IUniqueMatrixStepSearcher.Patterns">
+            <summary>
+            Indicates the patterns.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueMatrixStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueMatrixStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.UniqueMatrixStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IRwNPlus1TheoryStepSearcher">
             <summary>
             Provides with a <b>RW's N + 1 Deadly Pattern Theory</b> step searcher.
@@ -2220,42 +2256,6 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.ReverseBivalueUniversalGraveStepSearcher.Options">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueSquareStepSearcher">
-            <summary>
-            Provides with a <b>Unique Square</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Unique Square Type 1</item>
-            <item>Unique Square Type 2</item>
-            <item>Unique Square Type 3</item>
-            <item>Unique Square Type 4</item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.IUniqueSquareStepSearcher.Patterns">
-            <summary>
-            Indicates the patterns.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueSquareStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.UniqueSquareStepSearcher.Options">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IBivalueUniversalGraveStepSearcher">
@@ -4781,6 +4781,206 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType4Step.Rarity">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.UniqueMatrixStep">
+            <summary>
+            Provides with a step that is a <b>Unique Matrix</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Unique Matrix</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.DigitsMask">
+            <summary>Indicates the digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.Type">
+            <summary>
+            Indicates the type of the current technique step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.DigitsStr">
+            <summary>
+            Indicates the digits string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.CellsStr">
+            <summary>
+            Indicates the cells string.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.UniqueMatrixType1Step">
+            <summary>
+            Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="Candidate">Indicates the true candidate.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="Candidate">Indicates the true candidate.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType1Step.Candidate">
+            <summary>Indicates the true candidate.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType1Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.UniqueMatrixType2Step">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType2Step.ExtraDigit">
+            <summary>Indicates the extra digit used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType2Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType2Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.UniqueMatrixType3Step">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="ExtraDigitsMask">
+            Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int16,Sudoku.Concepts.Cells@)">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="ExtraDigitsMask">
+            Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType3Step.ExtraDigitsMask">
+            <summary>
+            Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType3Step.ExtraCells">
+            <summary>Indicates the extra cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType3Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.UniqueMatrixType4Step">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="Digit1">Indicates the digit 1 used.</param>
+            <param name="Digit2">Indicates the digit 2 used.</param>
+            <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.Cells@)">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="Digit1">Indicates the digit 1 used.</param>
+            <param name="Digit2">Indicates the digit 2 used.</param>
+            <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType4Step.Digit1">
+            <summary>Indicates the digit 1 used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType4Step.Digit2">
+            <summary>Indicates the digit 2 used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType4Step.ConjugateHouse">
+            <summary>Indicates the cells used as the conjugate house.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType4Step.Type">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep">
             <summary>
             Provides with a step that is a <b>RW's "n + 1" Theory</b> technique.
@@ -6250,206 +6450,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleType2Step.Type">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.UniqueSquareStep">
-            <summary>
-            Provides with a step that is a <b>Unique Square</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Cells">Indicates the cells used.</param>
-            <param name="DigitsMask">Indicates the digits used.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueSquareStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
-            <summary>
-            Provides with a step that is a <b>Unique Square</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Cells">Indicates the cells used.</param>
-            <param name="DigitsMask">Indicates the digits used.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.Cells">
-            <summary>Indicates the cells used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.DigitsMask">
-            <summary>Indicates the digits used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.Type">
-            <summary>
-            Indicates the type of the current technique step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.DigitsStr">
-            <summary>
-            Indicates the digits string.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.CellsStr">
-            <summary>
-            Indicates the cells string.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.UniqueSquareType1Step">
-            <summary>
-            Provides with a step that is a <b>Unique Square Type 1</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="DigitsMask"><inheritdoc/></param>
-            <param name="Candidate">Indicates the true candidate.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueSquareType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Unique Square Type 1</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="DigitsMask"><inheritdoc/></param>
-            <param name="Candidate">Indicates the true candidate.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType1Step.Candidate">
-            <summary>Indicates the true candidate.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType1Step.Type">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step">
-            <summary>
-            Provides with a step that is a <b>Unique Square Type 2</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="DigitsMask"><inheritdoc/></param>
-            <param name="ExtraDigit">Indicates the extra digit used.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Unique Square Type 2</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="DigitsMask"><inheritdoc/></param>
-            <param name="ExtraDigit">Indicates the extra digit used.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.ExtraDigit">
-            <summary>Indicates the extra digit used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.Type">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step">
-            <summary>
-            Provides with a step that is a <b>Unique Square Type 3</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="DigitsMask"><inheritdoc/></param>
-            <param name="ExtraCells">Indicates the extra cells used.</param>
-            <param name="ExtraDigitsMask">
-            Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int16,Sudoku.Concepts.Cells@)">
-            <summary>
-            Provides with a step that is a <b>Unique Square Type 3</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="DigitsMask"><inheritdoc/></param>
-            <param name="ExtraCells">Indicates the extra cells used.</param>
-            <param name="ExtraDigitsMask">
-            Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
-            </param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.ExtraDigitsMask">
-            <summary>
-            Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.ExtraCells">
-            <summary>Indicates the extra cells used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.Type">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step">
-            <summary>
-            Provides with a step that is a <b>Unique Square Type 4</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="DigitsMask"><inheritdoc/></param>
-            <param name="Digit1">Indicates the digit 1 used.</param>
-            <param name="Digit2">Indicates the digit 2 used.</param>
-            <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.Cells@)">
-            <summary>
-            Provides with a step that is a <b>Unique Square Type 4</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="DigitsMask"><inheritdoc/></param>
-            <param name="Digit1">Indicates the digit 1 used.</param>
-            <param name="Digit2">Indicates the digit 2 used.</param>
-            <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.Digit1">
-            <summary>Indicates the digit 1 used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.Digit2">
-            <summary>Indicates the digit 2 used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.ConjugateHouse">
-            <summary>Indicates the cells used as the conjugate house.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.Type">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveFalseCandidateTypeStep">

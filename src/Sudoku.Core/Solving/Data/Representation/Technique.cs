@@ -1223,22 +1223,22 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates unique square type 1.
 	/// </summary>
-	UniqueSquareType1,
+	UniqueMatrixType1,
 
 	/// <summary>
 	/// Indicates unique square type 2.
 	/// </summary>
-	UniqueSquareType2,
+	UniqueMatrixType2,
 
 	/// <summary>
 	/// Indicates unique square type 3.
 	/// </summary>
-	UniqueSquareType3,
+	UniqueMatrixType3,
 
 	/// <summary>
 	/// Indicates unique square type 4.
 	/// </summary>
-	UniqueSquareType4,
+	UniqueMatrixType4,
 
 	/// <summary>
 	/// Indicates sue de coq.

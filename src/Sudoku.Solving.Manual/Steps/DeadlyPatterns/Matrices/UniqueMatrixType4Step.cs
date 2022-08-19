@@ -10,7 +10,7 @@
 /// <param name="Digit1">Indicates the digit 1 used.</param>
 /// <param name="Digit2">Indicates the digit 2 used.</param>
 /// <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
-internal sealed record UniqueSquareType4Step(
+internal sealed record UniqueMatrixType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in Cells Cells,
@@ -18,7 +18,7 @@ internal sealed record UniqueSquareType4Step(
 	int Digit1,
 	int Digit2,
 	scoped in Cells ConjugateHouse
-) : UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
+) : UniqueMatrixStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;
