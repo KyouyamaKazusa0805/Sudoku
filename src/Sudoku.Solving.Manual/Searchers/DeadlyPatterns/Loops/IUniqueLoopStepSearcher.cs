@@ -175,8 +175,8 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
 	private IStep? CheckType1(
-		ICollection<UniqueLoopStep> accumulator, int d1, int d2, scoped in Cells loop, IEnumerable<LinkViewNode> links,
-		scoped in Cells extraCellsMap, bool onlyFindOne)
+		ICollection<UniqueLoopStep> accumulator, int d1, int d2, scoped in Cells loop,
+		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, bool onlyFindOne)
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>(2);
