@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents text as a sequence of UTF-8 code units.
 /// </summary>
-public readonly struct Utf8String :
+public readonly unsafe struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
 	IComparisonOperators<Utf8String, Utf8String>,
@@ -40,7 +40,7 @@ public readonly struct Utf8String :
 
 	/// <inheritdoc cref="string(char*)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe Utf8String(Utf8Char* value)
+	public Utf8String(Utf8Char* value)
 	{
 		int length = PointerMarshal.StringLengthOf(value);
 		_value = new Utf8Char[length];
@@ -67,7 +67,11 @@ public readonly struct Utf8String :
 	private Utf8String(byte[] array)
 	{
 		_value = new Utf8Char[array.Length];
-		Unsafe.CopyBlock(ref Unsafe.As<Utf8Char, byte>(ref _value[0]), ref array[0], (uint)(sizeof(byte) * array.Length));
+		Unsafe.CopyBlock(
+			ref Unsafe.As<Utf8Char, byte>(ref _value[0]),
+			ref array[0],
+			(uint)(sizeof(byte) * array.Length)
+		);
 	}
 
 
@@ -115,7 +119,7 @@ public readonly struct Utf8String :
 	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Utf8String comparer && Equals(comparer);
 
 	/// <inheritdoc/>
-	public unsafe bool Equals(Utf8String other)
+	public bool Equals(Utf8String other)
 	{
 		int length = _value.Length;
 		if (length != other.Length)
@@ -183,7 +187,7 @@ public readonly struct Utf8String :
 	public ref Utf8Char GetPinnableReference() => ref MemoryMarshal.GetArrayDataReference(_value);
 
 	/// <inheritdoc/>
-	public override unsafe int GetHashCode()
+	public override int GetHashCode()
 	{
 		int length = _value.Length;
 		uint hash = (uint)length;
@@ -281,7 +285,7 @@ public readonly struct Utf8String :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override unsafe string ToString()
+	public override string ToString()
 	{
 		byte[] array = new byte[_value.Length];
 		fixed (Utf8Char* a = _value)
@@ -318,7 +322,7 @@ public readonly struct Utf8String :
 	/// <param name="strA">The first string to be compared.</param>
 	/// <param name="strB">The second string to be compared.</param>
 	/// <returns>An <see cref="int"/> value indicating which one is greater.</returns>
-	private static unsafe int Compare(Utf8String strA, Utf8String strB)
+	private static int Compare(Utf8String strA, Utf8String strB)
 	{
 		int length = Min(strA._value.Length, strB._value.Length);
 		fixed (Utf8Char* ap = strA._value, bp = strB._value)
@@ -346,7 +350,7 @@ public readonly struct Utf8String :
 	/// <param name="left">The left-side instance to be catenated.</param>
 	/// <param name="right">The right-side instance to be catenated.</param>
 	/// <returns>The final string.</returns>
-	public static unsafe Utf8String operator +(Utf8String left, Utf8String right)
+	public static Utf8String operator +(Utf8String left, Utf8String right)
 	{
 		Unsafe.SkipInit(out Utf8Char[] targetBuffer);
 		try
@@ -399,6 +403,7 @@ public readonly struct Utf8String :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <=(Utf8String left, Utf8String right) => left.CompareTo(right) <= 0;
 
+
 	/// <summary>
 	/// Explicitly cast from <see cref="Utf8String"/> to <see cref="Utf8Char"/>[].
 	/// </summary>
@@ -412,6 +417,30 @@ public readonly struct Utf8String :
 	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator Utf8String(string s) => new(Encoding.Default.GetBytes(s));
+
+	/// <summary>
+	/// Explicitly cast from <see cref="string"/> to <see cref="Utf8String"/> instance,
+	/// with character range check.
+	/// </summary>
+	/// <param name="s">The string.</param>
+	/// <exception cref="ArithmeticException">
+	/// Throws when a certain character in the sequence cannot convert to a UTF-8 formatted character.
+	/// </exception>
+	public static explicit operator checked Utf8String(string s)
+	{
+		try
+		{
+			return new(Encoding.Default.GetBytes(s));
+		}
+		catch (EncoderFallbackException ex)
+		when (ex is { Index: var index, CharUnknown: var @char, CharUnknownHigh: var high, CharUnknownLow: var low })
+		{
+			throw new ArithmeticException(
+				$"Cannot convert the value at {nameof(index)} {index} (character '{@char}', range '{high}' to '{low}').",
+				ex
+			);
+		}
+	}
 
 	/// <summary>
 	/// Implicitly cast from <see cref="Utf8String"/> to <see cref="string"/>.

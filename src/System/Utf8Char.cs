@@ -196,9 +196,17 @@ public readonly struct Utf8Char :
 	/// <summary>
 	/// Explicitly cast from <see cref="char"/> instance to <see cref="Utf8Char"/> instance.
 	/// </summary>
-	/// <param name="utf16char">The <see cref="char"/> instance.</param>
+	/// <param name="utf16Char">The <see cref="char"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Utf8Char(char utf16char) => new((byte)utf16char);
+	public static explicit operator Utf8Char(char utf16Char) => new((byte)utf16Char);
+
+	/// <summary>
+	/// Explicitly cast from <see cref="char"/> instance to <see cref="Utf8Char"/> instance,
+	/// with range check.
+	/// </summary>
+	/// <param name="utf16Char">The <see cref="char"/> instance.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator checked Utf8Char(char utf16Char) => new(checked((byte)utf16Char));
 
 	/// <summary>
 	/// Implicitly cast from <see cref="Utf8Char"/> instance to <see cref="byte"/> instance.

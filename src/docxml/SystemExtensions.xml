@@ -3605,7 +3605,14 @@
             <summary>
             Explicitly cast from <see cref="T:System.Char"/> instance to <see cref="T:System.Utf8Char"/> instance.
             </summary>
-            <param name="utf16char">The <see cref="T:System.Char"/> instance.</param>
+            <param name="utf16Char">The <see cref="T:System.Char"/> instance.</param>
+        </member>
+        <member name="M:System.Utf8Char.op_CheckedExplicit(System.Char)~System.Utf8Char">
+            <summary>
+            Explicitly cast from <see cref="T:System.Char"/> instance to <see cref="T:System.Utf8Char"/> instance,
+            with range check.
+            </summary>
+            <param name="utf16Char">The <see cref="T:System.Char"/> instance.</param>
         </member>
         <member name="M:System.Utf8Char.op_Implicit(System.Utf8Char)~System.Byte">
             <summary>
@@ -3823,6 +3830,16 @@
             Explicitly cast from <see cref="T:System.String"/> to <see cref="T:System.Utf8String"/> instance.
             </summary>
             <param name="s">The string.</param>
+        </member>
+        <member name="M:System.Utf8String.op_CheckedExplicit(System.String)~System.Utf8String">
+            <summary>
+            Explicitly cast from <see cref="T:System.String"/> to <see cref="T:System.Utf8String"/> instance,
+            with character range check.
+            </summary>
+            <param name="s">The string.</param>
+            <exception cref="T:System.ArithmeticException">
+            Throws when a certain character in the sequence cannot convert to a UTF-8 formatted character.
+            </exception>
         </member>
         <member name="M:System.Utf8String.op_Implicit(System.Utf8String)~System.String">
             <summary>
