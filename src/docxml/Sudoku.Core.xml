@@ -9836,22 +9836,22 @@
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueMatrixType1">
             <summary>
-            Indicates unique square type 1.
+            Indicates unique matrix type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueMatrixType2">
             <summary>
-            Indicates unique square type 2.
+            Indicates unique matrix type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueMatrixType3">
             <summary>
-            Indicates unique square type 3.
+            Indicates unique matrix type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniqueMatrixType4">
             <summary>
-            Indicates unique square type 4.
+            Indicates unique matrix type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.SueDeCoq">

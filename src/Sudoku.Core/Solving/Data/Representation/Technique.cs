@@ -1221,22 +1221,22 @@ public enum Technique : short
 	LockedQiuDeadlyPattern,
 
 	/// <summary>
-	/// Indicates unique square type 1.
+	/// Indicates unique matrix type 1.
 	/// </summary>
 	UniqueMatrixType1,
 
 	/// <summary>
-	/// Indicates unique square type 2.
+	/// Indicates unique matrix type 2.
 	/// </summary>
 	UniqueMatrixType2,
 
 	/// <summary>
-	/// Indicates unique square type 3.
+	/// Indicates unique matrix type 3.
 	/// </summary>
 	UniqueMatrixType3,
 
 	/// <summary>
-	/// Indicates unique square type 4.
+	/// Indicates unique matrix type 4.
 	/// </summary>
 	UniqueMatrixType4,
 
