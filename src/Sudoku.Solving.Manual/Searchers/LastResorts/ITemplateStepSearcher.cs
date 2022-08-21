@@ -42,13 +42,9 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 					continue;
 				}
 
-				int templateSetIndex = 0;
-				var templateSetConclusions = new Conclusion[templateSetMap.Count];
-				foreach (int cell in templateSetMap)
-				{
-					templateSetConclusions[templateSetIndex++] = new(Assignment, cell, digit);
-				}
-
+				scoped var templateSetConclusions =
+					from cell in templateSetMap
+					select new Conclusion(Assignment, cell, digit);
 				var candidateOffsets = new CandidateViewNode[templateSetConclusions.Length];
 				int z = 0;
 				foreach (var (_, candidate) in templateSetConclusions)
@@ -75,15 +71,8 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 				continue;
 			}
 
-			var templateDeleteConclusions = new Conclusion[templateDeleteMap.Count];
-			int templateDeleteIndex = 0;
-			foreach (int cell in templateDeleteMap)
-			{
-				templateDeleteConclusions[templateDeleteIndex++] = new(Elimination, cell, digit);
-			}
-
 			var templateDeleteStep = new TemplateStep(
-				ImmutableArray.Create(templateDeleteConclusions),
+				ImmutableArray.Create(from cell in templateDeleteMap select new Conclusion(Elimination, cell, digit)),
 				ViewList.Empty,
 				true
 			);

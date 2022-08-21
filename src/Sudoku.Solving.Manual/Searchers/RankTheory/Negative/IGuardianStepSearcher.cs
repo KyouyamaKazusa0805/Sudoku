@@ -124,13 +124,6 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 							continue;
 						}
 
-						var conclusions = new Conclusion[elimMap.Count];
-						int i = 0;
-						foreach (int c in elimMap)
-						{
-							conclusions[i++] = new(Elimination, c, digit);
-						}
-
 						var candidateOffsets = new List<CandidateViewNode>();
 						foreach (int c in map)
 						{
@@ -142,7 +135,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 						}
 
 						var step = new GuardianStep(
-							ImmutableArray.CreateRange(conclusions),
+							ImmutableArray.Create(from c in elimMap select new Conclusion(Elimination, c, digit)),
 							ImmutableArray.Create(View.Empty | candidateOffsets | links),
 							digit,
 							map,

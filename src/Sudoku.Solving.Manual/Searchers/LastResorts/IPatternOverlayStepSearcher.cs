@@ -127,19 +127,17 @@ internal sealed unsafe partial class PatternOverlayStepSearcher : IPatternOverla
 		var templates = IPatternOverlayStepSearcher.GetInvalidPos(grid);
 		for (int digit = 0; digit < 9; digit++)
 		{
-			if (templates[digit] is not ({ Count: var templateCount } template and not []))
+			if (templates[digit] is not (var template and not []))
 			{
 				continue;
 			}
 
-			var conclusions = new Conclusion[templateCount];
-			int i = 0;
-			foreach (int cell in template)
-			{
-				conclusions[i++] = new(Elimination, cell, digit);
-			}
-
-			var step = new PatternOverlayStep(ImmutableArray.Create(conclusions));
+			var step = new PatternOverlayStep(
+				ImmutableArray.Create(
+					from cell in template
+					select new Conclusion(Elimination, cell, digit)
+				)
+			);
 			if (onlyFindOne)
 			{
 				return step;

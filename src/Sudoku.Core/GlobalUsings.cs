@@ -21,6 +21,7 @@ global using System.Text.RegularExpressions;
 global using System.Threading;
 global using Sudoku.Compatibility;
 global using Sudoku.Concepts;
+global using Sudoku.Linq;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Resources;

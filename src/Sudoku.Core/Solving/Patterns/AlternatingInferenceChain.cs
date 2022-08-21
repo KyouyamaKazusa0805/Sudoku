@@ -456,14 +456,5 @@ public sealed class AlternatingInferenceChain : Chain
 	/// <returns>The conclusions.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static Conclusion[] GetEliminationsSingleDigit(scoped in Cells elimMap, byte digit)
-	{
-		int i = 0;
-		var result = new Conclusion[elimMap.Count];
-		foreach (int cell in elimMap)
-		{
-			result[i++] = new(ConclusionType.Elimination, cell * 9 + digit);
-		}
-
-		return result;
-	}
+		=> (from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, digit)).ToArray();
 }
