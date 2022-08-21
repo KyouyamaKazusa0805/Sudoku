@@ -71,7 +71,7 @@ public interface IGuardianStepSearcher : INegativeRankStepSearcher
 }
 
 [StepSearcher]
-internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
+internal sealed partial class GuardianStepSearcher : IGuardianStepSearcher
 {
 	/// <inheritdoc/>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
@@ -81,7 +81,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 		eliminationMaps.Fill(Cells.Empty);
 		var pomSteps = new List<IStep>();
 		new PatternOverlayStepSearcher().GetAll(pomSteps, grid, onlyFindOne: false);
-		foreach (PatternOverlayStep step in pomSteps)
+		foreach (var step in pomSteps.Cast<PatternOverlayStep>())
 		{
 			scoped ref var currentMap = ref eliminationMaps[step.Digit];
 			foreach (var conclusion in step.Conclusions)
