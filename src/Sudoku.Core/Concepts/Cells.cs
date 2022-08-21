@@ -655,6 +655,30 @@ public unsafe struct Cells :
 	}
 
 	/// <summary>
+	/// Set the specified offset as <see langword="true"/> value, with range check.
+	/// </summary>
+	/// <param name="offset">The offset.</param>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the specified cell offset is invalid.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void AddChecked(int offset)
+	{
+		if (offset is not (>= 0 and < 81))
+		{
+			throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid.");
+		}
+
+		scoped ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
+		bool older = Contains(offset);
+		v |= checked(1L << offset % Shifting);
+		if (!older)
+		{
+			Count++;
+		}
+	}
+
+	/// <summary>
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>
@@ -1311,6 +1335,25 @@ public unsafe struct Cells :
 		foreach (int offset in offsets)
 		{
 			result.Add(offset);
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Explicit cast from <see cref="int"/>[] to <see cref="Cells"/>, with cell range check.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when a certain element in the argument <paramref name="offsets"/>
+	/// is not a valid value to represent a cell offset.
+	/// </exception>
+	public static explicit operator checked Cells(int[] offsets)
+	{
+		var result = Empty;
+		foreach (int offset in offsets)
+		{
+			result.AddChecked(offset);
 		}
 
 		return result;

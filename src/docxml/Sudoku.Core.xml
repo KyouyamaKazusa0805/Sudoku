@@ -970,6 +970,15 @@
             </summary>
             <param name="offset">The offset.</param>
         </member>
+        <member name="M:Sudoku.Concepts.Cells.AddChecked(System.Int32)">
+            <summary>
+            Set the specified offset as <see langword="true"/> value, with range check.
+            </summary>
+            <param name="offset">The offset.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified cell offset is invalid.
+            </exception>
+        </member>
         <member name="M:Sudoku.Concepts.Cells.AddRange(System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Set the specified offsets as <see langword="true"/> value.
@@ -1356,6 +1365,16 @@
             Explicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Concepts.Cells"/>.
             </summary>
             <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Cells.op_CheckedExplicit(System.Int32[])~Sudoku.Concepts.Cells">
+            <summary>
+            Explicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Concepts.Cells"/>, with cell range check.
+            </summary>
+            <param name="offsets">The offsets.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when a certain element in the argument <paramref name="offsets"/>
+            is not a valid value to represent a cell offset.
+            </exception>
         </member>
         <member name="M:Sudoku.Concepts.Cells.op_Explicit(Sudoku.Concepts.Cells@)~System.Span{System.Int32}">
             <summary>
@@ -8013,10 +8032,20 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Conclusion.op_Equality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Solving.Conclusion"/> instances are considered equal on inner value.
+            </summary>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether two instances are equal.</returns>
         </member>
         <member name="M:Sudoku.Solving.Conclusion.op_Inequality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Solving.Conclusion"/> instances are not equal on inner value.
+            </summary>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether two instances are not equal.</returns>
         </member>
         <member name="M:Sudoku.Solving.Conclusion.op_GreaterThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
             <inheritdoc/>

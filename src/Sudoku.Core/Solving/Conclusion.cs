@@ -151,11 +151,21 @@ public readonly partial struct Conclusion :
 			: throw new ArgumentException($"The argument must be of type '{nameof(Conclusion)}'", nameof(obj));
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Determines whether two <see cref="Conclusion"/> instances are considered equal on inner value.
+	/// </summary>
+	/// <param name="left">The first element to be compared.</param>
+	/// <param name="right">The second element to be compared.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether two instances are equal.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Determines whether two <see cref="Conclusion"/> instances are not equal on inner value.
+	/// </summary>
+	/// <param name="left">The first element to be compared.</param>
+	/// <param name="right">The second element to be compared.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether two instances are not equal.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
 
