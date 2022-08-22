@@ -44,7 +44,14 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 
 		for (int i = 0, length = @this.Count - 1; i < length; i++)
 		{
-			result.Add(new(DisplayColorKind.Normal, new(offset, @this[i]), new(offset, @this[i + 1]), Inference.Default));
+			result.Add(
+				new(
+					DisplayColorKind.Normal,
+					new(offset, @this[i]),
+					new(offset, @this[i + 1]),
+					Inference.Default
+				)
+			);
 		}
 
 		result.Add(new(DisplayColorKind.Normal, new(offset, @this[^1]), new(offset, @this[0]), Inference.Default));
@@ -71,13 +78,11 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
 	/// </exception>
-	protected static sealed (Cells Loop, Cells Guardians, int HousesMask)[] GatherLoops_Guardian(
-		int digit,
-		delegate*<in Cells, bool> condition)
+	protected static sealed GuardianLoopData[] GatherGuardianLoops(int digit, delegate*<in Cells, bool> condition)
 	{
 		ArgumentNullException.ThrowIfNull(condition);
 
-		var result = new List<(Cells, Cells, int)>();
+		var result = new List<GuardianLoopData>();
 		foreach (int cell in CandidatesMap[digit])
 		{
 			Dfs(cell, cell, 0, Cells.Empty, Cells.Empty, digit, condition, result);
@@ -92,7 +97,7 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 	private static void Dfs(
 		int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop,
 		scoped in Cells currentGuardians, int digit, delegate*<in Cells, bool> condition,
-		List<(Cells, Cells, int)> result)
+		List<GuardianLoopData> result)
 	{
 		foreach (var houseType in HouseTypes)
 		{
@@ -128,7 +133,7 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 				if (tempCell == startCell && condition(currentLoop)
 					&& (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is not [])
 				{
-					result.Add((currentLoop + tempCell, currentGuardians | tempGuardians, lastHouse | housesUsed));
+					result.Add(new(currentLoop + tempCell, currentGuardians | tempGuardians, lastHouse | housesUsed));
 
 					// Exit the current of this recursion frame.
 					return;

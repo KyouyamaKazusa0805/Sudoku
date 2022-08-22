@@ -3407,7 +3407,7 @@
             <param name="offset">The offset. The default value is <c>4</c>.</param>
             <returns>All links.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherLoops_Guardian(System.Int32,)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherGuardianLoops(System.Int32,)">
             <summary>
             Try to gather all possible loops which should satisfy the specified condition.
             </summary>
@@ -3428,7 +3428,7 @@
             Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.Dfs(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32,,System.Collections.Generic.List{System.ValueTuple{Sudoku.Concepts.Cells,Sudoku.Concepts.Cells,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.Dfs(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.GuardianLoopData})">
             <summary>
             Use depth-first searching to find all structures.
             </summary>
