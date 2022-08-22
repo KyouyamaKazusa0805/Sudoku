@@ -2720,7 +2720,7 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckPairType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Patterns.FireworkPattern@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.CheckPairType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Patterns.FireworkPattern@,System.Int32)">
             <summary>
             Checks for firework pair type 1 steps.
             </summary>

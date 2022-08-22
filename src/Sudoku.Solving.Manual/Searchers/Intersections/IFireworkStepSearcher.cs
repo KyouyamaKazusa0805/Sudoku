@@ -199,7 +199,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			{
 				case { } pivot when PopCount((uint)digitsMask) >= 3:
 				{
-					if (CheckPairType1(accumulator, grid, onlyFindOne, pattern, digitsMask, pivot) is { } stepPairType1)
+					if (CheckPairType1(accumulator, grid, onlyFindOne, pattern, pivot) is { } stepPairType1)
 					{
 						return stepPairType1;
 					}
@@ -241,7 +241,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 	/// </summary>
 	private IStep? CheckPairType1(
 		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
-		scoped in FireworkPattern pattern, short digitsMask, int pivot)
+		scoped in FireworkPattern pattern, int pivot)
 	{
 		var map = pattern.Map;
 		var nonPivotCells = map - pivot;
@@ -260,7 +260,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			return null;
 		}
 
-		foreach (int[] digits in digitsMask.GetAllSets().GetSubsets(2))
+		foreach (int[] digits in satisfiedDigitsMask.GetAllSets().GetSubsets(2))
 		{
 			short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
 			int cell1TheOtherLine = cell1.ToHouseIndex(
