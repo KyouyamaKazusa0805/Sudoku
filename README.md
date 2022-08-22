@@ -72,7 +72,6 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Single-Digit Structures
     * Two-Strong-Links
     * Empty Rectangle
-    * Guardian **(Waiting for bugs fixed)**
   * Wings
     * Regular Wing (XY-Wing, XYZ-Wing, etc.)
     * Irregular Wing (W-Wing, M-Wing[^2], etc.)
@@ -103,6 +102,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
         * Junior Exocet
       * Multi-Sector Locked Sets
     * Negative Rank Logics
+      * Guardian
       * Bi-value Oddagon **(Waiting for bugs fixed)**
       * Tri-value Oddagon
   * Symmetrical Placements
