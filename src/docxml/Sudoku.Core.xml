@@ -8513,24 +8513,19 @@
             </summary>
             <param name="Loop">Indicates the cells used in this whole guardian loop.</param>
             <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
-            <param name="HousesMask">Indicates the houses used in this pattern, specified as a mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Data.Representation.GuardianLoopData.#ctor(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Data.Representation.GuardianLoopData.#ctor(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
             <summary>
             Represents for a data set that describes the complete information about a guardian technique.
             </summary>
             <param name="Loop">Indicates the cells used in this whole guardian loop.</param>
             <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
-            <param name="HousesMask">Indicates the houses used in this pattern, specified as a mask.</param>
         </member>
         <member name="P:Sudoku.Solving.Data.Representation.GuardianLoopData.Loop">
             <summary>Indicates the cells used in this whole guardian loop.</summary>
         </member>
         <member name="P:Sudoku.Solving.Data.Representation.GuardianLoopData.Guardians">
             <summary>Indicates the extra cells that is used as guardians.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Data.Representation.GuardianLoopData.HousesMask">
-            <summary>Indicates the houses used in this pattern, specified as a mask.</summary>
         </member>
         <member name="T:Sudoku.Solving.Data.Representation.IPhasedConclusionProvider`2">
             <summary>

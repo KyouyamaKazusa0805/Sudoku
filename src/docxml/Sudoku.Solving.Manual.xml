@@ -3387,18 +3387,6 @@
             Defines a steps searcher that searches for cell-linking loop steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GetLinks(Sudoku.Concepts.Cells@,System.Int32,System.Int32)">
-            <summary>
-            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
-            </summary>
-            <param name="loop">The list of cells used in the guardian loop.</param>
-            <param name="housesMask">The houses used.</param>
-            <param name="digit">The digit used. The value can only be between 0 and 8. The default value is 4.</param>
-            <returns>All links.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the argument <paramref name="loop"/> is invalid.
-            </exception>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <summary>
             Converts all cells to the links that is used in drawing ULs or Reverse BUGs.

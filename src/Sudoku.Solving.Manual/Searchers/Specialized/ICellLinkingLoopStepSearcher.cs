@@ -8,33 +8,6 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// <summary>
 	/// Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
 	/// </summary>
-	/// <param name="loop">The list of cells used in the guardian loop.</param>
-	/// <param name="housesMask">The houses used.</param>
-	/// <param name="digit">The digit used. The value can only be between 0 and 8. The default value is 4.</param>
-	/// <returns>All links.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the argument <paramref name="loop"/> is invalid.
-	/// </exception>
-	protected static sealed IEnumerable<LinkViewNode> GetLinks(scoped in Cells loop, int housesMask, int digit = 4)
-	{
-		var result = new List<LinkViewNode>();
-
-		foreach (int house in housesMask)
-		{
-			if ((loop & HouseMaps[house]) is not [var c1, var c2])
-			{
-				throw new InvalidOperationException("Cannot operate because the loop is invalid.");
-			}
-
-			result.Add(new(DisplayColorKind.Normal, new(digit, c1), new(digit, c2), Inference.Default));
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
-	/// </summary>
 	/// <param name="this">The list of cells.</param>
 	/// <param name="offset">The offset. The default value is <c>4</c>.</param>
 	/// <returns>All links.</returns>
@@ -85,7 +58,7 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 		var result = new List<GuardianLoopData>();
 		foreach (int cell in CandidatesMap[digit])
 		{
-			Dfs(cell, cell, 0, Cells.Empty, Cells.Empty, digit, condition, result);
+			Dfs(cell, cell, 0, Cells.Empty + cell, Cells.Empty, digit, condition, result);
 		}
 
 		return result.ToArray();
@@ -102,18 +75,18 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 		foreach (var houseType in HouseTypes)
 		{
 			int house = lastCell.ToHouseIndex(houseType);
-			if (((1 << house) & lastHouse) != 0)
+			if ((lastHouse >> house & 1) != 0)
 			{
 				continue;
 			}
 
-			var keptCells = CandidatesMap[digit] & HouseMaps[house];
-			if (keptCells.Count < 2 || (currentLoop & HouseMaps[house]).Count > 2)
+			var cellsToBeChecked = CandidatesMap[digit] & HouseMaps[house];
+			if (cellsToBeChecked.Count < 2 || (currentLoop & HouseMaps[house]).Count > 2)
 			{
 				continue;
 			}
 
-			foreach (int tempCell in keptCells)
+			foreach (int tempCell in cellsToBeChecked)
 			{
 				if (tempCell == lastCell)
 				{
@@ -133,7 +106,7 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 				if (tempCell == startCell && condition(currentLoop)
 					&& (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is not [])
 				{
-					result.Add(new(currentLoop + tempCell, currentGuardians | tempGuardians, lastHouse | housesUsed));
+					result.Add(new(currentLoop, currentGuardians | tempGuardians));
 
 					// Exit the current of this recursion frame.
 					return;

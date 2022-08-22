@@ -41,14 +41,14 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 				continue;
 			}
 
-			static bool predicate(in Cells loop) => loop.Count is var l && (l & 1) == 0 && l >= 6;
+			static bool predicate(in Cells loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
 			var foundData = ICellLinkingLoopStepSearcher.GatherGuardianLoops(digit, &predicate);
 			if (foundData.Length == 0)
 			{
 				continue;
 			}
 
-			foreach (var (loop, guardians, housesMask) in foundData)
+			foreach (var (loop, guardians) in foundData)
 			{
 				if ((!guardians & CandidatesMap[digit]) is not (var elimMap and not []))
 				{
@@ -73,11 +73,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 				resultAccumulator.Add(
 					new GuardianStep(
 						ImmutableArray.Create(from c in elimMap select new Conclusion(Elimination, c, digit)),
-						ImmutableArray.Create(
-							View.Empty
-								| candidateOffsets
-								| ICellLinkingLoopStepSearcher.GetLinks(loop, housesMask)
-						),
+						ImmutableArray.Create(View.Empty | candidateOffsets),
 						digit,
 						loop,
 						guardians
