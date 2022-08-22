@@ -3900,6 +3900,13 @@
             about the locked candidate node.
             </summary>
         </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.LockedTarget"/> instance via the specified cell and the specified digit used.
+            </summary>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="cell">Indicates the cell used.</param>
+        </member>
         <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,Sudoku.Concepts.Cells@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Presentation.LockedTarget"/> instance via the specified cells and the specified digit used.

@@ -3159,28 +3159,6 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
-            <summary>
-            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
-            </summary>
-            <param name="cells">The list of cells.</param>
-            <param name="offset">The offset. The default value is 4.</param>
-            <returns>All links.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher.CreateGuardianMap(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@)">
-            <summary>
-            Create the guardian map.
-            </summary>
-            <param name="cell1">The first cell.</param>
-            <param name="cell2">The second cell.</param>
-            <param name="digit">The current digit.</param>
-            <param name="guardians">
-            The current guardian cells.
-            This map may not contain cells that lies in the house
-            that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
-            </param>
-            <returns>All guardians.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -3404,18 +3382,50 @@
             <seealso cref="M:Sudoku.Solving.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)"/>
             <seealso cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.ILoopLikeStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher">
             <summary>
-            Defines a step searcher that searches for loop-like steps.
+            Defines a steps searcher that searches for cell-linking loop steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ILoopLikeStepSearcher.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GetLinks(Sudoku.Concepts.Cells@,System.Int32)">
+            <summary>
+            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
+            </summary>
+            <param name="loop">The list of cells used in the guardian loop.</param>
+            <param name="housesMask">The houses used.</param>
+            <returns>All links.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the argument <paramref name="loop"/> is invalid.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <summary>
             Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
             </summary>
             <param name="this">The list of cells.</param>
             <param name="offset">The offset. The default value is <c>4</c>.</param>
             <returns>All links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherLoops_Guardian(System.Int32,)">
+            <summary>
+            Try to gather all possible loops which should satisfy the specified condition.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <param name="condition">
+            The condition to verify the specified loop satisfies the current condition, as a function pointer.
+            </param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            If none found, <see langword="null"/>.
+            </returns>
+            <remarks>
+            <para><b>Developer Notes</b></para>
+            <para>This code snippet is copied and modified from AIC algorithm, BFS.</para>
+            <para>In addition, this method does not use any data in the type <see cref="T:Sudoku.Concepts.Grid"/>.</para>
+            </remarks>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IStepSearcherRequiresSolution">
             <summary>

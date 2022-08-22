@@ -588,12 +588,12 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			var resultList = new List<int>(12) { id };
 
 			int i = 0, temp = id;
-			bool revisit = false;
-			while (temp != id || !revisit)
+			bool revisited = false;
+			while (temp != id || !revisited)
 			{
 				temp = ((i & 1) == 0 ? onToOff : offToOn)[temp];
 
-				revisit = true;
+				revisited = true;
 
 				resultList.Add(temp);
 

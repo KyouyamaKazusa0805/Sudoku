@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a step searcher that searches for unique loop or bi-value oddagon steps.
 /// </summary>
-public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopLikeStepSearcher
+public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ICellLinkingLoopStepSearcher
 {
 	/// <summary>
 	/// Searches for possible bi-value oddagon or unique loop patterns.

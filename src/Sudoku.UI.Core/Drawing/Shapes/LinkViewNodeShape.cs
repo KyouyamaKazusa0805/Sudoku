@@ -181,7 +181,7 @@ file sealed class PathConstructor
 
 			var doubleCollection = inference switch
 			{
-				Inference.Strong => new(),
+				Inference.Strong or Inference.Default => new(),
 				Inference.Weak => new() { 3, 1.5 },
 				_ => new DoubleCollection { 3, 3 }
 			};
@@ -201,7 +201,9 @@ file sealed class PathConstructor
 							.WithChildren(
 								new LineGeometry()
 									.WithPoints(pt1, pt2)
+#if false
 									.WithCustomizedArrowCap()
+#endif
 							)
 					);
 				result.Add(shape);

@@ -7,6 +7,16 @@
 public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget>
 {
 	/// <summary>
+	/// Initializes a <see cref="LockedTarget"/> instance via the specified cell and the specified digit used.
+	/// </summary>
+	/// <param name="digit">Indicates the digit used.</param>
+	/// <param name="cell">Indicates the cell used.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public LockedTarget(int digit, int cell) : this(digit, Cells.Empty + cell)
+	{
+	}
+
+	/// <summary>
 	/// Initializes a <see cref="LockedTarget"/> instance via the specified cells and the specified digit used.
 	/// </summary>
 	/// <param name="digit">Indicates the digit used.</param>

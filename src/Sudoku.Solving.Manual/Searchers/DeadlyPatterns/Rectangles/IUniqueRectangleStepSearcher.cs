@@ -3195,7 +3195,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		byte line = (byte)otherCellsMap.CoveredLine;
 		byte block = (byte)TrailingZeroCount(otherCellsMap.CoveredHouses & ~(1 << line));
 		var (a, _, _, d) = IntersectionMaps[(line, block)];
-		var list = new ValueList<Cells>(4);
+		using scoped var list = new ValueList<Cells>(4);
 		for (int caseIndex = 0; caseIndex < 2; caseIndex++)
 		{
 			bool cannibalMode = cannibalModeCases[caseIndex];

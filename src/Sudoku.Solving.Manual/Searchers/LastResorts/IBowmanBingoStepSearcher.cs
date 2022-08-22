@@ -156,12 +156,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 		for (int i = 0, iterationCount = _tempConclusions.Count - 1; i < iterationCount; i++)
 		{
 			int c1 = _tempConclusions[i].Candidate, c2 = _tempConclusions[i + 1].Candidate;
-			result.Add(
-				new(
-					DisplayColorKind.Normal,
-					new(c1 % 9, Cells.Empty + c1 / 9), new(c2 % 9, Cells.Empty + c2 / 9), Inference.Default
-				)
-			);
+			result.Add(new(DisplayColorKind.Normal, new(c1 % 9, c1 / 9), new(c2 % 9, c2 / 9), Inference.Default));
 		}
 
 		return result;
