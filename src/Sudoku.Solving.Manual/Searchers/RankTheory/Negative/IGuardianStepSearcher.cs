@@ -42,12 +42,13 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 			}
 
 			static bool predicate(in Cells loop) => loop.Count is var l && (l & 1) == 0 && l >= 6;
-			if (ICellLinkingLoopStepSearcher.GatherGuardianLoops(digit, &predicate) is not { } linkingCellsList)
+			var foundData = ICellLinkingLoopStepSearcher.GatherGuardianLoops(digit, &predicate);
+			if (foundData.Length == 0)
 			{
 				continue;
 			}
 
-			foreach (var (loop, guardians, housesMask) in linkingCellsList)
+			foreach (var (loop, guardians, housesMask) in foundData)
 			{
 				if ((!guardians & CandidatesMap[digit]) is not (var elimMap and not []))
 				{
