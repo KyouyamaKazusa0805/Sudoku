@@ -8722,6 +8722,10 @@
             <typeparam name="TDistinctableStep">The type of the steps.</typeparam>
             <param name="list">The list of steps to be processed.</param>
             <returns>The list of steps.</returns>
+            <remarks>
+            This method does not change the ordering of the original list. In other words, if the original list
+            is in order, the final list after invoking this method will be also in order.
+            </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IElementaryStep">

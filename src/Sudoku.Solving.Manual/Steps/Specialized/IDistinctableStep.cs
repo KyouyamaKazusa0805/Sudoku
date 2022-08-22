@@ -45,6 +45,10 @@ internal interface IDistinctableStep<in TStep> : IStep where TStep : Step
 	/// <typeparam name="TDistinctableStep">The type of the steps.</typeparam>
 	/// <param name="list">The list of steps to be processed.</param>
 	/// <returns>The list of steps.</returns>
+	/// <remarks>
+	/// This method does not change the ordering of the original list. In other words, if the original list
+	/// is in order, the final list after invoking this method will be also in order.
+	/// </remarks>
 	/// <seealso cref="Equals(TStep, TStep)"/>
 	public static sealed IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
 		where TDistinctableStep : Step, IDistinctableStep<TDistinctableStep>

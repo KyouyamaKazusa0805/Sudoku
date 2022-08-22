@@ -64,23 +64,24 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, c * 9 + digit));
 				}
 
-				var step = new GuardianStep(
-					ImmutableArray.Create(from c in elimMap select new Conclusion(Elimination, c, digit)),
-					ImmutableArray.Create(
-						View.Empty
-							| candidateOffsets
-							| ICellLinkingLoopStepSearcher.GetLinks(loop, housesMask)
-					),
-					digit,
-					loop,
-					guardians
+				// Add found step into the collection.
+				// To be honest I can return the step if 'onlyFindOne' is true,
+				// but due to the limit of the algorithm, the method always gets the longer guardian loops
+				// instead of shorter ones.
+				// If we just return the first found step, we will miss steps being more elegant.
+				resultAccumulator.Add(
+					new GuardianStep(
+						ImmutableArray.Create(from c in elimMap select new Conclusion(Elimination, c, digit)),
+						ImmutableArray.Create(
+							View.Empty
+								| candidateOffsets
+								| ICellLinkingLoopStepSearcher.GetLinks(loop, housesMask)
+						),
+						digit,
+						loop,
+						guardians
+					)
 				);
-				if (onlyFindOne)
-				{
-					return step;
-				}
-
-				resultAccumulator.Add(step);
 			}
 		}
 
@@ -89,11 +90,19 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 			return null;
 		}
 
-		accumulator.AddRange(
-			from info in IDistinctableStep<GuardianStep>.Distinct(resultAccumulator)
-			orderby info.Loop.Count, info.Guardians.Count
-			select info
+		var tempCollection = IDistinctableStep<GuardianStep>.Distinct(
+			(
+				from info in resultAccumulator
+				orderby info.Loop.Count, info.Guardians.Count
+				select info
+			).ToList()
 		);
+		if (onlyFindOne)
+		{
+			return tempCollection.First();
+		}
+
+		accumulator.AddRange(tempCollection);
 
 		return null;
 	}
