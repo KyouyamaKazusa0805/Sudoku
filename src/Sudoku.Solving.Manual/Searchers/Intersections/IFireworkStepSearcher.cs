@@ -50,12 +50,22 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 					{
 						foreach (int c in HouseMaps[triple[2]])
 						{
-							if (!(Cells.Empty + a + b).InOneHouse || !(Cells.Empty + b + c).InOneHouse)
+							if ((Cells.Empty + a + b).InOneHouse && (Cells.Empty + a + c).InOneHouse)
 							{
+								Patterns[i++] = new(Cells.Empty + a + b + c, a);
 								continue;
 							}
 
-							Patterns[i++] = new(Cells.Empty + a + b + c, b);
+							if ((Cells.Empty + a + b).InOneHouse && (Cells.Empty + b + c).InOneHouse)
+							{
+								Patterns[i++] = new(Cells.Empty + a + b + c, b);
+								continue;
+							}
+
+							if ((Cells.Empty + a + c).InOneHouse && (Cells.Empty + b + c).InOneHouse)
+							{
+								Patterns[i++] = new(Cells.Empty + a + b + c, c);
+							}
 						}
 					}
 				}
@@ -260,6 +270,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			return null;
 		}
 
+		int elimCell = ((PeerMaps[cell1] & PeerMaps[cell2]) - pivot)[0];
 		foreach (int[] digits in satisfiedDigitsMask.GetAllSets().GetSubsets(2))
 		{
 			short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
@@ -298,17 +309,14 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 						continue;
 					}
 
-					var conclusions = new List<Conclusion>(4);
-					foreach (int cell in elimMap)
+					var conclusions = new List<Conclusion>(2);
+					if (CandidatesMap[digits[0]].Contains(elimCell))
 					{
-						if (CandidatesMap[digits[0]].Contains(cell))
-						{
-							conclusions.Add(new(Elimination, cell * 9 + digits[0]));
-						}
-						if (CandidatesMap[digits[1]].Contains(cell))
-						{
-							conclusions.Add(new(Elimination, cell * 9 + digits[1]));
-						}
+						conclusions.Add(new(Elimination, elimCell * 9 + digits[0]));
+					}
+					if (CandidatesMap[digits[1]].Contains(elimCell))
+					{
+						conclusions.Add(new(Elimination, elimCell * 9 + digits[1]));
 					}
 					if (conclusions.Count == 0)
 					{

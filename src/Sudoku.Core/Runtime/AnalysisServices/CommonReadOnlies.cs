@@ -38,7 +38,7 @@ public static class CommonReadOnlies
 	/// <summary>
 	/// Indicates the total number of firework subset patterns.
 	/// </summary>
-	public const int FireworkSubsetCount = 2187;
+	public const int FireworkSubsetCount = 3645;
 
 	/// <summary>
 	/// Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
@@ -53,7 +53,7 @@ public static class CommonReadOnlies
 	/// <summary>
 	/// Indicates the total number of pair fireworks.
 	/// </summary>
-	public const int PairFireworksCount = 34263;
+	public const int PairFireworksCount = 103518;
 
 	/// <summary>
 	/// Indicates the total number of multi-sector locked sets possible templates.
