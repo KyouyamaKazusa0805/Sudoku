@@ -51,77 +51,75 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
 	/// </exception>
-	protected static sealed GuardianLoopData[] GatherGuardianLoops(int digit, delegate*<in Cells, bool> condition)
+	protected static sealed GuardianData[] GatherGuardianLoops(int digit, delegate*<in Cells, bool> condition)
 	{
 		ArgumentNullException.ThrowIfNull(condition);
 
-		var result = new List<GuardianLoopData>();
+		var result = new List<GuardianData>();
 		foreach (int cell in CandidatesMap[digit])
 		{
-			Dfs(cell, cell, 0, Cells.Empty + cell, Cells.Empty, digit, condition, result);
+			dfs(cell, cell, 0, Cells.Empty + cell, Cells.Empty, digit, condition, result);
 		}
 
-		return result.ToArray();
-	}
+		return result.Distinct().ToArray();
 
-	/// <summary>
-	/// Use depth-first searching to find all structures.
-	/// </summary>
-	private static void Dfs(
-		int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop,
-		scoped in Cells currentGuardians, int digit, delegate*<in Cells, bool> condition,
-		List<GuardianLoopData> result)
-	{
-		foreach (var houseType in HouseTypes)
+
+		static void dfs(
+			int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop,
+			scoped in Cells currentGuardians, int digit, delegate*<in Cells, bool> condition,
+			List<GuardianData> result)
 		{
-			int house = lastCell.ToHouseIndex(houseType);
-			if ((lastHouse >> house & 1) != 0)
+			foreach (var houseType in HouseTypes)
 			{
-				continue;
-			}
-
-			var cellsToBeChecked = CandidatesMap[digit] & HouseMaps[house];
-			if (cellsToBeChecked.Count < 2 || (currentLoop & HouseMaps[house]).Count > 2)
-			{
-				continue;
-			}
-
-			foreach (int tempCell in cellsToBeChecked)
-			{
-				if (tempCell == lastCell)
+				int house = lastCell.ToHouseIndex(houseType);
+				if ((lastHouse >> house & 1) != 0)
 				{
 					continue;
 				}
 
-				int housesUsed = 0;
-				foreach (var tempHouseType in HouseTypes)
+				var cellsToBeChecked = CandidatesMap[digit] & HouseMaps[house];
+				if (cellsToBeChecked.Count < 2 || (currentLoop & HouseMaps[house]).Count > 2)
 				{
-					if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
+					continue;
+				}
+
+				foreach (int tempCell in cellsToBeChecked)
+				{
+					if (tempCell == lastCell)
 					{
-						housesUsed |= 1 << lastCell.ToHouseIndex(tempHouseType);
+						continue;
 					}
+
+					int housesUsed = 0;
+					foreach (var tempHouseType in HouseTypes)
+					{
+						if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
+						{
+							housesUsed |= 1 << lastCell.ToHouseIndex(tempHouseType);
+						}
+					}
+
+					var tempGuardians = (CandidatesMap[digit] & HouseMaps[house]) - tempCell - lastCell;
+					if (tempCell == startCell && condition(currentLoop)
+						&& (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is not [])
+					{
+						result.Add(new(currentLoop, currentGuardians | tempGuardians, digit));
+
+						// Exit the current of this recursion frame.
+						return;
+					}
+
+					if ((currentLoop | currentGuardians).Contains(tempCell)
+						|| (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is []
+						|| (HouseMaps[house] & currentLoop).Count > 1)
+					{
+						continue;
+					}
+
+					dfs(
+						startCell, tempCell, lastHouse | housesUsed, currentLoop + tempCell,
+						currentGuardians | tempGuardians, digit, condition, result);
 				}
-
-				var tempGuardians = (CandidatesMap[digit] & HouseMaps[house]) - tempCell - lastCell;
-				if (tempCell == startCell && condition(currentLoop)
-					&& (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is not [])
-				{
-					result.Add(new(currentLoop, currentGuardians | tempGuardians));
-
-					// Exit the current of this recursion frame.
-					return;
-				}
-
-				if ((currentLoop | currentGuardians).Contains(tempCell)
-					|| (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is []
-					|| (HouseMaps[house] & currentLoop).Count > 1)
-				{
-					continue;
-				}
-
-				Dfs(
-					startCell, tempCell, lastHouse | housesUsed, currentLoop + tempCell,
-					currentGuardians | tempGuardians, digit, condition, result);
 			}
 		}
 	}

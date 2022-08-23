@@ -3416,11 +3416,6 @@
             Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.Dfs(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.GuardianLoopData})">
-            <summary>
-            Use depth-first searching to find all structures.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IStepSearcherRequiresSolution">
             <summary>
             Indicates a step searcher that requires a solution grid for the technique searching usages.

@@ -48,7 +48,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 				continue;
 			}
 
-			foreach (var (loop, guardians) in foundData)
+			foreach (var (loop, guardians, _) in foundData)
 			{
 				if ((!guardians & CandidatesMap[digit]) is not (var elimMap and not []))
 				{
