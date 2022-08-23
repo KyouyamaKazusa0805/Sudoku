@@ -703,7 +703,7 @@
             <item>
             Irregular Wings:
             <list type="bullet">
-            <item>W-Wing (Although it can be searched via <see cref="T:Sudoku.Solving.Manual.Searchers.IIregularWingStepSearcher"/>)</item>
+            <item>W-Wing (Although it can be searched via <see cref="T:Sudoku.Solving.Manual.Searchers.IIrregularWingStepSearcher"/>)</item>
             <item>M-Wing</item>
             <item>Split Wing</item>
             <item>Local Wing</item>
@@ -3499,14 +3499,25 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IIregularWingStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.IIrregularWingStepSearcher">
             <summary>
-            Provides with a <b>W-Wing</b> step searcher.
+            Represents for a step searcher that searches for irregular wing steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IMultiBranchWWingStepSearcher">
+            <summary>
+            Provides with a <b>Multiple-Branch W-Wing</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>W-Wing (George Woods' Wing)</item>
+            <item>Multiple-Branch W-Wing (Multiple-Branch George Woods' Wing)</item>
             </list>
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.MultiBranchWWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.MultiBranchWWingStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher">
             <summary>
@@ -3544,12 +3555,24 @@
             Defines a step searcher that searches for wing steps.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IWWingStepSearcher">
+            <summary>
+            Provides with a <b>W-Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>W-Wing (George Woods' Wing)</item>
+            </list>
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.WWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
+            <para><b>Developer Notes</b></para>
+            <para>
             In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
             be found in another searcher. In addition, these wings are not elementary and necessary techniques
             so we doesn't need to list them.
+            </para>
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.WWingStepSearcher.Options">
@@ -9012,6 +9035,70 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.IrregularWingStep">
+            <summary>
+            Provides with a step that is a <b>Irregular Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.IrregularWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+            <summary>
+            Provides with a step that is a <b>Irregular Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep">
+            <summary>
+            Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Leaves">The leaves of the pattern.</param>
+            <param name="Root">The root cells that corresponds to each leaf.</param>
+            <param name="House">The house used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Leaves">The leaves of the pattern.</param>
+            <param name="Root">The root cells that corresponds to each leaf.</param>
+            <param name="House">The house used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.Leaves">
+            <summary>The leaves of the pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.Root">
+            <summary>The root cells that corresponds to each leaf.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.House">
+            <summary>The house used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.Size">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.RegularWingStep">

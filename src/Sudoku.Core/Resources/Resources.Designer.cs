@@ -1681,6 +1681,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to W-Wing Multiple Branches.
+        /// </summary>
+        internal static string MultiBranchWWing {
+            get {
+                return ResourceManager.GetString("MultiBranchWWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multi-sector Locked Sets.
         /// </summary>
         internal static string MultisectorLockedSets {
@@ -3054,6 +3063,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_LockedCandidatesStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_LockedCandidatesStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Leaves {LeavesStr}, root cells {RootStr} in house {HouseStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_MultiBranchWWingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_MultiBranchWWingStep", resourceCulture);
             }
         }
         

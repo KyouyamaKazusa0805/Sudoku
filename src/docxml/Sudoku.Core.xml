@@ -5633,6 +5633,11 @@
               Looks up a localized string similar to Locked Triple.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.MultiBranchWWing">
+            <summary>
+              Looks up a localized string similar to W-Wing Multiple Branches.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.MultisectorLockedSets">
             <summary>
               Looks up a localized string similar to Multi-sector Locked Sets.
@@ -6396,6 +6401,11 @@
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_LockedCandidatesStep">
             <summary>
               Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_MultiBranchWWingStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Leaves {LeavesStr}, root cells {RootStr} in house {HouseStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_MultisectorLockedSetsStep">
@@ -9428,6 +9438,11 @@
         <member name="F:Sudoku.Solving.Data.Representation.Technique.WWing">
             <summary>
             Indicates W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.MultiBranchWWing">
+            <summary>
+            Indicates Multi-Branch W-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.MWing">

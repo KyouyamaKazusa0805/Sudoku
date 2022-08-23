@@ -6,6 +6,7 @@
 	SearcherConfiguration<TwoStrongLinksStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<RegularWingStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<WWingStepSearcher>(SearcherDisplayingLevel.B),
+	SearcherConfiguration<MultiBranchWWingStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<UniqueRectangleStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<AlmostLockedCandidatesStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<SueDeCoqStepSearcher>(SearcherDisplayingLevel.B),

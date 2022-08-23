@@ -70,7 +70,15 @@ UI：
     * 空矩形
   * 短链结构
     * 规则 Wing（XY-Wing、XYZ-Wing 等）
-    * 不规则 Wing（W-Wing、M-Wing 等）
+    * 不规则 Wing
+      * W-Wing
+        * 标准 W-Wing
+        * 多分支 W-Wing
+      * M-Wing
+      * Local-Wing
+      * Split-Wing
+      * Hybrid-Wing
+      * Purple Cow
   * 唯一性
     * 唯一矩形
     * 唯一环 **（有 bug）**

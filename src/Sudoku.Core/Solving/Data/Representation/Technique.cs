@@ -734,6 +734,11 @@ public enum Technique : short
 	WWing,
 
 	/// <summary>
+	/// Indicates Multi-Branch W-Wing.
+	/// </summary>
+	MultiBranchWWing,
+
+	/// <summary>
 	/// Indicates M-Wing.
 	/// </summary>
 	MWing,

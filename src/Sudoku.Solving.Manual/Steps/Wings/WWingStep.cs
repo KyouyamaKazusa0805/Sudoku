@@ -16,7 +16,7 @@ internal sealed record WWingStep(
 	int StartCell,
 	int EndCell,
 	scoped in Conjugate ConjugatePair
-) : WingStep(Conclusions, Views)
+) : IrregularWingStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 4.4M;

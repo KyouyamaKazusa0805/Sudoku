@@ -1733,4 +1733,11 @@
     <value>RW 的 n + 1 致命结构理论</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="MultiBranchWWing" xml:space="preserve">
+    <value>多分支 W-Wing</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_MultiBranchWWingStep" xml:space="preserve">
+    <value>{Name}：根 {RootStr} 位于 {HouseStr}，分支走向终端 {LeavesStr} =&gt; {ElimStr}</value>
+  </data>
 </root>

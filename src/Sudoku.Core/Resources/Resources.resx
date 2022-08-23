@@ -1434,4 +1434,10 @@
   <data name="RwNPlus1Theory" xml:space="preserve">
     <value>RW's n + 1 Theory</value>
   </data>
+  <data name="MultiBranchWWing" xml:space="preserve">
+    <value>W-Wing Multiple Branches</value>
+  </data>
+  <data name="TechniqueFormat_MultiBranchWWingStep" xml:space="preserve">
+    <value>{Name}: Leaves {LeavesStr}, root cells {RootStr} in house {HouseStr} =&gt; {ElimStr}</value>
+  </data>
 </root>

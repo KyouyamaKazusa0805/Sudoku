@@ -10,7 +10,7 @@
 /// <item>
 /// Irregular Wings:
 /// <list type="bullet">
-/// <item>W-Wing (Although it can be searched via <see cref="IIregularWingStepSearcher"/>)</item>
+/// <item>W-Wing (Although it can be searched via <see cref="IIrregularWingStepSearcher"/>)</item>
 /// <item>M-Wing</item>
 /// <item>Split Wing</item>
 /// <item>Local Wing</item>

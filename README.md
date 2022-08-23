@@ -74,7 +74,15 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Empty Rectangle
   * Wings
     * Regular Wing (XY-Wing, XYZ-Wing, etc.)
-    * Irregular Wing (W-Wing, M-Wing[^2], etc.)
+    * Irregular Wing[^2]
+      * W-Wing
+        * Basic W-Wing
+        * Multi-Branch W-Wing
+      * M-Wing
+      * Local-Wing
+      * Split-Wing
+      * Hybrid-Wing
+      * Purple Cow
   * Uniqueness
     * Unique Rectangle
     * Unique Loop **(Waiting for bugs fixed)**
