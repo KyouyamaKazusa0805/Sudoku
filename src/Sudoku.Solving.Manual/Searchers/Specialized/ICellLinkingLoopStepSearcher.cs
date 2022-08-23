@@ -46,11 +46,11 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
 	/// </exception>
-	protected static sealed GuardianData[] GatherGuardianLoops(int digit, delegate*<in Cells, bool> condition)
+	protected static sealed GuardianDataInfo[] GatherGuardianLoops(int digit, delegate*<in Cells, bool> condition)
 	{
 		ArgumentNullException.ThrowIfNull(condition);
 
-		var result = new List<GuardianData>();
+		var result = new List<GuardianDataInfo>();
 		foreach (int cell in CandidatesMap[digit])
 		{
 			dfs(cell, cell, 0, Cells.Empty + cell, Cells.Empty, digit, condition, result);
@@ -62,7 +62,7 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 		static void dfs(
 			int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop,
 			scoped in Cells currentGuardians, int digit, delegate*<in Cells, bool> condition,
-			List<GuardianData> result)
+			List<GuardianDataInfo> result)
 		{
 			foreach (var houseType in HouseTypes)
 			{
@@ -134,10 +134,10 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
 	/// </exception>
-	protected static sealed Cells[] GatherUniqueLoops(int digit, delegate*<in Cells, bool> condition)
+	protected static sealed UniqueLoopDataInfo[] GatherUniqueLoops(int digit, delegate*<in Cells, bool> condition)
 	{
 		ArgumentNullException.ThrowIfNull(condition);
 
-		return Array.Empty<Cells>();
+		return Array.Empty<UniqueLoopDataInfo>();
 	}
 }
