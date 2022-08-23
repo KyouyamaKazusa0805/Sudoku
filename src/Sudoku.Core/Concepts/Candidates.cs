@@ -69,7 +69,7 @@ public unsafe struct Candidates :
 	/// </exception>
 	public Candidates(int* candidates, int length)
 	{
-		Argument.ThrowIfNull(candidates);
+		ArgumentNullException.ThrowIfNull(candidates);
 
 		this = default;
 		for (int i = 0; i < length; i++)
@@ -155,7 +155,7 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Candidates(long* binary, int length)
 	{
-		Argument.ThrowIfNull(binary);
+		ArgumentNullException.ThrowIfNull(binary);
 		Argument.ThrowIfNotEqual(length, 12);
 
 		int count = 0;
@@ -308,7 +308,7 @@ public unsafe struct Candidates :
 	/// </exception>
 	public readonly void CopyTo(int* arr, int length)
 	{
-		Argument.ThrowIfNull(arr);
+		ArgumentNullException.ThrowIfNull(arr);
 
 		if (Count == 0)
 		{

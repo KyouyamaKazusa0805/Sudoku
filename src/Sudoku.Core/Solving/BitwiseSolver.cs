@@ -107,7 +107,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public long Solve(char* puzzle, char* solution, int limit)
 	{
-		Argument.ThrowIfNull(puzzle);
+		ArgumentNullException.ThrowIfNull(puzzle);
 
 		ClearStack();
 
@@ -180,7 +180,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool CheckValidity(char* grid)
 	{
-		Argument.ThrowIfNull(grid);
+		ArgumentNullException.ThrowIfNull(grid);
 
 		ClearStack();
 

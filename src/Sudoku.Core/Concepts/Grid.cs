@@ -1297,7 +1297,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(char* ptrStr)
 	{
-		Argument.ThrowIfNull(ptrStr);
+		ArgumentNullException.ThrowIfNull(ptrStr);
 
 		return Parse(new string(ptrStr));
 	}
@@ -1347,7 +1347,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(Utf8Char* ptrStr)
 	{
-		Argument.ThrowIfNull(ptrStr);
+		ArgumentNullException.ThrowIfNull(ptrStr);
 
 		return Parse(new Utf8String(ptrStr));
 	}

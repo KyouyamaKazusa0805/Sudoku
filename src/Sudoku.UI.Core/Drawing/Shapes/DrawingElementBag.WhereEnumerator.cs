@@ -58,7 +58,7 @@ partial class DrawingElementBag
 		internal WhereEnumerator(DrawingElement[] elements, int count, delegate*<DrawingElement, bool> predicate) :
 			this(elements, count)
 		{
-			Argument.ThrowIfNull(predicate);
+			ArgumentNullException.ThrowIfNull(predicate);
 
 			_predicateMethodPtr = predicate;
 		}

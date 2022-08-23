@@ -17,8 +17,8 @@ public static unsafe class PointerMarshal
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Swap<TUnmanaged>(TUnmanaged* left, TUnmanaged* right) where TUnmanaged : unmanaged
 	{
-		Argument.ThrowIfNull(left);
-		Argument.ThrowIfNull(right);
+		ArgumentNullException.ThrowIfNull(left);
+		ArgumentNullException.ThrowIfNull(right);
 
 		var temp = *left;
 		*left = *right;
@@ -42,7 +42,7 @@ public static unsafe class PointerMarshal
 	/// </remarks>
 	public static int StringLengthOf(char* ptr)
 	{
-		Argument.ThrowIfNull(ptr);
+		ArgumentNullException.ThrowIfNull(ptr);
 
 		int result = 0;
 		for (char* p = ptr; *p != '\0'; p++)
@@ -70,7 +70,7 @@ public static unsafe class PointerMarshal
 	/// </remarks>
 	public static int StringLengthOf(Utf8Char* ptr)
 	{
-		Argument.ThrowIfNull(ptr);
+		ArgumentNullException.ThrowIfNull(ptr);
 
 		int result = 0;
 		for (var p = ptr; *p != (Utf8Char)'\0'; p++)
@@ -104,7 +104,7 @@ public static unsafe class PointerMarshal
 	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>(TUnmanaged* ptr, int length, int index)
 		where TUnmanaged : unmanaged
 	{
-		Argument.ThrowIfNull(ptr);
+		ArgumentNullException.ThrowIfNull(ptr);
 
 		var result = new TUnmanaged[length - index];
 		for (int i = index; i < length; i++)
@@ -138,7 +138,7 @@ public static unsafe class PointerMarshal
 	/// <seealso cref="GetArrayFromStart{TUnmanaged}(TUnmanaged*, int, int)"/>
 	public static int[] GetArrayFromStart(int* ptr, int length, int index, bool removeTrailingZeros)
 	{
-		Argument.ThrowIfNull(ptr);
+		ArgumentNullException.ThrowIfNull(ptr);
 
 		if (removeTrailingZeros)
 		{

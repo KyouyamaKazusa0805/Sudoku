@@ -189,17 +189,6 @@
             Throws when checking failed on argument <paramref name="condition"/>.
             </exception>
         </member>
-        <member name="M:System.Argument.ThrowIfNull(System.Void*,System.String)">
-            <summary>
-            Checks whether the specified pointer value is not <see langword="null"/>. Otherwise,
-            an <see cref="T:System.ArgumentNullException"/> will be thrown.
-            </summary>
-            <param name="pointer">The pointer value.</param>
-            <param name="argName">The argument name.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the <paramref name="argName"/> is <see langword="null"/>.
-            </exception>
-        </member>
         <member name="M:System.Argument.ThrowIfNullRef``1(``0@,System.String)">
             <summary>
             Checks whether the specified reference value is not <see langword="null"/>. Otherwise,

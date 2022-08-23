@@ -394,7 +394,7 @@ public unsafe struct Cells :
 	/// </exception>
 	public readonly void CopyTo(int* arr, int length)
 	{
-		Argument.ThrowIfNull(arr);
+		ArgumentNullException.ThrowIfNull(arr);
 
 		if (this is [])
 		{

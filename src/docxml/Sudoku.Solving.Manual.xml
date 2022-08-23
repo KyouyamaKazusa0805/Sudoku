@@ -3411,6 +3411,23 @@
             Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
             </exception>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherUniqueLoops(System.Int32,)">
+            <summary>
+            Try to gather all possible loops being used in technique unique loops,
+            which should satisfy the specified condition.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <param name="condition">
+            The condition to verify the specified loop satisfies the current condition, as a function pointer.
+            </param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            If none found, <see langword="null"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
+            </exception>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IStepSearcherRequiresSolution">
             <summary>
             Indicates a step searcher that requires a solution grid for the technique searching usages.

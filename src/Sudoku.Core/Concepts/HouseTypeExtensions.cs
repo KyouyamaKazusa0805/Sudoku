@@ -10,7 +10,7 @@ public static class HouseTypeExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe void CopyHouseInfo(this byte cell, byte* ptr)
 	{
-		Argument.ThrowIfNull(ptr);
+		ArgumentNullException.ThrowIfNull(ptr);
 
 		ptr[0] = (byte)BlockTable[cell];
 		ptr[1] = (byte)RowTable[cell];
@@ -30,7 +30,7 @@ public static class HouseTypeExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe void CopyHouseInfo(this int cell, int* ptr)
 	{
-		Argument.ThrowIfNull(ptr);
+		ArgumentNullException.ThrowIfNull(ptr);
 
 		ptr[0] = BlockTable[cell];
 		ptr[1] = RowTable[cell];

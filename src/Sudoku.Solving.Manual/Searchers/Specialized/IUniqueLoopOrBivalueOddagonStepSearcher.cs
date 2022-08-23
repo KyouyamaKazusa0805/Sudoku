@@ -80,7 +80,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ICellL
 		}
 
 		// Backtrack.
-		loopMap -= cell;
+		loopMap.Remove(cell);
 		tempLoop.RemoveAt(tempLoop.Count - 1);
 	}
 }

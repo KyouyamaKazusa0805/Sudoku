@@ -65,7 +65,7 @@ partial class DrawingElementBag
 		internal SelectEnumerator(DrawingElement[] elements, int count, delegate*<DrawingElement, T> selector) :
 			this(elements, count)
 		{
-			Argument.ThrowIfNull(selector);
+			ArgumentNullException.ThrowIfNull(selector);
 
 			_selectorMethodPtr = selector;
 		}

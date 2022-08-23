@@ -118,4 +118,26 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 			}
 		}
 	}
+
+	/// <summary>
+	/// Try to gather all possible loops being used in technique unique loops,
+	/// which should satisfy the specified condition.
+	/// </summary>
+	/// <param name="digit">The digit used.</param>
+	/// <param name="condition">
+	/// The condition to verify the specified loop satisfies the current condition, as a function pointer.
+	/// </param>
+	/// <returns>
+	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
+	/// If none found, <see langword="null"/>.
+	/// </returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
+	/// </exception>
+	protected static sealed Cells[] GatherUniqueLoops(int digit, delegate*<in Cells, bool> condition)
+	{
+		ArgumentNullException.ThrowIfNull(condition);
+
+		return Array.Empty<Cells>();
+	}
 }

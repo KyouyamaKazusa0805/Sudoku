@@ -429,7 +429,7 @@ public unsafe ref partial struct StringHandler
 	/// </exception>
 	public void Append(char* value, int length)
 	{
-		Argument.ThrowIfNull(value);
+		ArgumentNullException.ThrowIfNull(value);
 
 		int pos = Length;
 		if (pos > _chars.Length - length)
@@ -654,8 +654,8 @@ public unsafe ref partial struct StringHandler
 		TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter, string separator)
 		where TUnmanaged : unmanaged
 	{
-		Argument.ThrowIfNull(list);
-		Argument.ThrowIfNull(converter);
+		ArgumentNullException.ThrowIfNull(list);
+		ArgumentNullException.ThrowIfNull(converter);
 
 		for (int i = 0; i < length; i++)
 		{
@@ -685,7 +685,7 @@ public unsafe ref partial struct StringHandler
 		TUnmanaged* list, int length, Func<TUnmanaged, string?> converter, string separator)
 		where TUnmanaged : unmanaged
 	{
-		Argument.ThrowIfNull(list);
+		ArgumentNullException.ThrowIfNull(list);
 
 		for (int i = 0; i < length; i++)
 		{
