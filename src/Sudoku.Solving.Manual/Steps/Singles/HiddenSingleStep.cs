@@ -31,7 +31,7 @@ internal sealed record HiddenSingleStep(
 	public override Technique TechniqueCode
 		=> EnableAndIsLastDigit
 			? Technique.LastDigit
-			: (Technique)((int)Technique.HiddenSingleBlock + (int)House.ToHouse());
+			: (Technique)((int)Technique.HiddenSingleBlock + (int)House.ToHouseType());
 
 	/// <inheritdoc/>
 	public override string? Format

@@ -25,7 +25,7 @@ internal sealed record AvoidableRectangleWithHiddenSingleStep(
 ) : UniqueRectangleStep(
 	Conclusions,
 	Views,
-	(Technique)((int)Technique.AvoidableRectangleHiddenSingleBlock + (int)House.ToHouse()),
+	(Technique)((int)Technique.AvoidableRectangleHiddenSingleBlock + (int)House.ToHouseType()),
 	Digit1,
 	Digit2,
 	Cells,

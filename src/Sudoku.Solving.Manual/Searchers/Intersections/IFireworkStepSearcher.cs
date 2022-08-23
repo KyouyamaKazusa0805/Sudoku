@@ -275,12 +275,12 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 		{
 			short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
 			int cell1TheOtherLine = cell1.ToHouseIndex(
-				(Cells.Empty + cell1 + pivot).CoveredLine.ToHouse() == HouseType.Row
+				(Cells.Empty + cell1 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
 			int cell2TheOtherLine = cell2.ToHouseIndex(
-				(Cells.Empty + cell2 + pivot).CoveredLine.ToHouse() == HouseType.Row
+				(Cells.Empty + cell2 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
@@ -561,12 +561,12 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 		{
 			short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
 			int cell1TheOtherLine = cell1.ToHouseIndex(
-				(Cells.Empty + cell1 + pivot).CoveredLine.ToHouse() == HouseType.Row
+				(Cells.Empty + cell1 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
 			int cell2TheOtherLine = cell2.ToHouseIndex(
-				(Cells.Empty + cell2 + pivot).CoveredLine.ToHouse() == HouseType.Row
+				(Cells.Empty + cell2 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
