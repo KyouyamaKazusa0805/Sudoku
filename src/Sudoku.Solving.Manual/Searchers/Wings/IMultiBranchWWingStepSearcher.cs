@@ -33,7 +33,7 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 				// Please note that cases whose cardinality (i.e. size of the subset) is greater than 5
 				// is extremely rare to appear. Therefore we can just skip on such cases,
 				// although the limit will miss some rare cases.
-				for (int size = 3, count = possibleCells.Count; size <= Min(count, 5); size++)
+				for (int size = 3, count = Min(possibleCells.Count, 5); size <= count; size++)
 				{
 					// Iterates on each combination.
 					foreach (var cells in possibleCells & size)
@@ -44,6 +44,8 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 							continue;
 						}
 
+#if false
+						// Checks whether every pair of cells in the cell combination is in a same region.
 						bool anyTwoCellsInSameHouse = false;
 						foreach (var e in cells & 2)
 						{
@@ -57,13 +59,18 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 						{
 							continue;
 						}
+#endif
 
-						foreach (int fixedDigit in stackalloc[] { digit1, digit2 })
+						// Iterates on each digit, to fix the digit as the X digit.
+						// W-Wing structure requires a pair of W digits as the first and the last place,
+						// and requires the X digits are in the body of the structure (i.e. non-terminal nodes).
+						foreach (int xDigit in stackalloc[] { digit1, digit2 })
 						{
+							// Gets the target house that can place root cells.
 							foreach (int house in (AllRowsMask | AllColumnsMask) & ~cells.Houses)
 							{
 								var crosshatchingHouseType = house >= 18 ? HouseType.Row : HouseType.Column;
-								var emptyCellsInThisHouse = HouseMaps[house] & CandidatesMap[fixedDigit];
+								var emptyCellsInThisHouse = HouseMaps[house] & CandidatesMap[xDigit];
 								if (emptyCellsInThisHouse.Count < size)
 								{
 									continue;
@@ -80,13 +87,13 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 									continue;
 								}
 
-								int elimDigit = fixedDigit == digit1 ? digit2 : digit1;
+								int wDigit = xDigit == digit1 ? digit2 : digit1;
 								var conclusions = new List<Conclusion>(elimMap.Count);
 								foreach (int cell in elimMap)
 								{
-									if (CandidatesMap[elimDigit].Contains(cell))
+									if (CandidatesMap[wDigit].Contains(cell))
 									{
-										conclusions.Add(new(Elimination, cell, elimDigit));
+										conclusions.Add(new(Elimination, cell, wDigit));
 									}
 								}
 								if (conclusions.Count == 0)
@@ -104,7 +111,7 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 								}
 								foreach (int cell in emptyCellsInThisHouse)
 								{
-									candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + fixedDigit));
+									candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + xDigit));
 								}
 
 								var step = new MultiBranchWWingStep(
@@ -113,7 +120,7 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 										View.Empty
 											| candidateOffsets
 											| new HouseViewNode(DisplayColorKind.Auxiliary1, house)
-									), 
+									),
 									cells,
 									emptyCellsInThisHouse,
 									emptyCellsInThisHouse.CoveredLine
