@@ -43,11 +43,6 @@ public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
 	/// If none found, <see langword="null"/>.
 	/// </returns>
-	/// <remarks>
-	/// <para><b>Developer Notes</b></para>
-	/// <para>This code snippet is copied and modified from AIC algorithm, BFS.</para>
-	/// <para>In addition, this method does not use any data in the type <see cref="Grid"/>.</para>
-	/// </remarks>
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
 	/// </exception>
