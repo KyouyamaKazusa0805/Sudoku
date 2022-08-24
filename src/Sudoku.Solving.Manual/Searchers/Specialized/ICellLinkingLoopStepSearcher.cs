@@ -3,141 +3,263 @@
 /// <summary>
 /// Defines a steps searcher that searches for cell-linking loop steps.
 /// </summary>
-public unsafe interface ICellLinkingLoopStepSearcher : IStepSearcher
+public interface ICellLinkingLoopStepSearcher : IStepSearcher
 {
-	/// <summary>
-	/// Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
-	/// </summary>
-	/// <param name="this">The list of cells.</param>
-	/// <param name="offset">The offset. The default value is <c>4</c>.</param>
-	/// <returns>All links.</returns>
-	protected static sealed IEnumerable<LinkViewNode> GetLinks(IReadOnlyList<int> @this, int offset = 4)
-	{
-		var result = new List<LinkViewNode>();
-
-		for (int i = 0, length = @this.Count - 1; i < length; i++)
-		{
-			result.Add(
-				new(
-					DisplayColorKind.Normal,
-					new(offset, @this[i]),
-					new(offset, @this[i + 1]),
-					Inference.Default
-				)
-			);
-		}
-
-		result.Add(new(DisplayColorKind.Normal, new(offset, @this[^1]), new(offset, @this[0]), Inference.Default));
-
-		return result;
-	}
-
 	/// <summary>
 	/// Try to gather all possible loops which should satisfy the specified condition.
 	/// </summary>
 	/// <param name="digit">The digit used.</param>
-	/// <param name="condition">
-	/// The condition to verify the specified loop satisfies the current condition, as a function pointer.
-	/// </param>
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
-	/// If none found, <see langword="null"/>.
 	/// </returns>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
-	/// </exception>
-	protected static sealed GuardianDataInfo[] GatherGuardianLoops(int digit, delegate*<in Cells, bool> condition)
+	protected static sealed unsafe GuardianDataInfo[] GatherGuardianLoops(int digit)
 	{
-		ArgumentNullException.ThrowIfNull(condition);
+		delegate*<in Cells, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
 
 		var result = new List<GuardianDataInfo>();
 		foreach (int cell in CandidatesMap[digit])
 		{
-			dfs(cell, cell, 0, Cells.Empty + cell, Cells.Empty, digit, condition, result);
+			DepthFirstSearching_Guardian(cell, cell, 0, Cells.Empty + cell, Cells.Empty, digit, condition, result);
 		}
 
 		return result.Distinct().ToArray();
-
-
-		static void dfs(
-			int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop,
-			scoped in Cells currentGuardians, int digit, delegate*<in Cells, bool> condition,
-			List<GuardianDataInfo> result)
-		{
-			foreach (var houseType in HouseTypes)
-			{
-				int house = lastCell.ToHouseIndex(houseType);
-				if ((lastHouse >> house & 1) != 0)
-				{
-					continue;
-				}
-
-				var cellsToBeChecked = CandidatesMap[digit] & HouseMaps[house];
-				if (cellsToBeChecked.Count < 2 || (currentLoop & HouseMaps[house]).Count > 2)
-				{
-					continue;
-				}
-
-				foreach (int tempCell in cellsToBeChecked)
-				{
-					if (tempCell == lastCell)
-					{
-						continue;
-					}
-
-					int housesUsed = 0;
-					foreach (var tempHouseType in HouseTypes)
-					{
-						if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
-						{
-							housesUsed |= 1 << lastCell.ToHouseIndex(tempHouseType);
-						}
-					}
-
-					var tempGuardians = (CandidatesMap[digit] & HouseMaps[house]) - tempCell - lastCell;
-					if (tempCell == startCell && condition(currentLoop)
-						&& (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is not [])
-					{
-						result.Add(new(currentLoop, currentGuardians | tempGuardians, digit));
-
-						// Exit the current of this recursion frame.
-						return;
-					}
-
-					if ((currentLoop | currentGuardians).Contains(tempCell)
-						|| (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is []
-						|| (HouseMaps[house] & currentLoop).Count > 1)
-					{
-						continue;
-					}
-
-					dfs(
-						startCell, tempCell, lastHouse | housesUsed, currentLoop + tempCell,
-						currentGuardians | tempGuardians, digit, condition, result);
-				}
-			}
-		}
 	}
 
 	/// <summary>
 	/// Try to gather all possible loops being used in technique unique loops,
 	/// which should satisfy the specified condition.
 	/// </summary>
-	/// <param name="digit">The digit used.</param>
-	/// <param name="condition">
-	/// The condition to verify the specified loop satisfies the current condition, as a function pointer.
-	/// </param>
+	/// <param name="digitsMask">The digits used.</param>
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
-	/// If none found, <see langword="null"/>.
 	/// </returns>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
-	/// </exception>
-	protected static sealed UniqueLoopDataInfo[] GatherUniqueLoops(int digit, delegate*<in Cells, bool> condition)
+	protected static sealed unsafe UniqueLoopDataInfo[] GatherUniqueLoops(short digitsMask)
 	{
-		ArgumentNullException.ThrowIfNull(condition);
+		delegate*<in Cells, bool> condition = &UniqueLoopSatisfyingPredicate;
 
-		return Array.Empty<UniqueLoopDataInfo>();
+		var result = new List<UniqueLoopDataInfo>();
+		int d1 = TrailingZeroCount(digitsMask), d2 = digitsMask.GetNextSet(d1);
+
+		// This limitation will miss the incomplete structures, I may modify it later.
+		foreach (int cell in CandidatesMap[d1] & CandidatesMap[d2])
+		{
+			DepthFirstSearching_UniqueLoop(
+				cell, cell, 0, Cells.Empty + cell, digitsMask,
+				CandidatesMap[d1] & CandidatesMap[d2], condition, result);
+		}
+
+		return result.Distinct().ToArray();
 	}
+
+	/// <summary>
+	/// Try to gather all possible loops being used in technique bi-value oddagons,
+	/// which should satisfy the specified condition.
+	/// </summary>
+	/// <param name="digitsMask">The digits used.</param>
+	/// <returns>
+	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
+	/// </returns>
+	protected static sealed unsafe BivalueOddagonDataInfo[] GatherBivalueOddagons(short digitsMask)
+	{
+		delegate*<in Cells, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
+
+		var result = new List<BivalueOddagonDataInfo>();
+		int d1 = TrailingZeroCount(digitsMask), d2 = digitsMask.GetNextSet(d1);
+
+		// This limitation will miss the incomplete structures, I may modify it later.
+		foreach (int cell in CandidatesMap[d1] & CandidatesMap[d2])
+		{
+			DepthFirstSearching_BivalueOddagon(
+				cell, cell, 0, Cells.Empty + cell, digitsMask,
+				CandidatesMap[d1] & CandidatesMap[d2], condition, result);
+		}
+
+		return result.Distinct().ToArray();
+	}
+
+	private static unsafe void DepthFirstSearching_Guardian(
+		int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop,
+		scoped in Cells currentGuardians, int digit, delegate*<in Cells, bool> condition,
+		List<GuardianDataInfo> result)
+	{
+		foreach (var houseType in HouseTypes)
+		{
+			int house = lastCell.ToHouseIndex(houseType);
+			if ((lastHouse >> house & 1) != 0)
+			{
+				continue;
+			}
+
+			var cellsToBeChecked = CandidatesMap[digit] & HouseMaps[house];
+			if (cellsToBeChecked.Count < 2 || (currentLoop & HouseMaps[house]).Count > 2)
+			{
+				continue;
+			}
+
+			foreach (int tempCell in cellsToBeChecked)
+			{
+				if (tempCell == lastCell)
+				{
+					continue;
+				}
+
+				int housesUsed = 0;
+				foreach (var tempHouseType in HouseTypes)
+				{
+					if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
+					{
+						housesUsed |= 1 << lastCell.ToHouseIndex(tempHouseType);
+					}
+				}
+
+				var tempGuardians = (CandidatesMap[digit] & HouseMaps[house]) - tempCell - lastCell;
+				if (tempCell == startCell && condition(currentLoop)
+					&& (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is not [])
+				{
+					result.Add(new(currentLoop, currentGuardians | tempGuardians, digit));
+
+					// Exit the current of this recursion frame.
+					return;
+				}
+
+				if ((currentLoop | currentGuardians).Contains(tempCell)
+					|| (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is []
+					|| (HouseMaps[house] & currentLoop).Count > 1)
+				{
+					continue;
+				}
+
+				DepthFirstSearching_Guardian(
+					startCell, tempCell, lastHouse | housesUsed, currentLoop + tempCell,
+					currentGuardians | tempGuardians, digit, condition, result);
+			}
+		}
+	}
+
+	private static unsafe void DepthFirstSearching_UniqueLoop(
+		int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, short digitsMask,
+		scoped in Cells fullCells, delegate*<in Cells, bool> condition, List<UniqueLoopDataInfo> result)
+	{
+		foreach (var houseType in HouseTypes)
+		{
+			int house = lastCell.ToHouseIndex(houseType);
+			if ((lastHouse >> house & 1) != 0)
+			{
+				continue;
+			}
+
+			var cellsToBeChecked = fullCells & HouseMaps[house];
+			if (cellsToBeChecked.Count < 2 || (currentLoop & HouseMaps[house]).Count > 2)
+			{
+				continue;
+			}
+
+			foreach (int tempCell in cellsToBeChecked)
+			{
+				if (tempCell == lastCell)
+				{
+					continue;
+				}
+
+				int housesUsed = 0;
+				foreach (var tempHouseType in HouseTypes)
+				{
+					if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
+					{
+						housesUsed |= 1 << lastCell.ToHouseIndex(tempHouseType);
+					}
+				}
+
+				if (tempCell == startCell && condition(currentLoop))
+				{
+					result.Add(new(currentLoop, digitsMask));
+
+					// Exit the current of this recursion frame.
+					return;
+				}
+
+				if ((HouseMaps[house] & currentLoop).Count > 1)
+				{
+					continue;
+				}
+
+				DepthFirstSearching_UniqueLoop(
+					startCell, tempCell, lastHouse | housesUsed, currentLoop + tempCell,
+					digitsMask, fullCells, condition, result);
+			}
+		}
+	}
+
+	private static unsafe void DepthFirstSearching_BivalueOddagon(
+		int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, short digitsMask,
+		scoped in Cells fullCells, delegate*<in Cells, bool> condition, List<BivalueOddagonDataInfo> result)
+	{
+		foreach (var houseType in HouseTypes)
+		{
+			int house = lastCell.ToHouseIndex(houseType);
+			if ((lastHouse >> house & 1) != 0)
+			{
+				continue;
+			}
+
+			var cellsToBeChecked = fullCells & HouseMaps[house];
+			if (cellsToBeChecked.Count < 2 || (currentLoop & HouseMaps[house]).Count > 2)
+			{
+				continue;
+			}
+
+			foreach (int tempCell in cellsToBeChecked)
+			{
+				if (tempCell == lastCell)
+				{
+					continue;
+				}
+
+				int housesUsed = 0;
+				foreach (var tempHouseType in HouseTypes)
+				{
+					if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
+					{
+						housesUsed |= 1 << lastCell.ToHouseIndex(tempHouseType);
+					}
+				}
+
+				if (tempCell == startCell && condition(currentLoop))
+				{
+					result.Add(new(currentLoop, digitsMask));
+
+					// Exit the current of this recursion frame.
+					return;
+				}
+
+				if ((HouseMaps[house] & currentLoop).Count > 1)
+				{
+					continue;
+				}
+
+				DepthFirstSearching_BivalueOddagon(
+					startCell, tempCell, lastHouse | housesUsed, currentLoop + tempCell,
+					digitsMask, fullCells, condition, result);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Defines a templating method that can determine whether a loop is a valid unique loop.
+	/// </summary>
+	/// <param name="loop">The loop to be checked.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	private static bool UniqueLoopSatisfyingPredicate(in Cells loop)
+		=> loop is { Count: var length, RowMask: var r, ColumnMask: var c, BlockMask: var b }
+		&& (length & 1) == 0 && length >= 6
+		&& length >> 1 is var halfLength
+		&& PopCount((uint)r) == halfLength && PopCount((uint)c) == halfLength && PopCount((uint)b) == halfLength;
+
+	/// <summary>
+	/// Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
+	/// </summary>
+	/// <param name="loop">The loop to be checked.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	private static bool GuardianOrBivalueOddagonSatisfyingPredicate(in Cells loop)
+		=> loop.Count is var l && (l & 1) != 0 && l >= 5;
 }

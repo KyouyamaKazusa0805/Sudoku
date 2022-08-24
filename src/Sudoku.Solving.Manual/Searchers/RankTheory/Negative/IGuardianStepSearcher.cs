@@ -41,8 +41,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 				continue;
 			}
 
-			static bool predicate(in Cells loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
-			var foundData = ICellLinkingLoopStepSearcher.GatherGuardianLoops(digit, &predicate);
+			var foundData = ICellLinkingLoopStepSearcher.GatherGuardianLoops(digit);
 			if (foundData.Length == 0)
 			{
 				continue;

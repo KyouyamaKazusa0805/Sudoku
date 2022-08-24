@@ -19,7 +19,7 @@
 /// </para>
 /// </summary>
 /// <seealso cref="IAlternatingInferenceChainStepSearcher"/>
-public interface IBivalueOddagonStepSearcher : INegativeRankStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
+public interface IBivalueOddagonStepSearcher : INegativeRankStepSearcher, ICellLinkingLoopStepSearcher
 {
 }
 
@@ -35,9 +35,6 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		}
 
 		var resultAccumulator = new List<BivalueOddagonStep>();
-		var loops = new List<(Cells, IEnumerable<LinkViewNode>)>();
-		var tempLoop = new List<int>(14);
-		var loopMap = Cells.Empty;
 
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
@@ -46,23 +43,14 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		{
 			short mask = grid.GetCandidates(cell);
 			int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
-
-			loopMap.Clear();
-			loops.Clear();
-			tempLoop.Clear();
-
-			IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(
-				grid, d1, d2, cell, (HouseType)255, 0, 2, ref loopMap,
-				tempLoop, () => isValid(ref loopMap), loops
-			);
-
-			if (loops.Count == 0)
+			short comparer = (short)(1 << d1 | 1 << d2);
+			var foundData = ICellLinkingLoopStepSearcher.GatherBivalueOddagons(comparer);
+			if (foundData.Length == 0)
 			{
 				continue;
 			}
 
-			short comparer = (short)(1 << d1 | 1 << d2);
-			foreach (var (currentLoop, links) in loops)
+			foreach (var (currentLoop, digitsMask) in foundData)
 			{
 				var extraCellsMap = currentLoop - BivalueCells;
 				switch (extraCellsMap.Count)
@@ -71,28 +59,19 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 					{
 						throw new InvalidOperationException("The current grid has no solution.");
 					}
-					case 1:
-					{
-						if (CheckType1(resultAccumulator, d1, d2, currentLoop, links, extraCellsMap, onlyFindOne) is { } step1)
-						{
-							return step1;
-						}
-
-						break;
-					}
-					default:
+					case not 1:
 					{
 						// Type 2, 3.
 						// Here use default label to ensure the order of
 						// the handling will be 1->2->3.
-						if (CheckType2(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, comparer, onlyFindOne) is { } step2)
+						if (CheckType2(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step2)
 						{
 							return step2;
 						}
 
 						if (extraCellsMap.Count == 2)
 						{
-							if (CheckType3(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, comparer, onlyFindOne) is { } step3)
+							if (CheckType3(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step3)
 							{
 								return step3;
 							}
@@ -122,71 +101,11 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		}
 
 		return null;
-
-
-		static bool isValid(scoped ref Cells cells)
-		{
-			foreach (int house in cells.Houses)
-			{
-				if ((cells & HouseMaps[house]).Count >= 3)
-				{
-					return false;
-				}
-			}
-
-			return true;
-		}
-	}
-
-	private IStep? CheckType1(
-		ICollection<BivalueOddagonStep> accumulator, int d1, int d2, scoped in Cells loop,
-		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, bool onlyFindOne)
-	{
-		int extraCell = extraCellsMap[0];
-		var conclusions = new List<Conclusion>(2);
-		if (CandidatesMap[d1].Contains(extraCell))
-		{
-			conclusions.Add(new(Elimination, extraCell, d1));
-		}
-		if (CandidatesMap[d2].Contains(extraCell))
-		{
-			conclusions.Add(new(Elimination, extraCell, d2));
-		}
-		if (conclusions.Count == 0)
-		{
-			goto ReturnNull;
-		}
-
-		var candidateOffsets = new List<CandidateViewNode>(30);
-		foreach (int cell in loop - extraCell)
-		{
-			candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
-			candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
-		}
-
-		var step = new BivalueOddagonType1Step(
-			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(View.Empty | candidateOffsets | links),
-			loop,
-			d1,
-			d2,
-			extraCell
-		);
-
-		if (onlyFindOne)
-		{
-			return step;
-		}
-
-		accumulator.Add(step);
-
-	ReturnNull:
-		return null;
 	}
 
 	private IStep? CheckType2(
 		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
-		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		short mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
@@ -215,7 +134,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 			ImmutableArray.Create(
 				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)
 			),
-			ImmutableArray.Create(View.Empty | candidateOffsets | links),
+			ImmutableArray.Create(View.Empty | candidateOffsets),
 			loop,
 			d1,
 			d2,
@@ -235,7 +154,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 
 	private IStep? CheckType3(
 		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
-		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in extraCellsMap)
@@ -325,7 +244,6 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 							View.Empty
 								| candidateOffsets
 								| new HouseViewNode(DisplayColorKind.Normal, house)
-								| links
 						),
 						loop,
 						d1,

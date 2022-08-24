@@ -8384,6 +8384,29 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.IComplexSolver`2"/>
         </member>
+        <member name="T:Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo">
+            <summary>
+            Represents for a data set that describes the complete information about a bi-value oddagon technique.
+            </summary>
+            <param name="Loop">Indicates the cells used in this whole bi-value oddagon loop.</param>
+            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo.#ctor(Sudoku.Concepts.Cells@,System.Int16)">
+            <summary>
+            Represents for a data set that describes the complete information about a bi-value oddagon technique.
+            </summary>
+            <param name="Loop">Indicates the cells used in this whole bi-value oddagon loop.</param>
+            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo.Loop">
+            <summary>Indicates the cells used in this whole bi-value oddagon loop.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo.DigitsMask">
+            <summary>Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo.Sudoku#Solving#Data#Representation#ITechniqueDataInfo{Sudoku#Solving#Data#Representation#BivalueOddagonDataInfo}#Map">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Data.Representation.ComplexFishFinKind">
             <summary>
             Indicates a fin modifier that is used for a complex fish structure.
@@ -10586,21 +10609,21 @@
             <summary>
             Represents for a data set that describes the complete information about a unique loop technique.
             </summary>
-            <param name="Loop">Indicates the cells used in this whole guardian loop.</param>
-            <param name="Digits">Indicates the digits used.</param>
+            <param name="Loop">Indicates the cells used in this whole unique loop.</param>
+            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
         </member>
         <member name="M:Sudoku.Solving.Data.Representation.UniqueLoopDataInfo.#ctor(Sudoku.Concepts.Cells@,System.Int16)">
             <summary>
             Represents for a data set that describes the complete information about a unique loop technique.
             </summary>
-            <param name="Loop">Indicates the cells used in this whole guardian loop.</param>
-            <param name="Digits">Indicates the digits used.</param>
+            <param name="Loop">Indicates the cells used in this whole unique loop.</param>
+            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
         </member>
         <member name="P:Sudoku.Solving.Data.Representation.UniqueLoopDataInfo.Loop">
-            <summary>Indicates the cells used in this whole guardian loop.</summary>
+            <summary>Indicates the cells used in this whole unique loop.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Data.Representation.UniqueLoopDataInfo.Digits">
-            <summary>Indicates the digits used.</summary>
+        <member name="P:Sudoku.Solving.Data.Representation.UniqueLoopDataInfo.DigitsMask">
+            <summary>Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</summary>
         </member>
         <member name="P:Sudoku.Solving.Data.Representation.UniqueLoopDataInfo.Sudoku#Solving#Data#Representation#ITechniqueDataInfo{Sudoku#Solving#Data#Representation#UniqueLoopDataInfo}#Map">
             <inheritdoc/>

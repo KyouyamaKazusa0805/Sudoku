@@ -1240,7 +1240,7 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.LinkViewNode},Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Boolean)">
             <summary>
             Check type 1.
             </summary>
@@ -1248,12 +1248,11 @@
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">The loop.</param>
-            <param name="links">The links.</param>
             <param name="extraCellsMap">The extra cells map.</param>
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.LinkViewNode},Sudoku.Concepts.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Boolean)">
             <summary>
             Check type 2.
             </summary>
@@ -1262,13 +1261,12 @@
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">The loop.</param>
-            <param name="links">The links.</param>
             <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.LinkViewNode},Sudoku.Concepts.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Boolean)">
             <summary>
             Check type 3.
             </summary>
@@ -1277,13 +1275,12 @@
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">The loop.</param>
-            <param name="links">The links.</param>
             <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.LinkViewNode},Sudoku.Concepts.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Boolean)">
             <summary>
             Check type 4.
             </summary>
@@ -1292,7 +1289,6 @@
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">The loop.</param>
-            <param name="links">The links.</param>
             <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
@@ -3387,46 +3383,48 @@
             Defines a steps searcher that searches for cell-linking loop steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
-            <summary>
-            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
-            </summary>
-            <param name="this">The list of cells.</param>
-            <param name="offset">The offset. The default value is <c>4</c>.</param>
-            <returns>All links.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherGuardianLoops(System.Int32,)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherGuardianLoops(System.Int32)">
             <summary>
             Try to gather all possible loops which should satisfy the specified condition.
             </summary>
             <param name="digit">The digit used.</param>
-            <param name="condition">
-            The condition to verify the specified loop satisfies the current condition, as a function pointer.
-            </param>
             <returns>
             Returns a list of array of candidates used in the loop, as the data of possible found loops.
-            If none found, <see langword="null"/>.
             </returns>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
-            </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherUniqueLoops(System.Int32,)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherUniqueLoops(System.Int16)">
             <summary>
             Try to gather all possible loops being used in technique unique loops,
             which should satisfy the specified condition.
             </summary>
-            <param name="digit">The digit used.</param>
-            <param name="condition">
-            The condition to verify the specified loop satisfies the current condition, as a function pointer.
-            </param>
+            <param name="digitsMask">The digits used.</param>
             <returns>
             Returns a list of array of candidates used in the loop, as the data of possible found loops.
-            If none found, <see langword="null"/>.
             </returns>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="condition"/> is <see langword="null"/>.
-            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherBivalueOddagons(System.Int16)">
+            <summary>
+            Try to gather all possible loops being used in technique bi-value oddagons,
+            which should satisfy the specified condition.
+            </summary>
+            <param name="digitsMask">The digits used.</param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.UniqueLoopSatisfyingPredicate(Sudoku.Concepts.Cells@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid unique loop.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.Cells@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IStepSearcherRequiresSolution">
             <summary>
@@ -3437,29 +3435,6 @@
             <summary>
             Indicates the reference of the solution sudoku grid.
             </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IUniqueLoopOrBivalueOddagonStepSearcher">
-            <summary>
-            Defines a step searcher that searches for unique loop or bi-value oddagon steps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.HouseType,System.Int16,System.Int32,Sudoku.Concepts.Cells@,System.Collections.Generic.List{System.Int32},System.Func{System.Boolean},System.Collections.Generic.List{System.ValueTuple{Sudoku.Concepts.Cells,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.LinkViewNode}}})">
-            <summary>
-            Searches for possible bi-value oddagon or unique loop patterns.
-            </summary>
-            <param name="grid">The sudoku grid.</param>
-            <param name="d1">The first digit used.</param>
-            <param name="d2">The second digit used.</param>
-            <param name="cell">The current cell calculated.</param>
-            <param name="lastHouseType">Indicates the last house type used.</param>
-            <param name="exDigitsMask">The extra digits mask.</param>
-            <param name="allowedExtraCellsCount">Indicates the number of cells can be with extra digits.</param>
-            <param name="loopMap">Indicates the map of the loop.</param>
-            <param name="tempLoop">Indicates the cells used of the loop, queued.</param>
-            <param name="predicate">
-            Indicates the condition that checks whether the procedure-like structure is a valid loop.
-            </param>
-            <param name="loops">The possible loops found.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ISubsetStepSearcher">
             <summary>
@@ -4770,9 +4745,6 @@
             <summary>Indicates the subset cells.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.ExtraDifficultyValues">

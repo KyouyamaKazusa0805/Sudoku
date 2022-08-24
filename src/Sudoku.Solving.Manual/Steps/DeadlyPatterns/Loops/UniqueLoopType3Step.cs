@@ -26,9 +26,6 @@ internal sealed record UniqueLoopType3Step(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public new decimal BaseDifficulty => base.Difficulty;
-
-	/// <inheritdoc/>
 	public new (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[] { (PhasedDifficultyRatingKinds.Size, SubsetCells.Count * .1M) };
 

@@ -10,13 +10,14 @@
 /// <item>Unique Loop Type 4</item>
 /// </list>
 /// </summary>
-public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
+public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, ICellLinkingLoopStepSearcher
 {
 	/// <summary>
 	/// Checks whether the specified loop of cells is a valid loop.
 	/// </summary>
 	/// <param name="loopCells">The loop cells.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
+	[Obsolete("Due to having re-impl'ed the logic, this method becomes useless because the argument type is not compatible with the newer one.", false)]
 	protected internal static sealed bool IsValidLoop(IList<int> loopCells)
 	{
 		int visitedOddHouses = 0, visitedEvenHouses = 0;
@@ -59,7 +60,7 @@ public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IUniqueLo
 }
 
 [StepSearcher]
-internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
+internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSearcher
 {
 	/// <inheritdoc/>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
@@ -70,9 +71,6 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 		}
 
 		var resultAccumulator = new List<UniqueLoopStep>();
-		var loops = new List<(Cells, IEnumerable<LinkViewNode>)>();
-		var tempLoop = new List<int>(14);
-		var loopMap = Cells.Empty;
 
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
@@ -81,23 +79,15 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 		{
 			short mask = grid.GetCandidates(cell);
 			int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
+			short comparer = (short)(1 << d1 | 1 << d2);
 
-			loopMap.Clear();
-			loops.Clear();
-			tempLoop.Clear();
-
-			IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(
-				grid, d1, d2, cell, (HouseType)byte.MaxValue, 0, 2, ref loopMap,
-				tempLoop, () => IUniqueLoopStepSearcher.IsValidLoop(tempLoop), loops
-			);
-
-			if (loops.Count == 0)
+			var foundData = ICellLinkingLoopStepSearcher.GatherUniqueLoops(comparer);
+			if (foundData.Length == 0)
 			{
 				continue;
 			}
 
-			short comparer = (short)(1 << d1 | 1 << d2);
-			foreach (var (currentLoop, links) in loops)
+			foreach (var (currentLoop, digitsMask) in foundData)
 			{
 				var extraCellsMap = currentLoop - BivalueCells;
 				switch (extraCellsMap.Count)
@@ -108,7 +98,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 					}
 					case 1:
 					{
-						if (CheckType1(resultAccumulator, d1, d2, currentLoop, links, extraCellsMap, onlyFindOne) is { } step1)
+						if (CheckType1(resultAccumulator, d1, d2, currentLoop, extraCellsMap, onlyFindOne) is { } step1)
 						{
 							return step1;
 						}
@@ -118,20 +108,18 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 					default:
 					{
 						// Type 2, 3, 4.
-						// Here use default label to ensure the order of
-						// the handling will be 1->2->3->4.
-						if (CheckType2(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, comparer, onlyFindOne) is { } step2)
+						if (CheckType2(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step2)
 						{
 							return step2;
 						}
 
 						if (extraCellsMap.Count == 2)
 						{
-							if (CheckType3(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, comparer, onlyFindOne) is { } step3)
+							if (CheckType3(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step3)
 							{
 								return step3;
 							}
-							if (CheckType4(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, comparer, onlyFindOne) is { } step4)
+							if (CheckType4(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step4)
 							{
 								return step4;
 							}
@@ -170,13 +158,12 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="d1">The digit 1.</param>
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="loop">The loop.</param>
-	/// <param name="links">The links.</param>
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
 	private IStep? CheckType1(
 		ICollection<UniqueLoopStep> accumulator, int d1, int d2, scoped in Cells loop,
-		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, bool onlyFindOne)
+		scoped in Cells extraCellsMap, bool onlyFindOne)
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>(2);
@@ -202,7 +189,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 
 		var step = new UniqueLoopType1Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(View.Empty | candidateOffsets | links),
+			ImmutableArray.Create(View.Empty | candidateOffsets),
 			d1,
 			d2,
 			loop
@@ -227,14 +214,13 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="d1">The digit 1.</param>
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="loop">The loop.</param>
-	/// <param name="links">The links.</param>
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
 	private IStep? CheckType2(
 		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
-		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		short mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
@@ -267,7 +253,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 			ImmutableArray.Create(
 				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)
 			),
-			ImmutableArray.Create(View.Empty | candidateOffsets | links),
+			ImmutableArray.Create(View.Empty | candidateOffsets),
 			d1,
 			d2,
 			loop,
@@ -293,14 +279,13 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="d1">The digit 1.</param>
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="loop">The loop.</param>
-	/// <param name="links">The links.</param>
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
 	private IStep? CheckType3(
 		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
-		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in extraCellsMap)
@@ -389,7 +374,6 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 							View.Empty
 								| candidateOffsets
 								| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
-								| links
 						),
 						d1,
 						d2,
@@ -420,14 +404,13 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="d1">The digit 1.</param>
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="loop">The loop.</param>
-	/// <param name="links">The links.</param>
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
 	private IStep? CheckType4(
 		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
-		IEnumerable<LinkViewNode> links, scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		if (!extraCellsMap.InOneHouse)
 		{
@@ -480,7 +463,6 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 						View.Empty
 							| candidateOffsets
 							| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
-							| links
 					),
 					d1,
 					d2,

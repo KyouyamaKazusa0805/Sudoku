@@ -85,7 +85,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Purple Cow
   * Uniqueness
     * Unique Rectangle
-    * Unique Loop **(Waiting for bugs fixed)**
+    * Unique Loop
     * Extended Rectangle (Including fit types and fat types)
     * Unique Polygon (i.e. Borescoper's Deadly Pattern)
     * Qiu's Deadly Pattern
@@ -111,7 +111,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Multi-Sector Locked Sets
     * Negative Rank Logics
       * Guardian
-      * Bi-value Oddagon **(Waiting for bugs fixed)**
+      * Bi-value Oddagon
       * Tri-value Oddagon
   * Symmetrical Placements
     * Gurth's Symmetrical Placements
