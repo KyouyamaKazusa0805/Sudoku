@@ -3426,6 +3426,21 @@
             <param name="loop">The loop to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_Guardian(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.GuardianDataInfo})">
+            <summary>
+            Checks for guardian loops using recursion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_UniqueLoop(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Cells@,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.UniqueLoopDataInfo})">
+            <summary>
+            Checks for unique loops using recursion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_BivalueOddagon(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Cells@,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo})">
+            <summary>
+            Checks for bi-value oddagon loops using recursion.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IStepSearcherRequiresSolution">
             <summary>
             Indicates a step searcher that requires a solution grid for the technique searching usages.

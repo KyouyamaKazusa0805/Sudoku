@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a steps searcher that searches for cell-linking loop steps.
 /// </summary>
-public interface ICellLinkingLoopStepSearcher : IStepSearcher
+public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 {
 	/// <summary>
 	/// Try to gather all possible loops which should satisfy the specified condition.
@@ -77,7 +77,37 @@ public interface ICellLinkingLoopStepSearcher : IStepSearcher
 		return result.Distinct().ToArray();
 	}
 
-	private static unsafe void DepthFirstSearching_Guardian(
+	/// <summary>
+	/// Defines a templating method that can determine whether a loop is a valid unique loop.
+	/// </summary>
+	/// <param name="loop">The loop to be checked.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	private static bool UniqueLoopSatisfyingPredicate(in Cells loop)
+		=> loop is { Count: var length, RowMask: var r, ColumnMask: var c, BlockMask: var b }
+		&& (length & 1) == 0 && length >= 6
+		&& length >> 1 is var halfLength
+		&& PopCount((uint)r) == halfLength && PopCount((uint)c) == halfLength && PopCount((uint)b) == halfLength;
+
+	/// <summary>
+	/// Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
+	/// </summary>
+	/// <param name="loop">The loop to be checked.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	private static bool GuardianOrBivalueOddagonSatisfyingPredicate(in Cells loop)
+		=> loop.Count is var l && (l & 1) != 0 && l >= 5;
+
+
+	static unsafe partial void DepthFirstSearching_Guardian(int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, scoped in Cells currentGuardians, int digit, delegate*<in Cells, bool> condition, List<GuardianDataInfo> result);
+	static unsafe partial void DepthFirstSearching_UniqueLoop(int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, short digitsMask, scoped in Cells fullCells, delegate*<in Cells, bool> condition, List<UniqueLoopDataInfo> result);
+	static unsafe partial void DepthFirstSearching_BivalueOddagon(int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, short digitsMask, scoped in Cells fullCells, delegate*<in Cells, bool> condition, List<BivalueOddagonDataInfo> result);
+}
+
+partial interface ICellLinkingLoopStepSearcher
+{
+	/// <summary>
+	/// Checks for guardian loops using recursion.
+	/// </summary>
+	static unsafe partial void DepthFirstSearching_Guardian(
 		int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop,
 		scoped in Cells currentGuardians, int digit, delegate*<in Cells, bool> condition,
 		List<GuardianDataInfo> result)
@@ -136,7 +166,10 @@ public interface ICellLinkingLoopStepSearcher : IStepSearcher
 		}
 	}
 
-	private static unsafe void DepthFirstSearching_UniqueLoop(
+	/// <summary>
+	/// Checks for unique loops using recursion.
+	/// </summary>
+	static unsafe partial void DepthFirstSearching_UniqueLoop(
 		int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, short digitsMask,
 		scoped in Cells fullCells, delegate*<in Cells, bool> condition, List<UniqueLoopDataInfo> result)
 	{
@@ -190,7 +223,10 @@ public interface ICellLinkingLoopStepSearcher : IStepSearcher
 		}
 	}
 
-	private static unsafe void DepthFirstSearching_BivalueOddagon(
+	/// <summary>
+	/// Checks for bi-value oddagon loops using recursion.
+	/// </summary>
+	static unsafe partial void DepthFirstSearching_BivalueOddagon(
 		int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, short digitsMask,
 		scoped in Cells fullCells, delegate*<in Cells, bool> condition, List<BivalueOddagonDataInfo> result)
 	{
@@ -243,23 +279,4 @@ public interface ICellLinkingLoopStepSearcher : IStepSearcher
 			}
 		}
 	}
-
-	/// <summary>
-	/// Defines a templating method that can determine whether a loop is a valid unique loop.
-	/// </summary>
-	/// <param name="loop">The loop to be checked.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	private static bool UniqueLoopSatisfyingPredicate(in Cells loop)
-		=> loop is { Count: var length, RowMask: var r, ColumnMask: var c, BlockMask: var b }
-		&& (length & 1) == 0 && length >= 6
-		&& length >> 1 is var halfLength
-		&& PopCount((uint)r) == halfLength && PopCount((uint)c) == halfLength && PopCount((uint)b) == halfLength;
-
-	/// <summary>
-	/// Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
-	/// </summary>
-	/// <param name="loop">The loop to be checked.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	private static bool GuardianOrBivalueOddagonSatisfyingPredicate(in Cells loop)
-		=> loop.Count is var l && (l & 1) != 0 && l >= 5;
 }
