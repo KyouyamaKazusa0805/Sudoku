@@ -41,7 +41,7 @@ internal sealed record HiddenSingleStep(
 	internal string CellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Cells.Empty + Cell).ToString();
+		get => RxCyNotation.ToCellString(Cell);
 	}
 
 	[FormatItem]

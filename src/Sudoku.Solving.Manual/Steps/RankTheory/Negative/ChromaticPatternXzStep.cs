@@ -40,6 +40,6 @@ internal sealed record ChromaticPatternXzStep(
 	internal string ExtraCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Cells.Empty + ExtraCell).ToString();
+		get => RxCyNotation.ToCellString(ExtraCell);
 	}
 }

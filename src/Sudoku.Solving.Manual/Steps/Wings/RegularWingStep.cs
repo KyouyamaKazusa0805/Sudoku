@@ -154,7 +154,7 @@ internal sealed record RegularWingStep(
 	internal string PivotCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Cells.Empty + Pivot).ToString();
+		get => RxCyNotation.ToCellString(Pivot);
 	}
 
 	[FormatItem]

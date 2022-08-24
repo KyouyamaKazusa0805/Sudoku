@@ -47,7 +47,7 @@ internal sealed record UniqueRectangleWithUnknownCoveringStep(
 	internal string TargetCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Cells.Empty + TargetCell).ToString();
+		get => RxCyNotation.ToCellString(TargetCell);
 	}
 
 	[FormatItem]

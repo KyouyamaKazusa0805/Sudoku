@@ -49,14 +49,14 @@ internal sealed record AvoidableRectangleWithHiddenSingleStep(
 	internal string BaseCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Cells.Empty + BaseCell).ToString();
+		get => RxCyNotation.ToCellString(BaseCell);
 	}
 
 	[FormatItem]
 	internal string TargetCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Cells.Empty + TargetCell).ToString();
+		get => RxCyNotation.ToCellString(TargetCell);
 	}
 
 	[FormatItem]

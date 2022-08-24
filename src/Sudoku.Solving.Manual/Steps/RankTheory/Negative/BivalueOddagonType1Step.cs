@@ -31,7 +31,7 @@ internal sealed record BivalueOddagonType1Step(
 	internal string CellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Cells.Empty + ExtraCell).ToString();
+		get => RxCyNotation.ToCellString(ExtraCell);
 	}
 
 	[FormatItem]

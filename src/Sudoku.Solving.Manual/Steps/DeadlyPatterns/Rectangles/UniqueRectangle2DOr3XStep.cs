@@ -67,6 +67,6 @@ internal sealed record UniqueRectangle2DOr3XStep(
 	internal string XYCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Cells.Empty + XyCell).ToString();
+		get => RxCyNotation.ToCellString(XyCell);
 	}
 }

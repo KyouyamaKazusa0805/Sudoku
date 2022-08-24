@@ -23,7 +23,7 @@ internal sealed record NakedSingleStep(ConclusionList Conclusions, ViewList View
 	internal string CellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Cells.Empty + Cell).ToString();
+		get => RxCyNotation.ToCellString(Cell);
 	}
 
 	[FormatItem]

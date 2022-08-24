@@ -81,6 +81,6 @@ internal sealed record SeniorExocetStep(
 	internal string EndoTargetCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Cells.Empty + EndoTargetCell).ToString();
+		get => RxCyNotation.ToCellString(EndoTargetCell);
 	}
 }

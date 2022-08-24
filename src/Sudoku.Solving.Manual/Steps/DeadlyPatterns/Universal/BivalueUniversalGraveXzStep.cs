@@ -50,6 +50,6 @@ internal sealed record BivalueUniversalGraveXzStep(
 	internal string ExtraCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Cells.Empty + ExtraCell).ToString();
+		get => RxCyNotation.ToCellString(ExtraCell);
 	}
 }
