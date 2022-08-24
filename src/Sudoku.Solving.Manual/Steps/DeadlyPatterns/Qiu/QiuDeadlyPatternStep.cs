@@ -10,10 +10,13 @@ internal abstract record QiuDeadlyPatternStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in QiuDeadlyPattern Pattern
-) : DeadlyPatternStep(Conclusions, Views)
+) : DeadlyPatternStep(Conclusions, Views), IStepWithDistinctionDegree
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.8M;
+
+	/// <inheritdoc/>
+	public int DistinctionDegree => 1;
 
 	/// <summary>
 	/// Indicates the type of the current technique.

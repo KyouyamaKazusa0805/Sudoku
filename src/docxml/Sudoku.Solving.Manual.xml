@@ -4420,6 +4420,9 @@
             Indicates the type of the step. The value must be between 1 and 4.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.DistinctionDegree">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -5265,6 +5268,9 @@
             <summary>Indicates the pattern used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.DistinctionDegree">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.Type">
@@ -8786,6 +8792,16 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Specialized.ILoopStep.Sudoku#Solving#Manual#Steps#Specialized#ILoopLikeStep#IsNice">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IStepWithDistinctionDegree">
+            <summary>
+            Defines a step type that contains the property <c>Distinction Degree</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithDistinctionDegree.DistinctionDegree">
+            <summary>
+            Indicates the distinction degree of the step.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IStepWithPhasedDifficulty">
             <summary>

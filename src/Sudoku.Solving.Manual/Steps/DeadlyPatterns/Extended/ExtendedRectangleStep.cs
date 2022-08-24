@@ -12,12 +12,15 @@ internal abstract record ExtendedRectangleStep(
 	ViewList Views,
 	scoped in Cells Cells,
 	short DigitsMask
-) : DeadlyPatternStep(Conclusions, Views), IStepWithPhasedDifficulty
+) : DeadlyPatternStep(Conclusions, Views), IStepWithPhasedDifficulty, IStepWithDistinctionDegree
 {
 	/// <summary>
 	/// Indicates the type of the step. The value must be between 1 and 4.
 	/// </summary>
 	public abstract int Type { get; }
+
+	/// <inheritdoc/>
+	public int DistinctionDegree => 1;
 
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
