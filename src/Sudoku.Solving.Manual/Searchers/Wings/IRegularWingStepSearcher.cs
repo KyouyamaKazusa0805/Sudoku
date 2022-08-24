@@ -148,9 +148,7 @@ internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepS
 					}
 
 					var step = new RegularWingStep(
-						ImmutableArray.Create(
-							from cell in elimMap select new Conclusion(Elimination, cell, zDigit)
-						),
+						from cell in elimMap select new Conclusion(Elimination, cell, zDigit),
 						ImmutableArray.Create(View.Empty | candidateOffsets),
 						pivot,
 						PopCount((uint)mask),

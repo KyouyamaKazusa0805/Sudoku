@@ -139,7 +139,6 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 			return null;
 		}
 
-		scoped var conclusions = from cell in elimMap select new Conclusion(Elimination, cell, extraDigit);
 		var cellOffsets = new List<CellViewNode>(4);
 		foreach (int cell in pattern)
 		{
@@ -160,7 +159,7 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 		}
 
 		var step = new ReverseUniqueRectangleType2Step(
-			conclusions.ToImmutableArray(),
+			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
 			ImmutableArray.Create(View.Empty | cellOffsets | candidateOffsets),
 			pattern,
 			comparer,

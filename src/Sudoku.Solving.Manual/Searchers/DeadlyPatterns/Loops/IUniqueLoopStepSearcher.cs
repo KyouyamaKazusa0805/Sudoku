@@ -250,9 +250,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 		}
 
 		var step = new UniqueLoopType2Step(
-			ImmutableArray.Create(
-				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)
-			),
+			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
 			ImmutableArray.Create(View.Empty | candidateOffsets),
 			d1,
 			d2,

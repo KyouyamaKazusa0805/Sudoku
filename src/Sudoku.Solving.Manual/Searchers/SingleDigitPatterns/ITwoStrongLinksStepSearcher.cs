@@ -87,9 +87,7 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 					}
 
 					var step = new TwoStrongLinksStep(
-						ImmutableArray.Create(
-							from cell in elimMap select new Conclusion(Elimination, cell, digit)
-						),
+						from cell in elimMap select new Conclusion(Elimination, cell, digit),
 						ImmutableArray.Create(
 							View.Empty
 								| new CandidateViewNode[]

@@ -132,12 +132,7 @@ internal sealed unsafe partial class PatternOverlayStepSearcher : IPatternOverla
 				continue;
 			}
 
-			var step = new PatternOverlayStep(
-				ImmutableArray.Create(
-					from cell in template
-					select new Conclusion(Elimination, cell, digit)
-				)
-			);
+			var step = new PatternOverlayStep(from cell in template select new Conclusion(Elimination, cell, digit));
 			if (onlyFindOne)
 			{
 				return step;

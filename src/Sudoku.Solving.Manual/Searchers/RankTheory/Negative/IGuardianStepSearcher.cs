@@ -71,7 +71,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 				// If we just return the first found step, we will miss steps being more elegant.
 				resultAccumulator.Add(
 					new GuardianStep(
-						ImmutableArray.Create(from c in elimMap select new Conclusion(Elimination, c, digit)),
+						from c in elimMap select new Conclusion(Elimination, c, digit),
 						ImmutableArray.Create(View.Empty | candidateOffsets),
 						digit,
 						loop,
