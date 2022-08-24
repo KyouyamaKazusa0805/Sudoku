@@ -3584,7 +3584,7 @@
             <param name="source">A sequence of values to invoke a transform function on.</param>
             <param name="selector">A transform function to apply to each element.</param>
             <returns>
-            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result
+            A <see cref="T:System.Collections.Immutable.ImmutableArray`1"/> of <typeparamref name="TResult"/> whose elements are the result
             of invoking the transform function on each element of <paramref name="source"/>.
             </returns>
         </member>
