@@ -67,10 +67,8 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 							int cell2 = cells2[j];
 							if ((Cells.Empty + cell1 + cell2).AllSetsAreInOneHouse(out sameHouse))
 							{
-								c1Index = i;
-								c2Index = j;
-								headIndex = i == 0 ? 1 : 0;
-								tailIndex = j == 0 ? 1 : 0;
+								(c1Index, c2Index) = (i, j);
+								(headIndex, tailIndex) = (i == 0 ? 1 : 0, j == 0 ? 1 : 0);
 								goto Checking;
 							}
 						}
