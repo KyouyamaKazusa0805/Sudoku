@@ -15,14 +15,6 @@ public interface IWWingStepSearcher : IIrregularWingStepSearcher
 internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 {
 	/// <inheritdoc/>
-	/// <remarks>
-	/// <para><b>Developer Notes</b></para>
-	/// <para>
-	/// In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
-	/// be found in another searcher. In addition, these wings are not elementary and necessary techniques
-	/// so we doesn't need to list them.
-	/// </para>
-	/// </remarks>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// The grid with possible W-Wing structure should contain
