@@ -87,6 +87,13 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 									continue;
 								}
 
+								if ((HouseMaps[house] & CandidatesMap[xDigit]) != emptyCellsInThisHouse)
+								{
+									// This house contains other unused empty cells
+									// that can also be filled with digit X.
+									continue;
+								}
+
 								int wDigit = xDigit == digit1 ? digit2 : digit1;
 								var conclusions = new List<Conclusion>(elimMap.Count);
 								foreach (int cell in elimMap)
