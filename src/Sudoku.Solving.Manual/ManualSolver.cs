@@ -98,8 +98,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 			stepSearcher.Solution = solution;
 		}
 
-		var stopwatch = new Stopwatch();
-		stopwatch.Start();
+		var stopwatch = ValueStopwatch.StartNew();
 
 	TryAgain:
 		InitializeMaps(playground);
@@ -129,7 +128,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 						if (verifyConclusionValidity(solution, foundStep))
 						{
 							if (recordStep(
-									recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
+									recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
 									resultBase, cancellationToken, out var result))
 							{
 								return result;
@@ -159,7 +158,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 							if (verifyConclusionValidity(solution, foundStep))
 							{
 								if (recordStep(
-										recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
+										recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
 										resultBase, cancellationToken, out var result))
 								{
 									return result;
@@ -181,13 +180,12 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 
 		// All solver can't finish the puzzle...
 		// :(
-		stopwatch.Stop();
 
 		return resultBase with
 		{
 			IsSolved = false,
 			FailedReason = PuzzleIsTooHard,
-			ElapsedTime = stopwatch.Elapsed,
+			ElapsedTime = stopwatch.GetElapsedTime(),
 			Steps = ImmutableArray.CreateRange(recordedSteps),
 			StepGrids = ImmutableArray.CreateRange(stepGrids)
 		};
@@ -197,7 +195,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 			ICollection<IStep> steps,
 			IStep step,
 			scoped ref Grid playground,
-			Stopwatch stopwatch,
+			scoped ref ValueStopwatch stopwatch,
 			ICollection<Grid> stepGrids,
 			ManualSolverResult resultBase,
 			CancellationToken cancellationToken,
@@ -227,12 +225,10 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 
 				if (playground.IsSolved)
 				{
-					stopwatch.Stop();
-
 					result = resultBase with
 					{
 						IsSolved = true,
-						ElapsedTime = stopwatch.Elapsed,
+						ElapsedTime = stopwatch.GetElapsedTime(),
 						Steps = ImmutableArray.CreateRange(steps),
 						StepGrids = ImmutableArray.CreateRange(stepGrids)
 					};
