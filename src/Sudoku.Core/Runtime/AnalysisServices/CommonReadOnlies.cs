@@ -351,11 +351,6 @@ public static class CommonReadOnlies
 	};
 
 	/// <summary>
-	/// The names of all fishes by their sizes.
-	/// </summary>
-	public static readonly string[] FishNames = { string.Empty, "Cyclopsfish", "X-Wing", "Swordfish", "Jellyfish", "Squirmbag", "Whale", "Leviathan" };
-
-	/// <summary>
 	/// Indicates all grid maps that a grid contains.
 	/// </summary>
 	/// <example>

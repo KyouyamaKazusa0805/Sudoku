@@ -7166,11 +7166,6 @@
             Indicates the chute houses.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.FishNames">
-            <summary>
-            The names of all fishes by their sizes.
-            </summary>
-        </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.HousesMap">
             <summary>
             Indicates all grid maps that a grid contains.
