@@ -98,7 +98,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 			stepSearcher.Solution = solution;
 		}
 
-		var stopwatch = ValueStopwatch.StartNew();
+		scoped var stopwatch = ValueStopwatch.StartNew();
 
 	TryAgain:
 		InitializeMaps(playground);
