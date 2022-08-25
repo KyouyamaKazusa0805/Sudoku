@@ -89,7 +89,7 @@ internal sealed record ComplexFishStep(
 		get
 		{
 			string? fin = FinModifier == ComplexFishFinKind.Normal ? null : $"{FinModifier} ";
-			string? shape = ShapeModifier == ComplexFishShapeKind.Basic ? null : $"{ShapeModifier}";
+			string? shape = ShapeModifier == ComplexFishShapeKind.Basic ? null : $"{ShapeModifier} ";
 			return $"{fin}{shape}{Size switch
 			{
 				2 => "X-Wing",
