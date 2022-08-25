@@ -90,7 +90,7 @@ internal sealed record ComplexFishStep(
 		{
 			string? fin = FinModifier == ComplexFishFinKind.Normal ? null : $"{FinModifier} ";
 			string? shape = ShapeModifier == ComplexFishShapeKind.Basic ? null : $"{ShapeModifier} ";
-			return $"{fin}{shape}{Size switch
+			string sizeName = Size switch
 			{
 				2 => "X-Wing",
 				3 => "Swordfish",
@@ -98,7 +98,8 @@ internal sealed record ComplexFishStep(
 				5 => "Squirmbag",
 				6 => "Whale",
 				7 => "Leviathan"
-			}}";
+			};
+			return $"{fin}{shape}{sizeName}";
 		}
 	}
 
@@ -180,7 +181,7 @@ internal sealed record ComplexFishStep(
 	internal string ExofinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Exofins is [] ? string.Empty : $"t{Exofins} ";
+		get => Exofins is [] ? string.Empty : $"f{Exofins} ";
 	}
 
 	[FormatItem]
