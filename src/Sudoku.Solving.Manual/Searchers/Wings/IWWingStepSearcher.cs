@@ -75,46 +75,109 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 					foreach (int digit in digits)
 					{
 						// Now search for conjugate pair.
-						if ((CandidatesMap[digit] & HousesMap[house]) is not [var a, var b] conjugate)
+						var bridge = CandidatesMap[digit] & HousesMap[house];
+						switch (bridge)
 						{
-							// The current house doesn't contain the conjugate pair of this digit.
-							continue;
-						}
+							case [var a, var b]:
+							{
+								// Check whether the cells are the same house as the head and the tail cell.
+								bool flag = (Cells.Empty + c1 + a).InOneHouse && (Cells.Empty + c2 + b).InOneHouse
+									|| (Cells.Empty + c1 + b).InOneHouse && (Cells.Empty + c2 + a).InOneHouse;
+								if (!flag)
+								{
+									continue;
+								}
 
-						// Check whether the cells are the same house as the head and the tail cell.
-						bool flag = (Cells.Empty + c1 + a).InOneHouse && (Cells.Empty + c2 + b).InOneHouse
-							|| (Cells.Empty + c1 + b).InOneHouse && (Cells.Empty + c2 + a).InOneHouse;
-						if (!flag)
-						{
-							continue;
+								break;
+							}
+							case { Count: > 2 and <= 6, BlockMask: var blox } when PopCount((uint)blox) == 2:
+							{
+								int block1 = TrailingZeroCount(blox), block2 = blox.GetNextSet(block1);
+								var bridgeInBlock1 = HousesMap[block1] & bridge;
+								var bridgeInBlock2 = HousesMap[block2] & bridge;
+								bool sameHouseWithTerminalCells =
+									(PeersMap[c1] & bridgeInBlock1) == bridgeInBlock1
+									&& (PeersMap[c2] & bridgeInBlock2) == bridgeInBlock2
+									|| (PeersMap[c1] & bridgeInBlock2) == bridgeInBlock2
+									&& (PeersMap[c2] & bridgeInBlock1) == bridgeInBlock1;
+								if (!sameHouseWithTerminalCells)
+								{
+									continue;
+								}
+
+								break;
+							}
+							default:
+							{
+								continue;
+							}
 						}
 
 						// Check for eliminations.
 						int anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
-						if ((CandidatesMap[anotherDigit] & !(Cells.Empty + c1 + c2)) is not (var elimMap and not []))
+						var elimMap = CandidatesMap[anotherDigit] & !(Cells.Empty + c1 + c2);
+						if (elimMap is [])
 						{
+							// No possible eliminations found.
 							continue;
 						}
 
 						// Now W-Wing found. Store it into the accumulator.
-						var step = new WWingStep(
-							from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit),
-							ImmutableArray.Create(
-								View.Empty
-									| new CandidateViewNode[]
-									{
-										new(DisplayColorKind.Normal, c1 * 9 + anotherDigit),
-										new(DisplayColorKind.Normal, c2 * 9 + anotherDigit),
-										new(DisplayColorKind.Auxiliary1, c1 * 9 + digit),
-										new(DisplayColorKind.Auxiliary1, c2 * 9 + digit),
-										new(DisplayColorKind.Auxiliary1, a * 9 + digit),
-										new(DisplayColorKind.Auxiliary1, b * 9 + digit)
-									}
-									| new HouseViewNode(DisplayColorKind.Normal, house)),
-							a,
-							b,
-							new(conjugate, digit)
-						);
+						Step step;
+						switch (bridge)
+						{
+							case [var a, var b]:
+							{
+								step = new WWingStep(
+									from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit),
+									ImmutableArray.Create(
+										View.Empty
+											| new CandidateViewNode[]
+											{
+												new(DisplayColorKind.Normal, c1 * 9 + anotherDigit),
+												new(DisplayColorKind.Normal, c2 * 9 + anotherDigit),
+												new(DisplayColorKind.Auxiliary1, c1 * 9 + digit),
+												new(DisplayColorKind.Auxiliary1, c2 * 9 + digit),
+												new(DisplayColorKind.Auxiliary1, a * 9 + digit),
+												new(DisplayColorKind.Auxiliary1, b * 9 + digit)
+											}
+											| new HouseViewNode(DisplayColorKind.Auxiliary1, house)),
+									c1,
+									c2,
+									new(a, b, digit)
+								);
+
+								break;
+							}
+							default:
+							{
+								var candidateOffsets = new List<CandidateViewNode>(8)
+								{
+									new(DisplayColorKind.Normal, c1 * 9 + anotherDigit),
+									new(DisplayColorKind.Normal, c2 * 9 + anotherDigit),
+									new(DisplayColorKind.Auxiliary1, c1 * 9 + digit),
+									new(DisplayColorKind.Auxiliary1, c2 * 9 + digit)
+								};
+
+								foreach (int cell in bridge)
+								{
+									candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
+								}
+
+								step = new GroupedWWingStep(
+									from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit),
+									ImmutableArray.Create(
+										View.Empty
+											| candidateOffsets
+											| new HouseViewNode(DisplayColorKind.Auxiliary1, house)),
+									c1,
+									c2,
+									bridge
+								);
+
+								break;
+							}
+						}
 
 						if (onlyFindOne)
 						{

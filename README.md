@@ -77,6 +77,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Irregular Wing[^2]
       * W-Wing
         * Basic W-Wing
+        * Grouped W-Wing
         * Multi-Branch W-Wing
       * M-Wing
       * Local-Wing

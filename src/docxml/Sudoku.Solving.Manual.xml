@@ -9054,6 +9054,53 @@
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.GroupedWWingStep">
+            <summary>
+            Provides with a step that is a <b>Grouped W-Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="StartCell">Indicates the start cell.</param>
+            <param name="EndCell">Indicates the end cell.</param>
+            <param name="Bridge">
+            Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.EndCell"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.GroupedWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@)">
+            <summary>
+            Provides with a step that is a <b>Grouped W-Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="StartCell">Indicates the start cell.</param>
+            <param name="EndCell">Indicates the end cell.</param>
+            <param name="Bridge">
+            Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.EndCell"/>.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.StartCell">
+            <summary>Indicates the start cell.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.EndCell">
+            <summary>Indicates the end cell.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.Bridge">
+            <summary>
+            Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.EndCell"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.Rarity">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.IrregularWingStep">
             <summary>
             Provides with a step that is a <b>Irregular Wing</b> technique.
@@ -9264,7 +9311,7 @@
             <param name="StartCell">Indicates the start cell.</param>
             <param name="EndCell">Indicates the end cell.</param>
             <param name="ConjugatePair">
-            Indicates the conjugate pair that connects cells <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.EndCell"/>.
+            Indicates the conjugate pair connecting with cells <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.EndCell"/>.
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.WWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
@@ -9276,7 +9323,7 @@
             <param name="StartCell">Indicates the start cell.</param>
             <param name="EndCell">Indicates the end cell.</param>
             <param name="ConjugatePair">
-            Indicates the conjugate pair that connects cells <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.EndCell"/>.
+            Indicates the conjugate pair connecting with cells <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.EndCell"/>.
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.WWingStep.StartCell">
@@ -9287,7 +9334,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.WWingStep.ConjugatePair">
             <summary>
-            Indicates the conjugate pair that connects cells <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.EndCell"/>.
+            Indicates the conjugate pair connecting with cells <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.EndCell"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.WWingStep.Difficulty">

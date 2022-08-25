@@ -1740,4 +1740,7 @@
   <data name="TechniqueFormat_MultiBranchWWingStep" xml:space="preserve">
     <value>{Name}：根 {RootStr} 位于 {HouseStr}，分支走向终端 {LeavesStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_GroupedWWingStep" xml:space="preserve">
+    <value>{Name}：从 {StartCellStr} 到 {EndCellStr}，使用单元格 {BridgeStr} 关联起来 =&gt; {ElimStr}</value>
+  </data>
 </root>

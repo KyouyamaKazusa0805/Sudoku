@@ -1,28 +1,28 @@
 ﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>W-Wing</b> technique.
+/// Provides with a step that is a <b>Grouped W-Wing</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="StartCell">Indicates the start cell.</param>
 /// <param name="EndCell">Indicates the end cell.</param>
-/// <param name="ConjugatePair">
-/// Indicates the conjugate pair connecting with cells <see cref="StartCell"/> and <see cref="EndCell"/>.
+/// <param name="Bridge">
+/// Indicates the bridge cells connecting with cells <see cref="StartCell"/> and <see cref="EndCell"/>.
 /// </param>
-internal sealed record WWingStep(
+internal sealed record GroupedWWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int StartCell,
 	int EndCell,
-	scoped in Conjugate ConjugatePair
+	scoped in Cells Bridge
 ) : IrregularWingStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 4.4M;
+	public override decimal Difficulty => 4.5M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.WWing;
+	public override Technique TechniqueCode => Technique.GroupedWWing;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -45,9 +45,9 @@ internal sealed record WWingStep(
 	}
 
 	[FormatItem]
-	internal string ConjStr
+	internal string BridgeStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugatePair.ToString();
+		get => RxCyNotation.ToCellsString(Bridge);
 	}
 }

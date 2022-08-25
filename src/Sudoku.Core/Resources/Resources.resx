@@ -1440,4 +1440,7 @@
   <data name="TechniqueFormat_MultiBranchWWingStep" xml:space="preserve">
     <value>{Name}: Leaves {LeavesStr}, root cells {RootStr} in house {HouseStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_GroupedWWingStep" xml:space="preserve">
+    <value>{Name}: {StartCellStr} to {EndCellStr} with bridge cells {BridgeStr} =&gt; {ElimStr}</value>
+  </data>
 </root>

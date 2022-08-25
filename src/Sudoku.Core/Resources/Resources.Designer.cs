@@ -3004,6 +3004,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: {StartCellStr} to {EndCellStr} with bridge cells {BridgeStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_GroupedWWingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_GroupedWWingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_GuardianStep {

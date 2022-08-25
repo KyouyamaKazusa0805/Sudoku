@@ -6368,6 +6368,11 @@
               Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_GroupedWWingStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {StartCellStr} to {EndCellStr} with bridge cells {BridgeStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_GuardianStep">
             <summary>
               Looks up a localized string similar to {Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}.
