@@ -74,64 +74,48 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 					// Iterate on each digit to search for the conjugate pair.
 					foreach (int digit in digits)
 					{
-						// Now search for conjugate pair.
 						var bridge = CandidatesMap[digit] & HousesMap[house];
-						switch (bridge)
+						bool isPassed = bridge switch
 						{
-							case [var a, var b]:
+							[var a, var b] => (
+								Cells.Empty + c1 + a, Cells.Empty + c2 + b,
+								Cells.Empty + c1 + b, Cells.Empty + c2 + a
+							) switch
 							{
-								// Check whether the cells are the same house as the head and the tail cell.
-								bool flag = (Cells.Empty + c1 + a).InOneHouse && (Cells.Empty + c2 + b).InOneHouse
-									|| (Cells.Empty + c1 + b).InOneHouse && (Cells.Empty + c2 + a).InOneHouse;
-								if (!flag)
+								({ InOneHouse: true }, { InOneHouse: true }, _, _) => true,
+								(_, _, { InOneHouse: true }, { InOneHouse: true }) => true,
+								_ => false
+							},
+							{ Count: > 2 and <= 6, BlockMask: var blox } => PopCount((uint)blox) switch
+							{
+								1 => ((PeersMap[c1] | PeersMap[c2]) & bridge) == bridge,
+								2 => TrailingZeroCount(blox) switch
 								{
-									continue;
-								}
-
-								break;
-							}
-							case { Count: > 2 and <= 6, BlockMask: var blox }:
-							{
-								switch (PopCount((uint)blox))
-								{
-									case 1:
+									var block1 => blox.GetNextSet(block1) switch
 									{
-										if (((PeersMap[c1] | PeersMap[c2]) & bridge) != bridge)
+										var block2 => (HousesMap[block1] & bridge, HousesMap[block2] & bridge) switch
 										{
-											continue;
+											var (bridgeInBlock1, bridgeInBlock2) => (
+												(PeersMap[c1] & bridgeInBlock1) == bridgeInBlock1,
+												(PeersMap[c2] & bridgeInBlock2) == bridgeInBlock2,
+												(PeersMap[c1] & bridgeInBlock2) == bridgeInBlock2,
+												(PeersMap[c2] & bridgeInBlock1) == bridgeInBlock1
+											) switch
+											{
+												(true, true, _, _) => true,
+												(_, _, true, true) => true,
+												_ => false
+											}
 										}
-
-										break;
 									}
-									case 2:
-									{
-										int block1 = TrailingZeroCount(blox), block2 = blox.GetNextSet(block1);
-										var bridgeInBlock1 = HousesMap[block1] & bridge;
-										var bridgeInBlock2 = HousesMap[block2] & bridge;
-										bool sameHouseWithTerminalCells =
-											(PeersMap[c1] & bridgeInBlock1) == bridgeInBlock1
-											&& (PeersMap[c2] & bridgeInBlock2) == bridgeInBlock2
-											|| (PeersMap[c1] & bridgeInBlock2) == bridgeInBlock2
-											&& (PeersMap[c2] & bridgeInBlock1) == bridgeInBlock1;
-										if (!sameHouseWithTerminalCells)
-										{
-											continue;
-										}
-
-										break;
-									}
-									default:
-									{
-										continue;
-									}
-								}
-
-								break;
-							}
-							default:
-							{
-								continue;
-							}
+								},
+								_ => false
+							},
+							_ => false
+						};
+						if (!isPassed)
+						{
+							continue;
 						}
 
 						// Check for eliminations.
