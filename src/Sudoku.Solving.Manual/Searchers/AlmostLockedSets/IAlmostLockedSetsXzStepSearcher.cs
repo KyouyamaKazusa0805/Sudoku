@@ -148,7 +148,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					int k = 0;
 					foreach (int digit in rccMask)
 					{
-						foreach (int cell in (HouseMaps[house[k]] & CandidatesMap[digit]) - map)
+						foreach (int cell in (HousesMap[house[k]] & CandidatesMap[digit]) - map)
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}

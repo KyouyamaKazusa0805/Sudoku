@@ -361,13 +361,13 @@ public static class CommonReadOnlies
 	/// <example>
 	/// '<c>HouseMaps[0]</c>': The map containing all cells in the block 1.
 	/// </example>
-	public static readonly Cells[] HouseMaps;
+	public static readonly Cells[] HousesMap;
 
 	/// <summary>
 	/// Indicates the peer maps using <see cref="Peers"/> table.
 	/// </summary>
 	/// <seealso cref="Peers"/>
-	public static readonly Cells[] PeerMaps;
+	public static readonly Cells[] PeersMap;
 
 	/// <summary>
 	/// Indicates the chute maps.
@@ -505,16 +505,16 @@ public static class CommonReadOnlies
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static CommonReadOnlies()
 	{
-		PeerMaps = new Cells[81];
+		PeersMap = new Cells[81];
 		for (int i = 0; i < 81; i++)
 		{
-			PeerMaps[i] = (Cells)Peers[i];
+			PeersMap[i] = (Cells)Peers[i];
 		}
 
-		HouseMaps = new Cells[27];
+		HousesMap = new Cells[27];
 		for (int i = 0; i < 27; i++)
 		{
-			HouseMaps[i] = (Cells)HouseCells[i];
+			HousesMap[i] = (Cells)HouseCells[i];
 		}
 
 		Chutes = new (Cells, bool, short)[6];
@@ -523,12 +523,12 @@ public static class CommonReadOnlies
 			var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[i], ChuteHouses[i + 3]);
 			(Chutes[i], Chutes[i + 3]) = (
 				(
-					HouseMaps[r1] | HouseMaps[r2] | HouseMaps[r3],
+					HousesMap[r1] | HousesMap[r2] | HousesMap[r3],
 					true,
 					(short)(1 << r1 - 9 | 1 << r2 - 9 | i << r3 - 9)
 				),
 				(
-					HouseMaps[c1] | HouseMaps[c2] | HouseMaps[c3],
+					HousesMap[c1] | HousesMap[c2] | HousesMap[c3],
 					false,
 					(short)(1 << c1 - 18 | 1 << c2 - 18 | i << c3 - 18)
 				)
@@ -543,8 +543,8 @@ public static class CommonReadOnlies
 			for (byte j = 0; j < 3; j++)
 			{
 				byte cs = (byte)(bs < 18 ? r[(bs - 9) / 3 * 3 + j] : c[(bs - 18) / 3 * 3 + j]);
-				scoped ref readonly var bm = ref HouseMaps[bs];
-				scoped ref readonly var cm = ref HouseMaps[cs];
+				scoped ref readonly var bm = ref HousesMap[bs];
+				scoped ref readonly var cm = ref HousesMap[cs];
 				var i = bm & cm;
 				dic.Add((bs, cs), (bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
 			}

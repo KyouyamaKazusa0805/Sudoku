@@ -26,7 +26,7 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 		int r = block / 3 * 3 + 9, c = block % 3 * 3 + 18;
 		for (int i = r, count = 0, rPlus3 = r + 3; i < rPlus3; i++)
 		{
-			if ((cells & HouseMaps[i]) is not [] || ++count <= 1)
+			if ((cells & HousesMap[i]) is not [] || ++count <= 1)
 			{
 				continue;
 			}
@@ -37,7 +37,7 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 
 		for (int i = c, count = 0, cPlus3 = c + 3; i < cPlus3; i++)
 		{
-			if ((cells & HouseMaps[i]) is not [] || ++count <= 1)
+			if ((cells & HousesMap[i]) is not [] || ++count <= 1)
 			{
 				continue;
 			}
@@ -50,7 +50,7 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 		{
 			for (int j = c, cPlus3 = c + 3; j < cPlus3; j++)
 			{
-				if (cells >> (HouseMaps[i] | HouseMaps[j]))
+				if (cells >> (HousesMap[i] | HousesMap[j]))
 				{
 					continue;
 				}
@@ -78,7 +78,7 @@ internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangl
 			{
 				// Check the empty rectangle occupies more than 2 cells.
 				// and the structure forms an empty rectangle.
-				var erMap = CandidatesMap[digit] & HouseMaps[block];
+				var erMap = CandidatesMap[digit] & HousesMap[block];
 				if (erMap.Count < 2
 					|| !IEmptyRectangleStepSearcher.IsEmptyRectangle(erMap, block, out int row, out int column))
 				{
@@ -88,7 +88,7 @@ internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangl
 				// Search for conjugate pair.
 				for (int i = 0; i < 12; i++)
 				{
-					var linkMap = CandidatesMap[digit] & HouseMaps[EmptyRectangleLinkIds[block, i]];
+					var linkMap = CandidatesMap[digit] & HousesMap[EmptyRectangleLinkIds[block, i]];
 					if (linkMap.Count != 2)
 					{
 						continue;
@@ -96,15 +96,15 @@ internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangl
 
 					short blockMask = linkMap.BlockMask;
 					if (IsPow2(blockMask)
-						|| i < 6 && (linkMap & HouseMaps[column]) is []
-						|| i >= 6 && (linkMap & HouseMaps[row]) is [])
+						|| i < 6 && (linkMap & HousesMap[column]) is []
+						|| i >= 6 && (linkMap & HousesMap[row]) is [])
 					{
 						continue;
 					}
 
-					int t = (linkMap - HouseMaps[i < 6 ? column : row])[0];
+					int t = (linkMap - HousesMap[i < 6 ? column : row])[0];
 					int elimHouse = i < 6 ? t % 9 + 18 : t / 9 + 9;
-					var elimCellMap = CandidatesMap[digit] & HouseMaps[elimHouse] & HouseMaps[i < 6 ? row : column];
+					var elimCellMap = CandidatesMap[digit] & HousesMap[elimHouse] & HousesMap[i < 6 ? row : column];
 					if (elimCellMap is not [var elimCell, ..])
 					{
 						continue;
@@ -118,7 +118,7 @@ internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangl
 					// Gather all highlight candidates.
 					var candidateOffsets = new List<CandidateViewNode>();
 					var cpCells = new List<int>(2);
-					foreach (int cell in HouseMaps[block] & CandidatesMap[digit])
+					foreach (int cell in HousesMap[block] & CandidatesMap[digit])
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 					}

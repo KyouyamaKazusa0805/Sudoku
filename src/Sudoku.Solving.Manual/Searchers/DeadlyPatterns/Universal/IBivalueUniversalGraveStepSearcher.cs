@@ -90,7 +90,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 				}
 				foreach (int house in span)
 				{
-					if ((map & HouseMaps[house]).Count > 2)
+					if ((map & HousesMap[house]).Count > 2)
 					{
 						// The specified house contains at least three positions to fill with the digit,
 						// which is invalid in any BUG + n patterns.
@@ -150,7 +150,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 					}
 					foreach (int house in playground)
 					{
-						if ((temp & HouseMaps[house]).Count > 2)
+						if ((temp & HousesMap[house]).Count > 2)
 						{
 							@continue = false;
 							break;
@@ -241,7 +241,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 
 				for (int i = 0; i < 3; i++)
 				{
-					housesCount[i] = (candidatesMap[digit] & HouseMaps[cell.ToHouseIndex((HouseType)i)]).Count;
+					housesCount[i] = (candidatesMap[digit] & HousesMap[cell.ToHouseIndex((HouseType)i)]).Count;
 				}
 
 				if (housesCount is not [2, 2, 2])
@@ -465,7 +465,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		// Iterate on each house that the true candidates lying on.
 		foreach (int house in map.CoveredHouses)
 		{
-			var houseMap = HouseMaps[house];
+			var houseMap = HousesMap[house];
 			if ((houseMap & EmptyCells) - map is not (var otherCellsMap and not []))
 			{
 				continue;
@@ -580,7 +580,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			for (int conjuagtePairDigit = 0; conjuagtePairDigit < 9; conjuagtePairDigit++)
 			{
 				// Check whether forms a conjugate pair.
-				short mask = (HouseMaps[house] & CandidatesMap[conjuagtePairDigit]) / house;
+				short mask = (HousesMap[house] & CandidatesMap[conjuagtePairDigit]) / house;
 				if (PopCount((uint)mask) != 2)
 				{
 					continue;
@@ -729,7 +729,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 
 		int c1 = cand1 / 9, c2 = cand2 / 9, d1 = cand1 % 9, d2 = cand2 % 9;
 		short mask = (short)(1 << d1 | 1 << d2);
-		foreach (int cell in (PeerMaps[c1] ^ PeerMaps[c2]) & BivalueCells)
+		foreach (int cell in (PeersMap[c1] ^ PeersMap[c2]) & BivalueCells)
 		{
 			if (grid.GetCandidates(cell) != mask)
 			{

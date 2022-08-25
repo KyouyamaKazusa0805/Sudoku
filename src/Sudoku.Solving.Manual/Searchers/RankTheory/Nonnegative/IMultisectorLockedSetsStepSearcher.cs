@@ -33,7 +33,7 @@ public interface IMultisectorLockedSetsStepSearcher : INonnegativeRankStepSearch
 				foreach (int row in rowList)
 				{
 					rowMask |= (short)(1 << row);
-					rowMap |= HouseMaps[row + 9];
+					rowMap |= HousesMap[row + 9];
 				}
 
 				if ((rowMask & a) == 0 || (rowMask & b) == 0 || (rowMask & c) == 0)
@@ -48,7 +48,7 @@ public interface IMultisectorLockedSetsStepSearcher : INonnegativeRankStepSearch
 					foreach (int column in columnList)
 					{
 						columnMask |= (short)(1 << column);
-						columnMap |= HouseMaps[column + 18];
+						columnMap |= HousesMap[column + 18];
 					}
 
 					if ((columnMask & a) == 0 || (columnMask & b) == 0 || (columnMask & c) == 0)
@@ -116,7 +116,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 						{
 							int house = i + 9;
 							linkForEachHouse[house] |= q;
-							elimMap |= !(CandidatesMap[digit] & HouseMaps[house] & map);
+							elimMap |= !(CandidatesMap[digit] & HousesMap[house] & map);
 						}
 					}
 					if (PopCount(cMask) == temp)
@@ -126,7 +126,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 						{
 							int house = i + 18;
 							linkForEachHouse[house] |= q;
-							elimMap |= !(CandidatesMap[digit] & HouseMaps[house] & map);
+							elimMap |= !(CandidatesMap[digit] & HousesMap[house] & map);
 						}
 					}
 					if (PopCount(bMask) == temp)
@@ -135,7 +135,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 						foreach (int i in bMask)
 						{
 							linkForEachHouse[i] |= q;
-							elimMap |= !(CandidatesMap[digit] & HouseMaps[i] & map);
+							elimMap |= !(CandidatesMap[digit] & HousesMap[i] & map);
 						}
 					}
 
@@ -169,7 +169,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 						continue;
 					}
 
-					foreach (int cell in map & HouseMaps[house])
+					foreach (int cell in map & HousesMap[house])
 					{
 						short cands = (short)(grid.GetCandidates(cell) & linkMask);
 						if (cands == 0)

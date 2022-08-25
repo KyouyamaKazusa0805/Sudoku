@@ -44,7 +44,7 @@ public interface IFishStepSearcher : IStepSearcher
 		bool isSashimi = false;
 		foreach (int baseSet in baseSets)
 		{
-			if ((HouseMaps[baseSet] - fins & CandidatesMap[digit]).Count == 1)
+			if ((HousesMap[baseSet] - fins & CandidatesMap[digit]).Count == 1)
 			{
 				isSashimi = true;
 				break;

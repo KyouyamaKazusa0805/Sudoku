@@ -147,7 +147,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 				{
 					// Try to assume the digit is true in the current cell,
 					// and we can get a map of all possible cells that can be filled with the digit.
-					var possibleMap = CandidatesMap[digit] - PeerMaps[cell] - cell;
+					var possibleMap = CandidatesMap[digit] - PeersMap[cell] - cell;
 
 					// Get the table of all possible houses that contains that digit.
 					scoped var baseTable = possibleMap.Houses.GetAllSets();
@@ -183,10 +183,10 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 							int baseSet = baseSets[i];
 							if (i != 0)
 							{
-								endofins |= HouseMaps[baseSet] & tempMap;
+								endofins |= HousesMap[baseSet] & tempMap;
 							}
 
-							tempMap |= HouseMaps[baseSet];
+							tempMap |= HousesMap[baseSet];
 						}
 						endofins &= possibleMap;
 
@@ -222,7 +222,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						var baseMap = Cells.Empty;
 						foreach (int baseSet in baseSets)
 						{
-							baseMap |= HouseMaps[baseSet];
+							baseMap |= HousesMap[baseSet];
 							usedInBaseSets |= 1 << baseSet;
 						}
 
@@ -254,7 +254,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 							var coverMap = Cells.Empty;
 							foreach (int coverSet in coverSets)
 							{
-								coverMap |= HouseMaps[coverSet];
+								coverMap |= HousesMap[coverSet];
 							}
 
 							// All cells in base sets should lie in cover sets.
@@ -329,7 +329,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 								}
 
 								// Now actual base sets must overlap the current house.
-								if ((actualBaseMap & HouseMaps[houseIndex]) is [])
+								if ((actualBaseMap & HousesMap[houseIndex]) is [])
 								{
 									goto BacktrackValue;
 								}
@@ -363,22 +363,22 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 								{
 									if (j > 0)
 									{
-										endofins |= HouseMaps[baseSets[j]] & tempMap;
+										endofins |= HousesMap[baseSets[j]] & tempMap;
 									}
 
 									if (j == 0)
 									{
-										tempMap = HouseMaps[baseSets[j]];
+										tempMap = HousesMap[baseSets[j]];
 									}
 									else
 									{
-										tempMap |= HouseMaps[baseSets[j]];
+										tempMap |= HousesMap[baseSets[j]];
 									}
 								}
 								endofins &= CandidatesMap[digit];
 
 								// Add the new house into the cover sets map.
-								var nowCoverMap = coverMap | HouseMaps[houseIndex];
+								var nowCoverMap = coverMap | HousesMap[houseIndex];
 
 								// Collect all exo-fins, in order to get all eliminations.
 								var exofins = actualBaseMap - nowCoverMap - endofins;

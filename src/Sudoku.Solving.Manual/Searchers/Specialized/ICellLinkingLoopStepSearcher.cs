@@ -120,8 +120,8 @@ partial interface ICellLinkingLoopStepSearcher
 				continue;
 			}
 
-			var cellsToBeChecked = CandidatesMap[digit] & HouseMaps[house];
-			if (cellsToBeChecked.Count < 2 || (currentLoop & HouseMaps[house]).Count > 2)
+			var cellsToBeChecked = CandidatesMap[digit] & HousesMap[house];
+			if (cellsToBeChecked.Count < 2 || (currentLoop & HousesMap[house]).Count > 2)
 			{
 				continue;
 			}
@@ -142,7 +142,7 @@ partial interface ICellLinkingLoopStepSearcher
 					}
 				}
 
-				var tempGuardians = (CandidatesMap[digit] & HouseMaps[house]) - tempCell - lastCell;
+				var tempGuardians = (CandidatesMap[digit] & HousesMap[house]) - tempCell - lastCell;
 				if (tempCell == startCell && condition(currentLoop)
 					&& (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is not [])
 				{
@@ -154,7 +154,7 @@ partial interface ICellLinkingLoopStepSearcher
 
 				if ((currentLoop | currentGuardians).Contains(tempCell)
 					|| (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is []
-					|| (HouseMaps[house] & currentLoop).Count > 1)
+					|| (HousesMap[house] & currentLoop).Count > 1)
 				{
 					continue;
 				}
@@ -181,8 +181,8 @@ partial interface ICellLinkingLoopStepSearcher
 				continue;
 			}
 
-			var cellsToBeChecked = fullCells & HouseMaps[house];
-			if (cellsToBeChecked.Count < 2 || (currentLoop & HouseMaps[house]).Count > 2)
+			var cellsToBeChecked = fullCells & HousesMap[house];
+			if (cellsToBeChecked.Count < 2 || (currentLoop & HousesMap[house]).Count > 2)
 			{
 				continue;
 			}
@@ -211,7 +211,7 @@ partial interface ICellLinkingLoopStepSearcher
 					return;
 				}
 
-				if ((HouseMaps[house] & currentLoop).Count > 1)
+				if ((HousesMap[house] & currentLoop).Count > 1)
 				{
 					continue;
 				}
@@ -238,8 +238,8 @@ partial interface ICellLinkingLoopStepSearcher
 				continue;
 			}
 
-			var cellsToBeChecked = fullCells & HouseMaps[house];
-			if (cellsToBeChecked.Count < 2 || (currentLoop & HouseMaps[house]).Count > 2)
+			var cellsToBeChecked = fullCells & HousesMap[house];
+			if (cellsToBeChecked.Count < 2 || (currentLoop & HousesMap[house]).Count > 2)
 			{
 				continue;
 			}
@@ -268,7 +268,7 @@ partial interface ICellLinkingLoopStepSearcher
 					return;
 				}
 
-				if ((HouseMaps[house] & currentLoop).Count > 1)
+				if ((HousesMap[house] & currentLoop).Count > 1)
 				{
 					continue;
 				}

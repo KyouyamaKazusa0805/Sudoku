@@ -642,7 +642,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			{
 				for (int house = 0; house < 27; house++)
 				{
-					var targetDigitMap = CandidatesMap[digit] & HouseMaps[house];
+					var targetDigitMap = CandidatesMap[digit] & HousesMap[house];
 					if (targetDigitMap is [var cell1, var cell2])
 					{
 						// Both strong and weak inferences.
@@ -743,7 +743,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 		{
 			for (byte digit = 0; digit < 9; digit++)
 			{
-				var cells = CandidatesMap[digit] & HouseMaps[house];
+				var cells = CandidatesMap[digit] & HousesMap[house];
 				if (cells.Count < 3)
 				{
 					// The current house doesn't contain a strong or weak inference related to locked candidates nodes.
@@ -788,8 +788,8 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 					// Both strong and weak inference.
 					int firstHouse = TrailingZeroCount(houseMask);
 					int secondHouse = houseMask.GetNextSet(firstHouse);
-					var firstHouseCells = cells & HouseMaps[firstHouse + offset];
-					var secondHouseCells = cells & HouseMaps[secondHouse + offset];
+					var firstHouseCells = cells & HousesMap[firstHouse + offset];
+					var secondHouseCells = cells & HousesMap[secondHouse + offset];
 					var node1 = new Node(digit, firstHouseCells);
 					var node2 = new Node(digit, secondHouseCells);
 
@@ -806,9 +806,9 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 					int firstHouse = TrailingZeroCount(houseMask);
 					int secondHouse = houseMask.GetNextSet(firstHouse);
 					int thirdHouse = houseMask.GetNextSet(secondHouse);
-					var firstHouseCells = cells & HouseMaps[firstHouse + offset];
-					var secondHouseCells = cells & HouseMaps[secondHouse + offset];
-					var thirdHouseCells = cells & HouseMaps[thirdHouse + offset];
+					var firstHouseCells = cells & HousesMap[firstHouse + offset];
+					var secondHouseCells = cells & HousesMap[secondHouse + offset];
+					var thirdHouseCells = cells & HousesMap[thirdHouse + offset];
 					var node1 = new Node(digit, firstHouseCells);
 					var node2 = new Node(digit, secondHouseCells);
 					var node3 = new Node(digit, thirdHouseCells);
@@ -850,7 +850,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 				return;
 			}
 
-			int intersectionCell = (HouseMaps[row] & HouseMaps[column])[0];
+			int intersectionCell = (HousesMap[row] & HousesMap[column])[0];
 			switch (cells.Count)
 			{
 				case 4:
@@ -858,10 +858,10 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 					Cells targetRowCells, targetColumnCells;
 					if (cells.Contains(intersectionCell))
 					{
-						var rowCells1 = HouseMaps[row] & cells;
-						var columnCells1 = (HouseMaps[row] & cells) - intersectionCell;
-						var rowCells2 = (HouseMaps[row] & cells) - intersectionCell;
-						var columnCells2 = HouseMaps[column] & cells;
+						var rowCells1 = HousesMap[row] & cells;
+						var columnCells1 = (HousesMap[row] & cells) - intersectionCell;
+						var rowCells2 = (HousesMap[row] & cells) - intersectionCell;
+						var columnCells2 = HousesMap[column] & cells;
 
 						(targetRowCells, targetColumnCells) = rowCells1.Count == 2 && columnCells1.Count == 2
 							? (rowCells1, columnCells1)
@@ -869,7 +869,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 					}
 					else
 					{
-						(targetRowCells, targetColumnCells) = (HouseMaps[row] & cells, HouseMaps[column] & cells);
+						(targetRowCells, targetColumnCells) = (HousesMap[row] & cells, HousesMap[column] & cells);
 					}
 
 					var node1 = new Node(digit, targetRowCells);
@@ -884,10 +884,10 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 				}
 				case 5:
 				{
-					var rowCells1 = HouseMaps[row] & cells;
-					var columnCells1 = (HouseMaps[column] & cells) - intersectionCell;
-					var rowCells2 = (HouseMaps[row] & cells) - intersectionCell;
-					var columnCells2 = HouseMaps[column] & cells;
+					var rowCells1 = HousesMap[row] & cells;
+					var columnCells1 = (HousesMap[column] & cells) - intersectionCell;
+					var rowCells2 = (HousesMap[row] & cells) - intersectionCell;
+					var columnCells2 = HousesMap[column] & cells;
 
 					var case1Node1 = new Node(digit, rowCells1);
 					var case1Node2 = new Node(digit, columnCells1);
@@ -975,7 +975,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 				if (!cells1.IsInIntersection)
 				{
 					int coveredHouse = TrailingZeroCount(cells1.CoveredHouses);
-					var uncoveredCells = HouseMaps[coveredHouse] - cells1;
+					var uncoveredCells = HousesMap[coveredHouse] - cells1;
 					foreach (var cells in uncoveredCells | uncoveredCells.Count)
 					{
 						if (!cells.IsInIntersection)
@@ -994,7 +994,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 				if (!cells2.IsInIntersection)
 				{
 					int coveredHouse = TrailingZeroCount(cells2.CoveredHouses);
-					var uncoveredCells = HouseMaps[coveredHouse] - cells2;
+					var uncoveredCells = HousesMap[coveredHouse] - cells2;
 					foreach (var cells in uncoveredCells | uncoveredCells.Count)
 					{
 						if (!cells.IsInIntersection)
@@ -1166,7 +1166,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 
 						// One covered house. e.g.
 						// x x | x
-						1 => HouseMaps[TrailingZeroCount(currentCells.CoveredHouses)] - currentCells,
+						1 => HousesMap[TrailingZeroCount(currentCells.CoveredHouses)] - currentCells,
 
 						// Two covered houses. It means it is a locked candidates.
 						// This case should have been handled.

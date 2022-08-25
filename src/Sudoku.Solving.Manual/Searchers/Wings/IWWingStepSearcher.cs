@@ -35,7 +35,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 
 			// Iterate on each cells which are not peers in 'c1'.
 			scoped var digits = grid.GetCandidates(c1).GetAllSets();
-			foreach (int c2 in BivalueCells - (PeerMaps[c1] + c1))
+			foreach (int c2 in BivalueCells - (PeersMap[c1] + c1))
 			{
 				if (c2 < c1)
 				{
@@ -49,7 +49,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 					continue;
 				}
 
-				var intersection = PeerMaps[c1] & PeerMaps[c2];
+				var intersection = PeersMap[c1] & PeersMap[c2];
 				if ((EmptyCells & intersection) is [])
 				{
 					// The structure doesn't contain any possible eliminations.
@@ -75,7 +75,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 					foreach (int digit in digits)
 					{
 						// Now search for conjugate pair.
-						if ((CandidatesMap[digit] & HouseMaps[house]) is not [var a, var b] conjugate)
+						if ((CandidatesMap[digit] & HousesMap[house]) is not [var a, var b] conjugate)
 						{
 							// The current house doesn't contain the conjugate pair of this digit.
 							continue;

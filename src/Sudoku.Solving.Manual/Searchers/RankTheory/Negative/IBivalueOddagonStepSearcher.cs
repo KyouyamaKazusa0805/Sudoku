@@ -179,12 +179,12 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		short otherDigitsMask = (short)(m & ~comparer);
 		foreach (int house in extraCellsMap.CoveredHouses)
 		{
-			if (((ValuesMap[d1] | ValuesMap[d2]) & HouseMaps[house]) is not [])
+			if (((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[house]) is not [])
 			{
 				goto ReturnNull;
 			}
 
-			var otherCells = (HouseMaps[house] & EmptyCells) - loop;
+			var otherCells = (HousesMap[house] & EmptyCells) - loop;
 			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Count; size < count; size++)
 			{
 				foreach (var cells in otherCells & size)
@@ -195,7 +195,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 						continue;
 					}
 
-					if ((HouseMaps[house] & EmptyCells) - cells - loop is not (var elimMap and not []))
+					if ((HousesMap[house] & EmptyCells) - cells - loop is not (var elimMap and not []))
 					{
 						continue;
 					}

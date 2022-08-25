@@ -100,7 +100,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 		short satisfiedblocksMask = 0;
 		for (int block = 0; block < 9; block++)
 		{
-			if ((EmptyCells & HouseMaps[block]).Count >= 3)
+			if ((EmptyCells & HousesMap[block]).Count >= 3)
 			{
 				satisfiedblocksMask |= (short)(1 << block);
 			}
@@ -294,7 +294,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 				continue;
 			}
 
-			foreach (int extraCell in (PeerMaps[c1] ^ PeerMaps[c2]) & BivalueCells)
+			foreach (int extraCell in (PeersMap[c1] ^ PeersMap[c2]) & BivalueCells)
 			{
 				if (grid.GetCandidates(extraCell) != otherDigitsMask)
 				{

@@ -70,7 +70,7 @@ internal sealed partial class UniquenessClueCoverStepSearcher : IUniquenessClueC
 				continue;
 			}
 
-			if (PeerMaps[c1].Contains(c2) || PeerMaps[c2].Contains(c1))
+			if (PeersMap[c1].Contains(c2) || PeersMap[c2].Contains(c1))
 			{
 				// The two value cells cannot lie in a same house.
 				continue;
@@ -86,15 +86,15 @@ internal sealed partial class UniquenessClueCoverStepSearcher : IUniquenessClueC
 			short digitsMask = (short)(1 << c1Digit | 1 << c2Digit);
 			var elimHouseType = isRow ? HouseType.Column : HouseType.Row;
 			var excludedHouseType = isRow ? HouseType.Row : HouseType.Column;
-			var excludedLines = HouseMaps[c1.ToHouseIndex(excludedHouseType)] | HouseMaps[c2.ToHouseIndex(excludedHouseType)];
+			var excludedLines = HousesMap[c1.ToHouseIndex(excludedHouseType)] | HousesMap[c2.ToHouseIndex(excludedHouseType)];
 			var elimCells = chute - excludedLines & (
-				HouseMaps[c1.ToHouseIndex(elimHouseType)] | HouseMaps[c2.ToHouseIndex(elimHouseType)]
+				HousesMap[c1.ToHouseIndex(elimHouseType)] | HousesMap[c2.ToHouseIndex(elimHouseType)]
 			);
 
 			var conclusions = new List<Conclusion>(2);
 			foreach (int elimCell in elimCells)
 			{
-				int correspondingValueCell = (HouseMaps[elimCell.ToHouseIndex(elimHouseType)] & chute & valueCells)[0];
+				int correspondingValueCell = (HousesMap[elimCell.ToHouseIndex(elimHouseType)] & chute & valueCells)[0];
 				int elimDigit = TrailingZeroCount((short)(digitsMask & ~(1 << grid[correspondingValueCell])));
 				if (CandidatesMap[elimDigit].Contains(elimCell))
 				{

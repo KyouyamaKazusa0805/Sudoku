@@ -391,7 +391,7 @@ public sealed class AlternatingInferenceChain : Chain
 						// Same house, same digit.
 						foreach (int house in houses)
 						{
-							foreach (int cell in (grid.CandidatesMap[aDigit] & HouseMaps[house]) - (aCells | bCells))
+							foreach (int cell in (grid.CandidatesMap[aDigit] & HousesMap[house]) - (aCells | bCells))
 							{
 								result.AddIfNotContain(new(ConclusionType.Elimination, cell, aDigit), &cmp);
 							}

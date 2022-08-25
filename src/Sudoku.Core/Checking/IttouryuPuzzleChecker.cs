@@ -39,7 +39,7 @@ public static class IttouryuPuzzleChecker
 				foreach (var houseType in HouseTypes)
 				{
 					int house = cell.ToHouseIndex(houseType);
-					var houseCells = HouseMaps[house];
+					var houseCells = HousesMap[house];
 					if ((tempGrid.ValuesMap[digit] & houseCells) is not [])
 					{
 						// The current house already contains the value of the current digit.

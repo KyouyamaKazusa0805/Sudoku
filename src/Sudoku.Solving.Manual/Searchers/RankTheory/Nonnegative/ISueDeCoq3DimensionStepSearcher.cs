@@ -23,8 +23,8 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 			int r = pivot.ToHouseIndex(HouseType.Row);
 			int c = pivot.ToHouseIndex(HouseType.Column);
 			int b = pivot.ToHouseIndex(HouseType.Block);
-			var rbMap = HouseMaps[r] & HouseMaps[b];
-			var cbMap = HouseMaps[c] & HouseMaps[b];
+			var rbMap = HousesMap[r] & HousesMap[b];
+			var cbMap = HousesMap[c] & HousesMap[b];
 			var rbEmptyMap = rbMap & EmptyCells;
 			var cbEmptyMap = cbMap & EmptyCells;
 			if (rbEmptyMap.Count < 2 || cbEmptyMap.Count < 2)
@@ -58,9 +58,9 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 					}
 
 					// Get all maps to use later.
-					var blockMap = HouseMaps[b] - rbCurrentMap - cbCurrentMap & EmptyCells;
-					var rowMap = HouseMaps[r] - HouseMaps[b] & EmptyCells;
-					var columnMap = HouseMaps[c] - HouseMaps[b] & EmptyCells;
+					var blockMap = HousesMap[b] - rbCurrentMap - cbCurrentMap & EmptyCells;
+					var rowMap = HousesMap[r] - HousesMap[b] & EmptyCells;
+					var columnMap = HousesMap[c] - HousesMap[b] & EmptyCells;
 
 					// Iterate on the number of the cells that should be selected in block.
 					for (int i = 1, count = blockMap.Count; i < count; i++)
@@ -88,7 +88,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 									{
 										elimMapRow |= CandidatesMap[digit];
 									}
-									elimMapRow &= HouseMaps[r] - rbCurrentMap - selectedRowCells;
+									elimMapRow &= HousesMap[r] - rbCurrentMap - selectedRowCells;
 
 									for (int k = 1; k <= MathExtensions.Min(9 - i - j - selectedBlockCells.Count - selectedRowCells.Count, rowMap.Count, columnMap.Count); k++)
 									{
@@ -101,7 +101,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 											{
 												elimMapColumn |= CandidatesMap[digit];
 											}
-											elimMapColumn &= HouseMaps[c] - cbCurrentMap - selectedColumnCells;
+											elimMapColumn &= HousesMap[c] - cbCurrentMap - selectedColumnCells;
 
 											if ((blockMask & rowMask) != 0
 												&& (rowMask & columnMask) != 0

@@ -113,7 +113,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 			bool isOverlapped = false;
 			foreach (int digit in mask)
 			{
-				if ((ValuesMap[digit] & HouseMaps[coverSet]) is not [])
+				if ((ValuesMap[digit] & HousesMap[coverSet]) is not [])
 				{
 					isOverlapped = true;
 					break;
@@ -129,7 +129,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 			short ahsMask = 0;
 			foreach (int digit in mask)
 			{
-				ahsMask |= (HouseMaps[coverSet] & CandidatesMap[digit] & b) / coverSet;
+				ahsMask |= (HousesMap[coverSet] & CandidatesMap[digit] & b) / coverSet;
 			}
 			if (PopCount((uint)ahsMask) != size - 1)
 			{

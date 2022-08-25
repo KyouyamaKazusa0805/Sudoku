@@ -171,13 +171,13 @@ public sealed class AlmostLockedSet :
 		var result = new List<AlmostLockedSet>();
 		foreach (int cell in bivalueMap)
 		{
-			result.Add(new(grid.GetCandidates(cell), Cells.Empty + cell, PeerMaps[cell] & emptyMap));
+			result.Add(new(grid.GetCandidates(cell), Cells.Empty + cell, PeersMap[cell] & emptyMap));
 		}
 
 		// Get all non-bi-value-cell ALSes.
 		for (int house = 0; house < 27; house++)
 		{
-			if ((HouseMaps[house] & emptyMap) is not { Count: >= 3 } tempMap)
+			if ((HousesMap[house] & emptyMap) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
@@ -211,7 +211,7 @@ public sealed class AlmostLockedSet :
 							digitsMask,
 							map,
 							house < 9 && coveredLine is >= 9 and not InvalidValidOfTrailingZeroCountMethodFallback
-								? ((HouseMaps[house] | HouseMaps[coveredLine]) & emptyMap) - map
+								? ((HousesMap[house] | HousesMap[coveredLine]) & emptyMap) - map
 								: tempMap - map
 						)
 					);

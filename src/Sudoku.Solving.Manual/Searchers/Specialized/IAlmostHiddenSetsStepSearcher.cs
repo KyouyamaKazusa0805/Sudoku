@@ -21,7 +21,7 @@ public interface IAlmostHiddenSetsStepSearcher : IStepSearcher
 
 		for (int house = 0; house < 27; house++)
 		{
-			if ((HouseMaps[house] & EmptyCells) is not { Count: >= 3 } tempMap)
+			if ((HousesMap[house] & EmptyCells) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
@@ -34,7 +34,7 @@ public interface IAlmostHiddenSetsStepSearcher : IStepSearcher
 					var cells = Cells.Empty;
 					foreach (int digit in digitCombination)
 					{
-						cells |= CandidatesMap[digit] & HouseMaps[house];
+						cells |= CandidatesMap[digit] & HousesMap[house];
 					}
 					if (cells.Count - 1 != size)
 					{

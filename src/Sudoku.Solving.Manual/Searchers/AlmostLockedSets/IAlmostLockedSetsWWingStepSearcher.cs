@@ -25,7 +25,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 		{
 			for (int houseIndex = 0; houseIndex < 27; houseIndex++)
 			{
-				if ((HouseMaps[houseIndex] & CandidatesMap[digit]) is { Count: 2 } temp)
+				if ((HousesMap[houseIndex] & CandidatesMap[digit]) is { Count: 2 } temp)
 				{
 					(conjugatePairs[digit] ??= new List<Conjugate>()).Add(new(temp, digit));
 				}

@@ -147,15 +147,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if ((this & HouseMaps[0]).Count != 0) result |= 1;
-			if ((this & HouseMaps[1]).Count != 0) result |= 2;
-			if ((this & HouseMaps[2]).Count != 0) result |= 4;
-			if ((this & HouseMaps[3]).Count != 0) result |= 8;
-			if ((this & HouseMaps[4]).Count != 0) result |= 16;
-			if ((this & HouseMaps[5]).Count != 0) result |= 32;
-			if ((this & HouseMaps[6]).Count != 0) result |= 64;
-			if ((this & HouseMaps[7]).Count != 0) result |= 128;
-			if ((this & HouseMaps[8]).Count != 0) result |= 256;
+			if ((this & HousesMap[0]).Count != 0) result |= 1;
+			if ((this & HousesMap[1]).Count != 0) result |= 2;
+			if ((this & HousesMap[2]).Count != 0) result |= 4;
+			if ((this & HousesMap[3]).Count != 0) result |= 8;
+			if ((this & HousesMap[4]).Count != 0) result |= 16;
+			if ((this & HousesMap[5]).Count != 0) result |= 32;
+			if ((this & HousesMap[6]).Count != 0) result |= 64;
+			if ((this & HousesMap[7]).Count != 0) result |= 128;
+			if ((this & HousesMap[8]).Count != 0) result |= 256;
 
 			return result;
 		}
@@ -174,15 +174,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if ((this & HouseMaps[9]).Count != 0) result |= 1;
-			if ((this & HouseMaps[10]).Count != 0) result |= 2;
-			if ((this & HouseMaps[11]).Count != 0) result |= 4;
-			if ((this & HouseMaps[12]).Count != 0) result |= 8;
-			if ((this & HouseMaps[13]).Count != 0) result |= 16;
-			if ((this & HouseMaps[14]).Count != 0) result |= 32;
-			if ((this & HouseMaps[15]).Count != 0) result |= 64;
-			if ((this & HouseMaps[16]).Count != 0) result |= 128;
-			if ((this & HouseMaps[17]).Count != 0) result |= 256;
+			if ((this & HousesMap[9]).Count != 0) result |= 1;
+			if ((this & HousesMap[10]).Count != 0) result |= 2;
+			if ((this & HousesMap[11]).Count != 0) result |= 4;
+			if ((this & HousesMap[12]).Count != 0) result |= 8;
+			if ((this & HousesMap[13]).Count != 0) result |= 16;
+			if ((this & HousesMap[14]).Count != 0) result |= 32;
+			if ((this & HousesMap[15]).Count != 0) result |= 64;
+			if ((this & HousesMap[16]).Count != 0) result |= 128;
+			if ((this & HousesMap[17]).Count != 0) result |= 256;
 
 			return result;
 		}
@@ -201,15 +201,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if ((this & HouseMaps[18]).Count != 0) result |= 1;
-			if ((this & HouseMaps[19]).Count != 0) result |= 2;
-			if ((this & HouseMaps[20]).Count != 0) result |= 4;
-			if ((this & HouseMaps[21]).Count != 0) result |= 8;
-			if ((this & HouseMaps[22]).Count != 0) result |= 16;
-			if ((this & HouseMaps[23]).Count != 0) result |= 32;
-			if ((this & HouseMaps[24]).Count != 0) result |= 64;
-			if ((this & HouseMaps[25]).Count != 0) result |= 128;
-			if ((this & HouseMaps[26]).Count != 0) result |= 256;
+			if ((this & HousesMap[18]).Count != 0) result |= 1;
+			if ((this & HousesMap[19]).Count != 0) result |= 2;
+			if ((this & HousesMap[20]).Count != 0) result |= 4;
+			if ((this & HousesMap[21]).Count != 0) result |= 8;
+			if ((this & HousesMap[22]).Count != 0) result |= 16;
+			if ((this & HousesMap[23]).Count != 0) result |= 32;
+			if ((this & HousesMap[24]).Count != 0) result |= 64;
+			if ((this & HousesMap[25]).Count != 0) result |= 128;
+			if ((this & HousesMap[26]).Count != 0) result |= 256;
 
 			return result;
 		}

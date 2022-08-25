@@ -65,7 +65,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 			// Gather.
 			for (int house = 9; house < 27; house++)
 			{
-				if ((HouseMaps[house] & CandidatesMap[digit]) is not [])
+				if ((HousesMap[house] & CandidatesMap[digit]) is not [])
 				{
 #pragma warning disable CA2014
 					if (house < 18)
@@ -157,10 +157,10 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 				// 'baseLine' is the map that contains all base set cells.
 				var baseLine = size switch
 				{
-					2 => CandidatesMap[digit] & (HouseMaps[bs[0]] | HouseMaps[bs[1]]),
-					3 => CandidatesMap[digit] & (HouseMaps[bs[0]] | HouseMaps[bs[1]] | HouseMaps[bs[2]]),
+					2 => CandidatesMap[digit] & (HousesMap[bs[0]] | HousesMap[bs[1]]),
+					3 => CandidatesMap[digit] & (HousesMap[bs[0]] | HousesMap[bs[1]] | HousesMap[bs[2]]),
 					4 => CandidatesMap[digit] & (
-						HouseMaps[bs[0]] | HouseMaps[bs[1]] | HouseMaps[bs[2]] | HouseMaps[bs[3]]
+						HousesMap[bs[0]] | HousesMap[bs[1]] | HousesMap[bs[2]] | HousesMap[bs[3]]
 					)
 				};
 
@@ -170,10 +170,10 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 					// 'coverLine' is the map that contains all cover set cells.
 					var coverLine = size switch
 					{
-						2 => CandidatesMap[digit] & (HouseMaps[cs[0]] | HouseMaps[cs[1]]),
-						3 => CandidatesMap[digit] & (HouseMaps[cs[0]] | HouseMaps[cs[1]] | HouseMaps[cs[2]]),
+						2 => CandidatesMap[digit] & (HousesMap[cs[0]] | HousesMap[cs[1]]),
+						3 => CandidatesMap[digit] & (HousesMap[cs[0]] | HousesMap[cs[1]] | HousesMap[cs[2]]),
 						4 => CandidatesMap[digit] & (
-							HouseMaps[cs[0]] | HouseMaps[cs[1]] | HouseMaps[cs[2]] | HouseMaps[cs[3]]
+							HousesMap[cs[0]] | HousesMap[cs[1]] | HousesMap[cs[2]] | HousesMap[cs[3]]
 						)
 					};
 
@@ -201,19 +201,19 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 
 						// Cover set shouldn't overlap with the block of all fins lying in.
 						int finBlock = TrailingZeroCount(blockMask);
-						if ((coverLine & HouseMaps[finBlock]) is [])
+						if ((coverLine & HousesMap[finBlock]) is [])
 						{
 							continue;
 						}
 
 						// Don't intersect.
-						if ((HouseMaps[finBlock] & coverLine - baseLine) is [])
+						if ((HousesMap[finBlock] & coverLine - baseLine) is [])
 						{
 							continue;
 						}
 
 						// Finally, get the elimination cells.
-						elimMap = coverLine - baseLine & HouseMaps[finBlock];
+						elimMap = coverLine - baseLine & HousesMap[finBlock];
 					}
 
 					// Gather the conclusions and candidates or houses to be highlighted.
@@ -292,7 +292,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 		var candidateOffsets = fins is [] ? null : new List<CandidateViewNode>();
 		foreach (int baseSet in baseSets)
 		{
-			foreach (int cell in HouseMaps[baseSet])
+			foreach (int cell in HousesMap[baseSet])
 			{
 				switch (CandidatesMap[digit].Contains(cell))
 				{
@@ -306,7 +306,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 						bool flag = false;
 						foreach (int c in ValuesMap[digit])
 						{
-							if (HouseMaps[c.ToHouseIndex(searchRow ? HouseType.Column : HouseType.Row)].Contains(cell))
+							if (HousesMap[c.ToHouseIndex(searchRow ? HouseType.Column : HouseType.Row)].Contains(cell))
 							{
 								flag = true;
 								break;
@@ -320,11 +320,11 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 						Cells baseMap = Cells.Empty, coverMap = Cells.Empty;
 						foreach (int b in baseSets)
 						{
-							baseMap |= HouseMaps[b];
+							baseMap |= HousesMap[b];
 						}
 						foreach (int c in coverSets)
 						{
-							coverMap |= HouseMaps[c];
+							coverMap |= HousesMap[c];
 						}
 						baseMap &= coverMap;
 						if (baseMap.Contains(cell))

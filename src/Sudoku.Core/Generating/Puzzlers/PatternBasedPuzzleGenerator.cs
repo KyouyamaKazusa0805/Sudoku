@@ -284,7 +284,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 
 		static bool predicate(int a, int b)
 			=> a / 9 == b / 9 // Cannot in a same cell.
-			|| PeerMaps[a / 9] + b / 9 == PeerMaps[a / 9] && a % 9 == b % 9; // Cannot be a same digit in a same house.
+			|| PeersMap[a / 9] + b / 9 == PeersMap[a / 9] && a % 9 == b % 9; // Cannot be a same digit in a same house.
 	}
 
 

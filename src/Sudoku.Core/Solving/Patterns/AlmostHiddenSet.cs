@@ -152,7 +152,7 @@ public sealed class AlmostHiddenSet :
 
 		for (int house = 0; house < 27; house++)
 		{
-			if ((HouseMaps[house] & emptyMap) is not { Count: >= 3 } tempMap)
+			if ((HousesMap[house] & emptyMap) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
@@ -165,7 +165,7 @@ public sealed class AlmostHiddenSet :
 					var cells = Cells.Empty;
 					foreach (int digit in digitCombination)
 					{
-						cells |= candidatesMap[digit] & HouseMaps[house];
+						cells |= candidatesMap[digit] & HousesMap[house];
 					}
 					if (cells.Count - 1 != size)
 					{

@@ -48,11 +48,11 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 
 				// Check the block that two cells both see.
 				var interMap = !(Cells.Empty + c1 + c2);
-				var unionMap = (PeerMaps[c1] | PeerMaps[c2]) + c1 + c2;
+				var unionMap = (PeersMap[c1] | PeersMap[c2]) + c1 + c2;
 				foreach (int interCell in interMap)
 				{
 					int block = interCell.ToHouseIndex(HouseType.Block);
-					var houseMap = HouseMaps[block];
+					var houseMap = HousesMap[block];
 					var checkingMap = houseMap - unionMap & houseMap;
 					if ((checkingMap & CandidatesMap[d1]) is not [] || (checkingMap & CandidatesMap[d2]) is not [])
 					{
@@ -62,7 +62,7 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 					// Check whether two digits are both in the same empty rectangle.
 					int b1 = c1.ToHouseIndex(HouseType.Block);
 					int b2 = c2.ToHouseIndex(HouseType.Block);
-					var erMap = (unionMap & HouseMaps[b1] - interMap) | (unionMap & HouseMaps[b2] - interMap);
+					var erMap = (unionMap & HousesMap[b1] - interMap) | (unionMap & HousesMap[b2] - interMap);
 					var erCellsMap = houseMap & erMap;
 					short m = grid.GetDigitsUnion(erCellsMap);
 					if ((m & mask) != mask)
@@ -73,8 +73,8 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 					// Check eliminations.
 					var conclusions = new List<Conclusion>();
 					int z = (interMap & houseMap)[0];
-					var c1Map = HouseMaps[(Cells.Empty + z + c1).CoveredLine];
-					var c2Map = HouseMaps[(Cells.Empty + z + c2).CoveredLine];
+					var c1Map = HousesMap[(Cells.Empty + z + c1).CoveredLine];
+					var c2Map = HousesMap[(Cells.Empty + z + c2).CoveredLine];
 					foreach (int elimCell in (c1Map | c2Map) - c1 - c2 - erMap)
 					{
 						if (CandidatesMap[d1].Contains(elimCell))

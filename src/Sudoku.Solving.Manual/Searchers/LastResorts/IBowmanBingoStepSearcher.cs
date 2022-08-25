@@ -172,7 +172,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 	private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(scoped in Grid grid, int cell, int digit)
 	{
 		var list = new List<int>();
-		foreach (int c in PeerMaps[cell] & CandidatesMap[digit])
+		foreach (int c in PeersMap[cell] & CandidatesMap[digit])
 		{
 			list.Add(c * 9 + digit);
 		}

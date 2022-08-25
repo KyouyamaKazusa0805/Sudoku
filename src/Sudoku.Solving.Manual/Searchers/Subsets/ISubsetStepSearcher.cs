@@ -62,7 +62,7 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 			// Naked subsets.
 			for (int house = 0; house < 27; house++)
 			{
-				if ((HouseMaps[house] & EmptyCells) is not { Count: >= 2 } currentEmptyMap)
+				if ((HousesMap[house] & EmptyCells) is not { Count: >= 2 } currentEmptyMap)
 				{
 					continue;
 				}
@@ -129,7 +129,7 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 			// Hidden subsets.
 			for (int house = 0; house < 27; house++)
 			{
-				var traversingMap = HouseMaps[house] - EmptyCells;
+				var traversingMap = HousesMap[house] - EmptyCells;
 				if (traversingMap.Count >= 8)
 				{
 					// No available digit (Or hidden single).
@@ -150,7 +150,7 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					{
 						tempMask &= (short)~(1 << digit);
 						digitsMask |= (short)(1 << digit);
-						map |= HouseMaps[house] & CandidatesMap[digit];
+						map |= HousesMap[house] & CandidatesMap[digit];
 					}
 					if (map.Count != size)
 					{

@@ -70,7 +70,7 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 							foreach (int house in (AllRowsMask | AllColumnsMask) & ~cells.Houses)
 							{
 								var crosshatchingHouseType = house >= 18 ? HouseType.Row : HouseType.Column;
-								var emptyCellsInThisHouse = HouseMaps[house] & CandidatesMap[xDigit];
+								var emptyCellsInThisHouse = HousesMap[house] & CandidatesMap[xDigit];
 								if (emptyCellsInThisHouse.Count < size)
 								{
 									continue;
@@ -79,7 +79,7 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 								var tempCrosshatchingHouses = Cells.Empty;
 								foreach (int cell in cells)
 								{
-									tempCrosshatchingHouses |= HouseMaps[cell.ToHouseIndex(crosshatchingHouseType)];
+									tempCrosshatchingHouses |= HousesMap[cell.ToHouseIndex(crosshatchingHouseType)];
 								}
 								emptyCellsInThisHouse &= tempCrosshatchingHouses;
 								if (emptyCellsInThisHouse.Count != size)
@@ -87,7 +87,7 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 									continue;
 								}
 
-								if ((HouseMaps[house] & CandidatesMap[xDigit]) != emptyCellsInThisHouse)
+								if ((HousesMap[house] & CandidatesMap[xDigit]) != emptyCellsInThisHouse)
 								{
 									// This house contains other unused empty cells
 									// that can also be filled with digit X.

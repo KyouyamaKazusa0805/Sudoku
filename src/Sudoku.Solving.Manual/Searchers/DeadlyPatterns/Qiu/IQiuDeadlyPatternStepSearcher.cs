@@ -38,7 +38,7 @@ public interface IQiuDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 		for (int i = 0, n = 0, length = BaseLineIterator.Length, outerLength = length >> 1; i < outerLength; i++)
 		{
 			bool isRow = i < length >> 2;
-			var baseLineMap = HouseMaps[BaseLineIterator[i, 0]] | HouseMaps[BaseLineIterator[i, 1]];
+			var baseLineMap = HousesMap[BaseLineIterator[i, 0]] | HousesMap[BaseLineIterator[i, 1]];
 			for (int j = isRow ? 0 : 9, z = 0, iterationLengthInner = length >> 2; z < iterationLengthInner; j++, z++)
 			{
 				int c1 = StartCells[j, 0], c2 = StartCells[j, 1];
@@ -50,15 +50,15 @@ public interface IQiuDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 						continue;
 					}
 
-					var tempMapBlock = HouseMaps[c1.ToHouseIndex(HouseType.Block)]
-						| HouseMaps[c2.ToHouseIndex(HouseType.Block)];
+					var tempMapBlock = HousesMap[c1.ToHouseIndex(HouseType.Block)]
+						| HousesMap[c2.ToHouseIndex(HouseType.Block)];
 					if ((baseLineMap & tempMapBlock) is not [])
 					{
 						continue;
 					}
 
-					var tempMapLine = HouseMaps[c1.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)]
-						| HouseMaps[c2.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)];
+					var tempMapLine = HousesMap[c1.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)]
+						| HousesMap[c2.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)];
 					var squareMap = baseLineMap & tempMapLine;
 					Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);
 				}
@@ -98,7 +98,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 			int appearedParts = 0;
 			for (int j = 0, house = isRow ? 18 : 9; j < 9; j++, house++)
 			{
-				var houseMap = HouseMaps[house];
+				var houseMap = HousesMap[house];
 				if ((baseLine & houseMap) is var tempMap and not [])
 				{
 					f(grid, tempMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
@@ -183,7 +183,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 						comparer |= (short)(1 << digit);
 					}
 					short otherDigitsMask = (short)(pairMask & ~comparer);
-					if (appearingMap == (tempMap & HouseMaps[TrailingZeroCount(square.BlockMask)]))
+					if (appearingMap == (tempMap & HousesMap[TrailingZeroCount(square.BlockMask)]))
 					{
 						// Qdp forms.
 						// Now check each type.
@@ -368,7 +368,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 	{
 		foreach (int houseIndex in pair.CoveredHouses)
 		{
-			var allCellsMap = (HouseMaps[houseIndex] & EmptyCells) - pair;
+			var allCellsMap = (HousesMap[houseIndex] & EmptyCells) - pair;
 			for (
 				int size = PopCount((uint)otherDigitsMask) - 1, length = allCellsMap.Count;
 				size < length;
@@ -469,7 +469,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		{
 			foreach (int digit in comparer)
 			{
-				if ((CandidatesMap[digit] & HouseMaps[houseIndex]) != pair)
+				if ((CandidatesMap[digit] & HousesMap[houseIndex]) != pair)
 				{
 					continue;
 				}
@@ -478,8 +478,8 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 				bool flag = false;
 				foreach (int d in otherDigitsMask)
 				{
-					if ((ValuesMap[d] & HouseMaps[houseIndex]) is not []
-						|| (HouseMaps[houseIndex] & CandidatesMap[d]) != square)
+					if ((ValuesMap[d] & HousesMap[houseIndex]) is not []
+						|| (HousesMap[houseIndex] & CandidatesMap[d]) != square)
 					{
 						flag = true;
 						break;
@@ -555,14 +555,14 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 	{
 		// Firstly, we should check the cells in the block that the square cells lying on.
 		int block = TrailingZeroCount(square.BlockMask);
-		var otherCellsMap = (HouseMaps[block] & EmptyCells) - square;
+		var otherCellsMap = (HousesMap[block] & EmptyCells) - square;
 		var tempMap = Cells.Empty;
 		scoped var pairDigits = comparer.GetAllSets();
 
 		bool flag = false;
 		foreach (int digit in pairDigits)
 		{
-			if ((ValuesMap[digit] & HouseMaps[block]) is not [])
+			if ((ValuesMap[digit] & HousesMap[block]) is not [])
 			{
 				flag = true;
 				break;

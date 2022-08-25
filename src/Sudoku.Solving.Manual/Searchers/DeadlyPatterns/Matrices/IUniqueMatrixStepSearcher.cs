@@ -245,7 +245,7 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 
 			foreach (int house in tempMap.CoveredHouses)
 			{
-				var allCells = (HouseMaps[house] & EmptyCells) - pattern;
+				var allCells = (HousesMap[house] & EmptyCells) - pattern;
 				for (int size = PopCount((uint)extraDigitsMask) - 1, count = allCells.Count; size < count; size++)
 				{
 					foreach (var cells in allCells & size)
@@ -345,10 +345,10 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 			foreach (int house in tempMap.CoveredHouses)
 			{
 				int d1 = -1, d2 = -1, count = 0;
-				var compareMap = HouseMaps[house] & pattern;
+				var compareMap = HousesMap[house] & pattern;
 				foreach (int digit in digits)
 				{
-					if ((compareMap | HouseMaps[house] & CandidatesMap[digit]) == compareMap)
+					if ((compareMap | HousesMap[house] & CandidatesMap[digit]) == compareMap)
 					{
 						switch (count++)
 						{

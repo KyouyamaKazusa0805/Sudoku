@@ -275,7 +275,7 @@ public unsafe partial struct Grid :
 		{
 			if (setValue != -1)
 			{
-				foreach (int peerCell in PeerMaps[cell])
+				foreach (int peerCell in PeersMap[cell])
 				{
 					if (@this.GetStatus(peerCell) == CellStatus.Empty)
 					{
@@ -296,7 +296,7 @@ public unsafe partial struct Grid :
 				{
 					// Remove all appeared digits.
 					short mask = MaxCandidatesMask;
-					foreach (int cell in PeerMaps[i])
+					foreach (int cell in PeersMap[i])
 					{
 						if (@this[cell] is var digit and not -1)
 						{
@@ -335,7 +335,7 @@ public unsafe partial struct Grid :
 					case CellStatus.Modifiable:
 					{
 						int curDigit = this[i];
-						foreach (int cell in PeerMaps[i])
+						foreach (int cell in PeersMap[i])
 						{
 							if (curDigit == this[cell])
 							{
@@ -454,7 +454,7 @@ public unsafe partial struct Grid :
 			int maskResult = 0;
 			for (int houseIndex = 0; houseIndex < 27; houseIndex++)
 			{
-				if ((EmptyCells & HouseMaps[houseIndex]).Count == 9)
+				if ((EmptyCells & HousesMap[houseIndex]).Count == 9)
 				{
 					maskResult |= 1 << houseIndex;
 				}

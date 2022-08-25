@@ -90,7 +90,7 @@ public unsafe struct Candidates :
 	{
 		this = default;
 		int cell = candidate / 9, digit = candidate % 9;
-		foreach (int c in PeerMaps[cell])
+		foreach (int c in PeersMap[cell])
 		{
 			InternalAdd(c * 9 + digit, true);
 		}

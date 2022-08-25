@@ -38,8 +38,8 @@ public interface IDominoLoopStepSearcher : INonnegativeRankStepSearcher
 							continue;
 						}
 
-						var all = HouseMaps[a] | HouseMaps[b] | HouseMaps[c] | HouseMaps[d];
-						var overlap = (HouseMaps[a] | HouseMaps[b]) & (HouseMaps[c] | HouseMaps[d]);
+						var all = HousesMap[a] | HousesMap[b] | HousesMap[c] | HousesMap[d];
+						var overlap = (HousesMap[a] | HousesMap[b]) & (HousesMap[c] | HousesMap[d]);
 						short blockMask = overlap.BlockMask;
 						for (int i = 0, count = 0; count < 4 && i < 16; i++)
 						{
@@ -49,25 +49,25 @@ public interface IDominoLoopStepSearcher : INonnegativeRankStepSearcher
 							}
 						}
 
-						all &= HouseMaps[s[0]] | HouseMaps[s[1]] | HouseMaps[s[2]] | HouseMaps[s[3]];
+						all &= HousesMap[s[0]] | HousesMap[s[1]] | HousesMap[s[2]] | HousesMap[s[3]];
 						all -= overlap;
 
 						SkLoopTable[n] = new int[16];
 						int pos = 0;
-						foreach (int cell in all & HouseMaps[a])
+						foreach (int cell in all & HousesMap[a])
 						{
 							SkLoopTable[n][pos++] = cell;
 						}
-						foreach (int cell in all & HouseMaps[d])
+						foreach (int cell in all & HousesMap[d])
 						{
 							SkLoopTable[n][pos++] = cell;
 						}
-						int[] cells = (all & HouseMaps[b]).ToArray();
+						int[] cells = (all & HousesMap[b]).ToArray();
 						SkLoopTable[n][pos++] = cells[2];
 						SkLoopTable[n][pos++] = cells[3];
 						SkLoopTable[n][pos++] = cells[0];
 						SkLoopTable[n][pos++] = cells[1];
-						cells = (all & HouseMaps[c]).ToArray();
+						cells = (all & HousesMap[c]).ToArray();
 						SkLoopTable[n][pos++] = cells[2];
 						SkLoopTable[n][pos++] = cells[3];
 						SkLoopTable[n][pos++] = cells[0];
@@ -194,7 +194,7 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 				var map = (Cells)cells & EmptyCells;
 				for (k = 0; k < 8; k++)
 				{
-					if ((HouseMaps[linkHouse[k]] & EmptyCells) - map is not (var elimMap and not []))
+					if ((HousesMap[linkHouse[k]] & EmptyCells) - map is not (var elimMap and not []))
 					{
 						continue;
 					}
@@ -224,7 +224,7 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 				for (k = 0; k < 8; k++)
 				{
 					link[linkHouse[k]] = tempLink[k];
-					foreach (int cell in map & HouseMaps[linkHouse[k]])
+					foreach (int cell in map & HousesMap[linkHouse[k]])
 					{
 						short cands = (short)(grid.GetCandidates(cell) & tempLink[k]);
 						if (cands == 0)

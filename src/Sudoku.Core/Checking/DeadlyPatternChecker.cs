@@ -47,7 +47,7 @@ public static class DeadlyPatternChecker
 		// Now complement candidates, and check whether the pattern contains only occupies one cell in a house.
 		foreach (int house in cellsUsed.Houses)
 		{
-			var currentHouseCells = HouseMaps[house] & cellsUsed;
+			var currentHouseCells = HousesMap[house] & cellsUsed;
 			if (currentHouseCells.Count == 1)
 			{
 				// This is an invalid case, which means we can directly return the false value.
@@ -217,7 +217,7 @@ public static class DeadlyPatternChecker
 			foreach (int house in cellsUsed.Houses)
 			{
 				short mask1 = 0, mask2 = 0;
-				foreach (int cell in HouseMaps[house])
+				foreach (int cell in HousesMap[house])
 				{
 					if (firstGrid[cell] is var a and not -1)
 					{

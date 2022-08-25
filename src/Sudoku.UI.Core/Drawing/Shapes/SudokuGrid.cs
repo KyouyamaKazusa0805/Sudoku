@@ -1084,7 +1084,7 @@ public sealed class SudokuGrid : DrawingElement
 						else
 						{
 							// For multiple- and no- solution puzzle, we should check only duplicate digits.
-							foreach (int cell in PeerMaps[i] - _grid.EmptyCells)
+							foreach (int cell in PeersMap[i] - _grid.EmptyCells)
 							{
 								if (_grid[cell] == _grid[i] && _grid.GetStatus(i) != CellStatus.Given)
 								{

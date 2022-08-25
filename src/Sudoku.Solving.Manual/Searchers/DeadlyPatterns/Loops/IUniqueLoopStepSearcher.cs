@@ -309,12 +309,12 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 		short otherDigitsMask = (short)(m & ~comparer);
 		foreach (int houseIndex in extraCellsMap.CoveredHouses)
 		{
-			if (((ValuesMap[d1] | ValuesMap[d2]) & HouseMaps[houseIndex]) is not [])
+			if (((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[houseIndex]) is not [])
 			{
 				continue;
 			}
 
-			var otherCells = (HouseMaps[houseIndex] & EmptyCells) - loop;
+			var otherCells = (HousesMap[houseIndex] & EmptyCells) - loop;
 			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Count; size < count; size++)
 			{
 				foreach (int[] cells in otherCells & size)
@@ -325,7 +325,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 						continue;
 					}
 
-					if ((HouseMaps[houseIndex] & EmptyCells) - (Cells)cells - loop is not (var elimMap and not []))
+					if ((HousesMap[houseIndex] & EmptyCells) - (Cells)cells - loop is not (var elimMap and not []))
 					{
 						continue;
 					}
@@ -421,8 +421,8 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 			for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
 				var (digit, otherDigit) = digitPairs[digitPairIndex];
-				var map = HouseMaps[houseIndex] & CandidatesMap[digit];
-				if (map != (HouseMaps[houseIndex] & loop))
+				var map = HousesMap[houseIndex] & CandidatesMap[digit];
+				if (map != (HousesMap[houseIndex] & loop))
 				{
 					continue;
 				}

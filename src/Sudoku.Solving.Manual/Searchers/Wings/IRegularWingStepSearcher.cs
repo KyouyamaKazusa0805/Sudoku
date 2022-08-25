@@ -50,7 +50,7 @@ internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepS
 					continue;
 				}
 
-				var map = PeerMaps[pivot] & BivalueCells;
+				var map = PeersMap[pivot] & BivalueCells;
 				if (map.Count < size - 1)
 				{
 					// Bi-value cells are not enough.
@@ -115,7 +115,7 @@ internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepS
 					var elimMap = !petals;
 					if (!isIncomplete)
 					{
-						elimMap &= PeerMaps[pivot];
+						elimMap &= PeersMap[pivot];
 					}
 					elimMap &= CandidatesMap[zDigit];
 					if (elimMap is [])

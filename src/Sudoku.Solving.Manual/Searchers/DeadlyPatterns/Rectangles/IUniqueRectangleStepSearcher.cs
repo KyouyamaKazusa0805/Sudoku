@@ -137,7 +137,7 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	/// <returns>A <see cref="bool"/> value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	protected internal static sealed bool IsConjugatePair(int digit, scoped in Cells map, int houseIndex)
-		=> (HouseMaps[houseIndex] & CandidatesMap[digit]) == map;
+		=> (HousesMap[houseIndex] & CandidatesMap[digit]) == map;
 
 	/// <summary>
 	/// Get a cell that can't see each other.
@@ -680,12 +680,12 @@ unsafe partial class UniqueRectangleStepSearcher
 		short otherDigitsMask = (short)(mask ^ comparer);
 		foreach (int houseIndex in otherCellsMap.CoveredHouses)
 		{
-			if (((ValuesMap[d1] | ValuesMap[d2]) & HouseMaps[houseIndex]) is not [])
+			if (((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[houseIndex]) is not [])
 			{
 				return;
 			}
 
-			var iterationMap = (HouseMaps[houseIndex] & EmptyCells) - otherCellsMap;
+			var iterationMap = (HousesMap[houseIndex] & EmptyCells) - otherCellsMap;
 			for (int size = PopCount((uint)otherDigitsMask) - 1, count = iterationMap.Count; size < count; size++)
 			{
 				foreach (var iteratedCells in iterationMap & size)
@@ -1291,7 +1291,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			// 'xy' found.
 			// Now check eliminations.
-			var elimMap = inter & PeerMaps[possibleXyCell];
+			var elimMap = inter & PeersMap[possibleXyCell];
 			var conclusions = new List<Conclusion>(10);
 			foreach (int cell in elimMap)
 			{
@@ -1762,7 +1762,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			// Possible XY cell found.
 			// Now check eliminations.
 			var conclusions = new List<Conclusion>(10);
-			foreach (int cell in inter & PeerMaps[possibleXyCell])
+			foreach (int cell in inter & PeersMap[possibleXyCell])
 			{
 				if (CandidatesMap[x].Contains(cell))
 				{
@@ -2711,7 +2711,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				return;
 			}
 
-			var map = (PeerMaps[otherCell1] | PeerMaps[otherCell2]) & BivalueCells;
+			var map = (PeersMap[otherCell1] | PeersMap[otherCell2]) & BivalueCells;
 			if (map.Count < size)
 			{
 				return;
@@ -3185,14 +3185,14 @@ unsafe partial class UniqueRectangleStepSearcher
 			bool cannibalMode = cannibalModeCases[caseIndex];
 			foreach (byte otherBlock in d)
 			{
-				var emptyCellsInInterMap = HouseMaps[otherBlock] & HouseMaps[line] & EmptyCells;
+				var emptyCellsInInterMap = HousesMap[otherBlock] & HousesMap[line] & EmptyCells;
 				if (emptyCellsInInterMap.Count < 2)
 				{
 					// The intersection needs at least two empty cells.
 					continue;
 				}
 
-				Cells b = HouseMaps[otherBlock] - HouseMaps[line], c = a & b;
+				Cells b = HousesMap[otherBlock] - HousesMap[line], c = a & b;
 
 				list.Clear();
 				switch (emptyCellsInInterMap)
@@ -3493,7 +3493,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			foreach (int targetCell in cells)
 			{
 				int block = targetCell.ToHouseIndex(HouseType.Block);
-				var bivalueCellsToCheck = (PeerMaps[targetCell] & HouseMaps[block] & BivalueCells) - cells;
+				var bivalueCellsToCheck = (PeersMap[targetCell] & HousesMap[block] & BivalueCells) - cells;
 				if (bivalueCellsToCheck is [])
 				{
 					continue;
@@ -3514,7 +3514,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						continue;
 					}
 
-					int urCellInSameBlock = ((HouseMaps[block] & cells) - targetCell)[0];
+					int urCellInSameBlock = ((HousesMap[block] & cells) - targetCell)[0];
 					int coveredLine = (Cells.Empty + bivalueCellToCheck + urCellInSameBlock).CoveredLine;
 					if (coveredLine == InvalidValidOfTrailingZeroCountMethodFallback)
 					{
@@ -3523,7 +3523,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						continue;
 					}
 
-					int anotherCell = (cells - urCellInSameBlock & HouseMaps[coveredLine])[0];
+					int anotherCell = (cells - urCellInSameBlock & HousesMap[coveredLine])[0];
 					foreach (int extraDigit in grid.GetCandidates(targetCell) & ~comparer)
 					{
 						short abcMask = (short)(comparer | (short)(1 << extraDigit));
@@ -3800,7 +3800,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		// Iterate on two houses used.
 		foreach (int[] houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
 		{
-			var houseCells = HouseMaps[houseCombination[0]] | HouseMaps[houseCombination[1]];
+			var houseCells = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
 			if ((houseCells & cells) != cells)
 			{
 				// The houses must contain all 4 UR cells.
@@ -3901,7 +3901,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		// Iterate on two houses used.
 		foreach (int[] houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
 		{
-			var guardianMap = HouseMaps[houseCombination[0]] | HouseMaps[houseCombination[1]];
+			var guardianMap = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
 			if ((guardianMap & cells) != cells)
 			{
 				// The houses must contain all 4 UR cells.
@@ -3939,7 +3939,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 				foreach (int house in houses)
 				{
-					var houseCells = HouseMaps[house] - cells - guardianCellPair & EmptyCells;
+					var houseCells = HousesMap[house] - cells - guardianCellPair & EmptyCells;
 					for (int size = 2; size <= houseCells.Count; size++)
 					{
 						foreach (var otherCells in houseCells & size - 1)
@@ -4058,7 +4058,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		// Iterate on two houses used.
 		foreach (int[] houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
 		{
-			var guardianMap = HouseMaps[houseCombination[0]] | HouseMaps[houseCombination[1]];
+			var guardianMap = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
 			if ((guardianMap & cells) != cells)
 			{
 				// The houses must contain all 4 UR cells.
@@ -4107,7 +4107,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							continue;
 						}
 
-						if ((CandidatesMap[conjugatePairDigit] & HouseMaps[house]) != guardianCellPair)
+						if ((CandidatesMap[conjugatePairDigit] & HousesMap[house]) != guardianCellPair)
 						{
 							// The house cannot contain any other cells containing that digit.
 							continue;
@@ -4239,18 +4239,18 @@ unsafe partial class UniqueRectangleStepSearcher
 				int houseIndex = baseCell.ToHouseIndex(houseType);
 
 				// If the house doesn't overlap with the specified house, just skip it.
-				if ((cellsThatTwoOtherCellsBothCanSee & HouseMaps[houseIndex]) is [])
+				if ((cellsThatTwoOtherCellsBothCanSee & HousesMap[houseIndex]) is [])
 				{
 					continue;
 				}
 
-				var otherCells = HouseMaps[houseIndex] & CandidatesMap[otherDigit] & PeerMaps[anotherCell];
+				var otherCells = HousesMap[houseIndex] & CandidatesMap[otherDigit] & PeersMap[anotherCell];
 				int sameHouses = (otherCells + anotherCell).CoveredHouses;
 				foreach (int sameHouse in sameHouses)
 				{
 					// Check whether all possible positions of the digit 'b' in this house only
 					// lies in the given cells above ('cellsThatTwoOtherCellsBothCanSee').
-					if ((HouseMaps[sameHouse] - anotherCell & CandidatesMap[otherDigit]) != otherCells)
+					if ((HousesMap[sameHouse] - anotherCell & CandidatesMap[otherDigit]) != otherCells)
 					{
 						continue;
 					}

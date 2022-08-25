@@ -27,8 +27,8 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 				for (int r2 = r1 + 1; r2 < 27; r2++)
 				{
 					// Get masks.
-					short mask1 = (HouseMaps[r1] & CandidatesMap[digit]) / r1;
-					short mask2 = (HouseMaps[r2] & CandidatesMap[digit]) / r2;
+					short mask1 = (HousesMap[r1] & CandidatesMap[digit]) / r1;
+					short mask2 = (HousesMap[r2] & CandidatesMap[digit]) / r2;
 					if (PopCount((uint)mask1) != 2 || PopCount((uint)mask2) != 2)
 					{
 						continue;
@@ -81,7 +81,7 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 					// Two strong link found.
 					// Record all eliminations.
 					int head = cells1[headIndex], tail = cells2[tailIndex];
-					if ((PeerMaps[head] & PeerMaps[tail] & CandidatesMap[digit]) is not (var elimMap and not []))
+					if ((PeersMap[head] & PeersMap[tail] & CandidatesMap[digit]) is not (var elimMap and not []))
 					{
 						continue;
 					}

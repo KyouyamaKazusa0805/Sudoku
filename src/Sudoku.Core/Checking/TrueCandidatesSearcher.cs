@@ -72,7 +72,7 @@ public sealed unsafe class TrueCandidatesSearcher
 				cell.CopyHouseInfo(peerHouses);
 				for (int i = 0; i < 3; i++)
 				{
-					if ((map & HouseMaps[peerHouses[i]]).Count > 2)
+					if ((map & HousesMap[peerHouses[i]]).Count > 2)
 					{
 						// The specified house contains at least three positions to fill with the digit,
 						// which is invalid in any BUG + n patterns.
@@ -132,7 +132,7 @@ public sealed unsafe class TrueCandidatesSearcher
 					}
 					foreach (int houseIndex in playground)
 					{
-						if ((temp & HouseMaps[houseIndex]).Count > 2)
+						if ((temp & HousesMap[houseIndex]).Count > 2)
 						{
 							@continue = false;
 							break;

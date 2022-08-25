@@ -41,7 +41,7 @@ internal sealed partial class RwNPlus1TheoryStepSearcher : IRwNPlus1TheoryStepSe
 			var availableElimMap = Cells.Empty;
 			for (int @base = (int)elimHouseType * 9, i = @base; i < @base + 9; i++)
 			{
-				var miniline = HouseMaps[i] & chute;
+				var miniline = HousesMap[i] & chute;
 				if (miniline - EmptyCells is not (var currentNonemptyCells and not []))
 				{
 					continue;

@@ -385,7 +385,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 	{
 		foreach (int houseIndex in extraCellsMap.CoveredHouses)
 		{
-			var otherCells = (HouseMaps[houseIndex] & EmptyCells) - allCellsMap;
+			var otherCells = (HousesMap[houseIndex] & EmptyCells) - allCellsMap;
 			for (int size = 1, length = otherCells.Count; size < length; size++)
 			{
 				foreach (var cells in otherCells & size)
@@ -396,7 +396,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 						continue;
 					}
 
-					var elimMap = (HouseMaps[houseIndex] & EmptyCells) - allCellsMap - cells;
+					var elimMap = (HousesMap[houseIndex] & EmptyCells) - allCellsMap - cells;
 					if (elimMap is [])
 					{
 						continue;
@@ -547,8 +547,8 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 				{
 					foreach (int houseIndex in extraCellsMap.CoveredHouses)
 					{
-						var map = HouseMaps[houseIndex] & extraCellsMap;
-						if (map != extraCellsMap || map != (CandidatesMap[conjugateDigit] & HouseMaps[houseIndex]))
+						var map = HousesMap[houseIndex] & extraCellsMap;
+						if (map != extraCellsMap || map != (CandidatesMap[conjugateDigit] & HousesMap[houseIndex]))
 						{
 							continue;
 						}

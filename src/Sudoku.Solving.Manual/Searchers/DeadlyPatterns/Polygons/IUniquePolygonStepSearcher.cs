@@ -404,7 +404,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		foreach (int houseIndex in map.Houses)
 		{
-			var currentMap = HouseMaps[houseIndex] & map;
+			var currentMap = HousesMap[houseIndex] & map;
 			var otherCellsMap = map - currentMap;
 			short otherMask = grid.GetDigitsUnion(otherCellsMap);
 
@@ -421,7 +421,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 				}
 
 				// Iterate on the cells by the specified size.
-				var iterationCellsMap = (HouseMaps[houseIndex] - currentMap) & EmptyCells;
+				var iterationCellsMap = (HousesMap[houseIndex] - currentMap) & EmptyCells;
 				short otherDigitsMask = (short)(orMask & ~tempMask);
 				for (int size = PopCount((uint)otherDigitsMask) - 1, count = iterationCellsMap.Count; size < count; size++)
 				{
@@ -519,7 +519,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		foreach (int houseIndex in map.Houses)
 		{
-			var currentMap = HouseMaps[houseIndex] & map;
+			var currentMap = HousesMap[houseIndex] & map;
 			var otherCellsMap = map - currentMap;
 			short otherMask = grid.GetDigitsUnion(otherCellsMap);
 
@@ -548,14 +548,14 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 					bool flag = false;
 					foreach (int digit in combination)
 					{
-						if ((ValuesMap[digit] & HouseMaps[houseIndex]) is not [])
+						if ((ValuesMap[digit] & HousesMap[houseIndex]) is not [])
 						{
 							flag = true;
 							break;
 						}
 
 						combinationMask |= (short)(1 << digit);
-						combinationMap |= CandidatesMap[digit] & HouseMaps[houseIndex];
+						combinationMap |= CandidatesMap[digit] & HousesMap[houseIndex];
 					}
 					if (flag)
 					{
