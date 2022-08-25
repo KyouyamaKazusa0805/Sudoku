@@ -94,7 +94,10 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 				{
 					case 0:
 					{
-						throw new InvalidOperationException("The current grid has no solution.");
+						// The puzzle is invalid - it doesn't contain any possible correct solution.
+						// Although the puzzle is invalid, we can also use other step searchers to solve
+						// this strange puzzle.
+						return IInvalidStep.Instance;
 					}
 					case 1:
 					{

@@ -10716,6 +10716,85 @@
             Indicates the unhandled exception thrown.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.IInvalidStep">
+            <summary>
+            Provides with an invalid step instance that can be used for some cases that the technique should be skipped
+            because it is temporarily not supported by the technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.IInvalidStep.Instance">
+            <summary>
+            Indicates the only instance of type <see cref="T:Sudoku.Solving.IInvalidStep"/> that can be used.
+            </summary>
+            <remarks>
+            This instance is special. The instance will be used only if the step searcher found the puzzle
+            being invalid to be successfully and correctly handled.
+            All members existed in type <see cref="T:Sudoku.Solving.IStep"/> are implemented with throwing behavior.
+            In other words, you cannot use any possible members in this instance; otherwise you will get
+            a <see cref="T:System.NotSupportedException"/> instance.
+            </remarks>
+            <seealso cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="T:Sudoku.Solving.InvalidStep">
+            <summary>
+            The background type that has implemented the type <see cref="T:Sudoku.Solving.IInvalidStep"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.IInvalidStep"/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#ElimStr">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Presentation#IDisplayable#Conclusions">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Presentation#IDisplayable#Views">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#ApplyTo(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#Formatize(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#HasTag(Sudoku.Solving.Data.Representation.TechniqueTags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#ToFullString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#ToSimpleString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.ISimpleSolver">
             <summary>
             Defines a simple solver.

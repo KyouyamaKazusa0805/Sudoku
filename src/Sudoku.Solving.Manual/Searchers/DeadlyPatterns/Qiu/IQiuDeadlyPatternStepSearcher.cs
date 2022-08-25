@@ -76,13 +76,12 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		for (int i = 0, length = IQiuDeadlyPatternStepSearcher.Patterns.Length; i < length; i++)
 		{
 			bool isRow = i < length >> 1;
-			var pattern = IQiuDeadlyPatternStepSearcher.Patterns[i];
-			if (pattern is not
+			if (IQiuDeadlyPatternStepSearcher.Patterns[i] is not
 				{
 					Pair: [var pairFirst, var pairSecond] pair,
 					Square: var square,
 					BaseLine: var baseLine
-				})
+				} pattern)
 			{
 				continue;
 			}

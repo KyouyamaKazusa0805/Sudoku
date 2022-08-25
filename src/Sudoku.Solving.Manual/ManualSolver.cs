@@ -145,31 +145,36 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 					// to continue solving puzzle.
 					goto TryAgain;
 				}
-				default:
+				case var _ when searcher.GetAll(null!, playground, true) is var foundStep:
 				{
-					var foundStep = searcher.GetAll(null!, playground, true);
-					if (foundStep is null)
+					switch (foundStep)
 					{
-						continue;
-					}
-
-					if (verifyConclusionValidity(solution, foundStep))
-					{
-						if (recordStep(
-								recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
-								resultBase, cancellationToken, out var result))
+						case null:
+						case IInvalidStep when ReferenceEquals(IInvalidStep.Instance, foundStep):
 						{
-							return result;
+							continue;
+						}
+						default:
+						{
+							if (verifyConclusionValidity(solution, foundStep))
+							{
+								if (recordStep(
+										recordedSteps, foundStep, ref playground, stopwatch, stepGrids,
+										resultBase, cancellationToken, out var result))
+								{
+									return result;
+								}
+							}
+							else
+							{
+								throw new WrongStepException(playground, foundStep);
+							}
+
+							// The puzzle has not been finished, we should turn to the first step finder
+							// to continue solving puzzle.
+							goto TryAgain;
 						}
 					}
-					else
-					{
-						throw new WrongStepException(playground, foundStep);
-					}
-
-					// The puzzle has not been finished, we should turn to the first step finder
-					// to continue solving puzzle.
-					goto TryAgain;
 				}
 			}
 		}

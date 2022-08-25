@@ -221,12 +221,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 	/// <seealso cref="FastProperties"/>
 	protected internal static sealed bool FormsPattern(scoped in Grid grid)
 	{
-		_ = grid is
-		{
-			BivalueCells: var bivalueCells,
-			EmptyCells: var emptyCells,
-			CandidatesMap: var candidatesMap
-		};
+		_ = grid is { BivalueCells: var bivalueCells, EmptyCells: var emptyCells, CandidatesMap: var candidatesMap };
 		if (bivalueCells != emptyCells)
 		{
 			return false;
@@ -289,7 +284,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		{
 			case []:
 			{
-				return null;
+				return IInvalidStep.Instance;
 			}
 			case [var trueCandidate]:
 			{
