@@ -90,19 +90,40 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 
 								break;
 							}
-							case { Count: > 2 and <= 6, BlockMask: var blox } when PopCount((uint)blox) == 2:
+							case { Count: > 2 and <= 6, BlockMask: var blox }:
 							{
-								int block1 = TrailingZeroCount(blox), block2 = blox.GetNextSet(block1);
-								var bridgeInBlock1 = HousesMap[block1] & bridge;
-								var bridgeInBlock2 = HousesMap[block2] & bridge;
-								bool sameHouseWithTerminalCells =
-									(PeersMap[c1] & bridgeInBlock1) == bridgeInBlock1
-									&& (PeersMap[c2] & bridgeInBlock2) == bridgeInBlock2
-									|| (PeersMap[c1] & bridgeInBlock2) == bridgeInBlock2
-									&& (PeersMap[c2] & bridgeInBlock1) == bridgeInBlock1;
-								if (!sameHouseWithTerminalCells)
+								switch (PopCount((uint)blox))
 								{
-									continue;
+									case 1:
+									{
+										if (((PeersMap[c1] | PeersMap[c2]) & bridge) != bridge)
+										{
+											continue;
+										}
+
+										break;
+									}
+									case 2:
+									{
+										int block1 = TrailingZeroCount(blox), block2 = blox.GetNextSet(block1);
+										var bridgeInBlock1 = HousesMap[block1] & bridge;
+										var bridgeInBlock2 = HousesMap[block2] & bridge;
+										bool sameHouseWithTerminalCells =
+											(PeersMap[c1] & bridgeInBlock1) == bridgeInBlock1
+											&& (PeersMap[c2] & bridgeInBlock2) == bridgeInBlock2
+											|| (PeersMap[c1] & bridgeInBlock2) == bridgeInBlock2
+											&& (PeersMap[c2] & bridgeInBlock1) == bridgeInBlock1;
+										if (!sameHouseWithTerminalCells)
+										{
+											continue;
+										}
+
+										break;
+									}
+									default:
+									{
+										continue;
+									}
 								}
 
 								break;
