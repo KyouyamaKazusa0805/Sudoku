@@ -22,37 +22,37 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 	{
 		for (int digit = 0; digit < 9; digit++)
 		{
-			for (int r1 = 0; r1 < 26; r1++)
+			for (int h1 = 0; h1 < 26; h1++)
 			{
-				for (int r2 = r1 + 1; r2 < 27; r2++)
+				for (int h2 = h1 + 1; h2 < 27; h2++)
 				{
 					// Get masks.
-					short mask1 = (HousesMap[r1] & CandidatesMap[digit]) / r1;
-					short mask2 = (HousesMap[r2] & CandidatesMap[digit]) / r2;
+					short mask1 = (HousesMap[h1] & CandidatesMap[digit]) / h1;
+					short mask2 = (HousesMap[h2] & CandidatesMap[digit]) / h2;
 					if (PopCount((uint)mask1) != 2 || PopCount((uint)mask2) != 2)
 					{
 						continue;
 					}
 
 					// Get all cells.
-					var map1 = Cells.Empty;
-					var map2 = Cells.Empty;
-					var cells1 = new List<int>();
-					var cells2 = new List<int>();
+					var cells1 = Cells.Empty;
+					var cells2 = Cells.Empty;
+					var cellsList1 = new List<int>(PopCount((uint)mask1));
+					var cellsList2 = new List<int>(PopCount((uint)mask2));
 					foreach (int pos1 in mask1)
 					{
-						int cell1 = HouseCells[r1][pos1];
+						int cell1 = HouseCells[h1][pos1];
+						cellsList1.Add(cell1);
 						cells1.Add(cell1);
-						map1.Add(cell1);
 					}
 					foreach (int pos2 in mask2)
 					{
-						int cell2 = HouseCells[r2][pos2];
+						int cell2 = HouseCells[h2][pos2];
+						cellsList2.Add(cell2);
 						cells2.Add(cell2);
-						map2.Add(cell2);
 					}
 
-					if ((map1 & map2) is not [])
+					if ((cells1 & cells2) is not [])
 					{
 						continue;
 					}
@@ -61,10 +61,10 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 					int sameHouse, headIndex, tailIndex, c1Index, c2Index;
 					for (int i = 0; i < 2; i++)
 					{
-						int cell1 = cells1[i];
+						int cell1 = cellsList1[i];
 						for (int j = 0; j < 2; j++)
 						{
-							int cell2 = cells2[j];
+							int cell2 = cellsList2[j];
 							if ((Cells.Empty + cell1 + cell2).AllSetsAreInOneHouse(out sameHouse))
 							{
 								(c1Index, c2Index) = (i, j);
@@ -74,13 +74,13 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 						}
 					}
 
-					// Not same block.
+					// Not same house.
 					continue;
 
 				Checking:
 					// Two strong link found.
 					// Record all eliminations.
-					int head = cells1[headIndex], tail = cells2[tailIndex];
+					int head = cellsList1[headIndex], tail = cellsList2[tailIndex];
 					if ((PeersMap[head] & PeersMap[tail] & CandidatesMap[digit]) is not (var elimMap and not []))
 					{
 						continue;
@@ -92,16 +92,16 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 							View.Empty
 								| new CandidateViewNode[]
 								{
-									new(DisplayColorKind.Normal, cells1[c1Index] * 9 + digit),
-									new(DisplayColorKind.Normal, cells2[c2Index] * 9 + digit),
+									new(DisplayColorKind.Normal, cellsList1[c1Index] * 9 + digit),
+									new(DisplayColorKind.Normal, cellsList2[c2Index] * 9 + digit),
 									new(DisplayColorKind.Normal, head * 9 + digit),
 									new(DisplayColorKind.Normal, tail * 9 + digit)
 								}
 								| new HouseViewNode(DisplayColorKind.Auxiliary1, sameHouse)
 						),
 						digit,
-						r1,
-						r2
+						h1,
+						h2
 					);
 
 					if (onlyFindOne)
