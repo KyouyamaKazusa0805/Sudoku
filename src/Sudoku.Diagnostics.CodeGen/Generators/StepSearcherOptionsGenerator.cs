@@ -69,8 +69,9 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 									{
 										IsRecord: false,
 										ContainingNamespace: var containingNamespace,
-										Name: var stepSearcherName
-									} stepSearcherTypeSymbol
+										Name: var stepSearcherName,
+										Interfaces: var stepSearcherImplementedInterfaces
+									}
 								]
 							} attributeClassSymbol,
 							ConstructorArguments: [{ Type.TypeKind: Kind.Enum, Value: byte dl }],
@@ -95,6 +96,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 							priorityValue++,
 							dl,
 							stepSearcherName,
+							stepSearcherImplementedInterfaces.First(namespaceChecker).Name,
 							namedArguments
 						)
 					);
@@ -104,7 +106,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				// by the source generator to output.
 				var generatedCodeSnippets = new List<string>();
 				var namespaceUsed = foundAttributesData[0].Namespace;
-				foreach (var (_, priority, level, name, namedArguments) in foundAttributesData)
+				foreach (var (_, priority, level, name, docCommentTypeName, namedArguments) in foundAttributesData)
 				{
 					// Checks whether the attribute has configured any extra options.
 					byte? enabledArea = null;
@@ -151,6 +153,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 					// Output the generated code.
 					generatedCodeSnippets.Add(
 						$$"""
+						/// <inheritdoc cref="{{docCommentTypeName}}"/>
 						partial class {{name}}
 						{
 							/// <inheritdoc/>
@@ -224,6 +227,12 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 
 					return string.Join(" | ", targetList);
 				}
+
+				static bool namespaceChecker(INamedTypeSymbol i)
+				{
+					string namespaceName = i.ContainingNamespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+					return namespaceName[(namespaceName.LastIndexOf('.') + 1)..] != "Specialized";
+				}
 			}
 		);
 }
@@ -235,11 +244,15 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 /// <param name="PriorityValue">The priority value of the step searcher.</param>
 /// <param name="DifficultyLevel">The difficulty level of the step searcher.</param>
 /// <param name="TypeName">The name of the step searcher type.</param>
+/// <param name="DocCommentInterfaceTypeName">
+/// The name of the interface type that is used for displaying for the doc comment.
+/// </param>
 /// <param name="NamedArguments">The named arguments of that attribute.</param>
 file readonly record struct FoundAttributeData(
 	INamespaceSymbol Namespace,
 	int PriorityValue,
 	byte DifficultyLevel,
 	string TypeName,
+	string DocCommentInterfaceTypeName,
 	ImmutableArray<KeyValuePair<string, TypedConstant>> NamedArguments
 );

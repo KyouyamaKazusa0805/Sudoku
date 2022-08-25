@@ -278,9 +278,12 @@
             <param name="PriorityValue">The priority value of the step searcher.</param>
             <param name="DifficultyLevel">The difficulty level of the step searcher.</param>
             <param name="TypeName">The name of the step searcher type.</param>
+            <param name="DocCommentInterfaceTypeName">
+            The name of the interface type that is used for displaying for the doc comment.
+            </param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
             <summary>
             Simply encapsulates a data tuple describing the information of a found attribute.
             </summary>
@@ -288,6 +291,9 @@
             <param name="PriorityValue">The priority value of the step searcher.</param>
             <param name="DifficultyLevel">The difficulty level of the step searcher.</param>
             <param name="TypeName">The name of the step searcher type.</param>
+            <param name="DocCommentInterfaceTypeName">
+            The name of the interface type that is used for displaying for the doc comment.
+            </param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.Namespace">
@@ -301,6 +307,11 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.TypeName">
             <summary>The name of the step searcher type.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.DocCommentInterfaceTypeName">
+            <summary>
+            The name of the interface type that is used for displaying for the doc comment.
+            </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.NamedArguments">
             <summary>The named arguments of that attribute.</summary>

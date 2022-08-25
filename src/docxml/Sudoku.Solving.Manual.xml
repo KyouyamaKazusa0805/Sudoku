@@ -605,6 +605,9 @@
             </list>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsWWingStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsWWingStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsWWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -624,6 +627,9 @@
             <summary>
             Indicates whether two ALSes make an collision, which means they share the some same cells. 
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXyWingStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXyWingStepSearcher"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXyWingStepSearcher.AllowCollision">
             <inheritdoc/>
@@ -656,6 +662,9 @@
             for looped-ALS eliminations.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher.AllowCollision">
             <inheritdoc/>
         </member>
@@ -685,6 +694,9 @@
             <item>Empty Rectangle Intersection Pair</item>
             </list>
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.EmptyRectangleIntersectionPairStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IEmptyRectangleIntersectionPairStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleIntersectionPairStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -812,6 +824,9 @@
             </summary>
             <param name="ids">The list of node IDs.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._strongInferences">
             <summary>
@@ -1065,6 +1080,9 @@
             </list>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.UniquenessClueCoverStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IUniquenessClueCoverStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniquenessClueCoverStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
@@ -1154,6 +1172,9 @@
 		</summary>
 	</static-constructor>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IExtendedRectangleStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -1236,6 +1257,9 @@
             </summary>
             <param name="loopCells">The loop cells.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IUniqueLoopStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -1327,6 +1351,9 @@
 		</summary>
 	</static-constructor>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.UniqueMatrixStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IUniqueMatrixStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueMatrixStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -1341,6 +1368,9 @@
             <item>RW's N + 1 Deadly Pattern Theory</item>
             </list>
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RwNPlus1TheoryStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IRwNPlus1TheoryStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.RwNPlus1TheoryStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -1395,6 +1425,9 @@
 		</summary>
 	</static-constructor>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IUniquePolygonStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniquePolygonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -1431,6 +1464,9 @@
 			</para>
 		</summary>
 	</static-constructor>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.QiuDeadlyPatternStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IQiuDeadlyPatternStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.QiuDeadlyPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -1564,6 +1600,9 @@
             </summary>
             <param name="urCells">The all UR cells used.</param>
             <returns>The list of highlight cells.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles">
             <inheritdoc/>
@@ -2238,6 +2277,9 @@
             ......9...812...6.6.2.3.7.8...4...8....5.6....9...7...3.5.8.1.4.4...123...9......
             -->
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.ReverseBivalueUniversalGraveStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IReverseUniqueRectangleStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.ReverseBivalueUniversalGraveStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -2314,6 +2356,9 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
             <seealso cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.BivalueUniversalGraveStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IBivalueUniversalGraveStepSearcher"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes">
             <inheritdoc/>
         </member>
@@ -2372,6 +2417,9 @@
             </list>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IJuniorExocetStepSearcher"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.JuniorExocetStepSearcher.CheckAdvanced">
             <inheritdoc/>
         </member>
@@ -2413,6 +2461,9 @@
             </list>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SeniorExocetStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.ISeniorExocetStepSearcher"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SeniorExocetStepSearcher.CheckAdvanced">
             <inheritdoc/>
         </member>
@@ -2443,6 +2494,9 @@
             </item>
             </list>
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IComplexFishStepSearcher"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.ComplexFishStepSearcher.MaxSize">
             <inheritdoc/>
@@ -2541,6 +2595,9 @@
             </list>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.INormalFishStepSearcher"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.Sudoku#Solving#Manual#Searchers#IFishStepSearcher#MaxSize">
             <inheritdoc/>
             <remarks>
@@ -2602,6 +2659,9 @@
             to form an almost locked candidates. If the value is <see langword="true"/>,
             some possible Sue de Coqs steps will be replaced with Almost Locked Candidates ones.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
             <inheritdoc/>
@@ -2713,6 +2773,9 @@
             </param>
             <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IFireworkStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.FireworkStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -2758,6 +2821,9 @@
             <item>Claiming</item>
             </list>
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.ILockedCandidatesStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -2904,6 +2970,9 @@
             Indicates the maximum length of the bowman bingo you want to search for.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.BowmanBingoStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IBowmanBingoStepSearcher"/>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.BowmanBingoStepSearcher._searcher">
             <summary>
             The singles searcher.
@@ -2965,6 +3034,9 @@
             </list>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IBruteForceStepSearcher"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.BruteForceStepSearcher.Solution">
             <inheritdoc/>
         </member>
@@ -3001,6 +3073,9 @@
             </summary>
             <returns>The templates.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.PatternOverlayStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IPatternOverlayStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.PatternOverlayStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -3021,6 +3096,9 @@
             <summary>
             Indicates whether the technique searcher only checks template deletes.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.TemplateStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.ITemplateStepSearcher"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.TemplateStepSearcher.TemplateDeleteOnly">
             <inheritdoc/>
@@ -3059,6 +3137,9 @@
             </para>
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IBivalueOddagonStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -3113,6 +3194,9 @@
 		</summary>
 	</static-constructor>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IChromaticPatternStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -3155,6 +3239,9 @@
             </list>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IGuardianStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.GuardianStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -3193,6 +3280,9 @@
 		</summary>
 	</static-constructor>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IDominoLoopStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -3226,6 +3316,9 @@
 		</summary>
 	</static-constructor>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IMultisectorLockedSetsStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.MultisectorLockedSetsStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -3246,6 +3339,9 @@
             </list>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SueDeCoq3DimensionStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.ISueDeCoq3DimensionStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.SueDeCoq3DimensionStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -3262,6 +3358,9 @@
             <item>Cannibalistic Sue de Coq</item>
             </list>
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SueDeCoqStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.ISueDeCoqStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.SueDeCoqStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -3292,6 +3391,9 @@
             otherwise, both arguments should be discards.
             </returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -3313,6 +3415,9 @@
             <item>Turbot Fish</item>
             </list>
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.ITwoStrongLinksStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
@@ -3345,6 +3450,9 @@
             <summary>
             Indicates whether the solver checks for hidden single in block firstly.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SingleStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.EnableFullHouse">
             <inheritdoc/>
@@ -3494,6 +3602,9 @@
             Indicates the maximum size of the searcher can search for.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.ISubsetStepSearcher"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.Sudoku#Solving#Manual#Searchers#ISubsetStepSearcher#MaxSize">
             <inheritdoc/>
             <remarks>
@@ -3525,6 +3636,9 @@
             </list>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.MultiBranchWWingStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IMultiBranchWWingStepSearcher"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.MultiBranchWWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -3553,6 +3667,9 @@
             </summary>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when <c>value</c> is greater than 9.</exception>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize">
             <inheritdoc/>
         </member>
@@ -3575,6 +3692,9 @@
             <item>W-Wing (George Woods' Wing)</item>
             </list>
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.WWingStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IWWingStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.WWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
