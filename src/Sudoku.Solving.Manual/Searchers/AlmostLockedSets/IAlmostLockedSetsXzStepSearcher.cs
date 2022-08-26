@@ -136,7 +136,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 							continue;
 						}
 
-						if ((!zMap & CandidatesMap[elimDigit] & map2) is not (var elimMap and not []))
+						if ((+zMap & CandidatesMap[elimDigit] & map2) is not (var elimMap and not []))
 						{
 							continue;
 						}

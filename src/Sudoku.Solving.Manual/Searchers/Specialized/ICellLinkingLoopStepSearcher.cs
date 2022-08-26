@@ -144,7 +144,7 @@ partial interface ICellLinkingLoopStepSearcher
 
 				var tempGuardians = (CandidatesMap[digit] & HousesMap[house]) - tempCell - lastCell;
 				if (tempCell == startCell && condition(currentLoop)
-					&& (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is not [])
+					&& (+(currentGuardians | tempGuardians) & CandidatesMap[digit]) is not [])
 				{
 					result.Add(new(currentLoop, currentGuardians | tempGuardians, digit));
 
@@ -153,7 +153,7 @@ partial interface ICellLinkingLoopStepSearcher
 				}
 
 				if ((currentLoop | currentGuardians).Contains(tempCell)
-					|| (!(currentGuardians | tempGuardians) & CandidatesMap[digit]) is []
+					|| (+(currentGuardians | tempGuardians) & CandidatesMap[digit]) is []
 					|| (HousesMap[house] & currentLoop).Count > 1)
 				{
 					continue;

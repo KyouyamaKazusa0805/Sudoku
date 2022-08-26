@@ -120,7 +120,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 
 						// Check for eliminations.
 						int anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
-						var elimMap = CandidatesMap[anotherDigit] & !(Cells.Empty + c1 + c2);
+						var elimMap = CandidatesMap[anotherDigit] & +(Cells.Empty + c1 + c2);
 						if (elimMap is [])
 						{
 							// No possible eliminations found.

@@ -33,7 +33,8 @@ public unsafe struct Cells :
 	IDivisionOperators<Cells, int, short>,
 	IModulusOperators<Cells, Cells, Cells>,
 	IBitwiseOperators<Cells, Cells, Cells>,
-	IEqualityOperators<Cells, Cells>
+	IEqualityOperators<Cells, Cells>,
+	IUnaryPlusOperators<Cells, Cells>
 {
 	/// <summary>
 	/// The value used for shifting.
@@ -752,6 +753,10 @@ public unsafe struct Cells :
 	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
 
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool TryParse(string str, out Cells result) => RxCyNotation.TryParseCells(str, out result);
+
 	/// <summary>
 	/// Initializes an instance with two binary values.
 	/// </summary>
@@ -779,10 +784,6 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells Parse(string str) => RxCyNotation.ParseCells(str);
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse(string str, out Cells result) => RxCyNotation.TryParseCells(str, out result);
-
 
 	/// <summary>
 	/// Gets the peer intersection of the current instance.
@@ -793,7 +794,7 @@ public unsafe struct Cells :
 	/// A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
 	/// For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
 	/// </remarks>
-	public static Cells operator !(scoped in Cells offsets)
+	public static Cells operator +(scoped in Cells offsets)
 	{
 		long lowerBits = 0, higherBits = 0;
 		int i = 0;
@@ -819,6 +820,15 @@ public unsafe struct Cells :
 
 		return CreateByBits(higherBits, lowerBits);
 	}
+
+	/// <summary>
+	/// Same as <see cref="operator ~(in Cells)"/>.
+	/// </summary>
+	/// <param name="offsets">The cells to be negated.</param>
+	/// <returns>The negated instance.</returns>
+	/// <seealso cref="operator ~(in Cells)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells operator !(scoped in Cells offsets) => ~offsets;
 
 	/// <summary>
 	/// Reverse status for all offsets, which means all <see langword="true"/> bits
@@ -1132,7 +1142,7 @@ public unsafe struct Cells :
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator %(scoped in Cells @base, scoped in Cells template)
-		=> !(@base & template) & template;
+		=> +(@base & template) & template;
 
 	/// <summary>
 	/// Expands via the specified digit.
@@ -1235,6 +1245,10 @@ public unsafe struct Cells :
 	/// <returns>A <see cref="bool"/> result indicating whether they are not equal.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(scoped in Cells left, scoped in Cells right) => !(left == right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IUnaryPlusOperators<Cells, Cells>.operator +(Cells value) => +value;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

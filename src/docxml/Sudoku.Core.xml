@@ -1023,6 +1023,9 @@
         <member name="M:Sudoku.Concepts.Cells.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Cells.TryParse(System.String,Sudoku.Concepts.Cells@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Cells.CreateByBits(System.Int64,System.Int64)">
             <summary>
             Initializes an instance with two binary values.
@@ -1041,10 +1044,7 @@
         <member name="M:Sudoku.Concepts.Cells.Parse(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.TryParse(System.String,Sudoku.Concepts.Cells@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Cells.op_LogicalNot(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.Cells.op_UnaryPlus(Sudoku.Concepts.Cells@)">
             <summary>
             Gets the peer intersection of the current instance.
             </summary>
@@ -1054,6 +1054,14 @@
             A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
             For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Cells.op_LogicalNot(Sudoku.Concepts.Cells@)">
+            <summary>
+            Same as <see cref="M:Sudoku.Concepts.Cells.op_OnesComplement(Sudoku.Concepts.Cells@)"/>.
+            </summary>
+            <param name="offsets">The cells to be negated.</param>
+            <returns>The negated instance.</returns>
+            <seealso cref="M:Sudoku.Concepts.Cells.op_OnesComplement(Sudoku.Concepts.Cells@)"/>
         </member>
         <member name="M:Sudoku.Concepts.Cells.op_OnesComplement(Sudoku.Concepts.Cells@)">
             <summary>
@@ -1309,6 +1317,9 @@
             <param name="left">The first instance to be compared.</param>
             <param name="right">The second instance to be compared.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether they are not equal.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Cells.System#IUnaryPlusOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_UnaryPlus(Sudoku.Concepts.Cells)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Cells.System#IAdditionOperators{Sudoku#Concepts#Cells,System#Int32,Sudoku#Concepts#Cells}#op_Addition(Sudoku.Concepts.Cells,System.Int32)">
             <inheritdoc/>

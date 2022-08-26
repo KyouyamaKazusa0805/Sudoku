@@ -353,7 +353,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 			int otherDigit = TrailingZeroCount(orMask & ~tempMask);
 			var mapContainingThatDigit = map & CandidatesMap[otherDigit];
-			if (((!mapContainingThatDigit - map) & CandidatesMap[otherDigit]) is not (var elimMap and not []))
+			if (((+mapContainingThatDigit - map) & CandidatesMap[otherDigit]) is not (var elimMap and not []))
 			{
 				continue;
 			}

@@ -301,7 +301,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 
 		int extraDigit = TrailingZeroCount(otherDigitsMask);
 		var map = pair & CandidatesMap[extraDigit];
-		if ((!map & CandidatesMap[extraDigit]) is not (var elimMap and not []))
+		if ((+map & CandidatesMap[extraDigit]) is not (var elimMap and not []))
 		{
 			return null;
 		}

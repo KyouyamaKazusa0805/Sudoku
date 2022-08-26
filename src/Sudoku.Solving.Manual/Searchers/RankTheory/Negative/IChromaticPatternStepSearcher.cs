@@ -306,7 +306,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 				bool condition = (Cells.Empty + c1 + extraCell).InOneHouse;
 				int anotherCell = condition ? c2 : c1;
 				int anotherDigit = condition ? d1 : d2;
-				foreach (int peer in !(Cells.Empty + extraCell + anotherCell))
+				foreach (int peer in +(Cells.Empty + extraCell + anotherCell))
 				{
 					if (CandidatesMap[anotherDigit].Contains(peer))
 					{

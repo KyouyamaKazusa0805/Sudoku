@@ -573,7 +573,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 		// Type 2 or 5 found. Now check elimination.
 		int extraDigit = TrailingZeroCount(extraMask);
-		if ((!(Cells.Empty + corner1 + corner2) & CandidatesMap[extraDigit]) is not (var elimMap and not []))
+		if ((+(Cells.Empty + corner1 + corner2) & CandidatesMap[extraDigit]) is not (var elimMap and not []))
 		{
 			return;
 		}
@@ -937,7 +937,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		if ((!cellsThatContainsExtraDigit & CandidatesMap[extraDigit]) is not (var elimMap and not []))
+		if ((+cellsThatContainsExtraDigit & CandidatesMap[extraDigit]) is not (var elimMap and not []))
 		{
 			return;
 		}
@@ -1281,7 +1281,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 		short xyMask = (short)(o ^ comparer);
 		int x = TrailingZeroCount(xyMask), y = xyMask.GetNextSet(x);
-		var inter = !otherCellsMap - (Cells)urCells;
+		var inter = +otherCellsMap - (Cells)urCells;
 		foreach (int possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -1751,7 +1751,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 		short xyMask = (short)(mask ^ comparer);
 		int x = TrailingZeroCount(xyMask), y = xyMask.GetNextSet(x);
-		var inter = !otherCellsMap - (Cells)urCells;
+		var inter = +otherCellsMap - (Cells)urCells;
 		foreach (int possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -2717,7 +2717,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				return;
 			}
 
-			var testMap = !(Cells.Empty + otherCell1 + otherCell2);
+			var testMap = +(Cells.Empty + otherCell1 + otherCell2);
 			short extraDigitsMask = (short)(mask ^ comparer);
 			int[] cells = map.ToArray();
 			for (int i1 = 0, length = cells.Length, outerLength = length - size + 1; i1 < outerLength; i1++)
@@ -2768,7 +2768,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 						// Now check eliminations.
 						int elimDigit = TrailingZeroCount(m);
-						if ((!(Cells.Empty + c1 + c2) & CandidatesMap[elimDigit]) is not (var elimMap and not []))
+						if ((+(Cells.Empty + c1 + c2) & CandidatesMap[elimDigit]) is not (var elimMap and not []))
 						{
 							continue;
 						}
@@ -2885,7 +2885,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 								// Now check eliminations.
 								int elimDigit = TrailingZeroCount(m);
-								var elimMap = !(Cells.Empty + c1 + c2 + c3) & CandidatesMap[elimDigit];
+								var elimMap = +(Cells.Empty + c1 + c2 + c3) & CandidatesMap[elimDigit];
 								if (elimMap is [])
 								{
 									continue;
@@ -3008,7 +3008,7 @@ unsafe partial class UniqueRectangleStepSearcher
 
 									// Now check eliminations.
 									int elimDigit = TrailingZeroCount(m);
-									var elimMap = !(Cells.Empty + c1 + c2 + c3 + c4) & CandidatesMap[elimDigit];
+									var elimMap = +(Cells.Empty + c1 + c2 + c3 + c4) & CandidatesMap[elimDigit];
 									if (elimMap is [])
 									{
 										continue;
@@ -3817,13 +3817,13 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			int guardianDigit = -1;
 			Cells? targetElimMap = null, targetGuardianMap = null;
-			if (guardian1 is not [] && (!guardian1 & CandidatesMap[d1]) is var a and not [])
+			if (guardian1 is not [] && (+guardian1 & CandidatesMap[d1]) is var a and not [])
 			{
 				targetElimMap = a;
 				guardianDigit = d1;
 				targetGuardianMap = guardian1;
 			}
-			else if (guardian2 is not [] && (!guardian2 & CandidatesMap[d2]) is var b and not [])
+			else if (guardian2 is not [] && (+guardian2 & CandidatesMap[d2]) is var b and not [])
 			{
 				targetElimMap = b;
 				guardianDigit = d2;
@@ -4223,15 +4223,13 @@ unsafe partial class UniqueRectangleStepSearcher
 		// Get the base digit ('a') and the other digit ('b').
 		// Here 'b' is the digit that we should check the possible hidden single.
 		int baseDigit = grid[corner1], otherDigit = baseDigit == d1 ? d2 : d1;
-		var cellsThatTwoOtherCellsBothCanSee = !otherCellsMap & CandidatesMap[otherDigit];
+		var cellsThatTwoOtherCellsBothCanSee = +otherCellsMap & CandidatesMap[otherDigit];
 
 		// Iterate on two cases (because we holds two other cells,
 		// and both those two cells may contain possible elimination).
 		for (int i = 0; i < 2; i++)
 		{
-			var (baseCell, anotherCell) = i == 0
-				? (otherCellsMap[0], otherCellsMap[1])
-				: (otherCellsMap[1], otherCellsMap[0]);
+			var (baseCell, anotherCell) = i == 0 ? (otherCellsMap[0], otherCellsMap[1]) : (otherCellsMap[1], otherCellsMap[0]);
 
 			// Iterate on each house type.
 			foreach (var houseType in HouseTypes)
