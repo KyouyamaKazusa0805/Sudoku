@@ -23,6 +23,7 @@ public interface IReverseUniqueRectangleStepSearcher : IReverseBivalueUniversalG
 }
 
 [StepSearcher]
+[SukakuNotSupported]
 internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IReverseUniqueRectangleStepSearcher
 {
 	/// <inheritdoc/>

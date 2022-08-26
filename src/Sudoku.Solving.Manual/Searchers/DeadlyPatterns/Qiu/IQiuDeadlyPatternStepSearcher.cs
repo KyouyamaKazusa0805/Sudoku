@@ -68,6 +68,7 @@ public interface IQiuDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 }
 
 [StepSearcher]
+[SukakuNotSupported]
 internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepSearcher
 {
 	/// <inheritdoc/>

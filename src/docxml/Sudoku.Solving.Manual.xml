@@ -2905,6 +2905,11 @@
             </remarks>
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDeprecated"/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IStepSearcher.IsNotSupportedForSukaku">
+            <summary>
+            Determines whether the current step searcher is not supported for sukaku solving mode.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IStepSearcher.Options">
             <summary>
             Indicates the step searching options.

@@ -7620,6 +7620,12 @@
             Indicates the searcher can search for kraken fish nodes.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.SukakuNotSupportedAttribute">
+            <summary>
+            Defines an attribute annotation that can be applied to a step searcher type,
+            indicating the step searcher instance is not supported in sukaku solving mode.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.BacktrackingSolver">
             <summary>
             Defines a solver that can solve a sudoku puzzle, using backtracking algorithm.

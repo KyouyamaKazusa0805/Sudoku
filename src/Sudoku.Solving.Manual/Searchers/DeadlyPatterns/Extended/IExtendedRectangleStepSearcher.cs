@@ -138,6 +138,7 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 }
 
 [StepSearcher]
+[SukakuNotSupported]
 internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRectangleStepSearcher
 {
 	/// <inheritdoc/>

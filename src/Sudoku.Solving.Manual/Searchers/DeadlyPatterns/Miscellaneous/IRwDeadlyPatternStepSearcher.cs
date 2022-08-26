@@ -12,6 +12,7 @@ public interface IRwDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 }
 
 [StepSearcher]
+[SukakuNotSupported]
 internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStepSearcher
 {
 	/// <inheritdoc/>

@@ -251,6 +251,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 }
 
 [StepSearcher]
+[SukakuNotSupported]
 internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueUniversalGraveStepSearcher
 {
 	/// <inheritdoc/>

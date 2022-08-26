@@ -60,6 +60,7 @@ public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, ICellLink
 }
 
 [StepSearcher]
+[SukakuNotSupported]
 internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSearcher
 {
 	/// <inheritdoc/>

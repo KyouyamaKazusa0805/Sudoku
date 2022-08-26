@@ -59,6 +59,15 @@ public interface IStepSearcher
 	}
 
 	/// <summary>
+	/// Determines whether the current step searcher is not supported for sukaku solving mode.
+	/// </summary>
+	public sealed bool IsNotSupportedForSukaku
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => GetType().IsDefined(typeof(SukakuNotSupportedAttribute));
+	}
+
+	/// <summary>
 	/// Indicates the step searching options.
 	/// </summary>
 	public abstract SearcherInitializationOptions Options { get; set; }

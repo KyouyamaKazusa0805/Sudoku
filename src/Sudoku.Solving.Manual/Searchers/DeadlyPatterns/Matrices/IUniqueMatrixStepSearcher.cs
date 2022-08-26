@@ -63,6 +63,7 @@ public interface IUniqueMatrixStepSearcher : IDeadlyPatternStepSearcher
 }
 
 [StepSearcher]
+[SukakuNotSupported]
 internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixStepSearcher
 {
 	/// <inheritdoc/>

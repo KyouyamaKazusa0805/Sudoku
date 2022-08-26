@@ -194,6 +194,7 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 }
 
 [StepSearcher]
+[SukakuNotSupported]
 internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
 	/// <inheritdoc/>

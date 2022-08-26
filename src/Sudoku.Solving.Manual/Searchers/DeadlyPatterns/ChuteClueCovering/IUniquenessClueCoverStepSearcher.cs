@@ -12,6 +12,7 @@ public interface IUniquenessClueCoverStepSearcher : IDeadlyPatternStepSearcher
 }
 
 [StepSearcher]
+[SukakuNotSupported]
 internal sealed partial class UniquenessClueCoverStepSearcher : IUniquenessClueCoverStepSearcher
 {
 	/// <inheritdoc/>

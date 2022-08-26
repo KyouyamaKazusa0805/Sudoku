@@ -211,6 +211,7 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 }
 
 [StepSearcher]
+[SukakuNotSupported]
 internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonStepSearcher
 {
 	/// <inheritdoc/>

@@ -106,11 +106,11 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 		{
 			switch (isSukaku, searcher, IsFullApplying)
 			{
-				case (true, IDeadlyPatternStepSearcher, _):
+				case (true, { IsNotSupportedForSukaku: true }, _):
 				case (_, { Options.EnabledArea: SearcherEnabledArea.None }, _):
 				{
 					// Skips on those two cases:
-					// 1. Sukaku puzzles can't use deadly pattern techniques.
+					// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".
 					// 2. If the searcher is currently disabled, just skip it.
 					continue;
 				}
@@ -144,7 +144,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 					// to continue solving puzzle.
 					goto TryAgain;
 				}
-				case var _ when searcher.GetAll(null!, playground, true) is var foundStep:
+				case (_, _, _) when searcher.GetAll(null!, playground, true) is var foundStep:
 				{
 					switch (foundStep)
 					{
