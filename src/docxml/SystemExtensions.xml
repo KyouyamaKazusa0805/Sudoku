@@ -3466,13 +3466,13 @@
             <summary>
             Throws <see cref="T:System.NotSupportedException"/>.
             </summary>
-            <exception cref="T:System.NotSupportedException"></exception>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:System.Timing.ValueStopwatch.#ctor(System.Int64)">
             <summary>
             Initializes a <see cref="T:System.Timing.ValueStopwatch"/> instance via the current timestamp.
             </summary>
-            <param name="startTimestamp"></param>
+            <param name="startTimestamp">The timestamp value that is represented as a <see cref="T:System.Int64"/> value.</param>
         </member>
         <member name="P:System.Timing.ValueStopwatch.IsActive">
             <summary>

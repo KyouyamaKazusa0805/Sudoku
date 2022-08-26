@@ -21,7 +21,7 @@ public readonly ref partial struct ValueStopwatch
 	/// <summary>
 	/// Throws <see cref="NotSupportedException"/>.
 	/// </summary>
-	/// <exception cref="NotSupportedException"></exception>
+	/// <exception cref="NotSupportedException">Always throws.</exception>
 	[Obsolete("You cannot use parameterless constructor of this type.", true)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueStopwatch() => throw new NotSupportedException();
@@ -29,7 +29,7 @@ public readonly ref partial struct ValueStopwatch
 	/// <summary>
 	/// Initializes a <see cref="ValueStopwatch"/> instance via the current timestamp.
 	/// </summary>
-	/// <param name="startTimestamp"></param>
+	/// <param name="startTimestamp">The timestamp value that is represented as a <see cref="long"/> value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private ValueStopwatch(long startTimestamp) => _startTimestamp = startTimestamp;
 
