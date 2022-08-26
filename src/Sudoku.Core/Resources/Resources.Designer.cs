@@ -1987,11 +1987,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RW&apos;s n + 1 Theory.
+        ///   Looks up a localized string similar to RW&apos;s Deadly Pattern.
         /// </summary>
-        internal static string RwNPlus1Theory {
+        internal static string RwDeadlyPattern {
             get {
-                return ResourceManager.GetString("RwNPlus1Theory", resourceCulture);
+                return ResourceManager.GetString("RwDeadlyPattern", resourceCulture);
             }
         }
         
@@ -3204,9 +3204,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}.
         /// </summary>
-        internal static string TechniqueFormat_RwNPlus1TheoryStep {
+        internal static string TechniqueFormat_RwDeadlyPatternStep {
             get {
-                return ResourceManager.GetString("TechniqueFormat_RwNPlus1TheoryStep", resourceCulture);
+                return ResourceManager.GetString("TechniqueFormat_RwDeadlyPatternStep", resourceCulture);
             }
         }
         

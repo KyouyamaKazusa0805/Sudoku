@@ -1360,19 +1360,19 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.UniqueMatrixStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IRwNPlus1TheoryStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.IRwDeadlyPatternStepSearcher">
             <summary>
-            Provides with a <b>RW's N + 1 Deadly Pattern Theory</b> step searcher.
+            Provides with a <b>RW's Deadly Pattern</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>RW's N + 1 Deadly Pattern Theory</item>
+            <item>RW's Deadly Pattern</item>
             </list>
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.RwNPlus1TheoryStepSearcher">
-            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IRwNPlus1TheoryStepSearcher"/>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RwDeadlyPatternStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IRwDeadlyPatternStepSearcher"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.RwNPlus1TheoryStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.RwDeadlyPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
             <para><b>Developer Notes</b></para>
@@ -1389,7 +1389,7 @@
             </para>
             </remarks>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.RwNPlus1TheoryStepSearcher.Options">
+        <member name="P:Sudoku.Solving.Manual.Searchers.RwDeadlyPatternStepSearcher.Options">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniquePolygonStepSearcher">
@@ -5122,9 +5122,9 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixType4Step.Type">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep">
+        <member name="T:Sudoku.Solving.Manual.Steps.RwDeadlyPatternStep">
             <summary>
-            Provides with a step that is a <b>RW's "n + 1" Theory</b> technique.
+            Provides with a step that is a <b>RW's Deadly Pattern</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5132,9 +5132,9 @@
             <param name="DigitsMask">Indicates the digits used.</param>
             <param name="ChuteIndex">Indicates the global chute index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.RwDeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
             <summary>
-            Provides with a step that is a <b>RW's "n + 1" Theory</b> technique.
+            Provides with a step that is a <b>RW's Deadly Pattern</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5142,25 +5142,25 @@
             <param name="DigitsMask">Indicates the digits used.</param>
             <param name="ChuteIndex">Indicates the global chute index.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.Pattern">
+        <member name="P:Sudoku.Solving.Manual.Steps.RwDeadlyPatternStep.Pattern">
             <summary>Indicates the pattern.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.DigitsMask">
+        <member name="P:Sudoku.Solving.Manual.Steps.RwDeadlyPatternStep.DigitsMask">
             <summary>Indicates the digits used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.ChuteIndex">
+        <member name="P:Sudoku.Solving.Manual.Steps.RwDeadlyPatternStep.ChuteIndex">
             <summary>Indicates the global chute index.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Steps.RwDeadlyPatternStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Steps.RwDeadlyPatternStep.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Steps.RwDeadlyPatternStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RwNPlus1TheoryStep.Rarity">
+        <member name="P:Sudoku.Solving.Manual.Steps.RwDeadlyPatternStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.UniquePolygonStep">

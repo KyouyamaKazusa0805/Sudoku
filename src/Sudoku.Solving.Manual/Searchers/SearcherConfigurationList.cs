@@ -20,7 +20,7 @@
 	SearcherConfiguration<BivalueUniversalGraveStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<ReverseBivalueUniversalGraveStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<UniquenessClueCoverStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<RwNPlus1TheoryStepSearcher>(SearcherDisplayingLevel.B),
+	SearcherConfiguration<RwDeadlyPatternStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<EmptyRectangleIntersectionPairStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<FireworkStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<GuardianStepSearcher>(SearcherDisplayingLevel.C),

@@ -68,17 +68,14 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Hidden Subsets
   * Fishes (including finned types)
     * Normal Fishes
-    * Complex Fishes (Franken Fishes, Mutant Fishes)
+    * Complex Fishes (Franken, Mutant)
   * Single-Digit Structures
     * Two-Strong-Links
     * Empty Rectangle
   * Wings
     * Regular Wing (XY-Wing, XYZ-Wing, etc.)
     * Irregular Wing[^2]
-      * W-Wing
-        * Basic W-Wing
-        * Grouped W-Wing
-        * Multi-Branch W-Wing
+      * W-Wing (Basic, Grouped, Multi-Branch)
       * M-Wing
       * Local-Wing
       * Split-Wing
@@ -94,7 +91,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Bi-value Universal Grave
     * Reverse Unique Rectangle
     * Uniqueness Clue Cover (Only for type 2[^3])
-    * RW's Deadly Pattern Theory ("n + 1" theory)
+    * RW's Deadly Pattern
   * Alternating Inference Chains
     * Single-Digit AICs
     * Multi-Digit AICs

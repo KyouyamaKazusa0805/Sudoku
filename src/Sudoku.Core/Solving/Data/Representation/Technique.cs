@@ -1176,9 +1176,9 @@ public enum Technique : short
 	UniquenessClueCoverType2,
 
 	/// <summary>
-	/// Indicates RW's "n + 1" deadly pattern theory.
+	/// Indicates RW's deadly pattern.
 	/// </summary>
-	RwNPlus1Theory,
+	RwDeadlyPattern,
 
 	/// <summary>
 	/// Indicates unique polygon type 1.

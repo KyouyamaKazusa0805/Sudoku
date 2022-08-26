@@ -1726,11 +1726,11 @@
   <data name="TechniqueFormat_ReverseUniqueRectangleType2Step" xml:space="preserve">
     <value>{Name}：数字 {DigitsStr}，位于单元格 {CellsStr} 里，并带有额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_RwNPlus1TheoryStep" xml:space="preserve">
+  <data name="TechniqueFormat_RwDeadlyPatternStep" xml:space="preserve">
     <value>{Name}：单元格 {CellsStr}，数字 {DigitsStr} =&gt; {ElimsStr}</value>
   </data>
-  <data name="RwNPlus1Theory" xml:space="preserve">
-    <value>RW 的 n + 1 致命结构理论</value>
+  <data name="RwDeadlyPattern" xml:space="preserve">
+    <value>RW 致命结构</value>
     <comment>Technique Name</comment>
   </data>
   <data name="MultiBranchWWing" xml:space="preserve">

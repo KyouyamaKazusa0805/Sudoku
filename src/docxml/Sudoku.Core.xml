@@ -5803,9 +5803,9 @@
               Looks up a localized string similar to RSTUVWXYZ-Wing.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.RwNPlus1Theory">
+        <member name="P:Sudoku.Resources.Resources.RwDeadlyPattern">
             <summary>
-              Looks up a localized string similar to RW&apos;s n + 1 Theory.
+              Looks up a localized string similar to RW&apos;s Deadly Pattern.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.SashimiFrankenJellyfish">
@@ -6478,7 +6478,7 @@
               Looks up a localized string similar to {Name}: Cells {CellsStr} of digits {DigitsStr}, with an extra digit {ExtraDigitStr} =&gt; {ElimStr}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_RwNPlus1TheoryStep">
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_RwDeadlyPatternStep">
             <summary>
               Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}.
             </summary>
@@ -9897,9 +9897,9 @@
             Indicates uniqueness clue cover type 2.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Data.Representation.Technique.RwNPlus1Theory">
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.RwDeadlyPattern">
             <summary>
-            Indicates RW's "n + 1" deadly pattern theory.
+            Indicates RW's deadly pattern.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.UniquePolygonType1">

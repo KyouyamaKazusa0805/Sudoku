@@ -1428,11 +1428,11 @@
   <data name="TechniqueFormat_ReverseUniqueRectangleType2Step" xml:space="preserve">
     <value>{Name}: Cells {CellsStr} of digits {DigitsStr}, with an extra digit {ExtraDigitStr} =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_RwNPlus1TheoryStep" xml:space="preserve">
+  <data name="TechniqueFormat_RwDeadlyPatternStep" xml:space="preserve">
     <value>{Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}</value>
   </data>
-  <data name="RwNPlus1Theory" xml:space="preserve">
-    <value>RW's n + 1 Theory</value>
+  <data name="RwDeadlyPattern" xml:space="preserve">
+    <value>RW's Deadly Pattern</value>
   </data>
   <data name="MultiBranchWWing" xml:space="preserve">
     <value>W-Wing Multiple Branches</value>

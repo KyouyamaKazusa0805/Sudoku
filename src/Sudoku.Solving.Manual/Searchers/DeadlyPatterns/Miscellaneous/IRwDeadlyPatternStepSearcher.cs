@@ -1,18 +1,18 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Provides with a <b>RW's N + 1 Deadly Pattern Theory</b> step searcher.
+/// Provides with a <b>RW's Deadly Pattern</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>RW's N + 1 Deadly Pattern Theory</item>
+/// <item>RW's Deadly Pattern</item>
 /// </list>
 /// </summary>
-public interface IRwNPlus1TheoryStepSearcher : IDeadlyPatternStepSearcher
+public interface IRwDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 {
 }
 
 [StepSearcher]
-internal sealed partial class RwNPlus1TheoryStepSearcher : IRwNPlus1TheoryStepSearcher
+internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStepSearcher
 {
 	/// <inheritdoc/>
 	/// <remarks>
@@ -101,7 +101,7 @@ internal sealed partial class RwNPlus1TheoryStepSearcher : IRwNPlus1TheoryStepSe
 				continue;
 			}
 
-			var step = new RwNPlus1TheoryStep(
+			var step = new RwDeadlyPatternStep(
 				conclusions.ToImmutableArray(),
 				ImmutableArray.Create(View.Empty | new ChuteViewNode(DisplayColorKind.Normal, chuteIndex)),
 				chute - EmptyCells,
