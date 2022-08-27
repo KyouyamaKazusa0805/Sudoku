@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Compatibility;
+﻿namespace Sudoku.Compatibility.Hodoku;
 
 /// <summary>
 /// Represents some methods that are used for get the details supported and defined
@@ -55,4 +55,43 @@ public static class HodokuLibraryCompatiblity
 			},
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
+
+	/// <summary>
+	/// Try to get difficulty rating of the specified technique.
+	/// </summary>
+	/// <param name="this">The technique.</param>
+	/// <param name="difficultyLevel">The difficulty level that is defined by Hodoku.</param>
+	/// <returns>
+	/// <para>
+	/// An <see cref="int"/> value defined by the project Hodoku.
+	/// </para>
+	/// <para>
+	/// If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
+	/// </para>
+	/// </returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the specified value is not defined by the type <see cref="Technique"/>,
+	/// or the value is <see cref="Technique.None"/>.
+	/// </exception>
+	/// <seealso cref="Technique"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[return: NotNullIfNotNull(nameof(difficultyLevel))]
+	public static int? GetDifficultyRating(this Technique @this, out HodokuDifficultyLevel? difficultyLevel)
+	{
+		(int? @return, difficultyLevel) = (@this != Technique.None && Enum.IsDefined(@this)) switch
+		{
+			true => typeof(Technique).GetField(@this.ToString()) switch
+			{
+				{ } fieldInfo => fieldInfo.GetCustomAttribute<HodokuDifficultyRatingAttribute>() switch
+				{
+					{ DifficultyRating: var prefix, DifficultyLevel: var level } => (prefix, level),
+					_ => (null, null)
+				},
+				_ => default((int?, HodokuDifficultyLevel?))
+			},
+			_ => throw new ArgumentOutOfRangeException(nameof(@this))
+		};
+
+		return @return;
+	}
 }

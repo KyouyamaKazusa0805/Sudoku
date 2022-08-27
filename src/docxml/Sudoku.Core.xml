@@ -123,13 +123,67 @@
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>All true candidates.</returns>
         </member>
-        <member name="T:Sudoku.Compatibility.HodokuLibraryCompatiblity">
+        <member name="T:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel">
+            <summary>
+            The difficulty level defined by Hodoku.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel.Easy">
+            <summary>
+            Indicates the level is easy.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel.Medium">
+            <summary>
+            Indicates the level is medium.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel.Hard">
+            <summary>
+            Indicates the level is hard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel.Unfair">
+            <summary>
+            Indicates the level is unfair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel.Extreme">
+            <summary>
+            Indicates the level is extreme.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute">
+            <summary>
+            Defines an attribute that is applied to a field in type <see cref="T:Sudoku.Solving.Data.Representation.Technique"/>,
+            indicating difficulty rating value defined by Hodoku.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute.#ctor(System.Int32,Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute"/> via the specified difficulty rating value
+            and the difficulty level.
+            </summary>
+            <param name="difficultyRating">The difficulty rating value.</param>
+            <param name="difficultyLevel">The difficulty level.</param>
+        </member>
+        <member name="P:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute.DifficultyRating">
+            <summary>
+            Indicates the difficulty rating.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatiblity">
             <summary>
             Represents some methods that are used for get the details supported and defined
             by another program called <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
             </summary>
         </member>
-        <member name="M:Sudoku.Compatibility.HodokuLibraryCompatiblity.GetHodokuPrefix(Sudoku.Solving.Data.Representation.Technique)">
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatiblity.GetHodokuPrefix(Sudoku.Solving.Data.Representation.Technique)">
             <summary>
             Try to get the prefix of the specified technique. The return value will be a four-digit value
             represented as a <see cref="T:System.String"/> value. For more information please visit
@@ -165,19 +219,39 @@
             </exception>
             <seealso cref="T:Sudoku.Solving.Data.Representation.Technique"/>
         </member>
-        <member name="T:Sudoku.Compatibility.HodokuTechniquePrefixAttribute">
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatiblity.GetDifficultyRating(Sudoku.Solving.Data.Representation.Technique,System.Nullable{Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel}@)">
+            <summary>
+            Try to get difficulty rating of the specified technique.
+            </summary>
+            <param name="this">The technique.</param>
+            <param name="difficultyLevel">The difficulty level that is defined by Hodoku.</param>
+            <returns>
+            <para>
+            An <see cref="T:System.Int32"/> value defined by the project Hodoku.
+            </para>
+            <para>
+            If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
+            </para>
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Solving.Data.Representation.Technique"/>,
+            or the value is <see cref="F:Sudoku.Solving.Data.Representation.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Solving.Data.Representation.Technique"/>
+        </member>
+        <member name="T:Sudoku.Compatibility.Hodoku.HodokuTechniquePrefixAttribute">
             <summary>
             Defines an attribute that is applied to a field in type <see cref="T:Sudoku.Solving.Data.Representation.Technique"/>,
             indicating a compatible prefix value defined by Hodoku.
             </summary>
         </member>
-        <member name="M:Sudoku.Compatibility.HodokuTechniquePrefixAttribute.#ctor(System.String)">
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuTechniquePrefixAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Compatibility.HodokuTechniquePrefixAttribute"/> via the specified prefix value.
+            Initializes a <see cref="T:Sudoku.Compatibility.Hodoku.HodokuTechniquePrefixAttribute"/> via the specified prefix value.
             </summary>
             <param name="prefix">The prefix value.</param>
         </member>
-        <member name="P:Sudoku.Compatibility.HodokuTechniquePrefixAttribute.Prefix">
+        <member name="P:Sudoku.Compatibility.Hodoku.HodokuTechniquePrefixAttribute.Prefix">
             <summary>
             The prefix value.
             </summary>

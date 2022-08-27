@@ -19,7 +19,7 @@ global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading;
-global using Sudoku.Compatibility;
+global using Sudoku.Compatibility.Hodoku;
 global using Sudoku.Concepts;
 global using Sudoku.Linq;
 global using Sudoku.Presentation;
