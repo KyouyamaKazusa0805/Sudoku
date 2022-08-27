@@ -748,6 +748,13 @@
             Indicates the empty instance.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Cells._count">
+            <summary>
+            The background field of the property <see cref="P:Sudoku.Concepts.Cells.Count"/>.
+            </summary>
+            <remarks><b><i>This field is explicitly declared on purpose. Please don't use auto property.</i></b></remarks>
+            <seealso cref="P:Sudoku.Concepts.Cells.Count"/>
+        </member>
         <member name="F:Sudoku.Concepts.Cells._high">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,

@@ -49,6 +49,14 @@ public unsafe struct Cells :
 
 
 	/// <summary>
+	/// The background field of the property <see cref="Count"/>.
+	/// </summary>
+	/// <remarks><b><i>This field is explicitly declared on purpose. Please don't use auto property.</i></b></remarks>
+	/// <seealso cref="Count"/>
+	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
+	private int _count;
+
+	/// <summary>
 	/// Indicates the internal two <see cref="long"/> values,
 	/// which represents 81 bits. <see cref="_high"/> represent the higher
 	/// 40 bits and <see cref="_low"/> represents the lower 41 bits, where each bit is:
@@ -132,7 +140,7 @@ public unsafe struct Cells :
 	public bool IsInIntersection
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Count <= 3 && PopCount((uint)CoveredHouses) == 2;
+		get => _count <= 3 && PopCount((uint)CoveredHouses) == 2;
 	}
 
 	/// <summary>
@@ -148,15 +156,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if ((this & HousesMap[0]).Count != 0) result |= 1;
-			if ((this & HousesMap[1]).Count != 0) result |= 2;
-			if ((this & HousesMap[2]).Count != 0) result |= 4;
-			if ((this & HousesMap[3]).Count != 0) result |= 8;
-			if ((this & HousesMap[4]).Count != 0) result |= 16;
-			if ((this & HousesMap[5]).Count != 0) result |= 32;
-			if ((this & HousesMap[6]).Count != 0) result |= 64;
-			if ((this & HousesMap[7]).Count != 0) result |= 128;
-			if ((this & HousesMap[8]).Count != 0) result |= 256;
+			if ((this & HousesMap[0]) is not []) result |= 1;
+			if ((this & HousesMap[1]) is not []) result |= 2;
+			if ((this & HousesMap[2]) is not []) result |= 4;
+			if ((this & HousesMap[3]) is not []) result |= 8;
+			if ((this & HousesMap[4]) is not []) result |= 16;
+			if ((this & HousesMap[5]) is not []) result |= 32;
+			if ((this & HousesMap[6]) is not []) result |= 64;
+			if ((this & HousesMap[7]) is not []) result |= 128;
+			if ((this & HousesMap[8]) is not []) result |= 256;
 
 			return result;
 		}
@@ -175,15 +183,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if ((this & HousesMap[9]).Count != 0) result |= 1;
-			if ((this & HousesMap[10]).Count != 0) result |= 2;
-			if ((this & HousesMap[11]).Count != 0) result |= 4;
-			if ((this & HousesMap[12]).Count != 0) result |= 8;
-			if ((this & HousesMap[13]).Count != 0) result |= 16;
-			if ((this & HousesMap[14]).Count != 0) result |= 32;
-			if ((this & HousesMap[15]).Count != 0) result |= 64;
-			if ((this & HousesMap[16]).Count != 0) result |= 128;
-			if ((this & HousesMap[17]).Count != 0) result |= 256;
+			if ((this & HousesMap[ 9]) is not []) result |= 1;
+			if ((this & HousesMap[10]) is not []) result |= 2;
+			if ((this & HousesMap[11]) is not []) result |= 4;
+			if ((this & HousesMap[12]) is not []) result |= 8;
+			if ((this & HousesMap[13]) is not []) result |= 16;
+			if ((this & HousesMap[14]) is not []) result |= 32;
+			if ((this & HousesMap[15]) is not []) result |= 64;
+			if ((this & HousesMap[16]) is not []) result |= 128;
+			if ((this & HousesMap[17]) is not []) result |= 256;
 
 			return result;
 		}
@@ -202,15 +210,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if ((this & HousesMap[18]).Count != 0) result |= 1;
-			if ((this & HousesMap[19]).Count != 0) result |= 2;
-			if ((this & HousesMap[20]).Count != 0) result |= 4;
-			if ((this & HousesMap[21]).Count != 0) result |= 8;
-			if ((this & HousesMap[22]).Count != 0) result |= 16;
-			if ((this & HousesMap[23]).Count != 0) result |= 32;
-			if ((this & HousesMap[24]).Count != 0) result |= 64;
-			if ((this & HousesMap[25]).Count != 0) result |= 128;
-			if ((this & HousesMap[26]).Count != 0) result |= 256;
+			if ((this & HousesMap[18]) is not []) result |= 1;
+			if ((this & HousesMap[19]) is not []) result |= 2;
+			if ((this & HousesMap[20]) is not []) result |= 4;
+			if ((this & HousesMap[21]) is not []) result |= 8;
+			if ((this & HousesMap[22]) is not []) result |= 16;
+			if ((this & HousesMap[23]) is not []) result |= 32;
+			if ((this & HousesMap[24]) is not []) result |= 64;
+			if ((this & HousesMap[25]) is not []) result |= 128;
+			if ((this & HousesMap[26]) is not []) result |= 256;
 
 			return result;
 		}
@@ -232,7 +240,11 @@ public unsafe struct Cells :
 	/// <summary>
 	/// Indicates the number of the values stored in this collection.
 	/// </summary>
-	public int Count { get; private set; } = 0;
+	public int Count
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _count;
+	}
 
 	/// <summary>
 	/// Indicates all houses covered. This property is used to check all houses that all cells
@@ -311,7 +323,7 @@ public unsafe struct Cells :
 
 			long value;
 			int i, pos = 0;
-			int[] arr = new int[Count];
+			int[] arr = new int[_count];
 			if (_low != 0)
 			{
 				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
@@ -402,7 +414,7 @@ public unsafe struct Cells :
 			return;
 		}
 
-		Argument.ThrowIfInvalid(Count <= length, "The capacity is not enough.");
+		Argument.ThrowIfInvalid(_count <= length, "The capacity is not enough.");
 
 		long value;
 		int i, pos = 0;
@@ -651,7 +663,7 @@ public unsafe struct Cells :
 		v |= 1L << offset % Shifting;
 		if (!older)
 		{
-			Count++;
+			_count++;
 		}
 	}
 
@@ -675,7 +687,7 @@ public unsafe struct Cells :
 		v |= checked(1L << offset % Shifting);
 		if (!older)
 		{
-			Count++;
+			_count++;
 		}
 	}
 
@@ -730,7 +742,7 @@ public unsafe struct Cells :
 		v &= ~(1L << offset % Shifting);
 		if (older)
 		{
-			Count--;
+			_count--;
 		}
 	}
 
@@ -738,7 +750,7 @@ public unsafe struct Cells :
 	/// Clear all bits.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Clear() => _low = _high = Count = 0;
+	public void Clear() => _low = _high = _count = 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -764,8 +776,8 @@ public unsafe struct Cells :
 	/// <param name="low">Lower 41 bits.</param>
 	public static Cells CreateByBits(long high, long low)
 	{
-		var result = Empty;
-		(result._high, result._low, result.Count) = (high, low, PopCount((ulong)high) + PopCount((ulong)low));
+		Cells result;
+		(result._high, result._low, result._count) = (high, low, PopCount((ulong)high) + PopCount((ulong)low));
 
 		return result;
 	}
@@ -858,7 +870,7 @@ public unsafe struct Cells :
 		}
 
 		(offset / Shifting == 0 ? ref result._low : ref result._high) |= 1L << offset % Shifting;
-		result.Count++;
+		result._count++;
 		return result;
 	}
 
@@ -926,7 +938,7 @@ public unsafe struct Cells :
 		}
 
 		(offset / Shifting == 0 ? ref result._low : ref result._high) &= ~(1L << offset % Shifting);
-		result.Count--;
+		result._count--;
 		return result;
 	}
 
@@ -992,17 +1004,17 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells[] operator &(scoped in Cells cells, int subsetSize)
 	{
-		if (subsetSize == 0 || subsetSize > cells.Count)
+		if (subsetSize == 0 || subsetSize > cells._count)
 		{
 			return Array.Empty<Cells>();
 		}
 
-		if (subsetSize == cells.Count)
+		if (subsetSize == cells._count)
 		{
 			return new[] { cells };
 		}
 
-		int totalIndex = 0, n = cells.Count;
+		int totalIndex = 0, n = cells._count;
 		int* buffer = stackalloc int[subsetSize];
 		var result = new Cells[Combinatorials[n - 1, subsetSize - 1]];
 		f(subsetSize, n, subsetSize, cells.Offsets);
@@ -1077,7 +1089,7 @@ public unsafe struct Cells :
 			return Array.Empty<Cells>();
 		}
 
-		int n = cells.Count;
+		int n = cells._count;
 
 		int desiredSize = 0;
 		int length = Min(n, subsetSize);
