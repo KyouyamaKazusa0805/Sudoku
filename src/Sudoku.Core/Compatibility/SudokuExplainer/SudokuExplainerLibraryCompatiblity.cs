@@ -1,0 +1,56 @@
+﻿namespace Sudoku.Compatibility.SudokuExplainer;
+
+using DifficultyRange = ValueTuple<
+	/*Original*/ SudokuExplainerDifficultyRatingRange?,
+	/*Advanced*/ SudokuExplainerDifficultyRatingRange?>;
+
+/// <summary>
+/// Represents some methods that are used for get the details supported and defined
+/// by another program called
+/// <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
+/// </summary>
+public static class SudokuExplainerLibraryCompatiblity
+{
+	/// <summary>
+	/// Try to get difficulty rating of the specified technique.
+	/// </summary>
+	/// <param name="this">The technique.</param>
+	/// <returns>
+	/// <para>
+	/// An <see cref="int"/> value defined by the project Sudoku Explainer.
+	/// </para>
+	/// <para>
+	/// If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.
+	/// </para>
+	/// </returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the specified value is not defined by the type <see cref="Technique"/>,
+	/// or the value is <see cref="Technique.None"/>.
+	/// </exception>
+	/// <seealso cref="Technique"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static DifficultyRange? GetDifficultyRatingRange(this Technique @this)
+	{
+		if (@this == Technique.None || !Enum.IsDefined(@this))
+		{
+			throw new ArgumentOutOfRangeException(nameof(@this));
+		}
+
+		var attributes = typeof(Technique)
+			.GetField(@this.ToString())!
+			.GetCustomAttributes<SudokuExplainerDifficultyRatingAttribute>()
+			.ToArray();
+		return attributes switch
+		{
+			[] => null,
+			[{ DifficultyRating: var min, DifficultyRatingMaximumThreshold: var max }] => (new(min, max ?? min), null),
+#pragma warning disable IDE0055
+			[
+				{ DifficultyRating: var min1, DifficultyRatingMaximumThreshold: var max1 },
+				{ DifficultyRating: var min2, DifficultyRatingMaximumThreshold: var max2 }
+			] => (new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
+#pragma warning restore IDE0055
+			_ => throw new InvalidOperationException("The field has marked too much attributes.")
+		};
+	}
+}

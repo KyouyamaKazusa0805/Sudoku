@@ -15,6 +15,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0000")]
 	[HodokuDifficultyRating(4, HodokuDifficultyLevel.Easy)]
+	[SudokuExplainerDifficultyRating(1.0)]
 	FullHouse,
 
 	/// <summary>
@@ -28,6 +29,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0002")]
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
+	[SudokuExplainerDifficultyRating(1.2)]
 	HiddenSingleBlock,
 
 	/// <summary>
@@ -35,6 +37,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0002")]
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
+	[SudokuExplainerDifficultyRating(1.5)]
 	HiddenSingleRow,
 
 	/// <summary>
@@ -42,6 +45,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0002")]
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
+	[SudokuExplainerDifficultyRating(1.5)]
 	HiddenSingleColumn,
 
 	/// <summary>
@@ -49,6 +53,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0003")]
 	[HodokuDifficultyRating(4, HodokuDifficultyLevel.Easy)]
+	[SudokuExplainerDifficultyRating(2.3)]
 	NakedSingle,
 
 	/// <summary>
@@ -56,6 +61,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0100")]
 	[HodokuDifficultyRating(50, HodokuDifficultyLevel.Medium)]
+	[SudokuExplainerDifficultyRating(2.6)]
 	Pointing,
 
 	/// <summary>
@@ -63,16 +69,19 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0101")]
 	[HodokuDifficultyRating(50, HodokuDifficultyLevel.Medium)]
+	[SudokuExplainerDifficultyRating(2.8)]
 	Claiming,
 
 	/// <summary>
 	/// Indicates almost locked pair.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)]
 	AlmostLockedPair,
 
 	/// <summary>
 	/// Indicates almost locked triple.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(5.2, IsAdvancedDefined = true)]
 	AlmostLockedTriple,
 
 	/// <summary>
@@ -111,6 +120,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0200")]
 	[HodokuDifficultyRating(60, HodokuDifficultyLevel.Medium)]
+	[SudokuExplainerDifficultyRating(3.0)]
 	NakedPair,
 
 	/// <summary>
@@ -123,6 +133,9 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0110")]
 	[HodokuDifficultyRating(40, HodokuDifficultyLevel.Medium)]
+#if false
+	[SudokuExplainerDifficultyRating(2.0)]
+#endif
 	LockedPair,
 
 	/// <summary>
@@ -130,6 +143,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0210")]
 	[HodokuDifficultyRating(70, HodokuDifficultyLevel.Medium)]
+	[SudokuExplainerDifficultyRating(3.4)]
 	HiddenPair,
 
 	/// <summary>
@@ -137,6 +151,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0201")]
 	[HodokuDifficultyRating(80, HodokuDifficultyLevel.Medium)]
+	[SudokuExplainerDifficultyRating(3.6)]
 	NakedTriple,
 
 	/// <summary>
@@ -149,6 +164,9 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0111")]
 	[HodokuDifficultyRating(60, HodokuDifficultyLevel.Medium)]
+#if false
+	[SudokuExplainerDifficultyRating(2.5)]
+#endif
 	LockedTriple,
 
 	/// <summary>
@@ -156,6 +174,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0211")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Medium)]
+	[SudokuExplainerDifficultyRating(4.0)]
 	HiddenTriple,
 
 	/// <summary>
@@ -163,6 +182,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0202")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(5.0)]
 	NakedQuadruple,
 
 	/// <summary>
@@ -175,6 +195,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0212")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(5.4)]
 	HiddenQuadruple,
 
 	/// <summary>
@@ -182,6 +203,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0300")]
 	[HodokuDifficultyRating(140, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(3.2)]
 	XWing,
 
 	/// <summary>
@@ -189,6 +211,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0310")]
 	[HodokuDifficultyRating(130, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(3.4, IsAdvancedDefined = true)]
 	FinnedXWing,
 
 	/// <summary>
@@ -196,6 +219,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0320")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(3.5, IsAdvancedDefined = true)]
 	SashimiXWing,
 
 	/// <summary>
@@ -271,6 +295,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0301")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(3.8)]
 	Swordfish,
 
 	/// <summary>
@@ -278,6 +303,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0311")]
 	[HodokuDifficultyRating(200, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(4.0, IsAdvancedDefined = true)]
 	FinnedSwordfish,
 
 	/// <summary>
@@ -285,6 +311,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0321")]
 	[HodokuDifficultyRating(240, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(4.1, IsAdvancedDefined = true)]
 	SashimiSwordfish,
 
 	/// <summary>
@@ -360,6 +387,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0302")]
 	[HodokuDifficultyRating(160, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(5.2)]
 	Jellyfish,
 
 	/// <summary>
@@ -367,6 +395,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0312")]
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(5.4, IsAdvancedDefined = true)]
 	FinnedJellyfish,
 
 	/// <summary>
@@ -374,6 +403,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0322")]
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(5.6, IsAdvancedDefined = true)]
 	SashimiJellyfish,
 
 	/// <summary>
@@ -716,6 +746,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0800")]
 	[HodokuDifficultyRating(160, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(4.2)]
 	XyWing,
 
 	/// <summary>
@@ -723,37 +754,44 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0801")]
 	[HodokuDifficultyRating(180, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(4.4)]
 	XyzWing,
 
 	/// <summary>
 	/// Indicates WXYZ-Wing.
 	/// </summary>
 	[HodokuTechniquePrefix("0802")]
+	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	WxyzWing,
 
 	/// <summary>
 	/// Indicates VWXYZ-Wing.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	VwxyzWing,
 
 	/// <summary>
 	/// Indicates UVWXYZ-Wing.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	UvwxyzWing,
 
 	/// <summary>
 	/// Indicates TUVWXYZ-Wing.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	TuvwxyzWing,
 
 	/// <summary>
 	/// Indicates STUVWXYZ-Wing.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	StuvwxyzWing,
 
 	/// <summary>
 	/// Indicates RSTUVWXYZ-Wing.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	RstuvwxyzWing,
 
 	/// <summary>
@@ -791,6 +829,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0803")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(4.4, IsAdvancedDefined = true)]
 	WWing,
 
 	/// <summary>
@@ -853,6 +892,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0600")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(4.5)]
 	UniqueRectangleType1,
 
 	/// <summary>
@@ -860,6 +900,8 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0601")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(4.5)]
+	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	UniqueRectangleType2,
 
 	/// <summary>
@@ -867,6 +909,8 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0602")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(4.5, 4.8)]
+	[SudokuExplainerDifficultyRating(4.6, 4.9, IsAdvancedDefined = true)]
 	UniqueRectangleType3,
 
 	/// <summary>
@@ -874,6 +918,8 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0603")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(4.5)]
+	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	UniqueRectangleType4,
 
 	/// <summary>
@@ -881,6 +927,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0604")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	UniqueRectangleType5,
 
 	/// <summary>
@@ -895,6 +942,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0606")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(4.8, IsAdvancedDefined = true)]
 	HiddenUniqueRectangle,
 
 	/// <summary>
@@ -1027,6 +1075,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0607")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(4.7, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
 	AvoidableRectangleType1,
 
 	/// <summary>
@@ -1034,6 +1083,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0608")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
 	AvoidableRectangleType2,
 
 	/// <summary>
@@ -1104,21 +1154,28 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates unique loop type 1.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	UniqueLoopType1,
 
 	/// <summary>
 	/// Indicates unique loop type 2.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(4.6, 5.0)]
+	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	UniqueLoopType2,
 
 	/// <summary>
 	/// Indicates unique loop type 3.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(4.6, 5.0)]
+	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	UniqueLoopType3,
 
 	/// <summary>
 	/// Indicates unique loop type 4.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(4.6, 5.0)]
+	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	UniqueLoopType4,
 
 	/// <summary>
@@ -1158,21 +1215,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0610")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(5.6)]
 	BivalueUniversalGraveType1,
 
 	/// <summary>
 	/// Indicates bi-value universal grave type 2.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(5.7)]
 	BivalueUniversalGraveType2,
 
 	/// <summary>
 	/// Indicates bi-value universal grave type 3.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(5.8, 6.1)]
 	BivalueUniversalGraveType3,
 
 	/// <summary>
 	/// Indicates bi-value universal grave type 4.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(5.7)]
 	BivalueUniversalGraveType4,
 
 	/// <summary>
@@ -1320,6 +1381,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("1101")]
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
 	SueDeCoq,
 
 	/// <summary>
@@ -1327,6 +1389,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("1101")]
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
 	SueDeCoqIsolated,
 
 	/// <summary>
@@ -1344,6 +1407,9 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0400")]
 	[HodokuDifficultyRating(130, HodokuDifficultyLevel.Hard)]
+#if false
+	[SudokuExplainerDifficultyRating(6.6)]
+#endif
 	Skyscraper,
 
 	/// <summary>
@@ -1351,6 +1417,9 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0401")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
+#if false
+	[SudokuExplainerDifficultyRating(6.6)]
+#endif
 	TwoStringKite,
 
 	/// <summary>
@@ -1358,6 +1427,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0403")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerDifficultyRating(6.6)]
 	TurbotFish,
 
 	/// <summary>
@@ -1423,6 +1493,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0701")]
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(6.6, 6.9)]
 	XChain,
 
 	/// <summary>
@@ -1438,6 +1509,7 @@ public enum Technique : short
 	/// Indicates fishy cycle (X-Cycle).
 	/// </summary>
 	[HodokuTechniquePrefix("0704")]
+	[SudokuExplainerDifficultyRating(6.5, 6.6)]
 	FishyCycle,
 
 	/// <summary>
@@ -1481,6 +1553,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0706")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(7.0, 7.3)]
 	ContinuousNiceLoop,
 
 	/// <summary>
@@ -1488,6 +1561,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0708")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(7.0, 7.6)]
 	AlternatingInferenceChain,
 
 	/// <summary>
@@ -1550,6 +1624,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates nishio forcing chains.
 	/// </summary>
+	[SudokuExplainerDifficultyRating(7.6, 8.1)]
 	NishioForcingChains,
 
 	/// <summary>
@@ -1557,6 +1632,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("1301")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerDifficultyRating(8.2, 8.6)]
 	RegionForcingChains,
 
 	/// <summary>
@@ -1564,6 +1640,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("1301")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerDifficultyRating(8.2, 8.6)]
 	CellForcingChains,
 
 	/// <summary>
@@ -1571,6 +1648,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("1303")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerDifficultyRating(8.6, 9.4)]
 	DynamicRegionForcingChains,
 
 	/// <summary>
@@ -1578,6 +1656,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("1303")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerDifficultyRating(8.6, 9.4)]
 	DynamicCellForcingChains,
 
 	/// <summary>
@@ -1585,6 +1664,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("1304")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerDifficultyRating(8.8, 9.4)]
 	DynamicContradictionForcingChains,
 
 	/// <summary>
@@ -1592,6 +1672,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("1304")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerDifficultyRating(8.8, 9.4)]
 	DynamicDoubleForcingChains,
 
 	/// <summary>
@@ -1615,6 +1696,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0901")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(7.5, IsAdvancedDefined = true)]
 	SinglyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -1622,6 +1704,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0901")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(7.5, IsAdvancedDefined = true)]
 	DoublyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -1629,6 +1712,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0902")]
 	[HodokuDifficultyRating(320, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(8.0, IsAdvancedDefined = true)]
 	AlmostLockedSetsXyWing,
 
 	/// <summary>
