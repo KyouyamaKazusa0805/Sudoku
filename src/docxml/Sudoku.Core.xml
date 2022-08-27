@@ -123,6 +123,24 @@
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>All true candidates.</returns>
         </member>
+        <member name="T:Sudoku.Compatibility.Hodoku.HodokuAliasedNamesAttribute">
+            <summary>
+            Defines an attribute that is applied to a field of type <see cref="T:Sudoku.Solving.Data.Representation.Technique"/>,
+            indicating the aliased name (or names) of specified technique that is defined by Hodoku.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuAliasedNamesAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Compatibility.Hodoku.HodokuAliasedNamesAttribute"/> instance
+            via the specified aliases of specified technique.
+            </summary>
+            <param name="aliases">The aliased names of specified technique.</param>
+        </member>
+        <member name="P:Sudoku.Compatibility.Hodoku.HodokuAliasedNamesAttribute.Aliases">
+            <summary>
+            Indicates the aliased names of the technique.
+            </summary>
+        </member>
         <member name="T:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel">
             <summary>
             The difficulty level defined by Hodoku.
@@ -182,6 +200,20 @@
             Represents some methods that are used for get the details supported and defined
             by another program called <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatiblity.GetAliases(Sudoku.Solving.Data.Representation.Technique)">
+            <summary>
+            Gets all possible aliased names that are defined by Hodoku.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            The array of aliased names, or <see langword="null"/> if it is not defined by Hodoku.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Solving.Data.Representation.Technique"/>,
+            or the value is <see cref="F:Sudoku.Solving.Data.Representation.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Solving.Data.Representation.Technique"/>
         </member>
         <member name="M:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatiblity.GetHodokuPrefix(Sudoku.Solving.Data.Representation.Technique)">
             <summary>
@@ -254,6 +286,24 @@
         <member name="P:Sudoku.Compatibility.Hodoku.HodokuTechniquePrefixAttribute.Prefix">
             <summary>
             The prefix value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAliasedNamesAttribute">
+            <summary>
+            Defines an attribute that is applied to a field of type <see cref="T:Sudoku.Solving.Data.Representation.Technique"/>,
+            indicating the aliased name (or names) of specified technique that is defined by Sudoku Explainer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAliasedNamesAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAliasedNamesAttribute"/> instance
+            via the specified aliases of specified technique.
+            </summary>
+            <param name="aliases">The aliased names of specified technique.</param>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAliasedNamesAttribute.Aliases">
+            <summary>
+            Indicates the aliased names of the technique.
             </summary>
         </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute">
@@ -354,6 +404,20 @@
             by another program called
             <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
             </summary>
+        </member>
+        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerLibraryCompatiblity.GetAliases(Sudoku.Solving.Data.Representation.Technique)">
+            <summary>
+            Gets all possible aliased names that are defined by Sudoku Explainer.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            The array of aliased names, or <see langword="null"/> if it is not defined by Sudoku Explainer.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Solving.Data.Representation.Technique"/>,
+            or the value is <see cref="F:Sudoku.Solving.Data.Representation.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Solving.Data.Representation.Technique"/>
         </member>
         <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerLibraryCompatiblity.GetDifficultyRatingRange(Sudoku.Solving.Data.Representation.Technique)">
             <summary>

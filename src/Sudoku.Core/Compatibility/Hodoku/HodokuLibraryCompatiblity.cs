@@ -7,6 +7,33 @@
 public static class HodokuLibraryCompatiblity
 {
 	/// <summary>
+	/// Gets all possible aliased names that are defined by Hodoku.
+	/// </summary>
+	/// <param name="this">The technique.</param>
+	/// <returns>
+	/// The array of aliased names, or <see langword="null"/> if it is not defined by Hodoku.
+	/// </returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the specified value is not defined by the type <see cref="Technique"/>,
+	/// or the value is <see cref="Technique.None"/>.
+	/// </exception>
+	/// <seealso cref="Technique"/>
+	public static string[]? GetAliases(this Technique @this)
+		=> (@this != Technique.None && Enum.IsDefined(@this)) switch
+		{
+			true => typeof(Technique).GetField(@this.ToString()) switch
+			{
+				{ } fieldInfo => fieldInfo.GetCustomAttribute<HodokuAliasedNamesAttribute>() switch
+				{
+					{ Aliases: var aliases } => aliases,
+					_ => null
+				},
+				_ => null
+			},
+			_ => throw new ArgumentOutOfRangeException(nameof(@this))
+		};
+
+	/// <summary>
 	/// Try to get the prefix of the specified technique. The return value will be a four-digit value
 	/// represented as a <see cref="string"/> value. For more information please visit
 	/// <see href="https://sourceforge.net/p/hodoku/code/HEAD/tree/HoDoKu/trunk/reglib-1.4.txt">this link</see>.

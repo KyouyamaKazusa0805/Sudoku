@@ -12,6 +12,33 @@ using DifficultyRange = ValueTuple<
 public static class SudokuExplainerLibraryCompatiblity
 {
 	/// <summary>
+	/// Gets all possible aliased names that are defined by Sudoku Explainer.
+	/// </summary>
+	/// <param name="this">The technique.</param>
+	/// <returns>
+	/// The array of aliased names, or <see langword="null"/> if it is not defined by Sudoku Explainer.
+	/// </returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the specified value is not defined by the type <see cref="Technique"/>,
+	/// or the value is <see cref="Technique.None"/>.
+	/// </exception>
+	/// <seealso cref="Technique"/>
+	public static string[]? GetAliases(this Technique @this)
+		=> (@this != Technique.None && Enum.IsDefined(@this)) switch
+		{
+			true => typeof(Technique).GetField(@this.ToString()) switch
+			{
+				{ } fieldInfo => fieldInfo.GetCustomAttribute<SudokuExplainerAliasedNamesAttribute>() switch
+				{
+					{ Aliases: var aliases } => aliases,
+					_ => null
+				},
+				_ => null
+			},
+			_ => throw new ArgumentOutOfRangeException(nameof(@this))
+		};
+
+	/// <summary>
 	/// Try to get difficulty rating of the specified technique.
 	/// </summary>
 	/// <param name="this">The technique.</param>

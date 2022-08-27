@@ -16,6 +16,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0000")]
 	[HodokuDifficultyRating(4, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.0)]
+	[SudokuExplainerAliasedNames("Single")]
 	FullHouse,
 
 	/// <summary>
@@ -61,6 +62,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0100")]
 	[HodokuDifficultyRating(50, HodokuDifficultyLevel.Medium)]
+	[HodokuAliasedNames("Locked Candidates Type 1")]
 	[SudokuExplainerDifficultyRating(2.6)]
 	Pointing,
 
@@ -69,6 +71,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0101")]
 	[HodokuDifficultyRating(50, HodokuDifficultyLevel.Medium)]
+	[HodokuAliasedNames("Locked Candidates Type 2")]
 	[SudokuExplainerDifficultyRating(2.8)]
 	Claiming,
 
@@ -135,6 +138,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(40, HodokuDifficultyLevel.Medium)]
 #if false
 	[SudokuExplainerDifficultyRating(2.0)]
+	[SudokuExplainerAliasNames("Direct Hidden Pair")]
 #endif
 	LockedPair,
 
@@ -152,6 +156,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0201")]
 	[HodokuDifficultyRating(80, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(3.6)]
+	[SudokuExplainerAliasedNames("Naked Triplet")]
 	NakedTriple,
 
 	/// <summary>
@@ -166,6 +171,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(60, HodokuDifficultyLevel.Medium)]
 #if false
 	[SudokuExplainerDifficultyRating(2.5)]
+	[SudokuExplainerAliasNames("Direct Hidden Triplet")]
 #endif
 	LockedTriple,
 
@@ -175,6 +181,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0211")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(4.0)]
+	[SudokuExplainerAliasedNames("Hidden Triplet")]
 	HiddenTriple,
 
 	/// <summary>
@@ -183,6 +190,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0202")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(5.0)]
+	[SudokuExplainerAliasedNames("Naked Quad")]
 	NakedQuadruple,
 
 	/// <summary>
@@ -196,6 +204,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0212")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(5.4)]
+	[SudokuExplainerAliasedNames("Hidden Quad")]
 	HiddenQuadruple,
 
 	/// <summary>
@@ -892,6 +901,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0600")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[HodokuAliasedNames("Uniqueness Test 1")]
 	[SudokuExplainerDifficultyRating(4.5)]
 	UniqueRectangleType1,
 
@@ -900,6 +910,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0601")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[HodokuAliasedNames("Uniqueness Test 2")]
 	[SudokuExplainerDifficultyRating(4.5)]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	UniqueRectangleType2,
@@ -909,6 +920,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0602")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[HodokuAliasedNames("Uniqueness Test 3")]
 	[SudokuExplainerDifficultyRating(4.5, 4.8)]
 	[SudokuExplainerDifficultyRating(4.6, 4.9, IsAdvancedDefined = true)]
 	UniqueRectangleType3,
@@ -918,6 +930,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0603")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[HodokuAliasedNames("Uniqueness Test 4")]
 	[SudokuExplainerDifficultyRating(4.5)]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	UniqueRectangleType4,
@@ -927,6 +940,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0604")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[HodokuAliasedNames("Uniqueness Test 5")]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	UniqueRectangleType5,
 
@@ -935,6 +949,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0605")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[HodokuAliasedNames("Uniqueness Test 6")]
 	UniqueRectangleType6,
 
 	/// <summary>
@@ -942,6 +957,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0606")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[HodokuAliasedNames("Hidden Rectangle")]
 	[SudokuExplainerDifficultyRating(4.8, IsAdvancedDefined = true)]
 	HiddenUniqueRectangle,
 
@@ -1215,6 +1231,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0610")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
+	[HodokuAliasedNames("Bivalue Universal Grave + 1")]
 	[SudokuExplainerDifficultyRating(5.6)]
 	BivalueUniversalGraveType1,
 
@@ -1409,6 +1426,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(130, HodokuDifficultyLevel.Hard)]
 #if false
 	[SudokuExplainerDifficultyRating(6.6)]
+	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
 	Skyscraper,
 
@@ -1419,6 +1437,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 #if false
 	[SudokuExplainerDifficultyRating(6.6)]
+	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
 	TwoStringKite,
 
@@ -1510,6 +1529,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0704")]
 	[SudokuExplainerDifficultyRating(6.5, 6.6)]
+	[SudokuExplainerAliasedNames("Bidirectional X-Cycle")]
 	FishyCycle,
 
 	/// <summary>
@@ -1546,6 +1566,8 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0707")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(7.0, 7.6)]
+	[SudokuExplainerAliasedNames("Forcing Chain")]
 	DiscontinuousNiceLoop,
 
 	/// <summary>
@@ -1554,6 +1576,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0706")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.0, 7.3)]
+	[SudokuExplainerAliasedNames("Bidirectional Cycle")]
 	ContinuousNiceLoop,
 
 	/// <summary>
@@ -1561,7 +1584,6 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0708")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
-	[SudokuExplainerDifficultyRating(7.0, 7.6)]
 	AlternatingInferenceChain,
 
 	/// <summary>
@@ -1812,5 +1834,6 @@ public enum Technique : short
 	/// Indicates brute force.
 	/// </summary>
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerAliasedNames("Try & Error")]
 	BruteForce,
 }
