@@ -34,7 +34,7 @@ internal sealed class WindowInitialInfo
 		{
 			{ FirstGrid: not null } => nameof(SudokuPage),
 			{ DrawingDataRawValue: not null } => nameof(SudokuPage),
-			{ FromPreferenceFile: true } => nameof(SettingsPage),
+			{ FromPreferenceFile: true } => nameof(PreferencePage),
 			_ => ((App)Application.Current).UserPreference.AlwaysShowHomePageWhenOpen switch
 			{
 				true => nameof(HomePage),

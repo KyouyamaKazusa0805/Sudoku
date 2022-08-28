@@ -46,7 +46,6 @@ public sealed partial class MainWindow : Window
 		SetProgramNameToTitle();
 		SetIconFromAssetFile();
 		LoadGlobalPreferenceIfExistsAsync();
-		ConstructPreferenceItems();
 	}
 
 
@@ -80,54 +79,6 @@ public sealed partial class MainWindow : Window
 		PowerManager.RemainingChargePercentChanged -= BatteryRelatedItemsStatusChangedAsync;
 		PowerManager.PowerSupplyStatusChanged -= BatteryRelatedItemsStatusChangedAsync;
 		PowerManager.PowerSourceKindChanged -= BatteryRelatedItemsStatusChangedAsync;
-	}
-
-	/// <summary>
-	/// Constructs the preference items.
-	/// </summary>
-	/// <exception cref="Exception">Throws when invalid data has encountered.</exception>
-	private void ConstructPreferenceItems()
-	{
-		const string invokeMethodName = nameof(IDynamicCreatableItem<SliderSettingItem>.CreateInstance);
-		((App)Application.Current).RuntimeInfo.PreferenceItemGroups = (
-			from propertyInfo in typeof(Preference).GetProperties()
-			where propertyInfo is { CanRead: true, CanWrite: true } // Must contain both setter and getter
-			let returnParameter = propertyInfo.SetMethod!.ReturnParameter
-			let modReqs = returnParameter.GetRequiredCustomModifiers()
-			where !Array.Exists(modReqs, static modReq => modReq == typeof(IsExternalInit)) // Cannot contain init setter
-			let backgroundPreferenceAttribute = propertyInfo.GetCustomAttribute<BackgroundPreferenceAttribute>()
-			where backgroundPreferenceAttribute is null // The preference item is not exposed for users
-			let genericArgTypes = propertyInfo.GetGenericAttributeTypeArguments(typeof(PreferenceAttribute<>))
-			where genericArgTypes.Length == 1 // Seems useless
-			let genericArgType = genericArgTypes[0]
-			let preferenceAttributeType = typeof(PreferenceAttribute<>).MakeGenericType(genericArgType)
-			let prefAttribute = propertyInfo.GetCustomAttribute(preferenceAttributeType)
-			where prefAttribute is not null // Exists the attribute describing the extra arguments
-			let dynamicInvokeMethodInfo = genericArgType.GetMethod(invokeMethodName)
-			where dynamicInvokeMethodInfo is not null // Can call the method
-			let settingItem = (SettingItem?)dynamicInvokeMethodInfo.Invoke(null, new object?[] { propertyInfo.Name })
-			where settingItem is not null // Cannot be null
-			let groupAttribute = propertyInfo.GetCustomAttribute<PreferenceGroupAttribute>()
-			where groupAttribute is not null // Exists the attribute describing the grouping information
-			let groupName = groupAttribute.Name
-			let groupOrderingIndex = groupAttribute.OrderingIndex
-			let gnr = R[$"SettingsPage_GroupItemName_{groupName}"] ?? throw new TypeLoadException()
-			let gnd = R[$"SettingsPage_GroupItemDescription_{groupName}"]
-			select new PreferenceItemInfo(gnr, gnd, groupName, settingItem, groupOrderingIndex) into info
-			group info by (info.Name, info.RawName, info.Description) into groupedTuple // Raw name is used for grouping
-			let keyTuple = groupedTuple.Key
-			let name = keyTuple.Name
-			let description = keyTuple.Description
-			let rawName = keyTuple.RawName
-			let groupNameFieldInfo = typeof(PreferenceGroupNames).GetField(rawName)
-			where groupNameFieldInfo is not null // The field can be found in the metadata
-			let orderingAttribute = groupNameFieldInfo.GetCustomAttribute<PreferenceGroupOrderAttribute>()
-			where orderingAttribute is not null // The field contains ordering attribute
-			orderby orderingAttribute.OrderingIndex
-			let items = (from i in groupedTuple orderby i.OrderingIndex select i.SettingItem).ToArray()
-			let target = new SettingGroupItem { Name = name, Description = description, SettingItem = items }
-			select target
-		).ToArray();
 	}
 
 	/// <summary>

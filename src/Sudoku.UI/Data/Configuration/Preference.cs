@@ -5,25 +5,6 @@ using PeerSelectionMode = PeerFocusingMode;
 /// <summary>
 /// Defines the user preferences in the program.
 /// </summary>
-/// <remarks>
-/// Due to the special initialization mechanism, the properties of the type should satisfy the following conditions:
-/// <list type="bullet">
-/// <item>
-/// Only properties that contains <b>both</b> getter and normal setter (and not a <see langword="init"/> setter)
-/// can be loaded, initialized and displayed to the settings page.
-/// </item>
-/// <item>
-/// The property must be applied both attribute types <see cref="PreferenceAttribute{TSettingItem}"/>
-/// and <see cref="PreferenceGroupAttribute"/>.
-/// </item>
-/// <item>
-/// If the property is a non-formal preference item, a double extra leading underscore characters "<c>__</c>"
-/// will be inserted into the property name; otherwise, a normal property name is applied.
-/// </item>
-/// </list>
-/// </remarks>
-/// <seealso cref="PreferenceAttribute{TSettingItem}"/>
-/// <seealso cref="PreferenceGroupAttribute"/>
 public sealed class Preference : IDrawingPreference
 {
 	/// <summary>
@@ -641,11 +622,9 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
-	[BackgroundPreference]
 	public bool IsFirstMeet { get; set; } = true;
 
 	/// <inheritdoc/>
-	[BackgroundPreference]
 	public int RenderingCellSize { get; set; } = 60;
 	#endregion
 

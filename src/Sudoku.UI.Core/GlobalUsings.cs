@@ -30,7 +30,6 @@ global using Sudoku.Presentation.Nodes;
 global using Sudoku.Solving;
 global using Sudoku.UI.Data;
 global using Sudoku.UI.Data.Configuration;
-global using Sudoku.UI.Drawing.Shapes;
 global using Sudoku.UI.Interop;
 global using Windows.Foundation;
 global using Windows.Graphics.Display;

@@ -14,9 +14,4 @@ internal sealed class WindowRuntimeInfo
 	/// Indicates the user preference used.
 	/// </summary>
 	public Preference UserPreference { get; } = new();
-
-	/// <summary>
-	/// Indicates the possible preference items.
-	/// </summary>
-	public IList<SettingGroupItem> PreferenceItemGroups { get; internal set; } = null!;
 }
