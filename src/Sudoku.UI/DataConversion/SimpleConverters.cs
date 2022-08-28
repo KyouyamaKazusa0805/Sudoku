@@ -163,8 +163,12 @@ internal static class SimpleConverters
 			? $"{R["Token_OpenBrace"]}{date.ToShortDateString()}{R["Token_ClosedBrace"]}{description}"
 			: description;
 
-	public static IList<string> GetFontNames()
-		=> (from fontName in CanvasTextFormat.GetSystemFontFamilies() orderby fontName select fontName).ToList();
+	public static IList<TextBlock> GetFontNames()
+		=> (
+			from fontName in CanvasTextFormat.GetSystemFontFamilies()
+			orderby fontName
+			select new TextBlock { Text = fontName, FontFamily = new(fontName) }
+		).ToList();
 
 	/// <summary>
 	/// Converts the specified virtual key into a string representation.

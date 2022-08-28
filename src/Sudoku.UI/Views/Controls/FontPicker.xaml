@@ -15,7 +15,7 @@
 		<ComboBox
 			x:Name="_cComboBox" ItemsSource="{x:Bind data:SimpleConverters.GetFontNames()}" Grid.Row="0"
 			Header="{Binding ElementName=_cThis,Path=Header,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
-			SelectedValue="{x:Bind SelectedFontName,Mode=TwoWay}"
+			SelectedValuePath="Text" SelectedValue="{x:Bind SelectedFontName,Mode=TwoWay}"
 			PlaceholderText="{x:Bind PlaceholderText,Mode=TwoWay}" />
 		<Slider
 			x:Name="_cSlider" Grid.Row="1" TickPlacement="Outside" Width="450" Minimum="0" Maximum="1"
