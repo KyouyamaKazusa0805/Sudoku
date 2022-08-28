@@ -383,218 +383,156 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <c>0</c>.
 	/// </remarks>
-	[Preference<SliderSettingItem>(
-		nameof(SliderSettingItem.StepFrequency), .1, nameof(SliderSettingItem.TickFrequency), .3,
-		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 3D)]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 0)]
 	public double OutsideBorderWidth { get; set; } = 0;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>4</c>.
 	/// </remarks>
-	[Preference<SliderSettingItem>(
-		nameof(SliderSettingItem.StepFrequency), .5, nameof(SliderSettingItem.TickFrequency), .5,
-		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 5D)]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 1)]
 	public double BlockBorderWidth { get; set; } = 4;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>1</c>.
 	/// </remarks>
-	[Preference<SliderSettingItem>(
-		nameof(SliderSettingItem.StepFrequency), .1, nameof(SliderSettingItem.TickFrequency), .3,
-		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 3D)]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 2)]
 	public double CellBorderWidth { get; set; } = 1;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>1</c>.
 	/// </remarks>
-	[Preference<SliderSettingItem>(
-		nameof(SliderSettingItem.StepFrequency), .1, nameof(SliderSettingItem.TickFrequency), .3,
-		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 3D)]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 3)]
 	public double CandidateBorderWidth { get; set; } = 1;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>{ FontName = "Times New Roman", FontScale = .8 }</c>.
 	/// </remarks>
-	[Preference<FontPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 4)]
 	public FontData UnknownValueFont { get; set; } = new() { FontName = "Times New Roman", FontScale = .8 };
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFF0000</c> (i.e. <see cref="Colors.Red"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 5)]
 	public Color UnknownValueColor { get; set; } = Colors.Red;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 6)]
 	public Color OutsideBorderColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFFFFFF</c> (i.e. <see cref="Colors.White"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 7)]
 	public Color GridBackgroundFillColor { get; set; } = Colors.White;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 8)]
 	public Color BlockBorderColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 9)]
 	public Color CellBorderColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFD3D3D3</c> (i.e. <see cref="Colors.LightGray"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 10)]
 	public Color CandidateBorderColor { get; set; } = Colors.LightGray;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 11)]
 	public Color GivenColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF0000FF</c> (i.e. <see cref="Colors.Blue"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 12)]
 	public Color ModifiableColor { get; set; } = Colors.Blue;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF696969</c> (i.e. <see cref="Colors.DimGray"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 13)]
 	public Color CandidateColor { get; set; } = Colors.DimGray;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFF0000</c> (i.e. <see cref="Colors.Red"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 14)]
 	public Color CellDeltaColor { get; set; } = Colors.Red;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFFB9B9</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 15)]
 	public Color CandidateDeltaColor { get; set; } = Color.FromArgb(255, 255, 185, 185);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 16)]
 	public Color MaskEllipseColor { get; set; } = Colors.Black;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>6</c>.
 	/// </remarks>
-	[Preference<SliderSettingItem>(
-		nameof(SliderSettingItem.StepFrequency), .5, nameof(SliderSettingItem.TickFrequency), 1D,
-		nameof(SliderSettingItem.MinValue), 0D, nameof(SliderSettingItem.MaxValue), 6D)]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 17)]
 	public double HouseViewNodeStrokeThickness { get; set; } = 6;
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF3FDA65</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 18)]
 	public Color NormalColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF3FDA65</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 19)]
 	public Color AssignmentColor { get; set; } = Color.FromArgb(255, 63, 218, 101);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFF7684</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 20)]
 	public Color EliminationColor { get; set; } = Color.FromArgb(255, 255, 118, 132);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FF7FBBFF</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 21)]
 	public Color ExofinColor { get; set; } = Color.FromArgb(255, 127, 187, 255);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFD8B2FF</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 22)]
 	public Color EndofinColor { get; set; } = Color.FromArgb(255, 216, 178, 255);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFEB0000</c>.
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 23)]
 	public Color CannibalismColor { get; set; } = Color.FromArgb(255, 235, 0, 0);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFF0000</c> (Red).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 24)]
 	public Color LinkColor { get; set; } = Color.FromArgb(255, 255, 0, 0);
 
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The default value is <c>#FFFFFF00</c> (Yellow).
 	/// </remarks>
-	[Preference<ColorPickerSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 25)]
 	public Color GroupedLinkNodeColor { get; set; } = Colors.Yellow;
 
 	/// <inheritdoc/>
@@ -606,8 +544,6 @@ public sealed class Preference : IDrawingPreference
 	/// <item>#FFFFFF96</item>
 	/// </list>
 	/// </remarks>
-	[Preference<ColorSelectorGroupSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 26)]
 	public Color[] AuxiliaryColors { get; set; } =
 	{
 		Color.FromArgb(255, 127, 187, 255), // FF7FBBFF
@@ -628,8 +564,6 @@ public sealed class Preference : IDrawingPreference
 	/// The former 4 items of this array are referenced from sudoku project
 	/// <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
 	/// </remarks>
-	[Preference<ColorSelectorGroupSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 27)]
 	public Color[] AlmostLockedSetColors { get; set; } =
 	{
 		Color.FromArgb(255, 197, 232, 140), // FFC5E88C
@@ -657,8 +591,6 @@ public sealed class Preference : IDrawingPreference
 	/// All values of this array are referenced from sudoku project
 	/// <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
 	/// </remarks>
-	[Preference<ColorSelectorGroupSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Rendering, 28)]
 	public Color[] PaletteColors { get; set; } =
 	{
 		Color.FromArgb(255, 255, 192, 89), // FFFFC059
