@@ -690,8 +690,6 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
-	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Miscellaneous, 0)]
 	public bool DescendingOrderedInfoBarBoard { get; set; } = true;
 
 	/// <summary>
@@ -701,8 +699,6 @@ public sealed class Preference : IDrawingPreference
 	/// <remarks>
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
-	[Preference<ToggleSwitchSettingItem>]
-	[PreferenceGroup(PreferenceGroupNames.Miscellaneous, 1)]
 	public bool CheckBatteryStatusWhenOpen { get; set; } = true;
 	#endregion
 

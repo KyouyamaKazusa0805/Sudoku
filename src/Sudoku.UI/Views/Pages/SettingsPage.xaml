@@ -218,48 +218,6 @@
 												</StackPanel>
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.ColorSelectorGroupTemplate>
-										<!--<dts:SettingItemDataTemplateSelector.FontPickerTemplate>
-											<DataTemplate x:DataType="ms:FontPickerSettingItem">
-												<c:FontPicker PlaceholderText="{StaticResource FontPickerPlaceholder}">
-													<c:FontPicker.Header>
-														<StackPanel>
-															<TextBlock
-																Text="{x:Bind Name}"
-																Style="{StaticResource _rSettingItemNameTextBlockStyle}" />
-															<TextBlock
-																Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
-																Text="{x:Bind Description}"
-																Margin="{StaticResource _rSettingDescriptionMargin}"
-																Style="{ThemeResource CaptionTextBlockStyle}" />
-															<TextBlock
-																Text="{StaticResource FontPickerFontName}"
-																Margin="{StaticResource _rSettingDescriptionMargin}" />
-														</StackPanel>
-													</c:FontPicker.Header>
-												</c:FontPicker>
-											</DataTemplate>
-										</dts:SettingItemDataTemplateSelector.FontPickerTemplate>-->
-										<dts:SettingItemDataTemplateSelector.PeerFocusingModeComboBoxGroupTemplate>
-											<DataTemplate x:DataType="ms:PeerFocusingModeComboBoxSettingItem">
-												<StackPanel>
-													<TextBlock
-														Text="{x:Bind Name}"
-														Style="{ThemeResource _rSettingItemNameTextBlockStyle}" />
-													<TextBlock
-														Visibility="{x:Bind data:SimpleConverters.StringToVisibility(Description)}"
-														Text="{x:Bind Description}"
-														Margin="{StaticResource _rSettingDescriptionMargin}"
-														Style="{ThemeResource CaptionTextBlockStyle}" />
-													<ComboBox
-														Margin="{StaticResource _rSettingDescriptionMargin}"
-														ItemsSource="{x:Bind OptionContents}"
-														SelectedIndex="{x:Bind GetPreferenceIndex(),
-															Mode=TwoWay,
-															UpdateSourceTrigger=PropertyChanged,
-															BindBack=SetPreferenceIndex}" />
-												</StackPanel>
-											</DataTemplate>
-										</dts:SettingItemDataTemplateSelector.PeerFocusingModeComboBoxGroupTemplate>
 									</dts:SettingItemDataTemplateSelector>
 								</ListView.ItemTemplateSelector>
 							</ListView>

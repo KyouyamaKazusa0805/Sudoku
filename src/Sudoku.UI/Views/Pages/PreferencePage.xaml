@@ -118,7 +118,9 @@
 			</c:Win11SettingControl>
 
 			<!--Solving Options-->
-			<TextBlock Text="{StaticResource SettingsPage_GroupItemName_Solving}" FontWeight="Light" FontSize="24" Margin="0,24,0,0" />
+			<TextBlock
+				Text="{StaticResource SettingsPage_GroupItemName_Solving}" FontWeight="Light"
+				FontSize="24" Margin="0,24,0,0" />
 
 			<c:Win11SettingControl
 				Title="{StaticResource SettingsPage_ItemName_IsFullApplying}"
@@ -232,6 +234,26 @@
 					<x:Int32>6</x:Int32>
 					<x:Int32>7</x:Int32>
 				</ComboBox>
+			</c:Win11SettingControl>
+
+			<!--Miscellaneous Options-->
+			<TextBlock
+				Text="{StaticResource SettingsPage_GroupItemName_Miscellaneous}" FontWeight="Light"
+				FontSize="24" Margin="0,24,0,0" />
+
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_DescendingOrderedInfoBarBoard}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.DescendingOrderedInfoBarBoard,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_CheckBatteryStatusWhenOpen}"
+				Description="{StaticResource SettingsPage_ItemDescription_CheckBatteryStatusWhenOpen}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CheckBatteryStatusWhenOpen,Mode=TwoWay}" />
 			</c:Win11SettingControl>
 		</StackPanel>
 	</ScrollViewer>
