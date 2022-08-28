@@ -17,9 +17,9 @@
 				</TransitionCollection>
 			</StackPanel.Transitions>
 
-			<!--Basic Options-->
-			<TextBlock Text="{StaticResource AboutPage_DetailDescription}" Margin="0,0,0,24" />
+			<TextBlock Text="{StaticResource PreferencePage_DetailDescription}" Margin="0,0,0,24" />
 
+			<!--Basic Options-->
 			<TextBlock Text="{StaticResource SettingsPage_GroupItemName_Basic}" FontWeight="Light" FontSize="24" />
 			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_ShowCandidates}">
 				<ToggleSwitch
@@ -36,8 +36,7 @@
 			<c:Win11SettingControl
 				Title="{StaticResource SettingsPage_ItemName_PeerFocusingMode}"
 				Description="{StaticResource SettingsPage_ItemDescription_PeerFocusingMode}">
-				<ComboBox
-					SelectedIndex="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PeerFocusingMode,Mode=TwoWay}">
+				<ComboBox SelectedIndex="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PeerFocusingMode,Mode=TwoWay}">
 					<ComboBoxItem Content="{StaticResource SettingsPage_ItemName_PeerFocusingModeOption0Content}" />
 					<ComboBoxItem Content="{StaticResource SettingsPage_ItemName_PeerFocusingModeOption1Content}" />
 					<ComboBoxItem Content="{StaticResource SettingsPage_ItemName_PeerFocusingModeOption2Content}" />
@@ -116,6 +115,123 @@
 					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
 					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
 					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AlwaysShowHomePageWhenOpen,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+
+			<!--Solving Options-->
+			<TextBlock Text="{StaticResource SettingsPage_GroupItemName_Solving}" FontWeight="Light" FontSize="24" Margin="0,24,0,0" />
+
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_IsFullApplying}"
+				Description="{StaticResource SettingsPage_ItemDescription_IsFullApplying}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.IsFullApplying,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_AllowCollisionOnChainingAlsTechniques}"
+				Description="{StaticResource SettingsPage_ItemDescription_AllowCollisionOnChainingAlsTechniques}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AllowCollisionOnChainingAlsTechniques,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_AllowDoublyLinkedAls}"
+				Description="{StaticResource SettingsPage_ItemDescription_AllowDoublyLinkedAls}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AllowDoublyLinkedAls,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_CheckAlmostLockedQuadruple}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CheckAlmostLockedQuadruple,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_SearchBivalueUniversalGraveExtendedTypes}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.SearchBivalueUniversalGraveExtendedTypes,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_CheckAdvancedJuniorExocets}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CheckAdvancedJuniorExocets,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_CheckAdvancedSeniorExocets}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CheckAdvancedSeniorExocets,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_EnableFullHouse}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.EnableFullHouse,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_EnableLastDigit}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.EnableLastDigit,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_HiddenSinglesInBlockFirst}"
+				Description="{StaticResource SettingsPage_ItemDescription_HiddenSinglesInBlockFirst}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.HiddenSinglesInBlockFirst,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_TemplateDeleteOnly}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.TemplateDeleteOnly,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_AllowIncompleteUniqueRectangles}"
+				Description="{StaticResource SettingsPage_ItemDescription_AllowIncompleteUniqueRectangles}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AllowIncompleteUniqueRectangles,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_SearchForExtendedUniqueRectangles}">
+				<ToggleSwitch
+					OnContent="{StaticResource ToggleSwitchDefaultOnContent}"
+					OffContent="{StaticResource ToggleSwitchDefaultOffContent}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.SearchForExtendedUniqueRectangles,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_RegularWingMaxSize}">
+				<ComboBox
+					Margin="0,0,96,0"
+					SelectedValue="{x:Bind ((ui:App)xui:Application.Current).UserPreference.RegularWingMaxSize,Mode=TwoWay}">
+					<x:Int32>3</x:Int32>
+					<x:Int32>4</x:Int32>
+					<x:Int32>5</x:Int32>
+					<x:Int32>6</x:Int32>
+					<x:Int32>7</x:Int32>
+					<x:Int32>8</x:Int32>
+					<x:Int32>9</x:Int32>
+				</ComboBox>
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_ComplexFishMaxSize}">
+				<ComboBox
+					Margin="0,0,96,0"
+					SelectedValue="{x:Bind ((ui:App)xui:Application.Current).UserPreference.ComplexFishMaxSize,Mode=TwoWay}">
+					<x:Int32>2</x:Int32>
+					<x:Int32>3</x:Int32>
+					<x:Int32>4</x:Int32>
+					<x:Int32>5</x:Int32>
+					<x:Int32>6</x:Int32>
+					<x:Int32>7</x:Int32>
+				</ComboBox>
 			</c:Win11SettingControl>
 		</StackPanel>
 	</ScrollViewer>
