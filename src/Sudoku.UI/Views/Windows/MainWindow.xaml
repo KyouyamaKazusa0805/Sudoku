@@ -39,35 +39,6 @@
 					<Setter Property="Margin" Value="0,0,9,0" />
 				</Style>
 			</NavigationView.Resources>
-			<!--
-			<NavigationView.AutoSuggestBox>
-				<AutoSuggestBox
-					QueryIcon="Find" PlaceholderText="{StaticResource HomePage_Search}" VerticalAlignment="Center"
-					TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen">
-					<AutoSuggestBox.ItemTemplateSelector>
-						<dts:SearchedResultItemTemplateSelector>
-							<dts:SearchedResultItemTemplateSelector.PairInfoTemplate>
-								<DataTemplate x:DataType="m:SearchedResult">
-									<StackPanel Orientation="Vertical">
-										<TextBlock
-											Text="{x:Bind Value}" Style="{ThemeResource BodyTextBlockStyle}"
-											TextWrapping="WrapWholeWords" />
-										<TextBlock
-											Text="{x:Bind Location}" Style="{ThemeResource CaptionTextBlockStyle}"
-											TextWrapping="WrapWholeWords" />
-									</StackPanel>
-								</DataTemplate>
-							</dts:SearchedResultItemTemplateSelector.PairInfoTemplate>
-							<dts:SearchedResultItemTemplateSelector.DefaultTemplate>
-								<DataTemplate x:DataType="x:String">
-									<TextBlock Text="{x:Bind}" Style="{ThemeResource CaptionTextBlockStyle}" />
-								</DataTemplate>
-							</dts:SearchedResultItemTemplateSelector.DefaultTemplate>
-						</dts:SearchedResultItemTemplateSelector>
-					</AutoSuggestBox.ItemTemplateSelector>
-				</AutoSuggestBox>
-			</NavigationView.AutoSuggestBox>
-			-->
 			<NavigationView.MenuItems>
 				<NavigationViewItem Tag="HomePage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
 					<NavigationViewItem.Content>

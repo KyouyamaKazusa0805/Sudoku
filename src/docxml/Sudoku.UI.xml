@@ -2951,11 +2951,6 @@
             Indicates the helper type instance that is used for ensuring the dispatcher queue is not null.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Views.Windows.MainWindow._gatheredQueryKeywords">
-            <summary>
-            Indicates the gathered keywords.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Views.Windows.MainWindow._micaController">
             <summary>
             Indicates the mica controller instance.
@@ -3114,20 +3109,6 @@
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.ViewRouter_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)">
             <summary>
             Triggers when the page-related navigation item, as the selection, is changed.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="args">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.AutoSuggestBox_TextChanged(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs)">
-            <summary>
-            Triggers when text of the main auto suggest box has been changed.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="args">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.AutoSuggestBox_SuggestionChosen(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxSuggestionChosenEventArgs)">
-            <summary>
-            Triggers when a suggestion is chosen.
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="args">The event arguments provided.</param>
