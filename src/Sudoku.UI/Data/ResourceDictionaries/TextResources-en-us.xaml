@@ -272,7 +272,6 @@
 	<x:String x:Key="FontPickerFontName">Font name</x:String>
 	<x:String x:Key="FontPickerPlaceholder">Select a font</x:String>
 	<x:String x:Key="FontPickerFontScale">Font scale</x:String>
-	<x:String x:Key="Docs_MainPage">Main page|MainPage.md</x:String>
 
 	<!--Miscellaneous-->
 	<x:String x:Key="Link_SudokuTutorial">https://www.bilibili.com/read/readlist/rl291187</x:String>
