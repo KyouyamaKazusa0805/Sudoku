@@ -218,11 +218,9 @@
 												</StackPanel>
 											</DataTemplate>
 										</dts:SettingItemDataTemplateSelector.ColorSelectorGroupTemplate>
-										<dts:SettingItemDataTemplateSelector.FontPickerTemplate>
+										<!--<dts:SettingItemDataTemplateSelector.FontPickerTemplate>
 											<DataTemplate x:DataType="ms:FontPickerSettingItem">
-												<c:FontPicker
-													SettingItem="{x:Bind}"
-													PlaceholderText="{StaticResource FontPickerPlaceholder}">
+												<c:FontPicker PlaceholderText="{StaticResource FontPickerPlaceholder}">
 													<c:FontPicker.Header>
 														<StackPanel>
 															<TextBlock
@@ -240,7 +238,7 @@
 													</c:FontPicker.Header>
 												</c:FontPicker>
 											</DataTemplate>
-										</dts:SettingItemDataTemplateSelector.FontPickerTemplate>
+										</dts:SettingItemDataTemplateSelector.FontPickerTemplate>-->
 										<dts:SettingItemDataTemplateSelector.PeerFocusingModeComboBoxGroupTemplate>
 											<DataTemplate x:DataType="ms:PeerFocusingModeComboBoxSettingItem">
 												<StackPanel>

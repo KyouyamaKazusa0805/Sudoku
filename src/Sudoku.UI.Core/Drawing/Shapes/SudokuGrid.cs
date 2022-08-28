@@ -273,7 +273,7 @@ public sealed class SudokuGrid : DrawingElement
 				return;
 			}
 
-			if (_preference.PeerFocusingMode == PeerFocusingMode.None)
+			if (_preference.PeerFocusingMode == (int)PeerFocusingMode.None)
 			{
 				return;
 			}
@@ -290,7 +290,7 @@ public sealed class SudokuGrid : DrawingElement
 
 					break;
 				}
-				case (_, PeerFocusingMode.FocusedCellAndPeerCells):
+				case (_, (int)PeerFocusingMode.FocusedCellAndPeerCells):
 				{
 					for (int i = 0; i < 20; i++)
 					{
@@ -305,7 +305,7 @@ public sealed class SudokuGrid : DrawingElement
 					setFocusedCell(_focusedRectangle);
 					break;
 				}
-				case (_, PeerFocusingMode.FocusedCell):
+				case (_, (int)PeerFocusingMode.FocusedCell):
 				{
 					setFocusedCell(_focusedRectangle);
 					break;

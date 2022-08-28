@@ -6,16 +6,35 @@
 public sealed partial class FontPicker : UserControl
 {
 	/// <summary>
+	/// The dependency property that binds with <see cref="SelectedFontName"/>.
+	/// </summary>
+	/// <seealso cref="SelectedFontName"/>
+	public static readonly DependencyProperty SelectedFontNameProperty =
+		DependencyProperty.Register(
+			nameof(SelectedFontName),
+			typeof(string),
+			typeof(FontPicker),
+			new(null)
+		);
+
+	/// <summary>
+	/// The dependency property that binds with <see cref="SelectedFontScale"/>.
+	/// </summary>
+	/// <seealso cref="SelectedFontScale"/>
+	public static readonly DependencyProperty SelectedFontScaleProperty =
+		DependencyProperty.Register(
+			nameof(SelectedFontScale),
+			typeof(double),
+			typeof(FontPicker),
+			new(0.0)
+		);
+
+
+	/// <summary>
 	/// Initializes a <see cref="FontPicker"/> instance.
 	/// </summary>
-	[SetsRequiredMembers]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public FontPicker()
-	{
-		InitializeComponent();
-
-		SettingItem = null!;
-	}
+	public FontPicker() => InitializeComponent();
 
 
 	/// <inheritdoc cref="ComboBox.Header"/>
@@ -26,6 +45,18 @@ public sealed partial class FontPicker : UserControl
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set => _cComboBox.Header = value;
+	}
+
+	/// <summary>
+	/// Indicates the selected font scale.
+	/// </summary>
+	public double SelectedFontScale
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => (double)GetValue(SelectedFontScaleProperty);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => SetValue(SelectedFontScaleProperty, value);
 	}
 
 	/// <inheritdoc cref="ComboBox.PlaceholderText"/>
@@ -39,24 +70,14 @@ public sealed partial class FontPicker : UserControl
 	}
 
 	/// <summary>
-	/// Indicates the chosen font name.
+	/// Indicates the selected font name.
 	/// </summary>
-	public FontFamily FontNameChosen
+	public string SelectedFontName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new((string)_cComboBox.SelectedValue);
-	}
+		get => (string)GetValue(SelectedFontNameProperty);
 
-	/// <summary>
-	/// Indicates the base setting item.
-	/// </summary>
-	public required FontPickerSettingItem SettingItem { get; set; }
-
-
-	private void Control_Loaded(object _, RoutedEventArgs __)
-	{
-		_cComboBox.SelectedIndex =
-			((IList<string>)_cComboBox.ItemsSource).IndexOf((string)SettingItem.GetFontNamePreference());
-		_cSlider.Value = SettingItem.GetFontScalePreference();
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => SetValue(SelectedFontNameProperty, value);
 	}
 }

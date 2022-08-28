@@ -55,7 +55,7 @@ public interface IDrawingPreference
 	/// <summary>
 	/// Indicates the peer focusing mode.
 	/// </summary>
-	public abstract PeerFocusingMode PeerFocusingMode { get; set; }
+	public abstract int PeerFocusingMode { get; set; }
 
 	/// <summary>
 	/// Indicates the value font.

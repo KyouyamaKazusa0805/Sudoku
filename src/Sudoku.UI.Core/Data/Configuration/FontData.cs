@@ -3,6 +3,15 @@
 /// <summary>
 /// Defines a font data.
 /// </summary>
-/// <param name="FontName">Indicates the font name.</param>
-/// <param name="FontScale">Indicates the font scale.</param>
-public record struct FontData(string FontName, double FontScale);
+public sealed class FontData
+{
+	/// <summary>
+	/// Indicates the font name.
+	/// </summary>
+	public required string? FontName { get; set; }
+
+	/// <summary>
+	/// Indicates the font scale.
+	/// </summary>
+	public required double FontScale { get; set; }
+}

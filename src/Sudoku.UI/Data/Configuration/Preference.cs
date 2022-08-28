@@ -1,5 +1,7 @@
 ﻿namespace Sudoku.UI.Data.Configuration;
 
+using PeerSelectionMode = PeerFocusingMode;
+
 /// <summary>
 /// Defines the user preferences in the program.
 /// </summary>
@@ -93,11 +95,11 @@ public sealed class Preference : IDrawingPreference
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// The default value is <see cref="PeerFocusingMode.FocusedCellAndPeerCells"/>.
+	/// The default value is <see cref="PeerSelectionMode.FocusedCellAndPeerCells"/>.
 	/// </remarks>
 	[Preference<PeerFocusingModeComboBoxSettingItem>(nameof(PeerFocusingModeComboBoxSettingItem.OptionContents), 3)]
 	[PreferenceGroup(PreferenceGroupNames.Basic, 2)]
-	public PeerFocusingMode PeerFocusingMode { get; set; } = PeerFocusingMode.FocusedCellAndPeerCells;
+	public int PeerFocusingMode { get; set; } = (int)PeerSelectionMode.FocusedCellAndPeerCells;
 
 	/// <inheritdoc/>
 	/// <remarks>

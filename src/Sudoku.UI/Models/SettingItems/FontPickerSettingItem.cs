@@ -34,16 +34,16 @@ public sealed class FontPickerSettingItem : SettingItem, IDynamicCreatableItem<F
 	}
 
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
-	public double GetFontScalePreference() => GetFontData().FontScale;
+	public double GetFontScalePreference() => GetFontData().FontScale!;
 
 	/// <inheritdoc cref="SettingItem.GetPreference{T}()"/>
-	public object GetFontNamePreference() => GetFontData().FontName;
+	public object GetFontNamePreference() => GetFontData().FontName!;
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>
-	public void SetFontScalePreference(double value) => SetFontData(GetFontData() with { FontScale = value });
+	public void SetFontScalePreference(double value) => GetFontData().FontScale = value;
 
 	/// <inheritdoc cref="SettingItem.SetPreference{T}(T)"/>
-	public void SetFontNamePreference(object value) => SetFontData(GetFontData() with { FontName = (string)value });
+	public void SetFontNamePreference(object value) => GetFontData().FontName = (string)value;
 
 	private FontData GetFontData()
 	{

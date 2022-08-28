@@ -122,8 +122,6 @@
 	<x:String x:Key="SettingsPage_ItemName_ShowCandidateBorderLines">显示盘面上的候选数边界线</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero">用数字 0 来作为空格的占位符</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_PlaceholderIsZero">当复制题目代码的时候，如果设置了此项，那么空格就会显示为“0”；否则的话会显示为小数点“.”。</x:String>
-	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero_OnContent">空格会显示为“0”</x:String>
-	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero_OffContent">空格会显示为小数点“.”</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingMode">允许聚焦单元格</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_PeerFocusingMode">使用不同的颜色，来强调单元格来呈现出鼠标指向的单元格</x:String>
 	<x:String x:Key="SettingsPage_ItemName_EnableDeltaValuesDisplaying">用别的颜色显示错误填数</x:String>
@@ -215,6 +213,7 @@
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">文件“</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed2">”备份失败。</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed_ParseFailed">文件解析失败。</x:String>
+	<x:String x:Key="PreferencePage_DetailDescription">本页面列举一些可提供你修改程序行为的选项，这样可以提供了操作数独程序处理过程之中的灵活性。</x:String>
 	<x:String x:Key="KeyboardPage_DetailDescription">该页面列举的是该程序使用的一些快捷按键组合，用于参考。</x:String>
 	<x:String x:Key="KeyboardPage_ControlO">读取本地的数独文件</x:String>
 	<x:String x:Key="KeyboardPage_ControlS">将当前题目保存到本地</x:String>

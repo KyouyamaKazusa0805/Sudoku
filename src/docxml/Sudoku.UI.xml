@@ -1999,6 +1999,18 @@
             Defines a font picker control.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Controls.FontPicker.SelectedFontNameProperty">
+            <summary>
+            The dependency property that binds with <see cref="P:Sudoku.UI.Views.Controls.FontPicker.SelectedFontName"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.FontPicker.SelectedFontName"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.FontPicker.SelectedFontScaleProperty">
+            <summary>
+            The dependency property that binds with <see cref="P:Sudoku.UI.Views.Controls.FontPicker.SelectedFontScale"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.FontPicker.SelectedFontScale"/>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.FontPicker.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.FontPicker"/> instance.
@@ -2007,17 +2019,17 @@
         <member name="P:Sudoku.UI.Views.Controls.FontPicker.Header">
             <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.ComboBox.Header"/>
         </member>
+        <member name="P:Sudoku.UI.Views.Controls.FontPicker.SelectedFontScale">
+            <summary>
+            Indicates the selected font scale.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Views.Controls.FontPicker.PlaceholderText">
             <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.ComboBox.PlaceholderText"/>
         </member>
-        <member name="P:Sudoku.UI.Views.Controls.FontPicker.FontNameChosen">
+        <member name="P:Sudoku.UI.Views.Controls.FontPicker.SelectedFontName">
             <summary>
-            Indicates the chosen font name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Views.Controls.FontPicker.SettingItem">
-            <summary>
-            Indicates the base setting item.
+            Indicates the selected font name.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.FontPicker.InitializeComponent">
@@ -2958,6 +2970,31 @@
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.KeyboardPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Views.Pages.PreferencePage">
+            <summary>
+            The preference page.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.PreferencePage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Pages.PreferencePage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.PreferencePage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.PreferencePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.PreferencePage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

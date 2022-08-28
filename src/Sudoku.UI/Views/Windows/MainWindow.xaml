@@ -93,7 +93,7 @@
 				</NavigationViewItem>
 			</NavigationView.MenuItems>
 			<NavigationView.FooterMenuItems>
-				<NavigationViewItem Tag="SettingsPage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
+				<NavigationViewItem Tag="PreferencePage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
 					<NavigationViewItem.Content>
 						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
 							<SymbolIcon Symbol="Setting" />

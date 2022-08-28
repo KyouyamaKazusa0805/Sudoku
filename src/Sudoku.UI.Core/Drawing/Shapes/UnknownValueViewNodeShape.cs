@@ -70,7 +70,7 @@ public sealed class UnknownValueViewNodeShape : DrawingElement
 
 			UnknownCharacter = (Utf8Char)'\0';
 			_textBlock
-				.WithFontFamily(value.UnknownValueFont.FontName)
+				.WithFontFamily(value.UnknownValueFont.FontName!)
 				.WithFontSize(value.RenderingCellSize * value.UnknownValueFont.FontScale)
 				.WithForeground(value.UnknownValueColor);
 		}

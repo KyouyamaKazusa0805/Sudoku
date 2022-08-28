@@ -171,14 +171,14 @@ internal sealed class CellDigit : DrawingElement
 	public string FontName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _preference.ValueFont.FontName;
+		get => _preference.ValueFont.FontName!;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
 			ArgumentNullException.ThrowIfNull(_textBlock);
 
-			_preference.ValueFont = _preference.ValueFont with { FontName = value };
+			_preference.ValueFont.FontName = value;
 			_textBlock.FontFamily = new(value);
 		}
 	}
@@ -263,7 +263,7 @@ internal sealed class CellDigit : DrawingElement
 			_textBlock ??= new TextBlock()
 				.WithText(_digit == byte.MaxValue ? string.Empty : (_digit + 1).ToString())
 				.WithFontSize(value.RenderingCellSize * value.ValueFont.FontScale)
-				.WithFontFamily(value.ValueFont.FontName)
+				.WithFontFamily(value.ValueFont.FontName!)
 				.WithTextAlignment(TextAlignment.Center)
 				.WithHorizontalTextAlignment(TextAlignment.Center)
 				.WithHorizontalAlignment(HorizontalAlignment.Center)

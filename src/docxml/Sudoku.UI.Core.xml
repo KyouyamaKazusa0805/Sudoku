@@ -8,21 +8,16 @@
             <summary>
             Defines a font data.
             </summary>
-            <param name="FontName">Indicates the font name.</param>
-            <param name="FontScale">Indicates the font scale.</param>
-        </member>
-        <member name="M:Sudoku.UI.Data.Configuration.FontData.#ctor(System.String,System.Double)">
-            <summary>
-            Defines a font data.
-            </summary>
-            <param name="FontName">Indicates the font name.</param>
-            <param name="FontScale">Indicates the font scale.</param>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.FontData.FontName">
-            <summary>Indicates the font name.</summary>
+            <summary>
+            Indicates the font name.
+            </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.FontData.FontScale">
-            <summary>Indicates the font scale.</summary>
+            <summary>
+            Indicates the font scale.
+            </summary>
         </member>
         <member name="T:Sudoku.UI.Data.PropertyPathBuilder">
             <summary>

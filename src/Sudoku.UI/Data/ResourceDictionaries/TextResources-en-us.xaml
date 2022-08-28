@@ -125,13 +125,11 @@
 	<x:String x:Key="SettingsPage_ItemName_ShowCandidateBorderLines">Show candidate border lines</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero">Use zero '0' to describe empty cells as placeholders</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_PlaceholderIsZero">When copy sudoku grid code, if we set this option to true value, the empty cells will be displayed as a '0' character; otherwise, a dot '.'.</x:String>
-	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero_OnContent">Placeholder will be '0'</x:String>
-	<x:String x:Key="SettingsPage_ItemName_PlaceholderIsZero_OffContent">Placeholder will be '.'</x:String>
 	<x:String x:Key="SettingsPage_ItemName_PeerFocusingMode">Allow focusing</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_PeerFocusingMode">Allow focusing a cell, by using a different color to highlight that cell</x:String>
 	<x:String x:Key="SettingsPage_ItemName_EnableDeltaValuesDisplaying">Enable displaying for delta values</x:String>
-	<x:String x:Key="SettingsPage_ItemName_DescendingOrderedInfoBarBoard">Show board using descending order</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_EnableDeltaValuesDisplaying">This option will allow the program displaying for wrong digits you have filled using a different color with the basic one.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_DescendingOrderedInfoBarBoard">Show board using descending order</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AlsoSavePictureWhenSaveDrawingData">Also saving picture while saving drawing data files</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AlwaysShowHomePageWhenOpen">Always route to home page when you open the program</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_AlwaysShowHomePageWhenOpen">If you don't want to check the home page every time, you can set the option to false, then if non-first time you use the program, the program will always open sudoku analysis page instead of the home page.</x:String>
@@ -218,6 +216,7 @@
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed1">File "</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed2">" is failed to backup.</x:String>
 	<x:String x:Key="SettingsPage_BackupPreferenceFailed_ParseFailed">File is failed to parse.</x:String>
+	<x:String x:Key="PreferencePage_DetailDescription">Here displays the items of settings that may be used in this program.</x:String>
 	<x:String x:Key="KeyboardPage_DetailDescription">Here displays the items being used as the hotkeys, for referenced.</x:String>
 	<x:String x:Key="KeyboardPage_ControlO">Loads a sudoku grid file from local</x:String>
 	<x:String x:Key="KeyboardPage_ControlS">Saves the current sudoku grid to the local file</x:String>

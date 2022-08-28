@@ -192,6 +192,9 @@
 		<Page Update="Views\Controls\SudokuPane.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Pages\PreferencePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Controls\InfoBarBoard.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

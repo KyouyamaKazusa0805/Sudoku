@@ -188,7 +188,7 @@ internal sealed class CandidateDigit : DrawingElement
 				{
 					var digitBlock = new TextBlock()
 						.WithText(digit + 1)
-						.WithFontFamily(value.CandidateFont.FontName)
+						.WithFontFamily(value.CandidateFont.FontName!)
 						.WithFontSize(value.RenderingCellSize * value.CandidateFont.FontScale)
 						.WithHorizontalAlignment(HorizontalAlignment.Center)
 						.WithVerticalAlignment(VerticalAlignment.Center)
