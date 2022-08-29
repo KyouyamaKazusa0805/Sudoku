@@ -201,7 +201,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 			CancellationToken cancellationToken,
 			[NotNullWhen(true)] out ManualSolverResult? result)
 		{
-			bool atLeastOneStepIsWorth = false;
+			bool atLeastOneConclusionIsWorth = false;
 			foreach (var (t, c, d) in step.Conclusions)
 			{
 				switch (t)
@@ -209,7 +209,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 					case Assignment when playground.GetStatus(c) == CellStatus.Empty:
 					case Elimination when playground.Exists(c, d) is true:
 					{
-						atLeastOneStepIsWorth = true;
+						atLeastOneConclusionIsWorth = true;
 
 						goto FinalCheck;
 					}
@@ -217,7 +217,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 			}
 
 		FinalCheck:
-			if (atLeastOneStepIsWorth)
+			if (atLeastOneConclusionIsWorth)
 			{
 				stepGrids.Add(playground);
 				step.ApplyTo(ref playground);
