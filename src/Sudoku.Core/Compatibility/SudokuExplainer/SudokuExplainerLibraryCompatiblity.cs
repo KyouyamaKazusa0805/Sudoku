@@ -70,12 +70,38 @@ public static class SudokuExplainerLibraryCompatiblity
 		return attributes switch
 		{
 			[] => null,
-			[{ DifficultyRating: var min, DifficultyRatingMaximumThreshold: var max }] => (new(min, max ?? min), null),
+			[
+				{
+					DifficultyRating: var min,
+					DifficultyRatingMaximumThreshold: var max,
+					IsAdvancedDefined: false
+				}
+			] => (new(min, max ?? min), null),
 #pragma warning disable IDE0055
 			[
-				{ DifficultyRating: var min1, DifficultyRatingMaximumThreshold: var max1 },
-				{ DifficultyRating: var min2, DifficultyRatingMaximumThreshold: var max2 }
+				{
+					DifficultyRating: var min1,
+					DifficultyRatingMaximumThreshold: var max1,
+					IsAdvancedDefined: false
+				},
+				{
+					DifficultyRating: var min2,
+					DifficultyRatingMaximumThreshold: var max2,
+					IsAdvancedDefined: true
+				}
 			] => (new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
+			[
+				{
+					DifficultyRating: var min1,
+					DifficultyRatingMaximumThreshold: var max1,
+					IsAdvancedDefined: true
+				},
+				{
+					DifficultyRating: var min2,
+					DifficultyRatingMaximumThreshold: var max2,
+					IsAdvancedDefined: false
+				}
+			] => (new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
 #pragma warning restore IDE0055
 			_ => throw new InvalidOperationException("The field has marked too much attributes.")
 		};

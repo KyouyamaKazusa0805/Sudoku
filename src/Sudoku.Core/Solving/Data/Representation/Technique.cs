@@ -950,6 +950,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0605")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Uniqueness Test 6")]
+	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	UniqueRectangleType6,
 
 	/// <summary>
