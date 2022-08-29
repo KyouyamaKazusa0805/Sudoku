@@ -65,6 +65,11 @@ public static class PhasedDifficultyRatingKinds
 	public const string Guardian = nameof(Guardian);
 
 	/// <summary>
+	/// Indicates the number of petals used in death blossom.
+	/// </summary>
+	public const string Petals = nameof(Petals);
+
+	/// <summary>
 	/// Indicates the kind is the value cell used in the pattern. This field is used for Almost Locked Candidates.
 	/// </summary>
 	public const string ValueCell = nameof(ValueCell);

@@ -30,6 +30,7 @@
 	SearcherConfiguration<AlmostLockedSetsXzStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<AlmostLockedSetsXyWingStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<AlmostLockedSetsWWingStepSearcher>(SearcherDisplayingLevel.B),
+	SearcherConfiguration<DeathBlossomStepSearcher>(SearcherDisplayingLevel.C),
 	SearcherConfiguration<AlternatingInferenceChainStepSearcher>(SearcherDisplayingLevel.C),
 	SearcherConfiguration<BowmanBingoStepSearcher>(
 		SearcherDisplayingLevel.C,

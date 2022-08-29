@@ -1525,8 +1525,8 @@
     <value>待定数组・W-Wing</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="DeathBlossom" xml:space="preserve">
-    <value>死亡绽放</value>
+  <data name="DeathBlossomCellType" xml:space="preserve">
+    <value>单元格死亡绽放</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GurthSymmetricalPlacement" xml:space="preserve">
@@ -1742,5 +1742,8 @@
   </data>
   <data name="TechniqueFormat_GroupedWWingStep" xml:space="preserve">
     <value>{Name}：从 {StartCellStr} 到 {EndCellStr}，使用单元格 {BridgeStr} 关联起来 =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_DeathBlossomCellTypeStep" xml:space="preserve">
+    <value>{Name}：不论单元格 {CellStr} 填什么数字，相关的 ALS {AlsesStr} 至少会保证有一个 {DigitStr} 填入 =&gt; {ElimStr}</value>
   </data>
 </root>

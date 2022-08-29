@@ -686,6 +686,38 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsXzStepSearcher.Options">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IDeathBlossomStepSearcher">
+            <summary>
+            Provides with a <b>Death Blossom</b> step searcher.
+            <!--
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Death Blossom Cell Type</item>
+            <item>Death Blossom Region Type (House Type)</item>
+            </list>
+            -->
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IDeathBlossomStepSearcher.GatherGroupedByCell(Sudoku.Concepts.Grid@)">
+            <summary>
+            <para>Gathers almost locked sets and groups them by cell related.</para>
+            <para>
+            For example, <c>r1c12(123)</c> is an almost locked set, and cells <c>{ r1c3, r23c123 }</c>
+            can be related to that ALS.
+            </para>
+            </summary>
+            <param name="grid">The grid used.</param>
+            <returns>The dictionary of grouped result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeathBlossomStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IDeathBlossomStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeathBlossomStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeathBlossomStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IEmptyRectangleIntersectionPairStepSearcher">
             <summary>
             Provides with an <b>Empty Rectangle Intersection Pair</b> step searcher.
@@ -4109,6 +4141,71 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeathBlossomCellTypeStep">
+            <summary>
+            Provides with a step that is a <b>Death Blossom Cell Type</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="HubCell">Indicates a cell as the hub of petals.</param>
+            <param name="DigitsMask">The digits used.</param>
+            <param name="Petals">Indicates the petals used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeathBlossomCellTypeStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int16,Sudoku.Solving.Patterns.AlmostLockedSet[])">
+            <summary>
+            Provides with a step that is a <b>Death Blossom Cell Type</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="HubCell">Indicates a cell as the hub of petals.</param>
+            <param name="DigitsMask">The digits used.</param>
+            <param name="Petals">Indicates the petals used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeathBlossomCellTypeStep.HubCell">
+            <summary>Indicates a cell as the hub of petals.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeathBlossomCellTypeStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeathBlossomCellTypeStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeathBlossomCellTypeStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeathBlossomCellTypeStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeathBlossomStep">
+            <summary>
+            Provides with a step that is a <b>Death Blossom</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+            <param name="Petals">Indicates the petals used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeathBlossomStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Solving.Patterns.AlmostLockedSet[])">
+            <summary>
+            Provides with a step that is a <b>Death Blossom</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+            <param name="Petals">Indicates the petals used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeathBlossomStep.DigitsMask">
+            <summary>Indicates the digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeathBlossomStep.Petals">
+            <summary>Indicates the petals used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeathBlossomStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeathBlossomStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep">

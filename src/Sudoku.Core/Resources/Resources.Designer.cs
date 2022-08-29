@@ -700,11 +700,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Death Blossom.
+        ///   Looks up a localized string similar to Cell Death Blossom.
         /// </summary>
-        internal static string DeathBlossom {
+        internal static string DeathBlossomCellType {
             get {
-                return ResourceManager.GetString("DeathBlossom", resourceCulture);
+                return ResourceManager.GetString("DeathBlossomCellType", resourceCulture);
             }
         }
         
@@ -2865,6 +2865,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_ContinuousNiceLoopStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ContinuousNiceLoopStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: No matter what digit will be filled in cell {CellStr}, the related ALSes {AlsesStr} will keep at least one digit {DigitStr} being true =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_DeathBlossomCellTypeStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_DeathBlossomCellTypeStep", resourceCulture);
             }
         }
         

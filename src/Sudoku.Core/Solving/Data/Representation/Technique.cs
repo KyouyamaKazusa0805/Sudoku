@@ -1756,11 +1756,17 @@ public enum Technique : short
 	AlmostHiddenSetsChain,
 
 	/// <summary>
-	/// Indicates death blossom.
+	/// Indicates death blossom cell type.
 	/// </summary>
 	[HodokuTechniquePrefix("0904")]
 	[HodokuDifficultyRating(360, HodokuDifficultyLevel.Unfair)]
-	DeathBlossom,
+	[HodokuAliasedNames("Death Blossom")]
+	DeathBlossomCellType,
+
+	/// <summary>
+	/// Indicates death blossom house type.
+	/// </summary>
+	DeathBlossomHouseType,
 
 	/// <summary>
 	/// Indicates Gurth's symmetrical placement.

@@ -4,7 +4,7 @@
 /// Provides a series of tags to mark on a technique.
 /// </summary>
 /// <remarks>
-/// For example, a <see cref="Technique.DeathBlossom"/> can be categorized
+/// For example, a <see cref="Technique.DeathBlossomCellType"/> can be categorized
 /// as both <see cref="Als"/> and <see cref="LongChaining"/>.
 /// </remarks>
 /// <seealso cref="Als"/>

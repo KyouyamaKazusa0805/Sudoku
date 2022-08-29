@@ -1493,7 +1493,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Cells.op_Modulus(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
             <summary>
-            Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.
+            Expands the operator to <c><![CDATA[+(a & b) & b]]></c>.
             </summary>
             <param name="base">The base map.</param>
             <param name="template">The template map that the base map to check and cover.</param>
@@ -1506,7 +1506,7 @@
             For example, if we should check the eliminations
             of digit <c>d</c>, we may use the expression
             <code><![CDATA[
-            !(urCells & grid.CandidatesMap[d]) & grid.CandidatesMap[d]
+            +(urCells & grid.CandidatesMap[d]) & grid.CandidatesMap[d]
             ]]></code>
             to express the eliminations are the peer intersection of cells of digit <c>d</c>
             appeared in <c>urCells</c>. This expression can be simplified to
@@ -5366,9 +5366,9 @@
               Looks up a localized string similar to Continuous Nice Loop.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.DeathBlossom">
+        <member name="P:Sudoku.Resources.Resources.DeathBlossomCellType">
             <summary>
-              Looks up a localized string similar to Death Blossom.
+              Looks up a localized string similar to Cell Death Blossom.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.DiscontinuousNiceLoop">
@@ -6569,6 +6569,11 @@
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ContinuousNiceLoopStep">
             <summary>
               Looks up a localized string similar to {Name}: Loop {ChainStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_DeathBlossomCellTypeStep">
+            <summary>
+              Looks up a localized string similar to {Name}: No matter what digit will be filled in cell {CellStr}, the related ALSes {AlsesStr} will keep at least one digit {DigitStr} being true =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_DominoLoopStep">
@@ -8958,6 +8963,11 @@
             such as guardian itself, Unique Rectangle + Guardian (i.e. Unique Rectangle External Types).
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.Petals">
+            <summary>
+            Indicates the number of petals used in death blossom.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Data.Representation.PhasedDifficultyRatingKinds.ValueCell">
             <summary>
             Indicates the kind is the value cell used in the pattern. This field is used for Almost Locked Candidates.
@@ -10527,9 +10537,14 @@
             Indicates AHS chain.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Data.Representation.Technique.DeathBlossom">
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.DeathBlossomCellType">
             <summary>
-            Indicates death blossom.
+            Indicates death blossom cell type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Data.Representation.Technique.DeathBlossomHouseType">
+            <summary>
+            Indicates death blossom house type.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Data.Representation.Technique.GurthSymmetricalPlacement">
@@ -10797,7 +10812,7 @@
             Provides a series of tags to mark on a technique.
             </summary>
             <remarks>
-            For example, a <see cref="F:Sudoku.Solving.Data.Representation.Technique.DeathBlossom"/> can be categorized
+            For example, a <see cref="F:Sudoku.Solving.Data.Representation.Technique.DeathBlossomCellType"/> can be categorized
             as both <see cref="F:Sudoku.Solving.Data.Representation.TechniqueTags.Als"/> and <see cref="F:Sudoku.Solving.Data.Representation.TechniqueTags.LongChaining"/>.
             </remarks>
             <seealso cref="F:Sudoku.Solving.Data.Representation.TechniqueTags.Als"/>
