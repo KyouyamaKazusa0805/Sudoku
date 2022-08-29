@@ -15,9 +15,9 @@
 		</Grid.ColumnDefinitions>
 		<Image
 			x:Name="_cTitleBarIcon" Grid.Column="1" HorizontalAlignment="Left" Width="44" Height="44"
-			VerticalAlignment="Center" Source="/Assets/images/logo.png" Margin="12,0,0,0" />
+			VerticalAlignment="Center" Source="/Assets/images/logo.png" Margin="14,0,0,0" />
 		<TextBlock
-			x:Name="_cTitleTextBlock" Grid.Column="2" Margin="12,0,0,0" FontSize="24"
+			x:Name="_cTitleTextBlock" Grid.Column="2" Margin="54,0,0,0" FontSize="24"
 			VerticalAlignment="Center" />
 	</Grid>
 </UserControl>
