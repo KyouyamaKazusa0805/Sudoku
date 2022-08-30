@@ -189,16 +189,6 @@
             Throws when checking failed on argument <paramref name="condition"/>.
             </exception>
         </member>
-        <member name="M:System.Argument.ThrowIfNullRef``1(``0@,System.String)">
-            <summary>
-            Checks whether the specified reference value is not <see langword="null"/>. Otherwise,
-            an <see cref="T:System.ArgumentNullException"/> will be thrown.
-            </summary>
-            <typeparam name="TStruct">The type of the real instance.</typeparam>
-            <param name="ref">The pointer value.</param>
-            <param name="argName">The argument name.</param>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
         <member name="T:System.Casing">
             <summary>
             Provides a set of methods that handles for a <see cref="T:System.String"/>, to convert the value

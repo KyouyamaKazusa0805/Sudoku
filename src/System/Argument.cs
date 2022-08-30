@@ -73,24 +73,4 @@ public static class Argument
 				message ?? $"Cannot operate due to the condition failed to be checked: '{conditionStr}'.");
 		}
 	}
-
-	/// <summary>
-	/// Checks whether the specified reference value is not <see langword="null"/>. Otherwise,
-	/// an <see cref="ArgumentNullException"/> will be thrown.
-	/// </summary>
-	/// <typeparam name="TStruct">The type of the real instance.</typeparam>
-	/// <param name="ref">The pointer value.</param>
-	/// <param name="argName">The argument name.</param>
-	/// <exception cref="ArgumentNullException"></exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNullRef<TStruct>(
-		in TStruct @ref,
-		[CallerArgumentExpression(nameof(@ref))] string? argName = null)
-		where TStruct : struct
-	{
-		if (Unsafe.IsNullRef(ref Unsafe.AsRef(@ref)))
-		{
-			throw new ArgumentNullException(argName);
-		}
-	}
 }

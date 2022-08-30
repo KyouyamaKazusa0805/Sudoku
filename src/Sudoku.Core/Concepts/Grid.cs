@@ -233,7 +233,10 @@ public unsafe partial struct Grid :
 	/// </exception>
 	private Grid(scoped in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
-		Argument.ThrowIfNullRef(firstElement);
+		fixed (int* p = &firstElement)
+		{
+			ArgumentNullException.ThrowIfNull(p);
+		}
 
 		// Firstly we should initialize the inner values.
 		this = Empty;
