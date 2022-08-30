@@ -29,7 +29,7 @@ public interface IDeathBlossomStepSearcher : IAlmostLockedSetsStepSearcher
 		var result = new GatheredData();
 		foreach (int cell in BivalueCells)
 		{
-			var als = new AlmostLockedSet(grid.GetCandidates(cell), Cells.Empty + cell, PeersMap[cell] & EmptyCells);
+			var als = new AlmostLockedSet(grid.GetCandidates(cell), CellMap.Empty + cell, PeersMap[cell] & EmptyCells);
 			foreach (int peerCell in PeersMap[cell])
 			{
 				append(als, peerCell, result);
@@ -203,7 +203,7 @@ internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearch
 				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (int elimDigit in elimDigitsMask)
 				{
-					var cellsHavingElimDigit = Cells.Empty;
+					var cellsHavingElimDigit = CellMap.Empty;
 					foreach (var als in combination)
 					{
 						cellsHavingElimDigit |= als.Map & CandidatesMap[elimDigit];

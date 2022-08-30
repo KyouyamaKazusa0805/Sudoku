@@ -15,7 +15,7 @@ internal sealed record RegularWingStep(
 	int Pivot,
 	int PivotCandidatesCount,
 	short DigitsMask,
-	scoped in Cells Petals
+	scoped in CellMap Petals
 ) : WingStep(Conclusions, Views), IStepWithSize, IStepWithPhasedDifficulty
 {
 	/// <summary>

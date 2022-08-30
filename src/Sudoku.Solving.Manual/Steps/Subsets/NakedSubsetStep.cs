@@ -29,7 +29,7 @@ internal sealed record NakedSubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int House,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask,
 	bool? IsLocked
 ) : SubsetStep(Conclusions, Views, House, Cells, DigitsMask), IStepWithPhasedDifficulty

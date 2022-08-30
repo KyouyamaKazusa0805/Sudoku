@@ -10,7 +10,7 @@
 internal sealed record UniquePolygonType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Map,
+	scoped in CellMap Map,
 	short DigitsMask
 ) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {

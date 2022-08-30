@@ -20,7 +20,7 @@ internal sealed record UniqueRectangle2DOr3XStep(
 	Technique TechniqueCode2,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	bool IsAvoidable,
 	int XDigit,
 	int YDigit,

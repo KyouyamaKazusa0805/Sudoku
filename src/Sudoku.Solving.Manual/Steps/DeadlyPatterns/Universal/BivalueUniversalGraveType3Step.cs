@@ -14,7 +14,7 @@ internal sealed record BivalueUniversalGraveType3Step(
 	ViewList Views,
 	IReadOnlyList<int> TrueCandidates,
 	short DigitsMask,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	bool IsNaked
 ) : BivalueUniversalGraveStep(Conclusions, Views), IStepWithPhasedDifficulty
 {

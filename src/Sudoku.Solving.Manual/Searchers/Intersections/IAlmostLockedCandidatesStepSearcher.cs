@@ -97,7 +97,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 	/// </remarks>
 	private static IStep? GetAll(
 		ICollection<IStep> result, scoped in Grid grid, int size, int baseSet, int coverSet,
-		scoped in Cells a, scoped in Cells b, scoped in Cells c, bool onlyFindOne)
+		scoped in CellMap a, scoped in CellMap b, scoped in CellMap c, bool onlyFindOne)
 	{
 		// Iterate on each cell combination.
 		foreach (var cells in a & EmptyCells & size - 1)
@@ -137,7 +137,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 			}
 
 			// Gather the AHS cells.
-			var ahsCells = Cells.Empty;
+			var ahsCells = CellMap.Empty;
 			foreach (int pos in ahsMask)
 			{
 				ahsCells.Add(HouseCells[coverSet][pos]);

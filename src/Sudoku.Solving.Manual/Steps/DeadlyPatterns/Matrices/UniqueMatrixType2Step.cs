@@ -11,7 +11,7 @@
 internal sealed record UniqueMatrixType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask,
 	int ExtraDigit
 ) : UniqueMatrixStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty

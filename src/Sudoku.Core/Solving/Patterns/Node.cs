@@ -11,7 +11,7 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>, 
 	/// <param name="digit">The digit used.</param>
 	/// <param name="cell">The cell used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(byte digit, int cell) : this(digit, Cells.Empty + cell)
+	public Node(byte digit, int cell) : this(digit, CellMap.Empty + cell)
 	{
 	}
 
@@ -21,7 +21,7 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>, 
 	/// <param name="digit">The digit used.</param>
 	/// <param name="cells">The cells used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(byte digit, scoped in Cells cells) => (Digit, Cells, FullCells) = (digit, cells, cells);
+	public Node(byte digit, scoped in CellMap cells) => (Digit, Cells, FullCells) = (digit, cells, cells);
 
 	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the basic data.
@@ -30,7 +30,7 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>, 
 	/// <param name="cells">The cells used.</param>
 	/// <param name="extraCells">The extra cells.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(byte digit, scoped in Cells cells, scoped in Cells extraCells) : this(digit, cells)
+	public Node(byte digit, scoped in CellMap cells, scoped in CellMap extraCells) : this(digit, cells)
 		=> FullCells = cells | extraCells;
 
 
@@ -60,15 +60,15 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>, 
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
-	public Cells Cells { get; }
+	public CellMap Cells { get; }
 
 	/// <summary>
 	/// Indicates the full cells.
 	/// </summary>
-	public Cells FullCells { get; }
+	public CellMap FullCells { get; }
 
 	/// <inheritdoc/>
-	Cells ITechniquePattern<Node>.Map => FullCells;
+	CellMap ITechniquePattern<Node>.Map => FullCells;
 
 
 	/// <inheritdoc/>
@@ -142,7 +142,7 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>, 
 				short urDigits = (short)(grid.GetDigitsUnion(Cells) & ~(1 << thisDigit | 1 << otherDigit));
 				foreach (int digit in urDigits)
 				{
-					foreach (int cell in !Cells & !node.Cells & grid.CandidatesMap[digit])
+					foreach (int cell in +Cells & +node.Cells & grid.CandidatesMap[digit])
 					{
 						if (grid.Exists(cell, digit) is true)
 						{

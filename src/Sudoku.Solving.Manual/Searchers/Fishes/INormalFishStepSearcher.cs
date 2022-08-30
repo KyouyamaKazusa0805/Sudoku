@@ -178,7 +178,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 					};
 
 					// Now check the fins and the elimination cells.
-					Cells elimMap, fins = Cells.Empty;
+					CellMap elimMap, fins = CellMap.Empty;
 					if (!withFin)
 					{
 						// If the current searcher doesn't check fins, we'll just get the pure check:
@@ -285,7 +285,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 	/// <param name="fins">The cells of the fin in the current fish.</param>
 	/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 	/// <returns>The view.</returns>
-	private static View GetDirectView(int digit, int[] baseSets, int[] coverSets, scoped in Cells fins, bool searchRow)
+	private static View GetDirectView(int digit, int[] baseSets, int[] coverSets, scoped in CellMap fins, bool searchRow)
 	{
 		// Get the highlight cells (necessary).
 		var cellOffsets = new List<CellViewNode>();
@@ -317,7 +317,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 							continue;
 						}
 
-						Cells baseMap = Cells.Empty, coverMap = Cells.Empty;
+						CellMap baseMap = CellMap.Empty, coverMap = CellMap.Empty;
 						foreach (int b in baseSets)
 						{
 							baseMap |= HousesMap[b];

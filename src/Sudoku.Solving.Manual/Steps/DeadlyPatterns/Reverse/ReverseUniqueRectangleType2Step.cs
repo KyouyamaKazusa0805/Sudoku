@@ -12,10 +12,10 @@
 internal sealed record ReverseUniqueRectangleType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask,
 	int ExtraDigit,
-	scoped in Cells CellsHavingExtraDigit
+	scoped in CellMap CellsHavingExtraDigit
 ) : ReverseUniqueRectangleStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>

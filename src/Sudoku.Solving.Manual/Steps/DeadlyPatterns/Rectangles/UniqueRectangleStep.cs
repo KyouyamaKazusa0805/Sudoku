@@ -41,7 +41,7 @@ internal abstract record UniqueRectangleStep(
 	Technique TechniqueCode2,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	bool IsAvoidable,
 	int AbsoluteOffset
 ) : DeadlyPatternStep(Conclusions, Views), IDistinctableStep<UniqueRectangleStep>

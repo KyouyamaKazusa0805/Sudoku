@@ -12,7 +12,7 @@ internal sealed record BivalueUniversalGraveXzStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short DigitsMask,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	int ExtraCell
 ) : BivalueUniversalGraveStep(Conclusions, Views), IStepWithPhasedDifficulty
 {

@@ -30,7 +30,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 
 		bool* cannibalModeCases = stackalloc[] { false, true };
 
-		using scoped var list = new ValueList<Cells>(4);
+		using scoped var list = new ValueList<CellMap>(4);
 		for (int caseIndex = 0; caseIndex < 2; caseIndex++)
 		{
 			bool cannibalMode = cannibalModeCases[caseIndex];
@@ -54,9 +54,9 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 					}
 					case [var i, var j, var k]:
 					{
-						list.Add(Cells.Empty + i + j);
-						list.Add(Cells.Empty + j + k);
-						list.Add(Cells.Empty + i + k);
+						list.Add(CellMap.Empty + i + j);
+						list.Add(CellMap.Empty + j + k);
+						list.Add(CellMap.Empty + i + k);
 						list.Add(emptyCellsInInterMap);
 
 						break;
@@ -84,7 +84,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 						foreach (var currentBlockMap in blockMap & i)
 						{
 							short blockMask = grid.GetDigitsUnion(currentBlockMap);
-							var elimMapBlock = Cells.Empty;
+							var elimMapBlock = CellMap.Empty;
 
 							// Get the elimination map in the block.
 							foreach (int digit in blockMask)
@@ -100,7 +100,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 								foreach (var currentLineMap in lineMap & j)
 								{
 									short lineMask = grid.GetDigitsUnion(currentLineMap);
-									var elimMapLine = Cells.Empty;
+									var elimMapLine = CellMap.Empty;
 
 									// Get the elimination map in the line.
 									foreach (int digit in lineMask)
@@ -122,7 +122,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 										continue;
 									}
 
-									var elimMapIsolated = Cells.Empty;
+									var elimMapIsolated = CellMap.Empty;
 									int digitIsolated = TrailingZeroCount(maskIsolated);
 									if (digitIsolated != InvalidValidOfTrailingZeroCountMethodFallback)
 									{

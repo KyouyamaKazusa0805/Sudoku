@@ -44,7 +44,7 @@ public interface IQiuDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 				int c1 = StartCells[j, 0], c2 = StartCells[j, 1];
 				for (int k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
 				{
-					var pairMap = Cells.Empty + c1 + c2;
+					var pairMap = CellMap.Empty + c1 + c2;
 					if ((baseLineMap & pairMap) is not [])
 					{
 						continue;
@@ -111,7 +111,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 
 
 				static void f(
-					scoped in Grid grid, scoped in Cells map, scoped ref short appearedDigitsMask,
+					scoped in Grid grid, scoped in CellMap map, scoped ref short appearedDigitsMask,
 					scoped ref short distinctionMask, scoped ref int appearedParts)
 				{
 					bool flag = false;
@@ -152,7 +152,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 				{
 					// Step 2: To determine whether the digits in pair cells
 					// will only appears in square cells.
-					var tempMap = Cells.Empty;
+					var tempMap = CellMap.Empty;
 					foreach (int digit in digits)
 					{
 						tempMap |= CandidatesMap[digit];
@@ -217,8 +217,8 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 	}
 
 	private static IStep? CheckType1(
-		ICollection<IStep> accumulator, scoped in Grid grid, bool isRow, scoped in Cells pair,
-		scoped in Cells square, scoped in Cells baseLine, scoped in QiuDeadlyPattern pattern,
+		ICollection<IStep> accumulator, scoped in Grid grid, bool isRow, scoped in CellMap pair,
+		scoped in CellMap square, scoped in CellMap baseLine, scoped in QiuDeadlyPattern pattern,
 		short comparer, short otherDigitsMask, bool onlyFindOne)
 	{
 		if (!IsPow2(otherDigitsMask))
@@ -245,10 +245,10 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 			conclusions.Add(new(Elimination, elimCell, digit));
 		}
 
-		var cellsMap = square | pair;
-		var cellOffsets = new CellViewNode[cellsMap.Count];
+		var cellMap = square | pair;
+		var cellOffsets = new CellViewNode[cellMap.Count];
 		int i = 0;
-		foreach (int cell in cellsMap)
+		foreach (int cell in cellMap)
 		{
 			cellOffsets[i++] = new(DisplayColorKind.Normal, cell);
 		}
@@ -292,7 +292,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 
 	private static IStep? CheckType2(
 		ICollection<IStep> accumulator, scoped in Grid grid, bool isRow,
-		scoped in Cells pair, scoped in Cells square, scoped in Cells baseLine, scoped in QiuDeadlyPattern pattern,
+		scoped in CellMap pair, scoped in CellMap square, scoped in CellMap baseLine, scoped in QiuDeadlyPattern pattern,
 		short comparer, short otherDigitsMask, bool onlyFindOne)
 	{
 		if (!IsPow2(otherDigitsMask))
@@ -313,10 +313,10 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 			conclusions.Add(new(Elimination, cell, extraDigit));
 		}
 
-		var cellsMap = square | pair;
-		var cellOffsets = new CellViewNode[cellsMap.Count];
+		var cellMap = square | pair;
+		var cellOffsets = new CellViewNode[cellMap.Count];
 		int i = 0;
-		foreach (int cell in cellsMap)
+		foreach (int cell in cellMap)
 		{
 			cellOffsets[i++] = new(DisplayColorKind.Normal, cell);
 		}
@@ -363,7 +363,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 
 	private static IStep? CheckType3(
 		ICollection<IStep> accumulator, scoped in Grid grid, bool isRow,
-		scoped in Cells pair, scoped in Cells square, scoped in Cells baseLine,
+		scoped in CellMap pair, scoped in CellMap square, scoped in CellMap baseLine,
 		scoped in QiuDeadlyPattern pattern, short comparer, short otherDigitsMask, bool onlyFindOne)
 	{
 		foreach (int houseIndex in pair.CoveredHouses)
@@ -396,10 +396,10 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 						continue;
 					}
 
-					var cellsMap = square | pair;
-					var cellOffsets = new CellViewNode[cellsMap.Count];
+					var cellMap = square | pair;
+					var cellOffsets = new CellViewNode[cellMap.Count];
 					int i = 0;
-					foreach (int cell in cellsMap)
+					foreach (int cell in cellMap)
 					{
 						cellOffsets[i++] = new(DisplayColorKind.Normal, cell);
 					}
@@ -462,8 +462,8 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 	}
 
 	private static IStep? CheckType4(
-		ICollection<IStep> accumulator, bool isRow, scoped in Cells pair, scoped in Cells square,
-		scoped in Cells baseLine, scoped in QiuDeadlyPattern pattern, short comparer, bool onlyFindOne)
+		ICollection<IStep> accumulator, bool isRow, scoped in CellMap pair, scoped in CellMap square,
+		scoped in CellMap baseLine, scoped in QiuDeadlyPattern pattern, short comparer, bool onlyFindOne)
 	{
 		foreach (int houseIndex in pair.CoveredHouses)
 		{
@@ -503,10 +503,10 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 					conclusions.Add(new(Elimination, cell, elimDigit));
 				}
 
-				var cellsMap = square | pair;
-				var cellOffsets = new CellViewNode[cellsMap.Count];
+				var cellMap = square | pair;
+				var cellOffsets = new CellViewNode[cellMap.Count];
 				int i = 0;
-				foreach (int cell in cellsMap)
+				foreach (int cell in cellMap)
 				{
 					cellOffsets[i++] = new(DisplayColorKind.Normal, cell);
 				}
@@ -550,13 +550,13 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 
 	private static IStep? CheckLockedType(
 		ICollection<IStep> accumulator, scoped in Grid grid, bool isRow,
-		scoped in Cells pair, scoped in Cells square, scoped in Cells baseLine,
+		scoped in CellMap pair, scoped in CellMap square, scoped in CellMap baseLine,
 		scoped in QiuDeadlyPattern pattern, short comparer, bool onlyFindOne)
 	{
 		// Firstly, we should check the cells in the block that the square cells lying on.
 		int block = TrailingZeroCount(square.BlockMask);
 		var otherCellsMap = (HousesMap[block] & EmptyCells) - square;
-		var tempMap = Cells.Empty;
+		var tempMap = CellMap.Empty;
 		scoped var pairDigits = comparer.GetAllSets();
 
 		bool flag = false;
@@ -612,10 +612,10 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 			return null;
 		}
 
-		var cellsMap = square | pair;
-		var cellOffsets = new CellViewNode[cellsMap.Count];
+		var cellMap = square | pair;
+		var cellOffsets = new CellViewNode[cellMap.Count];
 		int i = 0;
-		foreach (int cell in cellsMap)
+		foreach (int cell in cellMap)
 		{
 			cellOffsets[i++] = new(DisplayColorKind.Normal, cell);
 		}

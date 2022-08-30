@@ -35,7 +35,7 @@ public partial record GridImageGenerator(
 	}
 
 	/// <inheritdoc/>
-	public Cells FocusedCells { get; set; }
+	public CellMap FocusedCells { get; set; }
 
 	/// <inheritdoc/>
 	public View? View { get; set; }

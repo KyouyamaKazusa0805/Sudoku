@@ -93,7 +93,7 @@ internal sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmos
 
 				int aHouse = a.House, bHouse = b.House, cHouse = c.House;
 				short aMask = a.DigitsMask, bMask = b.DigitsMask;
-				Cells aMap = a.Map, bMap = b.Map, cMap = c.Map;
+				CellMap aMap = a.Map, bMap = b.Map, cMap = c.Map;
 				var map = aMap | bMap;
 				if (map == aMap || map == bMap)
 				{

@@ -14,10 +14,10 @@
 internal sealed record UniqueMatrixType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask,
 	short ExtraDigitsMask,
-	scoped in Cells ExtraCells
+	scoped in CellMap ExtraCells
 ) : UniqueMatrixStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>

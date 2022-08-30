@@ -11,7 +11,7 @@
 internal sealed record RwDeadlyPatternStep(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Pattern,
+	scoped in CellMap Pattern,
 	short DigitsMask,
 	int ChuteIndex
 ) : DeadlyPatternStep(Conclusions, Views)

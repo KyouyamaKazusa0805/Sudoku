@@ -15,7 +15,7 @@ internal sealed record UniqueRectangleType1Step(
 	ViewList Views,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	bool IsAvoidable,
 	int AbsoluteOffset
 ) : UniqueRectangleStep(

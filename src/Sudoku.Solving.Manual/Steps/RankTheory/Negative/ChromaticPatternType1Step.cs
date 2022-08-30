@@ -13,7 +13,7 @@ internal sealed record ChromaticPatternType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int[] Blocks,
-	scoped in Cells Pattern,
+	scoped in CellMap Pattern,
 	int ExtraCell,
 	short DigitsMask
 ) : ChromaticPatternStep(Conclusions, Views, Blocks, Pattern, DigitsMask)

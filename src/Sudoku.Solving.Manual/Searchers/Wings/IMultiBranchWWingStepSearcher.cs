@@ -76,7 +76,7 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 									continue;
 								}
 
-								var tempCrosshatchingHouses = Cells.Empty;
+								var tempCrosshatchingHouses = CellMap.Empty;
 								foreach (int cell in cells)
 								{
 									tempCrosshatchingHouses |= HousesMap[cell.ToHouseIndex(crosshatchingHouseType)];

@@ -50,21 +50,21 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 					{
 						foreach (int c in HousesMap[triple[2]])
 						{
-							if ((Cells.Empty + a + b).InOneHouse && (Cells.Empty + a + c).InOneHouse)
+							if ((CellMap.Empty + a + b).InOneHouse && (CellMap.Empty + a + c).InOneHouse)
 							{
-								Patterns[i++] = new(Cells.Empty + a + b + c, a);
+								Patterns[i++] = new(CellMap.Empty + a + b + c, a);
 								continue;
 							}
 
-							if ((Cells.Empty + a + b).InOneHouse && (Cells.Empty + b + c).InOneHouse)
+							if ((CellMap.Empty + a + b).InOneHouse && (CellMap.Empty + b + c).InOneHouse)
 							{
-								Patterns[i++] = new(Cells.Empty + a + b + c, b);
+								Patterns[i++] = new(CellMap.Empty + a + b + c, b);
 								continue;
 							}
 
-							if ((Cells.Empty + a + c).InOneHouse && (Cells.Empty + b + c).InOneHouse)
+							if ((CellMap.Empty + a + c).InOneHouse && (CellMap.Empty + b + c).InOneHouse)
 							{
-								Patterns[i++] = new(Cells.Empty + a + b + c, c);
+								Patterns[i++] = new(CellMap.Empty + a + b + c, c);
 							}
 						}
 					}
@@ -80,13 +80,13 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 					{
 						foreach (int d in HousesMap[houseQuad[3]])
 						{
-							if (!(Cells.Empty + a + b).InOneHouse || !(Cells.Empty + a + c).InOneHouse
-								|| !(Cells.Empty + b + d).InOneHouse || !(Cells.Empty + c + d).InOneHouse)
+							if (!(CellMap.Empty + a + b).InOneHouse || !(CellMap.Empty + a + c).InOneHouse
+								|| !(CellMap.Empty + b + d).InOneHouse || !(CellMap.Empty + c + d).InOneHouse)
 							{
 								continue;
 							}
 
-							Patterns[i++] = new(Cells.Empty + a + b + c + d, null);
+							Patterns[i++] = new(CellMap.Empty + a + b + c + d, null);
 						}
 					}
 				}
@@ -146,14 +146,14 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 	/// <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
 	protected static sealed short GetFireworkDigits(
 		int c1, int c2, int pivot, scoped in Grid grid,
-		scoped out Cells house1CellsExcluded, scoped out Cells house2CellsExcluded)
+		scoped out CellMap house1CellsExcluded, scoped out CellMap house2CellsExcluded)
 	{
 		int pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
-		var excluded1 = HousesMap[(Cells.Empty + c1 + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
-		var excluded2 = HousesMap[(Cells.Empty + c2 + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
+		var excluded1 = HousesMap[(CellMap.Empty + c1 + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
+		var excluded2 = HousesMap[(CellMap.Empty + c2 + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
 
 		short finalMask = 0;
-		foreach (int digit in grid.GetDigitsUnion(Cells.Empty + c1 + c2 + pivot))
+		foreach (int digit in grid.GetDigitsUnion(CellMap.Empty + c1 + c2 + pivot))
 		{
 			if (isFireworkFor(digit, excluded1, grid) && isFireworkFor(digit, excluded2, grid))
 			{
@@ -165,7 +165,7 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 		return finalMask;
 
 
-		static bool isFireworkFor(int digit, scoped in Cells houseCellsExcluded, scoped in Grid grid)
+		static bool isFireworkFor(int digit, scoped in CellMap houseCellsExcluded, scoped in Grid grid)
 		{
 			foreach (int cell in houseCellsExcluded)
 			{
@@ -275,12 +275,12 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 		{
 			short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
 			int cell1TheOtherLine = cell1.ToHouseIndex(
-				(Cells.Empty + cell1 + pivot).CoveredLine.ToHouseType() == HouseType.Row
+				(CellMap.Empty + cell1 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
 			int cell2TheOtherLine = cell2.ToHouseIndex(
-				(Cells.Empty + cell2 + pivot).CoveredLine.ToHouseType() == HouseType.Row
+				(CellMap.Empty + cell2 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
@@ -561,12 +561,12 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 		{
 			short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
 			int cell1TheOtherLine = cell1.ToHouseIndex(
-				(Cells.Empty + cell1 + pivot).CoveredLine.ToHouseType() == HouseType.Row
+				(CellMap.Empty + cell1 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
 			int cell2TheOtherLine = cell2.ToHouseIndex(
-				(Cells.Empty + cell2 + pivot).CoveredLine.ToHouseType() == HouseType.Row
+				(CellMap.Empty + cell2 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
@@ -593,8 +593,8 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 
 				// Firework pair type 3 found.
 				var elimMap = (HousesMap[pivot.ToHouseIndex(HouseType.Block)] & fullTwoDigitsMap)
-					- HousesMap[(Cells.Empty + pivot + cell1).CoveredLine]
-					- HousesMap[(Cells.Empty + pivot + cell2).CoveredLine];
+					- HousesMap[(CellMap.Empty + pivot + cell1).CoveredLine]
+					- HousesMap[(CellMap.Empty + pivot + cell2).CoveredLine];
 				if (elimMap is [])
 				{
 					// No elimination cells found.
@@ -756,8 +756,8 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			}
 
 			var unknowns = new List<UnknownViewNode>(4);
-			int house1 = (Cells.Empty + cell1 + pivot).CoveredLine;
-			int house2 = (Cells.Empty + cell2 + pivot).CoveredLine;
+			int house1 = (CellMap.Empty + cell1 + pivot).CoveredLine;
+			int house2 = (CellMap.Empty + cell2 + pivot).CoveredLine;
 			foreach (int cell in (HousesMap[house1] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
 			{
 				unknowns.Add(new(DisplayColorKind.Normal, cell, (Utf8Char)'y', currentDigitsMask));

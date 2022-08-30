@@ -12,7 +12,7 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 	/// <param name="digit">Indicates the digit used.</param>
 	/// <param name="cell">Indicates the cell used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LockedTarget(int digit, int cell) : this(digit, Cells.Empty + cell)
+	public LockedTarget(int digit, int cell) : this(digit, CellMap.Empty + cell)
 	{
 	}
 
@@ -22,7 +22,7 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 	/// <param name="digit">Indicates the digit used.</param>
 	/// <param name="cells">Indicates the cells used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LockedTarget(int digit, scoped in Cells cells) => (Digit, Cells) = (digit, cells);
+	public LockedTarget(int digit, scoped in CellMap cells) => (Digit, Cells) = (digit, cells);
 
 
 	/// <summary>
@@ -39,8 +39,8 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
-	[JsonConverter(typeof(CellsJsonConverter))]
-	public Cells Cells { get; init; }
+	[JsonConverter(typeof(CellMapJsonConverter))]
+	public CellMap Cells { get; init; }
 
 
 	/// <inheritdoc/>

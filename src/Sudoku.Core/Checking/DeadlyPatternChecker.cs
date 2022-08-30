@@ -35,7 +35,7 @@ public static class DeadlyPatternChecker
 		}
 
 		// Gathers the cells used in this pattern.
-		var cellsUsed = Cells.Empty;
+		var cellsUsed = CellMap.Empty;
 		for (int cell = 0; cell < 81; cell++)
 		{
 			if (patternGrid.GetMask(cell) != 0)
@@ -86,7 +86,7 @@ public static class DeadlyPatternChecker
 		return false;
 
 
-		void getSolutions(scoped ref uint c, short[] m, int[] g, int p, scoped in Cells u)
+		void getSolutions(scoped ref uint c, short[] m, int[] g, int p, scoped in CellMap u)
 		{
 			if (p == 81)
 			{
@@ -200,7 +200,7 @@ public static class DeadlyPatternChecker
 			}
 		}
 
-		static bool compareGrids(int[] firstGrid, int[] secondGrid, scoped in Cells cellsUsed)
+		static bool compareGrids(int[] firstGrid, int[] secondGrid, scoped in CellMap cellsUsed)
 		{
 			// Checks whether two masks from two different grids with a same index holds a same value.
 			// If so, we should return false.

@@ -51,18 +51,18 @@ public readonly record struct ExocetPattern(
 	int TargetQ2,
 	int TargetR1,
 	int TargetR2,
-	scoped in Cells CrossLine,
-	scoped in Cells MirrorQ1,
-	scoped in Cells MirrorQ2,
-	scoped in Cells MirrorR1,
-	scoped in Cells MirrorR2
+	scoped in CellMap CrossLine,
+	scoped in CellMap MirrorQ1,
+	scoped in CellMap MirrorQ2,
+	scoped in CellMap MirrorR1,
+	scoped in CellMap MirrorR2
 ) :
 	IEquatable<ExocetPattern>,
 	IEqualityOperators<ExocetPattern, ExocetPattern>,
 	ITechniquePattern<ExocetPattern>
 {
 	/// <inheritdoc/>
-	public Cells Map
+	public CellMap Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => CrossLine + TargetQ1 + TargetQ2 + TargetR1 + TargetR2 + Base1 + Base2;
@@ -71,7 +71,7 @@ public readonly record struct ExocetPattern(
 	/// <summary>
 	/// Indicates the full map, with mirror cells.
 	/// </summary>
-	public Cells MapWithMirrors
+	public CellMap MapWithMirrors
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Map | MirrorQ1 | MirrorQ2 | MirrorR1 | MirrorR2;
@@ -80,19 +80,19 @@ public readonly record struct ExocetPattern(
 	/// <summary>
 	/// Indicates the base cells.
 	/// </summary>
-	public Cells BaseCellsMap
+	public CellMap BaseCellsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.Empty + Base1 + Base2;
+		get => CellMap.Empty + Base1 + Base2;
 	}
 
 	/// <summary>
 	/// Indicates the target cells.
 	/// </summary>
-	public Cells TargetCellsMap
+	public CellMap TargetCellsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2;
+		get => CellMap.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2;
 	}
 
 
@@ -109,8 +109,8 @@ public readonly record struct ExocetPattern(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode()
 		=> HashCode.Combine(
-			Cells.Empty + Base1 + Base2,
-			Cells.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2,
+			CellMap.Empty + Base1 + Base2,
+			CellMap.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2,
 			MirrorQ1 | MirrorQ2 | MirrorR1 | MirrorR2,
 			BaseCellsMap | TargetCellsMap
 		);
@@ -119,8 +119,8 @@ public readonly record struct ExocetPattern(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string baseCellsStr = (Cells.Empty + Base1 + Base2).ToString();
-		string targetCellsStr = (Cells.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2).ToString();
+		string baseCellsStr = (CellMap.Empty + Base1 + Base2).ToString();
+		string targetCellsStr = (CellMap.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2).ToString();
 		return $"Exocet: base {baseCellsStr}, target {targetCellsStr}";
 	}
 }

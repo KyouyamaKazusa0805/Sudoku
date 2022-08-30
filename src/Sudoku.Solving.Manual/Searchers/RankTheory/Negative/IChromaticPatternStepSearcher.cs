@@ -179,12 +179,12 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static Cells f(int[] offsets, int currentOffset)
+		static CellMap f(int[] offsets, int currentOffset)
 		{
 			int a = offsets[0] + currentOffset;
 			int b = offsets[1] + currentOffset;
 			int c = offsets[2] + currentOffset;
-			return Cells.Empty + a + b + c;
+			return CellMap.Empty + a + b + c;
 		}
 	}
 
@@ -202,7 +202,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 	/// </summary>
 	private IStep? CheckType1(
 		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
-		scoped in Cells pattern, int[] blocks)
+		scoped in CellMap pattern, int[] blocks)
 	{
 		foreach (int extraCell in pattern)
 		{
@@ -271,7 +271,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 	/// </summary>
 	private IStep? CheckXz(
 		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
-		scoped in Cells pattern, int[] blocks)
+		scoped in CellMap pattern, int[] blocks)
 	{
 		short allDigitsMask = grid.GetDigitsUnion(pattern);
 		if (PopCount((uint)allDigitsMask) != 5)
@@ -303,10 +303,10 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 
 				// XZ rule found.
 				var conclusions = new List<Conclusion>();
-				bool condition = (Cells.Empty + c1 + extraCell).InOneHouse;
+				bool condition = (CellMap.Empty + c1 + extraCell).InOneHouse;
 				int anotherCell = condition ? c2 : c1;
 				int anotherDigit = condition ? d1 : d2;
-				foreach (int peer in +(Cells.Empty + extraCell + anotherCell))
+				foreach (int peer in +(CellMap.Empty + extraCell + anotherCell))
 				{
 					if (CandidatesMap[anotherDigit].Contains(peer))
 					{

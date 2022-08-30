@@ -34,7 +34,7 @@ internal sealed record UniqueRectangleWithSueDeCoqStep(
 	ViewList Views,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	bool IsAvoidable,
 	int Block,
 	int Line,
@@ -43,9 +43,9 @@ internal sealed record UniqueRectangleWithSueDeCoqStep(
 	short IntersectionMask,
 	bool IsCannibalistic,
 	short IsolatedDigitsMask,
-	scoped in Cells BlockCells,
-	scoped in Cells LineCells,
-	scoped in Cells IntersectionCells,
+	scoped in CellMap BlockCells,
+	scoped in CellMap LineCells,
+	scoped in CellMap IntersectionCells,
 	int AbsoluteOffset
 ) :
 	UniqueRectangleStep(

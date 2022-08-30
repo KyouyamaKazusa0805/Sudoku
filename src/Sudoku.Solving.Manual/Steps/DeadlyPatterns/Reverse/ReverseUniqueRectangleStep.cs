@@ -10,7 +10,7 @@
 internal abstract record ReverseUniqueRectangleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask
 ) : ReverseBivalueUniversalGraveStep(Conclusions, Views, Cells, DigitsMask)
 {

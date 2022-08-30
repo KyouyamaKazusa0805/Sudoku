@@ -29,7 +29,7 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 	/// <inheritdoc/>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		foreach (Cells pattern in UniqueRectanglePatterns)
+		foreach (CellMap pattern in UniqueRectanglePatterns)
 		{
 			if (pattern - EmptyCells is not { Count: >= 2 } nonemptyCells)
 			{
@@ -80,7 +80,7 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 	/// Checks for type 1.
 	/// </summary>
 	private IStep? CheckType1(
-		ICollection<IStep> accumulator, bool onlyFindOne, int d1, int d2, scoped in Cells pattern,
+		ICollection<IStep> accumulator, bool onlyFindOne, int d1, int d2, scoped in CellMap pattern,
 		int emptyCell, short comparer)
 	{
 		using scoped var conclusions = new ValueList<Conclusion>(1);
@@ -125,7 +125,7 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 	/// </summary>
 	private IStep? CheckType2(
 		ICollection<IStep> accumulator, bool onlyFindOne, scoped in Grid grid,
-		scoped in Cells pattern, scoped in Cells emptyCells, short comparer)
+		scoped in CellMap pattern, scoped in CellMap emptyCells, short comparer)
 	{
 		short mask = grid.GetDigitsUnion(emptyCells);
 		short extraDigitMask = (short)(mask & ~comparer);

@@ -21,7 +21,7 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 	/// both arguments <paramref name="row"/> and <paramref name="column"/> can be used;
 	/// otherwise, both arguments should be discards.
 	/// </returns>
-	protected internal static sealed bool IsEmptyRectangle(scoped in Cells cells, int block, out int row, out int column)
+	protected internal static sealed bool IsEmptyRectangle(scoped in CellMap cells, int block, out int row, out int column)
 	{
 		int r = block / 3 * 3 + 9, c = block % 3 * 3 + 18;
 		for (int i = r, count = 0, rPlus3 = r + 3; i < rPlus3; i++)

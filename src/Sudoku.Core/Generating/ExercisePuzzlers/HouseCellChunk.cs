@@ -70,13 +70,13 @@ public readonly unsafe partial struct HouseCellChunk :
 	/// <summary>
 	/// Indicates the cells used in this structure.
 	/// </summary>
-	public Cells Cells
+	public CellMap Cells
 	{
 		get
 		{
 			int[] digits = Digits;
 			int[] houseCells = HouseCells[House];
-			var result = Cells.Empty;
+			var result = CellMap.Empty;
 			for (int i = 0; i < 9; i++)
 			{
 				if (digits[i] == 0xF)

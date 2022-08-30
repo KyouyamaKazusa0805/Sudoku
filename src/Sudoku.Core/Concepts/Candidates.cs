@@ -14,7 +14,7 @@ public unsafe struct Candidates :
 	IAdditionOperators<Candidates, int, Candidates>,
 	ISubtractionOperators<Candidates, int, Candidates>,
 	ISubtractionOperators<Candidates, Candidates, Candidates>,
-	IDivisionOperators<Candidates, int, Cells>,
+	IDivisionOperators<Candidates, int, CellMap>,
 	IModulusOperators<Candidates, Candidates, Candidates>,
 	IBitwiseOperators<Candidates, Candidates, Candidates>,
 	IEqualityOperators<Candidates, Candidates>
@@ -181,12 +181,12 @@ public unsafe struct Candidates :
 	}
 
 	/// <summary>
-	/// Initializes an instance with the specified <see cref="Cells"/> and the number
+	/// Initializes an instance with the specified <see cref="CellMap"/> and the number
 	/// representing.
 	/// </summary>
 	/// <param name="map">The map.</param>
 	/// <param name="digit">The digit.</param>
-	public Candidates(scoped in Cells map, int digit)
+	public Candidates(scoped in CellMap map, int digit)
 	{
 		this = default;
 		foreach (int cell in map)
@@ -445,14 +445,14 @@ public unsafe struct Candidates :
 	public readonly string ToString(string? format) => RxCyNotation.ToCandidatesString(this);
 
 	/// <summary>
-	/// Get the final <see cref="Cells"/> to get all cells that the corresponding indices
+	/// Get the final <see cref="CellMap"/> to get all cells that the corresponding indices
 	/// are set <see langword="true"/>.
 	/// </summary>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The map of all cells chosen.</returns>
-	public readonly Cells Reduce(int digit)
+	public readonly CellMap Reduce(int digit)
 	{
-		var result = Cells.Empty;
+		var result = CellMap.Empty;
 		for (int cell = 0; cell < 81; cell++)
 		{
 			if (Contains(cell * 9 + digit))
@@ -917,7 +917,7 @@ public unsafe struct Candidates :
 	/// <returns>The cells.</returns>
 	/// <seealso cref="Reduce(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator /(scoped in Candidates candidates, int digit) => candidates.Reduce(digit);
+	public static CellMap operator /(scoped in Candidates candidates, int digit) => candidates.Reduce(digit);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -954,7 +954,7 @@ public unsafe struct Candidates :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IDivisionOperators<Candidates, int, Cells>.operator /(Candidates left, int right) => left / right;
+	static CellMap IDivisionOperators<Candidates, int, CellMap>.operator /(Candidates left, int right) => left / right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -88,11 +88,11 @@ public interface IExocetStepSearcher : IStepSearcher
 							bb[bc[i, 0]] + rq[k, 1],
 							tr1,
 							bb[bc[i, 1]] + rq[l, 1],
-							(Cells)crossline[7..],
-							Cells.Empty + (bb[bc[i, 1]] + m[l, 2]) + (bb[bc[i, 1]] + m[l, 3]),
-							Cells.Empty + (bb[bc[i, 1]] + m[l, 0]) + (bb[bc[i, 1]] + m[l, 1]),
-							Cells.Empty + (bb[bc[i, 0]] + m[k, 2]) + (bb[bc[i, 0]] + m[k, 3]),
-							Cells.Empty + (bb[bc[i, 0]] + m[k, 0]) + (bb[bc[i, 0]] + m[k, 1])
+							(CellMap)crossline[7..],
+							CellMap.Empty + (bb[bc[i, 1]] + m[l, 2]) + (bb[bc[i, 1]] + m[l, 3]),
+							CellMap.Empty + (bb[bc[i, 1]] + m[l, 0]) + (bb[bc[i, 1]] + m[l, 1]),
+							CellMap.Empty + (bb[bc[i, 0]] + m[k, 2]) + (bb[bc[i, 0]] + m[k, 3]),
+							CellMap.Empty + (bb[bc[i, 0]] + m[k, 0]) + (bb[bc[i, 0]] + m[k, 1])
 						);
 
 						n++;

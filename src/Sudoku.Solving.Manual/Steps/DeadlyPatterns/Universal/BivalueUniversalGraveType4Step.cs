@@ -12,7 +12,7 @@ internal sealed record BivalueUniversalGraveType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short DigitsMask,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	scoped in Conjugate ConjugatePair
 ) : BivalueUniversalGraveStep(Conclusions, Views), IStepWithPhasedDifficulty
 {

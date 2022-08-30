@@ -13,11 +13,11 @@
 internal sealed record UniqueMatrixType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask,
 	int Digit1,
 	int Digit2,
-	scoped in Cells ConjugateHouse
+	scoped in CellMap ConjugateHouse
 ) : UniqueMatrixStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>

@@ -12,7 +12,7 @@
 internal sealed record ReverseUniqueRectangleType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask,
 	int TargetCell,
 	int TargetDigit

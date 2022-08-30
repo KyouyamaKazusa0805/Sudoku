@@ -141,7 +141,7 @@ public readonly partial struct Conclusion :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{Cells.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
+	public override string ToString() => $"{CellMap.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -15,8 +15,8 @@ internal sealed record ChromaticPatternXzStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int[] Blocks,
-	scoped in Cells Pattern,
-	scoped in Cells Cells,
+	scoped in CellMap Pattern,
+	scoped in CellMap Cells,
 	int ExtraCell,
 	short DigitsMask,
 	short ExtraDigitsMask

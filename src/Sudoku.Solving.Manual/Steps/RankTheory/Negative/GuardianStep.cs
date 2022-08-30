@@ -12,8 +12,8 @@ internal sealed record GuardianStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,
-	scoped in Cells Loop,
-	scoped in Cells Guardians
+	scoped in CellMap Loop,
+	scoped in CellMap Guardians
 ) :
 	NegativeRankStep(Conclusions, Views),
 	IDistinctableStep<GuardianStep>,

@@ -11,7 +11,7 @@
 internal abstract record BivalueOddagonStep(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Loop,
+	scoped in CellMap Loop,
 	int Digit1,
 	int Digit2
 ) : NegativeRankStep(Conclusions, Views), IDistinctableStep<BivalueOddagonStep>, ILoopLikeStep, IStepWithRank

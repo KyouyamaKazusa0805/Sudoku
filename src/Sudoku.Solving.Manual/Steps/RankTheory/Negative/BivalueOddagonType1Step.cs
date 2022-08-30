@@ -12,7 +12,7 @@
 internal sealed record BivalueOddagonType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Loop,
+	scoped in CellMap Loop,
 	int Digit1,
 	int Digit2,
 	int ExtraCell

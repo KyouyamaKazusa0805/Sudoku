@@ -356,18 +356,18 @@ public static class CommonReadOnlies
 	/// <example>
 	/// '<c>HouseMaps[0]</c>': The map containing all cells in the block 1.
 	/// </example>
-	public static readonly Cells[] HousesMap;
+	public static readonly CellMap[] HousesMap;
 
 	/// <summary>
 	/// Indicates the peer maps using <see cref="Peers"/> table.
 	/// </summary>
 	/// <seealso cref="Peers"/>
-	public static readonly Cells[] PeersMap;
+	public static readonly CellMap[] PeersMap;
 
 	/// <summary>
 	/// Indicates the chute maps.
 	/// </summary>
-	public static readonly (Cells Cells, bool IsRow, short HousesMask)[] Chutes;
+	public static readonly (CellMap Cells, bool IsRow, short HousesMask)[] Chutes;
 
 	/// <summary>
 	/// Indicates the possible house types to iterate.
@@ -389,7 +389,7 @@ public static class CommonReadOnlies
 	/// In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
 	/// </para>
 	/// </summary>
-	public static readonly IReadOnlyDictionary<(byte Line, byte Block), (Cells LineMap, Cells BlockMap, Cells IntersectionMap, byte[] OtherBlocks)> IntersectionMaps;
+	public static readonly IReadOnlyDictionary<(byte Line, byte Block), (CellMap LineMap, CellMap BlockMap, CellMap IntersectionMap, byte[] OtherBlocks)> IntersectionMaps;
 
 	internal static readonly int[] BlockTable =
 	{
@@ -500,19 +500,19 @@ public static class CommonReadOnlies
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static CommonReadOnlies()
 	{
-		PeersMap = new Cells[81];
+		PeersMap = new CellMap[81];
 		for (int i = 0; i < 81; i++)
 		{
-			PeersMap[i] = (Cells)Peers[i];
+			PeersMap[i] = (CellMap)Peers[i];
 		}
 
-		HousesMap = new Cells[27];
+		HousesMap = new CellMap[27];
 		for (int i = 0; i < 27; i++)
 		{
-			HousesMap[i] = (Cells)HouseCells[i];
+			HousesMap[i] = (CellMap)HouseCells[i];
 		}
 
-		Chutes = new (Cells, bool, short)[6];
+		Chutes = new (CellMap, bool, short)[6];
 		for (int i = 0; i < 3; i++)
 		{
 			var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[i], ChuteHouses[i + 3]);
@@ -532,7 +532,7 @@ public static class CommonReadOnlies
 
 		scoped var r = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
 		scoped var c = (stackalloc[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 });
-		var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells, byte[])>(new ValueTupleComparer());
+		var dic = new Dictionary<(byte, byte), (CellMap, CellMap, CellMap, byte[])>(new ValueTupleComparer());
 		for (byte bs = 9; bs < 27; bs++)
 		{
 			for (byte j = 0; j < 3; j++)

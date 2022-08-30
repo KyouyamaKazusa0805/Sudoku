@@ -14,12 +14,12 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// </returns>
 	protected static sealed unsafe GuardianDataInfo[] GatherGuardianLoops(int digit)
 	{
-		delegate*<in Cells, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
+		delegate*<in CellMap, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
 
 		var result = new List<GuardianDataInfo>();
 		foreach (int cell in CandidatesMap[digit])
 		{
-			DepthFirstSearching_Guardian(cell, cell, 0, Cells.Empty + cell, Cells.Empty, digit, condition, result);
+			DepthFirstSearching_Guardian(cell, cell, 0, CellMap.Empty + cell, CellMap.Empty, digit, condition, result);
 		}
 
 		return result.Distinct().ToArray();
@@ -35,7 +35,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// </returns>
 	protected static sealed unsafe UniqueLoopDataInfo[] GatherUniqueLoops(short digitsMask)
 	{
-		delegate*<in Cells, bool> condition = &UniqueLoopSatisfyingPredicate;
+		delegate*<in CellMap, bool> condition = &UniqueLoopSatisfyingPredicate;
 
 		var result = new List<UniqueLoopDataInfo>();
 		int d1 = TrailingZeroCount(digitsMask), d2 = digitsMask.GetNextSet(d1);
@@ -44,7 +44,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 		foreach (int cell in CandidatesMap[d1] & CandidatesMap[d2])
 		{
 			DepthFirstSearching_UniqueLoop(
-				cell, cell, 0, Cells.Empty + cell, digitsMask,
+				cell, cell, 0, CellMap.Empty + cell, digitsMask,
 				CandidatesMap[d1] & CandidatesMap[d2], condition, result);
 		}
 
@@ -61,7 +61,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// </returns>
 	protected static sealed unsafe BivalueOddagonDataInfo[] GatherBivalueOddagons(short digitsMask)
 	{
-		delegate*<in Cells, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
+		delegate*<in CellMap, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
 
 		var result = new List<BivalueOddagonDataInfo>();
 		int d1 = TrailingZeroCount(digitsMask), d2 = digitsMask.GetNextSet(d1);
@@ -70,7 +70,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 		foreach (int cell in CandidatesMap[d1] & CandidatesMap[d2])
 		{
 			DepthFirstSearching_BivalueOddagon(
-				cell, cell, 0, Cells.Empty + cell, digitsMask,
+				cell, cell, 0, CellMap.Empty + cell, digitsMask,
 				CandidatesMap[d1] & CandidatesMap[d2], condition, result);
 		}
 
@@ -82,7 +82,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// </summary>
 	/// <param name="loop">The loop to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	private static bool UniqueLoopSatisfyingPredicate(in Cells loop)
+	private static bool UniqueLoopSatisfyingPredicate(in CellMap loop)
 		=> loop is { Count: var length, RowMask: var r, ColumnMask: var c, BlockMask: var b }
 		&& (length & 1) == 0 && length >= 6
 		&& length >> 1 is var halfLength
@@ -93,13 +93,13 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// </summary>
 	/// <param name="loop">The loop to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	private static bool GuardianOrBivalueOddagonSatisfyingPredicate(in Cells loop)
+	private static bool GuardianOrBivalueOddagonSatisfyingPredicate(in CellMap loop)
 		=> loop.Count is var l && (l & 1) != 0 && l >= 5;
 
 
-	static unsafe partial void DepthFirstSearching_Guardian(int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, scoped in Cells currentGuardians, int digit, delegate*<in Cells, bool> condition, List<GuardianDataInfo> result);
-	static unsafe partial void DepthFirstSearching_UniqueLoop(int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, short digitsMask, scoped in Cells fullCells, delegate*<in Cells, bool> condition, List<UniqueLoopDataInfo> result);
-	static unsafe partial void DepthFirstSearching_BivalueOddagon(int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, short digitsMask, scoped in Cells fullCells, delegate*<in Cells, bool> condition, List<BivalueOddagonDataInfo> result);
+	static unsafe partial void DepthFirstSearching_Guardian(int startCell, int lastCell, int lastHouse, scoped in CellMap currentLoop, scoped in CellMap currentGuardians, int digit, delegate*<in CellMap, bool> condition, List<GuardianDataInfo> result);
+	static unsafe partial void DepthFirstSearching_UniqueLoop(int startCell, int lastCell, int lastHouse, scoped in CellMap currentLoop, short digitsMask, scoped in CellMap fullCells, delegate*<in CellMap, bool> condition, List<UniqueLoopDataInfo> result);
+	static unsafe partial void DepthFirstSearching_BivalueOddagon(int startCell, int lastCell, int lastHouse, scoped in CellMap currentLoop, short digitsMask, scoped in CellMap fullCells, delegate*<in CellMap, bool> condition, List<BivalueOddagonDataInfo> result);
 }
 
 partial interface ICellLinkingLoopStepSearcher
@@ -108,8 +108,8 @@ partial interface ICellLinkingLoopStepSearcher
 	/// Checks for guardian loops using recursion.
 	/// </summary>
 	static unsafe partial void DepthFirstSearching_Guardian(
-		int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop,
-		scoped in Cells currentGuardians, int digit, delegate*<in Cells, bool> condition,
+		int startCell, int lastCell, int lastHouse, scoped in CellMap currentLoop,
+		scoped in CellMap currentGuardians, int digit, delegate*<in CellMap, bool> condition,
 		List<GuardianDataInfo> result)
 	{
 		foreach (var houseType in HouseTypes)
@@ -170,8 +170,8 @@ partial interface ICellLinkingLoopStepSearcher
 	/// Checks for unique loops using recursion.
 	/// </summary>
 	static unsafe partial void DepthFirstSearching_UniqueLoop(
-		int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, short digitsMask,
-		scoped in Cells fullCells, delegate*<in Cells, bool> condition, List<UniqueLoopDataInfo> result)
+		int startCell, int lastCell, int lastHouse, scoped in CellMap currentLoop, short digitsMask,
+		scoped in CellMap fullCells, delegate*<in CellMap, bool> condition, List<UniqueLoopDataInfo> result)
 	{
 		foreach (var houseType in HouseTypes)
 		{
@@ -227,8 +227,8 @@ partial interface ICellLinkingLoopStepSearcher
 	/// Checks for bi-value oddagon loops using recursion.
 	/// </summary>
 	static unsafe partial void DepthFirstSearching_BivalueOddagon(
-		int startCell, int lastCell, int lastHouse, scoped in Cells currentLoop, short digitsMask,
-		scoped in Cells fullCells, delegate*<in Cells, bool> condition, List<BivalueOddagonDataInfo> result)
+		int startCell, int lastCell, int lastHouse, scoped in CellMap currentLoop, short digitsMask,
+		scoped in CellMap fullCells, delegate*<in CellMap, bool> condition, List<BivalueOddagonDataInfo> result)
 	{
 		foreach (var houseType in HouseTypes)
 		{

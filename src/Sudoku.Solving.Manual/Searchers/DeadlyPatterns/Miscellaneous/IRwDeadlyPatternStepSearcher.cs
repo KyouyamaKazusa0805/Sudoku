@@ -39,7 +39,7 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 			int valueDigitsSpannedHousesCount = 0;
 			short valueDigitsMask = 0;
 			bool isPassedPrechecking = true;
-			var availableElimMap = Cells.Empty;
+			var availableElimMap = CellMap.Empty;
 			for (int @base = (int)elimHouseType * 9, i = @base; i < @base + 9; i++)
 			{
 				var miniline = HousesMap[i] & chute;

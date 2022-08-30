@@ -13,8 +13,8 @@ internal sealed record AlmostLockedCandidatesStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short DigitsMask,
-	scoped in Cells BaseCells,
-	scoped in Cells TargetCells,
+	scoped in CellMap BaseCells,
+	scoped in CellMap TargetCells,
 	bool HasValueCell
 ) :
 	IntersectionStep(Conclusions, Views),

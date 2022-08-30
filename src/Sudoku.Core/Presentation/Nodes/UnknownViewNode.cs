@@ -53,7 +53,7 @@ public sealed class UnknownViewNode : ViewNode
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
-		=> $$"""{{nameof(UnknownViewNode)}} { {{nameof(Identifier)}} = {{Identifier}}, {{nameof(Cell)}} = {{Cells.Empty + Cell}}, {{nameof(DigitsMask)}} = {{Convert.ToString(DigitsMask, 2)}}, {{nameof(UnknownValueChar)}} = {{UnknownValueChar}} }""";
+		=> $$"""{{nameof(UnknownViewNode)}} { {{nameof(Identifier)}} = {{Identifier}}, {{nameof(Cell)}} = {{CellMap.Empty + Cell}}, {{nameof(DigitsMask)}} = {{Convert.ToString(DigitsMask, 2)}}, {{nameof(UnknownValueChar)}} = {{UnknownValueChar}} }""";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

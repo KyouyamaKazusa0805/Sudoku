@@ -61,7 +61,7 @@ public sealed unsafe class TrueCandidatesSearcher
 
 		// Store all bi-value cells and construct the relations.
 		int* peerHouses = stackalloc int[3];
-		var stack = new Cells[multivalueCellsCount + 1, 9];
+		var stack = new CellMap[multivalueCellsCount + 1, 9];
 		foreach (int cell in Puzzle.BivalueCells)
 		{
 			foreach (int digit in Puzzle.GetCandidates(cell))
@@ -110,7 +110,7 @@ public sealed unsafe class TrueCandidatesSearcher
 		scoped var playground = (stackalloc int[3]);
 		int currentIndex = 1;
 		int[] chosen = new int[multivalueCellsCount + 1];
-		var resultMap = new Cells[9];
+		var resultMap = new CellMap[9];
 		var result = Candidates.Empty;
 		do
 		{

@@ -27,11 +27,11 @@
 /// <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
 /// <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
 /// <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
-public readonly record struct QiuDeadlyPattern(scoped in Cells Square, scoped in Cells BaseLine, scoped in Cells Pair) :
+public readonly record struct QiuDeadlyPattern(scoped in CellMap Square, scoped in CellMap BaseLine, scoped in CellMap Pair) :
 	ITechniquePattern<QiuDeadlyPattern>
 {
 	/// <inheritdoc/>
-	public Cells Map
+	public CellMap Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Square | BaseLine | Pair;

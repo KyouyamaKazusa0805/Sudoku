@@ -64,36 +64,36 @@ public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniq
 	/// <summary>
 	/// Indicates the map of pair 1 cells.
 	/// </summary>
-	public Cells Pair1Map
+	public CellMap Pair1Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.Empty + Pair1.A + Pair1.B;
+		get => CellMap.Empty + Pair1.A + Pair1.B;
 	}
 
 	/// <summary>
 	/// Indicates the map of pair 2 cells.
 	/// </summary>
-	public Cells Pair2Map
+	public CellMap Pair2Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.Empty + Pair2.A + Pair2.B;
+		get => CellMap.Empty + Pair2.A + Pair2.B;
 	}
 
 	/// <summary>
 	/// The map of other three (or four) cells.
 	/// </summary>
-	public Cells CenterCellsMap
+	public CellMap CenterCellsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
 			var (a, b, c, d) = CenterCells;
-			return IsHeptagon ? Cells.Empty + a + b + c : Cells.Empty + a + b + c + d;
+			return IsHeptagon ? CellMap.Empty + a + b + c : CellMap.Empty + a + b + c + d;
 		}
 	}
 
 	/// <inheritdoc/>
-	public Cells Map
+	public CellMap Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Pair1Map | Pair2Map | CenterCellsMap;

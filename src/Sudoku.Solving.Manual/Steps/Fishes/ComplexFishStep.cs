@@ -18,8 +18,8 @@ internal sealed record ComplexFishStep(
 	int Digit,
 	int BaseSetsMask,
 	int CoverSetsMask,
-	scoped in Cells Exofins,
-	scoped in Cells Endofins,
+	scoped in CellMap Exofins,
+	scoped in CellMap Endofins,
 	bool IsFranken,
 	bool? IsSashimi
 ) :

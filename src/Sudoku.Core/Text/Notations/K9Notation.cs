@@ -42,10 +42,10 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCellsString(scoped in Cells cells) => ToCellsString(cells, K9NotationOptions.Default);
+	public static string ToCellsString(scoped in CellMap cells) => ToCellsString(cells, K9NotationOptions.Default);
 
 	/// <inheritdoc/>
-	public static string ToCellsString(scoped in Cells cells, scoped in K9NotationOptions options)
+	public static string ToCellsString(scoped in CellMap cells, scoped in K9NotationOptions options)
 	{
 		return cells switch
 		{
@@ -61,7 +61,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 
 		static string i(int v) => (v + 1).ToString();
 
-		static unsafe string r(scoped in Cells cells, scoped in K9NotationOptions options)
+		static unsafe string r(scoped in CellMap cells, scoped in K9NotationOptions options)
 		{
 			scoped var sbRow = new StringHandler(18);
 			var dic = new Dictionary<int, List<int>>(9);
@@ -93,7 +93,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 			return sbRow.ToStringAndClear();
 		}
 
-		static unsafe string c(scoped in Cells cells, scoped in K9NotationOptions options)
+		static unsafe string c(scoped in CellMap cells, scoped in K9NotationOptions options)
 		{
 			var dic = new Dictionary<int, List<int>>(9);
 			scoped var sbColumn = new StringHandler(18);
@@ -132,7 +132,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 	}
 
 	/// <inheritdoc/>
-	public static unsafe Cells ParseCells(string str)
+	public static unsafe CellMap ParseCells(string str)
 	{
 		// Check whether the match is successful.
 		if (CellOrCellListRegex().Matches(str) is not { Count: not 0 } matches)
@@ -144,7 +144,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 		int* bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
 
 		// Declare the result variable.
-		var result = Cells.Empty;
+		var result = CellMap.Empty;
 
 		// Iterate on each match instance.
 		foreach (var match in matches.Cast<Match>())
@@ -192,7 +192,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 	}
 
 	/// <inheritdoc/>
-	public static bool TryParseCells(string str, out Cells result)
+	public static bool TryParseCells(string str, out CellMap result)
 	{
 		try
 		{

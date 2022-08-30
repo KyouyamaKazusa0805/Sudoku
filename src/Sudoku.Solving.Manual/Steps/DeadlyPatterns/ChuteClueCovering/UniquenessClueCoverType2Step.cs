@@ -18,7 +18,7 @@ internal sealed record UniquenessClueCoverType2Step(
 	int Cell1,
 	int Cell2,
 	int ChuteIndex
-) : UniquenessClueCoverStep(Conclusions, Views, Cells.Empty + Cell1 + Cell2)
+) : UniquenessClueCoverStep(Conclusions, Views, CellMap.Empty + Cell1 + Cell2)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;

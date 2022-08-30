@@ -13,10 +13,10 @@
 internal sealed record BivalueOddagonType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Loop,
+	scoped in CellMap Loop,
 	int Digit1,
 	int Digit2,
-	scoped in Cells ExtraCells,
+	scoped in CellMap ExtraCells,
 	short ExtraDigitsMask
 ) : BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2), IStepWithPhasedDifficulty
 {

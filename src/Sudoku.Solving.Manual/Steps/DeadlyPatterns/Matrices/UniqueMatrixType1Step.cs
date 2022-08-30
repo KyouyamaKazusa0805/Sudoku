@@ -11,7 +11,7 @@
 internal sealed record UniqueMatrixType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask,
 	int Candidate
 ) : UniqueMatrixStep(Conclusions, Views, Cells, DigitsMask)

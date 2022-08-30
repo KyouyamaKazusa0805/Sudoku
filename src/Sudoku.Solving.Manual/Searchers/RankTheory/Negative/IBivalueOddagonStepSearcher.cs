@@ -104,8 +104,8 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 	}
 
 	private IStep? CheckType2(
-		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
-		scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in CellMap loop,
+		scoped in CellMap extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		short mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
@@ -151,8 +151,8 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 	}
 
 	private IStep? CheckType3(
-		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
-		scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in CellMap loop,
+		scoped in CellMap extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in extraCellsMap)

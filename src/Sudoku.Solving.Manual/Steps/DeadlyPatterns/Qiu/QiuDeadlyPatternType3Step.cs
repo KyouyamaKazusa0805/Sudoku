@@ -14,7 +14,7 @@ internal sealed record QiuDeadlyPatternType3Step(
 	ViewList Views,
 	scoped in QiuDeadlyPattern Pattern,
 	short ExtraDigitsMask,
-	scoped in Cells ExtraCells,
+	scoped in CellMap ExtraCells,
 	bool IsNaked
 ) : QiuDeadlyPatternStep(Conclusions, Views, Pattern), IStepWithPhasedDifficulty
 {

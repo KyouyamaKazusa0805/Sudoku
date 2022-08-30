@@ -32,7 +32,7 @@ internal sealed record NormalFishStep(
 	int Digit,
 	int BaseSetsMask,
 	int CoverSetsMask,
-	scoped in Cells Fins,
+	scoped in CellMap Fins,
 	bool? IsSashimi
 ) : FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask), IStepWithPhasedDifficulty
 {

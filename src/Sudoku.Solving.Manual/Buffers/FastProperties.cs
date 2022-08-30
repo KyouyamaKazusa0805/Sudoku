@@ -52,7 +52,7 @@ internal static class FastProperties
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
-	public static Cells EmptyCells { get; private set; }
+	public static CellMap EmptyCells { get; private set; }
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.BivalueCells"/>
@@ -64,7 +64,7 @@ internal static class FastProperties
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
-	public static Cells BivalueCells { get; private set; }
+	public static CellMap BivalueCells { get; private set; }
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.CandidatesMap"/>
@@ -76,7 +76,7 @@ internal static class FastProperties
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
-	public static Cells[] CandidatesMap { get; private set; }
+	public static CellMap[] CandidatesMap { get; private set; }
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.DigitsMap"/>
@@ -88,7 +88,7 @@ internal static class FastProperties
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
-	public static Cells[] DigitsMap { get; private set; }
+	public static CellMap[] DigitsMap { get; private set; }
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.ValuesMap"/>
@@ -100,7 +100,7 @@ internal static class FastProperties
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
-	public static Cells[] ValuesMap { get; private set; }
+	public static CellMap[] ValuesMap { get; private set; }
 
 
 	/// <summary>

@@ -15,7 +15,7 @@ internal sealed record GroupedWWingStep(
 	ViewList Views,
 	int StartCell,
 	int EndCell,
-	scoped in Cells Bridge
+	scoped in CellMap Bridge
 ) : IrregularWingStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

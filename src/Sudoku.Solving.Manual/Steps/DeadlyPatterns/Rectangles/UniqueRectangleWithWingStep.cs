@@ -20,10 +20,10 @@ internal sealed record UniqueRectangleWithWingStep(
 	Technique TechniqueCode2,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	bool IsAvoidable,
-	scoped in Cells Pivots,
-	scoped in Cells Petals,
+	scoped in CellMap Pivots,
+	scoped in CellMap Petals,
 	short ExtraDigitsMask,
 	int AbsoluteOffset
 ) :

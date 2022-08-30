@@ -18,8 +18,8 @@ internal sealed record UniqueRectangleWithGuardianConjugatePairStep(
 	ViewList Views,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Cells,
-	scoped in Cells GuardianCells,
+	scoped in CellMap Cells,
+	scoped in CellMap GuardianCells,
 	Conjugate ConjugatePair,
 	bool IsIncomplete,
 	int AbsoluteOffset

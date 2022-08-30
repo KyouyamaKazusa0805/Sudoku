@@ -10,7 +10,7 @@
 internal sealed record FireworkQuadrupleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask
 ) : FireworkStep(Conclusions, Views)
 {

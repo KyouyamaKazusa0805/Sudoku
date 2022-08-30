@@ -35,8 +35,8 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 					}
 
 					// Get all cells.
-					var cells1 = Cells.Empty;
-					var cells2 = Cells.Empty;
+					var cells1 = CellMap.Empty;
+					var cells2 = CellMap.Empty;
 					var cellsList1 = new List<int>(PopCount((uint)mask1));
 					var cellsList2 = new List<int>(PopCount((uint)mask2));
 					foreach (int pos1 in mask1)
@@ -65,7 +65,7 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 						for (int j = 0; j < 2; j++)
 						{
 							int cell2 = cellsList2[j];
-							if ((Cells.Empty + cell1 + cell2).AllSetsAreInOneHouse(out sameHouse))
+							if ((CellMap.Empty + cell1 + cell2).AllSetsAreInOneHouse(out sameHouse))
 							{
 								(c1Index, c2Index) = (i, j);
 								(headIndex, tailIndex) = (i == 0 ? 1 : 0, j == 0 ? 1 : 0);

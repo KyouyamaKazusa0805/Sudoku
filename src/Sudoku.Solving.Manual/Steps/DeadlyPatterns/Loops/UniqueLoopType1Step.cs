@@ -13,7 +13,7 @@ internal sealed record UniqueLoopType1Step(
 	ViewList Views,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Loop
+	scoped in CellMap Loop
 ) : UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
 {
 	/// <inheritdoc/>

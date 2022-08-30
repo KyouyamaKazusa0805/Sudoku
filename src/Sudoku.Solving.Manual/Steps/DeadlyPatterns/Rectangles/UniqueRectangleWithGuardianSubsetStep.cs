@@ -19,9 +19,9 @@ internal sealed record UniqueRectangleWithGuardianSubsetStep(
 	ViewList Views,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Cells,
-	scoped in Cells GuardianCells,
-	scoped in Cells SubsetCells,
+	scoped in CellMap Cells,
+	scoped in CellMap GuardianCells,
+	scoped in CellMap SubsetCells,
 	short SubsetDigitsMask,
 	bool IsIncomplete,
 	int AbsoluteOffset

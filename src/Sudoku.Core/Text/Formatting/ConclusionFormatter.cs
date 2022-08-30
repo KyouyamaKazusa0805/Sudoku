@@ -49,7 +49,7 @@ public abstract class ConclusionFormatter : ICollectionFormatter<Conclusion>
 					string op = typeGroup.Key == ConclusionType.Assignment ? " = " : " <> ";
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						sb.Append(Cells.Empty + from conclusion in digitGroup select conclusion.Cell);
+						sb.Append(CellMap.Empty + from conclusion in digitGroup select conclusion.Cell);
 						sb.Append(op);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(separator);

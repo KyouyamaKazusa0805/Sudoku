@@ -12,9 +12,9 @@
 internal sealed record UniquePolygonType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Map,
+	scoped in CellMap Map,
 	short DigitsMask,
-	scoped in Cells ConjugateHouse,
+	scoped in CellMap ConjugateHouse,
 	short ExtraMask
 ) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {

@@ -775,10 +775,10 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		void checkFirstFourCases(
-			scoped in Cells cells,
+			scoped in CellMap cells,
 			byte digit,
 			int offset,
-			delegate*<in Cells, short> maskSelector)
+			delegate*<in CellMap, short> maskSelector)
 		{
 			short houseMask = maskSelector(cells);
 			switch (PopCount((uint)houseMask))
@@ -822,7 +822,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			}
 		}
 
-		void checkLastCase(scoped in Cells cells, byte digit, byte house)
+		void checkLastCase(scoped in CellMap cells, byte digit, byte house)
 		{
 			// Checks for the last case.
 
@@ -855,7 +855,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			{
 				case 4:
 				{
-					Cells targetRowCells, targetColumnCells;
+					CellMap targetRowCells, targetColumnCells;
 					if (cells.Contains(intersectionCell))
 					{
 						var rowCells1 = HousesMap[row] & cells;
@@ -931,11 +931,11 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			}
 		}
 
-		static short blockMaskSelector(in Cells cells) => cells.BlockMask;
+		static short blockMaskSelector(in CellMap cells) => cells.BlockMask;
 
-		static short rowMaskSelector(in Cells cells) => cells.RowMask;
+		static short rowMaskSelector(in CellMap cells) => cells.RowMask;
 
-		static short columnMaskSelector(in Cells cells) => cells.ColumnMask;
+		static short columnMaskSelector(in CellMap cells) => cells.ColumnMask;
 	}
 
 	/// <summary>
@@ -1142,10 +1142,10 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			// Strong inferences.
 			int extraDigit1 = TrailingZeroCount(otherDigitsMask);
 			int extraDigit2 = otherDigitsMask.GetNextSet(extraDigit1);
-			var cells1 = CandidatesMap[extraDigit1] & (Cells)cellsArray;
-			var cells2 = CandidatesMap[extraDigit2] & (Cells)cellsArray;
-			var node1 = new Node((byte)extraDigit1, cells1, (Cells)cellsArray - cells1);
-			var node2 = new Node((byte)extraDigit2, cells2, (Cells)cellsArray - cells2);
+			var cells1 = CandidatesMap[extraDigit1] & (CellMap)cellsArray;
+			var cells2 = CandidatesMap[extraDigit2] & (CellMap)cellsArray;
+			var node1 = new Node((byte)extraDigit1, cells1, (CellMap)cellsArray - cells1);
+			var node2 = new Node((byte)extraDigit2, cells2, (CellMap)cellsArray - cells2);
 
 			AppendInference(node1, node2, _strongInferences);
 			AppendInference(node2, node1, _strongInferences);
@@ -1155,7 +1155,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			appendWeakInference(cells2, (byte)extraDigit2, node2);
 
 
-			void appendWeakInference(scoped in Cells currentCells, byte extraDigit, scoped in Node node)
+			void appendWeakInference(scoped in CellMap currentCells, byte extraDigit, scoped in Node node)
 			{
 				if (PopCount((uint)currentCells.CoveredHouses) switch
 					{
@@ -1170,7 +1170,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 
 						// Two covered houses. It means it is a locked candidates.
 						// This case should have been handled.
-						_ => Cells.Empty
+						_ => CellMap.Empty
 					} is not [] uncoveredCells)
 				{
 					return;
@@ -1218,7 +1218,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 				}
 			}
 
-			var extraCells = Cells.Empty + extraCell1 + extraCell2;
+			var extraCells = CellMap.Empty + extraCell1 + extraCell2;
 			if (PopCount((uint)extraCells.CoveredHouses) != 2)
 			{
 				// They should be a locked candidates.
@@ -1229,8 +1229,8 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			int digit2 = digitsMask.GetNextSet(digit1);
 			var cells1 = CandidatesMap[digit1] & extraCells;
 			var cells2 = CandidatesMap[digit2] & extraCells;
-			var node1 = new Node((byte)digit1, cells1, (Cells)cellsArray);
-			var node2 = new Node((byte)digit2, cells2, (Cells)cellsArray);
+			var node1 = new Node((byte)digit1, cells1, (CellMap)cellsArray);
+			var node2 = new Node((byte)digit2, cells2, (CellMap)cellsArray);
 
 			AppendInference(node1, node2, _weakInferences);
 			AppendInference(node2, node1, _weakInferences);

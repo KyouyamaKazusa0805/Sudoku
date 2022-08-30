@@ -16,7 +16,7 @@ internal sealed record UniqueRectangleWithUnknownCoveringStep(
 	ViewList Views,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	int TargetCell,
 	int ExtraDigit,
 	int AbsoluteOffset

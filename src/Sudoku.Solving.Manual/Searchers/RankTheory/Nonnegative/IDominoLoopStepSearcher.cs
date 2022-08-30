@@ -191,7 +191,7 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 				linkHouse[6] = cells[12].ToHouseIndex(HouseType.Column);
 				linkHouse[7] = cells[14].ToHouseIndex(HouseType.Block);
 				var conclusions = new List<Conclusion>();
-				var map = (Cells)cells & EmptyCells;
+				var map = (CellMap)cells & EmptyCells;
 				for (k = 0; k < 8; k++)
 				{
 					if ((HousesMap[linkHouse[k]] & EmptyCells) - map is not (var elimMap and not []))
@@ -253,7 +253,7 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 				var step = new DominoLoopStep(
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(View.Empty | candidateOffsets),
-					(Cells)cells
+					(CellMap)cells
 				);
 				if (onlyFindOne)
 				{

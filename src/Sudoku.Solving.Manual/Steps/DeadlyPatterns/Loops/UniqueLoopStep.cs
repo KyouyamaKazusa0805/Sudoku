@@ -13,7 +13,7 @@ internal abstract record UniqueLoopStep(
 	ViewList Views,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Loop
+	scoped in CellMap Loop
 ) : DeadlyPatternStep(Conclusions, Views), IDistinctableStep<UniqueLoopStep>, IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>

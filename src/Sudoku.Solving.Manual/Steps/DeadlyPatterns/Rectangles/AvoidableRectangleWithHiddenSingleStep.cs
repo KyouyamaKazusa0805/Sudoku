@@ -17,7 +17,7 @@ internal sealed record AvoidableRectangleWithHiddenSingleStep(
 	ViewList Views,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	int BaseCell,
 	int TargetCell,
 	int House,

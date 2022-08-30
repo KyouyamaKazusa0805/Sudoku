@@ -18,7 +18,7 @@ internal sealed record UniqueRectangleType2Step(
 	int Digit1,
 	int Digit2,
 	Technique TechniqueCode2,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	bool IsAvoidable,
 	int ExtraDigit,
 	int AbsoluteOffset

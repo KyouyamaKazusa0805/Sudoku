@@ -14,11 +14,11 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The 9 maps for invalid positions of each digit.</returns>
-	protected static sealed Cells[] GetInvalidPos(scoped in Grid grid)
+	protected static sealed CellMap[] GetInvalidPos(scoped in Grid grid)
 	{
-		var result = new Cells[9];
-		var invalidPos = new Cells[9];
-		var mustPos = new Cells[9];
+		var result = new CellMap[9];
+		var invalidPos = new CellMap[9];
+		var mustPos = new CellMap[9];
 		for (int digit = 0; digit < 9; digit++)
 		{
 			for (int cell = 0; cell < 81; cell++)
@@ -56,7 +56,7 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 	/// Get all possible templates. The total number of all possible pattern overlay templates is 46656.
 	/// </summary>
 	/// <returns>The templates.</returns>
-	protected static sealed IEnumerable<Cells> GetTemplates()
+	protected static sealed IEnumerable<CellMap> GetTemplates()
 	{
 		for (int i1 = 0; i1 < 9; i1++)
 		{
@@ -92,7 +92,7 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 																	{
 																		if (i9 != i1 && i9 != i2 && i9 != i3 && i9 != i4 && i9 != i5 && i9 != i6 && i9 / 3 != i7 / 3 && i9 / 3 != i8 / 3)
 																		{
-																			yield return Cells.CreateByBits(
+																			yield return CellMap.CreateByBits(
 																				1 << i1 | 1 << (i2 + 9) | 1 << (i3 + 18),
 																				1 << i4 | 1 << (i5 + 9) | 1 << (i6 + 18),
 																				1 << i7 | 1 << (i8 + 9) | 1 << (i9 + 18)

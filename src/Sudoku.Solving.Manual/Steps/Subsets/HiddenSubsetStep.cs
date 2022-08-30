@@ -12,7 +12,7 @@ internal sealed record HiddenSubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int House,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask
 ) : SubsetStep(Conclusions, Views, House, Cells, DigitsMask)
 {

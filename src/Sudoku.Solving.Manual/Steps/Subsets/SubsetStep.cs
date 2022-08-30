@@ -12,7 +12,7 @@ internal abstract record SubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int House,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask
 ) : Step(Conclusions, Views), IStepWithSize, IStepWithRank, IElementaryStep
 {

@@ -10,7 +10,7 @@
 internal abstract record UniqueMatrixStep(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask
 ) : DeadlyPatternStep(Conclusions, Views)
 {

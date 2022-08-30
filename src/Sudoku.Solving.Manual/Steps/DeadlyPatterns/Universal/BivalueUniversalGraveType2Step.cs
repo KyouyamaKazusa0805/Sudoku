@@ -11,7 +11,7 @@ internal sealed record BivalueUniversalGraveType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,
-	scoped in Cells Cells
+	scoped in CellMap Cells
 ) : BivalueUniversalGraveStep(Conclusions, Views), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>

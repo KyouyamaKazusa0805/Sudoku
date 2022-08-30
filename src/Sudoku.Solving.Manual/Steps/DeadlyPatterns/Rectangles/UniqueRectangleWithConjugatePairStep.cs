@@ -18,7 +18,7 @@ internal record UniqueRectangleWithConjugatePairStep(
 	Technique TechniqueCode2,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	bool IsAvoidable,
 	Conjugate[] ConjugatePairs,
 	int AbsoluteOffset

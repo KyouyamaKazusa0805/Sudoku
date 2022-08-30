@@ -65,7 +65,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <summary>
 	/// Indicates the pattern.
 	/// </summary>
-	private readonly Cells? _pattern;
+	private readonly CellMap? _pattern;
 
 	/// <inheritdoc cref="HardLikePuzzleGenerator._random"/>
 	private readonly Random _random = new();
@@ -84,7 +84,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PatternBasedPuzzleGenerator(scoped in Cells pattern) => _pattern = pattern;
+	public PatternBasedPuzzleGenerator(scoped in CellMap pattern) => _pattern = pattern;
 
 	/// <summary>
 	/// Initializes a <see cref="PatternBasedPuzzleGenerator"/> instance via the specified pattern
@@ -93,7 +93,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <param name="pattern">The pattern.</param>
 	/// <param name="baseCandidates">The base candidates.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PatternBasedPuzzleGenerator(scoped in Cells pattern, int[] baseCandidates)
+	public PatternBasedPuzzleGenerator(scoped in CellMap pattern, int[] baseCandidates)
 		=> (_pattern, _baseCandidates) = (pattern, baseCandidates);
 
 
@@ -217,12 +217,12 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// Adjust a pattern slightly.
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
-	private void AdjustPattern(scoped ref Cells pattern)
+	private void AdjustPattern(scoped ref CellMap pattern)
 	{
 		int index = _random.Next(pattern.Count);
 		int cellToBeDeleted = pattern[index];
 		int[] tempCells = GetCells(cellToBeDeleted / 9, cellToBeDeleted % 9);
-		pattern -= (Cells)tempCells;
+		pattern -= (CellMap)tempCells;
 
 		int newCell;
 		while (true)
@@ -241,9 +241,9 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// Randomize to generate a pattern.
 	/// </summary>
 	/// <returns>A pattern result.</returns>
-	private Cells GeneratePattern()
+	private CellMap GeneratePattern()
 	{
-		var result = Cells.Empty;
+		var result = CellMap.Empty;
 		int resultCellsCount = _random.Next(MinPatternCellsCount, MaxPatternCellsCount);
 		if ((resultCellsCount & 1) != 0)
 		{
@@ -297,8 +297,8 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <returns>The cells.</returns>
 	/// <seealso cref="SymmetryType.Central"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Cells GetCells(int row, int column)
-		=> (Cells)(
+	private static CellMap GetCells(int row, int column)
+		=> (CellMap)(
 			row == 4 && column == 4
 				? new[] { 40 }
 				: new[] { row * 9 + column, (8 - row) * 9 + 8 - column }

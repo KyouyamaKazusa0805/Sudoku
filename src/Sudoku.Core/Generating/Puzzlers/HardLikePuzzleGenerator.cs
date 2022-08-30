@@ -93,7 +93,7 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 				pPuzzle[i] = '0';
 			}
 
-			var map = Cells.Empty;
+			var map = CellMap.Empty;
 			for (int i = 0; i < 16; i++)
 			{
 				while (true)

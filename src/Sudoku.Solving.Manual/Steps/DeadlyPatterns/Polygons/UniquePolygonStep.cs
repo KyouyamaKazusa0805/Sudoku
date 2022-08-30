@@ -10,7 +10,7 @@
 internal abstract record UniquePolygonStep(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Map,
+	scoped in CellMap Map,
 	short DigitsMask
 ) : DeadlyPatternStep(Conclusions, Views)
 {

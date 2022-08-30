@@ -32,7 +32,7 @@ public sealed class AlmostLockedSet :
 	/// Indicates the possible cells that can be as the elimination.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal AlmostLockedSet(short digitMask, scoped in Cells map, scoped in Cells possibleEliminationMap)
+	internal AlmostLockedSet(short digitMask, scoped in CellMap map, scoped in CellMap possibleEliminationMap)
 		=> (DigitsMask, Map, PossibleEliminationMap) = (digitMask, map, possibleEliminationMap);
 
 
@@ -86,12 +86,12 @@ public sealed class AlmostLockedSet :
 	}
 
 	/// <inheritdoc/>
-	public Cells Map { get; }
+	public CellMap Map { get; }
 
 	/// <summary>
 	/// Gets the possible cells that can store eliminations for the ALS.
 	/// </summary>
-	public Cells PossibleEliminationMap { get; }
+	public CellMap PossibleEliminationMap { get; }
 
 
 	/// <summary>
@@ -101,9 +101,9 @@ public sealed class AlmostLockedSet :
 	/// <param name="digit">The digit.</param>
 	/// <param name="result">The result.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
-	public bool ContainsDigit(scoped in Grid grid, int digit, out Cells result)
+	public bool ContainsDigit(scoped in Grid grid, int digit, out CellMap result)
 	{
-		result = Cells.Empty;
+		result = CellMap.Empty;
 		foreach (int cell in Map)
 		{
 			if ((grid.GetCandidates(cell) >> digit & 1) != 0)
@@ -171,7 +171,7 @@ public sealed class AlmostLockedSet :
 		var result = new List<AlmostLockedSet>();
 		foreach (int cell in bivalueMap)
 		{
-			result.Add(new(grid.GetCandidates(cell), Cells.Empty + cell, PeersMap[cell] & emptyMap));
+			result.Add(new(grid.GetCandidates(cell), CellMap.Empty + cell, PeersMap[cell] & emptyMap));
 		}
 
 		// Get all non-bi-value-cell ALSes.

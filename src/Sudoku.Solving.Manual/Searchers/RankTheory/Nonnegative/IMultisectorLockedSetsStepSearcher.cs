@@ -12,7 +12,7 @@ public interface IMultisectorLockedSetsStepSearcher : INonnegativeRankStepSearch
 	/// <summary>
 	/// Indicates the list initialized with the static constructor.
 	/// </summary>
-	protected static readonly Cells[] Patterns;
+	protected static readonly CellMap[] Patterns;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -21,7 +21,7 @@ public interface IMultisectorLockedSetsStepSearcher : INonnegativeRankStepSearch
 		const int a = ~7, b = ~56, c = ~448;
 		int[,] sizeList = { { 3, 3 }, { 3, 4 }, { 4, 3 }, { 4, 4 }, { 4, 5 }, { 5, 4 } };
 		int[] z = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
-		var result = new Cells[MultisectorLockedSetsTemplatesCount];
+		var result = new CellMap[MultisectorLockedSetsTemplatesCount];
 		int n = 0;
 		for (int i = 0, iterationLength = sizeList.Length >> 1; i < iterationLength; i++)
 		{
@@ -29,7 +29,7 @@ public interface IMultisectorLockedSetsStepSearcher : INonnegativeRankStepSearch
 			foreach (int[] rowList in z.GetSubsets(rows))
 			{
 				short rowMask = 0;
-				var rowMap = Cells.Empty;
+				var rowMap = CellMap.Empty;
 				foreach (int row in rowList)
 				{
 					rowMask |= (short)(1 << row);
@@ -44,7 +44,7 @@ public interface IMultisectorLockedSetsStepSearcher : INonnegativeRankStepSearch
 				foreach (int[] columnList in z.GetSubsets(columns))
 				{
 					short columnMask = 0;
-					var columnMap = Cells.Empty;
+					var columnMap = CellMap.Empty;
 					foreach (int column in columnList)
 					{
 						columnMask |= (short)(1 << column);
@@ -72,7 +72,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		short* linkForEachHouse = stackalloc short[27];
-		var linkForEachDigit = stackalloc Cells[9];
+		var linkForEachDigit = stackalloc CellMap[9];
 		foreach (var pattern in IMultisectorLockedSetsStepSearcher.Patterns)
 		{
 			var map = EmptyCells & pattern;
@@ -95,7 +95,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 
 			if (n == count)
 			{
-				var canL = new Cells[9];
+				var canL = new CellMap[9];
 				var conclusions = new List<Conclusion>();
 				var candidateOffsets = new List<CandidateViewNode>();
 				for (int digit = 0; digit < 9; digit++)
@@ -107,7 +107,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 						cMask = (uint)currentMap.ColumnMask,
 						bMask = (uint)currentMap.BlockMask;
 					int temp = MathExtensions.Min(PopCount(rMask), PopCount(cMask), PopCount(bMask));
-					var elimMap = Cells.Empty;
+					var elimMap = CellMap.Empty;
 					int check = 0;
 					if (PopCount(rMask) == temp)
 					{

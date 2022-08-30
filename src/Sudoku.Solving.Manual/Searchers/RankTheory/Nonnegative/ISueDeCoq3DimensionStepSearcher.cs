@@ -17,7 +17,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 	/// <inheritdoc/>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		using scoped ValueList<Cells> rbList = new(3), cbList = new(3);
+		using scoped ValueList<CellMap> rbList = new(3), cbList = new(3);
 		foreach (int pivot in EmptyCells)
 		{
 			int r = pivot.ToHouseIndex(HouseType.Row);
@@ -68,7 +68,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 						foreach (var selectedBlockCells in blockMap & i)
 						{
 							short blockMask = grid.GetDigitsUnion(selectedBlockCells);
-							var elimMapBlock = Cells.Empty;
+							var elimMapBlock = CellMap.Empty;
 
 							// Get the elimination map in the block.
 							foreach (int digit in blockMask)
@@ -82,7 +82,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 								foreach (var selectedRowCells in rowMap & j)
 								{
 									short rowMask = grid.GetDigitsUnion(selectedRowCells);
-									var elimMapRow = Cells.Empty;
+									var elimMapRow = CellMap.Empty;
 
 									foreach (int digit in rowMask)
 									{
@@ -95,7 +95,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 										foreach (var selectedColumnCells in columnMap & k)
 										{
 											short columnMask = grid.GetDigitsUnion(selectedColumnCells);
-											var elimMapColumn = Cells.Empty;
+											var elimMapColumn = CellMap.Empty;
 
 											foreach (int digit in columnMask)
 											{
@@ -235,7 +235,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void reinitializeList(ValueList<Cells>* list, Cells* emptyMap)
+		static void reinitializeList(ValueList<CellMap>* list, CellMap* emptyMap)
 		{
 			list->Clear();
 			switch (*emptyMap)
@@ -248,9 +248,9 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 				}
 				case [var i, var j, var k]:
 				{
-					list->Add(Cells.Empty + i + j);
-					list->Add(Cells.Empty + i + k);
-					list->Add(Cells.Empty + j + k);
+					list->Add(CellMap.Empty + i + j);
+					list->Add(CellMap.Empty + i + k);
+					list->Add(CellMap.Empty + j + k);
 
 					break;
 				}

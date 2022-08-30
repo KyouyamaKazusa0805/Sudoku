@@ -1210,7 +1210,7 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean)">
             <summary>
             Check type 1.
             </summary>
@@ -1223,7 +1223,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean)">
             <summary>
             Check type 2.
             </summary>
@@ -1236,7 +1236,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,System.Int16,System.Int16,Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Check type 3.
             </summary>
@@ -1249,10 +1249,10 @@
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType14(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType14(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Check type 4 and a part of type 1 that the method
-            <see cref="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Boolean)"/>
+            <see cref="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean)"/>
             cannot be found.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
@@ -1296,7 +1296,7 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Check type 1.
             </summary>
@@ -1308,7 +1308,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
             <summary>
             Check type 2.
             </summary>
@@ -1322,7 +1322,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
             <summary>
             Check type 3.
             </summary>
@@ -1336,7 +1336,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
             <summary>
             Check type 4.
             </summary>
@@ -1591,7 +1591,7 @@
             <param name="d2">The second digit used.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.IsConjugatePair(System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.IsConjugatePair(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             To determine whether the specified house forms a conjugate pair
             of the specified digit, and the cells where they contain the digit
@@ -1665,7 +1665,7 @@
             colored with normal one, the structure will be complete.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 1.
             </summary>
@@ -1688,7 +1688,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 2.
             </summary>
@@ -1712,7 +1712,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 3.
             </summary>
@@ -1738,7 +1738,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 4.
             </summary>
@@ -1764,7 +1764,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType5(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType5(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 5.
             </summary>
@@ -1787,7 +1787,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType6(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType6(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 6.
             </summary>
@@ -1812,7 +1812,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckHidden(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckHidden(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check hidden UR.
             </summary>
@@ -1835,7 +1835,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2D(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2D(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 2D.
             </summary>
@@ -1860,7 +1860,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2B1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2B1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 2B/1SL.
             </summary>
@@ -1887,7 +1887,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2D1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2D1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 2D/1SL.
             </summary>
@@ -1915,7 +1915,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 3X.
             </summary>
@@ -1939,7 +1939,7 @@
             Note: <c>z</c> is <c>x</c> or <c>y</c>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3X2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3X2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 3X/2SL.
             </summary>
@@ -1965,7 +1965,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3N2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3N2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 3N/2SL.
             </summary>
@@ -1991,7 +1991,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3U2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3U2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
              <summary>
              Check UR + 3U/2SL.
              </summary>
@@ -2017,7 +2017,7 @@
              ]]></code>
              </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3E2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3E2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
              <summary>
              Check UR + 3E/2SL.
              </summary>
@@ -2043,7 +2043,7 @@
              ]]></code>
              </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check4X3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check4X3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 4X/3SL.
             </summary>
@@ -2070,7 +2070,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check4C3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check4C3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 4C/3SL.
             </summary>
@@ -2111,7 +2111,7 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckRegularWing(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckRegularWing(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
             </summary>
@@ -2150,7 +2150,7 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckSueDeCoq(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckSueDeCoq(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + SdC.
             </summary>
@@ -2252,7 +2252,7 @@
             <param name="d2">The digit 2 used in UR.</param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check AR + Hidden single.
             </summary>
@@ -2315,12 +2315,12 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.ReverseBivalueUniversalGraveStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ReverseBivalueUniversalGraveStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},System.Boolean,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ReverseBivalueUniversalGraveStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},System.Boolean,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
             <summary>
             Checks for type 1.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ReverseBivalueUniversalGraveStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},System.Boolean,Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ReverseBivalueUniversalGraveStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},System.Boolean,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Checks for type 2. In this type we also check the generalized case that looks like a UR type 5.
             </summary>
@@ -2566,7 +2566,7 @@
             Indicates the maximum size the searcher can search for.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IFishStepSearcher.IsSashimi(System.Int32[],Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IFishStepSearcher.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check whether the fish is sashimi.
             </summary>
@@ -2655,7 +2655,7 @@
             <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
             <returns>The first found step.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetDirectView(System.Int32,System.Int32[],System.Int32[],Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetDirectView(System.Int32,System.Int32[],System.Int32[],Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Get the direct fish view with the specified grid and the base sets.
             </summary>
@@ -2704,7 +2704,7 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
              <summary>
              Process the calculation.
              </summary>
@@ -2785,7 +2785,7 @@
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IFireworkStepSearcher.GetFireworkDigits(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IFireworkStepSearcher.GetFireworkDigits(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             <para>Checks for all digits which the cells containing form a firework pattern.</para>
             <para>
@@ -3237,7 +3237,7 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.Cells@,System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int32[])">
             <summary>
             Checks for the type 1.
             Here I give you 2 examples to test this method:
@@ -3251,7 +3251,7 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.CheckXz(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.Cells@,System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Searchers.ChromaticPatternStepSearcher.CheckXz(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int32[])">
             <summary>
             Checks for XZ rule.
             Here I give you 1 example to test this method:
@@ -3414,7 +3414,7 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher.IsEmptyRectangle(Sudoku.Concepts.Cells@,System.Int32,System.Int32@,System.Int32@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher.IsEmptyRectangle(Sudoku.Concepts.CellMap@,System.Int32,System.Int32@,System.Int32@)">
             <summary>
             Determine whether the specified cells in the specified block form an empty rectangle.
             </summary>
@@ -3557,31 +3557,31 @@
             Returns a list of array of candidates used in the loop, as the data of possible found loops.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.UniqueLoopSatisfyingPredicate(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.UniqueLoopSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
             <summary>
             Defines a templating method that can determine whether a loop is a valid unique loop.
             </summary>
             <param name="loop">The loop to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
             <summary>
             Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
             </summary>
             <param name="loop">The loop to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_Guardian(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.GuardianDataInfo})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_Guardian(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.GuardianDataInfo})">
             <summary>
             Checks for guardian loops using recursion.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_UniqueLoop(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Cells@,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.UniqueLoopDataInfo})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_UniqueLoop(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.UniqueLoopDataInfo})">
             <summary>
             Checks for unique loops using recursion.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_BivalueOddagon(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Cells@,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_BivalueOddagon(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo})">
             <summary>
             Checks for bi-value oddagon loops using recursion.
             </summary>
@@ -4499,7 +4499,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="ExtraCells">Indicates the extra cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniquenessClueCoverStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Clue Cover</b> technique.
             </summary>
@@ -4622,7 +4622,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle</b> technique.
             </summary>
@@ -4685,7 +4685,7 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
             </summary>
@@ -4710,7 +4710,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
             </summary>
@@ -4747,7 +4747,7 @@
             <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
             <param name="House">Indicates the house that extra subset formed.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
             </summary>
@@ -4790,7 +4790,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
             </summary>
@@ -4825,7 +4825,7 @@
             <param name="Digit2">Indicates the second digit.</param>
             <param name="Loop">Indicates the loop that the instance used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop</b> technique.
             </summary>
@@ -4898,7 +4898,7 @@
             <param name="Digit2"><inheritdoc/></param>
             <param name="Loop"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 1</b> technique.
             </summary>
@@ -4925,7 +4925,7 @@
             <param name="Loop"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
             </summary>
@@ -4959,7 +4959,7 @@
             </param>
             <param name="SubsetCells">Indicates the subset cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 3</b> technique.
             </summary>
@@ -5004,7 +5004,7 @@
             <param name="Loop"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
             </summary>
@@ -5033,7 +5033,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="DigitsMask">Indicates the digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Matrix</b> technique.
             </summary>
@@ -5091,7 +5091,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="Candidate">Indicates the true candidate.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
             </summary>
@@ -5117,7 +5117,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 2</b> technique.
             </summary>
@@ -5155,7 +5155,7 @@
             Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int16,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 3</b> technique.
             </summary>
@@ -5200,7 +5200,7 @@
             <param name="Digit2">Indicates the digit 2 used.</param>
             <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 4</b> technique.
             </summary>
@@ -5234,7 +5234,7 @@
             <param name="DigitsMask">Indicates the digits used.</param>
             <param name="ChuteIndex">Indicates the global chute index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.RwDeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.RwDeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>RW's Deadly Pattern</b> technique.
             </summary>
@@ -5274,7 +5274,7 @@
             <param name="Map">The map that contains the cells used for this technique.</param>
             <param name="DigitsMask">The mask that contains all digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon</b> technique.
             </summary>
@@ -5328,7 +5328,7 @@
             <param name="Map"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 1</b> technique.
             </summary>
@@ -5350,7 +5350,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 2</b> technique.
             </summary>
@@ -5380,7 +5380,7 @@
             <param name="ExtraCells">Indicates the extra cells used for forming the subset.</param>
             <param name="ExtraDigitsMask">Indicates the extra digits used for forming the subset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 3</b> technique.
             </summary>
@@ -5414,7 +5414,7 @@
             <param name="ConjugateHouse">Indicates the cells that forms the conjugate house.</param>
             <param name="ExtraMask">Indicates the extra digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 4</b> technique.
             </summary>
@@ -5588,7 +5588,7 @@
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Patterns.QiuDeadlyPattern@,System.Int16,Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Patterns.QiuDeadlyPattern@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
             </summary>
@@ -5667,7 +5667,7 @@
             <param name="House"></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
             </summary>
@@ -5715,7 +5715,7 @@
             <param name="ConjugatePairs"><inheritdoc/></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.HiddenUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.HiddenUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
             </summary>
@@ -5744,7 +5744,7 @@
             <param name="XyCell">Indicates the cell XY.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangle2DOr3XStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangle2DOr3XStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
             </summary>
@@ -5818,7 +5818,7 @@
             </param>
             <seealso cref="P:Sudoku.Solving.Step.TechniqueCode"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle</b> technique.
             </summary>
@@ -5932,7 +5932,7 @@
             <param name="IsAvoidable"><inheritdoc/></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
             </summary>
@@ -5967,7 +5967,7 @@
             <param name="ExtraDigit">Indicates the extra digit used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Solving.Data.Representation.Technique,Sudoku.Concepts.Cells@,System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Solving.Data.Representation.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
             </summary>
@@ -6027,7 +6027,7 @@
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
             </summary>
@@ -6120,7 +6120,7 @@
             <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
             </summary>
@@ -6175,7 +6175,7 @@
             <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Conjugate,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Guardians (External Conjugate Pair)</b>
             (i.e. Unique Rectangle External Type 4) technique.
@@ -6232,7 +6232,7 @@
             <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Guardians</b>
             (i.e. Unique Rectangle External Type 2) technique.
@@ -6290,7 +6290,7 @@
             <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Guardians (External Subset)</b>
             (i.e. Unique Rectangle External Type 3) technique.
@@ -6367,7 +6367,7 @@
             </param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
             </summary>
@@ -6468,7 +6468,7 @@
             <param name="ExtraDigit">Indicates the extra digit used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithUnknownCoveringStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithUnknownCoveringStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
             </summary>
@@ -6515,7 +6515,7 @@
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Boolean,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Data.Representation.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
             </summary>
@@ -6567,7 +6567,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="DigitsMask">Indicates the digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Reverse Bi-value Universal Grave</b> technique.
             </summary>
@@ -6618,7 +6618,7 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Reverse Unique Rectangle</b> technique.
             </summary>
@@ -6644,7 +6644,7 @@
             <param name="TargetCell">The target cell used.</param>
             <param name="TargetDigit">The target digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Reverse Unique Rectangle Type 1</b> technique.
             </summary>
@@ -6675,7 +6675,7 @@
             <param name="ExtraDigit">The extra digit used.</param>
             <param name="CellsHavingExtraDigit">Indicates the cells that contains the extra digit in the pattern.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ReverseUniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Reverse Unique Rectangle Type 2</b> technique.
             </summary>
@@ -6824,7 +6824,7 @@
             <param name="Digit">Indicates the digit used.</param>
             <param name="Cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
             </summary>
@@ -6865,7 +6865,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
             </summary>
@@ -6918,7 +6918,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.Cells@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 4</b> technique.
             </summary>
@@ -6962,7 +6962,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="ExtraCell">Indicates the XZ cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
             </summary>
@@ -7183,7 +7183,7 @@
             <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
             <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ComplexFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Boolean,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Steps.ComplexFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
@@ -7354,7 +7354,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.NormalFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Steps.NormalFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
@@ -7441,7 +7441,7 @@
             <param name="TargetCells">Indicates the target cells.</param>
             <param name="HasValueCell">Indicates whether the step contains value cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Almost Locked Candidates</b> technique.
             </summary>
@@ -7499,7 +7499,7 @@
             <param name="ExtraCell1">The extra cell 1.</param>
             <param name="ExtraCell2">The extra cell 2.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.FireworkPairType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.FireworkPairType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 1</b> technique.
             </summary>
@@ -7584,7 +7584,7 @@
             <param name="DigitsMask">The digits used.</param>
             <param name="EmptyRectangleBlock">The empty rectangle block used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.FireworkPairType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.FireworkPairType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 3</b> technique.
             </summary>
@@ -7621,7 +7621,7 @@
             <param name="Cells">The cells used.</param>
             <param name="DigitsMask">The digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.FireworkQuadrupleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.FireworkQuadrupleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Firework Quadruple</b> technique.
             </summary>
@@ -7680,7 +7680,7 @@
             <param name="Cells">The cells used.</param>
             <param name="DigitsMask">The digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.FireworkTripleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.FireworkTripleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Firework Triple</b> technique.
             </summary>
@@ -7956,7 +7956,7 @@
             <param name="Digit1">Indicates the first digit.</param>
             <param name="Digit2">Indicates the second digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon</b> technique.
             </summary>
@@ -8001,7 +8001,7 @@
             <param name="Digit2"><inheritdoc/></param>
             <param name="ExtraCell">Indicates the extra cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.BivalueOddagonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.BivalueOddagonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon Type 1</b> technique.
             </summary>
@@ -8035,7 +8035,7 @@
             <param name="Digit2"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.BivalueOddagonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.BivalueOddagonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon Type 2</b> technique.
             </summary>
@@ -8079,7 +8079,7 @@
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.BivalueOddagonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,System.Int32,System.Int32,Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.BivalueOddagonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon Type 3</b> technique.
             </summary>
@@ -8125,7 +8125,7 @@
             <param name="Pattern">The cells used.</param>
             <param name="DigitsMask">The digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ChromaticPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern</b> technique.
             </summary>
@@ -8173,7 +8173,7 @@
             <param name="ExtraCell">Indicates the extra cell used.</param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.Cells@,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ChromaticPatternType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern Type 1</b> technique.
             </summary>
@@ -8203,7 +8203,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigitsMask">The extra digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ChromaticPatternXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern XZ</b> technique.
             </summary>
@@ -8247,7 +8247,7 @@
             <param name="Loop">Indicates the loop cells used.</param>
             <param name="Guardians">Indicates the guardian cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.GuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.GuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Guardian</b> technique.
             </summary>
@@ -8321,7 +8321,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DominoLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DominoLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Domino Loop</b> technique.
             </summary>
@@ -8361,7 +8361,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
             </summary>
@@ -8426,7 +8426,7 @@
             <param name="ColumnCells">The column cells map.</param>
             <param name="BlockCells">The block cells map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,System.Int16,System.Int16,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
             </summary>
@@ -8495,7 +8495,7 @@
             <param name="LineCells">The map of line cells.</param>
             <param name="IntersectionCells">The map of intersection cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.SueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.SueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Sue de Coq</b> technique.
             </summary>
@@ -9116,7 +9116,7 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.HiddenSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.HiddenSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
@@ -9159,7 +9159,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.NakedSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.Cells@,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Steps.NakedSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
@@ -9227,7 +9227,7 @@
             <param name="Cells">All cells used.</param>
             <param name="DigitsMask">The mask that contains all digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.SubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.SubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Subset</b> technique.
             </summary>
@@ -9288,7 +9288,7 @@
             Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.GroupedWWingStep.EndCell"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.GroupedWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.GroupedWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Grouped W-Wing</b> technique.
             </summary>
@@ -9347,7 +9347,7 @@
             <param name="Root">The root cells that corresponds to each leaf.</param>
             <param name="House">The house used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.MultiBranchWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
             </summary>
@@ -9398,7 +9398,7 @@
             <param name="DigitsMask">Indicates a mask that contains all digits used.</param>
             <param name="Petals">Indicates the petals used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.RegularWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int16,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.RegularWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>

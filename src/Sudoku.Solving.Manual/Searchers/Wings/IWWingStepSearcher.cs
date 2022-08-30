@@ -78,8 +78,8 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 						bool isPassed = bridge switch
 						{
 							[var a, var b] => (
-								Cells.Empty + c1 + a, Cells.Empty + c2 + b,
-								Cells.Empty + c1 + b, Cells.Empty + c2 + a
+								CellMap.Empty + c1 + a, CellMap.Empty + c2 + b,
+								CellMap.Empty + c1 + b, CellMap.Empty + c2 + a
 							) switch
 							{
 								({ InOneHouse: true }, { InOneHouse: true }, _, _) => true,
@@ -120,7 +120,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 
 						// Check for eliminations.
 						int anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
-						var elimMap = CandidatesMap[anotherDigit] & +(Cells.Empty + c1 + c2);
+						var elimMap = CandidatesMap[anotherDigit] & +(CellMap.Empty + c1 + c2);
 						if (elimMap is [])
 						{
 							// No possible eliminations found.

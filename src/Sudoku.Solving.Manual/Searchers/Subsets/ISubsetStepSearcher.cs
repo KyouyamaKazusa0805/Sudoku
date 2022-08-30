@@ -145,7 +145,7 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 				{
 					short tempMask = mask;
 					short digitsMask = 0;
-					var map = Cells.Empty;
+					var map = CellMap.Empty;
 					foreach (int digit in digits)
 					{
 						tempMask &= (short)~(1 << digit);

@@ -45,7 +45,7 @@ public interface IGridImageGenerator
 	/// <summary>
 	/// Indicates the focused cells.
 	/// </summary>
-	public abstract Cells FocusedCells { get; set; }
+	public abstract CellMap FocusedCells { get; set; }
 
 	/// <summary>
 	/// Indicates the view.

@@ -33,7 +33,7 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	protected static readonly IReadOnlyList<(Cells Cells, IReadOnlyList<(int Left, int Right)> PairCells, int Size)> PatternInfos;
+	protected static readonly IReadOnlyList<(CellMap Cells, IReadOnlyList<(int Left, int Right)> PairCells, int Size)> PatternInfos;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -67,7 +67,7 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 			{ 45, 54 }, { 45, 63 }, { 45, 72 }
 		};
 
-		var combinations = new List<(Cells, IReadOnlyList<(int, int)>, int)>();
+		var combinations = new List<(CellMap, IReadOnlyList<(int, int)>, int)>();
 
 		// Initializes fit types.
 		for (int j = 0; j < 3; j++)
@@ -79,7 +79,7 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 				int c13 = c11 + 18, c23 = c21 + 18;
 				combinations.Add(
 					(
-						Cells.Empty + c11 + c12 + c13 + c21 + c22 + c23,
+						CellMap.Empty + c11 + c12 + c13 + c21 + c22 + c23,
 						new[] { (c11, c21), (c12, c22), (c13, c23) },
 						3
 					)
@@ -95,7 +95,7 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 				int c13 = c11 + 2, c23 = c21 + 2;
 				combinations.Add(
 					(
-						Cells.Empty + c11 + c12 + c13 + c21 + c22 + c23,
+						CellMap.Empty + c11 + c12 + c13 + c21 + c22 + c23,
 						new[] { (c11, c21), (c12, c22), (c13, c23) },
 						3
 					)
@@ -118,7 +118,7 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 						continue;
 					}
 
-					var map = Cells.Empty;
+					var map = CellMap.Empty;
 					var pairs = new List<(int, int)>();
 					foreach (int pos in mask)
 					{
@@ -227,7 +227,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 			}
 			else
 			{
-				var extraCellsMap = Cells.Empty;
+				var extraCellsMap = CellMap.Empty;
 				foreach (int cell in allCellsMap)
 				{
 					foreach (int digit in extraDigits)
@@ -272,8 +272,8 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private IStep? CheckType1(
-		ICollection<IStep> accumulator, scoped in Grid grid, scoped in Cells allCellsMap,
-		scoped in Cells extraCells, short normalDigits, int extraDigit, bool onlyFindOne)
+		ICollection<IStep> accumulator, scoped in Grid grid, scoped in CellMap allCellsMap,
+		scoped in CellMap extraCells, short normalDigits, int extraDigit, bool onlyFindOne)
 	{
 		var (conclusions, candidateOffsets) = (new List<Conclusion>(), new List<CandidateViewNode>());
 		foreach (int cell in allCellsMap)
@@ -332,8 +332,8 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private IStep? CheckType2(
-		ICollection<IStep> accumulator, scoped in Grid grid, scoped in Cells allCellsMap,
-		scoped in Cells extraCells, short normalDigits, int extraDigit, bool onlyFindOne)
+		ICollection<IStep> accumulator, scoped in Grid grid, scoped in CellMap allCellsMap,
+		scoped in CellMap extraCells, short normalDigits, int extraDigit, bool onlyFindOne)
 	{
 		if ((+extraCells & CandidatesMap[extraDigit]) is not (var elimMap and not []))
 		{
@@ -381,8 +381,8 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private IStep? CheckType3Naked(
-		ICollection<IStep> accumulator, scoped in Grid grid, scoped in Cells allCellsMap,
-		short normalDigits, short extraDigits, scoped in Cells extraCellsMap, bool onlyFindOne)
+		ICollection<IStep> accumulator, scoped in Grid grid, scoped in CellMap allCellsMap,
+		short normalDigits, short extraDigits, scoped in CellMap extraCellsMap, bool onlyFindOne)
 	{
 		foreach (int houseIndex in extraCellsMap.CoveredHouses)
 		{
@@ -469,7 +469,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 
 	/// <summary>
 	/// Check type 4 and a part of type 1 that the method
-	/// <see cref="CheckType1(ICollection{IStep}, in Grid, in Cells, in Cells, short, int, bool)"/>
+	/// <see cref="CheckType1(ICollection{IStep}, in Grid, in CellMap, in CellMap, short, int, bool)"/>
 	/// cannot be found.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
@@ -480,8 +480,8 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private IStep? CheckType14(
-		ICollection<IStep> accumulator, scoped in Grid grid, scoped in Cells allCellsMap,
-		short normalDigits, scoped in Cells extraCellsMap, bool onlyFindOne)
+		ICollection<IStep> accumulator, scoped in Grid grid, scoped in CellMap allCellsMap,
+		short normalDigits, scoped in CellMap extraCellsMap, bool onlyFindOne)
 	{
 		switch (extraCellsMap)
 		{

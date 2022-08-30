@@ -1,26 +1,26 @@
-# `Cells` 数据结构
+# `CellMap` 数据结构
 
-贯穿整个解决方案里使用到的一个比较重要的数据结构叫 `Cells`，是一个结构：
+贯穿整个解决方案里使用到的一个比较重要的数据结构叫 `CellMap`，是一个结构：
 
 ```csharp
-public struct Cells :
+public struct CellMap :
     IEnumerable<int>,
-    IEquatable<Cells>,
+    IEquatable<CellMap>,
     ISimpleFormattable,
-    ISimpleParseable<Cells>,
-    IAdditionOperators<Cells, int, Cells>,
-    ISubtractionOperators<Cells, int, Cells>,
-    ISubtractionOperators<Cells, Cells, Cells>,
-    IComparisonOperators<Cells, Cells>,
-    IDivisionOperators<Cells, int, short>,
-    IModulusOperators<Cells, Cells, Cells>,
-    IBitwiseOperators<Cells, Cells, Cells>,
-    IEqualityOperators<Cells, Cells>,
-    IUnaryPlusOperators<Cells, Cells>
+    ISimpleParseable<CellMap>,
+    IAdditionOperators<CellMap, int, CellMap>,
+    ISubtractionOperators<CellMap, int, CellMap>,
+    ISubtractionOperators<CellMap, CellMap, CellMap>,
+    IComparisonOperators<CellMap, CellMap>,
+    IDivisionOperators<CellMap, int, short>,
+    IModulusOperators<CellMap, CellMap, CellMap>,
+    IBitwiseOperators<CellMap, CellMap, CellMap>,
+    IEqualityOperators<CellMap, CellMap>,
+    IUnaryPlusOperators<CellMap, CellMap>
 {
-    public static readonly Cells Empty;
+    public static readonly CellMap Empty;
 
-    public Cells(IEnumerable<int> cells);
+    public CellMap(IEnumerable<int> cells);
 
     public readonly bool InOneHouse { get; }
     public readonly bool IsEmpty { get; }
@@ -34,63 +34,63 @@ public struct Cells :
 
     public readonly int this[int index] { get; }
 
-    public static Cells CreateByBits(long high, long low);
-    public static Cells CreateByBits(int high, int mid, int low);
-    public static Cells Parse(string str);
-    public static bool TryParse(string str, out Cells result);
+    public static CellMap CreateByBits(long high, long low);
+    public static CellMap CreateByBits(int high, int mid, int low);
+    public static CellMap Parse(string str);
+    public static bool TryParse(string str, out CellMap result);
     public void Add(int offset);
     public void Add(string offset);
     public void AddRange(scoped in ReadOnlySpan<int> offsets);
     public void AddRange(IEnumerable<int> offsets);
     public readonly bool AllSetsAreInOneHouse(out int house);
     public void Clear();
-    public readonly int CompareTo(scoped in Cells other);
+    public readonly int CompareTo(scoped in CellMap other);
     public readonly bool Contains(int offset);
     public readonly void CopyTo(int* arr, int length);
     public readonly void CopyTo(scoped ref Span<int> span);
     public override bool Equals([NotNullWhen(true)] object? obj);
-    public readonly bool Equals(scoped in Cells other);
+    public readonly bool Equals(scoped in CellMap other);
     public readonly Candidates Expand(int digit);
     public readonly OneDimensionalArrayEnumerator<int> GetEnumerator();
     public readonly override int GetHashCode();
     public readonly short GetSubviewMask(int house);
-    public readonly Cells PeerIntersectionLimitsWith(scoped in Cells limit);
+    public readonly CellMap PeerIntersectionLimitsWith(scoped in CellMap limit);
     public void Remove(int offset);
     public readonly int[] ToArray();
     public readonly override string ToString();
     public readonly string ToString(string? format);
 
-    public static Cells operator +(scoped in Cells offsets);
-    public static short operator /(scoped in Cells map, int house);
-    public static short operator checked /(scoped in Cells map, int house);
-    public static Cells operator +(scoped in Cells collection, int offset);
-    public static Cells operator checked +(scoped in Cells collection, int offset);
-    public static Cells operator +(scoped in Cells collection, IEnumerable<int> offsets);
-    public static Cells operator checked +(scoped in Cells collection, IEnumerable<int> offsets);
-    public static Cells operator -(scoped in Cells collection, int offset);
-    public static Cells operator checked -(scoped in Cells collection, int offset);
-    public static Cells operator -(scoped in Cells left, scoped in Cells right);
-    public static Cells operator ~(scoped in Cells offsets);
-    public static Cells operator %(scoped in Cells @base, scoped in Cells template);
-    public static Cells operator !(scoped in Cells offsets);
-    public static Cells operator &(scoped in Cells left, scoped in Cells right);
-    public static Cells operator |(scoped in Cells left, scoped in Cells right);
-    public static Cells operator ^(scoped in Cells left, scoped in Cells right);
-    public static Cells[] operator &(scoped in Cells cell, int subsetSize);
-    public static Cells[] operator |(scoped in Cells cell, int subsetSize);
-    public static Candidates operator *(in Cells @base, int digit);
-    public static Candidates operator checked *(in Cells @base, int digit);
-    public static bool operator ==(scoped in Cells left, scoped in Cells right);
-    public static bool operator !=(scoped in Cells left, scoped in Cells right);
-    public static bool operator >>(scoped in Cells left, scoped in Cells right);
-    public static bool operator <<(scoped in Cells left, scoped in Cells right);
+    public static CellMap operator +(scoped in CellMap offsets);
+    public static short operator /(scoped in CellMap map, int house);
+    public static short operator checked /(scoped in CellMap map, int house);
+    public static CellMap operator +(scoped in CellMap collection, int offset);
+    public static CellMap operator checked +(scoped in CellMap collection, int offset);
+    public static CellMap operator +(scoped in CellMap collection, IEnumerable<int> offsets);
+    public static CellMap operator checked +(scoped in CellMap collection, IEnumerable<int> offsets);
+    public static CellMap operator -(scoped in CellMap collection, int offset);
+    public static CellMap operator checked -(scoped in CellMap collection, int offset);
+    public static CellMap operator -(scoped in CellMap left, scoped in CellMap right);
+    public static CellMap operator ~(scoped in CellMap offsets);
+    public static CellMap operator %(scoped in CellMap @base, scoped in CellMap template);
+    public static CellMap operator !(scoped in CellMap offsets);
+    public static CellMap operator &(scoped in CellMap left, scoped in CellMap right);
+    public static CellMap operator |(scoped in CellMap left, scoped in CellMap right);
+    public static CellMap operator ^(scoped in CellMap left, scoped in CellMap right);
+    public static CellMap[] operator &(scoped in CellMap cell, int subsetSize);
+    public static CellMap[] operator |(scoped in CellMap cell, int subsetSize);
+    public static Candidates operator *(in CellMap @base, int digit);
+    public static Candidates operator checked *(in CellMap @base, int digit);
+    public static bool operator ==(scoped in CellMap left, scoped in CellMap right);
+    public static bool operator !=(scoped in CellMap left, scoped in CellMap right);
+    public static bool operator >>(scoped in CellMap left, scoped in CellMap right);
+    public static bool operator <<(scoped in CellMap left, scoped in CellMap right);
 
-    public static implicit operator int[](scoped in Cells offsets);
-    public static implicit operator Cells(scoped in ReadOnlySpan<int> offsets);
-    public static implicit operator Cells(scoped in Span<int> offsets);
-    public static explicit operator Cells(int[] offsets);
-    public static explicit operator Span<int>(scoped in Cells offsets);
-    public static explicit operator ReadOnlySpan<int>(scoped in Cells offsets);
+    public static implicit operator int[](scoped in CellMap offsets);
+    public static implicit operator CellMap(scoped in ReadOnlySpan<int> offsets);
+    public static implicit operator CellMap(scoped in Span<int> offsets);
+    public static explicit operator CellMap(int[] offsets);
+    public static explicit operator Span<int>(scoped in CellMap offsets);
+    public static explicit operator ReadOnlySpan<int>(scoped in CellMap offsets);
 }
 ```
 
@@ -114,26 +114,26 @@ bool Contains(int offset) => ((offset < 41 ? _low : _high) >> offset % 41 & 1) !
 
 该数据类型提供了一个叫做 `Empty` 的字段，它用来表示一个空序列。这个字段因为是静态的只读字段，因此它在项目初始化和启动的时候被初始化一次，然后不再初始化。
 
-我们总是建议你使用 `Empty` 属性来初始化赋值给一个 `Cells` 类型的对象作为它的初始数值：
+我们总是建议你使用 `Empty` 属性来初始化赋值给一个 `CellMap` 类型的对象作为它的初始数值：
 
 ```csharp
-var cells = Cells.Empty;
-var cells = default(Cells);
+var cells = CellMap.Empty;
+var cells = default(CellMap);
 ```
 
-从数值上讲，上述两种初始化后的结果是完全一样的，但是使用 `default` 表达式的写法 `default(Cells)` 则和 `Cells.Empty` 是一样的，但为了统一代码的书写规范和风格，我们总是建议你使用 `Cells.Empty`。
+从数值上讲，上述两种初始化后的结果是完全一样的，但是使用 `default` 表达式的写法 `default(CellMap)` 则和 `CellMap.Empty` 是一样的，但为了统一代码的书写规范和风格，我们总是建议你使用 `CellMap.Empty`。
 
-另外，无参构造器 `new Cells()` 永远不希望你使用。在项目里，无参构造器永远会引发 `NotSupportedException` 异常，因为我们永远建议你使用 `Cells.Empty` 字段。
+另外，无参构造器 `new CellMap()` 永远不希望你使用。在项目里，无参构造器永远会引发 `NotSupportedException` 异常，因为我们永远建议你使用 `CellMap.Empty` 字段。
 
-除了一种情况我们必须使用 `default` 表达式，就是 C# 4 的可选参数语法。值类型的无参构造器在 C# 10 里开放给用户自定义，在自定义后，值类型的无参构造器的数值结果就不再和 `default` 表达式一致。因此，早期的 `new T()` 语法在值类型里是允许作为初始化结果放在可选参数上赋值的，而如今自定义了无参构造器的值类型后，这样的语法就不再允许放在上面了，而 `Cells.Empty` 是静态只读量而不是常量也不是字面量，因此无法放在方法的可选参数上进行参数的默认初始化表达式，在这种情况下，只能使用 `default` 表达式来初始化：
+除了一种情况我们必须使用 `default` 表达式，就是 C# 4 的可选参数语法。值类型的无参构造器在 C# 10 里开放给用户自定义，在自定义后，值类型的无参构造器的数值结果就不再和 `default` 表达式一致。因此，早期的 `new T()` 语法在值类型里是允许作为初始化结果放在可选参数上赋值的，而如今自定义了无参构造器的值类型后，这样的语法就不再允许放在上面了，而 `CellMap.Empty` 是静态只读量而不是常量也不是字面量，因此无法放在方法的可选参数上进行参数的默认初始化表达式，在这种情况下，只能使用 `default` 表达式来初始化：
 
 ```csharp
-void F(Cells cellsList = default, ...)
+void F(CellMap cellsList = default, ...)
 {
     // ...
 }
 
-void G(Cells cellsList = default(Cells), ...)
+void G(CellMap cellsList = default(CellMap), ...)
 {
     // ...
 }
@@ -141,32 +141,32 @@ void G(Cells cellsList = default(Cells), ...)
 
 详情请自行参考 C# 语法“可选参数”以及“值类型无参构造器的自定义”语法规则和规范。
 
-### 构造器 `Cells(int)`
+### 构造器 `CellMap(int)`
 
-该构造器将 `Cells` 实例化给出的参数的单元格所在的行、列、宫的所有单元格都加入到当前序列里。很多新人在使用这个 API 的时候，可能对于这个地方不熟悉，还以为是初始化单元格本身。
+该构造器将 `CellMap` 实例化给出的参数的单元格所在的行、列、宫的所有单元格都加入到当前序列里。很多新人在使用这个 API 的时候，可能对于这个地方不熟悉，还以为是初始化单元格本身。
 
 参数 `int` 类型表达的是这个单元格的绝对坐标。绝对坐标从 0 开始表示，盘面一共 81 个单元格，因此最后一个单元格的坐标数值是 80，因此这个参数可接受的范围是 0 到 80。比如 0 对应了第一行第一列的单元格，1 对应了第一行第二列的单元格，诸如此类。
 
 ```csharp
 // Adds all cells in the row 1, column 1 and block 1
 // and itself into the collection.
-var cells = new Cells(0);
+var cells = new CellMap(0);
 ```
 
-另外，如果你想要在初始化的时候，不初始化它自己，实际上整个解决方案已经预先定义了一组只读量，你可以使用 `Sudoku.Constants.Tables.PeerMap` 这个只读量。它是一个 `Cells[]` 的数组类型，即每一个元素是 `Cells` 类型。这个 `PeerMap` 字段是静态只读字段，它的长度恰好是 81，对应了第 1 行第 1 个单元格到第 9 行第 9 个单元格，每一个单元格的所在行、列、宫全部涉及的单元格（不含它自己）的序列。比如，`PeerMap[0]` 表示的 `Cells` 对象就是不含它自己的第 1 行、第 1 列和第 1 个宫里的其它单元格。也就是说，`PeerMap[0]` 和 `new Cells(0)` 的区别是，`new Cells(0)` 多包含一个元素，即为编号 0 的第一行第一个单元格，这个坐标在 `PeerMap[0]` 里是不包含的。
+另外，如果你想要在初始化的时候，不初始化它自己，实际上整个解决方案已经预先定义了一组只读量，你可以使用 `Sudoku.Constants.Tables.PeerMap` 这个只读量。它是一个 `CellMap[]` 的数组类型，即每一个元素是 `CellMap` 类型。这个 `PeerMap` 字段是静态只读字段，它的长度恰好是 81，对应了第 1 行第 1 个单元格到第 9 行第 9 个单元格，每一个单元格的所在行、列、宫全部涉及的单元格（不含它自己）的序列。比如，`PeerMap[0]` 表示的 `CellMap` 对象就是不含它自己的第 1 行、第 1 列和第 1 个宫里的其它单元格。也就是说，`PeerMap[0]` 和 `new CellMap(0)` 的区别是，`new CellMap(0)` 多包含一个元素，即为编号 0 的第一行第一个单元格，这个坐标在 `PeerMap[0]` 里是不包含的。
 
-### 构造器 `Cells(long, long)` 和 `Cells(int, int, int)`
+### 构造器 `CellMap(long, long)` 和 `CellMap(int, int, int)`
 
 这两个构造器用来以比特位的形式初始化序列。其中带有 `long` 的构造器是直接按比特位序列进行初始化，初始化的模式和前文描述设计原理时的那个初始化行为完全一致。
 
 所以请你注意，传入的参数的 `long` 一旦超过 41 比特，就会导致这个数据类型的处理操作过程不安全（因为是直接赋值，因此超出的比特位会被录入到集合里去，导致 `Count` 属性（即统计多少个记录的单元格）的数值超出预期的结果）。因此，不要传入这样的数据。
 
-同理，带有三个 `int` 参数的构造器也是如此。这个是早期遗留下来的设计规则。早期在设计 `Cells` 的时候，我用的是三个 `int` 字段表示的，每一个字段使用 27 个比特。不过后来改成 `long` 来避免底层多一次的拷贝了。
+同理，带有三个 `int` 参数的构造器也是如此。这个是早期遗留下来的设计规则。早期在设计 `CellMap` 的时候，我用的是三个 `int` 字段表示的，每一个字段使用 27 个比特。不过后来改成 `long` 来避免底层多一次的拷贝了。
 
 查看代码可以看到，它的处理过程非常简单而暴力：
 
 ```csharp
-public Cells(int high, int mid, int low) :
+public CellMap(int high, int mid, int low) :
     this(
         (high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL),
         (mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL)
@@ -175,33 +175,33 @@ public Cells(int high, int mid, int low) :
 }
 ```
 
-是直接将三个参数改造处理成两个 `long` 结果然后直接调用的 `Cells(long, long)` 实例化的。
+是直接将三个参数改造处理成两个 `long` 结果然后直接调用的 `CellMap(long, long)` 实例化的。
 
 ### 属性 `IsEmpty` 和 `Count`
 
 `Count` 属性用来获取这个集合里到底有多少个已经录入（也就是说选中了）的单元格信息。
 
 ```csharp
-var cells = (Cells)new[] { 1, 3, 6, 10 };
+var cells = (CellMap)new[] { 1, 3, 6, 10 };
 int count = cells.Count; // 4
 
 // Another example
 
-var cells = new Cells(1);
+var cells = new CellMap(1);
 int count = cells.Count; // 21
 ```
 
 另外，如果判断集合有无记录元素的话，除了可以使用 `Count == 0` 判断，还可以使用 `IsEmpty` 属性：
 
 ```csharp
-var cells = new Cells { 1, 3, 6, 10 };
+var cells = new CellMap { 1, 3, 6, 10 };
 bool isEmpty = cells.IsEmpty; // false
 ```
 
 另外，C# 11 使用集合模式来进行模式匹配，所以，`Count == 0` 判断可以写成 `is []`：
 
 ```csharp
-var cells = new Cells { };
+var cells = new CellMap { };
 bool isEmpty = cells is [];
 ```
 
@@ -225,11 +225,11 @@ bool isEmpty = cells is [];
 因此，如果你要考虑性能的使用的话，如果不使用这个 `out` 参数的数值，你可以考虑使用属性代替掉方法的调用：
 
 ```csharp
-var cells = (Cells)new[] { 1, 3, 6 };
+var cells = (CellMap)new[] { 1, 3, 6 };
 bool condition = cells.AllSetsAreInOneHouse(out _); // Here.
 
 // We suggest you change the code to:
-var cells = (Cells)new[] { 1, 3, 6 };
+var cells = (CellMap)new[] { 1, 3, 6 };
 bool condition = cells.InOneHouse;
 ```
 
@@ -242,7 +242,7 @@ bool condition = cells.InOneHouse;
 也就是说，按照刚才举的例子来看，`BlockMask`、`RowMask` 和 `ColumnMask` 分别返回的是 000000001、000000001 和 000000011 这三个结果：
 
 ```csharp
-var cells = (Cells)new[] { 1, 2 };
+var cells = (CellMap)new[] { 1, 2 };
 int blocks = cells.BlockMask; // 000000001 (1 in decimal)
 int rows = cells.RowMask; // 000000001 (1 in decimal)
 int columns = cells.ColumnMask; // 000000011 (3 in decimal)
@@ -251,7 +251,7 @@ int columns = cells.ColumnMask; // 000000011 (3 in decimal)
 最后，`Houses` 属性获取的结果是将这三个九位二进制结果进行叠加整合在一起之后得到的最终数值。也就是说，比如前面给出的 `cells` 是 { 1, 2 } 两个单元格，那么：
 
 ```csharp
-var cells = (Cells)new[] { 1, 2 };
+var cells = (CellMap)new[] { 1, 2 };
 int blocks = cells.Houses; // 000000011_000000001_000000001 (786945 in decimal)
 ```
 
@@ -262,7 +262,7 @@ int blocks = cells.Houses; // 000000011_000000001_000000001 (786945 in decimal)
 其中，`CoveredHouses` 属性会得到这个集合涉及的行、列、宫。比如说：
 
 ```csharp
-var cells = (Cells)new[] { 0, 1 }; // Block 1 and Row 1.
+var cells = (CellMap)new[] { 0, 1 }; // Block 1 and Row 1.
 int coveredHouses = cells.CoveredHouses; // 000000000_000000001_000000001 (513 in decimal)
 ```
 
@@ -271,7 +271,7 @@ int coveredHouses = cells.CoveredHouses; // 000000000_000000001_000000001 (513 i
 不过，`CoveredLine` 属性会将 `CoveredHouses` 属性的结果作为基本数据进行再一次地处理，使得结果只是行或列的情况。按照数独的基本技巧的搜寻原则和存在的情况的规律性，技巧结构（例如区块）就会出现类似刚才的 { 0, 1 } 这样的单元格的情况；而这样的情况一定是属于一个宫和一个行（或列）的，因此 `CoveredLine` 属性的处理操作只会取出对应的行（或列）的准确结果。换句话说，就 { 0, 1 } 这个集合的话，`CoveredLine` 属性的结果应该是准确的结果数值 9，而不是二进制数 1000000000（二进制下的 1 后面 9 个 0）。
 
 ```csharp
-var cells = (Cells)new[] { 0, 1 }; // Block 1 and Row 1.
+var cells = (CellMap)new[] { 0, 1 }; // Block 1 and Row 1.
 int coveredHouses = cells.CoveredLine; // 9
 ```
 
@@ -281,10 +281,10 @@ int coveredHouses = cells.CoveredLine; // 9
 
 ### 索引器 `this[int]` 和 `this[Index]`
 
-该数据类型提供了 `int` 和 `Index` 作为参数的索引器使用。这两个索引器获取的是第几个被记录的单元格的编号。比如说是使用 { 0, 1, 3, 6, 10 } 这几个单元格构成的 `Cells` 集合对象的话，那么：
+该数据类型提供了 `int` 和 `Index` 作为参数的索引器使用。这两个索引器获取的是第几个被记录的单元格的编号。比如说是使用 { 0, 1, 3, 6, 10 } 这几个单元格构成的 `CellMap` 集合对象的话，那么：
 
 ```csharp
-var cells = (Cells)new[] { 0, 1, 3, 6, 10 };
+var cells = (CellMap)new[] { 0, 1, 3, 6, 10 };
 int first = cells[0]; // 0
 int second = cells[1]; // 1
 int third = cells[2]; // 3
@@ -325,7 +325,7 @@ if (cells is [var first, var second, .., var penultimate, _])
 
 ```csharp
 string s;
-var cells = (Cells)new[] { 0, 1, 2, 3, 4 };
+var cells = (CellMap)new[] { 0, 1, 2, 3, 4 };
 
 s = cells.ToString(); // r1c12345
 s = cells.ToString("n"); // r1c12345
@@ -337,7 +337,7 @@ s = $"{cells:n}"; // r1c12345
 这个方法不必关心怎么去调用和使用，你只需要知道 C# 语法允许我们使用实现良好的 `GetEnumerator` 方法允许对象使用 `foreach` 循环的语法即可：
 
 ```csharp
-var cells = (Cells)new[] { 0, 1, 3, 6, 10 };
+var cells = (CellMap)new[] { 0, 1, 3, 6, 10 };
 foreach (int cell in cells)
 {
     // ...
@@ -356,13 +356,13 @@ foreach (int cell in cells)
 集合初始化器语法的使用规则规范请参考 C# 基本语法。
 
 ```csharp
-var cells = (Cells)new object[] { 0, "r1c2", 2, "r1c4", 4 }; // 0, 1, 2, 3, 4
+var cells = (CellMap)new object[] { 0, "r1c2", 2, "r1c4", 4 }; // 0, 1, 2, 3, 4
 ```
 
 这等价于
 
 ```csharp
-var cells = Cells.Empty;
+var cells = CellMap.Empty;
 cells.Add(0);
 cells.Add("r1c2"); // 1
 cells.Add(2);
@@ -378,7 +378,7 @@ cells.Add(4);
 
 ```csharp
 int a = 1, b = 2, c = 3, d = 4;
-var cells = Cells.Empty;
+var cells = CellMap.Empty;
 cells.Add(a);
 cells += b;
 cells.AddRange(stackalloc[] { c });
@@ -393,15 +393,15 @@ cells.AddRange(new[] { d });
 
 ### 方法 `Clear`
 
-该方法用于清空列表。换句话说，从代码的含义上讲，它等价于 `this = Cells.Empty` 的赋值。
+该方法用于清空列表。换句话说，从代码的含义上讲，它等价于 `this = CellMap.Empty` 的赋值。
 
-### 静态方法 `Parse(string)` 和 `TryParse(string, out Cells)`
+### 静态方法 `Parse(string)` 和 `TryParse(string, out CellMap)`
 
-这两个方法用来将一个按照 RCB 规则书写的单元格坐标序列直接改成转换为 `Cells` 类型的实体返回出来。其中，`Parse` 方法直接返回该转换结果，而 `TryParse` 方法返回的是 `bool` 结果，表示整个转换操作是否成功；而转换成功的话，结果将会从 `out` 参数上返回出来。
+这两个方法用来将一个按照 RCB 规则书写的单元格坐标序列直接改成转换为 `CellMap` 类型的实体返回出来。其中，`Parse` 方法直接返回该转换结果，而 `TryParse` 方法返回的是 `bool` 结果，表示整个转换操作是否成功；而转换成功的话，结果将会从 `out` 参数上返回出来。
 
 ```csharp
 string str = "{ r1c1, r2c12 }";
-var cells = Cells.Parse(str); // 0, 9, 10
+var cells = CellMap.Parse(str); // 0, 9, 10
 int count = cells.Count; // 3
 int coveredHouses = cells.CoveredHouses; // 0 (for block 0)
 foreach (int cell in cells)
@@ -410,70 +410,70 @@ foreach (int cell in cells)
 }
 ```
 
-### 一元正运算符 `+(in Cells)`
+### 一元正运算符 `+(in CellMap)`
 
 这个运算符说起来比较困难，虽然是用的一元正运算符 `+`，但是我们定义的这个运算却跟逻辑运算无关。它表示这个集合里包含的单元格，共同对应的单元格序列。换句话说，哪些格子是这个集合所记录的单元格都能看得见的（处于同一行、列、宫的），那么它们就会被记录起来，然后作为结果的一部分返回。
 
-比如说，包含第一行第一格和第二格的 `Cells` 类型对象 `list`，`+list` 的结果就是它俩所在行和所在宫的别的单元格。如果想不通的话，可以把第一行第一、二个单元格当作是一个区块来看，而这个区块能够删数的位置，就是 `+list` 的结果，它们是等价的概念。
+比如说，包含第一行第一格和第二格的 `CellMap` 类型对象 `list`，`+list` 的结果就是它俩所在行和所在宫的别的单元格。如果想不通的话，可以把第一行第一、二个单元格当作是一个区块来看，而这个区块能够删数的位置，就是 `+list` 的结果，它们是等价的概念。
 
 注意，`operator +` 属性只包含删数的位置，而原始序列的本身两个格子并不包含在内。
 
-### 位取反运算符 `~(in Cells)`
+### 位取反运算符 `~(in CellMap)`
 
 位取反运算符用来将当前集合里记录了的单元格去掉，然后把没有记录的单元格全给加上，并返回改写后的结果。注意，这样的处理规则并不会直接改写原始对象，而是将这个对象从返回值返回，因此不会造成任何的副作用。
 
-### 位与运算符 `&(in Cells, in Cells)`
+### 位与运算符 `&(in CellMap, in CellMap)`
 
-位与运算符会将两个 `Cells` 集合里都包含的单元格取出，然后返回。比如说一个是 { 0, 1, 2 }，而另外一个是 { 1, 8, 9 }，那么结果则是只包含 { 1 } 的 `Cells` 对象。
+位与运算符会将两个 `CellMap` 集合里都包含的单元格取出，然后返回。比如说一个是 { 0, 1, 2 }，而另外一个是 { 1, 8, 9 }，那么结果则是只包含 { 1 } 的 `CellMap` 对象。
 
 因此，对这个集合来说，位与运算符等价于数学概念的交集。
 
-### 位或运算符 `|(in Cells, in Cells)`
+### 位或运算符 `|(in CellMap, in CellMap)`
 
-位或运算符会将两个 `Cells` 集合里涉及的所有单元格全部取出，然后返回。比如说一个是 { 0, 1, 2 }，而另外一个是 { 1, 8, 9 }，那么结果则是包含 { 0, 1, 2, 8, 9 } 的 `Cells` 对象。重复的元素也会被记录，但因为这个数据类型的设计原理的限制，只能记录一次。
+位或运算符会将两个 `CellMap` 集合里涉及的所有单元格全部取出，然后返回。比如说一个是 { 0, 1, 2 }，而另外一个是 { 1, 8, 9 }，那么结果则是包含 { 0, 1, 2, 8, 9 } 的 `CellMap` 对象。重复的元素也会被记录，但因为这个数据类型的设计原理的限制，只能记录一次。
 
 因此，对这个集合来说，位与运算符等价于数学概念的并集。
 
-### 位异或运算符 `^(in Cells, in Cells)`
+### 位异或运算符 `^(in CellMap, in CellMap)`
 
-位异或运算符会将两个 `Cells` 集合里只出现过一次的单元格全部取出，然后返回。比如说一个是 { 0, 1, 2 }，而另外一个是 { 1, 8, 9 }，那么结果则是包含 { 0, 2, 8, 9 } 的 `Cells` 对象。重复的元素以及没有出现的元素全部不会被记录。
+位异或运算符会将两个 `CellMap` 集合里只出现过一次的单元格全部取出，然后返回。比如说一个是 { 0, 1, 2 }，而另外一个是 { 1, 8, 9 }，那么结果则是包含 { 0, 2, 8, 9 } 的 `CellMap` 对象。重复的元素以及没有出现的元素全部不会被记录。
 
 因此，对这个集合来说，位异或运算符等价于数学概念的对称差集。
 
-### 减法运算符 `-(in Cells, in Cells)`
+### 减法运算符 `-(in CellMap, in CellMap)`
 
-减法是将符号左侧的对象包含，但右侧的对象不包含的元素全部取出，然后返回。比如说一个是 { 0, 1, 2 }，而另外一个是 { 1, 8, 9 }，那么结果则是包含 { 0, 2 } 的 `Cells` 对象。由于编号 1 重复出现，因此会被减掉；而编号 8 和 9 在左侧集合里没有出现，所以不会被记录到结果里。
+减法是将符号左侧的对象包含，但右侧的对象不包含的元素全部取出，然后返回。比如说一个是 { 0, 1, 2 }，而另外一个是 { 1, 8, 9 }，那么结果则是包含 { 0, 2 } 的 `CellMap` 对象。由于编号 1 重复出现，因此会被减掉；而编号 8 和 9 在左侧集合里没有出现，所以不会被记录到结果里。
 
 从这个角度来说，`left - right` 从代码的语义上等价于 `left & ~right`。
 
 因此，对这个集合来说，位异或运算符等价于数学概念的差集。
 
-### 枚举运算 `&(in Cells, int)` 和 `|(in Cells, int)`
+### 枚举运算 `&(in CellMap, int)` 和 `|(in CellMap, int)`
 
 这两种运算符用于枚举这个集合里的全部排列情况。其中 `&` 只为指定个数的集合进行枚举，而 `|` 会枚举所有组合，每个组合的元素个数是从 1 到这个数的。比如，`map & 3` 只枚举 `map` 里所有的排列情况，其情况的元素数是 3；而 `map | 3` 等价于 `map & 1`、`map & 2` 和 `map & 3` 的全部情况。
 
-### 比较运算符 `>>(in Cells, in Cells)` 和 `<<(in Cells, in Cells)`
+### 比较运算符 `>>(in CellMap, in CellMap)` 和 `<<(in CellMap, in CellMap)`
 
 `>>` 运算符会按照数学的定义计算。它表示是否使用符号左边减去右边得到的差集结果仍然还包含元素在其中。`<<` 符号则是将刚才的结果取反。即从语法上 `left >> right` 等于 `(left - right).Count >= 0`，而 `left << right` 则等于 `(left - right).Count == 0`，或 `!((left - right).Count >= 0)`。
 
-### 加减法运算符 `+(Cells, int)` 和 `-(Cells, int)`
+### 加减法运算符 `+(CellMap, int)` 和 `-(CellMap, int)`
 
 这两个运算符用于追加和删除元素。不过这两个是运算符，因此不完全等价于 `Add` 和 `Remove` 方法，而等价于移除和添加元素后，将这个追加和删除了元素之后的结果返回出来；而这个操作不影响原始数据。比如：
 
 ```csharp
-var cells = (Cells)new[] { 0, 1, 2 };
+var cells = (CellMap)new[] { 0, 1, 2 };
 var cells2 = cells - 2; // 0, 1
 var cells3 = cells - 1 - 2; // 0
 var cells4 = cells + 3; // 0, 1, 2, 3
 var cells5 = cells + 3 - 3; // 0, 1, 2
 ```
 
-### 位与运算符 `&(in Cells, int)`
+### 位与运算符 `&(in CellMap, int)`
 
-位与运算符的第二个参数如果不是 `Cells` 而是 `int` 的话，那么它表示的是将整个序列里的元素看成一个完整的集合，然后这个 `int` 表示的是取出其中的几个元素。那么这个运算符的结果则是通过若干单元格的集合里去指定个数的元素的所有情况。比如：
+位与运算符的第二个参数如果不是 `CellMap` 而是 `int` 的话，那么它表示的是将整个序列里的元素看成一个完整的集合，然后这个 `int` 表示的是取出其中的几个元素。那么这个运算符的结果则是通过若干单元格的集合里去指定个数的元素的所有情况。比如：
 
 ```csharp
-var cells = new Cells { 0, 1, 2, 3 };
+var cells = new CellMap { 0, 1, 2, 3 };
 var combinations = cells & 2;
 foreach (var combination in combinations)
 {
@@ -481,11 +481,11 @@ foreach (var combination in combinations)
 }
 ```
 
-这个 `cells & 2` 的结果是由 { 0, 1 }、{ 0, 2 }、{ 0, 3 }、{ 1, 2 }、{ 1, 3 } 和 { 2, 3 } 六个 `Cells` 集合对象构成的数组。因此我们可以对这个结果进行 `foreach` 循环，得到每一个集合（即每一种情况）。
+这个 `cells & 2` 的结果是由 { 0, 1 }、{ 0, 2 }、{ 0, 3 }、{ 1, 2 }、{ 1, 3 } 和 { 2, 3 } 六个 `CellMap` 集合对象构成的数组。因此我们可以对这个结果进行 `foreach` 循环，得到每一个集合（即每一种情况）。
 
 注意，这个运算符不考虑先后顺序，所以 { 1, 2 } 和 { 2, 1 } 是同一个东西。
 
-### 取模运算符 `%(in Cells, in Cells)`
+### 取模运算符 `%(in CellMap, in CellMap)`
 
 取模运算符比较麻烦，`a % b` 可以展开为 `+(a & b) & b`。
 
@@ -493,7 +493,7 @@ foreach (var combination in combinations)
 
 这样理解有些复杂，我们考虑一个实际的数独技巧来举例说明。考虑[待定数组](https://www.bilibili.com/read/cv11955947)（ALS）的 ALS-XZ 技巧。我们要构造两个 ALS 部分，并且得到两个 ALS 内强链 z==x 和 x==z。两个 ALS 的 x 数字需要连起来构成弱链，即整个链为 z==x--x==z，然后删除 z 数字的共同对应的地方。
 
-首先，我们提取出两个 ALS 必需的数值信息。比如说其中一个 ALS 是关于数字 1、2、7 的，那么将其表示为二进制 001000011 这样处理起来更快；同理另外一个也这么用二进制表达起来。然后，我们要得到 ALS 的涉及单元格。单元格我们可以用 `Cells` 类型的对象表示起来。接着，我们知道，要想有删数，那么这个数字 z 必然来自两个 ALS 里涉及的数字。因此，我们必须使用 `mask1 & mask2` 表达式得到所有两个 ALS 都有的数字的掩码信息。接着使用 `foreach` 对其的比特位进行迭代：
+首先，我们提取出两个 ALS 必需的数值信息。比如说其中一个 ALS 是关于数字 1、2、7 的，那么将其表示为二进制 001000011 这样处理起来更快；同理另外一个也这么用二进制表达起来。然后，我们要得到 ALS 的涉及单元格。单元格我们可以用 `CellMap` 类型的对象表示起来。接着，我们知道，要想有删数，那么这个数字 z 必然来自两个 ALS 里涉及的数字。因此，我们必须使用 `mask1 & mask2` 表达式得到所有两个 ALS 都有的数字的掩码信息。接着使用 `foreach` 对其的比特位进行迭代：
 
 ```csharp
 foreach (int z in mask1 & mask2)
@@ -508,7 +508,7 @@ foreach (int z in mask1 & mask2)
 
 所以，取模运算符对于这个数据类型的意思是“获取这个数字在一个模板上，它的相关单元格（所在行、列、宫的其余单元格）里，处于模板上的所有单元格”。这种用法多用于计算删数。
 
-### 等号和不等号运算符 `==(in Cells, in Cells)` 和 `!=(in Cells, in Cells)`
+### 等号和不等号运算符 `==(in CellMap, in CellMap)` 和 `!=(in CellMap, in CellMap)`
 
 等号和不等号运算符用来判断两个集合是否包含完全一致的单元格。显然，从这个数据类型的设计上看，`==` 和 `!=` 可以直接被展开成 `_low` 和 `_high` 的相等比较，所以原理上等价 `a._low == b._low && a._high == b._high`，以及取反表示不等号。
 

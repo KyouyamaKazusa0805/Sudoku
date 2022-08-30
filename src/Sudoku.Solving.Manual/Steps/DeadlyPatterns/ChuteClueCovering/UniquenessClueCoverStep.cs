@@ -9,7 +9,7 @@
 internal abstract record UniquenessClueCoverStep(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells ExtraCells
+	scoped in CellMap ExtraCells
 ) : DeadlyPatternStep(Conclusions, Views), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>

@@ -470,7 +470,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Gets the cell template that only contains the given cells.
 	/// </summary>
-	public readonly Cells GivenCells
+	public readonly CellMap GivenCells
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -485,7 +485,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Gets the cell template that only contains the modifiable cells.
 	/// </summary>
-	public readonly Cells ModifiableCells
+	public readonly CellMap ModifiableCells
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -500,7 +500,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the cells that corresponding position in this grid is empty.
 	/// </summary>
-	public readonly Cells EmptyCells
+	public readonly CellMap EmptyCells
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -515,7 +515,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the cells that corresponding position in this grid contain two candidates.
 	/// </summary>
-	public readonly Cells BivalueCells
+	public readonly CellMap BivalueCells
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -531,7 +531,7 @@ public unsafe partial struct Grid :
 	/// Indicates the map of possible positions of the existence of the candidate value for each digit.
 	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
 	/// </summary>
-	public readonly Cells[] CandidatesMap
+	public readonly CellMap[] CandidatesMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -554,7 +554,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public readonly Cells[] DigitsMap
+	public readonly CellMap[] DigitsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -577,7 +577,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public readonly Cells[] ValuesMap
+	public readonly CellMap[] ValuesMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -953,7 +953,7 @@ public unsafe partial struct Grid :
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
 	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly short GetDigitsUnion(scoped in Cells cells)
+	public readonly short GetDigitsUnion(scoped in CellMap cells)
 	{
 		short result = 0;
 		foreach (int cell in cells)
@@ -975,7 +975,7 @@ public unsafe partial struct Grid :
 	/// </param>
 	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly short GetDigitsUnion(scoped in Cells cells, bool withValueCells)
+	public readonly short GetDigitsUnion(scoped in CellMap cells, bool withValueCells)
 	{
 		short result = 0;
 		foreach (int cell in cells)
@@ -997,7 +997,7 @@ public unsafe partial struct Grid :
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
 	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly short GetDigitsIntersection(scoped in Cells cells)
+	public readonly short GetDigitsIntersection(scoped in CellMap cells)
 	{
 		short result = MaxCandidatesMask;
 		foreach (int cell in cells)
@@ -1226,9 +1226,9 @@ public unsafe partial struct Grid :
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	private readonly Cells[] GetMap(delegate*<in Grid, int, int, bool> predicate)
+	private readonly CellMap[] GetMap(delegate*<in Grid, int, int, bool> predicate)
 	{
-		var result = new Cells[9];
+		var result = new CellMap[9];
 		for (int digit = 0; digit < 9; digit++)
 		{
 			scoped ref var map = ref result[digit];
@@ -1251,9 +1251,9 @@ public unsafe partial struct Grid :
 	/// <returns>The cells.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	private readonly Cells GetCells(delegate*<in Grid, int, bool> predicate)
+	private readonly CellMap GetCells(delegate*<in Grid, int, bool> predicate)
 	{
-		var result = Cells.Empty;
+		var result = CellMap.Empty;
 		for (int cell = 0; cell < 81; cell++)
 		{
 			if (predicate(this, cell))
@@ -1487,7 +1487,7 @@ public unsafe partial struct Grid :
 	/// <param name="grid">The grid.</param>
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The result grid.</returns>
-	public static Grid operator <<(scoped in Grid grid, scoped in Cells pattern)
+	public static Grid operator <<(scoped in Grid grid, scoped in CellMap pattern)
 	{
 		var result = grid;
 		foreach (int cell in ~pattern)
@@ -1507,7 +1507,7 @@ public unsafe partial struct Grid :
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The result grid.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the grid is not solved.</exception>
-	public static Grid operator >>(scoped in Grid solution, scoped in Cells pattern)
+	public static Grid operator >>(scoped in Grid solution, scoped in CellMap pattern)
 	{
 		if (!solution.IsSolved)
 		{

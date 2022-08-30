@@ -69,7 +69,7 @@ public sealed partial class RxCyNotation :
 	}
 
 	/// <inheritdoc/>
-	public static bool TryParseCells(string str, out Cells result)
+	public static bool TryParseCells(string str, out CellMap result)
 	{
 		try
 		{
@@ -89,14 +89,14 @@ public sealed partial class RxCyNotation :
 	/// <param name="cell">The cell.</param>
 	/// <returns>The <see cref="string"/> representation of a cell.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCellString(int cell) => ToCellsString(Cells.Empty + cell);
+	public static string ToCellString(int cell) => ToCellsString(CellMap.Empty + cell);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCellsString(scoped in Cells cells) => ToCellsString(cells, RxCyNotationOptions.Default);
+	public static string ToCellsString(scoped in CellMap cells) => ToCellsString(cells, RxCyNotationOptions.Default);
 
 	/// <inheritdoc/>
-	public static string ToCellsString(scoped in Cells cells, scoped in RxCyNotationOptions options)
+	public static string ToCellsString(scoped in CellMap cells, scoped in RxCyNotationOptions options)
 	{
 		bool upperCasing = options.UpperCasing;
 		return cells switch
@@ -115,7 +115,7 @@ public sealed partial class RxCyNotation :
 
 		static string i(int v) => (v + 1).ToString();
 
-		static unsafe string r(scoped in Cells cells, scoped in RxCyNotationOptions options)
+		static unsafe string r(scoped in CellMap cells, scoped in RxCyNotationOptions options)
 		{
 			scoped var sbRow = new StringHandler(50);
 			var dic = new Dictionary<int, List<int>>(9);
@@ -142,7 +142,7 @@ public sealed partial class RxCyNotation :
 			return sbRow.ToStringAndClear();
 		}
 
-		static unsafe string c(scoped in Cells cells, scoped in RxCyNotationOptions options)
+		static unsafe string c(scoped in CellMap cells, scoped in RxCyNotationOptions options)
 		{
 			var dic = new Dictionary<int, List<int>>(9);
 			scoped var sbColumn = new StringHandler(50);
@@ -172,7 +172,7 @@ public sealed partial class RxCyNotation :
 	}
 
 	/// <inheritdoc/>
-	public static unsafe Cells ParseCells(string str)
+	public static unsafe CellMap ParseCells(string str)
 	{
 		// Check whether the match is successful.
 		if (CellOrCellListRegex().Matches(str) is not { Count: not 0 } matches)
@@ -184,7 +184,7 @@ public sealed partial class RxCyNotation :
 		scoped Span<int> bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
 
 		// Declare the result variable.
-		var result = Cells.Empty;
+		var result = CellMap.Empty;
 
 		// Iterate on each match instance.
 		foreach (var match in matches.Cast<Match>())
@@ -278,7 +278,7 @@ public sealed partial class RxCyNotation :
 				orderby digitGroups.Key
 				select digitGroups)
 			{
-				var cells = Cells.Empty;
+				var cells = CellMap.Empty;
 				foreach (int candidate in digitGroup)
 				{
 					cells.Add(candidate / 9);
@@ -315,7 +315,7 @@ public sealed partial class RxCyNotation :
 			string value = match.Value;
 			if (value.SatisfyPattern(PrepositionalFormCandidateList))
 			{
-				var cells = Cells.Parse(value);
+				var cells = CellMap.Parse(value);
 				int digitsCount = 0;
 				fixed (char* pValue = value)
 				{
@@ -335,7 +335,7 @@ public sealed partial class RxCyNotation :
 			}
 			else if (value.SatisfyPattern(PostpositionalFormCandidateList))
 			{
-				var cells = Cells.Parse(value);
+				var cells = CellMap.Parse(value);
 				int digitsCount = 0;
 				for (int i = value.IndexOf('(') + 1, length = value.Length; i < length; i++)
 				{

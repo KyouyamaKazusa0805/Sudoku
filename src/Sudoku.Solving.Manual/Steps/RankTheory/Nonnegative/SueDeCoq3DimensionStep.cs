@@ -17,9 +17,9 @@ internal sealed record SueDeCoq3DimensionStep(
 	short RowDigitsMask,
 	short ColumnDigitsMask,
 	short BlockDigitsMask,
-	scoped in Cells RowCells,
-	scoped in Cells ColumnCells,
-	scoped in Cells BlockCells
+	scoped in CellMap RowCells,
+	scoped in CellMap ColumnCells,
+	scoped in CellMap BlockCells
 ) : NonnegativeRankStep(Conclusions, Views), IStepWithRank
 {
 	/// <inheritdoc/>

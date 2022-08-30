@@ -14,7 +14,7 @@ internal sealed record UniqueLoopType2Step(
 	ViewList Views,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Loop,
+	scoped in CellMap Loop,
 	int ExtraDigit
 ) : UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
 {

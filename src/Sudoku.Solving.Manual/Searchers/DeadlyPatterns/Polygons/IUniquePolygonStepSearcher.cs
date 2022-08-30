@@ -72,8 +72,8 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 					continue;
 				}
 
-				int house1 = (Cells.Empty + t1 + t2).CoveredLine;
-				int house2 = (Cells.Empty + t1 + t3).CoveredLine;
+				int house1 = (CellMap.Empty + t1 + t2).CoveredLine;
+				int house2 = (CellMap.Empty + t1 + t3).CoveredLine;
 				int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 				var (incre1, incre2) = i switch
 				{
@@ -135,8 +135,8 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 				return;
 			}
 
-			int house1 = (Cells.Empty + t1 + t2).CoveredLine;
-			int house2 = (Cells.Empty + t1 + t3).CoveredLine;
+			int house1 = (CellMap.Empty + t1 + t2).CoveredLine;
+			int house2 = (CellMap.Empty + t1 + t3).CoveredLine;
 			int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 			var (incre1, incre2) = i switch
 			{
@@ -265,7 +265,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 	private static IStep? CheckType1(
 		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
-		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in CellMap map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
@@ -335,7 +335,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 	private static IStep? CheckType2(
 		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
-		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in CellMap map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
@@ -400,7 +400,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 	private static IStep? CheckType3(
 		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
-		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in CellMap map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		foreach (int houseIndex in map.Houses)
@@ -513,7 +513,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 	private static IStep? CheckType4(
 		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
-		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in Cells map)
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in CellMap map)
 	{
 		// The type 4 may be complex and terrible to process.
 		// All houses that the pattern lies in should be checked.
@@ -545,7 +545,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 				foreach (int[] combination in (tempMask & orMask).GetAllSets().GetSubsets(currentMap.Count - 1))
 				{
 					short combinationMask = 0;
-					var combinationMap = Cells.Empty;
+					var combinationMap = CellMap.Empty;
 					bool flag = false;
 					foreach (int digit in combination)
 					{
@@ -573,7 +573,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 					// Type 4 forms. Now check eliminations.
 					short finalDigits = (short)(tempMask & ~combinationMask);
-					var possibleCandMaps = Cells.Empty;
+					var possibleCandMaps = CellMap.Empty;
 					foreach (int finalDigit in finalDigits)
 					{
 						possibleCandMaps |= CandidatesMap[finalDigit];

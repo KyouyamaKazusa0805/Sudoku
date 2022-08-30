@@ -73,7 +73,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 						continue;
 					}
 
-					Cells p1 = map1 % CandidatesMap[x], p2 = map2 % CandidatesMap[x];
+					CellMap p1 = map1 % CandidatesMap[x], p2 = map2 % CandidatesMap[x];
 					if (p1 is [] || p2 is [])
 					{
 						// At least one of two ALSes can't see the node of the conjugate pair.

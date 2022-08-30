@@ -18,8 +18,8 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// Check POM eliminations first.
-		scoped var eliminationMaps = (stackalloc Cells[9]);
-		eliminationMaps.Fill(Cells.Empty);
+		scoped var eliminationMaps = (stackalloc CellMap[9]);
+		eliminationMaps.Fill(CellMap.Empty);
 		var pomSteps = new List<IStep>();
 		new PatternOverlayStepSearcher().GetAll(pomSteps, grid, onlyFindOne: false);
 		foreach (var step in pomSteps.Cast<PatternOverlayStep>())

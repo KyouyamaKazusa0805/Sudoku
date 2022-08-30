@@ -17,9 +17,9 @@ internal sealed record UniqueLoopType3Step(
 	ViewList Views,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Loop,
+	scoped in CellMap Loop,
 	short SubsetDigitsMask,
-	scoped in Cells SubsetCells
+	scoped in CellMap SubsetCells
 ) : UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>

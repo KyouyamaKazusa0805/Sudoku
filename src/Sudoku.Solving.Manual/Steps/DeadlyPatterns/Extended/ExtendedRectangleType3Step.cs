@@ -13,9 +13,9 @@
 internal sealed record ExtendedRectangleType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask,
-	scoped in Cells ExtraCells,
+	scoped in CellMap ExtraCells,
 	short ExtraDigitsMask,
 	int House
 ) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty

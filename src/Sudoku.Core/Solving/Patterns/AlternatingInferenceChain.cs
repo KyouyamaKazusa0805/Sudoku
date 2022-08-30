@@ -455,6 +455,6 @@ public sealed class AlternatingInferenceChain : Chain
 	/// <param name="digit">The digit.</param>
 	/// <returns>The conclusions.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Conclusion[] GetEliminationsSingleDigit(scoped in Cells elimMap, byte digit)
+	private static Conclusion[] GetEliminationsSingleDigit(scoped in CellMap elimMap, byte digit)
 		=> (from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, digit)).ToArray();
 }

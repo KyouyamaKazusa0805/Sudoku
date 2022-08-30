@@ -11,8 +11,8 @@
 internal sealed record MultiBranchWWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Leaves,
-	scoped in Cells Root,
+	scoped in CellMap Leaves,
+	scoped in CellMap Root,
 	int House
 ) : IrregularWingStep(Conclusions, Views), IStepWithSize, IStepWithPhasedDifficulty
 {

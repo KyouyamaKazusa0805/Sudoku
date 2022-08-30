@@ -76,7 +76,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 
 		// Store all bi-value cells and construct the relations.
 		scoped var span = (stackalloc int[3]);
-		var stack = new Cells[multivalueCellsCount + 1, 9];
+		var stack = new CellMap[multivalueCellsCount + 1, 9];
 		foreach (int cell in BivalueCells)
 		{
 			foreach (int digit in grid.GetCandidates(cell))
@@ -128,7 +128,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 		scoped var playground = (stackalloc int[3]);
 		int currentIndex = 1;
 		int[] chosen = new int[multivalueCellsCount + 1];
-		var resultMap = new Cells[9];
+		var resultMap = new CellMap[9];
 		var result = new List<int>();
 		do
 		{
@@ -400,7 +400,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		{
 			cells[i++] = candidate / 9;
 		}
-		if (+(Cells)cells is not (var map and not []))
+		if (+(CellMap)cells is not (var map and not []))
 		{
 			return null;
 		}
@@ -428,7 +428,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			ImmutableArray.CreateRange(conclusions),
 			ImmutableArray.Create(View.Empty | candidateOffsets),
 			digit,
-			(Cells)cells
+			(CellMap)cells
 		);
 		if (onlyFindOne)
 		{
@@ -445,7 +445,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		// Check whether all true candidates lie in a same house.
-		var map = Cells.Empty + from c in trueCandidates group c by c / 9 into z select z.Key;
+		var map = CellMap.Empty + from c in trueCandidates group c by c / 9 into z select z.Key;
 		if (!map.InOneHouse)
 		{
 			return null;
@@ -553,7 +553,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			cells.Add(candGroupByCell.Key);
 		}
 
-		int houses = (Cells.Empty + cells).CoveredHouses;
+		int houses = (CellMap.Empty + cells).CoveredHouses;
 		if (houses != 0)
 		{
 			return null;
@@ -650,7 +650,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 							| new HouseViewNode(DisplayColorKind.Normal, house)
 					),
 					digitsMask,
-					Cells.Empty + cells,
+					CellMap.Empty + cells,
 					new(c1, c2, conjuagtePairDigit)
 				);
 				if (onlyFindOne)
@@ -734,10 +734,10 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 
 			// BUG-XZ found.
 			var conclusions = new List<Conclusion>();
-			bool condition = (Cells.Empty + c1 + cell).InOneHouse;
+			bool condition = (CellMap.Empty + c1 + cell).InOneHouse;
 			int anotherCell = condition ? c2 : c1;
 			int anotherDigit = condition ? d2 : d1;
-			foreach (int peer in +(Cells.Empty + cell + anotherCell))
+			foreach (int peer in +(CellMap.Empty + cell + anotherCell))
 			{
 				if (CandidatesMap[anotherDigit].Contains(peer))
 				{
@@ -763,7 +763,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 						| candidateOffsets
 				),
 				mask,
-				Cells.Empty + c1 + c2,
+				CellMap.Empty + c1 + c2,
 				cell
 			);
 			if (onlyFindOne)

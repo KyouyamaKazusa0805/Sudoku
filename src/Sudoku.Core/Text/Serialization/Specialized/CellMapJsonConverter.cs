@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Text.Serialization.Specialized;
 
 /// <summary>
-/// Defines a JSON converter that is used for the serialization and deserialization on type <see cref="Cells"/>.
+/// Defines a JSON converter that is used for the serialization and deserialization on type <see cref="CellMap"/>.
 /// </summary>
 /// <remarks>
 /// JSON Pattern:
@@ -13,18 +13,18 @@
 /// ]
 /// </code>
 /// </remarks>
-/// <seealso cref="Cells"/>
-public sealed class CellsJsonConverter : JsonConverter<Cells>
+/// <seealso cref="CellMap"/>
+public sealed class CellMapJsonConverter : JsonConverter<CellMap>
 {
 	/// <inheritdoc/>
-	public override Cells Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public override CellMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		if (!reader.Read() || reader.TokenType != JsonTokenType.StartArray)
 		{
 			throw new JsonException();
 		}
 
-		var result = Cells.Empty;
+		var result = CellMap.Empty;
 		while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
 		{
 			result.Add(
@@ -38,7 +38,7 @@ public sealed class CellsJsonConverter : JsonConverter<Cells>
 	}
 
 	/// <inheritdoc/>
-	public override void Write(Utf8JsonWriter writer, Cells value, JsonSerializerOptions options)
+	public override void Write(Utf8JsonWriter writer, CellMap value, JsonSerializerOptions options)
 	{
 		writer.WriteStartArray();
 		foreach (int cell in value)

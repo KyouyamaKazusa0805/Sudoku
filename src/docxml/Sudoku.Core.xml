@@ -582,9 +582,9 @@
             </exception>
             <exception cref="T:System.ArgumentException">Throws when the length is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.Candidates.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
-            Initializes an instance with the specified <see cref="T:Sudoku.Concepts.Cells"/> and the number
+            Initializes an instance with the specified <see cref="T:Sudoku.Concepts.CellMap"/> and the number
             representing.
             </summary>
             <param name="map">The map.</param>
@@ -691,7 +691,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Candidates.Reduce(System.Int32)">
             <summary>
-            Get the final <see cref="T:Sudoku.Concepts.Cells"/> to get all cells that the corresponding indices
+            Get the final <see cref="T:Sudoku.Concepts.CellMap"/> to get all cells that the corresponding indices
             are set <see langword="true"/>.
             </summary>
             <param name="digit">The digit.</param>
@@ -920,7 +920,7 @@
         <member name="M:Sudoku.Concepts.Candidates.System#ISubtractionOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_Subtraction(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#IDivisionOperators{Sudoku#Concepts#Candidates,System#Int32,Sudoku#Concepts#Cells}#op_Division(Sudoku.Concepts.Candidates,System.Int32)">
+        <member name="M:Sudoku.Concepts.Candidates.System#IDivisionOperators{Sudoku#Concepts#Candidates,System#Int32,Sudoku#Concepts#CellMap}#op_Division(Sudoku.Concepts.Candidates,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Candidates.System#IModulusOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_Modulus(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
@@ -974,48 +974,48 @@
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="T:Sudoku.Concepts.Cells">
+        <member name="T:Sudoku.Concepts.CellMap">
             <summary>
             Encapsulates a binary series of cell status table.
             </summary>
             <remarks>
-            This type holds a <see langword="static readonly"/> field called <see cref="F:Sudoku.Concepts.Cells.Empty"/>,
+            This type holds a <see langword="static readonly"/> field called <see cref="F:Sudoku.Concepts.CellMap.Empty"/>,
             it is the only field provided to be used as the entry to create or update collection.
-            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.Cells.Add(System.Int32)"/>, <see cref="M:Sudoku.Concepts.Cells.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>
-            or just <see cref="M:Sudoku.Concepts.Cells.op_Addition(Sudoku.Concepts.Cells@,System.Int32)"/> or <see cref="M:Sudoku.Concepts.Cells.op_Addition(Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{System.Int32})"/>:
+            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CellMap.Add(System.Int32)"/>, <see cref="M:Sudoku.Concepts.CellMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>
+            or just <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Int32)"/> or <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})"/>:
             <code><![CDATA[
-            var cellsMap = Cells.Empty;
-            cellsMap += 0; // Adds 'r1c1' into the collection.
-            cellsMap.Add(0); // Adds 'r1c2' into the collection.
-            cellsMap.AddRange(stackalloc[] { 2, 3, 4 }); // Adds 'r1c345' into the collection.
-            cellsMap |= anotherCellsMap; // Adds a list of another instance of type 'Cells' into the current collection.
+            var cellMap = CellMap.Empty;
+            cellMap += 0; // Adds 'r1c1' into the collection.
+            cellMap.Add(0); // Adds 'r1c2' into the collection.
+            cellMap.AddRange(stackalloc[] { 2, 3, 4 }); // Adds 'r1c345' into the collection.
+            cellMap |= anotherCellMap; // Adds a list of another instance of type 'CellMap' into the current collection.
             ]]></code>
             If you want to learn more information about this type, please visit
             <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
             </remarks>
         </member>
-        <member name="F:Sudoku.Concepts.Cells.Shifting">
+        <member name="F:Sudoku.Concepts.CellMap.Shifting">
             <summary>
             The value used for shifting.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Cells.Empty">
+        <member name="F:Sudoku.Concepts.CellMap.Empty">
             <summary>
             Indicates the empty instance.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Cells._count">
+        <member name="F:Sudoku.Concepts.CellMap._count">
             <summary>
-            The background field of the property <see cref="P:Sudoku.Concepts.Cells.Count"/>.
+            The background field of the property <see cref="P:Sudoku.Concepts.CellMap.Count"/>.
             </summary>
             <remarks><b><i>This field is explicitly declared on purpose. Please don't use auto property.</i></b></remarks>
-            <seealso cref="P:Sudoku.Concepts.Cells.Count"/>
+            <seealso cref="P:Sudoku.Concepts.CellMap.Count"/>
         </member>
-        <member name="F:Sudoku.Concepts.Cells._high">
+        <member name="F:Sudoku.Concepts.CellMap._high">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
-            which represents 81 bits. <see cref="F:Sudoku.Concepts.Cells._high"/> represent the higher
-            40 bits and <see cref="F:Sudoku.Concepts.Cells._low"/> represents the lower 41 bits, where each bit is:
+            which represents 81 bits. <see cref="F:Sudoku.Concepts.CellMap._high"/> represent the higher
+            40 bits and <see cref="F:Sudoku.Concepts.CellMap._low"/> represents the lower 41 bits, where each bit is:
             <list type="table">
             <item>
             <term><see langword="true"/> bit (1)</term>
@@ -1028,11 +1028,11 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Cells._low">
+        <member name="F:Sudoku.Concepts.CellMap._low">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
-            which represents 81 bits. <see cref="F:Sudoku.Concepts.Cells._high"/> represent the higher
-            40 bits and <see cref="F:Sudoku.Concepts.Cells._low"/> represents the lower 41 bits, where each bit is:
+            which represents 81 bits. <see cref="F:Sudoku.Concepts.CellMap._high"/> represent the higher
+            40 bits and <see cref="F:Sudoku.Concepts.CellMap._low"/> represents the lower 41 bits, where each bit is:
             <list type="table">
             <item>
             <term><see langword="true"/> bit (1)</term>
@@ -1045,7 +1045,7 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.#ctor">
+        <member name="M:Sudoku.Concepts.CellMap.#ctor">
             <summary>
             Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
             </summary>
@@ -1053,24 +1053,24 @@
             <remarks>
             The main idea of the parameterless constructor is to create a new instance
             without any extra information, but the current type is special:
-            I want you to use <see cref="F:Sudoku.Concepts.Cells.Empty"/> instead of the syntax <c>new Cells()</c>,
+            I want you to use <see cref="F:Sudoku.Concepts.CellMap.Empty"/> instead of the syntax <c>new CellMap()</c>,
             in order to get a better experience on performance.
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Cells.InOneHouse">
+        <member name="P:Sudoku.Concepts.CellMap.InOneHouse">
             <summary>
-            Same as the method <see cref="M:Sudoku.Concepts.Cells.AllSetsAreInOneHouse(System.Int32@)"/>, but this property doesn't contain
+            Same as the method <see cref="M:Sudoku.Concepts.CellMap.AllSetsAreInOneHouse(System.Int32@)"/>, but this property doesn't contain
             the <see langword="out"/> argument, as the optimization.
             </summary>
-            <seealso cref="M:Sudoku.Concepts.Cells.AllSetsAreInOneHouse(System.Int32@)"/>
+            <seealso cref="M:Sudoku.Concepts.CellMap.AllSetsAreInOneHouse(System.Int32@)"/>
         </member>
-        <member name="P:Sudoku.Concepts.Cells.IsInIntersection">
+        <member name="P:Sudoku.Concepts.CellMap.IsInIntersection">
             <summary>
             Determines whether the current list of cells are all lie in an intersection area,
             i.e. a locked candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Cells.BlockMask">
+        <member name="P:Sudoku.Concepts.CellMap.BlockMask">
             <summary>
             Indicates the mask of block that all cells in this collection spanned.
             </summary>
@@ -1079,7 +1079,7 @@
             mask is <c>0b000001001</c> (i.e. 9).
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Cells.RowMask">
+        <member name="P:Sudoku.Concepts.CellMap.RowMask">
             <summary>
             Indicates the mask of row that all cells in this collection spanned.
             </summary>
@@ -1088,7 +1088,7 @@
             mask is <c>0b000001001</c> (i.e. 9).
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Cells.ColumnMask">
+        <member name="P:Sudoku.Concepts.CellMap.ColumnMask">
             <summary>
             Indicates the mask of column that all cells in this collection spanned.
             </summary>
@@ -1097,7 +1097,7 @@
             mask is <c>0b000000011</c> (i.e. 3).
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Cells.CoveredLine">
+        <member name="P:Sudoku.Concepts.CellMap.CoveredLine">
             <summary>
             Indicates the covered line.
             </summary>
@@ -1106,16 +1106,16 @@
             </remarks>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.InvalidValidOfTrailingZeroCountMethodFallback"/>
         </member>
-        <member name="P:Sudoku.Concepts.Cells.Count">
+        <member name="P:Sudoku.Concepts.CellMap.Count">
             <summary>
             Indicates the number of the values stored in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Cells.CoveredHouses">
+        <member name="P:Sudoku.Concepts.CellMap.CoveredHouses">
             <summary>
             Indicates all houses covered. This property is used to check all houses that all cells
             of this instance covered. For example, if the cells are <c>{ 0, 1 }</c>, the property
-            <see cref="P:Sudoku.Concepts.Cells.CoveredHouses"/> will return the house index 0 (block 1) and 9 (row 1);
+            <see cref="P:Sudoku.Concepts.CellMap.CoveredHouses"/> will return the house index 0 (block 1) and 9 (row 1);
             however, if cells spanned two houses or more (e.g. cells <c>{ 0, 1, 27 }</c>),
             this property won't contain any houses.
             </summary>
@@ -1124,20 +1124,20 @@
             Bits set 1 are covered houses.
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Cells.Houses">
+        <member name="P:Sudoku.Concepts.CellMap.Houses">
             <summary>
             All houses that the map spanned. This property is used to check all houses that all cells of
             this instance spanned. For example, if the cells are <c>{ 0, 1 }</c>, the property
-            <see cref="P:Sudoku.Concepts.Cells.Houses"/> will return the house index 0 (block 1), 9 (row 1), 18 (column 1)
+            <see cref="P:Sudoku.Concepts.CellMap.Houses"/> will return the house index 0 (block 1), 9 (row 1), 18 (column 1)
             and 19 (column 2).
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Cells.Offsets">
+        <member name="P:Sudoku.Concepts.CellMap.Offsets">
             <summary>
             Indicates the cell offsets in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Cells.Item(System.Int32)">
+        <member name="P:Sudoku.Concepts.CellMap.Item(System.Int32)">
             <summary>
             Get the offset at the specified position index.
             </summary>
@@ -1146,7 +1146,7 @@
             The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
             </returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.CopyTo(System.Int32*,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.CopyTo(System.Int32*,System.Int32)">
             <summary>
             Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
             </summary>
@@ -1159,7 +1159,7 @@
             Throws when the capacity isn't enough to store all values.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.CopyTo(System.Span{System.Int32}@)">
+        <member name="M:Sudoku.Concepts.CellMap.CopyTo(System.Span{System.Int32}@)">
             <summary>
             Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
             </summary>
@@ -1167,7 +1167,7 @@
             The target <see cref="T:System.Span`1"/> instance.
             </param>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.AllSetsAreInOneHouse(System.Int32@)">
+        <member name="M:Sudoku.Concepts.CellMap.AllSetsAreInOneHouse(System.Int32@)">
             <summary>
             Indicates whether all cells in this instance are in one house.
             </summary>
@@ -1178,66 +1178,66 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
             <remarks>
             If you don't want to use the <see langword="out"/> parameter value, please
-            use the property <see cref="P:Sudoku.Concepts.Cells.InOneHouse"/> to improve the performance.
+            use the property <see cref="P:Sudoku.Concepts.CellMap.InOneHouse"/> to improve the performance.
             </remarks>
-            <seealso cref="P:Sudoku.Concepts.Cells.InOneHouse"/>
+            <seealso cref="P:Sudoku.Concepts.CellMap.InOneHouse"/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.Contains(System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.Contains(System.Int32)">
             <summary>
             Determine whether the map contains the specified offset.
             </summary>
             <param name="offset">The offset.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.Equals(System.Object)">
+        <member name="M:Sudoku.Concepts.CellMap.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.Equals(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.Equals(Sudoku.Concepts.CellMap@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.GetSubviewMask(System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.GetSubviewMask(System.Int32)">
             <summary>
             Get the sub-view mask of this map.
             </summary>
             <param name="houseIndex">The house index.</param>
             <returns>The mask.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.GetHashCode">
+        <member name="M:Sudoku.Concepts.CellMap.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.ToArray">
+        <member name="M:Sudoku.Concepts.CellMap.ToArray">
             <summary>
             Get all offsets whose bits are set <see langword="true"/>.
             </summary>
             <returns>An array of offsets.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.ToString">
+        <member name="M:Sudoku.Concepts.CellMap.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.ToString(System.String)">
+        <member name="M:Sudoku.Concepts.CellMap.ToString(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.GetEnumerator">
+        <member name="M:Sudoku.Concepts.CellMap.GetEnumerator">
             <summary>
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.Slice(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.Slice(System.Int32,System.Int32)">
             <summary>
-            Gets the <see cref="T:Sudoku.Concepts.Cells"/> instance that starts with the specified index.
+            Gets the <see cref="T:Sudoku.Concepts.CellMap"/> instance that starts with the specified index.
             </summary>
             <param name="start">The start index.</param>
             <param name="count">The desired number of offsets.</param>
-            <returns>The <see cref="T:Sudoku.Concepts.Cells"/> result.</returns>
+            <returns>The <see cref="T:Sudoku.Concepts.CellMap"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.Add(System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.Add(System.Int32)">
             <summary>
             Set the specified offset as <see langword="true"/> value.
             </summary>
             <param name="offset">The offset.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.AddChecked(System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.AddChecked(System.Int32)">
             <summary>
             Set the specified offset as <see langword="true"/> value, with range check.
             </summary>
@@ -1246,19 +1246,19 @@
             Throws when the specified cell offset is invalid.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.AddRange(System.ReadOnlySpan{System.Int32}@)">
+        <member name="M:Sudoku.Concepts.CellMap.AddRange(System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Set the specified offsets as <see langword="true"/> value.
             </summary>
             <param name="offsets">The offsets to add.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.Cells.AddRange(System.ReadOnlySpan{System.Int32}@)"/>
+        <member name="M:Sudoku.Concepts.CellMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMap.AddRange(System.ReadOnlySpan{System.Int32}@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.Cells.AddRange(System.ReadOnlySpan{System.Int32}@)"/>
+        <member name="M:Sudoku.Concepts.CellMap.AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMap.AddRange(System.ReadOnlySpan{System.Int32}@)"/>
             <remarks>
-            Different with the method <see cref="M:Sudoku.Concepts.Cells.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
+            Different with the method <see cref="M:Sudoku.Concepts.CellMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
             also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
             this method will throw an exception to report about this.
             </remarks>
@@ -1266,37 +1266,37 @@
             Throws when found at least one cell offset invalid.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.Remove(System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.Remove(System.Int32)">
             <summary>
             Set the specified offset as <see langword="false"/> value.
             </summary>
             <param name="offset">The offset.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.Clear">
+        <member name="M:Sudoku.Concepts.CellMap.Clear">
             <summary>
             Clear all bits.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IEquatable{Sudoku#Concepts#Cells}#Equals(Sudoku.Concepts.Cells)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IEquatable{Sudoku#Concepts#CellMap}#Equals(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Concepts.CellMap.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+        <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.TryParse(System.String,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.CreateByBits(System.Int64,System.Int64)">
+        <member name="M:Sudoku.Concepts.CellMap.CreateByBits(System.Int64,System.Int64)">
             <summary>
             Initializes an instance with two binary values.
             </summary>
             <param name="high">Higher 40 bits.</param>
             <param name="low">Lower 41 bits.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.CreateByBits(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.CreateByBits(System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes an instance with three binary values.
             </summary>
@@ -1304,10 +1304,10 @@
             <param name="mid">Medium 27 bits.</param>
             <param name="low">Lower 27 bits.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.Parse(System.String)">
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_UnaryPlus(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_UnaryPlus(Sudoku.Concepts.CellMap@)">
             <summary>
             Gets the peer intersection of the current instance.
             </summary>
@@ -1318,15 +1318,15 @@
             For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_LogicalNot(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_LogicalNot(Sudoku.Concepts.CellMap@)">
             <summary>
-            Same as <see cref="M:Sudoku.Concepts.Cells.op_OnesComplement(Sudoku.Concepts.Cells@)"/>.
+            Same as <see cref="M:Sudoku.Concepts.CellMap.op_OnesComplement(Sudoku.Concepts.CellMap@)"/>.
             </summary>
             <param name="offsets">The cells to be negated.</param>
             <returns>The negated instance.</returns>
-            <seealso cref="M:Sudoku.Concepts.Cells.op_OnesComplement(Sudoku.Concepts.Cells@)"/>
+            <seealso cref="M:Sudoku.Concepts.CellMap.op_OnesComplement(Sudoku.Concepts.CellMap@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_OnesComplement(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_OnesComplement(Sudoku.Concepts.CellMap@)">
             <summary>
             Reverse status for all offsets, which means all <see langword="true"/> bits
             will be set <see langword="false"/>, and all <see langword="false"/> bits
@@ -1335,7 +1335,7 @@
             <param name="offsets">The instance to negate.</param>
             <returns>The negative result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Addition(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
             and returns the added result.
@@ -1344,7 +1344,7 @@
             <param name="offset">The offset to be added.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_CheckedAddition(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.op_CheckedAddition(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
             and returns the added result.
@@ -1354,7 +1354,7 @@
             <param name="offset">The offset to be added.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Addition(Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Adds the specified list of <paramref name="cells"/> to the <paramref name="collection"/>,
             and returns the added result.
@@ -1363,7 +1363,7 @@
             <param name="cells">A list of cells to be added.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_CheckedAddition(Sudoku.Concepts.Cells@,System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.op_CheckedAddition(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Adds the specified list of <paramref name="cells"/> to the <paramref name="collection"/>,
             and returns the added result.
@@ -1373,7 +1373,7 @@
             <param name="cells">A list of cells to be added.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Subtraction(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.op_Subtraction(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
             and returns the removed result.
@@ -1382,7 +1382,7 @@
             <param name="offset">The offset to be removed.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_CheckedSubtraction(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.op_CheckedSubtraction(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
             and returns the removed result. This operator will check the validity of the argument <paramref name="offset"/>.
@@ -1391,16 +1391,16 @@
             <param name="offset">The offset to be removed.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Subtraction(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_Subtraction(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
-            Get a <see cref="T:Sudoku.Concepts.Cells"/> that contains all <paramref name="left"/> instance
+            Get a <see cref="T:Sudoku.Concepts.CellMap"/> that contains all <paramref name="left"/> instance
             but not in <paramref name="right"/> instance.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_BitwiseAnd(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.op_BitwiseAnd(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Gets the subsets of the current collection via the specified size
             indicating the number of elements of the each subset.
@@ -1436,7 +1436,7 @@
             will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_BitwiseAnd(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_BitwiseAnd(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
             </summary>
@@ -1444,7 +1444,7 @@
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_BitwiseOr(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.op_BitwiseOr(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Gets all subsets of the current collection via the specified size
             indicating the <b>maximum</b> number of elements of the each subset.
@@ -1474,7 +1474,7 @@
             <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_BitwiseOr(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_BitwiseOr(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
             and return the merged result.
@@ -1483,7 +1483,7 @@
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_ExclusiveOr(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_ExclusiveOr(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
             </summary>
@@ -1491,7 +1491,7 @@
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Modulus(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Expands the operator to <c><![CDATA[+(a & b) & b]]></c>.
             </summary>
@@ -1516,7 +1516,7 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Multiply(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.op_Multiply(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Expands via the specified digit.
             </summary>
@@ -1524,7 +1524,7 @@
             <param name="digit">The digit.</param>
             <returns>The result instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_CheckedMultiply(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.op_CheckedMultiply(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Expands via the specified digit. This operator will check the validity of the argument <paramref name="digit"/>.
             </summary>
@@ -1532,7 +1532,7 @@
             <param name="digit">The digit.</param>
             <returns>The result instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Division(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.op_Division(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Get the sub-view mask of this map.
             </summary>
@@ -1540,7 +1540,7 @@
             <param name="houseIndex">The house index.</param>
             <returns>The mask.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_CheckedDivision(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.op_CheckedDivision(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Get the sub-view mask of this map. This operator will check the validity
             of the argument <paramref name="houseIndex"/>.
@@ -1549,7 +1549,7 @@
             <param name="houseIndex">The house index.</param>
             <returns>The mask.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_RightShift(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_RightShift(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count != 0</c>.
             </summary>
@@ -1557,7 +1557,7 @@
             <param name="right">The subtractor.</param>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_LeftShift(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_LeftShift(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
             </summary>
@@ -1565,88 +1565,88 @@
             <param name="right">The subtractor.</param>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Equality(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_Equality(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
-            Determines whether two <see cref="T:Sudoku.Concepts.Cells"/> instances are considered equal.
+            Determines whether two <see cref="T:Sudoku.Concepts.CellMap"/> instances are considered equal.
             </summary>
             <param name="left">The first instance to be compared.</param>
             <param name="right">The second instance to be compared.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether they are equal.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Inequality(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.CellMap.op_Inequality(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
-            Determines whether two <see cref="T:Sudoku.Concepts.Cells"/> instances are not totally equal.
+            Determines whether two <see cref="T:Sudoku.Concepts.CellMap"/> instances are not totally equal.
             </summary>
             <param name="left">The first instance to be compared.</param>
             <param name="right">The second instance to be compared.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether they are not equal.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IUnaryPlusOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_UnaryPlus(Sudoku.Concepts.Cells)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IUnaryPlusOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_UnaryPlus(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IAdditionOperators{Sudoku#Concepts#Cells,System#Int32,Sudoku#Concepts#Cells}#op_Addition(Sudoku.Concepts.Cells,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IAdditionOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_Addition(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#ISubtractionOperators{Sudoku#Concepts#Cells,System#Int32,Sudoku#Concepts#Cells}#op_Subtraction(Sudoku.Concepts.Cells,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.System#ISubtractionOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_Subtraction(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#ISubtractionOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_Subtraction(Sudoku.Concepts.Cells,Sudoku.Concepts.Cells)">
+        <member name="M:Sudoku.Concepts.CellMap.System#ISubtractionOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Subtraction(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IMultiplyOperators{Sudoku#Concepts#Cells,System#Int32,Sudoku#Concepts#Candidates}#op_Multiply(Sudoku.Concepts.Cells,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#Candidates}#op_Multiply(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IDivisionOperators{Sudoku#Concepts#Cells,System#Int32,System#Int16}#op_Division(Sudoku.Concepts.Cells,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IDivisionOperators{Sudoku#Concepts#CellMap,System#Int32,System#Int16}#op_Division(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IModulusOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_Modulus(Sudoku.Concepts.Cells,Sudoku.Concepts.Cells)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IModulusOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Modulus(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IBitwiseOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_OnesComplement(Sudoku.Concepts.Cells)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_OnesComplement(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IBitwiseOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_BitwiseAnd(Sudoku.Concepts.Cells,Sudoku.Concepts.Cells)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_BitwiseAnd(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IBitwiseOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_BitwiseOr(Sudoku.Concepts.Cells,Sudoku.Concepts.Cells)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_BitwiseOr(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IBitwiseOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_ExclusiveOr(Sudoku.Concepts.Cells,Sudoku.Concepts.Cells)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_ExclusiveOr(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IEqualityOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_Equality(Sudoku.Concepts.Cells,Sudoku.Concepts.Cells)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IEqualityOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Equality(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.System#IEqualityOperators{Sudoku#Concepts#Cells,Sudoku#Concepts#Cells}#op_Inequality(Sudoku.Concepts.Cells,Sudoku.Concepts.Cells)">
+        <member name="M:Sudoku.Concepts.CellMap.System#IEqualityOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Inequality(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Implicit(Sudoku.Concepts.Cells@)~System.Int32[]">
+        <member name="M:Sudoku.Concepts.CellMap.op_Implicit(Sudoku.Concepts.CellMap@)~System.Int32[]">
             <summary>
-            Implicit cast from <see cref="T:Sudoku.Concepts.Cells"/> to <see cref="T:System.Int32"/>[].
+            Implicit cast from <see cref="T:Sudoku.Concepts.CellMap"/> to <see cref="T:System.Int32"/>[].
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Implicit(System.Span{System.Int32}@)~Sudoku.Concepts.Cells">
+        <member name="M:Sudoku.Concepts.CellMap.op_Implicit(System.Span{System.Int32}@)~Sudoku.Concepts.CellMap">
             <summary>
-            Implicit cast from <see cref="T:System.Span`1"/> to <see cref="T:Sudoku.Concepts.Cells"/>.
+            Implicit cast from <see cref="T:System.Span`1"/> to <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Implicit(System.ReadOnlySpan{System.Int32}@)~Sudoku.Concepts.Cells">
+        <member name="M:Sudoku.Concepts.CellMap.op_Implicit(System.ReadOnlySpan{System.Int32}@)~Sudoku.Concepts.CellMap">
             <summary>
-            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <see cref="T:Sudoku.Concepts.Cells"/>.
+            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Explicit(System.Int32[])~Sudoku.Concepts.Cells">
+        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CellMap">
             <summary>
-            Explicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Concepts.Cells"/>.
+            Explicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_CheckedExplicit(System.Int32[])~Sudoku.Concepts.Cells">
+        <member name="M:Sudoku.Concepts.CellMap.op_CheckedExplicit(System.Int32[])~Sudoku.Concepts.CellMap">
             <summary>
-            Explicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Concepts.Cells"/>, with cell range check.
+            Explicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Concepts.CellMap"/>, with cell range check.
             </summary>
             <param name="offsets">The offsets.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">
@@ -1654,15 +1654,15 @@
             is not a valid value to represent a cell offset.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Explicit(Sudoku.Concepts.Cells@)~System.Span{System.Int32}">
+        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(Sudoku.Concepts.CellMap@)~System.Span{System.Int32}">
             <summary>
-            Explicit cast from <see cref="T:Sudoku.Concepts.Cells"/> to <see cref="T:System.Span`1"/>.
+            Explicit cast from <see cref="T:Sudoku.Concepts.CellMap"/> to <see cref="T:System.Span`1"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Cells.op_Explicit(Sudoku.Concepts.Cells@)~System.ReadOnlySpan{System.Int32}">
+        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(Sudoku.Concepts.CellMap@)~System.ReadOnlySpan{System.Int32}">
             <summary>
-            Explicit cast from <see cref="T:Sudoku.Concepts.Cells"/> to <see cref="T:System.ReadOnlySpan`1"/>.
+            Explicit cast from <see cref="T:Sudoku.Concepts.CellMap"/> to <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
@@ -1721,7 +1721,7 @@
             <param name="to">The to cell.</param>
             <param name="digit">The digit.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Conjugate.#ctor(Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Concepts.Conjugate.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Conjugate"/> instance with the map and the digit.
             The map should contains two cells, the first one is the start one, and the second one is the end one.
@@ -1753,7 +1753,7 @@
             <summary>
             Indicates the house that two cells lie in.
             </summary>
-            <remarks><inheritdoc cref="P:Sudoku.Concepts.Cells.CoveredHouses"/></remarks>
+            <remarks><inheritdoc cref="P:Sudoku.Concepts.CellMap.CoveredHouses"/></remarks>
         </member>
         <member name="P:Sudoku.Concepts.Conjugate.Map">
             <summary>
@@ -2444,7 +2444,7 @@
             <param name="cells">The list of cells to gather the usages on all digits.</param>
             <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GetDigitsUnion(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.Grid.GetDigitsUnion(Sudoku.Concepts.CellMap@)">
             <summary>
             Creates a mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9,
             ranged in a specified list of cells in the current sudoku grid.
@@ -2452,7 +2452,7 @@
             <param name="cells">The list of cells to gather the usages on all digits.</param>
             <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GetDigitsUnion(Sudoku.Concepts.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Concepts.Grid.GetDigitsUnion(Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Creates a mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9,
             ranged in a specified list of cells in the current sudoku grid.
@@ -2464,7 +2464,7 @@
             </param>
             <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GetDigitsIntersection(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.Grid.GetDigitsIntersection(Sudoku.Concepts.CellMap@)">
             <summary>
             Creates a mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9,
             ranged in a specified list of cells in the current sudoku grid,
@@ -2774,7 +2774,7 @@
             Indicates the eliminations in the extended susser format.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.op_LeftShift(Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.Grid.op_LeftShift(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@)">
             <summary>
             Gets a sudoku grid, removing all digits filled in the cells
             that doesn't appear in the specified <paramref name="pattern"/>.
@@ -2783,7 +2783,7 @@
             <param name="pattern">The pattern.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.op_RightShift(Sudoku.Concepts.Grid@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Concepts.Grid.op_RightShift(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@)">
             <summary>
             Gets a sudoku grid, replacing all digits with modifiable
             if it doesn't appear in the specified <paramref name="pattern"/>.
@@ -3524,7 +3524,7 @@
             </summary>
             <param name="chunk">The <see cref="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk"/> instance.</param>
         </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Deconstruct(Sudoku.Concepts.Cells@,System.Int32[]@)">
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32[]@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3727,13 +3727,13 @@
             Initializes a <see cref="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator"/> instance via the specified pattern.
             </summary>
             <param name="pattern">The pattern.</param>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.Cells@,System.Int32[])">
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@,System.Int32[])">
             <summary>
             Initializes a <see cref="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator"/> instance via the specified pattern
             and the initial candidates as the pattern.
@@ -3762,7 +3762,7 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.AdjustPattern(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.AdjustPattern(Sudoku.Concepts.CellMap@)">
             <summary>
             Adjust a pattern slightly.
             </summary>
@@ -3846,11 +3846,11 @@
         </member>
         <member name="T:Sudoku.Linq.CellEnumerable">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Cells"/> type, around LINQ.
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.CellMap"/> type, around LINQ.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Cells"/>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
         </member>
-        <member name="M:Sudoku.Linq.CellEnumerable.Select``1(Sudoku.Concepts.Cells@,System.Func{System.Int32,``0})">
+        <member name="M:Sudoku.Linq.CellEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">
             <summary>
             Projects each element of a sequence into a new form.
             </summary>
@@ -4185,7 +4185,7 @@
             <param name="digit">Indicates the digit used.</param>
             <param name="cell">Indicates the cell used.</param>
         </member>
-        <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Presentation.LockedTarget"/> instance via the specified cells and the specified digit used.
             </summary>
@@ -8680,7 +8680,7 @@
             <param name="Loop">Indicates the cells used in this whole bi-value oddagon loop.</param>
             <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
         </member>
-        <member name="M:Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo.#ctor(Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo.#ctor(Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Represents for a data set that describes the complete information about a bi-value oddagon technique.
             </summary>
@@ -8837,7 +8837,7 @@
             <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
             <param name="Digit">Indicates the digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Data.Representation.GuardianDataInfo.#ctor(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Data.Representation.GuardianDataInfo.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Represents for a data set that describes the complete information about a guardian technique.
             </summary>
@@ -10911,7 +10911,7 @@
             <param name="Loop">Indicates the cells used in this whole unique loop.</param>
             <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
         </member>
-        <member name="M:Sudoku.Solving.Data.Representation.UniqueLoopDataInfo.#ctor(Sudoku.Concepts.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Data.Representation.UniqueLoopDataInfo.#ctor(Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Represents for a data set that describes the complete information about a unique loop technique.
             </summary>
@@ -11511,7 +11511,7 @@
             only <c>n</c> digits can be filled into <c>n + 1</c> cells in a house.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Patterns.AlmostHiddenSet.#ctor(System.Int16,System.Int16,Sudoku.Concepts.Cells@,System.Nullable{Sudoku.Concepts.Cells}[])">
+        <member name="M:Sudoku.Solving.Patterns.AlmostHiddenSet.#ctor(System.Int16,System.Int16,Sudoku.Concepts.CellMap@,System.Nullable{Sudoku.Concepts.CellMap}[])">
             <summary>
             Initializes an <see cref="T:Sudoku.Solving.Patterns.AlmostHiddenSet"/> instance
             via the specified digit mask and the map of cells.
@@ -11588,7 +11588,7 @@
             </summary>
             <seealso cref="P:Sudoku.Solving.Patterns.AlmostLockedSet.StrongLinks"/>
         </member>
-        <member name="M:Sudoku.Solving.Patterns.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Patterns.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Initializes an <see cref="T:Sudoku.Solving.Patterns.AlmostLockedSet"/> instance
             via the specified digit mask and the map of cells.
@@ -11628,7 +11628,7 @@
             Gets the possible cells that can store eliminations for the ALS.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Patterns.AlmostLockedSet.ContainsDigit(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Patterns.AlmostLockedSet.ContainsDigit(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Indicates whether the specified grid contains the digit.
             </summary>
@@ -11831,7 +11831,7 @@
             <param name="d2">The digit 2.</param>
             <returns>The conclusions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Patterns.AlternatingInferenceChain.GetEliminationsSingleDigit(Sudoku.Concepts.Cells@,System.Byte)">
+        <member name="M:Sudoku.Solving.Patterns.AlternatingInferenceChain.GetEliminationsSingleDigit(Sudoku.Concepts.CellMap@,System.Byte)">
             <summary>
             Try to get eliminations via the digit and the elimination cells.
             </summary>
@@ -11979,7 +11979,7 @@
             <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
             <param name="CrossLine">Indicates the cross-line cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Patterns.ExocetPattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Patterns.ExocetPattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             <para>
             Indicates an exocet pattern. The pattern will be like:
@@ -12107,7 +12107,7 @@
             <param name="Map"><inheritdoc/></param>
             <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Patterns.FireworkPattern.#ctor(Sudoku.Concepts.Cells@,System.Nullable{System.Int32})">
+        <member name="M:Sudoku.Solving.Patterns.FireworkPattern.#ctor(Sudoku.Concepts.CellMap@,System.Nullable{System.Int32})">
             <summary>
             Indicates a firework pattern. The pattern will be like:
             <code><![CDATA[
@@ -12171,14 +12171,14 @@
             <param name="digit">The digit used.</param>
             <param name="cell">The cell used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Patterns.Node.#ctor(System.Byte,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Patterns.Node.#ctor(System.Byte,Sudoku.Concepts.CellMap@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Patterns.Node"/> instance via the basic data.
             </summary>
             <param name="digit">The digit used.</param>
             <param name="cells">The cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Patterns.Node.#ctor(System.Byte,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Patterns.Node.#ctor(System.Byte,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Patterns.Node"/> instance via the basic data.
             </summary>
@@ -12284,7 +12284,7 @@
             <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
             <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
         </member>
-        <member name="M:Sudoku.Solving.Patterns.QiuDeadlyPattern.#ctor(Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Solving.Patterns.QiuDeadlyPattern.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
             <code><![CDATA[
@@ -13417,16 +13417,16 @@
         </member>
         <member name="T:Sudoku.Text.Notations.ICellNotation`2">
             <summary>
-            Defines a type that can convert a <see cref="T:Sudoku.Concepts.Cells"/> instance into a result <see cref="T:System.String"/>
+            Defines a type that can convert a <see cref="T:Sudoku.Concepts.CellMap"/> instance into a result <see cref="T:System.String"/>
             representation to describe the cell collection.
             </summary>
             <typeparam name="TBaseType">The base type that applies the interface.</typeparam>
             <typeparam name="TOptions">The type that is used as the provider for extra options.</typeparam>
         </member>
-        <member name="M:Sudoku.Text.Notations.ICellNotation`2.TryParseCells(System.String,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Text.Notations.ICellNotation`2.TryParseCells(System.String,Sudoku.Concepts.CellMap@)">
             <summary>
             <para>
-            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.Cells"/>
+            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.CellMap"/>
             instance.
             </para>
             <para>
@@ -13437,20 +13437,20 @@
             </summary>
             <param name="str">The <see cref="T:System.String"/> value.</param>
             <param name="result">
-            The <see cref="T:Sudoku.Concepts.Cells"/> result. If the return value is <see langword="false"/>,
+            The <see cref="T:Sudoku.Concepts.CellMap"/> result. If the return value is <see langword="false"/>,
             this argument will be a discard and cannot be used.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the parsing operation is successful.</returns>
             <seealso cref="M:Sudoku.Text.Notations.ICellNotation`2.ParseCells(System.String)"/>
         </member>
-        <member name="M:Sudoku.Text.Notations.ICellNotation`2.ToCellsString(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Text.Notations.ICellNotation`2.ToCellsString(Sudoku.Concepts.CellMap@)">
             <summary>
             Gets the <see cref="T:System.String"/> representation of a list of cells.
             </summary>
             <param name="cells">The cell list.</param>
             <returns>The <see cref="T:System.String"/> representation describe the cell list.</returns>
         </member>
-        <member name="M:Sudoku.Text.Notations.ICellNotation`2.ToCellsString(Sudoku.Concepts.Cells@,`1@)">
+        <member name="M:Sudoku.Text.Notations.ICellNotation`2.ToCellsString(Sudoku.Concepts.CellMap@,`1@)">
             <summary>
             Gets the <see cref="T:System.String"/> representation of a list of cells.
             </summary>
@@ -13460,11 +13460,11 @@
         </member>
         <member name="M:Sudoku.Text.Notations.ICellNotation`2.ParseCells(System.String)">
             <summary>
-            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.Cells"/>
+            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.CellMap"/>
             instance.
             </summary>
             <param name="str">The <see cref="T:System.String"/> value.</param>
-            <returns>The <see cref="T:Sudoku.Concepts.Cells"/> result.</returns>
+            <returns>The <see cref="T:Sudoku.Concepts.CellMap"/> result.</returns>
             <exception cref="T:System.FormatException">
             Throws when the parsing operation is failed due to invalid characters or invalid operation.
             </exception>
@@ -13519,16 +13519,16 @@
         <member name="P:Sudoku.Text.Notations.K9Notation.Notation">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Notations.K9Notation.ToCellsString(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Text.Notations.K9Notation.ToCellsString(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Notations.K9Notation.ToCellsString(Sudoku.Concepts.Cells@,Sudoku.Text.Notations.K9NotationOptions@)">
+        <member name="M:Sudoku.Text.Notations.K9Notation.ToCellsString(Sudoku.Concepts.CellMap@,Sudoku.Text.Notations.K9NotationOptions@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.K9Notation.ParseCells(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Notations.K9Notation.TryParseCells(System.String,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Text.Notations.K9Notation.TryParseCells(System.String,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.K9Notation.CellOrCellListRegex">
@@ -13668,7 +13668,7 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the parsing operation is successful.</returns>
         </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.TryParseCells(System.String,Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Text.Notations.RxCyNotation.TryParseCells(System.String,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.RxCyNotation.ToCellString(System.Int32)">
@@ -13678,10 +13678,10 @@
             <param name="cell">The cell.</param>
             <returns>The <see cref="T:System.String"/> representation of a cell.</returns>
         </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.ToCellsString(Sudoku.Concepts.Cells@)">
+        <member name="M:Sudoku.Text.Notations.RxCyNotation.ToCellsString(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.ToCellsString(Sudoku.Concepts.Cells@,Sudoku.Text.Notations.RxCyNotationOptions@)">
+        <member name="M:Sudoku.Text.Notations.RxCyNotation.ToCellsString(Sudoku.Concepts.CellMap@,Sudoku.Text.Notations.RxCyNotationOptions@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.RxCyNotation.ParseCells(System.String)">
@@ -14430,9 +14430,9 @@
         <member name="P:Sudoku.Text.Serialization.NamedKindInternal.NamedKind">
             <summary>Indicates the named kind value.</summary>
         </member>
-        <member name="T:Sudoku.Text.Serialization.Specialized.CellsJsonConverter">
+        <member name="T:Sudoku.Text.Serialization.Specialized.CellMapJsonConverter">
             <summary>
-            Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Concepts.Cells"/>.
+            Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
             <remarks>
             JSON Pattern:
@@ -14444,12 +14444,12 @@
             ]
             </code>
             </remarks>
-            <seealso cref="T:Sudoku.Concepts.Cells"/>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
         </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.CellsJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Text.Serialization.Specialized.CellMapJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.CellsJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Cells,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Text.Serialization.Specialized.CellMapJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Serialization.Specialized.GridJsonConverter">

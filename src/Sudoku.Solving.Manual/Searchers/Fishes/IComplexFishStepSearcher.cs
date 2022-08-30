@@ -177,7 +177,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						}
 
 						// Get the primary map of endo-fins.
-						Cells tempMap = Cells.Empty, endofins = Cells.Empty;
+						CellMap tempMap = CellMap.Empty, endofins = CellMap.Empty;
 						for (int i = 0, length = baseSets.Length; i < length; i++)
 						{
 							int baseSet = baseSets[i];
@@ -219,7 +219,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 
 						// Get all used base set list.
 						int usedInBaseSets = 0;
-						var baseMap = Cells.Empty;
+						var baseMap = CellMap.Empty;
 						foreach (int baseSet in baseSets)
 						{
 							baseMap |= HousesMap[baseSet];
@@ -251,7 +251,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						foreach (int[] coverSets in coverTable.GetSubsets(size - 1))
 						{
 							// Now get the cover sets map.
-							var coverMap = Cells.Empty;
+							var coverMap = CellMap.Empty;
 							foreach (int coverSet in coverSets)
 							{
 								coverMap |= HousesMap[coverSet];
@@ -336,7 +336,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 
 								// Verify passed.
 								// Re-initializes endo-fins.
-								endofins = Cells.Empty;
+								endofins = CellMap.Empty;
 
 								// Insert into the current cover set list, in order to keep
 								// all cover sets are in order (i.e. Sort the cover sets).

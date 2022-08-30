@@ -9,7 +9,7 @@
 internal sealed record MultisectorLockedSetsStep(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells
+	scoped in CellMap Cells
 ) : NonnegativeRankStep(Conclusions, Views), IStepWithRank, IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>

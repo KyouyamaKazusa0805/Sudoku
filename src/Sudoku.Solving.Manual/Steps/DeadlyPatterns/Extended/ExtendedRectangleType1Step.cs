@@ -10,7 +10,7 @@
 internal sealed record ExtendedRectangleType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask
 ) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
 {

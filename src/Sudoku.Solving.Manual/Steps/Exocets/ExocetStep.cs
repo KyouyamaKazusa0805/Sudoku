@@ -74,7 +74,7 @@ internal abstract record ExocetStep(
 	/// <summary>
 	/// Indicates the map of the base cells.
 	/// </summary>
-	private Cells BaseMap
+	private CellMap BaseMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Exocet.BaseCellsMap;
@@ -83,7 +83,7 @@ internal abstract record ExocetStep(
 	/// <summary>
 	/// Indicates the map of the target cells.
 	/// </summary>
-	private Cells TargetMap
+	private CellMap TargetMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Exocet.TargetCellsMap;

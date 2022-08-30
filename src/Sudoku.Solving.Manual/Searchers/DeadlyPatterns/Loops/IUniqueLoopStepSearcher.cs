@@ -166,8 +166,8 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
 	private IStep? CheckType1(
-		ICollection<UniqueLoopStep> accumulator, int d1, int d2, scoped in Cells loop,
-		scoped in Cells extraCellsMap, bool onlyFindOne)
+		ICollection<UniqueLoopStep> accumulator, int d1, int d2, scoped in CellMap loop,
+		scoped in CellMap extraCellsMap, bool onlyFindOne)
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>(2);
@@ -223,8 +223,8 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
 	private IStep? CheckType2(
-		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
-		scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in CellMap loop,
+		scoped in CellMap extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		short mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
@@ -286,8 +286,8 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
 	private IStep? CheckType3(
-		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
-		scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in CellMap loop,
+		scoped in CellMap extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in extraCellsMap)
@@ -329,7 +329,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 						continue;
 					}
 
-					if ((HousesMap[houseIndex] & EmptyCells) - (Cells)cells - loop is not (var elimMap and not []))
+					if ((HousesMap[houseIndex] & EmptyCells) - (CellMap)cells - loop is not (var elimMap and not []))
 					{
 						continue;
 					}
@@ -381,7 +381,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 						d2,
 						loop,
 						mask,
-						(Cells)cells
+						(CellMap)cells
 					);
 
 					if (onlyFindOne)
@@ -411,8 +411,8 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <returns>The step is worth.</returns>
 	private IStep? CheckType4(
-		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in Cells loop,
-		scoped in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		ICollection<UniqueLoopStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in CellMap loop,
+		scoped in CellMap extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		if (!extraCellsMap.InOneHouse)
 		{

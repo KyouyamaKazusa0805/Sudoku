@@ -11,7 +11,7 @@
 internal sealed record UniquePolygonType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Map,
+	scoped in CellMap Map,
 	short DigitsMask,
 	int ExtraDigit
 ) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)

@@ -20,7 +20,7 @@ public sealed class UserDefinedDisplayable :
 	/// Indicates the cells used.
 	/// </summary>
 	[JsonIgnore]
-	private Cells _cellsUsedMap = Cells.Empty;
+	private CellMap _cellsUsedMap = CellMap.Empty;
 
 	/// <summary>
 	/// Indicates the candidates used.

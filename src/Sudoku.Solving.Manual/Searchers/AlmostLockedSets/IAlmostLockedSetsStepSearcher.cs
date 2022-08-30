@@ -21,7 +21,7 @@ public interface IAlmostLockedSetsStepSearcher : IStepSearcher
 		var result = new List<AlmostLockedSet>();
 		foreach (int cell in BivalueCells)
 		{
-			result.Add(new(grid.GetCandidates(cell), Cells.Empty + cell, PeersMap[cell] & EmptyCells));
+			result.Add(new(grid.GetCandidates(cell), CellMap.Empty + cell, PeersMap[cell] & EmptyCells));
 		}
 
 		// Get all non-bi-value-cell ALSes.

@@ -16,7 +16,7 @@ internal sealed record HiddenUniqueRectangleStep(
 	ViewList Views,
 	int Digit1,
 	int Digit2,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	bool IsAvoidable,
 	Conjugate[] ConjugatePairs,
 	int AbsoluteOffset

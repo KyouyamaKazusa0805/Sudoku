@@ -21,11 +21,11 @@ public sealed class AlmostHiddenSet :
 	/// <param name="allDigitsMask">All digits appearing in the AHS structure..</param>
 	/// <param name="map">The map.</param>
 	/// <param name="digitsMap">The digits' distribution maps.</param>
-	internal AlmostHiddenSet(short digitMask, short allDigitsMask, scoped in Cells map, Cells?[] digitsMap)
+	internal AlmostHiddenSet(short digitMask, short allDigitsMask, scoped in CellMap map, CellMap?[] digitsMap)
 	{
 		(DigitsMask, Map, AllDigitsMask) = (digitMask, map, allDigitsMask);
 
-		var tempDic = new Dictionary<int, Cells>(9);
+		var tempDic = new Dictionary<int, CellMap>(9);
 		for (int i = 0; i < digitsMap.Length; i++)
 		{
 			if (digitsMap[i] is { } digitMap)
@@ -62,17 +62,17 @@ public sealed class AlmostHiddenSet :
 	public short DigitsMask { get; }
 
 	/// <inheritdoc/>
-	public Cells Map { get; }
+	public CellMap Map { get; }
 
 	/// <summary>
 	/// Indicates all weak links in this AHS. The return value is described as an array of quadruples,
 	/// indicating two digits, and cells used in the weak link.
 	/// </summary>
-	public (int Digit1, Cells Cells1, int Digit2, Cells Cells2)[] WeakLinks
+	public (int Digit1, CellMap Cells1, int Digit2, CellMap Cells2)[] WeakLinks
 	{
 		get
 		{
-			var result = new List<(int, Cells, int, Cells)>();
+			var result = new List<(int, CellMap, int, CellMap)>();
 			short unusedDigitsMask = (short)(AllDigitsMask & ~DigitsMask);
 			foreach (int[] digitPair in unusedDigitsMask.GetAllSets().GetSubsets(2))
 			{
@@ -103,7 +103,7 @@ public sealed class AlmostHiddenSet :
 	/// <summary>
 	/// Indicates a dictionary of elements, indicating the cells of digits' own distribution.
 	/// </summary>
-	public IReadOnlyDictionary<int, Cells> DigitsMap { get; }
+	public IReadOnlyDictionary<int, CellMap> DigitsMap { get; }
 
 
 	/// <inheritdoc/>
@@ -162,7 +162,7 @@ public sealed class AlmostHiddenSet :
 			{
 				foreach (int[] digitCombination in digitsMask.GetAllSets().GetSubsets(size))
 				{
-					var cells = Cells.Empty;
+					var cells = CellMap.Empty;
 					foreach (int digit in digitCombination)
 					{
 						cells |= candidatesMap[digit] & HousesMap[house];
@@ -179,7 +179,7 @@ public sealed class AlmostHiddenSet :
 					}
 
 					short allDigitsMask = grid.GetDigitsUnion(cells);
-					var finalMaps = new Cells?[9];
+					var finalMaps = new CellMap?[9];
 					for (int digit = 0; digit < 9; digit++)
 					{
 						if ((finalDigitsMask >> digit & 1) != 0 || (allDigitsMask >> digit & 1) != 0)

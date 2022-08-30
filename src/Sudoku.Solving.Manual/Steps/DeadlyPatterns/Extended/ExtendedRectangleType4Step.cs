@@ -11,7 +11,7 @@
 internal sealed record ExtendedRectangleType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask,
 	scoped in Conjugate ConjugatePair
 ) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty

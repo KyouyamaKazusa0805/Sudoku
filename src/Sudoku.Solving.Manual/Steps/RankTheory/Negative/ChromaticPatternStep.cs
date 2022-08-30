@@ -12,7 +12,7 @@ internal abstract record ChromaticPatternStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int[] Blocks,
-	scoped in Cells Pattern,
+	scoped in CellMap Pattern,
 	short DigitsMask
 ) : NegativeRankStep(Conclusions, Views), ILoopLikeStep, IStepWithRank
 {

@@ -57,7 +57,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 					Unsafe.CopyBlock(pSolution, pTempSolution, sizeof(char) * 81);
 				}
 
-				var totalMap = Cells.Empty;
+				var totalMap = CellMap.Empty;
 				do
 				{
 					int cell;
@@ -69,7 +69,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 					int r = cell / 9, c = cell % 9;
 
 					// Get new value of 'last'.
-					var tempMap = Cells.Empty;
+					var tempMap = CellMap.Empty;
 					foreach (int tCell in GetCells(selectedType, r, c))
 					{
 						pSolution[tCell] = '0';
@@ -104,7 +104,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 				pPuzzle[i] = '0';
 			}
 
-			var map = Cells.Empty;
+			var map = CellMap.Empty;
 			for (int i = 0; i < 16; i++)
 			{
 				while (true)

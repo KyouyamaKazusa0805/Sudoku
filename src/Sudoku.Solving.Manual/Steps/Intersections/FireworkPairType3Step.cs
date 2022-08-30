@@ -11,7 +11,7 @@
 internal sealed record FireworkPairType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
-	scoped in Cells Cells,
+	scoped in CellMap Cells,
 	short DigitsMask,
 	int EmptyRectangleBlock
 ) : FireworkStep(Conclusions, Views)

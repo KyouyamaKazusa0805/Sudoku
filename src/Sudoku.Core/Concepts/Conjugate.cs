@@ -37,7 +37,7 @@ public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Con
 	/// <param name="map">The map.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conjugate(scoped in Cells map, int digit) : this(map[0], map[1], digit)
+	public Conjugate(scoped in CellMap map, int digit) : this(map[0], map[1], digit)
 	{
 	}
 
@@ -81,7 +81,7 @@ public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Con
 	/// <summary>
 	/// Indicates the house that two cells lie in.
 	/// </summary>
-	/// <remarks><inheritdoc cref="Cells.CoveredHouses"/></remarks>
+	/// <remarks><inheritdoc cref="CellMap.CoveredHouses"/></remarks>
 	public int Houses
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -91,10 +91,10 @@ public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Con
 	/// <summary>
 	/// Indicates the whole map.
 	/// </summary>
-	public Cells Map
+	public CellMap Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.Empty + From + To;
+		get => CellMap.Empty + From + To;
 	}
 
 
@@ -112,7 +112,7 @@ public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Con
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{Cells.Empty + From} == {Cells.Empty + To}({Digit + 1})";
+	public override string ToString() => $"{CellMap.Empty + From} == {CellMap.Empty + To}({Digit + 1})";
 
 
 	/// <inheritdoc/>

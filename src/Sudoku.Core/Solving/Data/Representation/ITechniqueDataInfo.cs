@@ -10,5 +10,5 @@ public interface ITechniqueDataInfo<TTechniqueDataInfo>
 	/// <summary>
 	/// Indicates the cells used in this whole technique structure.
 	/// </summary>
-	public abstract Cells Map { get; }
+	public abstract CellMap Map { get; }
 }
