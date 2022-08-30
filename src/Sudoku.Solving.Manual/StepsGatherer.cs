@@ -27,13 +27,8 @@ public sealed class StepsGatherer :
 			switch (searcher)
 			{
 				case { Options.EnabledArea: var enabledArea } when !enabledArea.Flags(SearcherEnabledArea.Gathering):
+				case { IsNotSupportedForSukaku: true } when sukaku.Value:
 				{
-					// Skip the searcher that is disabled in this case.
-					continue;
-				}
-				case IUniqueRectangleStepSearcher when sukaku.Value:
-				{
-					// UR searchers will be disabled in sukaku mode.
 					continue;
 				}
 				case { Options.DisplayingLevel: var currentLevel }:
