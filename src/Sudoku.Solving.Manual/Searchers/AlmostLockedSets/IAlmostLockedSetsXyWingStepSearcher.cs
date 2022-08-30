@@ -100,10 +100,12 @@ internal sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmos
 					continue;
 				}
 
-				if (!AllowCollision
-					&& ((aMap & bMap) is not [] || (aMap & cMap) is not [] || (bMap & cMap) is not []))
+				if (!AllowCollision)
 				{
-					continue;
+					if (aMap & bMap || aMap & cMap || bMap & cMap)
+					{
+						continue;
+					}
 				}
 
 				foreach (int digit1 in mask1)
@@ -128,7 +130,7 @@ internal sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmos
 						foreach (int digit in digitsMask)
 						{
 							var elimMap = (aMap | bMap) % CandidatesMap[digit] - (aMap | bMap | cMap);
-							if (elimMap is [])
+							if (!elimMap)
 							{
 								continue;
 							}

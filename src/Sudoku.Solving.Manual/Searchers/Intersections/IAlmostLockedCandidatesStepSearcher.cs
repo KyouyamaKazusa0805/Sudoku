@@ -42,7 +42,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
-				if ((c & EmptyCells) is not [])
+				if (c & EmptyCells)
 				{
 					if (GetAll(accumulator, grid, size, baseSet, coverSet, a, b, c, onlyFindOne) is { } step1)
 					{
@@ -113,7 +113,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 			bool isOverlapped = false;
 			foreach (int digit in mask)
 			{
-				if ((ValuesMap[digit] & HousesMap[coverSet]) is not [])
+				if (ValuesMap[digit] & HousesMap[coverSet])
 				{
 					isOverlapped = true;
 					break;

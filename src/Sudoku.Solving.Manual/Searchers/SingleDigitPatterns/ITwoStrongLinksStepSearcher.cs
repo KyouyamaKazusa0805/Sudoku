@@ -52,7 +52,7 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 						cells2.Add(cell2);
 					}
 
-					if ((cells1 & cells2) is not [])
+					if (cells1 & cells2)
 					{
 						continue;
 					}

@@ -197,7 +197,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						// Do you know why we only check endo-fins instead of checking both exo-fins
 						// and endo-fins? Because here the incomplete structure don't contain
 						// any exo-fins at all.
-						if (endofins is not [])
+						if (endofins)
 						{
 							continue;
 						}
@@ -329,7 +329,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 								}
 
 								// Now actual base sets must overlap the current house.
-								if ((actualBaseMap & HousesMap[houseIndex]) is [])
+								if (!(actualBaseMap & HousesMap[houseIndex]))
 								{
 									goto BacktrackValue;
 								}
@@ -384,13 +384,13 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 								var exofins = actualBaseMap - nowCoverMap - endofins;
 								var elimMap = nowCoverMap - actualBaseMap & CandidatesMap[digit];
 								var fins = exofins | endofins;
-								if (fins is not [])
+								if (fins)
 								{
 									elimMap &= +fins & CandidatesMap[digit];
 								}
 
 								// Check whether the elimination exists.
-								if (elimMap is [])
+								if (!elimMap)
 								{
 									goto BacktrackValue;
 								}

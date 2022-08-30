@@ -118,7 +118,7 @@ internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepS
 						elimMap &= PeersMap[pivot];
 					}
 					elimMap &= CandidatesMap[zDigit];
-					if (elimMap is [])
+					if (!elimMap)
 					{
 						continue;
 					}

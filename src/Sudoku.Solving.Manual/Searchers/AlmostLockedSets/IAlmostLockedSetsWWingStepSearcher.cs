@@ -73,8 +73,9 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 						continue;
 					}
 
-					CellMap p1 = map1 % CandidatesMap[x], p2 = map2 % CandidatesMap[x];
-					if (p1 is [] || p2 is [])
+					var p1 = map1 % CandidatesMap[x];
+					var p2 = map2 % CandidatesMap[x];
+					if (!p1 || !p2)
 					{
 						// At least one of two ALSes can't see the node of the conjugate pair.
 						continue;
@@ -89,7 +90,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 						foreach (var conjugatePair in conjPairs)
 						{
 							var cpMap = conjugatePair.Map;
-							if ((cpMap & map1) is not [] || (cpMap & map2) is not [])
+							if (cpMap & map1 || cpMap & map2)
 							{
 								// Conjugate pair can't overlap with the ALS structure.
 								continue;

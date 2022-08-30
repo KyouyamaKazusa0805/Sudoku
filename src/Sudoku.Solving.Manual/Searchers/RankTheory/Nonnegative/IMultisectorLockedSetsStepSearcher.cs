@@ -140,7 +140,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 					}
 
 					elimMap &= CandidatesMap[digit];
-					if (elimMap is [])
+					if (!elimMap)
 					{
 						continue;
 					}

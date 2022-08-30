@@ -94,7 +94,7 @@ partial record GridImageGenerator
 	/// <param name="g">The graphics.</param>
 	partial void DrawFocusedCells(Graphics g)
 	{
-		if (FocusedCells is [])
+		if (!FocusedCells)
 		{
 			return;
 		}

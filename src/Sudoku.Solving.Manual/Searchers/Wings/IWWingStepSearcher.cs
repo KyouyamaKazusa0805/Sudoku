@@ -50,7 +50,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 				}
 
 				var intersection = PeersMap[c1] & PeersMap[c2];
-				if ((EmptyCells & intersection) is [])
+				if (!(EmptyCells & intersection))
 				{
 					// The structure doesn't contain any possible eliminations.
 					continue;
@@ -121,7 +121,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 						// Check for eliminations.
 						int anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
 						var elimMap = CandidatesMap[anotherDigit] & +(CellMap.Empty + c1 + c2);
-						if (elimMap is [])
+						if (!elimMap)
 						{
 							// No possible eliminations found.
 							continue;

@@ -207,7 +207,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 				// Now check extra cells.
 				int extraDigit = TrailingZeroCount(extraDigits);
 				var extraCellsMap = allCellsMap & CandidatesMap[extraDigit];
-				if (extraCellsMap is [])
+				if (!extraCellsMap)
 				{
 					continue;
 				}
@@ -398,7 +398,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 					}
 
 					var elimMap = (HousesMap[houseIndex] & EmptyCells) - allCellsMap - cells;
-					if (elimMap is [])
+					if (!elimMap)
 					{
 						continue;
 					}

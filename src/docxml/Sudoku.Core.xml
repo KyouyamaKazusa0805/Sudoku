@@ -1320,11 +1320,10 @@
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_LogicalNot(Sudoku.Concepts.CellMap@)">
             <summary>
-            Same as <see cref="M:Sudoku.Concepts.CellMap.op_OnesComplement(Sudoku.Concepts.CellMap@)"/>.
+            Determines whether the current collection is empty.
             </summary>
-            <param name="offsets">The cells to be negated.</param>
-            <returns>The negated instance.</returns>
-            <seealso cref="M:Sudoku.Concepts.CellMap.op_OnesComplement(Sudoku.Concepts.CellMap@)"/>
+            <param name="offsets">The cells to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_OnesComplement(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -1580,6 +1579,20 @@
             <param name="left">The first instance to be compared.</param>
             <param name="right">The second instance to be compared.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether they are not equal.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_True(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Determines whether the specified <see cref="T:Sudoku.Concepts.CellMap"/> collection is not empty.
+            </summary>
+            <param name="cells">The collection.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_False(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Determines whether the specified <see cref="T:Sudoku.Concepts.CellMap"/> collection is empty.
+            </summary>
+            <param name="cells">The collection.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IUnaryPlusOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_UnaryPlus(Sudoku.Concepts.CellMap)">
             <inheritdoc/>

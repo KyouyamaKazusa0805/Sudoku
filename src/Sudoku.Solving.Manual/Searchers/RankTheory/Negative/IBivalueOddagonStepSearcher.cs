@@ -179,7 +179,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		short otherDigitsMask = (short)(m & ~comparer);
 		foreach (int house in extraCellsMap.CoveredHouses)
 		{
-			if (((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[house]) is not [])
+			if ((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[house])
 			{
 				goto ReturnNull;
 			}

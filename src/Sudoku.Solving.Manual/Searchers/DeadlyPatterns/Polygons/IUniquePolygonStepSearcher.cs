@@ -549,7 +549,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 					bool flag = false;
 					foreach (int digit in combination)
 					{
-						if ((ValuesMap[digit] & HousesMap[houseIndex]) is not [])
+						if (ValuesMap[digit] & HousesMap[houseIndex])
 						{
 							flag = true;
 							break;

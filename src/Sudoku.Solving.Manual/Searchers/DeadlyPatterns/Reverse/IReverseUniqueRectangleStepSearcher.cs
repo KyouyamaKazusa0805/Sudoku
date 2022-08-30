@@ -54,7 +54,7 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 				continue;
 			}
 
-			if ((ValuesMap[d1] | ValuesMap[d2]) - pattern is not [])
+			if ((ValuesMap[d1] | ValuesMap[d2]) - pattern)
 			{
 				// The grid contains any other cells that is a value cell of digit used.
 				// In fact, we can continue checking the last cells recursively,

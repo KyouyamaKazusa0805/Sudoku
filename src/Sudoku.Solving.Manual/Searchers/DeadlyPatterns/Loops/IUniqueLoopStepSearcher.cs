@@ -234,7 +234,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 
 		int extraDigit = TrailingZeroCount(mask);
 		var elimMap = extraCellsMap % CandidatesMap[extraDigit];
-		if (elimMap is [])
+		if (!elimMap)
 		{
 			goto ReturnNull;
 		}
@@ -313,7 +313,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 		short otherDigitsMask = (short)(m & ~comparer);
 		foreach (int houseIndex in extraCellsMap.CoveredHouses)
 		{
-			if (((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[houseIndex]) is not [])
+			if ((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[houseIndex])
 			{
 				continue;
 			}

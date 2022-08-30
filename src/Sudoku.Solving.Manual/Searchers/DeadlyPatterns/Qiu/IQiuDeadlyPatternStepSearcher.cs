@@ -45,14 +45,14 @@ public interface IQiuDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 				for (int k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
 				{
 					var pairMap = CellMap.Empty + c1 + c2;
-					if ((baseLineMap & pairMap) is not [])
+					if (baseLineMap & pairMap)
 					{
 						continue;
 					}
 
 					var tempMapBlock = HousesMap[c1.ToHouseIndex(HouseType.Block)]
 						| HousesMap[c2.ToHouseIndex(HouseType.Block)];
-					if ((baseLineMap & tempMapBlock) is not [])
+					if (baseLineMap & tempMapBlock)
 					{
 						continue;
 					}
@@ -166,7 +166,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 					bool flag = false;
 					foreach (int digit in digits)
 					{
-						if ((square & CandidatesMap[digit]) is [])
+						if (!(square & CandidatesMap[digit]))
 						{
 							flag = true;
 							break;
@@ -492,7 +492,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 
 				int elimDigit = TrailingZeroCount(comparer & ~(1 << digit));
 				var elimMap = pair & CandidatesMap[elimDigit];
-				if (elimMap is [])
+				if (!elimMap)
 				{
 					continue;
 				}
@@ -562,7 +562,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		bool flag = false;
 		foreach (int digit in pairDigits)
 		{
-			if ((ValuesMap[digit] & HousesMap[block]) is not [])
+			if (ValuesMap[digit] & HousesMap[block])
 			{
 				flag = true;
 				break;

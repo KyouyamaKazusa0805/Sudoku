@@ -54,7 +54,7 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 					int block = interCell.ToHouseIndex(HouseType.Block);
 					var houseMap = HousesMap[block];
 					var checkingMap = houseMap - unionMap & houseMap;
-					if ((checkingMap & CandidatesMap[d1]) is not [] || (checkingMap & CandidatesMap[d2]) is not [])
+					if (checkingMap & CandidatesMap[d1] || checkingMap & CandidatesMap[d2])
 					{
 						continue;
 					}

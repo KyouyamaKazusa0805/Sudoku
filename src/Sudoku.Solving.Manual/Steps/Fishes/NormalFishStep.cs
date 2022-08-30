@@ -136,6 +136,6 @@ internal sealed record NormalFishStep(
 	internal string FinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Fins is [] ? string.Empty : $"{FinSnippet}{Fins}";
+		get => Fins ? $"{FinSnippet}{Fins}" : string.Empty;
 	}
 }

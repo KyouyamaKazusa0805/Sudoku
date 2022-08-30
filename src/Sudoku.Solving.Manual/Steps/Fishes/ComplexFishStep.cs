@@ -181,14 +181,14 @@ internal sealed record ComplexFishStep(
 	internal string ExofinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Exofins is [] ? string.Empty : $"f{Exofins} ";
+		get => Exofins ? $"f{Exofins} " : string.Empty;
 	}
 
 	[FormatItem]
 	internal string EndofinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Endofins is [] ? string.Empty : $"ef{Endofins} ";
+		get => Endofins ? $"ef{Endofins} " : string.Empty;
 	}
 
 

@@ -65,7 +65,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 			// Gather.
 			for (int house = 9; house < 27; house++)
 			{
-				if ((HousesMap[house] & CandidatesMap[digit]) is not [])
+				if (HousesMap[house] & CandidatesMap[digit])
 				{
 #pragma warning disable CA2014
 					if (house < 18)
@@ -201,13 +201,13 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 
 						// Cover set shouldn't overlap with the block of all fins lying in.
 						int finBlock = TrailingZeroCount(blockMask);
-						if ((coverLine & HousesMap[finBlock]) is [])
+						if (!(coverLine & HousesMap[finBlock]))
 						{
 							continue;
 						}
 
 						// Don't intersect.
-						if ((HousesMap[finBlock] & coverLine - baseLine) is [])
+						if (!(HousesMap[finBlock] & coverLine - baseLine))
 						{
 							continue;
 						}
@@ -289,7 +289,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 	{
 		// Get the highlight cells (necessary).
 		var cellOffsets = new List<CellViewNode>();
-		var candidateOffsets = fins is [] ? null : new List<CandidateViewNode>();
+		var candidateOffsets = fins ? new List<CandidateViewNode>() : null;
 		foreach (int baseSet in baseSets)
 		{
 			foreach (int cell in HousesMap[baseSet])

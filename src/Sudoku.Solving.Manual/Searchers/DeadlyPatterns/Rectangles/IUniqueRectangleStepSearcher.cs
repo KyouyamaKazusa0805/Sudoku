@@ -681,7 +681,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		short otherDigitsMask = (short)(mask ^ comparer);
 		foreach (int houseIndex in otherCellsMap.CoveredHouses)
 		{
-			if (((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[houseIndex]) is not [])
+			if ((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[houseIndex])
 			{
 				return;
 			}
@@ -2887,7 +2887,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								// Now check eliminations.
 								int elimDigit = TrailingZeroCount(m);
 								var elimMap = +(CellMap.Empty + c1 + c2 + c3) & CandidatesMap[elimDigit];
-								if (elimMap is [])
+								if (!elimMap)
 								{
 									continue;
 								}
@@ -3010,7 +3010,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									// Now check eliminations.
 									int elimDigit = TrailingZeroCount(m);
 									var elimMap = +(CellMap.Empty + c1 + c2 + c3 + c4) & CandidatesMap[elimDigit];
-									if (elimMap is [])
+									if (!elimMap)
 									{
 										continue;
 									}
@@ -3495,7 +3495,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			{
 				int block = targetCell.ToHouseIndex(HouseType.Block);
 				var bivalueCellsToCheck = (PeersMap[targetCell] & HousesMap[block] & BivalueCells) - cells;
-				if (bivalueCellsToCheck is [])
+				if (!bivalueCellsToCheck)
 				{
 					continue;
 				}
@@ -3810,71 +3810,67 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			var guardian1 = houseCells - cells & CandidatesMap[d1];
 			var guardian2 = houseCells - cells & CandidatesMap[d2];
-			if (!(guardian1 is [] ^ guardian2 is []))
+			if (!guardian1 ^ !guardian2)
 			{
-				// Only one digit can contain guardians.
-				continue;
-			}
-
-			int guardianDigit = -1;
-			CellMap? targetElimMap = null, targetGuardianMap = null;
-			if (guardian1 is not [] && (+guardian1 & CandidatesMap[d1]) is var a and not [])
-			{
-				targetElimMap = a;
-				guardianDigit = d1;
-				targetGuardianMap = guardian1;
-			}
-			else if (guardian2 is not [] && (+guardian2 & CandidatesMap[d2]) is var b and not [])
-			{
-				targetElimMap = b;
-				guardianDigit = d2;
-				targetGuardianMap = guardian2;
-			}
-
-			if (targetElimMap is not { } elimMap || targetGuardianMap is not { } guardianMap
-				|| guardianDigit == -1)
-			{
-				continue;
-			}
-
-			var candidateOffsets = new List<CandidateViewNode>(16);
-			foreach (int cell in urCells)
-			{
-				if (CandidatesMap[d1].Contains(cell))
+				int guardianDigit = -1;
+				CellMap? targetElimMap = null, targetGuardianMap = null;
+				if (guardian1 is not [] && (+guardian1 & CandidatesMap[d1]) is var a and not [])
 				{
-					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
+					targetElimMap = a;
+					guardianDigit = d1;
+					targetGuardianMap = guardian1;
 				}
-				if (CandidatesMap[d2].Contains(cell))
+				else if (guardian2 is not [] && (+guardian2 & CandidatesMap[d2]) is var b and not [])
 				{
-					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
+					targetElimMap = b;
+					guardianDigit = d2;
+					targetGuardianMap = guardian2;
 				}
-			}
-			foreach (int cell in guardianMap)
-			{
-				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + guardianDigit));
-			}
 
-			accumulator.Add(
-				new UniqueRectangleWithGuardianStep(
-					from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
-					ImmutableArray.Create(
-						View.Empty
-							| candidateOffsets
-							| new HouseViewNode[]
-							{
-								new(DisplayColorKind.Normal, houseCombination[0]),
-								new(DisplayColorKind.Normal, houseCombination[1])
-							}
-					),
-					d1,
-					d2,
-					(CellMap)urCells,
-					guardianMap,
-					guardianDigit,
-					IsIncomplete(candidateOffsets),
-					index
-				)
-			);
+				if (targetElimMap is not { } elimMap || targetGuardianMap is not { } guardianMap || guardianDigit == -1)
+				{
+					continue;
+				}
+
+				var candidateOffsets = new List<CandidateViewNode>(16);
+				foreach (int cell in urCells)
+				{
+					if (CandidatesMap[d1].Contains(cell))
+					{
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d1));
+					}
+					if (CandidatesMap[d2].Contains(cell))
+					{
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
+					}
+				}
+				foreach (int cell in guardianMap)
+				{
+					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + guardianDigit));
+				}
+
+				accumulator.Add(
+					new UniqueRectangleWithGuardianStep(
+						from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
+						ImmutableArray.Create(
+							View.Empty
+								| candidateOffsets
+								| new HouseViewNode[]
+								{
+									new(DisplayColorKind.Normal, houseCombination[0]),
+									new(DisplayColorKind.Normal, houseCombination[1])
+								}
+						),
+						d1,
+						d2,
+						(CellMap)urCells,
+						guardianMap,
+						guardianDigit,
+						IsIncomplete(candidateOffsets),
+						index
+					)
+				);
+			}
 		}
 	}
 
@@ -4238,7 +4234,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				int houseIndex = baseCell.ToHouseIndex(houseType);
 
 				// If the house doesn't overlap with the specified house, just skip it.
-				if ((cellsThatTwoOtherCellsBothCanSee & HousesMap[houseIndex]) is [])
+				if (!(cellsThatTwoOtherCellsBothCanSee & HousesMap[houseIndex]))
 				{
 					continue;
 				}

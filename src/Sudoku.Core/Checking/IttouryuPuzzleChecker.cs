@@ -40,7 +40,7 @@ public static class IttouryuPuzzleChecker
 				{
 					int house = cell.ToHouseIndex(houseType);
 					var houseCells = HousesMap[house];
-					if ((tempGrid.ValuesMap[digit] & houseCells) is not [])
+					if (tempGrid.ValuesMap[digit] & houseCells)
 					{
 						// The current house already contains the value of the current digit.
 						continue;

@@ -55,7 +55,7 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 		{
 			// If the cells C doesn't contain any empty cells,
 			// the location won't contain any locked candidates.
-			if ((EmptyCells & c) is [])
+			if (!(EmptyCells & c))
 			{
 				continue;
 			}
@@ -77,10 +77,10 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 			foreach (int digit in m)
 			{
 				// Check whether the digit contains any eliminations.
-				(r[0], r[1], var elimMap) = (a & CandidatesMap[digit]) is []
-					? (baseSet, coverSet, b & CandidatesMap[digit])
-					: (coverSet, baseSet, a & CandidatesMap[digit]);
-				if (elimMap is [])
+				(r[0], r[1], var elimMap) = a & CandidatesMap[digit]
+					? (coverSet, baseSet, a & CandidatesMap[digit])
+					: (baseSet, coverSet, b & CandidatesMap[digit]);
+				if (!elimMap)
 				{
 					continue;
 				}

@@ -105,7 +105,7 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 					continue;
 				}
 
-				if ((aMap & bMap) is not [])
+				if (aMap & bMap)
 				{
 					continue;
 				}
@@ -303,7 +303,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 
 					// Firework pair type 1 found.
 					var elimMap = PeersMap[extraCell1] & PeersMap[extraCell2] & EmptyCells;
-					if (elimMap is [])
+					if (!elimMap)
 					{
 						// No elimination cells.
 						continue;
@@ -595,7 +595,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 				var elimMap = (HousesMap[pivot.ToHouseIndex(HouseType.Block)] & fullTwoDigitsMap)
 					- HousesMap[(CellMap.Empty + pivot + cell1).CoveredLine]
 					- HousesMap[(CellMap.Empty + pivot + cell2).CoveredLine];
-				if (elimMap is [])
+				if (!elimMap)
 				{
 					// No elimination cells found.
 					continue;

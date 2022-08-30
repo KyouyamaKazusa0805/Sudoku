@@ -80,6 +80,9 @@ public struct CellMap :
     public static CellMap[] operator |(scoped in CellMap cell, int subsetSize);
     public static Candidates operator *(in CellMap @base, int digit);
     public static Candidates operator checked *(in CellMap @base, int digit);
+    public static bool operator !(scoped in CellMap offsets);
+    public static bool operator true(scoped in CellMap offsets);
+    public static bool operator false(scoped in CellMap offsets);
     public static bool operator ==(scoped in CellMap left, scoped in CellMap right);
     public static bool operator !=(scoped in CellMap left, scoped in CellMap right);
     public static bool operator >>(scoped in CellMap left, scoped in CellMap right);

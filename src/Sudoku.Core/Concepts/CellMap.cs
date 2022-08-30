@@ -156,15 +156,15 @@ public unsafe struct CellMap :
 		get
 		{
 			short result = 0;
-			if ((this & HousesMap[0]) is not []) result |= 1;
-			if ((this & HousesMap[1]) is not []) result |= 2;
-			if ((this & HousesMap[2]) is not []) result |= 4;
-			if ((this & HousesMap[3]) is not []) result |= 8;
-			if ((this & HousesMap[4]) is not []) result |= 16;
-			if ((this & HousesMap[5]) is not []) result |= 32;
-			if ((this & HousesMap[6]) is not []) result |= 64;
-			if ((this & HousesMap[7]) is not []) result |= 128;
-			if ((this & HousesMap[8]) is not []) result |= 256;
+			if (this & HousesMap[0]) result |= 1;
+			if (this & HousesMap[1]) result |= 2;
+			if (this & HousesMap[2]) result |= 4;
+			if (this & HousesMap[3]) result |= 8;
+			if (this & HousesMap[4]) result |= 16;
+			if (this & HousesMap[5]) result |= 32;
+			if (this & HousesMap[6]) result |= 64;
+			if (this & HousesMap[7]) result |= 128;
+			if (this & HousesMap[8]) result |= 256;
 
 			return result;
 		}
@@ -183,15 +183,15 @@ public unsafe struct CellMap :
 		get
 		{
 			short result = 0;
-			if ((this & HousesMap[ 9]) is not []) result |= 1;
-			if ((this & HousesMap[10]) is not []) result |= 2;
-			if ((this & HousesMap[11]) is not []) result |= 4;
-			if ((this & HousesMap[12]) is not []) result |= 8;
-			if ((this & HousesMap[13]) is not []) result |= 16;
-			if ((this & HousesMap[14]) is not []) result |= 32;
-			if ((this & HousesMap[15]) is not []) result |= 64;
-			if ((this & HousesMap[16]) is not []) result |= 128;
-			if ((this & HousesMap[17]) is not []) result |= 256;
+			if (this & HousesMap[9]) result |= 1;
+			if (this & HousesMap[10]) result |= 2;
+			if (this & HousesMap[11]) result |= 4;
+			if (this & HousesMap[12]) result |= 8;
+			if (this & HousesMap[13]) result |= 16;
+			if (this & HousesMap[14]) result |= 32;
+			if (this & HousesMap[15]) result |= 64;
+			if (this & HousesMap[16]) result |= 128;
+			if (this & HousesMap[17]) result |= 256;
 
 			return result;
 		}
@@ -210,15 +210,15 @@ public unsafe struct CellMap :
 		get
 		{
 			short result = 0;
-			if ((this & HousesMap[18]) is not []) result |= 1;
-			if ((this & HousesMap[19]) is not []) result |= 2;
-			if ((this & HousesMap[20]) is not []) result |= 4;
-			if ((this & HousesMap[21]) is not []) result |= 8;
-			if ((this & HousesMap[22]) is not []) result |= 16;
-			if ((this & HousesMap[23]) is not []) result |= 32;
-			if ((this & HousesMap[24]) is not []) result |= 64;
-			if ((this & HousesMap[25]) is not []) result |= 128;
-			if ((this & HousesMap[26]) is not []) result |= 256;
+			if (this & HousesMap[18]) result |= 1;
+			if (this & HousesMap[19]) result |= 2;
+			if (this & HousesMap[20]) result |= 4;
+			if (this & HousesMap[21]) result |= 8;
+			if (this & HousesMap[22]) result |= 16;
+			if (this & HousesMap[23]) result |= 32;
+			if (this & HousesMap[24]) result |= 64;
+			if (this & HousesMap[25]) result |= 128;
+			if (this & HousesMap[26]) result |= 256;
 
 			return result;
 		}
@@ -316,7 +316,7 @@ public unsafe struct CellMap :
 	{
 		get
 		{
-			if (this is [])
+			if (!this)
 			{
 				return Array.Empty<int>();
 			}
@@ -361,7 +361,7 @@ public unsafe struct CellMap :
 	{
 		get
 		{
-			if (this is [])
+			if (!this)
 			{
 				return -1;
 			}
@@ -409,7 +409,7 @@ public unsafe struct CellMap :
 	{
 		ArgumentNullException.ThrowIfNull(arr);
 
-		if (this is [])
+		if (!this)
 		{
 			return;
 		}
@@ -834,13 +834,12 @@ public unsafe struct CellMap :
 	}
 
 	/// <summary>
-	/// Same as <see cref="operator ~(in CellMap)"/>.
+	/// Determines whether the current collection is empty.
 	/// </summary>
-	/// <param name="offsets">The cells to be negated.</param>
-	/// <returns>The negated instance.</returns>
-	/// <seealso cref="operator ~(in CellMap)"/>
+	/// <param name="offsets">The cells to be checked.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator !(scoped in CellMap offsets) => ~offsets;
+	public static bool operator !(scoped in CellMap offsets) => offsets ? false : true;
 
 	/// <summary>
 	/// Reverse status for all offsets, which means all <see langword="true"/> bits
@@ -1257,6 +1256,22 @@ public unsafe struct CellMap :
 	/// <returns>A <see cref="bool"/> result indicating whether they are not equal.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(scoped in CellMap left, scoped in CellMap right) => !(left == right);
+
+	/// <summary>
+	/// Determines whether the specified <see cref="CellMap"/> collection is not empty.
+	/// </summary>
+	/// <param name="cells">The collection.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator true(scoped in CellMap cells) => cells.Count != 0;
+
+	/// <summary>
+	/// Determines whether the specified <see cref="CellMap"/> collection is empty.
+	/// </summary>
+	/// <param name="cells">The collection.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator false(scoped in CellMap cells) => cells.Count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
