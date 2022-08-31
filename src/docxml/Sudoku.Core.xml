@@ -5144,6 +5144,11 @@
               Looks up a localized string similar to total.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.AntiDiagonalSymmetry">
+            <summary>
+              Looks up a localized string similar to Anti-diagonal.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.AvoidableRectangle2D">
             <summary>
               Looks up a localized string similar to Avoidable Rectangle + 2D.
@@ -5324,6 +5329,11 @@
               Looks up a localized string similar to Cell Forcing Chains.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.CentralSymmetry">
+            <summary>
+              Looks up a localized string similar to Central.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.ChineseComma">
             <summary>
               Looks up a localized string similar to , .
@@ -5382,6 +5392,11 @@
         <member name="P:Sudoku.Resources.Resources.DeathBlossomCellType">
             <summary>
               Looks up a localized string similar to Cell Death Blossom.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.DiagonalSymmetry">
+            <summary>
+              Looks up a localized string similar to Diagonal.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.DiscontinuousNiceLoop">
@@ -6017,6 +6032,11 @@
         <member name="P:Sudoku.Resources.Resources.NodeCollision">
             <summary>
               Looks up a localized string similar to Node Collision.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.NoMappingRelation">
+            <summary>
+              Looks up a localized string similar to No mapping.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.OrKeywordWithSpaces">
@@ -6674,6 +6694,11 @@
               Looks up a localized string similar to {Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_GurthSymmetricalPlacementStep">
+            <summary>
+              Looks up a localized string similar to {Name}: The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {SymmetryTypeStr}, mapping relations: {MappingStr} =&gt;  {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_HiddenSingle">
             <summary>
               Looks up a localized string similar to {Name}: {CellStr} = {DigitStr} in {HouseStr}.
@@ -6776,7 +6801,7 @@
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_RwDeadlyPatternStep">
             <summary>
-              Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}.
+              Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_SueDeCoq3DimensionStep">
@@ -7914,6 +7939,41 @@
             <summary>
             Defines an attribute annotation that can be applied to a step searcher type,
             indicating the step searcher instance is not supported in sukaku solving mode.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature">
+            <summary>
+            Defines one or more step displaying feature, which controls the extra information about target displaying control.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature.None">
+            <summary>
+            Indicates the feature is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature.HideDifficultyRating">
+            <summary>
+            Indicates the feature is to hide difficulty rating value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute">
+            <summary>
+            Represents an attribute that can modify step displaying features,
+            which can control the target displaying UI controls.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.#ctor(Sudoku.Runtime.DisplayingServices.StepDisplayingFeature)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute"/> instance via the specified runtime features.
+            </summary>
+            <param name="features">
+            The runtime features. If you want to apply multiple different kinds of features,
+            just use <c><see langword="operator"/> |</c>, such as the expression <c></c>.
+            </param>
+        </member>
+        <member name="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.Features">
+            <summary>
+            Indicates the features that can be used on rendering and displaying runtime UI controls.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.BacktrackingSolver">
@@ -11067,9 +11127,6 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.IInvalidStep"/>
         </member>
-        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#ShowDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#Name">
             <inheritdoc/>
         </member>
@@ -12568,9 +12625,6 @@
         </member>
         <member name="P:Sudoku.Solving.Step.Views">
             <summary><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Views" path="/summary"/></summary>
-        </member>
-        <member name="P:Sudoku.Solving.Step.ShowDifficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Step.Name">
             <inheritdoc/>

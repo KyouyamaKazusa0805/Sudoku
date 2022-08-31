@@ -36,7 +36,7 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 		{
 			var (chute, isRow, _) = Chutes[chuteIndex];
 			var elimHouseType = isRow ? HouseType.Column : HouseType.Row;
-			int valueDigitsSpannedHousesCount = 0;
+			int emptyMinilineSpannedHousesCount = 0;
 			short valueDigitsMask = 0;
 			bool isPassedPrechecking = true;
 			var availableElimMap = CellMap.Empty;
@@ -45,6 +45,7 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 				var miniline = HousesMap[i] & chute;
 				if (miniline - EmptyCells is not (var currentNonemptyCells and not []))
 				{
+					emptyMinilineSpannedHousesCount++;
 					continue;
 				}
 
@@ -59,20 +60,20 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 
 				switch (nonemptyCells.Count)
 				{
-					case 0:
-					{
-						continue;
-					}
 					case 1:
 					{
 						isPassedPrechecking = false;
 						goto CheckFlag;
 					}
+					case 2:
+					{
+						emptyMinilineSpannedHousesCount++;
+						break;
+					}
 				}
 
 				availableElimMap |= miniline & EmptyCells;
 				valueDigitsMask |= grid.GetDigitsUnion(nonemptyCells);
-				valueDigitsSpannedHousesCount++;
 			}
 
 		CheckFlag:
@@ -81,7 +82,7 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 				continue;
 			}
 
-			if (PopCount((uint)valueDigitsMask) > valueDigitsSpannedHousesCount + 2)
+			if (emptyMinilineSpannedHousesCount >= PopCount((uint)(Grid.MaxCandidatesMask & ~valueDigitsMask)) + 2)
 			{
 				continue;
 			}

@@ -27,9 +27,6 @@ public interface IInvalidStep : IStep
 file sealed class InvalidStep : IInvalidStep
 {
 	/// <inheritdoc/>
-	bool IStep.ShowDifficulty => throw new NotSupportedException();
-
-	/// <inheritdoc/>
 	string IStep.Name => throw new NotSupportedException();
 
 	/// <inheritdoc/>

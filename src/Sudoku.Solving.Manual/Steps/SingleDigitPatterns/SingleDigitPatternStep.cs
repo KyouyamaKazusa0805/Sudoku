@@ -10,9 +10,6 @@ internal abstract record SingleDigitPatternStep(ConclusionList Conclusions, View
 	Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public sealed override bool ShowDifficulty => base.ShowDifficulty;
-
-	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>

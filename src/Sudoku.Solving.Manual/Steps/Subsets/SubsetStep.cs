@@ -17,9 +17,6 @@ internal abstract record SubsetStep(
 ) : Step(Conclusions, Views), IStepWithSize, IStepWithRank, IElementaryStep
 {
 	/// <inheritdoc/>
-	public sealed override bool ShowDifficulty => base.ShowDifficulty;
-
-	/// <inheritdoc/>
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>

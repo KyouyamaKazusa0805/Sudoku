@@ -1429,7 +1429,7 @@
     <value>{Name}: Cells {CellsStr} of digits {DigitsStr}, with an extra digit {ExtraDigitStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_RwDeadlyPatternStep" xml:space="preserve">
-    <value>{Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}</value>
+    <value>{Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="RwDeadlyPattern" xml:space="preserve">
     <value>RW's Deadly Pattern</value>
@@ -1445,5 +1445,20 @@
   </data>
   <data name="TechniqueFormat_DeathBlossomCellTypeStep" xml:space="preserve">
     <value>{Name}: No matter what digit will be filled in cell {CellStr}, the related ALSes {AlsesStr} will keep at least one digit {DigitStr} being true =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
+    <value>{Name}: The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {SymmetryTypeStr}, mapping relations: {MappingStr} =&gt;  {ElimStr}</value>
+  </data>
+  <data name="NoMappingRelation" xml:space="preserve">
+    <value>No mapping</value>
+  </data>
+  <data name="AntiDiagonalSymmetry" xml:space="preserve">
+    <value>Anti-diagonal</value>
+  </data>
+  <data name="CentralSymmetry" xml:space="preserve">
+    <value>Central</value>
+  </data>
+  <data name="DiagonalSymmetry" xml:space="preserve">
+    <value>Diagonal</value>
   </data>
 </root>

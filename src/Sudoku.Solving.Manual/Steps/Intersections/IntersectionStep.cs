@@ -8,9 +8,6 @@
 internal abstract record IntersectionStep(ConclusionList Conclusions, ViewList Views) : Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public sealed override bool ShowDifficulty => base.ShowDifficulty;
-
-	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>

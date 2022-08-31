@@ -23,6 +23,7 @@
 	SearcherConfiguration<RwDeadlyPatternStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<EmptyRectangleIntersectionPairStepSearcher>(SearcherDisplayingLevel.B),
 	SearcherConfiguration<FireworkStepSearcher>(SearcherDisplayingLevel.B),
+	SearcherConfiguration<GurthSymmetricalPlacementStepSearcher>(SearcherDisplayingLevel.A),
 	SearcherConfiguration<GuardianStepSearcher>(SearcherDisplayingLevel.C),
 	SearcherConfiguration<ComplexFishStepSearcher>(SearcherDisplayingLevel.C),
 	SearcherConfiguration<BivalueOddagonStepSearcher>(SearcherDisplayingLevel.C),

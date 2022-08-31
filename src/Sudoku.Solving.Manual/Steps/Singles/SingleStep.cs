@@ -12,9 +12,6 @@ internal abstract record SingleStep(ConclusionList Conclusions, ViewList Views, 
 	IElementaryStep
 {
 	/// <inheritdoc/>
-	public sealed override bool ShowDifficulty => base.ShowDifficulty;
-
-	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>

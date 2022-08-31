@@ -17,9 +17,6 @@ internal abstract record FishStep(
 ) : Step(Conclusions, Views), IStepWithSize, IStepWithRank
 {
 	/// <inheritdoc/>
-	public sealed override bool ShowDifficulty => base.ShowDifficulty;
-
-	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>

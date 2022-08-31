@@ -277,6 +277,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anti-diagonal.
+        /// </summary>
+        internal static string AntiDiagonalSymmetry {
+            get {
+                return ResourceManager.GetString("AntiDiagonalSymmetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle + 2D.
         /// </summary>
         internal static string AvoidableRectangle2D {
@@ -601,6 +610,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Central.
+        /// </summary>
+        internal static string CentralSymmetry {
+            get {
+                return ResourceManager.GetString("CentralSymmetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , .
         /// </summary>
         internal static string ChineseComma {
@@ -705,6 +723,15 @@ namespace Sudoku.Resources {
         internal static string DeathBlossomCellType {
             get {
                 return ResourceManager.GetString("DeathBlossomCellType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diagonal.
+        /// </summary>
+        internal static string DiagonalSymmetry {
+            get {
+                return ResourceManager.GetString("DiagonalSymmetry", resourceCulture);
             }
         }
         
@@ -1848,6 +1875,15 @@ namespace Sudoku.Resources {
         internal static string NodeCollision {
             get {
                 return ResourceManager.GetString("NodeCollision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No mapping.
+        /// </summary>
+        internal static string NoMappingRelation {
+            get {
+                return ResourceManager.GetString("NoMappingRelation", resourceCulture);
             }
         }
         
@@ -3031,6 +3067,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {SymmetryTypeStr}, mapping relations: {MappingStr} =&gt;  {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_GurthSymmetricalPlacementStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_GurthSymmetricalPlacementStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr} in {HouseStr}.
         /// </summary>
         internal static string TechniqueFormat_HiddenSingle {
@@ -3211,7 +3256,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimsStr}.
+        ///   Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_RwDeadlyPatternStep {
             get {

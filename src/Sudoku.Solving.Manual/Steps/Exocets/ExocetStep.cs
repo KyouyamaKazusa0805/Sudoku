@@ -15,9 +15,6 @@ internal abstract record ExocetStep(
 ) : Step(GatherConclusions(Eliminations), Views), IStepWithRank
 {
 	/// <inheritdoc/>
-	public sealed override bool ShowDifficulty => base.ShowDifficulty;
-
-	/// <inheritdoc/>
 	public virtual int Rank => 0;
 
 	/// <inheritdoc/>

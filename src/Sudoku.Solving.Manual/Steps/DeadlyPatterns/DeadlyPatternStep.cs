@@ -9,9 +9,6 @@ internal abstract record DeadlyPatternStep(ConclusionList Conclusions, ViewList 
 	Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public sealed override bool ShowDifficulty => base.ShowDifficulty;
-
-	/// <inheritdoc/>
 	public override string Name => base.Name;
 
 	/// <inheritdoc/>

@@ -1727,7 +1727,7 @@
     <value>{Name}：数字 {DigitsStr}，位于单元格 {CellsStr} 里，并带有额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_RwDeadlyPatternStep" xml:space="preserve">
-    <value>{Name}：单元格 {CellsStr}，数字 {DigitsStr} =&gt; {ElimsStr}</value>
+    <value>{Name}：单元格 {CellsStr}，数字 {DigitsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="RwDeadlyPattern" xml:space="preserve">
     <value>RW 致命结构</value>
@@ -1745,5 +1745,20 @@
   </data>
   <data name="TechniqueFormat_DeathBlossomCellTypeStep" xml:space="preserve">
     <value>{Name}：不论单元格 {CellStr} 填什么数字，相关的 ALS {AlsesStr} 至少会保证有一个 {DigitStr} 填入 =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
+    <value>{Name}：该技巧必须保证对称性，否则题目会无解。对称规则：{SymmetryTypeStr}，对称映射关系：{MappingStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="NoMappingRelation" xml:space="preserve">
+    <value>无对称映射关系</value>
+  </data>
+  <data name="AntiDiagonalSymmetry" xml:space="preserve">
+    <value>撇对角线对称（反对角线）</value>
+  </data>
+  <data name="CentralSymmetry" xml:space="preserve">
+    <value>中心对称</value>
+  </data>
+  <data name="DiagonalSymmetry" xml:space="preserve">
+    <value>捺对角线对称（正对角线）</value>
   </data>
 </root>

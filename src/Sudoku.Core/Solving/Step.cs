@@ -8,9 +8,6 @@
 internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) : IStep
 {
 	/// <inheritdoc/>
-	public virtual bool ShowDifficulty => true;
-
-	/// <inheritdoc/>
 	public virtual string Name => R[TechniqueCode.ToString()]!;
 
 	/// <inheritdoc/>

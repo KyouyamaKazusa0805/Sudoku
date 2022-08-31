@@ -18,7 +18,13 @@ public interface IStep : IDisplayable
 	/// </para>
 	/// <para>The default value is <see langword="true"/>.</para>
 	/// </summary>
-	public abstract bool ShowDifficulty { get; }
+	public sealed bool ShowDifficulty
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get
+			=> GetType().GetCustomAttribute<StepDisplayingFeatureAttribute>() is { Features: var f }
+			&& !f.Flags(StepDisplayingFeature.HideDifficultyRating);
+	}
 
 	/// <summary>
 	/// Indicates the technique name. The technique name are all stored in the resource dictionary,

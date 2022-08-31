@@ -3673,6 +3673,59 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.Options">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IGurthSymmetricalPlacementStepSearcher">
+            <summary>
+            Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Gurth's Symmetrical Placement (Basic Type)</item>
+            <!--<item>Gurth's Symmetrical Placement (Shuffling Type)</item>-->
+            </list>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.GurthSymmetricalPlacementStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Manual.Searchers.IGurthSymmetricalPlacementStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.GurthSymmetricalPlacementStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.GurthSymmetricalPlacementStepSearcher.RecordHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Presentation.Nodes.CellViewNode},System.Nullable{System.Int32}[])">
+            <summary>
+            Records all possible highlight cells.
+            </summary>
+            <param name="grid">The grid as reference.</param>
+            <param name="cellOffsets">The target collection.</param>
+            <param name="mapping">The mapping relation.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.GurthSymmetricalPlacementStepSearcher.CheckDiagonal(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks for diagonal symmetry steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.GurthSymmetricalPlacementStepSearcher.CheckAntiDiagonal(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks for anti-diagonal symmetry steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.GurthSymmetricalPlacementStepSearcher.CheckCentral(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks for central symmetry steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.GurthSymmetricalPlacementStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.ISymmetryStepSearcher">
+            <summary>
+            Defines a step searcher that searches for symmetrical steps.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IIrregularWingStepSearcher">
             <summary>
             Represents for a step searcher that searches for irregular wing steps.
@@ -3967,9 +4020,6 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsStep.ShowDifficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsStep.Name">
             <inheritdoc/>
@@ -4613,9 +4663,6 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatternStep.ShowDifficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatternStep.Name">
             <inheritdoc/>
@@ -7042,9 +7089,6 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.Eliminations">
             <summary>Indicates all possible eliminations.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.ShowDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.Rank">
             <inheritdoc/>
         </member>
@@ -7305,9 +7349,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FishStep.CoverSetsMask">
             <summary>Indicates the mask that contains the cover sets.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.FishStep.ShowDifficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FishStep.Name">
             <inheritdoc/>
@@ -7736,9 +7777,6 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.IntersectionStep.ShowDifficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.IntersectionStep.Name">
             <inheritdoc/>
@@ -8602,9 +8640,6 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.ShowDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.Name">
             <inheritdoc/>
         </member>
@@ -8682,9 +8717,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatternStep.Digit">
             <summary>Indicates the digit used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatternStep.ShowDifficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatternStep.Name">
             <inheritdoc/>
@@ -8868,9 +8900,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleStep.Digit">
             <summary>Indicates the digit used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SingleStep.ShowDifficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleStep.Name">
             <inheritdoc/>
@@ -9265,9 +9294,6 @@
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.DigitsMask">
             <summary>The mask that contains all digits used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.ShowDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.Size">
             <inheritdoc/>
         </member>
@@ -9293,6 +9319,95 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.GurthSymmetricalPlacementStep">
+            <summary>
+            Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="SymmetryType">
+            Indicates the symmetry type used. The supported value can only be:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.AntiDiagonal"/></item>
+            </list>
+            </param>
+            <param name="MappingRelations">
+            Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation
+            to what digits.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.GurthSymmetricalPlacementStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.SymmetryType,System.Nullable{System.Int32}[])">
+            <summary>
+            Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="SymmetryType">
+            Indicates the symmetry type used. The supported value can only be:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.AntiDiagonal"/></item>
+            </list>
+            </param>
+            <param name="MappingRelations">
+            Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation
+            to what digits.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GurthSymmetricalPlacementStep.SymmetryType">
+            <summary>
+            Indicates the symmetry type used. The supported value can only be:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.AntiDiagonal"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GurthSymmetricalPlacementStep.MappingRelations">
+            <summary>
+            Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation
+            to what digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GurthSymmetricalPlacementStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GurthSymmetricalPlacementStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.SymmetryStep">
+            <summary>
+            Provides with a step that is a <b>Symmetrical</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.SymmetryStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+            <summary>
+            Provides with a step that is a <b>Symmetrical</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SymmetryStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SymmetryStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SymmetryStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SymmetryStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SymmetryStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.GroupedWWingStep">
@@ -9524,9 +9639,6 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.WingStep.ShowDifficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.WingStep.Name">
             <inheritdoc/>
