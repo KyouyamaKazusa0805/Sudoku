@@ -303,7 +303,6 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 	/// </summary>
 	/// <param name="options">The formatting options.</param>
 	/// <returns>A string that represents the current object.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(SolverResultFormattingOptions options)
 	{
 		// Get all information.
