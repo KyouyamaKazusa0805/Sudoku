@@ -5003,6 +5003,11 @@
             Defines the colon (<c>:</c>).
             </summary>
         </member>
+        <member name="F:Sudoku.Resources.Punctuation.Comma">
+            <summary>
+            Defines the comma (<c>,</c>).
+            </summary>
+        </member>
         <member name="F:Sudoku.Resources.Punctuation.Ellipsis">
             <summary>
             Defines the ellipsis (<c>...</c>).

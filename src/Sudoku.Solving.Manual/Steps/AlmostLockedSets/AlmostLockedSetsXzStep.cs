@@ -90,6 +90,6 @@ internal sealed record AlmostLockedSetsXzStep(
 	internal string ZResultStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ZDigitsMask != 0 ? $"{R["Comma"]!}Z = {DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal)}" : string.Empty;
+		get => ZDigitsMask != 0 ? $"{R.EmitPunctuation(Punctuation.Comma)}Z = {DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal)}" : string.Empty;
 	}
 }

@@ -11,6 +11,11 @@ public enum Punctuation
 	Colon,
 
 	/// <summary>
+	/// Defines the comma (<c>,</c>).
+	/// </summary>
+	Comma,
+
+	/// <summary>
 	/// Defines the ellipsis (<c>...</c>).
 	/// </summary>
 	Ellipsis

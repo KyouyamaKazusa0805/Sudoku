@@ -48,7 +48,7 @@ internal sealed record GurthSymmetricalPlacementStep(
 	{
 		get
 		{
-			const string separator = ", ";
+			string separator = R.EmitPunctuation(Punctuation.Comma);
 			if (MappingRelations is not null)
 			{
 				scoped var sb = new StringHandler(10);

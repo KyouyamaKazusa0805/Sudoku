@@ -24,7 +24,7 @@ internal abstract record DeathBlossomStep(
 	internal string AlsesStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => string.Join(R["Comma"]!, from als in Petals select als.ToString());
+		get => string.Join(R.EmitPunctuation(Punctuation.Comma), from als in Petals select als.ToString());
 	}
 
 	[FormatItem]
