@@ -15,6 +15,12 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 	public bool IsFullApplying { get; set; }
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is <see langword="false"/>.
+	/// </remarks>
+	public bool IgnoreSlowAlgorithms { get; set; }
+
+	/// <inheritdoc/>
 	[DisallowNull]
 	public IStepSearcher[]? CustomSearcherCollection { get; set; }
 
@@ -104,17 +110,19 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 		InitializeMaps(playground);
 		foreach (var searcher in stepSearchers)
 		{
-			switch (isSukaku, searcher, IsFullApplying)
+			switch (isSukaku, searcher, this)
 			{
 				case (true, { IsNotSupportedForSukaku: true }, _):
 				case (_, { Options.EnabledArea: SearcherEnabledArea.None }, _):
+				case (_, { IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
 				{
 					// Skips on those two cases:
 					// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".
 					// 2. If the searcher is currently disabled, just skip it.
+					// 3. If the searcher is configured as slow.
 					continue;
 				}
-				case (_, not IBruteForceStepSearcher, true):
+				case (_, not IBruteForceStepSearcher, { IsFullApplying: true }):
 				{
 					var accumulator = new List<IStep>();
 					searcher.GetAll(accumulator, playground, false);

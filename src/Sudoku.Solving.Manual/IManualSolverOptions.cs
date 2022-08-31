@@ -17,6 +17,12 @@ public interface IManualSolverOptions
 	public abstract bool IsFullApplying { get; set; }
 
 	/// <summary>
+	/// Indicates whether the solver will ignore slow step searchers being marked <see cref="AlgorithmTooSlowAttribute"/>.
+	/// </summary>
+	/// <seealso cref="AlgorithmTooSlowAttribute"/>
+	public abstract bool IgnoreSlowAlgorithms { get; set; }
+
+	/// <summary>
 	/// <para>
 	/// Indicates the custom searcher collection you defined to solve a puzzle. By default,
 	/// the solver will use <see cref="StepSearcherPool.Collection"/> to solve a puzzle.

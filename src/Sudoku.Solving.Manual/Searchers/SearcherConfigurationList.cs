@@ -35,7 +35,7 @@
 	SearcherConfiguration<BowmanBingoStepSearcher>(
 		SearcherDisplayingLevel.C,
 		EnabledArea = SearcherEnabledArea.None,
-		DisabledReason = SearcherDisabledReason.TooSlow | SearcherDisabledReason.LastResort),
+		DisabledReason = SearcherDisabledReason.LastResort),
 	SearcherConfiguration<PatternOverlayStepSearcher>(
 		SearcherDisplayingLevel.C,
 		EnabledArea = SearcherEnabledArea.Gathering,

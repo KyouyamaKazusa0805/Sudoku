@@ -161,6 +161,16 @@ public sealed class Preference : IDrawingPreference
 		set => DefaultSolver.IsFullApplying = value;
 	}
 
+	/// <inheritdoc cref="ManualSolver.IgnoreSlowAlgorithms"/>
+	public bool IgnoreSlowTechniques
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => DefaultSolver.IgnoreSlowAlgorithms;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => DefaultSolver.IgnoreSlowAlgorithms = value;
+	}
+
 	/// <inheritdoc cref="ManualSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
 	public bool AllowCollisionOnChainingAlsTechniques
 	{

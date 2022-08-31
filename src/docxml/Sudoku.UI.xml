@@ -442,6 +442,9 @@
         <member name="P:Sudoku.UI.Data.Configuration.Preference.IsFullApplying">
             <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.IsFullApplying"/>
         </member>
+        <member name="P:Sudoku.UI.Data.Configuration.Preference.IgnoreSlowTechniques">
+            <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.IgnoreSlowAlgorithms"/>
+        </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.AllowCollisionOnChainingAlsTechniques">
             <inheritdoc cref="P:Sudoku.Solving.Manual.ManualSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
         </member>

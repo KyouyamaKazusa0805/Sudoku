@@ -68,6 +68,17 @@ public interface IStepSearcher
 	}
 
 	/// <summary>
+	/// Determines whether the current step searcher is too slow,
+	/// with being applied <see cref="AlgorithmTooSlowAttribute"/>.
+	/// </summary>
+	/// <seealso cref="AlgorithmTooSlowAttribute"/>
+	public sealed bool IsConfiguredSlow
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => GetType().IsDefined(typeof(AlgorithmTooSlowAttribute));
+	}
+
+	/// <summary>
 	/// Indicates the step searching options.
 	/// </summary>
 	public abstract SearcherInitializationOptions Options { get; set; }

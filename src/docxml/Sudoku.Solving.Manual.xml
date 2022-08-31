@@ -162,6 +162,12 @@
             </summary>
             <seealso cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.IgnoreSlowAlgorithms">
+            <summary>
+            Indicates whether the solver will ignore slow step searchers being marked <see cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.CustomSearcherCollection">
             <summary>
             <para>
@@ -197,6 +203,12 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.IsFullApplying">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.IgnoreSlowAlgorithms">
             <inheritdoc/>
             <remarks>
             The default value is <see langword="false"/>.
@@ -2941,6 +2953,13 @@
             <summary>
             Determines whether the current step searcher is not supported for sukaku solving mode.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IStepSearcher.IsConfiguredSlow">
+            <summary>
+            Determines whether the current step searcher is too slow,
+            with being applied <see cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IStepSearcher.Options">
             <summary>

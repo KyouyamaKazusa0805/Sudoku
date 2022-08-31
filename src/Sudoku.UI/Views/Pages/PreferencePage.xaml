@@ -150,6 +150,13 @@
 					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.IsFullApplying,Mode=TwoWay}" />
 			</c:Win11SettingControl>
 			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_IgnoreSlowTechniques}"
+				Description="{StaticResource SettingsPage_ItemDescription_IgnoreSlowTechniques}">
+				<ToggleSwitch
+					Style="{StaticResource _rToggleSwitchStyle}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.IgnoreSlowTechniques,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
 				Title="{StaticResource SettingsPage_ItemName_AllowCollisionOnChainingAlsTechniques}"
 				Description="{StaticResource SettingsPage_ItemDescription_AllowCollisionOnChainingAlsTechniques}">
 				<ToggleSwitch

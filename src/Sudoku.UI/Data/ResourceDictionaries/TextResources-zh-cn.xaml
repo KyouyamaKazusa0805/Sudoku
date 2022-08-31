@@ -132,6 +132,8 @@
 	<x:String x:Key="SettingsPage_ItemDescription_AlwaysShowHomePageWhenOpen">如果你不想每次打开程序都打开起始页，可以取消对该选项的勾选，那么只要不是第一次使用程序，程序都会自动跳转到数独分析页面。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_IsFullApplying">应用技巧搜索过程之中找到的所有步骤</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_IsFullApplying">该程序使用一个算法规则，调用每一个技巧的搜索规则进行搜索，但只会一步一步地完成。如果该设置选项改为“是”之后，每一个技巧的搜索规则搜索到的全部技巧会一并同时使用。</x:String>
+	<x:String x:Key="SettingsPage_ItemName_IgnoreSlowTechniques">忽略搜索较慢的技巧</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_IgnoreSlowTechniques">部分技巧，由于算法的限制，以及考虑算法的健全、健壮性，会考虑使用较慢的办法进行全盘搜索，但它们找起来会很慢，甚至会影响整个题目解题的过程。如果该选项设置为“是”的话，那么这些技巧都会被程序直接禁用，这样找起来就会快一些，但它们就不再出现在题目搜索的范畴内。</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AllowCollisionOnChainingAlsTechniques">允许待定数组（ALS）链式技巧重叠</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_AllowCollisionOnChainingAlsTechniques">允许不同的 ALS 结构重复使用相同的单元格</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AllowDoublyLinkedAls">允许待定数组・双强链（ALS-XZ）技巧成环</x:String>

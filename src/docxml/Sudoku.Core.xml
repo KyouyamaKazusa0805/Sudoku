@@ -7239,6 +7239,15 @@
               Looks up a localized string similar to Y-Chain.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute">
+            <summary>
+            Defines an attribute annotation that can be applied to a step searcher type,
+            indicating an algorithm chosen for a step searcher is too slow.
+            </summary>
+            <remarks>
+            This attribute can be ignored when a manual solver enables them regardless of execution speed.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator">
             <summary>
             Encapsulates a bit combination generator.

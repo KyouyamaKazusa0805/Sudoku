@@ -135,6 +135,8 @@
 	<x:String x:Key="SettingsPage_ItemDescription_AlwaysShowHomePageWhenOpen">If you don't want to check the home page every time, you can set the option to false, then if non-first time you use the program, the program will always open sudoku analysis page instead of the home page.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_IsFullApplying">Applying all found steps for each gathering action</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_IsFullApplying">This program uses an algorithm that searches all possible found steps, and only applied the first one. If we set this option value to true, all found steps will be applied to the grid at the same time instead of only one step being applied.</x:String>
+	<x:String x:Key="SettingsPage_ItemName_IgnoreSlowTechniques">Ignore slow techniques</x:String>
+	<x:String x:Key="SettingsPage_ItemDescription_IgnoreSlowTechniques">Some techniques will use slower but more compact algorithm to be searched, due to robustness of the program. If you set this option to "true", they will be disabled and optimize the performance to solve and analyze puzzle, but such techniques will also be missed.</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AllowCollisionOnChainingAlsTechniques">Allow collision on ALS techniques</x:String>
 	<x:String x:Key="SettingsPage_ItemDescription_AllowCollisionOnChainingAlsTechniques">Allow different ALS structures share with one or more same cells used</x:String>
 	<x:String x:Key="SettingsPage_ItemName_AllowDoublyLinkedAls">Allow doubly-linked ALS</x:String>
