@@ -1,0 +1,208 @@
+// This file stores all file nesting rules based on this whole solution.
+// Visual Studio version 16.9+ supports custom file nesting.
+
+{
+  // The global name of the setting. You should configure the contents into it.
+  "dependentFileProviders": {
+
+    // Sets the rules.
+    "add": {
+      // File-to-file rule.
+      "fileToFile": {
+        "add": {
+          //
+          // StepSearcher nesting rules
+          //
+          "IAlmostLockedSetsStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "IChainStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "IDeadlyPatternStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "IExocetStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "IFishStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "IIntersectionStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "ILastResortStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "IRankTheoryStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "ISingleDigitPatternStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "ISingleStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "ISubsetStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "ISymmetryStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "IWingStepSearcher.cs": [ "IStepSearcher.cs" ],
+          
+          "IDeathBlossomStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
+          "IAlmostLockedSetsWWingStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
+          "IAlmostLockedSetsXyWingStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
+          "IAlmostLockedSetsXzStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
+          "IEmptyRectangleIntersectionPairStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
+
+          "IAlternatingInferenceChainStepSearcher.cs": [ "IChainStepSearcher.cs" ],
+
+          "IUniquenessClueCoverStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
+          "IExtendedRectangleStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
+          "IUniqueLoopStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
+          "IUniqueMatrixStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
+          "IRwDeadlyPatternStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
+          "IUniquePolygonStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
+          "IQiuDeadlyPatternStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
+          "IUniqueRectangleStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
+          "IReverseBivalueUniversalGraveStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
+          "IUniversalStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
+          "IReverseUniqueRectangleStepSearcher.cs": [ "IReverseBivalueUniversalGraveStepSearcher.cs" ],
+          "IBivalueUniversalGraveStepSearcher.cs": [ "IUniversalStepSearcher.cs" ],
+
+          "IJuniorExocetStepSearcher.cs": [ "IExocetStepSearcher.cs" ],
+          "ISeniorExocetStepSearcher.cs": [ "IExocetStepSearcher.cs" ],
+
+          "INormalFishStepSearcher.cs": [ "IFishStepSearcher.cs" ],
+          "IComplexFishStepSearcher.cs": [ "IFishStepSearcher.cs" ],
+
+          "IAlmostLockedCandidatesStepSearcher.cs": [ "IIntersectionStepSearcher.cs" ],
+          "IFireworkStepSearcher.cs": [ "IIntersectionStepSearcher.cs" ],
+          "ILockedCandidatesStepSearcher.cs": [ "IIntersectionStepSearcher.cs" ],
+
+          "IBowmanBingoStepSearcher.cs": [ "ILastResortStepSearcher.cs" ],
+          "IBruteForceStepSearcher.cs": [ "ILastResortStepSearcher.cs" ],
+          "IPatternOverlayStepSearcher.cs": [ "ILastResortStepSearcher.cs" ],
+          "ITemplateStepSearcher.cs": [ "ILastResortStepSearcher.cs" ],
+
+          "INegativeRankStepSearcher.cs": [ "IRankTheoryStepSearcher.cs" ],
+          "INonnegativeRankStepSearcher.cs": [ "IRankTheoryStepSearcher.cs" ],
+          "IBivalueOddagonStepSearcher.cs": [ "INegativeRankStepSearcher.cs" ],
+          "IChromaticPatternStepSearcher.cs": [ "INegativeRankStepSearcher.cs" ],
+          "IGuardianStepSearcher.cs": [ "INegativeRankStepSearcher.cs" ],
+          "IDominoLoopStepSearcher.cs": [ "INonnegativeRankStepSearcher.cs" ],
+          "IMultisectorLockedSetsStepSearcher.cs": [ "INonnegativeRankStepSearcher.cs" ],
+          "ISueDeCoqStepSearcher.cs": [ "INonnegativeRankStepSearcher.cs" ],
+          "ISueDeCoq3DimensionStepSearcher.cs": [ "INonnegativeRankStepSearcher.cs" ],
+
+          "IEmptyRectangleStepSearcher.cs": [ "ISingleDigitPatternStepSearcher.cs" ],
+          "ITwoStrongLinksStepSearcher.cs": [ "ISingleDigitPatternStepSearcher.cs" ],
+
+          "IGurthSymmetricalPlacementStepSearcher.cs": [ "ISymmetryStepSearcher.cs" ],
+
+          "IRegularWingStepSearcher.cs": [ "IWingStepSearcher.cs" ],
+          "IIrregularWingStepSearcher.cs": [ "IWingStepSearcher.cs" ],
+          "IWWingStepSearcher.cs": [ "IIrregularWingStepSearcher.cs" ],
+          "IMultiBranchWWingStepSearcher.cs": [ "IIrregularWingStepSearcher.cs" ],
+
+          //
+          // Step nesting rules
+          //
+          "AlmostLockedSetsWWingStep.cs": [ "AlmostLockedSetsStep.cs" ],
+          "AlmostLockedSetsXyWingStep.cs": [ "AlmostLockedSetsStep.cs" ],
+          "AlmostLockedSetsXzStep.cs": [ "AlmostLockedSetsStep.cs" ],
+          "EmptyRectangleIntersectionPairStep.cs": [ "AlmostLockedSetsStep.cs" ],
+          "DeathBlossomStep.cs": [ "AlmostLockedSetsStep.cs" ],
+          "DeathBlossomCellTypeStep.cs": [ "DeathBlossomStep.cs" ],
+
+          "AlternatingInferenceChainStep.cs": [ "ChainStep.cs" ],
+
+          "UniquenessClueCoverStep.cs": [ "DeadlyPatternStep.cs" ],
+          "ExtendedRectangleStep.cs": [ "DeadlyPatternStep.cs" ],
+          "UniqueLoopStep.cs": [ "DeadlyPatternStep.cs" ],
+          "UniqueMatrixStep.cs": [ "DeadlyPatternStep.cs" ],
+          "RwDeadlyPatternStep.cs": [ "DeadlyPatternStep.cs" ],
+          "UniquePolygonStep.cs": [ "DeadlyPatternStep.cs" ],
+          "QiuDeadlyPatternStep.cs": [ "DeadlyPatternStep.cs" ],
+          "UniqueRectangleStep.cs": [ "DeadlyPatternStep.cs" ],
+          "ReverseBivalueUniversalGraveStep.cs": [ "DeadlyPatternStep.cs" ],
+          "BivalueUniversalGraveStep.cs": [ "DeadlyPatternStep.cs" ],
+          "UniquenessClueCoverType2Step.cs": [ "UniquenessClueCoverStep.cs" ],
+          "ExtendedRectangleType1Step.cs": [ "ExtendedRectangleStep.cs" ],
+          "ExtendedRectangleType2Step.cs": [ "ExtendedRectangleStep.cs" ],
+          "ExtendedRectangleType3Step.cs": [ "ExtendedRectangleStep.cs" ],
+          "ExtendedRectangleType4Step.cs": [ "ExtendedRectangleStep.cs" ],
+          "UniqueLoopType1Step.cs": [ "UniqueLoopStep.cs" ],
+          "UniqueLoopType2Step.cs": [ "UniqueLoopStep.cs" ],
+          "UniqueLoopType3Step.cs": [ "UniqueLoopStep.cs" ],
+          "UniqueLoopType4Step.cs": [ "UniqueLoopStep.cs" ],
+          "UniqueMatrixType1Step.cs": [ "UniqueMatrixStep.cs" ],
+          "UniqueMatrixType2Step.cs": [ "UniqueMatrixStep.cs" ],
+          "UniqueMatrixType3Step.cs": [ "UniqueMatrixStep.cs" ],
+          "UniqueMatrixType4Step.cs": [ "UniqueMatrixStep.cs" ],
+          "UniquePolygonType1Step.cs": [ "UniquePolygonStep.cs" ],
+          "UniquePolygonType2Step.cs": [ "UniquePolygonStep.cs" ],
+          "UniquePolygonType3Step.cs": [ "UniquePolygonStep.cs" ],
+          "UniquePolygonType4Step.cs": [ "UniquePolygonStep.cs" ],
+          "QiuDeadlyPatternType1Step.cs": [ "QiuDeadlyPatternStep.cs" ],
+          "QiuDeadlyPatternType2Step.cs": [ "QiuDeadlyPatternStep.cs" ],
+          "QiuDeadlyPatternType3Step.cs": [ "QiuDeadlyPatternStep.cs" ],
+          "QiuDeadlyPatternType4Step.cs": [ "QiuDeadlyPatternStep.cs" ],
+          "QiuDeadlyPatternLockedTypeStep.cs": [ "QiuDeadlyPatternStep.cs" ],
+          "AvoidableRectangleWithHiddenSingleStep.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleType1Step.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleType2Step.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleType3Step.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleWithGuardianStep.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleWithGuardianSubsetStep.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleWithGuardianConjugatePairStep.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangle2DOr3XStep.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleWithConjugatePairStep.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleWithSueDeCoqStep.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleWithUnknownCoveringStep.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleWithWingStep.cs": [ "UniqueRectangleStep.cs" ],
+          "HiddenUniqueRectangleStep.cs": [ "UniqueRectangleWithConjugatePairStep.cs" ],
+          "ReverseUniqueRectangleStep.cs": [ "ReverseBivalueUniversalGraveStep.cs" ],
+          "ReverseUniqueRectangleType1Step.cs": [ "ReverseUniqueRectangleStep.cs" ],
+          "ReverseUniqueRectangleType2Step.cs": [ "ReverseUniqueRectangleStep.cs" ],
+          "BivalueUniversalGraveType1Step.cs": [ "BivalueUniversalGraveStep.cs" ],
+          "BivalueUniversalGraveType2Step.cs": [ "BivalueUniversalGraveStep.cs" ],
+          "BivalueUniversalGraveType3Step.cs": [ "BivalueUniversalGraveStep.cs" ],
+          "BivalueUniversalGraveType4Step.cs": [ "BivalueUniversalGraveStep.cs" ],
+          "BivalueUniversalGraveXzStep.cs": [ "BivalueUniversalGraveStep.cs" ],
+          "BivalueUniversalGraveMultipleStep.cs": [ "BivalueUniversalGraveStep.cs" ],
+          "BivalueUniversalGraveFalseCandidateTypeStep.cs": [ "BivalueUniversalGraveStep.cs" ],
+
+          "JuniorExocetStep.cs": [ "ExocetStep.cs" ],
+          "SeniorExocetStep.cs": [ "ExocetStep.cs" ],
+
+          "NormalFishStep.cs": [ "FishStep.cs" ],
+          "ComplexFishStep.cs": [ "FishStep.cs" ],
+
+          "FireworkStep.cs": [ "IntersectionStep.cs" ],
+          "LockedCandidatesStep.cs": [ "IntersectionStep.cs" ],
+          "AlmostLockedCandidatesStep.cs": [ "IntersectionStep.cs" ],
+          "FireworkPairType1Step.cs": [ "FireworkStep.cs" ],
+          "FireworkPairType2Step.cs": [ "FireworkStep.cs" ],
+          "FireworkPairType3Step.cs": [ "FireworkStep.cs" ],
+          "FireworkTripleStep.cs": [ "FireworkStep.cs" ],
+          "FireworkQuadrupleStep.cs": [ "FireworkStep.cs" ],
+          "BowmanBingoStep.cs": [ "LastResortStep.cs" ],
+          "BruteForceStep.cs": [ "LastResortStep.cs" ],
+          "PatternOverlayStep.cs": [ "LastResortStep.cs" ],
+          "TemplateStep.cs": [ "LastResortStep.cs" ],
+          "NegativeRankStep.cs": [ "RankTheoryStep.cs" ],
+          "NonnegativeRankStep.cs": [ "RankTheoryStep.cs" ],
+          "BivalueOddagonStep.cs": [ "NegativeRankStep.cs" ],
+          "GuardianStep.cs": [ "NegativeRankStep.cs" ],
+          "ChromaticPatternStep.cs": [ "NegativeRankStep.cs" ],
+          "DominoLoopStep.cs": [ "NonnegativeRankStep.cs" ],
+          "MultisectorLockedSetsStep.cs": [ "NonnegativeRankStep.cs" ],
+          "SueDeCoqStep.cs": [ "NonnegativeRankStep.cs" ],
+          "SueDeCoq3DimensionStep.cs": [ "NonnegativeRankStep.cs" ],
+          "BivalueOddagonType1Step.cs": [ "BivalueOddagonStep.cs" ],
+          "BivalueOddagonType2Step.cs": [ "BivalueOddagonStep.cs" ],
+          "BivalueOddagonType3Step.cs": [ "BivalueOddagonStep.cs" ],
+          "ChromaticPatternType1Step.cs": [ "ChromaticPatternStep.cs" ],
+          "ChromaticPatternXzStep.cs": [ "ChromaticPatternStep.cs" ],
+
+          "TwoStrongLinksStep.cs": [ "SingleDigitPatternStep.cs" ],
+          "EmptyRectangleStep.cs": [ "SingleDigitPatternStep.cs" ],
+
+          "FullHouseStep.cs": [ "SingleStep.cs" ],
+          "HiddenSingleStep.cs": [ "SingleStep.cs" ],
+          "NakedSingleStep.cs": [ "SingleStep.cs" ],
+
+          "GurthSymmetricalPlacementStep.cs": [ "SymmetryStep.cs" ],
+
+          "HiddenSubsetStep.cs": [ "SubsetStep.cs" ],
+          "NakedSubsetStep.cs": [ "SubsetStep.cs" ],
+
+          "RegularWingStep.cs": [ "WingStep.cs" ],
+          "IrregularWingStep.cs": [ "WingStep.cs" ],
+          "WWingStep.cs": [ "IrregularWingStep.cs" ],
+          "MultiBranchWWingStep.cs": [ "IrregularWingStep.cs" ],
+          "GroupedWWingStep.cs": [ "IrregularWingStep.cs" ],
+        }
+      }
+    }
+  }
+}
