@@ -8,7 +8,7 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
-internal sealed record UniqueMatrixType2Step(
+internal sealed partial record UniqueMatrixType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells,
@@ -29,10 +29,6 @@ internal sealed record UniqueMatrixType2Step(
 	/// <inheritdoc/>
 	public override int Type => 2;
 
-	[FormatItem]
-	internal string ExtraDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (ExtraDigit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraDigitStr() => (ExtraDigit + 1).ToString();
 }

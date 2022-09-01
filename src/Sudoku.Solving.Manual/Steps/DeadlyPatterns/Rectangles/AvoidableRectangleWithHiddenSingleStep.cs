@@ -12,7 +12,7 @@
 /// <param name="TargetCell"></param>
 /// <param name="House"></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-internal sealed record AvoidableRectangleWithHiddenSingleStep(
+internal sealed partial record AvoidableRectangleWithHiddenSingleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -45,31 +45,15 @@ internal sealed record AvoidableRectangleWithHiddenSingleStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string BaseCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(BaseCell);
-	}
+	[ResourceTextFormatter]
+	private partial string BaseCellStr() => RxCyNotation.ToCellString(BaseCell);
 
-	[FormatItem]
-	internal string TargetCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(TargetCell);
-	}
+	[ResourceTextFormatter]
+	private partial string TargetCellStr() => RxCyNotation.ToCellString(TargetCell);
 
-	[FormatItem]
-	internal string HouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << House);
-	}
+	[ResourceTextFormatter]
+	private partial string HouseStr() => HouseFormatter.Format(1 << House);
 
-	[FormatItem]
-	internal string Digit1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit1 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Digit1Str() => (Digit1 + 1).ToString();
 }

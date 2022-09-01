@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
-internal sealed record BivalueUniversalGraveType2Step(
+internal sealed partial record BivalueUniversalGraveType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,
@@ -30,17 +30,9 @@ internal sealed record BivalueUniversalGraveType2Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string ExtraDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraDigitStr() => (Digit + 1).ToString();
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Cells.ToString();
 }

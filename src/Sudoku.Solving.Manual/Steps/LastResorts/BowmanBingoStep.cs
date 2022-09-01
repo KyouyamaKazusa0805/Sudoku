@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
-internal sealed record BowmanBingoStep(
+internal sealed partial record BowmanBingoStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	ConclusionList ContradictionLinks
@@ -44,10 +44,6 @@ internal sealed record BowmanBingoStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
-	[FormatItem]
-	internal string ContradictionSeriesStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConclusionFormatter.Format(ContradictionLinks.ToArray(), " -> ", false);
-	}
+	[ResourceTextFormatter]
+	private partial string ContradictionSeriesStr() => ConclusionFormatter.Format(ContradictionLinks.ToArray(), " -> ", false);
 }

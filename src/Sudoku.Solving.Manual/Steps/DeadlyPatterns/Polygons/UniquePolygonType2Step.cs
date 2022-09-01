@@ -8,7 +8,7 @@
 /// <param name="Map"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">The extra digit.</param>
-internal sealed record UniquePolygonType2Step(
+internal sealed partial record UniquePolygonType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Map,
@@ -22,10 +22,6 @@ internal sealed record UniquePolygonType2Step(
 	/// <inheritdoc/>
 	public override int Type => 2;
 
-	[FormatItem]
-	internal string ExtraDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (ExtraDigit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraDigitStr() => (ExtraDigit + 1).ToString();
 }

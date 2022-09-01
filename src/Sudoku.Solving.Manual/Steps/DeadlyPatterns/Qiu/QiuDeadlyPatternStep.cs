@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern">Indicates the pattern used.</param>
-internal abstract record QiuDeadlyPatternStep(
+internal abstract partial record QiuDeadlyPatternStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in QiuDeadlyPattern Pattern
@@ -42,10 +42,6 @@ internal abstract record QiuDeadlyPatternStep(
 	/// <summary>
 	/// Indicates the pattern string.
 	/// </summary>
-	[FormatItem]
-	internal string PatternStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Pattern.Map.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string PatternStr() => Pattern.Map.ToString();
 }

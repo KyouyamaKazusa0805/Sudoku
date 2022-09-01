@@ -7,7 +7,7 @@
 /// <param name="Exocet">INdicates the exocet pattern.</param>
 /// <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
 /// <param name="Eliminations">Indicates all possible eliminations.</param>
-internal abstract record ExocetStep(
+internal abstract partial record ExocetStep(
 	ViewList Views,
 	scoped in ExocetPattern Exocet,
 	short DigitsMask,
@@ -41,32 +41,20 @@ internal abstract record ExocetStep(
 	/// <summary>
 	/// Indicates the digits string.
 	/// </summary>
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
 	/// <summary>
 	/// Indicates the base map string.
 	/// </summary>
-	[FormatItem]
-	internal string BaseCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => BaseMap.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string BaseCellsStr() => BaseMap.ToString();
 
 	/// <summary>
 	/// Indicates the target map string.
 	/// </summary>
-	[FormatItem]
-	internal string TargetCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TargetMap.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string TargetCellsStr() => TargetMap.ToString();
 
 	/// <summary>
 	/// Indicates the map of the base cells.

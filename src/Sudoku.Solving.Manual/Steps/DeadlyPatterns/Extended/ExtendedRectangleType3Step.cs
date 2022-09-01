@@ -10,7 +10,7 @@
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
 /// <param name="House">Indicates the house that extra subset formed.</param>
-internal sealed record ExtendedRectangleType3Step(
+internal sealed partial record ExtendedRectangleType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells,
@@ -37,24 +37,12 @@ internal sealed record ExtendedRectangleType3Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string ExtraDigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraDigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string ExtraCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ExtraCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraCellsStr() => ExtraCells.ToString();
 
-	[FormatItem]
-	internal string HouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << House);
-	}
+	[ResourceTextFormatter]
+	private partial string HouseStr() => HouseFormatter.Format(1 << House);
 }

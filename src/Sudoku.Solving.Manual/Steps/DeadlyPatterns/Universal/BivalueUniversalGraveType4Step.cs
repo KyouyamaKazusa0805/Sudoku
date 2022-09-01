@@ -8,7 +8,7 @@
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-internal sealed record BivalueUniversalGraveType4Step(
+internal sealed partial record BivalueUniversalGraveType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short DigitsMask,
@@ -32,24 +32,12 @@ internal sealed record BivalueUniversalGraveType4Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Cells.ToString();
 
-	[FormatItem]
-	internal string ConjStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugatePair.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ConjStr() => ConjugatePair.ToString();
 }

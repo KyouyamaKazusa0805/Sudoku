@@ -8,7 +8,7 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Loop"><inheritdoc/></param>
-internal sealed record UniqueLoopType1Step(
+internal sealed partial record UniqueLoopType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

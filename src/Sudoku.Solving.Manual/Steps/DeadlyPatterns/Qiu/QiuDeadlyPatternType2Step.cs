@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
-internal sealed record QiuDeadlyPatternType2Step(
+internal sealed partial record QiuDeadlyPatternType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in QiuDeadlyPattern Pattern,
@@ -27,10 +27,6 @@ internal sealed record QiuDeadlyPatternType2Step(
 	/// <inheritdoc/>
 	public override int Type => 2;
 
-	[FormatItem]
-	internal string ExtraDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (ExtraDigit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraDigitStr() => (ExtraDigit + 1).ToString();
 }

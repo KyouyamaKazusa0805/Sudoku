@@ -35,15 +35,14 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 	/// <inheritdoc/>
 	public abstract Rarity Rarity { get; }
 
-	[FormatItem]
-	internal string ElimStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	[RequiresUnreferencedCode(M.RequiresReflectionDueToResourceDictionary)]
+	[RequiresDynamicCode(M.RequiresReflectionDueToResourceDictionary)]
+	internal string ElimStr() => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
 
 	/// <inheritdoc/>
-	string IStep.ElimStr => ElimStr;
+	[UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
+	string IStep.ElimStr => ElimStr();
 
 
 	/// <inheritdoc/>
@@ -77,6 +76,7 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
 	public string ToSimpleString() => $"{Name} => {ElimStr}";
 
 	/// <inheritdoc/>
@@ -84,6 +84,7 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 	public virtual string ToFullString() => ToString();
 
 	/// <inheritdoc/>
+	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicMethods)]
 	public string Formatize(bool handleEscaping = false)
 	{
 		// Check whether the format property is not null.
@@ -166,11 +167,9 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 		var type = GetType();
 		string[] matchedFormats = (
 			from f in formats
-			select type.GetProperty(f, BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance) into property
-			where property?.IsDefined(typeof(FormatItemAttribute)) ?? false
-			let propertyGetMethod = property.GetMethod
-			where propertyGetMethod is not null
-			select property.GetValue(propertyGetMethod.IsStatic ? null : this) as string into result
+			select type.GetMethod(f, BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance) into method
+			where method?.IsDefined(typeof(ResourceTextFormatterAttribute)) ?? false
+			select method.Invoke(method.IsStatic ? null : this, null) as string into result
 			where result is not null
 			select result
 		).Prepend(Name).ToArray();

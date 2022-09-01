@@ -12,7 +12,7 @@
 /// Indicates the mask that contains the subset digits used in this instance.
 /// </param>
 /// <param name="SubsetCells">Indicates the subset cells.</param>
-internal sealed record UniqueLoopType3Step(
+internal sealed partial record UniqueLoopType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -32,26 +32,14 @@ internal sealed record UniqueLoopType3Step(
 	/// <inheritdoc/>
 	public override int Type => 3;
 
-	[FormatItem]
-	internal string SubsetCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => SubsetCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string SubsetCellsStr() => SubsetCells.ToString();
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string SubsetName
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => R[$"SubsetNamesSize{SubsetCells.Count + 1}"]!;
-	}
+	[ResourceTextFormatter]
+	private partial string SubsetName() => R[$"SubsetNamesSize{SubsetCells.Count + 1}"]!;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

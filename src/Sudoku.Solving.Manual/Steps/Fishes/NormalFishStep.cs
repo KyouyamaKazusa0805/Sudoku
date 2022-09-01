@@ -26,7 +26,7 @@
 /// </item>
 /// </list>
 /// </param>
-internal sealed record NormalFishStep(
+internal sealed partial record NormalFishStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,
@@ -104,38 +104,18 @@ internal sealed record NormalFishStep(
 		}
 	}
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => (Digit + 1).ToString();
 
-	[FormatItem]
-	internal string BaseSetStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(BaseSetsMask);
-	}
+	[ResourceTextFormatter]
+	private partial string BaseSetStr() => HouseFormatter.Format(BaseSetsMask);
 
-	[FormatItem]
-	internal string CoverSetStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(CoverSetsMask);
-	}
+	[ResourceTextFormatter]
+	private partial string CoverSetStr() => HouseFormatter.Format(CoverSetsMask);
 
-	[FormatItem]
-	internal string FinSnippet
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => R["Fin"]!;
-	}
+	[ResourceTextFormatter]
+	private partial string FinSnippet() => R["Fin"]!;
 
-	[FormatItem]
-	internal string FinsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Fins ? $"{FinSnippet}{Fins}" : string.Empty;
-	}
+	[ResourceTextFormatter]
+	private partial string FinsStr() => Fins ? $"{FinSnippet}{Fins}" : string.Empty;
 }

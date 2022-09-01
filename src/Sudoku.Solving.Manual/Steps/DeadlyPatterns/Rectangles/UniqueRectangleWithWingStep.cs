@@ -14,7 +14,7 @@
 /// <param name="Petals">Indicates the petals used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-internal sealed record UniqueRectangleWithWingStep(
+internal sealed partial record UniqueRectangleWithWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	Technique TechniqueCode2,
@@ -71,17 +71,9 @@ internal sealed record UniqueRectangleWithWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string PivotsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Pivots.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string PivotsStr() => Pivots.ToString();
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 }

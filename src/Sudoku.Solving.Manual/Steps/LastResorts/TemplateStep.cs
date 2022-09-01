@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="IsTemplateDeletion">Indicates whether the step is a deletion.</param>
-internal sealed record TemplateStep(ConclusionList Conclusions, ViewList Views, bool IsTemplateDeletion) :
+internal sealed partial record TemplateStep(ConclusionList Conclusions, ViewList Views, bool IsTemplateDeletion) :
 	LastResortStep(Conclusions, Views)
 {
 	/// <summary>
@@ -29,10 +29,6 @@ internal sealed record TemplateStep(ConclusionList Conclusions, ViewList Views, 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => (Digit + 1).ToString();
 }

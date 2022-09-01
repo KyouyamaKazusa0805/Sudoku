@@ -4,7 +4,7 @@
 /// Provides with a step that is a <b>Pattern Overlay</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
-internal sealed record PatternOverlayStep(ConclusionList Conclusions) :
+internal sealed partial record PatternOverlayStep(ConclusionList Conclusions) :
 	LastResortStep(Conclusions, ImmutableArray.Create(View.Empty))
 {
 	/// <summary>
@@ -30,10 +30,6 @@ internal sealed record PatternOverlayStep(ConclusionList Conclusions) :
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => (Digit + 1).ToString();
 }

@@ -8,7 +8,7 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="Candidate">Indicates the true candidate.</param>
-internal sealed record UniqueMatrixType1Step(
+internal sealed partial record UniqueMatrixType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells,
@@ -19,10 +19,6 @@ internal sealed record UniqueMatrixType1Step(
 	/// <inheritdoc/>
 	public override int Type => 1;
 
-	[FormatItem]
-	internal string CandidateStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Candidates.Empty + Candidate).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CandidateStr() => (Candidates.Empty + Candidate).ToString();
 }

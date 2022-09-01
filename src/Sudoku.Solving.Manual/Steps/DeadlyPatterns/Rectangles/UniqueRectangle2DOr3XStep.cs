@@ -14,7 +14,7 @@
 /// <param name="YDigit">Indicates the digit Y.</param>
 /// <param name="XyCell">Indicates the cell XY.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-internal sealed record UniqueRectangle2DOr3XStep(
+internal sealed partial record UniqueRectangle2DOr3XStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	Technique TechniqueCode2,
@@ -49,24 +49,12 @@ internal sealed record UniqueRectangle2DOr3XStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
-	[FormatItem]
-	internal string XDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (XDigit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string XDigitStr() => (XDigit + 1).ToString();
 
-	[FormatItem]
-	internal string YDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (YDigit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string YDigitStr() => (YDigit + 1).ToString();
 
-	[FormatItem]
-	internal string XYCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(XyCell);
-	}
+	[ResourceTextFormatter]
+	private partial string XYCellsStr() => RxCyNotation.ToCellString(XyCell);
 }

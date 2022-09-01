@@ -13,7 +13,7 @@
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-internal sealed record UniqueRectangleWithGuardianConjugatePairStep(
+internal sealed partial record UniqueRectangleWithGuardianConjugatePairStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -55,10 +55,6 @@ internal sealed record UniqueRectangleWithGuardianConjugatePairStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
-	[FormatItem]
-	internal string ConjugatePairStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugatePair.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ConjugatePairStr() => ConjugatePair.ToString();
 }

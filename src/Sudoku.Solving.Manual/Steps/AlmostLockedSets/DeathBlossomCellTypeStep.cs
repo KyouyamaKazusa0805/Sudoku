@@ -8,7 +8,7 @@
 /// <param name="HubCell">Indicates a cell as the hub of petals.</param>
 /// <param name="DigitsMask">The digits used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
-internal sealed record DeathBlossomCellTypeStep(
+internal sealed partial record DeathBlossomCellTypeStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int HubCell,
@@ -35,10 +35,6 @@ internal sealed record DeathBlossomCellTypeStep(
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.DeathBlossomCellType;
 
-	[FormatItem]
-	internal string CellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(HubCell);
-	}
+	[ResourceTextFormatter]
+	private partial string CellStr() => RxCyNotation.ToCellString(HubCell);
 }

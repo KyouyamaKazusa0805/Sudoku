@@ -18,7 +18,7 @@
 /// to what digits.
 /// </param>
 [StepDisplayingFeature(StepDisplayingFeature.HideDifficultyRating)]
-internal sealed record GurthSymmetricalPlacementStep(
+internal sealed partial record GurthSymmetricalPlacementStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	SymmetryType SymmetryType,
@@ -36,38 +36,31 @@ internal sealed record GurthSymmetricalPlacementStep(
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.GurthSymmetricalPlacement;
 
-	[FormatItem]
-	internal string SymmetryTypeStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => R[$"{SymmetryType}Symmetry"]!;
-	}
+	[ResourceTextFormatter]
+	private partial string SymmetryTypeStr() => R[$"{SymmetryType}Symmetry"]!;
 
-	[FormatItem]
-	internal string MappingStr
+	[ResourceTextFormatter]
+	private partial string MappingStr()
 	{
-		get
+		string separator = R.EmitPunctuation(Punctuation.Comma);
+		if (MappingRelations is not null)
 		{
-			string separator = R.EmitPunctuation(Punctuation.Comma);
-			if (MappingRelations is not null)
+			scoped var sb = new StringHandler(10);
+			for (int i = 0; i < 9; i++)
 			{
-				scoped var sb = new StringHandler(10);
-				for (int i = 0; i < 9; i++)
-				{
-					int? currentMappingRelationDigit = MappingRelations[i];
+				int? currentMappingRelationDigit = MappingRelations[i];
 
-					sb.Append(i + 1);
-					sb.Append(currentMappingRelationDigit is { } c && c != i ? $" -> {c + 1}" : string.Empty);
-					sb.Append(separator);
-				}
+				sb.Append(i + 1);
+				sb.Append(currentMappingRelationDigit is { } c && c != i ? $" -> {c + 1}" : string.Empty);
+				sb.Append(separator);
+			}
 
-				sb.RemoveFromEnd(separator.Length);
-				return sb.ToStringAndClear();
-			}
-			else
-			{
-				return R["NoMappingRelation"]!;
-			}
+			sb.RemoveFromEnd(separator.Length);
+			return sb.ToStringAndClear();
+		}
+		else
+		{
+			return R["NoMappingRelation"]!;
 		}
 	}
 }

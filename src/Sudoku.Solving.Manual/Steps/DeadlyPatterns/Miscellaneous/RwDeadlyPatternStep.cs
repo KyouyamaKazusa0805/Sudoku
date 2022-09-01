@@ -8,7 +8,7 @@
 /// <param name="Pattern">Indicates the pattern.</param>
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="ChuteIndex">Indicates the global chute index.</param>
-internal sealed record RwDeadlyPatternStep(
+internal sealed partial record RwDeadlyPatternStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Pattern,
@@ -28,17 +28,9 @@ internal sealed record RwDeadlyPatternStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellsString(Pattern);
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => RxCyNotation.ToCellsString(Pattern);
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask);
 }

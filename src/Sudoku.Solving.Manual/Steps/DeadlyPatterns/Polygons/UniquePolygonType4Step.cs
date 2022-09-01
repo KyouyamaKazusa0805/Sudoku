@@ -9,7 +9,7 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ConjugateHouse">Indicates the cells that forms the conjugate house.</param>
 /// <param name="ExtraMask">Indicates the extra digits mask.</param>
-internal sealed record UniquePolygonType4Step(
+internal sealed partial record UniquePolygonType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Map,
@@ -24,17 +24,9 @@ internal sealed record UniquePolygonType4Step(
 	/// <inheritdoc/>
 	public override int Type => 4;
 
-	[FormatItem]
-	internal string ExtraCombStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(ExtraMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraCombStr() => DigitMaskFormatter.Format(ExtraMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string ConjHouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugateHouse.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ConjHouseStr() => ConjugateHouse.ToString();
 }

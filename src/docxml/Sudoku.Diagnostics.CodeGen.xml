@@ -251,6 +251,14 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.StepFormatterMethodAttributesGenerator">
+            <summary>
+            Defines a source generator that generates the source code of attributes applied to formatter methods in step types.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.StepFormatterMethodAttributesGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator">
             <summary>
             Defines a source generator that generates the source code for the searcher options

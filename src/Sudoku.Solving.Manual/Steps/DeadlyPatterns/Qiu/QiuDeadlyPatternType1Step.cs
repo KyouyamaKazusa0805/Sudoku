@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidate">Indicates the extra candidate used.</param>
-internal sealed record QiuDeadlyPatternType1Step(
+internal sealed partial record QiuDeadlyPatternType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in QiuDeadlyPattern Pattern,
@@ -17,10 +17,6 @@ internal sealed record QiuDeadlyPatternType1Step(
 	/// <inheritdoc/>
 	public override int Type => 1;
 
-	[FormatItem]
-	internal string CandidateStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Candidates.Empty + Candidate).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CandidateStr() => (Candidates.Empty + Candidate).ToString();
 }

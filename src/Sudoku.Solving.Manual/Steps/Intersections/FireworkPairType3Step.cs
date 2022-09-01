@@ -8,7 +8,7 @@
 /// <param name="Cells">The cells used.</param>
 /// <param name="DigitsMask">The digits used.</param>
 /// <param name="EmptyRectangleBlock">The empty rectangle block used.</param>
-internal sealed record FireworkPairType3Step(
+internal sealed partial record FireworkPairType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells,
@@ -25,24 +25,12 @@ internal sealed record FireworkPairType3Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Cells.ToString();
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string EmptyRectangleStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << EmptyRectangleBlock);
-	}
+	[ResourceTextFormatter]
+	private partial string EmptyRectangleStr() => HouseFormatter.Format(1 << EmptyRectangleBlock);
 }

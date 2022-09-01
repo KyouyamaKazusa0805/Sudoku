@@ -12,7 +12,7 @@
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-internal record UniqueRectangleWithConjugatePairStep(
+internal partial record UniqueRectangleWithConjugatePairStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	Technique TechniqueCode2,
@@ -57,32 +57,20 @@ internal record UniqueRectangleWithConjugatePairStep(
 	/// <summary>
 	/// Indicates the conjugate pair string.
 	/// </summary>
-	[FormatItem]
-	internal string ConjPairsStr
+	[ResourceTextFormatter]
+	private partial string ConjPairsStr()
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			const string separator = ", ";
+		const string separator = ", ";
 
-			scoped var sb = new StringHandler(100);
-			sb.AppendRangeWithSeparator(ConjugatePairs, separator);
+		scoped var sb = new StringHandler(100);
+		sb.AppendRangeWithSeparator(ConjugatePairs, separator);
 
-			return sb.ToStringAndClear();
-		}
+		return sb.ToStringAndClear();
 	}
 
-	[FormatItem]
-	internal string Prefix
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugatePairs.Length == 1 ? "a " : string.Empty;
-	}
+	[ResourceTextFormatter]
+	private partial string Prefix() => ConjugatePairs.Length == 1 ? "a " : string.Empty;
 
-	[FormatItem]
-	internal string Suffix
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugatePairs.Length == 1 ? string.Empty : "s";
-	}
+	[ResourceTextFormatter]
+	private partial string Suffix() => ConjugatePairs.Length == 1 ? string.Empty : "s";
 }

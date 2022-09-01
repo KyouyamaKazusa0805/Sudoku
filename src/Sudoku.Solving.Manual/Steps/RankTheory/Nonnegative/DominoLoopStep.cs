@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
-internal sealed record DominoLoopStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells) :
+internal sealed partial record DominoLoopStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells) :
 	NonnegativeRankStep(Conclusions, Views),
 	IStepWithRank
 {
@@ -32,17 +32,9 @@ internal sealed record DominoLoopStep(ConclusionList Conclusions, ViewList Views
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
 
-	[FormatItem]
-	internal string CellsCountStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.Count.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsCountStr() => Cells.Count.ToString();
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Cells.ToString();
 }

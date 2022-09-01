@@ -8,7 +8,7 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="Loop">Indicates the loop cells used.</param>
 /// <param name="Guardians">Indicates the guardian cells used.</param>
-internal sealed record GuardianStep(
+internal sealed partial record GuardianStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,
@@ -52,26 +52,14 @@ internal sealed record GuardianStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Loop.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Loop.ToString();
 
-	[FormatItem]
-	internal string GuardianSingularOrPlural
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => R[Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural"]!;
-	}
+	[ResourceTextFormatter]
+	private partial string GuardianSingularOrPlural() => R[Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural"]!;
 
-	[FormatItem]
-	internal string GuardianStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Guardians.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string GuardianStr() => Guardians.ToString();
 
 
 	/// <inheritdoc/>

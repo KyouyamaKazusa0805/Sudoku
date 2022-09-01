@@ -8,7 +8,7 @@
 /// <param name="Digit1">Indicates the first digit.</param>
 /// <param name="Digit2">Indicates the second digit.</param>
 /// <param name="Loop">Indicates the loop that the instance used.</param>
-internal abstract record UniqueLoopStep(
+internal abstract partial record UniqueLoopStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -52,32 +52,20 @@ internal abstract record UniqueLoopStep(
 	/// <summary>
 	/// Indicates the loop string.
 	/// </summary>
-	[FormatItem]
-	internal string LoopStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Loop.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string LoopStr() => Loop.ToString();
 
 	/// <summary>
 	/// Indicates the digit 1 string.
 	/// </summary>
-	[FormatItem]
-	internal string Digit1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit1 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Digit1Str() => (Digit1 + 1).ToString();
 
 	/// <summary>
 	/// Indicates the digit 2 string.
 	/// </summary>
-	[FormatItem]
-	internal string Digit2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit2 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Digit2Str() => (Digit2 + 1).ToString();
 
 
 	/// <inheritdoc/>

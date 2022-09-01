@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
-internal abstract record ExtendedRectangleStep(
+internal abstract partial record ExtendedRectangleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells,
@@ -47,20 +47,12 @@ internal abstract record ExtendedRectangleStep(
 	/// <summary>
 	/// Indicates the digits string.
 	/// </summary>
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
 	/// <summary>
 	/// Indicates the cells string.
 	/// </summary>
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Cells.ToString();
 }

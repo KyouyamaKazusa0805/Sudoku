@@ -11,7 +11,7 @@
 /// <param name="ExtraDigitsMask">
 /// Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
 /// </param>
-internal sealed record UniqueMatrixType3Step(
+internal sealed partial record UniqueMatrixType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells,
@@ -33,24 +33,12 @@ internal sealed record UniqueMatrixType3Step(
 	/// <inheritdoc/>
 	public override int Type => 3;
 
-	[FormatItem]
-	internal string ExtraCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ExtraCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraCellsStr() => ExtraCells.ToString();
 
-	[FormatItem]
-	internal string ExtraDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraDigitStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string SubsetName
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => R[$"SubsetNamesSize{ExtraCells.Count + 1}"]!;
-	}
+	[ResourceTextFormatter]
+	private partial string SubsetName() => R[$"SubsetNamesSize{ExtraCells.Count + 1}"]!;
 }

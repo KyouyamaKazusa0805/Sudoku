@@ -52,17 +52,15 @@ public interface IStep : IDisplayable
 	/// the property invoked. You should create 3 properties whose names are <c>Name</c>, <c>CellsStr</c>
 	/// and <c>ElimsStr</c>, and return the corresponding correct string result,
 	/// making them non-<see langword="public"/> (suggested keyword is <see langword="internal"/>)
-	/// and applying attribute <see cref="FormatItemAttribute"/> to it.
+	/// and applying attribute <see cref="ResourceTextFormatterAttribute"/> to it.
 	/// </para>
 	/// <para>
 	/// The recommended implementation pattern is:
 	/// <code><![CDATA[
-	/// [FormatItem]
-	/// internal string CellsStr
-	/// {
-	///     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-	///	    get => Cells.ToString();
-	/// }
+	/// [ResourceTextFormatter]
+	/// [RequiresUnreferencedCode(M.RequiresReflectionDueToResourceDictionary)]
+	/// [RequiresDynamicCode(M.RequiresReflectionDueToResourceDictionary)]
+	/// internal string CellsStr() => Cells.ToString();
 	/// ]]></code>
 	/// You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
 	/// into the <c>optional/vssnippets</c> folder. For more information, please open the markdown file
@@ -85,7 +83,7 @@ public interface IStep : IDisplayable
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="ToFullString"/>
-	/// <seealso cref="FormatItemAttribute"/>
+	/// <seealso cref="ResourceTextFormatterAttribute"/>
 	/// <seealso cref="R"/>
 	public abstract string? Format { get; }
 

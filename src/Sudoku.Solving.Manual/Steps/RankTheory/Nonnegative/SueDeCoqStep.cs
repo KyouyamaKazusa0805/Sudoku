@@ -15,7 +15,7 @@
 /// <param name="BlockCells">The map of block cells.</param>
 /// <param name="LineCells">The map of line cells.</param>
 /// <param name="IntersectionCells">The map of intersection cells.</param>
-internal sealed record SueDeCoqStep(
+internal sealed partial record SueDeCoqStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Block,
@@ -63,45 +63,21 @@ internal sealed record SueDeCoqStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
-	[FormatItem]
-	internal string IntersectionCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => IntersectionCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string IntersectionCellsStr() => IntersectionCells.ToString();
 
-	[FormatItem]
-	internal string IntersectionDigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(IntersectionMask);
-	}
+	[ResourceTextFormatter]
+	private partial string IntersectionDigitsStr() => DigitMaskFormatter.Format(IntersectionMask);
 
-	[FormatItem]
-	internal string BlockCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => BlockCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string BlockCellsStr() => BlockCells.ToString();
 
-	[FormatItem]
-	internal string BlockDigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(BlockMask);
-	}
+	[ResourceTextFormatter]
+	private partial string BlockDigitsStr() => DigitMaskFormatter.Format(BlockMask);
 
-	[FormatItem]
-	internal string LineCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => LineCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string LineCellsStr() => LineCells.ToString();
 
-	[FormatItem]
-	internal string LineDigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(LineMask);
-	}
+	[ResourceTextFormatter]
+	private partial string LineDigitsStr() => DigitMaskFormatter.Format(LineMask);
 }

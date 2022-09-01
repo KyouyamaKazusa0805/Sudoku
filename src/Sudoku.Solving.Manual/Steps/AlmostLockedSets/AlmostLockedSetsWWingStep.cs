@@ -10,7 +10,7 @@
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 /// <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
 /// <param name="X">Indicates the X digit.</param>
-internal sealed record AlmostLockedSetsWWingStep(
+internal sealed partial record AlmostLockedSetsWWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	AlmostLockedSet Als1,
@@ -38,38 +38,18 @@ internal sealed record AlmostLockedSetsWWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string Als1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Als1.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Als1Str() => Als1.ToString();
 
-	[FormatItem]
-	internal string Als2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Als2.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Als2Str() => Als2.ToString();
 
-	[FormatItem]
-	internal string ConjStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugatePair.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ConjStr() => ConjugatePair.ToString();
 
-	[FormatItem]
-	internal string WStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(WDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string WStr() => DigitMaskFormatter.Format(WDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string XStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (X + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string XStr() => (X + 1).ToString();
 }

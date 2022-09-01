@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
-internal abstract record UniquenessClueCoverStep(
+internal abstract partial record UniquenessClueCoverStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap ExtraCells

@@ -9,7 +9,7 @@
 /// <param name="DigitsMask">The digits used.</param>
 /// <param name="ExtraCell1">The extra cell 1.</param>
 /// <param name="ExtraCell2">The extra cell 2.</param>
-internal sealed record FireworkPairType1Step(
+internal sealed partial record FireworkPairType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells,
@@ -27,31 +27,15 @@ internal sealed record FireworkPairType1Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Cells.ToString();
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string ExtraCell1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(ExtraCell1);
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraCell1Str() => RxCyNotation.ToCellString(ExtraCell1);
 
-	[FormatItem]
-	internal string ExtraCell2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(ExtraCell2);
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraCell2Str() => RxCyNotation.ToCellString(ExtraCell2);
 }

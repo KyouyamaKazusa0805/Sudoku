@@ -32,7 +32,7 @@
 /// </list>
 /// </para>
 /// </param>
-internal sealed record UniqueRectangleType3Step(
+internal sealed partial record UniqueRectangleType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -73,38 +73,18 @@ internal sealed record UniqueRectangleType3Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string OnlyKeyword
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => IsNaked ? string.Empty : "only ";
-	}
+	[ResourceTextFormatter]
+	private partial string OnlyKeyword() => IsNaked ? string.Empty : "only ";
 
-	[FormatItem]
-	internal string OnlyKeywordZhCn
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => R["Only"]!;
-	}
+	[ResourceTextFormatter]
+	private partial string OnlyKeywordZhCn() => R["Only"]!;
 
-	[FormatItem]
-	internal string HouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << House);
-	}
+	[ResourceTextFormatter]
+	private partial string HouseStr() => HouseFormatter.Format(1 << House);
 
-	[FormatItem]
-	internal string AppearLimitKeyword
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => R["Appears"]!;
-	}
+	[ResourceTextFormatter]
+	private partial string AppearLimitKeyword() => R["Appears"]!;
 }

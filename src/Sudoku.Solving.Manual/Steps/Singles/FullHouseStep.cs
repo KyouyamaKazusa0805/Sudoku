@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
-internal sealed record FullHouseStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) :
+internal sealed partial record FullHouseStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) :
 	SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
@@ -19,17 +19,9 @@ internal sealed record FullHouseStep(ConclusionList Conclusions, ViewList Views,
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Always;
 
-	[FormatItem]
-	internal string CellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(Cell);
-	}
+	[ResourceTextFormatter]
+	private partial string CellStr() => RxCyNotation.ToCellString(Cell);
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => (Digit + 1).ToString();
 }

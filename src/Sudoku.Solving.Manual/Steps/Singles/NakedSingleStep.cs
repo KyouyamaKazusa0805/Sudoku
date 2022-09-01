@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cell"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
-internal sealed record NakedSingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) :
+internal sealed partial record NakedSingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) :
 	SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
@@ -19,17 +19,9 @@ internal sealed record NakedSingleStep(ConclusionList Conclusions, ViewList View
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.NakedSingle;
 
-	[FormatItem]
-	internal string CellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(Cell);
-	}
+	[ResourceTextFormatter]
+	private partial string CellStr() => RxCyNotation.ToCellString(Cell);
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => (Digit + 1).ToString();
 }

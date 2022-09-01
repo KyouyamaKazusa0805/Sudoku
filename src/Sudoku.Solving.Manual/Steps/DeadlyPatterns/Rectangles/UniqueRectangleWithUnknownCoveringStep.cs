@@ -11,7 +11,7 @@
 /// <param name="TargetCell">Indicates the target cell.</param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-internal sealed record UniqueRectangleWithUnknownCoveringStep(
+internal sealed partial record UniqueRectangleWithUnknownCoveringStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -43,24 +43,12 @@ internal sealed record UniqueRectangleWithUnknownCoveringStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string TargetCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(TargetCell);
-	}
+	[ResourceTextFormatter]
+	private partial string TargetCellStr() => RxCyNotation.ToCellString(TargetCell);
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format((short)(1 << Digit1 | 1 << Digit2), R["OrKeywordWithSpaces"]!);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format((short)(1 << Digit1 | 1 << Digit2), R["OrKeywordWithSpaces"]!);
 
-	[FormatItem]
-	internal string ExtraDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (ExtraDigit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraDigitStr() => (ExtraDigit + 1).ToString();
 }

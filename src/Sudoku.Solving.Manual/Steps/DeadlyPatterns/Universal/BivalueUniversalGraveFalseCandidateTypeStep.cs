@@ -8,7 +8,7 @@
 /// <param name="FalseCandidate">
 /// Indicates the false candidate that will cause a BUG deadly pattern if it is true.
 /// </param>
-internal sealed record BivalueUniversalGraveFalseCandidateTypeStep(
+internal sealed partial record BivalueUniversalGraveFalseCandidateTypeStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int FalseCandidate
@@ -23,10 +23,6 @@ internal sealed record BivalueUniversalGraveFalseCandidateTypeStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string FalseCandidateStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCandidateString(FalseCandidate);
-	}
+	[ResourceTextFormatter]
+	private partial string FalseCandidateStr() => RxCyNotation.ToCandidateString(FalseCandidate);
 }

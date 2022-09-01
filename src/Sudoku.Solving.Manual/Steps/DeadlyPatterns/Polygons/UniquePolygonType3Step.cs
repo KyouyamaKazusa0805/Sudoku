@@ -9,7 +9,7 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraCells">Indicates the extra cells used for forming the subset.</param>
 /// <param name="ExtraDigitsMask">Indicates the extra digits used for forming the subset.</param>
-internal sealed record UniquePolygonType3Step(
+internal sealed partial record UniquePolygonType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Map,
@@ -24,17 +24,9 @@ internal sealed record UniquePolygonType3Step(
 	/// <inheritdoc/>
 	public override int Type => 3;
 
-	[FormatItem]
-	internal string ExtraDigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraDigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string ExtraCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ExtraCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraCellsStr() => ExtraCells.ToString();
 }

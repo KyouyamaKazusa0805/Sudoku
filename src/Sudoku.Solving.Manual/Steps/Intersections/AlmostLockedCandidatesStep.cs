@@ -9,7 +9,7 @@
 /// <param name="BaseCells">Indicates the base cells.</param>
 /// <param name="TargetCells">Indicates the target cells.</param>
 /// <param name="HasValueCell">Indicates whether the step contains value cells.</param>
-internal sealed record AlmostLockedCandidatesStep(
+internal sealed partial record AlmostLockedCandidatesStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short DigitsMask,
@@ -49,24 +49,12 @@ internal sealed record AlmostLockedCandidatesStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string BaseCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => BaseCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string BaseCellsStr() => BaseCells.ToString();
 
-	[FormatItem]
-	internal string TargetCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TargetCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string TargetCellsStr() => TargetCells.ToString();
 }

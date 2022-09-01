@@ -8,7 +8,7 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="Block">Indicates the block that the empty rectangle structure formed.</param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-internal sealed record EmptyRectangleStep(
+internal sealed partial record EmptyRectangleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,
@@ -37,24 +37,12 @@ internal sealed record EmptyRectangleStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => (Digit + 1).ToString();
 
-	[FormatItem]
-	internal string HouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << Block);
-	}
+	[ResourceTextFormatter]
+	private partial string HouseStr() => HouseFormatter.Format(1 << Block);
 
-	[FormatItem]
-	internal string ConjStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugatePair.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ConjStr() => ConjugatePair.ToString();
 }

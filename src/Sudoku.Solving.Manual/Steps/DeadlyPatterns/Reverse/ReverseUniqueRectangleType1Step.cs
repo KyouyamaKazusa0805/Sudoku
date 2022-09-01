@@ -9,7 +9,7 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="TargetCell">The target cell used.</param>
 /// <param name="TargetDigit">The target digit used.</param>
-internal sealed record ReverseUniqueRectangleType1Step(
+internal sealed partial record ReverseUniqueRectangleType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells,
@@ -21,17 +21,9 @@ internal sealed record ReverseUniqueRectangleType1Step(
 	/// <inheritdoc/>
 	public override int Type => 1;
 
-	[FormatItem]
-	internal string TargetCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(TargetCell);
-	}
+	[ResourceTextFormatter]
+	private partial string TargetCellStr() => RxCyNotation.ToCellString(TargetCell);
 
-	[FormatItem]
-	internal string TargetDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (TargetDigit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string TargetDigitStr() => (TargetDigit + 1).ToString();
 }

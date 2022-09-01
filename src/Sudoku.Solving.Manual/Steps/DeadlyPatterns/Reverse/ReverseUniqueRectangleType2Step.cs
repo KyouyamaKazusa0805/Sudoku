@@ -9,7 +9,7 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">The extra digit used.</param>
 /// <param name="CellsHavingExtraDigit">Indicates the cells that contains the extra digit in the pattern.</param>
-internal sealed record ReverseUniqueRectangleType2Step(
+internal sealed partial record ReverseUniqueRectangleType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells,

@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Map">The map that contains the cells used for this technique.</param>
 /// <param name="DigitsMask">The mask that contains all digits used.</param>
-internal abstract record UniquePolygonStep(
+internal abstract partial record UniquePolygonStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Map,
@@ -37,20 +37,12 @@ internal abstract record UniquePolygonStep(
 	/// <summary>
 	/// Indicates the digits string.
 	/// </summary>
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
 	/// <summary>
 	/// Indicates the cells string.
 	/// </summary>
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Map.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Map.ToString();
 }

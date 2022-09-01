@@ -25,7 +25,7 @@
 /// </item>
 /// </list>
 /// </param>
-internal sealed record NakedSubsetStep(
+internal sealed partial record NakedSubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int House,
@@ -64,24 +64,12 @@ internal sealed record NakedSubsetStep(
 			(null, 4) => Technique.NakedQuadruple,
 		};
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string HouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << House);
-	}
+	[ResourceTextFormatter]
+	private partial string HouseStr() => HouseFormatter.Format(1 << House);
 
-	[FormatItem]
-	internal string SubsetName
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => R[$"SubsetNamesSize{Size}"]!;
-	}
+	[ResourceTextFormatter]
+	private partial string SubsetName() => R[$"SubsetNamesSize{Size}"]!;
 }

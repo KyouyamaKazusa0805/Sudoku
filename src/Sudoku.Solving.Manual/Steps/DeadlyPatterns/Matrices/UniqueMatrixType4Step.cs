@@ -10,7 +10,7 @@
 /// <param name="Digit1">Indicates the digit 1 used.</param>
 /// <param name="Digit2">Indicates the digit 2 used.</param>
 /// <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
-internal sealed record UniqueMatrixType4Step(
+internal sealed partial record UniqueMatrixType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells,
@@ -23,24 +23,12 @@ internal sealed record UniqueMatrixType4Step(
 	/// <inheritdoc/>
 	public override int Type => 4;
 
-	[FormatItem]
-	internal string ConjStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugateHouse.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ConjStr() => ConjugateHouse.ToString();
 
-	[FormatItem]
-	internal string Digit1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit1 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Digit1Str() => (Digit1 + 1).ToString();
 
-	[FormatItem]
-	internal string Digit2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit2 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Digit2Str() => (Digit2 + 1).ToString();
 }

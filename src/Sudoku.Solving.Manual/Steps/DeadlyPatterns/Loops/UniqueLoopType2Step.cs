@@ -9,7 +9,7 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Loop"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit.</param>
-internal sealed record UniqueLoopType2Step(
+internal sealed partial record UniqueLoopType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -24,10 +24,6 @@ internal sealed record UniqueLoopType2Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
-	[FormatItem]
-	internal string ExtraDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (ExtraDigit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraDigitStr() => (ExtraDigit + 1).ToString();
 }

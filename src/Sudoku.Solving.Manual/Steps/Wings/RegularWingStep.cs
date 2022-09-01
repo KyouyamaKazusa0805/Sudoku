@@ -9,7 +9,7 @@
 /// <param name="PivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
 /// <param name="DigitsMask">Indicates a mask that contains all digits used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
-internal sealed record RegularWingStep(
+internal sealed partial record RegularWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Pivot,
@@ -143,24 +143,12 @@ internal sealed record RegularWingStep(
 			} is var name => IsIncomplete ? $"Incomplete {name}" : name
 		};
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string PivotCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(Pivot);
-	}
+	[ResourceTextFormatter]
+	private partial string PivotCellStr() => RxCyNotation.ToCellString(Pivot);
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Petals.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Petals.ToString();
 }

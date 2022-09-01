@@ -9,7 +9,7 @@
 /// <param name="EndoTargetCell">Indicates the target cell that is embedded into the cross-line cells.</param>
 /// <param name="ExtraHousesMask">Indicates the mask that holds the extra houses used.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
-internal sealed record SeniorExocetStep(
+internal sealed partial record SeniorExocetStep(
 	ViewList Views,
 	scoped in ExocetPattern Exocet,
 	short DigitsMask,
@@ -38,49 +38,42 @@ internal sealed record SeniorExocetStep(
 	public override Technique TechniqueCode
 		=> ContainsExtraHouses ? Technique.ComplexSeniorExocet : Technique.SeniorExocet;
 
-	[FormatItem]
-	internal string AdditionalFormat
+	[ResourceTextFormatter]
+	private partial string AdditionalFormat()
 	{
-		get
+		const string separator = ", ";
+		string endoTargetSnippet = R["EndoTarget"]!;
+		string endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
+		if (ExtraHousesMask is not null)
 		{
-			const string separator = ", ";
-			string endoTargetSnippet = R["EndoTarget"]!;
-			string endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
-			if (ExtraHousesMask is not null)
+			scoped var sb = new StringHandler(100);
+			int count = 0;
+			for (int digit = 0; digit < 9; digit++)
 			{
-				scoped var sb = new StringHandler(100);
-				int count = 0;
-				for (int digit = 0; digit < 9; digit++)
+				if (ExtraHousesMask[digit] is not (var mask and not 0))
 				{
-					if (ExtraHousesMask[digit] is not (var mask and not 0))
-					{
-						continue;
-					}
-
-					sb.Append(digit + 1);
-					sb.Append(HouseFormatter.Format(mask));
-					sb.Append(separator);
-
-					count++;
+					continue;
 				}
 
-				if (count != 0)
-				{
-					sb.RemoveFromEnd(separator.Length);
+				sb.Append(digit + 1);
+				sb.Append(HouseFormatter.Format(mask));
+				sb.Append(separator);
 
-					string extraHousesIncluded = R["IncludedExtraHouses"]!;
-					return $"{endoTargetStr}{extraHousesIncluded}{sb.ToStringAndClear()}";
-				}
+				count++;
 			}
 
-			return endoTargetStr;
+			if (count != 0)
+			{
+				sb.RemoveFromEnd(separator.Length);
+
+				string extraHousesIncluded = R["IncludedExtraHouses"]!;
+				return $"{endoTargetStr}{extraHousesIncluded}{sb.ToStringAndClear()}";
+			}
 		}
+
+		return endoTargetStr;
 	}
 
-	[FormatItem]
-	internal string EndoTargetCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(EndoTargetCell);
-	}
+	[ResourceTextFormatter]
+	private partial string EndoTargetCellStr() => RxCyNotation.ToCellString(EndoTargetCell);
 }

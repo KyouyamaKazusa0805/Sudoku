@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal sealed record BruteForceStep(ConclusionList Conclusions, ViewList Views) :
+internal sealed partial record BruteForceStep(ConclusionList Conclusions, ViewList Views) :
 	LastResortStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
@@ -23,10 +23,6 @@ internal sealed record BruteForceStep(ConclusionList Conclusions, ViewList Views
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Always;
 
-	[FormatItem]
-	internal string AssignmentStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string AssignmentStr() => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
 }

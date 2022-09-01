@@ -8,7 +8,7 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="BaseHouse">Indicates the base house used.</param>
 /// <param name="TargetHouse">Indicates the target house used.</param>
-internal sealed record TwoStrongLinksStep(
+internal sealed partial record TwoStrongLinksStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,
@@ -46,24 +46,12 @@ internal sealed record TwoStrongLinksStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => (Digit + 1).ToString();
 
-	[FormatItem]
-	internal string BaseHouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << BaseHouse);
-	}
+	[ResourceTextFormatter]
+	private partial string BaseHouseStr() => HouseFormatter.Format(1 << BaseHouse);
 
-	[FormatItem]
-	internal string TargetHouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << TargetHouse);
-	}
+	[ResourceTextFormatter]
+	private partial string TargetHouseStr() => HouseFormatter.Format(1 << TargetHouse);
 }

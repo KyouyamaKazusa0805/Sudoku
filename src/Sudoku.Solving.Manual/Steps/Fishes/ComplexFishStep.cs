@@ -12,7 +12,7 @@
 /// <param name="Endofins">The endo-fins.</param>
 /// <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
 /// <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
-internal sealed record ComplexFishStep(
+internal sealed partial record ComplexFishStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,
@@ -156,40 +156,20 @@ internal sealed record ComplexFishStep(
 		}
 	}
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => (Digit + 1).ToString();
 
-	[FormatItem]
-	internal string BaseSetsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(BaseHouses);
-	}
+	[ResourceTextFormatter]
+	private partial string BaseSetsStr() => HouseFormatter.Format(BaseHouses);
 
-	[FormatItem]
-	internal string CoverSetsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(CoverHouses);
-	}
+	[ResourceTextFormatter]
+	private partial string CoverSetsStr() => HouseFormatter.Format(CoverHouses);
 
-	[FormatItem]
-	internal string ExofinsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Exofins ? $"f{Exofins} " : string.Empty;
-	}
+	[ResourceTextFormatter]
+	private partial string ExofinsStr() => Exofins ? $"f{Exofins} " : string.Empty;
 
-	[FormatItem]
-	internal string EndofinsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Endofins ? $"ef{Endofins} " : string.Empty;
-	}
+	[ResourceTextFormatter]
+	private partial string EndofinsStr() => Endofins ? $"ef{Endofins} " : string.Empty;
 
 
 	/// <inheritdoc/>

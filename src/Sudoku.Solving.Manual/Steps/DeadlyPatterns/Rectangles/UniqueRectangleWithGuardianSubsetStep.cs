@@ -14,7 +14,7 @@
 /// <param name="SubsetDigitsMask">Indicates the digits that the subset are used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-internal sealed record UniqueRectangleWithGuardianSubsetStep(
+internal sealed partial record UniqueRectangleWithGuardianSubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -61,17 +61,9 @@ internal sealed record UniqueRectangleWithGuardianSubsetStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string SubsetCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => SubsetCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string SubsetCellsStr() => SubsetCells.ToString();
 }

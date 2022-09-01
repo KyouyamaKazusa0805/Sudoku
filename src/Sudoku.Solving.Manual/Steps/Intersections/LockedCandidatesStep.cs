@@ -8,7 +8,7 @@
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="BaseSet">Indicates the house that the current locked candidates forms.</param>
 /// <param name="CoverSet">Indicates the house that the current locked candidates influences.</param>
-internal sealed record LockedCandidatesStep(
+internal sealed partial record LockedCandidatesStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit,
@@ -34,24 +34,12 @@ internal sealed record LockedCandidatesStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => (Digit + 1).ToString();
 
-	[FormatItem]
-	internal string BaseSetStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << BaseSet);
-	}
+	[ResourceTextFormatter]
+	private partial string BaseSetStr() => HouseFormatter.Format(1 << BaseSet);
 
-	[FormatItem]
-	internal string CoverSetStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << CoverSet);
-	}
+	[ResourceTextFormatter]
+	private partial string CoverSetStr() => HouseFormatter.Format(1 << CoverSet);
 }

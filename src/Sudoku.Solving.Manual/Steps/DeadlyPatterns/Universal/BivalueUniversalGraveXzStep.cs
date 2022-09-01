@@ -8,7 +8,7 @@
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="ExtraCell">Indicates the XZ cell.</param>
-internal sealed record BivalueUniversalGraveXzStep(
+internal sealed partial record BivalueUniversalGraveXzStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short DigitsMask,
@@ -32,24 +32,12 @@ internal sealed record BivalueUniversalGraveXzStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Cells.ToString();
 
-	[FormatItem]
-	internal string ExtraCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(ExtraCell);
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraCellStr() => RxCyNotation.ToCellString(ExtraCell);
 }

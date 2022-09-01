@@ -8,7 +8,7 @@
 /// <param name="House"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-internal sealed record HiddenSubsetStep(
+internal sealed partial record HiddenSubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int House,
@@ -23,17 +23,9 @@ internal sealed record HiddenSubsetStep(
 	public override Technique TechniqueCode
 		=> Size switch { 2 => Technique.HiddenPair, 3 => Technique.HiddenTriple, 4 => Technique.HiddenQuadruple };
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string HouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << House);
-	}
+	[ResourceTextFormatter]
+	private partial string HouseStr() => HouseFormatter.Format(1 << House);
 }

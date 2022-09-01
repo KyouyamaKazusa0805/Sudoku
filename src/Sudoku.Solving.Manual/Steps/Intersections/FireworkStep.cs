@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal abstract record FireworkStep(ConclusionList Conclusions, ViewList Views) :
+internal abstract partial record FireworkStep(ConclusionList Conclusions, ViewList Views) :
 	IntersectionStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

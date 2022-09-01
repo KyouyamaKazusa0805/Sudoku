@@ -8,7 +8,7 @@
 /// <param name="Blocks">The blocks used.</param>
 /// <param name="Pattern">The cells used.</param>
 /// <param name="DigitsMask">The digits mask.</param>
-internal abstract record ChromaticPatternStep(
+internal abstract partial record ChromaticPatternStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int[] Blocks,
@@ -35,24 +35,12 @@ internal abstract record ChromaticPatternStep(
 	public sealed override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
 
 
-	[FormatItem]
-	internal string BlocksStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => string.Join(", ", from block in Blocks select $"{block + 1}");
-	}
+	[ResourceTextFormatter]
+	private partial string BlocksStr() => string.Join(", ", from block in Blocks select $"{block + 1}");
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Pattern.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Pattern.ToString();
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 }

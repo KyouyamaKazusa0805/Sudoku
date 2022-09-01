@@ -10,7 +10,7 @@
 /// <param name="ConjugatePair">
 /// Indicates the conjugate pair connecting with cells <see cref="StartCell"/> and <see cref="EndCell"/>.
 /// </param>
-internal sealed record WWingStep(
+internal sealed partial record WWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int StartCell,
@@ -30,24 +30,12 @@ internal sealed record WWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
-	[FormatItem]
-	internal string StartCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(StartCell);
-	}
+	[ResourceTextFormatter]
+	private partial string StartCellStr() => RxCyNotation.ToCellString(StartCell);
 
-	[FormatItem]
-	internal string EndCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(EndCell);
-	}
+	[ResourceTextFormatter]
+	private partial string EndCellStr() => RxCyNotation.ToCellString(EndCell);
 
-	[FormatItem]
-	internal string ConjStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugatePair.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ConjStr() => ConjugatePair.ToString();
 }

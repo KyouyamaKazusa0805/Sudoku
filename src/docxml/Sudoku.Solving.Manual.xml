@@ -4732,12 +4732,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.TechniqueTags">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.DigitsStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.DigitsStr">
             <summary>
             Indicates the digits string.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.CellsStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.CellsStr">
             <summary>
             Indicates the cells string.
             </summary>
@@ -4936,23 +4936,23 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.LoopStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Equals(Sudoku.Solving.Manual.Steps.UniqueLoopStep,Sudoku.Solving.Manual.Steps.UniqueLoopStep)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopStep.LoopStr">
             <summary>
             Indicates the loop string.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Digit1Str">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Digit1Str">
             <summary>
             Indicates the digit 1 string.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Digit2Str">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Digit2Str">
             <summary>
             Indicates the digit 2 string.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Equals(Sudoku.Solving.Manual.Steps.UniqueLoopStep,Sudoku.Solving.Manual.Steps.UniqueLoopStep)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.UniqueLoopType1Step">
             <summary>
@@ -5137,12 +5137,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.DigitsStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.DigitsStr">
             <summary>
             Indicates the digits string.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.CellsStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueMatrixStep.CellsStr">
             <summary>
             Indicates the cells string.
             </summary>
@@ -5375,12 +5375,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonStep.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonStep.DigitsStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonStep.DigitsStr">
             <summary>
             Indicates the digits string.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonStep.CellsStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonStep.CellsStr">
             <summary>
             Indicates the cells string.
             </summary>
@@ -5581,7 +5581,7 @@
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.PatternStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.PatternStr">
             <summary>
             Indicates the pattern string.
             </summary>
@@ -5968,23 +5968,23 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.D1Str">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.Equals(Sudoku.Solving.Manual.Steps.UniqueRectangleStep,Sudoku.Solving.Manual.Steps.UniqueRectangleStep)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.D1Str">
             <summary>
             Indicates the digit 1 string.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.D2Str">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.D2Str">
             <summary>
             Indicates the digit 2 string.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.CellsStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.CellsStr">
             <summary>
             Indicates the cells string.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.Equals(Sudoku.Solving.Manual.Steps.UniqueRectangleStep,Sudoku.Solving.Manual.Steps.UniqueRectangleStep)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.UniqueRectangleType1Step">
             <summary>
@@ -6221,7 +6221,7 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.ConjPairsStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.ConjPairsStr">
             <summary>
             Indicates the conjugate pair string.
             </summary>
@@ -6665,12 +6665,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.DigitsStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.DigitsStr">
             <summary>
             Indicates the digits string.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.CellsStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.ReverseBivalueUniversalGraveStep.CellsStr">
             <summary>
             Indicates the cells string.
             </summary>
@@ -7113,21 +7113,6 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.DigitsStr">
-            <summary>
-            Indicates the digits string.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.BaseCellsStr">
-            <summary>
-            Indicates the base map string.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.TargetCellsStr">
-            <summary>
-            Indicates the target map string.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.BaseMap">
             <summary>
             Indicates the map of the base cells.
@@ -7146,6 +7131,21 @@
             Gather conclusions.
             </summary>
             <returns>The gathered result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.DigitsStr">
+            <summary>
+            Indicates the digits string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.BaseCellsStr">
+            <summary>
+            Indicates the base map string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.TargetCellsStr">
+            <summary>
+            Indicates the target map string.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.JuniorExocetStep">
             <summary>
@@ -7177,12 +7177,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.LockedMemberQStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.JuniorExocetStep.LockedMemberQStr">
             <summary>
             Indicates the locked member Q string.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.LockedMemberRStr">
+        <member name="M:Sudoku.Solving.Manual.Steps.JuniorExocetStep.LockedMemberRStr">
             <summary>
             Indicates the locked member R string.
             </summary>

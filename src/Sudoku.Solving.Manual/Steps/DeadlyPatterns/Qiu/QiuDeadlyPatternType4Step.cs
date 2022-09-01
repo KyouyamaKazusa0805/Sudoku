@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-internal sealed record QiuDeadlyPatternType4Step(
+internal sealed partial record QiuDeadlyPatternType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in QiuDeadlyPattern Pattern,
@@ -27,10 +27,6 @@ internal sealed record QiuDeadlyPatternType4Step(
 	/// <inheritdoc/>
 	public override int Type => 4;
 
-	[FormatItem]
-	internal string ConjStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugatePair.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ConjStr() => ConjugatePair.ToString();
 }

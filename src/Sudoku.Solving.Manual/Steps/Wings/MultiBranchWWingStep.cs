@@ -8,7 +8,7 @@
 /// <param name="Leaves">The leaves of the pattern.</param>
 /// <param name="Root">The root cells that corresponds to each leaf.</param>
 /// <param name="House">The house used.</param>
-internal sealed record MultiBranchWWingStep(
+internal sealed partial record MultiBranchWWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Leaves,
@@ -38,24 +38,12 @@ internal sealed record MultiBranchWWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string LeavesStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellsString(Leaves);
-	}
+	[ResourceTextFormatter]
+	private partial string LeavesStr() => RxCyNotation.ToCellsString(Leaves);
 
-	[FormatItem]
-	internal string RootStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellsString(Root);
-	}
+	[ResourceTextFormatter]
+	private partial string RootStr() => RxCyNotation.ToCellsString(Root);
 
-	[FormatItem]
-	internal string HouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(House);
-	}
+	[ResourceTextFormatter]
+	private partial string HouseStr() => HouseFormatter.Format(House);
 }

@@ -9,7 +9,7 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraCell">Indicates the extra cell.</param>
-internal sealed record BivalueOddagonType1Step(
+internal sealed partial record BivalueOddagonType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Loop,
@@ -27,31 +27,15 @@ internal sealed record BivalueOddagonType1Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.ReplacedByOtherTechniques;
 
-	[FormatItem]
-	internal string CellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(ExtraCell);
-	}
+	[ResourceTextFormatter]
+	private partial string CellStr() => RxCyNotation.ToCellString(ExtraCell);
 
-	[FormatItem]
-	internal string Digit1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit1 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Digit1Str() => (Digit1 + 1).ToString();
 
-	[FormatItem]
-	internal string Digit2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit2 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Digit2Str() => (Digit2 + 1).ToString();
 
-	[FormatItem]
-	internal string LoopStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Loop.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string LoopStr() => Loop.ToString();
 }

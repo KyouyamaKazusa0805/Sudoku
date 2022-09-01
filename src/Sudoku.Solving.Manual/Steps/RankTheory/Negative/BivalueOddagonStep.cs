@@ -8,7 +8,7 @@
 /// <param name="Loop">Indicates the loop used.</param>
 /// <param name="Digit1">Indicates the first digit.</param>
 /// <param name="Digit2">Indicates the second digit.</param>
-internal abstract record BivalueOddagonStep(
+internal abstract partial record BivalueOddagonStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Loop,

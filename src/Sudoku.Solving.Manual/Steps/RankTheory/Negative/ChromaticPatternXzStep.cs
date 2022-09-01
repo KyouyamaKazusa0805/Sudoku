@@ -11,7 +11,7 @@
 /// <param name="ExtraCell">Indicates the extra cell used.</param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigitsMask">The extra digits mask.</param>
-internal sealed record ChromaticPatternXzStep(
+internal sealed partial record ChromaticPatternXzStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int[] Blocks,
@@ -36,10 +36,6 @@ internal sealed record ChromaticPatternXzStep(
 	public override Technique TechniqueCode => Technique.ChromaticPatternXzRule;
 
 
-	[FormatItem]
-	internal string ExtraCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(ExtraCell);
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraCellStr() => RxCyNotation.ToCellString(ExtraCell);
 }

@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the true candidates.</param>
-internal sealed record BivalueUniversalGraveMultipleStep(
+internal sealed partial record BivalueUniversalGraveMultipleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	IReadOnlyList<int> Candidates
@@ -31,10 +31,6 @@ internal sealed record BivalueUniversalGraveMultipleStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string CandidatesStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Candidates(Candidates).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CandidatesStr() => new Candidates(Candidates).ToString();
 }

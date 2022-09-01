@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Chain">Indicates the whole chain.</param>
-internal sealed record AlternatingInferenceChainStep(
+internal sealed partial record AlternatingInferenceChainStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	AlternatingInferenceChain Chain
@@ -338,12 +338,8 @@ internal sealed record AlternatingInferenceChainStep(
 	};
 #pragma warning restore IDE0055
 
-	[FormatItem]
-	internal string ChainStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Chain.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ChainStr() => Chain.ToString();
 
 
 #if false

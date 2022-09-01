@@ -4892,6 +4892,17 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
         </member>
+        <member name="T:Sudoku.Reflection.ReflectionMessage">
+            <summary>
+            Represents a list of <see cref="T:System.String"/> text as messages to describe what kind of error.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Reflection.ReflectionMessage.RequiresReflectionDueToResourceDictionary">
+            <summary>
+            Indicates the error message is that you cannot directly access a certain member,
+            because it must be referenced by reflection, and binds a resource value.
+            </summary>
+        </member>
         <member name="T:Sudoku.Resources.MergedResources">
             <summary>
             Defines a merged resource dictionary.
@@ -11275,17 +11286,15 @@
             the property invoked. You should create 3 properties whose names are <c>Name</c>, <c>CellsStr</c>
             and <c>ElimsStr</c>, and return the corresponding correct string result,
             making them non-<see langword="public"/> (suggested keyword is <see langword="internal"/>)
-            and applying attribute <see cref="T:Sudoku.Text.FormatItemAttribute"/> to it.
+            and applying attribute <see cref="T:Sudoku.Text.ResourceTextFormatterAttribute"/> to it.
             </para>
             <para>
             The recommended implementation pattern is:
             <code><![CDATA[
-            [FormatItem]
-            internal string CellsStr
-            {
-                [MethodImpl(MethodImplOptions.AggressiveInlining)]
-                get => Cells.ToString();
-            }
+            [ResourceTextFormatter]
+            [RequiresUnreferencedCode(M.RequiresReflectionDueToResourceDictionary)]
+            [RequiresDynamicCode(M.RequiresReflectionDueToResourceDictionary)]
+            internal string CellsStr() => Cells.ToString();
             ]]></code>
             You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
             into the <c>optional/vssnippets</c> folder. For more information, please open the markdown file
@@ -11308,7 +11317,7 @@
             </para>
             </remarks>
             <seealso cref="M:Sudoku.Solving.IStep.ToFullString"/>
-            <seealso cref="T:Sudoku.Text.FormatItemAttribute"/>
+            <seealso cref="T:Sudoku.Text.ResourceTextFormatterAttribute"/>
             <seealso cref="F:Sudoku.Resources.MergedResources.R"/>
         </member>
         <member name="P:Sudoku.Solving.IStep.Difficulty">
@@ -12820,11 +12829,6 @@
         <member name="F:Sudoku.Text.CandidatesParsingOptions.PrepositionalForm">
             <summary>
             Indicates the prepositional form, such as <c>12{ r1c1, r3c3 }</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Text.FormatItemAttribute">
-            <summary>
-            Marks on a property to tell the user the property is only used for the formatting.
             </summary>
         </member>
         <member name="T:Sudoku.Text.Formatting.ConclusionFormatter">
@@ -14450,6 +14454,20 @@
         <member name="M:Sudoku.Text.Parsing.Utf8GridParser.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Text.ResourceTextFormatterAttribute">
+            <summary>
+            Marks on a method to tell the user the method is only used for the formatting.
+            This attribute implies two things:
+            <list type="number">
+            <item>The name of the method is appeared in resource dictionary</item>
+            <item>The method can only be invoked by reflection.</item>
+            </list>
+            If a method is marked this attribute, please also applies <see cref="T:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute"/>
+            and <see cref="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute"/>.
+            </summary>
+            <seealso cref="T:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute"/>
+            <seealso cref="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute"/>
         </member>
         <member name="T:Sudoku.Text.Serialization.ColorInternal">
             <summary>

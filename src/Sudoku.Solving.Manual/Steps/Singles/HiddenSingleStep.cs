@@ -11,7 +11,7 @@
 /// <param name="EnableAndIsLastDigit">
 /// Indicates whether the current step is a <b>Last Digit</b> technique usage.
 /// </param>
-internal sealed record HiddenSingleStep(
+internal sealed partial record HiddenSingleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Cell,
@@ -37,24 +37,12 @@ internal sealed record HiddenSingleStep(
 	public override string? Format
 		=> R[EnableAndIsLastDigit ? "TechniqueFormat_LastDigit" : "TechniqueFormat_HiddenSingle"];
 
-	[FormatItem]
-	internal string CellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(Cell);
-	}
+	[ResourceTextFormatter]
+	private partial string CellStr() => RxCyNotation.ToCellString(Cell);
 
-	[FormatItem]
-	internal string DigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string DigitStr() => (Digit + 1).ToString();
 
-	[FormatItem]
-	internal string HouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << House);
-	}
+	[ResourceTextFormatter]
+	private partial string HouseStr() => HouseFormatter.Format(1 << House);
 }

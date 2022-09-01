@@ -10,7 +10,7 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-internal sealed record UniqueRectangleType1Step(
+internal sealed partial record UniqueRectangleType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

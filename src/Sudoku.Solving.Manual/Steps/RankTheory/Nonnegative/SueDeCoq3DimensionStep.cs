@@ -11,7 +11,7 @@
 /// <param name="RowCells">The row cells map.</param>
 /// <param name="ColumnCells">The column cells map.</param>
 /// <param name="BlockCells">The block cells map.</param>
-internal sealed record SueDeCoq3DimensionStep(
+internal sealed partial record SueDeCoq3DimensionStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short RowDigitsMask,
@@ -43,45 +43,21 @@ internal sealed record SueDeCoq3DimensionStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
-	[FormatItem]
-	internal string Cells1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RowCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Cells1Str() => RowCells.ToString();
 
-	[FormatItem]
-	internal string Digits1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(RowDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string Digits1Str() => DigitMaskFormatter.Format(RowDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string Cells2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ColumnCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Cells2Str() => ColumnCells.ToString();
 
-	[FormatItem]
-	internal string Digits2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(ColumnDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string Digits2Str() => DigitMaskFormatter.Format(ColumnDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string Cells3Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => BlockCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Cells3Str() => BlockCells.ToString();
 
-	[FormatItem]
-	internal string Digits3Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(BlockDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string Digits3Str() => DigitMaskFormatter.Format(BlockDigitsMask, FormattingMode.Normal);
 }

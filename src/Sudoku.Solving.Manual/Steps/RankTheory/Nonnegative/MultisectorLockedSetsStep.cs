@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
-internal sealed record MultisectorLockedSetsStep(
+internal sealed partial record MultisectorLockedSetsStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells
@@ -40,17 +40,9 @@ internal sealed record MultisectorLockedSetsStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
-	[FormatItem]
-	internal string CellsCountStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.Count.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsCountStr() => Cells.Count.ToString();
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Cells.ToString();
 }

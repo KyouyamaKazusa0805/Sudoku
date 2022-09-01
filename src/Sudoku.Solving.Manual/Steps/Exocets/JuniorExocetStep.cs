@@ -11,7 +11,7 @@
 /// <param name="LockedMemberQ">Indicates the locked member bound with Q cells.</param>
 /// <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
 #endif
-internal sealed record JuniorExocetStep(
+internal sealed partial record JuniorExocetStep(
 	ViewList Views,
 	scoped in ExocetPattern Exocet,
 	short DigitsMask,
@@ -56,42 +56,34 @@ internal sealed record JuniorExocetStep(
 	/// <summary>
 	/// Indicates the locked member Q string.
 	/// </summary>
-	[FormatItem]
+	[ResourceTextFormatter]
 #if false
 	[NotNullIfNotNull(nameof(LockedMemberQ))]
 #endif
-	internal string LockedMemberQStr
+	private partial string LockedMemberQStr()
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
 #if false
-			string? cells = LockedMemberQ == 0 ? null : DigitMaskFormatter.Format(LockedMemberQ, FormattingMode.Normal);
-			return $"{R["LockedMember1"]}{cells}";
+		string? cells = LockedMemberQ == 0 ? null : DigitMaskFormatter.Format(LockedMemberQ, FormattingMode.Normal);
+		return $"{R["LockedMember1"]}{cells}";
 #else
-			return string.Empty;
+		return string.Empty;
 #endif
-		}
 	}
 
 	/// <summary>
 	/// Indicates the locked member R string.
 	/// </summary>
-	[FormatItem]
+	[ResourceTextFormatter]
 #if false
 	[NotNullIfNotNull(nameof(LockedMemberR))]
 #endif
-	internal string LockedMemberRStr
+	private partial string LockedMemberRStr()
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
 #if false
-			string? cells = LockedMemberR == 0 ? null : DigitMaskFormatter.Format(LockedMemberR, FormattingMode.Normal);
-			return $"{R["LockedMember2"]}{cells}";
+		string? cells = LockedMemberR == 0 ? null : DigitMaskFormatter.Format(LockedMemberR, FormattingMode.Normal);
+		return $"{R["LockedMember2"]}{cells}";
 #else
-			return string.Empty;
+		return string.Empty;
 #endif
-		}
 	}
 }

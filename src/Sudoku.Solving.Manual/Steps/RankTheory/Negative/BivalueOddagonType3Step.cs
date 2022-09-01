@@ -10,7 +10,7 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
-internal sealed record BivalueOddagonType3Step(
+internal sealed partial record BivalueOddagonType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Loop,
@@ -39,38 +39,18 @@ internal sealed record BivalueOddagonType3Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string LoopStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Loop.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string LoopStr() => Loop.ToString();
 
-	[FormatItem]
-	internal string Digit1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit1 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Digit1Str() => (Digit1 + 1).ToString();
 
-	[FormatItem]
-	internal string Digit2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit2 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Digit2Str() => (Digit2 + 1).ToString();
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string ExtraCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ExtraCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraCellsStr() => ExtraCells.ToString();
 }

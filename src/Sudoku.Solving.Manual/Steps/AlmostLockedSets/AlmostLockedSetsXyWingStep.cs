@@ -11,7 +11,7 @@
 /// <param name="XDigitsMask">Indicates the mask that holds the digits for the X value.</param>
 /// <param name="YDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
 /// <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
-internal sealed record AlmostLockedSetsXyWingStep(
+internal sealed partial record AlmostLockedSetsXyWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	AlmostLockedSet Als1,
@@ -40,45 +40,21 @@ internal sealed record AlmostLockedSetsXyWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
-	[FormatItem]
-	internal string Als1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Als1.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Als1Str() => Als1.ToString();
 
-	[FormatItem]
-	internal string BridgeStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Bridge.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string BridgeStr() => Bridge.ToString();
 
-	[FormatItem]
-	internal string Als2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Als2.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Als2Str() => Als2.ToString();
 
-	[FormatItem]
-	internal string XStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(XDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string XStr() => DigitMaskFormatter.Format(XDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string YStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(YDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string YStr() => DigitMaskFormatter.Format(YDigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string ZStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string ZStr() => DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal);
 }

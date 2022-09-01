@@ -13,7 +13,7 @@
 /// <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-internal sealed record UniqueRectangleWithGuardianStep(
+internal sealed partial record UniqueRectangleWithGuardianStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -59,17 +59,9 @@ internal sealed record UniqueRectangleWithGuardianStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
-	[FormatItem]
-	internal string GuardianDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (GuardianDigit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string GuardianDigitStr() => (GuardianDigit + 1).ToString();
 
-	[FormatItem]
-	internal string GuardianCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => GuardianCells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string GuardianCellsStr() => GuardianCells.ToString();
 }

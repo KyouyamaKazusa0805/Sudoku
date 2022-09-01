@@ -9,7 +9,7 @@
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
-internal sealed record BivalueUniversalGraveType3Step(
+internal sealed partial record BivalueUniversalGraveType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	IReadOnlyList<int> TrueCandidates,
@@ -43,45 +43,21 @@ internal sealed record BivalueUniversalGraveType3Step(
 	/// </summary>
 	private int Size => PopCount((uint)DigitsMask);
 
-	[FormatItem]
-	internal string TrueCandidatesStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Candidates(TrueCandidates).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string TrueCandidatesStr() => new Candidates(TrueCandidates).ToString();
 
-	[FormatItem]
-	internal string SubsetTypeStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => R[IsNaked ? "NakedKeyword" : "HiddenKeyword"]!;
-	}
+	[ResourceTextFormatter]
+	private partial string SubsetTypeStr() => R[IsNaked ? "NakedKeyword" : "HiddenKeyword"]!;
 
-	[FormatItem]
-	internal string SizeStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => R[$"SubsetNames{Size}"]!;
-	}
+	[ResourceTextFormatter]
+	private partial string SizeStr() => R[$"SubsetNames{Size}"]!;
 
-	[FormatItem]
-	internal string SizeStrZhCn
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => R[$"SubsetNames{Size}"]!;
-	}
+	[ResourceTextFormatter]
+	private partial string SizeStrZhCn() => R[$"SubsetNames{Size}"]!;
 
-	[FormatItem]
-	internal string ExtraDigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraDigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Cells.ToString();
 }

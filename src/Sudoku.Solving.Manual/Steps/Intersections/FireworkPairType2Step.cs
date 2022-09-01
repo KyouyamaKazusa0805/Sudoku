@@ -9,7 +9,7 @@
 /// <param name="Pattern1">The first pattern used.</param>
 /// <param name="Pattern2">The second pattern used.</param>
 /// <param name="ExtraCell">The extra cell used.</param>
-internal sealed record FireworkPairType2Step(
+internal sealed partial record FireworkPairType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short DigitsMask,
@@ -27,41 +27,25 @@ internal sealed record FireworkPairType2Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string ExtraCellStr
+	[ResourceTextFormatter]
+	private partial string ExtraCellStr() => RxCyNotation.ToCellString(ExtraCell);
+
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+
+	[ResourceTextFormatter]
+	private partial string Firework1Str()
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(ExtraCell);
+		string cells = Pattern1.Map.ToString();
+		string digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+		return $"{cells}({digits})";
 	}
 
-	[FormatItem]
-	internal string DigitsStr
+	[ResourceTextFormatter]
+	private partial string Firework2Str()
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-	}
-
-	[FormatItem]
-	internal string Firework1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			string cells = Pattern1.Map.ToString();
-			string digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-			return $"{cells}({digits})";
-		}
-	}
-
-	[FormatItem]
-	internal string Firework2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			string cells = Pattern2.Map.ToString();
-			string digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-			return $"{cells}({digits})";
-		}
+		string cells = Pattern2.Map.ToString();
+		string digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+		return $"{cells}({digits})";
 	}
 }

@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal abstract record WingStep(ConclusionList Conclusions, ViewList Views) : Step(Conclusions, Views)
+internal abstract partial record WingStep(ConclusionList Conclusions, ViewList Views) : Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;

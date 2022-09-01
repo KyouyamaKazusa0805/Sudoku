@@ -29,7 +29,7 @@
 /// Indicates the cells in the intersection from houses <see cref="Block"/> and <see cref="Line"/>.
 /// </param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-internal sealed record UniqueRectangleWithSueDeCoqStep(
+internal sealed partial record UniqueRectangleWithSueDeCoqStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -85,17 +85,9 @@ internal sealed record UniqueRectangleWithSueDeCoqStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
-	[FormatItem]
-	internal string MergedCellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (LineCells | BlockCells).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string MergedCellsStr() => (LineCells | BlockCells).ToString();
 
-	[FormatItem]
-	internal string DigitsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => DigitMaskFormatter.Format((short)(LineMask | BlockMask), FormattingMode.Normal);
-	}
+	[ResourceTextFormatter]
+	private partial string DigitsStr() => DigitMaskFormatter.Format((short)(LineMask | BlockMask), FormattingMode.Normal);
 }

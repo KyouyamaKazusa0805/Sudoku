@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the candidates used.</param>
-internal sealed record QiuDeadlyPatternLockedTypeStep(
+internal sealed partial record QiuDeadlyPatternLockedTypeStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in QiuDeadlyPattern Pattern,
@@ -27,38 +27,18 @@ internal sealed record QiuDeadlyPatternLockedTypeStep(
 	/// <inheritdoc/>
 	public override int Type => 5;
 
-	[FormatItem]
-	internal string CandidateStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Candidates(Candidates).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CandidateStr() => new Candidates(Candidates).ToString();
 
-	[FormatItem]
-	internal string Quantifier
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Candidates.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
-	}
+	[ResourceTextFormatter]
+	private partial string Quantifier() => Candidates.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
 
-	[FormatItem]
-	internal string Number
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Candidates.Count == 1 ? " the" : $" {Candidates.Count}";
-	}
+	[ResourceTextFormatter]
+	private partial string Number() => Candidates.Count == 1 ? " the" : $" {Candidates.Count}";
 
-	[FormatItem]
-	internal string SingularOrPlural
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Candidates.Count == 1 ? "candidate" : "candidates";
-	}
+	[ResourceTextFormatter]
+	private partial string SingularOrPlural() => Candidates.Count == 1 ? "candidate" : "candidates";
 
-	[FormatItem]
-	internal string BeVerb
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Candidates.Count == 1 ? "is" : "are";
-	}
+	[ResourceTextFormatter]
+	private partial string BeVerb() => Candidates.Count == 1 ? "is" : "are";
 }

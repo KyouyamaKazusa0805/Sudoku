@@ -10,7 +10,7 @@
 /// <param name="Cell1">Indicates the first cell used.</param>
 /// <param name="Cell2">Indicates the second cell used.</param>
 /// <param name="ChuteIndex">Indicates the global chute index.</param>
-internal sealed record UniquenessClueCoverType2Step(
+internal sealed partial record UniquenessClueCoverType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -26,21 +26,13 @@ internal sealed record UniquenessClueCoverType2Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
 
-	[FormatItem]
-	internal string ChuteIndexStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (ChuteIndex + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ChuteIndexStr() => (ChuteIndex + 1).ToString();
 
-	[FormatItem]
-	internal string HousesStr
+	[ResourceTextFormatter]
+	private partial string HousesStr()
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			var (h1, h2, h3) = ChuteHouses[ChuteIndex];
-			return HouseFormatter.Format(1 << h1 | 1 << h2 | 1 << h3);
-		}
+		var (h1, h2, h3) = ChuteHouses[ChuteIndex];
+		return HouseFormatter.Format(1 << h1 | 1 << h2 | 1 << h3);
 	}
 }

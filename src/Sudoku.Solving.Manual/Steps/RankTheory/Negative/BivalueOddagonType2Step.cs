@@ -9,7 +9,7 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit.</param>
-internal sealed record BivalueOddagonType2Step(
+internal sealed partial record BivalueOddagonType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Loop,
@@ -37,17 +37,9 @@ internal sealed record BivalueOddagonType2Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
-	[FormatItem]
-	internal string ExtraDigitStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (ExtraDigit + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string ExtraDigitStr() => (ExtraDigit + 1).ToString();
 
-	[FormatItem]
-	internal string LoopStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Loop.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string LoopStr() => Loop.ToString();
 }

@@ -35,7 +35,7 @@
 /// </para>
 /// </param>
 /// <seealso cref="Step.TechniqueCode"/>
-internal abstract record UniqueRectangleStep(
+internal abstract partial record UniqueRectangleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	Technique TechniqueCode2,
@@ -59,32 +59,20 @@ internal abstract record UniqueRectangleStep(
 	/// <summary>
 	/// Indicates the digit 1 string.
 	/// </summary>
-	[FormatItem]
-	internal string D1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit1 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string D1Str() => (Digit1 + 1).ToString();
 
 	/// <summary>
 	/// Indicates the digit 2 string.
 	/// </summary>
-	[FormatItem]
-	internal string D2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit2 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string D2Str() => (Digit2 + 1).ToString();
 
 	/// <summary>
 	/// Indicates the cells string.
 	/// </summary>
-	[FormatItem]
-	internal string CellsStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string CellsStr() => Cells.ToString();
 
 
 	/// <inheritdoc/>

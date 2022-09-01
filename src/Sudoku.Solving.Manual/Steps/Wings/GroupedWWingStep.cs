@@ -10,7 +10,7 @@
 /// <param name="Bridge">
 /// Indicates the bridge cells connecting with cells <see cref="StartCell"/> and <see cref="EndCell"/>.
 /// </param>
-internal sealed record GroupedWWingStep(
+internal sealed partial record GroupedWWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int StartCell,
@@ -30,24 +30,12 @@ internal sealed record GroupedWWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
-	[FormatItem]
-	internal string StartCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(StartCell);
-	}
+	[ResourceTextFormatter]
+	private partial string StartCellStr() => RxCyNotation.ToCellString(StartCell);
 
-	[FormatItem]
-	internal string EndCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(EndCell);
-	}
+	[ResourceTextFormatter]
+	private partial string EndCellStr() => RxCyNotation.ToCellString(EndCell);
 
-	[FormatItem]
-	internal string BridgeStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellsString(Bridge);
-	}
+	[ResourceTextFormatter]
+	private partial string BridgeStr() => RxCyNotation.ToCellsString(Bridge);
 }

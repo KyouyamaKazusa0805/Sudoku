@@ -10,7 +10,7 @@
 /// <param name="House">The house that forms the dual empty rectangle.</param>
 /// <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
 /// <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
-internal sealed record EmptyRectangleIntersectionPairStep(
+internal sealed partial record EmptyRectangleIntersectionPairStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int StartCell,
@@ -35,38 +35,18 @@ internal sealed record EmptyRectangleIntersectionPairStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
-	[FormatItem]
-	internal string Digit1Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit1 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Digit1Str() => (Digit1 + 1).ToString();
 
-	[FormatItem]
-	internal string Digit2Str
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Digit2 + 1).ToString();
-	}
+	[ResourceTextFormatter]
+	private partial string Digit2Str() => (Digit2 + 1).ToString();
 
-	[FormatItem]
-	internal string StartCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(StartCell);
-	}
+	[ResourceTextFormatter]
+	private partial string StartCellStr() => RxCyNotation.ToCellString(StartCell);
 
-	[FormatItem]
-	internal string EndCellStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RxCyNotation.ToCellString(EndCell);
-	}
+	[ResourceTextFormatter]
+	private partial string EndCellStr() => RxCyNotation.ToCellString(EndCell);
 
-	[FormatItem]
-	internal string HouseStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => HouseFormatter.Format(1 << House);
-	}
+	[ResourceTextFormatter]
+	private partial string HouseStr() => HouseFormatter.Format(1 << House);
 }
