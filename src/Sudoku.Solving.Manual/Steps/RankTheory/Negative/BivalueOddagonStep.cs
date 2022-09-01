@@ -8,7 +8,7 @@
 /// <param name="Loop">Indicates the loop used.</param>
 /// <param name="Digit1">Indicates the first digit.</param>
 /// <param name="Digit2">Indicates the second digit.</param>
-internal abstract partial record BivalueOddagonStep(
+internal abstract record BivalueOddagonStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Loop,
@@ -32,6 +32,6 @@ internal abstract partial record BivalueOddagonStep(
 	/// <inheritdoc/>
 	public static bool Equals(BivalueOddagonStep left, BivalueOddagonStep right)
 		=> left.GetType() == right.GetType()
-			&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
-			&& left.Loop == right.Loop;
+		&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
+		&& left.Loop == right.Loop;
 }

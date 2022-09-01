@@ -5,5 +5,5 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal abstract partial record NonnegativeRankStep(ConclusionList Conclusions, ViewList Views) :
+internal abstract record NonnegativeRankStep(ConclusionList Conclusions, ViewList Views) :
 	RankTheoryStep(Conclusions, Views);

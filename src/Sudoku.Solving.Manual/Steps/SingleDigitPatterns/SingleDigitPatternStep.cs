@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Digit">Indicates the digit used.</param>
-internal abstract partial record SingleDigitPatternStep(ConclusionList Conclusions, ViewList Views, int Digit) :
+internal abstract record SingleDigitPatternStep(ConclusionList Conclusions, ViewList Views, int Digit) :
 	Step(Conclusions, Views)
 {
 	/// <inheritdoc/>

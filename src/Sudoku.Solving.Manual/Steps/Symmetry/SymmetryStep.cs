@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal abstract partial record SymmetryStep(ConclusionList Conclusions, ViewList Views) : Step(Conclusions, Views)
+internal abstract record SymmetryStep(ConclusionList Conclusions, ViewList Views) : Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Symmetry;

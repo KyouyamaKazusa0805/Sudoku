@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-internal abstract partial record ReverseUniqueRectangleStep(
+internal abstract record ReverseUniqueRectangleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells,

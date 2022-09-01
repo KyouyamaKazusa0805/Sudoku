@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal abstract partial record ChainStep(ConclusionList Conclusions, ViewList Views) :
+internal abstract record ChainStep(ConclusionList Conclusions, ViewList Views) :
 	Step(Conclusions, Views),
 	IChainStep,
 	IChainLikeStep

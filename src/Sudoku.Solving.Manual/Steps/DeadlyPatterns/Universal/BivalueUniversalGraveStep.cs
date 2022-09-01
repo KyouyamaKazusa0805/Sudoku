@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal abstract partial record BivalueUniversalGraveStep(ConclusionList Conclusions, ViewList Views) :
+internal abstract record BivalueUniversalGraveStep(ConclusionList Conclusions, ViewList Views) :
 	DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
