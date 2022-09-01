@@ -3,8 +3,25 @@
 /// <summary>
 /// The internal color structure.
 /// </summary>
-/// <param name="A">The alpha value.</param>
-/// <param name="R">The red value.</param>
-/// <param name="G">The green value.</param>
-/// <param name="B">The blue value.</param>
-internal readonly record struct ColorInternal(byte A, byte R, byte G, byte B);
+internal struct ColorInternal
+{
+	/// <summary>
+	/// The alpha value.
+	/// </summary>
+	public byte A { get; set; }
+
+	/// <summary>
+	/// The red value.
+	/// </summary>
+	public byte R { get; set; }
+
+	/// <summary>
+	/// The green value.
+	/// </summary>
+	public byte G { get; set; }
+
+	/// <summary>
+	/// The blue value.
+	/// </summary>
+	public byte B { get; set; }
+}

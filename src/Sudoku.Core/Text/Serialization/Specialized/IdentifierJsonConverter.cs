@@ -55,22 +55,22 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 		var mode = Enum.Parse<IdentifierColorMode>(reader.GetString() ?? throw new JsonException(), true);
 		return mode switch
 		{
-			IdentifierColorMode.Id => getId(ref reader, options),
-			IdentifierColorMode.Raw => getColor(ref reader, options),
-			IdentifierColorMode.Named => getNamedKind(ref reader, options),
+			IdentifierColorMode.Id => getId(ref reader),
+			IdentifierColorMode.Raw => getColor(ref reader),
+			IdentifierColorMode.Named => getNamedKind(ref reader),
 			_ => throw new JsonException()
 		};
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static int getId(ref Utf8JsonReader reader, JsonSerializerOptions options)
+		static int getId(ref Utf8JsonReader reader)
 		{
 			if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
 			{
 				throw new JsonException();
 			}
 
-			var raw = Deserialize<IdInternal>(ref reader, options);
+			var raw = (IdInternal)Deserialize(ref reader, typeof(IdInternal), IdInternalSerializerContext.Default)!;
 			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
 			{
 				throw new JsonException();
@@ -80,14 +80,14 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static (byte, byte, byte, byte) getColor(ref Utf8JsonReader reader, JsonSerializerOptions options)
+		static (byte, byte, byte, byte) getColor(ref Utf8JsonReader reader)
 		{
 			if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
 			{
 				throw new JsonException();
 			}
 
-			var raw = Deserialize<ColorInternal>(ref reader, options);
+			var raw = (ColorInternal)Deserialize(ref reader, typeof(ColorInternal), ColorInternalSerializerContext.Default)!;
 			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
 			{
 				throw new JsonException();
@@ -97,14 +97,14 @@ public sealed class IdentifierJsonConverter : JsonConverter<Identifier>
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static DisplayColorKind getNamedKind(ref Utf8JsonReader reader, JsonSerializerOptions options)
+		static DisplayColorKind getNamedKind(ref Utf8JsonReader reader)
 		{
 			if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
 			{
 				throw new JsonException();
 			}
 
-			var raw = Deserialize<NamedKindInternal>(ref reader, options);
+			var raw = (NamedKindInternal)Deserialize(ref reader, typeof(NamedKindInternal), NamedKindInternalJsonSerializerContext.Default)!;
 			if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
 			{
 				throw new JsonException();

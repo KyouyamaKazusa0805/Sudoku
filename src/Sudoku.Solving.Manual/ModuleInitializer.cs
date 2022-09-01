@@ -9,6 +9,7 @@ internal static class ModuleInitializer
 	///     file='../../global-doc-comments.xml'
 	///     path='g/csharp9/feature[@name="module-initializer"]/target[@name="method"]' />
 	[ModuleInitializer]
+	[RequiresUnreferencedCode("Calls System.Reflection.Assembly.GetTypes()")]
 	public static void Initialize()
 	{
 		var listOfStepSearchers = new List<IStepSearcher>();

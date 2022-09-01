@@ -3,5 +3,10 @@
 /// <summary>
 /// The internal named kind structure.
 /// </summary>
-/// <param name="NamedKind">Indicates the named kind value.</param>
-internal readonly record struct NamedKindInternal(string NamedKind);
+internal struct NamedKindInternal
+{
+	/// <summary>
+	/// Indicates the named kind value.
+	/// </summary>
+	public string NamedKind { get; set; }
+}
