@@ -1077,6 +1077,16 @@
             Defines a manual step.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Models.ManualStep.ExtraFeatureBadgeVisibility">
+            <summary>
+            Indicates the visibility of extra feature badge.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.ManualStep.ExtraFeatures">
+            <summary>
+            Indicates the extra displaying features.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Models.ManualStep.Grid">
             <summary>
             Indicates the current grid used.
@@ -1092,6 +1102,18 @@
             Gets the display string value that can describe the main information of the current step.
             </summary>
             <returns>The string value.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Models.ManualStep.GetToolTipText">
+            <summary>
+            Fetches the tool tip text.
+            </summary>
+            <returns>The tool tip text to be displayed.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Models.ManualStep.GetBadgeBackgroundBrush">
+            <summary>
+            Fetches the background brush of the badge control.
+            </summary>
+            <returns>The background brush of the badge control.</returns>
         </member>
         <member name="M:Sudoku.UI.Models.ManualStep.Deconstruct(Sudoku.Concepts.Grid@,Sudoku.Solving.IStep@)">
             <target name="method">

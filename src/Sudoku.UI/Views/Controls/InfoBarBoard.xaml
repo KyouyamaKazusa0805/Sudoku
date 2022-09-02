@@ -145,6 +145,15 @@
 																Content="{x:Bind ToDisplayString()}" Tag="{x:Bind}"
 																Background="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(Step.DifficultyLevel)}"
 																Foreground="{x:Bind data:SimpleConverters.DifficultyLevelToForeground(Step.DifficultyLevel)}" />
+															<!--
+															<Ellipse
+																Width="12" Height="12" StrokeThickness="1"
+																Stroke="White" Canvas.Left="-6" Canvas.Top="-6"
+																HorizontalAlignment="Left" VerticalAlignment="Top"
+																Visibility="{x:Bind ExtraFeatureBadgeVisibility}"
+																Fill="{x:Bind GetBadgeBackgroundBrush()}"
+																ToolTipService.ToolTip="{x:Bind GetToolTipText()}" />
+															-->
 														</DataTemplate>
 													</ListView.ItemTemplate>
 												</ListView>
