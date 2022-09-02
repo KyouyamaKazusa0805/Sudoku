@@ -3442,6 +3442,11 @@
             to optimize the performance.
             </summary>
         </member>
+        <member name="F:System.Timers.ValueStopwatch.ErrorInfo">
+            <summary>
+            The error information.
+            </summary>
+        </member>
         <member name="F:System.Timers.ValueStopwatch.TimestampToTicks">
             <summary>
             The read-only value that indicates the formula converting from timestamp to ticks.

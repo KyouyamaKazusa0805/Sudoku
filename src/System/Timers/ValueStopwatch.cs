@@ -7,6 +7,12 @@
 public readonly ref partial struct ValueStopwatch
 {
 	/// <summary>
+	/// The error information.
+	/// </summary>
+	private const string ErrorInfo = $"An uninitialized, or 'default({nameof(ValueStopwatch)})', {nameof(ValueStopwatch)} cannot be used to get elapsed time.";
+
+
+	/// <summary>
 	/// The read-only value that indicates the formula converting from timestamp to ticks.
 	/// </summary>
 	private static readonly double TimestampToTicks = TimeSpan.TicksPerSecond / (double)Stopwatch.Frequency;
@@ -53,15 +59,15 @@ public readonly ref partial struct ValueStopwatch
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public TimeSpan GetElapsedTime()
-		=> IsActive
-			? new((long)(TimestampToTicks * (Stopwatch.GetTimestamp() - _startTimestamp)))
+		=> IsActive switch
+		{
+			true => new((long)(TimestampToTicks * (Stopwatch.GetTimestamp() - _startTimestamp))),
+
 			// Start timestamp can't be zero in an initialized ValueStopwatch.
 			// It would have to be literally the first thing executed when the machine boots to be 0.
 			// So it being 0 is a clear indication of default(ValueStopwatch).
-			: throw new InvalidOperationException(
-				$"An uninitialized, or 'default({nameof(ValueStopwatch)})', {nameof(ValueStopwatch)} " +
-				"cannot be used to get elapsed time."
-			);
+			_ => throw new InvalidOperationException(ErrorInfo)
+		};
 
 
 	/// <summary>
