@@ -12,7 +12,7 @@ global using System.Text;
 global using System.Text.RegularExpressions;
 global using System.Threading;
 global using System.Threading.Tasks;
-global using System.Timing;
+global using System.Timers;
 global using Sudoku.Concepts;
 global using Sudoku.Linq;
 global using Sudoku.Presentation;

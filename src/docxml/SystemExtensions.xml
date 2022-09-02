@@ -3436,40 +3436,40 @@
             <c><see langword="ref throw new"/> <see cref="T:System.Exception"/>()</c>.
             </remarks>
         </member>
-        <member name="T:System.Timing.ValueStopwatch">
+        <member name="T:System.Timers.ValueStopwatch">
             <summary>
             Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/>
             to optimize the performance.
             </summary>
         </member>
-        <member name="F:System.Timing.ValueStopwatch.TimestampToTicks">
+        <member name="F:System.Timers.ValueStopwatch.TimestampToTicks">
             <summary>
             The read-only value that indicates the formula converting from timestamp to ticks.
             </summary>
         </member>
-        <member name="F:System.Timing.ValueStopwatch._startTimestamp">
+        <member name="F:System.Timers.ValueStopwatch._startTimestamp">
             <summary>
             The inner timestamp.
             </summary>
         </member>
-        <member name="M:System.Timing.ValueStopwatch.#ctor">
+        <member name="M:System.Timers.ValueStopwatch.#ctor">
             <summary>
             Throws <see cref="T:System.NotSupportedException"/>.
             </summary>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:System.Timing.ValueStopwatch.#ctor(System.Int64)">
+        <member name="M:System.Timers.ValueStopwatch.#ctor(System.Int64)">
             <summary>
-            Initializes a <see cref="T:System.Timing.ValueStopwatch"/> instance via the current timestamp.
+            Initializes a <see cref="T:System.Timers.ValueStopwatch"/> instance via the current timestamp.
             </summary>
             <param name="startTimestamp">The timestamp value that is represented as a <see cref="T:System.Int64"/> value.</param>
         </member>
-        <member name="P:System.Timing.ValueStopwatch.IsActive">
+        <member name="P:System.Timers.ValueStopwatch.IsActive">
             <summary>
             Determines whether the current stopwatch is currently active.
             </summary>
         </member>
-        <member name="M:System.Timing.ValueStopwatch.GetElapsedTime">
+        <member name="M:System.Timers.ValueStopwatch.GetElapsedTime">
             <summary>
             Try to get the elapsed time.
             </summary>
@@ -3478,21 +3478,21 @@
             Throws when the current stopwatch is not active at present.
             </exception>
         </member>
-        <member name="M:System.Timing.ValueStopwatch.StartNew">
+        <member name="M:System.Timers.ValueStopwatch.StartNew">
             <summary>
-            Try to get a new <see cref="T:System.Timing.ValueStopwatch"/> that is running now.
+            Try to get a new <see cref="T:System.Timers.ValueStopwatch"/> that is running now.
             </summary>
-            <returns>An instance of type <see cref="T:System.Timing.ValueStopwatch"/> that is running now.</returns>
+            <returns>An instance of type <see cref="T:System.Timers.ValueStopwatch"/> that is running now.</returns>
         </member>
-        <member name="M:System.Timing.ValueStopwatch.Equals(System.Object)">
+        <member name="M:System.Timers.ValueStopwatch.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:System.Timing.ValueStopwatch.GetHashCode">
+        <member name="M:System.Timers.ValueStopwatch.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:System.Timing.ValueStopwatch.ToString">
+        <member name="M:System.Timers.ValueStopwatch.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>

@@ -1,4 +1,4 @@
-﻿namespace System.Timing;
+﻿namespace System.Timers;
 
 /// <summary>
 /// Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/>
