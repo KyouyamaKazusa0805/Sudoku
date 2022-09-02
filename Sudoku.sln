@@ -7,12 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.filenesting.json = .filenesting.json
-		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
 		Directory.Build.props = Directory.Build.props
 		global-doc-comments.xml = global-doc-comments.xml
 		NuGet.config = NuGet.config
-		README-zh-cn.md = README-zh-cn.md
-		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Core", "src\Sudoku.Core\Sudoku.Core.csproj", "{FCD247BE-77B3-4091-BDB5-1EEB768938B7}"
@@ -30,6 +27,23 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Drawing", "src\Sudoku.Drawing\Sudoku.Drawing.csproj", "{9ABD05D7-A129-4B53-B91B-721F57F640F0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI.Core", "src\Sudoku.UI.Core\Sudoku.UI.Core.csproj", "{6EFEB8FA-B665-423B-A098-EA7854364337}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "License", "License", "{84B6F2B7-13D6-496B-8CAF-608E0CC0DEA0}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE-CODE = LICENSE-CODE
+		LICENSE-WIKI = LICENSE-WIKI
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code of Conduct", "Code of Conduct", "{B3EAA001-CAD9-46DA-B0FA-62B64007EA39}"
+	ProjectSection(SolutionItems) = preProject
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReadMe", "ReadMe", "{382A5CF3-4638-4AEE-B0E3-36483B71924D}"
+	ProjectSection(SolutionItems) = preProject
+		README-zh-cn.md = README-zh-cn.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -307,9 +321,14 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{84B6F2B7-13D6-496B-8CAF-608E0CC0DEA0} = {5A289988-A100-41DA-B297-F4A3DE001B78}
+		{B3EAA001-CAD9-46DA-B0FA-62B64007EA39} = {5A289988-A100-41DA-B297-F4A3DE001B78}
+		{382A5CF3-4638-4AEE-B0E3-36483B71924D} = {5A289988-A100-41DA-B297-F4A3DE001B78}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal
