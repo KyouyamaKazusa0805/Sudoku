@@ -11,6 +11,7 @@
 	<x:String x:Key="HomePage_Keyboard">Keyboard</x:String>
 	<x:String x:Key="HomePage_About">About</x:String>
 	<x:String x:Key="HomePage_Home">Home</x:String>
+	<x:String x:Key="HomePage_UserCustomizedDrawing">Drawing</x:String>
 	<x:String x:Key="HomePage_Search">Search</x:String>
 	<x:String x:Key="HomePage_GettingStarted_Wiki">Getting Started</x:String>
 	<x:String x:Key="HomePage_GettingStarted_SudokuTutorialReference">Sudoku Tutorial</x:String>

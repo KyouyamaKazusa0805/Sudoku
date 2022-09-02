@@ -1,0 +1,18 @@
+﻿<Page
+	x:Class="Sudoku.UI.Views.Pages.UserCustomizedDrawingPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
+	mc:Ignorable="d"
+	Loaded="Page_Loaded">
+
+	<Grid>
+		<!--
+		InfiniteCanvas is not supported in WinUI 3 because the inner type 'Ink*' is not implemented now.
+		See github issue: https://github.com/CommunityToolkit/WindowsCommunityToolkit/issues/4105
+		-->
+		<!--<xc:InfiniteCanvas x:Name="_cCanvas" IsToolbarVisible="True" CanvasWidth="560" CanvasHeight="560" />-->
+	</Grid>
+</Page>

@@ -3068,6 +3068,38 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Views.Pages.UserCustomizedDrawingPage">
+            <summary>
+            Defines a page that can draw onto a sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.UserCustomizedDrawingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Pages.UserCustomizedDrawingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.UserCustomizedDrawingPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the page is loaded.
+            </summary>
+            <param name="sender">The object triggering this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.UserCustomizedDrawingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.UserCustomizedDrawingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.UserCustomizedDrawingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.

@@ -62,6 +62,18 @@
 						</StackPanel>
 					</NavigationViewItem.Content>
 				</NavigationViewItem>
+				<NavigationViewItem
+					Tag="UserCustomizedDrawingPage" Visibility="Collapsed"
+					Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
+					<NavigationViewItem.Content>
+						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
+							<SymbolIcon Symbol="Highlight" />
+							<TextBlock
+								Text="{StaticResource HomePage_UserCustomizedDrawing}"
+								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
+						</StackPanel>
+					</NavigationViewItem.Content>
+				</NavigationViewItem>
 			</NavigationView.MenuItems>
 			<NavigationView.FooterMenuItems>
 				<NavigationViewItem Tag="PreferencePage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">

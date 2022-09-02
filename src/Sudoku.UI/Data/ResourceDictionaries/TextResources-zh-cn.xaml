@@ -10,6 +10,7 @@
 	<x:String x:Key="HomePage_Settings">设置</x:String>
 	<x:String x:Key="HomePage_About">关于</x:String>
 	<x:String x:Key="HomePage_Home">起始页</x:String>
+	<x:String x:Key="HomePage_UserCustomizedDrawing">绘图</x:String>
 	<x:String x:Key="HomePage_Search">搜索</x:String>
 	<x:String x:Key="HomePage_GettingStarted_Wiki">快速开始</x:String>
 	<x:String x:Key="HomePage_GettingStarted_SudokuTutorialReference">数独教程参考</x:String>
