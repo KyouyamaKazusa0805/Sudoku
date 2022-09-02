@@ -45,6 +45,24 @@ public sealed partial class MainWindow : Window
 
 
 	/// <summary>
+	/// Try to navigate the pages.
+	/// </summary>
+	/// <param name="tag">The specified tag of the navigate page item.</param>
+	/// <param name="transitionInfo">The transition information.</param>
+	internal void OnNavigate(string tag, NavigationTransitionInfo transitionInfo)
+	{
+		var (_, pageType) = Array.Find(NavigationPairs, p => p.ViewItemTag == tag);
+
+		// Get the page type before navigation so you can prevent duplicate entries in the back-stack.
+		// Only navigate if the selected page isn't currently loaded.
+		var preNavPageType = _cViewRouterFrame.CurrentSourcePageType;
+		if (pageType is not null && preNavPageType != pageType)
+		{
+			_cViewRouterFrame.Navigate(pageType, null, transitionInfo);
+		}
+	}
+
+	/// <summary>
 	/// Add handlers that checking for battery status.
 	/// </summary>
 	private void AddHandlerForCheckingBatteryStatusIfWorth()
@@ -81,24 +99,6 @@ public sealed partial class MainWindow : Window
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void SetIconFromAssetFile() => this.GetAppWindow().SetIcon(@"Assets\Logo.ico");
-
-	/// <summary>
-	/// Try to navigate the pages.
-	/// </summary>
-	/// <param name="tag">The specified tag of the navigate page item.</param>
-	/// <param name="transitionInfo">The transition information.</param>
-	private void OnNavigate(string tag, NavigationTransitionInfo transitionInfo)
-	{
-		var (_, pageType) = Array.Find(NavigationPairs, p => p.ViewItemTag == tag);
-
-		// Get the page type before navigation so you can prevent duplicate entries in the back-stack.
-		// Only navigate if the selected page isn't currently loaded.
-		var preNavPageType = _cViewRouterFrame.CurrentSourcePageType;
-		if (pageType is not null && preNavPageType != pageType)
-		{
-			_cViewRouterFrame.Navigate(pageType, null, transitionInfo);
-		}
-	}
 
 	/// <summary>
 	/// To ensure the dispatcher queue exists.

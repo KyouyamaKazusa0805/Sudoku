@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="using:Sudoku.UI.Views.Controls">
 	<Thickness x:Key="ParagraphOffset">55,20,10,0</Thickness>
 	<Thickness x:Key="ParagraphOffsetWithMarginBottom">55,20,10,20</Thickness>
 	<Thickness x:Key="TableInnerOffset">15,10,10,10</Thickness>
@@ -22,5 +23,27 @@
 	<Style x:Key="TableHeader" TargetType="TextBlock" BasedOn="{StaticResource TablePlainText}">
 		<Setter Property="FontWeight" Value="Bold" />
 		<Setter Property="HorizontalAlignment" Value="Center" />
+	</Style>
+	<Style x:Key="_rTextBlockGroupNameStyle" TargetType="TextBlock">
+		<Setter Property="FontWeight" Value="Light" />
+		<Setter Property="FontSize" Value="24" />
+	</Style>
+	<Style x:Key="_rToggleSwitchStyle" TargetType="ToggleSwitch">
+		<Setter Property="OnContent" Value="{StaticResource ToggleSwitchDefaultOnContent}" />
+		<Setter Property="OffContent" Value="{StaticResource ToggleSwitchDefaultOffContent}" />
+	</Style>
+	<Style x:Key="_rSliderStyle" TargetType="Slider">
+		<Setter Property="TickPlacement" Value="Outside" />
+		<Setter Property="Width" Value="600" />
+		<Setter Property="Margin" Value="0,6,0,12" />
+	</Style>
+	<Style x:Key="_rColorSelectorStyle" TargetType="c:ColorSelector">
+		<Setter Property="Margin" Value="0,0,70,0" />
+	</Style>
+	<Style x:Key="_rFontSelectorStyle" TargetType="c:FontPicker">
+		<Setter Property="Margin" Value="60,10,30,10" />
+	</Style>
+	<Style x:Key="_rColorSelectorGroupStackPanelStyle" TargetType="StackPanel">
+		<Setter Property="Margin" Value="60,10,30,10" />
 	</Style>
 </ResourceDictionary>

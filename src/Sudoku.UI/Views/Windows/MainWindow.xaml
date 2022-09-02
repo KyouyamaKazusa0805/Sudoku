@@ -95,6 +95,20 @@
 						</StackPanel>
 					</NavigationViewItem.Content>
 				</NavigationViewItem>
+
+				<!--Hidden view items. They are only used for navigating in backing methods.-->
+				<NavigationViewItem
+					Tag="BasicOptionsPage" Width="0" Height="0" Visibility="Collapsed"
+					Content="{StaticResource SettingsPage_GroupItemName_Basic}" />
+				<NavigationViewItem
+					Tag="SolvingOptionsPage" Width="0" Height="0" Visibility="Collapsed"
+					Content="{StaticResource SettingsPage_GroupItemName_Solving}" />
+				<NavigationViewItem
+					Tag="RenderingOptionsPage" Width="0" Height="0" Visibility="Collapsed"
+					Content="{StaticResource SettingsPage_GroupItemName_Rendering}" />
+				<NavigationViewItem
+					Tag="MiscellaneousOptionsPage" Width="0" Height="0" Visibility="Collapsed"
+					Content="{StaticResource SettingsPage_GroupItemName_Miscellaneous}" />
 			</NavigationView.FooterMenuItems>
 
 			<Frame

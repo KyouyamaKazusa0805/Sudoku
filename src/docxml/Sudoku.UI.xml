@@ -2336,6 +2336,31 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Views.Pages.BasicOptionsPage">
+            <summary>
+            Provides with basic options page.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.BasicOptionsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Pages.BasicOptionsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.BasicOptionsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.BasicOptionsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.BasicOptionsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.HomePage">
             <summary>
             Defines a home page.
@@ -2392,6 +2417,31 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Views.Pages.MiscellaneousOptionsPage">
+            <summary>
+            Provides with miscellaneous options page.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.MiscellaneousOptionsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Pages.MiscellaneousOptionsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.MiscellaneousOptionsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.MiscellaneousOptionsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.MiscellaneousOptionsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.PreferencePage">
             <summary>
             The preference page.
@@ -2401,6 +2451,39 @@
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.PreferencePage"/> instance.
             </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Pages.PreferencePage.TransitionInfo">
+            <summary>
+            The default transition information.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.PreferencePage.BasicOptionsPageRouteButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the hyper link to basic options page is clicked.
+            </summary>
+            <param name="sender">The object triggering this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.PreferencePage.SolvingOptionsPageRouteButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the hyper link to basic options page is clicked.
+            </summary>
+            <param name="sender">The object triggering this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.PreferencePage.RenderingOptionsPageRouteButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the hyper link to basic options page is clicked.
+            </summary>
+            <param name="sender">The object triggering this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.PreferencePage.MiscellaneousOptionsPageRouteButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the hyper link to basic options page is clicked.
+            </summary>
+            <param name="sender">The object triggering this event.</param>
+            <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.PreferencePage.InitializeComponent">
             <summary>
@@ -2413,6 +2496,56 @@
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.PreferencePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Views.Pages.RenderingOptionsPage">
+            <summary>
+            Provides with rendering options page.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.RenderingOptionsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Pages.RenderingOptionsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.RenderingOptionsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.RenderingOptionsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.RenderingOptionsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Views.Pages.SolvingOptionsPage">
+            <summary>
+            Provides with solving options page.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SolvingOptionsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Pages.SolvingOptionsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SolvingOptionsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SolvingOptionsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SolvingOptionsPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
@@ -2966,6 +3099,13 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.OnNavigate(System.String,Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo)">
+            <summary>
+            Try to navigate the pages.
+            </summary>
+            <param name="tag">The specified tag of the navigate page item.</param>
+            <param name="transitionInfo">The transition information.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.AddHandlerForCheckingBatteryStatusIfWorth">
             <summary>
             Add handlers that checking for battery status.
@@ -2980,13 +3120,6 @@
             <summary>
             Sets the icon from assets file.
             </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.OnNavigate(System.String,Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo)">
-            <summary>
-            Try to navigate the pages.
-            </summary>
-            <param name="tag">The specified tag of the navigate page item.</param>
-            <param name="transitionInfo">The transition information.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.EnsureDispatcherQueueExists">
             <summary>

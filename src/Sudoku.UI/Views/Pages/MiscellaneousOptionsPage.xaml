@@ -1,0 +1,28 @@
+﻿<Page
+	x:Class="Sudoku.UI.Views.Pages.MiscellaneousOptionsPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:Sudoku.UI.Views.Controls"
+	xmlns:ui="using:Sudoku.UI"
+	xmlns:xui="using:Microsoft.UI.Xaml"
+	mc:Ignorable="d">
+
+	<ScrollViewer>
+		<StackPanel Margin="40,20,20,30" Spacing="4">
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_DescendingOrderedInfoBarBoard}">
+				<ToggleSwitch
+					Style="{StaticResource _rToggleSwitchStyle}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.DescendingOrderedInfoBarBoard,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_CheckBatteryStatusWhenOpen}"
+				Description="{StaticResource SettingsPage_ItemDescription_CheckBatteryStatusWhenOpen}">
+				<ToggleSwitch
+					Style="{StaticResource _rToggleSwitchStyle}"
+					IsOn="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CheckBatteryStatusWhenOpen,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+		</StackPanel>
+	</ScrollViewer>
+</Page>

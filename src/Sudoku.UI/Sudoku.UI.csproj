@@ -192,6 +192,18 @@
 		<Page Update="Views\Pages\PreferencePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Pages\MiscellaneousOptionsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\RenderingOptionsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\SolvingOptionsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\BasicOptionsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Controls\InfoBarBoard.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

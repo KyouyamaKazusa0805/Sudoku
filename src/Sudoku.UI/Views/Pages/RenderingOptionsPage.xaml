@@ -1,0 +1,261 @@
+﻿<Page
+	x:Class="Sudoku.UI.Views.Pages.RenderingOptionsPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:Sudoku.UI.Views.Controls"
+	xmlns:data="using:Sudoku.UI.DataConversion"
+	xmlns:ui="using:Sudoku.UI"
+	xmlns:xui="using:Microsoft.UI.Xaml"
+	mc:Ignorable="d">
+
+	<ScrollViewer>
+		<StackPanel Margin="40,20,20,30" Spacing="4">
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_OutsideBorderWidth}"
+				Description="{StaticResource SettingsPage_ItemDescription_OutsideBorderWidth}">
+				<c:Win11SettingControl.ExpandableContent>
+					<Slider
+						Style="{StaticResource _rSliderStyle}"
+						Minimum="0.0" Maximum="3.0" StepFrequency="0.1" TickFrequency="0.3"
+						Value="{x:Bind ((ui:App)xui:Application.Current).UserPreference.OutsideBorderWidth,Mode=TwoWay}">
+						<Slider.Header>
+							<TextBlock
+								Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,9,0,0"
+								Text="{x:Bind data:SimpleConverters.SliderPossibleValueString(0.0,3.0,0.1,0.3)}" />
+						</Slider.Header>
+					</Slider>
+				</c:Win11SettingControl.ExpandableContent>
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_BlockBorderWidth}">
+				<c:Win11SettingControl.ExpandableContent>
+					<Slider
+						Style="{StaticResource _rSliderStyle}"
+						Minimum="0.0" Maximum="5.0" StepFrequency="0.5" TickFrequency="0.5"
+						Value="{x:Bind ((ui:App)xui:Application.Current).UserPreference.BlockBorderWidth,Mode=TwoWay}">
+						<Slider.Header>
+							<TextBlock
+								Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,9,0,0"
+								Text="{x:Bind data:SimpleConverters.SliderPossibleValueString(0.0,5.0,0.5,0.5)}" />
+						</Slider.Header>
+					</Slider>
+				</c:Win11SettingControl.ExpandableContent>
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_CellBorderWidth}">
+				<c:Win11SettingControl.ExpandableContent>
+					<Slider
+						Style="{StaticResource _rSliderStyle}"
+						Minimum="0.0" Maximum="3.0" StepFrequency="0.1" TickFrequency="0.3"
+						Value="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CellBorderWidth,Mode=TwoWay}">
+						<Slider.Header>
+							<TextBlock
+								Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,9,0,0"
+								Text="{x:Bind data:SimpleConverters.SliderPossibleValueString(0.0,3.0,0.1,0.3)}" />
+						</Slider.Header>
+					</Slider>
+				</c:Win11SettingControl.ExpandableContent>
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_CandidateBorderWidth}"
+				Description="{StaticResource SettingsPage_ItemDescription_CandidateBorderWidth}">
+				<c:Win11SettingControl.ExpandableContent>
+					<Slider
+						Style="{StaticResource _rSliderStyle}"
+						Minimum="0.0" Maximum="3.0" StepFrequency="0.1" TickFrequency="0.3"
+						Value="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CandidateBorderWidth,Mode=TwoWay}">
+						<Slider.Header>
+							<TextBlock
+								Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,9,0,0"
+								Text="{x:Bind data:SimpleConverters.SliderPossibleValueString(0.0,3.0,0.1,0.3)}" />
+						</Slider.Header>
+					</Slider>
+				</c:Win11SettingControl.ExpandableContent>
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_UnknownValueFont}">
+				<c:Win11SettingControl.ExpandableContent>
+					<c:FontPicker
+						Style="{StaticResource _rFontSelectorStyle}" PlaceholderText="{StaticResource FontPickerPlaceholder}"
+						SelectedFontName="{x:Bind ((ui:App)xui:Application.Current).UserPreference.UnknownValueFont.FontName,Mode=TwoWay}"
+						SelectedFontScale="{x:Bind ((ui:App)xui:Application.Current).UserPreference.UnknownValueFont.FontScale,Mode=TwoWay}">
+						<c:FontPicker.Header>
+							<TextBlock Text="{StaticResource FontPickerFontName}" Margin="0,9,0,0" />
+						</c:FontPicker.Header>
+					</c:FontPicker>
+				</c:Win11SettingControl.ExpandableContent>
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_UnknownValueColor}"
+				Description="{StaticResource SettingsPage_ItemDescription_UnknownValueColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.UnknownValueColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_OutsideBorderColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.OutsideBorderColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_GridBackgroundFillColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.GridBackgroundFillColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_BlockBorderColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.BlockBorderColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_CellBorderColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CellBorderColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_CandidateBorderColor}"
+				Description="{StaticResource SettingsPage_ItemDescription_CandidateBorderColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CandidateBorderColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_GivenColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.GivenColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_ModifiableColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.ModifiableColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_CandidateColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CandidateColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_CellDeltaColor}"
+				Description="{StaticResource SettingsPage_ItemDescription_CellDeltaColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CellDeltaColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_CandidateDeltaColor}"
+				Description="{StaticResource SettingsPage_ItemDescription_CandidateDeltaColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CandidateDeltaColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_MaskEllipseColor}"
+				Description="{StaticResource SettingsPage_ItemDescription_MaskEllipseColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.MaskEllipseColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_HouseViewNodeStrokeThickness}"
+				Description="{StaticResource SettingsPage_ItemDescription_HouseViewNodeStrokeThickness}">
+				<c:Win11SettingControl.ExpandableContent>
+					<Slider
+						Style="{StaticResource _rSliderStyle}"
+						Minimum="0.0" Maximum="6.0" StepFrequency="0.5" TickFrequency="1.0"
+						Value="{x:Bind ((ui:App)xui:Application.Current).UserPreference.HouseViewNodeStrokeThickness,Mode=TwoWay}">
+						<Slider.Header>
+							<TextBlock
+								Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,9,0,0"
+								Text="{x:Bind data:SimpleConverters.SliderPossibleValueString(0.0,6.0,0.5,1.0)}" />
+						</Slider.Header>
+					</Slider>
+				</c:Win11SettingControl.ExpandableContent>
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_NormalColor}"
+				Description="{StaticResource SettingsPage_ItemDescription_NormalColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.NormalColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_AssignmentColor}"
+				Description="{StaticResource SettingsPage_ItemDescription_AssignmentColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AssignmentColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_EliminationColor}"
+				Description="{StaticResource SettingsPage_ItemDescription_EliminationColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.EliminationColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_ExofinColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.ExofinColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_EndofinColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.EndofinColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_CannibalismColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.CannibalismColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_LinkColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.LinkColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_GroupedLinkNodeColor}">
+				<c:ColorSelector
+					Style="{StaticResource _rColorSelectorStyle}"
+					SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.GroupedLinkNodeColor,Mode=TwoWay}" />
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_AuxiliaryColors}"
+				Description="{StaticResource SettingsPage_ItemDescription_AuxiliaryColors}">
+				<c:Win11SettingControl.ExpandableContent>
+					<StackPanel Style="{StaticResource _rColorSelectorGroupStackPanelStyle}">
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AuxiliaryColors[0],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AuxiliaryColors[1],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AuxiliaryColors[2],Mode=TwoWay}" />
+					</StackPanel>
+				</c:Win11SettingControl.ExpandableContent>
+			</c:Win11SettingControl>
+			<c:Win11SettingControl Title="{StaticResource SettingsPage_ItemName_AlmostLockedSetColors}">
+				<c:Win11SettingControl.ExpandableContent>
+					<StackPanel Style="{StaticResource _rColorSelectorGroupStackPanelStyle}">
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AlmostLockedSetColors[0],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AlmostLockedSetColors[1],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AlmostLockedSetColors[2],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AlmostLockedSetColors[3],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.AlmostLockedSetColors[4],Mode=TwoWay}" />
+					</StackPanel>
+				</c:Win11SettingControl.ExpandableContent>
+			</c:Win11SettingControl>
+			<c:Win11SettingControl
+				Title="{StaticResource SettingsPage_ItemName_PaletteColors}"
+				Description="{StaticResource SettingsPage_ItemDescription_PaletteColors}">
+				<c:Win11SettingControl.ExpandableContent>
+					<StackPanel Style="{StaticResource _rColorSelectorGroupStackPanelStyle}">
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PaletteColors[0],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PaletteColors[1],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PaletteColors[2],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PaletteColors[3],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PaletteColors[4],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PaletteColors[5],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PaletteColors[6],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PaletteColors[7],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PaletteColors[8],Mode=TwoWay}" />
+						<c:ColorSelector SelectedColor="{x:Bind ((ui:App)xui:Application.Current).UserPreference.PaletteColors[9],Mode=TwoWay}" />
+					</StackPanel>
+				</c:Win11SettingControl.ExpandableContent>
+			</c:Win11SettingControl>
+		</StackPanel>
+	</ScrollViewer>
+</Page>
