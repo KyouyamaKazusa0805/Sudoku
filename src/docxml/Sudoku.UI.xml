@@ -105,16 +105,6 @@
             but the argument <paramref name="item"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="T:Sudoku.UI.DataConversion.DataTemplateSelectors.SearchedResultItemTemplateSelector">
-            <summary>
-            Defines a selector that can select the data template on searched result items.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.SearchedResultItemTemplateSelector.PairInfoTemplate">
-            <summary>
-            Indicates the template that is used by the valid seared result.
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.DataConversion.SimpleConverters">
             <summary>
             Provides with a set of methods as simple converters that can be used and called by XAML files.
@@ -1228,21 +1218,6 @@
         <member name="P:Sudoku.UI.Models.RepositoryInfo.Site">
             <summary>
             Indicates the website which name is corresponding to.
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Models.SearchedResult">
-            <summary>
-            Defines a searched result.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.SearchedResult.Value">
-            <summary>
-            The value information.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.SearchedResult.Location">
-            <summary>
-            The location information.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Models.VersionTimelineGroupItem">
