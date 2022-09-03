@@ -63,7 +63,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 					string namespaceNameResult = attributeData.GetNamedArgument<string>("Namespace") ?? namespaceName;
 
 					// The final code.
-					string fullTypeNameWithoutConstraint = type.ToDisplayString(TypeFormats.FullNameWithConstraints);
+					string fullTypeNameWithoutConstraint = type.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
 					string finalCode = string.Join(
 						"\r\n\r\n\t",
 						GetForExtension(
@@ -77,10 +77,9 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 					// Hash code value will be used for the distinction for the different types
 					// whose name are same as the current type name.
 					// For example, 'System.Hello' and 'Sudoku.Core.Hello' are different types.
-					int hashCode =
-						0xFACE * assembly.ToDisplayString().GetHashCode()
-							^ 0xDEAD * namespaceName.GetHashCode() << 7
-							^ 0xC0DE * type.Name.GetHashCode() << 3;
+					int hashCode = 0xFACE * assembly.ToDisplayString().GetHashCode()
+						^ 0xDEAD * namespaceName.GetHashCode() << 7
+						^ 0xC0DE * type.Name.GetHashCode() << 3;
 
 					// Emit the generated source.
 					context.AddSource(
@@ -306,7 +305,9 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			string args = string.Join(
 				", ",
 				from element in pairs
-				select $"out {element.Symbol.ToDisplayString(TypeFormats.FullName)} {element.Name.ToCamelCase()}"
+				let localTypeName = element.Symbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+				let localArgumentName = element.Name.ToCamelCase()
+				select $"out {localTypeName} {localArgumentName}"
 			);
 			string assignments = string.Join(
 				"\r\n\t\t",
@@ -408,7 +409,9 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			string args = string.Join(
 				", ",
 				from element in pairs
-				select $"out {element.Symbol.ToDisplayString(TypeFormats.FullName)} {element.Name.ToCamelCase()}"
+				let localTypeName = element.Symbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+				let localArgumentName = element.Name.ToCamelCase()
+				select $"out {localTypeName} {localArgumentName}"
 			);
 			string assignments = string.Join(
 				"\r\n\t\t",
@@ -416,7 +419,6 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 				select $"{element.Name.ToCamelCase()} = {element.Name};"
 			);
 			result.Add(
-				// Here we should insert an extra indentation, on purpose.
 				$$"""
 				/// <include
 					///     file="../../global-doc-comments.xml"

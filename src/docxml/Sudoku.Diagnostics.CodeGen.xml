@@ -334,21 +334,16 @@
             Defines the shortcuts of the source generators.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.TypeFormats">
+        <member name="T:Microsoft.CodeAnalysis.ExtendedSymbolDisplayFormat">
             <summary>
-            Provides <see cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/> instance that is for types.
+            Provides extended <see cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/>s instance that is for types.
             </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.TypeFormats.FullNameWithConstraints">
+        <member name="P:Microsoft.CodeAnalysis.ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints">
             <summary>
             Indicates the type format that is the full name of the type,
             and is with type argument constraints.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.TypeFormats.FullName">
-            <summary>
-            Indicates the type format that is the full name of the type,
-            and is without type argument constraints.
             </summary>
         </member>
         <member name="T:Microsoft.CodeAnalysis.AttributeDataExtensions">

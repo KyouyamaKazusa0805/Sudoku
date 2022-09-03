@@ -88,10 +88,6 @@
         <member name="M:Sudoku.UI.Data.PropertyPathBuilder.op_Inequality(Sudoku.UI.Data.PropertyPathBuilder,Sudoku.UI.Data.PropertyPathBuilder)">
             <inheritdoc cref="M:System.IEqualityOperators`2.op_Inequality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:Sudoku.UI.Drawing.ColorMarshal">
             <summary>
             Provides with the color-related marshaling methods.
@@ -1355,18 +1351,6 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.First(System.Predicate{Sudoku.UI.Drawing.Shapes.DrawingElement})">
             <summary>
             Gets the first element that satisfies the specified condition.
@@ -1597,18 +1581,6 @@
             Throws when the enumerator cannot step advanced.
             </exception>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2">
             <summary>
             Indicates the enumerator type that allows iterating on <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/> instances,
@@ -1667,18 +1639,6 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the enumerator cannot step advanced.
             </exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3">
             <summary>
@@ -1740,18 +1700,6 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the enumerator cannot step advanced.
             </exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1">
             <summary>
@@ -1844,18 +1792,6 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the enumerator cannot step advanced.
             </exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator">
             <summary>
@@ -2057,30 +1993,6 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the enumerator cannot step advanced.
             </exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.HouseViewNodeShape">
             <summary>

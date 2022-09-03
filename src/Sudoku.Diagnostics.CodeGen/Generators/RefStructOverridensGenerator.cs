@@ -103,9 +103,9 @@ public sealed partial class RefStructOverridensGenerator : ISourceGenerator
 			partial struct {{type.Name}}{{genericParameterList}}
 			{
 				{{equalsMethod}}
-			
+				
 				{{getHashCodeMethod}}
-			
+				
 				{{toStringMethod}}
 			}
 			"""

@@ -371,30 +371,6 @@
         <member name="M:System.Collections.Generic.Bag`1.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Collections.Generic.Bag`1.Enumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.Bag`1.Enumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.Bag`1.Enumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.Bag`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.Bag`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.Bag`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:System.Collections.Generic.CollectionEnumeration">
             <summary>
             Provides the extension <c>GetEnumerator</c> methods on collection types.
@@ -481,18 +457,6 @@
         <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1">
             <summary>
             Defines an enumerator that iterates the one-dimensional array.
@@ -543,18 +507,6 @@
             and now there's no elements to be iterated.
             </returns>
         </member>
-        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1">
             <summary>
             Defines an enumerator that iterates the one-dimensional array.
@@ -604,18 +556,6 @@
             Returns <see langword="false"/> when the last iteration is for the last element,
             and now there's no elements to be iterated.
             </returns>
-        </member>
-        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:System.Collections.Generic.ValueList`1">
             <summary>
@@ -783,26 +723,6 @@
         <member name="M:System.Collections.Generic.ValueList`1.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:System.Collections.Generic.CollectionExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/> and <see cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>.
@@ -844,6 +764,86 @@
             </summary>
             <typeparam name="T">The type of the element.</typeparam>
             <param name="this">The removed list.</param>
+        </member>
+        <member name="M:System.Collections.Generic.Bag.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.Bag.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.Bag.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.Bag.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.Bag.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.Bag.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:System.Collections.BitArrayExtensions">
             <summary>

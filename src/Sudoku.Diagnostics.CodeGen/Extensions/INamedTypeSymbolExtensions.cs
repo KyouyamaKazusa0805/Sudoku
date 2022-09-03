@@ -39,7 +39,7 @@ internal static class INamedTypeSymbolExtensions
 	/// </returns>
 	internal static string ToFileName(this INamedTypeSymbol @this)
 	{
-		string result = @this.ToDisplayString(TypeFormats.FullNameWithConstraints);
+		string result = @this.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
 		scoped var buffer = (stackalloc char[result.Length]);
 		buffer.Fill('\0');
 		int pointer = 0;
@@ -71,12 +71,12 @@ internal static class INamedTypeSymbolExtensions
 	internal static string GetTypeKindModifier(this INamedTypeSymbol @this)
 		=> (@this.TypeKind, @this.IsRecord) switch
 		{
-			(TypeKind.Class, true) => "record",
-			(TypeKind.Class, _) => "class",
-			(TypeKind.Struct, true) => "record struct",
-			(TypeKind.Struct, _) => "struct",
-			(TypeKind.Interface, _) => "interface"
-			//(TypeKind.Delegate, _) => "delegate",
-			//(TypeKind.Enum, _) => "enum"
+			(Kind.Class, true) => "record",
+			(Kind.Class, _) => "class",
+			(Kind.Struct, true) => "record struct",
+			(Kind.Struct, _) => "struct",
+			(Kind.Interface, _) => "interface"
+			//(Kind.Delegate, _) => "delegate",
+			//(Kind.Enum, _) => "enum"
 		};
 }

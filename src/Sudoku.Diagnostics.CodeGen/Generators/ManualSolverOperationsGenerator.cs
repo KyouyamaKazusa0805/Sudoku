@@ -97,11 +97,11 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 		string targetPropertiesCode = string.Join(
 			"\r\n\r\n\t",
 			from info in foundResultInfos
-			let typeStr = info.DerivedInterfaceType.ToDisplayString(TypeFormats.FullName)
-			let propertyContainedInterfaceTypeStr = info.PropertyContainedInterfaceType.ToDisplayString(TypeFormats.FullName)
+			let typeStr = info.DerivedInterfaceType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+			let propertyContainedInterfaceTypeStr = info.PropertyContainedInterfaceType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
 			let typeStrWithoutInterfacePrefix = info.Property.ContainingType.Name
 			let propertyStr = info.Property.Name
-			let propertyTypeStr = info.Property.Type.ToDisplayString(TypeFormats.FullName)
+			let propertyTypeStr = info.Property.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
 			select $$"""
 			/// <inheritdoc cref="{{propertyContainedInterfaceTypeStr}}.{{propertyStr}}"/>
 				[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]

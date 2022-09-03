@@ -100,7 +100,7 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 				continue;
 			}
 
-			string fullName = type.ToDisplayString(TypeFormats.FullName);
+			string fullName = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 
 			var emittedMethods = new List<string>();
 

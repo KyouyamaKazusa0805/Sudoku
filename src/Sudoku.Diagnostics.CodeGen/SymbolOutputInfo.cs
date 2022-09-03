@@ -61,7 +61,7 @@ internal sealed record SymbolOutputInfo(
 	public static SymbolOutputInfo FromSymbol(INamedTypeSymbol symbol, bool checkNotRefStruct = false)
 	{
 		string typeName = symbol.Name;
-		string fullTypeName = symbol.ToDisplayString(TypeFormats.FullNameWithConstraints);
+		string fullTypeName = symbol.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
 		string namespaceName = symbol.ContainingNamespace.ToDisplayString();
 
 		int i = fullTypeName.IndexOf('<');
