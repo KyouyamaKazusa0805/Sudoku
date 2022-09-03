@@ -5,6 +5,8 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:Sudoku.UI.Views.Controls"
+	xmlns:dts="using:Sudoku.UI.DataConversion.DataTemplateSelectors"
+	xmlns:m="using:Sudoku.UI.Models"
 	mc:Ignorable="d"
 	Closed="Window_ClosedAsync">
 	<Grid>
@@ -39,88 +41,73 @@
 					<Setter Property="Margin" Value="0,0,9,0" />
 				</Style>
 			</NavigationView.Resources>
+			<NavigationView.MenuItemTemplateSelector>
+				<dts:MenuItemDataTemplateSelector>
+					<dts:MenuItemDataTemplateSelector.BasicTemplate>
+						<DataTemplate x:DataType="m:MenuItemTemplateData">
+							<NavigationViewItem
+								Tag="{x:Bind Tag}" Visibility="{x:Bind Visibility}" IsEnabled="{x:Bind IsEnabled}"
+								Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
+								<NavigationViewItem.Content>
+									<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
+										<SymbolIcon Symbol="{x:Bind Symbol}" />
+										<TextBlock
+											Text="{x:Bind Title}"
+											Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
+									</StackPanel>
+								</NavigationViewItem.Content>
+							</NavigationViewItem>
+						</DataTemplate>
+					</dts:MenuItemDataTemplateSelector.BasicTemplate>
+					<dts:MenuItemDataTemplateSelector.BasicTemplateWithoutSymbolIcon>
+						<DataTemplate x:DataType="m:MenuItemTemplateData">
+							<NavigationViewItem
+								Tag="{x:Bind Tag}" Content="{x:Bind Title}"
+								Visibility="Collapsed" Width="0" Height="0" />
+						</DataTemplate>
+					</dts:MenuItemDataTemplateSelector.BasicTemplateWithoutSymbolIcon>
+					<dts:MenuItemDataTemplateSelector.SeparatorTemplate>
+						<DataTemplate x:DataType="m:MenuItemSeparatorTemplateData">
+							<NavigationViewItemSeparator />
+						</DataTemplate>
+					</dts:MenuItemDataTemplateSelector.SeparatorTemplate>
+					<dts:MenuItemDataTemplateSelector.HeaderTemplate>
+						<DataTemplate x:DataType="m:MenuItemHeaderTemplateData">
+							<NavigationViewItemHeader Content="{x:Bind HeaderText}" />
+						</DataTemplate>
+					</dts:MenuItemDataTemplateSelector.HeaderTemplate>
+				</dts:MenuItemDataTemplateSelector>
+			</NavigationView.MenuItemTemplateSelector>
 			<NavigationView.MenuItems>
-				<NavigationViewItem Tag="HomePage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
-					<NavigationViewItem.Content>
-						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
-							<SymbolIcon Symbol="Home" />
-							<TextBlock
-								Text="{StaticResource HomePage_Home}"
-								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
-						</StackPanel>
-					</NavigationViewItem.Content>
-				</NavigationViewItem>
-				<NavigationViewItemSeparator />
-				<NavigationViewItemHeader Content="{StaticResource HomePage_Sudoku}" />
-				<NavigationViewItem Tag="SudokuPage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
-					<NavigationViewItem.Content>
-						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
-							<SymbolIcon Symbol="ViewAll" />
-							<TextBlock
-								Text="{StaticResource HomePage_PlayingAndAnalyzing}"
-								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
-						</StackPanel>
-					</NavigationViewItem.Content>
-				</NavigationViewItem>
-				<NavigationViewItem
-					Tag="UserCustomizedDrawingPage" Visibility="Collapsed"
-					Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
-					<NavigationViewItem.Content>
-						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
-							<SymbolIcon Symbol="Highlight" />
-							<TextBlock
-								Text="{StaticResource HomePage_UserCustomizedDrawing}"
-								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
-						</StackPanel>
-					</NavigationViewItem.Content>
-				</NavigationViewItem>
+				<m:MenuItemTemplateData Tag="HomePage" Title="{StaticResource HomePage_Home}" Symbol="Home" />
+				<m:MenuItemSeparatorTemplateData />
+				<m:MenuItemHeaderTemplateData HeaderText="{StaticResource HomePage_Sudoku}" />
+				<m:MenuItemTemplateData
+					Tag="SudokuPage" Title="{StaticResource HomePage_PlayingAndAnalyzing}"
+					Symbol="ViewAll" />
+				<m:MenuItemTemplateData
+					Tag="UserCustomizedDrawingPage" Title="{StaticResource HomePage_UserCustomizedDrawing}"
+					IsEnabled="False" Symbol="Highlight" />
 			</NavigationView.MenuItems>
 			<NavigationView.FooterMenuItems>
-				<NavigationViewItem Tag="PreferencePage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
-					<NavigationViewItem.Content>
-						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
-							<SymbolIcon Symbol="Setting" />
-							<TextBlock
-								Text="{StaticResource HomePage_Settings}"
-								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
-						</StackPanel>
-					</NavigationViewItem.Content>
-				</NavigationViewItem>
-				<NavigationViewItemSeparator />
-				<NavigationViewItem Tag="KeyboardPage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
-					<NavigationViewItem.Content>
-						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
-							<SymbolIcon Symbol="Keyboard" />
-							<TextBlock
-								Text="{StaticResource HomePage_Keyboard}"
-								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
-						</StackPanel>
-					</NavigationViewItem.Content>
-				</NavigationViewItem>
-				<NavigationViewItem Tag="AboutPage" Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
-					<NavigationViewItem.Content>
-						<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">
-							<SymbolIcon Symbol="People" />
-							<TextBlock
-								Text="{StaticResource HomePage_About}"
-								Style="{ThemeResource _rNavigationViewItemTextBlockStyle}" />
-						</StackPanel>
-					</NavigationViewItem.Content>
-				</NavigationViewItem>
+				<m:MenuItemTemplateData Tag="PreferencePage" Title="{StaticResource HomePage_Settings}" Symbol="Setting" />
+				<m:MenuItemSeparatorTemplateData />
+				<m:MenuItemTemplateData Tag="KeyboardPage" Title="{StaticResource HomePage_Keyboard}" Symbol="Keyboard" />
+				<m:MenuItemTemplateData Tag="AboutPage" Title="{StaticResource HomePage_About}" Symbol="People" />
 
 				<!--Hidden view items. They are only used for navigating in backing methods.-->
-				<NavigationViewItem
-					Tag="BasicOptionsPage" Width="0" Height="0" Visibility="Collapsed"
-					Content="{StaticResource SettingsPage_GroupItemName_Basic}" />
-				<NavigationViewItem
-					Tag="SolvingOptionsPage" Width="0" Height="0" Visibility="Collapsed"
-					Content="{StaticResource SettingsPage_GroupItemName_Solving}" />
-				<NavigationViewItem
-					Tag="RenderingOptionsPage" Width="0" Height="0" Visibility="Collapsed"
-					Content="{StaticResource SettingsPage_GroupItemName_Rendering}" />
-				<NavigationViewItem
-					Tag="MiscellaneousOptionsPage" Width="0" Height="0" Visibility="Collapsed"
-					Content="{StaticResource SettingsPage_GroupItemName_Miscellaneous}" />
+				<m:MenuItemTemplateData
+					Tag="BasicOptionsPage" Title="{StaticResource SettingsPage_GroupItemName_Basic}"
+					Visibility="Collapsed" />
+				<m:MenuItemTemplateData
+					Tag="SolvingOptionsPage" Title="{StaticResource SettingsPage_GroupItemName_Solving}"
+					Visibility="Collapsed" />
+				<m:MenuItemTemplateData
+					Tag="RenderingOptionsPage" Title="{StaticResource SettingsPage_GroupItemName_Rendering}"
+					Visibility="Collapsed" />
+				<m:MenuItemTemplateData
+					Tag="MiscellaneousOptionsPage" Title="{StaticResource SettingsPage_GroupItemName_Miscellaneous}"
+					Visibility="Collapsed" />
 			</NavigationView.FooterMenuItems>
 
 			<Frame

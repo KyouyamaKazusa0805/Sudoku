@@ -86,6 +86,34 @@
             Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.ManualSolverResultMessage"/>.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.DataConversion.DataTemplateSelectors.MenuItemDataTemplateSelector">
+            <summary>
+            Defines a data template selector that can determine which data template will be applied to a menu item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.MenuItemDataTemplateSelector.BasicTemplate">
+            <summary>
+            Indicates the basic template.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.MenuItemDataTemplateSelector.BasicTemplateWithoutSymbolIcon">
+            <summary>
+            Indicates the basic template without symbol icon.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.MenuItemDataTemplateSelector.SeparatorTemplate">
+            <summary>
+            Indicates the separator template.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.MenuItemDataTemplateSelector.HeaderTemplate">
+            <summary>
+            Indicates the header template.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.DataConversion.DataTemplateSelectors.MenuItemDataTemplateSelector.SelectTemplateCore(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.DataConversion.DataTemplateSelectors.ModelDataTemplateSelector">
             <summary>
             Extracts a type that is used by derived types, providing them with a template way to select data template
@@ -1196,6 +1224,52 @@
             <param name="steps">The steps.</param>
             <returns>A <see cref="T:Sudoku.UI.Models.ManualStepCollection"/> instance.</returns>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>
+        </member>
+        <member name="T:Sudoku.UI.Models.MenuItemHeaderTemplateData">
+            <summary>
+            Indicates the template data used for displaying a menu item header.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.MenuItemHeaderTemplateData.HeaderText">
+            <summary>
+            Indicates the header text.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Models.MenuItemSeparatorTemplateData">
+            <summary>
+            Indicates the template data used for displaying a menu item separator.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Models.MenuItemTemplateData">
+            <summary>
+            Indicates the template data used for displaying a menu item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.MenuItemTemplateData.Tag">
+            <summary>
+            Indicates the tag used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.MenuItemTemplateData.IsEnabled">
+            <summary>
+            Indicates whether the current menu item is enabled, which means it can interact with users.
+            The default value is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.MenuItemTemplateData.Title">
+            <summary>
+            The title.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.MenuItemTemplateData.Symbol">
+            <summary>
+            The icon used. The default value is <c>(<see cref="T:Microsoft.UI.Xaml.Controls.Symbol"/>)0</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.MenuItemTemplateData.Visibility">
+            <summary>
+            Indicates the default visibility. The default value is <see cref="F:Microsoft.UI.Xaml.Visibility.Visible"/>.
+            </summary>
         </member>
         <member name="T:Sudoku.UI.Models.RepositoryInfo">
             <summary>

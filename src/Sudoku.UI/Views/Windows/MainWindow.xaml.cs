@@ -362,14 +362,12 @@ public sealed partial class MainWindow : Window
 		}
 
 		var (tag, _) = Array.Find(NavigationPairs, p => p.PageType == sourcePageType);
-		var item = menuItems.Concat(footerMenuItems).OfType<NavigationViewItem>().First(n => n.Tag as string == tag);
+		var item = (MenuItemTemplateData)menuItems.Concat(footerMenuItems).First(menuItemChoser);
 		_cViewRouter.SelectedItem = item;
-		_cTitleBar.TitleText = item.Content switch
-		{
-			string text => text,
-			StackPanel { Children: [_, TextBlock { Text: var text }] } => text,
-			_ => string.Empty
-		};
+		_cTitleBar.TitleText = item switch { { Title: string localTitle } => localTitle, _ => string.Empty };
+
+
+		bool menuItemChoser(object n) => n is MenuItemTemplateData { Tag: string localTag } && tag == localTag;
 	}
 
 	/// <summary>
