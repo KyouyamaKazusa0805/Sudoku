@@ -8,7 +8,7 @@
 /// <param name="AltIsDown">Indicates whether the <see cref="Key.Menu"/> key is pressed down.</param>
 public readonly record struct ModifierKeyDownData(bool ControlIsDown, bool ShiftIsDown, bool AltIsDown) :
 	IEquatable<ModifierKeyDownData>,
-	IEqualityOperators<ModifierKeyDownData, ModifierKeyDownData>
+	IEqualityOperators<ModifierKeyDownData, ModifierKeyDownData, bool>
 {
 	/// <summary>
 	/// Indicates the sync root.

@@ -4,7 +4,7 @@
 /// Defines the data structure that stores a set of cells and a digit, indicating the information
 /// about the locked candidate node.
 /// </summary>
-public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget>
+public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
 	/// <summary>
 	/// Initializes a <see cref="LockedTarget"/> instance via the specified cell and the specified digit used.
@@ -75,11 +75,11 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<LockedTarget, LockedTarget>.operator ==(LockedTarget left, LockedTarget right)
+	static bool IEqualityOperators<LockedTarget, LockedTarget, bool>.operator ==(LockedTarget left, LockedTarget right)
 		=> left == right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<LockedTarget, LockedTarget>.operator !=(LockedTarget left, LockedTarget right)
+	static bool IEqualityOperators<LockedTarget, LockedTarget, bool>.operator !=(LockedTarget left, LockedTarget right)
 		=> left != right;
 }

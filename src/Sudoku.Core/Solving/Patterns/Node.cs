@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a chain node.
 /// </summary>
-public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>, ITechniquePattern<Node>
+public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node, bool>, ITechniquePattern<Node>
 {
 	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the basic data.
@@ -168,19 +168,19 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node>, 
 	bool IEquatable<Node>.Equals(Node other) => Equals(other);
 
 
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator =="/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(scoped in Node left, scoped in Node right) => left.Equals(right);
 
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator !="/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(scoped in Node left, scoped in Node right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Node, Node>.operator ==(Node left, Node right) => left == right;
+	static bool IEqualityOperators<Node, Node, bool>.operator ==(Node left, Node right) => left == right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Node, Node>.operator !=(Node left, Node right) => left != right;
+	static bool IEqualityOperators<Node, Node, bool>.operator !=(Node left, Node right) => left != right;
 }

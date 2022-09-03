@@ -7,7 +7,7 @@
 /// <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="short"/>.</param>
 public readonly record struct UniqueLoopDataInfo(scoped in CellMap Loop, short DigitsMask) :
 	IEquatable<UniqueLoopDataInfo>,
-	IEqualityOperators<UniqueLoopDataInfo, UniqueLoopDataInfo>,
+	IEqualityOperators<UniqueLoopDataInfo, UniqueLoopDataInfo, bool>,
 	ITechniqueDataInfo<UniqueLoopDataInfo>
 {
 	/// <inheritdoc/>

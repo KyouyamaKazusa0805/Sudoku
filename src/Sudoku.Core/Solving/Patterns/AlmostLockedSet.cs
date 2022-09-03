@@ -10,7 +10,7 @@
 /// </remarks>
 public sealed class AlmostLockedSet :
 	IEquatable<AlmostLockedSet>,
-	IEqualityOperators<AlmostLockedSet, AlmostLockedSet>,
+	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>,
 	ITechniquePattern<AlmostLockedSet>,
 	ITechniquePatternGatherable<AlmostLockedSet>
 {

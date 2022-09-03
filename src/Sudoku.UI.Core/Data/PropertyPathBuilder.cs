@@ -99,12 +99,12 @@ public ref partial struct PropertyPathBuilder
 	}
 
 
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator ==(TSelf, TOther)"/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.operator ==(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(scoped PropertyPathBuilder left, scoped PropertyPathBuilder right)
 		=> left.Equals(right);
 
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator !=(TSelf, TOther)"/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.operator !=(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(scoped PropertyPathBuilder left, scoped PropertyPathBuilder right)
 		=> !(left == right);

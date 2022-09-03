@@ -6,8 +6,8 @@
 [![issues](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues)
 [![license](https://img.shields.io/github/license/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE)
 
-![](https://img.shields.io/badge/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-C%23%2011%20%E9%A2%84%E8%A7%88%E7%89%88-%23178600)
-![](https://img.shields.io/badge/%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6-.NET%207-blueviolet)
+![](https://img.shields.io/badge/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-C%23%2012%20%E9%A2%84%E8%A7%88%E7%89%88-%23178600)
+![](https://img.shields.io/badge/%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6-.NET%207%20%E9%A2%84%E8%A7%88%E7%89%88%207-blueviolet)
 ![](https://img.shields.io/badge/%E7%BC%A9%E8%BF%9B-Tab-lightgrey)
 ![](https://img.shields.io/badge/IDE-Visual%20Studio%202022%20v17.4%20%E9%A2%84%E8%A7%88%E7%89%88%201-%23cf98fb)
 ![](https://img.shields.io/badge/%E8%AF%AD%E8%A8%80-%E8%8B%B1%E8%AF%AD%E3%80%81%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-success)
@@ -122,7 +122,7 @@ UI：
 >
 > 另外，技巧“唯一性确定值覆盖”只支持类型 2，因为只有类型 2 才有测试用例，别的类型由于极为罕见，目前甚至连个配套的测试用例都没有。
 
-## 关于该仓库的克隆（Fork）及代码拉取请求（Pull Requests）
+## 关于该仓库的复刻（Fork）及代码拉取请求（Pull Requests）
 
 当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于 [MIT](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE) 开源协议的情况下做你任何想做的事情。不过，由于 Gitee 是从 GitHub 拷贝过来的，所以 Gitee 项目暂时不支持任何的代码拉取请求，敬请谅解；不过这两个仓库都可以创建 issue。
 

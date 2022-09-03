@@ -30,14 +30,13 @@ internal sealed class WinsysDispatcherQueueHelper
 			options.threadType = 2; // DQTYPE_THREAD_CURRENT
 			options.apartmentType = 2; // DQTAT_COM_STA
 
-			_ = createController(options, ref _dispatcherQueueController);
+			_ = CreateController(options, ref _dispatcherQueueController);
 		}
-
-
-		[DllImport("CoreMessaging", EntryPoint = "CreateDispatcherQueueController")]
-		static extern int createController(
-			[In] DispatcherQueueOptions options,
-			[In, Out, MarshalAs(UnmanagedType.IUnknown), AllowNull] scoped ref object dispatcherQueueController
-		);
 	}
+
+
+	[DllImport("CoreMessaging", EntryPoint = "CreateDispatcherQueueController")]
+	private static extern int CreateController(
+		[In] DispatcherQueueOptions options,
+		[In, Out, MarshalAs(UnmanagedType.IUnknown), AllowNull] scoped ref object dispatcherQueueController);
 }

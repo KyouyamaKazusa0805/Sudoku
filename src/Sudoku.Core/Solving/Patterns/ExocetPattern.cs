@@ -56,10 +56,7 @@ public readonly record struct ExocetPattern(
 	scoped in CellMap MirrorQ2,
 	scoped in CellMap MirrorR1,
 	scoped in CellMap MirrorR2
-) :
-	IEquatable<ExocetPattern>,
-	IEqualityOperators<ExocetPattern, ExocetPattern>,
-	ITechniquePattern<ExocetPattern>
+) : IEquatable<ExocetPattern>, IEqualityOperators<ExocetPattern, ExocetPattern, bool>, ITechniquePattern<ExocetPattern>
 {
 	/// <inheritdoc/>
 	public CellMap Map

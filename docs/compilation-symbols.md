@@ -14,6 +14,8 @@
 | `GRID_SERIALIZE_RAW_DATA`                   | 表示序列化数独盘面信息是按照底层的原始掩码表进行序列化的方式。 |
 | `USE_EQUALITY_COMPARER`                     | 表示是否使用 `EqualityComparer<T>` 类型来给对象进行比较运算操作。 |
 | `VISIT_SITE_DIRECTLY`                       | 表示是否直接弹出浏览器显示指定的链接。如果不设置该符号的话，那么就只会输出网址信息到控制台。 |
+| `LIBRARY_IMPORT_STYLE_PINVOKE`              | 表示是否以 .NET 7 开始支持的源代码生成器风格来导入 P/Invoke 函数。它和 `DLL_IMPORT_STYLE_PIVOKE` 是对立的，同时只能有一个符号可以存在。 |
+| `DLL_IMPORT_STYLE_PIVOKE`                   | 表示是否以经典 `[DllImport]` 特性的模式导入 P/Invoke 函数。它和 `LIBRARY_IMPORT_STYLE_PINVOKE` 是对立的，同时只能有一个符号可以存在。 |
 
 完整的符号引用树状图如下：
 
@@ -24,13 +26,14 @@ graph LR
         Z -->|派生| P3(Sudoku.CommandLine)
         Z -->|派生| P4(Sudoku.Solving.Manual)
         Z -->|派生| P2(SystemExtensions)
+        Z -->|派生| P5(Sudoku.UI)
         style Z fill:#FFF
         click Z "https://github.com/SunnieShine/Sudoku" _blank
         click P1 "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core" _blank
         click P2 "https://github.com/SunnieShine/Sudoku/tree/main/src/System" _blank
         click P3 "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine" _blank
         click P4 "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Manual" _blank
-        click P5 "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI" _blank
+        click P5 "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI.Core" _blank
     end
 
     subgraph 文件和符号对应关系
@@ -40,10 +43,13 @@ graph LR
         P2 -->|文件| G(StringHandler.cs)
         P3 -->|文件| F(MainMethod.cs)
         P4 -->|文件| H(UniqueRectangleStepSearcher.cs)
+        P5 -->|文件| I(FileOpenPickerExtensions.cs)
+        P5 -->|文件| J(FileSavePickerExtensions.cs)
         style P1 fill:#FFF
         style P2 fill:#FFF
         style P3 fill:#FFF
         style P4 fill:#FFF
+        style P5 fill:#FFF
         style A fill:#0F8
         style B fill:#0F8
         style C fill:#0F8
@@ -51,12 +57,17 @@ graph LR
         style F fill:#0F8
         style G fill:#0F8
         style H fill:#0F8
+        style I fill:#0F8
+        style J fill:#0F8
         click A "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs" _blank
+        click B "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.JsonConverter.cs" _blank
         click C "https://github.com/SunnieShine/Sudoku/blob/main/src/System/Collections/Generic/Bag.cs" _blank
         click D "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Solving/BitwiseSolver.cs" _blank
         click F "https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine/MainMethod.cs" _blank
         click G "https://github.com/SunnieShine/Sudoku/blob/main/src/System/Text/StringHandler.cs" _blank
         click H "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Solving/Solving/Manual/Searchers/DeadlyPatterns/Rectangles/UniqueRectangleStepSearcher.cs" _blank
+        click I "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.UI.Core/Extensions/FileOpenPickerExtensions.cs" _blank
+        click J "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.UI.Core/Extensions/FileSavePickerExtensions.cs" _blank
 
         A -->|嵌套类文件| B(Grid.JsonConverter.cs)
         B -->|符号| S3(GRID_SERIALIZE_STRINGS)
@@ -67,6 +78,10 @@ graph LR
         G -->|符号| S9(DISCARD_INTERPOLATION_INFO)
         G -->|符号| S10(USE_NEWER_CONSTANT_VALUES)
         H -->|符号| S11(IMPLEMENTED)
+        I -->|符号| S12(LIBRARY_IMPORT_STYLE_PINVOKE)
+        I -->|符号| S13(DLL_IMPORT_STYLE_PIVOKE)
+        J -->|符号| S12
+        J -->|符号| S13
         style S3 fill:#CCC
         style S4 fill:#EEE
         style S5 fill:#CCC
@@ -75,7 +90,8 @@ graph LR
         style S9 fill:#EEE
         style S10 fill:#EEE
         style S11 fill:#CCC
-        click B "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.JsonConverter.cs" _blank
+        style S12 fill:#EEE
+        style S13 fill:#CCC
     end
 ```
 

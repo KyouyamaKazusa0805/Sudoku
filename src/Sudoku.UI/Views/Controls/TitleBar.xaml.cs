@@ -75,7 +75,7 @@ public sealed partial class TitleBar : UserControl
 		nint hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
 
 		// Get DPI.
-		int result = getDpiForMonitor(hMonitor, Monitor_DPI_Type.MDT_Default, out uint dpiX, out _);
+		int result = GetDpiForMonitor(hMonitor, Monitor_DPI_Type.MDT_Default, out uint dpiX, out _);
 		if (result != 0)
 		{
 			throw new InvalidOperationException("Could not get DPI for monitor.");
@@ -83,10 +83,6 @@ public sealed partial class TitleBar : UserControl
 
 		uint scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);
 		return scaleFactorPercent / 100.0;
-
-
-		[DllImport("Shcore", EntryPoint = "GetDpiForMonitor", SetLastError = true)]
-		static extern int getDpiForMonitor(nint hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
 	}
 
 
@@ -165,4 +161,8 @@ public sealed partial class TitleBar : UserControl
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
 	private void TitleBar_Loaded(object sender, RoutedEventArgs e) => SetDragRegionForCustomTitleBar(_appWindow);
+
+
+	[LibraryImport("Shcore", EntryPoint = "GetDpiForMonitor", SetLastError = true)]
+	private static partial int GetDpiForMonitor(nint hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
 }

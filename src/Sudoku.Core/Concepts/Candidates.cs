@@ -17,7 +17,7 @@ public unsafe struct Candidates :
 	IDivisionOperators<Candidates, int, CellMap>,
 	IModulusOperators<Candidates, Candidates, Candidates>,
 	IBitwiseOperators<Candidates, Candidates, Candidates>,
-	IEqualityOperators<Candidates, Candidates>
+	IEqualityOperators<Candidates, Candidates, bool>
 {
 	/// <summary>
 	/// Indicates the size of each unit.
@@ -929,12 +929,12 @@ public unsafe struct Candidates :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Candidates, Candidates>.operator ==(Candidates left, Candidates right)
+	static bool IEqualityOperators<Candidates, Candidates, bool>.operator ==(Candidates left, Candidates right)
 		=> left == right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Candidates, Candidates>.operator !=(Candidates left, Candidates right)
+	static bool IEqualityOperators<Candidates, Candidates, bool>.operator !=(Candidates left, Candidates right)
 		=> left != right;
 
 	/// <inheritdoc/>

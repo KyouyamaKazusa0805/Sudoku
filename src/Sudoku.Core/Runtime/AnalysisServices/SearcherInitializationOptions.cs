@@ -43,7 +43,7 @@ public readonly record struct SearcherInitializationOptions(
 	SearcherDisabledReason DisabledReason = SearcherDisabledReason.None
 ) :
 	IEquatable<SearcherInitializationOptions>,
-	IEqualityOperators<SearcherInitializationOptions, SearcherInitializationOptions>
+	IEqualityOperators<SearcherInitializationOptions, SearcherInitializationOptions, bool>
 {
 	/// <summary>
 	/// Indicates the custom priority value. This property is used for a comparison between two step searchers

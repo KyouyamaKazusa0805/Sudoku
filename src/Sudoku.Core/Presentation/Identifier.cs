@@ -4,7 +4,7 @@
 /// Defines an identifier that can differ colors.
 /// </summary>
 [JsonConverter(typeof(IdentifierJsonConverter))]
-public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
+public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier, bool>
 {
 	/// <summary>
 	/// Initializes an <see cref="Identifier"/> instance.

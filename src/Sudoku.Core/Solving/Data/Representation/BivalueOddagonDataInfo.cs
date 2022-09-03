@@ -7,7 +7,7 @@
 /// <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="short"/>.</param>
 public readonly record struct BivalueOddagonDataInfo(scoped in CellMap Loop, short DigitsMask) :
 	IEquatable<BivalueOddagonDataInfo>,
-	IEqualityOperators<BivalueOddagonDataInfo, BivalueOddagonDataInfo>,
+	IEqualityOperators<BivalueOddagonDataInfo, BivalueOddagonDataInfo, bool>,
 	ITechniqueDataInfo<BivalueOddagonDataInfo>
 {
 	/// <inheritdoc/>

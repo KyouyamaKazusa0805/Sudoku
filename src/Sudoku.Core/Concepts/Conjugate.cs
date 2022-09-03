@@ -7,7 +7,7 @@
 /// A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
 /// two position can fill this candidate.
 /// </remarks>
-public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate>
+public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate, bool>
 {
 	/// <summary>
 	/// Indicates the default instance.

@@ -7,7 +7,7 @@
 /// <param name="Max">The maximum possible value.</param>
 public readonly record struct SudokuExplainerDifficultyRatingRange(Half Min, Half Max) :
 	IEquatable<SudokuExplainerDifficultyRatingRange>,
-	IEqualityOperators<SudokuExplainerDifficultyRatingRange, SudokuExplainerDifficultyRatingRange>
+	IEqualityOperators<SudokuExplainerDifficultyRatingRange, SudokuExplainerDifficultyRatingRange, bool>
 {
 	/// <summary>
 	/// Initializes a <see cref="SudokuExplainerDifficultyRatingRange"/> instance

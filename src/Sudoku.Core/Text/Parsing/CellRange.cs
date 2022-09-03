@@ -6,7 +6,7 @@
 [AutoDeconstruction(nameof(MinValue), nameof(MaxValue))]
 public readonly partial struct CellRange :
 	IEquatable<CellRange>,
-	IEqualityOperators<CellRange, CellRange>,
+	IEqualityOperators<CellRange, CellRange, bool>,
 	ISimpleParseable<CellRange>
 {
 	/// <summary>

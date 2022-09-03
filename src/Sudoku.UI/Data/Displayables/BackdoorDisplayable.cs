@@ -7,7 +7,7 @@
 public sealed record BackdoorDisplayable(ImmutableArray<Conclusion> Conclusions) :
 	IDisplayable,
 	IEquatable<BackdoorDisplayable>,
-	IEqualityOperators<BackdoorDisplayable, BackdoorDisplayable>
+	IEqualityOperators<BackdoorDisplayable, BackdoorDisplayable, bool>
 {
 	/// <summary>
 	/// Initializes a <see cref="BackdoorDisplayable"/> instance via the specified conclusions as possible backdoors.

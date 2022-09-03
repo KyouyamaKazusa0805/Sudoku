@@ -8,7 +8,7 @@
 /// <param name="Digit">Indicates the digit used.</param>
 public readonly record struct GuardianDataInfo(scoped in CellMap Loop, scoped in CellMap Guardians, int Digit) :
 	IEquatable<GuardianDataInfo>,
-	IEqualityOperators<GuardianDataInfo, GuardianDataInfo>,
+	IEqualityOperators<GuardianDataInfo, GuardianDataInfo, bool>,
 	ITechniqueDataInfo<GuardianDataInfo>
 {
 	/// <inheritdoc/>

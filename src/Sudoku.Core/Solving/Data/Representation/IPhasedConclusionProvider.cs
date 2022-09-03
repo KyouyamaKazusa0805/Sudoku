@@ -9,7 +9,7 @@
 /// </typeparam>
 public interface IPhasedConclusionProvider<TSelf, TReasonEnum> :
 	IEquatable<TSelf>,
-	IEqualityOperators<TSelf, TSelf>
+	IEqualityOperators<TSelf, TSelf, bool>
 	where TSelf : IPhasedConclusionProvider<TSelf, TReasonEnum>
 	where TReasonEnum : unmanaged, Enum
 {

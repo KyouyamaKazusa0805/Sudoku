@@ -7,7 +7,7 @@
 public sealed record TrueCandidatesDisplayable(ImmutableArray<View> Views) :
 	IDisplayable,
 	IEquatable<TrueCandidatesDisplayable>,
-	IEqualityOperators<TrueCandidatesDisplayable, TrueCandidatesDisplayable>
+	IEqualityOperators<TrueCandidatesDisplayable, TrueCandidatesDisplayable, bool>
 {
 	/// <summary>
 	/// Initializes a <see cref="TrueCandidatesDisplayable"/> instance via the specified views.

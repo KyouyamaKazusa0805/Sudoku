@@ -905,37 +905,37 @@
         <member name="M:Sudoku.Concepts.Candidates.op_Inequality(Sudoku.Concepts.Candidates@,Sudoku.Concepts.Candidates@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#IEqualityOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_Equality(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
+        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IEqualityOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,System#Boolean}#op_Equality(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#IEqualityOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_Inequality(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
+        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IEqualityOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,System#Boolean}#op_Inequality(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#IAdditionOperators{Sudoku#Concepts#Candidates,System#Int32,Sudoku#Concepts#Candidates}#op_Addition(Sudoku.Concepts.Candidates,System.Int32)">
+        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IAdditionOperators{Sudoku#Concepts#Candidates,System#Int32,Sudoku#Concepts#Candidates}#op_Addition(Sudoku.Concepts.Candidates,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#ISubtractionOperators{Sudoku#Concepts#Candidates,System#Int32,Sudoku#Concepts#Candidates}#op_Subtraction(Sudoku.Concepts.Candidates,System.Int32)">
+        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#ISubtractionOperators{Sudoku#Concepts#Candidates,System#Int32,Sudoku#Concepts#Candidates}#op_Subtraction(Sudoku.Concepts.Candidates,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#ISubtractionOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_Subtraction(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
+        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#ISubtractionOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_Subtraction(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#IDivisionOperators{Sudoku#Concepts#Candidates,System#Int32,Sudoku#Concepts#CellMap}#op_Division(Sudoku.Concepts.Candidates,System.Int32)">
+        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IDivisionOperators{Sudoku#Concepts#Candidates,System#Int32,Sudoku#Concepts#CellMap}#op_Division(Sudoku.Concepts.Candidates,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#IModulusOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_Modulus(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
+        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IModulusOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_Modulus(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_OnesComplement(Sudoku.Concepts.Candidates)">
+        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_OnesComplement(Sudoku.Concepts.Candidates)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_BitwiseAnd(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
+        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_BitwiseAnd(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_BitwiseOr(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
+        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_BitwiseOr(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_ExclusiveOr(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
+        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_ExclusiveOr(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Candidates.op_Implicit(System.Int32[])~Sudoku.Concepts.Candidates">
@@ -1594,43 +1594,43 @@
             <param name="cells">The collection.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IUnaryPlusOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_UnaryPlus(Sudoku.Concepts.CellMap)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IUnaryPlusOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_UnaryPlus(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IAdditionOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_Addition(Sudoku.Concepts.CellMap,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IAdditionOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_Addition(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#ISubtractionOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_Subtraction(Sudoku.Concepts.CellMap,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_Subtraction(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#ISubtractionOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Subtraction(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Subtraction(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#Candidates}#op_Multiply(Sudoku.Concepts.CellMap,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#Candidates}#op_Multiply(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IDivisionOperators{Sudoku#Concepts#CellMap,System#Int32,System#Int16}#op_Division(Sudoku.Concepts.CellMap,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CellMap,System#Int32,System#Int16}#op_Division(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IModulusOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Modulus(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IModulusOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Modulus(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_OnesComplement(Sudoku.Concepts.CellMap)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_OnesComplement(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_BitwiseAnd(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_BitwiseAnd(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_BitwiseOr(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_BitwiseOr(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_ExclusiveOr(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBitwiseOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_ExclusiveOr(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IEqualityOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Equality(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IEqualityOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,System#Boolean}#op_Equality(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IEqualityOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Inequality(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IEqualityOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,System#Boolean}#op_Inequality(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Implicit(Sudoku.Concepts.CellMap@)~System.Int32[]">
@@ -2639,9 +2639,6 @@
             <param name="cell">The cell.</param>
             <param name="mask">The mask to set.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.System#IEquatable{Sudoku#Concepts#Grid}#Equals(Sudoku.Concepts.Grid)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
             <summary>
             Called by properties <see cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>, <see cref="P:Sudoku.Concepts.Grid.DigitsMap"/> and <see cref="P:Sudoku.Concepts.Grid.ValuesMap"/>.
@@ -2783,9 +2780,18 @@
             <returns>The cell status.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ExtendedSusserEliminationsRegex">
-            <summary>
-            Indicates the eliminations in the extended susser format.
-            </summary>
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Zero-width positive lookbehind.<br/>
+                ○ Match ':' right-to-left.<br/>
+            ○ Loop greedily any number of times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a Unicode digit exactly 3 times.<br/>
+                    ○ Match a whitespace character atomically at least once.<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_LeftShift(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@)">
             <summary>
@@ -2813,10 +2819,10 @@
         <member name="M:Sudoku.Concepts.Grid.op_Inequality(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.System#IEqualityOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid}#op_Equality(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+        <member name="M:Sudoku.Concepts.Grid.System#Numerics#IEqualityOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,System#Boolean}#op_Equality(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.System#IEqualityOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid}#op_Inequality(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+        <member name="M:Sudoku.Concepts.Grid.System#Numerics#IEqualityOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,System#Boolean}#op_Inequality(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Grid.MaskCollectionEnumerator">
@@ -4241,10 +4247,10 @@
         <member name="M:Sudoku.Presentation.LockedTarget.op_Inequality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.LockedTarget.System#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget}#op_Equality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
+        <member name="M:Sudoku.Presentation.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget,System#Boolean}#op_Equality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.LockedTarget.System#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
+        <member name="M:Sudoku.Presentation.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget,System#Boolean}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.ViewNodeAddBehavior">
@@ -8432,9 +8438,6 @@
         <member name="M:Sudoku.Solving.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.System#IComparable#CompareTo(System.Object)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Conclusion.op_Equality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
             <summary>
             Determines whether two <see cref="T:Sudoku.Solving.Conclusion"/> instances are considered equal on inner value.
@@ -12337,15 +12340,15 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Patterns.Node.op_Equality(Sudoku.Solving.Patterns.Node@,Sudoku.Solving.Patterns.Node@)">
-            <inheritdoc cref="M:System.IEqualityOperators`2.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Patterns.Node.op_Inequality(Sudoku.Solving.Patterns.Node@,Sudoku.Solving.Patterns.Node@)">
-            <inheritdoc cref="M:System.IEqualityOperators`2.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Patterns.Node.System#IEqualityOperators{Sudoku#Solving#Patterns#Node,Sudoku#Solving#Patterns#Node}#op_Equality(Sudoku.Solving.Patterns.Node,Sudoku.Solving.Patterns.Node)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Patterns.Node.System#IEqualityOperators{Sudoku#Solving#Patterns#Node,Sudoku#Solving#Patterns#Node}#op_Inequality(Sudoku.Solving.Patterns.Node,Sudoku.Solving.Patterns.Node)">
+        <member name="M:Sudoku.Solving.Patterns.Node.op_Inequality(Sudoku.Solving.Patterns.Node@,Sudoku.Solving.Patterns.Node@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Patterns.Node.System#Numerics#IEqualityOperators{Sudoku#Solving#Patterns#Node,Sudoku#Solving#Patterns#Node,System#Boolean}#op_Equality(Sudoku.Solving.Patterns.Node,Sudoku.Solving.Patterns.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Patterns.Node.System#Numerics#IEqualityOperators{Sudoku#Solving#Patterns#Node,Sudoku#Solving#Patterns#Node,System#Boolean}#op_Inequality(Sudoku.Solving.Patterns.Node,Sudoku.Solving.Patterns.Node)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Patterns.QiuDeadlyPattern">
@@ -13617,9 +13620,13 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.K9Notation.CellOrCellListRegex">
-            <summary>
-            Indicates the regular expression for matching a cell or cell-list.
-            </summary>
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match a character in the set [A-IKa-ik] atomically at least 1 and at most 9 times.<br/>
+            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="T:Sudoku.Text.Notations.K9NotationOptions">
             <summary>
@@ -13792,14 +13799,113 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.RxCyNotation.CellOrCellListRegex">
-            <summary>
-            Indicates the regular expression matching a cell or cell-list.
-            </summary>
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'R'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'C'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'r'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'c'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="M:Sudoku.Text.Notations.RxCyNotation.CandidateOrCandidateListRegex">
-            <summary>
-            Indicates the regular expression matching a candidate or candidate-list.
-            </summary>
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 3 alternative expressions, atomically.<br/>
+                    ○ Match a character in the set [1-9] exactly 3 times.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ 2nd capture group.<br/>
+                            ○ Match with 3 alternative expressions, atomically.<br/>
+                                ○ Match a sequence of expressions.<br/>
+                                    ○ Match 'R'.<br/>
+                                    ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                    ○ Match 'C'.<br/>
+                                    ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                ○ Match a sequence of expressions.<br/>
+                                    ○ Match 'r'.<br/>
+                                    ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                    ○ Match 'c'.<br/>
+                                    ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                ○ Match a sequence of expressions.<br/>
+                                    ○ Match '{'.<br/>
+                                    ○ Match a whitespace character atomically any number of times.<br/>
+                                    ○ 3rd capture group.<br/>
+                                        ○ Match with 2 alternative expressions.<br/>
+                                            ○ Match a sequence of expressions.<br/>
+                                                ○ Match 'R'.<br/>
+                                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                                ○ Match 'C'.<br/>
+                                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                            ○ Match a sequence of expressions.<br/>
+                                                ○ Match 'r'.<br/>
+                                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                                ○ Match 'c'.<br/>
+                                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                    ○ Match ','.<br/>
+                                    ○ Match a whitespace character greedily any number of times.<br/>
+                                    ○ Loop greedily any number of times.<br/>
+                                        ○ 4th capture group.<br/>
+                                            ○ Match with 2 alternative expressions.<br/>
+                                                ○ Match a sequence of expressions.<br/>
+                                                    ○ Match 'R'.<br/>
+                                                    ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                                    ○ Match 'C'.<br/>
+                                                    ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                                                ○ Match a sequence of expressions.<br/>
+                                                    ○ Match 'r'.<br/>
+                                                    ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                                    ○ Match 'c'.<br/>
+                                                    ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                                    ○ Match a whitespace character atomically any number of times.<br/>
+                                    ○ Match '}'.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '{'.<br/>
+                        ○ Match a whitespace character atomically any number of times.<br/>
+                        ○ 5th capture group.<br/>
+                            ○ Match with 2 alternative expressions.<br/>
+                                ○ Match a sequence of expressions.<br/>
+                                    ○ Match 'R'.<br/>
+                                    ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                    ○ Match 'C'.<br/>
+                                    ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                ○ Match a sequence of expressions.<br/>
+                                    ○ Match 'r'.<br/>
+                                    ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                    ○ Match 'c'.<br/>
+                                    ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match ','.<br/>
+                        ○ Match a whitespace character greedily any number of times.<br/>
+                        ○ Loop greedily any number of times.<br/>
+                            ○ 6th capture group.<br/>
+                                ○ Match with 2 alternative expressions.<br/>
+                                    ○ Match a sequence of expressions.<br/>
+                                        ○ Match 'R'.<br/>
+                                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                        ○ Match 'C'.<br/>
+                                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                                    ○ Match a sequence of expressions.<br/>
+                                        ○ Match 'r'.<br/>
+                                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                        ○ Match 'c'.<br/>
+                                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                        ○ Match a whitespace character atomically any number of times.<br/>
+                        ○ Match the string "}(".<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match ')'.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="T:Sudoku.Text.Notations.RxCyNotationOptions">
             <summary>
@@ -14632,6 +14738,149 @@
         </member>
         <member name="M:Sudoku.Text.Serialization.Specialized.InferenceJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Inference,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsRegex_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ExtendedSusserEliminationsRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsRegex_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsRegex_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsRegex_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsRegex_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsRegex_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsRegex_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsRegex_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsRegex_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CellOrCellListRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_2">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CellOrCellListRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.CellOrCellListRegex_2.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_2.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_2.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_2.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_2.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_2.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_2.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_2.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CandidateOrCandidateListRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
+            <summary>Pushes 2 values onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPop(System.Int32[],System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Pops 2 values from the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32,System.Int32)">
+            <summary>Pushes 3 values onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32)">
+            <summary>Pushes 1 value onto the backtracking stack.</summary>
         </member>
     </members>
 </doc>

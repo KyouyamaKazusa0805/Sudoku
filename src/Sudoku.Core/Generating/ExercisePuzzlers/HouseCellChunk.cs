@@ -6,9 +6,9 @@
 [AutoDeconstruction(nameof(Cells), nameof(Digits))]
 public readonly unsafe partial struct HouseCellChunk :
 	IComparable<HouseCellChunk>,
-	IComparisonOperators<HouseCellChunk, HouseCellChunk>,
+	IComparisonOperators<HouseCellChunk, HouseCellChunk, bool>,
 	IEquatable<HouseCellChunk>,
-	IEqualityOperators<HouseCellChunk, HouseCellChunk>
+	IEqualityOperators<HouseCellChunk, HouseCellChunk, bool>
 {
 	/// <summary>
 	/// Indicates the mask.

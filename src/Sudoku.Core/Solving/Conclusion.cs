@@ -14,8 +14,8 @@
 [AutoDeconstruction(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
-	IComparisonOperators<Conclusion, Conclusion>,
-	IEqualityOperators<Conclusion, Conclusion>,
+	IComparisonOperators<Conclusion, Conclusion, bool>,
+	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>
 {
 	/// <summary>
@@ -142,13 +142,6 @@ public readonly partial struct Conclusion :
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => $"{CellMap.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable.CompareTo(object? obj)
-		=> obj is Conclusion comparer
-			? CompareTo(comparer)
-			: throw new ArgumentException($"The argument must be of type '{nameof(Conclusion)}'", nameof(obj));
 
 
 	/// <summary>

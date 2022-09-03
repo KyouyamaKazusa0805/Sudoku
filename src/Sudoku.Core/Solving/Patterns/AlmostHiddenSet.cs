@@ -9,7 +9,7 @@
 /// </remarks>
 public sealed class AlmostHiddenSet :
 	IEquatable<AlmostHiddenSet>,
-	IEqualityOperators<AlmostHiddenSet, AlmostHiddenSet>,
+	IEqualityOperators<AlmostHiddenSet, AlmostHiddenSet, bool>,
 	ITechniquePattern<AlmostHiddenSet>,
 	ITechniquePatternGatherable<AlmostHiddenSet>
 {

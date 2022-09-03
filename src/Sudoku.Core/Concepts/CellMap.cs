@@ -33,7 +33,7 @@ public unsafe struct CellMap :
 	IDivisionOperators<CellMap, int, short>,
 	IModulusOperators<CellMap, CellMap, CellMap>,
 	IBitwiseOperators<CellMap, CellMap, CellMap>,
-	IEqualityOperators<CellMap, CellMap>,
+	IEqualityOperators<CellMap, CellMap, bool>,
 	IUnaryPlusOperators<CellMap, CellMap>
 {
 	/// <summary>
@@ -1319,11 +1319,11 @@ public unsafe struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<CellMap, CellMap>.operator ==(CellMap left, CellMap right) => left == right;
+	static bool IEqualityOperators<CellMap, CellMap, bool>.operator ==(CellMap left, CellMap right) => left == right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<CellMap, CellMap>.operator !=(CellMap left, CellMap right) => left != right;
+	static bool IEqualityOperators<CellMap, CellMap, bool>.operator !=(CellMap left, CellMap right) => left != right;
 
 
 	/// <summary>

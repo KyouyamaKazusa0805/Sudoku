@@ -6,9 +6,9 @@
 public readonly unsafe struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
-	IComparisonOperators<Utf8String, Utf8String>,
+	IComparisonOperators<Utf8String, Utf8String, bool>,
 	IEnumerable<Utf8Char>,
-	IEqualityOperators<Utf8String, Utf8String>,
+	IEqualityOperators<Utf8String, Utf8String, bool>,
 	IEquatable<Utf8String>,
 	IReadOnlyCollection<Utf8Char>,
 	IReadOnlyList<Utf8Char>
@@ -307,13 +307,6 @@ public readonly unsafe struct Utf8String :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<Utf8Char> IEnumerable<Utf8Char>.GetEnumerator() => ((IEnumerable<Utf8Char>)_value).GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable.CompareTo([NotNullWhen(true)] object? obj)
-		=> obj is Utf8String comparer
-			? CompareTo(comparer)
-			: throw new ArgumentException($"The target value must be of type '{nameof(Utf8String)}'.");
 
 
 	/// <summary>

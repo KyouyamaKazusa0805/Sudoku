@@ -3,7 +3,9 @@
 /// <summary>
 /// Defines a drawing element that represents a sudoku information.
 /// </summary>
-public abstract class DrawingElement : IEquatable<DrawingElement>, IEqualityOperators<DrawingElement, DrawingElement>
+public abstract class DrawingElement :
+	IEquatable<DrawingElement>,
+	IEqualityOperators<DrawingElement, DrawingElement, bool>
 {
 	/// <summary>
 	/// Indicates the type identifier. The value implemented can be used for the hashing.

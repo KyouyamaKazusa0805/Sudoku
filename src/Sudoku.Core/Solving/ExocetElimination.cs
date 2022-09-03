@@ -8,7 +8,7 @@
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
 public readonly record struct ExocetElimination(Conclusion[] Conclusions, ExocetEliminatedReason Reason) :
 	IEquatable<ExocetElimination>,
-	IEqualityOperators<ExocetElimination, ExocetElimination>,
+	IEqualityOperators<ExocetElimination, ExocetElimination, bool>,
 	IPhasedConclusionProvider<ExocetElimination, ExocetEliminatedReason>
 {
 	/// <inheritdoc cref="object.ToString"/>

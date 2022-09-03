@@ -8,7 +8,7 @@
 public unsafe partial struct Grid :
 	ISimpleFormattable,
 	ISimpleParseable<Grid>,
-	IEqualityOperators<Grid, Grid>
+	IEqualityOperators<Grid, Grid, bool>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -1214,10 +1214,6 @@ public unsafe partial struct Grid :
 		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, m, -1);
 	}
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool IEquatable<Grid>.Equals(Grid other) => Equals(this, other);
-
 	/// <summary>
 	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.
 	/// </summary>
@@ -1536,9 +1532,9 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Grid, Grid>.operator ==(Grid left, Grid right) => left == right;
+	static bool IEqualityOperators<Grid, Grid, bool>.operator ==(Grid left, Grid right) => left == right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Grid, Grid>.operator !=(Grid left, Grid right) => left != right;
+	static bool IEqualityOperators<Grid, Grid, bool>.operator !=(Grid left, Grid right) => left != right;
 }

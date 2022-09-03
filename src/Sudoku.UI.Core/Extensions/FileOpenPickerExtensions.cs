@@ -1,10 +1,17 @@
-﻿namespace Windows.Storage.Pickers;
+﻿#undef LIBRARY_IMPORT_STYLE_PINVOKE
+#define DLL_IMPORT_STYLE_PIVOKE
+
+namespace Windows.Storage.Pickers;
 
 /// <summary>
 /// Provides extension methods on <see cref="FileOpenPicker"/>.
 /// </summary>
 /// <seealso cref="FileOpenPicker"/>
-public static class FileOpenPickerExtensions
+public static
+#if LIBRARY_IMPORT_STYLE_PINVOKE && !DLL_IMPORT_STYLE_PIVOKE
+partial
+#endif
+class FileOpenPickerExtensions
 {
 	/// <summary>
 	/// To aware the handle of the window, and apply to the <see cref="FileOpenPicker"/> instance.
@@ -16,15 +23,11 @@ public static class FileOpenPickerExtensions
 		if (Window.Current is null)
 		{
 			var initializeWithWindowWrapper = @this.As<IInitializeWithWindow>();
-			nint hwnd = getActiveWindow();
+			nint hwnd = GetActiveWindow();
 			initializeWithWindowWrapper.Initialize(hwnd);
 		}
 
 		return @this;
-
-
-		[DllImport("user32", EntryPoint = "GetActiveWindow", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true)]
-		static extern nint getActiveWindow();
 	}
 
 	/// <summary>
@@ -47,4 +50,14 @@ public static class FileOpenPickerExtensions
 		@this.FileTypeFilter.Add(item);
 		return @this;
 	}
+
+#if LIBRARY_IMPORT_STYLE_PINVOKE
+	[LibraryImport("user32")]
+	private static partial nint GetActiveWindow();
+#elif DLL_IMPORT_STYLE_PIVOKE
+	[DllImport("user32", CharSet = CharSet.Auto)]
+	private static extern nint GetActiveWindow();
+#else
+#error Cannot import method 'GetActiveWindow' as P/Invoke due to not being found.
+#endif
 }

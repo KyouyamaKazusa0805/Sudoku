@@ -3,7 +3,7 @@
 /// <summary>
 /// Indicates the type that contains the main method, which is the main entry point.
 /// </summary>
-public static class Program
+public static partial class Program
 {
 	/// <summary>
 	/// Indicates the program name.
@@ -16,9 +16,9 @@ public static class Program
 	/// </summary>
 	/// <param name="args">The command line arguments. The default value is an empty array.</param>
 	[STAThread]
-	private static void Main(string[] args)
+	private static void Main([SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")] string[] args)
 	{
-		checkProcessRequirements();
+		CheckProcessRequirements();
 
 		ComWrappersSupport.InitializeComWrappers();
 		Application.Start(
@@ -29,9 +29,8 @@ public static class Program
 				_ = new App();
 			}
 		);
-
-
-		[DllImport("Microsoft.ui.xaml", EntryPoint = "XamlCheckProcessRequirements")]
-		static extern void checkProcessRequirements();
 	}
+
+	[LibraryImport("Microsoft.ui.xaml", EntryPoint = "XamlCheckProcessRequirements")]
+	private static partial void CheckProcessRequirements();
 }

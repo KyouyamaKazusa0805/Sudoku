@@ -8,7 +8,7 @@ public abstract class Chain :
 	IEnumerable<Node>,
 	IReadOnlyCollection<Node>,
 	IReadOnlyList<Node>,
-	IEqualityOperators<Chain, Chain>
+	IEqualityOperators<Chain, Chain, bool>
 {
 	/// <summary>
 	/// Indicates the status of those nodes.
