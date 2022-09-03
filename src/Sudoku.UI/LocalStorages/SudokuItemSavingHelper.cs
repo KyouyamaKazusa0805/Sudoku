@@ -48,7 +48,7 @@ internal static class SudokuItemSavingHelper
 	/// </returns>
 	public static async Task<bool> PictureSaveAsync(StorageFile file, SudokuPage page)
 	{
-		if ((file, page) is not ({ Name: var fileName }, { _cPane: var pane, _cInfoBoard: var board }))
+		if ((file, page) is not ({ Path: var filePath, Name: var fileName }, { _cPane: var pane, _cInfoBoard: var board }))
 		{
 			return false;
 		}
@@ -58,6 +58,12 @@ internal static class SudokuItemSavingHelper
 		string a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
 		string b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
 		board.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
+
+		if (((App)Application.Current).UserPreference.AlsoSavePictureWhenSaveDrawingData)
+		{
+			filePath = SioPath.ChangeExtension(filePath, CommonFileExtensions.DrawingData);
+			await DrawingDataSaveAsync(filePath, fileName, page);
+		}
 
 		return true;
 	}
@@ -72,12 +78,20 @@ internal static class SudokuItemSavingHelper
 	/// indicating whether the operation is succeeded.
 	/// </returns>
 	public static async Task<bool> DrawingDataSaveAsync(StorageFile file, SudokuPage page)
-	{
-		if (file is not { Path: var filePath, Name: var fileName })
-		{
-			return false;
-		}
+		=> file is { Path: var filePath, Name: var fileName } && await DrawingDataSaveAsync(filePath, fileName, page);
 
+	/// <summary>
+	/// Saves with drawing data format.
+	/// </summary>
+	/// <param name="filePath">The file path.</param>
+	/// <param name="fileName">The file name.</param>
+	/// <param name="page">The page control.</param>
+	/// <returns>
+	/// The asynchronous task that can return the <see cref="bool"/> result
+	/// indicating whether the operation is succeeded.
+	/// </returns>
+	private static async Task<bool> DrawingDataSaveAsync(string filePath, string fileName, SudokuPage page)
+	{
 		switch (page._cPane.GetDisplayableUnit())
 		{
 			case null:

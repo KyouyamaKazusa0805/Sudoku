@@ -940,6 +940,18 @@
             indicating whether the operation is succeeded.
             </returns>
         </member>
+        <member name="M:Sudoku.UI.LocalStorages.SudokuItemSavingHelper.DrawingDataSaveAsync(System.String,System.String,Sudoku.UI.Views.Pages.SudokuPage)">
+            <summary>
+            Saves with drawing data format.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="fileName">The file name.</param>
+            <param name="page">The page control.</param>
+            <returns>
+            The asynchronous task that can return the <see cref="T:System.Boolean"/> result
+            indicating whether the operation is succeeded.
+            </returns>
+        </member>
         <member name="T:Sudoku.UI.Models.AnalysisResultRow">
             <summary>
             Defines a row that used for displaying the information about a technique,

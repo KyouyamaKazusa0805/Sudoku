@@ -435,7 +435,8 @@ public sealed partial class SudokuPage : Page
 					=> await SudokuItemSavingHelper.DrawingDataSaveAsync(file, this),
 				CommonFileExtensions.PortablePicture
 					=> await SudokuItemSavingHelper.PictureSaveAsync(file, this),
-				_ => false
+				_
+					=> false
 			},
 			_ => false
 		};
