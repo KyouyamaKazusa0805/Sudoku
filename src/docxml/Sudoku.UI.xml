@@ -1383,7 +1383,18 @@
             <summary>
             Indicates the main entry point of the program.
             </summary>
-            <param name="args">The command line arguments. The default value is an empty array.</param>
+            <param name="args">
+            <para>The command line arguments. The default value is an empty array.</para>
+            <para><i>
+            This method does not use command-line arguments, but it will be reserved in order to be used in the future.
+            </i></para>
+            </param>
+        </member>
+        <member name="M:Sudoku.UI.Program.ApplicationStartingCallback(Microsoft.UI.Xaml.ApplicationInitializationCallbackParams)">
+            <summary>
+            The callback method that is called by main method. <i>Please do not call this method in other places.</i>
+            </summary>
+            <param name="p">The callback method arguments.</param>
         </member>
         <member name="T:Sudoku.UI.Supportability">
             <summary>
