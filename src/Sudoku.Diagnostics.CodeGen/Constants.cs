@@ -5,5 +5,5 @@ internal static class Constants
 	/// <summary>
 	/// Indicates the version of this project.
 	/// </summary>
-	public const string VersionValue = "0.12";
+	public const string VersionValue = "0.13";
 }

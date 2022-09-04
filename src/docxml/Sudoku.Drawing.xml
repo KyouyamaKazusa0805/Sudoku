@@ -258,12 +258,12 @@
             <param name="this">The size.</param>
             <returns>The result.</returns>
         </member>
-        <member name="T:System.Drawing.Color_DE4E678CC8">
+        <member name="T:System.Drawing.Color_DE84389FCE">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:System.Drawing.Color_DE4E678CC8.Deconstruct(System.Drawing.Color,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+        <member name="M:System.Drawing.Color_DE84389FCE.Deconstruct(System.Drawing.Color,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -304,12 +304,12 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:System.Drawing.Point_DE91BB6178">
+        <member name="T:System.Drawing.Point_DE5BE4727E">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:System.Drawing.Point_DE91BB6178.Deconstruct(System.Drawing.Point,System.Int32@,System.Int32@)">
+        <member name="M:System.Drawing.Point_DE5BE4727E.Deconstruct(System.Drawing.Point,System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -350,12 +350,12 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:System.Drawing.PointF_DE8B20D3D8">
+        <member name="T:System.Drawing.PointF_DE417FC0DE">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:System.Drawing.PointF_DE8B20D3D8.Deconstruct(System.Drawing.PointF,System.Single@,System.Single@)">
+        <member name="M:System.Drawing.PointF_DE417FC0DE.Deconstruct(System.Drawing.PointF,System.Single@,System.Single@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -396,12 +396,12 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:System.Drawing.Size_DE6C5EC248">
+        <member name="T:System.Drawing.Size_DEA601D14E">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:System.Drawing.Size_DE6C5EC248.Deconstruct(System.Drawing.Size,System.Int32@,System.Int32@)">
+        <member name="M:System.Drawing.Size_DEA601D14E.Deconstruct(System.Drawing.Size,System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -442,12 +442,12 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:System.Drawing.SizeF_DE19E3E0A8">
+        <member name="T:System.Drawing.SizeF_DED3BCF3AE">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:System.Drawing.SizeF_DE19E3E0A8.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
+        <member name="M:System.Drawing.SizeF_DED3BCF3AE.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -488,12 +488,12 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:System.Drawing.RectangleF_DED03657A8">
+        <member name="T:System.Drawing.RectangleF_DE1A6944AE">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:System.Drawing.RectangleF_DED03657A8.Deconstruct(System.Drawing.RectangleF,System.Single@,System.Single@,System.Single@,System.Single@)">
+        <member name="M:System.Drawing.RectangleF_DE1A6944AE.Deconstruct(System.Drawing.RectangleF,System.Single@,System.Single@,System.Single@,System.Single@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

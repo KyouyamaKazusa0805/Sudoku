@@ -3104,12 +3104,12 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeEndLineCap"/> with the specified value.
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE6D7EC944">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE5899FABE.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE6D7EC944.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3715,12 +3715,12 @@
             <param name="other">The other point.</param>
             <returns>The distance of the two points.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DEF353AC3E">
+        <member name="T:Windows.Foundation.Point_DEC6B49FC4">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.Foundation.Point_DEF353AC3E.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DEC6B49FC4.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3774,12 +3774,12 @@
             <param name="this">The modifier key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Windows.UI.Color_DEF3748C0E">
+        <member name="T:Windows.UI.Color_DEC693BFF4">
             <summary>
             Provides with extension deconstruction methods on this type.
             </summary>
         </member>
-        <member name="M:Windows.UI.Color_DEF3748C0E.Deconstruct(Windows.UI.Color,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+        <member name="M:Windows.UI.Color_DEC693BFF4.Deconstruct(Windows.UI.Color,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

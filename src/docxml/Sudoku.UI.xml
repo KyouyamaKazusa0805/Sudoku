@@ -1333,16 +1333,6 @@
             Defines a version timeline group item.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.VersionTimelineGroupItem.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.VersionTimelineGroupItem"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.VersionTimelineGroupItem.Version">
-            <summary>
-            Indicates the version of the timeline group used.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Models.VersionTimelineGroupItem.Items">
             <summary>
             Indicates the items.

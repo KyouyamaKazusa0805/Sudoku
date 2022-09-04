@@ -3,6 +3,7 @@
 /// <summary>
 /// Indicates a getting-started item.
 /// </summary>
+[ContentProperty(Name = "Content")]
 public sealed class GettingStartedItem
 {
 	/// <summary>
