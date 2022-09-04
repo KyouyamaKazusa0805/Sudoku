@@ -23,17 +23,25 @@
 		<PackageTags>algorithms;sudoku;puzzle-solving</PackageTags>
 		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
 		<Description>The solution that plays with the sudoku.</Description>
-		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
-		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+		<AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
 		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
 		<GenerateTestArtifacts>True</GenerateTestArtifacts>
 		<AppxBundle>Always</AppxBundle>
 		<AppInstallerUri>C:\Apps</AppInstallerUri>
 		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-		<AppxBundlePlatforms>x64</AppxBundlePlatforms>
+		<AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
 		<IncludeNativeLibrariesForSelfExtract>True</IncludeNativeLibrariesForSelfExtract>
+		<Platforms>x86;x64</Platforms>
 
-		<!--Extra configuration on unpackaged application configuration-->
+		<!--Packaged Configuration-->
+		<!--
+		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+		<PackageCertificateThumbprint>0B3F4278445C22139788C5BAAF7F423533A1A710</PackageCertificateThumbprint>
+		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+		-->
+
+		<!--Unpackaged Configuration-->
 		<!--
 		Here is a potential bug that crashes the application in unpackaged application. In release mode,
 		it seems that the method 'XamlCheckProcessRequirements' will be invalid due to not found. See links:
@@ -48,7 +56,6 @@
 		In addition, you can use the following configuration to enable the x86 platform:
 			<RuntimeIdentifiers>win10-x64;win10-x86</RuntimeIdentifiers>
 		-->
-		<Platforms>x86;x64</Platforms>
 		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
 		<SelfContained>true</SelfContained>
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
