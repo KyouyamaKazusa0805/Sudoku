@@ -36,12 +36,9 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 	public abstract Rarity Rarity { get; }
 
 	[ResourceTextFormatter]
-	[RequiresUnreferencedCode(M.RequiresReflectionDueToResourceDictionary)]
-	[RequiresDynamicCode(M.RequiresReflectionDueToResourceDictionary)]
 	internal string ElimStr() => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
 
 	/// <inheritdoc/>
-	[UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
 	string IStep.ElimStr => ElimStr();
 
 
@@ -76,7 +73,6 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
 	public string ToSimpleString() => $"{Name} => {ElimStr()}";
 
 	/// <inheritdoc/>

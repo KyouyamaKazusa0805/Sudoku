@@ -49,6 +49,7 @@ internal sealed partial record AlmostLockedCandidatesStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
+
 	[ResourceTextFormatter]
 	private partial string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

@@ -58,8 +58,6 @@ public interface IStep : IVisual
 	/// The recommended implementation pattern is:
 	/// <code><![CDATA[
 	/// [ResourceTextFormatter]
-	/// [RequiresUnreferencedCode(M.RequiresReflectionDueToResourceDictionary)]
-	/// [RequiresDynamicCode(M.RequiresReflectionDueToResourceDictionary)]
 	/// internal string CellsStr() => Cells.ToString();
 	/// ]]></code>
 	/// You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added

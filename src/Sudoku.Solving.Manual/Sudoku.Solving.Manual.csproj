@@ -5,7 +5,6 @@
 		<Description>The project that provides human-analysis or brute forces for sudoku puzzles.</Description>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DocumentationFile>..\docxml\Sudoku.Solving.Manual.xml</DocumentationFile>
-		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
 	</PropertyGroup>
 
 	<ItemGroup>

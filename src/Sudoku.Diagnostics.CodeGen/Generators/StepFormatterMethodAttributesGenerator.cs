@@ -55,9 +55,6 @@ public sealed class StepFormatterMethodAttributesGenerator : IIncrementalGenerat
 					let attributes = method.GetAttributes()
 					where attributes.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, targetAttributeType))
 					select $"""
-					[global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode(global::Sudoku.Reflection.ReflectionMessage.RequiresReflectionDueToResourceDictionary)]
-						[global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode(global::Sudoku.Reflection.ReflectionMessage.RequiresReflectionDueToResourceDictionary)]
-						[global::System.Diagnostics.CodeAnalysis.DynamicDependency("Formatize(System.Boolean)", typeof(global::Sudoku.Solving.Step))]
 						private partial string {method.Name}();
 					"""
 				);

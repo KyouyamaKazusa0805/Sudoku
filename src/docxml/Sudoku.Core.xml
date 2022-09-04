@@ -11247,8 +11247,6 @@
             The recommended implementation pattern is:
             <code><![CDATA[
             [ResourceTextFormatter]
-            [RequiresUnreferencedCode(M.RequiresReflectionDueToResourceDictionary)]
-            [RequiresDynamicCode(M.RequiresReflectionDueToResourceDictionary)]
             internal string CellsStr() => Cells.ToString();
             ]]></code>
             You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
@@ -14485,11 +14483,7 @@
             <item>The name of the method is appeared in resource dictionary</item>
             <item>The method can only be invoked by reflection.</item>
             </list>
-            If a method is marked this attribute, please also applies <see cref="T:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute"/>
-            and <see cref="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute"/>.
             </summary>
-            <seealso cref="T:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute"/>
-            <seealso cref="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute"/>
         </member>
         <member name="T:Sudoku.Text.Serialization.ColorInternal">
             <summary>
