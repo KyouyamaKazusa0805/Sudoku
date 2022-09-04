@@ -1,11 +1,11 @@
 ﻿namespace Sudoku.Presentation;
 
 /// <summary>
-/// Defines a displayable item that is user-defined.
+/// Defines a visual item that is user-defined.
 /// </summary>
-public sealed class UserDefinedDisplayable :
+public sealed class UserDefinedVisual :
 	ICloneable,
-	IDisplayable,
+	IVisual,
 	IEnumerable<ViewNode>,
 	IReadOnlyCollection<ViewNode>,
 	IReadOnlyList<ViewNode>
@@ -30,18 +30,18 @@ public sealed class UserDefinedDisplayable :
 
 
 	/// <summary>
-	/// Initializes a <see cref="UserDefinedDisplayable"/> instance.
+	/// Initializes a <see cref="UserDefinedVisual"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public UserDefinedDisplayable()
+	public UserDefinedVisual()
 	{
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="UserDefinedDisplayable"/> instance via the specified view nodes.
+	/// Initializes a <see cref="UserDefinedVisual"/> instance via the specified view nodes.
 	/// </summary>
 	/// <param name="viewNodes">A list of view nodes.</param>
-	private UserDefinedDisplayable(IEnumerable<ViewNode> viewNodes)
+	private UserDefinedVisual(IEnumerable<ViewNode> viewNodes)
 	{
 		foreach (var node in viewNodes)
 		{
@@ -97,10 +97,10 @@ public sealed class UserDefinedDisplayable :
 	}
 
 	/// <inheritdoc/>
-	ImmutableArray<Conclusion> IDisplayable.Conclusions => ImmutableArray<Conclusion>.Empty;
+	ImmutableArray<Conclusion> IVisual.Conclusions => ImmutableArray<Conclusion>.Empty;
 
 	/// <inheritdoc/>
-	ImmutableArray<View> IDisplayable.Views => ImmutableArray.Create(_view);
+	ImmutableArray<View> IVisual.Views => ImmutableArray.Create(_view);
 
 
 	/// <summary>
@@ -225,7 +225,7 @@ public sealed class UserDefinedDisplayable :
 
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public UserDefinedDisplayable Clone() => new(_view);
+	public UserDefinedVisual Clone() => new(_view);
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -245,11 +245,11 @@ public sealed class UserDefinedDisplayable :
 
 
 	/// <summary>
-	/// Converts the <see cref="UserDefinedDisplayable"/> instance to the <see cref="View"/> instance. 
+	/// Converts the <see cref="UserDefinedVisual"/> instance to the <see cref="View"/> instance. 
 	/// </summary>
-	/// <param name="baseDisplayable">The base displayable instance.</param>
+	/// <param name="baseDisplayable">The base visual instance.</param>
 	[return: NotNullIfNotNull(nameof(baseDisplayable))]
-	public static implicit operator View?(UserDefinedDisplayable? baseDisplayable)
+	public static implicit operator View?(UserDefinedVisual? baseDisplayable)
 	{
 		if (baseDisplayable is null)
 		{
@@ -271,18 +271,18 @@ public sealed class UserDefinedDisplayable :
 	}
 
 	/// <summary>
-	/// Converts the <see cref="View"/> instance to the <see cref="UserDefinedDisplayable"/> instance. 
+	/// Converts the <see cref="View"/> instance to the <see cref="UserDefinedVisual"/> instance. 
 	/// </summary>
 	/// <param name="baseView">The base view instance.</param>
 	[return: NotNullIfNotNull(nameof(baseView))]
-	public static explicit operator UserDefinedDisplayable?(View? baseView)
+	public static explicit operator UserDefinedVisual?(View? baseView)
 	{
 		if (baseView is null)
 		{
 			return null;
 		}
 
-		var result = new UserDefinedDisplayable();
+		var result = new UserDefinedVisual();
 		if (baseView.Count == 0)
 		{
 			return result;

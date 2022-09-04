@@ -130,9 +130,9 @@ public sealed class SudokuGrid : DrawingElement
 	private ChuteViewNodeShape _chuteViewNodeShape = null!;
 
 	/// <summary>
-	/// Indicates the current displayable unit to be displayed.
+	/// Indicates the current visual unit to be displayed.
 	/// </summary>
-	private IDisplayable? _displayableUnit;
+	private IVisual? _visual;
 
 
 	/// <summary>
@@ -472,18 +472,18 @@ public sealed class SudokuGrid : DrawingElement
 	}
 
 	/// <summary>
-	/// Indicates the current displayable unit. If assigning <see langword="null"/>,
-	/// the displaying unit will be clear.
+	/// Indicates the current visual unit. If assigning <see langword="null"/>,
+	/// the visual unit will be clear.
 	/// </summary>
-	public IDisplayable? DisplayableUnit
+	public IVisual? Visual
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _displayableUnit;
+		get => _visual;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			_displayableUnit = value;
+			_visual = value;
 
 			if (value is null)
 			{
@@ -751,14 +751,14 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		if (DisplayableUnit is not { Views: var views and not [] })
+		if (Visual is not { Views: var views and not [] })
 		{
 			return;
 		}
 
 		ViewIndex--;
 		SetViewNodes(views[ViewIndex]);
-		SetConclusion(views[ViewIndex], DisplayableUnit.Conclusions);
+		SetConclusion(views[ViewIndex], Visual.Conclusions);
 	}
 
 	/// <summary>
@@ -767,7 +767,7 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetNextView()
 	{
-		if (DisplayableUnit is not { Views: { Length: var viewLength } views and not [] })
+		if (Visual is not { Views: { Length: var viewLength } views and not [] })
 		{
 			return;
 		}
@@ -779,7 +779,7 @@ public sealed class SudokuGrid : DrawingElement
 
 		ViewIndex++;
 		SetViewNodes(views[ViewIndex]);
-		SetConclusion(views[ViewIndex], DisplayableUnit.Conclusions);
+		SetConclusion(views[ViewIndex], Visual.Conclusions);
 	}
 
 	/// <summary>
@@ -794,14 +794,14 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		if (DisplayableUnit is null)
+		if (Visual is null)
 		{
 			return;
 		}
 
 		ViewIndex = index;
-		SetViewNodes(DisplayableUnit.Views[ViewIndex]);
-		SetConclusion(DisplayableUnit.Views[ViewIndex], DisplayableUnit.Conclusions);
+		SetViewNodes(Visual.Views[ViewIndex]);
+		SetConclusion(Visual.Views[ViewIndex], Visual.Conclusions);
 	}
 
 	/// <summary>
@@ -907,7 +907,7 @@ public sealed class SudokuGrid : DrawingElement
 			PaneSize = PaneSize,
 			OutsideOffset = OutsideOffset,
 			Preference = Preference,
-			Conclusions = DisplayableUnit!.Conclusions,
+			Conclusions = Visual!.Conclusions,
 			Nodes = linkViewNodes.ToArray()
 		};
 
@@ -1104,7 +1104,7 @@ public sealed class SudokuGrid : DrawingElement
 			}
 		}
 
-		DisplayableUnit = null;
+		Visual = null;
 	}
 
 	/// <summary>

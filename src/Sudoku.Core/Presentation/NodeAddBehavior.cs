@@ -2,9 +2,9 @@
 
 /// <summary>
 /// Represents an enumeration type that stores some kinds of possible behaviors on adding a view node
-/// into a view node collection such as <see cref="UserDefinedDisplayable"/>.
+/// into a view node collection such as <see cref="UserDefinedVisual"/>.
 /// </summary>
-/// <seealso cref="UserDefinedDisplayable"/>
+/// <seealso cref="UserDefinedVisual"/>
 public enum ViewNodeAddBehavior
 {
 	/// <summary>

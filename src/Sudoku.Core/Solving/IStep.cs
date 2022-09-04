@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides a basic manual solving step.
 /// </summary>
-public interface IStep : IDisplayable
+public interface IStep : IVisual
 {
 	/// <summary>
 	/// <para>

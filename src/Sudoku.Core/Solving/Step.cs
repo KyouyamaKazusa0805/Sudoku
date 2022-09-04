@@ -3,8 +3,8 @@
 /// <summary>
 /// Provides with a manual solving step that is a technique usage, and contains the conclusions.
 /// </summary>
-/// <param name="Conclusions"><inheritdoc cref="IDisplayable.Conclusions" path="/summary"/></param>
-/// <param name="Views"><inheritdoc cref="IDisplayable.Views" path="/summary"/></param>
+/// <param name="Conclusions"><inheritdoc cref="IVisual.Conclusions" path="/summary"/></param>
+/// <param name="Views"><inheritdoc cref="IVisual.Views" path="/summary"/></param>
 internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) : IStep
 {
 	/// <inheritdoc/>

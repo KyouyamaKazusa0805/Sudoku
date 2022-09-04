@@ -233,16 +233,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			case null:
 			{
-				SetDisplayableUnit(new UserDefinedDisplayable { node });
+				SetVisual(new UserDefinedVisual { node });
 
 				break;
 			}
-			case UserDefinedDisplayable view:
+			case UserDefinedVisual view:
 			{
 				view.Add(node);
 
 				// Refresh the view. This is just a trick.
-				SetDisplayableUnit(view);
+				SetVisual(view);
 
 				break;
 			}
@@ -265,16 +265,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			case null:
 			{
-				SetDisplayableUnit(new UserDefinedDisplayable { node });
+				SetVisual(new UserDefinedVisual { node });
 
 				break;
 			}
-			case UserDefinedDisplayable view:
+			case UserDefinedVisual view:
 			{
 				view.Add(node);
 
 				// Refresh the view. This is just a trick.
-				SetDisplayableUnit(view);
+				SetVisual(view);
 
 				break;
 			}
@@ -331,12 +331,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public void HideCandidates() => GetSudokuGridViewModel().UserShowCandidates = false;
 
 	/// <summary>
-	/// Sets the displayable unit to be shown. The method will automatically displays for the first view
+	/// Sets the visual unit to be shown. The method will automatically displays for the first view
 	/// in the view array.
 	/// </summary>
-	/// <param name="displayable">The displayable unit to be displayed.</param>
+	/// <param name="visual">The visual unit to be displayed.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetDisplayableUnit(IDisplayable displayable) => GetSudokuGridViewModel().DisplayableUnit = displayable;
+	public void SetVisual(IVisual visual) => GetSudokuGridViewModel().Visual = visual;
 
 	/// <inheritdoc cref="SudokuGrid.SetPreviousView"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -368,7 +368,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <returns>The current displaying unit.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public IDisplayable? GetDisplayableUnit() => GetSudokuGridViewModel().DisplayableUnit;
+	public IVisual? GetDisplayableUnit() => GetSudokuGridViewModel().Visual;
 
 	/// <inheritdoc/>
 	protected override void OnPointerMoved(PointerRoutedEventArgs e)
@@ -498,15 +498,15 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			}
 			case { DrawingDataRawValue: { } drawingDataRawValue } initialInfo:
 			{
-				var displayable = Deserialize<UserDefinedDisplayable>(drawingDataRawValue, CamelCasing);
-				if (displayable is null)
+				var visual = Deserialize<UserDefinedVisual>(drawingDataRawValue, CamelCasing);
+				if (visual is null)
 				{
 					// Something goes wrong.
 					break;
 				}
 
 				// Sets the value.
-				SetDisplayableUnit(displayable);
+				SetVisual(visual);
 
 				// Remove the value to avoid re-triggering.
 				initialInfo.DrawingDataRawValue = null;

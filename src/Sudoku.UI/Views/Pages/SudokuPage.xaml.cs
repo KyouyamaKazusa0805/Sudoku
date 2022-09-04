@@ -791,8 +791,8 @@ public sealed partial class SudokuPage : Page
 		}
 
 		int[] candidates = trueCandidates.ToArray();
-		_cPane.SetDisplayableUnit(
-			new TrueCandidatesDisplayable(
+		_cPane.SetVisual(
+			new TrueCandidatesVisual(
 				View.Empty
 					| from candidate in candidates select new CandidateViewNode(DisplayColorKind.Normal, candidate)
 			)
@@ -835,7 +835,7 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		_cPane.SetDisplayableUnit(new BackdoorDisplayable(backdoors));
+		_cPane.SetVisual(new BackdoorVisual(backdoors));
 
 		string str = string.Join(
 			R["Token_Comma2"]!,
@@ -905,9 +905,9 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		// Bug fix: This property assignment will reset the displayable unit, so we should put the statement firstly.
+		// Bug fix: This property assignment will reset the visual unit, so we should put the statement firstly.
 		_cPane.Grid = grid;
-		_cPane.SetDisplayableUnit(step);
+		_cPane.SetVisual(step);
 
 		bool isMultipleViews = viewLength > 1;
 		_cPipsPager.SelectedPageIndex = 0;

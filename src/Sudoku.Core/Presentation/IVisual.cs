@@ -1,9 +1,9 @@
 ﻿namespace Sudoku.Presentation;
 
 /// <summary>
-/// Provides with a displayable item.
+/// Provides with a visual item.
 /// </summary>
-public interface IDisplayable
+public interface IVisual
 {
 	/// <summary>
 	/// Indicates the conclusions that the step can be eliminated or assigned to.

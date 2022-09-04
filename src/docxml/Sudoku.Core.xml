@@ -4152,17 +4152,17 @@
             Indicates the named mode. The mode uses an enumeration field name to differ color.
             </summary>
         </member>
-        <member name="T:Sudoku.Presentation.IDisplayable">
+        <member name="T:Sudoku.Presentation.IVisual">
             <summary>
-            Provides with a displayable item.
+            Provides with a visual item.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.IDisplayable.Conclusions">
+        <member name="P:Sudoku.Presentation.IVisual.Conclusions">
             <summary>
             Indicates the conclusions that the step can be eliminated or assigned to.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.IDisplayable.Views">
+        <member name="P:Sudoku.Presentation.IVisual.Views">
             <summary>
             Indicates the views of the step that may be displayed onto the screen using pictures.
             </summary>
@@ -4232,9 +4232,9 @@
         <member name="T:Sudoku.Presentation.ViewNodeAddBehavior">
             <summary>
             Represents an enumeration type that stores some kinds of possible behaviors on adding a view node
-            into a view node collection such as <see cref="T:Sudoku.Presentation.UserDefinedDisplayable"/>.
+            into a view node collection such as <see cref="T:Sudoku.Presentation.UserDefinedVisual"/>.
             </summary>
-            <seealso cref="T:Sudoku.Presentation.UserDefinedDisplayable"/>
+            <seealso cref="T:Sudoku.Presentation.UserDefinedVisual"/>
         </member>
         <member name="F:Sudoku.Presentation.ViewNodeAddBehavior.ForceAdd">
             <summary>
@@ -4614,66 +4614,66 @@
         <member name="M:Sudoku.Presentation.Nodes.ViewNode.op_Inequality(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Presentation.UserDefinedDisplayable">
+        <member name="T:Sudoku.Presentation.UserDefinedVisual">
             <summary>
-            Defines a displayable item that is user-defined.
+            Defines a visual item that is user-defined.
             </summary>
         </member>
-        <member name="F:Sudoku.Presentation.UserDefinedDisplayable._view">
+        <member name="F:Sudoku.Presentation.UserDefinedVisual._view">
             <summary>
             Indicates the inner view.
             </summary>
         </member>
-        <member name="F:Sudoku.Presentation.UserDefinedDisplayable._cellsUsedMap">
+        <member name="F:Sudoku.Presentation.UserDefinedVisual._cellsUsedMap">
             <summary>
             Indicates the cells used.
             </summary>
         </member>
-        <member name="F:Sudoku.Presentation.UserDefinedDisplayable._candidatesUsedMap">
+        <member name="F:Sudoku.Presentation.UserDefinedVisual._candidatesUsedMap">
             <summary>
             Indicates the candidates used.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.#ctor">
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.UserDefinedDisplayable"/> instance.
+            Initializes a <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.UserDefinedDisplayable"/> instance via the specified view nodes.
+            Initializes a <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance via the specified view nodes.
             </summary>
             <param name="viewNodes">A list of view nodes.</param>
         </member>
-        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.Count">
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.Count">
             <summary>
             Indicates the number of elements stored in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.CellNodes">
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.CellNodes">
             <summary>
             Indicates the cell nodes.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.CandidateNodes">
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.CandidateNodes">
             <summary>
             Indicates the candidate nodes.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.Sudoku#Presentation#IDisplayable#Conclusions">
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.Sudoku#Presentation#IVisual#Conclusions">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.Sudoku#Presentation#IDisplayable#Views">
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.Sudoku#Presentation#IVisual#Views">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Presentation.UserDefinedDisplayable.Item(System.Int32)">
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.Item(System.Int32)">
             <summary>
             Gets the view node at the specified index stored in this collection.
             </summary>
             <param name="index">The index that you want to get.</param>
             <returns>The view node at the specified index.</returns>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.Add(Sudoku.Presentation.Nodes.ViewNode)">
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.Add(Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
             Adds a view node into the current collection.
             </summary>
@@ -4683,7 +4683,7 @@
             or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>).
             </exception>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.Remove(Sudoku.Presentation.Nodes.ViewNode)">
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.Remove(Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
             Removes a view node from the current collection.
             </summary>
@@ -4693,30 +4693,30 @@
             or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>).
             </exception>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.Clone">
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.Clone">
             <inheritdoc cref="M:System.ICloneable.Clone"/>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.GetEnumerator">
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.System#ICloneable#Clone">
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.op_Implicit(Sudoku.Presentation.UserDefinedDisplayable)~Sudoku.Presentation.View">
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.op_Implicit(Sudoku.Presentation.UserDefinedVisual)~Sudoku.Presentation.View">
             <summary>
-            Converts the <see cref="T:Sudoku.Presentation.UserDefinedDisplayable"/> instance to the <see cref="T:Sudoku.Presentation.View"/> instance. 
+            Converts the <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance to the <see cref="T:Sudoku.Presentation.View"/> instance. 
             </summary>
-            <param name="baseDisplayable">The base displayable instance.</param>
+            <param name="baseDisplayable">The base visual instance.</param>
         </member>
-        <member name="M:Sudoku.Presentation.UserDefinedDisplayable.op_Explicit(Sudoku.Presentation.View)~Sudoku.Presentation.UserDefinedDisplayable">
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.op_Explicit(Sudoku.Presentation.View)~Sudoku.Presentation.UserDefinedVisual">
             <summary>
-            Converts the <see cref="T:Sudoku.Presentation.View"/> instance to the <see cref="T:Sudoku.Presentation.UserDefinedDisplayable"/> instance. 
+            Converts the <see cref="T:Sudoku.Presentation.View"/> instance to the <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance. 
             </summary>
             <param name="baseView">The base view instance.</param>
         </member>
@@ -11128,10 +11128,10 @@
         <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#ElimStr">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Presentation#IDisplayable#Conclusions">
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Presentation#IVisual#Conclusions">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Presentation#IDisplayable#Views">
+        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Presentation#IVisual#Views">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#ApplyTo(Sudoku.Concepts.Grid@)">
@@ -12579,21 +12579,21 @@
             <summary>
             Provides with a manual solving step that is a technique usage, and contains the conclusions.
             </summary>
-            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Conclusions" path="/summary"/></param>
-            <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Views" path="/summary"/></param>
+            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
+            <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Solving.Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
             <summary>
             Provides with a manual solving step that is a technique usage, and contains the conclusions.
             </summary>
-            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Conclusions" path="/summary"/></param>
-            <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Views" path="/summary"/></param>
+            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
+            <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Solving.Step.Conclusions">
-            <summary><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Conclusions" path="/summary"/></summary>
+            <summary><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></summary>
         </member>
         <member name="P:Sudoku.Solving.Step.Views">
-            <summary><inheritdoc cref="P:Sudoku.Presentation.IDisplayable.Views" path="/summary"/></summary>
+            <summary><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></summary>
         </member>
         <member name="P:Sudoku.Solving.Step.Name">
             <inheritdoc/>

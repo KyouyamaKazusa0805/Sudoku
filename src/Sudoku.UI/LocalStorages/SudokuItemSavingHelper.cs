@@ -99,9 +99,9 @@ internal static class SudokuItemSavingHelper
 				// Just return because the view is empty.
 				return true;
 			}
-			case UserDefinedDisplayable displayable:
+			case UserDefinedVisual visual:
 			{
-				string json = Serialize(displayable, CamelCasing);
+				string json = Serialize(visual, CamelCasing);
 
 				await SioFile.WriteAllTextAsync(filePath, json);
 

@@ -57,10 +57,10 @@ file sealed class InvalidStep : IInvalidStep
 	string IStep.ElimStr => throw new NotSupportedException();
 
 	/// <inheritdoc/>
-	ImmutableArray<Conclusion> IDisplayable.Conclusions => throw new NotSupportedException();
+	ImmutableArray<Conclusion> IVisual.Conclusions => throw new NotSupportedException();
 
 	/// <inheritdoc/>
-	ImmutableArray<View> IDisplayable.Views => throw new NotSupportedException();
+	ImmutableArray<View> IVisual.Views => throw new NotSupportedException();
 
 
 	/// <inheritdoc/>

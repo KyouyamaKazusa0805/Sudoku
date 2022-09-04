@@ -2417,9 +2417,9 @@
             Indicates the chute view node shapes.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._displayableUnit">
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._visual">
             <summary>
-            Indicates the current displayable unit to be displayed.
+            Indicates the current visual unit to be displayed.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ShowCandidates">
@@ -2483,10 +2483,10 @@
             Indicates the user preference instance.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.DisplayableUnit">
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Visual">
             <summary>
-            Indicates the current displayable unit. If assigning <see langword="null"/>,
-            the displaying unit will be clear.
+            Indicates the current visual unit. If assigning <see langword="null"/>,
+            the visual unit will be clear.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.UndoStepsCount">

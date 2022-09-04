@@ -752,70 +752,70 @@
             The preference instance. If the value is <see langword="null"/>, no operation will be handled.
             </param>
         </member>
-        <member name="T:Sudoku.UI.Data.Displayables.BackdoorDisplayable">
+        <member name="T:Sudoku.UI.Data.Displayables.BackdoorVisual">
             <summary>
-            Provides with a displayable unit that display backdoors.
+            Provides with a visual unit that display backdoors.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.UI.Data.Displayables.BackdoorVisual.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
             <summary>
-            Provides with a displayable unit that display backdoors.
+            Provides with a visual unit that display backdoors.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.UI.Data.Displayables.BackdoorDisplayable.Conclusions">
+        <member name="P:Sudoku.UI.Data.Displayables.BackdoorVisual.Conclusions">
             <summary><inheritdoc/></summary>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.#ctor(Sudoku.Solving.Conclusion[])">
+        <member name="M:Sudoku.UI.Data.Displayables.BackdoorVisual.#ctor(Sudoku.Solving.Conclusion[])">
             <summary>
-            Initializes a <see cref="T:Sudoku.UI.Data.Displayables.BackdoorDisplayable"/> instance via the specified conclusions as possible backdoors.
+            Initializes a <see cref="T:Sudoku.UI.Data.Displayables.BackdoorVisual"/> instance via the specified conclusions as possible backdoors.
             </summary>
             <param name="backdoors">The backdoors.</param>
         </member>
-        <member name="P:Sudoku.UI.Data.Displayables.BackdoorDisplayable.Sudoku#Presentation#IDisplayable#Views">
+        <member name="P:Sudoku.UI.Data.Displayables.BackdoorVisual.Sudoku#Presentation#IVisual#Views">
             <inheritdoc/>
             <remarks>
             This property seems to be useless in this type.
             </remarks>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.Equals(Sudoku.UI.Data.Displayables.BackdoorDisplayable)">
+        <member name="M:Sudoku.UI.Data.Displayables.BackdoorVisual.Equals(Sudoku.UI.Data.Displayables.BackdoorVisual)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.BackdoorDisplayable.GetHashCode">
+        <member name="M:Sudoku.UI.Data.Displayables.BackdoorVisual.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable">
+        <member name="T:Sudoku.UI.Data.Displayables.TrueCandidatesVisual">
             <summary>
-            Provides with a displayable unit that display true candidates.
+            Provides with a visual unit that display true candidates.
             </summary>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesVisual.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
             <summary>
-            Provides with a displayable unit that display true candidates.
+            Provides with a visual unit that display true candidates.
             </summary>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.Views">
+        <member name="P:Sudoku.UI.Data.Displayables.TrueCandidatesVisual.Views">
             <summary><inheritdoc/></summary>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.#ctor(Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesVisual.#ctor(Sudoku.Presentation.View[])">
             <summary>
-            Initializes a <see cref="T:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable"/> instance via the specified views.
+            Initializes a <see cref="T:Sudoku.UI.Data.Displayables.TrueCandidatesVisual"/> instance via the specified views.
             </summary>
             <param name="views">The views.</param>
         </member>
-        <member name="P:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.Sudoku#Presentation#IDisplayable#Conclusions">
+        <member name="P:Sudoku.UI.Data.Displayables.TrueCandidatesVisual.Sudoku#Presentation#IVisual#Conclusions">
             <inheritdoc/>
             <remarks>
             This property seems to be useless in this type.
             </remarks>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.Equals(Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable)">
+        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesVisual.Equals(Sudoku.UI.Data.Displayables.TrueCandidatesVisual)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesDisplayable.GetHashCode">
+        <member name="M:Sudoku.UI.Data.Displayables.TrueCandidatesVisual.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Data.Metadata.DataTemplateModelTypeAttribute`1">
@@ -1968,12 +1968,12 @@
             Hides the candidates.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetDisplayableUnit(Sudoku.Presentation.IDisplayable)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetVisual(Sudoku.Presentation.IVisual)">
             <summary>
-            Sets the displayable unit to be shown. The method will automatically displays for the first view
+            Sets the visual unit to be shown. The method will automatically displays for the first view
             in the view array.
             </summary>
-            <param name="displayable">The displayable unit to be displayed.</param>
+            <param name="visual">The visual unit to be displayed.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetPreviousView">
             <inheritdoc cref="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.SetPreviousView"/>
