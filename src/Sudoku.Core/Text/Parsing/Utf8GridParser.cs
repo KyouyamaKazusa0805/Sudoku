@@ -4,7 +4,7 @@
 /// Encapsulates a grid parser that can parse a <see cref="Utf8String"/> value and convert it
 /// into a valid <see cref="Grid"/> instance as the result.
 /// </summary>
-public unsafe ref partial struct Utf8GridParser
+public unsafe ref struct Utf8GridParser
 {
 	/// <summary>
 	/// The list of all methods to parse.

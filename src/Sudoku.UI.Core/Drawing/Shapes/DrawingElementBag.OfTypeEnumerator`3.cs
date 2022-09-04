@@ -12,7 +12,7 @@ partial class DrawingElementBag
 	/// <typeparam name="T2">The type of the elements to be iterated.</typeparam>
 	/// <typeparam name="T3">The type of the elements to be iterated.</typeparam>
 	/// <seealso cref="DrawingElementBag"/>
-	public ref partial struct OfTypeEnumerator<T1, T2, T3>
+	public ref struct OfTypeEnumerator<T1, T2, T3>
 		where T1 : DrawingElement
 		where T2 : DrawingElement
 		where T3 : DrawingElement

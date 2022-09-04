@@ -6,7 +6,7 @@ partial struct Grid
 	/// Defines the default enumerator that iterates the <see cref="Grid"/>
 	/// through the masks in the current <see cref="Grid"/> instance.
 	/// </summary>
-	public ref partial struct MaskCollectionEnumerator
+	public ref struct MaskCollectionEnumerator
 	{
 		/// <summary>
 		/// The pointer to the start value.

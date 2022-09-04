@@ -4,7 +4,7 @@
 /// Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/>
 /// to optimize the performance.
 /// </summary>
-public readonly ref partial struct ValueStopwatch
+public readonly ref struct ValueStopwatch
 {
 	/// <summary>
 	/// The error information.

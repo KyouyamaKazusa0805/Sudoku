@@ -6,7 +6,7 @@ partial class DrawingElementBag
 	/// Indicates the enumerator type that allows iterating on <see cref="DrawingElementBag"/> instances. 
 	/// </summary>
 	/// <seealso cref="DrawingElementBag"/>
-	public ref partial struct Enumerator
+	public ref struct Enumerator
 	{
 		/// <summary>
 		/// The number of elements to be iterated.

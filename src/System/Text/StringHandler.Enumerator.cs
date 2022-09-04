@@ -5,7 +5,7 @@ partial struct StringHandler
 	/// <summary>
 	/// Encapsulates the enumerator of this collection.
 	/// </summary>
-	public unsafe ref partial struct Enumerator
+	public unsafe ref struct Enumerator
 	{
 		/// <summary>
 		/// Indicates the length.

@@ -34,6 +34,9 @@
             Initializes a <see cref="T:Sudoku.UI.Data.PropertyPathBuilder"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Data.PropertyPathBuilder.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
         <member name="M:Sudoku.UI.Data.PropertyPathBuilder.Equals(Sudoku.UI.Data.PropertyPathBuilder)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>

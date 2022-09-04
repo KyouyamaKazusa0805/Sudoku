@@ -4,7 +4,7 @@
 /// Defines an enumerator that iterates the one-dimensional array.
 /// </summary>
 /// <typeparam name="T">The type of the element.</typeparam>
-public ref partial struct OneDimensionalArrayEnumerator<T>
+public ref struct OneDimensionalArrayEnumerator<T>
 {
 	/// <summary>
 	/// Indicates the length of the array to iterate.
@@ -29,8 +29,7 @@ public ref partial struct OneDimensionalArrayEnumerator<T>
 	/// </summary>
 	/// <param name="innerArray">The array to iterate.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal OneDimensionalArrayEnumerator(T[] innerArray)
-		=> (_innerArray, _length) = (innerArray, innerArray.Length);
+	internal OneDimensionalArrayEnumerator(T[] innerArray) => (_innerArray, _length) = (innerArray, innerArray.Length);
 
 
 	/// <summary>

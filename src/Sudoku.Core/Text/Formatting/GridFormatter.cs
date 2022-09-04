@@ -4,7 +4,7 @@
 /// Provides a formatter that gathers the main information for a <see cref="Grid"/> instance,
 /// and convert it to a <see cref="string"/> value as the result.
 /// </summary>
-public readonly ref partial struct GridFormatter
+public readonly ref struct GridFormatter
 {
 	/// <summary>
 	/// Indicates the inner mask that stores the flags.
@@ -21,11 +21,12 @@ public readonly ref partial struct GridFormatter
 	/// be multi-line.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridFormatter(bool multiline) : this(
-		placeholder: '.', multiline: multiline, withModifiables: false,
-		withCandidates: false, treatValueAsGiven: false, subtleGridLines: false,
-		hodokuCompatible: false, sukaku: false, excel: false, openSudoku: false,
-		shortenSusser: false)
+	public GridFormatter(bool multiline) :
+		this(
+			placeholder: '.', multiline: multiline, withModifiables: false,
+			withCandidates: false, treatValueAsGiven: false, subtleGridLines: false,
+			hodokuCompatible: false, sukaku: false, excel: false, openSudoku: false,
+			shortenSusser: false)
 	{
 	}
 

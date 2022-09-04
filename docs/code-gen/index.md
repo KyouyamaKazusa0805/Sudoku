@@ -19,7 +19,6 @@
 
 * [解构函数生成器](auto-decon)：生成解构函数的代码。
 * [自动生成枚举类型相关的执行和路由操作](enum-switch-expr)：生成为枚举类型的所有字段进行路由和处理，构造操作的代码。
-* [自动重写 `ref struct` 派生下来的方法代码](ref-struct-default-overrides)：对 `ref struct` 类型生成从 `ValueType` 类型派生下来的方法的重写代码。
 * **`GlobalConfigValueGenerator`**：只给源代码生成器提供服务。用于给源代码生成器的项目提供版本号。
 * **`StepSearcherOptionsGenerator`**：对实现了 `IStepSearcher` 接口的类型生成默认的 `Options` 属性信息的相关代码。
 * **`BitOperationsGenerator`**：对 `BitOperations` 静态类型生成额外的方法，用于扩展比特位的相关处理操作。

@@ -2,6 +2,8 @@
 #define DISCARD_INTERPOLATION_INFO
 #define USE_NEWER_CONSTANT_VALUES
 
+#pragma warning disable CS0809
+
 namespace System.Text;
 
 /// <summary>
@@ -241,6 +243,10 @@ public unsafe ref partial struct StringHandler
 		}
 	}
 
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	[Obsolete(RefStructDefaultImplementationMessage.OverriddenEqualsMethod, true)]
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => false;
+
 	/// <summary>
 	/// Determine whether the specified <see cref="StringHandler"/> instance hold a same character set
 	/// as the current instance.
@@ -275,6 +281,12 @@ public unsafe ref partial struct StringHandler
 
 		return ref MemoryMarshal.GetReference(_chars);
 	}
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	[DoesNotReturn]
+	[Obsolete(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod, true)]
+	public override readonly int GetHashCode()
+		=> throw new NotSupportedException(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

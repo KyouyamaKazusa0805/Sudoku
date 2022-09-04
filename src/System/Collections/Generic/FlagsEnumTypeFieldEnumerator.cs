@@ -6,7 +6,7 @@
 /// <typeparam name="TEnum">
 /// The type of the enumeration type, that is marked the attribute <see cref="FlagsAttribute"/>.
 /// </typeparam>
-public ref partial struct FlagsEnumTypeFieldEnumerator<TEnum> where TEnum : unmanaged, Enum
+public ref struct FlagsEnumTypeFieldEnumerator<TEnum> where TEnum : unmanaged, Enum
 {
 	/// <summary>
 	/// Indicates the fields of the type to iterate.

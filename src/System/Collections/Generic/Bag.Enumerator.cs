@@ -5,7 +5,7 @@ partial struct Bag<T>
 	/// <summary>
 	/// Indicates the inner enumerator.
 	/// </summary>
-	public ref partial struct Enumerator
+	public ref struct Enumerator
 	{
 		/// <summary>
 		/// The inner array.

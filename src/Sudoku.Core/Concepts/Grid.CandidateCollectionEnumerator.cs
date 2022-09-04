@@ -6,7 +6,7 @@ partial struct Grid
 	/// Defines the default enumerator that iterates the <see cref="Grid"/>
 	/// through the candidates in the current <see cref="Grid"/> instance.
 	/// </summary>
-	public ref partial struct CandidateCollectionEnumerator
+	public ref struct CandidateCollectionEnumerator
 	{
 		/// <summary>
 		/// The pointer to the start value.
@@ -53,7 +53,6 @@ partial struct Grid
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => _currentIndex * 9 + TrailingZeroCount(_currentMask);
 		}
-
 
 		/// <summary>
 		/// Advances the enumerator to the next element of the collection.

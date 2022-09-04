@@ -1,9 +1,11 @@
-﻿namespace Sudoku.UI.Data;
+﻿#pragma warning disable CS0809
+
+namespace Sudoku.UI.Data;
 
 /// <summary>
 /// Defines a property path builder that can creates a property path.
 /// </summary>
-public ref partial struct PropertyPathBuilder
+public ref struct PropertyPathBuilder
 {
 	/// <summary>
 	/// Indicates the inner builder.
@@ -19,6 +21,10 @@ public ref partial struct PropertyPathBuilder
 	{
 	}
 
+
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	[Obsolete(RefStructDefaultImplementationMessage.OverriddenEqualsMethod, true)]
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => false;
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -5,7 +5,7 @@ partial struct ValueList<TUnmanaged>
 	/// <summary>
 	/// Defines the enumerator of this type.
 	/// </summary>
-	public unsafe ref partial struct Enumerator
+	public unsafe ref struct Enumerator
 	{
 		/// <summary>
 		/// Indicates the inner pointer.

@@ -4,7 +4,7 @@
 /// Encapsulates a grid parser that can parse a string value and convert it
 /// into a valid <see cref="Grid"/> instance as the result.
 /// </summary>
-public unsafe ref partial struct GridParser
+public unsafe ref struct GridParser
 {
 	/// <summary>
 	/// The list of all methods to parse.

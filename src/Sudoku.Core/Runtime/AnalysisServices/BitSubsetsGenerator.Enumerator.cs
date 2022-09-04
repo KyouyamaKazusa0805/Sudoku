@@ -5,7 +5,7 @@ partial struct BitSubsetsGenerator
 	/// <summary>
 	/// Indicates the enumerator of the current instance.
 	/// </summary>
-	public ref partial struct Enumerator
+	public ref struct Enumerator
 	{
 		/// <summary>
 		/// The mask.

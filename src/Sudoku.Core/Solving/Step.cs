@@ -84,7 +84,6 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 	public virtual string ToFullString() => ToString();
 
 	/// <inheritdoc/>
-	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicMethods)]
 	public string Formatize(bool handleEscaping = false)
 	{
 		// Check whether the format property is not null.

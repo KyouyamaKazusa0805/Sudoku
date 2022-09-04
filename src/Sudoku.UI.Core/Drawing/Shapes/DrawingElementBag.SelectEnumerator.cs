@@ -8,7 +8,7 @@ partial class DrawingElementBag
 	/// </summary>
 	/// <typeparam name="T">The type of the projection result.</typeparam>
 	/// <seealso cref="DrawingElement"/>
-	public unsafe ref partial struct SelectEnumerator<T>
+	public unsafe ref struct SelectEnumerator<T>
 	{
 		/// <summary>
 		/// The number of elements to be iterated.
