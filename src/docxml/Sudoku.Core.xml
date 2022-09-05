@@ -12776,6 +12776,33 @@
         <member name="M:Sudoku.Solving.Step.Sudoku#Solving#IStep#ElimStr">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.StepAppliedEventArgs">
+            <summary>
+            Provides with data used by event handler type .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.StepAppliedEventArgs.IsSingleStepApplied">
+            <summary>
+            Determines whether the current data structure stores a single step applied instead of a list of steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.StepAppliedEventArgs.Step">
+            <summary>
+            Indicates the applied step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.StepAppliedEventArgs.Steps">
+            <summary>
+            Indicates the applied list of steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.StepAppliedEventHandler">
+            <summary>
+            Defines a delegate type that handles the event that a step is applied.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.StepExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Solving.IStep"/> and <see cref="T:Sudoku.Solving.Step"/>.

@@ -222,6 +222,11 @@
             Indicates the target step searcher collection.
             </summary>
         </member>
+        <member name="E:Sudoku.Solving.Manual.ManualSolver.StepApplied">
+            <summary>
+            Indicates the event that a step or a list of steps is applied.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>

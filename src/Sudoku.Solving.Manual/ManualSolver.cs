@@ -38,6 +38,12 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 	}
 
 
+	/// <summary>
+	/// Indicates the event that a step or a list of steps is applied.
+	/// </summary>
+	public event StepAppliedEventHandler? StepApplied;
+
+
 	/// <inheritdoc/>
 	public ManualSolverResult Solve(scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
@@ -148,6 +154,9 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 						}
 					}
 
+					// Now triggers the event.
+					StepApplied?.Invoke(this, new() { Steps = accumulator.ToArray() });
+
 					// The puzzle has not been finished, we should turn to the first step finder
 					// to continue solving puzzle.
 					goto TryAgain;
@@ -171,6 +180,9 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 								{
 									return result;
 								}
+
+								// Now triggers the event.
+								StepApplied?.Invoke(this, new() { Step = foundStep });
 							}
 							else
 							{
