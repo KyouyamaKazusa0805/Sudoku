@@ -3259,6 +3259,56 @@
             <param name="this">The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
+        <member name="T:System.IBooleanOperators`1">
+            <summary>
+            Represents a type whose instance of this type can be used as a predicate-like expression.
+            </summary>
+            <typeparam name="TSelf">The type of the </typeparam>
+        </member>
+        <member name="M:System.IBooleanOperators`1.op_True(`0)">
+            <summary>
+            Indicates whether the specified value of type <typeparamref name="TSelf"/> satisfies a fixed condition.
+            </summary>
+            <param name="value">The value of type <typeparamref name="TSelf"/>.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.IBooleanOperators`1.op_False(`0)">
+            <summary>
+            Indicates whether the specified value of type <typeparamref name="TSelf"/> doesn't satisfy a fixed condition.
+            </summary>
+            <param name="value">The value of type <typeparamref name="TSelf"/>.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:System.ILogicalNotOperators`2">
+            <summary>
+            Represents a type that supports logical not operators.
+            </summary>
+            <typeparam name="TSelf">The type of the value.</typeparam>
+            <typeparam name="TResult">The result of the negation.</typeparam>
+        </member>
+        <member name="M:System.ILogicalNotOperators`2.op_LogicalNot(`0)">
+            <summary>
+            Negates an instance of type <typeparamref name="TSelf"/>
+            to get the result of type <typeparamref name="TResult"/>.
+            </summary>
+            <param name="value">The value of type <typeparamref name="TSelf"/>.</param>
+            <returns>The result after negation, of type <typeparamref name="TResult"/>.</returns>
+        </member>
+        <member name="T:System.ILogicalOperators`3">
+            <summary>
+            Represents a type that supports <see langword="operator"/> <c><![CDATA[&&]]></c>
+            and <see langword="operator"/> <c><![CDATA[||]]></c>.
+            </summary>
+            <typeparam name="TSelf">The type of the value.</typeparam>
+            <typeparam name="TOther">The other value to be used for computing the result.</typeparam>
+            <typeparam name="TResult">The result of the value.</typeparam>
+        </member>
+        <member name="M:System.ILogicalOperators`3.op_BitwiseAnd(`0,`1)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseAnd(`0,`1)"/>
+        </member>
+        <member name="M:System.ILogicalOperators`3.op_BitwiseOr(`0,`1)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseOr(`0,`1)"/>
+        </member>
         <member name="T:System.ISimpleFormattable">
             <summary>
             Defines a type that supports <c>ToString(<see langword="string"/>?)</c>.

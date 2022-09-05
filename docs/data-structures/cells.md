@@ -4,19 +4,30 @@
 
 ```csharp
 public struct CellMap :
-    IEnumerable<int>,
-    IEquatable<CellMap>,
-    ISimpleFormattable,
-    ISimpleParseable<CellMap>,
     IAdditionOperators<CellMap, int, CellMap>,
-    ISubtractionOperators<CellMap, int, CellMap>,
-    ISubtractionOperators<CellMap, CellMap, CellMap>,
-    IComparisonOperators<CellMap, CellMap>,
-    IDivisionOperators<CellMap, int, short>,
-    IModulusOperators<CellMap, CellMap, CellMap>,
-    IBitwiseOperators<CellMap, CellMap, CellMap>,
-    IEqualityOperators<CellMap, CellMap>,
-    IUnaryPlusOperators<CellMap, CellMap>
+	IAdditiveIdentity<CellMap, CellMap>,
+	IBitwiseOperators<CellMap, CellMap, CellMap>,
+	IBooleanOperators<CellMap>,
+	ICollection<int>,
+	IDivisionOperators<CellMap, int, short>,
+	IEnumerable,
+	IEnumerable<int>,
+	IEquatable<CellMap>,
+	IEqualityOperators<CellMap, CellMap, bool>,
+	ILogicalNotOperators<CellMap, bool>,
+	ILogicalOperators<CellMap, CellMap, CellMap>,
+	IMinMaxValue<CellMap>,
+	IModulusOperators<CellMap, CellMap, CellMap>,
+	IMultiplyOperators<CellMap, int, Candidates>,
+	IReadOnlyCollection<int>,
+	IReadOnlyList<int>,
+	IReadOnlySet<int>,
+	ISet<int>,
+	ISimpleFormattable,
+	ISimpleParseable<CellMap>,
+	ISubtractionOperators<CellMap, int, CellMap>,
+	ISubtractionOperators<CellMap, CellMap, CellMap>,
+	IUnaryPlusOperators<CellMap, CellMap>
 {
     public static readonly CellMap Empty;
 
