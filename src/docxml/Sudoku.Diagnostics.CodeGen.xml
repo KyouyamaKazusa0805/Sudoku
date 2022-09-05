@@ -172,6 +172,14 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AttributeDataComparer.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.GeneratorAttributesGenerator">
+            <summary>
+            Defines a source generator that produces generator-related attributes.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratorAttributesGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.ManualSolverOperationsGenerator">
             <summary>
             Defines a source generator that generates the source code that are options used in manual solver type.

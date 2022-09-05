@@ -6,8 +6,6 @@ global using System.CommandLine.Annotations;
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
-global using System.Diagnostics.CodeGen;
-global using System.Diagnostics.CodeGen.OptionProviders;
 global using System.Linq;
 global using System.Numerics;
 global using System.Reflection;

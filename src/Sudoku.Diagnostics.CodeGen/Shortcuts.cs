@@ -18,4 +18,5 @@ internal static class Shortcuts
 	public const string StepSearcherOptions = "sso";
 	public const string ManualSolverOptions = "mso";
 	public const string StepFormatterMethodAttributes = "sfma";
+	public const string GeneratorAttributes = "ga";
 }
