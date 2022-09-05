@@ -23,3 +23,4 @@
 * **`StepSearcherOptionsGenerator`**：对实现了 `IStepSearcher` 接口的类型生成默认的 `Options` 属性信息的相关代码。
 * **`BitOperationsGenerator`**：对 `BitOperations` 静态类型生成额外的方法，用于扩展比特位的相关处理操作。
 * **`ManualSolverOperationsGenerator`**：对 `ManualSolver` 生成一些在派生类型下使用的配置性属性（即标记了 `SearcherPropertyAttribute` 特性）的关联属性。
+* **`GeneratorAttributesGenerator`**：对所有项目注入只用于源代码生成器的一些特性和类型，防止用户修改内容。
