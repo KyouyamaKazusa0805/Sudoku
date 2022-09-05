@@ -36,7 +36,7 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 	public abstract Rarity Rarity { get; }
 
 	[ResourceTextFormatter]
-	internal string ElimStr() => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
+	protected string ElimStr() => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
 
 	/// <inheritdoc/>
 	string IStep.ElimStr => ElimStr();
