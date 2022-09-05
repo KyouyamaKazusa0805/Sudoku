@@ -11249,9 +11249,6 @@
         <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#Rarity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#ElimStr">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.InvalidStep.Sudoku#Presentation#IVisual#Conclusions">
             <inheritdoc/>
         </member>
@@ -11271,6 +11268,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#ToSimpleString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.InvalidStep.Sudoku#Solving#IStep#ElimStr">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.ISimpleSolver">
@@ -11452,16 +11452,6 @@
             </remarks>
             <seealso cref="T:System.FlagsAttribute"/>
         </member>
-        <member name="P:Sudoku.Solving.IStep.ElimStr">
-            <summary>
-            Indicates the string representation of the conclusions.
-            </summary>
-            <remarks>
-            Most of techniques uses eliminations
-            so this property is named <c>ElimStr</c>. In other words, if the conclusion is an assignment one,
-            the property will still use this name rather than <c>AssignmentStr</c>.
-            </remarks>
-        </member>
         <member name="M:Sudoku.Solving.IStep.ApplyTo(Sudoku.Concepts.Grid@)">
             <summary>
             Put this instance into the specified grid.
@@ -11506,6 +11496,16 @@
             </list>
             </exception>
             <seealso cref="P:Sudoku.Solving.IStep.Format"/>
+        </member>
+        <member name="M:Sudoku.Solving.IStep.ElimStr">
+            <summary>
+            Indicates the string representation of the conclusions.
+            </summary>
+            <remarks>
+            Most of techniques uses eliminations
+            so this property is named <c>ElimStr</c>. In other words, if the conclusion is an assignment one,
+            the property will still use this name rather than <c>AssignmentStr</c>.
+            </remarks>
         </member>
         <member name="T:Sudoku.Solving.IStepGatherableSearcher`3">
             <summary>
@@ -12744,9 +12744,6 @@
         <member name="P:Sudoku.Solving.Step.Rarity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Step.Sudoku#Solving#IStep#ElimStr">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Step.ApplyTo(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
@@ -12774,6 +12771,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Step.Formatize(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Step.Sudoku#Solving#IStep#ElimStr">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.StepExtensions">

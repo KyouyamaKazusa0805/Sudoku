@@ -54,9 +54,6 @@ file sealed class InvalidStep : IInvalidStep
 	Rarity IStep.Rarity => throw new NotSupportedException();
 
 	/// <inheritdoc/>
-	string IStep.ElimStr => throw new NotSupportedException();
-
-	/// <inheritdoc/>
 	ImmutableArray<Conclusion> IVisual.Conclusions => throw new NotSupportedException();
 
 	/// <inheritdoc/>
@@ -77,4 +74,7 @@ file sealed class InvalidStep : IInvalidStep
 
 	/// <inheritdoc/>
 	string IStep.ToSimpleString() => throw new NotSupportedException();
+
+	/// <inheritdoc/>
+	string IStep.ElimStr() => throw new NotSupportedException();
 }

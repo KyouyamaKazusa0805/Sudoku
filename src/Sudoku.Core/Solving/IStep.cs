@@ -140,16 +140,6 @@ public interface IStep : IVisual
 	/// <seealso cref="FlagsAttribute"/>
 	public abstract Rarity Rarity { get; }
 
-	/// <summary>
-	/// Indicates the string representation of the conclusions.
-	/// </summary>
-	/// <remarks>
-	/// Most of techniques uses eliminations
-	/// so this property is named <c>ElimStr</c>. In other words, if the conclusion is an assignment one,
-	/// the property will still use this name rather than <c>AssignmentStr</c>.
-	/// </remarks>
-	protected abstract string ElimStr { get; }
-
 
 	/// <summary>
 	/// Put this instance into the specified grid.
@@ -195,4 +185,14 @@ public interface IStep : IVisual
 	/// </exception>
 	/// <seealso cref="Format"/>
 	public abstract string Formatize(bool handleEscaping = false);
+
+	/// <summary>
+	/// Indicates the string representation of the conclusions.
+	/// </summary>
+	/// <remarks>
+	/// Most of techniques uses eliminations
+	/// so this property is named <c>ElimStr</c>. In other words, if the conclusion is an assignment one,
+	/// the property will still use this name rather than <c>AssignmentStr</c>.
+	/// </remarks>
+	protected abstract string ElimStr();
 }

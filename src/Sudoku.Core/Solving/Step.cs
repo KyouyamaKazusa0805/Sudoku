@@ -38,9 +38,6 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 	[ResourceTextFormatter]
 	protected string ElimStr() => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
 
-	/// <inheritdoc/>
-	string IStep.ElimStr => ElimStr();
-
 
 	/// <inheritdoc/>
 	public void ApplyTo(scoped ref Grid grid)
@@ -178,4 +175,7 @@ internal abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableA
 		// Format and return the value.
 		return string.Format(sb.ToStringAndClear(), matchedFormats);
 	}
+
+	/// <inheritdoc/>
+	string IStep.ElimStr() => ElimStr();
 }
