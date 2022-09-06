@@ -4,6 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net7.0</TargetFramework>
 		<Description>The project that provides with an environment called command line to play with sudoku. The environment can also be used as the debugging one.</Description>
+		<Version>1.3</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
