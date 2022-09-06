@@ -10,6 +10,7 @@
 /// <param name="Cell1">Indicates the first cell used.</param>
 /// <param name="Cell2">Indicates the second cell used.</param>
 /// <param name="ChuteIndex">Indicates the global chute index.</param>
+[StepDisplayingFeature(StepDisplayingFeature.VeryRare)]
 internal sealed partial record UniquenessClueCoverType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,

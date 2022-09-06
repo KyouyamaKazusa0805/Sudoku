@@ -1137,6 +1137,11 @@
             Indicates the step.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Models.ManualStep.DefaultExtraFeatures">
+            <summary>
+            Indicates the default extra features.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Models.ManualStep.ToDisplayString">
             <summary>
             Gets the display string value that can describe the main information of the current step.

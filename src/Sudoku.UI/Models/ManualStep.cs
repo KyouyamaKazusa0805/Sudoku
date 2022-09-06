@@ -16,7 +16,8 @@ public sealed partial class ManualStep
 	/// Indicates the extra displaying features.
 	/// </summary>
 	public StepDisplayingFeature ExtraFeatures
-		=> Step.GetType().GetCustomAttribute<StepDisplayingFeatureAttribute>()?.Features ?? StepDisplayingFeature.None;
+		=> DefaultExtraFeatures
+		| (Step.Rarity == Rarity.OnlyForSpecialPuzzles ? StepDisplayingFeature.VeryRare : StepDisplayingFeature.None);
 
 	/// <summary>
 	/// Indicates the current grid used.
@@ -27,6 +28,12 @@ public sealed partial class ManualStep
 	/// Indicates the step.
 	/// </summary>
 	public required IStep Step { get; set; }
+
+	/// <summary>
+	/// Indicates the default extra features.
+	/// </summary>
+	private StepDisplayingFeature DefaultExtraFeatures
+		=> Step.GetType().GetCustomAttribute<StepDisplayingFeatureAttribute>()?.Features ?? StepDisplayingFeature.None;
 
 
 	/// <summary>
@@ -53,6 +60,7 @@ public sealed partial class ManualStep
 		{
 			StepDisplayingFeature.None => string.Empty,
 			StepDisplayingFeature.HideDifficultyRating => R["SudokuPage_InfoBadge_ThisTechniqueDoesNotShowDifficulty"]!,
+			StepDisplayingFeature.VeryRare => R["SudokuPage_InfoBadge_ThisTechniqueIsVeryRare"]!,
 			_ => string.Empty
 		};
 
@@ -66,6 +74,7 @@ public sealed partial class ManualStep
 		{
 			StepDisplayingFeature.None => null,
 			StepDisplayingFeature.HideDifficultyRating => new SolidColorBrush(Colors.Yellow),
+			StepDisplayingFeature.VeryRare => new SolidColorBrush(Colors.SkyBlue),
 			_ => null
 		};
 }

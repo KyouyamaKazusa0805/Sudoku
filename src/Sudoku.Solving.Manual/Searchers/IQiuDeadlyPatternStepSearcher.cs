@@ -602,7 +602,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		var conclusions = new List<Conclusion>();
 		foreach (int candidate in elimMap)
 		{
-			if (CandidatesMap[candidate % 9].Contains(candidate % 9))
+			if (CandidatesMap[candidate % 9].Contains(candidate / 9))
 			{
 				conclusions.Add(new(Elimination, candidate));
 			}

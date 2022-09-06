@@ -9,6 +9,7 @@
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="ExtraCell">Indicates the extra cell used.</param>
 /// <param name="DigitsMask"><inheritdoc/></param>
+[StepDisplayingFeature(StepDisplayingFeature.VeryRare)]
 internal sealed partial record ChromaticPatternType1Step(
 	ConclusionList Conclusions,
 	ViewList Views,

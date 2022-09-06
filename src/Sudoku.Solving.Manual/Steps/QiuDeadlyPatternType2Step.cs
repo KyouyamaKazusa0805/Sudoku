@@ -7,6 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
+[StepDisplayingFeature(StepDisplayingFeature.VeryRare)]
 internal sealed partial record QiuDeadlyPatternType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
@@ -26,6 +27,7 @@ internal sealed partial record QiuDeadlyPatternType2Step(
 
 	/// <inheritdoc/>
 	public override int Type => 2;
+
 
 	[ResourceTextFormatter]
 	private partial string ExtraDigitStr() => (ExtraDigit + 1).ToString();

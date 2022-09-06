@@ -137,15 +137,22 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 						continue;
 					}
 
+					int appliedStepsCount = 0;
 					foreach (var foundStep in accumulator)
 					{
 						if (verifyConclusionValidity(solution, foundStep))
 						{
-							if (recordStep(
+							bool flag;
+							if (flag = recordStep(
 									recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
 									resultBase, cancellationToken, out var result))
 							{
-								return result;
+								return result!;
+							}
+
+							if (flag)
+							{
+								appliedStepsCount++;
 							}
 						}
 						else
@@ -154,8 +161,11 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 						}
 					}
 
-					// Now triggers the event.
-					StepApplied?.Invoke(this, new() { Steps = accumulator.ToArray() });
+					if (appliedStepsCount != 0)
+					{
+						// Now triggers the event.
+						StepApplied?.Invoke(this, new() { Steps = accumulator.ToArray() });
+					}
 
 					// The puzzle has not been finished, we should turn to the first step finder
 					// to continue solving puzzle.
@@ -174,15 +184,21 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 						{
 							if (verifyConclusionValidity(solution, foundStep))
 							{
-								if (recordStep(
+								bool flag;
+								if ((
+									flag = recordStep(
 										recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
-										resultBase, cancellationToken, out var result))
+										resultBase, cancellationToken, out var result)
+									) && flag)
 								{
-									return result;
+									return result!;
 								}
 
-								// Now triggers the event.
-								StepApplied?.Invoke(this, new() { Step = foundStep });
+								if (flag)
+								{
+									// Now triggers the event.
+									StepApplied?.Invoke(this, new() { Step = foundStep });
+								}
 							}
 							else
 							{

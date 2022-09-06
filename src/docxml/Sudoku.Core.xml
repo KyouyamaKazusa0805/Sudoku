@@ -8256,6 +8256,11 @@
             Indicates the feature is to hide difficulty rating value.
             </summary>
         </member>
+        <member name="F:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature.VeryRare">
+            <summary>
+            Indicates the feature is to display "very rare" information.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute">
             <summary>
             Represents an attribute that can modify step displaying features,

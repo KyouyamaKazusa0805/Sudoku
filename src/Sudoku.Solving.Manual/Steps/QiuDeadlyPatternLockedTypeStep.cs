@@ -7,6 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the candidates used.</param>
+[StepDisplayingFeature(StepDisplayingFeature.VeryRare)]
 internal sealed partial record QiuDeadlyPatternLockedTypeStep(
 	ConclusionList Conclusions,
 	ViewList Views,
@@ -26,6 +27,7 @@ internal sealed partial record QiuDeadlyPatternLockedTypeStep(
 
 	/// <inheritdoc/>
 	public override int Type => 5;
+
 
 	[ResourceTextFormatter]
 	private partial string CandidateStr() => new Candidates(Candidates).ToString();

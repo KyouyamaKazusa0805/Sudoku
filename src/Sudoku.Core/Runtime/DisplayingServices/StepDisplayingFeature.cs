@@ -15,4 +15,9 @@ public enum StepDisplayingFeature : byte
 	/// Indicates the feature is to hide difficulty rating value.
 	/// </summary>
 	HideDifficultyRating = 1,
+
+	/// <summary>
+	/// Indicates the feature is to display "very rare" information.
+	/// </summary>
+	VeryRare = 1 << 1,
 }
