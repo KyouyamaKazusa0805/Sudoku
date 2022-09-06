@@ -142,18 +142,29 @@
 													<ListView.ItemTemplate>
 														<DataTemplate x:DataType="m:ManualStep">
 															<ListViewItem
-																Content="{x:Bind ToDisplayString()}" Tag="{x:Bind}"
-																Background="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(Step.DifficultyLevel)}"
-																Foreground="{x:Bind data:SimpleConverters.DifficultyLevelToForeground(Step.DifficultyLevel)}" />
-															<!--
-															<Ellipse
-																Width="12" Height="12" StrokeThickness="1"
-																Stroke="White" Canvas.Left="-6" Canvas.Top="-6"
-																HorizontalAlignment="Left" VerticalAlignment="Top"
-																Visibility="{x:Bind ExtraFeatureBadgeVisibility}"
-																Fill="{x:Bind GetBadgeBackgroundBrush()}"
-																ToolTipService.ToolTip="{x:Bind GetToolTipText()}" />
-															-->
+																Tag="{x:Bind}" Grid.Column="1"
+																Background="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(Step.DifficultyLevel)}">
+																<ListViewItem.Content>
+																	<Grid>
+																		<Grid.ColumnDefinitions>
+																			<ColumnDefinition Width="12" />
+																			<ColumnDefinition />
+																		</Grid.ColumnDefinitions>
+
+																		<Ellipse
+																			Width="12" Height="12" Grid.Column="0"
+																			Stroke="White" HorizontalAlignment="Center"
+																			VerticalAlignment="Center" StrokeThickness="1"
+																			Visibility="{x:Bind ExtraFeatureBadgeVisibility}"
+																			Fill="{x:Bind GetBadgeBackgroundBrush()}"
+																			ToolTipService.ToolTip="{x:Bind GetToolTipText()}" />
+																		<TextBlock
+																			Text="{x:Bind ToDisplayString()}"
+																			Margin="6,0,0,0" Grid.Column="1"
+																			Foreground="{x:Bind data:SimpleConverters.DifficultyLevelToForeground(Step.DifficultyLevel)}" />
+																	</Grid>
+																</ListViewItem.Content>
+															</ListViewItem>
 														</DataTemplate>
 													</ListView.ItemTemplate>
 												</ListView>
