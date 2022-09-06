@@ -22,10 +22,11 @@ public readonly struct RecordableItemCollection :
 	/// via the specified collection of <see cref="RecordableItem"/> instances.
 	/// </summary>
 	/// <param name="recordables">The collection of <see cref="RecordableItem"/> instances.</param>
+	/// <param name="grid">Indicates the grid used.</param>
 	/// <param name="startTimestamp">Indicates the timestamp that starts the stopwatch to record steps.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private RecordableItemCollection(IEnumerable<RecordableItem> recordables, long startTimestamp)
-		=> (_recordables, StartTimestamp) = (ImmutableArray.CreateRange(recordables), startTimestamp);
+	public RecordableItemCollection(IEnumerable<RecordableItem> recordables, scoped in Grid grid, long startTimestamp)
+		=> (_recordables, Grid, StartTimestamp) = (ImmutableArray.CreateRange(recordables), grid, startTimestamp);
 
 
 	/// <summary>
@@ -53,6 +54,11 @@ public readonly struct RecordableItemCollection :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new(_recordables[^1].Timestamp - StartTimestamp);
 	}
+
+	/// <summary>
+	/// Indicates the current grid used.
+	/// </summary>
+	public Grid Grid { get; }
 
 
 	/// <summary>
@@ -84,11 +90,12 @@ public readonly struct RecordableItemCollection :
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(scoped in RecordableItemCollection other) => _recordables == other._recordables;
+	public bool Equals(scoped in RecordableItemCollection other) =>
+		_recordables == other._recordables && Grid == other.Grid && StartTimestamp == other.StartTimestamp;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => _recordables.GetHashCode();
+	public override int GetHashCode() => HashCode.Combine(_recordables, Grid, StartTimestamp);
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -106,18 +113,6 @@ public readonly struct RecordableItemCollection :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<RecordableItem> IEnumerable<RecordableItem>.GetEnumerator()
 		=> ((IEnumerable<RecordableItem>)_recordables).GetEnumerator();
-
-
-	/// <summary>
-	/// Creates a new <see cref="RecordableItemCollection"/> instance
-	/// via the specified collection of <see cref="RecordableItem"/> instances.
-	/// </summary>
-	/// <param name="recordables">The collection of <see cref="RecordableItem"/> instances.</param>
-	/// <param name="startTimestamp">The start timestamp value that starts recording each step.</param>
-	/// <returns>A <see cref="RecordableItemCollection"/> instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static RecordableItemCollection Create(IEnumerable<RecordableItem> recordables, long startTimestamp)
-		=> new(recordables, startTimestamp);
 
 
 	/// <inheritdoc/>

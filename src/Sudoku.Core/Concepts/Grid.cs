@@ -1522,11 +1522,11 @@ public unsafe partial struct Grid :
 		return result;
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(scoped in Grid left, scoped in Grid right) => left.Equals(right);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(scoped in Grid left, scoped in Grid right) => !(left == right);
 
