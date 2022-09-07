@@ -142,17 +142,21 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 					{
 						if (verifyConclusionValidity(solution, foundStep))
 						{
-							bool flag;
-							if (flag = recordStep(
+							switch (
+								recordStep(
 									recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
-									resultBase, cancellationToken, out var result))
+									resultBase, cancellationToken, out var result)
+							)
 							{
-								return result!;
-							}
-
-							if (flag)
-							{
-								appliedStepsCount++;
+								case true:
+								{
+									return result;
+								}
+								case false:
+								{
+									appliedStepsCount++;
+									break;
+								}
 							}
 						}
 						else
@@ -184,20 +188,22 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 						{
 							if (verifyConclusionValidity(solution, foundStep))
 							{
-								bool flag;
-								if ((
-									flag = recordStep(
+								switch (
+									recordStep(
 										recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
 										resultBase, cancellationToken, out var result)
-									) && flag)
+								)
 								{
-									return result!;
-								}
-
-								if (flag)
-								{
-									// Now triggers the event.
-									StepApplied?.Invoke(this, new() { Step = foundStep });
+									case true:
+									{
+										return result;
+									}
+									case false:
+									{
+										// Now triggers the event.
+										StepApplied?.Invoke(this, new() { Step = foundStep });
+										break;
+									}
 								}
 							}
 							else
@@ -227,7 +233,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 		};
 
 
-		static bool recordStep(
+		static bool? recordStep(
 			ICollection<IStep> steps,
 			IStep step,
 			scoped ref Grid playground,
@@ -270,6 +276,12 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 					};
 					return true;
 				}
+			}
+			else
+			{
+				// No steps are available.
+				result = null;
+				return null;
 			}
 
 			cancellationToken.ThrowIfCancellationRequested();
