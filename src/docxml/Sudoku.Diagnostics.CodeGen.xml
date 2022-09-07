@@ -9,6 +9,36 @@
             Indicates the version of this project.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratorAttributesNamespace">
+            <summary>
+            Indicates the namespace of the generator attributes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.AutoDeconstructionAttribute">
+            <summary>
+            Indicates the attribute name of the auto deconstruction.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.AutoExtensionDeconstructionAttribute">
+            <summary>
+            Indicates the attribute name of the auto extension deconstruction.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.EnumSwitchExpressionArmAttribute">
+            <summary>
+            Indicates the attribute name of the enum switch expression arm.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.EnumSwitchExpressionRootAttribute">
+            <summary>
+            Indicates the attribute name of the enum switch expression root.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.EnumSwitchExpressionDefaultBehavior">
+            <summary>
+            Indicates the type name of the enum switch expression default behavior.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator">
             <summary>
             Defines a source generator that generates deconstruction methods of a type.

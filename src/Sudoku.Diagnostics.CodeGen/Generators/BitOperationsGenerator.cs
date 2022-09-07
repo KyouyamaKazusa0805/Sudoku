@@ -118,8 +118,8 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 			/// Provides extension methods on <see cref="BitOperations"/>.
 			/// </summary>
 			/// <seealso cref="BitOperations"/>
-			[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-			[global::System.Runtime.CompilerServices.CompilerGenerated]
+			[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+			[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 			public static partial class BitOperationsExensions
 			{
 			"""
@@ -178,8 +178,8 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 				/// </summary>
 				/// <param name="this">The value.</param>
 				/// <returns>All offsets.</returns>
-				[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-				[global::System.Runtime.CompilerServices.CompilerGenerated]
+				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 				public static partial ReadOnlySpan<int> GetAllSets(this {{typeName}} @this)
 				{
 					if (@this == 0)
@@ -227,9 +227,9 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 			/// }
 			/// ]]></code>
 			/// </remarks>
-			[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-			[global::System.Runtime.CompilerServices.CompilerGenerated]
-			[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+			[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+			[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+			[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 			public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this {{typeName}} @this)
 				=> @this.GetAllSets().GetEnumerator();
 		""";
@@ -249,8 +249,8 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 			/// <param name="this">The value.</param>
 			/// <param name="index">The index.</param>
 			/// <returns>The index.</returns>
-			[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-			[global::System.Runtime.CompilerServices.CompilerGenerated]
+			[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+			[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 			public static partial int GetNextSet(this {{typeName}} @this, int index)
 			{
 				for (int i = index + 1; i < {{size}}; i++)
@@ -292,9 +292,9 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 					/// </para>
 					/// </summary>
 					/// <param name="this">The value.</param>
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+					[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					public static partial void ReverseBits(this scoped ref {{typeName}} @this)
 					{
 				"""
@@ -327,8 +327,8 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 			/// <param name="this">The value.</param>
 			/// <param name="order">The number of the order of set bits.</param>
 			/// <returns>The position.</returns>
-			[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-			[global::System.Runtime.CompilerServices.CompilerGenerated]
+			[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+			[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 			public static partial int SetAt(this {{typeName}} @this, int order)
 			{
 				for (int i = 0, count = -1; i < sizeof({{typeName}}) << 3; i++, @this >>= 1)
@@ -372,8 +372,8 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 				/// You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
 				/// two of them, so the result set bit positions to iterate on are only 2 and 4.
 				/// </remarks>
-				[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-				[global::System.Runtime.CompilerServices.CompilerGenerated]
+				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 				public static partial {{typeName}} SkipSetBit(this {{typeName}} @this, int setBitPosCount)
 				{
 					{{typeName}} result = @this;

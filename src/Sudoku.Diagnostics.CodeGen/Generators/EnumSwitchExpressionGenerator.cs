@@ -18,8 +18,8 @@ using DataTuple = ValueTuple<
 public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 {
 	private const string
-		SwitchExprRootFullName = "System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute",
-		SwitchExprArmFullName = "System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute";
+		SwitchExprRootFullName = $"{GeneratorAttributesNamespace}.{EnumSwitchExpressionRootAttribute}",
+		SwitchExprArmFullName = $"{GeneratorAttributesNamespace}.{EnumSwitchExpressionArmAttribute}";
 
 
 	/// <inheritdoc/>
@@ -143,9 +143,9 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 						/// </summary>
 						/// <param name="this">{{thisParamDescription}}</param>
 						/// <returns>{{returnValueDescription}}</returns>
-						[global::System.Runtime.CompilerServices.CompilerGenerated]
-						[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-						[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						public static {{returnType}} {{key}}(this {{fullName}} @this)
 							=> @this switch
 							{
@@ -168,8 +168,8 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 				/// <summary>
 				/// Provides with extension methods for switching on the current type.
 				/// </summary>
-				[global::System.Runtime.CompilerServices.CompilerGenerated]
-				[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 				public static class {{type.Name}}_EnumSwitchExpressionExtensions
 				{
 					{{string.Join("\r\n\r\n\t", emittedMethods)}}

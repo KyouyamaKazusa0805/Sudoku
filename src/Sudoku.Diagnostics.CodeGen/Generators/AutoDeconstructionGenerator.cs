@@ -29,7 +29,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 		// of extension deconstruction methods.
 		// Due to the design of the source generator and the attribute, the attribute can only applied to an assembly,
 		// which cannot be fetched in the syntax context receiver gotten above.
-		const string attributeFullNameExtension = "System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute";
+		const string attributeFullNameExtension = $"{GeneratorAttributesNamespace}.{AutoExtensionDeconstructionAttribute}";
 		var attributeTypeSymbolExtension = compilation.GetTypeByMetadataName(attributeFullNameExtension);
 		GatherAssemblyAttributes(attributeTypeSymbolExtension, assembly, collection);
 
@@ -95,8 +95,8 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 						/// <summary>
 						/// Provides with extension deconstruction methods on this type.
 						/// </summary>
-						[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-						[global::System.Runtime.CompilerServices.CompilerGenerated]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						public static class {{type.Name}}_DE{{hashCode:X2}}
 						{
 							{{finalCode}}
@@ -143,8 +143,8 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 						
 						namespace {{namespaceName}};
 						
-						[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-						[global::System.Runtime.CompilerServices.CompilerGenerated]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						partial {{typeKindName}} {{type.Name}}{{genericParameterList}}
 						{
 							{{finalCode}}
@@ -320,9 +320,9 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 				/// <include
 					///     file="../../global-doc-comments.xml"
 					///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+					[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 					public static void Deconstruct{{genericParameterListWithoutConstraint}}(this {{inKeyword}}{{fullTypeNameWithoutConstraint}} @this, {{args}}){{constraint}}
 					{
 						{{assignments}}
@@ -423,9 +423,9 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 				/// <include
 					///     file="../../global-doc-comments.xml"
 					///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+					[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 					public {{readOnlyKeyword}}void Deconstruct({{args}})
 					{
 						{{assignments}}
@@ -454,7 +454,7 @@ file sealed record Receiver(CancellationToken CancellationToken) : ISyntaxContex
 	/// <inheritdoc/>
 	public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
 	{
-		const string attributeFullName = "System.Diagnostics.CodeGen.AutoDeconstructionAttribute";
+		const string attributeFullName = $"{GeneratorAttributesNamespace}.{AutoDeconstructionAttribute}";
 
 		if (context is not
 			{

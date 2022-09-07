@@ -104,11 +104,11 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 			let propertyTypeStr = info.Property.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
 			select $$"""
 			/// <inheritdoc cref="{{propertyContainedInterfaceTypeStr}}.{{propertyStr}}"/>
-				[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-				[global::System.Runtime.CompilerServices.CompilerGenerated]
+				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 				public {{propertyTypeStr}} {{typeStrWithoutInterfacePrefix}}_{{propertyStr}}
 				{
-					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+					[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					set
 					{
 						var searcher = TargetSearcherCollection.GetOfType<{{typeStr}}>();

@@ -22,7 +22,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(
 			context.CompilationProvider,
-			static (spc, compilation) =>
+			(spc, compilation) =>
 			{
 				if (compilation is not { Assembly: { Name: Projects.ManualSolving } assemblySymbol })
 				{
@@ -157,8 +157,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 						partial class {{name}}
 						{
 							/// <inheritdoc/>
-							[global::{{typeof(GeneratedCodeAttribute).FullName}}("{{typeof(StepSearcherOptionsGenerator).FullName}}", "{{VersionValue}}")]
-							[global::{{typeof(CompilerGeneratedAttribute).FullName}}]
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 							public global::Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions Options { get; set; } =
 								new({{priority}}, global::Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.{{(char)(level + 'A' - 1)}}{{sb}});
 						}
