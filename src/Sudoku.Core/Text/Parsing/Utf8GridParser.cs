@@ -71,14 +71,17 @@ public unsafe ref struct Utf8GridParser
 			&onParsingSukaku_2
 		};
 
-		// Bug fix for GitHub issue #216: Cannot apply Range syntax '1..3' onto pointer-typed array.
-		// In other words, the following code will always cause an error on AnyCPU.
-		//MultilineParseFunctions = ParseFunctions[1..3];
+#if GITHUB_ISSUE_216
+		// Cannot apply Range syntax '1..3' onto pointer-typed array.
+		// Array slicing on pointer type cannot be available for AnyCPU.
+		MultilineParseFunctions = ParseFunctions[1..3];
+#else
 		MultilineParseFunctions = new delegate*<ref Utf8GridParser, Grid>[]
 		{
 			&OnParsingSimpleMultilineGrid,
 			&OnParsingPencilMarked
 		};
+#endif
 
 		static Grid onParsingSukaku_1(ref Utf8GridParser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
 		static Grid onParsingSukaku_2(ref Utf8GridParser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
@@ -167,8 +170,8 @@ public unsafe ref struct Utf8GridParser
 			GridParsingOption.Table => OnParsingSimpleMultilineGrid(ref this),
 			GridParsingOption.PencilMarked => OnParsingPencilMarked(ref this),
 			GridParsingOption.SimpleTable => OnParsingSimpleTable(ref this),
-			GridParsingOption.Sukaku => OnParsingSukaku(ref this, compatibleFirst: false),
-			GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, compatibleFirst: true),
+			GridParsingOption.Sukaku => OnParsingSukaku(ref this, false),
+			GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, true),
 			GridParsingOption.Excel => OnParsingExcel(ref this),
 			GridParsingOption.OpenSudoku => OnParsingOpenSudoku(ref this),
 			_ => throw new ArgumentOutOfRangeException(nameof(gridParsingOption))

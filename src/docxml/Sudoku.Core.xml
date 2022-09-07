@@ -2025,11 +2025,19 @@
             <summary>
             Indicates the event triggered when the value is changed.
             </summary>
+            <remarks><b>
+            The field is set to <see langword="void"/>* instead of an accurate function pointer type,
+            because the field avoids user to invoke the backing callback function.
+            </b></remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.RefreshingCandidates">
             <summary>
             Indicates the event triggered when should re-compute candidates.
             </summary>
+            <remarks><b>
+            The field is set to <see langword="void"/>* instead of an accurate function pointer type,
+            because the field avoids user to invoke the backing callback function.
+            </b></remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Empty">
             <summary>
@@ -2106,63 +2114,6 @@
             Therefore, the parameterless constructor is disallowed to be invoked
             no matter what kind of invocation, reflection or strongly reference.
             </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.#ctor(System.Int32[],Sudoku.Concepts.GridCreatingOption)">
-            <summary>
-            Creates an instance using grid values.
-            </summary>
-            <param name="gridValues">The array of grid values.</param>
-            <param name="creatingOption">The grid creating option.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.#ctor(System.Int32*,Sudoku.Concepts.GridCreatingOption)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Grid"/> instance via the array of cell digits of type <see cref="T:System.Int32"/>*.
-            </summary>
-            <param name="pGridValues">The pointer parameter indicating the array of cell digits.</param>
-            <param name="creatingOption">The grid creating option.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.#ctor(System.ReadOnlySpan{System.Int32},Sudoku.Concepts.GridCreatingOption)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Grid"/> instance via the array of cell digits
-            of type <see cref="T:System.ReadOnlySpan`1"/>.
-            </summary>
-            <param name="gridValues">The list of cell digits.</param>
-            <param name="creatingOption">The grid creating option.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.#ctor(System.Int16[])">
-             <summary>
-             Initializes an instance with the specified mask array.
-             </summary>
-             <param name="masks">The masks.</param>
-             <remarks>
-             In order to decrease the memory allocation, you can use the system buffer,
-             whose corresponding code will be implemented like this:
-             <code><![CDATA[
-             // Rents the buffer memory.
-             short[] buffer = ArrayPool<short>.Shared.Rent(81);
-             
-             // Initialize the memory in order to be used later.
-             fixed (short* pBuffer = buffer, pGrid = this)
-             {
-                 Unsafe.CopyBlock(pBuffer, pGrid, sizeof(short) * 81);
-             }
-            
-             // Gets the result sudoku grid instance.
-             try
-             {
-                 var targetGrid = new Grid(buffer); // Now the result grid is created here.
-            
-                 // Do something to use 'targetGrid'.
-             }
-             finally
-             {
-                 // Returns the buffer memory to system.
-                 ArrayPool<short>.Shared.Return(buffer, false);
-             }
-             ]]></code>
-             In this way we can get the sudoku grid without any allocations.
-             </remarks>
-             <exception cref="T:System.ArgumentException">Throws when <see cref="P:System.Array.Length"/> is not 81.</exception>
         </member>
         <member name="M:Sudoku.Concepts.Grid.#ctor(System.Int32@,Sudoku.Concepts.GridCreatingOption)">
             <summary>
@@ -2783,15 +2734,27 @@
             <param name="right">The right one.</param>
             <returns>The <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Parse(System.Char*)">
+        <member name="M:Sudoku.Concepts.Grid.Create(System.Int32[],Sudoku.Concepts.GridCreatingOption)">
             <summary>
-            Parses a pointer that points to a string value and converts to this type.
+            Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance using grid values.
             </summary>
-            <param name="ptrStr">The pointer that points to string.</param>
-            <returns>The result instance.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the only argument is <see langword="null"/>.
-            </exception>
+            <param name="gridValues">The array of grid values.</param>
+            <param name="creatingOption">The grid creating option.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Create(System.Int16[])">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance with the specified mask array.
+            </summary>
+            <param name="masks">The masks.</param>
+            <exception cref="T:System.ArgumentException">Throws when <see cref="P:System.Array.Length"/> is not 81.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Create(System.ReadOnlySpan{System.Int32},Sudoku.Concepts.GridCreatingOption)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance via the array of cell digits
+            of type <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <param name="gridValues">The list of cell digits.</param>
+            <param name="creatingOption">The grid creating option.</param>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.String)">
             <inheritdoc/>
@@ -2822,16 +2785,6 @@
             <param name="str">The string.</param>
             <param name="gridParsingOption">The grid parsing type.</param>
             <returns>The result instance had converted.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Parse(System.Utf8Char*)">
-            <summary>
-            Parses a pointer that points to a <see cref="T:System.Utf8String"/> value and converts to this type.
-            </summary>
-            <param name="ptrStr">The pointer that points to string.</param>
-            <returns>The result instance.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the only argument is <see langword="null"/>.
-            </exception>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.Utf8String)">
             <inheritdoc cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>

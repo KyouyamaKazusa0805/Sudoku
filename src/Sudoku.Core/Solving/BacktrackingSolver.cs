@@ -69,12 +69,12 @@ public sealed class BacktrackingSolver : ISimpleSolver
 				return null;
 			}
 
-			result = new(resultArray, GridCreatingOption.MinusOne);
+			result = Grid.Create(resultArray, GridCreatingOption.MinusOne);
 			return true;
 		}
 		catch (InvalidOperationException ex) when (ex.Message == "The grid contains multiple solutions.")
 		{
-			result = new(resultArray!, GridCreatingOption.MinusOne);
+			result = Grid.Create(resultArray!, GridCreatingOption.MinusOne);
 			return false;
 		}
 

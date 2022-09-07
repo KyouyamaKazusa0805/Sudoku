@@ -145,7 +145,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 						}
 					}
 
-					if (SolverWithSolution.Solve(Grid.Parse(ptr), out var solution) is null)
+					if (SolverWithSolution.Solve(Grid.Parse(new string(ptr)), out var solution) is null)
 					{
 						if (_baseCandidates is not null)
 						{
@@ -180,7 +180,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 						if (Solver.Solve(clonedPtr, null, 2) == 1)
 						{
 							// Unique puzzle. Return the value.
-							return Grid.Parse(clonedPtr);
+							return Grid.Parse(new string(clonedPtr));
 						}
 
 						// If the puzzle is invalid, we can adjust the pattern and try again.

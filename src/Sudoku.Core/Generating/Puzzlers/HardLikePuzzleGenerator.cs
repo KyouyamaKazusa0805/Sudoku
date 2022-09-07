@@ -67,7 +67,7 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 					}
 				}
 
-				if (Solver.CheckValidity(solution) && Grid.Parse(solution) is var grid)
+				if (Solver.CheckValidity(solution) && Grid.Parse(new string(solution)) is var grid)
 				{
 					return grid;
 				}

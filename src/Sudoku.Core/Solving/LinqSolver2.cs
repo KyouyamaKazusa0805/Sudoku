@@ -126,7 +126,7 @@ public sealed class LinqSolver2 : ISimpleSolver
 			gridArray[cell] = digit;
 		}
 
-		result = new(gridArray);
+		result = Grid.Create(gridArray);
 
 		// Please note the algorithm doesn't perform well on the operation of validation on multiple solutions
 		// due to the recursion algorithm (Depth-first searching). Therefore, the method

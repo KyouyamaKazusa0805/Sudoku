@@ -22,7 +22,7 @@ public static class DeadlyPatternChecker
 		[NotNullWhen(true)] out int[]? firstFoundGrid,
 		[NotNullWhen(true)] out int[]? secondFoundGrid)
 	{
-		Argument.ThrowIfFalse(maskArray.Length == 81 && new Grid(maskArray) is { IsValid: false } patternGrid);
+		Argument.ThrowIfFalse(maskArray.Length == 81 && Grid.Create(maskArray) is { IsValid: false } patternGrid);
 
 		// Checks whether the whole mask list contains any cell that only contains one possible candidate.
 		// If so, the method should return false.

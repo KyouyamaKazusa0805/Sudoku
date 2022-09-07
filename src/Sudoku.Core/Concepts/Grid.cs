@@ -44,11 +44,19 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
+	/// <remarks><b>
+	/// The field is set to <see langword="void"/>* instead of an accurate function pointer type,
+	/// because the field avoids user to invoke the backing callback function.
+	/// </b></remarks>
 	public static readonly void* ValueChanged;
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
+	/// <remarks><b>
+	/// The field is set to <see langword="void"/>* instead of an accurate function pointer type,
+	/// because the field avoids user to invoke the backing callback function.
+	/// </b></remarks>
 	public static readonly void* RefreshingCandidates;
 
 	/// <summary>
@@ -130,85 +138,6 @@ public unsafe partial struct Grid :
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[Obsolete($"Please use the member '{nameof(Empty)}' or '{nameof(Undefined)}' instead.", true)]
 	public Grid() => throw new NotSupportedException();
-
-	/// <summary>
-	/// Creates an instance using grid values.
-	/// </summary>
-	/// <param name="gridValues">The array of grid values.</param>
-	/// <param name="creatingOption">The grid creating option.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
-		this(gridValues[0], creatingOption)
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="Grid"/> instance via the array of cell digits of type <see cref="int"/>*.
-	/// </summary>
-	/// <param name="pGridValues">The pointer parameter indicating the array of cell digits.</param>
-	/// <param name="creatingOption">The grid creating option.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid(int* pGridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
-		this(*pGridValues, creatingOption)
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="Grid"/> instance via the array of cell digits
-	/// of type <see cref="ReadOnlySpan{T}"/>.
-	/// </summary>
-	/// <param name="gridValues">The list of cell digits.</param>
-	/// <param name="creatingOption">The grid creating option.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid(scoped ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
-		this(gridValues[0], creatingOption)
-	{
-	}
-
-	/// <summary>
-	/// Initializes an instance with the specified mask array.
-	/// </summary>
-	/// <param name="masks">The masks.</param>
-	/// <remarks>
-	/// In order to decrease the memory allocation, you can use the system buffer,
-	/// whose corresponding code will be implemented like this:
-	/// <code><![CDATA[
-	/// // Rents the buffer memory.
-	/// short[] buffer = ArrayPool<short>.Shared.Rent(81);
-	/// 
-	/// // Initialize the memory in order to be used later.
-	/// fixed (short* pBuffer = buffer, pGrid = this)
-	/// {
-	///     Unsafe.CopyBlock(pBuffer, pGrid, sizeof(short) * 81);
-	/// }
-	///
-	/// // Gets the result sudoku grid instance.
-	/// try
-	/// {
-	///     var targetGrid = new Grid(buffer); // Now the result grid is created here.
-	///
-	///     // Do something to use 'targetGrid'.
-	/// }
-	/// finally
-	/// {
-	///     // Returns the buffer memory to system.
-	///     ArrayPool<short>.Shared.Return(buffer, false);
-	/// }
-	/// ]]></code>
-	/// In this way we can get the sudoku grid without any allocations.
-	/// </remarks>
-	/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is not 81.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid(short[] masks)
-	{
-		Argument.ThrowIfNotEqual(masks.Length, 81, nameof(masks));
-
-		Unsafe.CopyBlock(
-			ref Unsafe.As<short, byte>(ref _values[0]),
-			ref Unsafe.As<short, byte>(ref MemoryMarshal.GetArrayDataReference(masks)),
-			sizeof(short) * 81
-		);
-	}
 
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance via the pointer of the first element of the cell digit,
@@ -1312,20 +1241,43 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// Parses a pointer that points to a string value and converts to this type.
+	/// Creates a <see cref="Grid"/> instance using grid values.
 	/// </summary>
-	/// <param name="ptrStr">The pointer that points to string.</param>
-	/// <returns>The result instance.</returns>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the only argument is <see langword="null"/>.
-	/// </exception>
+	/// <param name="gridValues">The array of grid values.</param>
+	/// <param name="creatingOption">The grid creating option.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(char* ptrStr)
-	{
-		ArgumentNullException.ThrowIfNull(ptrStr);
+	public static Grid Create(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
+		=> new(gridValues[0], creatingOption);
 
-		return Parse(new string(ptrStr));
+	/// <summary>
+	/// Creates a <see cref="Grid"/> instance with the specified mask array.
+	/// </summary>
+	/// <param name="masks">The masks.</param>
+	/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is not 81.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Create(short[] masks)
+	{
+		Argument.ThrowIfNotEqual(masks.Length, 81, nameof(masks));
+
+		var result = Empty;
+		Unsafe.CopyBlock(
+			ref Unsafe.As<short, byte>(ref result._values[0]),
+			ref Unsafe.As<short, byte>(ref MemoryMarshal.GetArrayDataReference(masks)),
+			sizeof(short) * 81
+		);
+
+		return result;
 	}
+
+	/// <summary>
+	/// Creates a <see cref="Grid"/> instance via the array of cell digits
+	/// of type <see cref="ReadOnlySpan{T}"/>.
+	/// </summary>
+	/// <param name="gridValues">The list of cell digits.</param>
+	/// <param name="creatingOption">The grid creating option.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Create(scoped ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
+		=> new(gridValues[0], creatingOption);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1360,22 +1312,6 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(string str, GridParsingOption gridParsingOption)
 		=> new GridParser(str).Parse(gridParsingOption);
-
-	/// <summary>
-	/// Parses a pointer that points to a <see cref="Utf8String"/> value and converts to this type.
-	/// </summary>
-	/// <param name="ptrStr">The pointer that points to string.</param>
-	/// <returns>The result instance.</returns>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the only argument is <see langword="null"/>.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(Utf8Char* ptrStr)
-	{
-		ArgumentNullException.ThrowIfNull(ptrStr);
-
-		return Parse(new Utf8String(ptrStr));
-	}
 
 	/// <inheritdoc cref="Parse(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

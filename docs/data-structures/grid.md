@@ -20,9 +20,6 @@ public struct Grid :
     public static readonly Grid Empty;
 
     public Grid(short[] masks);
-    public Grid(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None);
-    public Grid(int* pGridValues, GridCreatingOption creatingOption = GridCreatingOption.None);
-    public Grid(ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None);
 
     public int this[int cell] { readonly get; set; }
     public bool this[int cell, int digit] { readonly get; set; }
@@ -47,6 +44,8 @@ public struct Grid :
     public readonly Cells[] DigitsMap { get; }
     public readonly Cells[] CandidatesMap { get; }
 
+    public static Grid Create(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None);
+    public static Grid Create(ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None);
     public static bool Equals(in Grid left, in Grid right);
     public static Grid Parse(string str, GridParsingOption gridParsingOption);
     public static Grid Parse(string str, bool compatibleFirst);
@@ -151,30 +150,6 @@ byte status = mask >> 9 & 7; // Gets the status of the cell.
 ### 无参构造器 `Grid()`
 
 无参构造器在 C# 10 里允许用户自定义，因为将其重写。不过要注意的是，这个无参构造器永远会引发 `NotSupportedException` 异常，因为我们永远建议你使用 `Empty` 字段或者 `Undefined` 字段。
-
-### 构造器 `Grid(short[])`
-
-这个构造器用来直接将一个完整的 `short` 二进制掩码表赋值到这个对象本身里去，来产生对象。
-
-可以从这个说法上看出，参数的这个数组一定得包含 81 个元素，因为数独盘面是 9 × 9 = 81 个单元格。
-
-### 构造器 `Grid(int[], GridCreatingOption)`
-
-这个构造器的第一个参数是由 81 个元素构成的整数序列。其中每一个元素的取值范围均在 -1 到 9 之间。严格的限制是，每一个元素要么是 -1 到 8 来分别表示空格和数字 1 到 9，或者是用 0 到 9 来分别表示空格和数字 1 到 9。
-
-举个例子，比如第一个单元格提示数是 2，那么我们可以给 `int[]` 的第一个元素录入数字 2（或者 1），第二个单元格提示数是 6，那么我们可以给 `int[]` 的第二个元素录入数字 6（或者 5）。
-
-第二个参数则是限定我们的映射元素和数据的规则的。`GridCreatingOptions` 是一个枚举，它包含两个情况，一个是“不转换”（`None` 枚举数值），一个则是“减去 1”（`MinusOne` 枚举数值）。如果这个参数的数值是 `MinusOne` 的话，那么第一个参数 `int[]` 的每一个元素都会被按照 1 到 9 对等数字 1 到 9 的映射关系（0 表示空格）来进行处理数值；而数值是 `None` 的话，那么第一个参数 `int[]` 的每一个元素将按照 0 到 8 对等数字 1 到 9 的映射关系（-1 表示空格）来进行处理数值。
-
-因为在 C# 底层处理之中，索引等信息一般都使用 0 开始计算，因此在这里也是一样，0 到 8 来表示数字 1 到 9 才是更靠近底层的处理过程；但是要注意的是，因为 1 到 9 要转为 0 到 8，因此每一个数字都会比底层的数据大 1 个单位，因此这个时候我们使用的枚举数值是 `MinusOne` 作为第二个参数，这暗示了我们处理的时候要统统减 1 来匹配底层的处理过程。
-
-### 构造器 `Grid(int*, GridCreatingOption)`
-
-这个构造器和前面那个没啥区别，甚至可以说是一致的处理，只不过把类型从 `int[]` 换成了 `int*`。稍微注意一下的是，这个构造器的 `int*` 是指针类型，因此处理操作是不安全上下文，请一定保证调用这个构造器之前，确保这个参数指向的是一个带有 81 个元素的 `int` 数组类型。
-
-### 构造器 `Grid(ReadOnlySpan<int>, GridCreatingOption)`
-
-这个构造器也是一样，只不过换成了 `ReadOnlySpan<int>` 代替了原始的 `int[]` 和 `int*`。
 
 ### 属性 `ResetGrid`
 
