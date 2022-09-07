@@ -8281,6 +8281,16 @@
             Indicates the features that can be used on rendering and displaying runtime UI controls.
             </summary>
         </member>
+        <member name="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.VerifyMemberName">
+            <summary>
+            Indicates the extra member to be verified.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.VerifyMemberValue">
+            <summary>
+            Indicates the value to the extra member to be verified.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.BacktrackingSolver">
             <summary>
             Defines a solver that can solve a sudoku puzzle, using backtracking algorithm.

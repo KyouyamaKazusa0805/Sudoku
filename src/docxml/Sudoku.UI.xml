@@ -1117,6 +1117,12 @@
             Defines a manual step.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Models.ManualStep.AllMembers">
+            <summary>
+            Indicates a <see cref="T:System.Reflection.BindingFlags"/> instance that binds with all possible members stored in a type.
+            This constant is used for reflection.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Models.ManualStep.ExtraFeatureBadgeVisibility">
             <summary>
             Indicates the visibility of extra feature badge.
@@ -1126,6 +1132,38 @@
             <summary>
             Indicates the extra displaying features.
             </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when:
+            <list type="bullet">
+            <item>
+            The specified member given in member <see cref="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.VerifyMemberName"/>
+            cannot be found.
+            </item>
+            <item>Multiple members can be matched.</item>
+            <item>
+            The value given in member <see cref="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.VerifyMemberName"/> matches a method,
+            but the method returns <see langword="void"/>.
+            </item>
+            <item>
+            Values <see cref="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.VerifyMemberName"/> and
+            <see cref="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.VerifyMemberValue"/> hold invalid values
+            (e.g. one is <see langword="null"/> but the other is not <see langword="null"/>).
+            </item>
+            </list>
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            Throws when:
+            <list type="bullet">
+            <item>
+            The value given in member <see cref="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.VerifyMemberName"/> matches a method,
+            but the method requires at least one parameter.
+            </item>
+            <item>
+            The value given in member <see cref="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.VerifyMemberName"/> matches a 
+            </item>
+            </list>
+            </exception>
+            <seealso cref="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute"/>
         </member>
         <member name="P:Sudoku.UI.Models.ManualStep.Grid">
             <summary>
@@ -1135,11 +1173,6 @@
         <member name="P:Sudoku.UI.Models.ManualStep.Step">
             <summary>
             Indicates the step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Models.ManualStep.DefaultExtraFeatures">
-            <summary>
-            Indicates the default extra features.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Models.ManualStep.ToDisplayString">

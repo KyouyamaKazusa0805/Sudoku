@@ -21,4 +21,16 @@ public sealed class StepDisplayingFeatureAttribute : Attribute
 	/// Indicates the features that can be used on rendering and displaying runtime UI controls.
 	/// </summary>
 	public StepDisplayingFeature Features { get; }
+
+	/// <summary>
+	/// Indicates the extra member to be verified.
+	/// </summary>
+	[NotNullIfNotNull(nameof(VerifyMemberValue))]
+	public string? VerifyMemberName { get; init; }
+
+	/// <summary>
+	/// Indicates the value to the extra member to be verified.
+	/// </summary>
+	[NotNullIfNotNull(nameof(VerifyMemberName))]
+	public object? VerifyMemberValue { get; init; }
 }
