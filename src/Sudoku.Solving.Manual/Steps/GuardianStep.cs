@@ -8,6 +8,7 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="Loop">Indicates the loop cells used.</param>
 /// <param name="Guardians">Indicates the guardian cells used.</param>
+[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed partial record GuardianStep(
 	ConclusionList Conclusions,
 	ViewList Views,

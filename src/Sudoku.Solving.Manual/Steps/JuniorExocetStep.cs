@@ -11,6 +11,7 @@
 /// <param name="LockedMemberQ">Indicates the locked member bound with Q cells.</param>
 /// <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
 #endif
+[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed partial record JuniorExocetStep(
 	ViewList Views,
 	scoped in ExocetPattern Exocet,

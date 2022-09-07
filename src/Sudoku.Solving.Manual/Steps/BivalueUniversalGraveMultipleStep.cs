@@ -6,6 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the true candidates.</param>
+[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed partial record BivalueUniversalGraveMultipleStep(
 	ConclusionList Conclusions,
 	ViewList Views,

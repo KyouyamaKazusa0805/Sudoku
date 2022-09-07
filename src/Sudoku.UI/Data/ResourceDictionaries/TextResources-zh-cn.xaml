@@ -113,6 +113,7 @@
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_LastResort">其它</x:String>
 	<x:String x:Key="SudokuPage_InfoBadge_ThisTechniqueDoesNotShowDifficulty">该项技巧不显示难度。原因是该技巧不存在精确的难度系数数值。</x:String>
 	<x:String x:Key="SudokuPage_InfoBadge_ThisTechniqueIsVeryRare">该技巧极为罕见：它仅出现于故意出的题目之中。</x:String>
+	<x:String x:Key="SudokuPage_InfoBadge_ThisTechniqueDiffcultyRatingIsNotStable">该技巧的难度系数并不稳定，会随着技巧本身的规格、形状等性质而变动。</x:String>
 	<x:String x:Key="SettingsPage_DetailDescrption">本页面列举一些可提供你修改程序行为的选项，这样可以提供了操作数独程序处理过程之中的灵活性。</x:String>
 	<x:String x:Key="SettingsPage_GroupItemName_Basic">基本设置项</x:String>
 	<x:String x:Key="SettingsPage_GroupItemName_Solving">解题</x:String>

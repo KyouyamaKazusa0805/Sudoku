@@ -32,6 +32,7 @@
 /// </list>
 /// </para>
 /// </param>
+[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed partial record UniqueRectangleType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,

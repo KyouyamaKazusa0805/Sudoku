@@ -8261,6 +8261,12 @@
             Indicates the feature is to display "very rare" information.
             </summary>
         </member>
+        <member name="F:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature.DifficultyRatingNotStable">
+            <summary>
+            Indicates the difficulty rating is not stable, which means the rating value may be changed
+            if the pattern is changed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute">
             <summary>
             Represents an attribute that can modify step displaying features,

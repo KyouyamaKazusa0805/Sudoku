@@ -13,6 +13,7 @@
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
+[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed partial record UniqueRectangleWithGuardianConjugatePairStep(
 	ConclusionList Conclusions,
 	ViewList Views,

@@ -119,6 +119,8 @@ public sealed partial class ManualStep
 			StepDisplayingFeature.None => string.Empty,
 			StepDisplayingFeature.HideDifficultyRating => R["SudokuPage_InfoBadge_ThisTechniqueDoesNotShowDifficulty"]!,
 			StepDisplayingFeature.VeryRare => R["SudokuPage_InfoBadge_ThisTechniqueIsVeryRare"]!,
+			StepDisplayingFeature.DifficultyRatingNotStable => R["SudokuPage_InfoBadge_ThisTechniqueDiffcultyRatingIsNotStable"]!,
+			StepDisplayingFeature.VeryRare | StepDisplayingFeature.DifficultyRatingNotStable => R["SudokuPage_InfoBadge_ThisTechniqueIsVeryRare"]!,
 			_ => string.Empty
 		};
 
@@ -133,6 +135,17 @@ public sealed partial class ManualStep
 			StepDisplayingFeature.None => null,
 			StepDisplayingFeature.HideDifficultyRating => new SolidColorBrush(Colors.Yellow),
 			StepDisplayingFeature.VeryRare => new SolidColorBrush(Colors.SkyBlue),
+			StepDisplayingFeature.DifficultyRatingNotStable => new SolidColorBrush(Colors.Purple),
+			StepDisplayingFeature.VeryRare | StepDisplayingFeature.DifficultyRatingNotStable
+				=> new LinearGradientBrush()
+					.WithStartPoint(0, .5)
+					.WithEndPoint(1, .5)
+					.WithGradientStops(
+						new GradientStop()
+							.WithColor(Colors.SkyBlue),
+						new GradientStop()
+							.WithColor(Colors.Purple)
+					),
 			_ => null
 		};
 }

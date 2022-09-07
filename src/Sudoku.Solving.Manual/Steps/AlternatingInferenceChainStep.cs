@@ -6,6 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Chain">Indicates the whole chain.</param>
+[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed partial record AlternatingInferenceChainStep(
 	ConclusionList Conclusions,
 	ViewList Views,

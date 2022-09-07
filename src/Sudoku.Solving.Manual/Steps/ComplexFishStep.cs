@@ -12,6 +12,7 @@
 /// <param name="Endofins">The endo-fins.</param>
 /// <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
 /// <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
+[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed partial record ComplexFishStep(
 	ConclusionList Conclusions,
 	ViewList Views,

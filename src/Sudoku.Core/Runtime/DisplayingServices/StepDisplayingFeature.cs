@@ -20,4 +20,10 @@ public enum StepDisplayingFeature : byte
 	/// Indicates the feature is to display "very rare" information.
 	/// </summary>
 	VeryRare = 1 << 1,
+
+	/// <summary>
+	/// Indicates the difficulty rating is not stable, which means the rating value may be changed
+	/// if the pattern is changed.
+	/// </summary>
+	DifficultyRatingNotStable = 1 << 2,
 }

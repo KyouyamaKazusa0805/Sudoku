@@ -3416,6 +3416,59 @@
             Adds an element into the collection.
             </summary>
         </member>
+        <member name="T:Microsoft.UI.Xaml.Media.GradientBrushExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.GradientBrush"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.GradientBrush"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.GradientBrushExtensions.WithGradientStops``1(``0,Microsoft.UI.Xaml.Media.GradientStopCollection)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.GradientBrush.GradientStops"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.GradientBrushExtensions.WithGradientStops``1(``0,Microsoft.UI.Xaml.Media.GradientStop[])">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.GradientBrush.GradientStops"/> with the specified value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Media.GradientStopExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.GradientStop"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.GradientStop"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.GradientStopExtensions.WithColor(Microsoft.UI.Xaml.Media.GradientStop,Windows.UI.Color)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.GradientStop.Color"/> with the specified value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Media.LinearGradientBrushExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.LinearGradientBrush"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.LinearGradientBrush"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.LinearGradientBrushExtensions.WithStartPoint(Microsoft.UI.Xaml.Media.LinearGradientBrush,System.Double,System.Double)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.LinearGradientBrush.StartPoint"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.LinearGradientBrushExtensions.WithStartPoint(Microsoft.UI.Xaml.Media.LinearGradientBrush,Windows.Foundation.Point)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.LinearGradientBrush.StartPoint"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.LinearGradientBrushExtensions.WithEndPoint(Microsoft.UI.Xaml.Media.LinearGradientBrush,System.Double,System.Double)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.LinearGradientBrush.EndPoint"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Media.LinearGradientBrushExtensions.WithEndPoint(Microsoft.UI.Xaml.Media.LinearGradientBrush,Windows.Foundation.Point)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Media.LinearGradientBrush.EndPoint"/> with the specified value.
+            </summary>
+        </member>
         <member name="T:Microsoft.UI.Xaml.FrameworkElementExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>.
