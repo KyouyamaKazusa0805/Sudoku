@@ -590,6 +590,32 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
+	/// Indicates all possible conjugate pairs appeared in this grid.
+	/// </summary>
+	public readonly ImmutableArray<Conjugate> ConjugatePairs
+	{
+		get
+		{
+			var candidatesMap = CandidatesMap; // Cache the map.
+
+			var conjugatePairs = new List<Conjugate>();
+			for (int digit = 0; digit < 9; digit++)
+			{
+				scoped ref readonly var cellsMap = ref candidatesMap[digit];
+				for (int houseIndex = 0; houseIndex < 27; houseIndex++)
+				{
+					if ((HousesMap[houseIndex] & cellsMap) is { Count: 2 } temp)
+					{
+						conjugatePairs.Add(new(temp, digit));
+					}
+				}
+			}
+
+			return ImmutableArray.CreateRange(conjugatePairs);
+		}
+	}
+
+	/// <summary>
 	/// Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
 	/// </summary>
 	public readonly Grid ResetGrid => this << GivenCells;

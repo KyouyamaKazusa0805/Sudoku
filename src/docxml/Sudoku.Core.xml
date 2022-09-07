@@ -2331,6 +2331,11 @@
             </summary>
             <seealso cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.ConjugatePairs">
+            <summary>
+            Indicates all possible conjugate pairs appeared in this grid.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.ResetGrid">
             <summary>
             Gets the grid where all modifiable cells are empty cells (i.e. the initial one).

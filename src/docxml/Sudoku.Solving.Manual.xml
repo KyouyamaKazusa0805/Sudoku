@@ -596,6 +596,23 @@
             </summary>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Gatherers.IConjugatesGatherer">
+            <summary>
+            Defines a conjugate pair gatherer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Gatherers.IConjugatesGatherer.Gather(Sudoku.Concepts.Grid@)">
+            <summary>
+            Gathers possible conjugate pairs grouped by digit.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>The conjugate pairs found, grouped by digit.</returns>
+            <remarks>
+            This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
+            by calling the method <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher">
             <summary>
             Provides with an <b>Almost Locked Candidates</b> step searcher.

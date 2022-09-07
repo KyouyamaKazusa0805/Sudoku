@@ -25,6 +25,7 @@ global using Sudoku.Solving.Data.Representation;
 global using Sudoku.Solving.Manual;
 global using Sudoku.Solving.Manual.Buffers;
 global using Sudoku.Solving.Manual.Searchers;
+global using Sudoku.Solving.Manual.Searchers.Gatherers;
 global using Sudoku.Solving.Manual.Searchers.Specialized;
 global using Sudoku.Solving.Manual.Steps;
 global using Sudoku.Solving.Manual.Steps.Specialized;

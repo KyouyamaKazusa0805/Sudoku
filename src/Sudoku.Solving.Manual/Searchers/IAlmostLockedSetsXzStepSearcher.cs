@@ -55,13 +55,15 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 			var als1 = alses[i];
 			int house1 = als1.House;
 			short mask1 = als1.DigitsMask;
-			CellMap map1 = als1.Map, possibleElimMap1 = als1.PossibleEliminationMap;
+			var map1 = als1.Map;
+			var possibleElimMap1 = als1.PossibleEliminationMap;
 			for (int j = i + 1; j < length; j++)
 			{
 				var als2 = alses[j];
 				int house2 = als2.House;
 				short mask2 = als2.DigitsMask;
-				CellMap map2 = als2.Map, possibleElimMap2 = als2.PossibleEliminationMap;
+				var map2 = als2.Map;
+				var possibleElimMap2 = als2.PossibleEliminationMap;
 				short xzMask = (short)(mask1 & mask2);
 				var map = map1 | map2;
 				var overlapMap = map1 & map2;

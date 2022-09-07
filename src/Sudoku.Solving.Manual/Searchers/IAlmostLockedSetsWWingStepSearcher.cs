@@ -20,17 +20,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 
 		// Gather all conjugate pairs.
-		var conjugatePairs = new ICollection<Conjugate>?[9];
-		for (int digit = 0; digit < 9; digit++)
-		{
-			for (int houseIndex = 0; houseIndex < 27; houseIndex++)
-			{
-				if ((HousesMap[houseIndex] & CandidatesMap[digit]) is { Count: 2 } temp)
-				{
-					(conjugatePairs[digit] ??= new List<Conjugate>()).Add(new(temp, digit));
-				}
-			}
-		}
+		var conjugatePairs = IConjugatesGatherer.Gather(grid);
 
 		// Iterate on each ALS.
 		for (int i = 0, length = alses.Length, iterationLength = length - 1; i < iterationLength; i++)
