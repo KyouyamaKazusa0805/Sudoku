@@ -50,10 +50,12 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 		return cells switch
 		{
 			[] => string.Empty,
-			[var p] => options.AvoidConfusionOnRowLetters switch
+			[var p] => options switch
 			{
-				true => $"{(options.UpperCasing ? Letters[p / 9] : char.ToLower(Letters[p / 9]))}{p % 9 + 1}",
-				_ => $"{(options.UpperCasing ? (char)('A' + p / 9) : char.ToLower((char)('A' + p / 9)))}{p % 9 + 1}"
+				{ AvoidConfusionOnRowLetters: true, UpperCasing: var isUpper }
+					=> $"{(isUpper ? Letters[p / 9] : char.ToLower(Letters[p / 9]))}{p % 9 + 1}",
+				{ UpperCasing: var isUpper }
+					=> $"{(isUpper ? (char)('A' + p / 9) : char.ToLower((char)('A' + p / 9)))}{p % 9 + 1}"
 			},
 			_ => r(cells, options) is var a && c(cells, options) is var b && a.Length <= b.Length ? a : b
 		};

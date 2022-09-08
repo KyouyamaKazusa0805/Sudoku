@@ -35,7 +35,7 @@ partial record GridImageGenerator
 		for (int cell = 0; cell < 81; cell++)
 		{
 			short mask = Puzzle.GetMask(cell);
-			switch (Grid.MaskToStatus(mask))
+			switch (MaskToStatus(mask))
 			{
 				case CellStatus.Empty when Preferences.ShowCandidates:
 				{

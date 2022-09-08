@@ -30,11 +30,13 @@ public sealed partial class RxCyNotation :
 	/// <summary>
 	/// Indicates a pattern that matches for a pre-positional formed candidate list.
 	/// </summary>
+	[StringSyntax(StringSyntaxAttribute.Regex)]
 	private const string PrepositionalFormCandidateList = """[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})""";
 
 	/// <summary>
 	/// Indicates a pattern that matches for a post-positional formed candidate list.
 	/// </summary>
+	[StringSyntax(StringSyntaxAttribute.Regex)]
 	private const string PostpositionalFormCandidateList = """\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\)""";
 
 

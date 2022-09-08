@@ -2841,13 +2841,6 @@
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.Utf8String,Sudoku.Text.Parsing.GridParsingOption,Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Text.Parsing.GridParsingOption,Sudoku.Concepts.Grid@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.MaskToStatus(System.Int16)">
-            <summary>
-            To get the cell status through a mask.
-            </summary>
-            <param name="mask">The mask.</param>
-            <returns>The cell status.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.ExtendedSusserEliminationsRegex">
             <remarks>
             Pattern explanation:<br/>
@@ -8233,6 +8226,20 @@
             <summary>
             Indicates the value to the extra member to be verified.
             </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.MaskServices.MaskOperations">
+            <summary>
+            Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.MaskToStatus(System.Int16)">
+            <summary>
+            To get the cell status for a mask value. The mask is an inner representation to describe a cell's state.
+            For more information please visit the details of the design for type <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <param name="mask">The mask.</param>
+            <returns>The cell status.</returns>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="T:Sudoku.Solving.BacktrackingSolver">
             <summary>

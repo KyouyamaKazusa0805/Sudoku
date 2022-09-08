@@ -15,3 +15,4 @@ global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Solving;
 global using static System.Math;
+global using static Sudoku.Runtime.MaskServices.MaskOperations;

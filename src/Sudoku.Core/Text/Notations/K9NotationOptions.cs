@@ -18,8 +18,10 @@
 /// is <c>"|"</c>.
 /// </param>
 public readonly record struct K9NotationOptions(
-	bool UpperCasing = false, bool AvoidConfusionOnRowLetters = false, string Separator = "|") :
-	INotationHandlerOptions<K9NotationOptions>
+	bool UpperCasing = false,
+	bool AvoidConfusionOnRowLetters = false,
+	string Separator = "|"
+) : INotationHandlerOptions<K9NotationOptions>
 {
 	/// <summary>
 	/// Indicates the default instance.

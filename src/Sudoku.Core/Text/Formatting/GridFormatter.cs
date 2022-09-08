@@ -676,7 +676,7 @@ public readonly ref struct GridFormatter
 				// Compares the values.
 				int comparer = Max(
 					candidatesCount,
-					Grid.MaskToStatus(value) switch
+					MaskToStatus(value) switch
 					{
 						// The output will be '<digit>' and consist of 3 characters.
 						CellStatus.Given => Max(candidatesCount, 3),
@@ -766,7 +766,7 @@ public readonly ref struct GridFormatter
 							{
 								// Get digit.
 								short value = valuesByRow[i];
-								var status = Grid.MaskToStatus(value);
+								var status = MaskToStatus(value);
 
 								value &= Grid.MaxCandidatesMask;
 								int d = value == 0

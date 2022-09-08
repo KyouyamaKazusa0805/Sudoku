@@ -1460,14 +1460,6 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// To get the cell status through a mask.
-	/// </summary>
-	/// <param name="mask">The mask.</param>
-	/// <returns>The cell status.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static CellStatus MaskToStatus(short mask) => (CellStatus)(mask >> 9 & 7);
-
-	/// <summary>
 	/// Indicates the eliminations in the extended susser format.
 	/// </summary>
 	[RegexGenerator("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]
