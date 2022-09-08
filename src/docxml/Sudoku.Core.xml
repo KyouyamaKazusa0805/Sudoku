@@ -1635,22 +1635,6 @@
             <param name="houseIndex">The house index.</param>
             <returns>The mask.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_RightShift(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count != 0</c>.
-            </summary>
-            <param name="left">The subtrahend.</param>
-            <param name="right">The subtractor.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_LeftShift(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
-            </summary>
-            <param name="left">The subtrahend.</param>
-            <param name="right">The subtractor.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Equality(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Determines whether two <see cref="T:Sudoku.Concepts.CellMap"/> instances are considered equal.

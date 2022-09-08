@@ -184,7 +184,13 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 						// If the current searcher doesn't check fins, we'll just get the pure check:
 						// 1. Base set contain more cells than cover sets.
 						// 2. Elimination cells set isn't empty.
-						if (baseLine >> coverLine || (elimMap = coverLine - baseLine) is [])
+						if (baseLine - coverLine)
+						{
+							continue;
+						}
+
+						elimMap = coverLine - baseLine;
+						if (!elimMap)
 						{
 							continue;
 						}

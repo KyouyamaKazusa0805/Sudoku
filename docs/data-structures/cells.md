@@ -96,8 +96,6 @@ public struct CellMap :
     public static bool operator false(scoped in CellMap offsets);
     public static bool operator ==(scoped in CellMap left, scoped in CellMap right);
     public static bool operator !=(scoped in CellMap left, scoped in CellMap right);
-    public static bool operator >>(scoped in CellMap left, scoped in CellMap right);
-    public static bool operator <<(scoped in CellMap left, scoped in CellMap right);
 
     public static implicit operator int[](scoped in CellMap offsets);
     public static implicit operator CellMap(scoped in ReadOnlySpan<int> offsets);
@@ -465,10 +463,6 @@ foreach (int cell in cells)
 ### 枚举运算 `&(in CellMap, int)` 和 `|(in CellMap, int)`
 
 这两种运算符用于枚举这个集合里的全部排列情况。其中 `&` 只为指定个数的集合进行枚举，而 `|` 会枚举所有组合，每个组合的元素个数是从 1 到这个数的。比如，`map & 3` 只枚举 `map` 里所有的排列情况，其情况的元素数是 3；而 `map | 3` 等价于 `map & 1`、`map & 2` 和 `map & 3` 的全部情况。
-
-### 比较运算符 `>>(in CellMap, in CellMap)` 和 `<<(in CellMap, in CellMap)`
-
-`>>` 运算符会按照数学的定义计算。它表示是否使用符号左边减去右边得到的差集结果仍然还包含元素在其中。`<<` 符号则是将刚才的结果取反。即从语法上 `left >> right` 等于 `(left - right).Count >= 0`，而 `left << right` 则等于 `(left - right).Count == 0`，或 `!((left - right).Count >= 0)`。
 
 ### 加减法运算符 `+(CellMap, int)` 和 `-(CellMap, int)`
 

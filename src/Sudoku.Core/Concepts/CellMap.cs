@@ -1393,24 +1393,6 @@ public struct CellMap :
 	}
 
 	/// <summary>
-	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count != 0</c>.
-	/// </summary>
-	/// <param name="left">The subtrahend.</param>
-	/// <param name="right">The subtractor.</param>
-	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >>(scoped in CellMap left, scoped in CellMap right) => left - right is not [];
-
-	/// <summary>
-	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
-	/// </summary>
-	/// <param name="left">The subtrahend.</param>
-	/// <param name="right">The subtractor.</param>
-	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <<(scoped in CellMap left, scoped in CellMap right) => left - right is [];
-
-	/// <summary>
 	/// Determines whether two <see cref="CellMap"/> instances are considered equal.
 	/// </summary>
 	/// <param name="left">The first instance to be compared.</param>
