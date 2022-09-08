@@ -547,7 +547,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
 	/// </summary>
-	public readonly Grid ResetGrid => this << GivenCells;
+	public readonly Grid ResetGrid => Preserve(GivenCells);
 
 	/// <summary>
 	/// Indicates the solution of the grid. If failed to solve (for example,
@@ -555,7 +555,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <see cref="Undefined"/>
 	public readonly Grid Solution
-		=> Solver.Solve(this) is { IsUndefined: false } solution ? solution >> GivenCells : Undefined;
+		=> Solver.Solve(this) is { IsUndefined: false } solution ? UnfixSolution(GivenCells) : Undefined;
 
 
 	/// <summary>
@@ -1128,7 +1128,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// To unfix the current grid (all given values will be changed to modifiable ones).
 	/// </summary>
-	public void Unfix()
+	public void UnfixSolution()
 	{
 		for (int i = 0; i < 81; i++)
 		{
@@ -1210,6 +1210,42 @@ public unsafe partial struct Grid :
 			if (predicate(this, cell))
 			{
 				result.Add(cell);
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.
+	/// </summary>
+	/// <param name="pattern">The pattern.</param>
+	/// <returns>The result grid.</returns>
+	private readonly Grid Preserve(scoped in CellMap pattern)
+	{
+		var result = this;
+		foreach (int cell in ~pattern)
+		{
+			result[cell] = -1;
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Gets a sudoku grid, replacing all digits with modifiable
+	/// if it doesn't appear in the specified <paramref name="pattern"/> from the solution of the current grid.
+	/// </summary>
+	/// <param name="pattern">The pattern.</param>
+	/// <returns>The result grid.</returns>
+	private readonly Grid UnfixSolution(scoped in CellMap pattern)
+	{
+		var result = Solution;
+		foreach (int cell in ~pattern)
+		{
+			if (result.GetStatus(cell) == CellStatus.Given)
+			{
+				result.SetStatus(cell, CellStatus.Modifiable);
 			}
 		}
 
@@ -1437,52 +1473,6 @@ public unsafe partial struct Grid :
 	[RegexGenerator("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]
 	internal static partial Regex ExtendedSusserEliminationsRegex();
 
-
-	/// <summary>
-	/// Gets a sudoku grid, removing all digits filled in the cells
-	/// that doesn't appear in the specified <paramref name="pattern"/>.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="pattern">The pattern.</param>
-	/// <returns>The result grid.</returns>
-	public static Grid operator <<(scoped in Grid grid, scoped in CellMap pattern)
-	{
-		var result = grid;
-		foreach (int cell in ~pattern)
-		{
-			result[cell] = -1;
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Gets a sudoku grid, replacing all digits with modifiable
-	/// if it doesn't appear in the specified <paramref name="pattern"/>.
-	/// The argument <paramref name="solution"/> must be solved.
-	/// </summary>
-	/// <param name="solution">The solution as the base grid.</param>
-	/// <param name="pattern">The pattern.</param>
-	/// <returns>The result grid.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the grid is not solved.</exception>
-	public static Grid operator >>(scoped in Grid solution, scoped in CellMap pattern)
-	{
-		if (!solution.IsSolved)
-		{
-			throw new InvalidOperationException("The grid must be solved.");
-		}
-
-		var result = solution;
-		foreach (int cell in ~pattern)
-		{
-			if (result.GetStatus(cell) == CellStatus.Given)
-			{
-				result.SetStatus(cell, CellStatus.Modifiable);
-			}
-		}
-
-		return result;
-	}
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

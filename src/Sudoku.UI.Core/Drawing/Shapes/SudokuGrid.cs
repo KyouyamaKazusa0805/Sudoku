@@ -672,7 +672,7 @@ public sealed class SudokuGrid : DrawingElement
 		AddStep(_grid);
 
 		// Update the grid and view.
-		_grid.Unfix();
+		_grid.UnfixSolution();
 		UpdateView();
 	}
 

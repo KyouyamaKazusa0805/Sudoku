@@ -79,8 +79,6 @@ public struct Grid :
 
     public static bool operator ==(scoped in Grid left, scoped in Grid right);
     public static bool operator !=(scoped in Grid left, scoped in Grid right);
-    public static Grid operator >>(scoped in Grid solution, scoped in Cells pattern);
-    public static Grid operator <<(scoped in Grid grid, scoped in Cells pattern);
 
     public ref struct MaskCollectionEnumerator
     {
