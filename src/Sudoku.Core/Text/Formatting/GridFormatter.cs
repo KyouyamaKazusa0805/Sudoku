@@ -493,7 +493,7 @@ public readonly ref struct GridFormatter
 				// Check if the value has been set 'true'
 				// and the value has already deleted at the grid
 				// with only givens and modifiables.
-				foreach (int i in originalGrid.GetMask(c) & Grid.MaxCandidatesMask)
+				foreach (int i in (short)(originalGrid.GetMask(c) & Grid.MaxCandidatesMask))
 				{
 					if (!grid[c, i])
 					{

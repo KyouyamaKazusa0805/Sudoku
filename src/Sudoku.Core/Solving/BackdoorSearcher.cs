@@ -64,7 +64,7 @@ public static class BackdoorSearcher
 			assignmentBackdoors.Add(new(Assignment, cell, solution[cell]));
 
 			// Case 2: Eliminations.
-			foreach (int digit in grid.GetCandidates(cell) & ~(1 << solution[cell]))
+			foreach (int digit in (short)(grid.GetCandidates(cell) & ~(1 << solution[cell])))
 			{
 				var case2Playground = grid;
 				case2Playground[cell, digit] = false;

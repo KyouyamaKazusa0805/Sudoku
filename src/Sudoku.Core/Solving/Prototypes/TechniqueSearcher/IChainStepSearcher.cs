@@ -46,7 +46,7 @@ public interface IChainStepSearcher : IStepSearcher
 						short digitsShouldHighlight = (short)(potentialDigits & ~(1 << digit));
 						foreach (int tempDigit in digitsShouldHighlight)
 						{
-							foreach (int tempCell in grid.CandidatesMap[tempDigit] & allCells)
+							foreach (int tempCell in (short)(grid.CandidatesMap[tempDigit] & allCells))
 							{
 								result.Add(
 									new(
@@ -64,9 +64,9 @@ public interface IChainStepSearcher : IStepSearcher
 					case { Type: NodeType.AlmostUniqueRectangle, FullCells: var allCells }:
 					{
 						short digitsShouldHighlight = grid.GetDigitsUnion(allCells);
-						foreach (int tempDigit in digitsShouldHighlight & ~(1 << digit))
+						foreach (int tempDigit in (short)(digitsShouldHighlight & ~(1 << digit)))
 						{
-							foreach (int tempCell in grid.CandidatesMap[tempDigit] & allCells)
+							foreach (int tempCell in (short)(grid.CandidatesMap[tempDigit] & allCells))
 							{
 								result.Add(
 									new(

@@ -152,12 +152,12 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 					continue;
 				}
 
-				foreach (int digit in mask & grid.GetCandidates(aCell))
+				foreach (int digit in (short)(mask & grid.GetCandidates(aCell)))
 				{
 					conclusions.Add(new(Elimination, aCell, digit));
 				}
 			}
-			foreach (int digit in Grid.MaxCandidatesMask & ~mask)
+			foreach (int digit in (short)(Grid.MaxCandidatesMask & ~mask))
 			{
 				foreach (int ahsCell in ahsCells & CandidatesMap[digit])
 				{
@@ -182,14 +182,14 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 			}
 			foreach (int cell in c)
 			{
-				foreach (int digit in mask & grid.GetCandidates(cell))
+				foreach (int digit in (short)(mask & grid.GetCandidates(cell)))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 				}
 			}
 			foreach (int cell in ahsCells)
 			{
-				foreach (int digit in mask & grid.GetCandidates(cell))
+				foreach (int digit in (short)(mask & grid.GetCandidates(cell)))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}

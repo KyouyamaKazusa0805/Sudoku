@@ -131,7 +131,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 				{
 					// Doubly linked ALS-XZ.
 					isDoublyLinked = true;
-					foreach (int elimDigit in z & ~rccMask)
+					foreach (int elimDigit in (short)(z & ~rccMask))
 					{
 						if ((CandidatesMap[elimDigit] & map1) is not (var zMap and not []))
 						{
@@ -168,7 +168,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					tempMap &= possibleElimMap1;
 					foreach (int cell in tempMap)
 					{
-						foreach (int digit in grid.GetCandidates(cell) & (mask1 & ~rccMask))
+						foreach (int digit in (short)(grid.GetCandidates(cell) & (mask1 & ~rccMask)))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -181,7 +181,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					tempMap &= possibleElimMap2;
 					foreach (int cell in tempMap)
 					{
-						foreach (int digit in grid.GetCandidates(cell) & (mask2 & ~rccMask))
+						foreach (int digit in (short)(grid.GetCandidates(cell) & (mask2 & ~rccMask)))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}

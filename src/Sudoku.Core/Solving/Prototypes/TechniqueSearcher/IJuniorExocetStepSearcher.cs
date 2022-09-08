@@ -86,7 +86,7 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 			{
 				cellOffsets.Add(new(DisplayColorKind.Auxiliary2, cell));
 
-				foreach (int digit in grid.GetCandidates(cell) & baseCellsDigitsMask)
+				foreach (int digit in (short)(grid.GetCandidates(cell) & baseCellsDigitsMask))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
 				}

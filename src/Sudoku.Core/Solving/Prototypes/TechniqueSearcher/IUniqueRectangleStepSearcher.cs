@@ -3525,7 +3525,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					}
 
 					int anotherCell = (cells - urCellInSameBlock & HousesMap[coveredLine])[0];
-					foreach (int extraDigit in grid.GetCandidates(targetCell) & ~comparer)
+					foreach (int extraDigit in (short)(grid.GetCandidates(targetCell) & ~comparer))
 					{
 						short abcMask = (short)(comparer | (short)(1 << extraDigit));
 
@@ -3581,7 +3581,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, resultCell * 9 + extraDigit));
 						}
 
-						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
+						foreach (int digit in (short)(grid.GetCandidates(urCellInSameBlock) & abcMask))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, urCellInSameBlock * 9 + digit));
 						}
@@ -3683,7 +3683,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							new(DisplayColorKind.Auxiliary1, resultCell * 9 + extraDigit),
 							new(DisplayColorKind.Auxiliary1, targetCell * 9 + extraDigit)
 						};
-						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
+						foreach (int digit in (short)(grid.GetCandidates(urCellInSameBlock) & abcMask))
 						{
 							if (digit == extraDigit)
 							{

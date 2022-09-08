@@ -598,7 +598,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int cell in currentMap)
 					{
-						foreach (int digit in grid.GetCandidates(cell) & combinationMask)
+						foreach (int digit in (short)(grid.GetCandidates(cell) & combinationMask))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}

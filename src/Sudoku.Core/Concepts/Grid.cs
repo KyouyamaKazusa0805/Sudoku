@@ -555,7 +555,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <see cref="Undefined"/>
 	public readonly Grid Solution
-		=> Solver.Solve(this) is { IsUndefined: false } solution ? UnfixSolution(GivenCells) : Undefined;
+		=> Solver.Solve(this) is { IsUndefined: false } solution ? solution.UnfixSolution(GivenCells) : Undefined;
 
 
 	/// <summary>
@@ -1240,7 +1240,9 @@ public unsafe partial struct Grid :
 	/// <returns>The result grid.</returns>
 	private readonly Grid UnfixSolution(scoped in CellMap pattern)
 	{
-		var result = Solution;
+		Argument.ThrowIfFalse(IsSolved, "The current grid must be solved.");
+
+		var result = this;
 		foreach (int cell in ~pattern)
 		{
 			if (result.GetStatus(cell) == CellStatus.Given)
