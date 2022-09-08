@@ -14,13 +14,13 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 	{
 		if (compilation is not
 			{
-				Assembly: { Name: Projects.ManualSolving, GlobalNamespace: var @namespace } assemblySymbol
+				Assembly: { Name: Projects.SudokuCore, GlobalNamespace: var @namespace } assemblySymbol
 			})
 		{
 			return;
 		}
 
-		var manualSolverTypeSymbol = compilation.GetTypeByMetadataName($"{Projects.ManualSolving}.ManualSolver");
+		var manualSolverTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Manual.ManualSolver");
 		if (manualSolverTypeSymbol is not { TypeKind: Kind.Class, IsRecord: false, IsSealed: true })
 		{
 			// The core type cannot be found.
@@ -29,7 +29,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 			return;
 		}
 
-		var stepSearcherType = compilation.GetTypeByMetadataName($"{Projects.ManualSolving}.Searchers.IStepSearcher");
+		var stepSearcherType = compilation.GetTypeByMetadataName($"Sudoku.Solving.Manual.Searchers.IStepSearcher");
 		if (stepSearcherType is not { TypeKind: Kind.Interface })
 		{
 			// Same reason as above.
@@ -72,7 +72,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 					continue;
 				}
 
-				string searcherFullTypeName = $"{Projects.ManualSolving}.Searchers.I{searcherTypeName}";
+				string searcherFullTypeName = $"Sudoku.Solving.Manual.Searchers.I{searcherTypeName}";
 				var interfaceType = compilation.GetTypeByMetadataName(searcherFullTypeName);
 				if (interfaceType is not { AllInterfaces: var interfaceBaseInterfaces })
 				{

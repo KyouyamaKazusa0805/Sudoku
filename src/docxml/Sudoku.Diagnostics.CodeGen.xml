@@ -296,6 +296,16 @@
             Defines a list of project names to be used.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Projects.System">
+            <summary>
+            Indicates the system extensions project.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Projects.SudokuCore">
+            <summary>
+            Indicates the sudoku core project.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Shortcuts">
             <summary>
             Defines the shortcuts of the source generators.

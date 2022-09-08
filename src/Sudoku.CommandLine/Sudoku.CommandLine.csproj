@@ -9,7 +9,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
-		<ProjectReference Include="..\Sudoku.Solving.Manual\Sudoku.Solving.Manual.csproj" />
 	</ItemGroup>
 
 </Project>

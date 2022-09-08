@@ -1,3 +1,2 @@
-﻿[assembly: InternalsVisibleTo("Sudoku.Solving.Manual")]
-[assembly: InternalsVisibleTo("Sudoku.Drawing")]
+﻿[assembly: InternalsVisibleTo("Sudoku.Drawing")]
 [module: SkipLocalsInit]

@@ -24,7 +24,7 @@ public sealed class StepFormatterMethodAttributesGenerator : IIncrementalGenerat
 							: null
 				)
 				.Combine(context.CompilationProvider)
-				.Where(static pair => pair is (not null, { Assembly.Name: Projects.ManualSolving })),
+				.Where(static pair => pair is (not null, { Assembly.Name: Projects.SudokuCore })),
 			static (spc, pair) =>
 			{
 				if (pair is not ({ BaseType: var baseType } typeSymbol, { Assembly: var assemblySymbol } compilation))

@@ -5,6 +5,13 @@
 /// </summary>
 internal static class Projects
 {
+	/// <summary>
+	/// Indicates the system extensions project.
+	/// </summary>
 	public const string System = "SystemExtensions";
-	public const string ManualSolving = "Sudoku.Solving.Manual";
+
+	/// <summary>
+	/// Indicates the sudoku core project.
+	/// </summary>
+	public const string SudokuCore = "Sudoku.Core";
 }

@@ -124,6 +124,7 @@ public static class Combinatorics
 	/// <summary>
 	/// Get all subsets from the specified number of the values to take.
 	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The array.</param>
 	/// <param name="count">The number of elements you want to take.</param>
 	/// <returns>

@@ -1,6 +1,6 @@
 ﻿#nullable disable warnings
 
-namespace Sudoku.Solving.Manual.Buffers;
+namespace Sudoku.Buffers;
 
 /// <summary>
 /// Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.

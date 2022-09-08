@@ -20,8 +20,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Diagnostics.CodeGen"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI", "src\Sudoku.UI\Sudoku.UI.csproj", "{C77EC482-143E-47C1-9524-BC3BAE815838}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving.Manual", "src\Sudoku.Solving.Manual\Sudoku.Solving.Manual.csproj", "{5451F367-F1E0-44AC-9EA1-1819B410050C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CommandLine", "src\Sudoku.CommandLine\Sudoku.CommandLine.csproj", "{53AA4AE8-2517-4D85-9215-9ABB53FC751E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Drawing", "src\Sudoku.Drawing\Sudoku.Drawing.csproj", "{9ABD05D7-A129-4B53-B91B-721F57F640F0}"
@@ -197,36 +195,6 @@ Global
 		{C77EC482-143E-47C1-9524-BC3BAE815838}.Release|x86.ActiveCfg = Release|x86
 		{C77EC482-143E-47C1-9524-BC3BAE815838}.Release|x86.Build.0 = Release|x86
 		{C77EC482-143E-47C1-9524-BC3BAE815838}.Release|x86.Deploy.0 = Release|x86
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Build|Any CPU.ActiveCfg = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Build|Any CPU.Build.0 = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Build|ARM.ActiveCfg = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Build|ARM.Build.0 = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Build|ARM64.ActiveCfg = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Build|ARM64.Build.0 = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Build|x64.ActiveCfg = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Build|x64.Build.0 = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Build|x86.ActiveCfg = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Build|x86.Build.0 = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Debug|ARM.Build.0 = Debug|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Debug|x64.Build.0 = Debug|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Debug|x86.Build.0 = Debug|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Release|ARM.ActiveCfg = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Release|ARM.Build.0 = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Release|ARM64.Build.0 = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Release|x64.ActiveCfg = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Release|x64.Build.0 = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Release|x86.ActiveCfg = Release|Any CPU
-		{5451F367-F1E0-44AC-9EA1-1819B410050C}.Release|x86.Build.0 = Release|Any CPU
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|Any CPU.ActiveCfg = Release|Any CPU
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|Any CPU.Build.0 = Release|Any CPU
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|ARM.ActiveCfg = Release|Any CPU
@@ -327,8 +295,8 @@ Global
 		{382A5CF3-4638-4AEE-B0E3-36483B71924D} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 EndGlobal

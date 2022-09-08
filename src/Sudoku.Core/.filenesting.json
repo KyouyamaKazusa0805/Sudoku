@@ -13,20 +13,6 @@
           //
           // StepSearcher nesting rules
           //
-          "IAlmostLockedSetsStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "IChainStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "IDeadlyPatternStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "IExocetStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "IFishStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "IIntersectionStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "ILastResortStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "IRankTheoryStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "ISingleDigitPatternStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "ISingleStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "ISubsetStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "ISymmetryStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "IWingStepSearcher.cs": [ "IStepSearcher.cs" ],
-          
           "IDeathBlossomStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
           "IAlmostLockedSetsWWingStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
           "IAlmostLockedSetsXyWingStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],

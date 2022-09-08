@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Buffers;
+﻿namespace Sudoku.Buffers;
 
 /// <summary>
 /// Indicates a pool that stores the <see cref="IStepSearcher"/>s.

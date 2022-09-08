@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku;
 
 /// <include
 ///     file='../../global-doc-comments.xml'
