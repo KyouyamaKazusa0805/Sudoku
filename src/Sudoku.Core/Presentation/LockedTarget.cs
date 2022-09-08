@@ -65,11 +65,11 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 	bool IEquatable<LockedTarget>.Equals(LockedTarget other) => Equals(other);
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(scoped in LockedTarget left, scoped in LockedTarget right) => left.Equals(right);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(scoped in LockedTarget left, scoped in LockedTarget right) => !(left == right);
 

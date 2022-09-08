@@ -180,7 +180,7 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 		return originalView;
 	}
 
-	/// <inheritdoc cref="operator |(View, IEnumerable{ViewNode})"/>
+	/// <inheritdoc cref="op_BitwiseOr(View, IEnumerable{ViewNode})"/>
 	public static View operator |(View originalView, ViewNode[]? highlightedItems)
 	{
 		if (highlightedItems is null)
