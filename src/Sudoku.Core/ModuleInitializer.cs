@@ -9,7 +9,7 @@ internal static class ModuleInitializer
 	///     file='../../global-doc-comments.xml'
 	///     path='g/csharp9/feature[@name="module-initializer"]/target[@name="method"]' />
 	[ModuleInitializer]
-	[RequiresUnreferencedCode("Calls System.Reflection.Assembly.GetTypes()")]
+	[RequiresUnreferencedCode("This is a method called 'Module Initializer'. The method is reserved for compiler usage and you cannot call this method explicitly.")]
 	public static void Initialize()
 	{
 		var listOfStepSearchers = new List<IStepSearcher>();
@@ -47,7 +47,7 @@ internal static class ModuleInitializer
 				case { Length: not 0 } optionalAssignments:
 				{
 					// Sort the attribute instances via the priority.
-					Array.Sort(optionalAssignments, new SeparatedStepSearcherAttributeComparer());
+					Array.Sort(optionalAssignments, static (x, y) => x.Priority.CompareTo(y.Priority));
 
 					// Iterate on each attribute instances.
 					foreach (var attributeInstance in optionalAssignments)
@@ -115,11 +115,7 @@ internal static class ModuleInitializer
 		}
 
 		// Assign the result.
-		listOfStepSearchers.Sort(stepSearcherOrderingComparison);
-		StepSearcherPool.Collection = listOfStepSearchers.ToArray();
-
-
-		static int stepSearcherOrderingComparison(IStepSearcher s1, IStepSearcher s2)
+		listOfStepSearchers.Sort(static (s1, s2) =>
 		{
 			if (s1.Options.Priority > s2.Options.Priority)
 			{
@@ -139,23 +135,7 @@ internal static class ModuleInitializer
 			}
 
 			return 0;
-		}
+		});
+		StepSearcherPool.Collection = listOfStepSearchers.ToArray();
 	}
-}
-
-/// <summary>
-/// Defines a comparer instance that compares two instances of type <see cref="SeparatedStepSearcherAttribute"/>.
-/// </summary>
-/// <seealso cref="SeparatedStepSearcherAttribute"/>
-file sealed class SeparatedStepSearcherAttributeComparer : IComparer<SeparatedStepSearcherAttribute>
-{
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int Compare(SeparatedStepSearcherAttribute? x, SeparatedStepSearcherAttribute? y)
-		=> (x, y) switch
-		{
-			(null, null) => 0, // Same.
-			(not null, not null) => ((IComparable<SeparatedStepSearcherAttribute>)x).CompareTo(y),
-			_ => throw new InvalidOperationException($"The method requires both arguments {nameof(x)} and {nameof(y)} are null, or not null.")
-		};
 }

@@ -10,7 +10,7 @@
 /// </remarks>
 /// <seealso cref="IStepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-public sealed class SeparatedStepSearcherAttribute : Attribute, IComparable<SeparatedStepSearcherAttribute>
+public sealed class SeparatedStepSearcherAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="SeparatedStepSearcherAttribute"/> instance via the specified array
@@ -31,14 +31,4 @@ public sealed class SeparatedStepSearcherAttribute : Attribute, IComparable<Sepa
 	/// Indicates the property names and the values.
 	/// </summary>
 	public object[] PropertyNamesAndValues { get; }
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable<SeparatedStepSearcherAttribute>.CompareTo(SeparatedStepSearcherAttribute? other)
-	{
-		ArgumentNullException.ThrowIfNull(other);
-
-		return Priority.CompareTo(Priority);
-	}
 }

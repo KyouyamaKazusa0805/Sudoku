@@ -4062,15 +4062,6 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Sudoku.SeparatedStepSearcherAttributeComparer">
-            <summary>
-            Defines a comparer instance that compares two instances of type <see cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>
-        </member>
-        <member name="M:Sudoku.SeparatedStepSearcherAttributeComparer.Compare(Sudoku.Solving.Manual.SeparatedStepSearcherAttribute,Sudoku.Solving.Manual.SeparatedStepSearcherAttribute)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Presentation.DisplayColorKind">
             <summary>
             Defines a display color kind.
@@ -17793,9 +17784,6 @@
             <summary>
             Indicates the property names and the values.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute.System#IComparable{Sudoku#Solving#Manual#SeparatedStepSearcherAttribute}#CompareTo(Sudoku.Solving.Manual.SeparatedStepSearcherAttribute)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.SolverResultFormattingOptions">
             <summary>
