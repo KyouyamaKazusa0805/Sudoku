@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a searcher that searches for the true candidates of the current sudoku grid.
 /// </summary>
-public sealed unsafe class TrueCandidatesSearcher
+public sealed class TrueCandidatesSearcher
 {
 	/// <summary>
 	/// Initializes an instance with the specified grid.
@@ -41,7 +41,7 @@ public sealed unsafe class TrueCandidatesSearcher
 	/// <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>All true candidates.</returns>
-	public Candidates GetAllTrueCandidates(int maximumEmptyCells, CancellationToken cancellationToken = default)
+	public unsafe Candidates GetAllTrueCandidates(int maximumEmptyCells, CancellationToken cancellationToken = default)
 	{
 		// Get the number of multi-value cells.
 		// If the number of that is greater than the specified number,
@@ -94,7 +94,7 @@ public sealed unsafe class TrueCandidatesSearcher
 			mask = Puzzle.GetCandidates(multivalueCells[i]);
 
 			// e.g. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
-			short[] pairList = MaskMarshal.GetMaskSubsets(mask, 2);
+			short[] pairList = GetMaskSubsets(mask, 2);
 
 			// e.g. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
 			pairs[i, 0] = (short)pairList.Length;

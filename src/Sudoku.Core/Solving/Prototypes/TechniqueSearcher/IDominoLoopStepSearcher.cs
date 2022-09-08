@@ -140,7 +140,7 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 			}
 
 			// Check all combinations.
-			short[] masks = MaskMarshal.GetMaskSubsets(candidateMask);
+			short[] masks = GetMaskSubsets(candidateMask);
 			for (int j = masks.Length - 1; j >= 0; j--)
 			{
 				short mask = masks[j];

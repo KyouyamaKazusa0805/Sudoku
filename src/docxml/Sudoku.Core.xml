@@ -7957,26 +7957,6 @@
         <member name="M:Sudoku.Runtime.AnalysisServices.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.MaskMarshal">
-            <summary>
-            Provides with a serial of methods that handles with masks.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.MaskMarshal.GetMaskSubsets(System.Int16)">
-            <summary>
-            Get all mask combinations.
-            </summary>
-            <param name="value">The mask.</param>
-            <returns>The result list.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.MaskMarshal.GetMaskSubsets(System.Int16,System.Int32)">
-            <summary>
-            Get all mask combinations.
-            </summary>
-            <param name="value">The mask.</param>
-            <param name="size">The size.</param>
-            <returns>The result list.</returns>
-        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.SearcherDisabledReason">
             <summary>
             Indicates a reason why the searcher is disabled.
@@ -8387,6 +8367,21 @@
             <param name="mask">The mask.</param>
             <returns>The cell status.</returns>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.GetMaskSubsets(System.Int16)">
+            <summary>
+            Get all mask combinations.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The result list.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.GetMaskSubsets(System.Int16,System.Int32)">
+            <summary>
+            Get all mask combinations.
+            </summary>
+            <param name="value">The mask.</param>
+            <param name="size">The size.</param>
+            <returns>The result list.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.BackdoorSearcher">
             <summary>
