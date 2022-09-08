@@ -38,9 +38,9 @@ partial struct Grid
 		/// even though C# allows we passing a constant as an <see langword="in"/> argument.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal CandidateCollectionEnumerator(in short arr)
+		internal CandidateCollectionEnumerator(ref short arr)
 		{
-			_refCurrent = ref Unsafe.SubtractByteOffset(ref Unsafe.AsRef(arr), 1);
+			_refCurrent = ref Unsafe.SubtractByteOffset(ref arr, 1);
 			_start = ref _refCurrent;
 		}
 
@@ -83,7 +83,7 @@ partial struct Grid
 			while (_currentIndex < 81)
 			{
 				_currentIndex++;
-				if (MaskToStatus(Unsafe.AddByteOffset(ref _start, (nint)_currentIndex)) == CellStatus.Empty)
+				if (MaskToStatus(Unsafe.AddByteOffset(ref _start, _currentIndex)) == CellStatus.Empty)
 				{
 					break;
 				}
@@ -94,7 +94,7 @@ partial struct Grid
 				return false;
 			}
 
-			_refCurrent = ref Unsafe.AddByteOffset(ref _start, (nint)(_currentIndex + 1));
+			_refCurrent = ref Unsafe.AddByteOffset(ref _start, _currentIndex + 1);
 			_currentMask = (short)(_refCurrent & MaxCandidatesMask);
 
 			return true;

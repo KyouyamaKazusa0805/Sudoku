@@ -32,9 +32,9 @@ partial struct Grid
 		/// Note here we should point at the one-unit-length memory before the array start.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal MaskCollectionEnumerator(in short arr)
+		internal MaskCollectionEnumerator(ref short arr)
 		{
-			_refCurrent = ref Unsafe.SubtractByteOffset(ref Unsafe.AsRef(arr), 1);
+			_refCurrent = ref Unsafe.SubtractByteOffset(ref arr, 1);
 			_start = ref _refCurrent;
 		}
 

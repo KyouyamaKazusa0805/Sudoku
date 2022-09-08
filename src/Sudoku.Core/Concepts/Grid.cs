@@ -1035,8 +1035,9 @@ public unsafe partial struct Grid :
 		{
 			{ IsEmpty: true } => "<Empty>",
 			{ IsUndefined: true } => "<Undefined>",
-			_ when GridFormatterFactory.Create(format) is var f
-				=> format switch
+			_ => GridFormatterFactory.Create(format) switch
+			{
+				var f => format switch
 				{
 					":" => ExtendedSusserEliminationsRegex().Match(f.ToString(this)) switch
 					{
@@ -1047,8 +1048,8 @@ public unsafe partial struct Grid :
 					".!" or "!." or "0!" or "!0" => f.ToString(this).RemoveAll('+'),
 					".!:" or "!.:" or "0!:" => f.ToString(this).RemoveAll('+'),
 					_ => f.ToString(this)
-				},
-			_ => throw new FormatException("The current status is invalid.")
+				}
+			}
 		};
 
 	/// <summary>
@@ -1074,7 +1075,7 @@ public unsafe partial struct Grid :
 	/// to iterate all possible candidates in the current grid.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateCollectionEnumerator EnumerateCandidates() => new(_values[0]);
+	public readonly CandidateCollectionEnumerator EnumerateCandidates() => new(ref Unsafe.AsRef(_values[0]));
 
 	/// <summary>
 	/// Try to enumerate the mask table of the current grid.
@@ -1095,7 +1096,7 @@ public unsafe partial struct Grid :
 	/// </code>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly MaskCollectionEnumerator EnumerateMasks() => new(_values[0]);
+	public readonly MaskCollectionEnumerator EnumerateMasks() => new(ref Unsafe.AsRef(_values[0]));
 
 	/// <summary>
 	/// Reset the sudoku grid, to set all modifiable values to empty ones.
