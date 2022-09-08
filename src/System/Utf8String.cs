@@ -42,7 +42,7 @@ public readonly unsafe struct Utf8String :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Utf8String(Utf8Char* value)
 	{
-		int length = PointerMarshal.StringLengthOf(value);
+		int length = PointerOperations.StringLengthOf(value);
 		_value = new Utf8Char[length];
 		fixed (Utf8Char* ptrValue = _value)
 		{

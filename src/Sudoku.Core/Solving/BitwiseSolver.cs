@@ -350,7 +350,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 			_g = g;
 		}
 
-		switch (PointerMarshal.StringLengthOf(puzzle))
+		switch (PointerOperations.StringLengthOf(puzzle))
 		{
 			case 81:
 			{

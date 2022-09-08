@@ -16,7 +16,7 @@ internal abstract class FullHouseExerciseGenerator : IExerciseGenerator
 		{
 			int rawValue = random.Next(0, 81);
 			int i1 = rawValue / 9, i2 = rawValue % 9;
-			PointerMarshal.Swap(numbers + i1, numbers + i2);
+			PointerOperations.Swap(numbers + i1, numbers + i2);
 		}
 
 		int house = random.Next(0, 27);

@@ -152,7 +152,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 			}
 
 			// Iterate on the base set combination.
-			foreach (int[] bs in PointerMarshal.GetArrayFromStart(pBase, 10, 1, true).GetSubsets(size))
+			foreach (int[] bs in PointerOperations.GetArrayFromStart(pBase, 10, 1, true).GetSubsets(size))
 			{
 				// 'baseLine' is the map that contains all base set cells.
 				var baseLine = size switch
@@ -165,7 +165,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 				};
 
 				// Iterate on the cover set combination.
-				foreach (int[] cs in PointerMarshal.GetArrayFromStart(pCover, 10, 1, true).GetSubsets(size))
+				foreach (int[] cs in PointerOperations.GetArrayFromStart(pCover, 10, 1, true).GetSubsets(size))
 				{
 					// 'coverLine' is the map that contains all cover set cells.
 					var coverLine = size switch

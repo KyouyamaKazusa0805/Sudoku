@@ -81,7 +81,7 @@ public static unsafe class GridTransformations
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					PointerMarshal.Swap(p + (i * 9 + j), p + (i * 9 + (8 - j)));
+					PointerOperations.Swap(p + (i * 9 + j), p + (i * 9 + (8 - j)));
 				}
 			}
 		}
@@ -106,7 +106,7 @@ public static unsafe class GridTransformations
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					PointerMarshal.Swap(p + (i * 9 + j), p + ((8 - i) * 9 + j));
+					PointerOperations.Swap(p + (i * 9 + j), p + ((8 - i) * 9 + j));
 				}
 			}
 		}
@@ -131,7 +131,7 @@ public static unsafe class GridTransformations
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					PointerMarshal.Swap(p + (i * 9 + j), p + (j * 9 + i));
+					PointerOperations.Swap(p + (i * 9 + j), p + (j * 9 + i));
 				}
 			}
 		}
@@ -168,7 +168,7 @@ public static unsafe class GridTransformations
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					PointerMarshal.Swap(p + (i * 9 + j), p + ((8 - j) * 9 + (8 - i)));
+					PointerOperations.Swap(p + (i * 9 + j), p + ((8 - j) * 9 + (8 - i)));
 				}
 			}
 		}
@@ -274,7 +274,7 @@ public static unsafe class GridTransformations
 		{
 			for (int i = 0; i < 9; i++)
 			{
-				PointerMarshal.Swap(p + HouseCells[houseIndex1][i], p + HouseCells[houseIndex2][i]);
+				PointerOperations.Swap(p + HouseCells[houseIndex1][i], p + HouseCells[houseIndex2][i]);
 			}
 		}
 

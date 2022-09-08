@@ -147,19 +147,19 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 	{
 		for (int i = 23; i >= 0; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + (int)((i + 1) * _random.NextDouble()));
+			PointerOperations.Swap(pattern + i, pattern + (int)((i + 1) * _random.NextDouble()));
 		}
 		for (int i = 47; i >= 24; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + 24 + (int)((i - 23) * _random.NextDouble()));
+			PointerOperations.Swap(pattern + i, pattern + 24 + (int)((i - 23) * _random.NextDouble()));
 		}
 		for (int i = 53; i >= 48; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + 48 + (int)((i - 47) * _random.NextDouble()));
+			PointerOperations.Swap(pattern + i, pattern + 48 + (int)((i - 47) * _random.NextDouble()));
 		}
 		for (int i = 80; i >= 54; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + 54 + (int)(27 * _random.NextDouble()));
+			PointerOperations.Swap(pattern + i, pattern + 54 + (int)(27 * _random.NextDouble()));
 		}
 	}
 

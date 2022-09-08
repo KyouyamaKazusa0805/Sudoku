@@ -68,6 +68,6 @@ internal abstract record FishStep(
 		}
 
 		// Parses via the buffer, and returns the result.
-		return Enum.Parse<Technique>(new string(PointerMarshal.GetArrayFromStart(buffer, bufferLength, 0)));
+		return Enum.Parse<Technique>(new string(PointerOperations.GetArrayFromStart(buffer, bufferLength, 0)));
 	}
 }

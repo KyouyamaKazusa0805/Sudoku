@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides methods for pointer handling.
 /// </summary>
-public static unsafe class PointerMarshal
+public static unsafe class PointerOperations
 {
 	/// <summary>
 	/// To swap the two variables using pointers when the pointee is an <see langword="unmanaged"/> type.
