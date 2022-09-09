@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Runtime.AnalysisServices.Configuration;
 
 /// <summary>
 /// Defines an attribute that can be applied to the solving assembly,
@@ -6,8 +6,7 @@
 /// </summary>
 /// <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true, Inherited = false)]
-public sealed class SearcherConfigurationAttribute<TStepSearcher> : Attribute
-	where TStepSearcher : class, IStepSearcher
+public sealed class SearcherConfigurationAttribute<TStepSearcher> : Attribute where TStepSearcher : class, IStepSearcher
 {
 	/// <summary>
 	/// Initializes a <see cref="SearcherConfigurationAttribute{TStepSearcher}"/> instance

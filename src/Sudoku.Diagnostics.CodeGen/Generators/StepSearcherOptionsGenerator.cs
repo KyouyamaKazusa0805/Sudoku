@@ -52,7 +52,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				// Gather the valid attributes data.
 				var foundAttributesData = new List<FoundAttributeData>();
 				const string comma = ", ";
-				const string attributeTypeName = $"global::Sudoku.Solving.Manual.SearcherConfigurationAttribute<>";
+				const string attributeTypeName = $"global::Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute<>";
 				int priorityValue = 0;
 				foreach (var attributeData in attributesData)
 				{

@@ -1,21 +1,20 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Gatherers;
+﻿namespace Sudoku.Solving.Specialized;
 
 /// <summary>
 /// Defines a conjugate pair gatherer.
 /// </summary>
-internal interface IConjugatesGatherer
+internal interface IConjugatesGatherer : IStructureGatherer<Conjugate>
 {
 	/// <summary>
 	/// Gathers possible conjugate pairs grouped by digit.
 	/// </summary>
-	/// <param name="grid">The grid to be used.</param>
 	/// <returns>The conjugate pairs found, grouped by digit.</returns>
-	/// <remarks>
+	/// <remarks><i>
 	/// This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
 	/// by calling the method <see cref="InitializeMaps(in Grid)"/>.
-	/// </remarks>
+	/// </i></remarks>
 	/// <seealso cref="InitializeMaps(in Grid)"/>
-	protected internal static sealed ICollection<Conjugate>?[] Gather(scoped in Grid grid)
+	protected internal static sealed ICollection<Conjugate>?[] Gather()
 	{
 		var conjugatePairs = new ICollection<Conjugate>?[9];
 		for (int digit = 0; digit < 9; digit++)
@@ -31,4 +30,7 @@ internal interface IConjugatesGatherer
 
 		return conjugatePairs;
 	}
+
+	/// <inheritdoc/>
+	static ICollection<Conjugate>?[] IStructureGatherer<Conjugate>.Gather(scoped in Grid grid) => Gather();
 }

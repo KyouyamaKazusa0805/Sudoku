@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Runtime.AnalysisServices.Configuration;
 
 /// <summary>
 /// Defines an attribute that applies to a step searcher, to define more options on UI configurations.

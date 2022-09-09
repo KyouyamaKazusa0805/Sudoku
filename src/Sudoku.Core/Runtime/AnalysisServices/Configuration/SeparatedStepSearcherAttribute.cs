@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Runtime.AnalysisServices.Configuration;
 
 /// <summary>
 /// Defines an attribute that applies to an instance having implemented <see cref="IStepSearcher"/>,

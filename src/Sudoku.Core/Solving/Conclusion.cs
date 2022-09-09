@@ -5,11 +5,11 @@
 /// </summary>
 /// <remarks>
 /// Two <see cref="Conclusion"/>s can be compared with each other. If one of those two is an elimination
-/// (i.e. holds the value <see cref="ConclusionType.Elimination"/> as the type), the instance
+/// (i.e. holds the value <see cref="Elimination"/> as the type), the instance
 /// will be greater; if those two hold same conclusion type, but one of those two holds
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
-/// <seealso cref="ConclusionType.Elimination"/>
+/// <seealso cref="Elimination"/>
 [AutoDeconstruction(nameof(ConclusionType), nameof(Candidate))]
 [AutoDeconstruction(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 public readonly partial struct Conclusion :
@@ -90,7 +90,7 @@ public readonly partial struct Conclusion :
 
 	/// <summary>
 	/// The conclusion type to control the action of applying.
-	/// If the type is <see cref="ConclusionType.Assignment"/>,
+	/// If the type is <see cref="Assignment"/>,
 	/// this conclusion will be set value (Set a digit into a cell);
 	/// otherwise, a candidate will be removed.
 	/// </summary>
@@ -110,12 +110,12 @@ public readonly partial struct Conclusion :
 	{
 		switch (ConclusionType)
 		{
-			case ConclusionType.Assignment:
+			case Assignment:
 			{
 				grid[Cell] = Digit;
 				break;
 			}
-			case ConclusionType.Elimination:
+			case Elimination:
 			{
 				grid[Cell, Digit] = false;
 				break;

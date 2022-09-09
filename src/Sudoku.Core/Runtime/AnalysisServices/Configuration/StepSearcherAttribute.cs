@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Runtime.AnalysisServices.Configuration;
 
 /// <summary>
 /// To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.

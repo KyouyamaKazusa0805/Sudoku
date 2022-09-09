@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving.Prototypes;
 
 /// <summary>
 /// Defines an instance that stores the options that bound with a <see cref="ManualSolver"/> instance.

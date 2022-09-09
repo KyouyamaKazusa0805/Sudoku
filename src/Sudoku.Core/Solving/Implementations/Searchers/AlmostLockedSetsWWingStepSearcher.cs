@@ -9,7 +9,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 
 		// Gather all conjugate pairs.
-		var conjugatePairs = IConjugatesGatherer.Gather(grid);
+		var conjugatePairs = IConjugatesGatherer.Gather();
 
 		// Iterate on each ALS.
 		for (int i = 0, length = alses.Length, iterationLength = length - 1; i < iterationLength; i++)

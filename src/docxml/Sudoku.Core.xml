@@ -21,7 +21,7 @@
             </para>
             <para>
             If a step searcher doesn't rely on this class, it'll be <see langword="true"/> for the property named
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
             If you find that the step searcher marks that attribute,
             you can call it everywhere safely; however, if the searcher isn't marked that attribute, you
             can't call it everywhere unless you call the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
@@ -41,7 +41,7 @@
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
             <seealso cref="T:Sudoku.Solving.Implementations.Solvers.ManualSolver"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.EmptyCells">
@@ -51,10 +51,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.BivalueCells">
             <summary>
@@ -63,10 +63,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.CandidatesMap">
             <summary>
@@ -75,10 +75,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.DigitsMap">
             <summary>
@@ -87,10 +87,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.ValuesMap">
             <summary>
@@ -99,10 +99,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)">
             <summary>
@@ -7982,6 +7982,140 @@
         <member name="M:Sudoku.Runtime.AnalysisServices.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1">
+            <summary>
+            Defines an attribute that can be applied to the solving assembly,
+            to tell the source generator that the searcher option instance will be generated in the specified type.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.#ctor(Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1"/> instance
+            via the specified displaying level.
+            </summary>
+            <param name="displayingLevel">The displaying level.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.Priority">
+            <summary>
+            Indicates the priority of the step searcher. The priority value must be unique,
+            which means that different step searchers must hold different priority values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.DisplayingLevel">
+            <summary>
+            Indicates the level of the step searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.EnabledArea">
+            <summary>
+            Indicates the area that the step searcher can be used and available.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.DisabledReason">
+            <summary>
+            Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.EnabledArea"/>
+            is <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute">
+            <summary>
+            Defines an attribute that applies to an instance having implemented <see cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>,
+            to create the options that will be used by the module initializer.
+            </summary>
+            <remarks>
+            Please note that the attribute is optional, which means you don't need to use the attribute
+            on all step searchers.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.#ctor(System.Int32,System.Object[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/> instance via the specified array
+            of element type <see cref="T:System.Object"/>, indicating the property names and their values.
+            </summary>
+            <param name="priority">Indicates the priority that will be used for the ordering.</param>
+            <param name="propertyNamesAndValues">The array of property names and their values.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.Priority">
+            <summary>
+            Indicates the priority value that will be used for the ordering.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.PropertyNamesAndValues">
+            <summary>
+            Indicates the property names and the values.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherAttribute">
+            <summary>
+            To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute">
+            <summary>
+            Defines an attribute that applies to a step searcher, to define more options on UI configurations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsOptionsFixed">
+            <summary>
+            <para>Indicates whether the option is fixed that can't be modified in UI.</para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect">
+            <summary>
+            <para>
+            Indicates the technique searcher can or can't be used in some scenarios
+            where they aren't in traversing mode to call
+            <see cref="M:Sudoku.Solving.Prototypes.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>
+            in <see cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>s one by one.
+            </para>
+            <para>
+            If <see langword="true"/>, the searcher can't use those <see langword="static"/>
+            properties such as <see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/> in its method
+            <see cref="M:Sudoku.Solving.Prototypes.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>.
+            </para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+            <remarks>
+            <para>
+            All disallowed properties are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Buffers.FastProperties.DigitsMap"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.ValuesMap"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.BivalueCells"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.EmptyCells"/></item>
+            </list>
+            The disallowed method is:
+            <list type="bullet">
+            <item><see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/></item>
+            </list>
+            </para>
+            <para>
+            Those properties or methods can optimize the performance to analyze a sudoku grid, but
+            sometimes they may cause a potential bug that is hard to find and fix. The attribute
+            is created and used for solving the problem.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>
+            <seealso cref="T:Sudoku.Buffers.FastProperties"/>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.PuzzleNotRelying">
+            <summary>
+            <para>Indicates whether the specified step searcher doesn't rely on the puzzle.</para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDeprecated">
+            <summary>
+            <para>Indicates whether the step searcher is deprecated.</para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.SearcherDisabledReason">
             <summary>
             Indicates a reason why the searcher is disabled.
@@ -11091,757 +11225,6 @@
         <member name="M:Sudoku.Solving.ExocetElimination.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.Gatherers.IConjugatesGatherer">
-            <summary>
-            Defines a conjugate pair gatherer.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Gatherers.IConjugatesGatherer.Gather(Sudoku.Concepts.Grid@)">
-            <summary>
-            Gathers possible conjugate pairs grouped by digit.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <returns>The conjugate pairs found, grouped by digit.</returns>
-            <remarks>
-            This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
-            by calling the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IAlmostHiddenSetsStepSearcher">
-            <summary>
-            Provides with an <b>Almost Hidden Sets</b> step searcher.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.IAlmostHiddenSetsStepSearcher.Gather(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Solving.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)"/>
-            <remarks>
-            Different with the original method <see cref="M:Sudoku.Solving.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)"/>,
-            this method will only uses the buffer to determine the info, which is unsafe
-            when calling the method without having initialized those maps in the buffer type,
-            <see cref="T:Sudoku.Buffers.FastProperties"/>.
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Patterns.AlmostHiddenSet"/>
-            <seealso cref="M:Sudoku.Solving.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="T:Sudoku.Buffers.FastProperties"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher">
-            <summary>
-            Defines a steps searcher that searches for cell-linking loop steps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherGuardianLoops(System.Int32)">
-            <summary>
-            Try to gather all possible loops which should satisfy the specified condition.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <returns>
-            Returns a list of array of candidates used in the loop, as the data of possible found loops.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherUniqueLoops(System.Int16)">
-            <summary>
-            Try to gather all possible loops being used in technique unique loops,
-            which should satisfy the specified condition.
-            </summary>
-            <param name="digitsMask">The digits used.</param>
-            <returns>
-            Returns a list of array of candidates used in the loop, as the data of possible found loops.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherBivalueOddagons(System.Int16)">
-            <summary>
-            Try to gather all possible loops being used in technique bi-value oddagons,
-            which should satisfy the specified condition.
-            </summary>
-            <param name="digitsMask">The digits used.</param>
-            <returns>
-            Returns a list of array of candidates used in the loop, as the data of possible found loops.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.UniqueLoopSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines a templating method that can determine whether a loop is a valid unique loop.
-            </summary>
-            <param name="loop">The loop to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
-            </summary>
-            <param name="loop">The loop to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_Guardian(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.GuardianDataInfo})">
-            <summary>
-            Checks for guardian loops using recursion.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_UniqueLoop(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.UniqueLoopDataInfo})">
-            <summary>
-            Checks for unique loops using recursion.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_BivalueOddagon(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo})">
-            <summary>
-            Checks for bi-value oddagon loops using recursion.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IStepSearcherRequiresSolution">
-            <summary>
-            Indicates a step searcher that requires a solution grid for the technique searching usages.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.Specialized.IStepSearcherRequiresSolution.Solution">
-            <summary>
-            Indicates the reference of the solution sudoku grid.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.IManualSolverOptions">
-            <summary>
-            Defines an instance that stores the options that bound with a <see cref="T:Sudoku.Solving.Implementations.Solvers.ManualSolver"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Implementations.Solvers.ManualSolver"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.IsFullApplying">
-            <summary>
-            Indicates whether the solver will apply all found steps in a step searcher,
-            in order to solve a puzzle faster. If the value is <see langword="true"/>,
-            the third argument of <see cref="M:Sudoku.Solving.Prototypes.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>
-            will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
-            and all steps will be applied at the same time.
-            </summary>
-            <seealso cref="M:Sudoku.Solving.Prototypes.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.IgnoreSlowAlgorithms">
-            <summary>
-            Indicates whether the solver will ignore slow step searchers being marked <see cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.CustomSearcherCollection">
-            <summary>
-            <para>
-            Indicates the custom searcher collection you defined to solve a puzzle. By default,
-            the solver will use <see cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/> to solve a puzzle.
-            If you assign a new array of <see cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>s into this property
-            the step searchers will use this property instead of <see cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/>
-            to solve a puzzle.
-            </para>
-            <para>
-            Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
-            however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/>
-            array into it.
-            </para>
-            </summary>
-            <seealso cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.IStepsGathererOptions">
-            <summary>
-            Defines an instance that stores the options that bound with a <see cref="T:Sudoku.Solving.Manual.StepsGatherer"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.StepsGatherer"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.IStepsGathererOptions.OnlyShowSameLevelTechniquesInFindAllSteps">
-            <summary>
-            Indicates whether the solver only displays the techniques with the same displaying level.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1">
-            <summary>
-            Defines an attribute that can be applied to the solving assembly,
-            to tell the source generator that the searcher option instance will be generated in the specified type.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.#ctor(Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1"/> instance
-            via the specified displaying level.
-            </summary>
-            <param name="displayingLevel">The displaying level.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.Priority">
-            <summary>
-            Indicates the priority of the step searcher. The priority value must be unique,
-            which means that different step searchers must hold different priority values.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.DisplayingLevel">
-            <summary>
-            Indicates the level of the step searcher.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.EnabledArea">
-            <summary>
-            Indicates the area that the step searcher can be used and available.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.DisabledReason">
-            <summary>
-            Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.EnabledArea"/>
-            is <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute">
-            <summary>
-            Defines an attribute that applies to an instance having implemented <see cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>,
-            to create the options that will be used by the module initializer.
-            </summary>
-            <remarks>
-            Please note that the attribute is optional, which means you don't need to use the attribute
-            on all step searchers.
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute.#ctor(System.Int32,System.Object[])">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/> instance via the specified array
-            of element type <see cref="T:System.Object"/>, indicating the property names and their values.
-            </summary>
-            <param name="priority">Indicates the priority that will be used for the ordering.</param>
-            <param name="propertyNamesAndValues">The array of property names and their values.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute.Priority">
-            <summary>
-            Indicates the priority value that will be used for the ordering.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute.PropertyNamesAndValues">
-            <summary>
-            Indicates the property names and the values.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.SolverResultFormattingOptions">
-            <summary>
-            Indicates the formatting options of <see cref="T:Sudoku.Solving.Implementations.Solvers.ManualSolverResult"/> instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.None">
-            <summary>
-            Indicates the none of the formatting option.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowSeparators">
-            <summary>
-            Indicates the analysis result will append separators.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowStepLabel">
-            <summary>
-            Indicates the analysis result will append the step label.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowSimple">
-            <summary>
-            Indicates the analysis result will use simple mode to show steps.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowBottleneck">
-            <summary>
-            Indicates the analysis result will show the bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowDifficulty">
-            <summary>
-            Indicates the analysis result will show the difficulty.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowStepsAfterBottleneck">
-            <summary>
-            Indicates the analysis result will show all steps after the bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowStepDetail">
-            <summary>
-            Indicates the analysis result will show the step detail.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowSteps">
-            <summary>
-            Indicates the analysis result will show the steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IChainLikeStep">
-            <summary>
-            Defines a step is chain-like one.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Specialized.IChainLikeStep.GetExtraDifficultyByLength(System.Int32)">
-            <summary>
-            Get extra difficulty rating for a chain node sequence.
-            </summary>
-            <param name="length">The length.</param>
-            <returns>The difficulty.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IChainStep">
-            <summary>
-            Defines a chain step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IChainStep.FlatComplexity">
-            <summary>
-            Indicates the flat complexity.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IChainStep.SortKey">
-            <summary>
-            Indicates the sort key. The result will be a <see cref="T:Sudoku.Solving.Data.Representation.ChainTypeCode"/> instance to describe
-            what and how the chain behaves. Please visit the type <see cref="T:Sudoku.Solving.Data.Representation.ChainTypeCode"/>
-            to learn about more details for a chain.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Data.Representation.ChainTypeCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Specialized.IChainStep.ConclusionsEquals(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Boolean)">
-            <summary>
-            Determines whether two different list of <see cref="T:Sudoku.Solving.Conclusion"/>s holds the same values.
-            </summary>
-            <param name="lConclusions">The first conclusion list to compare.</param>
-            <param name="rConclusions">The second conclusion list to compare.</param>
-            <param name="shouldSort">Indicates whether the method will sort the lists firstly.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IDistinctableStep`1">
-            <summary>
-            Defines a step that can be distinctable.
-            </summary>
-            <typeparam name="TStep">The type of the element to compare.</typeparam>
-            <remarks>
-            A <b>distinctable step</b> is a step that is with the unique information,
-            in order that multiple steps of the same type can be recognized by the relative methods,
-            to filter and remove same-value instances.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)">
-            <summary>
-            To compare 2 instances of type <typeparamref name="TStep"/>,
-            to determine whether 2 instances holds the same value.
-            </summary>
-            <param name="left">Indicates the first instance to compare.</param>
-            <param name="right">Indicates the second instance to compare.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating whether the elements are same.
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>Two elements are same.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>Two elements holds the different values.</description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            The method can be the same implemented as the method <see cref="M:System.Object.Equals(System.Object)"/>,
-            but <see langword="record"/>s are automatically implemented the method, which is useless
-            and unmeaningful.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Specialized.IDistinctableStep`1.Distinct``1(System.Collections.Generic.IList{``0})">
-            <summary>
-            Distinct the list, that is, remove all duplicate elements in this list, that uses the method
-            <see cref="M:Sudoku.Solving.Manual.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/> defined in this interface.
-            </summary>
-            <typeparam name="TDistinctableStep">The type of the steps.</typeparam>
-            <param name="list">The list of steps to be processed.</param>
-            <returns>The list of steps.</returns>
-            <remarks>
-            This method does not change the ordering of the original list. In other words, if the original list
-            is in order, the final list after invoking this method will be also in order.
-            </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IElementaryStep">
-            <summary>
-            Defines a step whose technique used is the elementary one.
-            </summary>
-            <remarks>
-            Here we define that the techniques often appearing and commonly to be used as below are elementary:
-            <list type="bullet">
-            <item>Full House, Last Digit, Hidden Single, Naked Single</item>
-            <item>Pointing, Claiming</item>
-            <item>Naked Pair, Naked Triple, Naked Quadruple</item>
-            <item>Naked Pair (+), Naked Triple (+), Naked Quadruple (+)</item>
-            <item>Hidden Pair, Hidden Triple, Hidden Quadruple</item>
-            <item>Locked Pair, Locked Triple</item>
-            </list>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.ILoopLikeStep">
-            <summary>
-            Defines a step whose technique used is the loop.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.ILoopLikeStep.IsNice">
-            <summary>
-            <para>Indicates whether the current technique is the nice loop.</para>
-            <para>
-            A <b>Nice</b> loop is a loop that all weak links can be gathered to remove candidates
-            (if possible removable candidates exist).
-            </para>
-            </summary>
-            <returns>
-            The return value will be a <c><see cref="T:System.Boolean"/>?</c>:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The technique is the nice loop.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The technique is not a nice loop, e.g. a normal dynamic loop.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>
-            The technique is not a loop, but the structure forms a valid loop-shaped one, e.g. guardian.
-            </description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.ILoopStep">
-            <summary>
-            Defines the step whose technique used is the loop.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.ILoopStep.Sudoku#Solving#Manual#Steps#Specialized#ILoopLikeStep#IsNice">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IStepWithDistinctionDegree">
-            <summary>
-            Defines a step type that contains the property <c>Distinction Degree</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithDistinctionDegree.DistinctionDegree">
-            <summary>
-            Indicates the distinction degree of the step.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IStepWithPhasedDifficulty">
-            <summary>
-            Defines a type that holds an extra property to control advanced rule with extra difficulty value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithPhasedDifficulty.BaseDifficulty">
-            <summary>
-            Indicates the base difficulty of the step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithPhasedDifficulty.ExtraDifficultyValues">
-            <summary>
-            Indicates the extra difficulty values of the step, and its corresponding description.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithPhasedDifficulty.TotalDifficulty">
-            <summary>
-            Indicates the total difficulty value of the step.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IStepWithRank">
-            <summary>
-            Defines a step whose technique used is related to the rank theory,
-            which contains the property <c>Rank</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithRank.Rank">
-            <summary>
-            Indicates the rank of the technique structure.
-            </summary>
-            <returns>
-            The return value can be separated with the following cases:
-            <list type="table">
-            <listheader>
-            <term>Range</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term><c><![CDATA[> 1]]></c></term>
-            <description>
-            The technique cannot be applied any eliminations except the intersection
-            that all possible branches can see.
-            </description>
-            </item>
-            <item>
-            <term><c><![CDATA[1]]></c></term>
-            <description>
-            The technique can be applied eliminations that is like a normal AIC.
-            </description>
-            </item>
-            <item>
-            <term><c><![CDATA[0]]></c></term>
-            <description>
-            The technique can be applied eliminations that is like a nice loop. For example,
-            a Sue de Coq.
-            </description>
-            </item>
-            <item>
-            <term><c><![CDATA[<= 1]]></c></term>
-            <description>
-            The negative rank value cannot be formed because the technique structure is at an invalid status.
-            </description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            Please note that sometimes a complex structure may not contain a valid and stable rank value.
-            You can visit <see href="http://sudoku.allanbarker.com/sweb/old/wL03.htm">this link</see>
-            for more details about the mixed-rank structures.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IStepWithSize">
-            <summary>
-            Defines a step type that contains the property <c>Size</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithSize.Size">
-            <summary>
-            Indicates the size of the current step instance related to the specified technique.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.StepExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Solving.Prototypes.IStep"/> and <see cref="T:Sudoku.Solving.Implementations.Steps.Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Prototypes.IStep"/>
-            <seealso cref="T:Sudoku.Solving.Implementations.Steps.Step"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepExtensions.IsAlmostLockedSets``1(``0)">
-            <summary>
-            Indicates whether the corresponding technique of the current step is an Almost Locked Sets
-            (ALS in abbreviation).
-            </summary>
-            <typeparam name="TStep">The type of the step.</typeparam>
-            <param name="this">The <see cref="T:Sudoku.Solving.Prototypes.IStep"/> instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepExtensions.IsChaining``1(``0)">
-            <summary>
-            Indicates whether the corresponding technique of the current step is a chain. The chain techniques are:
-            <list type="bullet">
-            <item>
-            Wings
-            <list type="bullet">
-            <item>
-            Regular wings (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)
-            </item>
-            <item>
-            Irregular wings (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
-            </item>
-            </list>
-            </item>
-            <item>
-            Short chains
-            <list type="bullet">
-            <item>
-            Two strong links (Skyscraper, Two-string kite, Turbot fish)
-            </item>
-            <item>
-            ALS chaining-like techniques
-            <list type="bullet">
-            <item>ALS-XZ</item>
-            <item>ALS-XY-Wing</item>
-            <item>ALS-W-Wing</item>
-            </list>
-            </item>
-            <item>Empty rectangle</item>
-            </list>
-            </item>
-            <!--
-            <item>
-            Long chains
-            <list type="bullet">
-            <item>Forcing chains</item>
-            <item>Dynamic forcing chains</item>
-            </list>
-            </item>
-            -->
-            </list>
-            </summary>
-            <typeparam name="TStep">The type of the step.</typeparam>
-            <param name="this">The <see cref="T:Sudoku.Solving.Prototypes.IStep"/> instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepExtensions.IsDeadlyPattern``1(``0)">
-            <summary>
-            Indicates whether the corresponding technique of the current step is a deadly pattern.
-            The deadly pattern techniques are:
-            <list type="bullet">
-            <item>
-            Bi-value patterns
-            <list type="bullet">
-            <item>Unique rectangle (i.e. Uniqueness test)</item>
-            <item>Unique loop</item>
-            <item>Bi-value universal grave</item>
-            </list>
-            </item>
-            <item>
-            Multi-value patterns
-            <list type="bullet">
-            <item>Extended rectangle</item>
-            <item>Unique square</item>
-            <item>Unique polygon (Borescoper's deadly pattern as its alias)</item>
-            <item>Qiu's deadly pattern</item>
-            </list>
-            </item>
-            <!--
-            <item>
-            Other deadly patterns
-            <list type="bullet">
-            <item>Reverse bi-value universal grave</item>
-            </list>
-            </item>
-            -->
-            </list>
-            </summary>
-            <typeparam name="TStep">The type of the step.</typeparam>
-            <param name="this">The <see cref="T:Sudoku.Solving.Prototypes.IStep"/> instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.StepSearcherAttribute">
-            <summary>
-            To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.StepSearcherOptionsAttribute">
-            <summary>
-            Defines an attribute that applies to a step searcher, to define more options on UI configurations.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsOptionsFixed">
-            <summary>
-            <para>Indicates whether the option is fixed that can't be modified in UI.</para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect">
-            <summary>
-            <para>
-            Indicates the technique searcher can or can't be used in some scenarios
-            where they aren't in traversing mode to call
-            <see cref="M:Sudoku.Solving.Prototypes.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>
-            in <see cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>s one by one.
-            </para>
-            <para>
-            If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-            properties such as <see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/> in its method
-            <see cref="M:Sudoku.Solving.Prototypes.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>.
-            </para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-            <remarks>
-            <para>
-            All disallowed properties are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Buffers.FastProperties.DigitsMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.ValuesMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.BivalueCells"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.EmptyCells"/></item>
-            </list>
-            The disallowed method is:
-            <list type="bullet">
-            <item><see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/></item>
-            </list>
-            </para>
-            <para>
-            Those properties or methods can optimize the performance to analyze a sudoku grid, but
-            sometimes they may cause a potential bug that is hard to find and fix. The attribute
-            is created and used for solving the problem.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>
-            <seealso cref="T:Sudoku.Buffers.FastProperties"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.PuzzleNotRelying">
-            <summary>
-            <para>Indicates whether the specified step searcher doesn't rely on the puzzle.</para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDeprecated">
-            <summary>
-            <para>Indicates whether the step searcher is deprecated.</para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.StepSearcherPoolingExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Prototypes.IStepSearcher[])">
-            <summary>
-            Try to fetch a valid <typeparamref name="TStepSearcher"/> instance via the specified pool.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
-            <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
-            <returns>
-            The found step searcher instance. If the type is marked <see cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>,
-            the method will return the first found instance.
-            </returns>
-            <seealso cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Prototypes.IStepSearcher[],System.Boolean)">
-            <summary>
-            Try to fetch a valid <typeparamref name="TStepSearcher"/> instances via the specified pool.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
-            <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
-            <param name="getAll">
-            Indicates whether you want to fetch all possible instances at the same time.
-            </param>
-            <returns>
-            The found step searcher instances. If the type is marked <see cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>,
-            the method will return all possible instances, whose behavior is different with the other method
-            <see cref="M:Sudoku.Solving.Manual.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Prototypes.IStepSearcher[])"/>.
-            </returns>
-            <seealso cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/>
-            <seealso cref="M:Sudoku.Solving.Manual.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Prototypes.IStepSearcher[])"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.StepsGatherer">
-            <summary>
-            Defines a steps gatherer.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepsGatherer.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.WrongStepException">
-            <summary>
-            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Solving.Prototypes.IStep)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Manual.WrongStepException"/> with the specified invalid grid and the wrong step.
-            </summary>
-            <param name="grid">The invalid sudoku grid.</param>
-            <param name="wrongStep">The wrong step.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.WrongStepException.Message">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.WrongStepException.CurrentInvalidGrid">
-            <summary>
-            Indicates the invalid sudoku grid. This property is also stored in the property
-            <see cref="P:System.Exception.Data"/>.
-            </summary>
-            <seealso cref="P:System.Exception.Data"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.WrongStepException.WrongStep">
-            <summary>
-            Indicates the wrong step.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Implementations.Searchers.AlmostLockedCandidatesStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Prototypes.IAlmostLockedCandidatesStepSearcher"/>
         </member>
@@ -14210,6 +13593,17 @@
             </param>
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Solving.Implementations.Solvers.ManualSolverResult.Steps"/>
+        </member>
+        <member name="T:Sudoku.Solving.Implementations.StepGatherers.StepsGatherer">
+            <summary>
+            Defines a steps gatherer.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Implementations.StepGatherers.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Implementations.StepGatherers.StepsGatherer.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Implementations.Steps.AlmostLockedCandidatesStep">
             <summary>
@@ -19936,38 +19330,6 @@
             Rows where single found: <c>000</c> to <c>111</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.IStepGatherableSearcher`3">
-            <summary>
-            Defines a special step searcher that can gather all possible steps of various techniques, in a step.
-            </summary>
-            <typeparam name="TElement">
-            The type of the element. The type must be derived from <see cref="T:System.Linq.IGrouping`2"/>
-            in order to allow grouping the steps up by the technique kind.
-            </typeparam>
-            <typeparam name="TGroupingKey">
-            <para>
-            The key that is used for grouping different step kinds. Generally this type can be a <see cref="T:System.String"/>.
-            </para>
-            <para>
-            The reason why the base type is <see cref="T:System.IComparable`1"/> rather than <see cref="T:System.IEquatable`1"/>
-            is that the type may be used for sorting different kinds of steps by their own key.
-            Sorting operations generally rely on comparable objects.
-            </para>
-            </typeparam>
-            <typeparam name="TGroupingValue">
-            The value of the gathered steps. The type must be derived from the interface type <see cref="T:Sudoku.Solving.Prototypes.IStep"/>
-            and be a reference type.
-            </typeparam>
-        </member>
-        <member name="M:Sudoku.Solving.IStepGatherableSearcher`3.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            Search for all possible steps in a grid.
-            </summary>
-            <param name="puzzle">The puzzle grid.</param>
-            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
-            <returns>The result grouped by technique names.</returns>
-            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
-        </member>
         <member name="T:Sudoku.Solving.Patterns.AlmostHiddenSet">
             <summary>
             Defines a data structure that describes an AHS.
@@ -21866,6 +21228,45 @@
             </list>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Prototypes.IManualSolverOptions">
+            <summary>
+            Defines an instance that stores the options that bound with a <see cref="T:Sudoku.Solving.Implementations.Solvers.ManualSolver"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Implementations.Solvers.ManualSolver"/>
+        </member>
+        <member name="P:Sudoku.Solving.Prototypes.IManualSolverOptions.IsFullApplying">
+            <summary>
+            Indicates whether the solver will apply all found steps in a step searcher,
+            in order to solve a puzzle faster. If the value is <see langword="true"/>,
+            the third argument of <see cref="M:Sudoku.Solving.Prototypes.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>
+            will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
+            and all steps will be applied at the same time.
+            </summary>
+            <seealso cref="M:Sudoku.Solving.Prototypes.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)"/>
+        </member>
+        <member name="P:Sudoku.Solving.Prototypes.IManualSolverOptions.IgnoreSlowAlgorithms">
+            <summary>
+            Indicates whether the solver will ignore slow step searchers being marked <see cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>
+        </member>
+        <member name="P:Sudoku.Solving.Prototypes.IManualSolverOptions.CustomSearcherCollection">
+            <summary>
+            <para>
+            Indicates the custom searcher collection you defined to solve a puzzle. By default,
+            the solver will use <see cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/> to solve a puzzle.
+            If you assign a new array of <see cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>s into this property
+            the step searchers will use this property instead of <see cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/>
+            to solve a puzzle.
+            </para>
+            <para>
+            Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
+            however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/>
+            array into it.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/>
+        </member>
         <member name="T:Sudoku.Solving.Prototypes.IMultiBranchWWingStepSearcher">
             <summary>
             Provides with a <b>Multiple-Branch W-Wing</b> step searcher.
@@ -22336,6 +21737,38 @@
             the property will still use this name rather than <c>AssignmentStr</c>.
             </remarks>
         </member>
+        <member name="T:Sudoku.Solving.Prototypes.IStepGatherableSearcher`3">
+            <summary>
+            Defines a special step searcher that can gather all possible steps of various techniques, in a step.
+            </summary>
+            <typeparam name="TElement">
+            The type of the element. The type must be derived from <see cref="T:System.Linq.IGrouping`2"/>
+            in order to allow grouping the steps up by the technique kind.
+            </typeparam>
+            <typeparam name="TGroupingKey">
+            <para>
+            The key that is used for grouping different step kinds. Generally this type can be a <see cref="T:System.String"/>.
+            </para>
+            <para>
+            The reason why the base type is <see cref="T:System.IComparable`1"/> rather than <see cref="T:System.IEquatable`1"/>
+            is that the type may be used for sorting different kinds of steps by their own key.
+            Sorting operations generally rely on comparable objects.
+            </para>
+            </typeparam>
+            <typeparam name="TGroupingValue">
+            The value of the gathered steps. The type must be derived from the interface type <see cref="T:Sudoku.Solving.Prototypes.IStep"/>
+            and be a reference type.
+            </typeparam>
+        </member>
+        <member name="M:Sudoku.Solving.Prototypes.IStepGatherableSearcher`3.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Search for all possible steps in a grid.
+            </summary>
+            <param name="puzzle">The puzzle grid.</param>
+            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
+            <returns>The result grouped by technique names.</returns>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
+        </member>
         <member name="T:Sudoku.Solving.Prototypes.IStepSearcher">
             <summary>
             Defines a step searcher.
@@ -22353,9 +21786,9 @@
             </summary>
             <remarks>
             If you don't know what is a direct step searcher, please visit the property
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/> to learn more information.
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Solving.Prototypes.IStepSearcher.IsOptionsFixed">
             <summary>
@@ -22364,9 +21797,9 @@
             </summary>
             <remarks>
             If you don't know what is a direct step searcher, please visit the property
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsOptionsFixed"/> to learn more information.
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsOptionsFixed"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsOptionsFixed"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsOptionsFixed"/>
         </member>
         <member name="P:Sudoku.Solving.Prototypes.IStepSearcher.IsDeprecated">
             <summary>
@@ -22374,9 +21807,9 @@
             </summary>
             <remarks>
             If you don't know what is a direct step searcher, please visit the property
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDeprecated"/> to learn more information.
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDeprecated"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDeprecated"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDeprecated"/>
         </member>
         <member name="P:Sudoku.Solving.Prototypes.IStepSearcher.IsNotSupportedForSukaku">
             <summary>
@@ -22440,6 +21873,31 @@
             </item>
             </list>
             </returns>
+        </member>
+        <member name="T:Sudoku.Solving.Prototypes.IStepsGathererOptions">
+            <summary>
+            Defines an instance that stores the options that bound with an
+            <see cref="T:Sudoku.Solving.Prototypes.IStepGatherableSearcher`3"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Prototypes.IStepGatherableSearcher`3"/>
+        </member>
+        <member name="P:Sudoku.Solving.Prototypes.IStepsGathererOptions.OnlyShowSameLevelTechniquesInFindAllSteps">
+            <summary>
+            Indicates whether the solver only displays the techniques with the same displaying level.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Prototypes.IStructureGatherer`1">
+            <summary>
+            Provides with a gatherer that gathers all possible structures existing in a grid.
+            </summary>
+            <typeparam name="TResult">The type of result elements.</typeparam>
+        </member>
+        <member name="M:Sudoku.Solving.Prototypes.IStructureGatherer`1.Gather(Sudoku.Concepts.Grid@)">
+            <summary>
+            Gathers all possible structures from a sudoku grid.
+            </summary>
+            <param name="grid">The grid used.</param>
+            <returns>The results found.</returns>
         </member>
         <member name="T:Sudoku.Solving.Prototypes.ISubsetStepSearcher">
             <summary>
@@ -22771,6 +22229,564 @@
             <item>W-Wing (George Woods' Wing)</item>
             </list>
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.SolverResultFormattingOptions">
+            <summary>
+            Indicates the formatting options of <see cref="T:Sudoku.Solving.Implementations.Solvers.ManualSolverResult"/> instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.None">
+            <summary>
+            Indicates the none of the formatting option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowSeparators">
+            <summary>
+            Indicates the analysis result will append separators.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowStepLabel">
+            <summary>
+            Indicates the analysis result will append the step label.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowSimple">
+            <summary>
+            Indicates the analysis result will use simple mode to show steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowBottleneck">
+            <summary>
+            Indicates the analysis result will show the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowDifficulty">
+            <summary>
+            Indicates the analysis result will show the difficulty.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowStepsAfterBottleneck">
+            <summary>
+            Indicates the analysis result will show all steps after the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowStepDetail">
+            <summary>
+            Indicates the analysis result will show the step detail.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowSteps">
+            <summary>
+            Indicates the analysis result will show the steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IAlmostHiddenSetsStepSearcher">
+            <summary>
+            Provides with an <b>Almost Hidden Sets</b> step searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.IAlmostHiddenSetsStepSearcher.Gather(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Solving.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)"/>
+            <remarks>
+            Different with the original method <see cref="M:Sudoku.Solving.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)"/>,
+            this method will only uses the buffer to determine the info, which is unsafe
+            when calling the method without having initialized those maps in the buffer type,
+            <see cref="T:Sudoku.Buffers.FastProperties"/>.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Patterns.AlmostHiddenSet"/>
+            <seealso cref="M:Sudoku.Solving.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="T:Sudoku.Buffers.FastProperties"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher">
+            <summary>
+            Defines a steps searcher that searches for cell-linking loop steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherGuardianLoops(System.Int32)">
+            <summary>
+            Try to gather all possible loops which should satisfy the specified condition.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherUniqueLoops(System.Int16)">
+            <summary>
+            Try to gather all possible loops being used in technique unique loops,
+            which should satisfy the specified condition.
+            </summary>
+            <param name="digitsMask">The digits used.</param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GatherBivalueOddagons(System.Int16)">
+            <summary>
+            Try to gather all possible loops being used in technique bi-value oddagons,
+            which should satisfy the specified condition.
+            </summary>
+            <param name="digitsMask">The digits used.</param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.UniqueLoopSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid unique loop.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_Guardian(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.GuardianDataInfo})">
+            <summary>
+            Checks for guardian loops using recursion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_UniqueLoop(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.UniqueLoopDataInfo})">
+            <summary>
+            Checks for unique loops using recursion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_BivalueOddagon(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Solving.Data.Representation.BivalueOddagonDataInfo})">
+            <summary>
+            Checks for bi-value oddagon loops using recursion.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Specialized.IStepSearcherRequiresSolution">
+            <summary>
+            Indicates a step searcher that requires a solution grid for the technique searching usages.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Specialized.IStepSearcherRequiresSolution.Solution">
+            <summary>
+            Indicates the reference of the solution sudoku grid.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IChainLikeStep">
+            <summary>
+            Defines a step is chain-like one.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Specialized.IChainLikeStep.GetExtraDifficultyByLength(System.Int32)">
+            <summary>
+            Get extra difficulty rating for a chain node sequence.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The difficulty.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IChainStep">
+            <summary>
+            Defines a chain step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IChainStep.FlatComplexity">
+            <summary>
+            Indicates the flat complexity.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IChainStep.SortKey">
+            <summary>
+            Indicates the sort key. The result will be a <see cref="T:Sudoku.Solving.Data.Representation.ChainTypeCode"/> instance to describe
+            what and how the chain behaves. Please visit the type <see cref="T:Sudoku.Solving.Data.Representation.ChainTypeCode"/>
+            to learn about more details for a chain.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Data.Representation.ChainTypeCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Specialized.IChainStep.ConclusionsEquals(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Boolean)">
+            <summary>
+            Determines whether two different list of <see cref="T:Sudoku.Solving.Conclusion"/>s holds the same values.
+            </summary>
+            <param name="lConclusions">The first conclusion list to compare.</param>
+            <param name="rConclusions">The second conclusion list to compare.</param>
+            <param name="shouldSort">Indicates whether the method will sort the lists firstly.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IDistinctableStep`1">
+            <summary>
+            Defines a step that can be distinctable.
+            </summary>
+            <typeparam name="TStep">The type of the element to compare.</typeparam>
+            <remarks>
+            A <b>distinctable step</b> is a step that is with the unique information,
+            in order that multiple steps of the same type can be recognized by the relative methods,
+            to filter and remove same-value instances.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)">
+            <summary>
+            To compare 2 instances of type <typeparamref name="TStep"/>,
+            to determine whether 2 instances holds the same value.
+            </summary>
+            <param name="left">Indicates the first instance to compare.</param>
+            <param name="right">Indicates the second instance to compare.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the elements are same.
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>Two elements are same.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>Two elements holds the different values.</description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            The method can be the same implemented as the method <see cref="M:System.Object.Equals(System.Object)"/>,
+            but <see langword="record"/>s are automatically implemented the method, which is useless
+            and unmeaningful.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Specialized.IDistinctableStep`1.Distinct``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Distinct the list, that is, remove all duplicate elements in this list, that uses the method
+            <see cref="M:Sudoku.Solving.Manual.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/> defined in this interface.
+            </summary>
+            <typeparam name="TDistinctableStep">The type of the steps.</typeparam>
+            <param name="list">The list of steps to be processed.</param>
+            <returns>The list of steps.</returns>
+            <remarks>
+            This method does not change the ordering of the original list. In other words, if the original list
+            is in order, the final list after invoking this method will be also in order.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IElementaryStep">
+            <summary>
+            Defines a step whose technique used is the elementary one.
+            </summary>
+            <remarks>
+            Here we define that the techniques often appearing and commonly to be used as below are elementary:
+            <list type="bullet">
+            <item>Full House, Last Digit, Hidden Single, Naked Single</item>
+            <item>Pointing, Claiming</item>
+            <item>Naked Pair, Naked Triple, Naked Quadruple</item>
+            <item>Naked Pair (+), Naked Triple (+), Naked Quadruple (+)</item>
+            <item>Hidden Pair, Hidden Triple, Hidden Quadruple</item>
+            <item>Locked Pair, Locked Triple</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.ILoopLikeStep">
+            <summary>
+            Defines a step whose technique used is the loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.ILoopLikeStep.IsNice">
+            <summary>
+            <para>Indicates whether the current technique is the nice loop.</para>
+            <para>
+            A <b>Nice</b> loop is a loop that all weak links can be gathered to remove candidates
+            (if possible removable candidates exist).
+            </para>
+            </summary>
+            <returns>
+            The return value will be a <c><see cref="T:System.Boolean"/>?</c>:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The technique is the nice loop.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The technique is not a nice loop, e.g. a normal dynamic loop.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            The technique is not a loop, but the structure forms a valid loop-shaped one, e.g. guardian.
+            </description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.ILoopStep">
+            <summary>
+            Defines the step whose technique used is the loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.ILoopStep.Sudoku#Solving#Manual#Steps#Specialized#ILoopLikeStep#IsNice">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IStepWithDistinctionDegree">
+            <summary>
+            Defines a step type that contains the property <c>Distinction Degree</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithDistinctionDegree.DistinctionDegree">
+            <summary>
+            Indicates the distinction degree of the step.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IStepWithPhasedDifficulty">
+            <summary>
+            Defines a type that holds an extra property to control advanced rule with extra difficulty value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithPhasedDifficulty.BaseDifficulty">
+            <summary>
+            Indicates the base difficulty of the step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithPhasedDifficulty.ExtraDifficultyValues">
+            <summary>
+            Indicates the extra difficulty values of the step, and its corresponding description.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithPhasedDifficulty.TotalDifficulty">
+            <summary>
+            Indicates the total difficulty value of the step.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IStepWithRank">
+            <summary>
+            Defines a step whose technique used is related to the rank theory,
+            which contains the property <c>Rank</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithRank.Rank">
+            <summary>
+            Indicates the rank of the technique structure.
+            </summary>
+            <returns>
+            The return value can be separated with the following cases:
+            <list type="table">
+            <listheader>
+            <term>Range</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><c><![CDATA[> 1]]></c></term>
+            <description>
+            The technique cannot be applied any eliminations except the intersection
+            that all possible branches can see.
+            </description>
+            </item>
+            <item>
+            <term><c><![CDATA[1]]></c></term>
+            <description>
+            The technique can be applied eliminations that is like a normal AIC.
+            </description>
+            </item>
+            <item>
+            <term><c><![CDATA[0]]></c></term>
+            <description>
+            The technique can be applied eliminations that is like a nice loop. For example,
+            a Sue de Coq.
+            </description>
+            </item>
+            <item>
+            <term><c><![CDATA[<= 1]]></c></term>
+            <description>
+            The negative rank value cannot be formed because the technique structure is at an invalid status.
+            </description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            Please note that sometimes a complex structure may not contain a valid and stable rank value.
+            You can visit <see href="http://sudoku.allanbarker.com/sweb/old/wL03.htm">this link</see>
+            for more details about the mixed-rank structures.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Specialized.IStepWithSize">
+            <summary>
+            Defines a step type that contains the property <c>Size</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Specialized.IStepWithSize.Size">
+            <summary>
+            Indicates the size of the current step instance related to the specified technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.StepExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Solving.Prototypes.IStep"/> and <see cref="T:Sudoku.Solving.Implementations.Steps.Step"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Prototypes.IStep"/>
+            <seealso cref="T:Sudoku.Solving.Implementations.Steps.Step"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepExtensions.IsAlmostLockedSets``1(``0)">
+            <summary>
+            Indicates whether the corresponding technique of the current step is an Almost Locked Sets
+            (ALS in abbreviation).
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="this">The <see cref="T:Sudoku.Solving.Prototypes.IStep"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepExtensions.IsChaining``1(``0)">
+            <summary>
+            Indicates whether the corresponding technique of the current step is a chain. The chain techniques are:
+            <list type="bullet">
+            <item>
+            Wings
+            <list type="bullet">
+            <item>
+            Regular wings (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)
+            </item>
+            <item>
+            Irregular wings (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
+            </item>
+            </list>
+            </item>
+            <item>
+            Short chains
+            <list type="bullet">
+            <item>
+            Two strong links (Skyscraper, Two-string kite, Turbot fish)
+            </item>
+            <item>
+            ALS chaining-like techniques
+            <list type="bullet">
+            <item>ALS-XZ</item>
+            <item>ALS-XY-Wing</item>
+            <item>ALS-W-Wing</item>
+            </list>
+            </item>
+            <item>Empty rectangle</item>
+            </list>
+            </item>
+            <!--
+            <item>
+            Long chains
+            <list type="bullet">
+            <item>Forcing chains</item>
+            <item>Dynamic forcing chains</item>
+            </list>
+            </item>
+            -->
+            </list>
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="this">The <see cref="T:Sudoku.Solving.Prototypes.IStep"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepExtensions.IsDeadlyPattern``1(``0)">
+            <summary>
+            Indicates whether the corresponding technique of the current step is a deadly pattern.
+            The deadly pattern techniques are:
+            <list type="bullet">
+            <item>
+            Bi-value patterns
+            <list type="bullet">
+            <item>Unique rectangle (i.e. Uniqueness test)</item>
+            <item>Unique loop</item>
+            <item>Bi-value universal grave</item>
+            </list>
+            </item>
+            <item>
+            Multi-value patterns
+            <list type="bullet">
+            <item>Extended rectangle</item>
+            <item>Unique square</item>
+            <item>Unique polygon (Borescoper's deadly pattern as its alias)</item>
+            <item>Qiu's deadly pattern</item>
+            </list>
+            </item>
+            <!--
+            <item>
+            Other deadly patterns
+            <list type="bullet">
+            <item>Reverse bi-value universal grave</item>
+            </list>
+            </item>
+            -->
+            </list>
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="this">The <see cref="T:Sudoku.Solving.Prototypes.IStep"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.StepSearcherPoolingExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Prototypes.IStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Prototypes.IStepSearcher[])">
+            <summary>
+            Try to fetch a valid <typeparamref name="TStepSearcher"/> instance via the specified pool.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
+            <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
+            <returns>
+            The found step searcher instance. If the type is marked <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>,
+            the method will return the first found instance.
+            </returns>
+            <seealso cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Prototypes.IStepSearcher[],System.Boolean)">
+            <summary>
+            Try to fetch a valid <typeparamref name="TStepSearcher"/> instances via the specified pool.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
+            <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
+            <param name="getAll">
+            Indicates whether you want to fetch all possible instances at the same time.
+            </param>
+            <returns>
+            The found step searcher instances. If the type is marked <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>,
+            the method will return all possible instances, whose behavior is different with the other method
+            <see cref="M:Sudoku.Solving.Manual.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Prototypes.IStepSearcher[])"/>.
+            </returns>
+            <seealso cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>
+            <seealso cref="M:Sudoku.Solving.Manual.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Prototypes.IStepSearcher[])"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.WrongStepException">
+            <summary>
+            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Solving.Prototypes.IStep)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Manual.WrongStepException"/> with the specified invalid grid and the wrong step.
+            </summary>
+            <param name="grid">The invalid sudoku grid.</param>
+            <param name="wrongStep">The wrong step.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.CurrentInvalidGrid">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.WrongStep">
+            <summary>
+            Indicates the wrong step.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Specialized.IConjugatesGatherer">
+            <summary>
+            Defines a conjugate pair gatherer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Specialized.IConjugatesGatherer.Gather">
+            <summary>
+            Gathers possible conjugate pairs grouped by digit.
+            </summary>
+            <returns>The conjugate pairs found, grouped by digit.</returns>
+            <remarks><i>
+            This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
+            by calling the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
+            </i></remarks>
+            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Specialized.IConjugatesGatherer.Sudoku#Solving#Prototypes#IStructureGatherer{Sudoku#Concepts#Conjugate}#Gather(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.StepAppliedEventArgs">
             <summary>
