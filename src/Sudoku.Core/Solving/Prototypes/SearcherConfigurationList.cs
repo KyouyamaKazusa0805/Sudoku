@@ -1,59 +1,43 @@
-﻿[assembly:
-	SearcherConfiguration<SingleStepSearcher>(SearcherDisplayingLevel.A),
-	SearcherConfiguration<LockedCandidatesStepSearcher>(SearcherDisplayingLevel.A),
-	SearcherConfiguration<SubsetStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<NormalFishStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<TwoStrongLinksStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<RegularWingStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<WWingStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<MultiBranchWWingStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<UniqueRectangleStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<AlmostLockedCandidatesStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<SueDeCoqStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<SueDeCoq3DimensionStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<UniqueLoopStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<ExtendedRectangleStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<EmptyRectangleStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<UniqueMatrixStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<UniquePolygonStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<QiuDeadlyPatternStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<BivalueUniversalGraveStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<ReverseBivalueUniversalGraveStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<UniquenessClueCoverStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<RwDeadlyPatternStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<EmptyRectangleIntersectionPairStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<FireworkStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<GurthSymmetricalPlacementStepSearcher>(SearcherDisplayingLevel.A),
-	SearcherConfiguration<GuardianStepSearcher>(SearcherDisplayingLevel.C),
-	SearcherConfiguration<ComplexFishStepSearcher>(SearcherDisplayingLevel.C),
-	SearcherConfiguration<BivalueOddagonStepSearcher>(SearcherDisplayingLevel.C),
-	SearcherConfiguration<ChromaticPatternStepSearcher>(SearcherDisplayingLevel.C),
-	SearcherConfiguration<AlmostLockedSetsXzStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<AlmostLockedSetsXyWingStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<AlmostLockedSetsWWingStepSearcher>(SearcherDisplayingLevel.B),
-	SearcherConfiguration<DeathBlossomStepSearcher>(SearcherDisplayingLevel.C),
-	SearcherConfiguration<AlternatingInferenceChainStepSearcher>(SearcherDisplayingLevel.C),
-	SearcherConfiguration<BowmanBingoStepSearcher>(
-		SearcherDisplayingLevel.C,
-		EnabledArea = SearcherEnabledArea.None,
-		DisabledReason = SearcherDisabledReason.LastResort),
-	SearcherConfiguration<PatternOverlayStepSearcher>(
-		SearcherDisplayingLevel.C,
-		EnabledArea = SearcherEnabledArea.Gathering,
-		DisabledReason = SearcherDisabledReason.LastResort),
-	SearcherConfiguration<TemplateStepSearcher>(
-		SearcherDisplayingLevel.C,
-		EnabledArea = SearcherEnabledArea.None,
-		DisabledReason = SearcherDisabledReason.LastResort),
-	SearcherConfiguration<JuniorExocetStepSearcher>(SearcherDisplayingLevel.D),
-	SearcherConfiguration<SeniorExocetStepSearcher>(
-		SearcherDisplayingLevel.D,
-		EnabledArea = SearcherEnabledArea.None,
-		DisabledReason = SearcherDisabledReason.DeprecatedOrNotImplemented),
-	SearcherConfiguration<DominoLoopStepSearcher>(SearcherDisplayingLevel.D),
-	SearcherConfiguration<MultisectorLockedSetsStepSearcher>(SearcherDisplayingLevel.D),
-	SearcherConfiguration<BruteForceStepSearcher>(
-		SearcherDisplayingLevel.E,
-		EnabledArea = SearcherEnabledArea.Default,
-		DisabledReason = SearcherDisabledReason.LastResort)
-]
+﻿#pragma warning disable IDE0055
+[assembly: SearcherConfiguration<                        SingleStepSearcher>(SearcherDisplayingLevel.A)]
+[assembly: SearcherConfiguration<              LockedCandidatesStepSearcher>(SearcherDisplayingLevel.A)]
+[assembly: SearcherConfiguration<                        SubsetStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<                    NormalFishStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<                TwoStrongLinksStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<                   RegularWingStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<                         WWingStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<              MultiBranchWWingStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<               UniqueRectangleStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<        AlmostLockedCandidatesStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<                      SueDeCoqStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<            SueDeCoq3DimensionStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<                    UniqueLoopStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<             ExtendedRectangleStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<                EmptyRectangleStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<                  UniqueMatrixStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<                 UniquePolygonStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<              QiuDeadlyPatternStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<         BivalueUniversalGraveStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<  ReverseBivalueUniversalGraveStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<           UniquenessClueCoverStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<               RwDeadlyPatternStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<EmptyRectangleIntersectionPairStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<                      FireworkStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<     GurthSymmetricalPlacementStepSearcher>(SearcherDisplayingLevel.A)]
+[assembly: SearcherConfiguration<                      GuardianStepSearcher>(SearcherDisplayingLevel.C)]
+[assembly: SearcherConfiguration<                   ComplexFishStepSearcher>(SearcherDisplayingLevel.C)]
+[assembly: SearcherConfiguration<                BivalueOddagonStepSearcher>(SearcherDisplayingLevel.C)]
+[assembly: SearcherConfiguration<              ChromaticPatternStepSearcher>(SearcherDisplayingLevel.C)]
+[assembly: SearcherConfiguration<            AlmostLockedSetsXzStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<        AlmostLockedSetsXyWingStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<         AlmostLockedSetsWWingStepSearcher>(SearcherDisplayingLevel.B)]
+[assembly: SearcherConfiguration<                  DeathBlossomStepSearcher>(SearcherDisplayingLevel.C)]
+[assembly: SearcherConfiguration<     AlternatingInferenceChainStepSearcher>(SearcherDisplayingLevel.C)]
+[assembly: SearcherConfiguration<                   BowmanBingoStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                LastResort)]
+[assembly: SearcherConfiguration<                PatternOverlayStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.Gathering, DisabledReason = SearcherDisabledReason.                LastResort)]
+[assembly: SearcherConfiguration<                      TemplateStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                LastResort)]
+[assembly: SearcherConfiguration<                  JuniorExocetStepSearcher>(SearcherDisplayingLevel.D)]
+[assembly: SearcherConfiguration<                  SeniorExocetStepSearcher>(SearcherDisplayingLevel.D, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.DeprecatedOrNotImplemented)]
+[assembly: SearcherConfiguration<                    DominoLoopStepSearcher>(SearcherDisplayingLevel.D)]
+[assembly: SearcherConfiguration<         MultisectorLockedSetsStepSearcher>(SearcherDisplayingLevel.D)]
+[assembly: SearcherConfiguration<                    BruteForceStepSearcher>(SearcherDisplayingLevel.E, EnabledArea = SearcherEnabledArea.  Default, DisabledReason = SearcherDisabledReason.                LastResort)]
