@@ -1,4 +1,4 @@
-﻿#pragma warning disable IDE0011
+﻿#pragma warning disable IDE0011, IDE0032
 
 namespace Sudoku.Concepts;
 
@@ -73,7 +73,6 @@ public struct CellMap :
 	/// </summary>
 	/// <remarks><b><i>This field is explicitly declared on purpose. Please don't use auto property.</i></b></remarks>
 	/// <seealso cref="Count"/>
-	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
 	private int _count;
 
 	/// <summary>
