@@ -13,7 +13,6 @@ global using Sudoku.Concepts;
 global using Sudoku.Generating.Puzzlers;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Implementations.Solvers;
-global using Sudoku.Solving.Manual;
 global using Sudoku.Solving.Prototypes;
 global using Sudoku.Text.Parsing;
 global using static System.Math;

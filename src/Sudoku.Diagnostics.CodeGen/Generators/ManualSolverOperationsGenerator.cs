@@ -24,8 +24,6 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 		if (manualSolverTypeSymbol is not { TypeKind: Kind.Class, IsRecord: false, IsSealed: true })
 		{
 			// The core type cannot be found.
-			// This failure will be triggered when you moved the type 'ManualSolver'
-			// to another place not in the assembly 'Sudoku.Solving.Manual'.
 			return;
 		}
 
