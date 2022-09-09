@@ -1,5 +1,6 @@
 ﻿namespace Sudoku.Solving.Implementations.Solvers;
 
+using Sudoku.Runtime.AnalysisServices;
 using static SearcherFailedReason;
 
 /// <summary>

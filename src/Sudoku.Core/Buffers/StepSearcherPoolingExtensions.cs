@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Buffers;
 
 /// <summary>
 /// Provides extension methods on <see cref="IStepSearcher"/> instances.

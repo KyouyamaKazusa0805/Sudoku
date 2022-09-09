@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving.Prototypes;
 
 /// <summary>
 /// Provides with extension methods on <see cref="IStep"/> and <see cref="Step"/>.

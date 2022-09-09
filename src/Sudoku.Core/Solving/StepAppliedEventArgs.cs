@@ -1,8 +1,9 @@
 ﻿namespace Sudoku.Solving;
 
 /// <summary>
-/// Provides with data used by event handler type .
+/// Provides with data used by event handler type <see cref="StepAppliedEventHandler"/>.
 /// </summary>
+/// <seealso cref="StepAppliedEventHandler"/>
 public sealed class StepAppliedEventArgs : EventArgs
 {
 	/// <summary>
