@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps;
-
-namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Provides the solver result after <see cref="ManualSolver"/> solving a puzzle.

@@ -29,7 +29,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 			return;
 		}
 
-		var stepSearcherType = compilation.GetTypeByMetadataName($"Sudoku.Solving.Manual.Searchers.IStepSearcher");
+		var stepSearcherType = compilation.GetTypeByMetadataName("Sudoku.Solving.Prototypes.IStepSearcher");
 		if (stepSearcherType is not { TypeKind: Kind.Interface })
 		{
 			// Same reason as above.
@@ -72,7 +72,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 					continue;
 				}
 
-				string searcherFullTypeName = $"Sudoku.Solving.Manual.Searchers.I{searcherTypeName}";
+				string searcherFullTypeName = $"Sudoku.Solving.Prototypes.I{searcherTypeName}";
 				var interfaceType = compilation.GetTypeByMetadataName(searcherFullTypeName);
 				if (interfaceType is not { AllInterfaces: var interfaceBaseInterfaces })
 				{

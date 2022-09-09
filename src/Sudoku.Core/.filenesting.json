@@ -86,6 +86,22 @@
           //
           // Step nesting rules
           //
+          "IInvalidStep.cs": [ "IStep.cs" ],
+
+          "AlmostLockedSetsStep.cs": [ "Step.cs" ],
+          "ChainStep.cs": [ "Step.cs" ],
+          "DeadlyPatternStep.cs": [ "Step.cs" ],
+          "ExocetStep.cs": [ "Step.cs" ],
+          "FishStep.cs": [ "Step.cs" ],
+          "IntersectionStep.cs": [ "Step.cs" ],
+          "LastResortStep.cs": [ "Step.cs" ],
+          "RankTheoryStep.cs": [ "Step.cs" ],
+          "SingleDigitPatternStep.cs": [ "Step.cs" ],
+          "SingleStep.cs": [ "Step.cs" ],
+          "SubsetStep.cs": [ "Step.cs" ],
+          "SymmetryStep.cs": [ "Step.cs" ],
+          "WingStep.cs": [ "Step.cs" ],
+
           "AlmostLockedSetsWWingStep.cs": [ "AlmostLockedSetsStep.cs" ],
           "AlmostLockedSetsXyWingStep.cs": [ "AlmostLockedSetsStep.cs" ],
           "AlmostLockedSetsXzStep.cs": [ "AlmostLockedSetsStep.cs" ],
