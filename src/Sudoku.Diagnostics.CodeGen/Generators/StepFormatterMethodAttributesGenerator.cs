@@ -11,17 +11,25 @@ public sealed class StepFormatterMethodAttributesGenerator : IIncrementalGenerat
 		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.CreateSyntaxProvider(
-					static (node, _)
-						=> node is RecordDeclarationSyntax
+					static (node, _) => node switch
+					{
+						RecordDeclarationSyntax
 						{
 							ClassOrStructKeyword: not { RawKind: (int)SyntaxKind.StructKeyword },
 							Modifiers: var modifiers and not [],
 							BaseList.Types: not []
-						} && modifiers.Any(SyntaxKind.PartialKeyword),
-					static (gsc, ct)
-						=> gsc is { Node: RecordDeclarationSyntax node, SemanticModel: { } semanticModel }
-							? semanticModel.GetDeclaredSymbol(node, ct)
-							: null
+						}
+							=> modifiers.Any(SyntaxKind.PartialKeyword),
+						_
+							=> false
+					},
+					static (gsc, ct) => gsc switch
+					{
+						{ Node: RecordDeclarationSyntax node, SemanticModel: { } semanticModel }
+							=> semanticModel.GetDeclaredSymbol(node, ct),
+						_
+							=> null
+					}
 				)
 				.Combine(context.CompilationProvider)
 				.Where(static pair => pair is (not null, { Assembly.Name: Projects.SudokuCore })),
