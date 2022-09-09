@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Implementations.Steps;
+﻿using Sudoku.Solving.Implementations.Data;
+
+namespace Sudoku.Solving.Implementations.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Exocet</b> technique.

@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Implementations.Searchers;
+﻿using Sudoku.Solving.Implementations.Data;
+
+namespace Sudoku.Solving.Implementations.Searchers;
 
 [StepSearcher]
 internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetStepSearcher

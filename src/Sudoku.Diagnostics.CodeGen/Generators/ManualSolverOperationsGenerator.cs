@@ -111,8 +111,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 					[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					set
 					{
-						var searcher = TargetSearcherCollection.GetOfType<{{typeStr}}>();
-						if (searcher is not null)
+						if (TargetSearcherCollection.GetOfType<{{typeStr}}>() is { } searcher)
 						{
 							searcher.{{propertyStr}} = value;
 						}
