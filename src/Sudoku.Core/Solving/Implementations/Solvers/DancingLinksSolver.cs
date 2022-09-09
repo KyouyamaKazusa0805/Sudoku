@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Solving.Implementations.Solvers;
 
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.

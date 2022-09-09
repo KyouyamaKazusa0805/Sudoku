@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Checking;
 
 /// <summary>
 /// Defines a backdoor searcher.

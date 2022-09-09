@@ -3,6 +3,7 @@
 
 namespace Sudoku.Solving;
 
+using Sudoku.Solving.Prototypes;
 using static Constants;
 
 /// <summary>

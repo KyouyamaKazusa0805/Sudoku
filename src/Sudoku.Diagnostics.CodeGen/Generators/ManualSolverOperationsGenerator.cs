@@ -20,7 +20,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 			return;
 		}
 
-		var manualSolverTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Manual.ManualSolver");
+		var manualSolverTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Implementations.Solvers.ManualSolver");
 		if (manualSolverTypeSymbol is not { TypeKind: Kind.Class, IsRecord: false, IsSealed: true })
 		{
 			// The core type cannot be found.
@@ -45,7 +45,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 
 		// Iterates on all possible types derived from this interface.
 		var allTypes = @namespace.GetAllNestedTypes();
-		var foundResultInfos = new List<TypeLocalType_FoundResultInfo>();
+		var foundResultInfos = new List<FoundResultInfo>();
 		foreach (var searcherType in
 			from typeSymbol in allTypes
 			where typeSymbol is
@@ -128,7 +128,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 
 			#nullable enable
 
-			namespace Sudoku.Solving.Manual;
+			namespace Sudoku.Solving.Implementations.Solvers;
 
 			partial class ManualSolver
 			{
@@ -139,7 +139,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 	}
 }
 
-internal readonly record struct TypeLocalType_FoundResultInfo(
+internal readonly record struct FoundResultInfo(
 	IPropertySymbol Property,
 	INamedTypeSymbol DerivedInterfaceType,
 	INamedTypeSymbol PropertyContainedInterfaceType

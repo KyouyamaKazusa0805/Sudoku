@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving.Implementations.Solvers;
 
 using static SearcherFailedReason;
 

@@ -37,6 +37,7 @@ global using Sudoku.Solving.DancingLinx;
 global using Sudoku.Solving.Data.Binding;
 global using Sudoku.Solving.Data.Representation;
 global using Sudoku.Solving.Implementations.Searchers;
+global using Sudoku.Solving.Implementations.Solvers;
 global using Sudoku.Solving.Implementations.Steps;
 global using Sudoku.Solving.Manual;
 global using Sudoku.Solving.Manual.Searchers.Gatherers;

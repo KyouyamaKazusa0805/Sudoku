@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Solving.Prototypes;
 
 /// <summary>
 /// Defines a simple solver.

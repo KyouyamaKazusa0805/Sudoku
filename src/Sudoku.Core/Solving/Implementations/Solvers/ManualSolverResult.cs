@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving.Implementations.Solvers;
 
 /// <summary>
 /// Provides the solver result after <see cref="ManualSolver"/> solving a puzzle.
