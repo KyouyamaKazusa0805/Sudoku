@@ -40,8 +40,7 @@ public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<I
 	/// </summary>
 	/// <param name="namedKind">The color kind.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Identifier(DisplayColorKind namedKind) : this()
-		=> (Mode, NamedKind) = (IdentifierColorMode.Named, namedKind);
+	private Identifier(DisplayColorKind namedKind) : this() => (Mode, NamedKind) = (IdentifierColorMode.Named, namedKind);
 #pragma warning restore CS0618
 
 
