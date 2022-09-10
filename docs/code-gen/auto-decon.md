@@ -14,58 +14,6 @@
 
 ## 用法
 
-### 类型内部生成解构函数
-
-该源代码生成器绑定了一个叫做 `AutoDeconstructionAttribute` 的特性，该特性包含一个带 `string[]` 类型为参数的构造器。参数传入的是你需要解构对象所包含的对象的属性或字段名称，或是无参但为非 `void` 返回值类型的方法名。
-
-比如我有一个类型 `Student` 包含 `Name`、`Age` 和 `_isBoy` 的属性和字段成员，我想要将其作为解构函数的操作，正常做法是写一个 `void` 返回值的 `Deconstruct` 方法，带有三个 `out` 参数分别对应这些属性和字段的数值：
-
-```csharp
-class Student
-{
-    private readonly bool _isBoy;
-
-    public string Name { get; }
-    public int Age { get; }
-
-    public void Deconstruct(out string name, out int age, out bool isBoy)
-        => (name, age, isBoy) = (Name, Age, _isBoy);
-}
-```
-
-现在我们可以使用该特性来自动生成解构函数代码。为该类型标记 `AutoDeconstructionAttribute` 特性，然后给类型添加 `partial` 修饰符，并且传入这三个成员的名称，删除 `Deconstruct` 的代码即可：
-
-```csharp
-[AutoDeconstruction(nameof(Name), nameof(Age), nameof(_isBoy))]
-partial class Student
-{
-    private readonly bool _isBoy;
-
-    public string Name { get; }
-    public int Age { get; }
-}
-```
-
-这样就可以了。
-
-另外，`AutoDeconstructionAttribute` 特性是可以允许多次使用的，同一个类型可以包含多个不同参数长度的解构函数，因此可以允许使用多次。例如我不解构 `_isBoy` 字段的时候，还可以追加一个特性的使用：
-
-```csharp
-[AutoDeconstruction(nameof(Name), nameof(Age))]
-[AutoDeconstruction(nameof(Name), nameof(Age), nameof(_isBoy))]
-partial class Student
-{
-    private readonly bool _isBoy;
-
-    public string Name { get; }
-    public int Age { get; }
-}
-```
-
-这样也可以生成对应的代码。
-
-### 类型外部生成扩展解构函数
-
 如果类型已经被定义且无法改变的话，这样的类型也挺多，比如 .NET 库里的 API。如果我们要对这样的无法修改的类型实现解构函数的话，可以使用扩展的模块来实现。
 
 我们需要用到 `AutoExtensionDeconstructionAttribute` 特性。该特性用于标记在程序集上，表示对指定类型生成对应的扩展解构函数。扩展解构函数就是扩展方法，然后第一个参数是 `this` 参数，而且是我们需要解构的对象的这个实例。
