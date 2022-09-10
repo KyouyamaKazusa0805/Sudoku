@@ -676,7 +676,7 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly bool Equals([NotNullWhen(true)] object? obj)
-		=> obj is Grid comparer && Equals(this, comparer);
+		=> obj is Grid comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values
@@ -685,7 +685,22 @@ public unsafe partial struct Grid :
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(scoped in Grid other) => Equals(this, other);
+	public readonly bool Equals(scoped in Grid other)
+	{
+		fixed (short* pThis = this, pOther = other)
+		{
+			int i = 0;
+			for (short* l = pThis, r = pOther; i < 81; i++, l++, r++)
+			{
+				if (*l != *r)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+	}
 
 	/// <summary>
 	/// <para>
@@ -1257,29 +1272,6 @@ public unsafe partial struct Grid :
 
 
 	/// <summary>
-	/// To determine whether two sudoku grid is totally same.
-	/// </summary>
-	/// <param name="left">The left one.</param>
-	/// <param name="right">The right one.</param>
-	/// <returns>The <see cref="bool"/> result indicating that.</returns>
-	public static bool Equals(scoped in Grid left, scoped in Grid right)
-	{
-		fixed (short* pThis = left, pOther = right)
-		{
-			int i = 0;
-			for (short* l = pThis, r = pOther; i < 81; i++, l++, r++)
-			{
-				if (*l != *r)
-				{
-					return false;
-				}
-			}
-
-			return true;
-		}
-	}
-
-	/// <summary>
 	/// Creates a <see cref="Grid"/> instance using grid values.
 	/// </summary>
 	/// <param name="gridValues">The array of grid values.</param>
@@ -1302,8 +1294,7 @@ public unsafe partial struct Grid :
 		Unsafe.CopyBlock(
 			ref Unsafe.As<short, byte>(ref result._values[0]),
 			ref Unsafe.As<short, byte>(ref MemoryMarshal.GetArrayDataReference(masks)),
-			sizeof(short) * 81
-		);
+			sizeof(short) * 81);
 
 		return result;
 	}
