@@ -13,16 +13,16 @@ public static class BitArrayExtensions
 	/// <returns>The total number of bits set <see langword="true"/>.</returns>
 	public static unsafe int GetCardinality(this BitArray @this)
 	{
-		int[] integers = ArrayPool<int>.Shared.Rent((@this.Length >> 5) + 1);
+		var integers = ArrayPool<int>.Shared.Rent((@this.Length >> 5) + 1);
 		try
 		{
 			@this.CopyTo(integers, 0);
 
-			int result = 0;
+			var result = 0;
 			fixed (int* p = integers)
 			{
 				int i = 0, length = integers.Length;
-				for (int* ptr = p; i < length; ptr++, i++)
+				for (var ptr = p; i < length; ptr++, i++)
 				{
 					result += PopCount((uint)*ptr);
 				}

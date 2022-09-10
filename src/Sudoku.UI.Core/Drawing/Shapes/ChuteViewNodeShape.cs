@@ -45,7 +45,7 @@ public sealed class ChuteViewNodeShape : DrawingElement
 		{
 			_preference = value;
 
-			int i = 0;
+			var i = 0;
 			while (i < 3)
 			{
 				_gridLayout.AddChildren(
@@ -122,7 +122,7 @@ public sealed class ChuteViewNodeShape : DrawingElement
 		var result = new HashCode();
 		result.Add(TypeIdentifier);
 
-		for (int i = 0; i < 6; i++)
+		for (var i = 0; i < 6; i++)
 		{
 			result.Add(_rectangles[i]);
 		}

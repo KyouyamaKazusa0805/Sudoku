@@ -28,7 +28,7 @@ public sealed class CellMapJsonConverter : JsonConverter<CellMap>
 		while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
 		{
 			result.Add(
-				reader.TokenType == JsonTokenType.String && RxCyNotation.TryParseCell(reader.GetString()!, out int c)
+				reader.TokenType == JsonTokenType.String && RxCyNotation.TryParseCell(reader.GetString()!, out var c)
 					? c
 					: throw new JsonException()
 			);
@@ -41,7 +41,7 @@ public sealed class CellMapJsonConverter : JsonConverter<CellMap>
 	public override void Write(Utf8JsonWriter writer, CellMap value, JsonSerializerOptions options)
 	{
 		writer.WriteStartArray();
-		foreach (int cell in value)
+		foreach (var cell in value)
 		{
 			writer.WriteStringValue(RxCyNotation.ToCellString(cell));
 		}

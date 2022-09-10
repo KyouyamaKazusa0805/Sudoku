@@ -13,7 +13,7 @@ public static class StringEnumerable
 	/// <returns>An <see cref="IEnumerable{T}"/> instance with multiple parts of the string.</returns>
 	public static IEnumerable<string> SplitByLength(this string @this, int maxLength)
 	{
-		for (int index = 0; index < @this.Length; index += maxLength)
+		for (var index = 0; index < @this.Length; index += maxLength)
 		{
 			yield return @this.Substring(index, Min(maxLength, @this.Length - index));
 		}

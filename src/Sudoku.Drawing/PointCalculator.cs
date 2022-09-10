@@ -37,9 +37,9 @@ public sealed class PointCalculator : IPointCalculator
 		const int length = AnchorsCount + 1;
 		var (cw, ch) = CandidateSize;
 		GridPoints = new PointF[length, length];
-		for (int i = 0; i < length; i++)
+		for (var i = 0; i < length; i++)
 		{
-			for (int j = 0; j < length; j++)
+			for (var j = 0; j < length; j++)
 			{
 				GridPoints[i, j] = new(cw * i + Offset, ch * j + Offset);
 			}

@@ -42,13 +42,13 @@ internal sealed record GurthSymmetricalPlacementStep(
 	[ResourceTextFormatter]
 	internal string MappingStr()
 	{
-		string separator = R.EmitPunctuation(Punctuation.Comma);
+		var separator = R.EmitPunctuation(Punctuation.Comma);
 		if (MappingRelations is not null)
 		{
 			scoped var sb = new StringHandler(10);
-			for (int i = 0; i < 9; i++)
+			for (var i = 0; i < 9; i++)
 			{
-				int? currentMappingRelationDigit = MappingRelations[i];
+				var currentMappingRelationDigit = MappingRelations[i];
 
 				sb.Append(i + 1);
 				sb.Append(currentMappingRelationDigit is { } c && c != i ? $" -> {c + 1}" : string.Empty);

@@ -25,8 +25,8 @@ public sealed record FileCounterResult(
 	/// <inheritdoc/>
 	public override string ToString()
 	{
-		string bytesConvertedStr = SizeUnitConverter.Convert(Bytes, out var unit).ToString(".000");
-		string bytesUnitStr = unit switch
+		var bytesConvertedStr = SizeUnitConverter.Convert(Bytes, out var unit).ToString(".000");
+		var bytesUnitStr = unit switch
 		{
 			SizeUnit.Byte => "B",
 			SizeUnit.Kilobyte => "KB",

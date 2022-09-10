@@ -34,11 +34,11 @@ public static class IttouryuPuzzleChecker
 		for (int digit = 0, validatedTimes = 0; validatedTimes < 9; digit = (digit + 1) % 9, validatedTimes++)
 		{
 			// Try to find hidden singles.
-			for (int cell = 0; cell < 81; cell++)
+			for (var cell = 0; cell < 81; cell++)
 			{
 				foreach (var houseType in HouseTypes)
 				{
-					int house = cell.ToHouseIndex(houseType);
+					var house = cell.ToHouseIndex(houseType);
 					var houseCells = HousesMap[house];
 					if (tempGrid.ValuesMap[digit] & houseCells)
 					{
@@ -46,10 +46,10 @@ public static class IttouryuPuzzleChecker
 						continue;
 					}
 
-					int conclusionCell = -1;
+					var conclusionCell = -1;
 					for (int index = 0, count = 0; index < 9; index++)
 					{
-						int tempCell = houseCells[index];
+						var tempCell = houseCells[index];
 						if (tempGrid.Exists(tempCell, digit) is true)
 						{
 							if (++count >= 2)
@@ -72,7 +72,7 @@ public static class IttouryuPuzzleChecker
 							return false;
 						}
 
-						int hiddenSingleCandidate = conclusionCell * 9 + digit;
+						var hiddenSingleCandidate = conclusionCell * 9 + digit;
 						listOfSteps.Add((hiddenSingleCandidate, true));
 						tempGrid[conclusionCell] = digit;
 						currentDigit = digit;
@@ -87,14 +87,14 @@ public static class IttouryuPuzzleChecker
 			}
 
 			// Try to find naked singles.
-			for (int cell = 0; cell < 81; cell++)
+			for (var cell = 0; cell < 81; cell++)
 			{
 				if (tempGrid.GetStatus(cell) != CellStatus.Empty)
 				{
 					continue;
 				}
 
-				short mask = tempGrid.GetCandidates(cell);
+				var mask = tempGrid.GetCandidates(cell);
 				if (IsPow2(mask) && TrailingZeroCount(mask) is var conclusionDigit && conclusionDigit == digit)
 				{
 					// Naked single found.
@@ -105,7 +105,7 @@ public static class IttouryuPuzzleChecker
 						return false;
 					}
 
-					int nakedSingleCandidate = cell * 9 + conclusionDigit;
+					var nakedSingleCandidate = cell * 9 + conclusionDigit;
 					listOfSteps.Add((nakedSingleCandidate, false));
 					tempGrid[cell] = conclusionDigit;
 					currentDigit = conclusionDigit;
@@ -114,7 +114,7 @@ public static class IttouryuPuzzleChecker
 			}
 		}
 
-		(solvingPath, bool @return) = tempGrid.IsSolved ? (listOfSteps.ToArray(), true) : (null, false);
+		(solvingPath, var @return) = tempGrid.IsSolved ? (listOfSteps.ToArray(), true) : (null, false);
 		return @return;
 	}
 }

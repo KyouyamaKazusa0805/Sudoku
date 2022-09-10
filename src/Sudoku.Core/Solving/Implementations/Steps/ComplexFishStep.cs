@@ -91,9 +91,9 @@ internal sealed record ComplexFishStep(
 	{
 		get
 		{
-			string? fin = FinModifier == ComplexFishFinKind.Normal ? null : $"{FinModifier} ";
-			string? shape = ShapeModifier == ComplexFishShapeKind.Basic ? null : $"{ShapeModifier} ";
-			string sizeName = Size switch
+			var fin = FinModifier == ComplexFishFinKind.Normal ? null : $"{FinModifier} ";
+			var shape = ShapeModifier == ComplexFishShapeKind.Basic ? null : $"{ShapeModifier} ";
+			var sizeName = Size switch
 			{
 				2 => "X-Wing",
 				3 => "Swordfish",
@@ -130,9 +130,9 @@ internal sealed record ComplexFishStep(
 	{
 		get
 		{
-			int[] result = new int[PopCount((uint)BaseSetsMask)];
-			int i = 0;
-			foreach (int house in BaseSetsMask)
+			var result = new int[PopCount((uint)BaseSetsMask)];
+			var i = 0;
+			foreach (var house in BaseSetsMask)
 			{
 				result[i++] = house;
 			}
@@ -148,9 +148,9 @@ internal sealed record ComplexFishStep(
 	{
 		get
 		{
-			int[] result = new int[PopCount((uint)CoverSetsMask)];
-			int i = 0;
-			foreach (int house in CoverSetsMask)
+			var result = new int[PopCount((uint)CoverSetsMask)];
+			var i = 0;
+			foreach (var house in CoverSetsMask)
 			{
 				result[i++] = house;
 			}

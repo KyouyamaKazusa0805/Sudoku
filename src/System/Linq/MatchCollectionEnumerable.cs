@@ -17,7 +17,7 @@ public static class MatchCollectionEnumerable
 	public static TResult[] Select<TResult>(this MatchCollection @this, Func<Match, TResult> selector)
 	{
 		var result = new TResult[@this.Count];
-		int i = 0;
+		var i = 0;
 		foreach (var element in @this.Cast<Match>())
 		{
 			result[i++] = selector(element);

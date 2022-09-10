@@ -34,7 +34,7 @@ public static unsafe class EnumExtensions
 	{
 		// Create a buffer to record all possible flags.
 		var buffer = stackalloc TEnum[Enum.GetValues<TEnum>().Length];
-		int i = 0;
+		var i = 0;
 		foreach (var flag in @this)
 		{
 			buffer[i++] = flag;

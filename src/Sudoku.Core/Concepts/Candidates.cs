@@ -76,7 +76,7 @@ public unsafe struct Candidates :
 		ArgumentNullException.ThrowIfNull(candidates);
 
 		this = default;
-		for (int i = 0; i < length; i++)
+		for (var i = 0; i < length; i++)
 		{
 			InternalAdd(candidates[i], true);
 		}
@@ -94,11 +94,11 @@ public unsafe struct Candidates :
 	{
 		this = default;
 		int cell = candidate / 9, digit = candidate % 9;
-		foreach (int c in PeersMap[cell])
+		foreach (var c in PeersMap[cell])
 		{
 			InternalAdd(c * 9 + digit, true);
 		}
-		for (int d = 0; d < 9; d++)
+		for (var d = 0; d < 9; d++)
 		{
 			if (d != digit || d == digit && setItself)
 			{
@@ -113,7 +113,7 @@ public unsafe struct Candidates :
 	/// <param name="candidates">The candidates.</param>
 	public Candidates(int[] candidates)
 	{
-		foreach (int candidate in candidates)
+		foreach (var candidate in candidates)
 		{
 			InternalAdd(candidate, true);
 		}
@@ -129,7 +129,7 @@ public unsafe struct Candidates :
 	{
 		Argument.ThrowIfNotEqual(binary.Length, 12, nameof(binary));
 
-		int count = 0;
+		var count = 0;
 
 		_0 = binary[0]; count += PopCount((ulong)binary[0]);
 		_1 = binary[1]; count += PopCount((ulong)binary[1]);
@@ -162,7 +162,7 @@ public unsafe struct Candidates :
 		ArgumentNullException.ThrowIfNull(binary);
 		Argument.ThrowIfNotEqual(length, 12);
 
-		int count = 0;
+		var count = 0;
 
 		_0 = binary[0]; count += PopCount((ulong)binary[0]);
 		_1 = binary[1]; count += PopCount((ulong)binary[1]);
@@ -189,7 +189,7 @@ public unsafe struct Candidates :
 	public Candidates(scoped in CellMap map, int digit)
 	{
 		this = default;
-		foreach (int cell in map)
+		foreach (var cell in map)
 		{
 			InternalAdd(cell * 9 + digit, true);
 		}
@@ -260,9 +260,9 @@ public unsafe struct Candidates :
 				return Array.Empty<int>();
 			}
 
-			int[] result = new int[Count];
-			int count = 0;
-			for (int i = 0; i < 729; i++)
+			var result = new int[Count];
+			var count = 0;
+			for (var i = 0; i < 729; i++)
 			{
 				if (Contains(i))
 				{
@@ -453,7 +453,7 @@ public unsafe struct Candidates :
 	public readonly CellMap Reduce(int digit)
 	{
 		var result = CellMap.Empty;
-		for (int cell = 0; cell < 81; cell++)
+		for (var cell = 0; cell < 81; cell++)
 		{
 			if (Contains(cell * 9 + digit))
 			{
@@ -541,7 +541,7 @@ public unsafe struct Candidates :
 	/// <param name="offsets">The offsets to add.</param>
 	public void AddRange(scoped in ReadOnlySpan<int> offsets)
 	{
-		foreach (int candidate in offsets)
+		foreach (var candidate in offsets)
 		{
 			AddAnyway(candidate);
 		}
@@ -550,7 +550,7 @@ public unsafe struct Candidates :
 	/// <inheritdoc cref="AddRange(in ReadOnlySpan{int})"/>
 	public void AddRange(IEnumerable<int> offsets)
 	{
-		foreach (int candidate in offsets)
+		foreach (var candidate in offsets)
 		{
 			AddAnyway(candidate);
 		}
@@ -584,8 +584,8 @@ public unsafe struct Candidates :
 	{
 		fixed (Candidates* pThis = &this)
 		{
-			bool older = Contains(offset);
-			long* block = (offset / Shifting) switch
+			var older = Contains(offset);
+			var block = (offset / Shifting) switch
 			{
 				0 => &pThis->_0,
 				1 => &pThis->_1,
@@ -657,7 +657,7 @@ public unsafe struct Candidates :
 		}
 
 		var result = ~Empty;
-		foreach (int candidate in offsets.Offsets)
+		foreach (var candidate in offsets.Offsets)
 		{
 			result &= new Candidates(candidate, false);
 		}
@@ -677,7 +677,7 @@ public unsafe struct Candidates :
 	{
 		const long s = (1 << 729 - Shifting * (12 - 1)) - 1;
 
-		long* result = stackalloc long[12];
+		var result = stackalloc long[12];
 		result[0] = ~offsets._0;
 		result[1] = ~offsets._1;
 		result[2] = ~offsets._2;
@@ -719,7 +719,7 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator &(scoped in Candidates left, scoped in Candidates right)
 	{
-		long* result = stackalloc long[12];
+		var result = stackalloc long[12];
 		result[0] = left._0 & right._0;
 		result[1] = left._1 & right._1;
 		result[2] = left._2 & right._2;
@@ -746,7 +746,7 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator |(scoped in Candidates left, scoped in Candidates right)
 	{
-		long* result = stackalloc long[12];
+		var result = stackalloc long[12];
 		result[0] = left._0 | right._0;
 		result[1] = left._1 | right._1;
 		result[2] = left._2 | right._2;
@@ -772,7 +772,7 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator ^(scoped in Candidates left, scoped in Candidates right)
 	{
-		long* result = stackalloc long[12];
+		var result = stackalloc long[12];
 		result[0] = left._0 ^ right._0;
 		result[1] = left._1 ^ right._1;
 		result[2] = left._2 ^ right._2;
@@ -799,7 +799,7 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator -(scoped in Candidates left, scoped in Candidates right)
 	{
-		long* result = stackalloc long[12];
+		var result = stackalloc long[12];
 		result[0] = left._0 & ~right._0;
 		result[1] = left._1 & ~right._1;
 		result[2] = left._2 & ~right._2;
@@ -835,7 +835,7 @@ public unsafe struct Candidates :
 		}
 
 		var pThis = &result;
-		long* block = (offset / Shifting) switch
+		var block = (offset / Shifting) switch
 		{
 			0 => &pThis->_0,
 			1 => &pThis->_1,
@@ -876,7 +876,7 @@ public unsafe struct Candidates :
 		}
 
 		var pThis = &result;
-		long* block = (offset / Shifting) switch
+		var block = (offset / Shifting) switch
 		{
 			0 => &pThis->_0,
 			1 => &pThis->_1,

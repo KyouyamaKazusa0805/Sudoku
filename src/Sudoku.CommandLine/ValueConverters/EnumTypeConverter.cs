@@ -20,7 +20,7 @@ public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unm
 		static bool viaName(string value, out TEnum result)
 		{
 			Unsafe.SkipInit(out result);
-			if (!int.TryParse(value, out int targetValue))
+			if (!int.TryParse(value, out var targetValue))
 			{
 				return false;
 			}

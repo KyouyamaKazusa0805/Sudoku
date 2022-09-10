@@ -77,7 +77,7 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	protected internal static sealed bool CheckPreconditions(scoped in Grid grid, int[] urCells, bool arMode)
 	{
 		byte emptyCountWhenArMode = 0, modifiableCount = 0;
-		foreach (int urCell in urCells)
+		foreach (var urCell in urCells)
 		{
 			switch (grid.GetStatus(urCell))
 			{
@@ -116,7 +116,7 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 		// Same-sided cells cannot contain only one digit of two digits 'd1' and 'd2'.
 		foreach (var (a, b) in stackalloc[] { (0, 1), (2, 3), (0, 2), (1, 3) })
 		{
-			short gatheredMask = (short)(grid.GetCandidates(urCells[a]) | grid.GetCandidates(urCells[b]));
+			var gatheredMask = (short)(grid.GetCandidates(urCells[a]) | grid.GetCandidates(urCells[b]));
 			if ((gatheredMask >> d1 & 1) == 0 || (gatheredMask >> d2 & 1) == 0)
 			{
 				return false;
@@ -172,8 +172,8 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	protected internal static sealed bool IsSameHouseCell(int cell1, int cell2, out int houses)
 	{
-		int v = (CellMap.Empty + cell1 + cell2).CoveredHouses;
-		(bool r, houses) = v != 0 ? (true, v) : (false, 0);
+		var v = (CellMap.Empty + cell1 + cell2).CoveredHouses;
+		(var r, houses) = v != 0 ? (true, v) : (false, 0);
 		return r;
 	}
 

@@ -41,13 +41,13 @@ public static class PathGeometryExtensions
 		double arrowLength = 10;
 		double theta = 30;
 		double arrowX, arrowY;
-		double angle = Atan2(pt1.Y - pt2.Y, pt1.X - pt2.X) * 180 / PI;
-		double angle1 = (angle + theta + 22.5) * PI / 180;
-		double angle2 = (angle - theta + 22.5) * PI / 180;
-		double topX = arrowLength * Cos(angle1);
-		double topY = arrowLength * Sin(angle1);
-		double bottomX = arrowLength * Cos(angle2);
-		double bottomY = arrowLength * Sin(angle2);
+		var angle = Atan2(pt1.Y - pt2.Y, pt1.X - pt2.X) * 180 / PI;
+		var angle1 = (angle + theta + 22.5) * PI / 180;
+		var angle2 = (angle - theta + 22.5) * PI / 180;
+		var topX = arrowLength * Cos(angle1);
+		var topY = arrowLength * Sin(angle1);
+		var bottomX = arrowLength * Cos(angle2);
+		var bottomY = arrowLength * Sin(angle2);
 
 		arrowX = pt2.X + topX;
 		arrowY = pt2.Y + topY;

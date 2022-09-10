@@ -44,8 +44,8 @@ public static unsafe class PointerOperations
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 
-		int result = 0;
-		for (char* p = ptr; *p != '\0'; p++)
+		var result = 0;
+		for (var p = ptr; *p != '\0'; p++)
 		{
 			result++;
 		}
@@ -72,7 +72,7 @@ public static unsafe class PointerOperations
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 
-		int result = 0;
+		var result = 0;
 		for (var p = ptr; *p != (Utf8Char)'\0'; p++)
 		{
 			result++;
@@ -107,7 +107,7 @@ public static unsafe class PointerOperations
 		ArgumentNullException.ThrowIfNull(ptr);
 
 		var result = new TUnmanaged[length - index];
-		for (int i = index; i < length; i++)
+		for (var i = index; i < length; i++)
 		{
 			result[i - index] = ptr[i];
 		}
@@ -142,9 +142,9 @@ public static unsafe class PointerOperations
 
 		if (removeTrailingZeros)
 		{
-			int count = 0;
-			int* p = ptr + length - 1;
-			for (int i = length - 1; i >= 0; i--, p--, count++)
+			var count = 0;
+			var p = ptr + length - 1;
+			for (var i = length - 1; i >= 0; i--, p--, count++)
 			{
 				if (*p != 0)
 				{
@@ -152,7 +152,7 @@ public static unsafe class PointerOperations
 				}
 			}
 
-			int[] result = new int[length - count - index];
+			var result = new int[length - count - index];
 			for (int i = index, iterationLength = length - count; i < iterationLength; i++)
 			{
 				result[i - index] = ptr[i];

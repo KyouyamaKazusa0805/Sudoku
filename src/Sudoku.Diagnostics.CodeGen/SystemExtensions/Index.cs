@@ -90,7 +90,7 @@ internal readonly struct Index : IEquatable<Index>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int GetOffset(int length)
 	{
-		int offset = _value;
+		var offset = _value;
 		if (IsFromEnd)
 		{
 			// offset = length - (~value)

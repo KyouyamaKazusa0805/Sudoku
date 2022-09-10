@@ -26,12 +26,12 @@ internal static class SudokuItemSavingHelper
 			return false;
 		}
 
-		string code = grid.ToString("#");
+		var code = grid.ToString("#");
 
 		await SioFile.WriteAllTextAsync(filePath, code);
 
-		string a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
-		string b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
+		var a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
+		var b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
 		board.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
 
 		return true;
@@ -55,8 +55,8 @@ internal static class SudokuItemSavingHelper
 
 		await pane.RenderToAsync(file);
 
-		string a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
-		string b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
+		var a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
+		var b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
 		board.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
 
 		if (((App)Application.Current).UserPreference.AlsoSavePictureWhenSaveDrawingData)
@@ -101,12 +101,12 @@ internal static class SudokuItemSavingHelper
 			}
 			case UserDefinedVisual visual:
 			{
-				string json = Serialize(visual, CamelCasing);
+				var json = Serialize(visual, CamelCasing);
 
 				await SioFile.WriteAllTextAsync(filePath, json);
 
-				string a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
-				string b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
+				var a = R["SudokuPage_InfoBar_SaveSuccessfully1"]!;
+				var b = R["SudokuPage_InfoBar_SaveSuccessfully2"]!;
 				page._cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
 
 				return true;
@@ -114,10 +114,10 @@ internal static class SudokuItemSavingHelper
 			default:
 			{
 				// Specified view is not supported.
-				string theFile = R["SudokuPage_InfoBar_SaveFailed1"]!;
-				string isFailedToBeSaved = R["SudokuPage_InfoBar_SaveFailed2"]!;
-				string theReasonIs = R["ReasonIs"]!;
-				string currentDisplayableTypeIsNotSupported = R["SudokuPage_InfoBar_SaveFailedReason_CurrentDisplayableTypeIsNotSupported"]!;
+				var theFile = R["SudokuPage_InfoBar_SaveFailed1"]!;
+				var isFailedToBeSaved = R["SudokuPage_InfoBar_SaveFailed2"]!;
+				var theReasonIs = R["ReasonIs"]!;
+				var currentDisplayableTypeIsNotSupported = R["SudokuPage_InfoBar_SaveFailedReason_CurrentDisplayableTypeIsNotSupported"]!;
 				page._cInfoBoard.AddMessage(
 					InfoBarSeverity.Error,
 					$"""

@@ -47,8 +47,8 @@ public sealed class Solve : IExecutable
 				continue;
 			}
 
-			string? uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))!.GetValue(null);
-			string name = fieldInfo.GetCustomAttribute<NameAttribute>()!.Name;
+			var uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))!.GetValue(null);
+			var name = fieldInfo.GetCustomAttribute<NameAttribute>()!.Name;
 			switch (Activator.CreateInstance(type))
 			{
 				case ISimpleSolver simpleSolver:
@@ -65,7 +65,7 @@ public sealed class Solve : IExecutable
 					// to get the same result as 'grid.ToString("#")'; on contrast, 'grid.ToString("#")'
 					// as expected will be replaced with 'grid.ToString()'.
 					// Same reason for the below output case.
-					string uriLinkRealStr = uriLink is null ? string.Empty : $"\r\nURI link: '{uriLink}'";
+					var uriLinkRealStr = uriLink is null ? string.Empty : $"\r\nURI link: '{uriLink}'";
 					Terminal.WriteLine(
 						$"""
 						Puzzle: {Grid:#}

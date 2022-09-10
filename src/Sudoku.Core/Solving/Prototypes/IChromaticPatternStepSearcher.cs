@@ -51,13 +51,13 @@ public interface IChromaticPatternStepSearcher : INegativeRankStepSearcher
 		})
 		{
 			// Phase 1.
-			foreach (int[] a in aCase ? diagonalCases : antidiagonalCases)
+			foreach (var a in aCase ? diagonalCases : antidiagonalCases)
 			{
-				foreach (int[] b in bCase ? diagonalCases : antidiagonalCases)
+				foreach (var b in bCase ? diagonalCases : antidiagonalCases)
 				{
-					foreach (int[] c in cCase ? diagonalCases : antidiagonalCases)
+					foreach (var c in cCase ? diagonalCases : antidiagonalCases)
 					{
-						foreach (int[] d in dCase ? diagonalCases : antidiagonalCases)
+						foreach (var d in dCase ? diagonalCases : antidiagonalCases)
 						{
 							patternOffsetsList.Add((a, b, c, d));
 						}
@@ -66,13 +66,13 @@ public interface IChromaticPatternStepSearcher : INegativeRankStepSearcher
 			}
 
 			// Phase 2.
-			foreach (int[] a in aCase ? antidiagonalCases : diagonalCases)
+			foreach (var a in aCase ? antidiagonalCases : diagonalCases)
 			{
-				foreach (int[] b in bCase ? antidiagonalCases : diagonalCases)
+				foreach (var b in bCase ? antidiagonalCases : diagonalCases)
 				{
-					foreach (int[] c in cCase ? antidiagonalCases : diagonalCases)
+					foreach (var c in cCase ? antidiagonalCases : diagonalCases)
 					{
-						foreach (int[] d in dCase ? antidiagonalCases : diagonalCases)
+						foreach (var d in dCase ? antidiagonalCases : diagonalCases)
 						{
 							patternOffsetsList.Add((a, b, c, d));
 						}

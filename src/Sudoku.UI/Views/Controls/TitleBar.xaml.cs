@@ -52,9 +52,9 @@ public sealed partial class TitleBar : UserControl
 	{
 		if (appWindow.TitleBar.ExtendsContentIntoTitleBar)
 		{
-			double scaleAdjustment = GetScaleAdjustment();
-			int width = (int)(ActualWidth * scaleAdjustment);
-			int height = (int)(ActualHeight * scaleAdjustment);
+			var scaleAdjustment = GetScaleAdjustment();
+			var width = (int)(ActualWidth * scaleAdjustment);
+			var height = (int)(ActualHeight * scaleAdjustment);
 			var rect = new RectInt32(0, 0, width, height);
 			appWindow.TitleBar.SetDragRectangles(new[] { rect });
 		}
@@ -69,19 +69,19 @@ public sealed partial class TitleBar : UserControl
 	/// </exception>
 	private double GetScaleAdjustment()
 	{
-		nint hWnd = WindowNative.GetWindowHandle(_baseWindow);
+		var hWnd = WindowNative.GetWindowHandle(_baseWindow);
 		var wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
 		var displayArea = DisplayArea.GetFromWindowId(wndId, DisplayAreaFallback.Primary);
-		nint hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
+		var hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
 
 		// Get DPI.
-		int result = GetDpiForMonitor(hMonitor, Monitor_DPI_Type.MDT_Default, out uint dpiX, out _);
+		var result = GetDpiForMonitor(hMonitor, Monitor_DPI_Type.MDT_Default, out var dpiX, out _);
 		if (result != 0)
 		{
 			throw new InvalidOperationException("Could not get DPI for monitor.");
 		}
 
-		uint scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);
+		var scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);
 		return scaleFactorPercent / 100.0;
 	}
 

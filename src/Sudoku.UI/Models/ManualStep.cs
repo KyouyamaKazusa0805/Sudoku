@@ -106,8 +106,8 @@ public sealed class ManualStep
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToDisplayString()
 	{
-		string openBrace = R["Token_OpenBrace"]!;
-		string closedBrace = R["Token_ClosedBrace"]!;
+		var openBrace = R["Token_OpenBrace"]!;
+		var closedBrace = R["Token_ClosedBrace"]!;
 		return ExtraFeatures.Flags(StepDisplayingFeature.HideDifficultyRating)
 			? Step.ToSimpleString()
 			: $"{openBrace}{R["DifficultyRating"]!} {Step.Difficulty:0.0}{closedBrace} {Step.ToSimpleString()}";

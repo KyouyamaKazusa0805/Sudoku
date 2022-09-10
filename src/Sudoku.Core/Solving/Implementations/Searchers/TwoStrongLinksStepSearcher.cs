@@ -7,15 +7,15 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 	/// <inheritdoc/>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
-			for (int h1 = 0; h1 < 26; h1++)
+			for (var h1 = 0; h1 < 26; h1++)
 			{
-				for (int h2 = h1 + 1; h2 < 27; h2++)
+				for (var h2 = h1 + 1; h2 < 27; h2++)
 				{
 					// Get masks.
-					short mask1 = (HousesMap[h1] & CandidatesMap[digit]) / h1;
-					short mask2 = (HousesMap[h2] & CandidatesMap[digit]) / h2;
+					var mask1 = (HousesMap[h1] & CandidatesMap[digit]) / h1;
+					var mask2 = (HousesMap[h2] & CandidatesMap[digit]) / h2;
 					if (PopCount((uint)mask1) != 2 || PopCount((uint)mask2) != 2)
 					{
 						continue;
@@ -26,15 +26,15 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 					var cells2 = CellMap.Empty;
 					var cellsList1 = new List<int>(PopCount((uint)mask1));
 					var cellsList2 = new List<int>(PopCount((uint)mask2));
-					foreach (int pos1 in mask1)
+					foreach (var pos1 in mask1)
 					{
-						int cell1 = HouseCells[h1][pos1];
+						var cell1 = HouseCells[h1][pos1];
 						cellsList1.Add(cell1);
 						cells1.Add(cell1);
 					}
-					foreach (int pos2 in mask2)
+					foreach (var pos2 in mask2)
 					{
-						int cell2 = HouseCells[h2][pos2];
+						var cell2 = HouseCells[h2][pos2];
 						cellsList2.Add(cell2);
 						cells2.Add(cell2);
 					}
@@ -46,12 +46,12 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 
 					// Check two cells share a same house.
 					int sameHouse, headIndex, tailIndex, c1Index, c2Index;
-					for (int i = 0; i < 2; i++)
+					for (var i = 0; i < 2; i++)
 					{
-						int cell1 = cellsList1[i];
-						for (int j = 0; j < 2; j++)
+						var cell1 = cellsList1[i];
+						for (var j = 0; j < 2; j++)
 						{
-							int cell2 = cellsList2[j];
+							var cell2 = cellsList2[j];
 							if ((CellMap.Empty + cell1 + cell2).AllSetsAreInOneHouse(out sameHouse))
 							{
 								(c1Index, c2Index) = (i, j);

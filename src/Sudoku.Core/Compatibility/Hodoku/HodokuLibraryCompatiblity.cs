@@ -105,7 +105,7 @@ public static class HodokuLibraryCompatiblity
 	[return: NotNullIfNotNull(nameof(difficultyLevel))]
 	public static int? GetDifficultyRating(this Technique @this, out HodokuDifficultyLevel? difficultyLevel)
 	{
-		(int? @return, difficultyLevel) = (@this != Technique.None && Enum.IsDefined(@this)) switch
+		(var @return, difficultyLevel) = (@this != Technique.None && Enum.IsDefined(@this)) switch
 		{
 			true => typeof(Technique).GetField(@this.ToString()) switch
 			{

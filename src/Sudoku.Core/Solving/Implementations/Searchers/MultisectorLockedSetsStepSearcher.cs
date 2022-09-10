@@ -6,7 +6,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 	/// <inheritdoc/>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		short* linkForEachHouse = stackalloc short[27];
+		var linkForEachHouse = stackalloc short[27];
 		var linkForEachDigit = stackalloc CellMap[9];
 		foreach (var pattern in IMultisectorLockedSetsStepSearcher.Patterns)
 		{
@@ -17,7 +17,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 			}
 
 			int n = 0, count = map.Count;
-			for (int digit = 0; digit < 9; digit++)
+			for (var digit = 0; digit < 9; digit++)
 			{
 				var pMap = linkForEachDigit + digit;
 				*pMap = CandidatesMap[digit] & map;
@@ -33,23 +33,23 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 				var canL = new CellMap[9];
 				var conclusions = new List<Conclusion>();
 				var candidateOffsets = new List<CandidateViewNode>();
-				for (int digit = 0; digit < 9; digit++)
+				for (var digit = 0; digit < 9; digit++)
 				{
-					short q = (short)(1 << digit);
+					var q = (short)(1 << digit);
 					var currentMap = linkForEachDigit[digit];
 					uint
 						rMask = (uint)currentMap.RowMask,
 						cMask = (uint)currentMap.ColumnMask,
 						bMask = (uint)currentMap.BlockMask;
-					int temp = MathExtensions.Min(PopCount(rMask), PopCount(cMask), PopCount(bMask));
+					var temp = MathExtensions.Min(PopCount(rMask), PopCount(cMask), PopCount(bMask));
 					var elimMap = CellMap.Empty;
-					int check = 0;
+					var check = 0;
 					if (PopCount(rMask) == temp)
 					{
 						check++;
-						foreach (int i in rMask)
+						foreach (var i in rMask)
 						{
-							int house = i + 9;
+							var house = i + 9;
 							linkForEachHouse[house] |= q;
 							elimMap |= +(CandidatesMap[digit] & HousesMap[house] & map);
 						}
@@ -57,9 +57,9 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 					if (PopCount(cMask) == temp)
 					{
 						check++;
-						foreach (int i in cMask)
+						foreach (var i in cMask)
 						{
-							int house = i + 18;
+							var house = i + 18;
 							linkForEachHouse[house] |= q;
 							elimMap |= +(CandidatesMap[digit] & HousesMap[house] & map);
 						}
@@ -67,7 +67,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 					if (PopCount(bMask) == temp)
 					{
 						check++;
-						foreach (int i in bMask)
+						foreach (var i in bMask)
 						{
 							linkForEachHouse[i] |= q;
 							elimMap |= +(CandidatesMap[digit] & HousesMap[i] & map);
@@ -80,7 +80,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 						continue;
 					}
 
-					foreach (int cell in elimMap)
+					foreach (var cell in elimMap)
 					{
 						if (map.Contains(cell))
 						{
@@ -96,23 +96,23 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 					continue;
 				}
 
-				for (int house = 0; house < 27; house++)
+				for (var house = 0; house < 27; house++)
 				{
-					short linkMask = linkForEachHouse[house];
+					var linkMask = linkForEachHouse[house];
 					if (linkMask == 0)
 					{
 						continue;
 					}
 
-					foreach (int cell in map & HousesMap[house])
+					foreach (var cell in map & HousesMap[house])
 					{
-						short cands = (short)(grid.GetCandidates(cell) & linkMask);
+						var cands = (short)(grid.GetCandidates(cell) & linkMask);
 						if (cands == 0)
 						{
 							continue;
 						}
 
-						foreach (int cand in cands)
+						foreach (var cand in cands)
 						{
 							if (!canL[cand].Contains(cell))
 							{

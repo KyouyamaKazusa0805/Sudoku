@@ -172,8 +172,8 @@ file sealed class PathConstructor
 		pointPairs = new List<PointPairData>();
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
-		double cs = PointConversions.CandidateSize(PaneSize, OutsideOffset);
-		bool isFirst = true;
+		var cs = PointConversions.CandidateSize(PaneSize, OutsideOffset);
+		var isFirst = true;
 		foreach (var (start, end, inference) in nodes)
 		{
 			_ = PointConversions.GetMouseCenter(PaneSize, OutsideOffset, start) is (var pt1x, var pt1y) pt1;
@@ -213,18 +213,18 @@ file sealed class PathConstructor
 			{
 				// If the distance of two points is lower than the one of two adjacent candidates,
 				// the link will be emitted to draw because of too narrow.
-				double distance = pt1.DistanceTo(pt2);
+				var distance = pt1.DistanceTo(pt2);
 				if (distance <= cs * SqrtOf2 + OutsideOffset || distance <= cs * SqrtOf2 + OutsideOffset)
 				{
 					continue;
 				}
 
 				double deltaX = pt2.X - pt1.X, deltaY = pt2.Y - pt1.Y;
-				double alpha = Atan2(deltaY, deltaX);
+				var alpha = Atan2(deltaY, deltaX);
 				adjust(pt1, pt2, out var p1, out _, alpha, cs, 0);
 
 				// Check if another candidate lies in the direct line.
-				bool through = false;
+				var through = false;
 				double dx1 = deltaX, dy1 = deltaY;
 				foreach (var point in points)
 				{
@@ -258,9 +258,9 @@ file sealed class PathConstructor
 					rotate(oldPt1, ref pt1, -RotateAngle);
 					rotate(oldPt2, ref pt2, RotateAngle);
 
-					double interim1Alpha = alpha - RotateAngle;
+					var interim1Alpha = alpha - RotateAngle;
 					double bx1 = pt1.X + bezierLength * Cos(interim1Alpha), by1 = pt1.Y + bezierLength * Sin(interim1Alpha);
-					double interim2Alpha = alpha + RotateAngle;
+					var interim2Alpha = alpha + RotateAngle;
 					double bx2 = pt2.X - bezierLength * Cos(interim2Alpha), by2 = pt2.Y - bezierLength * Sin(interim2Alpha);
 
 					correctOffsetOfPoint(ref pt1, OutsideOffset);
@@ -384,7 +384,7 @@ file sealed class PathConstructor
 			scoped in Point pt1, scoped in Point pt2, out Point p1, out Point p2,
 			double alpha, double candidateSize, double offset)
 		{
-			(p1, p2, double tempDelta) = (pt1, pt2, candidateSize / 2 + offset);
+			(p1, p2, var tempDelta) = (pt1, pt2, candidateSize / 2 + offset);
 			int px = (int)(tempDelta * Cos(alpha)), py = (int)(tempDelta * Sin(alpha));
 
 			p1 = p1 with { X = p1.X + px, Y = p1.Y + py };
@@ -395,10 +395,10 @@ file sealed class PathConstructor
 		static void cut(scoped ref Point pt1, scoped ref Point pt2, double offset, double cs)
 		{
 			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
-			double slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
-			double x = cs / (float)Sqrt(1 + slope * slope);
-			double y = cs * (float)Sqrt(slope * slope / (1 + slope * slope));
-			double innerOffset = offset / 8;
+			var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
+			var x = cs / (float)Sqrt(1 + slope * slope);
+			var y = cs * (float)Sqrt(slope * slope / (1 + slope * slope));
+			var innerOffset = offset / 8;
 			if (pt1y > pt2y && pt1x.NearlyEquals(pt2x))
 			{
 				pt1.Y -= cs / 2 - innerOffset;

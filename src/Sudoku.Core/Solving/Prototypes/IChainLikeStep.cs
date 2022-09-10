@@ -13,8 +13,8 @@ public interface IChainLikeStep : IStep
 	protected static sealed decimal GetExtraDifficultyByLength(int length)
 	{
 		decimal added = 0;
-		int ceil = 4;
-		for (bool isOdd = false; length > ceil; isOdd = !isOdd)
+		var ceil = 4;
+		for (var isOdd = false; length > ceil; isOdd = !isOdd)
 		{
 			added += .1M;
 			ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;

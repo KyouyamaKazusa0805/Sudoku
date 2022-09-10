@@ -37,7 +37,7 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 	public Grid Generate(CancellationToken cancellationToken = default)
 	{
 		char* puzzle = stackalloc char[81], solution = stackalloc char[81];
-		int* holeCells = stackalloc int[81];
+		var holeCells = stackalloc int[81];
 		while (true)
 		{
 			fixed (char* pEmptyString = Grid.EmptyString)
@@ -50,14 +50,14 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 
 			Unsafe.InitBlock(holeCells, 0, 81 * sizeof(int));
 			CreatePattern(holeCells);
-			for (int trial = 0; trial < 1000; trial++)
+			for (var trial = 0; trial < 1000; trial++)
 			{
 				cancellationToken.ThrowIfCancellationRequested();
 
-				for (int cell = 0; cell < 81; cell++)
+				for (var cell = 0; cell < 81; cell++)
 				{
-					int p = holeCells[cell];
-					char temp = solution[p];
+					var p = holeCells[cell];
+					var temp = solution[p];
 					solution[p] = '0';
 
 					if (!Solver.CheckValidity(solution))
@@ -88,17 +88,17 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 	{
 		do
 		{
-			for (int i = 0; i < 81; i++)
+			for (var i = 0; i < 81; i++)
 			{
 				pPuzzle[i] = '0';
 			}
 
 			var map = CellMap.Empty;
-			for (int i = 0; i < 16; i++)
+			for (var i = 0; i < 16; i++)
 			{
 				while (true)
 				{
-					int cell = _random.Next(81);
+					var cell = _random.Next(81);
 					if (!map.Contains(cell))
 					{
 						map.Add(cell);
@@ -107,7 +107,7 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 				}
 			}
 
-			foreach (int cell in map)
+			foreach (var cell in map)
 			{
 				do
 				{
@@ -124,12 +124,12 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 	private void CreatePattern(int* pattern)
 	{
 		int a = 54, b = 0;
-		for (int i = 0; i < 9; i++)
+		for (var i = 0; i < 9; i++)
 		{
-			int n = (int)(_random.NextDouble() * 6);
-			for (int j = 0; j < 3; j++)
+			var n = (int)(_random.NextDouble() * 6);
+			for (var j = 0; j < 3; j++)
 			{
-				for (int k = 0; k < 3; k++)
+				for (var k = 0; k < 3; k++)
 				{
 					pattern[(k == SwappingFactor[n, j] ? ref a : ref b)++] = BlockFactor[i] + j * 9 + k;
 				}
@@ -145,19 +145,19 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 	/// <param name="pattern">The pointer that points to an array of the pattern values.</param>
 	private void RecreatePattern(int* pattern)
 	{
-		for (int i = 23; i >= 0; i--)
+		for (var i = 23; i >= 0; i--)
 		{
 			PointerOperations.Swap(pattern + i, pattern + (int)((i + 1) * _random.NextDouble()));
 		}
-		for (int i = 47; i >= 24; i--)
+		for (var i = 47; i >= 24; i--)
 		{
 			PointerOperations.Swap(pattern + i, pattern + 24 + (int)((i - 23) * _random.NextDouble()));
 		}
-		for (int i = 53; i >= 48; i--)
+		for (var i = 53; i >= 48; i--)
 		{
 			PointerOperations.Swap(pattern + i, pattern + 48 + (int)((i - 47) * _random.NextDouble()));
 		}
-		for (int i = 80; i >= 54; i--)
+		for (var i = 80; i >= 54; i--)
 		{
 			PointerOperations.Swap(pattern + i, pattern + 54 + (int)(27 * _random.NextDouble()));
 		}
@@ -172,8 +172,8 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private static bool CheckDuplicate(char* ptrGrid, int cell)
 	{
-		char value = ptrGrid[cell];
-		foreach (int c in PeersMap[cell])
+		var value = ptrGrid[cell];
+		foreach (var c in PeersMap[cell])
 		{
 			if (value != '0' && ptrGrid[c] == value)
 			{

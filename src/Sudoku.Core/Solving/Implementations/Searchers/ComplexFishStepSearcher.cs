@@ -18,8 +18,8 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 		var tempGrid = grid;
 
 		// Sum up how many digits exist complex fish.
-		int count = 0;
-		for (int digit = 0; digit < 9; digit++)
+		var count = 0;
+		for (var digit = 0; digit < 9; digit++)
 		{
 			if (pomElims[digit] is not null)
 			{
@@ -32,7 +32,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 		var tempList = new List<ComplexFishStep>();
 		var searchingTasks = new Task[count];
 		count = 0;
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
 			if (pomElims[digit] is null)
 			{
@@ -41,7 +41,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 
 			// Note the iteration variable can't be used directly.
 			// We should add a copy in order to use it.
-			int currentDigit = digit;
+			var currentDigit = digit;
 
 			// Create a background thread to work on searching for fishes of this digit.
 			searchingTasks[count++] = Task.Run(
@@ -89,17 +89,17 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 	{
 		const HouseType bothLines = (HouseType)3;
 
-		int* currentCoverSets = stackalloc int[MaxSize];
-		bool* searchForMutantCases = stackalloc[] { false, true };
+		var currentCoverSets = stackalloc int[MaxSize];
+		var searchForMutantCases = stackalloc[] { false, true };
 
 		// Iterate on each size.
-		for (int size = 2; size <= MaxSize; size++)
+		for (var size = 2; size <= MaxSize; size++)
 		{
 			// Iterate on different cases on whether searcher finds mutant fishes.
 			// If false, search for franken fishes.
-			for (int caseIndex = 0; caseIndex < 2; caseIndex++)
+			for (var caseIndex = 0; caseIndex < 2; caseIndex++)
 			{
-				bool searchForMutant = searchForMutantCases[caseIndex];
+				var searchForMutant = searchForMutantCases[caseIndex];
 
 				// Try to check the POM eliminations.
 				// If the digit as a key doesn't contain any list in that dictionary,
@@ -111,15 +111,15 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 				}
 
 				// Get the eliminations of this digit.
-				int[] elims = new int[pomElimsOfThisDigit.Count];
-				int index = 0;
+				var elims = new int[pomElimsOfThisDigit.Count];
+				var index = 0;
 				foreach (var conclusion in pomElimsOfThisDigit)
 				{
 					elims[index++] = conclusion.Cell;
 				}
 
 				// Then iterate on each elimination.
-				foreach (int cell in elims)
+				foreach (var cell in elims)
 				{
 					// Try to assume the digit is true in the current cell,
 					// and we can get a map of all possible cells that can be filled with the digit.
@@ -136,11 +136,11 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 					}
 
 					// Iterate on each base set combinations.
-					foreach (int[] baseSets in baseTable.GetSubsets(size))
+					foreach (var baseSets in baseTable.GetSubsets(size))
 					{
 						// Get the mask representing the base sets used.
-						int baseSetsMask = 0;
-						foreach (int baseSet in baseSets)
+						var baseSetsMask = 0;
+						foreach (var baseSet in baseSets)
 						{
 							baseSetsMask |= 1 << baseSet;
 						}
@@ -156,7 +156,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						CellMap tempMap = CellMap.Empty, endofins = CellMap.Empty;
 						for (int i = 0, length = baseSets.Length; i < length; i++)
 						{
-							int baseSet = baseSets[i];
+							var baseSet = baseSets[i];
 							if (i != 0)
 							{
 								endofins |= HousesMap[baseSet] & tempMap;
@@ -194,9 +194,9 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						}
 
 						// Get all used base set list.
-						int usedInBaseSets = 0;
+						var usedInBaseSets = 0;
 						var baseMap = CellMap.Empty;
-						foreach (int baseSet in baseSets)
+						foreach (var baseSet in baseSets)
 						{
 							baseMap |= HousesMap[baseSet];
 							usedInBaseSets |= 1 << baseSet;
@@ -207,14 +207,14 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						baseMap &= possibleMap;
 
 						// Now check the possible cover sets to iterate.
-						int z = baseMap.Houses & ~usedInBaseSets & AllHousesMask;
+						var z = baseMap.Houses & ~usedInBaseSets & AllHousesMask;
 						if (z == 0)
 						{
 							continue;
 						}
 
 						// If the count is lower than size, we can't find any possible fish.
-						int popCount = PopCount((uint)z);
+						var popCount = PopCount((uint)z);
 						if (popCount < size)
 						{
 							continue;
@@ -224,11 +224,11 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						scoped var coverTable = z.GetAllSets();
 
 						// Iterate on each cover sets combination.
-						foreach (int[] coverSets in coverTable.GetSubsets(size - 1))
+						foreach (var coverSets in coverTable.GetSubsets(size - 1))
 						{
 							// Now get the cover sets map.
 							var coverMap = CellMap.Empty;
-							foreach (int coverSet in coverSets)
+							foreach (var coverSet in coverSets)
 							{
 								coverMap |= HousesMap[coverSet];
 							}
@@ -241,7 +241,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 
 							// Now check the current cover sets.
 							int usedInCoverSets = 0, i = 0;
-							foreach (int coverSet in coverSets)
+							foreach (var coverSet in coverSets)
 							{
 								currentCoverSets[i++] = coverSet;
 								usedInCoverSets |= 1 << coverSet;
@@ -252,7 +252,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 							// that is the elimination lies in.
 							foreach (var houseType in HouseTypes)
 							{
-								int houseIndex = cell.ToHouseIndex(houseType);
+								var houseIndex = cell.ToHouseIndex(houseType);
 
 								// Check whether the house is both used in base sets and cover sets.
 								if ((usedInBaseSets >> houseIndex & 1) != 0
@@ -316,7 +316,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 
 								// Insert into the current cover set list, in order to keep
 								// all cover sets are in order (i.e. Sort the cover sets).
-								int j = size - 2;
+								var j = size - 2;
 								for (; j >= 0; j--)
 								{
 									if (currentCoverSets[j] >= houseIndex)
@@ -373,7 +373,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 
 								// Gather eliminations, views and step information.
 								var conclusions = new List<Conclusion>();
-								foreach (int elimCell in elimMap)
+								foreach (var elimCell in elimMap)
 								{
 									conclusions.Add(new(Elimination, elimCell, digit));
 								}
@@ -381,22 +381,22 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 								// Collect highlighting candidates.
 								var candidateOffsets = new List<CandidateViewNode>();
 								var houseOffsets = new List<HouseViewNode>();
-								foreach (int body in actualBaseMap)
+								foreach (var body in actualBaseMap)
 								{
 									candidateOffsets.Add(new(DisplayColorKind.Normal, body * 9 + digit));
 								}
-								foreach (int exofin in exofins)
+								foreach (var exofin in exofins)
 								{
 									candidateOffsets.Add(new(DisplayColorKind.Exofin, exofin * 9 + digit));
 								}
-								foreach (int endofin in endofins)
+								foreach (var endofin in endofins)
 								{
 									candidateOffsets.Add(new(DisplayColorKind.Endofin, endofin * 9 + digit));
 								}
 
 								// Don't forget the extra cover set.
 								// Add it into the list now.
-								int[] actualCoverSets = new int[size];
+								var actualCoverSets = new int[size];
 								for (int p = 0, iterationSize = size - 1; p < iterationSize; p++)
 								{
 									actualCoverSets[p] = coverSets[p];
@@ -404,12 +404,12 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 								actualCoverSets[^1] = houseIndex;
 
 								// Collect highlighting houses.
-								int coverSetsMask = 0;
-								foreach (int baseSet in baseSets)
+								var coverSetsMask = 0;
+								foreach (var baseSet in baseSets)
 								{
 									houseOffsets.Add(new(DisplayColorKind.Normal, baseSet));
 								}
-								foreach (int coverSet in actualCoverSets)
+								foreach (var coverSet in actualCoverSets)
 								{
 									houseOffsets.Add(new(DisplayColorKind.Auxiliary2, coverSet));
 									coverSetsMask |= 1 << coverSet;
@@ -461,7 +461,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 		var result = new IList<Conclusion>?[9];
 		foreach (PatternOverlayStep step in tempList)
 		{
-			int digit = step.Digit;
+			var digit = step.Digit;
 			scoped ref var currentList = ref result[digit];
 			if (currentList is null)
 			{

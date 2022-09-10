@@ -79,15 +79,15 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 		foreach (var cells in a & EmptyCells & size - 1)
 		{
 			// Gather the mask. The cell combination must contain the specified number of digits.
-			short mask = grid.GetDigitsUnion(cells);
+			var mask = grid.GetDigitsUnion(cells);
 			if (PopCount((uint)mask) != size)
 			{
 				continue;
 			}
 
 			// Check whether overlapped.
-			bool isOverlapped = false;
-			foreach (int digit in mask)
+			var isOverlapped = false;
+			foreach (var digit in mask)
 			{
 				if (ValuesMap[digit] & HousesMap[coverSet])
 				{
@@ -103,7 +103,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 			// Then check whether the another house (left-side block in those diagrams)
 			// forms an AHS (i.e. those digits must appear in the specified cells).
 			short ahsMask = 0;
-			foreach (int digit in mask)
+			foreach (var digit in mask)
 			{
 				ahsMask |= (HousesMap[coverSet] & CandidatesMap[digit] & b) / coverSet;
 			}
@@ -114,28 +114,28 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 
 			// Gather the AHS cells.
 			var ahsCells = CellMap.Empty;
-			foreach (int pos in ahsMask)
+			foreach (var pos in ahsMask)
 			{
 				ahsCells.Add(HouseCells[coverSet][pos]);
 			}
 
 			// Gather all eliminations.
 			var conclusions = new List<Conclusion>();
-			foreach (int aCell in a)
+			foreach (var aCell in a)
 			{
 				if (cells.Contains(aCell))
 				{
 					continue;
 				}
 
-				foreach (int digit in (short)(mask & grid.GetCandidates(aCell)))
+				foreach (var digit in (short)(mask & grid.GetCandidates(aCell)))
 				{
 					conclusions.Add(new(Elimination, aCell, digit));
 				}
 			}
-			foreach (int digit in (short)(Grid.MaxCandidatesMask & ~mask))
+			foreach (var digit in (short)(Grid.MaxCandidatesMask & ~mask))
 			{
-				foreach (int ahsCell in ahsCells & CandidatesMap[digit])
+				foreach (var ahsCell in ahsCells & CandidatesMap[digit])
 				{
 					conclusions.Add(new(Elimination, ahsCell, digit));
 				}
@@ -149,23 +149,23 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 
 			// Gather highlight candidates.
 			var candidateOffsets = new List<CandidateViewNode>();
-			foreach (int digit in mask)
+			foreach (var digit in mask)
 			{
-				foreach (int cell in cells & CandidatesMap[digit])
+				foreach (var cell in cells & CandidatesMap[digit])
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
 			}
-			foreach (int cell in c)
+			foreach (var cell in c)
 			{
-				foreach (int digit in (short)(mask & grid.GetCandidates(cell)))
+				foreach (var digit in (short)(mask & grid.GetCandidates(cell)))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 				}
 			}
-			foreach (int cell in ahsCells)
+			foreach (var cell in ahsCells)
 			{
-				foreach (int digit in (short)(mask & grid.GetCandidates(cell)))
+				foreach (var digit in (short)(mask & grid.GetCandidates(cell)))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
@@ -173,12 +173,12 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 
 			var map = (cells | ahsCells) - EmptyCells;
 			var valueCells = new List<CellViewNode>(map.Count);
-			foreach (int cell in map)
+			foreach (var cell in map)
 			{
 				valueCells.Add(new(DisplayColorKind.Normal, cell));
 			}
 
-			bool hasValueCell = valueCells.Count != 0;
+			var hasValueCell = valueCells.Count != 0;
 			var step = new AlmostLockedCandidatesStep(
 				ImmutableArray.CreateRange(conclusions),
 				ImmutableArray.Create(

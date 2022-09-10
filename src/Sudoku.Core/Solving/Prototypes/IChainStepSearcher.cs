@@ -21,12 +21,12 @@ public interface IChainStepSearcher : IStepSearcher
 #if false
 		byte alsIndex = 0, urIndex = 0;
 #endif
-		for (int i = 0; i < realChainNodes.Length; i++)
+		for (var i = 0; i < realChainNodes.Length; i++)
 		{
 			if (realChainNodes[i] is { Cells: var cells, Digit: var digit } currentNode)
 			{
 				// Normal highlight candidates.
-				foreach (int cell in cells)
+				foreach (var cell in cells)
 				{
 					result.Add(
 						new(
@@ -115,7 +115,7 @@ public interface IChainStepSearcher : IStepSearcher
 		}
 
 		var result = new LinkViewNode[isStrong || isCnl ? length + 1 : length];
-		for (int i = 0; i < length - 1; i++)
+		for (var i = 0; i < length - 1; i++)
 		{
 			if (realChainNodes[i] is { Cells: var aCells, Digit: var aDigit }
 				&& realChainNodes[i + 1] is { Cells: var bCells, Digit: var bDigit })
@@ -170,7 +170,7 @@ public interface IChainStepSearcher : IStepSearcher
 
 			if (nextIds is not null)
 			{
-				foreach (int nextId in nextIds)
+				foreach (var nextId in nextIds)
 				{
 					sb.Append(nodeLookup[nextId]!.Value.ToSimpleString());
 					sb.Append(separator);

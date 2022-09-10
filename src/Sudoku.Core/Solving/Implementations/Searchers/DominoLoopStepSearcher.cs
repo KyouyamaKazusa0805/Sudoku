@@ -7,8 +7,8 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		short* pairs = stackalloc short[8], tempLink = stackalloc short[8];
-		int* linkHouse = stackalloc int[8];
-		foreach (int[] cells in IDominoLoopStepSearcher.SkLoopTable)
+		var linkHouse = stackalloc int[8];
+		foreach (var cells in IDominoLoopStepSearcher.SkLoopTable)
 		{
 			// Initialize the elements.
 			int n = 0, candidateCount = 0, i = 0;
@@ -54,31 +54,31 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 				continue;
 			}
 
-			short candidateMask = (short)(pairs[0] & pairs[1]);
+			var candidateMask = (short)(pairs[0] & pairs[1]);
 			if (candidateMask == 0)
 			{
 				continue;
 			}
 
 			// Check all combinations.
-			short[] masks = GetMaskSubsets(candidateMask);
-			for (int j = masks.Length - 1; j >= 0; j--)
+			var masks = GetMaskSubsets(candidateMask);
+			for (var j = masks.Length - 1; j >= 0; j--)
 			{
-				short mask = masks[j];
+				var mask = masks[j];
 				if (mask == 0)
 				{
 					continue;
 				}
 
-				for (int p = 0; p < 8; p++)
+				for (var p = 0; p < 8; p++)
 				{
 					tempLink[p] = default;
 				}
 
 				// Check the associativity:
 				// Each pair should find the digits that can combine with the next pair.
-				int linkCount = PopCount((uint)(tempLink[0] = mask));
-				int k = 1;
+				var linkCount = PopCount((uint)(tempLink[0] = mask));
+				var k = 1;
 				for (; k < 8; k++)
 				{
 					candidateMask = (short)(tempLink[k - 1] ^ pairs[k]);
@@ -120,12 +120,12 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 						continue;
 					}
 
-					foreach (int cell in elimMap)
+					foreach (var cell in elimMap)
 					{
-						short cands = (short)(grid.GetCandidates(cell) & tempLink[k]);
+						var cands = (short)(grid.GetCandidates(cell) & tempLink[k]);
 						if (cands != 0)
 						{
-							foreach (int digit in cands)
+							foreach (var digit in cands)
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}
@@ -141,19 +141,19 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 
 				// Highlight candidates.
 				var candidateOffsets = new List<CandidateViewNode>();
-				short[] link = new short[27];
+				var link = new short[27];
 				for (k = 0; k < 8; k++)
 				{
 					link[linkHouse[k]] = tempLink[k];
-					foreach (int cell in map & HousesMap[linkHouse[k]])
+					foreach (var cell in map & HousesMap[linkHouse[k]])
 					{
-						short cands = (short)(grid.GetCandidates(cell) & tempLink[k]);
+						var cands = (short)(grid.GetCandidates(cell) & tempLink[k]);
 						if (cands == 0)
 						{
 							continue;
 						}
 
-						foreach (int digit in cands)
+						foreach (var digit in cands)
 						{
 							candidateOffsets.Add(
 								new(

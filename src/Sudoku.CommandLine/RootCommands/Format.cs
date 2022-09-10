@@ -26,7 +26,7 @@ public sealed class Format : IExecutable
 	/// <inheritdoc/>
 	public void Execute()
 	{
-		string format = FormatString;
+		var format = FormatString;
 		try
 		{
 			Terminal.WriteLine(

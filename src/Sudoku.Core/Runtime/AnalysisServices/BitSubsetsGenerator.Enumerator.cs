@@ -37,12 +37,12 @@ partial struct BitSubsetsGenerator
 		/// <inheritdoc/>
 		public bool MoveNext()
 		{
-			bool result = hasNext(ref this);
+			var result = hasNext(ref this);
 			if (result && !_isLast)
 			{
-				long smallest = Current & -Current;
-				long ripple = Current + smallest;
-				long ones = Current ^ ripple;
+				var smallest = Current & -Current;
+				var ripple = Current + smallest;
+				var ones = Current ^ ripple;
 				ones = (ones >> 2) / smallest;
 				Current = ripple | ones;
 			}
@@ -53,7 +53,7 @@ partial struct BitSubsetsGenerator
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static bool hasNext(ref Enumerator @this)
 			{
-				bool result = !@this._isLast;
+				var result = !@this._isLast;
 				@this._isLast = (@this.Current & -@this.Current & @this._mask) == 0;
 				return result;
 			}

@@ -14,9 +14,9 @@ public static class ArrayEnumerable
 	/// </param>
 	public static TResult[] Select<T, TResult>(this T[] @this, Func<T, TResult> selector)
 	{
-		int length = @this.Length;
+		var length = @this.Length;
 		var result = new TResult[length];
-		for (int i = 0; i < length; i++)
+		for (var i = 0; i < length; i++)
 		{
 			result[i] = selector(@this[i]);
 		}

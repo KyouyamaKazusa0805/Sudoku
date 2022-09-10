@@ -116,8 +116,8 @@ public readonly record struct ExocetPattern(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string baseCellsStr = (CellMap.Empty + Base1 + Base2).ToString();
-		string targetCellsStr = (CellMap.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2).ToString();
+		var baseCellsStr = (CellMap.Empty + Base1 + Base2).ToString();
+		var targetCellsStr = (CellMap.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2).ToString();
 		return $"Exocet: base {baseCellsStr}, target {targetCellsStr}";
 	}
 }

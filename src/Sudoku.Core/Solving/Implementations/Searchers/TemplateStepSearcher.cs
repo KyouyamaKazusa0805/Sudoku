@@ -16,7 +16,7 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 	{
 		// Iterate on each digit.
 		var distributedMapsByDigit = Solution.ValuesMap;
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
 			if (!TemplateDeleteOnly)
 			{
@@ -28,7 +28,7 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 
 				var templateSetConclusions = from cell in templateSetMap select new Conclusion(Assignment, cell, digit);
 				var candidateOffsets = new CandidateViewNode[templateSetConclusions.Length];
-				int z = 0;
+				var z = 0;
 				foreach (var (_, candidate) in templateSetConclusions)
 				{
 					candidateOffsets[z++] = new(DisplayColorKind.Normal, candidate);

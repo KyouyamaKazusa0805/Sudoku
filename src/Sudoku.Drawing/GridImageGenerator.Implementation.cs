@@ -16,11 +16,11 @@ partial record GridImageGenerator
 			return;
 		}
 
-		float cellWidth = Calculator.CellSize.Width;
-		float candidateWidth = Calculator.CandidateSize.Width;
-		float vOffsetValue = cellWidth / (AnchorsCount / 3); // The vertical offset of rendering each value.
-		float vOffsetCandidate = candidateWidth / (AnchorsCount / 3); // The vertical offset of rendering each candidate.
-		float halfWidth = cellWidth / 2F;
+		var cellWidth = Calculator.CellSize.Width;
+		var candidateWidth = Calculator.CandidateSize.Width;
+		var vOffsetValue = cellWidth / (AnchorsCount / 3); // The vertical offset of rendering each value.
+		var vOffsetCandidate = candidateWidth / (AnchorsCount / 3); // The vertical offset of rendering each candidate.
+		var halfWidth = cellWidth / 2F;
 
 		using SolidBrush
 			bGiven = new(Preferences.GivenColor),
@@ -32,16 +32,16 @@ partial record GridImageGenerator
 			fModifiable = GetFont(Preferences.ModifiableFontName, halfWidth, Preferences.ValueScale, Preferences.ModifiableFontStyle),
 			fCandidate = GetFont(Preferences.CandidateFontName, halfWidth, Preferences.CandidateScale, Preferences.CandidateFontStyle);
 
-		for (int cell = 0; cell < 81; cell++)
+		for (var cell = 0; cell < 81; cell++)
 		{
-			short mask = Puzzle.GetMask(cell);
+			var mask = Puzzle.GetMask(cell);
 			switch (MaskToStatus(mask))
 			{
 				case CellStatus.Empty when Preferences.ShowCandidates:
 				{
 					// Draw candidates.
-					bool overlaps = View.UnknownOverlaps(cell);
-					foreach (int digit in (short)(mask & Grid.MaxCandidatesMask))
+					var overlaps = View.UnknownOverlaps(cell);
+					foreach (var digit in (short)(mask & Grid.MaxCandidatesMask))
 					{
 						var point = Calculator.GetMousePointInCenter(cell, digit).WithY(vOffsetCandidate);
 						g.DrawValue(
@@ -100,7 +100,7 @@ partial record GridImageGenerator
 		}
 
 		using var b = new SolidBrush(Preferences.FocusedCellColor);
-		foreach (int cell in FocusedCells)
+		foreach (var cell in FocusedCells)
 		{
 			g.FillRectangle(b, Calculator.GetMouseRectangleViaCell(cell));
 		}
@@ -123,13 +123,13 @@ partial record GridImageGenerator
 		using var pb = new Pen(Preferences.BlockLineColor, Preferences.BlockLineWidth);
 		const int length = AnchorsCount + 1;
 		var gridPoints = Calculator.GridPoints;
-		for (int i = 0; i < length; i += AnchorsCount / 9)
+		for (var i = 0; i < length; i += AnchorsCount / 9)
 		{
 			g.DrawLine(pg, gridPoints[i, 0], gridPoints[i, AnchorsCount]);
 			g.DrawLine(pg, gridPoints[0, i], gridPoints[AnchorsCount, i]);
 		}
 
-		for (int i = 0; i < length; i += AnchorsCount / 3)
+		for (var i = 0; i < length; i += AnchorsCount / 3)
 		{
 			g.DrawLine(pb, gridPoints[i, 0], gridPoints[i, AnchorsCount]);
 			g.DrawLine(pb, gridPoints[0, i], gridPoints[AnchorsCount, i]);
@@ -160,7 +160,7 @@ partial record GridImageGenerator
 				continue;
 			}
 
-			bool isCanni = false;
+			var isCanni = false;
 			if (View is not { CandidateNodes: var candidateNodes })
 			{
 				goto Drawing;
@@ -168,7 +168,7 @@ partial record GridImageGenerator
 
 			foreach (var candidateNode in candidateNodes)
 			{
-				int value = candidateNode.Candidate;
+				var value = candidateNode.Candidate;
 				if (value == c * 9 + d)
 				{
 					isCanni = true;
@@ -177,7 +177,7 @@ partial record GridImageGenerator
 			}
 
 		Drawing:
-			bool overlaps = View.UnknownOverlaps(c);
+			var overlaps = View.UnknownOverlaps(c);
 			g.FillEllipse(
 				isCanni ? overlaps ? canniBrushLighter : cannibalBrush : overlaps ? elimBrushLighter : elimBrush,
 				Calculator.GetMouseRectangle(c, d).Zoom(-offset / 3));
@@ -197,7 +197,7 @@ partial record GridImageGenerator
 
 		foreach (var cellNode in cellNodes)
 		{
-			int cell = cellNode.Cell;
+			var cell = cellNode.Cell;
 			var id = cellNode.Identifier;
 			using var brush = new SolidBrush(GetColor(id));
 
@@ -217,9 +217,9 @@ partial record GridImageGenerator
 			return;
 		}
 
-		float cellWidth = Calculator.CellSize.Width;
-		float candidateWidth = Calculator.CandidateSize.Width;
-		float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
+		var cellWidth = Calculator.CellSize.Width;
+		var candidateWidth = Calculator.CandidateSize.Width;
+		var vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 
 		using SolidBrush
 			bCandidate = new(Preferences.CandidateColor),
@@ -228,10 +228,10 @@ partial record GridImageGenerator
 
 		foreach (var candidateNode in candidateNodes)
 		{
-			int candidate = candidateNode.Candidate;
+			var candidate = candidateNode.Candidate;
 			var id = candidateNode.Identifier;
 
-			bool isOverlapped = false;
+			var isOverlapped = false;
 			if (Conclusions is null)
 			{
 				goto IsOverlapped;
@@ -250,7 +250,7 @@ partial record GridImageGenerator
 			if (!isOverlapped)
 			{
 				int cell = candidate / 9, digit = candidate % 9;
-				bool overlaps = View.UnknownOverlaps(cell);
+				var overlaps = View.UnknownOverlaps(cell);
 
 				switch (id)
 				{
@@ -295,7 +295,7 @@ partial record GridImageGenerator
 		{
 			foreach (var (type, cell, digit) in Conclusions)
 			{
-				bool overlaps = View.UnknownOverlaps(cell);
+				var overlaps = View.UnknownOverlaps(cell);
 				if (type == ConclusionType.Elimination)
 				{
 					d(cell, digit, vOffsetCandidate, overlaps ? bCandidateLighter : bCandidate);
@@ -327,7 +327,7 @@ partial record GridImageGenerator
 
 		foreach (var houseNode in houseNodes)
 		{
-			int house = houseNode.House;
+			var house = houseNode.House;
 			var id = houseNode.Identifier;
 
 			Color? tempColor;
@@ -443,7 +443,7 @@ partial record GridImageGenerator
 			{
 				// If the distance of two points is lower than the one of two adjacent candidates,
 				// the link will be emitted to draw because of too narrow.
-				double distance = Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
+				var distance = Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
 				if (distance <= cw * SqrtOf2 + offset || distance <= ch * SqrtOf2 + offset)
 				{
 					continue;
@@ -451,9 +451,9 @@ partial record GridImageGenerator
 
 				// Check if another candidate lies in the direct line.
 				double deltaX = pt2x - pt1x, deltaY = pt2y - pt1y;
-				double alpha = Atan2(deltaY, deltaX);
+				var alpha = Atan2(deltaY, deltaX);
 				double dx1 = deltaX, dy1 = deltaY;
-				bool through = false;
+				var through = false;
 				adjust(pt1, pt2, out var p1, out _, alpha, cw, offset);
 				foreach (var point in points)
 				{
@@ -486,7 +486,7 @@ partial record GridImageGenerator
 					rotate(oldPt1, ref pt1, -RotateAngle);
 					rotate(oldPt2, ref pt2, RotateAngle);
 
-					double aAlpha = alpha - RotateAngle;
+					var aAlpha = alpha - RotateAngle;
 					double bx1 = pt1.X + bezierLength * Cos(aAlpha), by1 = pt1.Y + bezierLength * Sin(aAlpha);
 
 					aAlpha = alpha + RotateAngle;
@@ -527,7 +527,7 @@ partial record GridImageGenerator
 		{
 			p1 = pt1;
 			p2 = pt2;
-			double tempDelta = candidateSize / 2 + offset;
+			var tempDelta = candidateSize / 2 + offset;
 			int px = (int)(tempDelta * Cos(alpha)), py = (int)(tempDelta * Sin(alpha));
 
 			p1.X += px;
@@ -541,11 +541,11 @@ partial record GridImageGenerator
 			scoped ref PointF pt1, scoped ref PointF pt2, float offset, float cw, float ch,
 			float pt1x, float pt1y, float pt2x, float pt2y)
 		{
-			float slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
-			float x = cw / (float)Sqrt(1 + slope * slope);
-			float y = ch * (float)Sqrt(slope * slope / (1 + slope * slope));
+			var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
+			var x = cw / (float)Sqrt(1 + slope * slope);
+			var y = ch * (float)Sqrt(slope * slope / (1 + slope * slope));
 
-			float o = offset / 8;
+			var o = offset / 8;
 			if (pt1y > pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y -= ch / 2 - o; pt2.Y += ch / 2 - o; }
 			else if (pt1y < pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y += ch / 2 - o; pt2.Y -= ch / 2 - o; }
 			else if (pt1y.NearlyEquals(pt2y) && pt1x > pt2x) { pt1.X -= cw / 2 - o; pt2.X += cw / 2 - o; }
@@ -586,16 +586,16 @@ partial record GridImageGenerator
 
 		const string defaultFontName = "Times New Roman";
 
-		float cellWidth = Calculator.CellSize.Width;
-		float vOffsetValue = cellWidth / (AnchorsCount / 3); // The vertical offset of rendering each value.
-		float halfWidth = cellWidth / 2F;
+		var cellWidth = Calculator.CellSize.Width;
+		var vOffsetValue = cellWidth / (AnchorsCount / 3); // The vertical offset of rendering each value.
+		var halfWidth = cellWidth / 2F;
 
 		using var brush = new SolidBrush(Preferences.UnknownIdentifierColor);
 		using var font = GetFont(defaultFontName, halfWidth, Preferences.ValueScale, Preferences.UnknownFontStyle);
 
 		foreach (var unknownNode in unknownNodes)
 		{
-			int cell = unknownNode.Cell;
+			var cell = unknownNode.Cell;
 			var character = unknownNode.UnknownValueChar;
 
 			// Draw values.

@@ -24,16 +24,16 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 	{
 		var tempAccumulator = new List<BowmanBingoStep>();
 		var tempGrid = grid;
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
-			foreach (int cell in CandidatesMap[digit])
+			foreach (var cell in CandidatesMap[digit])
 			{
 				_tempConclusions.Add(new(Assignment, cell, digit));
 				var (candList, mask) = RecordUndoInfo(tempGrid, cell, digit);
 
 				// Try to fill this cell.
 				tempGrid[cell] = digit;
-				int startCandidate = cell * 9 + digit;
+				var startCandidate = cell * 9 + digit;
 
 				if (IsValidGrid(grid, cell))
 				{
@@ -42,7 +42,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 				else
 				{
 					var candidateOffsets = new CandidateViewNode[_tempConclusions.Count];
-					int i = 0;
+					var i = 0;
 					foreach (var (_, candidate) in _tempConclusions)
 					{
 						candidateOffsets[i++] = new(DisplayColorKind.Normal, candidate);
@@ -103,7 +103,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 		else
 		{
 			var candidateOffsets = new CandidateViewNode[_tempConclusions.Count];
-			int i = 0;
+			var i = 0;
 			foreach (var (_, candidate) in _tempConclusions)
 			{
 				candidateOffsets[i++] = new(DisplayColorKind.Normal, candidate);
@@ -157,7 +157,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 	private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(scoped in Grid grid, int cell, int digit)
 	{
 		var list = new List<int>();
-		foreach (int c in PeersMap[cell] & CandidatesMap[digit])
+		foreach (var c in PeersMap[cell] & CandidatesMap[digit])
 		{
 			list.Add(c * 9 + digit);
 		}
@@ -174,7 +174,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 	/// <param name="mask">The mask.</param>
 	private static void UndoGrid(scoped ref Grid grid, IReadOnlyList<int> list, int cell, short mask)
 	{
-		foreach (int cand in list)
+		foreach (var cand in list)
 		{
 			grid[cand / 9, cand % 9] = true;
 		}
@@ -191,8 +191,8 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 	/// <returns>The result.</returns>
 	private static bool IsValidGrid(scoped in Grid grid, int cell)
 	{
-		bool result = true;
-		foreach (int peerCell in Peers[cell])
+		var result = true;
+		foreach (var peerCell in Peers[cell])
 		{
 			var status = grid.GetStatus(peerCell);
 			if (!(status != CellStatus.Empty && grid[peerCell] != grid[cell] || status == CellStatus.Empty)

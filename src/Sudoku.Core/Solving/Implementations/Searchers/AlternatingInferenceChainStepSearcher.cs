@@ -206,7 +206,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 	/// </summary>
 	private void TrimLookup(Dictionary<int, HashSet<int>?> inferences)
 	{
-		foreach (int id in inferences.Keys)
+		foreach (var id in inferences.Keys)
 		{
 			if (_nodeLookup[id] is null)
 			{
@@ -232,7 +232,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 		Dictionary<int, HashSet<int>?> inferences)
 	{
 		int bId;
-		if (_idLookup.TryGetValue(a, out int aId))
+		if (_idLookup.TryGetValue(a, out var aId))
 		{
 			if (_idLookup.TryGetValue(b, out bId))
 			{
@@ -320,7 +320,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			offToOn = ArrayPool<int>.Shared.Rent(MaxCapacity);
 
 			// Iterate on each node to get the chain, using breadth-first searching algorithm.
-			for (int id = 0; id < _globalId; id++)
+			for (var id = 0; id < _globalId; id++)
 			{
 				if (_nodeLookup[id] is { IsGrouped: false })
 				{
@@ -356,12 +356,12 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			{
 				while (pendingOn.Count != 0)
 				{
-					int currentId = pendingOn.Peek();
+					var currentId = pendingOn.Peek();
 					pendingOn.Remove();
 
 					if (_weakInferences.TryGetValue(currentId, out var nextIds) && nextIds is not null)
 					{
-						foreach (int nextId in nextIds)
+						foreach (var nextId in nextIds)
 						{
 							if (id == nextId)
 							{
@@ -384,12 +384,12 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 
 				while (pendingOff.Count != 0)
 				{
-					int currentId = pendingOff.Peek();
+					var currentId = pendingOff.Peek();
 					pendingOff.Remove();
 
 					if (_strongInferences.TryGetValue(currentId, out var nextIds) && nextIds is not null)
 					{
-						foreach (int nextId in nextIds)
+						foreach (var nextId in nextIds)
 						{
 							if (offToOn[nextId] == -1)
 							{
@@ -413,12 +413,12 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			{
 				while (pendingOff.Count != 0)
 				{
-					int currentId = pendingOff.Peek();
+					var currentId = pendingOff.Peek();
 					pendingOff.Remove();
 
 					if (_strongInferences.TryGetValue(currentId, out var nextIds) && nextIds is not null)
 					{
-						foreach (int nextId in nextIds)
+						foreach (var nextId in nextIds)
 						{
 							if (id == nextId)
 							{
@@ -441,12 +441,12 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 
 				while (pendingOn.Count != 0)
 				{
-					int currentId = pendingOn.Peek();
+					var currentId = pendingOn.Peek();
 					pendingOn.Remove();
 
 					if (_weakInferences.TryGetValue(currentId, out var nextIds) && nextIds is not null)
 					{
-						foreach (int nextId in nextIds)
+						foreach (var nextId in nextIds)
 						{
 							if (onToOff[nextId] == -1)
 							{
@@ -464,7 +464,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			var resultList = new List<int>(12) { id };
 
 			int i = 0, temp = id;
-			bool revisited = false;
+			var revisited = false;
 			while (temp != id || !revisited)
 			{
 				temp = ((i & 1) == 0 ? onToOff : offToOn)[temp];
@@ -516,7 +516,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 		{
 			for (byte digit = 0; digit < 9; digit++)
 			{
-				for (int house = 0; house < 27; house++)
+				for (var house = 0; house < 27; house++)
 				{
 					var targetDigitMap = CandidatesMap[digit] & HousesMap[house];
 					if (targetDigitMap is [var cell1, var cell2])
@@ -552,14 +552,14 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 		if (NodeTypes.Flags(SearcherNodeTypes.SoleCell))
 		{
 			// Iterate on each cell, to get all strong relations.
-			foreach (int cell in EmptyCells)
+			foreach (var cell in EmptyCells)
 			{
-				short mask = grid.GetCandidates(cell);
+				var mask = grid.GetCandidates(cell);
 				if (BivalueCells.Contains(cell))
 				{
 					// Both strong and weak inferences.
-					int d1 = TrailingZeroCount(mask);
-					int d2 = mask.GetNextSet(d1);
+					var d1 = TrailingZeroCount(mask);
+					var d2 = mask.GetNextSet(d1);
 					var node1 = new Node((byte)d1, (byte)cell);
 					var node2 = new Node((byte)d2, (byte)cell);
 
@@ -574,7 +574,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 					scoped var digits = mask.GetAllSets();
 					for (int i = 0, length = digits.Length; i < length - 1; i++)
 					{
-						for (int j = i + 1; j < length; j++)
+						for (var j = i + 1; j < length; j++)
 						{
 							var node1 = new Node((byte)digits[i], (byte)cell);
 							var node2 = new Node((byte)digits[j], (byte)cell);
@@ -656,14 +656,14 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			int offset,
 			delegate*<in CellMap, short> maskSelector)
 		{
-			short houseMask = maskSelector(cells);
+			var houseMask = maskSelector(cells);
 			switch (PopCount((uint)houseMask))
 			{
 				case 2:
 				{
 					// Both strong and weak inference.
-					int firstHouse = TrailingZeroCount(houseMask);
-					int secondHouse = houseMask.GetNextSet(firstHouse);
+					var firstHouse = TrailingZeroCount(houseMask);
+					var secondHouse = houseMask.GetNextSet(firstHouse);
 					var firstHouseCells = cells & HousesMap[firstHouse + offset];
 					var secondHouseCells = cells & HousesMap[secondHouse + offset];
 					var node1 = new Node(digit, firstHouseCells);
@@ -679,9 +679,9 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 				case 3 when cells.Count != 3:
 				{
 					// Only weak inference.
-					int firstHouse = TrailingZeroCount(houseMask);
-					int secondHouse = houseMask.GetNextSet(firstHouse);
-					int thirdHouse = houseMask.GetNextSet(secondHouse);
+					var firstHouse = TrailingZeroCount(houseMask);
+					var secondHouse = houseMask.GetNextSet(firstHouse);
+					var thirdHouse = houseMask.GetNextSet(secondHouse);
 					var firstHouseCells = cells & HousesMap[firstHouse + offset];
 					var secondHouseCells = cells & HousesMap[secondHouse + offset];
 					var thirdHouseCells = cells & HousesMap[thirdHouse + offset];
@@ -720,13 +720,13 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			//
 			// Luckily, those 3 sub-cases can be pre-checked as empty rectangle.
 			// Therefore, we should call 'IEmptyRectangleStepSearcher.IsEmptyRectangle' at first.
-			if (!IEmptyRectangleStepSearcher.IsEmptyRectangle(cells, house, out int row, out int column))
+			if (!IEmptyRectangleStepSearcher.IsEmptyRectangle(cells, house, out var row, out var column))
 			{
 				// The current cells don't form a valid empty rectangle (i.e. case 5).
 				return;
 			}
 
-			int intersectionCell = (HousesMap[row] & HousesMap[column])[0];
+			var intersectionCell = (HousesMap[row] & HousesMap[column])[0];
 			switch (cells.Count)
 			{
 				case 4:
@@ -834,10 +834,10 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			}
 
 			var map = als.Map;
-			foreach (short strongInferenceList in als.StrongLinks)
+			foreach (var strongInferenceList in als.StrongLinks)
 			{
-				int digit1 = TrailingZeroCount(strongInferenceList);
-				int digit2 = strongInferenceList.GetNextSet(digit1);
+				var digit1 = TrailingZeroCount(strongInferenceList);
+				var digit2 = strongInferenceList.GetNextSet(digit1);
 				var cells1 = map & CandidatesMap[digit1];
 				var cells2 = map & CandidatesMap[digit2];
 				var node1 = new Node((byte)digit1, cells1);
@@ -850,7 +850,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 				// Weak inferences if worth.
 				if (!cells1.IsInIntersection)
 				{
-					int coveredHouse = TrailingZeroCount(cells1.CoveredHouses);
+					var coveredHouse = TrailingZeroCount(cells1.CoveredHouses);
 					var uncoveredCells = HousesMap[coveredHouse] - cells1;
 					foreach (var cells in uncoveredCells | uncoveredCells.Count)
 					{
@@ -869,7 +869,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 				}
 				if (!cells2.IsInIntersection)
 				{
-					int coveredHouse = TrailingZeroCount(cells2.CoveredHouses);
+					var coveredHouse = TrailingZeroCount(cells2.CoveredHouses);
 					var uncoveredCells = HousesMap[coveredHouse] - cells2;
 					foreach (var cells in uncoveredCells | uncoveredCells.Count)
 					{
@@ -925,7 +925,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			return;
 		}
 
-		foreach (int[] cellsArray in UniqueRectanglePatterns)
+		foreach (var cellsArray in UniqueRectanglePatterns)
 		{
 			if (!IUniqueRectangleStepSearcher.CheckPreconditions(grid, cellsArray, false))
 			{
@@ -933,22 +933,22 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			}
 
 			// Get all candidates that all four cells appeared.
-			short mask = grid.GetDigitsUnion(cellsArray);
+			var mask = grid.GetDigitsUnion(cellsArray);
 
 			// Iterate on each possible digit combination.
 			scoped var allDigitsInThem = mask.GetAllSets();
 			for (int i = 0, length = allDigitsInThem.Length; i < length - 1; i++)
 			{
-				int digit1 = allDigitsInThem[i];
-				for (int j = i + 1; j < length; j++)
+				var digit1 = allDigitsInThem[i];
+				for (var j = i + 1; j < length; j++)
 				{
-					int digit2 = allDigitsInThem[j];
+					var digit2 = allDigitsInThem[j];
 
 					// All possible UR patterns should contain at least one cell
 					// with both 'd1' and 'd2' containing digits.
-					short comparer = (short)(1 << digit1 | 1 << digit2);
-					bool isNotPossibleUr = true;
-					foreach (int cell in cellsArray)
+					var comparer = (short)(1 << digit1 | 1 << digit2);
+					var isNotPossibleUr = true;
+					foreach (var cell in cellsArray)
 					{
 						if (PopCount((uint)(grid.GetCandidates(cell) & comparer)) == 2)
 						{
@@ -961,7 +961,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 						continue;
 					}
 
-					short otherDigitsMask = (short)(grid.GetDigitsUnion(cellsArray) & ~comparer);
+					var otherDigitsMask = (short)(grid.GetDigitsUnion(cellsArray) & ~comparer);
 
 					// Checks for AUR case 1:
 					// https://github.com/SunnieShine/Sudoku/issues/319#issuecomment-1192217764
@@ -978,10 +978,10 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool isUniversalUr(scoped in Grid grid, int[] cellsArray)
 		{
-			short m1 = grid.GetCandidates(cellsArray[0]);
-			short m2 = grid.GetCandidates(cellsArray[1]);
-			short m3 = grid.GetCandidates(cellsArray[2]);
-			short m4 = grid.GetCandidates(cellsArray[3]);
+			var m1 = grid.GetCandidates(cellsArray[0]);
+			var m2 = grid.GetCandidates(cellsArray[1]);
+			var m3 = grid.GetCandidates(cellsArray[2]);
+			var m4 = grid.GetCandidates(cellsArray[3]);
 			return PopCount((uint)m1) == 3 && m1 == m2 && m2 == m3 && m3 == m4;
 		}
 
@@ -1016,8 +1016,8 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			}
 
 			// Strong inferences.
-			int extraDigit1 = TrailingZeroCount(otherDigitsMask);
-			int extraDigit2 = otherDigitsMask.GetNextSet(extraDigit1);
+			var extraDigit1 = TrailingZeroCount(otherDigitsMask);
+			var extraDigit2 = otherDigitsMask.GetNextSet(extraDigit1);
 			var cells1 = CandidatesMap[extraDigit1] & (CellMap)cellsArray;
 			var cells2 = CandidatesMap[extraDigit2] & (CellMap)cellsArray;
 			var node1 = new Node((byte)extraDigit1, cells1, (CellMap)cellsArray - cells1);
@@ -1071,11 +1071,11 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		void checkForAurCase2(scoped in Grid grid, int[] cellsArray, short digitsMask)
 		{
-			int cellsCountThatContainsOtherDigits = 0;
+			var cellsCountThatContainsOtherDigits = 0;
 			var (extraCell1, extraCell2) = (-1, -1);
-			for (int i = 0; i < 4; i++)
+			for (var i = 0; i < 4; i++)
 			{
-				int cell = cellsArray[i];
+				var cell = cellsArray[i];
 				if ((grid.GetCandidates(cell) & ~digitsMask) != 0)
 				{
 					cellsCountThatContainsOtherDigits++;
@@ -1102,8 +1102,8 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 				return;
 			}
 
-			int digit1 = TrailingZeroCount(digitsMask);
-			int digit2 = digitsMask.GetNextSet(digit1);
+			var digit1 = TrailingZeroCount(digitsMask);
+			var digit2 = digitsMask.GetNextSet(digit1);
 			var cells1 = CandidatesMap[digit1] & extraCells;
 			var cells2 = CandidatesMap[digit2] & extraCells;
 			var node1 = new Node((byte)digit1, cells1, (CellMap)cellsArray);

@@ -14,7 +14,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 		}
 
 		// Iterate on each cells.
-		for (int c1 = 0; c1 < 72; c1++)
+		for (var c1 = 0; c1 < 72; c1++)
 		{
 			if (!BivalueCells.Contains(c1))
 			{
@@ -24,7 +24,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 
 			// Iterate on each cells which are not peers in 'c1'.
 			scoped var digits = grid.GetCandidates(c1).GetAllSets();
-			foreach (int c2 in BivalueCells - (PeersMap[c1] + c1))
+			foreach (var c2 in BivalueCells - (PeersMap[c1] + c1))
 			{
 				if (c2 < c1)
 				{
@@ -46,7 +46,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 				}
 
 				// Iterate on each house.
-				for (int house = 0; house < 27; house++)
+				for (var house = 0; house < 27; house++)
 				{
 					if (house == c1.ToHouseIndex(HouseType.Block)
 						|| house == c1.ToHouseIndex(HouseType.Row)
@@ -61,10 +61,10 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 					}
 
 					// Iterate on each digit to search for the conjugate pair.
-					foreach (int digit in digits)
+					foreach (var digit in digits)
 					{
 						var bridge = CandidatesMap[digit] & HousesMap[house];
-						bool isPassed = bridge switch
+						var isPassed = bridge switch
 						{
 							[var a, var b] => (
 								CellMap.Empty + c1 + a, CellMap.Empty + c2 + b,
@@ -108,7 +108,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 						}
 
 						// Check for eliminations.
-						int anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
+						var anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
 						var elimMap = CandidatesMap[anotherDigit] & +(CellMap.Empty + c1 + c2);
 						if (!elimMap)
 						{
@@ -153,7 +153,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 									new(DisplayColorKind.Auxiliary1, c2 * 9 + digit)
 								};
 
-								foreach (int cell in bridge)
+								foreach (var cell in bridge)
 								{
 									candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 								}

@@ -60,8 +60,8 @@ public sealed class BacktrackingSolver : ISimpleSolver
 		int[]? resultArray = null;
 		try
 		{
-			int solutionsCount = 0;
-			int[]? gridArray = grid.ToArray();
+			var solutionsCount = 0;
+			var gridArray = grid.ToArray();
 			solve(ref solutionsCount, ref resultArray, gridArray, 0);
 
 			if (resultArray is null)
@@ -106,7 +106,7 @@ public sealed class BacktrackingSolver : ISimpleSolver
 				// Here may try 9 times.
 				// Of course, you can add a new variable to save all candidates to let the algorithm run faster.
 				int r = finishedCellsCount / 9, c = finishedCellsCount % 9;
-				for (int i = 0; i < 9; i++)
+				for (var i = 0; i < 9; i++)
 				{
 					gridValues[finishedCellsCount]++; // Only use value increment operator.
 					if (isValid(gridValues, r, c))
@@ -123,10 +123,10 @@ public sealed class BacktrackingSolver : ISimpleSolver
 
 			static bool isValid(int[] gridValues, int r, int c)
 			{
-				int number = gridValues[r * 9 + c];
+				var number = gridValues[r * 9 + c];
 
 				// Check lines.
-				for (int i = 0; i < 9; i++)
+				for (var i = 0; i < 9; i++)
 				{
 					if (i != r && gridValues[i * 9 + c] == number || i != c && gridValues[r * 9 + i] == number)
 					{

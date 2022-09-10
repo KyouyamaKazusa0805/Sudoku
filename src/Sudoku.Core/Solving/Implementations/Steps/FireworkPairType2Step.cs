@@ -36,16 +36,16 @@ internal sealed record FireworkPairType2Step(
 	[ResourceTextFormatter]
 	internal string Firework1Str()
 	{
-		string cells = Pattern1.Map.ToString();
-		string digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+		var cells = Pattern1.Map.ToString();
+		var digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 		return $"{cells}({digits})";
 	}
 
 	[ResourceTextFormatter]
 	internal string Firework2Str()
 	{
-		string cells = Pattern2.Map.ToString();
-		string digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+		var cells = Pattern2.Map.ToString();
+		var digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 		return $"{cells}({digits})";
 	}
 }

@@ -19,7 +19,7 @@ public static class ImmutableArrayEnumerable
 		}
 
 		var result = new (T1, T2)[first.Length];
-		for (int i = 0; i < first.Length; i++)
+		for (var i = 0; i < first.Length; i++)
 		{
 			result[i] = (first[i], second[i]);
 		}

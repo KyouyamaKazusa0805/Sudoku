@@ -79,8 +79,8 @@ public readonly struct CellRange :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string s = MinValue == 0 ? string.Empty : (MinValue + 1).ToString();
-		string e = MaxValue switch { 81 => string.Empty, 80 => "^1", 79 => "^2", _ => MaxValue.ToString() };
+		var s = MinValue == 0 ? string.Empty : (MinValue + 1).ToString();
+		var e = MaxValue switch { 81 => string.Empty, 80 => "^1", 79 => "^2", _ => MaxValue.ToString() };
 		return $"{s}..{e}";
 	}
 

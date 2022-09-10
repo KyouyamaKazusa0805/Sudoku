@@ -70,7 +70,7 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 		var combinations = new List<(CellMap, IReadOnlyList<(int, int)>, int)>();
 
 		// Initializes fit types.
-		for (int j = 0; j < 3; j++)
+		for (var j = 0; j < 3; j++)
 		{
 			for (int i = 0, length = fitTableRow.Length >> 1; i < length; i++)
 			{
@@ -86,7 +86,7 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 				);
 			}
 		}
-		for (int j = 0; j < 3; j++)
+		for (var j = 0; j < 3; j++)
 		{
 			for (int i = 0, length = fitTableColumn.Length >> 1; i < length; i++)
 			{
@@ -104,7 +104,7 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 		}
 
 		// Initializes fat types.
-		for (int size = 3; size <= 7; size++)
+		for (var size = 3; size <= 7; size++)
 		{
 			for (int i = 0, length = houses.Length >> 1; i < length; i++)
 			{
@@ -120,7 +120,7 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 
 					var map = CellMap.Empty;
 					var pairs = new List<(int, int)>();
-					foreach (int pos in mask)
+					foreach (var pos in mask)
 					{
 						int cell1 = HouseCells[house1][pos], cell2 = HouseCells[house2][pos];
 						map.Add(cell1);

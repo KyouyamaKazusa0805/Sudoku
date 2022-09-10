@@ -16,14 +16,14 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 		{
 			var als1 = alses[i];
 			var map1 = als1.Map;
-			int house1 = als1.House;
-			short mask1 = als1.DigitsMask;
-			for (int j = i + 1; j < length; j++)
+			var house1 = als1.House;
+			var mask1 = als1.DigitsMask;
+			for (var j = i + 1; j < length; j++)
 			{
 				var als2 = alses[j];
 				var map2 = als2.Map;
-				int house2 = als2.House;
-				short mask2 = als2.DigitsMask;
+				var house2 = als2.House;
+				var mask2 = als2.DigitsMask;
 
 				// Now we have got two ALSes to check.
 				// Firstly, we should check whether two ALSes overlap with each other.
@@ -34,7 +34,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 				}
 
 				// Then merge masks from two ALSes' into one using the operator &.
-				short mask = (short)(mask1 & mask2);
+				var mask = (short)(mask1 & mask2);
 				if (PopCount((uint)mask) < 2)
 				{
 					// If we can't find any digit that both two ALSes holds, the ALS-W-Wing won't form.
@@ -43,7 +43,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 				}
 
 				// Iterate on each digit that two ALSes both holds.
-				foreach (int x in mask)
+				foreach (var x in mask)
 				{
 					if (conjugatePairs[x] is not { Count: not 0 })
 					{
@@ -83,7 +83,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 							}
 
 							// Iterate on each digit as the digit 'w'.
-							foreach (int w in (short)(mask & ~(1 << x)))
+							foreach (var w in (short)(mask & ~(1 << x)))
 							{
 								if ((map1 | map2) % CandidatesMap[w] is not (var tempMap and not []))
 								{
@@ -91,7 +91,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 								}
 
 								wDigitsMask |= (short)(1 << w);
-								foreach (int cell in tempMap)
+								foreach (var cell in tempMap)
 								{
 									conclusions.Add(new(Elimination, cell, w));
 								}
@@ -109,9 +109,9 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 								new(DisplayColorKind.Normal, cpMap[0] * 9 + x),
 								new(DisplayColorKind.Normal, cpMap[1] * 9 + x)
 							};
-							foreach (int cell in map1)
+							foreach (var cell in map1)
 							{
-								foreach (int digit in grid.GetCandidates(cell))
+								foreach (var digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(
 										new(
@@ -125,9 +125,9 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 									);
 								}
 							}
-							foreach (int cell in map2)
+							foreach (var cell in map2)
 							{
-								foreach (int digit in grid.GetCandidates(cell))
+								foreach (var digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(
 										new(

@@ -195,10 +195,10 @@ public unsafe partial struct Grid :
 		this = Empty;
 
 		// Then traverse the array (span, pointer or etc.), to get refresh the values.
-		bool minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
-		for (int i = 0; i < 81; i++)
+		var minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
+		for (var i = 0; i < 81; i++)
 		{
-			int value = Unsafe.AddByteOffset(ref Unsafe.AsRef(firstElement), (nuint)(i * sizeof(int)));
+			var value = Unsafe.AddByteOffset(ref Unsafe.AsRef(firstElement), (nuint)(i * sizeof(int)));
 			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 			{
 				// Calls the indexer to trigger the event (Clear the candidates in peer cells).
@@ -216,8 +216,8 @@ public unsafe partial struct Grid :
 	{
 		// Initializes the empty grid.
 		Empty = default;
-		scoped ref short firstElement = ref Empty._values[0];
-		for (int i = 0; i < 81; i++)
+		scoped ref var firstElement = ref Empty._values[0];
+		for (var i = 0; i < 81; i++)
 		{
 			Unsafe.AddByteOffset(ref firstElement, (nuint)(i * sizeof(short))) = DefaultMask;
 		}
@@ -233,7 +233,7 @@ public unsafe partial struct Grid :
 		{
 			if (setValue != -1)
 			{
-				foreach (int peerCell in PeersMap[cell])
+				foreach (var peerCell in PeersMap[cell])
 				{
 					if (@this.GetStatus(peerCell) == CellStatus.Empty)
 					{
@@ -248,13 +248,13 @@ public unsafe partial struct Grid :
 
 		static void onRefreshingCandidates(ref Grid @this)
 		{
-			for (int i = 0; i < 81; i++)
+			for (var i = 0; i < 81; i++)
 			{
 				if (@this.GetStatus(i) == CellStatus.Empty)
 				{
 					// Remove all appeared digits.
-					short mask = MaxCandidatesMask;
-					foreach (int cell in PeersMap[i])
+					var mask = MaxCandidatesMask;
+					foreach (var cell in PeersMap[i])
 					{
 						if (@this[cell] is var digit and not -1)
 						{
@@ -277,7 +277,7 @@ public unsafe partial struct Grid :
 	{
 		get
 		{
-			for (int i = 0; i < 81; i++)
+			for (var i = 0; i < 81; i++)
 			{
 				if (GetStatus(i) == CellStatus.Empty)
 				{
@@ -285,15 +285,15 @@ public unsafe partial struct Grid :
 				}
 			}
 
-			for (int i = 0; i < 81; i++)
+			for (var i = 0; i < 81; i++)
 			{
 				switch (GetStatus(i))
 				{
 					case CellStatus.Given:
 					case CellStatus.Modifiable:
 					{
-						int curDigit = this[i];
-						foreach (int cell in PeersMap[i])
+						var curDigit = this[i];
+						foreach (var cell in PeersMap[i])
 						{
 							if (curDigit == this[cell])
 							{
@@ -356,8 +356,8 @@ public unsafe partial struct Grid :
 	{
 		get
 		{
-			int count = 0;
-			for (int i = 0; i < 81; i++)
+			var count = 0;
+			for (var i = 0; i < 81; i++)
 			{
 				if (GetStatus(i) == CellStatus.Empty)
 				{
@@ -409,8 +409,8 @@ public unsafe partial struct Grid :
 	{
 		get
 		{
-			int maskResult = 0;
-			for (int houseIndex = 0; houseIndex < 27; houseIndex++)
+			var maskResult = 0;
+			for (var houseIndex = 0; houseIndex < 27; houseIndex++)
 			{
 				if ((EmptyCells & HousesMap[houseIndex]).Count == 9)
 				{
@@ -554,10 +554,10 @@ public unsafe partial struct Grid :
 			var candidatesMap = CandidatesMap; // Cache the map.
 
 			var conjugatePairs = new List<Conjugate>();
-			for (int digit = 0; digit < 9; digit++)
+			for (var digit = 0; digit < 9; digit++)
 			{
 				scoped ref readonly var cellsMap = ref candidatesMap[digit];
-				for (int houseIndex = 0; houseIndex < 27; houseIndex++)
+				for (var houseIndex = 0; houseIndex < 27; houseIndex++)
 				{
 					if ((HousesMap[houseIndex] & cellsMap) is { Count: 2 } temp)
 					{
@@ -654,8 +654,8 @@ public unsafe partial struct Grid :
 				}
 				case >= 0 and < 9:
 				{
-					scoped ref short result = ref _values[cell];
-					short copied = result;
+					scoped ref var result = ref _values[cell];
+					var copied = result;
 
 					// Set cell status to 'CellStatus.Modifiable'.
 					result = (short)(ModifiableMask | 1 << value);
@@ -690,7 +690,7 @@ public unsafe partial struct Grid :
 		{
 			if (cell is >= 0 and < 81 && digit is >= 0 and < 9)
 			{
-				short copied = _values[cell];
+				var copied = _values[cell];
 				if (value)
 				{
 					_values[cell] |= (short)(1 << digit);
@@ -724,7 +724,7 @@ public unsafe partial struct Grid :
 	{
 		fixed (short* pThis = this, pOther = other)
 		{
-			int i = 0;
+			var i = 0;
 			for (short* l = pThis, r = pOther; i < 81; i++, l++, r++)
 			{
 				if (*l != *r)
@@ -772,7 +772,7 @@ public unsafe partial struct Grid :
 	public readonly bool ExactlyValidate(out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
 	{
 		Unsafe.SkipInit(out solutionIfValid);
-		if (Solver.CheckValidity(ToString(null), out string? solution))
+		if (Solver.CheckValidity(ToString(null), out var solution))
 		{
 			solutionIfValid = Parse(solution);
 			sukaku = false;
@@ -888,8 +888,8 @@ public unsafe partial struct Grid :
 	/// </returns>
 	public readonly int[] ToArray()
 	{
-		int[] result = new int[81];
-		for (int i = 0; i < 81; i++)
+		var result = new int[81];
+		for (var i = 0; i < 81; i++)
 		{
 			// 'this[i]' is always between -1 and 8 (-1 is empty, and 0 to 8 is 1 to 9 for human representation).
 			result[i] = this[i] + 1;
@@ -961,7 +961,7 @@ public unsafe partial struct Grid :
 	public readonly short GetDigitsUnion(scoped in CellMap cells)
 	{
 		short result = 0;
-		foreach (int cell in cells)
+		foreach (var cell in cells)
 		{
 			result |= _values[cell];
 		}
@@ -983,7 +983,7 @@ public unsafe partial struct Grid :
 	public readonly short GetDigitsUnion(scoped in CellMap cells, bool withValueCells)
 	{
 		short result = 0;
-		foreach (int cell in cells)
+		foreach (var cell in cells)
 		{
 			if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
 			{
@@ -1004,8 +1004,8 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetDigitsIntersection(scoped in CellMap cells)
 	{
-		short result = MaxCandidatesMask;
-		foreach (int cell in cells)
+		var result = MaxCandidatesMask;
+		foreach (var cell in cells)
 		{
 			result &= (short)~_values[cell];
 		}
@@ -1153,7 +1153,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public void Reset()
 	{
-		for (int i = 0; i < 81; i++)
+		for (var i = 0; i < 81; i++)
 		{
 			if (GetStatus(i) == CellStatus.Modifiable)
 			{
@@ -1167,7 +1167,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public void Fix()
 	{
-		for (int i = 0; i < 81; i++)
+		for (var i = 0; i < 81; i++)
 		{
 			if (GetStatus(i) == CellStatus.Modifiable)
 			{
@@ -1181,7 +1181,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public void UnfixSolution()
 	{
-		for (int i = 0; i < 81; i++)
+		for (var i = 0; i < 81; i++)
 		{
 			if (GetStatus(i) == CellStatus.Given)
 			{
@@ -1198,8 +1198,8 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetStatus(int cell, CellStatus status)
 	{
-		scoped ref short mask = ref _values[cell];
-		short copied = mask;
+		scoped ref var mask = ref _values[cell];
+		var copied = mask;
 		mask = (short)((int)status << 9 | mask & MaxCandidatesMask);
 
 		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, mask, -1);
@@ -1213,8 +1213,8 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetMask(int cell, short mask)
 	{
-		scoped ref short m = ref _values[cell];
-		short copied = m;
+		scoped ref var m = ref _values[cell];
+		var copied = m;
 		m = mask;
 
 		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, m, -1);
@@ -1239,10 +1239,10 @@ public unsafe partial struct Grid :
 	private readonly CellMap[] GetMap(delegate*<in Grid, int, int, bool> predicate)
 	{
 		var result = new CellMap[9];
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
 			scoped ref var map = ref result[digit];
-			for (int cell = 0; cell < 81; cell++)
+			for (var cell = 0; cell < 81; cell++)
 			{
 				if (predicate(this, cell, digit))
 				{
@@ -1264,7 +1264,7 @@ public unsafe partial struct Grid :
 	private readonly CellMap GetCells(delegate*<in Grid, int, bool> predicate)
 	{
 		var result = CellMap.Empty;
-		for (int cell = 0; cell < 81; cell++)
+		for (var cell = 0; cell < 81; cell++)
 		{
 			if (predicate(this, cell))
 			{
@@ -1283,7 +1283,7 @@ public unsafe partial struct Grid :
 	private readonly Grid Preserve(scoped in CellMap pattern)
 	{
 		var result = this;
-		foreach (int cell in ~pattern)
+		foreach (var cell in ~pattern)
 		{
 			result[cell] = -1;
 		}
@@ -1302,7 +1302,7 @@ public unsafe partial struct Grid :
 		Argument.ThrowIfFalse(IsSolved, "The current grid must be solved.");
 
 		var result = this;
-		foreach (int cell in ~pattern)
+		foreach (var cell in ~pattern)
 		{
 			if (result.GetStatus(cell) == CellStatus.Given)
 			{

@@ -51,9 +51,9 @@ internal static class PointConversions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Point GetMouseTopLeft(double paneSize, double outsideOffset, LockedTarget lockedTarget)
 	{
-		double cs = CandidateSize(paneSize, outsideOffset);
-		int cell = lockedTarget.Cells[0];
-		int digit = lockedTarget.Digit;
+		var cs = CandidateSize(paneSize, outsideOffset);
+		var cell = lockedTarget.Cells[0];
+		var digit = lockedTarget.Digit;
 		var pt = GetMousePointInCenter(paneSize, outsideOffset, cell, digit);
 		return pt with { X = pt.X - cs / 2, Y = pt.Y - cs / 2 };
 	}
@@ -68,9 +68,9 @@ internal static class PointConversions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Point GetMouseBottomRight(double paneSize, double outsideOffset, LockedTarget lockedTarget)
 	{
-		double cs = CandidateSize(paneSize, outsideOffset);
-		int cell = lockedTarget.Cells[^1];
-		int digit = lockedTarget.Digit;
+		var cs = CandidateSize(paneSize, outsideOffset);
+		var cell = lockedTarget.Cells[^1];
+		var digit = lockedTarget.Digit;
 		var pt = GetMousePointInCenter(paneSize, outsideOffset, cell, digit);
 		return pt with { X = pt.X + cs / 2, Y = pt.Y + cs / 2 };
 	}
@@ -98,8 +98,8 @@ internal static class PointConversions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		(Point, Point) f(int a, int b, int digit)
 		{
-			int min = a * 9 + digit;
-			int max = b * 9 + digit;
+			var min = a * 9 + digit;
+			var max = b * 9 + digit;
 			return (
 				GetMousePointInCenter(paneSize, outsideOffset, min / 9, min % 9),
 				GetMousePointInCenter(paneSize, outsideOffset, max / 9, max % 9)
@@ -117,7 +117,7 @@ internal static class PointConversions
 	/// <returns>The point.</returns>
 	public static Point GetMousePointInCenter(double paneSize, double outsideOffset, int cell, int digit)
 	{
-		double cs = CandidateSize(paneSize, outsideOffset);
+		var cs = CandidateSize(paneSize, outsideOffset);
 		var (x, y) = GridPoints(paneSize, outsideOffset)[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];
 		return new(x + cs / 2, y + cs / 2);
 	}
@@ -200,11 +200,11 @@ internal static class PointConversions
 	private static Point[,] GridPoints(double paneSize, double outsideOffset)
 	{
 		const int length = 28;
-		double cs = CandidateSize(paneSize, outsideOffset);
+		var cs = CandidateSize(paneSize, outsideOffset);
 		var result = new Point[length, length];
-		for (int i = 0; i < length; i++)
+		for (var i = 0; i < length; i++)
 		{
-			for (int j = 0; j < length; j++)
+			for (var j = 0; j < length; j++)
 			{
 				result[i, j] = new(cs * i + outsideOffset, cs * j + outsideOffset);
 			}
@@ -225,8 +225,8 @@ internal static class PointConversions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static (Point, Point) GetLine(double paneSize, double outsideOffset, byte i, int w)
 	{
-		bool isHorizontal = i <= w;
-		double targetSize = (
+		var isHorizontal = i <= w;
+		var targetSize = (
 			(Func<double, double, double>)(w switch { 3 => BlockSize, 9 => CellSize, 27 => CandidateSize })
 		)(paneSize, outsideOffset);
 

@@ -7,9 +7,9 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		// Iterates on each digit.
-		for (int digit1 = 0; digit1 < 8; digit1++)
+		for (var digit1 = 0; digit1 < 8; digit1++)
 		{
-			for (int digit2 = digit1 + 1; digit2 < 9; digit2++)
+			for (var digit2 = digit1 + 1; digit2 < 9; digit2++)
 			{
 				// Checks for bi-value cells that only holds two different digits.
 				var possibleCells = BivalueCells & CandidatesMap[digit1] & CandidatesMap[digit2];
@@ -53,10 +53,10 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 						// Iterates on each digit, to fix the digit as the X digit.
 						// W-Wing structure requires a pair of W digits as the first and the last place,
 						// and requires the X digits are in the body of the structure (i.e. non-terminal nodes).
-						foreach (int xDigit in stackalloc[] { digit1, digit2 })
+						foreach (var xDigit in stackalloc[] { digit1, digit2 })
 						{
 							// Gets the target house that can place root cells.
-							foreach (int house in (AllRowsMask | AllColumnsMask) & ~cells.Houses)
+							foreach (var house in (AllRowsMask | AllColumnsMask) & ~cells.Houses)
 							{
 								var crosshatchingHouseType = house >= 18 ? HouseType.Row : HouseType.Column;
 								var emptyCellsInThisHouse = HousesMap[house] & CandidatesMap[xDigit];
@@ -66,7 +66,7 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 								}
 
 								var tempCrosshatchingHouses = CellMap.Empty;
-								foreach (int cell in cells)
+								foreach (var cell in cells)
 								{
 									tempCrosshatchingHouses |= HousesMap[cell.ToHouseIndex(crosshatchingHouseType)];
 								}
@@ -83,9 +83,9 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 									continue;
 								}
 
-								int wDigit = xDigit == digit1 ? digit2 : digit1;
+								var wDigit = xDigit == digit1 ? digit2 : digit1;
 								var conclusions = new List<Conclusion>(elimMap.Count);
-								foreach (int cell in elimMap)
+								foreach (var cell in elimMap)
 								{
 									if (CandidatesMap[wDigit].Contains(cell))
 									{
@@ -98,14 +98,14 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 								}
 
 								var candidateOffsets = new List<CandidateViewNode>();
-								foreach (int cell in cells)
+								foreach (var cell in cells)
 								{
-									foreach (int digit in grid.GetCandidates(cell))
+									foreach (var digit in grid.GetCandidates(cell))
 									{
 										candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 									}
 								}
-								foreach (int cell in emptyCellsInThisHouse)
+								foreach (var cell in emptyCellsInThisHouse)
 								{
 									candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + xDigit));
 								}

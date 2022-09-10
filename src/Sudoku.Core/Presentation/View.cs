@@ -117,7 +117,7 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	/// <returns>If found, the first found node will be returned; otherwise, <see langword="null"/>.</returns>
 	public ViewNode? Contains(Predicate<ViewNode> predicate)
 	{
-		for (int i = 0; i < _nodes.Count; i++)
+		for (var i = 0; i < _nodes.Count; i++)
 		{
 			var node = _nodes[i];
 			if (predicate(node))

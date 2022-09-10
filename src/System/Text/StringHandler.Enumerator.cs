@@ -38,7 +38,7 @@ partial struct StringHandler
 			_length = chars.Length;
 			_index = -1;
 
-			ref char z = ref chars._chars.GetPinnableReference();
+			ref var z = ref chars._chars.GetPinnableReference();
 			if (Unsafe.IsNullRef(ref z))
 			{
 				throw new NullReferenceException("The character series is a null reference.");

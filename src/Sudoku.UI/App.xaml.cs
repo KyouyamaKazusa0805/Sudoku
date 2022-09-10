@@ -73,13 +73,13 @@ public partial class App : Application
 
 
 		static string? valueSelector(string key)
-			=> Current.Resources.TryGetValue(key, out object? t) && t is string r ? r : null;
+			=> Current.Resources.TryGetValue(key, out var t) && t is string r ? r : null;
 
 		static async Task backPreferenceFiles(WindowInitialInfo i, WindowRuntimeInfo r, IStorageFile file)
 		{
 			i.FromPreferenceFile = true;
 
-			string content = await readAsync(file);
+			var content = await readAsync(file);
 			var up = Deserialize<Preference>(content, CommonSerializerOptions.CamelCasing);
 			r.UserPreference.CoverPreferenceBy(up);
 		}

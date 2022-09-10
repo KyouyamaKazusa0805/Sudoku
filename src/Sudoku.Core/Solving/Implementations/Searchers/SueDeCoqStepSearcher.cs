@@ -15,12 +15,12 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 			return null;
 		}
 
-		bool* cannibalModeCases = stackalloc[] { false, true };
+		var cannibalModeCases = stackalloc[] { false, true };
 
 		using scoped var list = new ValueList<CellMap>(4);
-		for (int caseIndex = 0; caseIndex < 2; caseIndex++)
+		for (var caseIndex = 0; caseIndex < 2; caseIndex++)
 		{
-			bool cannibalMode = cannibalModeCases[caseIndex];
+			var cannibalMode = cannibalModeCases[caseIndex];
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
 				var emptyCellsInInterMap = c & EmptyCells;
@@ -53,7 +53,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 				// Iterate on each intersection combination.
 				foreach (var currentInterMap in list)
 				{
-					short selectedInterMask = grid.GetDigitsUnion(currentInterMap);
+					var selectedInterMask = grid.GetDigitsUnion(currentInterMap);
 					if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
 					{
 						// The intersection combination is an ALS or a normal subset,
@@ -70,38 +70,38 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 						// Iterate on each combination in block.
 						foreach (var currentBlockMap in blockMap & i)
 						{
-							short blockMask = grid.GetDigitsUnion(currentBlockMap);
+							var blockMask = grid.GetDigitsUnion(currentBlockMap);
 							var elimMapBlock = CellMap.Empty;
 
 							// Get the elimination map in the block.
-							foreach (int digit in blockMask)
+							foreach (var digit in blockMask)
 							{
 								elimMapBlock |= CandidatesMap[digit];
 							}
 							elimMapBlock &= blockMap - currentBlockMap;
 
 							// Iterate on the number of the cells that should be selected in line.
-							for (int j = 1; j <= 9 - i - currentInterMap.Count && j <= lineMap.Count; j++)
+							for (var j = 1; j <= 9 - i - currentInterMap.Count && j <= lineMap.Count; j++)
 							{
 								// Iterate on each combination in line.
 								foreach (var currentLineMap in lineMap & j)
 								{
-									short lineMask = grid.GetDigitsUnion(currentLineMap);
+									var lineMask = grid.GetDigitsUnion(currentLineMap);
 									var elimMapLine = CellMap.Empty;
 
 									// Get the elimination map in the line.
-									foreach (int digit in lineMask)
+									foreach (var digit in lineMask)
 									{
 										elimMapLine |= CandidatesMap[digit];
 									}
 									elimMapLine &= lineMap - currentLineMap;
 
-									short maskIsolated = (short)(
+									var maskIsolated = (short)(
 										cannibalMode
 											? lineMask & blockMask & selectedInterMask
 											: selectedInterMask & ~(blockMask | lineMask)
 									);
-									short maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
+									var maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
 									if (!cannibalMode
 										&& ((blockMask & lineMask) != 0 || maskIsolated != 0 && !IsPow2(maskIsolated))
 										|| cannibalMode && !IsPow2(maskIsolated))
@@ -110,7 +110,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 									}
 
 									var elimMapIsolated = CellMap.Empty;
-									int digitIsolated = TrailingZeroCount(maskIsolated);
+									var digitIsolated = TrailingZeroCount(maskIsolated);
 									if (digitIsolated != InvalidValidOfTrailingZeroCountMethodFallback)
 									{
 										elimMapIsolated = (
@@ -125,9 +125,9 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 									{
 										// Check eliminations.
 										var conclusions = new List<Conclusion>();
-										foreach (int cell in elimMapBlock)
+										foreach (var cell in elimMapBlock)
 										{
-											foreach (int digit in grid.GetCandidates(cell))
+											foreach (var digit in grid.GetCandidates(cell))
 											{
 												if ((blockMask >> digit & 1) != 0)
 												{
@@ -137,9 +137,9 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 												}
 											}
 										}
-										foreach (int cell in elimMapLine)
+										foreach (var cell in elimMapLine)
 										{
-											foreach (int digit in grid.GetCandidates(cell))
+											foreach (var digit in grid.GetCandidates(cell))
 											{
 												if ((lineMask >> digit & 1) != 0)
 												{
@@ -149,7 +149,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 												}
 											}
 										}
-										foreach (int cell in elimMapIsolated)
+										foreach (var cell in elimMapIsolated)
 										{
 											conclusions.Add(
 												new(Elimination, cell, digitIsolated)
@@ -161,9 +161,9 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 										}
 
 										var candidateOffsets = new List<CandidateViewNode>();
-										foreach (int cell in currentBlockMap)
+										foreach (var cell in currentBlockMap)
 										{
-											foreach (int digit in grid.GetCandidates(cell))
+											foreach (var digit in grid.GetCandidates(cell))
 											{
 												candidateOffsets.Add(
 													new(
@@ -175,9 +175,9 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 												);
 											}
 										}
-										foreach (int cell in currentLineMap)
+										foreach (var cell in currentLineMap)
 										{
-											foreach (int digit in grid.GetCandidates(cell))
+											foreach (var digit in grid.GetCandidates(cell))
 											{
 												candidateOffsets.Add(
 													new(
@@ -189,9 +189,9 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 												);
 											}
 										}
-										foreach (int cell in currentInterMap)
+										foreach (var cell in currentInterMap)
 										{
-											foreach (int digit in grid.GetCandidates(cell))
+											foreach (var digit in grid.GetCandidates(cell))
 											{
 												candidateOffsets.Add(
 													new(

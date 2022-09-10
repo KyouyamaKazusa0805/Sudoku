@@ -32,13 +32,13 @@ public interface IUniqueMatrixStepSearcher : IDeadlyPatternStepSearcher
 		};
 
 		int length = ChuteIterator.Length / 3, n = 0;
-		for (int i = 0; i < 3; i++)
+		for (var i = 0; i < 3; i++)
 		{
-			for (int j = 0; j < length; j++)
+			for (var j = 0; j < length; j++)
 			{
-				int a = ChuteIterator[j, 0] + i * 27;
-				int b = ChuteIterator[j, 1] + i * 27;
-				int c = ChuteIterator[j, 2] + i * 27;
+				var a = ChuteIterator[j, 0] + i * 27;
+				var b = ChuteIterator[j, 1] + i * 27;
+				var c = ChuteIterator[j, 2] + i * 27;
 				Patterns[n++] = CellMap.Empty
 					+ a + b + c
 					+ (a + 9) + (b + 9) + (c + 9)
@@ -46,13 +46,13 @@ public interface IUniqueMatrixStepSearcher : IDeadlyPatternStepSearcher
 			}
 		}
 
-		for (int i = 0; i < 3; i++)
+		for (var i = 0; i < 3; i++)
 		{
-			for (int j = 0; j < length; j++)
+			for (var j = 0; j < length; j++)
 			{
-				int a = ChuteIterator[j, 0] * 9;
-				int b = ChuteIterator[j, 1] * 9;
-				int c = ChuteIterator[j, 2] * 9;
+				var a = ChuteIterator[j, 0] * 9;
+				var b = ChuteIterator[j, 1] * 9;
+				var c = ChuteIterator[j, 2] * 9;
 				Patterns[n++] = CellMap.Empty
 					+ (a + 3 * i) + (b + 3 * i) + (c + 3 * i)
 					+ (a + 1 + 3 * i) + (b + 1 + 3 * i) + (c + 1 + 3 * i)

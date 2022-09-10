@@ -76,8 +76,8 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	{
 		ClearStack();
 
-		string puzzleStr = grid.ToString("0");
-		char* solutionStr = stackalloc char[BufferLength];
+		var puzzleStr = grid.ToString("0");
+		var solutionStr = stackalloc char[BufferLength];
 		long solutions = 0;
 		fixed (char* pPuzzleStr = puzzleStr)
 		{
@@ -85,7 +85,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 		}
 
 		Unsafe.SkipInit(out result);
-		(_, bool? @return) = solutions switch
+		(_, var @return) = solutions switch
 		{
 			0 => (Grid.Undefined, null),
 			1 => (result = Grid.Parse(new ReadOnlySpan<char>(solutionStr, BufferLength)), true),
@@ -112,8 +112,8 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 
 		ClearStack();
 
-		char* solutionStr = stackalloc char[BufferLength];
-		long solutionsCount = InternalSolve(puzzle, solutionStr, limit);
+		var solutionStr = stackalloc char[BufferLength];
+		var solutionsCount = InternalSolve(puzzle, solutionStr, limit);
 		if (solution != null)
 		{
 			Unsafe.CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
@@ -135,8 +135,8 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 
 		fixed (char* p = puzzle)
 		{
-			char* solutionStr = stackalloc char[BufferLength];
-			long result = InternalSolve(p, solutionStr, limit);
+			var solutionStr = stackalloc char[BufferLength];
+			var result = InternalSolve(p, solutionStr, limit);
 			if (solution != null)
 			{
 				Unsafe.CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
@@ -161,8 +161,8 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 
 		fixed (char* p = puzzle)
 		{
-			char* solutionStr = stackalloc char[BufferLength];
-			long result = InternalSolve(p, solutionStr, limit);
+			var solutionStr = stackalloc char[BufferLength];
+			var result = InternalSolve(p, solutionStr, limit);
 			solution = new(solutionStr);
 			return result;
 		}
@@ -216,7 +216,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 
 		fixed (char* puzzle = grid)
 		{
-			char* result = stackalloc char[BufferLength];
+			var result = stackalloc char[BufferLength];
 			if (InternalSolve(puzzle, result, 2) == 1)
 			{
 				solutionIfUnique = new Span<char>(result, BufferLength).ToString();
@@ -260,20 +260,20 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	private bool SetSolvedDigit(int cell, int digit)
 	{
 		int subBand = CellToSubBand[cell];
-		int band = DigitToBaseBand[digit] + subBand;
-		int mask = CellToMask[cell];
+		var band = DigitToBaseBand[digit] + subBand;
+		var mask = CellToMask[cell];
 		if ((_g->Bands[band] & mask) == 0)
 		{
 			return false;
 		}
 
 		_g->Bands[band] &= TblSelfMask[cell];
-		int tblMask = TblOtherMask[cell];
+		var tblMask = TblOtherMask[cell];
 		_g->Bands[TblAnother1[band]] &= (uint)tblMask;
 		_g->Bands[TblAnother2[band]] &= (uint)tblMask;
 		mask = ~mask;
 		_g->UnsolvedCells[subBand] &= (uint)mask;
-		int rowBit = digit * 9 + CellToRow[cell];
+		var rowBit = digit * 9 + CellToRow[cell];
 		_g->UnsolvedRows[rowBit / 27] &= (uint)~(1 << (Mod27[rowBit]));
 		_g->Bands[subBand] &= (uint)mask;
 		_g->Bands[subBand + 3] &= (uint)mask;
@@ -297,8 +297,8 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	private bool EliminateDigit(int cell, int digit)
 	{
 		int subBand = CellToSubBand[cell];
-		int band = DigitToBaseBand[digit] + subBand;
-		int mask = CellToMask[cell];
+		var band = DigitToBaseBand[digit] + subBand;
+		var mask = CellToMask[cell];
 		if ((_g->Bands[band] & mask) == 0)
 		{
 			// This candidate has been removed yet.
@@ -323,7 +323,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 		}
 
 		int subBand = Mod3[band];
-		int cell = subBand * 27 + BitPos(mask);
+		var cell = subBand * 27 + BitPos(mask);
 		_g->Bands[band] &= TblSelfMask[cell];
 		return true;
 	}
@@ -338,7 +338,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 		fixed (State* g = _stack)
 		{
 			_numSolutions = 0;
-			for (int band = 0; band < 27; band++)
+			for (var band = 0; band < 27; band++)
 			{
 				g->Bands[band] = BitSet27;
 			}
@@ -355,7 +355,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 		{
 			case 81:
 			{
-				for (int cell = 0; cell < 81; cell++, puzzle++)
+				for (var cell = 0; cell < 81; cell++, puzzle++)
 				{
 					if (*puzzle is > '0' and <= '9')
 					{
@@ -375,10 +375,10 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 			}
 			case 729:
 			{
-				for (int cell = 0; cell < 81; cell++)
+				for (var cell = 0; cell < 81; cell++)
 				{
 					short mask = 0;
-					for (int digit = 0; digit < 9; digit++, puzzle++)
+					for (var digit = 0; digit < 9; digit++, puzzle++)
 					{
 						if (*puzzle == '0')
 						{
@@ -417,7 +417,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 			shrink = 0;
 			if (_g->UnsolvedRows[0] == 0) goto Digit3;
 			{
-				uint ar = _g->UnsolvedRows[0];  // valid for Digits 0,1,2
+				var ar = _g->UnsolvedRows[0];  // valid for Digits 0,1,2
 				if ((ar & 0x1FF) == 0) goto Digit1;
 				if (_g->Bands[0 * 3 + 0] == _g->PrevBands[0 * 3 + 0]) goto Digit0b;
 				if (!updn(&s, 0, 0, 1, 2)) return false;
@@ -498,7 +498,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 		Digit3:
 			if (_g->UnsolvedRows[1] == 0) goto Digit6;
 			{
-				uint ar = _g->UnsolvedRows[1];  // valid for Digits 3,4,5
+				var ar = _g->UnsolvedRows[1];  // valid for Digits 3,4,5
 				if ((ar & 0x1FF) == 0) goto Digit4;
 				if (_g->Bands[3 * 3 + 0] == _g->PrevBands[3 * 3 + 0]) goto Digit3b;
 				if (!updn(&s, 3, 0, 1, 2)) return false;
@@ -579,7 +579,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 		Digit6:
 			if (_g->UnsolvedRows[2] == 0) continue;
 			{
-				uint ar = _g->UnsolvedRows[2];  // valid for Digits 6,7,8
+				var ar = _g->UnsolvedRows[2];  // valid for Digits 6,7,8
 				if ((ar & 0x1FF) == 0) goto Digit7;
 				if (_g->Bands[6 * 3 + 0] == _g->PrevBands[6 * 3 + 0]) goto Digit6b;
 				if (!updn(&s, 6, 0, 1, 2)) return false;
@@ -706,15 +706,15 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	private bool ApplySingleOrEmptyCells()
 	{
 		_singleApplied = false;
-		for (int subBand = 0; subBand < 3; subBand++)
+		for (var subBand = 0; subBand < 3; subBand++)
 		{
 			// Loop unrolling really helps.
-			uint r1 = _g->Bands[subBand];           // r1 - Cells in band with pencil one or more times.
-			uint bandData = _g->Bands[subBand + 3]; // bandData - Hint to save value in register.
-			uint r2 = r1 & bandData;                // r2 - Pencil mark in cell two or more times.
+			var r1 = _g->Bands[subBand];           // r1 - Cells in band with pencil one or more times.
+			var bandData = _g->Bands[subBand + 3]; // bandData - Hint to save value in register.
+			var r2 = r1 & bandData;                // r2 - Pencil mark in cell two or more times.
 			r1 |= bandData;
 			bandData = _g->Bands[subBand + 6];
-			uint r3 = r2 & bandData;                // r3 - Pencil mark in cell three or more times.
+			var r3 = r2 & bandData;                // r3 - Pencil mark in cell three or more times.
 			r2 |= r1 & bandData;
 			r1 |= bandData;
 			bandData = _g->Bands[subBand + 9];
@@ -755,7 +755,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 			{
 				// Set all the single pencil mark cells
 				_singleApplied = true;
-				uint bit = r1 & (uint)-(int)r1;     // Process once cell at a time.
+				var bit = r1 & (uint)-(int)r1;     // Process once cell at a time.
 				r1 ^= bit;
 				int digit;
 				for (digit = 0; digit < 9; digit++)
@@ -820,11 +820,11 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	/// </param>
 	private void ExtractSolution(char* solution)
 	{
-		for (int cell = 0; cell < 81; cell++)
+		for (var cell = 0; cell < 81; cell++)
 		{
-			int mask = CellToMask[cell];
+			var mask = CellToMask[cell];
 			int offset = CellToSubBand[cell];
-			for (int digit = 0; digit < 9; digit++)
+			for (var digit = 0; digit < 9; digit++)
 			{
 				if ((_g->Bands[offset] & mask) != 0)
 				{
@@ -845,15 +845,15 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	private bool GuessBiValueInCell()
 	{
 		// Uses pairs map, set in ApplySingleOrEmptyCells
-		for (int subBand = 0; subBand < 3; subBand++)
+		for (var subBand = 0; subBand < 3; subBand++)
 		{
-			uint map = _g->Pairs[subBand];
+			var map = _g->Pairs[subBand];
 			if (map != 0)
 			{
 				map &= (uint)-(int)map;
-				int tries = 2;
-				int band = subBand;
-				for (int digit = 0; digit < 9; digit++, band += 3)
+				var tries = 2;
+				var band = subBand;
+				for (var digit = 0; digit < 9; digit++, band += 3)
 				{
 					if ((_g->Bands[band] & map) != 0)
 					{
@@ -888,17 +888,17 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	private void GuessFirstCell()
 	{
 		// Kind of dumb, but _way_ fast code.
-		for (int subBand = 0; subBand < 3; subBand++)
+		for (var subBand = 0; subBand < 3; subBand++)
 		{
 			if (_g->UnsolvedCells[subBand] == 0)
 			{
 				continue;
 			}
 
-			uint cellMask = _g->UnsolvedCells[subBand];
+			var cellMask = _g->UnsolvedCells[subBand];
 			cellMask &= (uint)-(int)cellMask;
-			int band = subBand;
-			for (int digit = 0; digit < 9; digit++, band += 3)
+			var band = subBand;
+			for (var digit = 0; digit < 9; digit++, band += 3)
 			{
 				if ((_g->Bands[band] & cellMask) != 0)
 				{

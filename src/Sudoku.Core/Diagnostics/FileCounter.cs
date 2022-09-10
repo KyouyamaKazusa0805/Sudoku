@@ -95,13 +95,13 @@ public sealed class FileCounter
 		g(new(Root));
 
 		var (filesCount, resultLines, charactersCount, bytes) = default((int, int, long, long));
-		foreach (string fileName in FileList)
+		foreach (var fileName in FileList)
 		{
 			Unsafe.SkipInit(out StreamReader sr);
 			try
 			{
 				sr = new(fileName);
-				int fileLines = 0;
+				var fileLines = 0;
 				string? s;
 				while ((s = sr.ReadLine()) is not null)
 				{

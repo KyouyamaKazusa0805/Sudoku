@@ -7,11 +7,11 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		using scoped ValueList<CellMap> rbList = new(3), cbList = new(3);
-		foreach (int pivot in EmptyCells)
+		foreach (var pivot in EmptyCells)
 		{
-			int r = pivot.ToHouseIndex(HouseType.Row);
-			int c = pivot.ToHouseIndex(HouseType.Column);
-			int b = pivot.ToHouseIndex(HouseType.Block);
+			var r = pivot.ToHouseIndex(HouseType.Row);
+			var c = pivot.ToHouseIndex(HouseType.Column);
+			var b = pivot.ToHouseIndex(HouseType.Block);
 			var rbMap = HousesMap[r] & HousesMap[b];
 			var cbMap = HousesMap[c] & HousesMap[b];
 			var rbEmptyMap = rbMap & EmptyCells;
@@ -27,7 +27,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 
 			foreach (var rbCurrentMap in rbList)
 			{
-				short rbSelectedInterMask = grid.GetDigitsUnion(rbCurrentMap);
+				var rbSelectedInterMask = grid.GetDigitsUnion(rbCurrentMap);
 				if (PopCount((uint)rbSelectedInterMask) <= rbCurrentMap.Count + 1)
 				{
 					continue;
@@ -35,7 +35,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 
 				foreach (var cbCurrentMap in cbList)
 				{
-					short cbSelectedInterMask = grid.GetDigitsUnion(cbCurrentMap);
+					var cbSelectedInterMask = grid.GetDigitsUnion(cbCurrentMap);
 					if (PopCount((uint)cbSelectedInterMask) <= cbCurrentMap.Count + 1)
 					{
 						continue;
@@ -56,11 +56,11 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 					{
 						foreach (var selectedBlockCells in blockMap & i)
 						{
-							short blockMask = grid.GetDigitsUnion(selectedBlockCells);
+							var blockMask = grid.GetDigitsUnion(selectedBlockCells);
 							var elimMapBlock = CellMap.Empty;
 
 							// Get the elimination map in the block.
-							foreach (int digit in blockMask)
+							foreach (var digit in blockMask)
 							{
 								elimMapBlock |= CandidatesMap[digit];
 							}
@@ -70,23 +70,23 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 							{
 								foreach (var selectedRowCells in rowMap & j)
 								{
-									short rowMask = grid.GetDigitsUnion(selectedRowCells);
+									var rowMask = grid.GetDigitsUnion(selectedRowCells);
 									var elimMapRow = CellMap.Empty;
 
-									foreach (int digit in rowMask)
+									foreach (var digit in rowMask)
 									{
 										elimMapRow |= CandidatesMap[digit];
 									}
 									elimMapRow &= HousesMap[r] - rbCurrentMap - selectedRowCells;
 
-									for (int k = 1; k <= MathExtensions.Min(9 - i - j - selectedBlockCells.Count - selectedRowCells.Count, rowMap.Count, columnMap.Count); k++)
+									for (var k = 1; k <= MathExtensions.Min(9 - i - j - selectedBlockCells.Count - selectedRowCells.Count, rowMap.Count, columnMap.Count); k++)
 									{
 										foreach (var selectedColumnCells in columnMap & k)
 										{
-											short columnMask = grid.GetDigitsUnion(selectedColumnCells);
+											var columnMask = grid.GetDigitsUnion(selectedColumnCells);
 											var elimMapColumn = CellMap.Empty;
 
-											foreach (int digit in columnMask)
+											foreach (var digit in columnMask)
 											{
 												elimMapColumn |= CandidatesMap[digit];
 											}
@@ -102,7 +102,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 											var fullMap = rbCurrentMap | cbCurrentMap | selectedRowCells | selectedColumnCells | selectedBlockCells;
 											var otherMap_row = fullMap - (selectedRowCells | rbCurrentMap);
 											var otherMap_column = fullMap - (selectedColumnCells | cbCurrentMap);
-											short mask = grid.GetDigitsUnion(otherMap_row);
+											var mask = grid.GetDigitsUnion(otherMap_row);
 											if ((mask & rowMask) != 0)
 											{
 												// At least one digit spanned two houses.
@@ -116,36 +116,36 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 											}
 
 											mask = (short)((short)(blockMask | rowMask) | columnMask);
-											short rbMaskOnlyInInter = (short)(rbSelectedInterMask & ~mask);
-											short cbMaskOnlyInInter = (short)(cbSelectedInterMask & ~mask);
+											var rbMaskOnlyInInter = (short)(rbSelectedInterMask & ~mask);
+											var cbMaskOnlyInInter = (short)(cbSelectedInterMask & ~mask);
 
-											int bCount = PopCount((uint)blockMask);
-											int rCount = PopCount((uint)rowMask);
-											int cCount = PopCount((uint)columnMask);
-											int rbCount = PopCount((uint)rbMaskOnlyInInter);
-											int cbCount = PopCount((uint)cbMaskOnlyInInter);
+											var bCount = PopCount((uint)blockMask);
+											var rCount = PopCount((uint)rowMask);
+											var cCount = PopCount((uint)columnMask);
+											var rbCount = PopCount((uint)rbMaskOnlyInInter);
+											var cbCount = PopCount((uint)cbMaskOnlyInInter);
 											if (cbCurrentMap.Count + rbCurrentMap.Count + i + j + k - 1 == bCount + rCount + cCount + rbCount + cbCount
 												&& (elimMapRow | elimMapColumn | elimMapBlock) is not [])
 											{
 												// Check eliminations.
 												var conclusions = new List<Conclusion>();
-												foreach (int digit in blockMask)
+												foreach (var digit in blockMask)
 												{
-													foreach (int cell in elimMapBlock & CandidatesMap[digit])
+													foreach (var cell in elimMapBlock & CandidatesMap[digit])
 													{
 														conclusions.Add(new(Elimination, cell, digit));
 													}
 												}
-												foreach (int digit in rowMask)
+												foreach (var digit in rowMask)
 												{
-													foreach (int cell in elimMapRow & CandidatesMap[digit])
+													foreach (var cell in elimMapRow & CandidatesMap[digit])
 													{
 														conclusions.Add(new(Elimination, cell, digit));
 													}
 												}
-												foreach (int digit in columnMask)
+												foreach (var digit in columnMask)
 												{
-													foreach (int cell in elimMapColumn & CandidatesMap[digit])
+													foreach (var cell in elimMapColumn & CandidatesMap[digit])
 													{
 														conclusions.Add(new(Elimination, cell, digit));
 													}
@@ -156,27 +156,27 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 												}
 
 												var candidateOffsets = new List<CandidateViewNode>();
-												foreach (int digit in rowMask)
+												foreach (var digit in rowMask)
 												{
-													foreach (int cell in (selectedRowCells | rbCurrentMap) & CandidatesMap[digit])
+													foreach (var cell in (selectedRowCells | rbCurrentMap) & CandidatesMap[digit])
 													{
 														candidateOffsets.Add(
 															new(DisplayColorKind.Normal, cell * 9 + digit)
 														);
 													}
 												}
-												foreach (int digit in columnMask)
+												foreach (var digit in columnMask)
 												{
-													foreach (int cell in (selectedColumnCells | cbCurrentMap) & CandidatesMap[digit])
+													foreach (var cell in (selectedColumnCells | cbCurrentMap) & CandidatesMap[digit])
 													{
 														candidateOffsets.Add(
 															new(DisplayColorKind.Auxiliary1, cell * 9 + digit)
 														);
 													}
 												}
-												foreach (int digit in blockMask)
+												foreach (var digit in blockMask)
 												{
-													foreach (int cell in (selectedBlockCells | rbCurrentMap | cbCurrentMap) & CandidatesMap[digit])
+													foreach (var cell in (selectedBlockCells | rbCurrentMap | cbCurrentMap) & CandidatesMap[digit])
 													{
 														candidateOffsets.Add(
 															new(DisplayColorKind.Auxiliary2, cell * 9 + digit)

@@ -17,10 +17,10 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 			// Check each pair.
 			// Ensures all pairs should contains same digits
 			// and the kind of digits must be greater than 2.
-			bool checkKindsFlag = true;
+			var checkKindsFlag = true;
 			foreach (var (l, r) in pairs)
 			{
-				short tempMask = (short)(grid.GetCandidates(l) & grid.GetCandidates(r));
+				var tempMask = (short)(grid.GetCandidates(l) & grid.GetCandidates(r));
 				if (tempMask == 0 || (tempMask & tempMask - 1) == 0)
 				{
 					checkKindsFlag = false;
@@ -41,11 +41,11 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 				m2 |= grid.GetCandidates(r);
 			}
 
-			short resultMask = (short)(m1 | m2);
+			var resultMask = (short)(m1 | m2);
 			short normalDigits = 0, extraDigits = 0;
-			foreach (int digit in resultMask)
+			foreach (var digit in resultMask)
 			{
-				int count = 0;
+				var count = 0;
 				foreach (var (l, r) in pairs)
 				{
 					if (((grid.GetCandidates(l) & grid.GetCandidates(r)) >> digit & 1) != 0)
@@ -68,7 +68,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 			{
 				// Possible type 1 or 2 found.
 				// Now check extra cells.
-				int extraDigit = TrailingZeroCount(extraDigits);
+				var extraDigit = TrailingZeroCount(extraDigits);
 				var extraCellsMap = allCellsMap & CandidatesMap[extraDigit];
 				if (!extraCellsMap)
 				{
@@ -91,9 +91,9 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 			else
 			{
 				var extraCellsMap = CellMap.Empty;
-				foreach (int cell in allCellsMap)
+				foreach (var cell in allCellsMap)
 				{
-					foreach (int digit in extraDigits)
+					foreach (var digit in extraDigits)
 					{
 						if (grid[cell, digit])
 						{
@@ -139,11 +139,11 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 		scoped in CellMap extraCells, short normalDigits, int extraDigit, bool onlyFindOne)
 	{
 		var (conclusions, candidateOffsets) = (new List<Conclusion>(), new List<CandidateViewNode>());
-		foreach (int cell in allCellsMap)
+		foreach (var cell in allCellsMap)
 		{
 			if (cell == extraCells[0])
 			{
-				foreach (int digit in grid.GetCandidates(cell))
+				foreach (var digit in grid.GetCandidates(cell))
 				{
 					if (digit != extraDigit)
 					{
@@ -153,7 +153,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 			}
 			else
 			{
-				foreach (int digit in grid.GetCandidates(cell))
+				foreach (var digit in grid.GetCandidates(cell))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
@@ -204,9 +204,9 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>();
-		foreach (int cell in allCellsMap)
+		foreach (var cell in allCellsMap)
 		{
-			foreach (int digit in grid.GetCandidates(cell))
+			foreach (var digit in grid.GetCandidates(cell))
 			{
 				candidateOffsets.Add(
 					new(digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + digit)
@@ -247,14 +247,14 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 		ICollection<IStep> accumulator, scoped in Grid grid, scoped in CellMap allCellsMap,
 		short normalDigits, short extraDigits, scoped in CellMap extraCellsMap, bool onlyFindOne)
 	{
-		foreach (int houseIndex in extraCellsMap.CoveredHouses)
+		foreach (var houseIndex in extraCellsMap.CoveredHouses)
 		{
 			var otherCells = (HousesMap[houseIndex] & EmptyCells) - allCellsMap;
 			for (int size = 1, length = otherCells.Count; size < length; size++)
 			{
 				foreach (var cells in otherCells & size)
 				{
-					short mask = grid.GetDigitsUnion(cells);
+					var mask = grid.GetDigitsUnion(cells);
 					if ((mask & extraDigits) != extraDigits || PopCount((uint)mask) != size + 1)
 					{
 						continue;
@@ -267,9 +267,9 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 					}
 
 					var conclusions = new List<Conclusion>();
-					foreach (int digit in mask)
+					foreach (var digit in mask)
 					{
-						foreach (int cell in elimMap & CandidatesMap[digit])
+						foreach (var cell in elimMap & CandidatesMap[digit])
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -280,16 +280,16 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (int cell in allCellsMap - extraCellsMap)
+					foreach (var cell in allCellsMap - extraCellsMap)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
 					}
-					foreach (int cell in extraCellsMap)
+					foreach (var cell in extraCellsMap)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
 								new(
@@ -299,9 +299,9 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 							);
 						}
 					}
-					foreach (int cell in cells)
+					foreach (var cell in cells)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
@@ -353,7 +353,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 				// Type 1 found.
 				// Check eliminations.
 				var conclusions = new List<Conclusion>();
-				foreach (int digit in normalDigits)
+				foreach (var digit in normalDigits)
 				{
 					if (CandidatesMap[digit].Contains(extraCell))
 					{
@@ -368,14 +368,14 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 
 				// Gather all highlight candidates.
 				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (int cell in allCellsMap)
+				foreach (var cell in allCellsMap)
 				{
 					if (cell == extraCell)
 					{
 						continue;
 					}
 
-					foreach (int digit in grid.GetCandidates(cell))
+					foreach (var digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 					}
@@ -401,15 +401,15 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 			{
 				// Type 4.
 				short m1 = grid.GetCandidates(extraCell1), m2 = grid.GetCandidates(extraCell2);
-				short conjugateMask = (short)(m1 & m2 & normalDigits);
+				var conjugateMask = (short)(m1 & m2 & normalDigits);
 				if (conjugateMask == 0)
 				{
 					goto ReturnNull;
 				}
 
-				foreach (int conjugateDigit in conjugateMask)
+				foreach (var conjugateDigit in conjugateMask)
 				{
-					foreach (int houseIndex in extraCellsMap.CoveredHouses)
+					foreach (var houseIndex in extraCellsMap.CoveredHouses)
 					{
 						var map = HousesMap[houseIndex] & extraCellsMap;
 						if (map != extraCellsMap || map != (CandidatesMap[conjugateDigit] & HousesMap[houseIndex]))
@@ -417,11 +417,11 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 							continue;
 						}
 
-						short elimDigits = (short)(normalDigits & ~(1 << conjugateDigit));
+						var elimDigits = (short)(normalDigits & ~(1 << conjugateDigit));
 						var conclusions = new List<Conclusion>();
-						foreach (int digit in elimDigits)
+						foreach (var digit in elimDigits)
 						{
-							foreach (int cell in extraCellsMap & CandidatesMap[digit])
+							foreach (var cell in extraCellsMap & CandidatesMap[digit])
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}
@@ -432,14 +432,14 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 						}
 
 						var candidateOffsets = new List<CandidateViewNode>();
-						foreach (int cell in allCellsMap - extraCellsMap)
+						foreach (var cell in allCellsMap - extraCellsMap)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (var digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 							}
 						}
-						foreach (int cell in extraCellsMap)
+						foreach (var cell in extraCellsMap)
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + conjugateDigit));
 						}

@@ -108,7 +108,7 @@ public sealed partial class SudokuPage : Page
 	private void RegisterPrint()
 	{
 		// Register for PrintTaskRequested event.
-		nint hWnd = WindowNative.GetWindowHandle(((App)Application.Current).RuntimeInfo.MainWindow);
+		var hWnd = WindowNative.GetWindowHandle(((App)Application.Current).RuntimeInfo.MainWindow);
 
 		// Registers a print manager.
 		_printManager = PrintManagerInterop.GetForWindow(hWnd);
@@ -185,7 +185,7 @@ public sealed partial class SudokuPage : Page
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void CopySudokuCode()
 	{
-		string format = ((App)Application.Current).UserPreference.PlaceholderIsZero ? "0+:" : ".+:";
+		var format = ((App)Application.Current).UserPreference.PlaceholderIsZero ? "0+:" : ".+:";
 		CopySudokuCode(format);
 	}
 
@@ -333,7 +333,7 @@ public sealed partial class SudokuPage : Page
 	{
 		// FilePicker APIs will not work if the application is in a snapped state.
 		// If an app wants to show a FilePicker while snapped, it must attempt to unsnap first
-		bool unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
+		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
 		if (!unsnapped)
 		{
 			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["SudokuPage_InfoBar_CannotSnapTheSample"]!);
@@ -379,7 +379,7 @@ public sealed partial class SudokuPage : Page
 			default:
 			{
 				// Checks the validity of the file, and reads the whole content.
-				string content = await FileIO.ReadTextAsync(file);
+				var content = await FileIO.ReadTextAsync(file);
 				if (string.IsNullOrWhiteSpace(content))
 				{
 					_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_FileIsEmpty"]!);
@@ -454,7 +454,7 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		string gridStr = await dataPackageView.GetTextAsync();
+		var gridStr = await dataPackageView.GetTextAsync();
 		if (!Grid.TryParse(gridStr, out var grid))
 		{
 			_cInfoBoard.AddMessage(InfoBarSeverity.Error, R["SudokuPage_InfoBar_PasteIsInvalid"]!);
@@ -499,8 +499,8 @@ public sealed partial class SudokuPage : Page
 		_cPane.Grid = grid;
 
 		// Append the info to the board.
-		string part1 = R["SudokuPage_InfoBar_GeneratingSuccessfully1"]!;
-		string part2 = R["SudokuPage_InfoBar_GeneratingSuccessfully2"]!;
+		var part1 = R["SudokuPage_InfoBar_GeneratingSuccessfully1"]!;
+		var part2 = R["SudokuPage_InfoBar_GeneratingSuccessfully2"]!;
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{part1}\r\n{part2}{grid.GivensCount}");
 
 
@@ -579,8 +579,8 @@ public sealed partial class SudokuPage : Page
 						UnhandledException: WrongStepException { CurrentInvalidGrid: var invalidGrid }
 					}:
 					{
-						string firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
-						string secondPart =
+						var firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
+						var secondPart =
 							$"""
 							{R["SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep"]!}
 									
@@ -593,8 +593,8 @@ public sealed partial class SudokuPage : Page
 					}
 					case { FailedReason: var failedReason, UnhandledException: var ex }:
 					{
-						string firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
-						string secondPart =
+						var firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
+						var secondPart =
 							failedReason switch
 							{
 								SearcherFailedReason.UserCancelled
@@ -663,7 +663,7 @@ public sealed partial class SudokuPage : Page
 	private void CheckMinimal()
 	{
 		const string link = "https://sunnieshine.github.io/Sudoku/terms/minimal-puzzle";
-		string linkDescription = R["MinimalPuzzle"]!;
+		var linkDescription = R["MinimalPuzzle"]!;
 
 		switch (_cPane.Grid)
 		{
@@ -672,11 +672,11 @@ public sealed partial class SudokuPage : Page
 				f(InfoBarSeverity.Warning, R["CheckMinimalFalied_NotUniquePuzzle"]!);
 				break;
 			}
-			case var grid when !MinimalPuzzleChecker.IsMinimal(grid, out int firstFoundCandidateMakePuzzleNotMinimal):
+			case var grid when !MinimalPuzzleChecker.IsMinimal(grid, out var firstFoundCandidateMakePuzzleNotMinimal):
 			{
-				string a = R["CheckMinimalFailed_NotMinimal1"]!;
-				string b = R["CheckMinimalFailed_NotMinimal2"]!;
-				string resultStr = RxCyNotation.ToCandidateString(firstFoundCandidateMakePuzzleNotMinimal);
+				var a = R["CheckMinimalFailed_NotMinimal1"]!;
+				var b = R["CheckMinimalFailed_NotMinimal2"]!;
+				var resultStr = RxCyNotation.ToCandidateString(firstFoundCandidateMakePuzzleNotMinimal);
 				f(InfoBarSeverity.Informational, $"{a}{resultStr}{b}");
 
 				break;
@@ -699,7 +699,7 @@ public sealed partial class SudokuPage : Page
 	private void CheckIttouryu()
 	{
 		const string link = "https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle";
-		string linkDescription = R["IttouryuPuzzle"]!;
+		var linkDescription = R["IttouryuPuzzle"]!;
 
 		switch (_cPane.Grid)
 		{
@@ -753,7 +753,7 @@ public sealed partial class SudokuPage : Page
 					return;
 				}
 
-				string candidatesStr = string.Join(
+				var candidatesStr = string.Join(
 					R["Token_Comma2"]!,
 					from candidate in foundCandidates
 					select RxCyNotation.ToCandidateString(candidate)
@@ -790,7 +790,7 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		int[] candidates = trueCandidates.ToArray();
+		var candidates = trueCandidates.ToArray();
 		_cPane.SetVisual(
 			new TrueCandidatesVisual(
 				View.Empty
@@ -798,9 +798,9 @@ public sealed partial class SudokuPage : Page
 			)
 		);
 
-		string a = R["FindTrueCandidateSuccessful1"]!;
-		string b = R["FindTrueCandidateSuccessful2"]!;
-		string c = RxCyNotation.ToCandidatesString(
+		var a = R["FindTrueCandidateSuccessful1"]!;
+		var b = R["FindTrueCandidateSuccessful2"]!;
+		var c = RxCyNotation.ToCandidatesString(
 			trueCandidates,
 			RxCyNotationOptions.Default with { Separator = R["Token_Comma2"]! }
 		);
@@ -814,7 +814,7 @@ public sealed partial class SudokuPage : Page
 	private async Task FindBackdoorsAsync()
 	{
 		const string link = "https://sunnieshine.github.io/Sudoku/terms/backdoor";
-		string linkDescription = R["Backdoor"]!;
+		var linkDescription = R["Backdoor"]!;
 
 		var grid = _cPane.Grid;
 		if (!grid.IsValid)
@@ -837,7 +837,7 @@ public sealed partial class SudokuPage : Page
 
 		_cPane.SetVisual(new BackdoorVisual(backdoors));
 
-		string str = string.Join(
+		var str = string.Join(
 			R["Token_Comma2"]!,
 			from backdoor in backdoors
 			let coordinateStr = RxCyNotation.ToCellString(backdoor.Cell)
@@ -867,7 +867,7 @@ public sealed partial class SudokuPage : Page
 			try
 			{
 				// Show print UI.
-				nint hWnd = WindowNative.GetWindowHandle(mainWindow);
+				var hWnd = WindowNative.GetWindowHandle(mainWindow);
 				await PrintManagerInterop.ShowPrintUIForWindowAsync(hWnd);
 			}
 			catch (COMException ex) when (ex.ErrorCode == unchecked((int)0x80040155U))
@@ -909,7 +909,7 @@ public sealed partial class SudokuPage : Page
 		_cPane.Grid = grid;
 		_cPane.SetVisual(step);
 
-		bool isMultipleViews = viewLength > 1;
+		var isMultipleViews = viewLength > 1;
 		_cPipsPager.SelectedPageIndex = 0;
 		_cPipsPager.Visibility = isMultipleViews ? Visibility.Visible : Visibility.Collapsed;
 		if (isMultipleViews)

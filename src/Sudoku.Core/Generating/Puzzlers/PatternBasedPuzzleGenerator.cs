@@ -113,15 +113,15 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <exception cref="InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
 	public Grid Generate(int times, CancellationToken cancellationToken = default)
 	{
-		for (int trialTimeIndex = 0; trialTimeIndex < times; trialTimeIndex++)
+		for (var trialTimeIndex = 0; trialTimeIndex < times; trialTimeIndex++)
 		{
 			while (!cancellationToken.IsCancellationRequested)
 			{
 				// Generate a pattern.
 				var pattern = _pattern is { } p ? p : GeneratePattern();
 
-				char[] emptyChars = new char[BitwiseSolver.BufferLength];
-				char[] solutionBuffer = new char[BitwiseSolver.BufferLength];
+				var emptyChars = new char[BitwiseSolver.BufferLength];
+				var solutionBuffer = new char[BitwiseSolver.BufferLength];
 				emptyChars[81] = '\0';
 				solutionBuffer[81] = '\0';
 
@@ -139,7 +139,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 					}
 					else
 					{
-						foreach (int baseCandidate in _baseCandidates)
+						foreach (var baseCandidate in _baseCandidates)
 						{
 							ptr[baseCandidate / 9] = (char)(baseCandidate % 9 + '1');
 						}
@@ -160,7 +160,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 					Shuffle(ref solution);
 
 					// Try to apply the pattern and check the validity of the uniqueness of the target puzzle.
-					for (int retrialTimeIndex = 0; retrialTimeIndex < RetrialTimes; retrialTimeIndex++)
+					for (var retrialTimeIndex = 0; retrialTimeIndex < RetrialTimes; retrialTimeIndex++)
 					{
 						fixed (char* solutionPtr = solution.ToString("!"))
 						{
@@ -168,7 +168,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 						}
 
 						// Remove digits not being filled in the pattern.
-						for (int index = 0; index < 81; index++)
+						for (var index = 0; index < 81; index++)
 						{
 							if (!pattern.Contains(index))
 							{
@@ -206,7 +206,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <param name="grid">The grid.</param>
 	private void Shuffle(scoped ref Grid grid)
 	{
-		for (int times = 0; times < 6; times++)
+		for (var times = 0; times < 6; times++)
 		{
 			var ((a, b), baseHouse) = (SwappableFactor[_random.Next(3)], SwapperHouseStarts[times]);
 			grid.SwapTwoHouses(baseHouse + a, baseHouse + b);
@@ -219,8 +219,8 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <param name="pattern">The pattern.</param>
 	private void AdjustPattern(scoped ref CellMap pattern)
 	{
-		int index = _random.Next(pattern.Count);
-		int cellToBeDeleted = pattern[index];
+		var index = _random.Next(pattern.Count);
+		var cellToBeDeleted = pattern[index];
 		int[] tempCells = GetCells(cellToBeDeleted / 9, cellToBeDeleted % 9);
 		pattern -= (CellMap)tempCells;
 
@@ -244,7 +244,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	private CellMap GeneratePattern()
 	{
 		var result = CellMap.Empty;
-		int resultCellsCount = _random.Next(MinPatternCellsCount, MaxPatternCellsCount);
+		var resultCellsCount = _random.Next(MinPatternCellsCount, MaxPatternCellsCount);
 		if ((resultCellsCount & 1) != 0)
 		{
 			result.Add(40);
@@ -252,7 +252,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 
 		while (true)
 		{
-			int cell = _random.Next(81);
+			var cell = _random.Next(81);
 			result |= GetCells(cell / 9, cell % 9);
 			if (result.Count - resultCellsCount is 1 or 0 or -1)
 			{
@@ -270,7 +270,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 		using scoped var list = new ValueList<int>(3);
 		while (true)
 		{
-			int candidate = _random.Next(729);
+			var candidate = _random.Next(729);
 			if (!list.Contains(candidate, &predicate))
 			{
 				list.Add(candidate);

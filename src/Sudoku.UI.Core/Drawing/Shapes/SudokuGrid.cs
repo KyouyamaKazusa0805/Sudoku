@@ -292,10 +292,10 @@ public sealed class SudokuGrid : DrawingElement
 				}
 				case (_, (int)PeerFocusingMode.FocusedCellAndPeerCells):
 				{
-					for (int i = 0; i < 20; i++)
+					for (var i = 0; i < 20; i++)
 					{
 						var rectangle = _peerFocusedRectangle[i];
-						int cell = Peers[value][i];
+						var cell = Peers[value][i];
 
 						rectangle.Opacity = 1;
 						GridLayout.SetRow(rectangle, cell / 9);
@@ -413,7 +413,7 @@ public sealed class SudokuGrid : DrawingElement
 
 			void initializeValues(IDrawingPreference preference)
 			{
-				for (int i = 0; i < 81; i++)
+				for (var i = 0; i < 81; i++)
 				{
 					scoped ref var p = ref _cellDigits[i];
 					p = new()
@@ -457,9 +457,9 @@ public sealed class SudokuGrid : DrawingElement
 								.WithGridLayout(row: _focusedCell / 9, column: _focusedCell % 9)
 						);
 
-						for (int peerIndex = 0; peerIndex < 20; peerIndex++)
+						for (var peerIndex = 0; peerIndex < 20; peerIndex++)
 						{
-							int peerCell = Peers[_focusedCell][peerIndex];
+							var peerCell = Peers[_focusedCell][peerIndex];
 							_gridLayout.Children.Add(
 								_peerFocusedRectangle[peerIndex]
 									.WithGridLayout(row: peerCell / 9, column: peerCell % 9)
@@ -833,8 +833,8 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		int cell = candidateViewNode.Candidate / 9;
-		int digit = candidateViewNode.Candidate % 9;
+		var cell = candidateViewNode.Candidate / 9;
+		var digit = candidateViewNode.Candidate % 9;
 		scoped ref var current = ref _candidateViewNodeShapes[cell];
 		current.SetIsVisible(digit, true);
 		current.SetIdentifier(digit, candidateViewNode.Identifier);
@@ -852,7 +852,7 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		int house = houseViewNode.House;
+		var house = houseViewNode.House;
 		_houseViewNodeShape.SetIsVisible(house, true);
 		_houseViewNodeShape.SetIdentifier(house, houseViewNode.Identifier);
 	}
@@ -869,7 +869,7 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		int chuteIndex = chuteViewNode.ChuteIndex;
+		var chuteIndex = chuteViewNode.ChuteIndex;
 		_chuteViewNodeShape.SetIsVisible(chuteIndex, true);
 		_chuteViewNodeShape.SetIdentifier(chuteIndex, chuteViewNode.Identifier);
 	}
@@ -886,7 +886,7 @@ public sealed class SudokuGrid : DrawingElement
 			return;
 		}
 
-		int cell = unknownViewNode.Cell;
+		var cell = unknownViewNode.Cell;
 		var @char = unknownViewNode.UnknownValueChar;
 		_unknownValueViewNodeShapes[cell].UnknownCharacter = @char;
 	}
@@ -1027,7 +1027,7 @@ public sealed class SudokuGrid : DrawingElement
 	private void UpdateView()
 	{
 		// Iterates on each cell.
-		for (int i = 0; i < 81; i++)
+		for (var i = 0; i < 81; i++)
 		{
 			// Checks the status of the cell.
 			switch (_grid.GetStatus(i))
@@ -1039,7 +1039,7 @@ public sealed class SudokuGrid : DrawingElement
 					_cellDigits[i].Digit = byte.MaxValue;
 
 					// Gets the current candidate mask, and set the value in order to update the view.
-					short candidateMask = _grid.GetCandidates(i);
+					var candidateMask = _grid.GetCandidates(i);
 					_candidateDigits[i].CandidateMask = candidateMask;
 
 					// Checks the correctness of the candidates.
@@ -1058,7 +1058,7 @@ public sealed class SudokuGrid : DrawingElement
 				case var status and (CellStatus.Given or CellStatus.Modifiable):
 				{
 					// Gets the current digit input, and set the value in order to update the view.
-					byte digit = (byte)_grid[i];
+					var digit = (byte)_grid[i];
 					_cellDigits[i].Digit = digit;
 
 					// Due to the value cell, we should set the candidate mask to 0
@@ -1084,7 +1084,7 @@ public sealed class SudokuGrid : DrawingElement
 						else
 						{
 							// For multiple- and no- solution puzzle, we should check only duplicate digits.
-							foreach (int cell in PeersMap[i] - _grid.EmptyCells)
+							foreach (var cell in PeersMap[i] - _grid.EmptyCells)
 							{
 								if (_grid[cell] == _grid[i] && _grid.GetStatus(i) != CellStatus.Given)
 								{

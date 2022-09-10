@@ -13,7 +13,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 		}
 
 		short satisfiedblocksMask = 0;
-		for (int block = 0; block < 9; block++)
+		for (var block = 0; block < 9; block++)
 		{
 			if ((EmptyCells & HousesMap[block]).Count >= 3)
 			{
@@ -27,16 +27,16 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 			return null;
 		}
 
-		foreach (int[] blocks in satisfiedblocksMask.GetAllSets().GetSubsets(4))
+		foreach (var blocks in satisfiedblocksMask.GetAllSets().GetSubsets(4))
 		{
 			short blocksMask = 0;
-			foreach (int block in blocks)
+			foreach (var block in blocks)
 			{
 				blocksMask |= (short)(1 << block);
 			}
 
-			bool flag = false;
-			foreach (short tempBlocksMask in ChromaticPatternBlocksCombinations)
+			var flag = false;
+			foreach (var tempBlocksMask in ChromaticPatternBlocksCombinations)
 			{
 				if ((tempBlocksMask & blocksMask) == blocksMask)
 				{
@@ -49,10 +49,10 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 				continue;
 			}
 
-			int c1 = HouseCells[blocks[0]][0];
-			int c2 = HouseCells[blocks[1]][0];
-			int c3 = HouseCells[blocks[2]][0];
-			int c4 = HouseCells[blocks[3]][0];
+			var c1 = HouseCells[blocks[0]][0];
+			var c2 = HouseCells[blocks[1]][0];
+			var c3 = HouseCells[blocks[2]][0];
+			var c4 = HouseCells[blocks[3]][0];
 
 			foreach (var (a, b, c, d) in IChromaticPatternStepSearcher.PatternOffsets)
 			{
@@ -63,10 +63,10 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 					continue;
 				}
 
-				bool containsNakedSingle = false;
-				foreach (int cell in pattern)
+				var containsNakedSingle = false;
+				foreach (var cell in pattern)
 				{
-					short candidatesMask = grid.GetCandidates(cell);
+					var candidatesMask = grid.GetCandidates(cell);
 					if (IsPow2(candidatesMask))
 					{
 						containsNakedSingle = true;
@@ -96,9 +96,9 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static CellMap f(int[] offsets, int currentOffset)
 		{
-			int a = offsets[0] + currentOffset;
-			int b = offsets[1] + currentOffset;
-			int c = offsets[2] + currentOffset;
+			var a = offsets[0] + currentOffset;
+			var b = offsets[1] + currentOffset;
+			var c = offsets[2] + currentOffset;
 			return CellMap.Empty + a + b + c;
 		}
 	}
@@ -119,16 +119,16 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in CellMap pattern, int[] blocks)
 	{
-		foreach (int extraCell in pattern)
+		foreach (var extraCell in pattern)
 		{
 			var otherCells = pattern - extraCell;
-			short digitsMask = grid.GetDigitsUnion(otherCells);
+			var digitsMask = grid.GetDigitsUnion(otherCells);
 			if (PopCount((uint)digitsMask) != 3)
 			{
 				continue;
 			}
 
-			short elimDigitsMask = (short)(grid.GetCandidates(extraCell) & digitsMask);
+			var elimDigitsMask = (short)(grid.GetCandidates(extraCell) & digitsMask);
 			if (elimDigitsMask == 0)
 			{
 				// No eliminations.
@@ -136,15 +136,15 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 			}
 
 			var conclusions = new List<Conclusion>();
-			foreach (int digit in elimDigitsMask)
+			foreach (var digit in elimDigitsMask)
 			{
 				conclusions.Add(new(Elimination, extraCell, digit));
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>((12 - 1) * 3);
-			foreach (int otherCell in otherCells)
+			foreach (var otherCell in otherCells)
 			{
-				foreach (int otherDigit in grid.GetCandidates(otherCell))
+				foreach (var otherDigit in grid.GetCandidates(otherCell))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, otherCell * 9 + otherDigit));
 				}
@@ -188,7 +188,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in CellMap pattern, int[] blocks)
 	{
-		short allDigitsMask = grid.GetDigitsUnion(pattern);
+		var allDigitsMask = grid.GetDigitsUnion(pattern);
 		if (PopCount((uint)allDigitsMask) != 5)
 		{
 			// The pattern cannot find any possible eliminations because the number of extra digits
@@ -197,19 +197,19 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 			return null;
 		}
 
-		foreach (int[] digits in allDigitsMask.GetAllSets().GetSubsets(3))
+		foreach (var digits in allDigitsMask.GetAllSets().GetSubsets(3))
 		{
-			short patternDigitsMask = (short)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
-			short otherDigitsMask = (short)(allDigitsMask & ~patternDigitsMask);
-			int d1 = TrailingZeroCount(otherDigitsMask);
-			int d2 = otherDigitsMask.GetNextSet(d1);
+			var patternDigitsMask = (short)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
+			var otherDigitsMask = (short)(allDigitsMask & ~patternDigitsMask);
+			var d1 = TrailingZeroCount(otherDigitsMask);
+			var d2 = otherDigitsMask.GetNextSet(d1);
 			var otherDigitsCells = pattern & (CandidatesMap[d1] | CandidatesMap[d2]);
 			if (otherDigitsCells is not [var c1, var c2])
 			{
 				continue;
 			}
 
-			foreach (int extraCell in (PeersMap[c1] ^ PeersMap[c2]) & BivalueCells)
+			foreach (var extraCell in (PeersMap[c1] ^ PeersMap[c2]) & BivalueCells)
 			{
 				if (grid.GetCandidates(extraCell) != otherDigitsMask)
 				{
@@ -218,10 +218,10 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 
 				// XZ rule found.
 				var conclusions = new List<Conclusion>();
-				bool condition = (CellMap.Empty + c1 + extraCell).InOneHouse;
-				int anotherCell = condition ? c2 : c1;
-				int anotherDigit = condition ? d1 : d2;
-				foreach (int peer in +(CellMap.Empty + extraCell + anotherCell))
+				var condition = (CellMap.Empty + c1 + extraCell).InOneHouse;
+				var anotherCell = condition ? c2 : c1;
+				var anotherDigit = condition ? d1 : d2;
+				foreach (var peer in +(CellMap.Empty + extraCell + anotherCell))
 				{
 					if (CandidatesMap[anotherDigit].Contains(peer))
 					{
@@ -234,9 +234,9 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 				}
 
 				var candidateOffsets = new List<CandidateViewNode>(33);
-				foreach (int patternCell in pattern)
+				foreach (var patternCell in pattern)
 				{
-					foreach (int digit in grid.GetCandidates(patternCell))
+					foreach (var digit in grid.GetCandidates(patternCell))
 					{
 						candidateOffsets.Add(
 							new(

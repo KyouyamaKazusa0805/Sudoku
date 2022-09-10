@@ -13,10 +13,10 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 	/// <inheritdoc/>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		for (int size = 2; size <= ((ISubsetStepSearcher)this).MaxSize; size++)
+		for (var size = 2; size <= ((ISubsetStepSearcher)this).MaxSize; size++)
 		{
 			// Naked subsets.
-			for (int house = 0; house < 27; house++)
+			for (var house = 0; house < 27; house++)
 			{
 				if ((HousesMap[house] & EmptyCells) is not { Count: >= 2 } currentEmptyMap)
 				{
@@ -26,7 +26,7 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 				// Iterate on each combination.
 				foreach (var cells in currentEmptyMap & size)
 				{
-					short mask = grid.GetDigitsUnion(cells);
+					var mask = grid.GetDigitsUnion(cells);
 					if (PopCount((uint)mask) != size)
 					{
 						continue;
@@ -35,12 +35,12 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					// Naked subset found. Now check eliminations.
 					short flagMask = 0;
 					var conclusions = new List<Conclusion>(18);
-					foreach (int digit in mask)
+					foreach (var digit in mask)
 					{
 						var map = cells % CandidatesMap[digit];
 						flagMask |= (short)(map.InOneHouse ? 0 : 1 << digit);
 
-						foreach (int cell in map)
+						foreach (var cell in map)
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -51,9 +51,9 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>(16);
-					foreach (int cell in cells)
+					foreach (var cell in cells)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
@@ -83,7 +83,7 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 			}
 
 			// Hidden subsets.
-			for (int house = 0; house < 27; house++)
+			for (var house = 0; house < 27; house++)
 			{
 				var traversingMap = HousesMap[house] - EmptyCells;
 				if (traversingMap.Count >= 8)
@@ -92,17 +92,17 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					continue;
 				}
 
-				short mask = Grid.MaxCandidatesMask;
-				foreach (int cell in traversingMap)
+				var mask = Grid.MaxCandidatesMask;
+				foreach (var cell in traversingMap)
 				{
 					mask &= (short)~(1 << grid[cell]);
 				}
-				foreach (int[] digits in mask.GetAllSets().GetSubsets(size))
+				foreach (var digits in mask.GetAllSets().GetSubsets(size))
 				{
-					short tempMask = mask;
+					var tempMask = mask;
 					short digitsMask = 0;
 					var map = CellMap.Empty;
-					foreach (int digit in digits)
+					foreach (var digit in digits)
 					{
 						tempMask &= (short)~(1 << digit);
 						digitsMask |= (short)(1 << digit);
@@ -115,9 +115,9 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 
 					// Gather eliminations.
 					var conclusions = new List<Conclusion>();
-					foreach (int digit in tempMask)
+					foreach (var digit in tempMask)
 					{
-						foreach (int cell in map & CandidatesMap[digit])
+						foreach (var cell in map & CandidatesMap[digit])
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -129,9 +129,9 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 
 					// Gather highlight candidates.
 					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (int digit in digits)
+					foreach (var digit in digits)
 					{
-						foreach (int cell in map & CandidatesMap[digit])
+						foreach (var cell in map & CandidatesMap[digit])
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}

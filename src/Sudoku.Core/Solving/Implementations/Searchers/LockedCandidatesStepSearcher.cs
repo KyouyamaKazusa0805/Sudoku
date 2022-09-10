@@ -38,7 +38,7 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 	/// </remarks>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		int* r = stackalloc int[2];
+		var r = stackalloc int[2];
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 		{
 			// If the cells C doesn't contain any empty cells,
@@ -49,20 +49,20 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 			}
 
 			// Gather the masks in cells A, B and C.
-			short maskA = grid.GetDigitsUnion(a);
-			short maskB = grid.GetDigitsUnion(b);
-			short maskC = grid.GetDigitsUnion(c);
+			var maskA = grid.GetDigitsUnion(a);
+			var maskB = grid.GetDigitsUnion(b);
+			var maskC = grid.GetDigitsUnion(c);
 
 			// Use the formula, and check whether the equation is correct.
 			// If so, the mask 'm' will hold the digits that form locked candidates structures.
-			short m = (short)(maskC & (maskA ^ maskB));
+			var m = (short)(maskC & (maskA ^ maskB));
 			if (m == 0)
 			{
 				continue;
 			}
 
 			// Now iterate on the mask to get all digits.
-			foreach (int digit in m)
+			foreach (var digit in m)
 			{
 				// Check whether the digit contains any eliminations.
 				(r[0], r[1], var elimMap) = a & CandidatesMap[digit]
@@ -75,7 +75,7 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 
 				// Gather the information, such as the type of the locked candidates, the located house, etc..
 				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (int cell in c & CandidatesMap[digit])
+				foreach (var cell in c & CandidatesMap[digit])
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}

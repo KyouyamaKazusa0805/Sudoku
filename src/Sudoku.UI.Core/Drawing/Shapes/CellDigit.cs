@@ -295,14 +295,14 @@ internal sealed class CellDigit : DrawingElement
 	{
 		get
 		{
-			string status = (_isGiven, _isMaskMode) switch
+			var status = (_isGiven, _isMaskMode) switch
 			{
 				(_, true) => "Masked",
 				(true, _) => "Given",
 				(false, _) => "Modifiable",
 				_ => "Empty"
 			};
-			string digit = (_isMaskMode, _textBlock) switch
+			var digit = (_isMaskMode, _textBlock) switch
 			{
 				(true, _) => "<Masked>",
 				(false, { Text: var s and not "" }) => s,

@@ -46,8 +46,8 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 
 			// Now we remove some digits from the grid.
 			var allTypes = symmetryType.GetAllFlags() ?? new[] { SymmetryType.None };
-			int count = allTypes.Length;
-			string tempSolution = solution.ToString();
+			var count = allTypes.Length;
+			var tempSolution = solution.ToString();
 			string result;
 			do
 			{
@@ -70,7 +70,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 
 					// Get new value of 'last'.
 					var tempMap = CellMap.Empty;
-					foreach (int tCell in GetCells(selectedType, r, c))
+					foreach (var tCell in GetCells(selectedType, r, c))
 					{
 						pSolution[tCell] = '0';
 						totalMap.Add(tCell);
@@ -99,17 +99,17 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 	{
 		do
 		{
-			for (int i = 0; i < 81; i++)
+			for (var i = 0; i < 81; i++)
 			{
 				pPuzzle[i] = '0';
 			}
 
 			var map = CellMap.Empty;
-			for (int i = 0; i < 16; i++)
+			for (var i = 0; i < 16; i++)
 			{
 				while (true)
 				{
-					int cell = _random.Next(81);
+					var cell = _random.Next(81);
 					if (!map.Contains(cell))
 					{
 						map.Add(cell);
@@ -118,7 +118,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 				}
 			}
 
-			foreach (int cell in map)
+			foreach (var cell in map)
 			{
 				do
 				{
@@ -186,8 +186,8 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private static bool CheckDuplicate(char* ptrGrid, int cell)
 	{
-		char value = ptrGrid[cell];
-		foreach (int c in PeersMap[cell])
+		var value = ptrGrid[cell];
+		foreach (var c in PeersMap[cell])
 		{
 			if (value != '0' && ptrGrid[c] == value)
 			{

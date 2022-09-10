@@ -44,7 +44,7 @@ public static class MinimalPuzzleChecker
 				var gridCanBeModified = grid;
 				gridCanBeModified.UnfixSolution();
 
-				foreach (int cell in gridCanBeModified.ModifiableCells)
+				foreach (var cell in gridCanBeModified.ModifiableCells)
 				{
 					var newGrid = gridCanBeModified;
 					newGrid[cell] = -1;

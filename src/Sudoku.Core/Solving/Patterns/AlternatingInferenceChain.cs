@@ -345,10 +345,10 @@ public sealed class AlternatingInferenceChain : Chain
 	/// <seealso cref="Chain._nodesStatus"/>
 	private static bool[] InitializeFieldNodeStatus(Node[] nodes, bool startsWithStrong)
 	{
-		int length = nodes.Length;
-		bool current = !startsWithStrong;
-		bool[] result = new bool[length];
-		for (int i = 0; i < length; i++)
+		var length = nodes.Length;
+		var current = !startsWithStrong;
+		var result = new bool[length];
+		for (var i = 0; i < length; i++)
 		{
 			result[i] = current;
 			current = !current;
@@ -366,7 +366,7 @@ public sealed class AlternatingInferenceChain : Chain
 	private static unsafe Conclusion[] GetEliminationsLoop(scoped in Grid grid, ImmutableArray<Node> nodes)
 	{
 		using scoped var result = new ValueList<Conclusion>(50);
-		for (int i = 1; i < nodes.Length; i += 2)
+		for (var i = 1; i < nodes.Length; i += 2)
 		{
 			var node = nodes[i];
 			var nextNode = nodes[i + 1 is var nextIndex && nextIndex < nodes.Length ? nextIndex : 0];
@@ -376,7 +376,7 @@ public sealed class AlternatingInferenceChain : Chain
 				when aCell == bCell:
 				{
 					// Same cell.
-					foreach (int digit in (short)(grid.GetCandidates(aCell) & ~(1 << aDigit | 1 << bDigit)))
+					foreach (var digit in (short)(grid.GetCandidates(aCell) & ~(1 << aDigit | 1 << bDigit)))
 					{
 						result.AddIfNotContain(new(ConclusionType.Elimination, aCell, digit), &cmp);
 					}
@@ -389,9 +389,9 @@ public sealed class AlternatingInferenceChain : Chain
 					if ((aCells | bCells).CoveredHouses is var houses and not 0)
 					{
 						// Same house, same digit.
-						foreach (int house in houses)
+						foreach (var house in houses)
 						{
-							foreach (int cell in (grid.CandidatesMap[aDigit] & HousesMap[house]) - (aCells | bCells))
+							foreach (var cell in (grid.CandidatesMap[aDigit] & HousesMap[house]) - (aCells | bCells))
 							{
 								result.AddIfNotContain(new(ConclusionType.Elimination, cell, aDigit), &cmp);
 							}
@@ -400,7 +400,7 @@ public sealed class AlternatingInferenceChain : Chain
 					else if ((+aCells & +bCells & grid.CandidatesMap[aDigit]) is var elimMap and not [])
 					{
 						// Same digit but different houses.
-						foreach (int cell in elimMap)
+						foreach (var cell in elimMap)
 						{
 							result.AddIfNotContain(new(ConclusionType.Elimination, cell, aDigit), &cmp);
 						}

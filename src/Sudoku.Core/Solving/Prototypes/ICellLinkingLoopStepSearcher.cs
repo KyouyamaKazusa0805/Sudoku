@@ -17,7 +17,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 		delegate*<in CellMap, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
 
 		var result = new List<GuardianDataInfo>();
-		foreach (int cell in CandidatesMap[digit])
+		foreach (var cell in CandidatesMap[digit])
 		{
 			DepthFirstSearching_Guardian(cell, cell, 0, CellMap.Empty + cell, CellMap.Empty, digit, condition, result);
 		}
@@ -41,7 +41,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 		int d1 = TrailingZeroCount(digitsMask), d2 = digitsMask.GetNextSet(d1);
 
 		// This limitation will miss the incomplete structures, I may modify it later.
-		foreach (int cell in CandidatesMap[d1] & CandidatesMap[d2])
+		foreach (var cell in CandidatesMap[d1] & CandidatesMap[d2])
 		{
 			DepthFirstSearching_UniqueLoop(
 				cell, cell, 0, CellMap.Empty + cell, digitsMask,
@@ -67,7 +67,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 		int d1 = TrailingZeroCount(digitsMask), d2 = digitsMask.GetNextSet(d1);
 
 		// This limitation will miss the incomplete structures, I may modify it later.
-		foreach (int cell in CandidatesMap[d1] & CandidatesMap[d2])
+		foreach (var cell in CandidatesMap[d1] & CandidatesMap[d2])
 		{
 			DepthFirstSearching_BivalueOddagon(
 				cell, cell, 0, CellMap.Empty + cell, digitsMask,
@@ -114,7 +114,7 @@ partial interface ICellLinkingLoopStepSearcher
 	{
 		foreach (var houseType in HouseTypes)
 		{
-			int house = lastCell.ToHouseIndex(houseType);
+			var house = lastCell.ToHouseIndex(houseType);
 			if ((lastHouse >> house & 1) != 0)
 			{
 				continue;
@@ -126,14 +126,14 @@ partial interface ICellLinkingLoopStepSearcher
 				continue;
 			}
 
-			foreach (int tempCell in cellsToBeChecked)
+			foreach (var tempCell in cellsToBeChecked)
 			{
 				if (tempCell == lastCell)
 				{
 					continue;
 				}
 
-				int housesUsed = 0;
+				var housesUsed = 0;
 				foreach (var tempHouseType in HouseTypes)
 				{
 					if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
@@ -175,7 +175,7 @@ partial interface ICellLinkingLoopStepSearcher
 	{
 		foreach (var houseType in HouseTypes)
 		{
-			int house = lastCell.ToHouseIndex(houseType);
+			var house = lastCell.ToHouseIndex(houseType);
 			if ((lastHouse >> house & 1) != 0)
 			{
 				continue;
@@ -187,14 +187,14 @@ partial interface ICellLinkingLoopStepSearcher
 				continue;
 			}
 
-			foreach (int tempCell in cellsToBeChecked)
+			foreach (var tempCell in cellsToBeChecked)
 			{
 				if (tempCell == lastCell)
 				{
 					continue;
 				}
 
-				int housesUsed = 0;
+				var housesUsed = 0;
 				foreach (var tempHouseType in HouseTypes)
 				{
 					if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
@@ -232,7 +232,7 @@ partial interface ICellLinkingLoopStepSearcher
 	{
 		foreach (var houseType in HouseTypes)
 		{
-			int house = lastCell.ToHouseIndex(houseType);
+			var house = lastCell.ToHouseIndex(houseType);
 			if ((lastHouse >> house & 1) != 0)
 			{
 				continue;
@@ -244,14 +244,14 @@ partial interface ICellLinkingLoopStepSearcher
 				continue;
 			}
 
-			foreach (int tempCell in cellsToBeChecked)
+			foreach (var tempCell in cellsToBeChecked)
 			{
 				if (tempCell == lastCell)
 				{
 					continue;
 				}
 
-				int housesUsed = 0;
+				var housesUsed = 0;
 				foreach (var tempHouseType in HouseTypes)
 				{
 					if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))

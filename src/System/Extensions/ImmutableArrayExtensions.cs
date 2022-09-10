@@ -14,7 +14,7 @@ public static class ImmutableArrayExtensions
 			throw new ArgumentException("The array is not initialized.", nameof(@this));
 		}
 
-		int result = 0;
+		var result = 0;
 		foreach (var element in @this)
 		{
 			if (predicate(element))
@@ -34,7 +34,7 @@ public static class ImmutableArrayExtensions
 			throw new ArgumentException("The array is not initialized.", nameof(@this));
 		}
 
-		int result = 0;
+		var result = 0;
 		foreach (var element in @this)
 		{
 			if (predicate(element))

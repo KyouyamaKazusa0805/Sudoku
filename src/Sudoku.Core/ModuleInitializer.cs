@@ -56,7 +56,7 @@ internal static class ModuleInitializer
 						var instance = (IStepSearcher)Activator.CreateInstance(type)!;
 
 						// Checks the inner values, in order to be used later.
-						object[] propertyNamesAndValues = attributeInstance.PropertyNamesAndValues;
+						var propertyNamesAndValues = attributeInstance.PropertyNamesAndValues;
 						switch (propertyNamesAndValues.Length)
 						{
 							case 0:
@@ -71,10 +71,10 @@ internal static class ModuleInitializer
 							}
 							case var length:
 							{
-								for (int i = 0; i < length; i += 2)
+								for (var i = 0; i < length; i += 2)
 								{
-									string propertyName = (string)propertyNamesAndValues[i];
-									object propertyValue = propertyNamesAndValues[i + 1];
+									var propertyName = (string)propertyNamesAndValues[i];
+									var propertyValue = propertyNamesAndValues[i + 1];
 
 									(
 										type.GetProperty(propertyName) switch

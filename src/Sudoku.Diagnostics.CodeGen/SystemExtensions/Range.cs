@@ -64,9 +64,9 @@ internal readonly struct Range : IEquatable<Range>
 	public (int Offset, int Length) GetOffsetAndLength(int length)
 	{
 		var startIndex = Start;
-		int start = startIndex.IsFromEnd ? length - startIndex.Value : startIndex.Value;
+		var start = startIndex.IsFromEnd ? length - startIndex.Value : startIndex.Value;
 		var endIndex = End;
-		int end = endIndex.IsFromEnd ? length - endIndex.Value : endIndex.Value;
+		var end = endIndex.IsFromEnd ? length - endIndex.Value : endIndex.Value;
 
 		if ((uint)end > (uint)length || (uint)start > (uint)end)
 		{

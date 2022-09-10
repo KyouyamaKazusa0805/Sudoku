@@ -107,9 +107,9 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			return null;
 		}
 
-		foreach (int cell in falseCandidatePossibleCells)
+		foreach (var cell in falseCandidatePossibleCells)
 		{
-			foreach (int digit in grid.GetCandidates(cell))
+			foreach (var digit in grid.GetCandidates(cell))
 			{
 				var copied = grid;
 				copied[cell] = digit;
@@ -120,7 +120,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 				}
 
 				var cellOffsets = new List<CellViewNode>(multivalueCells.Count);
-				foreach (int multiValueCell in multivalueCells)
+				foreach (var multiValueCell in multivalueCells)
 				{
 					cellOffsets.Add(new(DisplayColorKind.Normal, multiValueCell));
 				}
@@ -145,8 +145,8 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 	private IStep? CheckType2(ICollection<IStep> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		scoped var cells = (stackalloc int[trueCandidates.Count]);
-		int i = 0;
-		foreach (int candidate in trueCandidates)
+		var i = 0;
+		foreach (var candidate in trueCandidates)
 		{
 			cells[i++] = candidate / 9;
 		}
@@ -155,20 +155,20 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			return null;
 		}
 
-		int digit = trueCandidates[0] % 9;
+		var digit = trueCandidates[0] % 9;
 		if ((map & CandidatesMap[digit]) is not (var elimMap and not []))
 		{
 			return null;
 		}
 
 		var conclusions = new List<Conclusion>(elimMap.Count);
-		foreach (int cell in elimMap)
+		foreach (var cell in elimMap)
 		{
 			conclusions.Add(new(Elimination, cell, digit));
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>(trueCandidates.Count);
-		foreach (int candidate in trueCandidates)
+		foreach (var candidate in trueCandidates)
 		{
 			candidateOffsets.Add(new(DisplayColorKind.Normal, candidate));
 		}
@@ -203,13 +203,13 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 
 		// Get the digit mask.
 		short digitsMask = 0;
-		foreach (int candidate in trueCandidates)
+		foreach (var candidate in trueCandidates)
 		{
 			digitsMask |= (short)(1 << candidate % 9);
 		}
 
 		// Iterate on each house that the true candidates lying on.
-		foreach (int house in map.CoveredHouses)
+		foreach (var house in map.CoveredHouses)
 		{
 			var houseMap = HousesMap[house];
 			if ((houseMap & EmptyCells) - map is not (var otherCellsMap and not []))
@@ -222,7 +222,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			{
 				foreach (var cells in otherCellsMap & size)
 				{
-					short mask = (short)(digitsMask | grid.GetDigitsUnion(cells));
+					var mask = (short)(digitsMask | grid.GetDigitsUnion(cells));
 					if (PopCount((uint)mask) != size + 1)
 					{
 						continue;
@@ -234,9 +234,9 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 					}
 
 					var conclusions = new List<Conclusion>();
-					foreach (int cell in elimMap)
+					foreach (var cell in elimMap)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							if ((mask >> digit & 1) != 0)
 							{
@@ -250,13 +250,13 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (int cand in trueCandidates)
+					foreach (var cand in trueCandidates)
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, cand));
 					}
-					foreach (int cell in cells)
+					foreach (var cell in cells)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
@@ -303,30 +303,30 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			cells.Add(candGroupByCell.Key);
 		}
 
-		int houses = (CellMap.Empty + cells).CoveredHouses;
+		var houses = (CellMap.Empty + cells).CoveredHouses;
 		if (houses != 0)
 		{
 			return null;
 		}
 
 		// Check for each house.
-		foreach (int house in houses)
+		foreach (var house in houses)
 		{
 			// Add up all digits.
 			var digits = new HashSet<int>();
 			foreach (var candGroupByCell in candsGroupByCell)
 			{
-				foreach (int cand in candGroupByCell)
+				foreach (var cand in candGroupByCell)
 				{
 					digits.Add(cand % 9);
 				}
 			}
 
 			// Check whether exists a conjugate pair in this house.
-			for (int conjuagtePairDigit = 0; conjuagtePairDigit < 9; conjuagtePairDigit++)
+			for (var conjuagtePairDigit = 0; conjuagtePairDigit < 9; conjuagtePairDigit++)
 			{
 				// Check whether forms a conjugate pair.
-				short mask = (HousesMap[house] & CandidatesMap[conjuagtePairDigit]) / house;
+				var mask = (HousesMap[house] & CandidatesMap[conjuagtePairDigit]) / house;
 				if (PopCount((uint)mask) != 2)
 				{
 					continue;
@@ -351,15 +351,15 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 				var conclusions = new List<Conclusion>();
 				foreach (var candGroupByCell in candsGroupByCell)
 				{
-					int cell = candGroupByCell.Key;
+					var cell = candGroupByCell.Key;
 					short digitMask = 0;
-					foreach (int cand in candGroupByCell)
+					foreach (var cand in candGroupByCell)
 					{
 						digitMask |= (short)(1 << cand % 9);
 					}
 
 					// Bitwise not.
-					foreach (int d in digitMask = (short)(~digitMask & Grid.MaxCandidatesMask))
+					foreach (var d in digitMask = (short)(~digitMask & Grid.MaxCandidatesMask))
 					{
 						if (conjuagtePairDigit == d || !CandidatesMap[d].Contains(cell))
 						{
@@ -377,8 +377,8 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 				}
 
 				var candidateOffsets = new CandidateViewNode[trueCandidates.Count + 2];
-				int i = 0;
-				foreach (int candidate in trueCandidates)
+				var i = 0;
+				foreach (var candidate in trueCandidates)
 				{
 					candidateOffsets[i++] = new(DisplayColorKind.Normal, candidate);
 				}
@@ -387,7 +387,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 
 				// BUG type 4.
 				short digitsMask = 0;
-				foreach (int digit in digits)
+				foreach (var digit in digits)
 				{
 					digitsMask |= (short)(1 << digit);
 				}
@@ -430,7 +430,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		// BUG + n found.
 		// Check eliminations.
 		var conclusions = new List<Conclusion>(mapCount);
-		foreach (int candidate in map)
+		foreach (var candidate in map)
 		{
 			if (CandidatesMap[candidate % 9].Contains(candidate / 9))
 			{
@@ -443,8 +443,8 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		}
 
 		var candidateOffsets = new CandidateViewNode[trueCandidates.Count];
-		int i = 0;
-		foreach (int candidate in trueCandidates)
+		var i = 0;
+		foreach (var candidate in trueCandidates)
 		{
 			candidateOffsets[i++] = new(DisplayColorKind.Normal, candidate);
 		}
@@ -474,8 +474,8 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		}
 
 		int c1 = cand1 / 9, c2 = cand2 / 9, d1 = cand1 % 9, d2 = cand2 % 9;
-		short mask = (short)(1 << d1 | 1 << d2);
-		foreach (int cell in (PeersMap[c1] ^ PeersMap[c2]) & BivalueCells)
+		var mask = (short)(1 << d1 | 1 << d2);
+		foreach (var cell in (PeersMap[c1] ^ PeersMap[c2]) & BivalueCells)
 		{
 			if (grid.GetCandidates(cell) != mask)
 			{
@@ -484,10 +484,10 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 
 			// BUG-XZ found.
 			var conclusions = new List<Conclusion>();
-			bool condition = (CellMap.Empty + c1 + cell).InOneHouse;
-			int anotherCell = condition ? c2 : c1;
-			int anotherDigit = condition ? d2 : d1;
-			foreach (int peer in +(CellMap.Empty + cell + anotherCell))
+			var condition = (CellMap.Empty + c1 + cell).InOneHouse;
+			var anotherCell = condition ? c2 : c1;
+			var anotherDigit = condition ? d2 : d1;
+			foreach (var peer in +(CellMap.Empty + cell + anotherCell))
 			{
 				if (CandidatesMap[anotherDigit].Contains(peer))
 				{
@@ -535,9 +535,9 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
 	private static bool CheckSingleDigit(IReadOnlyList<int> list)
 	{
-		int i = 0;
+		var i = 0;
 		Unsafe.SkipInit(out int comparer);
-		foreach (int cand in list)
+		foreach (var cand in list)
 		{
 			if (i++ == 0)
 			{

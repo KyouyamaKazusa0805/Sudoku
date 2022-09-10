@@ -50,7 +50,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 	public ManualSolverResult Solve(scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
 		var result = new ManualSolverResult(puzzle);
-		if (puzzle.ExactlyValidate(out var solution, out bool? sukaku) && sukaku is { } s)
+		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } s)
 		{
 			try
 			{
@@ -139,7 +139,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 						continue;
 					}
 
-					int appliedStepsCount = 0;
+					var appliedStepsCount = 0;
 					foreach (var foundStep in accumulator)
 					{
 						if (verifyConclusionValidity(solution, foundStep))
@@ -245,7 +245,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 			CancellationToken cancellationToken,
 			[NotNullWhen(true)] out ManualSolverResult? result)
 		{
-			bool atLeastOneConclusionIsWorth = false;
+			var atLeastOneConclusionIsWorth = false;
 			foreach (var (t, c, d) in step.Conclusions)
 			{
 				switch (t)
@@ -296,7 +296,7 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 		{
 			foreach (var (t, c, d) in step.Conclusions)
 			{
-				int digit = solution[c];
+				var digit = solution[c];
 				if (t == Assignment && digit != d || t == Elimination && digit == d)
 				{
 					return false;

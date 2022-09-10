@@ -16,11 +16,11 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
 		IOrderedEnumerable<BivalueOddagonStep> resultList = null!;
-		foreach (int cell in BivalueCells)
+		foreach (var cell in BivalueCells)
 		{
-			short mask = grid.GetCandidates(cell);
+			var mask = grid.GetCandidates(cell);
 			int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
-			short comparer = (short)(1 << d1 | 1 << d2);
+			var comparer = (short)(1 << d1 | 1 << d2);
 			var foundData = ICellLinkingLoopStepSearcher.GatherBivalueOddagons(comparer);
 			if (foundData.Length == 0)
 			{
@@ -84,22 +84,22 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in CellMap loop,
 		scoped in CellMap extraCellsMap, short comparer, bool onlyFindOne)
 	{
-		short mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
+		var mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
 		{
 			goto ReturnNull;
 		}
 
-		int extraDigit = TrailingZeroCount(mask);
+		var extraDigit = TrailingZeroCount(mask);
 		if (extraCellsMap % CandidatesMap[extraDigit] is not (var elimMap and not []))
 		{
 			goto ReturnNull;
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>();
-		foreach (int cell in loop)
+		foreach (var cell in loop)
 		{
-			foreach (int digit in grid.GetCandidates(cell))
+			foreach (var digit in grid.GetCandidates(cell))
 			{
 				candidateOffsets.Add(
 					new(digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + digit)
@@ -131,10 +131,10 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		ICollection<BivalueOddagonStep> accumulator, scoped in Grid grid, int d1, int d2, scoped in CellMap loop,
 		scoped in CellMap extraCellsMap, short comparer, bool onlyFindOne)
 	{
-		bool notSatisfiedType3 = false;
-		foreach (int cell in extraCellsMap)
+		var notSatisfiedType3 = false;
+		foreach (var cell in extraCellsMap)
 		{
-			short mask = grid.GetCandidates(cell);
+			var mask = grid.GetCandidates(cell);
 			if ((mask & comparer) == 0 || mask == comparer)
 			{
 				notSatisfiedType3 = true;
@@ -147,14 +147,14 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 			goto ReturnNull;
 		}
 
-		short m = grid.GetDigitsUnion(extraCellsMap);
+		var m = grid.GetDigitsUnion(extraCellsMap);
 		if ((m & comparer) != comparer)
 		{
 			goto ReturnNull;
 		}
 
-		short otherDigitsMask = (short)(m & ~comparer);
-		foreach (int house in extraCellsMap.CoveredHouses)
+		var otherDigitsMask = (short)(m & ~comparer);
+		foreach (var house in extraCellsMap.CoveredHouses)
 		{
 			if ((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[house])
 			{
@@ -166,7 +166,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 			{
 				foreach (var cells in otherCells & size)
 				{
-					short mask = grid.GetDigitsUnion(cells);
+					var mask = grid.GetDigitsUnion(cells);
 					if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;
@@ -178,9 +178,9 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 					}
 
 					var conclusions = new List<Conclusion>(16);
-					foreach (int digit in mask)
+					foreach (var digit in mask)
 					{
-						foreach (int cell in elimMap & CandidatesMap[digit])
+						foreach (var cell in elimMap & CandidatesMap[digit])
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -191,9 +191,9 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (int cell in loop)
+					foreach (var cell in loop)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
 								new(
@@ -205,9 +205,9 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 							);
 						}
 					}
-					foreach (int cell in cells)
+					foreach (var cell in cells)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}

@@ -60,7 +60,7 @@ public sealed partial class RxCyNotation :
 	/// <returns>A <see cref="bool"/> value indicating whether the parsing operation is successful.</returns>
 	public static bool TryParseCell(string str, out int result)
 	{
-		(result, bool @return) = str.Trim() switch
+		(result, var @return) = str.Trim() switch
 		{
 			['R' or 'r', var r and >= '1' and <= '9', 'C' or 'c', var c and >= '1' and <= '9']
 				=> ((r - '1') * 9 + (c - '1'), true),
@@ -100,7 +100,7 @@ public sealed partial class RxCyNotation :
 	/// <inheritdoc/>
 	public static string ToCellsString(scoped in CellMap cells, scoped in RxCyNotationOptions options)
 	{
-		bool upperCasing = options.UpperCasing;
+		var upperCasing = options.UpperCasing;
 		return cells switch
 		{
 			[] => string.Empty,
@@ -122,7 +122,7 @@ public sealed partial class RxCyNotation :
 			scoped var sbRow = new StringHandler(50);
 			var dic = new Dictionary<int, List<int>>(9);
 			var (upperCasing, separator) = options;
-			foreach (int cell in cells)
+			foreach (var cell in cells)
 			{
 				if (!dic.ContainsKey(cell / 9))
 				{
@@ -131,7 +131,7 @@ public sealed partial class RxCyNotation :
 
 				dic[cell / 9].Add(cell % 9);
 			}
-			foreach (int row in dic.Keys)
+			foreach (var row in dic.Keys)
 			{
 				sbRow.Append(rowLabel(upperCasing));
 				sbRow.Append(row + 1);
@@ -149,7 +149,7 @@ public sealed partial class RxCyNotation :
 			var dic = new Dictionary<int, List<int>>(9);
 			scoped var sbColumn = new StringHandler(50);
 			var (upperCasing, separator) = options;
-			foreach (int cell in cells)
+			foreach (var cell in cells)
 			{
 				if (!dic.ContainsKey(cell % 9))
 				{
@@ -159,7 +159,7 @@ public sealed partial class RxCyNotation :
 				dic[cell % 9].Add(cell / 9);
 			}
 
-			foreach (int column in dic.Keys)
+			foreach (var column in dic.Keys)
 			{
 				sbColumn.Append(rowLabel(upperCasing));
 				sbColumn.AppendRange(dic[column], &i);
@@ -191,7 +191,7 @@ public sealed partial class RxCyNotation :
 		// Iterate on each match instance.
 		foreach (var match in matches.Cast<Match>())
 		{
-			string value = match.Value;
+			var value = match.Value;
 			char* anchorR, anchorC;
 			fixed (char* pValue = value)
 			{
@@ -208,19 +208,19 @@ public sealed partial class RxCyNotation :
 
 			// Stores the possible values into the buffer.
 			int rIndex = 0, cIndex = 0;
-			for (char* p = anchorR + 1; *p is not ('C' or 'c'); p++, rIndex++)
+			for (var p = anchorR + 1; *p is not ('C' or 'c'); p++, rIndex++)
 			{
 				bufferRows[rIndex] = *p - '1';
 			}
-			for (char* p = anchorC + 1; *p != '\0'; p++, cIndex++)
+			for (var p = anchorC + 1; *p != '\0'; p++, cIndex++)
 			{
 				bufferColumns[cIndex] = *p - '1';
 			}
 
 			// Now combine two buffers.
-			for (int i = 0; i < rIndex; i++)
+			for (var i = 0; i < rIndex; i++)
 			{
-				for (int j = 0; j < cIndex; j++)
+				for (var j = 0; j < cIndex; j++)
 				{
 					result.Add(bufferRows[i] * 9 + bufferColumns[j]);
 				}
@@ -281,7 +281,7 @@ public sealed partial class RxCyNotation :
 				select digitGroups)
 			{
 				var cells = CellMap.Empty;
-				foreach (int candidate in digitGroup)
+				foreach (var candidate in digitGroup)
 				{
 					cells.Add(candidate / 9);
 				}
@@ -311,25 +311,25 @@ public sealed partial class RxCyNotation :
 		var result = Candidates.Empty;
 
 		// Iterate on each match item.
-		int* bufferDigits = stackalloc int[9];
+		var bufferDigits = stackalloc int[9];
 		foreach (var match in matches.Cast<Match>())
 		{
-			string value = match.Value;
+			var value = match.Value;
 			if (value.SatisfyPattern(PrepositionalFormCandidateList))
 			{
 				var cells = CellMap.Parse(value);
-				int digitsCount = 0;
+				var digitsCount = 0;
 				fixed (char* pValue = value)
 				{
-					for (char* ptr = pValue; *ptr is not ('{' or 'R' or 'r'); ptr++)
+					for (var ptr = pValue; *ptr is not ('{' or 'R' or 'r'); ptr++)
 					{
 						bufferDigits[digitsCount++] = *ptr - '1';
 					}
 				}
 
-				foreach (int cell in cells)
+				foreach (var cell in cells)
 				{
-					for (int i = 0; i < digitsCount; i++)
+					for (var i = 0; i < digitsCount; i++)
 					{
 						result.AddAnyway(cell * 9 + bufferDigits[i]);
 					}
@@ -338,15 +338,15 @@ public sealed partial class RxCyNotation :
 			else if (value.SatisfyPattern(PostpositionalFormCandidateList))
 			{
 				var cells = CellMap.Parse(value);
-				int digitsCount = 0;
+				var digitsCount = 0;
 				for (int i = value.IndexOf('(') + 1, length = value.Length; i < length; i++)
 				{
 					bufferDigits[digitsCount++] = value[i] - '1';
 				}
 
-				foreach (int cell in cells)
+				foreach (var cell in cells)
 				{
-					for (int i = 0; i < digitsCount; i++)
+					for (var i = 0; i < digitsCount; i++)
 					{
 						result.AddAnyway(cell * 9 + bufferDigits[i]);
 					}

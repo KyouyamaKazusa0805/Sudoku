@@ -8,13 +8,13 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 	{
 		for (int i = 0, length = BivalueCells.Count, iterationLength = length - 1; i < iterationLength; i++)
 		{
-			int c1 = BivalueCells[i];
+			var c1 = BivalueCells[i];
 
-			short mask = grid.GetCandidates(c1);
+			var mask = grid.GetCandidates(c1);
 			int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
-			for (int j = i + 1; j < length; j++)
+			for (var j = i + 1; j < length; j++)
 			{
-				int c2 = BivalueCells[j];
+				var c2 = BivalueCells[j];
 
 				// Check the candidates that cell holds is totally same with 'c1'.
 				if (grid.GetCandidates(c2) != mask)
@@ -28,8 +28,8 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 					continue;
 				}
 
-				int block1 = c1.ToHouseIndex(HouseType.Block);
-				int block2 = c2.ToHouseIndex(HouseType.Block);
+				var block1 = c1.ToHouseIndex(HouseType.Block);
+				var block2 = c2.ToHouseIndex(HouseType.Block);
 				if (block1 % 3 == block2 % 3 || block1 / 3 == block2 / 3)
 				{
 					continue;
@@ -38,9 +38,9 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 				// Check the block that two cells both see.
 				var interMap = +(CellMap.Empty + c1 + c2);
 				var unionMap = (PeersMap[c1] | PeersMap[c2]) + c1 + c2;
-				foreach (int interCell in interMap)
+				foreach (var interCell in interMap)
 				{
-					int block = interCell.ToHouseIndex(HouseType.Block);
+					var block = interCell.ToHouseIndex(HouseType.Block);
 					var houseMap = HousesMap[block];
 					var checkingMap = houseMap - unionMap & houseMap;
 					if (checkingMap & CandidatesMap[d1] || checkingMap & CandidatesMap[d2])
@@ -49,11 +49,11 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 					}
 
 					// Check whether two digits are both in the same empty rectangle.
-					int b1 = c1.ToHouseIndex(HouseType.Block);
-					int b2 = c2.ToHouseIndex(HouseType.Block);
+					var b1 = c1.ToHouseIndex(HouseType.Block);
+					var b2 = c2.ToHouseIndex(HouseType.Block);
 					var erMap = unionMap & HousesMap[b1] - interMap | unionMap & HousesMap[b2] - interMap;
 					var erCellsMap = houseMap & erMap;
-					short m = grid.GetDigitsUnion(erCellsMap);
+					var m = grid.GetDigitsUnion(erCellsMap);
 					if ((m & mask) != mask)
 					{
 						continue;
@@ -61,10 +61,10 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 
 					// Check eliminations.
 					var conclusions = new List<Conclusion>();
-					int z = (interMap & houseMap)[0];
+					var z = (interMap & houseMap)[0];
 					var c1Map = HousesMap[(CellMap.Empty + z + c1).CoveredLine];
 					var c2Map = HousesMap[(CellMap.Empty + z + c2).CoveredLine];
-					foreach (int elimCell in (c1Map | c2Map) - c1 - c2 - erMap)
+					foreach (var elimCell in (c1Map | c2Map) - c1 - c2 - erMap)
 					{
 						if (CandidatesMap[d1].Contains(elimCell))
 						{
@@ -81,17 +81,17 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (int digit in grid.GetCandidates(c1))
+					foreach (var digit in grid.GetCandidates(c1))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, c1 * 9 + digit));
 					}
-					foreach (int digit in grid.GetCandidates(c2))
+					foreach (var digit in grid.GetCandidates(c2))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, c2 * 9 + digit));
 					}
-					foreach (int cell in erCellsMap)
+					foreach (var cell in erCellsMap)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							if (digit != d1 && digit != d2)
 							{

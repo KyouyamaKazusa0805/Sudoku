@@ -15,7 +15,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			}
 
 			// Checks for the number of kinds of digits in three cells.
-			short digitsMask = grid.GetDigitsUnion(pattern.Map);
+			var digitsMask = grid.GetDigitsUnion(pattern.Map);
 			if (PopCount((uint)digitsMask) < 3)
 			{
 				continue;
@@ -72,7 +72,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 		var map = pattern.Map;
 		var nonPivotCells = map - pivot;
 		int cell1 = nonPivotCells[0], cell2 = nonPivotCells[1];
-		short satisfiedDigitsMask = IFireworkStepSearcher.GetFireworkDigits(
+		var satisfiedDigitsMask = IFireworkStepSearcher.GetFireworkDigits(
 			cell1,
 			cell2,
 			pivot,
@@ -86,24 +86,24 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			return null;
 		}
 
-		int elimCell = ((PeersMap[cell1] & PeersMap[cell2]) - pivot)[0];
-		foreach (int[] digits in satisfiedDigitsMask.GetAllSets().GetSubsets(2))
+		var elimCell = ((PeersMap[cell1] & PeersMap[cell2]) - pivot)[0];
+		foreach (var digits in satisfiedDigitsMask.GetAllSets().GetSubsets(2))
 		{
-			short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
-			int cell1TheOtherLine = cell1.ToHouseIndex(
+			var currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
+			var cell1TheOtherLine = cell1.ToHouseIndex(
 				(CellMap.Empty + cell1 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
-			int cell2TheOtherLine = cell2.ToHouseIndex(
+			var cell2TheOtherLine = cell2.ToHouseIndex(
 				(CellMap.Empty + cell2 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
 
-			foreach (int extraCell1 in (HousesMap[cell1TheOtherLine] & EmptyCells) - cell1)
+			foreach (var extraCell1 in (HousesMap[cell1TheOtherLine] & EmptyCells) - cell1)
 			{
-				foreach (int extraCell2 in (HousesMap[cell2TheOtherLine] & EmptyCells) - cell2)
+				foreach (var extraCell2 in (HousesMap[cell2TheOtherLine] & EmptyCells) - cell2)
 				{
 					if (extraCell1 == extraCell2)
 					{
@@ -141,28 +141,28 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>(10);
-					foreach (int cell in map)
+					foreach (var cell in map)
 					{
-						foreach (int digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
+						foreach (var digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
 					}
-					foreach (int digit in grid.GetCandidates(extraCell1))
+					foreach (var digit in grid.GetCandidates(extraCell1))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, extraCell1 * 9 + digit));
 					}
-					foreach (int digit in grid.GetCandidates(extraCell2))
+					foreach (var digit in grid.GetCandidates(extraCell2))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, extraCell2 * 9 + digit));
 					}
 
 					var cellOffsets = new List<CellViewNode>();
-					foreach (int cell in house1CellsExcluded)
+					foreach (var cell in house1CellsExcluded)
 					{
 						cellOffsets.Add(new(DisplayColorKind.Elimination, cell));
 					}
-					foreach (int cell in house2CellsExcluded)
+					foreach (var cell in house2CellsExcluded)
 					{
 						cellOffsets.Add(new(DisplayColorKind.Elimination, cell));
 					}
@@ -205,7 +205,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 
 			var nonPivotCells1 = aMap - aPivot;
 			int cell11 = nonPivotCells1[0], cell21 = nonPivotCells1[1];
-			short satisfiedDigitsMask1 = IFireworkStepSearcher.GetFireworkDigits(
+			var satisfiedDigitsMask1 = IFireworkStepSearcher.GetFireworkDigits(
 				cell11,
 				cell21,
 				aPivot,
@@ -216,7 +216,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 
 			var nonPivotCells2 = bMap - bPivot;
 			int cell12 = nonPivotCells2[0], cell22 = nonPivotCells2[1];
-			short satisfiedDigitsMask2 = IFireworkStepSearcher.GetFireworkDigits(
+			var satisfiedDigitsMask2 = IFireworkStepSearcher.GetFireworkDigits(
 				cell12,
 				cell22,
 				bPivot,
@@ -224,15 +224,15 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 				out var house1CellsExcluded2,
 				out var house2CellsExcluded2
 			);
-			short intersection = (short)(satisfiedDigitsMask1 & satisfiedDigitsMask2);
+			var intersection = (short)(satisfiedDigitsMask1 & satisfiedDigitsMask2);
 			if (PopCount((uint)intersection) < 2)
 			{
 				continue;
 			}
 
-			foreach (int[] digits in intersection.GetAllSets().GetSubsets(2))
+			foreach (var digits in intersection.GetAllSets().GetSubsets(2))
 			{
-				short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
+				var currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
 				if (grid.GetCandidates(meetCell) != currentDigitsMask)
 				{
 					continue;
@@ -245,7 +245,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 				) - meetCell - nonPivotCells1 - nonPivotCells2;
 
 				var conclusions = new List<Conclusion>();
-				foreach (int cell in
+				foreach (var cell in
 					untouchedCrossCells & EmptyCells & (CandidatesMap[digits[0]] | CandidatesMap[digits[1]]))
 				{
 					if (CandidatesMap[digits[0]].Contains(cell))
@@ -257,11 +257,11 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 						conclusions.Add(new(Elimination, cell * 9 + digits[1]));
 					}
 				}
-				foreach (int digit in (short)(grid.GetCandidates(aPivot) & ~currentDigitsMask))
+				foreach (var digit in (short)(grid.GetCandidates(aPivot) & ~currentDigitsMask))
 				{
 					conclusions.Add(new(Elimination, aPivot, digit));
 				}
-				foreach (int digit in (short)(grid.GetCandidates(bPivot) & ~currentDigitsMask))
+				foreach (var digit in (short)(grid.GetCandidates(bPivot) & ~currentDigitsMask))
 				{
 					conclusions.Add(new(Elimination, bPivot, digit));
 				}
@@ -274,44 +274,44 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 				var candidateOffsets = new List<CandidateViewNode>(14);
 				var candidateOffsetsOnlyContainFirework1 = new List<CandidateViewNode>(6);
 				var candidateOffsetsOnlyContainFirework2 = new List<CandidateViewNode>(6);
-				foreach (int cell in aMap)
+				foreach (var cell in aMap)
 				{
-					foreach (int digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
+					foreach (var digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
 					{
 						var node = new CandidateViewNode(DisplayColorKind.Normal, cell * 9 + digit);
 						candidateOffsets.Add(node);
 						candidateOffsetsOnlyContainFirework1.Add(node);
 					}
 				}
-				foreach (int cell in bMap)
+				foreach (var cell in bMap)
 				{
-					foreach (int digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
+					foreach (var digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
 					{
 						var node = new CandidateViewNode(DisplayColorKind.Auxiliary1, cell * 9 + digit);
 						candidateOffsets.Add(node);
 						candidateOffsetsOnlyContainFirework2.Add(node);
 					}
 				}
-				foreach (int digit in grid.GetCandidates(meetCell))
+				foreach (var digit in grid.GetCandidates(meetCell))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, meetCell * 9 + digit));
 				}
 
 				var cellOffsetsView2 = new List<CellViewNode>();
-				foreach (int cell in house1CellsExcluded1)
+				foreach (var cell in house1CellsExcluded1)
 				{
 					cellOffsetsView2.Add(new(DisplayColorKind.Elimination, cell));
 				}
-				foreach (int cell in house2CellsExcluded1)
+				foreach (var cell in house2CellsExcluded1)
 				{
 					cellOffsetsView2.Add(new(DisplayColorKind.Elimination, cell));
 				}
 				var cellOffsetsView3 = new List<CellViewNode>();
-				foreach (int cell in house1CellsExcluded2)
+				foreach (var cell in house1CellsExcluded2)
 				{
 					cellOffsetsView3.Add(new(DisplayColorKind.Elimination, cell));
 				}
-				foreach (int cell in house2CellsExcluded2)
+				foreach (var cell in house2CellsExcluded2)
 				{
 					cellOffsetsView3.Add(new(DisplayColorKind.Elimination, cell));
 				}
@@ -359,7 +359,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 		var map = pattern.Map;
 		var nonPivotCells = map - pivot;
 		int cell1 = nonPivotCells[0], cell2 = nonPivotCells[1];
-		short satisfiedDigitsMask = IFireworkStepSearcher.GetFireworkDigits(
+		var satisfiedDigitsMask = IFireworkStepSearcher.GetFireworkDigits(
 			cell1,
 			cell2,
 			pivot,
@@ -373,23 +373,23 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			return null;
 		}
 
-		foreach (int[] digits in digitsMask.GetAllSets().GetSubsets(2))
+		foreach (var digits in digitsMask.GetAllSets().GetSubsets(2))
 		{
-			short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
-			int cell1TheOtherLine = cell1.ToHouseIndex(
+			var currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
+			var cell1TheOtherLine = cell1.ToHouseIndex(
 				(CellMap.Empty + cell1 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
-			int cell2TheOtherLine = cell2.ToHouseIndex(
+			var cell2TheOtherLine = cell2.ToHouseIndex(
 				(CellMap.Empty + cell2 + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
 			var fullTwoDigitsMap = CandidatesMap[digits[0]] | CandidatesMap[digits[1]];
-			short cell1OtheBlocksMask = (HousesMap[cell1TheOtherLine] - HousesMap[cell1.ToHouseIndex(HouseType.Block)]).BlockMask;
-			short cell2OtheBlocksMask = (HousesMap[cell2TheOtherLine] - HousesMap[cell2.ToHouseIndex(HouseType.Block)]).BlockMask;
-			foreach (int emptyRectangleBlock in (short)(cell1OtheBlocksMask | cell2OtheBlocksMask))
+			var cell1OtheBlocksMask = (HousesMap[cell1TheOtherLine] - HousesMap[cell1.ToHouseIndex(HouseType.Block)]).BlockMask;
+			var cell2OtheBlocksMask = (HousesMap[cell2TheOtherLine] - HousesMap[cell2.ToHouseIndex(HouseType.Block)]).BlockMask;
+			foreach (var emptyRectangleBlock in (short)(cell1OtheBlocksMask | cell2OtheBlocksMask))
 			{
 				var digit1EmptyRectangleMap = HousesMap[emptyRectangleBlock] & CandidatesMap[digits[0]];
 				var digit2EmptyRectangleMap = HousesMap[emptyRectangleBlock] & CandidatesMap[digits[1]];
@@ -418,7 +418,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 				}
 
 				var conclusions = new List<Conclusion>();
-				foreach (int cell in elimMap)
+				foreach (var cell in elimMap)
 				{
 					if (CandidatesMap[digits[0]].Contains(cell))
 					{
@@ -436,27 +436,27 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 				}
 
 				var candidateOffsets = new List<CandidateViewNode>(16);
-				foreach (int cell in map)
+				foreach (var cell in map)
 				{
-					foreach (int digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
+					foreach (var digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 					}
 				}
-				foreach (int cell in lastCells)
+				foreach (var cell in lastCells)
 				{
-					foreach (int digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
+					foreach (var digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 					}
 				}
 
 				var cellOffsets = new List<CellViewNode>();
-				foreach (int cell in house1CellsExcluded)
+				foreach (var cell in house1CellsExcluded)
 				{
 					cellOffsets.Add(new(DisplayColorKind.Elimination, cell));
 				}
-				foreach (int cell in house2CellsExcluded)
+				foreach (var cell in house2CellsExcluded)
 				{
 					cellOffsets.Add(new(DisplayColorKind.Elimination, cell));
 				}
@@ -492,7 +492,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 	{
 		var nonPivotCells = pattern.Map - pivot;
 		int cell1 = nonPivotCells[0], cell2 = nonPivotCells[1];
-		short satisfiedDigitsMask = IFireworkStepSearcher.GetFireworkDigits(
+		var satisfiedDigitsMask = IFireworkStepSearcher.GetFireworkDigits(
 			cell1,
 			cell2,
 			pivot,
@@ -506,37 +506,37 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			return null;
 		}
 
-		foreach (int[] digits in digitsMask.GetAllSets().GetSubsets(3))
+		foreach (var digits in digitsMask.GetAllSets().GetSubsets(3))
 		{
-			short currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
+			var currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
 			if ((satisfiedDigitsMask & currentDigitsMask) != currentDigitsMask)
 			{
 				continue;
 			}
 
 			// Firework Triple is found.
-			int pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
+			var pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
 			var pivotRowCells = HousesMap[pivot.ToHouseIndex(HouseType.Row)];
 			var pivotColumnCells = HousesMap[pivot.ToHouseIndex(HouseType.Column)];
 
 			// Now check eliminations.
 			var conclusions = new List<Conclusion>(18);
-			foreach (int digit in (short)(grid.GetCandidates(pivot) & ~currentDigitsMask))
+			foreach (var digit in (short)(grid.GetCandidates(pivot) & ~currentDigitsMask))
 			{
 				conclusions.Add(new(Elimination, pivot, digit));
 			}
-			foreach (int digit in (short)(grid.GetCandidates(cell1) & ~currentDigitsMask))
+			foreach (var digit in (short)(grid.GetCandidates(cell1) & ~currentDigitsMask))
 			{
 				conclusions.Add(new(Elimination, cell1, digit));
 			}
-			foreach (int digit in (short)(grid.GetCandidates(cell2) & ~currentDigitsMask))
+			foreach (var digit in (short)(grid.GetCandidates(cell2) & ~currentDigitsMask))
 			{
 				conclusions.Add(new(Elimination, cell2, digit));
 			}
-			foreach (int digit in currentDigitsMask)
+			foreach (var digit in currentDigitsMask)
 			{
 				var possibleBlockCells = HousesMap[pivotCellBlock] & EmptyCells & CandidatesMap[digit];
-				foreach (int cell in possibleBlockCells - pivotRowCells - pivotColumnCells)
+				foreach (var cell in possibleBlockCells - pivotRowCells - pivotColumnCells)
 				{
 					conclusions.Add(new(Elimination, cell, digit));
 				}
@@ -548,37 +548,37 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>();
-			foreach (int digit in (short)(grid.GetCandidates(pivot) & currentDigitsMask))
+			foreach (var digit in (short)(grid.GetCandidates(pivot) & currentDigitsMask))
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Normal, pivot * 9 + digit));
 			}
-			foreach (int digit in (short)(grid.GetCandidates(cell1) & currentDigitsMask))
+			foreach (var digit in (short)(grid.GetCandidates(cell1) & currentDigitsMask))
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Normal, cell1 * 9 + digit));
 			}
-			foreach (int digit in (short)(grid.GetCandidates(cell2) & currentDigitsMask))
+			foreach (var digit in (short)(grid.GetCandidates(cell2) & currentDigitsMask))
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Normal, cell2 * 9 + digit));
 			}
 
 			var cellOffsets = new List<CellViewNode>(12);
-			foreach (int house1CellExcluded in house1CellsExcluded)
+			foreach (var house1CellExcluded in house1CellsExcluded)
 			{
 				cellOffsets.Add(new(DisplayColorKind.Elimination, house1CellExcluded));
 			}
-			foreach (int house2CellExcluded in house2CellsExcluded)
+			foreach (var house2CellExcluded in house2CellsExcluded)
 			{
 				cellOffsets.Add(new(DisplayColorKind.Elimination, house2CellExcluded));
 			}
 
 			var unknowns = new List<UnknownViewNode>(4);
-			int house1 = (CellMap.Empty + cell1 + pivot).CoveredLine;
-			int house2 = (CellMap.Empty + cell2 + pivot).CoveredLine;
-			foreach (int cell in (HousesMap[house1] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
+			var house1 = (CellMap.Empty + cell1 + pivot).CoveredLine;
+			var house2 = (CellMap.Empty + cell2 + pivot).CoveredLine;
+			foreach (var cell in (HousesMap[house1] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
 			{
 				unknowns.Add(new(DisplayColorKind.Normal, cell, (Utf8Char)'y', currentDigitsMask));
 			}
-			foreach (int cell in (HousesMap[house2] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
+			foreach (var cell in (HousesMap[house2] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
 			{
 				unknowns.Add(new(DisplayColorKind.Normal, cell, (Utf8Char)'x', currentDigitsMask));
 			}
@@ -637,13 +637,13 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			return null;
 		}
 
-		short digitsMask = grid.GetDigitsUnion(map);
+		var digitsMask = grid.GetDigitsUnion(map);
 		if (PopCount((uint)digitsMask) < 4)
 		{
 			return null;
 		}
 
-		foreach (int[] digits in digitsMask.GetAllSets().GetSubsets(4))
+		foreach (var digits in digitsMask.GetAllSets().GetSubsets(4))
 		{
 			var cases = (stackalloc[]
 			{
@@ -670,9 +670,9 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 
 				foreach (var ((d1, d2), (d3, d4)) in cases)
 				{
-					short pair1DigitsMask = (short)(1 << d1 | 1 << d2);
-					short pair2DigitsMask = (short)(1 << d3 | 1 << d4);
-					short satisfiedDigitsMaskPivot1 = IFireworkStepSearcher.GetFireworkDigits(
+					var pair1DigitsMask = (short)(1 << d1 | 1 << d2);
+					var pair2DigitsMask = (short)(1 << d3 | 1 << d4);
+					var satisfiedDigitsMaskPivot1 = IFireworkStepSearcher.GetFireworkDigits(
 						cell1Pivot1,
 						cell2Pivot1,
 						pivot1,
@@ -680,7 +680,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 						out var house1CellsExcludedPivot1,
 						out var house2CellsExcludedPivot1
 					);
-					short satisfiedDigitsMaskPivot2 = IFireworkStepSearcher.GetFireworkDigits(
+					var satisfiedDigitsMaskPivot2 = IFireworkStepSearcher.GetFireworkDigits(
 						cell1Pivot2,
 						cell2Pivot2,
 						pivot2,
@@ -695,44 +695,44 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 					}
 
 					// Firework quadruple found.
-					short fourDigitsMask = (short)(pair1DigitsMask | pair2DigitsMask);
+					var fourDigitsMask = (short)(pair1DigitsMask | pair2DigitsMask);
 
 					var conclusions = new List<Conclusion>(20);
-					foreach (int digit in (short)(grid.GetCandidates(pivot1) & ~pair1DigitsMask))
+					foreach (var digit in (short)(grid.GetCandidates(pivot1) & ~pair1DigitsMask))
 					{
 						conclusions.Add(new(Elimination, pivot1, digit));
 					}
-					foreach (int digit in (short)(grid.GetCandidates(pivot2) & ~pair2DigitsMask))
+					foreach (var digit in (short)(grid.GetCandidates(pivot2) & ~pair2DigitsMask))
 					{
 						conclusions.Add(new(Elimination, pivot2, digit));
 					}
-					foreach (int cell in map - pivot1 - pivot2)
+					foreach (var cell in map - pivot1 - pivot2)
 					{
-						foreach (int digit in (short)(grid.GetCandidates(cell) & ~fourDigitsMask))
+						foreach (var digit in (short)(grid.GetCandidates(cell) & ~fourDigitsMask))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
-					foreach (int cell in
+					foreach (var cell in
 						(
 							HousesMap[pivot1.ToHouseIndex(HouseType.Block)]
 								- HousesMap[pivot1.ToHouseIndex(HouseType.Row)]
 								- HousesMap[pivot1.ToHouseIndex(HouseType.Column)]
 						) & EmptyCells)
 					{
-						foreach (int digit in (short)(grid.GetCandidates(cell) & pair1DigitsMask))
+						foreach (var digit in (short)(grid.GetCandidates(cell) & pair1DigitsMask))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
-					foreach (int cell in
+					foreach (var cell in
 						(
 							HousesMap[pivot2.ToHouseIndex(HouseType.Block)]
 								- HousesMap[pivot2.ToHouseIndex(HouseType.Row)]
 								- HousesMap[pivot2.ToHouseIndex(HouseType.Column)]
 						) & EmptyCells)
 					{
-						foreach (int digit in (short)(grid.GetCandidates(cell) & pair2DigitsMask))
+						foreach (var digit in (short)(grid.GetCandidates(cell) & pair2DigitsMask))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -744,46 +744,46 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (int digit in (short)(grid.GetCandidates(pivot1) & fourDigitsMask))
+					foreach (var digit in (short)(grid.GetCandidates(pivot1) & fourDigitsMask))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, pivot1 * 9 + digit));
 					}
-					foreach (int digit in (short)(grid.GetCandidates(pivot2) & fourDigitsMask))
+					foreach (var digit in (short)(grid.GetCandidates(pivot2) & fourDigitsMask))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, pivot2 * 9 + digit));
 					}
-					foreach (int cell in map - pivot1 - pivot2)
+					foreach (var cell in map - pivot1 - pivot2)
 					{
-						foreach (int digit in (short)(grid.GetCandidates(cell) & fourDigitsMask))
+						foreach (var digit in (short)(grid.GetCandidates(cell) & fourDigitsMask))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
 					}
 
 					var candidateOffsetsView2 = new List<CandidateViewNode>();
-					foreach (int cell in map - pivot2)
+					foreach (var cell in map - pivot2)
 					{
-						foreach (int digit in (short)(grid.GetCandidates(cell) & pair1DigitsMask))
+						foreach (var digit in (short)(grid.GetCandidates(cell) & pair1DigitsMask))
 						{
 							candidateOffsetsView2.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
 					}
 					var candidateOffsetsView3 = new List<CandidateViewNode>();
-					foreach (int cell in map - pivot1)
+					foreach (var cell in map - pivot1)
 					{
-						foreach (int digit in (short)(grid.GetCandidates(cell) & pair2DigitsMask))
+						foreach (var digit in (short)(grid.GetCandidates(cell) & pair2DigitsMask))
 						{
 							candidateOffsetsView3.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
 					}
 
 					var cellOffsets1 = new List<CellViewNode>();
-					foreach (int cell in house1CellsExcludedPivot1 | house2CellsExcludedPivot1)
+					foreach (var cell in house1CellsExcludedPivot1 | house2CellsExcludedPivot1)
 					{
 						cellOffsets1.Add(new(DisplayColorKind.Elimination, cell));
 					}
 					var cellOffsets2 = new List<CellViewNode>();
-					foreach (int cell in house1CellsExcludedPivot2 | house2CellsExcludedPivot2)
+					foreach (var cell in house1CellsExcludedPivot2 | house2CellsExcludedPivot2)
 					{
 						cellOffsets2.Add(new(DisplayColorKind.Elimination, cell));
 					}

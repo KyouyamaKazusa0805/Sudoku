@@ -24,8 +24,8 @@ public static class CellEnumerable
 		where TResult : unmanaged
 	{
 		var result = new TResult[source.Count];
-		int i = 0;
-		foreach (int cell in source)
+		var i = 0;
+		foreach (var cell in source)
 		{
 			result[i++] = selector(cell);
 		}

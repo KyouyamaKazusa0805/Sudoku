@@ -22,14 +22,14 @@ public static class MaskOperations
 	/// <returns>The result list.</returns>
 	public static short[] GetMaskSubsets(short value)
 	{
-		short[][] maskSubsets = new short[9][];
-		for (int size = 1; size <= 9; size++)
+		var maskSubsets = new short[9][];
+		for (var size = 1; size <= 9; size++)
 		{
 			maskSubsets[size - 1] = GetMaskSubsets(value, size);
 		}
 
 		var listOfResults = new List<short>();
-		foreach (short[] maskSubset in maskSubsets)
+		foreach (var maskSubset in maskSubsets)
 		{
 			listOfResults.AddRange(maskSubset);
 		}
@@ -46,12 +46,12 @@ public static class MaskOperations
 	public static short[] GetMaskSubsets(short value, int size)
 	{
 		var listToIterate = value.GetAllSets().GetSubsets(size);
-		short[] result = new short[listToIterate.Count];
-		int index = 0;
-		foreach (int[] target in listToIterate)
+		var result = new short[listToIterate.Count];
+		var index = 0;
+		foreach (var target in listToIterate)
 		{
 			short mask = 0;
-			foreach (int targetValue in target)
+			foreach (var targetValue in target)
 			{
 				mask |= (short)(1 << targetValue);
 			}

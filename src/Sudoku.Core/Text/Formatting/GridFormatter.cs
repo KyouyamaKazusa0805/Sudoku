@@ -323,9 +323,9 @@ public readonly ref struct GridFormatter
 	{
 		scoped ReadOnlySpan<char> span = grid.ToString("0");
 		scoped var sb = new StringHandler(81 + 72 + 9);
-		for (int i = 0; i < 9; i++)
+		for (var i = 0; i < 9; i++)
 		{
-			for (int j = 0; j < 9; j++)
+			for (var j = 0; j < 9; j++)
 			{
 				if (span[i * 9 + j] - '0' is var digit and not 0)
 				{
@@ -360,7 +360,7 @@ public readonly ref struct GridFormatter
 		fixed (char* pResult = result)
 		{
 			// Replace the base character with the separator.
-			for (int pos = 1; pos < length; pos += 2)
+			for (var pos = 1; pos < length; pos += 2)
 			{
 				pResult[pos] = '|';
 			}
@@ -420,10 +420,10 @@ public readonly ref struct GridFormatter
 		{
 			// Append all digits.
 			var builders = new StringBuilder[81];
-			for (int i = 0; i < 81; i++)
+			for (var i = 0; i < 81; i++)
 			{
 				builders[i] = new();
-				foreach (int digit in grid.GetCandidates(i))
+				foreach (var digit in grid.GetCandidates(i))
 				{
 					builders[i].Append(digit + 1);
 				}
@@ -432,21 +432,21 @@ public readonly ref struct GridFormatter
 			// Now consider the alignment for each column of output text.
 			var sb = new StringBuilder();
 			scoped var span = (stackalloc int[9]);
-			for (int column = 0; column < 9; column++)
+			for (var column = 0; column < 9; column++)
 			{
-				int maxLength = 0;
-				for (int p = 0; p < 9; p++)
+				var maxLength = 0;
+				for (var p = 0; p < 9; p++)
 				{
 					maxLength = Max(maxLength, builders[p * 9 + column].Length);
 				}
 
 				span[column] = maxLength;
 			}
-			for (int row = 0; row < 9; row++)
+			for (var row = 0; row < 9; row++)
 			{
-				for (int column = 0; column < 9; column++)
+				for (var column = 0; column < 9; column++)
 				{
-					int cell = row * 9 + column;
+					var cell = row * 9 + column;
 					sb.Append(builders[cell].ToString().PadLeft(span[column])).Append(' ');
 				}
 				sb.RemoveFrom(^1).AppendLine(); // Remove last whitespace.
@@ -457,12 +457,12 @@ public readonly ref struct GridFormatter
 		else
 		{
 			var sb = new StringBuilder();
-			for (int i = 0; i < 81; i++)
+			for (var i = 0; i < 81; i++)
 			{
 				sb.Append("123456789");
 			}
 
-			for (int i = 0; i < 729; i++)
+			for (var i = 0; i < 729; i++)
 			{
 				if (!grid[i / 9, i % 9])
 				{
@@ -485,7 +485,7 @@ public readonly ref struct GridFormatter
 		var originalGrid = WithCandidates && !ShortenSusser ? Grid.Parse(grid.ToString(".+")) : Grid.Undefined;
 
 		var eliminatedCandidates = Candidates.Empty;
-		for (int c = 0; c < 81; c++)
+		for (var c = 0; c < 81; c++)
 		{
 			var status = grid.GetStatus(c);
 			if (status == CellStatus.Empty && !originalGrid.IsUndefined && WithCandidates)
@@ -493,7 +493,7 @@ public readonly ref struct GridFormatter
 				// Check if the value has been set 'true'
 				// and the value has already deleted at the grid
 				// with only givens and modifiables.
-				foreach (int i in (short)(originalGrid.GetMask(c) & Grid.MaxCandidatesMask))
+				foreach (var i in (short)(originalGrid.GetMask(c) & Grid.MaxCandidatesMask))
 				{
 					if (!grid[c, i])
 					{
@@ -536,8 +536,8 @@ public readonly ref struct GridFormatter
 			}
 		}
 
-		string elimsStr = EliminationNotation.ToCandidatesString(eliminatedCandidates);
-		string @base = sb.ToStringAndClear();
+		var elimsStr = EliminationNotation.ToCandidatesString(eliminatedCandidates);
+		var @base = sb.ToStringAndClear();
 		return ShortenSusser
 			? shorten(@base, Placeholder)
 			: $"{@base}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
@@ -546,10 +546,10 @@ public readonly ref struct GridFormatter
 		static unsafe string shorten(string @base, char placeholder)
 		{
 			scoped var resultSpan = (stackalloc char[81]);
-			int index = 0;
-			for (int i = 0; i < 9; i++)
+			var index = 0;
+			for (var i = 0; i < 9; i++)
 			{
-				string sliced = @base.Substring(i * 9, 9);
+				var sliced = @base.Substring(i * 9, 9);
 				var collection = Regex.Matches(sliced, $"{(placeholder == '.' ? @"\." : "0")}+");
 				if (collection.Count == 0)
 				{
@@ -567,7 +567,7 @@ public readonly ref struct GridFormatter
 					if (set.Count == 1)
 					{
 						// All matches are same-length.
-						int j = 0;
+						var j = 0;
 						while (j < 9)
 						{
 							if (sliced[j] == placeholder)
@@ -584,9 +584,9 @@ public readonly ref struct GridFormatter
 					}
 					else
 					{
-						string match = set.MaxBy(static m => m.Length)!.Value;
-						int pos = sliced.IndexOf(match);
-						int j = 0;
+						var match = set.MaxBy(static m => m.Length)!.Value;
+						var pos = sliced.IndexOf(match);
+						var j = 0;
 						while (j < 9)
 						{
 							if (j == pos)
@@ -645,9 +645,9 @@ public readonly ref struct GridFormatter
 			{ 8, new() }
 		};
 
-		for (int i = 0; i < 81; i++)
+		for (var i = 0; i < 81; i++)
 		{
-			short value = grid.GetMask(i);
+			var value = grid.GetMask(i);
 			valuesByRow[i / 9].Add(value);
 			valuesByColumn[i % 9].Add(value);
 		}
@@ -655,26 +655,26 @@ public readonly ref struct GridFormatter
 		// Step 2: gets the maximal number of candidates in a cell,
 		// which is used for aligning by columns.
 		const int bufferLength = 9;
-		int* maxLengths = stackalloc int[bufferLength];
+		var maxLengths = stackalloc int[bufferLength];
 		Unsafe.InitBlock(maxLengths, 0, sizeof(int) * bufferLength);
 
 		foreach (var (i, _) in valuesByColumn)
 		{
-			int* maxLength = maxLengths + i;
+			var maxLength = maxLengths + i;
 
 			// Iteration on row index.
-			for (int j = 0; j < 9; j++)
+			for (var j = 0; j < 9; j++)
 			{
 				// Gets the number of candidates.
-				int candidatesCount = 0;
-				short value = valuesByColumn[i][j];
+				var candidatesCount = 0;
+				var value = valuesByColumn[i][j];
 
 				// Iteration on each candidate.
 				// Counts the number of candidates.
 				candidatesCount += PopCount((uint)value);
 
 				// Compares the values.
-				int comparer = Max(
+				var comparer = Max(
 					candidatesCount,
 					MaskToStatus(value) switch
 					{
@@ -695,7 +695,7 @@ public readonly ref struct GridFormatter
 
 		// Step 3: outputs all characters.
 		scoped var sb = new StringHandler();
-		for (int i = 0; i < 13; i++)
+		for (var i = 0; i < 13; i++)
 		{
 			switch (i)
 			{
@@ -762,14 +762,14 @@ public readonly ref struct GridFormatter
 							IList<short> valuesByRow, int start, int end, int* maxLengths)
 						{
 							sb.Append(' ');
-							for (int i = start; i <= end; i++)
+							for (var i = start; i <= end; i++)
 							{
 								// Get digit.
-								short value = valuesByRow[i];
+								var value = valuesByRow[i];
 								var status = MaskToStatus(value);
 
 								value &= Grid.MaxCandidatesMask;
-								int d = value == 0
+								var d = value == 0
 									? -1
 									: (status != CellStatus.Empty ? TrailingZeroCount(value) : -1) + 1;
 								string s;
@@ -789,7 +789,7 @@ public readonly ref struct GridFormatter
 									default:
 									{
 										var innerSb = new StringHandler(9);
-										foreach (int z in value)
+										foreach (var z in value)
 										{
 											innerSb.Append(z + 1);
 										}
@@ -833,7 +833,7 @@ public readonly ref struct GridFormatter
 	/// <returns>The result.</returns>
 	private string ToMultiLineSimpleGridCore(scoped in Grid grid)
 	{
-		string t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
+		var t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
 		return new StringBuilder()
 			.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+")
 			.Append("| ").Append(t[0]).Append(' ').Append(t[1]).Append(' ').Append(t[2])

@@ -37,7 +37,7 @@ public sealed class CommandLineParserException : CommandLineException
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string InitializePropertyMessage(CommandLineInternalError errorCode, string? extraMessage)
 	{
-		string baseMessage = typeof(CommandLineInternalError)
+		var baseMessage = typeof(CommandLineInternalError)
 			.GetField(errorCode.ToString())!
 			.GetCustomAttribute<DescriptionAttribute>()!
 			.Description!;

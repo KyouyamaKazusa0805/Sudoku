@@ -45,12 +45,12 @@ public readonly struct HouseCellChunk :
 		get
 		{
 			var (cells, digits) = this;
-			for (int i = 0; i < 9; i++)
+			for (var i = 0; i < 9; i++)
 			{
 				if ((cells[i], digits[i]) is (var cell, 0xF))
 				{
 					short mask = 511;
-					for (int j = 0; j < 9; j++)
+					for (var j = 0; j < 9; j++)
 					{
 						if (digits[j] != 0xF)
 						{
@@ -73,10 +73,10 @@ public readonly struct HouseCellChunk :
 	{
 		get
 		{
-			int[] digits = Digits;
-			int[] houseCells = HouseCells[House];
+			var digits = Digits;
+			var houseCells = HouseCells[House];
 			var result = CellMap.Empty;
-			for (int i = 0; i < 9; i++)
+			for (var i = 0; i < 9; i++)
 			{
 				if (digits[i] == 0xF)
 				{
@@ -95,7 +95,7 @@ public readonly struct HouseCellChunk :
 	{
 		get
 		{
-			int[] digits = new int[9];
+			var digits = new int[9];
 			for (byte i = 0; i < 9; i++)
 			{
 				digits[i] = (byte)(_mask >> (i << 2) & 15);
@@ -142,11 +142,11 @@ public readonly struct HouseCellChunk :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		int resultCand = ResultCandidate;
+		var resultCand = ResultCandidate;
 		int cell = resultCand / 9, digit = resultCand % 9;
-		string houseStr = HouseFormatter.Format(1 << House);
-		string cellStr = RxCyNotation.ToCellString(cell);
-		string digitStr = (digit + 1).ToString();
+		var houseStr = HouseFormatter.Format(1 << House);
+		var cellStr = RxCyNotation.ToCellString(cell);
+		var digitStr = (digit + 1).ToString();
 		return $$"""{{nameof(HouseCellChunk)}} { {{nameof(House)}} = {{houseStr}}, {{nameof(ResultCandidate)}} = {{cellStr}}({{digitStr}}) }""";
 	}
 
@@ -184,7 +184,7 @@ public readonly struct HouseCellChunk :
 	{
 		var (cells, digits) = chunk;
 		var result = Grid.Empty;
-		for (int i = 0; i < 9; i++)
+		for (var i = 0; i < 9; i++)
 		{
 			if (digits[i] is var digit and not 0xF)
 			{

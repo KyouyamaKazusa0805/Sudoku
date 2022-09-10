@@ -53,7 +53,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				var foundAttributesData = new List<FoundAttributeData>();
 				const string comma = ", ";
 				const string attributeTypeName = $"global::Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute<>";
-				int priorityValue = 0;
+				var priorityValue = 0;
 				foreach (var attributeData in attributesData)
 				{
 #pragma warning disable IDE0055
@@ -138,12 +138,12 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 						sb = new StringBuilder().Append(comma);
 						if (enabledArea is { } ea)
 						{
-							string targetStr = createExpression(ea, $"Searcher{EnabledAreaPropertyName}", enabledAreasFields, disabledReasonFields);
+							var targetStr = createExpression(ea, $"Searcher{EnabledAreaPropertyName}", enabledAreasFields, disabledReasonFields);
 							sb.Append($"{EnabledAreaPropertyName}: {targetStr}{comma}");
 						}
 						if (disabledReason is { } dr)
 						{
-							string targetStr = createExpression(dr, $"Searcher{DisabledReasonPropertyName}", enabledAreasFields, disabledReasonFields);
+							var targetStr = createExpression(dr, $"Searcher{DisabledReasonPropertyName}", enabledAreasFields, disabledReasonFields);
 							sb.Append($"{DisabledReasonPropertyName}: {targetStr}{comma}");
 						}
 
@@ -186,7 +186,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 					IDictionary<short, string> disabledReasonFields)
 					where TUnmanaged : unmanaged
 				{
-					long l = sizeof(TUnmanaged) switch
+					var l = sizeof(TUnmanaged) switch
 					{
 						1 or 2 or 4 => Unsafe.As<TUnmanaged, int>(ref field),
 						8 => Unsafe.As<TUnmanaged, long>(ref field)
@@ -231,7 +231,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 
 				static bool namespaceChecker(INamedTypeSymbol i)
 				{
-					string namespaceName = i.ContainingNamespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+					var namespaceName = i.ContainingNamespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 					return namespaceName[(namespaceName.LastIndexOf('.') + 1)..] != "Specialized";
 				}
 			}

@@ -26,7 +26,7 @@ public static class DeadlyPatternChecker
 
 		// Checks whether the whole mask list contains any cell that only contains one possible candidate.
 		// If so, the method should return false.
-		foreach (short mask in maskArray)
+		foreach (var mask in maskArray)
 		{
 			if (mask != 0 && IsPow2(mask))
 			{
@@ -36,7 +36,7 @@ public static class DeadlyPatternChecker
 
 		// Gathers the cells used in this pattern.
 		var cellsUsed = CellMap.Empty;
-		for (int cell = 0; cell < 81; cell++)
+		for (var cell = 0; cell < 81; cell++)
 		{
 			if (patternGrid.GetMask(cell) != 0)
 			{
@@ -45,7 +45,7 @@ public static class DeadlyPatternChecker
 		}
 
 		// Now complement candidates, and check whether the pattern contains only occupies one cell in a house.
-		foreach (int house in cellsUsed.Houses)
+		foreach (var house in cellsUsed.Houses)
 		{
 			var currentHouseCells = HousesMap[house] & cellsUsed;
 			if (currentHouseCells.Count == 1)
@@ -54,8 +54,8 @@ public static class DeadlyPatternChecker
 				goto AssignOutVariablesAndReturnFalse;
 			}
 
-			short targetMask = patternGrid.GetDigitsUnion(currentHouseCells);
-			foreach (int currentHouseCell in currentHouseCells)
+			var targetMask = patternGrid.GetDigitsUnion(currentHouseCells);
+			foreach (var currentHouseCell in currentHouseCells)
 			{
 				patternGrid.GetMaskRefAt(currentHouseCell) |= targetMask;
 			}
@@ -64,7 +64,7 @@ public static class DeadlyPatternChecker
 		// Then we should solve this semi-puzzle, to get all possible solutions corresponding to the puzzle.
 		// Here I use backtracking algorithm because it is easier for algorithm learners than other algorithms.
 		uint solutionsCount = 0;
-		int[] gridValues = new int[81];
+		var gridValues = new int[81];
 		var solutionList = new List<BitArray>();
 		Array.Fill(gridValues, -1);
 		try
@@ -73,8 +73,8 @@ public static class DeadlyPatternChecker
 		}
 		catch (Exception ex) when (ex is { Message: "Okay for exit.", Data: var data })
 		{
-			int[] firstData = (int[])data[nameof(firstFoundGrid)]!;
-			int[] secondData = (int[])data[nameof(secondFoundGrid)]!;
+			var firstData = (int[])data[nameof(firstFoundGrid)]!;
+			var secondData = (int[])data[nameof(secondFoundGrid)]!;
 
 			firstFoundGrid = firstData;
 			secondFoundGrid = secondData;
@@ -97,13 +97,13 @@ public static class DeadlyPatternChecker
 				}
 
 				var bitArray = new BitArray(81 * 4);
-				for (int cell = 0; cell < 81; cell++)
+				for (var cell = 0; cell < 81; cell++)
 				{
-					int digit = g[cell];
-					bool bit1 = (digit >> 3 & 1) == 1;
-					bool bit2 = (digit >> 2 & 1) == 1;
-					bool bit3 = (digit >> 1 & 1) == 1;
-					bool bit4 = (digit & 1) == 1;
+					var digit = g[cell];
+					var bit1 = (digit >> 3 & 1) == 1;
+					var bit2 = (digit >> 2 & 1) == 1;
+					var bit3 = (digit >> 1 & 1) == 1;
+					var bit4 = (digit & 1) == 1;
 					bitArray[(cell << 2) + 3] = bit1;
 					bitArray[(cell << 2) + 2] = bit2;
 					bitArray[(cell << 2) + 1] = bit3;
@@ -113,13 +113,13 @@ public static class DeadlyPatternChecker
 				// Checks masks.
 				foreach (var tempBitArray in solutionList)
 				{
-					int[] tempSolution = new int[81];
-					for (int cell = 0; cell < 81; cell++)
+					var tempSolution = new int[81];
+					for (var cell = 0; cell < 81; cell++)
 					{
-						byte bit1 = (byte)(tempBitArray[cell << 2] ? 1 : 0);
-						byte bit2 = (byte)(tempBitArray[(cell << 2) + 1] ? 1 : 0);
-						byte bit3 = (byte)(tempBitArray[(cell << 2) + 2] ? 1 : 0);
-						byte bit4 = (byte)(tempBitArray[(cell << 2) + 3] ? 1 : 0);
+						var bit1 = (byte)(tempBitArray[cell << 2] ? 1 : 0);
+						var bit2 = (byte)(tempBitArray[(cell << 2) + 1] ? 1 : 0);
+						var bit3 = (byte)(tempBitArray[(cell << 2) + 2] ? 1 : 0);
+						var bit4 = (byte)(tempBitArray[(cell << 2) + 3] ? 1 : 0);
 						tempSolution[cell] = (bit1 | bit2 << 1 | bit3 << 2 | bit4 << 3) is var final and not 15
 							? final
 							: -1;
@@ -140,13 +140,13 @@ public static class DeadlyPatternChecker
 			}
 
 			int row = p / 9, column = p % 9;
-			foreach (int digit in m[p])
+			foreach (var digit in m[p])
 			{
 				g[p] = digit;
 
 				if (isValid(g, row, column))
 				{
-					int previousPos = p;
+					var previousPos = p;
 
 					skipToNextCell(ref p, m, g);
 					getSolutions(ref c, m, g, p, u);
@@ -172,10 +172,10 @@ public static class DeadlyPatternChecker
 
 			static bool isValid(int[] gridValues, int r, int c)
 			{
-				int number = gridValues[r * 9 + c];
+				var number = gridValues[r * 9 + c];
 
 				// Check lines.
-				for (int i = 0; i < 9; i++)
+				for (var i = 0; i < 9; i++)
 				{
 					if (i != r && gridValues[i * 9 + c] is var a and not -1 && a == number
 						|| i != c && gridValues[r * 9 + i] is var b and not -1 && b == number)
@@ -204,7 +204,7 @@ public static class DeadlyPatternChecker
 		{
 			// Checks whether two masks from two different grids with a same index holds a same value.
 			// If so, we should return false.
-			for (int cell = 0; cell < 81; cell++)
+			for (var cell = 0; cell < 81; cell++)
 			{
 				if ((firstGrid[cell], secondGrid[cell]) is (var a and not -1, var b and not -1) && a == b)
 				{
@@ -214,10 +214,10 @@ public static class DeadlyPatternChecker
 			}
 
 			// Checks masks.
-			foreach (int house in cellsUsed.Houses)
+			foreach (var house in cellsUsed.Houses)
 			{
 				short mask1 = 0, mask2 = 0;
-				foreach (int cell in HousesMap[house])
+				foreach (var cell in HousesMap[house])
 				{
 					if (firstGrid[cell] is var a and not -1)
 					{

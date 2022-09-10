@@ -45,13 +45,13 @@ internal sealed record SeniorExocetStep(
 	internal string AdditionalFormat()
 	{
 		const string separator = ", ";
-		string endoTargetSnippet = R["EndoTarget"]!;
-		string endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
+		var endoTargetSnippet = R["EndoTarget"]!;
+		var endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
 		if (ExtraHousesMask is not null)
 		{
 			scoped var sb = new StringHandler(100);
-			int count = 0;
-			for (int digit = 0; digit < 9; digit++)
+			var count = 0;
+			for (var digit = 0; digit < 9; digit++)
 			{
 				if (ExtraHousesMask[digit] is not (var mask and not 0))
 				{
@@ -69,7 +69,7 @@ internal sealed record SeniorExocetStep(
 			{
 				sb.RemoveFromEnd(separator.Length);
 
-				string extraHousesIncluded = R["IncludedExtraHouses"]!;
+				var extraHousesIncluded = R["IncludedExtraHouses"]!;
 				return $"{endoTargetStr}{extraHousesIncluded}{sb.ToStringAndClear()}";
 			}
 		}

@@ -65,7 +65,7 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 		var fieldAndItsCorrespondingAttributeData = new List<(IFieldSymbol, AttributeData)>();
 		foreach (var attributeData in typeAttributesData)
 		{
-			string key = (string)attributeData.ConstructorArguments[0].Value!;
+			var key = (string)attributeData.ConstructorArguments[0].Value!;
 			foreach (var field in typeSymbol.GetMembers().OfType<IFieldSymbol>())
 			{
 				var fieldAttributeData = (
@@ -100,7 +100,7 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 				continue;
 			}
 
-			string fullName = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+			var fullName = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 
 			var emittedMethods = new List<string>();
 
@@ -111,12 +111,12 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 
 				foreach (var (fieldSymbol, attributeData) in listOfFieldsAndTheirOwnAttributesData)
 				{
-					string value = (string)attributeData.ConstructorArguments[1].Value!;
+					var value = (string)attributeData.ConstructorArguments[1].Value!;
 					innerParts.Add($"""{fullName}.{fieldSymbol.Name} => "{value}",""");
 				}
 
 				int notDefinedBehavior = typeAttributeData.GetNamedArgument<byte>("DefaultBehavior", 2);
-				string notFoundBehaviorStr = notDefinedBehavior switch
+				var notFoundBehaviorStr = notDefinedBehavior switch
 				{
 					// ReturnIntegerValue
 					0 => "@this.ToString()",
@@ -128,13 +128,13 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 					_ => "throw new global::System.ArgumentOutOfRangeException(nameof(@this))"
 				};
 
-				string methodDescription = typeAttributeData.GetNamedArgument<string>("MethodDescription")
+				var methodDescription = typeAttributeData.GetNamedArgument<string>("MethodDescription")
 					?? $"Method <c>{key}</c>";
-				string thisParamDescription = typeAttributeData.GetNamedArgument<string>("ThisParameterDescription")
+				var thisParamDescription = typeAttributeData.GetNamedArgument<string>("ThisParameterDescription")
 					?? "The current instance.";
-				string returnValueDescription = typeAttributeData.GetNamedArgument<string>("ReturnValueDescription")
+				var returnValueDescription = typeAttributeData.GetNamedArgument<string>("ReturnValueDescription")
 					?? "The result value.";
-				string returnType = notDefinedBehavior == 1 ? "string?" : "string";
+				var returnType = notDefinedBehavior == 1 ? "string?" : "string";
 
 				emittedMethods.Add(
 					$$"""
@@ -196,8 +196,8 @@ file sealed class AttributeDataComparer : IEqualityComparer<AttributeData>
 			return false;
 		}
 
-		string? key = (string?)x.ConstructorArguments[0].Value;
-		string? another = (string?)y.ConstructorArguments[0].Value;
+		var key = (string?)x.ConstructorArguments[0].Value;
+		var another = (string?)y.ConstructorArguments[0].Value;
 		return key == another;
 	}
 

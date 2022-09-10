@@ -68,7 +68,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 			scoped var sbRow = new StringHandler(18);
 			var dic = new Dictionary<int, List<int>>(9);
 			var (upperCasing, avoidConfusionOnRowLetters, separator) = options;
-			foreach (int cell in cells)
+			foreach (var cell in cells)
 			{
 				if (!dic.ContainsKey(cell / 9))
 				{
@@ -77,7 +77,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 
 				dic[cell / 9].Add(cell % 9);
 			}
-			foreach (int row in dic.Keys)
+			foreach (var row in dic.Keys)
 			{
 				if (avoidConfusionOnRowLetters)
 				{
@@ -100,7 +100,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 			var dic = new Dictionary<int, List<int>>(9);
 			scoped var sbColumn = new StringHandler(18);
 			var (upperCasing, avoidConfusionOnRowLetters, separator) = options;
-			foreach (int cell in cells)
+			foreach (var cell in cells)
 			{
 				if (!dic.ContainsKey(cell % 9))
 				{
@@ -110,9 +110,9 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 				dic[cell % 9].Add(cell / 9);
 			}
 
-			foreach (int column in dic.Keys)
+			foreach (var column in dic.Keys)
 			{
-				foreach (int row in dic[column])
+				foreach (var row in dic[column])
 				{
 					if (avoidConfusionOnRowLetters)
 					{
@@ -151,7 +151,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 		// Iterate on each match instance.
 		foreach (var match in matches.Cast<Match>())
 		{
-			string value = match.Value;
+			var value = match.Value;
 			char* anchorR, anchorC;
 			fixed (char* pValue = value)
 			{
@@ -165,7 +165,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 
 			// Stores the possible values into the buffer.
 			int rIndex = 0, cIndex = 0;
-			for (char* p = anchorR + 1; !char.IsDigit(*p); p++, rIndex++)
+			for (var p = anchorR + 1; !char.IsDigit(*p); p++, rIndex++)
 			{
 				bufferRows[rIndex] = *p switch
 				{
@@ -174,15 +174,15 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 					_ => *p - 'a'
 				};
 			}
-			for (char* p = anchorC + 1; *p != '\0'; p++, cIndex++)
+			for (var p = anchorC + 1; *p != '\0'; p++, cIndex++)
 			{
 				bufferColumns[cIndex] = *p - '1';
 			}
 
 			// Now combine two buffers.
-			for (int i = 0; i < rIndex; i++)
+			for (var i = 0; i < rIndex; i++)
 			{
-				for (int j = 0; j < cIndex; j++)
+				for (var j = 0; j < cIndex; j++)
 				{
 					result.Add(bufferRows[i] * 9 + bufferColumns[j]);
 				}

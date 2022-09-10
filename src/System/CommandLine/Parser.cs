@@ -22,7 +22,7 @@ public static class Parser
 	public static void ParseAndApplyTo(string[] commandLineArguments, IExecutable rootCommand)
 	{
 		var typeOfRootCommand = rootCommand.GetType();
-		string[] supportedArguments = getArgs(typeOfRootCommand, out var comparisonOption);
+		var supportedArguments = getArgs(typeOfRootCommand, out var comparisonOption);
 
 		// Get all required properties.
 		var listOfRequiredProperties = (
@@ -48,18 +48,18 @@ public static class Parser
 		var globalOptions = targetAssembly.GetCustomAttribute<GlobalConfigurationAttribute>() ?? new();
 
 		// Checks for each argument of type string, and assigns the value using reflection.
-		int i = 0;
+		var i = 0;
 		while (i < otherArgs.Length)
 		{
 			// Gets the name of the command.
-			string currentArg = otherArgs[i];
+			var currentArg = otherArgs[i];
 			switch (globalOptions)
 			{
 				case { FullCommandNamePrefix: var fullCommandNamePrefix }
 				when currentArg.StartsWith(fullCommandNamePrefix) && currentArg.Length > fullCommandNamePrefix.Length:
 				{
 					// Okay. Long name.
-					string realSubcommand = currentArg[fullCommandNamePrefix.Length..];
+					var realSubcommand = currentArg[fullCommandNamePrefix.Length..];
 
 					// Then find property in the type.
 					var properties = (
@@ -86,7 +86,7 @@ public static class Parser
 				when currentArg.StartsWith(shortCommandNamePrefix) && currentArg.Length == shortCommandNamePrefix.Length + 1:
 				{
 					// Okay. Short name.
-					char realSubcommand = currentArg[^1];
+					var realSubcommand = currentArg[^1];
 
 					// Then find property in the type.
 					var properties = (
@@ -138,7 +138,7 @@ public static class Parser
 			// If not, an exception will be thrown.
 			if (listOfRequiredProperties.Count != 0)
 			{
-				string requiredPropertiesNotAssignedStr = string.Join(
+				var requiredPropertiesNotAssignedStr = string.Join(
 					$"\r\n{new string(' ', 4)}",
 					from propertyInfo in listOfRequiredProperties
 					let name = propertyInfo.Name
@@ -162,7 +162,7 @@ public static class Parser
 				}
 
 				// Converts the real argument value into the target property typed instance.
-				string realValue = otherArgs[argPos];
+				var realValue = otherArgs[argPos];
 				var propertyConverterAttribute = property.GetCustomAttribute<CommandConverterAttribute>();
 				if (propertyConverterAttribute is { ConverterType: var converterType })
 				{

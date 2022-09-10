@@ -68,7 +68,7 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 			static string f(int housesMask)
 			{
 				var dic = new Dictionary<int, ICollection<int>>();
-				foreach (int houseIndex in housesMask)
+				foreach (var houseIndex in housesMask)
 				{
 					if (!dic.ContainsKey(houseIndex / 9))
 					{
@@ -87,7 +87,7 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 					}
 
 					sb.Append(GetLabel(i));
-					foreach (int z in dic[i])
+					foreach (var z in dic[i])
 					{
 						sb.Append(z + 1);
 					}
@@ -113,7 +113,7 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 	public static string Format(scoped in ReadOnlySpan<int> houses)
 	{
 		short targetMask = 0;
-		foreach (int house in houses)
+		foreach (var house in houses)
 		{
 			targetMask |= (short)(1 << house);
 		}
@@ -125,7 +125,7 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, string separator)
 	{
 		short targetMask = 0;
-		foreach (int element in elements)
+		foreach (var element in elements)
 		{
 			targetMask |= (short)(1 << element);
 		}
@@ -137,7 +137,7 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, FormattingMode formattingMode)
 	{
 		short targetMask = 0;
-		foreach (int element in elements)
+		foreach (var element in elements)
 		{
 			targetMask |= (short)(1 << element);
 		}

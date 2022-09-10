@@ -37,12 +37,12 @@ public interface IQiuDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 
 		for (int i = 0, n = 0, length = BaseLineIterator.Length, outerLength = length >> 1; i < outerLength; i++)
 		{
-			bool isRow = i < length >> 2;
+			var isRow = i < length >> 2;
 			var baseLineMap = HousesMap[BaseLineIterator[i, 0]] | HousesMap[BaseLineIterator[i, 1]];
 			for (int j = isRow ? 0 : 9, z = 0, iterationLengthInner = length >> 2; z < iterationLengthInner; j++, z++)
 			{
 				int c1 = StartCells[j, 0], c2 = StartCells[j, 1];
-				for (int k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
+				for (var k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
 				{
 					var pairMap = CellMap.Empty + c1 + c2;
 					if (baseLineMap & pairMap)

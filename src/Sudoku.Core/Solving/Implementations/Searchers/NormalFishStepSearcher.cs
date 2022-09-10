@@ -17,7 +17,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 		Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
 		Unsafe.InitBlock(c, 0, (uint)sizeof(int*) * 9);
 
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
 			if (ValuesMap[digit].Count > 5)
 			{
@@ -25,7 +25,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 			}
 
 			// Gather.
-			for (int house = 9; house < 27; house++)
+			for (var house = 9; house < 27; house++)
 			{
 				if (HousesMap[house] & CandidatesMap[digit])
 				{
@@ -34,7 +34,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 					{
 						if (r[digit] == null)
 						{
-							int* ptr = stackalloc int[10];
+							var ptr = stackalloc int[10];
 							Unsafe.InitBlock(ptr, 0, 10 * sizeof(int));
 
 							r[digit] = ptr;
@@ -46,7 +46,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 					{
 						if (c[digit] == null)
 						{
-							int* ptr = stackalloc int[10];
+							var ptr = stackalloc int[10];
 							Unsafe.InitBlock(ptr, 0, 10 * sizeof(int));
 
 							c[digit] = ptr;
@@ -59,7 +59,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 			}
 		}
 
-		for (int size = 2; size <= ((IFishStepSearcher)this).MaxSize; size++)
+		for (var size = 2; size <= ((IFishStepSearcher)this).MaxSize; size++)
 		{
 			if (GetAll(accumulator, grid, size, r, c, false, true, onlyFindOne) is { } finlessRowFish)
 			{
@@ -104,7 +104,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 		bool withFin, bool searchRow, bool onlyFindOne)
 	{
 		// Iterate on each digit.
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
 			// Check the validity of the distribution for the current digit.
 			int* pBase = searchRow ? r[digit] : c[digit], pCover = searchRow ? c[digit] : r[digit];
@@ -114,7 +114,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 			}
 
 			// Iterate on the base set combination.
-			foreach (int[] bs in PointerOperations.GetArrayFromStart(pBase, 10, 1, true).GetSubsets(size))
+			foreach (var bs in PointerOperations.GetArrayFromStart(pBase, 10, 1, true).GetSubsets(size))
 			{
 				// 'baseLine' is the map that contains all base set cells.
 				var baseLine = size switch
@@ -127,7 +127,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 				};
 
 				// Iterate on the cover set combination.
-				foreach (int[] cs in PointerOperations.GetArrayFromStart(pCover, 10, 1, true).GetSubsets(size))
+				foreach (var cs in PointerOperations.GetArrayFromStart(pCover, 10, 1, true).GetSubsets(size))
 				{
 					// 'coverLine' is the map that contains all cover set cells.
 					var coverLine = size switch
@@ -161,14 +161,14 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 					{
 						// All fins should be in the same block.
 						fins = baseLine - coverLine;
-						short blockMask = fins.BlockMask;
+						var blockMask = fins.BlockMask;
 						if (fins is [] || !IsPow2(blockMask))
 						{
 							continue;
 						}
 
 						// Cover set shouldn't overlap with the block of all fins lying in.
-						int finBlock = TrailingZeroCount(blockMask);
+						var finBlock = TrailingZeroCount(blockMask);
 						if (!(coverLine & HousesMap[finBlock]))
 						{
 							continue;
@@ -187,32 +187,32 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 					// Gather the conclusions and candidates or houses to be highlighted.
 					var candidateOffsets = new List<CandidateViewNode>();
 					var houseOffsets = new List<HouseViewNode>();
-					foreach (int cell in withFin ? baseLine - fins : baseLine)
+					foreach (var cell in withFin ? baseLine - fins : baseLine)
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 					}
 					if (withFin)
 					{
-						foreach (int cell in fins)
+						foreach (var cell in fins)
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
-					foreach (int baseSet in bs)
+					foreach (var baseSet in bs)
 					{
 						houseOffsets.Add(new(DisplayColorKind.Normal, baseSet));
 					}
-					foreach (int coverSet in cs)
+					foreach (var coverSet in cs)
 					{
 						houseOffsets.Add(new(DisplayColorKind.Auxiliary2, coverSet));
 					}
 
 					int baseSetsMask = 0, coverSetsMask = 0;
-					foreach (int baseSet in bs)
+					foreach (var baseSet in bs)
 					{
 						baseSetsMask |= 1 << baseSet;
 					}
-					foreach (int coverSet in cs)
+					foreach (var coverSet in cs)
 					{
 						coverSetsMask |= 1 << coverSet;
 					}
@@ -258,9 +258,9 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 		// Get the highlight cells (necessary).
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = fins ? new List<CandidateViewNode>() : null;
-		foreach (int baseSet in baseSets)
+		foreach (var baseSet in baseSets)
 		{
-			foreach (int cell in HousesMap[baseSet])
+			foreach (var cell in HousesMap[baseSet])
 			{
 				switch (CandidatesMap[digit].Contains(cell))
 				{
@@ -271,8 +271,8 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 					}
 					default:
 					{
-						bool flag = false;
-						foreach (int c in ValuesMap[digit])
+						var flag = false;
+						foreach (var c in ValuesMap[digit])
 						{
 							if (HousesMap[c.ToHouseIndex(searchRow ? HouseType.Column : HouseType.Row)].Contains(cell))
 							{
@@ -286,11 +286,11 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 						}
 
 						CellMap baseMap = CellMap.Empty, coverMap = CellMap.Empty;
-						foreach (int b in baseSets)
+						foreach (var b in baseSets)
 						{
 							baseMap |= HousesMap[b];
 						}
-						foreach (int c in coverSets)
+						foreach (var c in coverSets)
 						{
 							coverMap |= HousesMap[c];
 						}
@@ -307,11 +307,11 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 			}
 		}
 
-		foreach (int cell in ValuesMap[digit])
+		foreach (var cell in ValuesMap[digit])
 		{
 			cellOffsets.Add(new(DisplayColorKind.Auxiliary2, cell));
 		}
-		foreach (int cell in fins)
+		foreach (var cell in fins)
 		{
 			candidateOffsets!.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 		}

@@ -31,14 +31,14 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 			new[] { 0, 2, 6, 8 }
 		};
 
-		int count = 0;
-		for (int block = 0; block < 9; block++)
+		var count = 0;
+		for (var block = 0; block < 9; block++)
 		{
-			for (int i = 0; i < 9; i++) // 9 cases.
+			for (var i = 0; i < 9; i++) // 9 cases.
 			{
-				int[] quad = quads[i];
-				int[] tempQuad = new int[4];
-				for (int j = 0; j < 4; j++)
+				var quad = quads[i];
+				var tempQuad = new int[4];
+				for (var j = 0; j < 4; j++)
 				{
 					// Set all indices to cell offsets.
 					tempQuad[j] = (block / 3 * 3 + quad[j] / 3) * 9 + block % 3 * 3 + quad[j] % 3;
@@ -57,7 +57,7 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 				return;
 			}
 
-			int[][] triplets = new int[4][]
+			var triplets = new int[4][]
 			{
 				new[] { q1, q2, q3 }, // (0, 1) and (0, 2) is same house.
 				new[] { q2, q1, q4 }, // (0, 1) and (1, 3) is same house.
@@ -65,15 +65,15 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 				new[] { q4, q2, q3 }, // (1, 3) and (2, 3) is same house.
 			};
 
-			for (int j = 0; j < 4; j++)
+			for (var j = 0; j < 4; j++)
 			{
 				if (triplets[j] is not [var t1, var t2, var t3] triplet)
 				{
 					continue;
 				}
 
-				int house1 = (CellMap.Empty + t1 + t2).CoveredLine;
-				int house2 = (CellMap.Empty + t1 + t3).CoveredLine;
+				var house1 = (CellMap.Empty + t1 + t2).CoveredLine;
+				var house2 = (CellMap.Empty + t1 + t3).CoveredLine;
 				int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 				var (incre1, incre2) = i switch
 				{
@@ -95,9 +95,9 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 					r(block, house2, pair2, incre1, j);
 				}
 
-				for (int i1 = 0; i1 < 6; i1++)
+				for (var i1 = 0; i1 < 6; i1++)
 				{
-					for (int i2 = 0; i2 < 6; i2++)
+					for (var i2 = 0; i2 < 6; i2++)
 					{
 						// Now check extra digits.
 						var allCells = new List<int>(triplet)
@@ -135,8 +135,8 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 				return;
 			}
 
-			int house1 = (CellMap.Empty + t1 + t2).CoveredLine;
-			int house2 = (CellMap.Empty + t1 + t3).CoveredLine;
+			var house1 = (CellMap.Empty + t1 + t2).CoveredLine;
+			var house2 = (CellMap.Empty + t1 + t3).CoveredLine;
 			int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 			var (incre1, incre2) = i switch
 			{
@@ -158,9 +158,9 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 				r(block, house2, pair2, incre1, 0);
 			}
 
-			for (int i1 = 0; i1 < 6; i1++)
+			for (var i1 = 0; i1 < 6; i1++)
 			{
-				for (int i2 = 0; i2 < 6; i2++)
+				for (var i2 = 0; i2 < 6; i2++)
 				{
 					// Now check extra digits.
 					var allCells = new List<int>(quad)
@@ -174,7 +174,7 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 					long v = 0;
 					for (int z = 0, iterationCount = allCells.Count; z < iterationCount; z++)
 					{
-						int cell = allCells[z];
+						var cell = allCells[z];
 						v |= (long)cell;
 						if (z != allCells.Count - 1)
 						{
@@ -191,7 +191,7 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 		{
 			for (int i = 0, cur = 0; i < 9; i++)
 			{
-				int cell = HouseCells[houseIndex][i];
+				var cell = HouseCells[houseIndex][i];
 				if (block == cell.ToHouseIndex(HouseType.Block))
 				{
 					continue;

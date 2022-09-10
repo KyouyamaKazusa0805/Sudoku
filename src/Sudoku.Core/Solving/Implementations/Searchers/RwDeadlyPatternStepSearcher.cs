@@ -21,13 +21,13 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 	/// </remarks>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		for (int chuteIndex = 0; chuteIndex < 6; chuteIndex++)
+		for (var chuteIndex = 0; chuteIndex < 6; chuteIndex++)
 		{
 			var (chute, isRow, _) = Chutes[chuteIndex];
 			var elimHouseType = isRow ? HouseType.Column : HouseType.Row;
-			int emptyMinilineSpannedHousesCount = 0;
+			var emptyMinilineSpannedHousesCount = 0;
 			short valueDigitsMask = 0;
-			bool isPassedPrechecking = true;
+			var isPassedPrechecking = true;
 			var availableElimMap = CellMap.Empty;
 			for (int @base = (int)elimHouseType * 9, i = @base; i < @base + 9; i++)
 			{
@@ -39,7 +39,7 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 				}
 
 				var nonemptyCells = currentNonemptyCells;
-				foreach (int cell in currentNonemptyCells)
+				foreach (var cell in currentNonemptyCells)
 				{
 					if (grid.GetStatus(cell) == CellStatus.Modifiable)
 					{
@@ -77,9 +77,9 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 			}
 
 			var conclusions = new List<Conclusion>();
-			foreach (int cell in availableElimMap)
+			foreach (var cell in availableElimMap)
 			{
-				foreach (int digit in valueDigitsMask)
+				foreach (var digit in valueDigitsMask)
 				{
 					if (CandidatesMap[digit].Contains(cell))
 					{

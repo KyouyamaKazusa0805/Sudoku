@@ -23,9 +23,9 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 			var map = pattern.Map;
 			var ((p11, p12), (p21, p22), (c1, c2, c3, c4)) = pattern;
-			short cornerMask1 = (short)(grid.GetCandidates(p11) | grid.GetCandidates(p12));
-			short cornerMask2 = (short)(grid.GetCandidates(p21) | grid.GetCandidates(p22));
-			short centerMask = (short)((short)(grid.GetCandidates(c1) | grid.GetCandidates(c2)) | grid.GetCandidates(c3));
+			var cornerMask1 = (short)(grid.GetCandidates(p11) | grid.GetCandidates(p12));
+			var cornerMask2 = (short)(grid.GetCandidates(p21) | grid.GetCandidates(p22));
+			var centerMask = (short)((short)(grid.GetCandidates(c1) | grid.GetCandidates(c2)) | grid.GetCandidates(c3));
 			if (map.Count == 8)
 			{
 				centerMask |= grid.GetCandidates(c4);
@@ -57,49 +57,49 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in CellMap map)
 	{
-		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
+		var orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
 		{
 			goto ReturnNull;
 		}
 
 		// Iterate on each combination.
-		foreach (int[] digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
+		foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 		{
 			short tempMask = 0;
-			foreach (int digit in digits)
+			foreach (var digit in digits)
 			{
 				tempMask |= (short)(1 << digit);
 			}
 
-			int otherDigit = TrailingZeroCount(orMask & ~tempMask);
+			var otherDigit = TrailingZeroCount(orMask & ~tempMask);
 			var mapContainingThatDigit = map & CandidatesMap[otherDigit];
 			if (mapContainingThatDigit is not [var elimCell])
 			{
 				continue;
 			}
 
-			short elimMask = (short)(grid.GetCandidates(elimCell) & tempMask);
+			var elimMask = (short)(grid.GetCandidates(elimCell) & tempMask);
 			if (elimMask == 0)
 			{
 				continue;
 			}
 
 			var conclusions = new List<Conclusion>(4);
-			foreach (int digit in elimMask)
+			foreach (var digit in elimMask)
 			{
 				conclusions.Add(new(Elimination, elimCell, digit));
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>();
-			foreach (int cell in map)
+			foreach (var cell in map)
 			{
 				if (mapContainingThatDigit.Contains(cell))
 				{
 					continue;
 				}
 
-				foreach (int digit in grid.GetCandidates(cell))
+				foreach (var digit in grid.GetCandidates(cell))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
@@ -127,22 +127,22 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in CellMap map)
 	{
-		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
+		var orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
 		{
 			goto ReturnNull;
 		}
 
 		// Iterate on each combination.
-		foreach (int[] digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
+		foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 		{
 			short tempMask = 0;
-			foreach (int digit in digits)
+			foreach (var digit in digits)
 			{
 				tempMask |= (short)(1 << digit);
 			}
 
-			int otherDigit = TrailingZeroCount(orMask & ~tempMask);
+			var otherDigit = TrailingZeroCount(orMask & ~tempMask);
 			var mapContainingThatDigit = map & CandidatesMap[otherDigit];
 			if (((+mapContainingThatDigit - map) & CandidatesMap[otherDigit]) is not (var elimMap and not []))
 			{
@@ -150,15 +150,15 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 			}
 
 			var conclusions = new List<Conclusion>();
-			foreach (int cell in elimMap)
+			foreach (var cell in elimMap)
 			{
 				conclusions.Add(new(Elimination, cell, otherDigit));
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>();
-			foreach (int cell in map)
+			foreach (var cell in map)
 			{
-				foreach (int digit in grid.GetCandidates(cell))
+				foreach (var digit in grid.GetCandidates(cell))
 				{
 					candidateOffsets.Add(
 						new(
@@ -192,17 +192,17 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in CellMap map)
 	{
-		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
-		foreach (int houseIndex in map.Houses)
+		var orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
+		foreach (var houseIndex in map.Houses)
 		{
 			var currentMap = HousesMap[houseIndex] & map;
 			var otherCellsMap = map - currentMap;
-			short otherMask = grid.GetDigitsUnion(otherCellsMap);
+			var otherMask = grid.GetDigitsUnion(otherCellsMap);
 
-			foreach (int[] digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
+			foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 			{
 				short tempMask = 0;
-				foreach (int digit in digits)
+				foreach (var digit in digits)
 				{
 					tempMask |= (short)(1 << digit);
 				}
@@ -213,12 +213,12 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 				// Iterate on the cells by the specified size.
 				var iterationCellsMap = (HousesMap[houseIndex] - currentMap) & EmptyCells;
-				short otherDigitsMask = (short)(orMask & ~tempMask);
+				var otherDigitsMask = (short)(orMask & ~tempMask);
 				for (int size = PopCount((uint)otherDigitsMask) - 1, count = iterationCellsMap.Count; size < count; size++)
 				{
 					foreach (var combination in iterationCellsMap & size)
 					{
-						short comparer = grid.GetDigitsUnion(combination);
+						var comparer = grid.GetDigitsUnion(combination);
 						if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size
 							|| (tempMask & otherDigitsMask) != otherDigitsMask)
 						{
@@ -228,14 +228,14 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 						// Type 3 found.
 						// Now check eliminations.
 						var conclusions = new List<Conclusion>();
-						foreach (int digit in comparer)
+						foreach (var digit in comparer)
 						{
 							if ((iterationCellsMap & CandidatesMap[digit]) is not (var cells and not []))
 							{
 								continue;
 							}
 
-							foreach (int cell in cells)
+							foreach (var cell in cells)
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}
@@ -246,9 +246,9 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 						}
 
 						var candidateOffsets = new List<CandidateViewNode>();
-						foreach (int cell in currentMap)
+						foreach (var cell in currentMap)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (var digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(
 									new(
@@ -260,16 +260,16 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 								);
 							}
 						}
-						foreach (int cell in otherCellsMap)
+						foreach (var cell in otherCellsMap)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (var digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 							}
 						}
-						foreach (int cell in combination)
+						foreach (var cell in combination)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (var digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 							}
@@ -307,20 +307,20 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 	{
 		// The type 4 may be complex and terrible to process.
 		// All houses that the pattern lies in should be checked.
-		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
-		foreach (int houseIndex in map.Houses)
+		var orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
+		foreach (var houseIndex in map.Houses)
 		{
 			var currentMap = HousesMap[houseIndex] & map;
 			var otherCellsMap = map - currentMap;
-			short otherMask = grid.GetDigitsUnion(otherCellsMap);
+			var otherMask = grid.GetDigitsUnion(otherCellsMap);
 
 			// Iterate on each possible digit combination.
 			// For example, if values are { 1, 2, 3 }, then all combinations taken 2 values
 			// are { 1, 2 }, { 2, 3 } and { 1, 3 }.
-			foreach (int[] digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
+			foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 			{
 				short tempMask = 0;
-				foreach (int digit in digits)
+				foreach (var digit in digits)
 				{
 					tempMask |= (short)(1 << digit);
 				}
@@ -332,12 +332,12 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 				// Iterate on each combination.
 				// Only one digit should be eliminated, and other digits should form a "conjugate house".
 				// In a so-called conjugate house, the digits can only appear in these cells in this house.
-				foreach (int[] combination in (tempMask & orMask).GetAllSets().GetSubsets(currentMap.Count - 1))
+				foreach (var combination in (tempMask & orMask).GetAllSets().GetSubsets(currentMap.Count - 1))
 				{
 					short combinationMask = 0;
 					var combinationMap = CellMap.Empty;
-					bool flag = false;
-					foreach (int digit in combination)
+					var flag = false;
+					foreach (var digit in combination)
 					{
 						if (ValuesMap[digit] & HousesMap[houseIndex])
 						{
@@ -362,9 +362,9 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 					}
 
 					// Type 4 forms. Now check eliminations.
-					short finalDigits = (short)(tempMask & ~combinationMask);
+					var finalDigits = (short)(tempMask & ~combinationMask);
 					var possibleCandMaps = CellMap.Empty;
-					foreach (int finalDigit in finalDigits)
+					foreach (var finalDigit in finalDigits)
 					{
 						possibleCandMaps |= CandidatesMap[finalDigit];
 					}
@@ -374,9 +374,9 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 					}
 
 					var conclusions = new List<Conclusion>();
-					foreach (int cell in elimMap)
+					foreach (var cell in elimMap)
 					{
-						foreach (int digit in finalDigits)
+						foreach (var digit in finalDigits)
 						{
 							if (CandidatesMap[digit].Contains(cell))
 							{
@@ -386,16 +386,16 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (int cell in currentMap)
+					foreach (var cell in currentMap)
 					{
-						foreach (int digit in (short)(grid.GetCandidates(cell) & combinationMask))
+						foreach (var digit in (short)(grid.GetCandidates(cell) & combinationMask))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
-					foreach (int cell in otherCellsMap)
+					foreach (var cell in otherCellsMap)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}

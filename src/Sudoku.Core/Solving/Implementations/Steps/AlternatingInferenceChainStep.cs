@@ -163,14 +163,14 @@ internal sealed record AlternatingInferenceChainStep(
 	{
 		get
 		{
-			bool* bucket = stackalloc[] { false, false, false, false, false, false, false, false, false };
+			var bucket = stackalloc[] { false, false, false, false, false, false, false, false, false };
 			foreach (var node in Chain.RealChainNodes)
 			{
 				bucket[node.Digit] = true;
 			}
 
-			int count = 0;
-			for (int i = 0; i < 9; i++)
+			var count = 0;
+			for (var i = 0; i < 9; i++)
 			{
 				if (bucket[i] && ++count > 1)
 				{
@@ -194,14 +194,14 @@ internal sealed record AlternatingInferenceChainStep(
 				return false;
 			}
 
-			bool* bucket = stackalloc[] { false, false, false, false, false, false, false, false, false };
+			var bucket = stackalloc[] { false, false, false, false, false, false, false, false, false };
 			foreach (var node in Chain.RealChainNodes)
 			{
 				bucket[node.Digit] = true;
 			}
 
-			int count = 0;
-			for (int i = 0; i < 9; i++)
+			var count = 0;
+			for (var i = 0; i < 9; i++)
 			{
 				if (bucket[i] && ++count > 2)
 				{

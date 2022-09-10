@@ -26,10 +26,10 @@ public static unsafe partial class StringExtensions
 	/// <returns>The number of characters found.</returns>
 	public static int CountOf(this string @this, char character)
 	{
-		int count = 0;
+		var count = 0;
 		fixed (char* pThis = @this)
 		{
-			for (char* p = pThis; *p != '\0'; p++)
+			for (var p = pThis; *p != '\0'; p++)
 			{
 				if (*p == character)
 				{
@@ -92,7 +92,7 @@ public static unsafe partial class StringExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ReplaceAt(this string @this, int index, char charToInsert)
 	{
-		char* resultPtr = stackalloc char[@this.Length + 1];
+		var resultPtr = stackalloc char[@this.Length + 1];
 		resultPtr[@this.Length] = '\0';
 		fixed (char* pThis = @this)
 		{
@@ -258,13 +258,13 @@ public static unsafe partial class StringExtensions
 			_ => throw InvalidOperation
 		};
 
-		int length = @this.Length;
-		char* ptr = stackalloc char[length];
-		int count = 0;
+		var length = @this.Length;
+		var ptr = stackalloc char[length];
+		var count = 0;
 		fixed (char* p = @this)
 		{
-			char* q = p;
-			for (int i = 0; i < length; i++, q++)
+			var q = p;
+			for (var i = 0; i < length; i++, q++)
 			{
 				if (predicate(*q))
 				{

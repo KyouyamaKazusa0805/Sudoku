@@ -84,10 +84,10 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 		}
 
 		// Get the interpolation values, and extract them into a new collection to store the format values.
-		int length = format.Length;
+		var length = format.Length;
 		scoped var sb = new StringHandler(length);
 		var formats = new List<string>(10);
-		int formatCount = 0;
+		var formatCount = 0;
 		for (int i = 0, iterationLength = length - 1; i < iterationLength; i++)
 		{
 			switch (format[i], format[i + 1])
@@ -112,8 +112,8 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 				}
 				case ('{', not '{'):
 				{
-					int pos = -1;
-					for (int j = i + 1; j < length; j++)
+					var pos = -1;
+					for (var j = i + 1; j < length; j++)
 					{
 						if (format[j] == '}')
 						{
@@ -154,7 +154,7 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 
 		// Use reflection to invoke each properties, and get the interpolation result.
 		var type = GetType();
-		string[] matchedFormats = (
+		var matchedFormats = (
 			from f in formats
 			select type.GetMethod(f, BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance) into method
 			where method?.IsDefined(typeof(ResourceTextFormatterAttribute)) ?? false

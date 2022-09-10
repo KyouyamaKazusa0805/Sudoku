@@ -70,8 +70,8 @@ internal sealed record NormalFishStep(
 			{
 				scoped var buffer = (stackalloc char[InternalName.Length]);
 
-				int i = 0;
-				for (char* p = pName; *p != '\0'; p++)
+				var i = 0;
+				for (var p = pName; *p != '\0'; p++)
 				{
 					if (*p is var ch and not (' ' or '-'))
 					{
@@ -98,8 +98,8 @@ internal sealed record NormalFishStep(
 	{
 		get
 		{
-			string finModifier = IsSashimi switch { true => "Sashimi ", false => "Finned ", _ => string.Empty };
-			string fishName = Size switch { 2 => "X-Wing", 3 => "Swordfish", 4 => "Jellyfish" };
+			var finModifier = IsSashimi switch { true => "Sashimi ", false => "Finned ", _ => string.Empty };
+			var fishName = Size switch { 2 => "X-Wing", 3 => "Swordfish", 4 => "Jellyfish" };
 			return $"{finModifier}{fishName}";
 		}
 	}

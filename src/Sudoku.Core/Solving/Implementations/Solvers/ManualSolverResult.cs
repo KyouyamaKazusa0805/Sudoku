@@ -87,9 +87,9 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 						else
 						{
 							decimal max = 0;
-							for (int j = 0; j < i; j++)
+							for (var j = 0; j < i; j++)
 							{
-								decimal difficulty = Steps[j].Difficulty;
+								var difficulty = Steps[j].Difficulty;
 								if (difficulty >= max)
 								{
 									max = difficulty;
@@ -227,7 +227,7 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 				return null;
 			}
 
-			for (int i = Steps.Length - 1; i >= 0; i--)
+			for (var i = Steps.Length - 1; i >= 0; i--)
 			{
 				var step = Steps[i];
 				if (step.ShowDifficulty && !step.HasTag(TechniqueTags.Singles))
@@ -348,15 +348,15 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 					}
 
 					var info = steps[i];
-					string infoStr = options.Flags(SolverResultFormattingOptions.ShowSimple)
+					var infoStr = options.Flags(SolverResultFormattingOptions.ShowSimple)
 						? info.ToSimpleString()
 						: info.Formatize();
-					bool showDiff = options.Flags(SolverResultFormattingOptions.ShowDifficulty)
+					var showDiff = options.Flags(SolverResultFormattingOptions.ShowDifficulty)
 						&& info.ShowDifficulty;
 
-					string d = $"({info.Difficulty,5:0.0}";
-					string s = $"{i + 1,4}";
-					string labelInfo = (options.Flags(SolverResultFormattingOptions.ShowStepLabel), showDiff) switch
+					var d = $"({info.Difficulty,5:0.0}";
+					var s = $"{i + 1,4}";
+					var labelInfo = (options.Flags(SolverResultFormattingOptions.ShowStepLabel), showDiff) switch
 					{
 						(true, true) => $"{s}, {d}) ",
 						(true, false) => $"{s} ",
@@ -413,7 +413,7 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 					decimal currentTotal = 0, currentMinimum = decimal.MaxValue;
 					foreach (var solvingStep in solvingStepsGroup)
 					{
-						decimal difficulty = solvingStep.Difficulty;
+						var difficulty = solvingStep.Difficulty;
 						currentTotal += difficulty;
 						currentMinimum = Min(currentMinimum, difficulty);
 					}
@@ -495,7 +495,7 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 				return null;
 			}
 
-			for (int i = stepsCount - 1; i >= 0; i--)
+			for (var i = stepsCount - 1; i >= 0; i--)
 			{
 				if (steps[i] is { ShowDifficulty: true } step and not SingleStep)
 				{

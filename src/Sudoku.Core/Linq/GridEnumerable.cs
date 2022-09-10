@@ -23,8 +23,8 @@ public static class GridEnumerable
 	public static ImmutableArray<TResult> Select<TResult>(this scoped in Grid source, Func<int, TResult> selector)
 	{
 		var result = new TResult[81];
-		int i = 0;
-		foreach (int candidate in source)
+		var i = 0;
+		foreach (var candidate in source)
 		{
 			result[i++] = selector(candidate);
 		}

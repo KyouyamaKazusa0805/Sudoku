@@ -14,7 +14,7 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 				continue;
 			}
 
-			short mask = grid.GetDigitsUnion(pattern);
+			var mask = grid.GetDigitsUnion(pattern);
 			if (CheckType1(accumulator, grid, onlyFindOne, pattern, mask) is { } type1Step)
 			{
 				return type1Step;
@@ -45,38 +45,38 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 			goto ReturnNull;
 		}
 
-		foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
+		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
 			short digitsMask = 0;
-			foreach (int digit in digits)
+			foreach (var digit in digits)
 			{
 				digitsMask |= (short)(1 << digit);
 			}
 
-			int extraDigit = TrailingZeroCount(mask & ~digitsMask);
+			var extraDigit = TrailingZeroCount(mask & ~digitsMask);
 			var extraDigitMap = CandidatesMap[extraDigit] & pattern;
 			if (extraDigitMap is not [var elimCell])
 			{
 				continue;
 			}
 
-			short cellMask = grid.GetCandidates(elimCell);
-			short elimMask = (short)(cellMask & ~(1 << extraDigit));
+			var cellMask = grid.GetCandidates(elimCell);
+			var elimMask = (short)(cellMask & ~(1 << extraDigit));
 			if (elimMask == 0)
 			{
 				continue;
 			}
 
 			var conclusions = new List<Conclusion>(4);
-			foreach (int digit in elimMask)
+			foreach (var digit in elimMask)
 			{
 				conclusions.Add(new(Elimination, elimCell, digit));
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>();
-			foreach (int digit in digits)
+			foreach (var digit in digits)
 			{
-				foreach (int cell in pattern - elimCell & CandidatesMap[digit])
+				foreach (var cell in pattern - elimCell & CandidatesMap[digit])
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
@@ -108,35 +108,35 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 			goto ReturnNull;
 		}
 
-		foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
+		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
 			short digitsMask = 0;
-			foreach (int digit in digits)
+			foreach (var digit in digits)
 			{
 				digitsMask |= (short)(1 << digit);
 			}
 
-			int extraDigit = TrailingZeroCount(mask & ~digitsMask);
+			var extraDigit = TrailingZeroCount(mask & ~digitsMask);
 			if (pattern % CandidatesMap[extraDigit] is not (var elimMap and not []))
 			{
 				continue;
 			}
 
 			var conclusions = new List<Conclusion>(4);
-			foreach (int cell in elimMap)
+			foreach (var cell in elimMap)
 			{
 				conclusions.Add(new(Elimination, cell, extraDigit));
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>();
-			foreach (int digit in digits)
+			foreach (var digit in digits)
 			{
-				foreach (int cell in CandidatesMap[digit] & pattern)
+				foreach (var cell in CandidatesMap[digit] & pattern)
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}
 			}
-			foreach (int cell in CandidatesMap[extraDigit] & pattern)
+			foreach (var cell in CandidatesMap[extraDigit] & pattern)
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + extraDigit));
 			}
@@ -163,17 +163,17 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in CellMap pattern, short mask)
 	{
-		foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
+		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
 			short digitsMask = 0;
-			foreach (int digit in digits)
+			foreach (var digit in digits)
 			{
 				digitsMask |= (short)(1 << digit);
 			}
 
-			short extraDigitsMask = (short)(mask & ~digitsMask);
+			var extraDigitsMask = (short)(mask & ~digitsMask);
 			var tempMap = CellMap.Empty;
-			foreach (int digit in extraDigitsMask)
+			foreach (var digit in extraDigitsMask)
 			{
 				tempMap |= CandidatesMap[digit];
 			}
@@ -182,14 +182,14 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 				continue;
 			}
 
-			foreach (int house in tempMap.CoveredHouses)
+			foreach (var house in tempMap.CoveredHouses)
 			{
 				var allCells = (HousesMap[house] & EmptyCells) - pattern;
 				for (int size = PopCount((uint)extraDigitsMask) - 1, count = allCells.Count; size < count; size++)
 				{
 					foreach (var cells in allCells & size)
 					{
-						short tempMask = grid.GetDigitsUnion(cells);
+						var tempMask = grid.GetDigitsUnion(cells);
 						if (PopCount((uint)tempMask) != size + 1
 							|| (tempMask & extraDigitsMask) != extraDigitsMask)
 						{
@@ -197,9 +197,9 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 						}
 
 						var conclusions = new List<Conclusion>();
-						foreach (int digit in tempMask)
+						foreach (var digit in tempMask)
 						{
-							foreach (int cell in (allCells - cells) & CandidatesMap[digit])
+							foreach (var cell in (allCells - cells) & CandidatesMap[digit])
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}
@@ -210,9 +210,9 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 						}
 
 						var candidateOffsets = new List<CandidateViewNode>();
-						foreach (int cell in pattern)
+						foreach (var cell in pattern)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (var digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(
 									new(
@@ -224,9 +224,9 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 								);
 							}
 						}
-						foreach (int cell in cells)
+						foreach (var cell in cells)
 						{
-							foreach (int digit in grid.GetCandidates(cell))
+							foreach (var digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 							}
@@ -262,17 +262,17 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
 		scoped in CellMap pattern, short mask)
 	{
-		foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
+		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
 			short digitsMask = 0;
-			foreach (int digit in digits)
+			foreach (var digit in digits)
 			{
 				digitsMask |= (short)(1 << digit);
 			}
 
-			short extraDigitsMask = (short)(mask & ~digitsMask);
+			var extraDigitsMask = (short)(mask & ~digitsMask);
 			var tempMap = CellMap.Empty;
-			foreach (int digit in extraDigitsMask)
+			foreach (var digit in extraDigitsMask)
 			{
 				tempMap |= CandidatesMap[digit];
 			}
@@ -281,11 +281,11 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 				continue;
 			}
 
-			foreach (int house in tempMap.CoveredHouses)
+			foreach (var house in tempMap.CoveredHouses)
 			{
 				int d1 = -1, d2 = -1, count = 0;
 				var compareMap = HousesMap[house] & pattern;
-				foreach (int digit in digits)
+				foreach (var digit in digits)
 				{
 					if ((compareMap | HousesMap[house] & CandidatesMap[digit]) == compareMap)
 					{
@@ -306,12 +306,12 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 				}
 
 			Finally:
-				short comparer = (short)(1 << d1 | 1 << d2);
-				short otherDigitsMask = (short)(digitsMask & ~comparer);
+				var comparer = (short)(1 << d1 | 1 << d2);
+				var otherDigitsMask = (short)(digitsMask & ~comparer);
 				var conclusions = new List<Conclusion>();
-				foreach (int digit in otherDigitsMask)
+				foreach (var digit in otherDigitsMask)
 				{
-					foreach (int cell in compareMap & CandidatesMap[digit])
+					foreach (var cell in compareMap & CandidatesMap[digit])
 					{
 						conclusions.Add(new(Elimination, cell, digit));
 					}
@@ -322,18 +322,18 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 				}
 
 				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (int cell in pattern - compareMap)
+				foreach (var cell in pattern - compareMap)
 				{
-					foreach (int digit in grid.GetCandidates(cell))
+					foreach (var digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 					}
 				}
-				foreach (int cell in compareMap & CandidatesMap[d1])
+				foreach (var cell in compareMap & CandidatesMap[d1])
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + d1));
 				}
-				foreach (int cell in compareMap & CandidatesMap[d2])
+				foreach (var cell in compareMap & CandidatesMap[d2])
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + d2));
 				}

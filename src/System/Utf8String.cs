@@ -42,7 +42,7 @@ public readonly unsafe struct Utf8String :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Utf8String(Utf8Char* value)
 	{
-		int length = PointerOperations.StringLengthOf(value);
+		var length = PointerOperations.StringLengthOf(value);
 		_value = new Utf8Char[length];
 		fixed (Utf8Char* ptrValue = _value)
 		{
@@ -121,7 +121,7 @@ public readonly unsafe struct Utf8String :
 	/// <inheritdoc/>
 	public bool Equals(Utf8String other)
 	{
-		int length = _value.Length;
+		var length = _value.Length;
 		if (length != other.Length)
 		{
 			return false;
@@ -189,8 +189,8 @@ public readonly unsafe struct Utf8String :
 	/// <inheritdoc/>
 	public override int GetHashCode()
 	{
-		int length = _value.Length;
-		uint hash = (uint)length;
+		var length = _value.Length;
+		var hash = (uint)length;
 		fixed (Utf8Char* ap = _value)
 		{
 			var a = ap;
@@ -242,7 +242,7 @@ public readonly unsafe struct Utf8String :
 	/// </returns>
 	public int IndexOf(Utf8String s)
 	{
-		int[] next = getNext(s);
+		var next = getNext(s);
 		int i = 0, j = 0;
 
 		while (i < Length && j < s.Length)
@@ -264,7 +264,7 @@ public readonly unsafe struct Utf8String :
 		static int[] getNext(Utf8String s)
 		{
 			int i = 0, j = -1;
-			int[] next = new int[s.Length];
+			var next = new int[s.Length];
 			next[0] = -1;
 
 			while (i < next.Length - 1)
@@ -287,7 +287,7 @@ public readonly unsafe struct Utf8String :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		byte[] array = new byte[_value.Length];
+		var array = new byte[_value.Length];
 		fixed (Utf8Char* a = _value)
 		{
 			Unsafe.CopyBlock(ref array[0], ref Unsafe.As<Utf8Char, byte>(ref *a), (uint)(sizeof(byte) * _value.Length));
@@ -317,7 +317,7 @@ public readonly unsafe struct Utf8String :
 	/// <returns>An <see cref="int"/> value indicating which one is greater.</returns>
 	private static int Compare(Utf8String strA, Utf8String strB)
 	{
-		int length = Min(strA._value.Length, strB._value.Length);
+		var length = Min(strA._value.Length, strB._value.Length);
 		fixed (Utf8Char* ap = strA._value, bp = strB._value)
 		{
 			for (Utf8Char* a = ap, b = bp; length > 0; a++, b++, length--)
@@ -348,7 +348,7 @@ public readonly unsafe struct Utf8String :
 		Unsafe.SkipInit(out Utf8Char[] targetBuffer);
 		try
 		{
-			int totalLength = left._value.Length + right._value.Length;
+			var totalLength = left._value.Length + right._value.Length;
 			targetBuffer = ArrayPool<Utf8Char>.Shared.Rent(totalLength);
 			fixed (Utf8Char* destination = targetBuffer)
 			{

@@ -23,7 +23,7 @@ class FileOpenPickerExtensions
 		if (Window.Current is null)
 		{
 			var initializeWithWindowWrapper = @this.As<IInitializeWithWindow>();
-			nint hwnd = GetActiveWindow();
+			var hwnd = GetActiveWindow();
 			initializeWithWindowWrapper.Initialize(hwnd);
 		}
 

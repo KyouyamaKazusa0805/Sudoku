@@ -22,16 +22,16 @@ public interface IDominoLoopStepSearcher : INonnegativeRankStepSearcher
 		scoped var s = (stackalloc int[4]);
 		for (int a = 9, n = 0; a < 18; a++)
 		{
-			for (int b = 9; b < 18; b++)
+			for (var b = 9; b < 18; b++)
 			{
 				if (a / 3 == b / 3 || b < a)
 				{
 					continue;
 				}
 
-				for (int c = 18; c < 27; c++)
+				for (var c = 18; c < 27; c++)
 				{
-					for (int d = 18; d < 27; d++)
+					for (var d = 18; d < 27; d++)
 					{
 						if (c / 3 == d / 3 || d < c)
 						{
@@ -40,7 +40,7 @@ public interface IDominoLoopStepSearcher : INonnegativeRankStepSearcher
 
 						var all = HousesMap[a] | HousesMap[b] | HousesMap[c] | HousesMap[d];
 						var overlap = (HousesMap[a] | HousesMap[b]) & (HousesMap[c] | HousesMap[d]);
-						short blockMask = overlap.BlockMask;
+						var blockMask = overlap.BlockMask;
 						for (int i = 0, count = 0; count < 4 && i < 16; i++)
 						{
 							if ((blockMask >> i & 1) != 0)
@@ -53,16 +53,16 @@ public interface IDominoLoopStepSearcher : INonnegativeRankStepSearcher
 						all -= overlap;
 
 						SkLoopTable[n] = new int[16];
-						int pos = 0;
-						foreach (int cell in all & HousesMap[a])
+						var pos = 0;
+						foreach (var cell in all & HousesMap[a])
 						{
 							SkLoopTable[n][pos++] = cell;
 						}
-						foreach (int cell in all & HousesMap[d])
+						foreach (var cell in all & HousesMap[d])
 						{
 							SkLoopTable[n][pos++] = cell;
 						}
-						int[] cells = (all & HousesMap[b]).ToArray();
+						var cells = (all & HousesMap[b]).ToArray();
 						SkLoopTable[n][pos++] = cells[2];
 						SkLoopTable[n][pos++] = cells[3];
 						SkLoopTable[n][pos++] = cells[0];

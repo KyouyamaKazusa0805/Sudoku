@@ -60,18 +60,18 @@ internal sealed record SymbolOutputInfo(
 	/// <returns>The <see cref="SymbolOutputInfo"/> instance.</returns>
 	public static SymbolOutputInfo FromSymbol(INamedTypeSymbol symbol, bool checkNotRefStruct = false)
 	{
-		string typeName = symbol.Name;
-		string fullTypeName = symbol.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
-		string namespaceName = symbol.ContainingNamespace.ToDisplayString();
+		var typeName = symbol.Name;
+		var fullTypeName = symbol.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
+		var namespaceName = symbol.ContainingNamespace.ToDisplayString();
 
-		int i = fullTypeName.IndexOf('<');
-		bool isGeneric = i != -1;
-		string genericParametersList = i == -1 ? string.Empty : fullTypeName[i..];
+		var i = fullTypeName.IndexOf('<');
+		var isGeneric = i != -1;
+		var genericParametersList = i == -1 ? string.Empty : fullTypeName[i..];
 
-		int j = fullTypeName.IndexOf('>');
-		string genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName[i..(j + 1)];
+		var j = fullTypeName.IndexOf('>');
+		var genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName[i..(j + 1)];
 
-		string typeKind = (symbol.IsRecord, symbol.TypeKind) switch
+		var typeKind = (symbol.IsRecord, symbol.TypeKind) switch
 		{
 			(true, Kind.Class) => "record ",
 			(true, Kind.Struct) => "record struct ",
@@ -79,13 +79,13 @@ internal sealed record SymbolOutputInfo(
 			(false, Kind.Struct) => "struct ",
 			_ => string.Empty
 		};
-		string readonlyKeyword = (
+		var readonlyKeyword = (
 			checkNotRefStruct
 				? symbol is { TypeKind: Kind.Struct, IsRefLikeType: false, IsReadOnly: false }
 				: symbol is { TypeKind: Kind.Struct, IsReadOnly: false }
 		) ? "readonly " : string.Empty;
-		string inKeyword = symbol.TypeKind == Kind.Struct ? "in " : string.Empty;
-		string nullableAnnotation = symbol.TypeKind == Kind.Class ? "?" : string.Empty;
+		var inKeyword = symbol.TypeKind == Kind.Struct ? "in " : string.Empty;
+		var nullableAnnotation = symbol.TypeKind == Kind.Class ? "?" : string.Empty;
 
 		return new(
 			typeName, fullTypeName, namespaceName, genericParametersList,

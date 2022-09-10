@@ -22,7 +22,7 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 				continue;
 			}
 
-			short baseCellsDigitsMask = grid.GetDigitsUnion(currentJe.BaseCellsMap);
+			var baseCellsDigitsMask = grid.GetDigitsUnion(currentJe.BaseCellsMap);
 			if (PopCount((uint)baseCellsDigitsMask) > 5)
 			{
 				// The number of kinds of digits should not be greater than 5.
@@ -38,13 +38,13 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 
 			if (!CheckTargetCells(
 					currentJe.TargetQ1, currentJe.TargetQ2, baseCellsDigitsMask,
-					grid, out short otherDigitsMaskQArea))
+					grid, out var otherDigitsMaskQArea))
 			{
 				continue;
 			}
 			if (!CheckTargetCells(
 					currentJe.TargetR1, currentJe.TargetR2, baseCellsDigitsMask,
-					grid, out short otherDigitsMaskRArea))
+					grid, out var otherDigitsMaskRArea))
 			{
 				continue;
 			}
@@ -65,19 +65,19 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 				new(DisplayColorKind.Auxiliary1, currentJe.TargetR2)
 			};
 			var candidateOffsets = new List<CandidateViewNode>();
-			foreach (int digit in grid.GetCandidates(currentJe.Base1))
+			foreach (var digit in grid.GetCandidates(currentJe.Base1))
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Normal, currentJe.Base1 * 9 + digit));
 			}
-			foreach (int digit in grid.GetCandidates(currentJe.Base2))
+			foreach (var digit in grid.GetCandidates(currentJe.Base2))
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Normal, currentJe.Base2 * 9 + digit));
 			}
-			foreach (int cell in currentJe.CrossLine)
+			foreach (var cell in currentJe.CrossLine)
 			{
 				cellOffsets.Add(new(DisplayColorKind.Auxiliary2, cell));
 
-				foreach (int digit in (short)(grid.GetCandidates(cell) & baseCellsDigitsMask))
+				foreach (var digit in (short)(grid.GetCandidates(cell) & baseCellsDigitsMask))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
 				}
@@ -108,14 +108,14 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 
 			void gatherEliminations(int targetCell, short baseCellsDigits, short otherDigits, scoped in Grid grid)
 			{
-				short elimDigitsMask = (short)(grid.GetCandidates(targetCell) & ~(baseCellsDigits | otherDigits));
+				var elimDigitsMask = (short)(grid.GetCandidates(targetCell) & ~(baseCellsDigits | otherDigits));
 
 				if (EmptyCells.Contains(targetCell))
 				{
 					// Check existence of eliminations.
 					if (elimDigitsMask != 0 && (grid.GetCandidates(targetCell) & baseCellsDigits) != 0)
 					{
-						foreach (int elimDigit in elimDigitsMask)
+						foreach (var elimDigit in elimDigitsMask)
 						{
 							eliminations.Add(
 								new(
@@ -127,7 +127,7 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 					}
 
 					// Highlight candidates.
-					foreach (int digit in (short)(grid.GetCandidates(targetCell) & ~elimDigitsMask))
+					foreach (var digit in (short)(grid.GetCandidates(targetCell) & ~elimDigitsMask))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, targetCell * 9 + digit));
 					}
@@ -156,8 +156,8 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 	{
 		resultOtherDigitsMask = 0;
 
-		short targetCell1Mask = grid.GetCandidates(targetCell1);
-		short targetCell2Mask = grid.GetCandidates(targetCell2);
+		var targetCell1Mask = grid.GetCandidates(targetCell1);
+		var targetCell2Mask = grid.GetCandidates(targetCell2);
 		if ((baseCellsDigitsMask & targetCell1Mask) != 0 ^ (baseCellsDigitsMask & targetCell2Mask) != 0)
 		{
 			// One of two target cells only contains the digits appearing in base cells,
@@ -173,8 +173,8 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 			return false;
 		}
 
-		short otherDigitsMask = (short)((targetCell1Mask | targetCell2Mask) & ~baseCellsDigitsMask);
-		int* housePair = stackalloc[]
+		var otherDigitsMask = (short)((targetCell1Mask | targetCell2Mask) & ~baseCellsDigitsMask);
+		var housePair = stackalloc[]
 		{
 			targetCell1.ToHouseIndex(HouseType.Block),
 			targetCell1.ToHouseIndex(HouseType.Row) == targetCell2.ToHouseIndex(HouseType.Row)
@@ -182,22 +182,22 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 				: targetCell1.ToHouseIndex(HouseType.Column)
 		};
 
-		for (int i = 1; i <= PopCount((uint)otherDigitsMask); i++)
+		for (var i = 1; i <= PopCount((uint)otherDigitsMask); i++)
 		{
-			foreach (int[] digits in otherDigitsMask.GetAllSets().GetSubsets(i))
+			foreach (var digits in otherDigitsMask.GetAllSets().GetSubsets(i))
 			{
 				short currentDigitsMask = 0;
-				foreach (int digit in digits)
+				foreach (var digit in digits)
 				{
 					currentDigitsMask |= (short)(1 << digit);
 				}
 
-				for (int j = 0; j < 2; j++)
+				for (var j = 0; j < 2; j++)
 				{
-					int count = 0;
-					for (int k = 0; k < 9; k++)
+					var count = 0;
+					for (var k = 0; k < 9; k++)
 					{
-						int tempCell = HouseCells[housePair[j]][k];
+						var tempCell = HouseCells[housePair[j]][k];
 						if (tempCell == targetCell1 || tempCell == targetCell2)
 						{
 							// Cannot be itself.
@@ -240,7 +240,7 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
 	private bool CheckCrossLineCells(scoped in ExocetPattern currentJe, short digitsNeedChecking)
 	{
-		foreach (int digitNeedChecking in digitsNeedChecking)
+		foreach (var digitNeedChecking in digitsNeedChecking)
 		{
 			var currentDigitSegment = currentJe.CrossLine & DigitsMap[digitNeedChecking];
 			if (PopCount((uint)currentDigitSegment.RowMask) <= 2
@@ -249,10 +249,10 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 				continue;
 			}
 
-			bool flag = false;
-			foreach (int currentRow in currentDigitSegment.RowMask)
+			var flag = false;
+			foreach (var currentRow in currentDigitSegment.RowMask)
 			{
-				foreach (int currentColumn in currentDigitSegment.ColumnMask)
+				foreach (var currentColumn in currentDigitSegment.ColumnMask)
 				{
 					if (!(currentDigitSegment - (HousesMap[currentRow + 9] | HousesMap[currentColumn + 18])))
 					{

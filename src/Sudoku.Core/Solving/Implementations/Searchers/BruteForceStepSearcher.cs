@@ -16,11 +16,11 @@ internal sealed unsafe partial class BruteForceStepSearcher : IBruteForceStepSea
 			goto ReturnNull;
 		}
 
-		foreach (int offset in BruteForceTryAndErrorOrder)
+		foreach (var offset in BruteForceTryAndErrorOrder)
 		{
 			if (grid.GetStatus(offset) == CellStatus.Empty)
 			{
-				int cand = offset * 9 + Solution[offset];
+				var cand = offset * 9 + Solution[offset];
 				var step = new BruteForceStep(
 					ImmutableArray.Create(new Conclusion(Assignment, cand)),
 					ImmutableArray.Create(View.Empty | new CandidateViewNode(DisplayColorKind.Normal, cand))

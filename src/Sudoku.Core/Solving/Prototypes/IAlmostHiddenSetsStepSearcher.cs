@@ -19,20 +19,20 @@ public interface IAlmostHiddenSetsStepSearcher : IStepSearcher
 	{
 		var result = new List<AlmostHiddenSet>();
 
-		for (int house = 0; house < 27; house++)
+		for (var house = 0; house < 27; house++)
 		{
 			if ((HousesMap[house] & EmptyCells) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
 
-			short digitsMask = grid.GetDigitsUnion(tempMap);
-			for (int size = 2; size < tempMap.Count - 1; size++)
+			var digitsMask = grid.GetDigitsUnion(tempMap);
+			for (var size = 2; size < tempMap.Count - 1; size++)
 			{
-				foreach (int[] digitCombination in digitsMask.GetAllSets().GetSubsets(size))
+				foreach (var digitCombination in digitsMask.GetAllSets().GetSubsets(size))
 				{
 					var cells = CellMap.Empty;
-					foreach (int digit in digitCombination)
+					foreach (var digit in digitCombination)
 					{
 						cells |= CandidatesMap[digit] & HousesMap[house];
 					}
@@ -42,14 +42,14 @@ public interface IAlmostHiddenSetsStepSearcher : IStepSearcher
 					}
 
 					short finalDigitsMask = 0;
-					foreach (int digit in digitCombination)
+					foreach (var digit in digitCombination)
 					{
 						finalDigitsMask |= (short)(1 << digit);
 					}
 
-					short allDigitsMask = grid.GetDigitsUnion(cells);
+					var allDigitsMask = grid.GetDigitsUnion(cells);
 					var finalMaps = new CellMap?[9];
-					for (int digit = 0; digit < 9; digit++)
+					for (var digit = 0; digit < 9; digit++)
 					{
 						if ((finalDigitsMask >> digit & 1) != 0 || (allDigitsMask >> digit & 1) != 0)
 						{

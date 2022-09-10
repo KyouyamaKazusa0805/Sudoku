@@ -64,37 +64,37 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 
 		void a()
 		{
-			string code = string.Join("\r\n\r\n\t", from name in GetAllSetsTypes select G_GetAllSets(name));
+			var code = string.Join("\r\n\r\n\t", from name in GetAllSetsTypes select G_GetAllSets(name));
 			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_GetAllSets}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 
 		void b()
 		{
-			string code = string.Join("\r\n\r\n\t", from name in GetEnumeratorTypes select G_GetEnumerator(name));
+			var code = string.Join("\r\n\r\n\t", from name in GetEnumeratorTypes select G_GetEnumerator(name));
 			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_GetEnumerator}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 
 		void c()
 		{
-			string code = string.Join("\r\n\r\n\t", from pair in GetNextSetTypes select G_GetNextSet(pair.TypeName, pair.Size));
+			var code = string.Join("\r\n\r\n\t", from pair in GetNextSetTypes select G_GetNextSet(pair.TypeName, pair.Size));
 			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_GetNextSet}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 
 		void d()
 		{
-			string code = string.Join("\r\n\r\n\t", from pair in ReverseBitsTypes select G_ReverseBits(pair.TypeName, pair.Size));
+			var code = string.Join("\r\n\r\n\t", from pair in ReverseBitsTypes select G_ReverseBits(pair.TypeName, pair.Size));
 			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_ReverseBits}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 
 		void e()
 		{
-			string code = string.Join("\r\n\r\n\t", from name in SetAtTypes select G_SetAt(name));
+			var code = string.Join("\r\n\r\n\t", from name in SetAtTypes select G_SetAt(name));
 			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_SetAt}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 
 		void f()
 		{
-			string code = string.Join("\r\n\r\n\t", from name in SkipSetBitTypes select G_SkipSetBit(name));
+			var code = string.Join("\r\n\r\n\t", from name in SkipSetBitTypes select G_SkipSetBit(name));
 			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_SkipSetBit}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 	}
@@ -125,12 +125,12 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 			"""
 		);
 
-		foreach (string name in GetAllSetsTypes)
+		foreach (var name in GetAllSetsTypes)
 		{
 			sb.AppendLine($"\tpublic static partial ReadOnlySpan<int> GetAllSets(this {name} @this);");
 		}
 		sb.AppendLine();
-		foreach (string name in GetEnumeratorTypes)
+		foreach (var name in GetEnumeratorTypes)
 		{
 			sb.AppendLine($"\tpublic static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this {name} @this);");
 		}
@@ -145,12 +145,12 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 			sb.AppendLine($"\tpublic static partial void ReverseBits(this scoped ref {name} @this);");
 		}
 		sb.AppendLine();
-		foreach (string name in SetAtTypes)
+		foreach (var name in SetAtTypes)
 		{
 			sb.AppendLine($"\tpublic static partial int SetAt(this {name} @this, int order);");
 		}
 		sb.AppendLine();
-		foreach (string name in SkipSetBitTypes)
+		foreach (var name in SkipSetBitTypes)
 		{
 			sb.AppendLine($"\tpublic static partial {name} SkipSetBit(this {name} @this, int setBitPosCount);");
 		}
@@ -164,7 +164,7 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 	/// <returns>The code.</returns>
 	private string G_GetAllSets(string typeName)
 	{
-		string popCountStr = typeName switch
+		var popCountStr = typeName switch
 		{
 			"uint" or "ulong" => "@this",
 			"byte" or "sbyte" or "int" or "short" or "ushort" => "(uint)@this",
@@ -300,10 +300,10 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 				"""
 			);
 
-		string conversion = typeName switch { "byte" => "(byte)", "short" => "(short)", _ => string.Empty };
+		var conversion = typeName switch { "byte" => "(byte)", "short" => "(short)", _ => string.Empty };
 		for (int z = 1, t = 0; z < size; z <<= 1, t++)
 		{
-			string q = defaults[size][t];
+			var q = defaults[size][t];
 			sb.AppendLine($"\t\t@this = {conversion}(@this >> {z} & {q} | (@this & {q}) << {z});");
 		}
 
@@ -350,8 +350,8 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 	/// <returns>The code.</returns>
 	private string G_SkipSetBit(string typeName)
 	{
-		string conversion = typeName switch { "byte" => "(byte)", "short" => "(short)", _ => string.Empty };
-		int size = typeName switch { "byte" => 8, "short" => 16, "int" => 32, "long" => 64 };
+		var conversion = typeName switch { "byte" => "(byte)", "short" => "(short)", _ => string.Empty };
+		var size = typeName switch { "byte" => 8, "short" => 16, "int" => 32, "long" => 64 };
 		return
 			$$"""
 				/// <summary>

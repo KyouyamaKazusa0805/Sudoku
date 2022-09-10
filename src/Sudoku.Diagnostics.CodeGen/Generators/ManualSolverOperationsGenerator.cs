@@ -70,7 +70,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 					continue;
 				}
 
-				string searcherFullTypeName = $"Sudoku.Solving.Prototypes.I{searcherTypeName}";
+				var searcherFullTypeName = $"Sudoku.Solving.Prototypes.I{searcherTypeName}";
 				var interfaceType = compilation.GetTypeByMetadataName(searcherFullTypeName);
 				if (interfaceType is not { AllInterfaces: var interfaceBaseInterfaces })
 				{
@@ -92,7 +92,7 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 			}
 		}
 
-		string targetPropertiesCode = string.Join(
+		var targetPropertiesCode = string.Join(
 			"\r\n\r\n\t",
 			from info in foundResultInfos
 			let typeStr = info.DerivedInterfaceType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)

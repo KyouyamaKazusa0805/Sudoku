@@ -37,13 +37,13 @@ public sealed class Help : IExecutable
 			// Iterates on each command type, to get the maximum length of the command,
 			// in order to display the commands with characters aligned.
 			var commandTypes = thisAssembly.GetDerivedTypes<IExecutable>();
-			int maxWidth = 0;
+			var maxWidth = 0;
 			var listOfDescriptionParts = new List<(string CommandName, IEnumerable<string> DescriptionRawParts)>();
 			foreach (var commandType in commandTypes)
 			{
 				var commandAttribute = commandType.GetCustomAttribute<RootCommandAttribute>()!;
 
-				string commandName = commandAttribute.Name;
+				var commandName = commandAttribute.Name;
 				maxWidth = Max(commandName.Length, maxWidth);
 
 				var parts = commandAttribute.Description.SplitByLength(Console.LargestWindowWidth);
@@ -108,7 +108,7 @@ public sealed class Help : IExecutable
 				// Sort the attributes, and put the pattern syntax as the first place always.
 				if (!firstIsPattern)
 				{
-					for (int i = 1; i < otherArgsCount + 1; i++)
+					for (var i = 1; i < otherArgsCount + 1; i++)
 					{
 						if (usageAttributes[i].IsPattern)
 						{
@@ -121,7 +121,7 @@ public sealed class Help : IExecutable
 				// Then output the details.
 				foreach (var usageAttribute in usageAttributes)
 				{
-					string patternSyntax = usageAttribute.ExampleCommand;
+					var patternSyntax = usageAttribute.ExampleCommand;
 					var parts = usageAttribute.Description?.SplitByLength(Console.LargestWindowWidth);
 					if (usageAttribute.IsPattern)
 					{
@@ -182,10 +182,10 @@ public sealed class Help : IExecutable
 					{
 						// l2 is not null
 						var config = thisAssembly.GetCustomAttribute<GlobalConfigurationAttribute>() ?? new();
-						string fullCommandNameSuffix = config.FullCommandNamePrefix;
-						string shortCommandNameSuffix = config.ShortCommandNamePrefix;
-						string fullCommand = $"{fullCommandNameSuffix}{fullName}";
-						string shortCommand = $"{shortCommandNameSuffix}{shortName}";
+						var fullCommandNameSuffix = config.FullCommandNamePrefix;
+						var shortCommandNameSuffix = config.ShortCommandNamePrefix;
+						var fullCommand = $"{fullCommandNameSuffix}{fullName}";
+						var shortCommand = $"{shortCommandNameSuffix}{shortName}";
 
 						doubleArguments.Add(
 							(

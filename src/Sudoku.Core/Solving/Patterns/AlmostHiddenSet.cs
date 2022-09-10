@@ -26,7 +26,7 @@ public sealed class AlmostHiddenSet :
 		(DigitsMask, Map, AllDigitsMask) = (digitMask, map, allDigitsMask);
 
 		var tempDic = new Dictionary<int, CellMap>(9);
-		for (int i = 0; i < digitsMap.Length; i++)
+		for (var i = 0; i < digitsMap.Length; i++)
 		{
 			if (digitsMap[i] is { } digitMap)
 			{
@@ -46,7 +46,7 @@ public sealed class AlmostHiddenSet :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			_ = Map.AllSetsAreInOneHouse(out int houseIndex);
+			_ = Map.AllSetsAreInOneHouse(out var houseIndex);
 			return houseIndex;
 		}
 	}
@@ -73,11 +73,11 @@ public sealed class AlmostHiddenSet :
 		get
 		{
 			var result = new List<(int, CellMap, int, CellMap)>();
-			short unusedDigitsMask = (short)(AllDigitsMask & ~DigitsMask);
-			foreach (int[] digitPair in unusedDigitsMask.GetAllSets().GetSubsets(2))
+			var unusedDigitsMask = (short)(AllDigitsMask & ~DigitsMask);
+			foreach (var digitPair in unusedDigitsMask.GetAllSets().GetSubsets(2))
 			{
-				int digit1 = digitPair[0];
-				int digit2 = digitPair[1];
+				var digit1 = digitPair[0];
+				var digit2 = digitPair[1];
 				var cells1 = DigitsMap[digit1];
 				var cells2 = DigitsMap[digit2];
 				foreach (var cells1Case in cells1 | cells1.Count)
@@ -119,8 +119,8 @@ public sealed class AlmostHiddenSet :
 	public override int GetHashCode()
 	{
 		short mask = 0;
-		int i = 0;
-		foreach (int cell in HouseCells[House])
+		var i = 0;
+		foreach (var cell in HouseCells[House])
 		{
 			if (Map.Contains(cell))
 			{
@@ -137,8 +137,8 @@ public sealed class AlmostHiddenSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string digitsStr = DigitMaskFormatter.Format(DigitsMask);
-		string houseStr = HouseFormatter.Format(1 << House);
+		var digitsStr = DigitMaskFormatter.Format(DigitsMask);
+		var houseStr = HouseFormatter.Format(1 << House);
 		return $"{digitsStr}/{Map} {R["KeywordIn"]} {houseStr}";
 	}
 
@@ -150,20 +150,20 @@ public sealed class AlmostHiddenSet :
 
 		var result = new List<AlmostHiddenSet>();
 
-		for (int house = 0; house < 27; house++)
+		for (var house = 0; house < 27; house++)
 		{
 			if ((HousesMap[house] & emptyMap) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
 
-			short digitsMask = grid.GetDigitsUnion(tempMap);
-			for (int size = 2; size < tempMap.Count - 1; size++)
+			var digitsMask = grid.GetDigitsUnion(tempMap);
+			for (var size = 2; size < tempMap.Count - 1; size++)
 			{
-				foreach (int[] digitCombination in digitsMask.GetAllSets().GetSubsets(size))
+				foreach (var digitCombination in digitsMask.GetAllSets().GetSubsets(size))
 				{
 					var cells = CellMap.Empty;
-					foreach (int digit in digitCombination)
+					foreach (var digit in digitCombination)
 					{
 						cells |= candidatesMap[digit] & HousesMap[house];
 					}
@@ -173,14 +173,14 @@ public sealed class AlmostHiddenSet :
 					}
 
 					short finalDigitsMask = 0;
-					foreach (int digit in digitCombination)
+					foreach (var digit in digitCombination)
 					{
 						finalDigitsMask |= (short)(1 << digit);
 					}
 
-					short allDigitsMask = grid.GetDigitsUnion(cells);
+					var allDigitsMask = grid.GetDigitsUnion(cells);
 					var finalMaps = new CellMap?[9];
-					for (int digit = 0; digit < 9; digit++)
+					for (var digit = 0; digit < 9; digit++)
 					{
 						if ((finalDigitsMask >> digit & 1) != 0 || (allDigitsMask >> digit & 1) != 0)
 						{

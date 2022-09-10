@@ -29,7 +29,7 @@ public static class MissingDigitsSearcher
 		}
 
 		using scoped var list = new ValueList<int>(byte.MaxValue);
-		foreach (int candidate in grid)
+		foreach (var candidate in grid)
 		{
 			var newGrid = grid;
 			newGrid[candidate / 9] = candidate % 9;

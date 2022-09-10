@@ -15,9 +15,9 @@ public readonly record struct ExocetElimination(Conclusion[] Conclusions, Exocet
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string header = R[$"Exocet{Reason}EliminationName"]!;
-		string snippet = R["ExocetElimination"]!;
-		string elim = ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
+		var header = R[$"Exocet{Reason}EliminationName"]!;
+		var snippet = R["ExocetElimination"]!;
+		var elim = ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
 		return $"* {header}{snippet}{elim}";
 	}
 }

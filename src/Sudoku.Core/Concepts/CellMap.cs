@@ -280,7 +280,7 @@ public struct CellMap :
 	{
 		get
 		{
-			int z = 0;
+			var z = 0;
 
 #pragma warning disable IDE0055
 			if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) z |=       0x1;
@@ -342,7 +342,7 @@ public struct CellMap :
 
 			long value;
 			int i, pos = 0;
-			int[] arr = new int[_count];
+			var arr = new int[_count];
 			if (_low != 0)
 			{
 				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
@@ -589,13 +589,13 @@ public struct CellMap :
 		static string tableToString(scoped in CellMap @this)
 		{
 			scoped var sb = new StringHandler((3 * 7 + 2) * 13);
-			for (int i = 0; i < 3; i++)
+			for (var i = 0; i < 3; i++)
 			{
-				for (int bandLn = 0; bandLn < 3; bandLn++)
+				for (var bandLn = 0; bandLn < 3; bandLn++)
 				{
-					for (int j = 0; j < 3; j++)
+					for (var j = 0; j < 3; j++)
 					{
-						for (int columnLn = 0; columnLn < 3; columnLn++)
+						for (var columnLn = 0; columnLn < 3; columnLn++)
 						{
 							sb.Append(@this.Contains((i * 3 + bandLn) * 9 + j * 3 + columnLn) ? '*' : '.');
 							sb.Append(' ');
@@ -626,7 +626,7 @@ public struct CellMap :
 		{
 			scoped var sb = new StringHandler(81);
 			int i;
-			long value = @this._low;
+			var value = @this._low;
 			for (i = 0; i < 27; i++, value >>= 1)
 			{
 				sb.Append(value & 1);
@@ -673,7 +673,7 @@ public struct CellMap :
 	public readonly CellMap Slice(int start, int count)
 	{
 		var result = Empty;
-		int[] offsets = Offsets;
+		var offsets = Offsets;
 		for (int i = start, end = start + count; i < end; i++)
 		{
 			result += offsets[i];
@@ -689,8 +689,8 @@ public struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(int item)
 	{
-		scoped ref long v = ref item / Shifting == 0 ? ref _low : ref _high;
-		bool older = Contains(item);
+		scoped ref var v = ref item / Shifting == 0 ? ref _low : ref _high;
+		var older = Contains(item);
 		v |= 1L << item % Shifting;
 		if (!older)
 		{
@@ -713,8 +713,8 @@ public struct CellMap :
 			throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid.");
 		}
 
-		scoped ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
-		bool older = Contains(offset);
+		scoped ref var v = ref offset / Shifting == 0 ? ref _low : ref _high;
+		var older = Contains(offset);
 		v |= checked(1L << offset % Shifting);
 		if (!older)
 		{
@@ -728,7 +728,7 @@ public struct CellMap :
 	/// <param name="offsets">The offsets to add.</param>
 	public void AddRange(scoped in ReadOnlySpan<int> offsets)
 	{
-		foreach (int cell in offsets)
+		foreach (var cell in offsets)
 		{
 			Add(cell);
 		}
@@ -737,7 +737,7 @@ public struct CellMap :
 	/// <inheritdoc cref="AddRange(in ReadOnlySpan{int})"/>
 	public void AddRange(IEnumerable<int> offsets)
 	{
-		foreach (int cell in offsets)
+		foreach (var cell in offsets)
 		{
 			Add(cell);
 		}
@@ -755,7 +755,7 @@ public struct CellMap :
 	public void AddRangeChecked(IEnumerable<int> offsets)
 	{
 		const string error = "The value cannot be added because the cell offset is an invalid value.";
-		foreach (int cell in offsets)
+		foreach (var cell in offsets)
 		{
 			Add(cell is < 0 or >= 81 ? throw new InvalidOperationException(error) : cell);
 		}
@@ -768,8 +768,8 @@ public struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Remove(int offset)
 	{
-		scoped ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
-		bool older = Contains(offset);
+		scoped ref var v = ref offset / Shifting == 0 ? ref _low : ref _high;
+		var older = Contains(offset);
 		v &= ~(1L << offset % Shifting);
 		if (older)
 		{
@@ -871,8 +871,8 @@ public struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	bool ISet<int>.Add(int item)
 	{
-		scoped ref long v = ref item / Shifting == 0 ? ref _low : ref _high;
-		bool older = Contains(item);
+		scoped ref var v = ref item / Shifting == 0 ? ref _low : ref _high;
+		var older = Contains(item);
 		v |= 1L << item % Shifting;
 		if (!older)
 		{
@@ -889,8 +889,8 @@ public struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	bool ICollection<int>.Remove(int item)
 	{
-		scoped ref long v = ref item / Shifting == 0 ? ref _low : ref _high;
-		bool older = Contains(item);
+		scoped ref var v = ref item / Shifting == 0 ? ref _low : ref _high;
+		var older = Contains(item);
 		v &= ~(1L << item % Shifting);
 		if (older)
 		{
@@ -979,11 +979,11 @@ public struct CellMap :
 	public static CellMap operator +(scoped in CellMap offsets)
 	{
 		long lowerBits = 0, higherBits = 0;
-		int i = 0;
-		foreach (int offset in offsets.Offsets)
+		var i = 0;
+		foreach (var offset in offsets.Offsets)
 		{
 			long low = 0, high = 0;
-			foreach (int peer in Peers[offset])
+			foreach (var peer in Peers[offset])
 			{
 				(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
 			}
@@ -1184,7 +1184,7 @@ public struct CellMap :
 		}
 
 		int totalIndex = 0, n = cells._count;
-		int* buffer = stackalloc int[subsetSize];
+		var buffer = stackalloc int[subsetSize];
 		var result = new CellMap[Combinatorials[n - 1, subsetSize - 1]];
 		f(subsetSize, n, subsetSize, cells.Offsets);
 		return result;
@@ -1192,7 +1192,7 @@ public struct CellMap :
 
 		void f(int size, int last, int index, int[] offsets)
 		{
-			for (int i = last; i >= index; i--)
+			for (var i = last; i >= index; i--)
 			{
 				buffer[index - 1] = i - 1;
 				if (index > 1)
@@ -1201,8 +1201,8 @@ public struct CellMap :
 				}
 				else
 				{
-					int[] temp = new int[size];
-					for (int j = 0; j < size; j++)
+					var temp = new int[size];
+					for (var j = 0; j < size; j++)
 					{
 						temp[j] = offsets[buffer[j]];
 					}
@@ -1258,18 +1258,18 @@ public struct CellMap :
 			return Array.Empty<CellMap>();
 		}
 
-		int n = cells._count;
+		var n = cells._count;
 
-		int desiredSize = 0;
-		int length = Min(n, subsetSize);
-		for (int i = 1; i <= length; i++)
+		var desiredSize = 0;
+		var length = Min(n, subsetSize);
+		for (var i = 1; i <= length; i++)
 		{
-			int target = Combinatorials[n - 1, i - 1];
+			var target = Combinatorials[n - 1, i - 1];
 			desiredSize += target;
 		}
 
 		var result = new List<CellMap>(desiredSize);
-		for (int i = 1; i <= length; i++)
+		for (var i = 1; i <= length; i++)
 		{
 			result.AddRange(cells & i);
 		}
@@ -1334,7 +1334,7 @@ public struct CellMap :
 	public static Candidates operator *(scoped in CellMap @base, int digit)
 	{
 		var result = Candidates.Empty;
-		foreach (int cell in @base.Offsets)
+		foreach (var cell in @base.Offsets)
 		{
 			result.AddAnyway(cell * 9 + digit);
 		}
@@ -1364,7 +1364,7 @@ public struct CellMap :
 	public static short operator /(scoped in CellMap map, int houseIndex)
 	{
 		short p = 0, i = 0;
-		foreach (int cell in HouseCells[houseIndex])
+		foreach (var cell in HouseCells[houseIndex])
 		{
 			if (map.Contains(cell))
 			{
@@ -1519,7 +1519,7 @@ public struct CellMap :
 	public static implicit operator CellMap(scoped in Span<int> offsets)
 	{
 		var result = Empty;
-		foreach (int offset in offsets)
+		foreach (var offset in offsets)
 		{
 			result.Add(offset);
 		}
@@ -1534,7 +1534,7 @@ public struct CellMap :
 	public static implicit operator CellMap(scoped in ReadOnlySpan<int> offsets)
 	{
 		var result = Empty;
-		foreach (int offset in offsets)
+		foreach (var offset in offsets)
 		{
 			result.Add(offset);
 		}
@@ -1549,7 +1549,7 @@ public struct CellMap :
 	public static explicit operator CellMap(int[] offsets)
 	{
 		var result = Empty;
-		foreach (int offset in offsets)
+		foreach (var offset in offsets)
 		{
 			result.Add(offset);
 		}
@@ -1568,7 +1568,7 @@ public struct CellMap :
 	public static explicit operator checked CellMap(int[] offsets)
 	{
 		var result = Empty;
-		foreach (int offset in offsets)
+		foreach (var offset in offsets)
 		{
 			result.AddChecked(offset);
 		}

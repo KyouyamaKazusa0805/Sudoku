@@ -38,17 +38,17 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 			new[] { 3, 4, 6, 7 }, new[] { 3, 5, 6, 8 }, new[] { 4, 5, 7, 8 }
 		};
 
-		int i = 0;
-		foreach (int[] houseQuad in houses)
+		var i = 0;
+		foreach (var houseQuad in houses)
 		{
 			// Gather triples.
-			foreach (int[] triple in houseQuad.GetSubsets(3))
+			foreach (var triple in houseQuad.GetSubsets(3))
 			{
-				foreach (int a in HousesMap[triple[0]])
+				foreach (var a in HousesMap[triple[0]])
 				{
-					foreach (int b in HousesMap[triple[1]])
+					foreach (var b in HousesMap[triple[1]])
 					{
-						foreach (int c in HousesMap[triple[2]])
+						foreach (var c in HousesMap[triple[2]])
 						{
 							if ((CellMap.Empty + a + b).InOneHouse && (CellMap.Empty + a + c).InOneHouse)
 							{
@@ -72,13 +72,13 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 			}
 
 			// Gather quadruples.
-			foreach (int a in HousesMap[houseQuad[0]])
+			foreach (var a in HousesMap[houseQuad[0]])
 			{
-				foreach (int b in HousesMap[houseQuad[1]])
+				foreach (var b in HousesMap[houseQuad[1]])
 				{
-					foreach (int c in HousesMap[houseQuad[2]])
+					foreach (var c in HousesMap[houseQuad[2]])
 					{
-						foreach (int d in HousesMap[houseQuad[3]])
+						foreach (var d in HousesMap[houseQuad[3]])
 						{
 							if (!(CellMap.Empty + a + b).InOneHouse || !(CellMap.Empty + a + c).InOneHouse
 								|| !(CellMap.Empty + b + d).InOneHouse || !(CellMap.Empty + c + d).InOneHouse)
@@ -94,9 +94,9 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 		}
 
 		i = 0;
-		for (int firstIndex = 0; firstIndex < Patterns.Length - 1; firstIndex++)
+		for (var firstIndex = 0; firstIndex < Patterns.Length - 1; firstIndex++)
 		{
-			for (int secondIndex = firstIndex + 1; secondIndex < Patterns.Length; secondIndex++)
+			for (var secondIndex = firstIndex + 1; secondIndex < Patterns.Length; secondIndex++)
 			{
 				scoped ref readonly var a = ref Patterns[firstIndex];
 				scoped ref readonly var b = ref Patterns[secondIndex];
@@ -148,12 +148,12 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 		int c1, int c2, int pivot, scoped in Grid grid,
 		scoped out CellMap house1CellsExcluded, scoped out CellMap house2CellsExcluded)
 	{
-		int pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
+		var pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
 		var excluded1 = HousesMap[(CellMap.Empty + c1 + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
 		var excluded2 = HousesMap[(CellMap.Empty + c2 + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
 
 		short finalMask = 0;
-		foreach (int digit in grid.GetDigitsUnion(CellMap.Empty + c1 + c2 + pivot))
+		foreach (var digit in grid.GetDigitsUnion(CellMap.Empty + c1 + c2 + pivot))
 		{
 			if (isFireworkFor(digit, excluded1, grid) && isFireworkFor(digit, excluded2, grid))
 			{
@@ -167,7 +167,7 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 
 		static bool isFireworkFor(int digit, scoped in CellMap houseCellsExcluded, scoped in Grid grid)
 		{
-			foreach (int cell in houseCellsExcluded)
+			foreach (var cell in houseCellsExcluded)
 			{
 				switch (grid[cell])
 				{

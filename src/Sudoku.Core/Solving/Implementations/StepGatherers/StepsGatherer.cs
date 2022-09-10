@@ -14,7 +14,7 @@ public sealed class StepsGatherer :
 	/// <inheritdoc/>
 	public IEnumerable<IGrouping<string, IStep>> Search(scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
-		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out bool? sukaku))
+		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var sukaku))
 		{
 			return Array.Empty<IGrouping<string, IStep>>();
 		}

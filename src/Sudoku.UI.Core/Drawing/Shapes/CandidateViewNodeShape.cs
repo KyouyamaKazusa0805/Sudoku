@@ -46,7 +46,7 @@ public sealed class CandidateViewNodeShape : DrawingElement
 		{
 			_preference = value;
 
-			for (int i = 0; i < 9; i++)
+			for (var i = 0; i < 9; i++)
 			{
 				_gridLayout.AddChildren(
 					_ellipses[i] = new Ellipse()
@@ -110,7 +110,7 @@ public sealed class CandidateViewNodeShape : DrawingElement
 	public override int GetHashCode()
 	{
 		var result = new HashCode();
-		for (int i = 0; i < 9; i++)
+		for (var i = 0; i < 9; i++)
 		{
 			result.Add(_identifiers.GetHashCode());
 		}

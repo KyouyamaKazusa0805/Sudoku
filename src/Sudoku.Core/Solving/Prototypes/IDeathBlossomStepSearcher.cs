@@ -27,28 +27,28 @@ public interface IDeathBlossomStepSearcher : IAlmostLockedSetsStepSearcher
 	{
 		// Get all bi-value-cell ALSes.
 		var result = new GatheredData();
-		foreach (int cell in BivalueCells)
+		foreach (var cell in BivalueCells)
 		{
 			var als = new AlmostLockedSet(grid.GetCandidates(cell), CellMap.Empty + cell, PeersMap[cell] & EmptyCells);
-			foreach (int peerCell in PeersMap[cell])
+			foreach (var peerCell in PeersMap[cell])
 			{
 				append(als, peerCell, result);
 			}
 		}
 
 		// Get all non-bi-value-cell ALSes.
-		for (int houseIndex = 0; houseIndex < 27; houseIndex++)
+		for (var houseIndex = 0; houseIndex < 27; houseIndex++)
 		{
 			if ((HousesMap[houseIndex] & EmptyCells) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
 
-			for (int size = 2; size <= tempMap.Count - 1; size++)
+			for (var size = 2; size <= tempMap.Count - 1; size++)
 			{
 				foreach (var map in tempMap & size)
 				{
-					short blockMask = map.BlockMask;
+					var blockMask = map.BlockMask;
 					if (IsPow2(blockMask) && houseIndex >= 9)
 					{
 						// All ALS cells lying on a box-row or a box-column
@@ -58,7 +58,7 @@ public interface IDeathBlossomStepSearcher : IAlmostLockedSetsStepSearcher
 
 					// Get all candidates in these cells.
 					short digitsMask = 0;
-					foreach (int cell in map)
+					foreach (var cell in map)
 					{
 						digitsMask |= grid.GetCandidates(cell);
 					}
@@ -67,7 +67,7 @@ public interface IDeathBlossomStepSearcher : IAlmostLockedSetsStepSearcher
 						continue;
 					}
 
-					int coveredLine = map.CoveredLine;
+					var coveredLine = map.CoveredLine;
 
 					var als = new AlmostLockedSet(
 						digitsMask,
@@ -76,9 +76,9 @@ public interface IDeathBlossomStepSearcher : IAlmostLockedSetsStepSearcher
 							? ((HousesMap[houseIndex] | HousesMap[coveredLine]) & EmptyCells) - map
 							: tempMap - map
 					);
-					foreach (int digit in digitsMask)
+					foreach (var digit in digitsMask)
 					{
-						foreach (int peerCell in map % CandidatesMap[digit])
+						foreach (var peerCell in map % CandidatesMap[digit])
 						{
 							append(als, peerCell, result);
 						}
@@ -92,7 +92,7 @@ public interface IDeathBlossomStepSearcher : IAlmostLockedSetsStepSearcher
 
 		static void append(AlmostLockedSet structure, int cell, GatheredData gatheredData)
 		{
-			foreach (int digit in structure.DigitsMask)
+			foreach (var digit in structure.DigitsMask)
 			{
 				if (gatheredData.TryGetValue(cell, out var structuresGroupedByCell))
 				{

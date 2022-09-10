@@ -35,7 +35,7 @@ public sealed class Generate : IExecutable
 				while (true)
 				{
 					var targetPuzzle = generator.Generate();
-					int c = targetPuzzle.GivensCount;
+					var c = targetPuzzle.GivensCount;
 					if (c < Range.Min || c >= Range.Max)
 					{
 						continue;
@@ -52,7 +52,7 @@ public sealed class Generate : IExecutable
 				while (true)
 				{
 					var targetPuzzle = generator.Generate();
-					int c = targetPuzzle.GivensCount;
+					var c = targetPuzzle.GivensCount;
 					if (c < Range.Min || c >= Range.Max)
 					{
 						continue;

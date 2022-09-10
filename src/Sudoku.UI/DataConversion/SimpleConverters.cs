@@ -220,11 +220,11 @@ internal static class SimpleConverters
 				>= Key.Number0 and <= Key.Number9 or >= Key.NumberPad0 and <= Key.NumberPad9,
 				..,
 				>= Key.Number0 and <= Key.Number9 or >= Key.NumberPad0 and <= Key.NumberPad9,
-			] when isConsecutiveNumber(virtualKeys, out int a, out int b) => $"{a}-{b}",
+			] when isConsecutiveNumber(virtualKeys, out var a, out var b) => $"{a}-{b}",
 
 			// Consecutive letter keys.
 			[>= Key.A and <= Key.Z, .., >= Key.A and <= Key.Z]
-			when isConsecutiveLetters(virtualKeys, out char a, out char b) => $"{a}-{b}",
+			when isConsecutiveLetters(virtualKeys, out var a, out var b) => $"{a}-{b}",
 
 			// Otherwise.
 			_ => string.Join('/', from virtualKey in virtualKeys select ConvertVirtualKeyToName(new[] { virtualKey }))

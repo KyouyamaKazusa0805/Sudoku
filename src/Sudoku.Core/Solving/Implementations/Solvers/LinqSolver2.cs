@@ -112,7 +112,7 @@ public sealed class LinqSolver2 : ISimpleSolver
 		}
 
 		Debug.Assert(rawResult.Count == 81);
-		int[] gridArray = new int[81];
+		var gridArray = new int[81];
 		foreach (var (rawCell, rawDigit) in rawResult)
 		{
 			if (rawDigit is not [var digitChar and >= '1' and <= '9']
@@ -121,8 +121,8 @@ public sealed class LinqSolver2 : ISimpleSolver
 				throw new("Unexpected error.");
 			}
 
-			int cell = (rIndex - 'A') * 9 + (cIndex - '1');
-			int digit = digitChar - '1';
+			var cell = (rIndex - 'A') * 9 + (cIndex - '1');
+			var digit = digitChar - '1';
 			gridArray[cell] = digit;
 		}
 
@@ -161,10 +161,10 @@ public sealed class LinqSolver2 : ISimpleSolver
 	/// <returns>The final zipped collection.</returns>
 	private string[][] Zip(string[] a, string[] b)
 	{
-		int n = Min(a.Length, b.Length);
-		string[][] sd = new string[n][];
+		var n = Min(a.Length, b.Length);
+		var sd = new string[n][];
 
-		for (int i = 0; i < n; i++)
+		for (var i = 0; i < n; i++)
 		{
 			sd[i] = new[] { a[i].ToString(), b[i].ToString() };
 		}
@@ -181,7 +181,7 @@ public sealed class LinqSolver2 : ISimpleSolver
 		var grid2 = from c in gridStr where "0.-123456789".Contains(c) select c;
 		var values = Coordinates.ToDictionary(static s => s, static s => Digits);
 
-		foreach (string[] sd in Zip(Coordinates, (from s in gridStr select s.ToString()).ToArray()))
+		foreach (var sd in Zip(Coordinates, (from s in gridStr select s.ToString()).ToArray()))
 		{
 			string s = sd[0], d = sd[1];
 			if (Digits.Contains(d) && Assign(values, s, d) is null)
@@ -215,7 +215,7 @@ public sealed class LinqSolver2 : ISimpleSolver
 		}
 
 		// Choose the unfilled block s with the fewest possibilities.
-		string s2 = (
+		var s2 = (
 			from s in Coordinates
 			where values[s].Length > 1
 			orderby values[s].Length
@@ -263,7 +263,7 @@ public sealed class LinqSolver2 : ISimpleSolver
 			case 1:
 			{
 				// If there is only one value (d2) left in block, remove it from peers.
-				string d2 = values[s];
+				var d2 = values[s];
 				if (!AllNotNull(from s2 in Peers[s] select Eliminate(values, s2, d2)))
 				{
 					return null;
@@ -274,7 +274,7 @@ public sealed class LinqSolver2 : ISimpleSolver
 		}
 
 		// Now check the places where d appears in the units of s.
-		foreach (string[] u in Houses[s])
+		foreach (var u in Houses[s])
 		{
 			var dplaces = from s2 in u where values[s2].Contains(d) select s2;
 			if (!dplaces.Any())

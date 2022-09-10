@@ -30,7 +30,7 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 		static string defaultToString(short digitsMask, string separator)
 		{
 			scoped var sb = new StringHandler(9);
-			foreach (int digit in digitsMask)
+			foreach (var digit in digitsMask)
 			{
 				sb.Append(digit + 1);
 				sb.Append(separator);
@@ -65,7 +65,7 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, string separator)
 	{
 		short targetMask = 0;
-		foreach (int element in elements)
+		foreach (var element in elements)
 		{
 			targetMask |= (short)(1 << element);
 		}
@@ -77,7 +77,7 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, FormattingMode formattingMode)
 	{
 		short targetMask = 0;
-		foreach (int element in elements)
+		foreach (var element in elements)
 		{
 			targetMask |= (short)(1 << element);
 		}

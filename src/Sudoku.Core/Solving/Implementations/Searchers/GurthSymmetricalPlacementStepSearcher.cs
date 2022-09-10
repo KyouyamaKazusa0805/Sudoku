@@ -14,7 +14,7 @@ internal sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : IGu
 			&CheckCentral
 		};
 
-		for (int i = 0; i < 3; i++)
+		for (var i = 0; i < 3; i++)
 		{
 			if (methods[i](grid) is not { } step)
 			{
@@ -49,7 +49,7 @@ internal sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : IGu
 				continue;
 			}
 
-			int? currentMappingRelationDigit = mapping[digit];
+			var currentMappingRelationDigit = mapping[digit];
 
 			colorIndices[digit] = colorIndexCurrent;
 			digitsMaskBucket |= (short)(1 << digit);
@@ -62,7 +62,7 @@ internal sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : IGu
 			colorIndexCurrent++;
 		}
 
-		foreach (int cell in ~grid.EmptyCells)
+		foreach (var cell in ~grid.EmptyCells)
 		{
 			cellOffsets.Add(new(colorIndices[grid[cell]], cell));
 		}
@@ -84,8 +84,8 @@ partial class GurthSymmetricalPlacementStepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static partial GurthSymmetricalPlacementStep? CheckDiagonal(in Grid grid)
 	{
-		bool diagonalHasEmptyCell = false;
-		for (int i = 0; i < 9; i++)
+		var diagonalHasEmptyCell = false;
+		for (var i = 0; i < 9; i++)
 		{
 			if (grid.GetStatus(i * 9 + i) == CellStatus.Empty)
 			{
@@ -99,14 +99,14 @@ partial class GurthSymmetricalPlacementStepSearcher
 			return null;
 		}
 
-		int?[] mapping = new int?[9];
-		for (int i = 0; i < 9; i++)
+		var mapping = new int?[9];
+		for (var i = 0; i < 9; i++)
 		{
-			for (int j = 0; j < i; j++)
+			for (var j = 0; j < i; j++)
 			{
-				int c1 = i * 9 + j;
-				int c2 = j * 9 + i;
-				bool condition = grid.GetStatus(c1) == CellStatus.Empty;
+				var c1 = i * 9 + j;
+				var c2 = j * 9 + i;
+				var condition = grid.GetStatus(c1) == CellStatus.Empty;
 				if (condition ^ grid.GetStatus(c2) == CellStatus.Empty)
 				{
 					// One of two cells is empty. Not this symmetry.
@@ -121,7 +121,7 @@ partial class GurthSymmetricalPlacementStepSearcher
 				int d1 = grid[c1], d2 = grid[c2];
 				if (d1 == d2)
 				{
-					int? o1 = mapping[d1];
+					var o1 = mapping[d1];
 					if (o1 is null)
 					{
 						mapping[d1] = d1;
@@ -158,9 +158,9 @@ partial class GurthSymmetricalPlacementStepSearcher
 		}
 
 		var singleDigitList = new List<int>();
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
-			int? mappingDigit = mapping[digit];
+			var mappingDigit = mapping[digit];
 			if (!mappingDigit.HasValue || mappingDigit == digit)
 			{
 				singleDigitList.Add(digit);
@@ -170,15 +170,15 @@ partial class GurthSymmetricalPlacementStepSearcher
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
 		var conclusions = new List<Conclusion>();
-		for (int i = 0; i < 9; i++)
+		for (var i = 0; i < 9; i++)
 		{
-			int cell = i * 9 + i;
+			var cell = i * 9 + i;
 			if (grid.GetStatus(cell) != CellStatus.Empty)
 			{
 				continue;
 			}
 
-			foreach (int digit in grid.GetCandidates(cell))
+			foreach (var digit in grid.GetCandidates(cell))
 			{
 				if (singleDigitList.Contains(digit))
 				{
@@ -208,8 +208,8 @@ partial class GurthSymmetricalPlacementStepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static partial GurthSymmetricalPlacementStep? CheckAntiDiagonal(in Grid grid)
 	{
-		bool antiDiagonalHasEmptyCell = false;
-		for (int i = 0; i < 9; i++)
+		var antiDiagonalHasEmptyCell = false;
+		for (var i = 0; i < 9; i++)
 		{
 			if (grid.GetStatus(i * 9 + (8 - i)) == CellStatus.Empty)
 			{
@@ -223,14 +223,14 @@ partial class GurthSymmetricalPlacementStepSearcher
 			return null;
 		}
 
-		int?[] mapping = new int?[9];
-		for (int i = 0; i < 9; i++)
+		var mapping = new int?[9];
+		for (var i = 0; i < 9; i++)
 		{
-			for (int j = 0; j < 8 - i; j++)
+			for (var j = 0; j < 8 - i; j++)
 			{
-				int c1 = i * 9 + j;
-				int c2 = (8 - j) * 9 + (8 - i);
-				bool condition = grid.GetStatus(c1) == CellStatus.Empty;
+				var c1 = i * 9 + j;
+				var c2 = (8 - j) * 9 + (8 - i);
+				var condition = grid.GetStatus(c1) == CellStatus.Empty;
 				if (condition ^ grid.GetStatus(c2) == CellStatus.Empty)
 				{
 					// One of two cells is empty. Not this symmetry.
@@ -245,7 +245,7 @@ partial class GurthSymmetricalPlacementStepSearcher
 				int d1 = grid[c1], d2 = grid[c2];
 				if (d1 == d2)
 				{
-					int? o1 = mapping[d1];
+					var o1 = mapping[d1];
 					if (o1 is null)
 					{
 						mapping[d1] = d1;
@@ -282,9 +282,9 @@ partial class GurthSymmetricalPlacementStepSearcher
 		}
 
 		var singleDigitList = new List<int>();
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
-			int? mappingDigit = mapping[digit];
+			var mappingDigit = mapping[digit];
 			if (!mappingDigit.HasValue || mappingDigit == digit)
 			{
 				singleDigitList.Add(digit);
@@ -294,15 +294,15 @@ partial class GurthSymmetricalPlacementStepSearcher
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
 		var conclusions = new List<Conclusion>();
-		for (int i = 0; i < 9; i++)
+		for (var i = 0; i < 9; i++)
 		{
-			int cell = i * 9 + (8 - i);
+			var cell = i * 9 + (8 - i);
 			if (grid.GetStatus(cell) != CellStatus.Empty)
 			{
 				continue;
 			}
 
-			foreach (int digit in grid.GetCandidates(cell))
+			foreach (var digit in grid.GetCandidates(cell))
 			{
 				if (singleDigitList.Contains(digit))
 				{
@@ -338,11 +338,11 @@ partial class GurthSymmetricalPlacementStepSearcher
 			return null;
 		}
 
-		int?[] mapping = new int?[9];
-		for (int cell = 0; cell < 40; cell++)
+		var mapping = new int?[9];
+		for (var cell = 0; cell < 40; cell++)
 		{
-			int anotherCell = 80 - cell;
-			bool condition = grid.GetStatus(cell) == CellStatus.Empty;
+			var anotherCell = 80 - cell;
+			var condition = grid.GetStatus(cell) == CellStatus.Empty;
 			if (condition ^ grid.GetStatus(anotherCell) == CellStatus.Empty)
 			{
 				// One of two cell is empty, not central symmetry type.
@@ -357,7 +357,7 @@ partial class GurthSymmetricalPlacementStepSearcher
 			int d1 = grid[cell], d2 = grid[anotherCell];
 			if (d1 == d2)
 			{
-				int? o1 = mapping[d1];
+				var o1 = mapping[d1];
 				if (o1 is null)
 				{
 					mapping[d1] = d1;
@@ -392,7 +392,7 @@ partial class GurthSymmetricalPlacementStepSearcher
 			}
 		}
 
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
 			if (mapping[digit] is not null && mapping[digit] != digit)
 			{

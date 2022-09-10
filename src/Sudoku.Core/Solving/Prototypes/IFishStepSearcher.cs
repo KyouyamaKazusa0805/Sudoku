@@ -41,8 +41,8 @@ public interface IFishStepSearcher : IStepSearcher
 			return null;
 		}
 
-		bool isSashimi = false;
-		foreach (int baseSet in baseSets)
+		var isSashimi = false;
+		foreach (var baseSet in baseSets)
 		{
 			if ((HousesMap[baseSet] - fins & CandidatesMap[digit]).Count == 1)
 			{

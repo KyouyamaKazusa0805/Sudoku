@@ -154,7 +154,7 @@ public sealed class Perference : IPreference
 		{
 			if (propertyInfo is { CanRead: true, CanWrite: true })
 			{
-				object? originalValue = propertyInfo.GetValue(this);
+				var originalValue = propertyInfo.GetValue(this);
 				propertyInfo.SetValue(instance, originalValue);
 			}
 		}
@@ -169,7 +169,7 @@ public sealed class Perference : IPreference
 		{
 			if (propertyInfo is { CanRead: true, CanWrite: true })
 			{
-				object? originalValue = propertyInfo.GetValue(newPreferences);
+				var originalValue = propertyInfo.GetValue(newPreferences);
 				propertyInfo.SetValue(this, originalValue);
 			}
 		}

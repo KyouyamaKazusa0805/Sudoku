@@ -8,19 +8,19 @@ internal abstract class FullHouseExerciseGenerator : IExerciseGenerator
 	/// <inheritdoc/>
 	public static unsafe HouseCellChunk Generate()
 	{
-		int* numbers = stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+		var numbers = stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
 
 		// Shuffle.
 		var random = Random.Shared;
-		for (int i = 0; i < 10; i++)
+		for (var i = 0; i < 10; i++)
 		{
-			int rawValue = random.Next(0, 81);
+			var rawValue = random.Next(0, 81);
 			int i1 = rawValue / 9, i2 = rawValue % 9;
 			PointerOperations.Swap(numbers + i1, numbers + i2);
 		}
 
-		int house = random.Next(0, 27);
-		int emptyCellIndex = random.Next(0, 9);
+		var house = random.Next(0, 27);
+		var emptyCellIndex = random.Next(0, 9);
 		numbers[emptyCellIndex] = -1; // Remove the cell.
 
 		return new(house, numbers);

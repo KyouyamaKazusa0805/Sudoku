@@ -40,11 +40,11 @@ public sealed class EliminationNotation :
 	/// <inheritdoc/>
 	public static string ToCandidatesString(scoped in Candidates candidates, scoped in EliminationNotationOptions options)
 	{
-		bool digitFirst = options.DigitFirst;
-		string separator = options.Separator;
+		var digitFirst = options.DigitFirst;
+		var separator = options.Separator;
 
 		scoped var sb = new StringHandler();
-		foreach (int candidate in candidates)
+		foreach (var candidate in candidates)
 		{
 			int cell = candidate / 9, digit = candidate % 9;
 			sb.Append(
@@ -67,14 +67,14 @@ public sealed class EliminationNotation :
 	/// <inheritdoc/>
 	public static Candidates ParseCandidates(string str)
 	{
-		string[] segments = str.Split(' ');
+		var segments = str.Split(' ');
 		if (Array.IndexOf(segments, string.Empty) != -1)
 		{
 			throw new FormatException("The string contains empty segment.");
 		}
 
 		var result = Candidates.Empty;
-		foreach (string segment in segments)
+		foreach (var segment in segments)
 		{
 			if (segment is not
 				[

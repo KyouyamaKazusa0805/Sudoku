@@ -77,9 +77,9 @@ public static unsafe class GridTransformations
 	{
 		fixed (short* p = @this)
 		{
-			for (int i = 0; i < 9; i++)
+			for (var i = 0; i < 9; i++)
 			{
-				for (int j = 0; j < 9; j++)
+				for (var j = 0; j < 9; j++)
 				{
 					PointerOperations.Swap(p + (i * 9 + j), p + (i * 9 + (8 - j)));
 				}
@@ -102,9 +102,9 @@ public static unsafe class GridTransformations
 	{
 		fixed (short* p = @this)
 		{
-			for (int i = 0; i < 9; i++)
+			for (var i = 0; i < 9; i++)
 			{
-				for (int j = 0; j < 9; j++)
+				for (var j = 0; j < 9; j++)
 				{
 					PointerOperations.Swap(p + (i * 9 + j), p + ((8 - i) * 9 + j));
 				}
@@ -127,9 +127,9 @@ public static unsafe class GridTransformations
 	{
 		fixed (short* p = @this)
 		{
-			for (int i = 0; i < 9; i++)
+			for (var i = 0; i < 9; i++)
 			{
-				for (int j = 0; j < 9; j++)
+				for (var j = 0; j < 9; j++)
 				{
 					PointerOperations.Swap(p + (i * 9 + j), p + (j * 9 + i));
 				}
@@ -164,9 +164,9 @@ public static unsafe class GridTransformations
 	{
 		fixed (short* p = @this)
 		{
-			for (int i = 0; i < 9; i++)
+			for (var i = 0; i < 9; i++)
 			{
-				for (int j = 0; j < 9; j++)
+				for (var j = 0; j < 9; j++)
 				{
 					PointerOperations.Swap(p + (i * 9 + j), p + ((8 - j) * 9 + (8 - i)));
 				}
@@ -190,7 +190,7 @@ public static unsafe class GridTransformations
 		var result = Grid.Undefined;
 		fixed (short* pThis = @this, pResult = result)
 		{
-			for (int cell = 0; cell < 81; cell++)
+			for (var cell = 0; cell < 81; cell++)
 			{
 				pResult[cell] = pThis[ClockwiseTable[cell]];
 			}
@@ -214,7 +214,7 @@ public static unsafe class GridTransformations
 		var result = Grid.Undefined;
 		fixed (short* pThis = @this, pResult = result)
 		{
-			for (int cell = 0; cell < 81; cell++)
+			for (var cell = 0; cell < 81; cell++)
 			{
 				pResult[cell] = pThis[CounterclockwiseTable[cell]];
 			}
@@ -238,7 +238,7 @@ public static unsafe class GridTransformations
 		var result = Grid.Undefined;
 		fixed (short* pThis = @this, pResult = result)
 		{
-			for (int cell = 0; cell < 81; cell++)
+			for (var cell = 0; cell < 81; cell++)
 			{
 				pResult[cell] = pThis[PiRotateTable[cell]];
 			}
@@ -272,7 +272,7 @@ public static unsafe class GridTransformations
 
 		fixed (short* p = @this)
 		{
-			for (int i = 0; i < 9; i++)
+			for (var i = 0; i < 9; i++)
 			{
 				PointerOperations.Swap(p + HouseCells[houseIndex1][i], p + HouseCells[houseIndex2][i]);
 			}

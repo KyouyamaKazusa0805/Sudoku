@@ -17,9 +17,9 @@ internal interface IConjugatesGatherer : IStructureGatherer<Conjugate>
 	protected internal static sealed ICollection<Conjugate>?[] Gather()
 	{
 		var conjugatePairs = new ICollection<Conjugate>?[9];
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
-			for (int houseIndex = 0; houseIndex < 27; houseIndex++)
+			for (var houseIndex = 0; houseIndex < 27; houseIndex++)
 			{
 				if ((HousesMap[houseIndex] & CandidatesMap[digit]) is { Count: 2 } temp)
 				{

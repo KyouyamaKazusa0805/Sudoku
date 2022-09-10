@@ -185,8 +185,8 @@ public unsafe ref struct GridParser
 	/// <returns>The result.</returns>
 	private static Grid OnParsingSimpleMultilineGrid(ref GridParser parser)
 	{
-		string[] matches = parser.ParsingValue.MatchAll("""(\+?\d|\.)""");
-		int length = matches.Length;
+		var matches = parser.ParsingValue.MatchAll("""(\+?\d|\.)""");
+		var length = matches.Length;
 		if (length is not (81 or 85))
 		{
 			// Subtle grid outline will bring 2 '.'s on first line of the grid.
@@ -194,9 +194,9 @@ public unsafe ref struct GridParser
 		}
 
 		var result = Grid.Empty;
-		for (int i = 0; i < 81; i++)
+		for (var i = 0; i < 81; i++)
 		{
-			string currentMatch = matches[length - 81 + i];
+			var currentMatch = matches[length - 81 + i];
 			switch (currentMatch)
 			{
 				case [var match and not ('.' or '0')]:
@@ -244,22 +244,22 @@ public unsafe ref struct GridParser
 	/// <returns>The result.</returns>
 	private static Grid OnParsingExcel(ref GridParser parser)
 	{
-		string parsingValue = parser.ParsingValue;
+		var parsingValue = parser.ParsingValue;
 		if (!parsingValue.Contains('\t'))
 		{
 			return Grid.Undefined;
 		}
 
-		string[] values = parsingValue.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+		var values = parsingValue.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 		if (values.Length != 9)
 		{
 			return Grid.Undefined;
 		}
 
 		scoped var sb = new StringHandler(81);
-		foreach (string value in values)
+		foreach (var value in values)
 		{
-			foreach (string digitString in value.Split(new[] { '\t' }))
+			foreach (var digitString in value.Split(new[] { '\t' }))
 			{
 				sb.Append(string.IsNullOrEmpty(digitString) ? '.' : digitString[0]);
 			}
@@ -281,7 +281,7 @@ public unsafe ref struct GridParser
 		}
 
 		var result = Grid.Empty;
-		for (int i = 0; i < 81; i++)
+		for (var i = 0; i < 81; i++)
 		{
 			switch (match[i * 6])
 			{
@@ -326,7 +326,7 @@ public unsafe ref struct GridParser
 		}
 
 		var result = Grid.Empty;
-		for (int cell = 0; cell < 81; cell++)
+		for (var cell = 0; cell < 81; cell++)
 		{
 			if (matches[cell] is not { Length: var length and <= 9 } s)
 			{
@@ -387,7 +387,7 @@ public unsafe ref struct GridParser
 				// Here don't need to check the length of the string,
 				// and also all characters are digit characters.
 				short mask = 0;
-				foreach (char c in s)
+				foreach (var c in s)
 				{
 					mask |= (short)(1 << c - '1');
 				}
@@ -404,7 +404,7 @@ public unsafe ref struct GridParser
 				}
 				else
 				{
-					for (int digit = 0; digit < 9; digit++)
+					for (var digit = 0; digit < 9; digit++)
 					{
 						result[cell, digit] = (mask >> digit & 1) != 0;
 					}
@@ -447,7 +447,7 @@ public unsafe ref struct GridParser
 	/// <returns>The result.</returns>
 	private static Grid OnParsingSusser(ref GridParser parser, bool shortenSusser)
 	{
-		string? match = shortenSusser
+		var match = shortenSusser
 			? parser.ParsingValue.Match("""[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}""")
 			: parser.ParsingValue.Match("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?""");
 
@@ -463,9 +463,9 @@ public unsafe ref struct GridParser
 		// Step 1: fills all digits.
 		var result = Grid.Empty;
 		int i = 0, length = match.Length;
-		for (int realPos = 0; i < length && match[i] != ':'; realPos++)
+		for (var realPos = 0; i < length && match[i] != ':'; realPos++)
 		{
-			char c = match[i];
+			var c = match[i];
 			switch (c)
 			{
 				case '+':
@@ -538,7 +538,7 @@ public unsafe ref struct GridParser
 		// If we have met the colon sign ':', this loop would not be executed.
 		if (Grid.ExtendedSusserEliminationsPattern().Match(match) is { Success: true, Value: var elimMatch })
 		{
-			foreach (int candidate in EliminationNotation.ParseCandidates(elimMatch))
+			foreach (var candidate in EliminationNotation.ParseCandidates(elimMatch))
 			{
 				// Set the candidate with false to eliminate the candidate.
 				result[candidate / 9, candidate % 9] = false;
@@ -558,7 +558,7 @@ public unsafe ref struct GridParser
 			}
 
 			scoped var resultSpan = (stackalloc char[81]);
-			string[] lines = original.Split(',');
+			var lines = original.Split(',');
 			if (lines.Length != 9)
 			{
 				result = null;
@@ -566,15 +566,15 @@ public unsafe ref struct GridParser
 			}
 
 			// Check per line, and expand it.
-			char placeholder = original.IndexOf('0') == -1 ? '.' : '0';
-			for (int i = 0; i < 9; i++)
+			var placeholder = original.IndexOf('0') == -1 ? '.' : '0';
+			for (var i = 0; i < 9; i++)
 			{
-				string line = lines[i];
+				var line = lines[i];
 				switch (line.CountOf('*'))
 				{
 					case 1 when (9 + 1 - line.Length, 0, 0) is var (empties, j, k):
 					{
-						foreach (char c in line)
+						foreach (var c in line)
 						{
 							if (c == '*')
 							{
@@ -597,8 +597,8 @@ public unsafe ref struct GridParser
 
 					case var n when (9 + n - line.Length, 0, 0) is var (empties, j, k):
 					{
-						int emptiesPerStar = empties / n;
-						foreach (char c in line)
+						var emptiesPerStar = empties / n;
+						foreach (var c in line)
 						{
 							if (c == '*')
 							{
@@ -639,16 +639,16 @@ public unsafe ref struct GridParser
 		const int candidatesCount = 729;
 		if (compatibleFirst)
 		{
-			string parsingValue = parser.ParsingValue;
+			var parsingValue = parser.ParsingValue;
 			if (parsingValue.Length < candidatesCount)
 			{
 				return Grid.Undefined;
 			}
 
 			var result = Grid.Empty;
-			for (int i = 0; i < candidatesCount; i++)
+			for (var i = 0; i < candidatesCount; i++)
 			{
-				char c = parsingValue[i];
+				var c = parsingValue[i];
 				if (c is not (>= '0' and <= '9' or '.'))
 				{
 					return Grid.Undefined;
@@ -664,16 +664,16 @@ public unsafe ref struct GridParser
 		}
 		else
 		{
-			string[] matches = parser.ParsingValue.MatchAll("""\d*[\-\+]?\d+""");
+			var matches = parser.ParsingValue.MatchAll("""\d*[\-\+]?\d+""");
 			if (matches is { Length: not 81 })
 			{
 				return Grid.Undefined;
 			}
 
 			var result = Grid.Empty;
-			for (int offset = 0; offset < 81; offset++)
+			for (var offset = 0; offset < 81; offset++)
 			{
-				string s = matches[offset].Reserve(@"\d");
+				var s = matches[offset].Reserve(@"\d");
 				if (s.Length > 9)
 				{
 					// More than 9 characters.
@@ -681,7 +681,7 @@ public unsafe ref struct GridParser
 				}
 
 				short mask = 0;
-				foreach (char c in s)
+				foreach (var c in s)
 				{
 					mask |= (short)(1 << c - '1');
 				}
@@ -699,7 +699,7 @@ public unsafe ref struct GridParser
 				//	result.SetStatus(offset, CellStatus.Given);
 				//}
 
-				for (int digit = 0; digit < 9; digit++)
+				for (var digit = 0; digit < 9; digit++)
 				{
 					result[offset, digit] = (mask >> digit & 1) != 0;
 				}

@@ -8,7 +8,7 @@ internal sealed partial class PatternOverlayStepSearcher : IPatternOverlayStepSe
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		var templates = IPatternOverlayStepSearcher.GetInvalidPos(grid);
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
 			if (templates[digit] is not (var template and not []))
 			{

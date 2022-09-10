@@ -74,10 +74,10 @@ public ref partial struct Bag<T>
 	public readonly bool Contains(T element)
 	{
 #if !USE_EQUALITY_COMPARER
-		nuint size = (nuint)Marshal.SizeOf<T>();
+		var size = (nuint)Marshal.SizeOf<T>();
 #endif
 
-		for (int i = 0; i < Count; i++)
+		for (var i = 0; i < Count; i++)
 		{
 #if USE_EQUALITY_COMPARER
 			if (EqualityComparer<T>.Default.Equals(_values[i], element))
@@ -85,11 +85,11 @@ public ref partial struct Bag<T>
 				return true;
 			}
 #else
-			bool areSame = true;
+			var areSame = true;
 			for (nuint j = 0; j < size; j++)
 			{
-				byte v1 = Unsafe.As<T, byte>(ref Unsafe.AddByteOffset(ref _values[i], j));
-				byte v2 = Unsafe.As<T, byte>(ref Unsafe.AddByteOffset(ref element, j));
+				var v1 = Unsafe.As<T, byte>(ref Unsafe.AddByteOffset(ref _values[i], j));
+				var v2 = Unsafe.As<T, byte>(ref Unsafe.AddByteOffset(ref element, j));
 				if (v1 != v2)
 				{
 					areSame = false;

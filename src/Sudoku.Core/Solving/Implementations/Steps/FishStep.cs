@@ -54,11 +54,11 @@ internal abstract record FishStep(
 	protected internal static unsafe Technique GetComplexFishTechniqueCodeFromName(string name)
 	{
 		// Creates a buffer to store the characters that isn't a space or a bar.
-		char* buffer = stackalloc char[name.Length];
-		int bufferLength = 0;
+		var buffer = stackalloc char[name.Length];
+		var bufferLength = 0;
 		fixed (char* p = name)
 		{
-			for (char* ptr = p; *ptr != '\0'; ptr++)
+			for (var ptr = p; *ptr != '\0'; ptr++)
 			{
 				if (*ptr is not ('-' or ' '))
 				{

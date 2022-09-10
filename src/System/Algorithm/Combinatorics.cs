@@ -27,7 +27,7 @@ public static class Combinatorics
 			int last, int count, int index, scoped in Span<int> tempArray,
 			scoped in Span<T> @this, in IList<T[]> resultList)
 		{
-			for (int i = last; i >= index; i--)
+			for (var i = last; i >= index; i--)
 			{
 				tempArray[index - 1] = i - 1;
 				if (index > 1)
@@ -70,7 +70,7 @@ public static class Combinatorics
 			int last, int count, int index, scoped in Span<int> tempArray,
 			scoped in ReadOnlySpan<T> @this, in IList<T[]> resultList)
 		{
-			for (int i = last; i >= index; i--)
+			for (var i = last; i >= index; i--)
 			{
 				tempArray[index - 1] = i - 1;
 				if (index > 1)
@@ -153,7 +153,7 @@ public static class Combinatorics
 			int last, int count, int index, scoped in Span<int> tempArray,
 			IReadOnlyList<T> @this, in IList<T[]> resultList)
 		{
-			for (int i = last; i >= index; i--)
+			for (var i = last; i >= index; i--)
 			{
 				tempArray[index - 1] = i - 1;
 				if (index > 1)
@@ -199,8 +199,8 @@ public static class Combinatorics
 	public static unsafe IEnumerable<T[]> GetExtractedCombinations<T>(this T[][] @this)
 	{
 		int length = @this.Length, resultCount = 1;
-		int* tempArray = stackalloc int[length];
-		for (int i = 0; i < length; i++)
+		var tempArray = stackalloc int[length];
+		for (var i = 0; i < length; i++)
 		{
 			tempArray[i] = -1;
 			resultCount *= @this[i].Length;
@@ -215,7 +215,7 @@ public static class Combinatorics
 				m++;
 			}
 
-			int* value = tempArray + m;
+			var value = tempArray + m;
 			(*value)++;
 			if (*value > @this[m].Length - 1)
 			{
@@ -227,7 +227,7 @@ public static class Combinatorics
 			{
 				n++;
 				result[n] = new T[m + 1];
-				for (int i = 0; i <= m; i++)
+				for (var i = 0; i <= m; i++)
 				{
 					result[n][i] = @this[i][tempArray[i]];
 				}

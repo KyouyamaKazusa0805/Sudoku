@@ -49,8 +49,8 @@ public interface IExocetStepSearcher : IStepSearcher
 
 		var t = (stackalloc int[3]);
 		scoped var crossline = (stackalloc int[25]); // Only use [7..24].
-		int n = 0;
-		for (int i = 0; i < 18; i++)
+		var n = 0;
+		for (var i = 0; i < 18; i++)
 		{
 			for (int z = i / 9 * 9, j = z, zPlus9 = z + 9; j < zPlus9; j++)
 			{
@@ -63,17 +63,17 @@ public interface IExocetStepSearcher : IStepSearcher
 						var (tq1, tr1) = (bb[bc[i, 0]] + rq[k, 0], bb[bc[i, 1]] + rq[l, 0]);
 
 						int index = 6, x = i / 3 % 3;
-						int tt = i < 9 ? b1 % 9 + b2 % 9 : b1 / 9 + b2 / 9;
+						var tt = i < 9 ? b1 % 9 + b2 % 9 : b1 / 9 + b2 / 9;
 						tt = tt switch { < 4 => 3 - tt, < 13 => 12 - tt, _ => 21 - tt };
 
 						(t[0], t[1], t[2]) = i < 9 ? (tt, tq1 % 9, tr1 % 9) : (tt, tq1 / 9, tr1 / 9);
-						for (int index1 = 0; index1 < 3; index1++)
+						for (var index1 = 0; index1 < 3; index1++)
 						{
 							Unsafe.SkipInit(out int r);
 							Unsafe.SkipInit(out int c);
 
 							(i < 9 ? ref c : ref r) = t[index1];
-							for (int index2 = 0; index2 < 6; index2++)
+							for (var index2 = 0; index2 < 6; index2++)
 							{
 								(i < 9 ? ref r : ref c) = s[x, index2];
 

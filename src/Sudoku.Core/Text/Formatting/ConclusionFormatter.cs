@@ -43,10 +43,10 @@ public abstract class ConclusionFormatter : ICollectionFormatter<Conclusion>
 					from conclusion in conclusions
 					orderby conclusion.Digit
 					group conclusion by conclusion.ConclusionType;
-				bool hasOnlyOneType = selection.HasOnlyOneElement();
+				var hasOnlyOneType = selection.HasOnlyOneElement();
 				foreach (var typeGroup in selection)
 				{
-					string op = typeGroup.Key == ConclusionType.Assignment ? " = " : " <> ";
+					var op = typeGroup.Key == ConclusionType.Assignment ? " = " : " <> ";
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
 						sb.Append(CellMap.Empty + from conclusion in digitGroup select conclusion.Cell);

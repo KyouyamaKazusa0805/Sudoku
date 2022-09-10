@@ -44,7 +44,7 @@ public sealed class AlmostLockedSet :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			_ = Map.AllSetsAreInOneHouse(out int houseIndex);
+			_ = Map.AllSetsAreInOneHouse(out var houseIndex);
 			return houseIndex;
 		}
 	}
@@ -72,10 +72,10 @@ public sealed class AlmostLockedSet :
 		get
 		{
 			scoped var digits = DigitsMask.GetAllSets();
-			short[] result = new short[StrongRelationsCount[digits.Length - 1]];
+			var result = new short[StrongRelationsCount[digits.Length - 1]];
 			for (int i = 0, x = 0, l = digits.Length, iterationLength = l - 1; i < iterationLength; i++)
 			{
-				for (int j = i + 1; j < l; j++)
+				for (var j = i + 1; j < l; j++)
 				{
 					result[x++] = (short)(1 << digits[i] | 1 << digits[j]);
 				}
@@ -104,7 +104,7 @@ public sealed class AlmostLockedSet :
 	public bool ContainsDigit(scoped in Grid grid, int digit, out CellMap result)
 	{
 		result = CellMap.Empty;
-		foreach (int cell in Map)
+		foreach (var cell in Map)
 		{
 			if ((grid.GetCandidates(cell) >> digit & 1) != 0)
 			{
@@ -138,8 +138,8 @@ public sealed class AlmostLockedSet :
 	public override int GetHashCode()
 	{
 		short mask = 0;
-		int i = 0;
-		foreach (int cell in HouseCells[House])
+		var i = 0;
+		foreach (var cell in HouseCells[House])
 		{
 			if (Map.Contains(cell))
 			{
@@ -156,8 +156,8 @@ public sealed class AlmostLockedSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string digitsStr = DigitMaskFormatter.Format(DigitsMask);
-		string houseStr = HouseFormatter.Format(1 << House);
+		var digitsStr = DigitMaskFormatter.Format(DigitsMask);
+		var houseStr = HouseFormatter.Format(1 << House);
 		return IsBivalueCell ? $"{digitsStr}/{Map}" : $"{digitsStr}/{Map} {R["KeywordIn"]} {houseStr}";
 	}
 
@@ -169,24 +169,24 @@ public sealed class AlmostLockedSet :
 
 		// Get all bi-value-cell ALSes.
 		var result = new List<AlmostLockedSet>();
-		foreach (int cell in bivalueMap)
+		foreach (var cell in bivalueMap)
 		{
 			result.Add(new(grid.GetCandidates(cell), CellMap.Empty + cell, PeersMap[cell] & emptyMap));
 		}
 
 		// Get all non-bi-value-cell ALSes.
-		for (int house = 0; house < 27; house++)
+		for (var house = 0; house < 27; house++)
 		{
 			if ((HousesMap[house] & emptyMap) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
 
-			for (int size = 2; size <= tempMap.Count - 1; size++)
+			for (var size = 2; size <= tempMap.Count - 1; size++)
 			{
 				foreach (var map in tempMap & size)
 				{
-					short blockMask = map.BlockMask;
+					var blockMask = map.BlockMask;
 					if (IsPow2(blockMask) && house >= 9)
 					{
 						// All ALS cells lying on a box-row or a box-column
@@ -196,7 +196,7 @@ public sealed class AlmostLockedSet :
 
 					// Get all candidates in these cells.
 					short digitsMask = 0;
-					foreach (int cell in map)
+					foreach (var cell in map)
 					{
 						digitsMask |= grid.GetCandidates(cell);
 					}
@@ -205,7 +205,7 @@ public sealed class AlmostLockedSet :
 						continue;
 					}
 
-					int coveredLine = map.CoveredLine;
+					var coveredLine = map.CoveredLine;
 					result.Add(
 						new(
 							digitsMask,

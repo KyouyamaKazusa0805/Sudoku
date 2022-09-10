@@ -50,7 +50,7 @@ internal sealed partial class UniquenessClueCoverStepSearcher : IUniquenessClueC
 	/// </summary>
 	private IStep? CheckType2(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		for (int chuteIndex = 0; chuteIndex < 6; chuteIndex++)
+		for (var chuteIndex = 0; chuteIndex < 6; chuteIndex++)
 		{
 			var (chute, isRow, _) = Chutes[chuteIndex];
 
@@ -73,7 +73,7 @@ internal sealed partial class UniquenessClueCoverStepSearcher : IUniquenessClueC
 				continue;
 			}
 
-			short digitsMask = (short)(1 << c1Digit | 1 << c2Digit);
+			var digitsMask = (short)(1 << c1Digit | 1 << c2Digit);
 			var elimHouseType = isRow ? HouseType.Column : HouseType.Row;
 			var excludedHouseType = isRow ? HouseType.Row : HouseType.Column;
 			var excludedLines = HousesMap[c1.ToHouseIndex(excludedHouseType)] | HousesMap[c2.ToHouseIndex(excludedHouseType)];
@@ -82,10 +82,10 @@ internal sealed partial class UniquenessClueCoverStepSearcher : IUniquenessClueC
 			);
 
 			var conclusions = new List<Conclusion>(2);
-			foreach (int elimCell in elimCells)
+			foreach (var elimCell in elimCells)
 			{
-				int correspondingValueCell = (HousesMap[elimCell.ToHouseIndex(elimHouseType)] & chute & valueCells)[0];
-				int elimDigit = TrailingZeroCount((short)(digitsMask & ~(1 << grid[correspondingValueCell])));
+				var correspondingValueCell = (HousesMap[elimCell.ToHouseIndex(elimHouseType)] & chute & valueCells)[0];
+				var elimDigit = TrailingZeroCount((short)(digitsMask & ~(1 << grid[correspondingValueCell])));
 				if (CandidatesMap[elimDigit].Contains(elimCell))
 				{
 					conclusions.Add(new(Assignment, elimCell, elimDigit));

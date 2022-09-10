@@ -161,7 +161,7 @@ public sealed partial class MainWindow : Window
 	private async Task ReportBatteryLowerStatusAsync()
 	{
 		var batteryStatus = PowerManager.BatteryStatus;
-		int remainingCharge = PowerManager.RemainingChargePercent;
+		var remainingCharge = PowerManager.RemainingChargePercent;
 		var powerStatus = PowerManager.PowerSupplyStatus;
 		var powerSource = PowerManager.PowerSourceKind;
 

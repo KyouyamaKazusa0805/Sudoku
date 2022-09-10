@@ -49,11 +49,11 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 
 			// Gets the namespace applied to.
 			// If multiple attributes use different namespace, we will only use the first one as the result case.
-			string namespaceNameResult = attributeData.GetNamedArgument<string>("Namespace") ?? namespaceName;
+			var namespaceNameResult = attributeData.GetNamedArgument<string>("Namespace") ?? namespaceName;
 
 			// The final code.
-			string fullTypeNameWithoutConstraint = type.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
-			string finalCode = string.Join(
+			var fullTypeNameWithoutConstraint = type.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
+			var finalCode = string.Join(
 				"\r\n\r\n\t",
 				GetForExtension(
 					attributesData,
@@ -66,7 +66,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			// Hash code value will be used for the distinction for the different types
 			// whose name are same as the current type name.
 			// For example, 'System.Hello' and 'Sudoku.Core.Hello' are different types.
-			int hashCode = 0xFACE * assembly.ToDisplayString().GetHashCode()
+			var hashCode = 0xFACE * assembly.ToDisplayString().GetHashCode()
 				^ 0xDEAD * namespaceName.GetHashCode() << 7
 				^ 0xC0DE * type.Name.GetHashCode() << 3;
 
@@ -149,7 +149,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 		AttributeData[] attributesData, string? genericParameterListWithoutConstraint,
 		string fullTypeNameWithoutConstraint, INamedTypeSymbol type)
 	{
-		string constraint = fullTypeNameWithoutConstraint.IndexOf("where") is var index and not -1
+		var constraint = fullTypeNameWithoutConstraint.IndexOf("where") is var index and not -1
 			? fullTypeNameWithoutConstraint[index..]
 			: string.Empty;
 
@@ -181,7 +181,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			// Gets the string segment for the keyword 'in' if necessary.
 			// If the type is a large structure, user will set the property value to true,
 			// in order to optimize the argument-passing operation.
-			string inKeyword = attributeData.GetNamedArgument<bool>("EmitsInKeyword") switch
+			var inKeyword = attributeData.GetNamedArgument<bool>("EmitsInKeyword") switch
 			{
 				true => type switch
 				{
@@ -242,14 +242,14 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			}
 
 			// Gather the final information, and emit the generated source.
-			string args = string.Join(
+			var args = string.Join(
 				", ",
 				from element in pairs
 				let localTypeName = element.Symbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
 				let localArgumentName = element.Name.ToCamelCase()
 				select $"out {localTypeName} {localArgumentName}"
 			);
-			string assignments = string.Join(
+			var assignments = string.Join(
 				"\r\n\t\t",
 				from element in pairs
 				select $"{element.Name.ToCamelCase()} = @this.{element.Name};"

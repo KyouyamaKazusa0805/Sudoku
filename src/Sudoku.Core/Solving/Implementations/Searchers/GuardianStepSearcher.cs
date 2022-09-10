@@ -21,7 +21,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 		}
 
 		var resultAccumulator = new List<GuardianStep>();
-		for (int digit = 0; digit < 9; digit++)
+		for (var digit = 0; digit < 9; digit++)
 		{
 			if (eliminationMaps[digit] is not (var baseElimMap and not []))
 			{
@@ -44,11 +44,11 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 				}
 
 				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (int c in loop)
+				foreach (var c in loop)
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, c * 9 + digit));
 				}
-				foreach (int c in guardians)
+				foreach (var c in guardians)
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, c * 9 + digit));
 				}

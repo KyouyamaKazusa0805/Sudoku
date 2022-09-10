@@ -501,19 +501,19 @@ public static class CommonReadOnlies
 	static CommonReadOnlies()
 	{
 		PeersMap = new CellMap[81];
-		for (int i = 0; i < 81; i++)
+		for (var i = 0; i < 81; i++)
 		{
 			PeersMap[i] = (CellMap)Peers[i];
 		}
 
 		HousesMap = new CellMap[27];
-		for (int i = 0; i < 27; i++)
+		for (var i = 0; i < 27; i++)
 		{
 			HousesMap[i] = (CellMap)HouseCells[i];
 		}
 
 		Chutes = new (CellMap, bool, short)[6];
-		for (int i = 0; i < 3; i++)
+		for (var i = 0; i < 3; i++)
 		{
 			var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[i], ChuteHouses[i + 3]);
 			(Chutes[i], Chutes[i + 3]) = (
@@ -537,7 +537,7 @@ public static class CommonReadOnlies
 		{
 			for (byte j = 0; j < 3; j++)
 			{
-				byte cs = (byte)(bs < 18 ? r[(bs - 9) / 3 * 3 + j] : c[(bs - 18) / 3 * 3 + j]);
+				var cs = (byte)(bs < 18 ? r[(bs - 9) / 3 * 3 + j] : c[(bs - 18) / 3 * 3 + j]);
 				scoped ref readonly var bm = ref HousesMap[bs];
 				scoped ref readonly var cm = ref HousesMap[cs];
 				var i = bm & cm;

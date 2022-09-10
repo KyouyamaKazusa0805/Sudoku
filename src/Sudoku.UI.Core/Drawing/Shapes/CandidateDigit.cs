@@ -220,11 +220,11 @@ internal sealed class CandidateDigit : DrawingElement
 	{
 		get
 		{
-			int c = PopCount((uint)_candidateMask);
+			var c = PopCount((uint)_candidateMask);
 			scoped var sb = new StringHandler();
 
 			byte i = 0;
-			foreach (int digit in _candidateMask)
+			foreach (var digit in _candidateMask)
 			{
 				sb.Append(digit);
 				if (++i != c)

@@ -339,7 +339,7 @@ public unsafe ref partial struct StringHandler
 			case 1:
 			{
 				scoped var chars = _chars;
-				int pos = Length;
+				var pos = Length;
 				if ((uint)pos < (uint)chars.Length)
 				{
 					chars[pos] = value[0];
@@ -355,7 +355,7 @@ public unsafe ref partial struct StringHandler
 			case 2:
 			{
 				scoped var chars = _chars;
-				int pos = Length;
+				var pos = Length;
 				if ((uint)pos < chars.Length - 1)
 				{
 					fixed (char* pFirstChar = value)
@@ -396,7 +396,7 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append(char c)
 	{
-		int pos = Length;
+		var pos = Length;
 		if ((uint)pos < (uint)_chars.Length)
 		{
 			_chars[pos] = c;
@@ -443,7 +443,7 @@ public unsafe ref partial struct StringHandler
 	{
 		ArgumentNullException.ThrowIfNull(value);
 
-		int pos = Length;
+		var pos = Length;
 		if (pos > _chars.Length - length)
 		{
 			Grow(length);
@@ -535,7 +535,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="chars">The serial of characters.</param>
 	public void AppendCharacters(IEnumerable<char> chars)
 	{
-		foreach (char @char in chars)
+		foreach (var @char in chars)
 		{
 			Append(@char);
 		}
@@ -669,7 +669,7 @@ public unsafe ref partial struct StringHandler
 		ArgumentNullException.ThrowIfNull(list);
 		ArgumentNullException.ThrowIfNull(converter);
 
-		for (int i = 0; i < length; i++)
+		for (var i = 0; i < length; i++)
 		{
 			var element = list[i];
 			AppendFormatted(converter(element));
@@ -699,7 +699,7 @@ public unsafe ref partial struct StringHandler
 	{
 		ArgumentNullException.ThrowIfNull(list);
 
-		for (int i = 0; i < length; i++)
+		for (var i = 0; i < length; i++)
 		{
 			var element = list[i];
 			AppendFormatted(converter(element));
@@ -824,7 +824,7 @@ public unsafe ref partial struct StringHandler
 	/// <typeparam name="T">The type of the value to write.</typeparam>
 	public void AppendLargeObjectFormatted<T>(scoped in T value, int alignment)
 	{
-		int startingPos = Length;
+		var startingPos = Length;
 		AppendFormatted(value);
 		if (alignment != 0)
 		{
@@ -844,7 +844,7 @@ public unsafe ref partial struct StringHandler
 	/// <typeparam name="T">The type of the value to write.</typeparam>
 	public void AppendLargeObjectFormatted<T>(T value, int alignment, string? format)
 	{
-		int startingPos = Length;
+		var startingPos = Length;
 		AppendFormatted(value, format);
 		if (alignment != 0)
 		{
@@ -940,9 +940,9 @@ public unsafe ref partial struct StringHandler
 	/// <param name="format">The format string.</param>
 	public void AppendFormatted(scoped ReadOnlySpan<char> value, int alignment = 0, string? format = null)
 	{
-		(bool leftAlign, alignment) = alignment < 0 ? (true, -alignment) : (false, alignment);
+		(var leftAlign, alignment) = alignment < 0 ? (true, -alignment) : (false, alignment);
 
-		int paddingRequired = alignment - value.Length;
+		var paddingRequired = alignment - value.Length;
 		if (paddingRequired <= 0)
 		{
 			// The value is as large or larger than the required amount of padding,
@@ -975,7 +975,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="handler">The handler that creates the interpolated string as this argument.</param>
 	public void AppendFormatted([InterpolatedStringHandlerArgument] scoped in StringHandler handler)
 	{
-		string result = handler.ToStringAndClear();
+		var result = handler.ToStringAndClear();
 		if (result.TryCopyTo(_chars[Length..]))
 		{
 			Length += result.Length;
@@ -1086,7 +1086,7 @@ public unsafe ref partial struct StringHandler
 	/// <typeparam name="T">The type of the value to write.</typeparam>
 	public void AppendFormatted<T>(T value, int alignment)
 	{
-		int startingPos = Length;
+		var startingPos = Length;
 		AppendFormatted(value);
 		if (alignment != 0)
 		{
@@ -1106,7 +1106,7 @@ public unsafe ref partial struct StringHandler
 	/// <typeparam name="T">The type of the value to write.</typeparam>
 	public void AppendFormatted<T>(T value, int alignment, string? format)
 	{
-		int startingPos = Length;
+		var startingPos = Length;
 		AppendFormatted(value, format);
 		if (alignment != 0)
 		{
@@ -1124,7 +1124,7 @@ public unsafe ref partial struct StringHandler
 		{
 			for (int i = 0, iterationLength = Length >> 1; i < iterationLength; i++)
 			{
-				char c = p[i];
+				var c = p[i];
 				p[i] = p[Length - 1 - i];
 				p[Length - 1 - i] = c;
 			}
@@ -1156,7 +1156,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="s">The string you want to insert.</param>
 	public void Insert(int index, string s)
 	{
-		int count = s.Length;
+		var count = s.Length;
 		if (Length > _chars.Length - count)
 		{
 			Grow(count);
@@ -1179,8 +1179,8 @@ public unsafe ref partial struct StringHandler
 	{
 		fixed (char* pThis = _chars)
 		{
-			int i = startIndex;
-			for (char* p = pThis + startIndex; i < Length; i++, p++)
+			var i = startIndex;
+			for (var p = pThis + startIndex; i < Length; i++, p++)
 			{
 				// Assign the value.
 				// Please note that 'p[a]' is equivalent to '*(p + a)'.
@@ -1268,7 +1268,7 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void Clear()
 	{
-		char[]? toReturn = _arrayToReturnToPool;
+		var toReturn = _arrayToReturnToPool;
 		this = default;
 		if (toReturn is not null)
 		{
@@ -1306,8 +1306,8 @@ public unsafe ref partial struct StringHandler
 		Debug.Assert(startingPos >= 0 && startingPos <= Length);
 		Debug.Assert(alignment != 0);
 
-		int charsWritten = Length - startingPos;
-		(alignment, bool leftAlign) = alignment < 0 ? (-alignment, true) : (alignment, false);
+		var charsWritten = Length - startingPos;
+		(alignment, var leftAlign) = alignment < 0 ? (-alignment, true) : (alignment, false);
 		if (alignment - charsWritten is var paddingNeeded and > 0)
 		{
 			EnsureCapacityForAdditionalChars(paddingNeeded);
@@ -1415,13 +1415,13 @@ public unsafe ref partial struct StringHandler
 	private void GrowCore(uint requiredMinCapacity)
 	{
 		// 0x3FFFFFDF: string.MaxLength
-		uint newCapacity = Max(requiredMinCapacity, Min((uint)_chars.Length * 2, 0x3FFFFFDF));
-		int arraySize = (int)Clamp(newCapacity, MinimumArrayPoolLength, int.MaxValue);
+		var newCapacity = Max(requiredMinCapacity, Min((uint)_chars.Length * 2, 0x3FFFFFDF));
+		var arraySize = (int)Clamp(newCapacity, MinimumArrayPoolLength, int.MaxValue);
 
-		char[] newArray = ArrayPool<char>.Shared.Rent(arraySize);
+		var newArray = ArrayPool<char>.Shared.Rent(arraySize);
 		_chars[..Length].CopyTo(newArray);
 
-		char[]? toReturn = _arrayToReturnToPool;
+		var toReturn = _arrayToReturnToPool;
 		_chars = _arrayToReturnToPool = newArray;
 
 		if (toReturn is not null)
@@ -1446,9 +1446,9 @@ public unsafe ref partial struct StringHandler
 
 		fixed (char* pThis = left._chars, pOther = right._chars)
 		{
-			int i = 0;
+			var i = 0;
 			char* p = pThis, q = pOther;
-			for (int length = left.Length; i < length; i++)
+			for (var length = left.Length; i < length; i++)
 			{
 				if (*p++ != *q++)
 				{

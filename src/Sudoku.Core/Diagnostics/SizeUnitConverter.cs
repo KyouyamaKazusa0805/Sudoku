@@ -37,7 +37,7 @@ public static class SizeUnitConverter
 	/// <returns>The value of the specified size unit.</returns>
 	public static decimal Convert(long bytes, out SizeUnit unit)
 	{
-		(unit, decimal size) = bytes switch
+		(unit, var size) = bytes switch
 		{
 			<= 1024L => (SizeUnit.Byte, 1M),
 			<= 1048576L => (SizeUnit.Kilobyte, 1024M),

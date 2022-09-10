@@ -24,24 +24,24 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 	/// </remarks>
 	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
-		int* house = stackalloc int[2];
+		var house = stackalloc int[2];
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 
 		for (int i = 0, length = alses.Length, iterationLengthOuter = length - 1; i < iterationLengthOuter; i++)
 		{
 			var als1 = alses[i];
-			int house1 = als1.House;
-			short mask1 = als1.DigitsMask;
+			var house1 = als1.House;
+			var mask1 = als1.DigitsMask;
 			var map1 = als1.Map;
 			var possibleElimMap1 = als1.PossibleEliminationMap;
-			for (int j = i + 1; j < length; j++)
+			for (var j = i + 1; j < length; j++)
 			{
 				var als2 = alses[j];
-				int house2 = als2.House;
-				short mask2 = als2.DigitsMask;
+				var house2 = als2.House;
+				var mask2 = als2.DigitsMask;
 				var map2 = als2.Map;
 				var possibleElimMap2 = als2.PossibleEliminationMap;
-				short xzMask = (short)(mask1 & mask2);
+				var xzMask = (short)(mask1 & mask2);
 				var map = map1 | map2;
 				var overlapMap = map1 & map2;
 				if (!AllowCollision && overlapMap is not [])
@@ -51,21 +51,21 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 
 				// Remove all digits to satisfy that the RCC digit can't appear
 				// in the intersection of two ALSes.
-				foreach (int cell in overlapMap)
+				foreach (var cell in overlapMap)
 				{
 					xzMask &= (short)~grid.GetCandidates(cell);
 				}
 
 				// If the number of digits that both two ALSes contain is only one (or zero),
 				// the ALS-XZ won't be formed.
-				if (PopCount((uint)xzMask) < 2 || map.AllSetsAreInOneHouse(out int houseIndex))
+				if (PopCount((uint)xzMask) < 2 || map.AllSetsAreInOneHouse(out var houseIndex))
 				{
 					continue;
 				}
 
 				short rccMask = 0, z = 0;
-				int nh = 0;
-				foreach (int digit in xzMask)
+				var nh = 0;
+				foreach (var digit in xzMask)
 				{
 					if ((map & CandidatesMap[digit]).AllSetsAreInOneHouse(out houseIndex))
 					{
@@ -89,14 +89,14 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 				bool? isDoublyLinked = false;
 				short finalZ = 0;
 				var conclusions = new List<Conclusion>();
-				foreach (int elimDigit in z)
+				foreach (var elimDigit in z)
 				{
 					if (map % CandidatesMap[elimDigit] is not (var elimMap and not []))
 					{
 						continue;
 					}
 
-					foreach (int cell in elimMap)
+					foreach (var cell in elimMap)
 					{
 						conclusions.Add(new(Elimination, cell, elimDigit));
 					}
@@ -108,7 +108,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 				{
 					// Doubly linked ALS-XZ.
 					isDoublyLinked = true;
-					foreach (int elimDigit in (short)(z & ~rccMask))
+					foreach (var elimDigit in (short)(z & ~rccMask))
 					{
 						if ((CandidatesMap[elimDigit] & map1) is not (var zMap and not []))
 						{
@@ -124,10 +124,10 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					}
 
 					// RCC digit 2 eliminations.
-					int k = 0;
-					foreach (int digit in rccMask)
+					var k = 0;
+					foreach (var digit in rccMask)
 					{
-						foreach (int cell in (HousesMap[house[k]] & CandidatesMap[digit]) - map)
+						foreach (var cell in (HousesMap[house[k]] & CandidatesMap[digit]) - map)
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -138,27 +138,27 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					// Possible eliminations.
 					var tempMap = map;
 					tempMap = CandidatesMap[TrailingZeroCount(mask1)];
-					foreach (int digit in mask1.SkipSetBit(1))
+					foreach (var digit in mask1.SkipSetBit(1))
 					{
 						tempMap |= CandidatesMap[digit];
 					}
 					tempMap &= possibleElimMap1;
-					foreach (int cell in tempMap)
+					foreach (var cell in tempMap)
 					{
-						foreach (int digit in (short)(grid.GetCandidates(cell) & (mask1 & ~rccMask)))
+						foreach (var digit in (short)(grid.GetCandidates(cell) & (mask1 & ~rccMask)))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					tempMap = CandidatesMap[TrailingZeroCount(mask2)];
-					foreach (int digit in mask2.SkipSetBit(1))
+					foreach (var digit in mask2.SkipSetBit(1))
 					{
 						tempMap |= CandidatesMap[digit];
 					}
 					tempMap &= possibleElimMap2;
-					foreach (int cell in tempMap)
+					foreach (var cell in tempMap)
 					{
-						foreach (int digit in (short)(grid.GetCandidates(cell) & (mask2 & ~rccMask)))
+						foreach (var digit in (short)(grid.GetCandidates(cell) & (mask2 & ~rccMask)))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -171,13 +171,13 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 				}
 
 				// Now record highlight elements.
-				bool isEsp = als1.IsBivalueCell || als2.IsBivalueCell;
+				var isEsp = als1.IsBivalueCell || als2.IsBivalueCell;
 				var candidateOffsets = new List<CandidateViewNode>();
 				if (isEsp)
 				{
-					foreach (int cell in map)
+					foreach (var cell in map)
 					{
-						foreach (int digit in grid.GetCandidates(cell))
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(new((DisplayColorKind)(finalZ >> digit & 1), cell * 9 + digit));
 						}
@@ -185,40 +185,40 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 				}
 				else
 				{
-					foreach (int cell in map1)
+					foreach (var cell in map1)
 					{
-						short mask = grid.GetCandidates(cell);
-						short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
-						short targetDigitsMask = (short)(mask & finalZ);
-						short rccDigitsMask = (short)(mask & rccMask);
-						foreach (int digit in alsDigitsMask)
+						var mask = grid.GetCandidates(cell);
+						var alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
+						var targetDigitsMask = (short)(mask & finalZ);
+						var rccDigitsMask = (short)(mask & rccMask);
+						foreach (var digit in alsDigitsMask)
 						{
 							candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet1, cell * 9 + digit));
 						}
-						foreach (int digit in targetDigitsMask)
+						foreach (var digit in targetDigitsMask)
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
 						}
-						foreach (int digit in rccDigitsMask)
+						foreach (var digit in rccDigitsMask)
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
-					foreach (int cell in map2)
+					foreach (var cell in map2)
 					{
-						short mask = grid.GetCandidates(cell);
-						short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
-						short targetDigitsMask = (short)(mask & finalZ);
-						short rccDigitsMask = (short)(mask & rccMask);
-						foreach (int digit in alsDigitsMask)
+						var mask = grid.GetCandidates(cell);
+						var alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
+						var targetDigitsMask = (short)(mask & finalZ);
+						var rccDigitsMask = (short)(mask & rccMask);
+						foreach (var digit in alsDigitsMask)
 						{
 							candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet2, cell * 9 + digit));
 						}
-						foreach (int digit in targetDigitsMask)
+						foreach (var digit in targetDigitsMask)
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
 						}
-						foreach (int digit in rccDigitsMask)
+						foreach (var digit in rccDigitsMask)
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}

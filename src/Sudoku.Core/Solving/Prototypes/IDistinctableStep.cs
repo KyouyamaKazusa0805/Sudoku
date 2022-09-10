@@ -68,7 +68,7 @@ internal interface IDistinctableStep<in TStep> : IStep where TStep : Step
 			for (int i = 0, length = list.Count, outerLength = length - 1; i < outerLength; i++)
 			{
 				var e1 = list[i];
-				for (int j = i + 1; j < length; j++)
+				for (var j = i + 1; j < length; j++)
 				{
 					var e2 = list[j];
 					if (!TDistinctableStep.Equals(e1, e2))

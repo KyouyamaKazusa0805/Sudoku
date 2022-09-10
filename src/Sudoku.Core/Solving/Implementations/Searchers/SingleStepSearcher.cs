@@ -25,11 +25,11 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			goto CheckHiddenSingle;
 		}
 
-		for (int house = 0; house < 27; house++)
+		for (var house = 0; house < 27; house++)
 		{
 			int count = 0, resultCell = -1;
-			bool flag = true;
-			foreach (int cell in HousesMap[house])
+			var flag = true;
+			foreach (var cell in HousesMap[house])
 			{
 				if (grid.GetStatus(cell) == CellStatus.Empty)
 				{
@@ -46,7 +46,7 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 				continue;
 			}
 
-			int digit = TrailingZeroCount(grid.GetCandidates(resultCell));
+			var digit = TrailingZeroCount(grid.GetCandidates(resultCell));
 			var step = new FullHouseStep(
 				ImmutableArray.Create(new Conclusion(Assignment, resultCell, digit)),
 				ImmutableArray.Create(
@@ -69,9 +69,9 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 		if (HiddenSinglesInBlockFirst)
 		{
 			// If block first, we'll extract all blocks and iterate on them firstly.
-			for (int house = 0; house < 9; house++)
+			for (var house = 0; house < 9; house++)
 			{
-				for (int digit = 0; digit < 9; digit++)
+				for (var digit = 0; digit < 9; digit++)
 				{
 					if (g(grid, digit, house) is not { } step)
 					{
@@ -88,9 +88,9 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			}
 
 			// Then secondly rows and columns.
-			for (int house = 9; house < 27; house++)
+			for (var house = 9; house < 27; house++)
 			{
-				for (int digit = 0; digit < 9; digit++)
+				for (var digit = 0; digit < 9; digit++)
 				{
 					if (g(grid, digit, house) is not { } step)
 					{
@@ -111,9 +111,9 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			// We'll directly iterate on each house.
 			// Theoretically, this iteration should be faster than above one, but in practice,
 			// we may found hidden singles in block much more times than in row or column.
-			for (int digit = 0; digit < 9; digit++)
+			for (var digit = 0; digit < 9; digit++)
 			{
-				for (int house = 0; house < 27; house++)
+				for (var house = 0; house < 27; house++)
 				{
 					if (g(grid, digit, house) is not { } step)
 					{
@@ -130,20 +130,20 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			}
 		}
 
-		for (int cell = 0; cell < 81; cell++)
+		for (var cell = 0; cell < 81; cell++)
 		{
 			if (grid.GetStatus(cell) != CellStatus.Empty)
 			{
 				continue;
 			}
 
-			short mask = grid.GetCandidates(cell);
+			var mask = grid.GetCandidates(cell);
 			if (!IsPow2(mask))
 			{
 				continue;
 			}
 
-			int digit = TrailingZeroCount(mask);
+			var digit = TrailingZeroCount(mask);
 
 			var step = new NakedSingleStep(
 				ImmutableArray.Create(new Conclusion(Assignment, cell, digit)),
@@ -169,8 +169,8 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			// so we should check all possibilities in a house to found whether the house exists a digit
 			// that only appears once indeed.
 			int count = 0, resultCell = -1;
-			bool flag = true;
-			foreach (int cell in HousesMap[house])
+			var flag = true;
+			foreach (var cell in HousesMap[house])
 			{
 				if (grid.Exists(cell, digit) is true) // Don't replace here by 'CandidatesMap[digit].Contains(cell)'.
 				{
@@ -191,13 +191,13 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 
 			// Now here the digit is a hidden single. We should gather the information
 			// (painting or text information) on the step in order to display onto the UI.
-			bool enableAndIsLastDigit = false;
+			var enableAndIsLastDigit = false;
 			var cellOffsets = new List<CellViewNode>();
 			if (EnableLastDigit)
 			{
 				// Sum up the number of appearing in the grid of 'digit'.
-				int digitCount = 0;
-				for (int i = 0; i < 81; i++)
+				var digitCount = 0;
+				for (var i = 0; i < 81; i++)
 				{
 					if (grid[i] == digit)
 					{

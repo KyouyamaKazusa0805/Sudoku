@@ -423,7 +423,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 			void handleDigitOperation(Key key, Key firstDigit, ModifierKeyDownData pressedData)
 			{
-				int digit = key - firstDigit - 1;
+				var digit = key - firstDigit - 1;
 				switch (pressedData)
 				{
 					case (false, true, false) when key != Key.Back: // Shift.
@@ -458,7 +458,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		// Gets the mouse point and converts to the real cell value.
 		var point = e.GetPosition(this);
-		int cell = PointConversions.GetCell(point, Size, OutsideOffset);
+		var cell = PointConversions.GetCell(point, Size, OutsideOffset);
 
 		// Checks whether the cell value is valid.
 		if (cell == -1)
@@ -470,9 +470,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		CurrentCell = cell;
 
 		// Try to create the menu flyout and show the items.
-		for (int i = 0; i < 9; i++)
+		for (var i = 0; i < 9; i++)
 		{
-			bool digitExists = Grid.Exists(cell, i) is true;
+			var digitExists = Grid.Exists(cell, i) is true;
 			((Button)FindName($"_cButtonMake{i + 1}")).IsEnabled = digitExists;
 			((Button)FindName($"_cButtonDelete{i + 1}")).IsEnabled = digitExists;
 		}
@@ -815,7 +815,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 					}
 					default:
 					{
-						string content = await SioFile.ReadAllTextAsync(path);
+						var content = await SioFile.ReadAllTextAsync(path);
 						if (string.IsNullOrWhiteSpace(content))
 						{
 							return;
@@ -843,7 +843,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <param name="e">The event arguments provided.</param>
 	private void MakeOrDeleteMenuItem_Click(object sender, RoutedEventArgs e)
 	{
-		if (sender is not Button { Tag: string s } || !int.TryParse(s, out int possibleDigit))
+		if (sender is not Button { Tag: string s } || !int.TryParse(s, out var possibleDigit))
 		{
 			return;
 		}

@@ -40,7 +40,7 @@ public static class GridLayoutExtensions
 			}
 			default:
 			{
-				for (int i = 0; i < count; i++)
+				for (var i = 0; i < count; i++)
 				{
 					@this.RowDefinitions.Add(new());
 				}
@@ -76,7 +76,7 @@ public static class GridLayoutExtensions
 			}
 			default:
 			{
-				for (int i = 0; i < count; i++)
+				for (var i = 0; i < count; i++)
 				{
 					@this.ColumnDefinitions.Add(new());
 				}

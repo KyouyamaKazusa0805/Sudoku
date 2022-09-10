@@ -50,7 +50,7 @@ public static class BackdoorSearcher
 		var assignmentBackdoors = new List<Conclusion>(81);
 		var eliminationBackdoors = new List<Conclusion>(729);
 		var solution = BitwiseSolver.Solve(grid);
-		foreach (int cell in grid.EmptyCells)
+		foreach (var cell in grid.EmptyCells)
 		{
 			// Case 1: Assignments.
 			var case1Playground = grid;
@@ -64,7 +64,7 @@ public static class BackdoorSearcher
 			assignmentBackdoors.Add(new(Assignment, cell, solution[cell]));
 
 			// Case 2: Eliminations.
-			foreach (int digit in (short)(grid.GetCandidates(cell) & ~(1 << solution[cell])))
+			foreach (var digit in (short)(grid.GetCandidates(cell) & ~(1 << solution[cell])))
 			{
 				var case2Playground = grid;
 				case2Playground[cell, digit] = false;

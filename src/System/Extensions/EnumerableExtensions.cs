@@ -13,10 +13,10 @@ public static class EnumerableExtensions
 	/// <inheritdoc cref="Enumerable.Max(IEnumerable{decimal})"/>
 	public static unsafe decimal Max<T>(this IEnumerable<T> @this, delegate*<T, decimal> selector)
 	{
-		decimal result = decimal.MinValue;
+		var result = decimal.MinValue;
 		foreach (var element in @this)
 		{
-			decimal converted = selector(element);
+			var converted = selector(element);
 			if (converted >= result)
 			{
 				result = converted;
@@ -51,7 +51,7 @@ public static class EnumerableExtensions
 			return false;
 		}
 
-		int count = 0;
+		var count = 0;
 		using var enumerator = @this.GetEnumerator();
 		while (enumerator.MoveNext())
 		{

@@ -19,7 +19,7 @@ public static class SpanEnumerable
 	public static TResult[] Select<T, TResult>(this scoped in Span<T> @this, Func<T, TResult> selector)
 	{
 		var result = new TResult[@this.Length];
-		int i = 0;
+		var i = 0;
 		foreach (var element in @this)
 		{
 			result[i++] = selector(element);
@@ -40,7 +40,7 @@ public static class SpanEnumerable
 	public static TResult[] Select<T, TResult>(this scoped in ReadOnlySpan<T> @this, Func<T, TResult> selector)
 	{
 		var result = new TResult[@this.Length];
-		int i = 0;
+		var i = 0;
 		foreach (var element in @this)
 		{
 			result[i++] = selector(element);

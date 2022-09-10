@@ -23,11 +23,11 @@ public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, ICellLink
 		int visitedOddHouses = 0, visitedEvenHouses = 0;
 
 		Unsafe.SkipInit(out bool isOdd);
-		foreach (int cell in loopCells)
+		foreach (var cell in loopCells)
 		{
 			foreach (var houseType in HouseTypes)
 			{
-				int houseIndex = cell.ToHouseIndex(houseType);
+				var houseIndex = cell.ToHouseIndex(houseType);
 				if (isOdd)
 				{
 					if ((visitedOddHouses >> houseIndex & 1) != 0)

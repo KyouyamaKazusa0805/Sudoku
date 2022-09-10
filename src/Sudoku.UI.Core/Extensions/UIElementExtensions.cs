@@ -110,7 +110,7 @@ public static class UIElementExtensions
 		var pixelBuffer = await rtb.GetPixelsAsync();
 
 		// Gets the DPI value.
-		float dpi = TryGetLogicalDpi();
+		var dpi = TryGetLogicalDpi();
 
 		// Encodes the image to the selected file on disk.
 		using var pictureFileStream = await file.OpenAsync(FileAccessMode.ReadWrite);
@@ -140,7 +140,7 @@ public static class UIElementExtensions
 		var pixelBuffer = await rtb.GetPixelsAsync();
 
 		// Gets the DPI value.
-		float dpi = TryGetLogicalDpi();
+		var dpi = TryGetLogicalDpi();
 
 		// Creates an encoder.
 		var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);

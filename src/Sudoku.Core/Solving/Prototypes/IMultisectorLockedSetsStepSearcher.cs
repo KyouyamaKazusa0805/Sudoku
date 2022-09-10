@@ -22,15 +22,15 @@ public interface IMultisectorLockedSetsStepSearcher : INonnegativeRankStepSearch
 		int[,] sizeList = { { 3, 3 }, { 3, 4 }, { 4, 3 }, { 4, 4 }, { 4, 5 }, { 5, 4 } };
 		int[] z = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
 		var result = new CellMap[MultisectorLockedSetsTemplatesCount];
-		int n = 0;
+		var n = 0;
 		for (int i = 0, iterationLength = sizeList.Length >> 1; i < iterationLength; i++)
 		{
 			int rows = sizeList[i, 0], columns = sizeList[i, 1];
-			foreach (int[] rowList in z.GetSubsets(rows))
+			foreach (var rowList in z.GetSubsets(rows))
 			{
 				short rowMask = 0;
 				var rowMap = CellMap.Empty;
-				foreach (int row in rowList)
+				foreach (var row in rowList)
 				{
 					rowMask |= (short)(1 << row);
 					rowMap |= HousesMap[row + 9];
@@ -41,11 +41,11 @@ public interface IMultisectorLockedSetsStepSearcher : INonnegativeRankStepSearch
 					continue;
 				}
 
-				foreach (int[] columnList in z.GetSubsets(columns))
+				foreach (var columnList in z.GetSubsets(columns))
 				{
 					short columnMask = 0;
 					var columnMap = CellMap.Empty;
-					foreach (int column in columnList)
+					foreach (var column in columnList)
 					{
 						columnMask |= (short)(1 << column);
 						columnMap |= HousesMap[column + 18];

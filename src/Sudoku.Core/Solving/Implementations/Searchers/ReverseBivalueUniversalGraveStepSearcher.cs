@@ -16,17 +16,17 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 			}
 
 			// Gather digits used.
-			short mask = grid.GetDigitsUnion(nonemptyCells);
+			var mask = grid.GetDigitsUnion(nonemptyCells);
 			if (PopCount((uint)mask) != 2)
 			{
 				continue;
 			}
 
 			int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
-			short comparer = (short)(1 << d1 | 1 << d2);
+			var comparer = (short)(1 << d1 | 1 << d2);
 
 			var emptyCells = pattern - nonemptyCells;
-			short gathered = grid.GetDigitsUnion(emptyCells);
+			var gathered = grid.GetDigitsUnion(emptyCells);
 			if ((gathered & comparer) == 0)
 			{
 				continue;
@@ -76,7 +76,7 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 		}
 
 		var cellOffsets = new List<CellViewNode>(3);
-		foreach (int cell in pattern - emptyCell)
+		foreach (var cell in pattern - emptyCell)
 		{
 			cellOffsets.Add(new(DisplayColorKind.Normal, cell));
 		}
@@ -105,28 +105,28 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 		ICollection<IStep> accumulator, bool onlyFindOne, scoped in Grid grid,
 		scoped in CellMap pattern, scoped in CellMap emptyCells, short comparer)
 	{
-		short mask = grid.GetDigitsUnion(emptyCells);
-		short extraDigitMask = (short)(mask & ~comparer);
+		var mask = grid.GetDigitsUnion(emptyCells);
+		var extraDigitMask = (short)(mask & ~comparer);
 		if (!IsPow2(extraDigitMask))
 		{
 			return null;
 		}
 
-		int extraDigit = TrailingZeroCount(extraDigitMask);
+		var extraDigit = TrailingZeroCount(extraDigitMask);
 		if (emptyCells % CandidatesMap[extraDigit] is not (var elimMap and not []))
 		{
 			return null;
 		}
 
 		var cellOffsets = new List<CellViewNode>(4);
-		foreach (int cell in pattern)
+		foreach (var cell in pattern)
 		{
 			cellOffsets.Add(new(DisplayColorKind.Normal, cell));
 		}
 		var candidateOffsets = new List<CandidateViewNode>(4);
-		foreach (int cell in emptyCells)
+		foreach (var cell in emptyCells)
 		{
-			foreach (int digit in grid.GetCandidates(cell))
+			foreach (var digit in grid.GetCandidates(cell))
 			{
 				candidateOffsets.Add(
 					new(

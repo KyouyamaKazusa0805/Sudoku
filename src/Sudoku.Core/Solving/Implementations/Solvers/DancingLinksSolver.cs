@@ -36,7 +36,7 @@ public sealed class DancingLinksSolver : ISimpleSolver
 	{
 		Unsafe.SkipInit(out result);
 
-		int[] gridValue = grid.ToArray();
+		var gridValue = grid.ToArray();
 		var dlx = new DancingLink(new ColumnNode(-1));
 		_root = dlx.CreateLinkedList(gridValue);
 
@@ -148,7 +148,7 @@ public sealed class DancingLinksSolver : ISimpleSolver
 	{
 		var idList = new List<int>(from k in answer select k.Id);
 		idList.Sort();
-		int[] gridArray = (from id in idList select id % 9 + 1).ToArray();
+		var gridArray = (from id in idList select id % 9 + 1).ToArray();
 
 		result = Grid.Create(gridArray, GridCreatingOption.MinusOne) is { IsValid: true } grid
 			? grid
@@ -164,7 +164,7 @@ public sealed class DancingLinksSolver : ISimpleSolver
 	{
 		Debug.Assert(_root is not null);
 
-		int size = int.MaxValue;
+		var size = int.MaxValue;
 		var nextColumn = new ColumnNode(-1);
 		var j = _root.Right.Column;
 		while (j != _root)
@@ -209,7 +209,7 @@ file sealed class DancingLink
 	public ColumnNode CreateLinkedList(int[] gridArray)
 	{
 		var columns = new List<ColumnNode>();
-		for (int columnIndex = 0; columnIndex < 324; columnIndex++)
+		for (var columnIndex = 0; columnIndex < 324; columnIndex++)
 		{
 			var col = new ColumnNode(columnIndex) { Right = Root, Left = Root.Left };
 			Root.Left.Right = col;
@@ -217,13 +217,13 @@ file sealed class DancingLink
 			columns.Add(col);
 		}
 
-		for (int i = 0; i < 81; i++)
+		for (var i = 0; i < 81; i++)
 		{
 			int x = i / 9, y = i % 9;
 			if (gridArray[i] == 0)
 			{
 				// The cell is empty.
-				for (int d = 0; d < 9; d++)
+				for (var d = 0; d < 9; d++)
 				{
 					FormLinx(columns, x, y, d);
 				}
@@ -231,7 +231,7 @@ file sealed class DancingLink
 			else
 			{
 				// The cell is given.
-				int d = gridArray[i] - 1;
+				var d = gridArray[i] - 1;
 				FormLinx(columns, x, y, d);
 			}
 		}

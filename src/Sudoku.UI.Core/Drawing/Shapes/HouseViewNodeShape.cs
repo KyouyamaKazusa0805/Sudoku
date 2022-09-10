@@ -45,7 +45,7 @@ public sealed class HouseViewNodeShape : DrawingElement
 		{
 			_preference = value;
 
-			int i = 0;
+			var i = 0;
 			while (i < 9)
 			{
 				_gridLayout.AddChildren(
@@ -125,7 +125,7 @@ public sealed class HouseViewNodeShape : DrawingElement
 		var result = new HashCode();
 		result.Add(TypeIdentifier);
 
-		for (int i = 0; i < 27; i++)
+		for (var i = 0; i < 27; i++)
 		{
 			result.Add(_rectangles[i]);
 		}
