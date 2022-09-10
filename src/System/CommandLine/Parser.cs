@@ -56,8 +56,7 @@ public static class Parser
 			switch (globalOptions)
 			{
 				case { FullCommandNamePrefix: var fullCommandNamePrefix }
-				when currentArg.StartsWith(fullCommandNamePrefix)
-					&& currentArg.Length > fullCommandNamePrefix.Length:
+				when currentArg.StartsWith(fullCommandNamePrefix) && currentArg.Length > fullCommandNamePrefix.Length:
 				{
 					// Okay. Long name.
 					string realSubcommand = currentArg[fullCommandNamePrefix.Length..];
@@ -84,8 +83,7 @@ public static class Parser
 					break;
 				}
 				case { ShortCommandNamePrefix: var shortCommandNamePrefix }
-				when currentArg.StartsWith(shortCommandNamePrefix)
-					&& currentArg.Length == shortCommandNamePrefix.Length + 1:
+				when currentArg.StartsWith(shortCommandNamePrefix) && currentArg.Length == shortCommandNamePrefix.Length + 1:
 				{
 					// Okay. Short name.
 					char realSubcommand = currentArg[^1];
