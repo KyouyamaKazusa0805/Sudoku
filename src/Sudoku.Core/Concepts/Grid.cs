@@ -1054,7 +1054,7 @@ public unsafe partial struct Grid :
 			{
 				var f => format switch
 				{
-					":" => ExtendedSusserEliminationsRegex().Match(f.ToString(this)) switch
+					":" => ExtendedSusserEliminationsPattern().Match(f.ToString(this)) switch
 					{
 						{ Success: true, Value: var value } => value,
 						_ => string.Empty
@@ -1080,7 +1080,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateCollectionEnumerator GetEnumerator() => EnumerateCandidates();
+	public readonly GridCandidateEnumerator GetEnumerator() => EnumerateCandidates();
 
 	/// <summary>
 	/// Try to enumerate all possible candidates in the current grid.
@@ -1090,7 +1090,7 @@ public unsafe partial struct Grid :
 	/// to iterate all possible candidates in the current grid.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateCollectionEnumerator EnumerateCandidates() => new(ref Unsafe.AsRef(_values[0]));
+	public readonly GridCandidateEnumerator EnumerateCandidates() => new(ref Unsafe.AsRef(_values[0]));
 
 	/// <summary>
 	/// Try to enumerate the mask table of the current grid.
@@ -1111,7 +1111,7 @@ public unsafe partial struct Grid :
 	/// </code>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly MaskCollectionEnumerator EnumerateMasks() => new(ref Unsafe.AsRef(_values[0]));
+	public readonly GridMaskEnumerator EnumerateMasks() => new(ref Unsafe.AsRef(_values[0]));
 
 	/// <summary>
 	/// Reset the sudoku grid, to set all modifiable values to empty ones.
@@ -1453,11 +1453,8 @@ public unsafe partial struct Grid :
 		}
 	}
 
-	/// <summary>
-	/// Indicates the eliminations in the extended susser format.
-	/// </summary>
 	[RegexGenerator("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]
-	internal static partial Regex ExtendedSusserEliminationsRegex();
+	internal static partial Regex ExtendedSusserEliminationsPattern();
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>

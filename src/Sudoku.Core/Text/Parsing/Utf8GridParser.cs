@@ -536,7 +536,7 @@ public unsafe ref struct Utf8GridParser
 
 		// Step 2: eliminates candidates if exist.
 		// If we have met the colon sign ':', this loop would not be executed.
-		if (Grid.ExtendedSusserEliminationsRegex().Match(match) is { Success: true, Value: var elimMatch })
+		if (Grid.ExtendedSusserEliminationsPattern().Match(match) is { Success: true, Value: var elimMatch })
 		{
 			foreach (int candidate in EliminationNotation.ParseCandidates(elimMatch))
 			{

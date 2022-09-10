@@ -26,6 +26,7 @@ global using Sudoku.Buffers;
 global using Sudoku.Compatibility.Hodoku;
 global using Sudoku.Compatibility.SudokuExplainer;
 global using Sudoku.Concepts;
+global using Sudoku.Enumerating;
 global using Sudoku.Linq;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
