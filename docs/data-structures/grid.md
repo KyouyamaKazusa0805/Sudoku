@@ -4,9 +4,13 @@
 
 ```csharp
 public struct Grid :
+    IEqualityOperators<Grid, Grid, bool>,
+    IMinMaxValue<Grid>,
+    IEnumerable<int>,
+    IReadOnlyCollection<int>,
+    IReadOnlyList<int>,
     ISimpleFormattable,
-	ISimpleParseable<Grid>,
-	IEqualityOperators<Grid, Grid>
+    ISimpleParseable<Grid>
 {
     public const short DefaultMask = 1023;
     public const short MaxCandidatesMask = 511;
@@ -18,6 +22,8 @@ public struct Grid :
     public static readonly void* RefreshingCandidates;
     public static readonly Grid Undefined;
     public static readonly Grid Empty;
+    public static readonly Grid MinValue;
+    public static readonly Grid MaxValue;
 
     public Grid(short[] masks);
 
@@ -35,7 +41,7 @@ public struct Grid :
     public readonly int GivensCount { get; }
     public readonly int ModifiablesCount { get; }
     public readonly int EmptiesCount { get; }
-    public readonly int NullRegions { get; }
+    public readonly int NullHouses { get; }
     public readonly Cells GivenCells { get; }
     public readonly Cells ModifiableCells { get; }
     public readonly Cells EmptyCells { get; }
@@ -46,7 +52,6 @@ public struct Grid :
 
     public static Grid Create(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None);
     public static Grid Create(ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None);
-    public static bool Equals(in Grid left, in Grid right);
     public static Grid Parse(string str, GridParsingOption gridParsingOption);
     public static Grid Parse(string str, bool compatibleFirst);
     public static Grid Parse(ReadOnlySpan<char> str);
@@ -79,6 +84,7 @@ public struct Grid :
 
     public static bool operator ==(scoped in Grid left, scoped in Grid right);
     public static bool operator !=(scoped in Grid left, scoped in Grid right);
+    public static explicit operator Grid(string? gridCode);
 
     public ref struct MaskCollectionEnumerator
     {
@@ -120,7 +126,7 @@ byte status = mask >> 9 & 7; // Gets the status of the cell.
 * `status` 是 2：当前单元格已经填入了一个数字，不过这个数字是用户自己填的，并不是题目最开始就给了的数字（提示数）；
 * `status` 是 4：当前单元格在题目最开始就有数字（提示数）。
 
-这个数值结果也可以等价转换为 `CellStatus` 枚举类型的数值，即 `var status = (CellStatus)(mask >> 9 & 7)`，这些枚举数值均可以查看[这个链接](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/CellStatus.cs)（`CellStatus` 的相关代码）。
+这个数值结果也可以等价转换为 `CellStatus` 枚举类型的数值，即 `var status = (CellStatus)(mask >> 9 & 7)`，这些枚举数值均可以查看[`CellStatus` 类型的代码](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Concepts/CellStatus.cs)。
 
 ## 成员选讲
 
@@ -358,3 +364,13 @@ string result = $"{grid:.+:}"; // Same as the above statement.
 ### 运算符 `==(in Grid, in Grid)` 和 `!=(in Grid, in Grid)`
 
 这两个运算符前文已经说过了，就是 `Equals` 系列方法的替代品，也是建议使用的比较方式。
+
+### 显式转换运算符 `explicit operator(string?)`
+
+该运算符允许我们将一个字符串信息（尤其是字面量形式呈现的数独盘面字符串）转换为等价的盘面。该运算符体现出一种更具可读性的书写格式。例如：
+
+```csharp
+var grid1 = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
+```
+
+我们可以将内嵌的字符串以这种形式呈现出来，然后使用强制转换将其转换为 `Grid` 实例。它的规则基本等价于 `Parse(string)` 方法的执行规则，因此它俩基本是等价的。唯一一点区别是，该运算符允许传 `null`。如果字符串为 `null` 值，调用 `Parse` 方法会产生编译器错误（或警告）信息，提示参数不能是 `null`，即使你绕过编译器分析，运行时也会产生异常；但该运算符允许我们强制转换，转换后的表达式等价于 `Undefined` 静态只读实例。即 `(Grid)null` 和 `Undefined` 是等价的。

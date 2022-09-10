@@ -2144,6 +2144,26 @@
             Indicates the default grid that all values are initialized 0.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Grid.MinValue">
+            <summary>
+            Indicates the minimum possible grid value that the current type can reach.
+            </summary>
+            <remarks>
+            This value is found out via backtracking algorithm. For more information about backtracking
+            algorithm, please visit documentation comments of type <see cref="T:Sudoku.Solving.Implementations.Solvers.BacktrackingSolver"/>.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Implementations.Solvers.BacktrackingSolver"/>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.MaxValue">
+            <summary>
+            Indicates the maximum possible grid value that the current type can reach.
+            </summary>
+            <remarks>
+            This value is found out via backtracking algorithm. For more information about backtracking
+            algorithm, please visit documentation comments of type <see cref="T:Sudoku.Solving.Implementations.Solvers.BacktrackingSolver"/>.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Implementations.Solvers.BacktrackingSolver"/>
+        </member>
         <member name="F:Sudoku.Concepts.Grid.Solver">
             <summary>
             Indicates the solver that uses the bitwise algorithm to solve a puzzle as fast as possible.
@@ -2388,6 +2408,15 @@
             the puzzle contains multiple solutions), the property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
             <see cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MinValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MaxValue">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(System.Int32)">
             <summary>
@@ -2797,6 +2826,12 @@
             <param name="cell">The cell.</param>
             <param name="mask">The mask to set.</param>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
             <summary>
             Called by properties <see cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>, <see cref="P:Sudoku.Concepts.Grid.DigitsMap"/> and <see cref="P:Sudoku.Concepts.Grid.ValuesMap"/>.
@@ -2855,6 +2890,16 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.String)">
             <inheritdoc/>
+            <remarks>
+            We suggest you use <see cref="M:Sudoku.Concepts.Grid.op_Explicit(System.String)~Sudoku.Concepts.Grid"/> to achieve same goal if the passing argument is a constant.
+            For example:
+            <code><![CDATA[
+            var grid1 = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
+            var grid2 = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
+            var grid3 = Grid.Parse(stringCode); // 'stringCode' is a string, not null.
+            ]]></code>
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.Grid.op_Explicit(System.String)~Sudoku.Concepts.Grid"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.String,System.Boolean)">
             <summary>
@@ -2964,6 +3009,29 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Numerics#IEqualityOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,System#Boolean}#op_Inequality(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.String)~Sudoku.Concepts.Grid">
+            <summary>
+            Implicit cast from <see cref="T:System.String"/> code to its equivalent <see cref="T:Sudoku.Concepts.Grid"/> instance representation.
+            </summary>
+            <param name="gridCode">The grid code.</param>
+            <remarks>
+            <para>
+            This explicit operator has same meaning for method <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>. You can also use
+            <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/> to get the same result as this operator.
+            </para>
+            <para>
+            If the argument being passed is <see langword="null"/>, this operator will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>
+            as the final result, whose behavior is the only one that is different with method <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>.
+            That method will throw a <see cref="T:System.FormatException"/> instance to report the invalid argument being passed.
+            </para>
+            </remarks>
+            <exception cref="T:System.FormatException">
+            See exception thrown cases for method <see cref="M:System.ISimpleParseable`1.Parse(System.String)"/>.
+            </exception>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
+            <seealso cref="M:System.ISimpleParseable`1.Parse(System.String)"/>
         </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>

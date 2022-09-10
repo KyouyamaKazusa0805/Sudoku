@@ -6,9 +6,13 @@
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [JsonConverter(typeof(GridJsonConverter))]
 public unsafe partial struct Grid :
+	IEqualityOperators<Grid, Grid, bool>,
+	IMinMaxValue<Grid>,
+	IEnumerable<int>,
+	IReadOnlyCollection<int>,
+	IReadOnlyList<int>,
 	ISimpleFormattable,
-	ISimpleParseable<Grid>,
-	IEqualityOperators<Grid, Grid, bool>
+	ISimpleParseable<Grid>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -73,6 +77,26 @@ public unsafe partial struct Grid :
 	/// Indicates the default grid that all values are initialized 0.
 	/// </summary>
 	public static readonly Grid Undefined;
+
+	/// <summary>
+	/// Indicates the minimum possible grid value that the current type can reach.
+	/// </summary>
+	/// <remarks>
+	/// This value is found out via backtracking algorithm. For more information about backtracking
+	/// algorithm, please visit documentation comments of type <see cref="BacktrackingSolver"/>.
+	/// </remarks>
+	/// <seealso cref="BacktrackingSolver"/>
+	public static readonly Grid MinValue;
+
+	/// <summary>
+	/// Indicates the maximum possible grid value that the current type can reach.
+	/// </summary>
+	/// <remarks>
+	/// This value is found out via backtracking algorithm. For more information about backtracking
+	/// algorithm, please visit documentation comments of type <see cref="BacktrackingSolver"/>.
+	/// </remarks>
+	/// <seealso cref="BacktrackingSolver"/>
+	public static readonly Grid MaxValue;
 
 	/// <summary>
 	/// Indicates the solver that uses the bitwise algorithm to solve a puzzle as fast as possible.
@@ -202,6 +226,8 @@ public unsafe partial struct Grid :
 		ValueChanged = (delegate*<ref Grid, int, short, short, int, void>)&onValueChanged;
 		RefreshingCandidates = (delegate*<ref Grid, void>)&onRefreshingCandidates;
 
+		MinValue = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
+		MaxValue = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
 
 		static void onValueChanged(ref Grid @this, int cell, short oldMask, short newMask, int setValue)
 		{
@@ -556,6 +582,15 @@ public unsafe partial struct Grid :
 	/// <see cref="Undefined"/>
 	public readonly Grid Solution
 		=> Solver.Solve(this) is { IsUndefined: false } solution ? solution.UnfixSolution(GivenCells) : Undefined;
+
+	/// <inheritdoc/>
+	readonly int IReadOnlyCollection<int>.Count => 81;
+
+	/// <inheritdoc/>
+	static Grid IMinMaxValue<Grid>.MinValue => MinValue;
+
+	/// <inheritdoc/>
+	static Grid IMinMaxValue<Grid>.MaxValue => MaxValue;
 
 
 	/// <summary>
@@ -1185,6 +1220,14 @@ public unsafe partial struct Grid :
 		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, m, -1);
 	}
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator IEnumerable.GetEnumerator() => ToArray().GetEnumerator();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)ToArray()).GetEnumerator();
+
 	/// <summary>
 	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.
 	/// </summary>
@@ -1310,6 +1353,16 @@ public unsafe partial struct Grid :
 		=> new(gridValues[0], creatingOption);
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// We suggest you use <see cref="op_Explicit(string)"/> to achieve same goal if the passing argument is a constant.
+	/// For example:
+	/// <code><![CDATA[
+	/// var grid1 = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
+	/// var grid2 = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
+	/// var grid3 = Grid.Parse(stringCode); // 'stringCode' is a string, not null.
+	/// ]]></code>
+	/// </remarks>
+	/// <seealso cref="op_Explicit(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(string str) => new GridParser(str).Parse();
 
@@ -1472,4 +1525,29 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<Grid, Grid, bool>.operator !=(Grid left, Grid right) => left != right;
+
+
+	/// <summary>
+	/// Implicit cast from <see cref="string"/> code to its equivalent <see cref="Grid"/> instance representation.
+	/// </summary>
+	/// <param name="gridCode">The grid code.</param>
+	/// <remarks>
+	/// <para>
+	/// This explicit operator has same meaning for method <see cref="Parse(string)"/>. You can also use
+	/// <see cref="Parse(string)"/> to get the same result as this operator.
+	/// </para>
+	/// <para>
+	/// If the argument being passed is <see langword="null"/>, this operator will return <see cref="Undefined"/>
+	/// as the final result, whose behavior is the only one that is different with method <see cref="Parse(string)"/>.
+	/// That method will throw a <see cref="FormatException"/> instance to report the invalid argument being passed.
+	/// </para>
+	/// </remarks>
+	/// <exception cref="FormatException">
+	/// See exception thrown cases for method <see cref="ISimpleParseable{TSimpleParseable}.Parse(string)"/>.
+	/// </exception>
+	/// <seealso cref="Undefined"/>
+	/// <seealso cref="Parse(string)"/>
+	/// <seealso cref="ISimpleParseable{TSimpleParseable}.Parse(string)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator Grid(string? gridCode) => gridCode is null ? Undefined : Parse(gridCode);
 }
