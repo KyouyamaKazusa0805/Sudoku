@@ -162,9 +162,9 @@ public unsafe partial struct Grid :
 	/// </exception>
 	private Grid(scoped in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
-		fixed (int* p = &firstElement)
+		if (Unsafe.IsNullRef(ref Unsafe.AsRef(firstElement)))
 		{
-			ArgumentNullException.ThrowIfNull(p);
+			throw new ArgumentNullException(nameof(firstElement));
 		}
 
 		// Firstly we should initialize the inner values.
