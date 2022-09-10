@@ -3708,6 +3708,47 @@
             Indicates the digits used.
             </summary>
         </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32[]@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Equals(System.Object)">
             <inheritdoc/>
         </member>
@@ -3749,47 +3790,6 @@
             Converts the current <see cref="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk"/> instance into a <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
             <param name="chunk">The <see cref="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk"/> instance.</param>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32[]@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
-						</code>
-						The following code will be legal.
-						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
-
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
-
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
-						</code>
-					</para>
-				</remarks>
-			</target>
         </member>
         <member name="T:Sudoku.Generating.ExercisePuzzlers.IExerciseGenerator">
             <summary>
@@ -4561,18 +4561,6 @@
         <member name="P:Sudoku.Presentation.Nodes.CellViewNode.TypeIdentifier">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Clone">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Deconstruct(Sudoku.Presentation.Identifier@,System.Int32@)">
             <target name="method">
 				<summary>
@@ -4613,6 +4601,18 @@
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Clone">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.ChuteViewNode">
             <summary>
@@ -4728,18 +4728,6 @@
         <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.TypeIdentifier">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Clone">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Deconstruct(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.Concepts.Inference@)">
             <target name="method">
 				<summary>
@@ -4780,6 +4768,18 @@
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Clone">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.UnknownViewNode">
             <summary>
@@ -8797,55 +8797,6 @@
             otherwise, a candidate will be removed.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.ApplyTo(Sudoku.Concepts.Grid@)">
-            <summary>
-            Put this instance into the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.Equals(Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.CompareTo(Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_Equality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Solving.Conclusion"/> instances are considered equal on inner value.
-            </summary>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether two instances are equal.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_Inequality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Solving.Conclusion"/> instances are not equal on inner value.
-            </summary>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether two instances are not equal.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_GreaterThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_GreaterThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_LessThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_LessThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@)">
             <target name="method">
 				<summary>
@@ -8927,6 +8878,55 @@
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.ApplyTo(Sudoku.Concepts.Grid@)">
+            <summary>
+            Put this instance into the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.Equals(Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.CompareTo(Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_Equality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Solving.Conclusion"/> instances are considered equal on inner value.
+            </summary>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether two instances are equal.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_Inequality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Solving.Conclusion"/> instances are not equal on inner value.
+            </summary>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether two instances are not equal.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_GreaterThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_GreaterThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_LessThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_LessThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.ConclusionType">
             <summary>
@@ -18459,12 +18459,6 @@
             <b>If and only if</b> the fourth value in the returned quadruple is available.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Patterns.UniquePolygonPattern.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Patterns.UniquePolygonPattern.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Patterns.UniquePolygonPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
             <target name="method">
 				<summary>
@@ -18505,6 +18499,12 @@
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="M:Sudoku.Solving.Patterns.UniquePolygonPattern.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Patterns.UniquePolygonPattern.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Prototypes.IAlmostHiddenSetsStepSearcher">
             <summary>
@@ -23994,36 +23994,6 @@
             Indicates the maximum value.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.Parsing.CellRange.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.CellRange.Equals(Sudoku.Text.Parsing.CellRange)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.CellRange.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.CellRange.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.CellRange.Parse(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.CellRange.TryParse(System.String,Sudoku.Text.Parsing.CellRange@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.CellRange.op_Equality(Sudoku.Text.Parsing.CellRange,Sudoku.Text.Parsing.CellRange)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.CellRange.op_Inequality(Sudoku.Text.Parsing.CellRange,Sudoku.Text.Parsing.CellRange)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.CellRange.op_Explicit(System.Range)~Sudoku.Text.Parsing.CellRange">
-            <summary>
-            Implicitly cast from <see cref="T:System.Range"/> to <see cref="T:Sudoku.Text.Parsing.CellRange"/>.
-            </summary>
-            <param name="range">The range instance.</param>
-        </member>
         <member name="M:Sudoku.Text.Parsing.CellRange.Deconstruct(System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
@@ -24064,6 +24034,36 @@
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.CellRange.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.CellRange.Equals(Sudoku.Text.Parsing.CellRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.CellRange.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.CellRange.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.CellRange.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.CellRange.TryParse(System.String,Sudoku.Text.Parsing.CellRange@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.CellRange.op_Equality(Sudoku.Text.Parsing.CellRange,Sudoku.Text.Parsing.CellRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.CellRange.op_Inequality(Sudoku.Text.Parsing.CellRange,Sudoku.Text.Parsing.CellRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.CellRange.op_Explicit(System.Range)~Sudoku.Text.Parsing.CellRange">
+            <summary>
+            Implicitly cast from <see cref="T:System.Range"/> to <see cref="T:Sudoku.Text.Parsing.CellRange"/>.
+            </summary>
+            <param name="range">The range instance.</param>
         </member>
         <member name="T:Sudoku.Text.Parsing.GridParser">
             <summary>

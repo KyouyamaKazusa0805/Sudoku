@@ -5,7 +5,6 @@
 /// </summary>
 internal static class Shortcuts
 {
-	public const string AutoDeconstruction = "d";
 	public const string AutoExtensionDeconstruction = "ed";
 	public const string RefStructDefaultOverrides = "rsd";
 	public const string EnumSwitchExpression = "ese";

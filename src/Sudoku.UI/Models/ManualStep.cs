@@ -3,8 +3,7 @@
 /// <summary>
 /// Defines a manual step.
 /// </summary>
-[AutoDeconstruction(nameof(Grid), nameof(Step))]
-public sealed partial class ManualStep
+public sealed class ManualStep
 {
 	/// <summary>
 	/// Indicates a <see cref="BindingFlags"/> instance that binds with all possible members stored in a type.
@@ -93,6 +92,12 @@ public sealed partial class ManualStep
 	/// </summary>
 	public required IStep Step { get; set; }
 
+
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out Grid grid, out IStep step) => (grid, step) = (Grid, Step);
 
 	/// <summary>
 	/// Gets the display string value that can describe the main information of the current step.

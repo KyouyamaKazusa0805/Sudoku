@@ -29,16 +29,6 @@ public sealed class GeneratorAttributesGenerator : IIncrementalGenerator
 
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
-					[global::System.AttributeUsageAttribute(global::System.AttributeTargets.Class | global::System.AttributeTargets.Struct | global::System.AttributeTargets.Interface, AllowMultiple = true)]
-					public sealed class {{AutoDeconstructionAttribute}} : global::System.Attribute
-					{
-						public {{AutoDeconstructionAttribute}}(params string[] memberExpressions) => MemberExpressions = memberExpressions;
-
-						public string[] MemberExpressions { get; }
-					}
-
-					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 					[global::System.AttributeUsageAttribute(global::System.AttributeTargets.Assembly, AllowMultiple = true, Inherited = false)]
 					public sealed class {{AutoExtensionDeconstructionAttribute}} : global::System.Attribute
 					{

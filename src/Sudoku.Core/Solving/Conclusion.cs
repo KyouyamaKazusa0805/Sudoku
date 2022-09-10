@@ -10,9 +10,7 @@
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
 /// <seealso cref="Elimination"/>
-[AutoDeconstruction(nameof(ConclusionType), nameof(Candidate))]
-[AutoDeconstruction(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
-public readonly partial struct Conclusion :
+public readonly struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion, bool>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
@@ -100,6 +98,20 @@ public readonly partial struct Conclusion :
 		get => (ConclusionType)(_mask >> 10 & 1);
 	}
 
+
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out ConclusionType conclusionType, out int candidate)
+		=> (conclusionType, candidate) = (ConclusionType, Candidate);
+
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit)
+		=> (conclusionType, cell, digit) = (ConclusionType, Cell, Digit);
 
 	/// <summary>
 	/// Put this instance into the specified grid.

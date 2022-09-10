@@ -13,11 +13,6 @@ internal static class Constants
 	public const string GeneratorAttributesNamespace = "System.Diagnostics.CodeGen";
 
 	/// <summary>
-	/// Indicates the attribute name of the auto deconstruction.
-	/// </summary>
-	public const string AutoDeconstructionAttribute = nameof(AutoDeconstructionAttribute);
-
-	/// <summary>
 	/// Indicates the attribute name of the auto extension deconstruction.
 	/// </summary>
 	public const string AutoExtensionDeconstructionAttribute = nameof(AutoExtensionDeconstructionAttribute);

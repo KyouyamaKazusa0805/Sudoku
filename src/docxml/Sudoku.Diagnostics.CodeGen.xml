@@ -14,11 +14,6 @@
             Indicates the namespace of the generator attributes.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.AutoDeconstructionAttribute">
-            <summary>
-            Indicates the attribute name of the auto deconstruction.
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.AutoExtensionDeconstructionAttribute">
             <summary>
             Indicates the attribute name of the auto extension deconstruction.
@@ -55,7 +50,7 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GatherAssemblyAttributes(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IAssemblySymbol,System.Collections.Generic.ICollection{System.ValueTuple{System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.AttributeData}})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GatherAssemblyAttributes(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IAssemblySymbol,System.Collections.Generic.ICollection{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.AttributeData}})">
             <summary>
             Get for assembly-targeted attributes on generation.
             </summary>
@@ -72,38 +67,6 @@
             <param name="fullTypeNameWithoutConstraint">The full type name, without the generic constraint.</param>
             <param name="type">The current emit type.</param>
             <returns>The collection of raw code parts for extension deconstruction methods.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GetForInstance(Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.AttributeData})">
-            <summary>
-            Gets the raw code parts for instance deconstruction methods via the specified list of attributes data.
-            </summary>
-            <param name="type">The type to be used.</param>
-            <param name="readOnlyKeyword">The read-only keyword token.</param>
-            <param name="attributesData">The attributes data, and the corresponding location.</param>
-            <returns>The collection of raw code parts for instance deconstruction methods.</returns>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Receiver">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Receiver.CancellationToken">
-            <summary>The cancellation token to cancel the operation.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Receiver.Collection">
-            <summary>
-            Indicates the result collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator">
             <summary>

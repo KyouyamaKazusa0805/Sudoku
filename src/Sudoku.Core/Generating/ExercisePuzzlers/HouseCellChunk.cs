@@ -3,8 +3,7 @@
 /// <summary>
 /// Defines a chunk that stores the cells in a house.
 /// </summary>
-[AutoDeconstruction(nameof(Cells), nameof(Digits))]
-public readonly unsafe partial struct HouseCellChunk :
+public readonly struct HouseCellChunk :
 	IComparable<HouseCellChunk>,
 	IComparisonOperators<HouseCellChunk, HouseCellChunk, bool>,
 	IEquatable<HouseCellChunk>,
@@ -22,7 +21,7 @@ public readonly unsafe partial struct HouseCellChunk :
 	/// <param name="house">Indicates the house used.</param>
 	/// <param name="chunkValues">A chunk of values. This argument must hold 9 elements.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public HouseCellChunk(int house, int* chunkValues)
+	public unsafe HouseCellChunk(int house, int* chunkValues)
 		=> _mask = (long)house << 36
 			| (long)chunkValues[0] | (long)chunkValues[1] << 4 | (long)chunkValues[2] << 8
 			| (long)chunkValues[3] << 12 | (long)chunkValues[4] << 16 | (long)chunkValues[5] << 20
@@ -106,6 +105,12 @@ public readonly unsafe partial struct HouseCellChunk :
 		}
 	}
 
+
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out CellMap cells, out int[] digits) => (cells, digits) = (Cells, Digits);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

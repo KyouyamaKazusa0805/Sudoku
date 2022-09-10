@@ -49,8 +49,7 @@
 /// Due to the rendering engine, you have to check this file rather than the tip window.
 /// </para>
 /// </remarks>
-[AutoDeconstruction(nameof(Pair1), nameof(Pair2), nameof(CenterCells))]
-public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniquePattern<UniquePolygonPattern>
+public readonly record struct UniquePolygonPattern(long Mask) : ITechniquePattern<UniquePolygonPattern>
 {
 	/// <summary>
 	/// Indicates whether the specified pattern is a heptagon.
@@ -129,6 +128,13 @@ public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniq
 		get => ((int)(Mask >> 49 & 127), (int)(Mask >> 42 & 127), (int)(Mask >> 35 & 127), (int)(Mask >> 28 & 127));
 	}
 
+
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out (int A, int B) pair1, out (int A, int B) pair2, out (int A, int B, int C, int D) centerCells)
+		=> (pair1, pair2, centerCells) = (Pair1, Pair2, CenterCells);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
