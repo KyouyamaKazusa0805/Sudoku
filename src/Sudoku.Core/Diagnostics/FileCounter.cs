@@ -23,7 +23,7 @@ public sealed class FileCounter
 	/// The file extension. This parameter can be <see langword="null"/>. If
 	/// so, the counter will sum up all files with all extensions.
 	/// </param>
-	public FileCounter(string root, string? extension) :
+	public FileCounter(string root, [StringSyntax(StringSyntaxAttribute.Regex)] string? extension) :
 		this(root, $@".+\.{extension}$", true, new List<string>())
 	{
 	}
@@ -42,7 +42,7 @@ public sealed class FileCounter
 	/// Indicates whether the counter will record the codes in directories
 	/// <c>bin</c> and <c>obj</c>.
 	/// </param>
-	public FileCounter(string root, string? extension, bool withBinOrObjDirectory) :
+	public FileCounter(string root, [StringSyntax(StringSyntaxAttribute.Regex)] string? extension, bool withBinOrObjDirectory) :
 		this(root, $@".+\.{extension}$", withBinOrObjDirectory, new List<string>())
 	{
 	}
@@ -70,6 +70,7 @@ public sealed class FileCounter
 	/// <summary>
 	/// The pattern.
 	/// </summary>
+	[StringSyntax(StringSyntaxAttribute.Regex)]
 	public string? Pattern { get; }
 
 	/// <summary>
