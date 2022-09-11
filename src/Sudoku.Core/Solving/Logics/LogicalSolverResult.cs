@@ -348,11 +348,8 @@ public sealed unsafe record LogicalSolverResult(scoped in Grid Puzzle) :
 					}
 
 					var info = steps[i];
-					var infoStr = options.Flags(SolverResultFormattingOptions.ShowSimple)
-						? info.ToSimpleString()
-						: info.Formatize();
-					var showDiff = options.Flags(SolverResultFormattingOptions.ShowDifficulty)
-						&& info.ShowDifficulty;
+					var infoStr = options.Flags(SolverResultFormattingOptions.ShowSimple) ? info.ToSimpleString() : info.Formatize();
+					var showDiff = options.Flags(SolverResultFormattingOptions.ShowDifficulty) && info.ShowDifficulty;
 
 					var d = $"({info.Difficulty,5:0.0}";
 					var s = $"{i + 1,4}";
