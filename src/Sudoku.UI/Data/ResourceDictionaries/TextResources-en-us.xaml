@@ -361,6 +361,7 @@
 	<x:String x:Key="VirtualKey_189">Minus</x:String>
 	<x:String x:Key="VirtualKey_187">Equals</x:String>
 	<x:String x:Key="__SampleField">Sample field</x:String>
+	<x:String x:Key="__UnderConstruction">This page is under construction.</x:String>
 
 	<!--Punctuations-->
 	<x:String x:Key="Token_OpenBrace" xml:space="preserve"> (</x:String>

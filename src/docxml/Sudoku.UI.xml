@@ -194,6 +194,11 @@
             <param name="versionTimelineItem">The version timeline item value.</param>
             <returns>The text block instance.</returns>
         </member>
+        <member name="M:Sudoku.UI.DataConversion.SimpleConverters.PageEnabledOrDisabledTooltip(System.Boolean)">
+            <summary>
+            Try to fetch the introduction details of the page, displaying as a tooltip indicating why this page is disabled.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.DataConversion.SimpleConverters.ConvertVirtualKeyToName(Windows.System.VirtualKey[])">
             <summary>
             Converts the specified virtual key into a string representation.

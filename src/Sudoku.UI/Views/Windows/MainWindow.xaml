@@ -5,6 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:Sudoku.UI.Views.Controls"
+	xmlns:data="using:Sudoku.UI.DataConversion"
 	xmlns:dts="using:Sudoku.UI.DataConversion.DataTemplateSelectors"
 	xmlns:m="using:Sudoku.UI.Models"
 	mc:Ignorable="d"
@@ -47,6 +48,7 @@
 						<DataTemplate x:DataType="m:MenuItemTemplateData">
 							<NavigationViewItem
 								Tag="{x:Bind Tag}" Visibility="{x:Bind Visibility}" IsEnabled="{x:Bind IsEnabled}"
+								ToolTipService.ToolTip="{x:Bind data:SimpleConverters.PageEnabledOrDisabledTooltip(IsEnabled)}"
 								Style="{ThemeResource _rNavigationViewItemNavigationViewItemStyle}">
 								<NavigationViewItem.Content>
 									<StackPanel Style="{ThemeResource _rNavigationViewItemStackPanelStyle}">

@@ -350,6 +350,7 @@
 	<x:String x:Key="VirtualKey_Space">空格</x:String>
 	<x:String x:Key="VirtualKey_189">减号键</x:String>
 	<x:String x:Key="VirtualKey_187">等号键</x:String>
+	<x:String x:Key="__UnderConstruction">该页面尚在开发之中。</x:String>
 
 	<!--标点符号-->
 	<x:String x:Key="Token_OpenBrace">（</x:String>

@@ -171,6 +171,12 @@ internal static class SimpleConverters
 		).ToList();
 
 	/// <summary>
+	/// Try to fetch the introduction details of the page, displaying as a tooltip indicating why this page is disabled.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string? PageEnabledOrDisabledTooltip(bool isEnabled) => isEnabled ? null : R["__UnderConstruction"]!;
+
+	/// <summary>
 	/// Converts the specified virtual key into a string representation.
 	/// </summary>
 	/// <param name="virtualKeys">The virtual key.</param>
