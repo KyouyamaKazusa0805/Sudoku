@@ -168,11 +168,11 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node, b
 	bool IEquatable<Node>.Equals(Node other) => Equals(other);
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(scoped in Node left, scoped in Node right) => left.Equals(right);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(scoped in Node left, scoped in Node right) => !(left == right);
 
