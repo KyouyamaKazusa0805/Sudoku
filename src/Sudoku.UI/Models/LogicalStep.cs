@@ -1,9 +1,9 @@
 ﻿namespace Sudoku.UI.Models;
 
 /// <summary>
-/// Defines a manual step.
+/// Defines a logical step.
 /// </summary>
-public sealed class ManualStep
+public sealed class LogicalStep
 {
 	/// <summary>
 	/// Indicates a <see cref="BindingFlags"/> instance that binds with all possible members stored in a type.

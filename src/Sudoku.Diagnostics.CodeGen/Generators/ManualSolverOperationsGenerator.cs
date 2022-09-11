@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
-/// Defines a source generator that generates the source code that are options used in manual solver type.
+/// Defines a source generator that generates the source code that are options used in logical solver type.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
 public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator

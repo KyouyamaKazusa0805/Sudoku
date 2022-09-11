@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Logics.Prototypes;
 
 /// <summary>
-/// Provides a basic manual solving step.
+/// Provides a basic logical solving step.
 /// </summary>
 public interface IStep : IVisual
 {

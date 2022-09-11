@@ -1105,35 +1105,23 @@
         <member name="P:Sudoku.UI.Models.KeyboardPair.VirtualKeys">
             <summary>The virtual keys.</summary>
         </member>
-        <member name="T:Sudoku.UI.Models.ManualSolverResultMessage">
+        <member name="T:Sudoku.UI.Models.LogicalStep">
             <summary>
-            Defines a <see cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/> instance that can provide with the details
-            for a <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>
-        </member>
-        <member name="P:Sudoku.UI.Models.ManualSolverResultMessage.AnalysisResult">
-            <summary>
-            Indicates the analysis result.
+            Defines a logical step.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Models.ManualStep">
-            <summary>
-            Defines a manual step.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Models.ManualStep.AllMembers">
+        <member name="F:Sudoku.UI.Models.LogicalStep.AllMembers">
             <summary>
             Indicates a <see cref="T:System.Reflection.BindingFlags"/> instance that binds with all possible members stored in a type.
             This constant is used for reflection.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.ManualStep.ExtraFeatureBadgeVisibility">
+        <member name="P:Sudoku.UI.Models.LogicalStep.ExtraFeatureBadgeVisibility">
             <summary>
             Indicates the visibility of extra feature badge.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.ManualStep.ExtraFeatures">
+        <member name="P:Sudoku.UI.Models.LogicalStep.ExtraFeatures">
             <summary>
             Indicates the extra displaying features.
             </summary>
@@ -1170,17 +1158,17 @@
             </exception>
             <seealso cref="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute"/>
         </member>
-        <member name="P:Sudoku.UI.Models.ManualStep.Grid">
+        <member name="P:Sudoku.UI.Models.LogicalStep.Grid">
             <summary>
             Indicates the current grid used.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.ManualStep.Step">
+        <member name="P:Sudoku.UI.Models.LogicalStep.Step">
             <summary>
             Indicates the step.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStep.Deconstruct(Sudoku.Concepts.Grid@,Sudoku.Solving.Logics.Prototypes.IStep@)">
+        <member name="M:Sudoku.UI.Models.LogicalStep.Deconstruct(Sudoku.Concepts.Grid@,Sudoku.Solving.Logics.Prototypes.IStep@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -1221,64 +1209,76 @@
 				</remarks>
 			</target>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStep.ToDisplayString">
+        <member name="M:Sudoku.UI.Models.LogicalStep.ToDisplayString">
             <summary>
             Gets the display string value that can describe the main information of the current step.
             </summary>
             <returns>The string value.</returns>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStep.GetToolTipText">
+        <member name="M:Sudoku.UI.Models.LogicalStep.GetToolTipText">
             <summary>
             Fetches the tool tip text.
             </summary>
             <returns>The tool tip text to be displayed.</returns>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStep.GetBadgeBackgroundBrush">
+        <member name="M:Sudoku.UI.Models.LogicalStep.GetBadgeBackgroundBrush">
             <summary>
             Fetches the background brush of the badge control.
             </summary>
             <returns>The background brush of the badge control.</returns>
         </member>
-        <member name="T:Sudoku.UI.Models.ManualStepCollection">
+        <member name="T:Sudoku.UI.Models.LogicalStepCollection">
             <summary>
-            Provides with a list of manual steps.
+            Provides with a list of logical steps.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Models.ManualStepCollection._steps">
+        <member name="F:Sudoku.UI.Models.LogicalStepCollection._steps">
             <summary>
             Indicates the steps.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStepCollection.#ctor">
+        <member name="M:Sudoku.UI.Models.LogicalStepCollection.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.ManualStepCollection"/> instance.
+            Initializes a <see cref="T:Sudoku.UI.Models.LogicalStepCollection"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStepCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.UI.Models.ManualStep})">
+        <member name="M:Sudoku.UI.Models.LogicalStepCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.UI.Models.LogicalStep})">
             <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.ManualStepCollection"/> instance via the specified steps.
+            Initializes a <see cref="T:Sudoku.UI.Models.LogicalStepCollection"/> instance via the specified steps.
             </summary>
             <param name="steps">The steps.</param>
         </member>
-        <member name="P:Sudoku.UI.Models.ManualStepCollection.Count">
+        <member name="P:Sudoku.UI.Models.LogicalStepCollection.Count">
             <inheritdoc cref="P:System.Collections.Generic.ICollection`1.Count"/>
         </member>
-        <member name="P:Sudoku.UI.Models.ManualStepCollection.Item(System.Int32)">
+        <member name="P:Sudoku.UI.Models.LogicalStepCollection.Item(System.Int32)">
             <inheritdoc cref="P:System.Collections.Generic.IList`1.Item(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStepCollection.GetEnumerator">
+        <member name="M:Sudoku.UI.Models.LogicalStepCollection.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStepCollection.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.UI.Models.LogicalStepCollection.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Models.ManualStepCollection.Create(Sudoku.Solving.Logics.LogicalSolverResult)">
+        <member name="M:Sudoku.UI.Models.LogicalStepCollection.Create(Sudoku.Solving.Logics.LogicalSolverResult)">
             <summary>
-            Creates a <see cref="T:Sudoku.UI.Models.ManualStepCollection"/> instance via the specified <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>.
+            Creates a <see cref="T:Sudoku.UI.Models.LogicalStepCollection"/> instance via the specified <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>.
             </summary>
             <param name="steps">The steps.</param>
-            <returns>A <see cref="T:Sudoku.UI.Models.ManualStepCollection"/> instance.</returns>
+            <returns>A <see cref="T:Sudoku.UI.Models.LogicalStepCollection"/> instance.</returns>
             <seealso cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>
+        </member>
+        <member name="T:Sudoku.UI.Models.ManualSolverResultMessage">
+            <summary>
+            Defines a <see cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/> instance that can provide with the details
+            for a <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.ManualSolverResultMessage.AnalysisResult">
+            <summary>
+            Indicates the analysis result.
+            </summary>
         </member>
         <member name="T:Sudoku.UI.Models.MenuItemHeaderTemplateData">
             <summary>
@@ -2936,11 +2936,11 @@
             The code is referenced from <see href="https://github.com/marb2000/PrintSample">this sample</see>.
             </remarks>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SetManualStep(Sudoku.UI.Models.ManualStep)">
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SetLogicalStep(Sudoku.UI.Models.LogicalStep)">
             <summary>
-            Sets the manual step.
+            Sets the logical step.
             </summary>
-            <param name="e">The manual step.</param>
+            <param name="e">The logical step.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
@@ -2984,7 +2984,7 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InfoBoard_ChosenStepChanged(System.Object,Sudoku.UI.Models.ManualStep)">
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InfoBoard_ChosenStepChanged(System.Object,Sudoku.UI.Models.LogicalStep)">
             <summary>
             Triggers when the inner collection of the control <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cInfoBoard"/> is changed its step chosen,
             when the info bar message binds with a <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>.

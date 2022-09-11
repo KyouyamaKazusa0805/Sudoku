@@ -8,10 +8,10 @@ public enum SolveAlgorithm
 	/// <summary>
 	/// Indicates the solver is manually solver.
 	/// </summary>
-	[SupportedArguments(new[] { "manual", "m" })]
+	[SupportedArguments(new[] { "logical", "l" })]
 	[RouteToType(typeof(LogicalSolver))]
-	[Name("Manual")]
-	Manual,
+	[Name("Logical")]
+	Logical,
 
 	/// <summary>
 	/// Indicates the solver is bitwise solver.

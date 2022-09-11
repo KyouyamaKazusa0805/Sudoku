@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Logics.Implementations.Steps;
 
 /// <summary>
-/// Provides with a manual solving step that is a technique usage, and contains the conclusions.
+/// Provides with a logical solving step that is a technique usage, and contains the conclusions.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc cref="IVisual.Conclusions" path="/summary"/></param>
 /// <param name="Views"><inheritdoc cref="IVisual.Views" path="/summary"/></param>

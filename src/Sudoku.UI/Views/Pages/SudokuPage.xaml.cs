@@ -557,7 +557,7 @@ public sealed partial class SudokuPage : Page
 				// Disable the control to prevent re-invocation.
 				button.IsEnabled = false;
 
-				// Solve the puzzle using the manual solver.
+				// Solve the puzzle using the logical solver.
 				var analysisResult = await Task.Run(analyze);
 
 				// Enable the control.
@@ -895,10 +895,10 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
-	/// Sets the manual step.
+	/// Sets the logical step.
 	/// </summary>
-	/// <param name="e">The manual step.</param>
-	private void SetManualStep(ManualStep e)
+	/// <param name="e">The logical step.</param>
+	private void SetLogicalStep(LogicalStep e)
 	{
 		if (e is not (var grid, { Views.Length: var viewLength and not 0 } step))
 		{
@@ -982,7 +982,7 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void InfoBoard_ChosenStepChanged(object sender, ManualStep e) => SetManualStep(e);
+	private void InfoBoard_ChosenStepChanged(object sender, LogicalStep e) => SetLogicalStep(e);
 
 	/// <summary>
 	/// Indicates the event trigger callback method that determines

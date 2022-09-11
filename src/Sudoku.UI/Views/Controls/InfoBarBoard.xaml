@@ -136,11 +136,11 @@
 													Text="{StaticResource SudokuPage_Info_SolvingSteps}"
 													Margin="0,6,0,12" />
 												<ListView
-													ItemsSource="{x:Bind m:ManualStepCollection.Create(AnalysisResult)}"
+													ItemsSource="{x:Bind m:LogicalStepCollection.Create(AnalysisResult)}"
 													SelectionMode="Single" IsItemClickEnabled="True"
 													ItemClick="ListView_ItemClick">
 													<ListView.ItemTemplate>
-														<DataTemplate x:DataType="m:ManualStep">
+														<DataTemplate x:DataType="m:LogicalStep">
 															<ListViewItem
 																Tag="{x:Bind}" Grid.Column="1"
 																Background="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(Step.DifficultyLevel)}">

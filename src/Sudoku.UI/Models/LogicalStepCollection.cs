@@ -1,30 +1,30 @@
 ﻿namespace Sudoku.UI.Models;
 
 /// <summary>
-/// Provides with a list of manual steps.
+/// Provides with a list of logical steps.
 /// </summary>
-public sealed class ManualStepCollection : IEnumerable<ManualStep>, IReadOnlyList<ManualStep>
+public sealed class LogicalStepCollection : IEnumerable<LogicalStep>, IReadOnlyList<LogicalStep>
 {
 	/// <summary>
 	/// Indicates the steps.
 	/// </summary>
-	private readonly IList<ManualStep> _steps = new List<ManualStep>();
+	private readonly IList<LogicalStep> _steps = new List<LogicalStep>();
 
 
 	/// <summary>
-	/// Initializes a <see cref="ManualStepCollection"/> instance.
+	/// Initializes a <see cref="LogicalStepCollection"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ManualStepCollection()
+	public LogicalStepCollection()
 	{
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="ManualStepCollection"/> instance via the specified steps.
+	/// Initializes a <see cref="LogicalStepCollection"/> instance via the specified steps.
 	/// </summary>
 	/// <param name="steps">The steps.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ManualStepCollection(IEnumerable<ManualStep> steps) => _steps.AddRange(steps);
+	public LogicalStepCollection(IEnumerable<LogicalStep> steps) => _steps.AddRange(steps);
 
 
 	/// <inheritdoc cref="ICollection{T}.Count"/>
@@ -32,12 +32,12 @@ public sealed class ManualStepCollection : IEnumerable<ManualStep>, IReadOnlyLis
 
 
 	/// <inheritdoc cref="IList{T}.this[int]"/>
-	public ManualStep this[int index] => _steps[index];
+	public LogicalStep this[int index] => _steps[index];
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public IEnumerator<ManualStep> GetEnumerator() => _steps.GetEnumerator();
+	public IEnumerator<LogicalStep> GetEnumerator() => _steps.GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -45,15 +45,15 @@ public sealed class ManualStepCollection : IEnumerable<ManualStep>, IReadOnlyLis
 
 
 	/// <summary>
-	/// Creates a <see cref="ManualStepCollection"/> instance via the specified <see cref="LogicalSolverResult"/>.
+	/// Creates a <see cref="LogicalStepCollection"/> instance via the specified <see cref="LogicalSolverResult"/>.
 	/// </summary>
 	/// <param name="steps">The steps.</param>
-	/// <returns>A <see cref="ManualStepCollection"/> instance.</returns>
+	/// <returns>A <see cref="LogicalStepCollection"/> instance.</returns>
 	/// <seealso cref="LogicalSolverResult"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ManualStepCollection Create(LogicalSolverResult steps)
+	public static LogicalStepCollection Create(LogicalSolverResult steps)
 	{
-		var list = new List<ManualStep>();
+		var list = new List<LogicalStep>();
 		foreach (var (grid, step) in steps.SolvingPath)
 		{
 			list.Add(new() { Step = step, Grid = grid });

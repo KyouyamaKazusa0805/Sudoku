@@ -12,7 +12,7 @@
             <para>
             The whole class is a <see langword="static"/> one, which means you can't use <see langword="new"/>
             clause to create a new instance of this type. In contrast, the class is used for providing with
-            <see langword="static"/> properties used in a cyclic manual searching
+            <see langword="static"/> properties used in a cyclic manually searching
             (i.e. in <see cref="T:Sudoku.Solving.Logics.LogicalSolver"/>).
             </para>
             <para>
@@ -7832,7 +7832,7 @@
             indicating an algorithm chosen for a step searcher is too slow.
             </summary>
             <remarks>
-            This attribute can be ignored when a manual solver enables them regardless of execution speed.
+            This attribute can be ignored when a logical solver enables them regardless of execution speed.
             </remarks>
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator">
@@ -15230,14 +15230,14 @@
         </member>
         <member name="T:Sudoku.Solving.Logics.Implementations.Steps.Step">
             <summary>
-            Provides with a manual solving step that is a technique usage, and contains the conclusions.
+            Provides with a logical solving step that is a technique usage, and contains the conclusions.
             </summary>
             <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
             <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Solving.Logics.Implementations.Steps.Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
             <summary>
-            Provides with a manual solving step that is a technique usage, and contains the conclusions.
+            Provides with a logical solving step that is a technique usage, and contains the conclusions.
             </summary>
             <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
             <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
@@ -19003,7 +19003,7 @@
         </member>
         <member name="T:Sudoku.Solving.Logics.Prototypes.IStep">
             <summary>
-            Provides a basic manual solving step.
+            Provides a basic logical solving step.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logics.Prototypes.IStep.ShowDifficulty">

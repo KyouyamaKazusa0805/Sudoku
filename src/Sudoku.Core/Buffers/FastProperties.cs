@@ -9,7 +9,7 @@ namespace Sudoku.Buffers;
 /// <para>
 /// The whole class is a <see langword="static"/> one, which means you can't use <see langword="new"/>
 /// clause to create a new instance of this type. In contrast, the class is used for providing with
-/// <see langword="static"/> properties used in a cyclic manual searching
+/// <see langword="static"/> properties used in a cyclic manually searching
 /// (i.e. in <see cref="LogicalSolver"/>).
 /// </para>
 /// <para>

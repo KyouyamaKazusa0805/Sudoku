@@ -31,7 +31,7 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 	/// <summary>
 	/// Triggers when the chosen step is changed.
 	/// </summary>
-	public event EventHandler<ManualStep>? ChosenStepChanged;
+	public event EventHandler<LogicalStep>? ChosenStepChanged;
 
 
 	/// <summary>
@@ -152,5 +152,5 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
 	private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-		=> ChosenStepChanged?.Invoke(this, (ManualStep)e.ClickedItem);
+		=> ChosenStepChanged?.Invoke(this, (LogicalStep)e.ClickedItem);
 }

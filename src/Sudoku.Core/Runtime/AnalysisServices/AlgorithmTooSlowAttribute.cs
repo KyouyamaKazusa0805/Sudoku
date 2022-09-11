@@ -5,7 +5,7 @@
 /// indicating an algorithm chosen for a step searcher is too slow.
 /// </summary>
 /// <remarks>
-/// This attribute can be ignored when a manual solver enables them regardless of execution speed.
+/// This attribute can be ignored when a logical solver enables them regardless of execution speed.
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 public sealed class AlgorithmTooSlowAttribute : Attribute
