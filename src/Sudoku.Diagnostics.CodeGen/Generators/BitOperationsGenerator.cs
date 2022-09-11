@@ -208,7 +208,8 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 	/// <param name="typeName">The type name.</param>
 	/// <returns>The code.</returns>
 	private string G_GetEnumerator(string typeName)
-		=> $$"""
+		=>
+		$$"""
 			/// <summary>
 			/// <para>Extension get enumerator of the type <see cref="{{typeName}}"/>.</para>
 			/// <para>
@@ -241,7 +242,8 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 	/// <param name="size">The size of the type.</param>
 	/// <returns>The code.</returns>
 	private string G_GetNextSet(string typeName, int size)
-		=> $$"""
+		=>
+		$$"""
 			/// <summary>
 			/// Find a index of the binary representation of a value after the specified index,
 			/// whose bit is set <see langword="true"/>.
@@ -319,7 +321,8 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 	/// <param name="typeName">The type name.</param>
 	/// <returns>The code.</returns>
 	private string G_SetAt(string typeName)
-		=> $$"""
+		=>
+		$$"""
 			/// <summary>
 			/// Get an <see cref="int"/> value, indicating that the absolute position of
 			/// all set bits with the specified set bit order.

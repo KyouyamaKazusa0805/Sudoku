@@ -4,7 +4,7 @@
 /// Defines a source generator that generates the source code that are options used in logical solver type.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
+public sealed class LogicalSolverOperationsGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
@@ -97,22 +97,23 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 					let typeStrWithoutInterfacePrefix = info.Property.ContainingType.Name
 					let propertyStr = info.Property.Name
 					let propertyTypeStr = info.Property.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
-					select $$"""
-					/// <inheritdoc cref="{{propertyContainedInterfaceTypeStr}}.{{propertyStr}}"/>
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						public {{propertyTypeStr}} {{typeStrWithoutInterfacePrefix}}_{{propertyStr}}
-						{
-							[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-							set
+					select
+						$$"""
+						/// <inheritdoc cref="{{propertyContainedInterfaceTypeStr}}.{{propertyStr}}"/>
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+							public {{propertyTypeStr}} {{typeStrWithoutInterfacePrefix}}_{{propertyStr}}
 							{
-								if (TargetSearcherCollection.GetOfType<{{typeStr}}>() is { } searcher)
+								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+								set
 								{
-									searcher.{{propertyStr}} = value;
+									if (TargetSearcherCollection.GetOfType<{{typeStr}}>() is { } searcher)
+									{
+										searcher.{{propertyStr}} = value;
+									}
 								}
 							}
-						}
-					"""
+						"""
 				);
 
 				spc.AddSource(

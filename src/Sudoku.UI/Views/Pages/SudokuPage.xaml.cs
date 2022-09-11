@@ -594,23 +594,23 @@ public sealed partial class SudokuPage : Page
 					case { FailedReason: var failedReason, UnhandledException: var ex }:
 					{
 						var firstPart = R["SudokuPage_InfoBar_AnalyzeFailedDueTo1"]!;
-						var secondPart =
-							failedReason switch
-							{
-								SearcherFailedReason.UserCancelled
-									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling"]!,
-								SearcherFailedReason.NotImplemented
-									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented"]!,
-								SearcherFailedReason.ExceptionThrown when ex is { Message: var message }
-									=> $"""
-									{R["SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown"]!}
+						var secondPart = failedReason switch
+						{
+							SearcherFailedReason.UserCancelled
+								=> R["SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling"]!,
+							SearcherFailedReason.NotImplemented
+								=> R["SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented"]!,
+							SearcherFailedReason.ExceptionThrown when ex is { Message: var message }
+								=>
+								$"""
+								{R["SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown"]!}
 
-									{R["SudokuPage_Info_ExceptionIs"]!}
-									{message}
-									""",
-								SearcherFailedReason.PuzzleIsTooHard
-									=> R["SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard"]!,
-							};
+								{R["SudokuPage_Info_ExceptionIs"]!}
+								{message}
+								""",
+							SearcherFailedReason.PuzzleIsTooHard
+								=> R["SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard"]!,
+						};
 
 						_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}");
 

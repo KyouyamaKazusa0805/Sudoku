@@ -173,12 +173,12 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratorAttributesGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.ManualSolverOperationsGenerator">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.LogicalSolverOperationsGenerator">
             <summary>
             Defines a source generator that generates the source code that are options used in logical solver type.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ManualSolverOperationsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.LogicalSolverOperationsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator">

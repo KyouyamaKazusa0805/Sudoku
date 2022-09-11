@@ -310,7 +310,7 @@ internal sealed class CellDigit : DrawingElement
 				_ => "<Empty>"
 			};
 
-			return $$"""{{nameof(CellDigit)}} { Status = {{status}}, Digit = {{digit}} }""";
+			return $$"""{{nameof(CellDigit)}} { {{nameof(status).ToUpper()}} = {{status}}, {{nameof(digit).ToUpper()}} = {{digit}} }""";
 		}
 	}
 #endif

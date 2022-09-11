@@ -17,7 +17,8 @@ public sealed class WrongStepException : Exception
 
 	/// <inheritdoc/>
 	public override string Message
-		=> $"""
+		=>
+		$"""
 		The step: may exist bug that causes the wrong handling.
 		Current grid: '{CurrentInvalidGrid:#}'
 		Current step: '{WrongStep}'
