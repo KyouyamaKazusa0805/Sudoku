@@ -2,13 +2,13 @@
 
 /// <summary>
 /// Defines a <see cref="InfoBarMessage"/> instance that can provide with the details
-/// for a <see cref="ManualSolverResult"/> instance.
+/// for a <see cref="LogicalSolverResult"/> instance.
 /// </summary>
-/// <seealso cref="ManualSolverResult"/>
+/// <seealso cref="LogicalSolverResult"/>
 public sealed class ManualSolverResultMessage : InfoBarMessage
 {
 	/// <summary>
 	/// Indicates the analysis result.
 	/// </summary>
-	public required ManualSolverResult AnalysisResult { get; set; }
+	public required LogicalSolverResult AnalysisResult { get; set; }
 }

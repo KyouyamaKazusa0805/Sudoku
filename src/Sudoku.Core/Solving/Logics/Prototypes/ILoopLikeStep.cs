@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Prototypes;
+﻿namespace Sudoku.Solving.Logics.Prototypes;
 
 /// <summary>
 /// Defines a step whose technique used is the loop.

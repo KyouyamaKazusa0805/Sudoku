@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Prototypes;
+﻿namespace Sudoku.Solving.Logics.Prototypes;
 
 /// <summary>
 /// Provides with the kinds of the phased difficulty rating that is used

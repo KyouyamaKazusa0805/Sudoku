@@ -1,9 +1,9 @@
-﻿namespace Sudoku.Solving.Prototypes;
+﻿namespace Sudoku.Solving.Logics.Prototypes;
 
 /// <summary>
-/// Defines an instance that stores the options that bound with a <see cref="ManualSolver"/> instance.
+/// Defines an instance that stores the options that bound with a <see cref="LogicalSolver"/> instance.
 /// </summary>
-/// <seealso cref="ManualSolver"/>
+/// <seealso cref="LogicalSolver"/>
 public interface IManualSolverOptions
 {
 	/// <summary>

@@ -1,8 +1,9 @@
-﻿namespace Sudoku.Solving.Implementations.Solvers;
+﻿namespace Sudoku.Solving.Logics;
 
 /// <summary>
-/// Indicates the formatting options of <see cref="ManualSolverResult"/> instance.
+/// Indicates the formatting options of <see cref="LogicalSolverResult"/> instance.
 /// </summary>
+/// <seealso cref="LogicalSolverResult"/>
 [Flags]
 public enum SolverResultFormattingOptions : short
 {

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Implementations.Steps;
+﻿namespace Sudoku.Solving.Logics.Implementations.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.

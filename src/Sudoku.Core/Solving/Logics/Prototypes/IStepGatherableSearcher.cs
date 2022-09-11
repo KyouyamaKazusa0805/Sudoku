@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Prototypes;
+﻿namespace Sudoku.Solving.Logics.Prototypes;
 
 /// <summary>
 /// Defines a special step searcher that can gather all possible steps of various techniques, in a step.

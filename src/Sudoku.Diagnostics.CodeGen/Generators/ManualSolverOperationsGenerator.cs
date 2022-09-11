@@ -8,132 +8,130 @@ public sealed class ManualSolverOperationsGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
-		=> context.RegisterSourceOutput(context.CompilationProvider, CreateSourceGeneration);
-
-	private void CreateSourceGeneration(SourceProductionContext spc, Compilation compilation)
-	{
-		if (compilation is not
+		=> context.RegisterSourceOutput(
+			context.CompilationProvider,
+			(spc, compilation) =>
 			{
-				Assembly: { Name: Projects.SudokuCore, GlobalNamespace: var @namespace } assemblySymbol
-			})
-		{
-			return;
-		}
-
-		var manualSolverTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Implementations.Solvers.ManualSolver");
-		if (manualSolverTypeSymbol is not { TypeKind: Kind.Class, IsRecord: false, IsSealed: true })
-		{
-			// The core type cannot be found.
-			return;
-		}
-
-		var stepSearcherType = compilation.GetTypeByMetadataName("Sudoku.Solving.Prototypes.IStepSearcher");
-		if (stepSearcherType is not { TypeKind: Kind.Interface })
-		{
-			// Same reason as above.
-			return;
-		}
-
-		var attributeType = compilation.GetTypeByMetadataName("Sudoku.Runtime.AnalysisServices.StepSearcherPropertyAttribute");
-		if (attributeType is not { TypeKind: Kind.Class, IsSealed: true })
-		{
-			// Same reason as above.
-			return;
-		}
-
-		// Iterates on all possible types derived from this interface.
-		var allTypes = @namespace.GetAllNestedTypes();
-		var foundResultInfos = new List<FoundResultInfo>();
-		foreach (var searcherType in
-			from typeSymbol in allTypes
-			where typeSymbol is
-			{
-				TypeKind: Kind.Class,
-				AllInterfaces: var implementedInterfaces and not []
-			} && implementedInterfaces.Contains(stepSearcherType, SymbolEqualityComparer.Default)
-			select typeSymbol)
-		{
-			foreach (var property in searcherType.GetMembers().OfType<IPropertySymbol>())
-			{
-				if (!property.ContainsAttribute(attributeType))
+				if (compilation is not { Assembly: { Name: Projects.SudokuCore, GlobalNamespace: var @namespace } assemblySymbol })
 				{
-					continue;
+					return;
 				}
 
-				if (property is not
+				var manualSolverTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Logics.LogicalSolver");
+				if (manualSolverTypeSymbol is not { TypeKind: Kind.Class, IsRecord: false, IsSealed: true })
+				{
+					// The core type cannot be found.
+					return;
+				}
+
+				var stepSearcherType = compilation.GetTypeByMetadataName("Sudoku.Solving.Logics.Prototypes.IStepSearcher");
+				if (stepSearcherType is not { TypeKind: Kind.Interface })
+				{
+					// Same reason as above.
+					return;
+				}
+
+				var attributeType = compilation.GetTypeByMetadataName("Sudoku.Runtime.AnalysisServices.StepSearcherPropertyAttribute");
+				if (attributeType is not { TypeKind: Kind.Class, IsSealed: true })
+				{
+					// Same reason as above.
+					return;
+				}
+
+				// Iterates on all possible types derived from this interface.
+				var allTypes = @namespace.GetAllNestedTypes();
+				var foundResultInfos = new List<FoundResultInfo>();
+				foreach (var searcherType in
+					from typeSymbol in allTypes
+					where typeSymbol is
 					{
-						ExplicitInterfaceImplementations: [],
-						ContainingType.Name: var searcherTypeName,
-						Name: var propertyName
-					})
+						TypeKind: Kind.Class,
+						AllInterfaces: var implementedInterfaces and not []
+					} && implementedInterfaces.Contains(stepSearcherType, SymbolEqualityComparer.Default)
+					select typeSymbol)
 				{
-					continue;
-				}
-
-				var searcherFullTypeName = $"Sudoku.Solving.Prototypes.I{searcherTypeName}";
-				var interfaceType = compilation.GetTypeByMetadataName(searcherFullTypeName);
-				if (interfaceType is not { AllInterfaces: var interfaceBaseInterfaces })
-				{
-					continue;
-				}
-
-				if (interfacePropertyMatcher(interfaceType))
-				{
-					foundResultInfos.Add(new(property, interfaceType, interfaceType));
-				}
-				else if (interfaceBaseInterfaces.FirstOrDefault(interfacePropertyMatcher) is { } baseInterfaceType)
-				{
-					foundResultInfos.Add(new(property, interfaceType, baseInterfaceType));
-				}
-
-
-				bool interfacePropertyMatcher(INamedTypeSymbol e)
-					=> e.GetMembers().OfType<IPropertySymbol>().Any(p => p.Name == property.Name);
-			}
-		}
-
-		var targetPropertiesCode = string.Join(
-			"\r\n\r\n\t",
-			from info in foundResultInfos
-			let typeStr = info.DerivedInterfaceType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
-			let propertyContainedInterfaceTypeStr = info.PropertyContainedInterfaceType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
-			let typeStrWithoutInterfacePrefix = info.Property.ContainingType.Name
-			let propertyStr = info.Property.Name
-			let propertyTypeStr = info.Property.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
-			select $$"""
-			/// <inheritdoc cref="{{propertyContainedInterfaceTypeStr}}.{{propertyStr}}"/>
-				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
-				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-				public {{propertyTypeStr}} {{typeStrWithoutInterfacePrefix}}_{{propertyStr}}
-				{
-					[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-					set
+					foreach (var property in searcherType.GetMembers().OfType<IPropertySymbol>())
 					{
-						if (TargetSearcherCollection.GetOfType<{{typeStr}}>() is { } searcher)
+						if (!property.ContainsAttribute(attributeType))
 						{
-							searcher.{{propertyStr}} = value;
+							continue;
 						}
+
+						if (property is not
+							{
+								ExplicitInterfaceImplementations: [],
+								ContainingType.Name: var searcherTypeName,
+								Name: var propertyName
+							})
+						{
+							continue;
+						}
+
+						var searcherFullTypeName = $"Sudoku.Solving.Logics.Prototypes.I{searcherTypeName}";
+						var interfaceType = compilation.GetTypeByMetadataName(searcherFullTypeName);
+						if (interfaceType is not { AllInterfaces: var interfaceBaseInterfaces })
+						{
+							continue;
+						}
+
+						if (interfacePropertyMatcher(interfaceType))
+						{
+							foundResultInfos.Add(new(property, interfaceType, interfaceType));
+						}
+						else if (interfaceBaseInterfaces.FirstOrDefault(interfacePropertyMatcher) is { } baseInterfaceType)
+						{
+							foundResultInfos.Add(new(property, interfaceType, baseInterfaceType));
+						}
+
+
+						bool interfacePropertyMatcher(INamedTypeSymbol e)
+							=> e.GetMembers().OfType<IPropertySymbol>().Any(p => p.Name == property.Name);
 					}
 				}
-			"""
-		);
 
-		spc.AddSource(
-			$"ManualSolver.g.{Shortcuts.ManualSolverOptions}.cs",
-			$$"""
-			// <auto-generated/>
+				var targetPropertiesCode = string.Join(
+					"\r\n\r\n\t",
+					from info in foundResultInfos
+					let typeStr = info.DerivedInterfaceType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+					let propertyContainedInterfaceTypeStr = info.PropertyContainedInterfaceType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+					let typeStrWithoutInterfacePrefix = info.Property.ContainingType.Name
+					let propertyStr = info.Property.Name
+					let propertyTypeStr = info.Property.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+					select $$"""
+					/// <inheritdoc cref="{{propertyContainedInterfaceTypeStr}}.{{propertyStr}}"/>
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						public {{propertyTypeStr}} {{typeStrWithoutInterfacePrefix}}_{{propertyStr}}
+						{
+							[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+							set
+							{
+								if (TargetSearcherCollection.GetOfType<{{typeStr}}>() is { } searcher)
+								{
+									searcher.{{propertyStr}} = value;
+								}
+							}
+						}
+					"""
+				);
 
-			#nullable enable
+				spc.AddSource(
+					$"ManualSolver.g.{Shortcuts.ManualSolverOptions}.cs",
+					$$"""
+					// <auto-generated/>
 
-			namespace Sudoku.Solving.Implementations.Solvers;
+					#nullable enable
 
-			partial class ManualSolver
-			{
-				{{targetPropertiesCode}}
+					namespace Sudoku.Solving.Logics;
+
+					partial class LogicalSolver
+					{
+						{{targetPropertiesCode}}
+					}
+					"""
+				);
 			}
-			"""
 		);
-	}
 }
 
 internal readonly record struct FoundResultInfo(

@@ -9,7 +9,7 @@ public enum SolveAlgorithm
 	/// Indicates the solver is manually solver.
 	/// </summary>
 	[SupportedArguments(new[] { "manual", "m" })]
-	[RouteToType(typeof(ManualSolver))]
+	[RouteToType(typeof(LogicalSolver))]
 	[Name("Manual")]
 	Manual,
 

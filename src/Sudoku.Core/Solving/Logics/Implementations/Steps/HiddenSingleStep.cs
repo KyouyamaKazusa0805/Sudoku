@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Implementations.Steps;
+﻿namespace Sudoku.Solving.Logics.Implementations.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.

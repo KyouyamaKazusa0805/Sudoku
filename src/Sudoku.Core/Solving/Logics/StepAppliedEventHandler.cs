@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Solving.Logics;
 
 /// <summary>
 /// Defines a delegate type that handles the event that a step is applied.

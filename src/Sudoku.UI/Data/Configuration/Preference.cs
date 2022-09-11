@@ -11,7 +11,7 @@ public sealed class Preference : IDrawingPreference
 	/// Indicates the default solver.
 	/// </summary>
 	[JsonIgnore]
-	public static readonly ManualSolver DefaultSolver = new();
+	public static readonly LogicalSolver DefaultSolver = new();
 
 
 	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
@@ -151,7 +151,7 @@ public sealed class Preference : IDrawingPreference
 	#endregion
 
 	#region Solving Options
-	/// <inheritdoc cref="ManualSolver.IsFullApplying"/>
+	/// <inheritdoc cref="LogicalSolver.IsFullApplying"/>
 	public bool IsFullApplying
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -161,7 +161,7 @@ public sealed class Preference : IDrawingPreference
 		set => DefaultSolver.IsFullApplying = value;
 	}
 
-	/// <inheritdoc cref="ManualSolver.IgnoreSlowAlgorithms"/>
+	/// <inheritdoc cref="LogicalSolver.IgnoreSlowAlgorithms"/>
 	public bool IgnoreSlowTechniques
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -171,7 +171,7 @@ public sealed class Preference : IDrawingPreference
 		set => DefaultSolver.IgnoreSlowAlgorithms = value;
 	}
 
-	/// <inheritdoc cref="ManualSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
+	/// <inheritdoc cref="LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
 	public bool AllowCollisionOnChainingAlsTechniques
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -186,7 +186,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns"/>
+	/// <inheritdoc cref="LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns"/>
 	public bool AllowDoublyLinkedAls
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -200,7 +200,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple"/>
+	/// <inheritdoc cref="LogicalSolver.AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple"/>
 	public bool CheckAlmostLockedQuadruple
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -214,7 +214,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes"/>
+	/// <inheritdoc cref="LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes"/>
 	public bool SearchBivalueUniversalGraveExtendedTypes
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -228,7 +228,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.JuniorExocetStepSearcher_CheckAdvanced"/>
+	/// <inheritdoc cref="LogicalSolver.JuniorExocetStepSearcher_CheckAdvanced"/>
 	public bool CheckAdvancedJuniorExocets
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -242,7 +242,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.SeniorExocetStepSearcher_CheckAdvanced"/>
+	/// <inheritdoc cref="LogicalSolver.SeniorExocetStepSearcher_CheckAdvanced"/>
 	public bool CheckAdvancedSeniorExocets
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -256,7 +256,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.SingleStepSearcher_EnableFullHouse"/>
+	/// <inheritdoc cref="LogicalSolver.SingleStepSearcher_EnableFullHouse"/>
 	public bool EnableFullHouse
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -270,7 +270,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.SingleStepSearcher_EnableLastDigit"/>
+	/// <inheritdoc cref="LogicalSolver.SingleStepSearcher_EnableLastDigit"/>
 	public bool EnableLastDigit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -284,7 +284,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.SingleStepSearcher_HiddenSinglesInBlockFirst"/>
+	/// <inheritdoc cref="LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst"/>
 	public bool HiddenSinglesInBlockFirst
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -298,7 +298,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.TemplateStepSearcher_TemplateDeleteOnly"/>
+	/// <inheritdoc cref="LogicalSolver.TemplateStepSearcher_TemplateDeleteOnly"/>
 	public bool TemplateDeleteOnly
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -312,7 +312,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles"/>
+	/// <inheritdoc cref="LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles"/>
 	public bool AllowIncompleteUniqueRectangles
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -326,7 +326,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles"/>
+	/// <inheritdoc cref="LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles"/>
 	public bool SearchForExtendedUniqueRectangles
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -340,7 +340,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.RegularWingStepSearcher_MaxSize"/>
+	/// <inheritdoc cref="LogicalSolver.RegularWingStepSearcher_MaxSize"/>
 	public int RegularWingMaxSize
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -354,7 +354,7 @@ public sealed class Preference : IDrawingPreference
 		}
 	}
 
-	/// <inheritdoc cref="ManualSolver.ComplexFishStepSearcher_MaxSize"/>
+	/// <inheritdoc cref="LogicalSolver.ComplexFishStepSearcher_MaxSize"/>
 	public int ComplexFishMaxSize
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

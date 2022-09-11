@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Implementations.Data;
+﻿namespace Sudoku.Solving.Logics.Implementations.Data;
 
 /// <summary>
 /// Represents for a data set that describes the complete information about a guardian technique.

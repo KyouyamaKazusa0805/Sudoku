@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Implementations.Searchers;
+﻿namespace Sudoku.Solving.Logics.Implementations.Searchers;
 
 [StepSearcher]
 [SeparatedStepSearcher(0, nameof(NodeTypes), SearcherNodeTypeLevel.SingleDigit)]

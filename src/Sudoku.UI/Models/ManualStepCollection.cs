@@ -45,13 +45,13 @@ public sealed class ManualStepCollection : IEnumerable<ManualStep>, IReadOnlyLis
 
 
 	/// <summary>
-	/// Creates a <see cref="ManualStepCollection"/> instance via the specified <see cref="ManualSolverResult"/>.
+	/// Creates a <see cref="ManualStepCollection"/> instance via the specified <see cref="LogicalSolverResult"/>.
 	/// </summary>
 	/// <param name="steps">The steps.</param>
 	/// <returns>A <see cref="ManualStepCollection"/> instance.</returns>
-	/// <seealso cref="ManualSolverResult"/>
+	/// <seealso cref="LogicalSolverResult"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ManualStepCollection Create(ManualSolverResult steps)
+	public static ManualStepCollection Create(LogicalSolverResult steps)
 	{
 		var list = new List<ManualStep>();
 		foreach (var (grid, step) in steps.SolvingPath)

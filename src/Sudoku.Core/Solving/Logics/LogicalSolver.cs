@@ -1,12 +1,11 @@
-﻿namespace Sudoku.Solving.Implementations.Solvers;
+﻿namespace Sudoku.Solving.Logics;
 
 using static SearcherFailedReason;
 
 /// <summary>
-/// Provides a manual solver that solves a sudoku puzzle using the human minds and ways
-/// to check and solve a sudoku puzzle.
+/// Provides a solver that solves a sudoku puzzle using the human-friendly logics.
 /// </summary>
-public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSolverResult>, IManualSolverOptions
+public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, LogicalSolverResult>, IManualSolverOptions
 {
 	/// <inheritdoc/>
 	/// <remarks>
@@ -45,9 +44,9 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 
 
 	/// <inheritdoc/>
-	public ManualSolverResult Solve(scoped in Grid puzzle, CancellationToken cancellationToken = default)
+	public LogicalSolverResult Solve(scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
-		var result = new ManualSolverResult(puzzle);
+		var result = new LogicalSolverResult(puzzle);
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } s)
 		{
 			try
@@ -91,11 +90,11 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 	/// <returns>The solver result.</returns>
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>
 	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
-	private ManualSolverResult InternalSolve(
+	private LogicalSolverResult InternalSolve(
 		scoped in Grid puzzle,
 		scoped in Grid solution,
 		bool isSukaku,
-		ManualSolverResult resultBase,
+		LogicalSolverResult resultBase,
 		CancellationToken cancellationToken = default)
 	{
 		var playground = puzzle;
@@ -239,9 +238,9 @@ public sealed partial class ManualSolver : IComplexSolver<ManualSolver, ManualSo
 			scoped ref Grid playground,
 			scoped ref ValueStopwatch stopwatch,
 			ICollection<Grid> stepGrids,
-			ManualSolverResult resultBase,
+			LogicalSolverResult resultBase,
 			CancellationToken cancellationToken,
-			[NotNullWhen(true)] out ManualSolverResult? result)
+			[NotNullWhen(true)] out LogicalSolverResult? result)
 		{
 			var atLeastOneConclusionIsWorth = false;
 			foreach (var (t, c, d) in step.Conclusions)

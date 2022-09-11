@@ -622,7 +622,7 @@ public sealed partial class SudokuPage : Page
 			}
 
 
-			ManualSolverResult analyze()
+			LogicalSolverResult analyze()
 			{
 				lock (SyncRoot)
 				{
@@ -978,7 +978,7 @@ public sealed partial class SudokuPage : Page
 
 	/// <summary>
 	/// Triggers when the inner collection of the control <see cref="_cInfoBoard"/> is changed its step chosen,
-	/// when the info bar message binds with a <see cref="ManualSolverResult"/>.
+	/// when the info bar message binds with a <see cref="LogicalSolverResult"/>.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>

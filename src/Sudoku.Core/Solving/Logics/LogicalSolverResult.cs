@@ -1,11 +1,11 @@
-﻿namespace Sudoku.Solving.Implementations.Solvers;
+﻿namespace Sudoku.Solving.Logics;
 
 /// <summary>
-/// Provides the solver result after <see cref="ManualSolver"/> solving a puzzle.
+/// Provides the solver result after <see cref="LogicalSolver"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle"><inheritdoc/></param>
-public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
-	IComplexSolverResult<ManualSolver, ManualSolverResult>
+public sealed unsafe record LogicalSolverResult(scoped in Grid Puzzle) :
+	IComplexSolverResult<LogicalSolver, LogicalSolverResult>
 {
 	/// <inheritdoc/>
 	public bool IsSolved { get; init; }
@@ -13,20 +13,20 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 	/// <summary>
 	/// <para>Indicates the maximum difficulty of the puzzle.</para>
 	/// <para>
-	/// When the puzzle is solved by <see cref="ManualSolver"/>,
+	/// When the puzzle is solved by <see cref="LogicalSolver"/>,
 	/// the value will be the maximum value among all difficulty
 	/// ratings in solving steps. If the puzzle has not been solved,
 	/// or else the puzzle is solved by other solvers, this value will
 	/// be always <c>20.0M</c>.
 	/// </para>
 	/// </summary>
-	/// <seealso cref="ManualSolver"/>
+	/// <seealso cref="LogicalSolver"/>
 	public decimal MaxDifficulty => Evaluator(&EnumerableExtensions.Max<IStep>, 20.0M);
 
 	/// <summary>
 	/// <para>Indicates the total difficulty rating of the puzzle.</para>
 	/// <para>
-	/// When the puzzle is solved by <see cref="ManualSolver"/>,
+	/// When the puzzle is solved by <see cref="LogicalSolver"/>,
 	/// the value will be the sum of all difficulty ratings of steps. If
 	/// the puzzle has not been solved, the value will be the sum of all
 	/// difficulty ratings of steps recorded in <see cref="Steps"/>.
@@ -34,14 +34,14 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 	/// be <c>0</c>.
 	/// </para>
 	/// </summary>
-	/// <seealso cref="ManualSolver"/>
+	/// <seealso cref="LogicalSolver"/>
 	/// <seealso cref="Steps"/>
 	public decimal TotalDifficulty => Evaluator(&EnumerableExtensions.Sum<IStep>, 0);
 
 	/// <summary>
 	/// <para>
 	/// Indicates the pearl difficulty rating of the puzzle, calculated
-	/// during only by <see cref="ManualSolver"/>.
+	/// during only by <see cref="LogicalSolver"/>.
 	/// </para>
 	/// <para>
 	/// When the puzzle is solved, the value will be the difficulty rating
@@ -49,7 +49,7 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 	/// the puzzle is solved by other solvers, this value will be always <c>0</c>.
 	/// </para>
 	/// </summary>
-	/// <seealso cref="ManualSolver"/>
+	/// <seealso cref="LogicalSolver"/>
 	public decimal PearlDifficulty
 		=> Steps.IsDefaultOrEmpty
 			? 0
@@ -58,7 +58,7 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 	/// <summary>
 	/// <para>
 	/// Indicates the pearl difficulty rating of the puzzle, calculated
-	/// during only by <see cref="ManualSolver"/>.
+	/// during only by <see cref="LogicalSolver"/>.
 	/// </para>
 	/// <para>
 	/// When the puzzle is solved, the value will be the difficulty rating
@@ -67,7 +67,7 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 	/// or solved by other solvers, this value will be <c>20.0M</c>.
 	/// </para>
 	/// </summary>
-	/// <seealso cref="ManualSolver"/>
+	/// <seealso cref="LogicalSolver"/>
 	/// <seealso cref="Assignment"/>
 	public decimal DiamondDifficulty
 	{
@@ -526,9 +526,7 @@ public sealed unsafe record ManualSolverResult(scoped in Grid Puzzle) :
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	private decimal Evaluator(
-		delegate*<IEnumerable<IStep>, delegate*<IStep, decimal>, decimal> executor,
-		decimal d)
+	private decimal Evaluator(delegate*<IEnumerable<IStep>, delegate*<IStep, decimal>, decimal> executor, decimal d)
 	{
 		return Steps.IsDefaultOrEmpty ? d : executor(Steps, &f);
 

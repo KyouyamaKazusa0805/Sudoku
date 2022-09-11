@@ -78,11 +78,11 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 
 	/// <summary>
 	/// Creates a new <see cref="InfoBar"/> instance via the specified severity,
-	/// with the specified <see cref="ManualSolverResult"/> instance.
+	/// with the specified <see cref="LogicalSolverResult"/> instance.
 	/// </summary>
-	/// <param name="analysisResult">The <see cref="ManualSolverResult"/> instance.</param>
+	/// <param name="analysisResult">The <see cref="LogicalSolverResult"/> instance.</param>
 	/// <param name="severity">The severity. The default value is <see cref="InfoBarSeverity.Success"/>.</param>
-	public void AddMessage(ManualSolverResult analysisResult, InfoBarSeverity severity = InfoBarSeverity.Success)
+	public void AddMessage(LogicalSolverResult analysisResult, InfoBarSeverity severity = InfoBarSeverity.Success)
 	{
 		var up = ((App)Application.Current).UserPreference;
 		var a = _list.Prepend<InfoBarMessage, ManualSolverResultMessage>;

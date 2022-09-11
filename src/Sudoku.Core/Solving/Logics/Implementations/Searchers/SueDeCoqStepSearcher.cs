@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Implementations.Searchers;
+﻿namespace Sudoku.Solving.Logics.Implementations.Searchers;
 
 [StepSearcher]
 internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher

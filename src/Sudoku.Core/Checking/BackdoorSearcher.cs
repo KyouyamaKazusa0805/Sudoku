@@ -8,7 +8,7 @@ public static class BackdoorSearcher
 	/// <summary>
 	/// Indicates the inner solver.
 	/// </summary>
-	private static readonly ManualSolver SstsSolver = new()
+	private static readonly LogicalSolver SstsSolver = new()
 	{
 		CustomSearcherCollection = new IStepSearcher[]
 		{

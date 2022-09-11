@@ -10,7 +10,7 @@ namespace Sudoku.Buffers;
 /// The whole class is a <see langword="static"/> one, which means you can't use <see langword="new"/>
 /// clause to create a new instance of this type. In contrast, the class is used for providing with
 /// <see langword="static"/> properties used in a cyclic manual searching
-/// (i.e. in <see cref="ManualSolver"/>).
+/// (i.e. in <see cref="LogicalSolver"/>).
 /// </para>
 /// <para>
 /// Some step searchers rely on this type. If you want to call them separately, you should ensure the method
@@ -37,7 +37,7 @@ namespace Sudoku.Buffers;
 /// </para>
 /// </remarks>
 /// <seealso cref="InitializeMaps"/>
-/// <seealso cref="ManualSolver"/>
+/// <seealso cref="LogicalSolver"/>
 /// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
 /// <seealso cref="Grid"/>
 internal static class FastProperties

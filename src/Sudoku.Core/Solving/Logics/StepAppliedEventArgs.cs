@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Solving.Logics;
 
 /// <summary>
 /// Provides with data used by event handler type <see cref="StepAppliedEventHandler"/>.

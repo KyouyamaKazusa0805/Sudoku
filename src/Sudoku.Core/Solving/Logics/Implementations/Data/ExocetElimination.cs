@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Implementations.Data;
+﻿namespace Sudoku.Solving.Logics.Implementations.Data;
 
 /// <summary>
 /// Represents a data structure that describes the eliminations that are created and proved

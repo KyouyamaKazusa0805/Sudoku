@@ -2,9 +2,9 @@
 
 /// <summary>
 /// Defines a row that used for displaying the information about a technique,
-/// whose inner data is from the <see cref="ManualSolverResult"/> instance.
+/// whose inner data is from the <see cref="LogicalSolverResult"/> instance.
 /// </summary>
-/// <seealso cref="ManualSolverResult"/>
+/// <seealso cref="LogicalSolverResult"/>
 public sealed class AnalysisResultRow
 {
 	/// <summary>
@@ -35,13 +35,13 @@ public sealed class AnalysisResultRow
 
 	/// <summary>
 	/// Creates the list of <see cref="AnalysisResultRow"/> as the result value,
-	/// via the specified <paramref name="analysisResult"/> instance of <see cref="ManualSolverResult"/> type.
+	/// via the specified <paramref name="analysisResult"/> instance of <see cref="LogicalSolverResult"/> type.
 	/// </summary>
 	/// <param name="analysisResult">
-	/// The <see cref="ManualSolverResult"/> instance that is used for creating the result value.
+	/// The <see cref="LogicalSolverResult"/> instance that is used for creating the result value.
 	/// </param>
 	/// <returns>The result list of <see cref="AnalysisResultRow"/>-typed elements.</returns>
-	public static IEnumerable<AnalysisResultRow> CreateListFrom(ManualSolverResult analysisResult)
+	public static IEnumerable<AnalysisResultRow> CreateListFrom(LogicalSolverResult analysisResult)
 		=>
 		from step in analysisResult.Steps
 		orderby step.DifficultyLevel, step.TechniqueCode
