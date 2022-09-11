@@ -47,7 +47,7 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] object? obj) => obj is LockedTarget comparer && Equals(comparer);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(scoped in LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
 

@@ -270,7 +270,7 @@ public sealed class AlternatingInferenceChain : Chain
 	}
 
 	/// <inheritdoc/>
-	public override ImmutableArray<Conclusion> GetConclusions(scoped in Grid grid)
+	public override ConclusionList GetConclusions(scoped in Grid grid)
 		=> ImmutableArray.Create(
 			IsStrong switch
 			{
@@ -281,7 +281,7 @@ public sealed class AlternatingInferenceChain : Chain
 					[{ Cells: var cells, Digit: var d }, ..] => cells switch
 					{
 						// The node only uses a single cell.
-						[var c] => new Conclusion[] { new(ConclusionType.Assignment, c * 9 + d) },
+						[var c] => new Conclusion[] { new(Assignment, c * 9 + d) },
 
 						// The node uses more than one cell.
 						_ => GetEliminationsSingleDigit(+cells & grid.CandidatesMap[d], d)
@@ -315,11 +315,11 @@ public sealed class AlternatingInferenceChain : Chain
 
 								// The end-point uses multiple cells.
 								([var oc], { Count: > 1 }) when grid.Exists(oc, d2) is true
-									=> new Conclusion[] { new(ConclusionType.Elimination, oc, d2) },
+									=> new Conclusion[] { new(Elimination, oc, d2) },
 
 								// The start-point uses multiple cells.
 								({ Count: > 1 }, [var oc]) when grid.Exists(oc, d1) is true
-									=> new Conclusion[] { new(ConclusionType.Elimination, oc, d1) },
+									=> new Conclusion[] { new(Elimination, oc, d1) },
 
 								// Both start-point and end-point nodes use multiple cells, no conclusions will be found.
 								_ => null
@@ -378,7 +378,7 @@ public sealed class AlternatingInferenceChain : Chain
 					// Same cell.
 					foreach (var digit in (short)(grid.GetCandidates(aCell) & ~(1 << aDigit | 1 << bDigit)))
 					{
-						result.AddIfNotContain(new(ConclusionType.Elimination, aCell, digit), &cmp);
+						result.AddIfNotContain(new(Elimination, aCell, digit), &cmp);
 					}
 
 					break;
@@ -393,7 +393,7 @@ public sealed class AlternatingInferenceChain : Chain
 						{
 							foreach (var cell in (grid.CandidatesMap[aDigit] & HousesMap[house]) - (aCells | bCells))
 							{
-								result.AddIfNotContain(new(ConclusionType.Elimination, cell, aDigit), &cmp);
+								result.AddIfNotContain(new(Elimination, cell, aDigit), &cmp);
 							}
 						}
 					}
@@ -402,7 +402,7 @@ public sealed class AlternatingInferenceChain : Chain
 						// Same digit but different houses.
 						foreach (var cell in elimMap)
 						{
-							result.AddIfNotContain(new(ConclusionType.Elimination, cell, aDigit), &cmp);
+							result.AddIfNotContain(new(Elimination, cell, aDigit), &cmp);
 						}
 					}
 
@@ -438,11 +438,11 @@ public sealed class AlternatingInferenceChain : Chain
 		using scoped var resultList = new ValueList<Conclusion>(2);
 		if (grid.Exists(c1, d2) is true)
 		{
-			resultList.Add(new(ConclusionType.Elimination, c1, d2));
+			resultList.Add(new(Elimination, c1, d2));
 		}
 		if (grid.Exists(c2, d1) is true)
 		{
-			resultList.Add(new(ConclusionType.Elimination, c2, d1));
+			resultList.Add(new(Elimination, c2, d1));
 		}
 
 		return resultList.ToArray();
@@ -456,5 +456,5 @@ public sealed class AlternatingInferenceChain : Chain
 	/// <returns>The conclusions.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static Conclusion[] GetEliminationsSingleDigit(scoped in CellMap elimMap, byte digit)
-		=> (from cell in elimMap select new Conclusion(ConclusionType.Elimination, cell, digit)).ToArray();
+		=> (from cell in elimMap select new Conclusion(Elimination, cell, digit)).ToArray();
 }

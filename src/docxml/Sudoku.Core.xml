@@ -4551,7 +4551,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.Equals(Sudoku.Presentation.LockedTarget@)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.GetHashCode">
             <inheritdoc/>
