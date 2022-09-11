@@ -9,8 +9,12 @@ using DifficultyRange = ValueTuple<
 /// by another program called
 /// <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
 /// </summary>
-public static class SudokuExplainerLibraryCompatiblity
+public static class SudokuExplainerLibraryCompatiblity// : ICompatibilityProvider
 {
+	/// <inheritdoc cref="ICompatibilityProvider.ProgramName"/>
+	public static string ProgramName => "Sudoku Explainer";
+
+
 	/// <summary>
 	/// Gets all possible aliased names that are defined by Sudoku Explainer.
 	/// </summary>

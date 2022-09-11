@@ -378,6 +378,9 @@
             by another program called <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
             </summary>
         </member>
+        <member name="P:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatiblity.ProgramName">
+            <inheritdoc cref="P:Sudoku.Compatibility.ICompatibilityProvider.ProgramName"/>
+        </member>
         <member name="M:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatiblity.GetAliases(Sudoku.Solving.Technique)">
             <summary>
             Gets all possible aliased names that are defined by Hodoku.
@@ -463,6 +466,17 @@
         <member name="P:Sudoku.Compatibility.Hodoku.HodokuTechniquePrefixAttribute.Prefix">
             <summary>
             The prefix value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Compatibility.ICompatibilityProvider">
+            <summary>
+            Provides a way to provide compatibility items (concepts, solving ways, etc.)
+            to a program that also analyzes sudoku puzzles.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Compatibility.ICompatibilityProvider.ProgramName">
+            <summary>
+            Indicates the program name of the current provider to be compatible.
             </summary>
         </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAliasedNamesAttribute">
@@ -581,6 +595,9 @@
             by another program called
             <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
             </summary>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerLibraryCompatiblity.ProgramName">
+            <inheritdoc cref="P:Sudoku.Compatibility.ICompatibilityProvider.ProgramName"/>
         </member>
         <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerLibraryCompatiblity.GetAliases(Sudoku.Solving.Technique)">
             <summary>

@@ -4,8 +4,12 @@
 /// Represents some methods that are used for get the details supported and defined
 /// by another program called <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
 /// </summary>
-public static class HodokuLibraryCompatiblity
+public static class HodokuLibraryCompatiblity// : ICompatibilityProvider
 {
+	/// <inheritdoc cref="ICompatibilityProvider.ProgramName"/>
+	public static string ProgramName => "Hodoku";
+
+
 	/// <summary>
 	/// Gets all possible aliased names that are defined by Hodoku.
 	/// </summary>
