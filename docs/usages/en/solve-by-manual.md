@@ -7,7 +7,7 @@ The method is simple. You should firstly get an encapsulated data of type `Grid`
 ```csharp
 using System;
 using Sudoku.Concepts;
-using Sudoku.Solving.Manual;
+using Sudoku.Solving.Logics;
 
 // This is a string text that represents a sudoku grid.
 // The API supports many kinds of formats to describe a sudoku grid.
@@ -17,13 +17,15 @@ const string puzzle = "........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24
 // string puzzle = args[0];
 
 // Then parses the text, converting it into a valid sudoku grid.
-var grid = Grid.Parse(puzzle);
+var grid = (Grid)puzzle;
+// You can also use 'Parse' method to get the Grid instance:
+//var grid = Grid.Parse(puzzle);
 
-// Initializes a manual solver instance, in order to solve the puzzle parsed above.
-var solver = new ManualSolver();
+// Initializes a logical solver instance, in order to solve the puzzle parsed above.
+var solver = new LogicalSolver();
 
 // Solves the puzzle synchronously.
-// The method returns an instance of type 'ManualSolverResult',
+// The method returns an instance of type 'LogicalSolverResult',
 // having encapsulated some data to describe the solving result,
 // such as whether the puzzle has been solved successfully,
 // the number of steps used, etc..
