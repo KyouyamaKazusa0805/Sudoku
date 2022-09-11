@@ -45,14 +45,14 @@ public interface IQiuDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 				for (var k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
 				{
 					var pairMap = CellMap.Empty + c1 + c2;
-					if (baseLineMap & pairMap)
+					if (baseLineMap && pairMap)
 					{
 						continue;
 					}
 
 					var tempMapBlock = HousesMap[c1.ToHouseIndex(HouseType.Block)]
 						| HousesMap[c2.ToHouseIndex(HouseType.Block)];
-					if (baseLineMap & tempMapBlock)
+					if (baseLineMap && tempMapBlock)
 					{
 						continue;
 					}

@@ -27,9 +27,14 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 
 				// Now we have got two ALSes to check.
 				// Firstly, we should check whether two ALSes overlap with each other.
-				if ((map1 & map2) is not [] || (map1 | map2).InOneHouse)
+				if (map1 && map2)
 				{
 					// If overlap (or in a same house), just skip it.
+					continue;
+				}
+
+				if ((map1 | map2).InOneHouse)
+				{
 					continue;
 				}
 
@@ -69,7 +74,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 						foreach (var conjugatePair in conjPairs)
 						{
 							var cpMap = conjugatePair.Map;
-							if (cpMap & map1 || cpMap & map2)
+							if (cpMap && map1 || cpMap && map2)
 							{
 								// Conjugate pair can't overlap with the ALS structure.
 								continue;

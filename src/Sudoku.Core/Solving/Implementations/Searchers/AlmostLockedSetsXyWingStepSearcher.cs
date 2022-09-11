@@ -85,12 +85,9 @@ internal sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmos
 					continue;
 				}
 
-				if (!AllowCollision)
+				if (!AllowCollision && (aMap && bMap || aMap && cMap || bMap && cMap) is not [])
 				{
-					if (aMap & bMap || aMap & cMap || bMap & cMap)
-					{
-						continue;
-					}
+					continue;
 				}
 
 				foreach (var digit1 in mask1)

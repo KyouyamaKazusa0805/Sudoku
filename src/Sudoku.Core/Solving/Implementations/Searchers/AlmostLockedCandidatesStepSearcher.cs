@@ -18,7 +18,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
-				if (c & EmptyCells)
+				if (c && EmptyCells)
 				{
 					if (GetAll(accumulator, grid, size, baseSet, coverSet, a, b, c, onlyFindOne) is { } step1)
 					{

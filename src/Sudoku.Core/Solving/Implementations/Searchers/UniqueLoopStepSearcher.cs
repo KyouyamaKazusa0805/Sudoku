@@ -254,7 +254,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 		var otherDigitsMask = (short)(m & ~comparer);
 		foreach (var houseIndex in extraCellsMap.CoveredHouses)
 		{
-			if ((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[houseIndex])
+			if ((ValuesMap[d1] || ValuesMap[d2]) && HousesMap[houseIndex])
 			{
 				continue;
 			}

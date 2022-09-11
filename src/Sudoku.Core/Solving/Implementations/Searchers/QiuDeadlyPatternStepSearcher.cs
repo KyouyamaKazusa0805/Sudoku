@@ -495,7 +495,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		var flag = false;
 		foreach (var digit in pairDigits)
 		{
-			if (ValuesMap[digit] & HousesMap[block])
+			if (ValuesMap[digit] && HousesMap[block])
 			{
 				flag = true;
 				break;

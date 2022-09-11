@@ -339,7 +339,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 					var flag = false;
 					foreach (var digit in combination)
 					{
-						if (ValuesMap[digit] & HousesMap[houseIndex])
+						if (ValuesMap[digit] && HousesMap[houseIndex])
 						{
 							flag = true;
 							break;

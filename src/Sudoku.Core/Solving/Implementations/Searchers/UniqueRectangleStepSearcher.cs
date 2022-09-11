@@ -488,7 +488,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		var otherDigitsMask = (short)(mask ^ comparer);
 		foreach (var houseIndex in otherCellsMap.CoveredHouses)
 		{
-			if ((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[houseIndex])
+			if ((ValuesMap[d1] || ValuesMap[d2]) && HousesMap[houseIndex])
 			{
 				return;
 			}
