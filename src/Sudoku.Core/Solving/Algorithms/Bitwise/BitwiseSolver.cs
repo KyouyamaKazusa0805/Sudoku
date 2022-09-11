@@ -1,19 +1,17 @@
-﻿#pragma warning disable IDE0011
-#pragma warning disable IDE0032
+﻿#pragma warning disable IDE0011, IDE0032
 
-namespace Sudoku.Solving;
+namespace Sudoku.Solving.Algorithms.Bitwise;
 
-using Sudoku.Solving.Prototypes;
-using static Constants;
+using static LocalConstants;
 
 /// <summary>
 /// Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.
 /// </summary>
 /// <remarks>
 /// The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
-/// to handle a sudoku grid, which is efficient.
+/// to handle a sudoku grid, which is more efficient.
 /// </remarks>
-public sealed unsafe partial class BitwiseSolver : ISimpleSolver
+public sealed unsafe class BitwiseSolver : ISimpleSolver
 {
 	/// <summary>
 	/// The buffer length of a solution puzzle.
@@ -996,7 +994,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 /// <summary>
 /// Represents for a list of constants.
 /// </summary>
-file static class Constants
+file static class LocalConstants
 {
 	public static readonly byte[] TblShrinkMask =
 	{

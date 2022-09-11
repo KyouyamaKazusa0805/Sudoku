@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Techniques;
 
 /// <summary>
 /// Indicates a technique group.

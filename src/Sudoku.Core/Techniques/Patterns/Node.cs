@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Patterns;
+﻿namespace Sudoku.Techniques.Patterns;
 
 /// <summary>
 /// Defines a chain node.

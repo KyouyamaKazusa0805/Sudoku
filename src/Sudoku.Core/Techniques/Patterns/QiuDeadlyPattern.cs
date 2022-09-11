@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Patterns;
+﻿namespace Sudoku.Techniques.Patterns;
 
 /// <summary>
 /// Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:

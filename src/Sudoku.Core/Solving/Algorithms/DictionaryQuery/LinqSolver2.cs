@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Implementations.Solvers;
+﻿namespace Sudoku.Solving.Algorithms.DictionaryQuery;
 
 /// <summary>
 /// Defines a <see cref="Dictionary{TKey, TValue}"/>-based LINQ solver that solves a sudoku grid,
@@ -12,7 +12,7 @@
 /// </para>
 /// <para>
 /// Also, <see href="https://bugzilla.mozilla.org/attachment.cgi?id=266577">this link</see>
-/// is for the Javascript1.8+.
+/// is for the same algorithm written by JavaScript 1.8+.
 /// </para>
 /// </remarks>
 /// <seealso cref="LinqSolver"/>

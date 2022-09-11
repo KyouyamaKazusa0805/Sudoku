@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Patterns;
+﻿namespace Sudoku.Techniques.Patterns;
 
 /// <summary>
 /// Indicates a firework pattern. The pattern will be like:

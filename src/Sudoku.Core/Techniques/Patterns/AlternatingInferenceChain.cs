@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Patterns;
+﻿namespace Sudoku.Techniques.Patterns;
 
 /// <summary>
 /// Defines an alternating inference chain. The data structure can describe the following techniques:

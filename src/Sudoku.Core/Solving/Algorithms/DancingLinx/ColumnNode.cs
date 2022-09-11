@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Implementations.Data.DancingLinx;
+﻿namespace Sudoku.Solving.Algorithms.DancingLinx;
 
 /// <summary>
 /// Represents a column node.

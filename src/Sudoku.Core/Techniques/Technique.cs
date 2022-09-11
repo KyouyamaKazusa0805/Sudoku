@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Techniques;
 
 /// <summary>
 /// Represents a technique instance, which is used for comparison.
