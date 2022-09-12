@@ -1088,6 +1088,11 @@ public enum Technique : short
 	UniqueRectangleExternalType4,
 
 	/// <summary>
+	/// Indicates unique rectangle external almost locked sets XZ rule.
+	/// </summary>
+	UniqueRectangleExternalAlmostLockedSetsXz,
+
+	/// <summary>
 	/// Indicates avoidable rectangle type 1.
 	/// </summary>
 	[HodokuTechniquePrefix("0607")]

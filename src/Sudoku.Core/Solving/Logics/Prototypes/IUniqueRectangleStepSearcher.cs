@@ -28,6 +28,8 @@
 /// <item>Unique Rectangle External Type 3</item>
 /// <item>Unique Rectangle External Type 4</item>
 /// <!--<item>Unique Rectangle External Type with XY-Wing</item>-->
+/// <item>Unique Rectangle External Type with Skyscraper</item>
+/// <!--<item>Unique Rectangle External Type with ALS-XZ</item>-->
 /// </list>
 /// </item>
 /// </list>

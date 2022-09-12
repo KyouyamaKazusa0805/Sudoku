@@ -51,6 +51,8 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
 	private void GetAll(ICollection<UniqueRectangleStep> gathered, scoped in Grid grid, bool arMode)
 	{
+		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
+
 		// Iterate on each possible UR structure.
 		for (int index = 0, outerLength = UniqueRectanglePatterns.Length; index < outerLength; index++)
 		{
@@ -96,6 +98,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 						CheckExternalType1Or2(gathered, grid, urCells, d1, d2, index);
 						CheckExternalType3(gathered, grid, urCells, comparer, d1, d2, index);
 						CheckExternalType4(gathered, grid, urCells, comparer, d1, d2, index);
+						CheckExternalAlmostLockedSetsXz(gathered, grid, urCells, alses, comparer, d1, d2, index);
 					}
 
 					// Iterate on each corner of four cells.
@@ -246,6 +249,7 @@ internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectan
 	partial void CheckExternalType1Or2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int index);
 	partial void CheckExternalType3(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
 	partial void CheckExternalType4(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
+	partial void CheckExternalAlmostLockedSetsXz(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, AlmostLockedSet[] alses, short comparer, int d1, int d2, int index);
 	partial void CheckHiddenSingleAvoidable(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
 }
 
@@ -3972,6 +3976,150 @@ unsafe partial class UniqueRectangleStepSearcher
 								cells,
 								guardianCellPair,
 								new(guardianCellPair, conjugatePairDigit),
+								IsIncomplete(candidateOffsets),
+								index
+							)
+						);
+					}
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Check UR + Guardian, with external ALS-XZ rule.
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="alses">The ALS structures.</param>
+	/// <param name="comparer">The comparer.</param>
+	/// <param name="d1">The digit 1 used in UR.</param>
+	/// <param name="d2">The digit 2 used in UR.</param>
+	/// <param name="index">The mask index.</param>
+	partial void CheckExternalAlmostLockedSetsXz(
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, AlmostLockedSet[] alses,
+		short comparer, int d1, int d2, int index)
+	{
+		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		{
+			return;
+		}
+
+		var cells = (CellMap)urCells;
+
+		// Iterate on two houses used.
+		foreach (var houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
+		{
+			var guardianMap = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
+			if ((guardianMap & cells) != cells)
+			{
+				// The houses must contain all 4 UR cells.
+				continue;
+			}
+
+			var guardianCells = guardianMap - cells & (CandidatesMap[d1] | CandidatesMap[d2]);
+			if (guardianCells is { Count: not 1, CoveredHouses: 0 })
+			{
+				// All guardian cells must lie in one house.
+				continue;
+			}
+
+			if (!(guardianCells & CandidatesMap[d1]) || !(guardianCells & CandidatesMap[d2]))
+			{
+				// Guardian cells must contain both two digits; otherwise, skip the current case.
+				// Please note that 'operator &' has the priority than 'operator &&'. Therefore we do not need
+				// to add brackets here.
+				continue;
+			}
+
+			foreach (var (zDigit, xDigit) in stackalloc[] { (d1, d2), (d2, d1) })
+			{
+				var xDigitGuardianCells = CandidatesMap[xDigit] & guardianCells;
+				var zDigitGuardianCells = CandidatesMap[zDigit] & guardianCells;
+				foreach (var connectedXDigitHouse in xDigitGuardianCells.CoveredHouses)
+				{
+					foreach (var als in alses)
+					{
+						if (als.House == connectedXDigitHouse)
+						{
+							// The current ALS cannot lie in this house.
+							continue;
+						}
+
+						var alsMask = als.DigitsMask;
+						if ((alsMask >> d1 & 1) == 0 || (alsMask >> d2 & 1) == 0)
+						{
+							// The ALS must uses both two digits.
+							continue;
+						}
+
+						var alsMap = als.Map;
+						var elimMap = (alsMap | zDigitGuardianCells) % CandidatesMap[zDigit];
+						if (!elimMap)
+						{
+							// No eliminations found.
+							continue;
+						}
+
+						var xDigitMap = (alsMap | xDigitGuardianCells) & CandidatesMap[xDigit];
+						if (!xDigitMap.InOneHouse)
+						{
+							// The X digit must be connected.
+							continue;
+						}
+
+						// ALS-XZ formed.
+						var candidateOffsets = new List<CandidateViewNode>();
+						foreach (var urCell in urCells)
+						{
+							if (grid.GetStatus(urCell) == CellStatus.Empty)
+							{
+								foreach (var digit in comparer)
+								{
+									if (CandidatesMap[digit].Contains(urCell))
+									{
+										candidateOffsets.Add(new(DisplayColorKind.Normal, urCell * 9 + digit));
+									}
+								}
+							}
+						}
+						foreach (var xDigitCell in xDigitGuardianCells)
+						{
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, xDigitCell * 9 + xDigit));
+						}
+						foreach (var zDigitCell in zDigitGuardianCells)
+						{
+							candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, zDigitCell * 9 + zDigit));
+						}
+						foreach (var alsCell in alsMap)
+						{
+							foreach (var digit in grid.GetCandidates(alsCell))
+							{
+								candidateOffsets.Add(
+									new(
+										digit == d1 || digit == d2
+											? DisplayColorKind.Auxiliary1
+											: DisplayColorKind.AlmostLockedSet1,
+										alsCell * 9 + digit
+									)
+								);
+							}
+						}
+
+						accumulator.Add(
+							new UniqueRectangleExternalAlmostLockedSetsXZStep(
+								from cell in elimMap select new Conclusion(Elimination, cell, zDigit),
+								ImmutableArray.Create(
+									View.Empty
+										| candidateOffsets
+										| new HouseViewNode(DisplayColorKind.AlmostLockedSet1, als.House)
+								),
+								d1,
+								d2,
+								(CellMap)urCells,
+								guardianCells,
+								als,
 								IsIncomplete(candidateOffsets),
 								index
 							)

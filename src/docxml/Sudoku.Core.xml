@@ -7456,6 +7456,11 @@
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with X = {XDigitStr}, Y = {YDigitStr} and a bi-value cell {XYCellsStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXZStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external ALS {AnotherAlsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleType1Step">
             <summary>
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} =&gt; {ElimStr}.
@@ -7658,7 +7663,7 @@
         </member>
         <member name="P:Sudoku.Resources.Resources.UniqueRectangle4C3">
             <summary>
-              Looks up a localized string similar to Unique Rectangle 4C/3SL.
+              Looks up a localized string similar to Unique Rectangle + 4C/3SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UniqueRectangle4X1L">
@@ -7683,7 +7688,12 @@
         </member>
         <member name="P:Sudoku.Resources.Resources.UniqueRectangle4X3">
             <summary>
-              Looks up a localized string similar to Unique Rectangle 4X/3SL.
+              Looks up a localized string similar to Unique Rectangle + 4X/3SL.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.UniqueRectangleExternalAlmostLockedSetsXz">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle External Almost Locked Sets XZ Rule.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UniqueRectangleExternalType1">
@@ -11724,6 +11734,19 @@
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
             <param name="index">The index.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Implementations.Searchers.UniqueRectangleStepSearcher.CheckExternalAlmostLockedSetsXz(System.Collections.Generic.ICollection{Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],Sudoku.Techniques.Patterns.AlmostLockedSet[],System.Int16,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Check UR + Guardian, with external ALS-XZ rule.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="alses">The ALS structures.</param>
+            <param name="comparer">The comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The mask index.</param>
         </member>
         <member name="M:Sudoku.Solving.Logics.Implementations.Searchers.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.ICollection{Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
@@ -16355,6 +16378,61 @@
         <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangle2DOr3XStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="AlmostLockedSet">The almost locked sets used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Techniques.Patterns.AlmostLockedSet,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="AlmostLockedSet">The almost locked sets used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.GuardianCells">
+            <summary>Indicates the cells that the guardians lie in.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.AlmostLockedSet">
+            <summary>The almost locked sets used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.IsIncomplete">
+            <summary>Indicates whether the rectangle is incomplete.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.Rarity">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep">
             <summary>
             Provides with a step that is a <b>Unique Rectangle</b> technique.
@@ -16492,6 +16570,18 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep.Equals(Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep,Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStepEqualityComparer">
+            <summary>
+            Defiles a way to filter duplicated items of type <see cref="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStepEqualityComparer.Equals(Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep,Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStepEqualityComparer.GetHashCode(Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleType1Step">
@@ -17531,6 +17621,14 @@
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Solving.Logics.LogicalSolverResult.Steps"/>
         </member>
+        <member name="T:Sudoku.Solving.Logics.Prototypes.DistinctTypeAttribute`2">
+            <summary>
+            Defines an internal type that controls the customized equality comparing operation
+            of type <typeparamref name="TEqualityComparer"/> on elements of type <typeparamref name="TStep"/>.
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <typeparam name="TEqualityComparer">The equality comparer to filter duplicated items.</typeparam>
+        </member>
         <member name="T:Sudoku.Solving.Logics.Prototypes.IAlmostHiddenSetsStepSearcher">
             <summary>
             Provides with an <b>Almost Hidden Sets</b> step searcher.
@@ -18228,6 +18326,18 @@
             is in order, the final list after invoking this method will be also in order.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Logics.Prototypes.IDistinctableStep`1.Equals(`0,`0)"/>
+        </member>
+        <member name="T:Sudoku.Solving.Logics.Prototypes.DefaultComparer`1">
+            <summary>
+            The internal comparer instance.
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Prototypes.DefaultComparer`1.Equals(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Prototypes.DefaultComparer`1.GetHashCode(`0)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logics.Prototypes.IDominoLoopStepSearcher">
             <summary>
@@ -19667,6 +19777,8 @@
             <item>Unique Rectangle External Type 3</item>
             <item>Unique Rectangle External Type 4</item>
             <!--<item>Unique Rectangle External Type with XY-Wing</item>-->
+            <item>Unique Rectangle External Type with Skyscraper</item>
+            <!--<item>Unique Rectangle External Type with ALS-XZ</item>-->
             </list>
             </item>
             </list>
@@ -22009,6 +22121,11 @@
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleExternalType4">
             <summary>
             Indicates unique rectangle external type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Technique.UniqueRectangleExternalAlmostLockedSetsXz">
+            <summary>
+            Indicates unique rectangle external almost locked sets XZ rule.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleType1">

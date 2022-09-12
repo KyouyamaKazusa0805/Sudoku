@@ -52,33 +52,34 @@ internal interface IDistinctableStep<in TStep> : IStep where TStep : Step
 	/// <seealso cref="Equals(TStep, TStep)"/>
 	public static sealed IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
 		where TDistinctableStep : Step, IDistinctableStep<TDistinctableStep>
-	{
-		return list switch
+		=> list switch
 		{
 			[] => Array.Empty<TDistinctableStep>(),
 			[var firstElement] => new[] { firstElement },
 			[var a, var b] => TDistinctableStep.Equals(a, b) ? new[] { a } : new[] { a, b },
-			_ => distinctList(list)
-		};
-
-
-		static IEnumerable<TDistinctableStep> distinctList(IList<TDistinctableStep> list)
-		{
-			var resultList = new List<TDistinctableStep>();
-			for (int i = 0, length = list.Count, outerLength = length - 1; i < outerLength; i++)
-			{
-				var e1 = list[i];
-				for (var j = i + 1; j < length; j++)
+			_ => new HashSet<TDistinctableStep>(
+				list,
+				typeof(TDistinctableStep).GetGenericAttributeTypeArguments(typeof(DistinctTypeAttribute<,>)) switch
 				{
-					var e2 = list[j];
-					if (!TDistinctableStep.Equals(e1, e2))
-					{
-						resultList.Add(e1);
-					}
+					[_, var equalityComparerType]
+						=> (IEqualityComparer<TDistinctableStep>)Activator.CreateInstance(equalityComparerType)!,
+					_
+						=> new DefaultComparer<TDistinctableStep>(),
 				}
-			}
+			)
+		};
+}
 
-			return resultList;
-		}
-	}
+/// <summary>
+/// The internal comparer instance.
+/// </summary>
+/// <typeparam name="TStep">The type of the step.</typeparam>
+file sealed class DefaultComparer<TStep> : IEqualityComparer<TStep> where TStep : Step, IDistinctableStep<TStep>
+{
+	/// <inheritdoc/>
+	public bool Equals(TStep? x, TStep? y)
+		=> (x, y) switch { (null, null) => true, (not null, not null) => TStep.Equals(x, y), _ => false };
+
+	/// <inheritdoc/>
+	public int GetHashCode(TStep obj) => 0;
 }

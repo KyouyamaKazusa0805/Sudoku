@@ -3427,6 +3427,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external ALS {AnotherAlsStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXZStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXZStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_UniqueRectangleType1Step {
@@ -3787,7 +3796,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle 4C/3SL.
+        ///   Looks up a localized string similar to Unique Rectangle + 4C/3SL.
         /// </summary>
         internal static string UniqueRectangle4C3 {
             get {
@@ -3832,11 +3841,20 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle 4X/3SL.
+        ///   Looks up a localized string similar to Unique Rectangle + 4X/3SL.
         /// </summary>
         internal static string UniqueRectangle4X3 {
             get {
                 return ResourceManager.GetString("UniqueRectangle4X3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle External Almost Locked Sets XZ Rule.
+        /// </summary>
+        internal static string UniqueRectangleExternalAlmostLockedSetsXz {
+            get {
+                return ResourceManager.GetString("UniqueRectangleExternalAlmostLockedSetsXz", resourceCulture);
             }
         }
         

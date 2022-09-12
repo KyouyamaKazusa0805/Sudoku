@@ -1761,4 +1761,11 @@
   <data name="DiagonalSymmetry" xml:space="preserve">
     <value>捺对角线对称（正对角线）</value>
   </data>
+  <data name="TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXZStep" xml:space="preserve">
+    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并带有守护者位于单元格 {GuardianCellsStr} 之中，ALS 结构 {AnotherAlsStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="UniqueRectangleExternalAlmostLockedSetsXz" xml:space="preserve">
+    <value>唯一矩形外部类型・待定数组・双强链</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>
