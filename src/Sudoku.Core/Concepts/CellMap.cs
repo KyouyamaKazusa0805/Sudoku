@@ -1491,10 +1491,6 @@ public struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IBooleanOperators<CellMap>.operator true(CellMap value) => value ? true : false;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IBooleanOperators<CellMap>.operator false(CellMap value) => value ? false : true;
-
 
 	/// <summary>
 	/// Implicit cast from <see cref="CellMap"/> to <see cref="int"/>[].
