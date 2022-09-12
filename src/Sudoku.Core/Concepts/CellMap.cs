@@ -44,8 +44,7 @@ public struct CellMap :
 	ISimpleFormattable,
 	ISimpleParseable<CellMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
-	ISubtractionOperators<CellMap, CellMap, CellMap>,
-	IUnaryPlusOperators<CellMap, CellMap>
+	ISubtractionOperators<CellMap, CellMap, CellMap>
 {
 	/// <summary>
 	/// The value used for shifting.
@@ -329,6 +328,47 @@ public struct CellMap :
 	}
 
 	/// <summary>
+	/// Indicates the peer intersection of the current instance.
+	/// </summary>
+	/// <remarks>
+	/// A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
+	/// For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
+	/// </remarks>
+	public readonly CellMap PeerIntersection
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get
+		{
+			long lowerBits = 0, higherBits = 0;
+			var i = 0;
+			foreach (var offset in Offsets)
+			{
+				long low = 0, high = 0;
+				foreach (var peer in Peers[offset])
+				{
+					(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
+				}
+
+				if (i++ == 0)
+				{
+					lowerBits = low;
+					higherBits = high;
+				}
+				else
+				{
+					lowerBits &= low;
+					higherBits &= high;
+				}
+			}
+
+			return CreateByBits(higherBits, lowerBits);
+		}
+	}
+
+	/// <inheritdoc/>
+	readonly bool ICollection<int>.IsReadOnly => false;
+
+	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
 	private readonly int[] Offsets
@@ -368,8 +408,6 @@ public struct CellMap :
 		}
 	}
 
-	/// <inheritdoc/>
-	readonly bool ICollection<int>.IsReadOnly => false;
 
 	/// <inheritdoc/>
 	static CellMap IAdditiveIdentity<CellMap, CellMap>.AdditiveIdentity => Empty;
@@ -968,42 +1006,6 @@ public struct CellMap :
 
 
 	/// <summary>
-	/// Gets the peer intersection of the current instance.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	/// <returns>The result list that is the peer intersection of the current instance.</returns>
-	/// <remarks>
-	/// A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
-	/// For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
-	/// </remarks>
-	public static CellMap operator +(scoped in CellMap offsets)
-	{
-		long lowerBits = 0, higherBits = 0;
-		var i = 0;
-		foreach (var offset in offsets.Offsets)
-		{
-			long low = 0, high = 0;
-			foreach (var peer in Peers[offset])
-			{
-				(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
-			}
-
-			if (i++ == 0)
-			{
-				lowerBits = low;
-				higherBits = high;
-			}
-			else
-			{
-				lowerBits &= low;
-				higherBits &= high;
-			}
-		}
-
-		return CreateByBits(higherBits, lowerBits);
-	}
-
-	/// <summary>
 	/// Determines whether the current collection is empty.
 	/// </summary>
 	/// <param name="offsets">The cells to be checked.</param>
@@ -1323,7 +1325,7 @@ public struct CellMap :
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator %(scoped in CellMap @base, scoped in CellMap template)
-		=> +(@base & template) & template;
+		=> (@base & template).PeerIntersection & template;
 
 	/// <summary>
 	/// Expands via the specified digit.
@@ -1432,10 +1434,6 @@ public struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static short IDivisionOperators<CellMap, int, short>.operator /(CellMap left, int right) => left / right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IUnaryPlusOperators<CellMap, CellMap>.operator +(CellMap value) => +value;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

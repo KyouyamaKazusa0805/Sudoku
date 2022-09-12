@@ -51,7 +51,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 						{
 							var house = i + 9;
 							linkForEachHouse[house] |= q;
-							elimMap |= +(CandidatesMap[digit] & HousesMap[house] & map);
+							elimMap |= (CandidatesMap[digit] & HousesMap[house] & map).PeerIntersection;
 						}
 					}
 					if (PopCount(cMask) == temp)
@@ -61,7 +61,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 						{
 							var house = i + 18;
 							linkForEachHouse[house] |= q;
-							elimMap |= +(CandidatesMap[digit] & HousesMap[house] & map);
+							elimMap |= (CandidatesMap[digit] & HousesMap[house] & map).PeerIntersection;
 						}
 					}
 					if (PopCount(bMask) == temp)
@@ -70,7 +70,7 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 						foreach (var i in bMask)
 						{
 							linkForEachHouse[i] |= q;
-							elimMap |= +(CandidatesMap[digit] & HousesMap[i] & map);
+							elimMap |= (CandidatesMap[digit] & HousesMap[i] & map).PeerIntersection;
 						}
 					}
 

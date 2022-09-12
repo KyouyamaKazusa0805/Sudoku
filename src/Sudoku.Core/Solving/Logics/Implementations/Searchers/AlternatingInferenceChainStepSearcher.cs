@@ -1038,7 +1038,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 					// No covered houses. e.g.
 					// x x
 					//   x
-					0 => +currentCells & CandidatesMap[extraDigit],
+					0 => currentCells.PeerIntersection & CandidatesMap[extraDigit],
 
 					// One covered house. e.g.
 					// x x | x

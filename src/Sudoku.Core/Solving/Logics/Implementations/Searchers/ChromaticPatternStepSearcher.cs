@@ -221,7 +221,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 				var condition = (CellMap.Empty + c1 + extraCell).InOneHouse;
 				var anotherCell = condition ? c2 : c1;
 				var anotherDigit = condition ? d1 : d2;
-				foreach (var peer in +(CellMap.Empty + extraCell + anotherCell))
+				foreach (var peer in (CellMap.Empty + extraCell + anotherCell).PeerIntersection)
 				{
 					if (CandidatesMap[anotherDigit].Contains(peer))
 					{

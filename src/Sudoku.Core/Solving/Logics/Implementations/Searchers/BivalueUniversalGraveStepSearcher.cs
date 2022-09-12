@@ -99,7 +99,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 	private IStep? CheckForFalseCandidateTypes(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
 	{
 		var multivalueCells = EmptyCells - BivalueCells;
-		if ((+multivalueCells & EmptyCells) is not (var falseCandidatePossibleCells and not []))
+		if ((multivalueCells.PeerIntersection & EmptyCells) is not (var falseCandidatePossibleCells and not []))
 		{
 			// Optimization: The false candidates must lie in the intersection of all multi-value cells.
 			// If the multi-value cells cannot confluent into any cells, no possible false candidates
@@ -150,7 +150,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		{
 			cells[i++] = candidate / 9;
 		}
-		if (+(CellMap)cells is not (var map and not []))
+		if (((CellMap)cells).PeerIntersection is not (var map and not []))
 		{
 			return null;
 		}
@@ -487,7 +487,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			var condition = (CellMap.Empty + c1 + cell).InOneHouse;
 			var anotherCell = condition ? c2 : c1;
 			var anotherDigit = condition ? d2 : d1;
-			foreach (var peer in +(CellMap.Empty + cell + anotherCell))
+			foreach (var peer in (CellMap.Empty + cell + anotherCell).PeerIntersection)
 			{
 				if (CandidatesMap[anotherDigit].Contains(peer))
 				{

@@ -144,7 +144,8 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 			var otherDigit = TrailingZeroCount(orMask & ~tempMask);
 			var mapContainingThatDigit = map & CandidatesMap[otherDigit];
-			if (((+mapContainingThatDigit - map) & CandidatesMap[otherDigit]) is not (var elimMap and not []))
+			var elimMap = (mapContainingThatDigit.PeerIntersection - map) & CandidatesMap[otherDigit];
+			if (!elimMap)
 			{
 				continue;
 			}

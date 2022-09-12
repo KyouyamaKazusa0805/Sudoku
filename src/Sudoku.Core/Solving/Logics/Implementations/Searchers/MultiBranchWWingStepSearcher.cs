@@ -28,7 +28,7 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 					foreach (var cells in possibleCells & size)
 					{
 						// Checks whether they can intersect to at least one cell, as the elimination cell.
-						if (+cells is not (var elimMap and not []))
+						if (cells.PeerIntersection is not (var elimMap and not []))
 						{
 							continue;
 						}

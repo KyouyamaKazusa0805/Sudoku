@@ -26,8 +26,7 @@ public struct CellMap :
 	ISimpleFormattable,
 	ISimpleParseable<CellMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
-	ISubtractionOperators<CellMap, CellMap, CellMap>,
-	IUnaryPlusOperators<CellMap, CellMap>
+	ISubtractionOperators<CellMap, CellMap, CellMap>
 {
     public static readonly CellMap Empty;
 
@@ -42,6 +41,7 @@ public struct CellMap :
     public readonly int Houses { get; }
     public readonly short RowMask { get; }
     public readonly short BlockMask { get; }
+    public readonly CellMap PeerIntersection { get; }
 
     public readonly int this[int index] { get; }
 
@@ -71,7 +71,11 @@ public struct CellMap :
     public readonly override string ToString();
     public readonly string ToString(string? format);
 
-    public static CellMap operator +(scoped in CellMap offsets);
+    public static bool operator !(scoped in CellMap offsets);
+    public static bool operator true(scoped in CellMap offsets);
+    public static bool operator false(scoped in CellMap offsets);
+    public static bool operator ==(scoped in CellMap left, scoped in CellMap right);
+    public static bool operator !=(scoped in CellMap left, scoped in CellMap right);
     public static short operator /(scoped in CellMap map, int house);
     public static short operator checked /(scoped in CellMap map, int house);
     public static CellMap operator +(scoped in CellMap collection, int offset);
@@ -91,11 +95,6 @@ public struct CellMap :
     public static CellMap[] operator |(scoped in CellMap cell, int subsetSize);
     public static Candidates operator *(in CellMap @base, int digit);
     public static Candidates operator checked *(in CellMap @base, int digit);
-    public static bool operator !(scoped in CellMap offsets);
-    public static bool operator true(scoped in CellMap offsets);
-    public static bool operator false(scoped in CellMap offsets);
-    public static bool operator ==(scoped in CellMap left, scoped in CellMap right);
-    public static bool operator !=(scoped in CellMap left, scoped in CellMap right);
 
     public static implicit operator int[](scoped in CellMap offsets);
     public static implicit operator CellMap(scoped in ReadOnlySpan<int> offsets);

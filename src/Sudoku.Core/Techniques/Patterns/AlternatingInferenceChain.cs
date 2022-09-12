@@ -284,7 +284,7 @@ public sealed class AlternatingInferenceChain : Chain
 						[var c] => new Conclusion[] { new(Assignment, c * 9 + d) },
 
 						// The node uses more than one cell.
-						_ => GetEliminationsSingleDigit(+cells & grid.CandidatesMap[d], d)
+						_ => GetEliminationsSingleDigit(cells.PeerIntersection & grid.CandidatesMap[d], d)
 					},
 
 					// Invalid case.
@@ -304,7 +304,7 @@ public sealed class AlternatingInferenceChain : Chain
 						[{ Cells: var c1, Digit: var d1 }, .., { Cells: var c2, Digit: var d2 }] => (d1 == d2) switch
 						{
 							// The chain starts and ends with two different nodes but a same digit.
-							true when (+c1 & +c2 & grid.CandidatesMap[d1]) is var elimMap and not []
+							true when (c1.PeerIntersection & c2.PeerIntersection & grid.CandidatesMap[d1]) is var elimMap and not []
 								=> GetEliminationsSingleDigit(elimMap, d1),
 
 							// The chain starts and ends with two different nodes and different digits.
@@ -397,7 +397,7 @@ public sealed class AlternatingInferenceChain : Chain
 							}
 						}
 					}
-					else if ((+aCells & +bCells & grid.CandidatesMap[aDigit]) is var elimMap and not [])
+					else if ((aCells.PeerIntersection & bCells.PeerIntersection & grid.CandidatesMap[aDigit]) is var elimMap and not [])
 					{
 						// Same digit but different houses.
 						foreach (var cell in elimMap)

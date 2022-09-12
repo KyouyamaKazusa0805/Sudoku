@@ -362,7 +362,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 								var fins = exofins | endofins;
 								if (fins)
 								{
-									elimMap &= +fins & CandidatesMap[digit];
+									elimMap &= fins.PeerIntersection & CandidatesMap[digit];
 								}
 
 								// Check whether the elimination exists.

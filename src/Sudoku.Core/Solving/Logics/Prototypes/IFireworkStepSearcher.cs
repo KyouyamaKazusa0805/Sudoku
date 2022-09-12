@@ -115,7 +115,7 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 					continue;
 				}
 
-				if ((+(aMap - aPivot) & +(bMap - bPivot)) is not [var meetCell])
+				if (((aMap - aPivot).PeerIntersection & (bMap - bPivot).PeerIntersection) is not [var meetCell])
 				{
 					continue;
 				}
