@@ -3,20 +3,18 @@
 /// <summary>
 /// Defines a steps gatherer.
 /// </summary>
-public sealed class StepsGatherer :
-	IStepGatherableSearcher<IGrouping<string, IStep>, string, IStep>,
-	IStepsGathererOptions
+public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSearcherOptions
 {
 	/// <inheritdoc/>
 	public bool OnlyShowSameLevelTechniquesInFindAllSteps { get; set; }
 
 
 	/// <inheritdoc/>
-	public IEnumerable<IGrouping<string, IStep>> Search(scoped in Grid puzzle, CancellationToken cancellationToken = default)
+	public IEnumerable<IStep> Search(scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var sukaku))
 		{
-			return Array.Empty<IGrouping<string, IStep>>();
+			return Array.Empty<IStep>();
 		}
 
 		InitializeMaps(puzzle);
@@ -67,6 +65,6 @@ public sealed class StepsGatherer :
 		}
 
 		// Return the result.
-		return from step in bag group step by step.Name;
+		return bag;
 	}
 }

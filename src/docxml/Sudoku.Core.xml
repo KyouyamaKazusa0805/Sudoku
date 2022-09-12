@@ -3723,6 +3723,52 @@
         <member name="M:Sudoku.Enumerating.GridMaskEnumerator.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
+        <member name="T:Sudoku.Filtering.TechniqueFiltering">
+            <summary>
+            Defines a way that is used for filtering the gathered step after
+            <see cref="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)"/> invoked.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher"/>
+        </member>
+        <member name="M:Sudoku.Filtering.TechniqueFiltering.Filter(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logics.Prototypes.IStep},System.String)">
+            <summary>
+            Filters some invalid steps.
+            </summary>
+            <param name="steps">The found steps.</param>
+            <param name="conditionString">The condition.</param>
+            <returns>Filtered steps.</returns>
+            <exception cref="T:Expressive.Exceptions.ExpressiveException">Throws when the expression being evaluated is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Filtering.TechniqueFiltering.Parse(System.String,Sudoku.Solving.Logics.Prototypes.IStep)">
+            <summary>
+            To parse a condition string, converting the string into a valid <see cref="T:Expressive.Expression"/> instance.
+            </summary>
+            <param name="conditionString">The condition string.</param>
+            <param name="step">The step used.</param>
+            <returns>The <see cref="T:Expressive.Expression"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Filtering.TechniqueFiltering.KeywordPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 4 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [Dd].<br/>
+                        ○ Optional (greedy).<br/>
+                            ○ 2nd capture group.<br/>
+                                ○ Match a character in the set [Ii\u0130] exactly 3 times.<br/>
+                                ○ Match a character in the set [Cc].<br/>
+                                ○ Match a character in the set [Uu].<br/>
+                                ○ Match a character in the set [Ll].<br/>
+                                ○ Match a character in the set [Tt].<br/>
+                                ○ Match a character in the set [Yy].<br/>
+                    ○ Match the string "&amp;&amp;".<br/>
+                    ○ Match the string "||".<br/>
+                    ○ Match '!'.<br/>
+            </code>
+            </remarks>
+        </member>
         <member name="T:Sudoku.Generating.ExercisePuzzlers.ExerciseFactory">
             <summary>
             Defines a type that creates exercises.
@@ -19292,37 +19338,41 @@
             the property will still use this name rather than <c>AssignmentStr</c>.
             </remarks>
         </member>
-        <member name="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher`3">
+        <member name="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher">
             <summary>
             Defines a special step searcher that can gather all possible steps of various techniques, in a step.
             </summary>
-            <typeparam name="TElement">
-            The type of the element. The type must be derived from <see cref="T:System.Linq.IGrouping`2"/>
-            in order to allow grouping the steps up by the technique kind.
-            </typeparam>
-            <typeparam name="TGroupingKey">
-            <para>
-            The key that is used for grouping different step kinds. Generally this type can be a <see cref="T:System.String"/>.
-            </para>
-            <para>
-            The reason why the base type is <see cref="T:System.IComparable`1"/> rather than <see cref="T:System.IEquatable`1"/>
-            is that the type may be used for sorting different kinds of steps by their own key.
-            Sorting operations generally rely on comparable objects.
-            </para>
-            </typeparam>
-            <typeparam name="TGroupingValue">
-            The value of the gathered steps. The type must be derived from the interface type <see cref="T:Sudoku.Solving.Logics.Prototypes.IStep"/>
-            and be a reference type.
-            </typeparam>
         </member>
-        <member name="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher`3.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.SearchAndGroupByName(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Search for all possible steps in a grid, and group them up by its technique name.
+            </summary>
+            <param name="puzzle"><inheritdoc cref="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)" path="/param[@name='puzzle']"/></param>
+            <param name="cancellationToken">
+            <inheritdoc cref="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            </param>
+            <returns>The result grouped by technique names.</returns>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <summary>
             Search for all possible steps in a grid.
             </summary>
             <param name="puzzle">The puzzle grid.</param>
             <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
-            <returns>The result grouped by technique names.</returns>
+            <returns>The result.</returns>
             <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
+        </member>
+        <member name="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcherOptions">
+            <summary>
+            Defines an instance that stores the options that bound with an <see cref="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcherOptions.OnlyShowSameLevelTechniquesInFindAllSteps">
+            <summary>
+            Indicates whether the solver only displays the techniques with the same displaying level.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Logics.Prototypes.IStepSearcher">
             <summary>
@@ -19437,18 +19487,6 @@
         <member name="P:Sudoku.Solving.Logics.Prototypes.IStepSearcherRequiresSolution.Solution">
             <summary>
             Indicates the reference of the solution sudoku grid.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Logics.Prototypes.IStepsGathererOptions">
-            <summary>
-            Defines an instance that stores the options that bound with an
-            <see cref="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher`3"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher`3"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Prototypes.IStepsGathererOptions.OnlyShowSameLevelTechniquesInFindAllSteps">
-            <summary>
-            Indicates whether the solver only displays the techniques with the same displaying level.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Logics.Prototypes.IStepWithDistinctionDegree">
@@ -24956,34 +24994,34 @@
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CellOrCellListRegex method.</summary>
+        <member name="T:System.Text.RegularExpressions.Generated.KeywordPattern_1">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the KeywordPattern method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.KeywordPattern_1.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.KeywordPattern_1.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.KeywordPattern_1.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.KeywordPattern_1.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.KeywordPattern_1.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.KeywordPattern_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.KeywordPattern_1.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.KeywordPattern_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
@@ -25020,34 +25058,66 @@
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CandidateOrCandidateListRegex method.</summary>
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_3">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CellOrCellListRegex method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.CellOrCellListRegex_3.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_3.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_3.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_3.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListRegex_3.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_3.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_3.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_3.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListRegex_3.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_4">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CandidateOrCandidateListRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_4.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_4.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_4.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_4.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_4.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_4.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_4.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CandidateOrCandidateListRegex_4.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
