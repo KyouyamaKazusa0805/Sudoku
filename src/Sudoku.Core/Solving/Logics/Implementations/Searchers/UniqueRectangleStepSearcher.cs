@@ -911,11 +911,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					d2,
 					(CellMap)urCells,
 					false,
-					new Conjugate[]
-					{
-						new(corner1, isRow ? o1 : o2, digit),
-						new(corner2, isRow ? o2 : o1, digit)
-					},
+					new Conjugate[] { new(corner1, isRow ? o1 : o2, digit), new(corner2, isRow ? o2 : o1, digit) },
 					index
 				)
 			);
