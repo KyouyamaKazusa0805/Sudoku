@@ -301,13 +301,19 @@
 
 						<ScrollViewer>
 							<StackPanel Spacing="8">
+								<StackPanel.Resources>
+									<Style TargetType="TextBlock" x:Key="_rHeaderStyle">
+										<Setter Property="FontWeight" Value="Bold" />
+										<Setter Property="FontSize" Value="16" />
+										<Setter Property="HorizontalAlignment" Value="Left" />
+										<Setter Property="Margin" Value="0,12,0,0" />
+									</Style>
+								</StackPanel.Resources>
+
 								<TextBlock
-									Text="{StaticResource SudokuPage_TechniquesMetadata}" FontWeight="Bold"
-									FontSize="16" HorizontalAlignment="Left" />
-								<c:MetadataSequence x:Name="_cTechniqueMetadata" ItemsSource="{x:Bind _techniqueMetadata}" />
-								<TextBlock
-									Text="{StaticResource SudokuPage_TechniquesUsed}" FontWeight="Bold"
-									FontSize="16" HorizontalAlignment="Left" />
+									Text="{StaticResource SudokuPage_TechniquesUsed}"
+									Style="{StaticResource _rHeaderStyle}"
+									Visibility="{x:Bind _cAnalysisDataGrid.Visibility}" />
 								<xc:DataGrid
 									x:Name="_cAnalysisDataGrid" HorizontalScrollBarVisibility="Visible"
 									VerticalScrollBarVisibility="Visible" SelectionMode="Single" CanUserSortColumns="False"
@@ -373,6 +379,11 @@
 										</xc:DataGridTemplateColumn>
 									</xc:DataGrid.Columns>
 								</xc:DataGrid>
+								<TextBlock
+									Text="{StaticResource SudokuPage_TechniquesMetadata}"
+									Style="{StaticResource _rHeaderStyle}"
+									Visibility="{x:Bind _cTechniqueMetadata.Visibility}" />
+								<c:MetadataSequence x:Name="_cTechniqueMetadata" ItemsSource="{x:Bind _techniqueMetadata}" />
 							</StackPanel>
 						</ScrollViewer>
 					</TabViewItem>
