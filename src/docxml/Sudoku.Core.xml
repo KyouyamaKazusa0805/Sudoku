@@ -5476,17 +5476,6 @@
             Indicates the recordable item is to delete a digit from a cell.
             </summary>
         </member>
-        <member name="T:Sudoku.Reflection.ReflectionMessage">
-            <summary>
-            Represents a list of <see cref="T:System.String"/> text as messages to describe what kind of error.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Reflection.ReflectionMessage.RequiresReflectionDueToResourceDictionary">
-            <summary>
-            Indicates the error message is that you cannot directly access a certain member,
-            because it must be referenced by reflection, and binds a resource value.
-            </summary>
-        </member>
         <member name="T:Sudoku.Resources.MergedResources">
             <summary>
             Defines a merged resource dictionary.
