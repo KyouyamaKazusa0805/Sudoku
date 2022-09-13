@@ -28,11 +28,6 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 	/// <inheritdoc/>
 	public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
-	/// <summary>
-	/// Triggers when the chosen step is changed.
-	/// </summary>
-	public event EventHandler<LogicalStep>? ChosenStepChanged;
-
 
 	/// <summary>
 	/// Creates a new <see cref="InfoBar"/> instance via the specified severity
@@ -72,27 +67,6 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 				Message = info,
 				Hyperlink = new(link),
 				HyperlinkDescription = linkDescription
-			}
-		);
-	}
-
-	/// <summary>
-	/// Creates a new <see cref="InfoBar"/> instance via the specified severity,
-	/// with the specified <see cref="LogicalSolverResult"/> instance.
-	/// </summary>
-	/// <param name="analysisResult">The <see cref="LogicalSolverResult"/> instance.</param>
-	/// <param name="severity">The severity. The default value is <see cref="InfoBarSeverity.Success"/>.</param>
-	public void AddMessage(LogicalSolverResult analysisResult, InfoBarSeverity severity = InfoBarSeverity.Success)
-	{
-		var up = ((App)Application.Current).UserPreference;
-		var a = _list.Prepend<InfoBarMessage, ManualSolverResultMessage>;
-		var b = _list.Add;
-		(up.DescendingOrderedInfoBarBoard ? a : b)(
-			new()
-			{
-				AnalysisResult = analysisResult,
-				Severity = severity,
-				Message = R["SudokuPage_InfoBar_AnalyzeSuccessfully"]!
 			}
 		);
 	}
@@ -145,12 +119,4 @@ public sealed partial class InfoBarBoard : UserControl, INotifyCollectionChanged
 		dataPackage.SetText(message);
 		Clipboard.SetContent(dataPackage);
 	}
-
-	/// <summary>
-	/// Triggers when the item is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-		=> ChosenStepChanged?.Invoke(this, (LogicalStep)e.ClickedItem);
 }

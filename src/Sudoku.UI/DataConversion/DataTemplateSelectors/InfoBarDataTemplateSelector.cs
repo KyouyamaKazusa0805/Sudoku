@@ -19,10 +19,4 @@ public sealed class InfoBarDataTemplateSelector : ModelDataTemplateSelector
 	/// </summary>
 	[DataTemplateModelType<HyperlinkMessage>]
 	public DataTemplate HyperlinkMessageTemplate { get; set; } = null!;
-
-	/// <summary>
-	/// Indicates the data template that is used by the type <see cref="ManualSolverResultMessage"/>.
-	/// </summary>
-	[DataTemplateModelType<ManualSolverResultMessage>]
-	public DataTemplate AnalysisResultTemplate { get; set; } = null!;
 }

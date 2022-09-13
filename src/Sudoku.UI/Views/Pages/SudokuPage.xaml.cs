@@ -568,7 +568,9 @@ public sealed partial class SudokuPage : Page
 				{
 					case { IsSolved: true }:
 					{
-						_cInfoBoard.AddMessage(analysisResult);
+						_cAnalysisDataGrid.ItemsSource = AnalysisResultRow.CreateListFrom(analysisResult);
+						_cAnalysisDataPath.ItemsSource = LogicalStepCollection.Create(analysisResult);
+						_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_AnalyzeSuccessfully"]!);
 
 						break;
 					}
@@ -977,14 +979,6 @@ public sealed partial class SudokuPage : Page
 		=> UpdateIsEnabledStatus();
 
 	/// <summary>
-	/// Triggers when the inner collection of the control <see cref="_cInfoBoard"/> is changed its step chosen,
-	/// when the info bar message binds with a <see cref="LogicalSolverResult"/>.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void InfoBoard_ChosenStepChanged(object sender, LogicalStep e) => SetLogicalStep(e);
-
-	/// <summary>
 	/// Indicates the event trigger callback method that determines
 	/// whether the current window status can execute the following operation.
 	/// </summary>
@@ -1204,4 +1198,11 @@ public sealed partial class SudokuPage : Page
 	/// Indicates the event trigger callback method that copies the current open-sudoku grid.
 	/// </summary>
 	private void CopyOpenSudokuCurrent_Click(object sender, RoutedEventArgs e) => CopySudokuCode("^");
+
+	/// <summary>
+	/// Triggers when the item is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void ListView_ItemClick(object sender, ItemClickEventArgs e) => SetLogicalStep((LogicalStep)e.ClickedItem);
 }

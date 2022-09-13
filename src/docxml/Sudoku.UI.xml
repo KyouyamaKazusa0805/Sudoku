@@ -81,11 +81,6 @@
             Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.InfoBarMessages.HyperlinkMessage"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.DataConversion.DataTemplateSelectors.InfoBarDataTemplateSelector.AnalysisResultTemplate">
-            <summary>
-            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Models.ManualSolverResultMessage"/>.
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.DataConversion.DataTemplateSelectors.MenuItemDataTemplateSelector">
             <summary>
             Defines a data template selector that can determine which data template will be applied to a menu item.
@@ -233,6 +228,19 @@
         </member>
         <member name="M:Sudoku.UI.DataConversion.ValueConverters.Int32ToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.DataConversion.ValueConverters.ItemSourceNullabilityToVisibilityConverter">
+            <summary>
+            Defines a value converter that allows the one-way binding from item source property
+            to <see cref="T:Microsoft.UI.Xaml.Visibility"/> result.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.ItemSourceNullabilityToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.ItemSourceNullabilityToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
         </member>
         <member name="T:Sudoku.UI.DataConversion.ValueConverters.NullToBooleanConverter">
             <summary>
@@ -1281,18 +1289,6 @@
             <returns>A <see cref="T:Sudoku.UI.Models.LogicalStepCollection"/> instance.</returns>
             <seealso cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>
         </member>
-        <member name="T:Sudoku.UI.Models.ManualSolverResultMessage">
-            <summary>
-            Defines a <see cref="T:Sudoku.UI.Models.InfoBarMessages.InfoBarMessage"/> instance that can provide with the details
-            for a <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>
-        </member>
-        <member name="P:Sudoku.UI.Models.ManualSolverResultMessage.AnalysisResult">
-            <summary>
-            Indicates the analysis result.
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Models.MenuItemHeaderTemplateData">
             <summary>
             Indicates the template data used for displaying a menu item header.
@@ -1727,11 +1723,6 @@
         <member name="E:Sudoku.UI.Views.Controls.InfoBarBoard.CollectionChanged">
             <inheritdoc/>
         </member>
-        <member name="E:Sudoku.UI.Views.Controls.InfoBarBoard.ChosenStepChanged">
-            <summary>
-            Triggers when the chosen step is changed.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.AddMessage(Microsoft.UI.Xaml.Controls.InfoBarSeverity,System.String)">
             <summary>
             Creates a new <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance via the specified severity
@@ -1751,14 +1742,6 @@
             <param name="link">The hyperlink to be appended into.</param>
             <param name="linkDescription">The description of the hyperlink.</param>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.AddMessage(Sudoku.Solving.Logics.LogicalSolverResult,Microsoft.UI.Xaml.Controls.InfoBarSeverity)">
-            <summary>
-            Creates a new <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance via the specified severity,
-            with the specified <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/> instance.
-            </summary>
-            <param name="analysisResult">The <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/> instance.</param>
-            <param name="severity">The severity. The default value is <see cref="F:Microsoft.UI.Xaml.Controls.InfoBarSeverity.Success"/>.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.ClearMessages">
             <summary>
@@ -1782,13 +1765,6 @@
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InfoBar_DoubleTapped(System.Object,Microsoft.UI.Xaml.Input.DoubleTappedRoutedEventArgs)">
             <summary>
             Triggers when the info bar is double tapped.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.ListView_ItemClick(System.Object,Microsoft.UI.Xaml.Controls.ItemClickEventArgs)">
-            <summary>
-            Triggers when the item is clicked.
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
@@ -2997,14 +2973,6 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InfoBoard_ChosenStepChanged(System.Object,Sudoku.UI.Models.LogicalStep)">
-            <summary>
-            Triggers when the inner collection of the control <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cInfoBoard"/> is changed its step chosen,
-            when the info bar message binds with a <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandOpenOrSaveSudokuFile_CanExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.CanExecuteRequestedEventArgs)">
             <summary>
             Indicates the event trigger callback method that determines
@@ -3195,6 +3163,13 @@
             <summary>
             Indicates the event trigger callback method that copies the current open-sudoku grid.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ListView_ItemClick(System.Object,Microsoft.UI.Xaml.Controls.ItemClickEventArgs)">
+            <summary>
+            Triggers when the item is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitializeComponent">
             <summary>
