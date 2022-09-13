@@ -294,6 +294,8 @@
 	<x:String x:Key="ReasonIs" xml:space="preserve">, reason: </x:String>
 	<x:String x:Key="Close">Close</x:String>
 	<x:String x:Key="Info">Info</x:String>
+	<x:String x:Key="ExpanderOpenCase">Open</x:String>
+	<x:String x:Key="ExpanderCloseCase">Close</x:String>
 	<x:String x:Key="Sudoku">Sudoku</x:String>
 	<x:String x:Key="PreferenceBackup">Preference backup</x:String>
 	<x:String x:Key="DifficultyRating">Difficulty</x:String>

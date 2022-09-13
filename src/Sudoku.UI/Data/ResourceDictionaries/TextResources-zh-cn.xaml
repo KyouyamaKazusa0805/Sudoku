@@ -286,6 +286,8 @@
 	<x:String x:Key="FileExtension_Picture">图片文件</x:String>
 	<x:String x:Key="ReasonIs">，原因：</x:String>
 	<x:String x:Key="Close">关闭</x:String>
+	<x:String x:Key="ExpanderOpenCase">展开</x:String>
+	<x:String x:Key="ExpanderCloseCase">收缩</x:String>
 	<x:String x:Key="Info">提示信息</x:String>
 	<x:String x:Key="Sudoku">数独</x:String>
 	<x:String x:Key="PreferenceBackup">设置项备份</x:String>

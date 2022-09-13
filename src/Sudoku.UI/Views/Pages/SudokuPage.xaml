@@ -6,6 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:Sudoku.UI.Views.Controls"
 	xmlns:cvt="using:Sudoku.UI.DataConversion.ValueConverters"
+	xmlns:data="using:Sudoku.UI.DataConversion"
 	xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
 	mc:Ignorable="d" NavigationCacheMode="Required" Loaded="Page_Loaded">
 	<ScrollViewer>
@@ -15,6 +16,7 @@
 					<Setter Property="DefaultLabelPosition" Value="Right" />
 				</Style>
 				<cvt:UndoOrRedoStackToIsEnabledConverter x:Key="_rUndoingOrRedoingConverter" />
+				<cvt:ExpanderIsExpandedToOpenCloseConverter x:Key="_rExpanderHeaderConverter" />
 			</Grid.Resources>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
@@ -282,10 +284,22 @@
 					SelectedIndexChanged="PipsPager_SelectedIndexChanged" />
 			</StackPanel>
 
-			<!--Info bar board at the right side of the sudoku grid-->
-			<c:InfoBarBoard
-				x:Name="_cInfoBoard" x:FieldModifier="internal" Grid.Row="1" Grid.Column="1" Margin="25,30,25,0"
-				CollectionChanged="InfoBoard_CollectionChanged" ChosenStepChanged="InfoBoard_ChosenStepChanged" />
+			<!--Info bar board expander-->
+			<xc:Expander
+				x:Name="_cExpander"
+				ExpandDirection="Left" Grid.Row="1" Grid.Column="1" Margin="25" IsExpanded="False"
+				HorizontalAlignment="Right" Background="#FFFBF8FC" Width="650"
+				HorizontalContentAlignment="Stretch"
+				Header="{Binding
+					ElementName=_cExpander,
+					Path=IsExpanded,
+					Converter={StaticResource _rExpanderHeaderConverter},
+					Mode=OneWay}">
+				<!--Info bar board at the right side of the sudoku grid-->
+				<c:InfoBarBoard
+					x:Name="_cInfoBoard" x:FieldModifier="internal" Height="600"
+					CollectionChanged="InfoBoard_CollectionChanged" ChosenStepChanged="InfoBoard_ChosenStepChanged" />
+			</xc:Expander>
 		</Grid>
 	</ScrollViewer>
 </Page>

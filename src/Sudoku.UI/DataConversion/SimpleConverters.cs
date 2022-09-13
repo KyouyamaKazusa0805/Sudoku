@@ -119,6 +119,9 @@ internal static class SimpleConverters
 
 	public static string GetCompilationInfo() => $"{R["ProgramVersion"]!} | x64 | Release";
 
+	public static string GetExpanderOpenCloseHeader(bool isExpanded)
+		=> isExpanded ? R["ExpanderCloseCase"]! : R["ExpanderOpenCase"]!;
+
 	/// <summary>
 	/// Gets the date value from the raw string.
 	/// </summary>
