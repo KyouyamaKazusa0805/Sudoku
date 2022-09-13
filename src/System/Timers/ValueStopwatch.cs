@@ -1,4 +1,8 @@
-﻿namespace System.Timers;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// https://github.com/dotnet/aspnetcore/blob/a450cb69b5e4549f5515cdb057a68771f56cefd7/src/Shared/ValueStopwatch/ValueStopwatch.cs
+
+namespace System.Timers;
 
 /// <summary>
 /// Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/>

@@ -7872,68 +7872,6 @@
             This attribute can be ignored when a logical solver enables them regardless of execution speed.
             </remarks>
         </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator">
-            <summary>
-            Encapsulates a bit combination generator.
-            </summary>
-            <remarks>
-            You can use this struct like this:
-            <code><![CDATA[
-            foreach (short mask in new BitSubsetsGenerator(9, 3))
-            {
-                // Do something to use the mask.
-            }
-            ]]></code>
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator._enumerator">
-            <summary>
-            The inner enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Initializes an instance with the specified number of bits
-            and <see langword="true"/> bits.
-            </summary>
-            <param name="bitCount">The number of bits.</param>
-            <param name="oneCount">The number of <see langword="true"/> bits.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator.GetEnumerator">
-            <summary>
-            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator.Enumerator">
-            <summary>
-            Indicates the enumerator of the current instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator.Enumerator._mask">
-            <summary>
-            The mask.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator.Enumerator._isLast">
-            <summary>
-            Indicates whether that the value is the last one.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator.Enumerator.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Initializes an instance with the specified number of bits
-            and <see langword="true"/> bits.
-            </summary>
-            <param name="bitCount">The number of bits.</param>
-            <param name="oneCount">The number of <see langword="true"/> bits.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator.Enumerator.Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.BitSubsetsGenerator.Enumerator.MoveNext">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.CommonReadOnlies">
             <summary>
             Represents a type holding some common read-only fields used by runtime or compiling-time.
@@ -18522,6 +18460,68 @@
 			</para>
 		</summary>
 	</static-constructor>
+        </member>
+        <member name="T:Sudoku.Solving.Logics.Prototypes.BitSubsetsGenerator">
+            <summary>
+            Encapsulates a bit combination generator.
+            </summary>
+            <remarks>
+            You can use this struct like this:
+            <code><![CDATA[
+            foreach (short mask in new BitSubsetsGenerator(9, 3))
+            {
+                // Do something to use the mask.
+            }
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Solving.Logics.Prototypes.BitSubsetsGenerator._enumerator">
+            <summary>
+            The inner enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Prototypes.BitSubsetsGenerator.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the specified number of bits
+            and <see langword="true"/> bits.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Prototypes.BitSubsetsGenerator.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Logics.Prototypes.Enumerator">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logics.Prototypes.Enumerator._mask">
+            <summary>
+            The mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logics.Prototypes.Enumerator._isLast">
+            <summary>
+            Indicates whether that the value is the last one.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Prototypes.Enumerator.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the specified number of bits
+            and <see langword="true"/> bits.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Prototypes.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Prototypes.Enumerator.MoveNext">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logics.Prototypes.IFireworkStepSearcher">
             <summary>
