@@ -14,7 +14,7 @@
 /// <param name="Petals">Indicates the petals used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
+[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable | StepDisplayingFeature.ConstructedTechnique)]
 internal sealed record UniqueRectangleWithWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,

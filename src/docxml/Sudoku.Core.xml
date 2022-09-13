@@ -8807,6 +8807,12 @@
             if the pattern is changed.
             </summary>
         </member>
+        <member name="F:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature.ConstructedTechnique">
+            <summary>
+            Indicates the current technique is constructed technique usage, which means it uses two or more techniques
+            to form a single technique usage. For example, UR + XY-Wing.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute">
             <summary>
             Represents an attribute that can modify step displaying features,

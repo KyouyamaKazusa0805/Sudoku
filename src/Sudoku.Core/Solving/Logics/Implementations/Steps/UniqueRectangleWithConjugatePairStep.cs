@@ -12,6 +12,7 @@
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
+[StepDisplayingFeature(StepDisplayingFeature.ConstructedTechnique)]
 internal record UniqueRectangleWithConjugatePairStep(
 	ConclusionList Conclusions,
 	ViewList Views,

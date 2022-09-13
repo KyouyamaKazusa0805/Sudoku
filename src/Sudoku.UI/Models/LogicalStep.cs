@@ -121,12 +121,22 @@ public sealed class LogicalStep
 	public string GetToolTipText()
 		=> ExtraFeatures switch
 		{
-			StepDisplayingFeature.None => string.Empty,
-			StepDisplayingFeature.HideDifficultyRating => R["SudokuPage_InfoBadge_ThisTechniqueDoesNotShowDifficulty"]!,
-			StepDisplayingFeature.VeryRare => R["SudokuPage_InfoBadge_ThisTechniqueIsVeryRare"]!,
-			StepDisplayingFeature.DifficultyRatingNotStable => R["SudokuPage_InfoBadge_ThisTechniqueDiffcultyRatingIsNotStable"]!,
-			StepDisplayingFeature.VeryRare | StepDisplayingFeature.DifficultyRatingNotStable => R["SudokuPage_InfoBadge_ThisTechniqueIsVeryRare"]!,
-			_ => string.Empty
+			StepDisplayingFeature.None
+				=> string.Empty,
+			StepDisplayingFeature.HideDifficultyRating
+				=> R["SudokuPage_InfoBadge_ThisTechniqueDoesNotShowDifficulty"]!,
+			StepDisplayingFeature.VeryRare
+				=> R["SudokuPage_InfoBadge_ThisTechniqueIsVeryRare"]!,
+			StepDisplayingFeature.DifficultyRatingNotStable
+				=> R["SudokuPage_InfoBadge_ThisTechniqueDiffcultyRatingIsNotStable"]!,
+			StepDisplayingFeature.VeryRare | StepDisplayingFeature.DifficultyRatingNotStable
+				=> R["SudokuPage_InfoBadge_ThisTechniqueIsVeryRare"]!,
+			StepDisplayingFeature.ConstructedTechnique
+				=> R["SudokuPage_InfoBadge_ConstructedTechnique"]!,
+			StepDisplayingFeature.DifficultyRatingNotStable | StepDisplayingFeature.ConstructedTechnique
+				=> R["SudokuPage_InfoBadge_ConstructedTechnique"]!,
+			_
+				=> string.Empty
 		};
 
 	/// <summary>
@@ -148,6 +158,17 @@ public sealed class LogicalStep
 					.WithGradientStops(
 						new GradientStop()
 							.WithColor(Colors.SkyBlue),
+						new GradientStop()
+							.WithColor(Colors.Purple)
+					),
+			StepDisplayingFeature.ConstructedTechnique => new SolidColorBrush(Colors.Green),
+			StepDisplayingFeature.DifficultyRatingNotStable | StepDisplayingFeature.ConstructedTechnique
+				=> new LinearGradientBrush()
+					.WithStartPoint(0, .5)
+					.WithEndPoint(1, .5)
+					.WithGradientStops(
+						new GradientStop()
+							.WithColor(Colors.Green),
 						new GradientStop()
 							.WithColor(Colors.Purple)
 					),

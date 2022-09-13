@@ -12,7 +12,7 @@
 /// <param name="AlmostLockedSet">The almost locked sets used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
+[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable | StepDisplayingFeature.ConstructedTechnique)]
 internal sealed record UniqueRectangleExternalAlmostLockedSetsXZStep(
 	ConclusionList Conclusions,
 	ViewList Views,

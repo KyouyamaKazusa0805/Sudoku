@@ -120,6 +120,7 @@
 	<x:String x:Key="SudokuPage_InfoBadge_ThisTechniqueDoesNotShowDifficulty">This technique does not show the difficulty rating, because the technique does not exist the strict and fixed difficulty value.</x:String>
 	<x:String x:Key="SudokuPage_InfoBadge_ThisTechniqueIsVeryRare">This technique is very rare: it will only be appeared for special puzzles that is generated manually.</x:String>
 	<x:String x:Key="SudokuPage_InfoBadge_ThisTechniqueDiffcultyRatingIsNotStable">The difficulty rating of the current technique is not stable - it will be changed through various factors, such as shape and size of the technique.</x:String>
+	<x:String x:Key="SudokuPage_InfoBadge_ConstructedTechnique">This technique is constructed technique: it uses multiple different sub-techniques to form.</x:String>
 	<x:String x:Key="SettingsPage_DetailDescrption">Here displays the items of settings that may be used in this program.</x:String>
 	<x:String x:Key="SettingsPage_GroupItemName_Basic">Basic</x:String>
 	<x:String x:Key="SettingsPage_GroupItemName_Solving">Solving</x:String>

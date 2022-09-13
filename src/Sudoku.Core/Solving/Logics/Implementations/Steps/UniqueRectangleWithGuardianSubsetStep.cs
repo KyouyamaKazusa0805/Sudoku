@@ -14,7 +14,7 @@
 /// <param name="SubsetDigitsMask">Indicates the digits that the subset are used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
+[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable | StepDisplayingFeature.ConstructedTechnique)]
 internal sealed record UniqueRectangleWithGuardianSubsetStep(
 	ConclusionList Conclusions,
 	ViewList Views,

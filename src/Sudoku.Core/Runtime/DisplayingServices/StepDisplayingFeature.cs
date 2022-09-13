@@ -26,4 +26,10 @@ public enum StepDisplayingFeature : byte
 	/// if the pattern is changed.
 	/// </summary>
 	DifficultyRatingNotStable = 1 << 2,
+
+	/// <summary>
+	/// Indicates the current technique is constructed technique usage, which means it uses two or more techniques
+	/// to form a single technique usage. For example, UR + XY-Wing.
+	/// </summary>
+	ConstructedTechnique = 1 << 3
 }
