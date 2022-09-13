@@ -296,7 +296,7 @@
 					<!--Summary table-->
 					<TabViewItem Header="{StaticResource SudokuPage_Summary}" Background="GhostWhite" IsClosable="False">
 						<TabViewItem.IconSource>
-							<SymbolIconSource Symbol="ShowResults" />
+							<SymbolIconSource Symbol="Preview" />
 						</TabViewItem.IconSource>
 						<xc:DataGrid
 							x:Name="_cAnalysisDataGrid" HorizontalScrollBarVisibility="Visible"
@@ -368,7 +368,7 @@
 					<!--Step details-->
 					<TabViewItem Header="{StaticResource SudokuPage_StepDetails}" IsClosable="False">
 						<TabViewItem.IconSource>
-							<SymbolIconSource Symbol="Preview" />
+							<SymbolIconSource Symbol="ShowResults" />
 						</TabViewItem.IconSource>
 						<ScrollViewer>
 							<ListView
