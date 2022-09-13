@@ -1784,6 +1784,58 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Views.Controls.MetadataSequence">
+            <summary>
+            Defines a metadata sequence control that is like <see cref="T:CommunityToolkit.WinUI.UI.Controls.MetadataControl"/>.
+            </summary>
+            <seealso cref="T:CommunityToolkit.WinUI.UI.Controls.MetadataControl"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.MetadataSequence.SeparatorProperty">
+            <summary>
+            The DP to store the <see cref="P:Sudoku.UI.Views.Controls.MetadataSequence.Separator"/> property value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.MetadataSequence.ItemsSourceProperty">
+            <summary>
+            The DP to store the <see cref="P:Sudoku.UI.Views.Controls.MetadataSequence.ItemsSource"/> property value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.MetadataSequence.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Controls.MetadataSequence"/> control.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.MetadataSequence.Separator">
+            <summary>
+            Gets or sets the separator to display between the <see cref="T:CommunityToolkit.WinUI.UI.Controls.MetadataItem"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.MetadataSequence.ItemsSource">
+            <summary>
+            Gets or sets the <see cref="T:CommunityToolkit.WinUI.UI.Controls.MetadataItem"/> to display in the control.
+            If it implements <see cref="T:System.Collections.Specialized.INotifyCollectionChanged"/>, the control will automatically update itself.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.MetadataSequence.Update">
+            <summary>
+            Inner update method.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.MetadataSequence.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.MetadataSequence.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.MetadataSequence.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
             <summary>
             Defines a user control that interacts with a sudoku grid.
@@ -2690,6 +2742,16 @@
             Indicates the internal puzzle generator.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Pages.SudokuPage._currentSolvedTechniqueNames">
+            <summary>
+            The temporary technique names after the puzzle being solved.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Pages.SudokuPage._techniqueMetadata">
+            <summary>
+            Indicates the technique metadata.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Views.Pages.SudokuPage._isFirstLoad">
             <summary>
             Indicates whether the page is the first loading. If false, we can skip some duplicate operations
@@ -2718,6 +2780,11 @@
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.RegisterStepAppliedEventHandler">
+            <summary>
+            To register the event handler that applied a step.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.RegisterPrint">
             <summary>

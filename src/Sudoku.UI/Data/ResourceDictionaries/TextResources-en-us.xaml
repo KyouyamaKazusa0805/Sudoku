@@ -65,6 +65,8 @@
 	<x:String x:Key="SudokuPage_Summary">Summary</x:String>
 	<x:String x:Key="SudokuPage_StepDetails">Path</x:String>
 	<x:String x:Key="SudokuPage_InfoBarBoard">Info</x:String>
+	<x:String x:Key="SudokuPage_TechniquesUsed">Technique used:</x:String>
+	<x:String x:Key="SudokuPage_TechniquesMetadata">Technique series:</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">Editing</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">Solving &amp; Analysis</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Displaying">Displaying &amp; Rendering</x:String>

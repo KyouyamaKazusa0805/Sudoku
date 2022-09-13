@@ -24,8 +24,6 @@ global using System.Threading.Tasks;
 global using System.Timers;
 global using Expressive;
 global using Expressive.Exceptions;
-global using Expressive.Expressions;
-global using Expressive.Functions;
 global using Sudoku.Buffers;
 global using Sudoku.Compatibility.Hodoku;
 global using Sudoku.Compatibility.SudokuExplainer;

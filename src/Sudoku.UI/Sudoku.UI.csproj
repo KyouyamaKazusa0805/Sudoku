@@ -234,6 +234,9 @@
 		<Page Update="Views\Controls\Win11SettingControl.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Controls\MetadataSequence.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 </Project>
