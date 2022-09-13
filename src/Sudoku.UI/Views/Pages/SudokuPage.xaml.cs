@@ -401,6 +401,8 @@ public sealed partial class SudokuPage : Page
 
 				// Loads the grid.
 				_cPane.Grid = grid;
+				_cAnalysisDataGrid.ItemsSource = null;
+				_cAnalysisDataPath.ItemsSource = null;
 				_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_FileOpenSuccessfully"]!);
 
 				break;
@@ -469,6 +471,8 @@ public sealed partial class SudokuPage : Page
 
 		// Loads the grid.
 		_cPane.Grid = grid;
+		_cAnalysisDataGrid.ItemsSource = null;
+		_cAnalysisDataPath.ItemsSource = null;
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_PasteSuccessfully"]!);
 	}
 
@@ -481,6 +485,8 @@ public sealed partial class SudokuPage : Page
 	{
 		// Disable the control to prevent re-invocation.
 		button.IsEnabled = false;
+		_cAnalysisDataGrid.ItemsSource = null;
+		_cAnalysisDataPath.ItemsSource = null;
 
 		// Generate the puzzle.
 		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
@@ -556,6 +562,8 @@ public sealed partial class SudokuPage : Page
 			{
 				// Disable the control to prevent re-invocation.
 				button.IsEnabled = false;
+				_cAnalysisDataGrid.ItemsSource = null;
+				_cAnalysisDataPath.ItemsSource = null;
 
 				// Solve the puzzle using the logical solver.
 				var analysisResult = await Task.Run(analyze);
