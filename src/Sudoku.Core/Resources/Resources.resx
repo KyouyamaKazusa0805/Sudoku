@@ -1461,7 +1461,7 @@
   <data name="DiagonalSymmetry" xml:space="preserve">
     <value>Diagonal</value>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXZStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external ALS {AnotherAlsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="UniqueRectangleExternalAlmostLockedSetsXz" xml:space="preserve">

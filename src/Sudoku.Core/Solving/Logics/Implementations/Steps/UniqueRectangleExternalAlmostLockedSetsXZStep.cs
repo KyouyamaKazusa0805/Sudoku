@@ -13,7 +13,7 @@
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable | StepDisplayingFeature.ConstructedTechnique)]
-internal sealed record UniqueRectangleExternalAlmostLockedSetsXZStep(
+internal sealed record UniqueRectangleExternalAlmostLockedSetsXzStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,

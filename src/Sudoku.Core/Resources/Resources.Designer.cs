@@ -3429,9 +3429,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external ALS {AnotherAlsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXZStep {
+        internal static string TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep {
             get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXZStep", resourceCulture);
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep", resourceCulture);
             }
         }
         

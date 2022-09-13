@@ -7483,7 +7483,7 @@
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with X = {XDigitStr}, Y = {YDigitStr} and a bi-value cell {XYCellsStr} =&gt; {ElimStr}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXZStep">
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep">
             <summary>
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external ALS {AnotherAlsStr} =&gt; {ElimStr}.
             </summary>
@@ -16411,7 +16411,7 @@
         <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangle2DOr3XStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep">
+        <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
             </summary>
@@ -16425,7 +16425,7 @@
             <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Techniques.Patterns.AlmostLockedSet,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Techniques.Patterns.AlmostLockedSet,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
             </summary>
@@ -16439,31 +16439,31 @@
             <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.GuardianCells">
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.GuardianCells">
             <summary>Indicates the cells that the guardians lie in.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.AlmostLockedSet">
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.AlmostLockedSet">
             <summary>The almost locked sets used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.IsIncomplete">
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.IsIncomplete">
             <summary>Indicates whether the rectangle is incomplete.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.BaseDifficulty">
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.ExtraDifficultyValues">
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.TechniqueGroup">
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXZStep.Rarity">
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep">

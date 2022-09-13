@@ -4110,7 +4110,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						}
 
 						accumulator.Add(
-							new UniqueRectangleExternalAlmostLockedSetsXZStep(
+							new UniqueRectangleExternalAlmostLockedSetsXzStep(
 								from cell in elimMap select new Conclusion(Elimination, cell, zDigit),
 								ImmutableArray.Create(
 									View.Empty
