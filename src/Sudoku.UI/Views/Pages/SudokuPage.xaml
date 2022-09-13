@@ -286,148 +286,139 @@
 					SelectedIndexChanged="PipsPager_SelectedIndexChanged" />
 			</StackPanel>
 
-			<Grid
-				Grid.Row="1" Grid.Column="1" Margin="25" Width="650"
+			<!--Analysis data-->
+			<!--Title="{StaticResource SudokuPage_AnalysisData}"-->
+			<TabView
+				Background="GhostWhite" TabWidthMode="Equal" IsAddTabButtonVisible="False"
+				Grid.Row="1" Grid.Column="1" Margin="25" Width="750" Height="600"
 				HorizontalAlignment="Right" VerticalAlignment="Stretch">
-				<!--Analysis data-->
-				<!--Title="{StaticResource SudokuPage_AnalysisData}"-->
-				<TabView Background="GhostWhite" TabWidthMode="SizeToContent" IsAddTabButtonVisible="False">
-					<TabView.TabItems>
-						<!--Summary table-->
-						<TabViewItem Header="{StaticResource SudokuPage_Summary}" Background="GhostWhite" IsClosable="False">
-							<xc:DataGrid
-								x:Name="_cAnalysisDataGrid" HorizontalAlignment="Center" VerticalAlignment="Center"
-								HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
-								SelectionMode="Single" CanUserSortColumns="False" CanUserReorderColumns="False"
-								CanUserResizeColumns="False" AreRowDetailsFrozen="True" AreRowGroupHeadersFrozen="True"
-								HeadersVisibility="Column" AutoGenerateColumns="False" RowBackground="White"
-								GridLinesVisibility="All" Margin="12"
+				<TabView.TabItems>
+					<!--Summary table-->
+					<TabViewItem Header="{StaticResource SudokuPage_Summary}" Background="GhostWhite" IsClosable="False">
+						<TabViewItem.IconSource>
+							<SymbolIconSource Symbol="ShowResults" />
+						</TabViewItem.IconSource>
+						<xc:DataGrid
+							x:Name="_cAnalysisDataGrid" HorizontalScrollBarVisibility="Visible"
+							VerticalScrollBarVisibility="Visible" SelectionMode="Single" CanUserSortColumns="False"
+							CanUserReorderColumns="False" CanUserResizeColumns="False" AreRowDetailsFrozen="True"
+							AreRowGroupHeadersFrozen="True" HeadersVisibility="Column" AutoGenerateColumns="False"
+							RowBackground="White" GridLinesVisibility="Horizontal" Margin="12"
+							Visibility="{Binding
+								ElementName=_cAnalysisDataGrid,
+								Path=ItemsSource,
+								Converter={StaticResource _rItemSourceNullabilityConverter},
+								Mode=OneWay}">
+							<xc:DataGrid.Columns>
+								<xc:DataGridTemplateColumn Header="{StaticResource SudokuPage_AnalysisResultColumn_TechniqueName}">
+									<xc:DataGridTemplateColumn.CellTemplate>
+										<DataTemplate x:DataType="m:AnalysisResultRow">
+											<TextBlock
+												Text="{x:Bind TechniqueName}" HorizontalAlignment="Center"
+												VerticalAlignment="Center" />
+										</DataTemplate>
+									</xc:DataGridTemplateColumn.CellTemplate>
+								</xc:DataGridTemplateColumn>
+								<xc:DataGridTemplateColumn Header="{StaticResource SudokuPage_AnalysisResultColumn_Count}">
+									<xc:DataGridTemplateColumn.CellTemplate>
+										<DataTemplate x:DataType="m:AnalysisResultRow">
+											<TextBlock
+												Text="{x:Bind CountOfSteps}" HorizontalAlignment="Center"
+												VerticalAlignment="Center" />
+										</DataTemplate>
+									</xc:DataGridTemplateColumn.CellTemplate>
+								</xc:DataGridTemplateColumn>
+								<xc:DataGridTemplateColumn Header="{StaticResource SudokuPage_AnalysisResultColumn_DifficultyRating}">
+									<xc:DataGridTemplateColumn.CellTemplate>
+										<DataTemplate x:DataType="m:AnalysisResultRow">
+											<Grid>
+												<Rectangle
+													Fill="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(DifficultyLevel)}"
+													RadiusX="5" RadiusY="5" Margin="24,3,24,3" />
+												<TextBlock
+													HorizontalAlignment="Center" VerticalAlignment="Center"
+													Text="{x:Bind data:SimpleConverters.DifficultyLevelToResourceText(DifficultyLevel)}"
+													Foreground="{x:Bind data:SimpleConverters.DifficultyLevelToForeground(DifficultyLevel)}" />
+											</Grid>
+										</DataTemplate>
+									</xc:DataGridTemplateColumn.CellTemplate>
+								</xc:DataGridTemplateColumn>
+								<xc:DataGridTemplateColumn Header="{StaticResource SudokuPage_AnalysisResultColumn_TotalDifficulty}">
+									<xc:DataGridTemplateColumn.CellTemplate>
+										<DataTemplate x:DataType="m:AnalysisResultRow">
+											<TextBlock
+												Text="{x:Bind TotalDifficulty}" HorizontalAlignment="Center"
+												VerticalAlignment="Center" />
+										</DataTemplate>
+									</xc:DataGridTemplateColumn.CellTemplate>
+								</xc:DataGridTemplateColumn>
+								<xc:DataGridTemplateColumn Header="{StaticResource SudokuPage_AnalysisResultColumn_MaxDifficulty}">
+									<xc:DataGridTemplateColumn.CellTemplate>
+										<DataTemplate x:DataType="m:AnalysisResultRow">
+											<TextBlock
+												Text="{x:Bind MaximumDifficulty}" HorizontalAlignment="Center"
+												VerticalAlignment="Center" />
+										</DataTemplate>
+									</xc:DataGridTemplateColumn.CellTemplate>
+								</xc:DataGridTemplateColumn>
+							</xc:DataGrid.Columns>
+						</xc:DataGrid>
+					</TabViewItem>
+
+					<!--Step details-->
+					<TabViewItem Header="{StaticResource SudokuPage_StepDetails}" IsClosable="False">
+						<TabViewItem.IconSource>
+							<SymbolIconSource Symbol="Preview" />
+						</TabViewItem.IconSource>
+						<ScrollViewer>
+							<ListView
+								x:Name="_cAnalysisDataPath" SelectionMode="Single" IsItemClickEnabled="True"
 								Visibility="{Binding
-									ElementName=_cAnalysisDataGrid,
+									ElementName=_cAnalysisDataPath,
 									Path=ItemsSource,
 									Converter={StaticResource _rItemSourceNullabilityConverter},
-									Mode=OneWay}">
-								<xc:DataGrid.Columns>
-									<xc:DataGridTemplateColumn Header="{StaticResource SudokuPage_AnalysisResultColumn_TechniqueName}">
-										<xc:DataGridTemplateColumn.CellTemplate>
-											<DataTemplate x:DataType="m:AnalysisResultRow">
-												<TextBlock
-													Text="{x:Bind TechniqueName}" HorizontalAlignment="Center"
-													VerticalAlignment="Center" />
-											</DataTemplate>
-										</xc:DataGridTemplateColumn.CellTemplate>
-									</xc:DataGridTemplateColumn>
-									<xc:DataGridTemplateColumn Header="{StaticResource SudokuPage_AnalysisResultColumn_Count}">
-										<xc:DataGridTemplateColumn.CellTemplate>
-											<DataTemplate x:DataType="m:AnalysisResultRow">
-												<TextBlock
-													Text="{x:Bind CountOfSteps}" HorizontalAlignment="Center"
-													VerticalAlignment="Center" />
-											</DataTemplate>
-										</xc:DataGridTemplateColumn.CellTemplate>
-									</xc:DataGridTemplateColumn>
-									<xc:DataGridTemplateColumn Header="{StaticResource SudokuPage_AnalysisResultColumn_DifficultyRating}">
-										<xc:DataGridTemplateColumn.CellTemplate>
-											<DataTemplate x:DataType="m:AnalysisResultRow">
+									Mode=OneWay}"
+								Height="480" Margin="0,0,0,15"
+								ItemClick="ListView_ItemClick">
+								<ListView.ItemTemplate>
+									<DataTemplate x:DataType="m:LogicalStep">
+										<ListViewItem
+											Tag="{x:Bind}" Grid.Column="1"
+											Background="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(Step.DifficultyLevel)}">
+											<ListViewItem.Content>
 												<Grid>
-													<Rectangle
-														Fill="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(DifficultyLevel)}"
-														RadiusX="5" RadiusY="5" Margin="24,3,24,3" />
-													<TextBlock
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="12" />
+														<ColumnDefinition />
+													</Grid.ColumnDefinitions>
+
+													<Ellipse
+														Width="12" Height="12" Grid.Column="0" Stroke="White"
 														HorizontalAlignment="Center" VerticalAlignment="Center"
-														Text="{x:Bind data:SimpleConverters.DifficultyLevelToResourceText(DifficultyLevel)}"
-														Foreground="{x:Bind data:SimpleConverters.DifficultyLevelToForeground(DifficultyLevel)}" />
+														StrokeThickness="1" Visibility="{x:Bind ExtraFeatureBadgeVisibility}"
+														Fill="{x:Bind GetBadgeBackgroundBrush()}"
+														ToolTipService.ToolTip="{x:Bind GetToolTipText()}" />
+													<TextBlock
+														Text="{x:Bind ToDisplayString()}"
+														Margin="6,0,0,0" Grid.Column="1"
+														Foreground="{x:Bind data:SimpleConverters.DifficultyLevelToForeground(Step.DifficultyLevel)}" />
 												</Grid>
-											</DataTemplate>
-										</xc:DataGridTemplateColumn.CellTemplate>
-									</xc:DataGridTemplateColumn>
-									<xc:DataGridTemplateColumn Header="{StaticResource SudokuPage_AnalysisResultColumn_TotalDifficulty}">
-										<xc:DataGridTemplateColumn.CellTemplate>
-											<DataTemplate x:DataType="m:AnalysisResultRow">
-												<TextBlock
-													Text="{x:Bind TotalDifficulty}" HorizontalAlignment="Center"
-													VerticalAlignment="Center" />
-											</DataTemplate>
-										</xc:DataGridTemplateColumn.CellTemplate>
-									</xc:DataGridTemplateColumn>
-									<xc:DataGridTemplateColumn Header="{StaticResource SudokuPage_AnalysisResultColumn_MaxDifficulty}">
-										<xc:DataGridTemplateColumn.CellTemplate>
-											<DataTemplate x:DataType="m:AnalysisResultRow">
-												<TextBlock
-													Text="{x:Bind MaximumDifficulty}" HorizontalAlignment="Center"
-													VerticalAlignment="Center" />
-											</DataTemplate>
-										</xc:DataGridTemplateColumn.CellTemplate>
-									</xc:DataGridTemplateColumn>
-								</xc:DataGrid.Columns>
-							</xc:DataGrid>
-						</TabViewItem>
+											</ListViewItem.Content>
+										</ListViewItem>
+									</DataTemplate>
+								</ListView.ItemTemplate>
+							</ListView>
+						</ScrollViewer>
+					</TabViewItem>
 
-						<!--Step details-->
-						<TabViewItem Header="{StaticResource SudokuPage_StepDetails}" IsClosable="False">
-							<ScrollViewer>
-								<StackPanel>
-									<TextBlock Text="{StaticResource SudokuPage_Info_SolvingSteps}" Margin="0,6,0,12" />
-									<ListView
-										x:Name="_cAnalysisDataPath" SelectionMode="Single" IsItemClickEnabled="True"
-										Visibility="{Binding
-											ElementName=_cAnalysisDataPath,
-											Path=ItemsSource,
-											Converter={StaticResource _rItemSourceNullabilityConverter},
-											Mode=OneWay}"
-										Height="480" Margin="0,0,40,0"
-										ItemClick="ListView_ItemClick">
-										<ListView.ItemTemplate>
-											<DataTemplate x:DataType="m:LogicalStep">
-												<ListViewItem
-													Tag="{x:Bind}" Grid.Column="1"
-													Background="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(Step.DifficultyLevel)}">
-													<ListViewItem.Content>
-														<Grid>
-															<Grid.ColumnDefinitions>
-																<ColumnDefinition Width="12" />
-																<ColumnDefinition />
-															</Grid.ColumnDefinitions>
-
-															<Ellipse
-																Width="12" Height="12" Grid.Column="0"
-																Stroke="White" HorizontalAlignment="Center"
-																VerticalAlignment="Center" StrokeThickness="1"
-																Visibility="{x:Bind ExtraFeatureBadgeVisibility}"
-																Fill="{x:Bind GetBadgeBackgroundBrush()}"
-																ToolTipService.ToolTip="{x:Bind GetToolTipText()}" />
-															<TextBlock
-																Text="{x:Bind ToDisplayString()}"
-																Margin="6,0,0,0" Grid.Column="1"
-																Foreground="{x:Bind data:SimpleConverters.DifficultyLevelToForeground(Step.DifficultyLevel)}" />
-														</Grid>
-													</ListViewItem.Content>
-												</ListViewItem>
-											</DataTemplate>
-										</ListView.ItemTemplate>
-									</ListView>
-								</StackPanel>
-							</ScrollViewer>
-						</TabViewItem>
-					</TabView.TabItems>
-				</TabView>
-
-				<!--Info bar board expander-->
-				<xc:Expander
-					x:Name="_cExpander" ExpandDirection="Left" IsExpanded="False" HorizontalAlignment="Right"
-					Background="#F6F6F6" HorizontalContentAlignment="Stretch" Height="500"
-					Header="{Binding
-						ElementName=_cExpander,
-						Path=IsExpanded,
-						Converter={StaticResource _rExpanderHeaderConverter},
-						Mode=OneWay}">
-					<!--Info bar board at the right side of the sudoku grid-->
-					<c:InfoBarBoard
-						x:Name="_cInfoBoard" x:FieldModifier="internal"
-						Margin="20,30,20,30"
-						CollectionChanged="InfoBoard_CollectionChanged" />
-				</xc:Expander>
-			</Grid>
+					<TabViewItem Header="{StaticResource SudokuPage_InfoBarBoard}" IsClosable="False">
+						<TabViewItem.IconSource>
+							<SymbolIconSource Symbol="Message" />
+						</TabViewItem.IconSource>
+						<c:InfoBarBoard x:Name="_cInfoBoard" x:FieldModifier="internal" CollectionChanged="InfoBoard_CollectionChanged" />
+					</TabViewItem>
+				</TabView.TabItems>
+			</TabView>
 		</Grid>
 	</ScrollViewer>
 </Page>

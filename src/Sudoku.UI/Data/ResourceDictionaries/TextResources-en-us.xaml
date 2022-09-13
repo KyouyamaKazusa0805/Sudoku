@@ -64,6 +64,7 @@
 	<x:String x:Key="SudokuPage_AnalysisData">Analysis Data</x:String>
 	<x:String x:Key="SudokuPage_Summary">Summary</x:String>
 	<x:String x:Key="SudokuPage_StepDetails">Path</x:String>
+	<x:String x:Key="SudokuPage_InfoBarBoard">Info</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">Editing</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">Solving &amp; Analysis</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Displaying">Displaying &amp; Rendering</x:String>
@@ -103,7 +104,6 @@
 	<x:String x:Key="SudokuPage_InfoBar_AnalyzeFailedDueToInvalidPuzzle">The puzzle is invalid; it has multiple or no solutions.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_AnalyzeSuccessfully">Analysis is finished. Please check the analysis result for more information.</x:String>
 	<x:String x:Key="SudokuPage_Info_WillClearSudokuGrid">Click me will remove the sudoku grid to the empty status. Do you want to continue?</x:String>
-	<x:String x:Key="SudokuPage_Info_SolvingSteps">Solving steps:</x:String>
 	<x:String x:Key="SudokuPage_Info_WrongGrid">Invalid grid:</x:String>
 	<x:String x:Key="SudokuPage_Info_ExceptionIs">Exception details:</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_TechniqueName">Technique Name</x:String>
