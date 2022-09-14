@@ -11,7 +11,7 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 	public virtual string Name => R[TechniqueCode.ToString()]!;
 
 	/// <inheritdoc/>
-	public virtual string? Format => R[$"TechniqueFormat_{GetType().Name}"];
+	public virtual string? Format => R[$"TechniqueFormat_{EqualityContract.Name}"];
 
 	/// <inheritdoc/>
 	public abstract decimal Difficulty { get; }

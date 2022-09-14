@@ -1315,7 +1315,7 @@ public struct CellMap :
 		=> CreateByBits(left._high ^ right._high, left._low ^ right._low);
 
 	/// <summary>
-	/// Expands the operator to <c><![CDATA[+(a & b) & b]]></c>.
+	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
 	/// </summary>
 	/// <param name="base">The base map.</param>
 	/// <param name="template">The template map that the base map to check and cover.</param>
@@ -1328,7 +1328,7 @@ public struct CellMap :
 	/// For example, if we should check the eliminations
 	/// of digit <c>d</c>, we may use the expression
 	/// <code><![CDATA[
-	/// +(urCells & grid.CandidatesMap[d]) & grid.CandidatesMap[d]
+	/// (urCells & grid.CandidatesMap[d]).PeerIntersection & grid.CandidatesMap[d]
 	/// ]]></code>
 	/// to express the eliminations are the peer intersection of cells of digit <c>d</c>
 	/// appeared in <c>urCells</c>. This expression can be simplified to

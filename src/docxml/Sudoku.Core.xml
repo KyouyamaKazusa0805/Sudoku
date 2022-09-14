@@ -1774,7 +1774,7 @@
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
-            Expands the operator to <c><![CDATA[+(a & b) & b]]></c>.
+            Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
             </summary>
             <param name="base">The base map.</param>
             <param name="template">The template map that the base map to check and cover.</param>
@@ -1787,7 +1787,7 @@
             For example, if we should check the eliminations
             of digit <c>d</c>, we may use the expression
             <code><![CDATA[
-            +(urCells & grid.CandidatesMap[d]) & grid.CandidatesMap[d]
+            (urCells & grid.CandidatesMap[d]).PeerIntersection & grid.CandidatesMap[d]
             ]]></code>
             to express the eliminations are the peer intersection of cells of digit <c>d</c>
             appeared in <c>urCells</c>. This expression can be simplified to
@@ -11856,9 +11856,6 @@
             <param name="Views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Logics.Implementations.Steps.AlmostLockedSetsStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.AlmostLockedSetsStep.Format">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logics.Implementations.Steps.AlmostLockedSetsStep.TechniqueGroup">

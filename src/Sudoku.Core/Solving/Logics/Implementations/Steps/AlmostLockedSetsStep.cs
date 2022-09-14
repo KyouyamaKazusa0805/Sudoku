@@ -11,9 +11,6 @@ internal abstract record AlmostLockedSetsStep(ConclusionList Conclusions, ViewLi
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>
-	public override string? Format => base.Format;
-
-	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlmostLockedSetsChainingLike;
 
 	/// <inheritdoc/>

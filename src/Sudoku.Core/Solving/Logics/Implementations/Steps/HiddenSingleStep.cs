@@ -37,6 +37,7 @@ internal sealed record HiddenSingleStep(
 	public override string? Format
 		=> R[EnableAndIsLastDigit ? "TechniqueFormat_LastDigit" : "TechniqueFormat_HiddenSingle"];
 
+
 	[ResourceTextFormatter]
 	internal string CellStr() => RxCyNotation.ToCellString(Cell);
 
