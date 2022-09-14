@@ -17581,6 +17581,16 @@
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Logics.LogicalSolverResult.Select``1(System.Func{Sudoku.Solving.Logics.Prototypes.IStep,``0})">
+            <summary>
+            Projects the collection, to an immutable result of target type.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="selector">
+            The selector to project the <see cref="T:Sudoku.Solving.Logics.Prototypes.IStep"/> instance into type <typeparamref name="TResult"/>.
+            </param>
+            <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Logics.LogicalSolverResult.Evaluator(,System.Decimal)">
             <summary>
             The inner executor to get the difficulty value (total, average).

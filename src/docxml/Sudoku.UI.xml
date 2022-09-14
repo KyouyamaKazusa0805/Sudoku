@@ -2771,11 +2771,6 @@
             Indicates the internal puzzle generator.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Views.Pages.SudokuPage._currentSolvedTechniqueNames">
-            <summary>
-            The temporary technique names after the puzzle being solved.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Views.Pages.SudokuPage._techniqueMetadata">
             <summary>
             Indicates the technique metadata.

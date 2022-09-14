@@ -58,6 +58,7 @@ global using Sudoku.UI.Data.Configuration;
 global using Sudoku.UI.Data.Displayables;
 global using Sudoku.UI.Data.Metadata;
 global using Sudoku.UI.Data.Navigation;
+global using Sudoku.UI.DataConversion;
 global using Sudoku.UI.Drawing;
 global using Sudoku.UI.Drawing.Shapes;
 global using Sudoku.UI.Input;

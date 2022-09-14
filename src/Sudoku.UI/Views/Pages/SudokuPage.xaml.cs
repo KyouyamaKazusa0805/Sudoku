@@ -24,11 +24,6 @@ public sealed partial class SudokuPage : Page
 
 
 	/// <summary>
-	/// The temporary technique names after the puzzle being solved.
-	/// </summary>
-	private readonly List<string> _currentSolvedTechniqueNames = new();
-
-	/// <summary>
 	/// Indicates the technique metadata.
 	/// </summary>
 	private readonly ObservableCollection<MetadataSequenceItem> _techniqueMetadata = new();
@@ -116,33 +111,8 @@ public sealed partial class SudokuPage : Page
 	/// To register the event handler that applied a step.
 	/// </summary>
 	private void RegisterStepAppliedEventHandler()
-	{
-		_techniqueMetadata.CollectionChanged += onCollectionChanged;
-		Preference.DefaultSolver.StepApplied += onStepApplied;
-
-
-		void onCollectionChanged(object? _, NotifyCollectionChangedEventArgs __)
-			=> _cTechniqueMetadata.Visibility = _techniqueMetadata.Count != 0 ? Visibility.Visible : Visibility.Collapsed;
-
-		void onStepApplied(object _, StepAppliedEventArgs e)
-		{
-			switch (e)
-			{
-				case { IsSingleStepApplied: true, Step.Name: var name }:
-				{
-					_currentSolvedTechniqueNames.Add(name);
-
-					break;
-				}
-				case { IsSingleStepApplied: false, Steps: var steps }:
-				{
-					_currentSolvedTechniqueNames.AddRange(from step in steps select step.Name);
-
-					break;
-				}
-			}
-		}
-	}
+		=> _techniqueMetadata.CollectionChanged +=
+			(_, _) => _cTechniqueMetadata.Visibility = _techniqueMetadata.Count != 0 ? Visibility.Visible : Visibility.Collapsed;
 
 	/// <summary>
 	/// To register the printing operation.
@@ -517,7 +487,6 @@ public sealed partial class SudokuPage : Page
 		_cAnalysisDataGrid.ItemsSource = null;
 		_cAnalysisDataPath.ItemsSource = null;
 		_techniqueMetadata.Clear();
-		_currentSolvedTechniqueNames.Clear();
 
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_PasteSuccessfully"]!);
 	}
@@ -534,7 +503,6 @@ public sealed partial class SudokuPage : Page
 		_cAnalysisDataGrid.ItemsSource = null;
 		_cAnalysisDataPath.ItemsSource = null;
 		_techniqueMetadata.Clear();
-		_currentSolvedTechniqueNames.Clear();
 
 		// Generate the puzzle.
 		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
@@ -613,7 +581,6 @@ public sealed partial class SudokuPage : Page
 				_cAnalysisDataGrid.ItemsSource = null;
 				_cAnalysisDataPath.ItemsSource = null;
 				_techniqueMetadata.Clear();
-				_currentSolvedTechniqueNames.Clear();
 
 				// Solve the puzzle using the logical solver.
 				var analysisResult = await Task.Run(analyze);
@@ -628,9 +595,15 @@ public sealed partial class SudokuPage : Page
 					{
 						_cAnalysisDataGrid.ItemsSource = AnalysisResultRow.CreateListFrom(analysisResult);
 						_cAnalysisDataPath.ItemsSource = LogicalStepCollection.Create(analysisResult);
-						foreach (var name in _currentSolvedTechniqueNames)
+						foreach (var step in analysisResult)
 						{
-							_techniqueMetadata.Add(new() { Label = name });
+							_techniqueMetadata.Add(
+								new()
+								{
+									Label = step.Name,
+									Foreground = SimpleConverters.DifficultyLevelToForeground(step.DifficultyLevel)
+								}
+							);
 						}
 
 						_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_AnalyzeSuccessfully"]!);

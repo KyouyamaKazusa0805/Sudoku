@@ -116,12 +116,10 @@ public sealed partial class MetadataSequence : UserControl
 				CommandParameter: var commandParameter
 			};
 
-			var run = new Run().WithText(label);
 			_cTextBlock
 				.AppendInlineIf(
 					new Run()
-						.WithText(Separator)
-						.WithForegroundIfNotNull(foreground),
+						.WithText(Separator),
 					static @this => @this.Inlines.Count > 0
 				)
 				.AppendInline(
@@ -129,9 +127,15 @@ public sealed partial class MetadataSequence : UserControl
 						? new Hyperlink()
 							.WithForeground(_cTextBlock.Foreground)
 							.WithUnderlineStyle(UnderlineStyle.None)
-							.AppendInline(run)
+							.AppendInline(
+								new Run()
+									.WithText(label)
+									.WithForegroundIfNotNull(foreground)
+							)
 							.AppendClickEventHandler((_, _) => command.ExecuteIfCan(commandParameter))
-						: run
+						: new Run()
+							.WithText(label)
+							.WithForegroundIfNotNull(foreground)
 				);
 		}
 

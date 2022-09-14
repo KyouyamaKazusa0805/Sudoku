@@ -513,6 +513,26 @@ public sealed unsafe record LogicalSolverResult(scoped in Grid Puzzle) :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ImmutableArray<IStep>.Enumerator GetEnumerator() => Steps.GetEnumerator();
 
+	/// <summary>
+	/// Projects the collection, to an immutable result of target type.
+	/// </summary>
+	/// <typeparam name="TResult">The type of the result.</typeparam>
+	/// <param name="selector">
+	/// The selector to project the <see cref="IStep"/> instance into type <typeparamref name="TResult"/>.
+	/// </param>
+	/// <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
+	public ImmutableArray<TResult> Select<TResult>(Func<IStep, TResult> selector)
+	{
+		var arr = new TResult[SolvingStepsCount];
+		var i = 0;
+		foreach (var step in Steps)
+		{
+			arr[i++] = selector(step);
+		}
+
+		return ImmutableArray.Create(arr);
+	}
+
 
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).
