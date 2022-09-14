@@ -11,9 +11,17 @@ namespace Sudoku.UI.Models;
 public struct MetadataSequenceItem
 {
 	/// <summary>
+	/// Initializes a <see cref="MetadataSequenceItem"/> instance.
+	/// </summary>
+	public MetadataSequenceItem()
+	{
+	}
+
+
+	/// <summary>
 	/// Gets or sets the label of the item.
 	/// </summary>
-	public string Label { get; set; }
+	public string Label { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets the parameter that will be provided to the <see cref="Command"/>.
@@ -31,5 +39,5 @@ public struct MetadataSequenceItem
 	/// If <see langword="null"/>, the item will be displayed as a text field.
 	/// If set, the item will be displayed as an hyperlink.
 	/// </summary>
-	public ICommand Command { get; set; }
+	public ICommand? Command { get; set; }
 }

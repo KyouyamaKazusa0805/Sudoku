@@ -293,6 +293,15 @@
 				Grid.Row="1" Grid.Column="1" Margin="25" Width="750" Height="600"
 				HorizontalAlignment="Right" VerticalAlignment="Stretch">
 				<TabView.TabItems>
+					<!--Info-->
+					<TabViewItem Header="{StaticResource SudokuPage_InfoBarBoard}" IsClosable="False">
+						<TabViewItem.IconSource>
+							<SymbolIconSource Symbol="Message" />
+						</TabViewItem.IconSource>
+
+						<c:InfoBarBoard x:Name="_cInfoBoard" x:FieldModifier="internal" CollectionChanged="InfoBoard_CollectionChanged" />
+					</TabViewItem>
+
 					<!--Summary page-->
 					<TabViewItem Header="{StaticResource SudokuPage_Summary}" Background="GhostWhite" IsClosable="False">
 						<TabViewItem.IconSource>
@@ -379,13 +388,17 @@
 										</xc:DataGridTemplateColumn>
 									</xc:DataGrid.Columns>
 								</xc:DataGrid>
-								<TextBlock
-									Text="{StaticResource SudokuPage_TechniquesMetadata}"
-									Style="{StaticResource _rHeaderStyle}"
-									Visibility="{x:Bind _cTechniqueMetadata.Visibility}" />
-								<c:MetadataSequence x:Name="_cTechniqueMetadata" ItemsSource="{x:Bind _techniqueMetadata}" />
 							</StackPanel>
 						</ScrollViewer>
+					</TabViewItem>
+
+					<!--Technique metadata-->
+					<TabViewItem Header="{StaticResource SudokuPage_TechniquesMetadata}" IsClosable="False">
+						<TabViewItem.IconSource>
+							<SymbolIconSource Symbol="OutlineStar" />
+						</TabViewItem.IconSource>
+
+						<c:MetadataSequence x:Name="_cTechniqueMetadata" Margin="0,12,0,0" ItemsSource="{x:Bind _techniqueMetadata}" />
 					</TabViewItem>
 
 					<!--Step details-->
@@ -432,13 +445,6 @@
 								</ListView.ItemTemplate>
 							</ListView>
 						</ScrollViewer>
-					</TabViewItem>
-
-					<TabViewItem Header="{StaticResource SudokuPage_InfoBarBoard}" IsClosable="False">
-						<TabViewItem.IconSource>
-							<SymbolIconSource Symbol="Message" />
-						</TabViewItem.IconSource>
-						<c:InfoBarBoard x:Name="_cInfoBoard" x:FieldModifier="internal" CollectionChanged="InfoBoard_CollectionChanged" />
 					</TabViewItem>
 				</TabView.TabItems>
 			</TabView>

@@ -1341,6 +1341,11 @@
             </summary>
             <seealso cref="T:Sudoku.UI.Views.Controls.MetadataSequence"/>
         </member>
+        <member name="M:Sudoku.UI.Models.MetadataSequenceItem.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.MetadataSequenceItem"/> instance.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Models.MetadataSequenceItem.Label">
             <summary>
             Gets or sets the label of the item.
