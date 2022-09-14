@@ -4,8 +4,10 @@
 /// Provides the solver result after <see cref="LogicalSolver"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle"><inheritdoc/></param>
-public sealed unsafe record LogicalSolverResult(scoped in Grid Puzzle) :
-	IComplexSolverResult<LogicalSolver, LogicalSolverResult>
+public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
+	IComplexSolverResult<LogicalSolver, LogicalSolverResult>,
+	IEnumerable<IStep>,
+	ISelectClauseProvider<IStep>
 {
 	/// <inheritdoc/>
 	public bool IsSolved { get; init; }
@@ -21,7 +23,7 @@ public sealed unsafe record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="LogicalSolver"/>
-	public decimal MaxDifficulty => Evaluator(&EnumerableExtensions.Max<IStep>, 20.0M);
+	public unsafe decimal MaxDifficulty => Evaluator(&EnumerableExtensions.Max<IStep>, 20.0M);
 
 	/// <summary>
 	/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -36,7 +38,7 @@ public sealed unsafe record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// </summary>
 	/// <seealso cref="LogicalSolver"/>
 	/// <seealso cref="Steps"/>
-	public decimal TotalDifficulty => Evaluator(&EnumerableExtensions.Sum<IStep>, 0);
+	public unsafe decimal TotalDifficulty => Evaluator(&EnumerableExtensions.Sum<IStep>, 0);
 
 	/// <summary>
 	/// <para>
@@ -533,6 +535,18 @@ public sealed unsafe record LogicalSolverResult(scoped in Grid Puzzle) :
 		return ImmutableArray.Create(arr);
 	}
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	IEnumerator IEnumerable.GetEnumerator() => Steps.ToArray().GetEnumerator();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	IEnumerator<IStep> IEnumerable<IStep>.GetEnumerator() => ((IEnumerable<IStep>)Steps.ToArray()).GetEnumerator();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	IEnumerable<TResult> ISelectClauseProvider<IStep>.Select<TResult>(Func<IStep, TResult> selector) => Select(selector);
+
 
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).
@@ -543,7 +557,7 @@ public sealed unsafe record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	private decimal Evaluator(delegate*<IEnumerable<IStep>, delegate*<IStep, decimal>, decimal> executor, decimal d)
+	private unsafe decimal Evaluator(delegate*<IEnumerable<IStep>, delegate*<IStep, decimal>, decimal> executor, decimal d)
 	{
 		return Steps.IsDefaultOrEmpty ? d : executor(Steps, &f);
 

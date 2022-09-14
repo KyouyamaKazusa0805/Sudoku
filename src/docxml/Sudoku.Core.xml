@@ -1549,6 +1549,9 @@
         <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ISet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Linq#ISelectClauseProvider{System#Int32}#Select``1(System.Func{System.Int32,``0})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ISet{System#Int32}#Add(System.Int32)">
             <inheritdoc/>
         </member>
@@ -2839,6 +2842,15 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int16}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Linq#ISelectClauseProvider{System#Int32}#Select``1(System.Func{System.Int32,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Linq#ISelectClauseProvider{System#Int16}#Select``1(System.Func{System.Int16,``0})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
@@ -17590,6 +17602,15 @@
             The selector to project the <see cref="T:Sudoku.Solving.Logics.Prototypes.IStep"/> instance into type <typeparamref name="TResult"/>.
             </param>
             <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.LogicalSolverResult.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.LogicalSolverResult.System#Collections#Generic#IEnumerable{Sudoku#Solving#Logics#Prototypes#IStep}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.LogicalSolverResult.System#Linq#ISelectClauseProvider{Sudoku#Solving#Logics#Prototypes#IStep}#Select``1(System.Func{Sudoku.Solving.Logics.Prototypes.IStep,``0})">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logics.LogicalSolverResult.Evaluator(,System.Decimal)">
             <summary>

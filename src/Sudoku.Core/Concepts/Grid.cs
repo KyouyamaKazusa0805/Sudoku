@@ -11,6 +11,8 @@ public unsafe partial struct Grid :
 	IEnumerable<int>,
 	IReadOnlyCollection<int>,
 	IReadOnlyList<int>,
+	ISelectClauseProvider<short>,
+	ISelectClauseProvider<int>,
 	ISimpleFormattable,
 	ISimpleParseable<Grid>
 {
@@ -1228,6 +1230,38 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)ToArray()).GetEnumerator();
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator<short> IEnumerable<short>.GetEnumerator()
+	{
+		var maskArray = new short[81];
+		Unsafe.CopyBlock(
+			ref Unsafe.As<short, byte>(ref Unsafe.AsRef(_values[0])),
+			ref Unsafe.As<short, byte>(ref maskArray[0]),
+			sizeof(short) * 81);
+
+		return ((IEnumerable<short>)maskArray).GetEnumerator();
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerable<TResult> ISelectClauseProvider<int>.Select<TResult>(Func<int, TResult> selector)
+		=> GridEnumerable.Select(this, selector);
+
+	/// <inheritdoc/>
+	readonly IEnumerable<TResult> ISelectClauseProvider<short>.Select<TResult>(Func<short, TResult> selector)
+	{
+		var result = new TResult[81];
+		var i = 0;
+		foreach (var mask in EnumerateMasks())
+		{
+			result[i++] = selector(mask);
+		}
+
+		return result;
+	}
+
+
 	/// <summary>
 	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.
 	/// </summary>
@@ -1508,7 +1542,7 @@ public unsafe partial struct Grid :
 
 	[RegexGenerator("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]
 	internal static partial Regex ExtendedSusserEliminationsPattern();
-
+	
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

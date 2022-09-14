@@ -7,7 +7,9 @@ internal sealed partial class DrawingElementBag :
 	IEnumerable,
 	IEnumerable<DrawingElement>,
 	IReadOnlyCollection<DrawingElement>,
-	IReadOnlyList<DrawingElement>
+	IReadOnlyList<DrawingElement>,
+	ISelectClauseProvider<DrawingElement>,
+	IWhereClauseProvider<DrawingElement>
 {
 	/// <summary>
 	/// Indicates the capacity value.
@@ -171,6 +173,34 @@ internal sealed partial class DrawingElementBag :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<DrawingElement> IEnumerable<DrawingElement>.GetEnumerator()
 		=> ((IEnumerable<DrawingElement>)_elements[..Count]).GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectClauseProvider<DrawingElement>.Select<TResult>(Func<DrawingElement, TResult> selector)
+	{
+		var result = new TResult[Count];
+		var i = 0;
+		foreach (var element in this)
+		{
+			result[i++] = selector(element);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	IEnumerable<DrawingElement> IWhereClauseProvider<DrawingElement>.Where(Func<DrawingElement, bool> condition)
+	{
+		var result = new List<DrawingElement>(Count);
+		foreach (var element in this)
+		{
+			if (condition(element))
+			{
+				result.Add(element);
+			}
+		}
+
+		return result;
+	}
 
 	/// <summary>
 	/// Ensures the capacity, allowing new element being added into the current collection.

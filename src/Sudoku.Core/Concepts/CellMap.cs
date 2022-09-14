@@ -41,6 +41,7 @@ public struct CellMap :
 	IReadOnlyList<int>,
 	IReadOnlySet<int>,
 	ISet<int>,
+	ISelectClauseProvider<int>,
 	ISimpleFormattable,
 	ISimpleParseable<CellMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
@@ -258,7 +259,7 @@ public struct CellMap :
 	/// <summary>
 	/// Indicates the number of the values stored in this collection.
 	/// </summary>
-	public int Count
+	public readonly int Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _count;
@@ -904,6 +905,19 @@ public struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly bool ISet<int>.SetEquals(IEnumerable<int> other) => ((IReadOnlySet<int>)this).SetEquals(other);
+
+	/// <inheritdoc/>
+	readonly IEnumerable<TResult> ISelectClauseProvider<int>.Select<TResult>(Func<int, TResult> selector)
+	{
+		var result = new TResult[_count];
+		var i = 0;
+		foreach (var cell in this)
+		{
+			result[i++] = selector(cell);
+		}
+
+		return ImmutableArray.Create(result);
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

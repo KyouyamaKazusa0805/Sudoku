@@ -1520,6 +1520,12 @@
             A transform function to apply to each element.
             </param>
         </member>
+        <member name="T:System.Linq.ILinqProvider`1">
+            <summary>
+            Extracts to a new interface, indicating the type supports LINQ expressions.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+        </member>
         <member name="T:System.Linq.ImmutableArrayEnumerable">
             <summary>
             Provides with LINQ methods on <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
@@ -1527,6 +1533,42 @@
         </member>
         <member name="M:System.Linq.ImmutableArrayEnumerable.Zip``2(System.Collections.Immutable.ImmutableArray{``0},System.Collections.Immutable.ImmutableArray{``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
+        </member>
+        <member name="T:System.Linq.ISelectClauseProvider`1">
+            <summary>
+            Defines a type that supports <see langword="select"/> and <see langword="let"/> clauses.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+        </member>
+        <member name="M:System.Linq.ISelectClauseProvider`1.Select``1(System.Func{`0,``0})">
+            <summary>
+            Projects the collection, to an immutable result of target type <typeparamref name="TResult"/>.
+            </summary>
+            <typeparam name="TResult">The target type converted.</typeparam>
+            <param name="selector">
+            The selector to project the <typeparamref name="T"/> instance
+            into type <typeparamref name="TResult"/>.
+            </param>
+            <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
+        </member>
+        <member name="M:System.Linq.ISelectClauseProvider`1.SelectUnsafe``1()">
+            <inheritdoc cref="M:System.Linq.ISelectClauseProvider`1.Select``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="T:System.Linq.IWhereClauseProvider`1">
+            <summary>
+            Defines a type that supports <see langword="where"/> clause.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+        </member>
+        <member name="M:System.Linq.IWhereClauseProvider`1.Where(System.Func{`0,System.Boolean})">
+            <summary>
+            Filters the specified collection, removing elements not satisfying the specified condition.
+            </summary>
+            <param name="condition">The condition to filter elements.</param>
+            <returns>The filtered collection of element type <typeparamref name="T"/>.</returns>
+        </member>
+        <member name="M:System.Linq.IWhereClauseProvider`1.WhereUnsafe()">
+            <inheritdoc cref="M:System.Linq.IWhereClauseProvider`1.Where(System.Func{`0,System.Boolean})"/>
         </member>
         <member name="T:System.Linq.SpanEnumerable">
             <summary>

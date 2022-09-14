@@ -1310,6 +1310,12 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.System#Collections#Generic#IEnumerable{Sudoku#UI#Drawing#Shapes#DrawingElement}#GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.System#Linq#ISelectClauseProvider{Sudoku#UI#Drawing#Shapes#DrawingElement}#Select``1(System.Func{Sudoku.UI.Drawing.Shapes.DrawingElement,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.System#Linq#IWhereClauseProvider{Sudoku#UI#Drawing#Shapes#DrawingElement}#Where(System.Func{Sudoku.UI.Drawing.Shapes.DrawingElement,System.Boolean})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.EnsureCapacity">
             <summary>
             Ensures the capacity, allowing new element being added into the current collection.
