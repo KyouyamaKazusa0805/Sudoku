@@ -1335,6 +1335,35 @@
             Indicates the default visibility. The default value is <see cref="F:Microsoft.UI.Xaml.Visibility.Visible"/>.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Models.MetadataSequenceItem">
+            <summary>
+            An item to display in <see cref="T:Sudoku.UI.Views.Controls.MetadataSequence"/>.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Views.Controls.MetadataSequence"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.MetadataSequenceItem.Label">
+            <summary>
+            Gets or sets the label of the item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.MetadataSequenceItem.CommandParameter">
+            <summary>
+            Gets or sets the parameter that will be provided to the <see cref="P:Sudoku.UI.Models.MetadataSequenceItem.Command"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Models.MetadataSequenceItem.Command"/>
+        </member>
+        <member name="P:Sudoku.UI.Models.MetadataSequenceItem.Foreground">
+            <summary>
+            Gets or sets the foreground of the text block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.MetadataSequenceItem.Command">
+            <summary>
+            Gets or sets the command associated to the item.
+            If <see langword="null"/>, the item will be displayed as a text field.
+            If set, the item will be displayed as an hyperlink.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Models.RepositoryInfo">
             <summary>
             Defines a set of properties to describe an image.

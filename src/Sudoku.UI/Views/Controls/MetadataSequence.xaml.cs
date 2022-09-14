@@ -27,7 +27,7 @@ public sealed partial class MetadataSequence : UserControl
 	public static readonly DependencyProperty ItemsSourceProperty =
 		DependencyProperty.Register(
 			nameof(ItemsSource),
-			typeof(IEnumerable<MetadataItem>),
+			typeof(IEnumerable<MetadataSequenceItem>),
 			typeof(MetadataControl),
 			new(
 				null,
@@ -76,10 +76,10 @@ public sealed partial class MetadataSequence : UserControl
 	/// Gets or sets the <see cref="MetadataItem"/> to display in the control.
 	/// If it implements <see cref="INotifyCollectionChanged"/>, the control will automatically update itself.
 	/// </summary>
-	public IEnumerable<MetadataItem> ItemsSource
+	public IEnumerable<MetadataSequenceItem> ItemsSource
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (IEnumerable<MetadataItem>)GetValue(ItemsSourceProperty);
+		get => (IEnumerable<MetadataSequenceItem>)GetValue(ItemsSourceProperty);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set => SetValue(ItemsSourceProperty, value);
@@ -97,7 +97,7 @@ public sealed partial class MetadataSequence : UserControl
 			return;
 		}
 
-		_cTextBlock.Inlines.Clear();
+		_cTextBlock.ClearInlines();
 
 		if (ItemsSource is null)
 		{
@@ -106,32 +106,33 @@ public sealed partial class MetadataSequence : UserControl
 			return;
 		}
 
-		Inline unitToAppend;
 		foreach (var unit in ItemsSource)
 		{
-			if (_cTextBlock.Inlines.Count > 0)
+			_ = unit is
 			{
-				_cTextBlock.Inlines.Add(new Run { Text = Separator });
-			}
+				Label: var label,
+				Foreground: var foreground,
+				Command: var command,
+				CommandParameter: var commandParameter
+			};
 
-			unitToAppend = new Run { Text = unit.Label };
-
-			if (unit.Command is not null)
-			{
-				var hyperLink = new Hyperlink { UnderlineStyle = UnderlineStyle.None, Foreground = _cTextBlock.Foreground };
-				hyperLink.Inlines.Add(unitToAppend);
-				hyperLink.Click += (_, _) =>
-				{
-					if (unit.Command.CanExecute(unit.CommandParameter))
-					{
-						unit.Command.Execute(unit.CommandParameter);
-					}
-				};
-
-				unitToAppend = hyperLink;
-			}
-
-			_cTextBlock.Inlines.Add(unitToAppend);
+			var run = new Run().WithText(label);
+			_cTextBlock
+				.AppendInlineIf(
+					new Run()
+						.WithText(Separator)
+						.WithForegroundIfNotNull(foreground),
+					static @this => @this.Inlines.Count > 0
+				)
+				.AppendInline(
+					command is not null
+						? new Hyperlink()
+							.WithForeground(_cTextBlock.Foreground)
+							.WithUnderlineStyle(UnderlineStyle.None)
+							.AppendInline(run)
+							.AppendClickEventHandler((_, _) => command.ExecuteIfCan(commandParameter))
+						: run
+				);
 		}
 
 		notifyLiveRegionChanged();

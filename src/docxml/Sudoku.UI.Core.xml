@@ -3334,6 +3334,21 @@
             Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.TextAlignment"/> with the specified value.
             </summary>
         </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.AppendInline(Microsoft.UI.Xaml.Controls.TextBlock,Microsoft.UI.Xaml.Documents.Inline)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Inlines"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.AppendInlineIf(Microsoft.UI.Xaml.Controls.TextBlock,Microsoft.UI.Xaml.Documents.Inline,System.Predicate{Microsoft.UI.Xaml.Controls.TextBlock})">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Inlines"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TextBlockExtensions.ClearInlines(Microsoft.UI.Xaml.Controls.TextBlock)">
+            <summary>
+            Clears the property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Inlines"/>.
+            </summary>
+        </member>
         <member name="T:Microsoft.UI.Xaml.Media.Animation.EntranceThemeTransitionExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Media.Animation.EntranceThemeTransition"/>.
@@ -3536,6 +3551,60 @@
             Sets the binding on the specified dependency property.
             </summary>
         </member>
+        <member name="T:Microsoft.UI.Xaml.Documents.HyperlinkExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Documents.Hyperlink"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Documents.Hyperlink"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Documents.HyperlinkExtensions.WithUnderlineStyle(Microsoft.UI.Xaml.Documents.Hyperlink,Microsoft.UI.Xaml.Documents.UnderlineStyle)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Documents.Hyperlink.UnderlineStyle"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Documents.HyperlinkExtensions.AppendClickEventHandler(Microsoft.UI.Xaml.Documents.Hyperlink,Windows.Foundation.TypedEventHandler{Microsoft.UI.Xaml.Documents.Hyperlink,Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs})">
+            <summary>
+            Registers the event <see cref="E:Microsoft.UI.Xaml.Documents.Hyperlink.Click"/> with the specified delegate typed instance.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Documents.RunExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Documents.Run"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Documents.Run"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Documents.RunExtensions.WithText(Microsoft.UI.Xaml.Documents.Run,System.String)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Documents.Run.Text"/> with the specified value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Documents.SpanExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Documents.Span"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Documents.Span"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Documents.SpanExtensions.AppendInline``1(``0,Microsoft.UI.Xaml.Documents.Inline)">
+            <summary>
+            Append inline into the property <see cref="P:Microsoft.UI.Xaml.Documents.Span.Inlines"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Documents.TextElementExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Documents.TextElement"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Documents.TextElement"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Documents.TextElementExtensions.WithForeground``1(``0,Microsoft.UI.Xaml.Media.Brush)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Documents.TextElement.Foreground"/> with the specified value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Documents.TextElementExtensions.WithForegroundIfNotNull``1(``0,Microsoft.UI.Xaml.Media.Brush)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Documents.TextElement.Foreground"/> with the specified value.
+            </summary>
+        </member>
         <member name="T:Microsoft.UI.Xaml.PanelExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.Panel"/>.
@@ -3694,6 +3763,20 @@
             <typeparam name="TWindow">The type of the window.</typeparam>
             <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
             <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
+        </member>
+        <member name="T:System.Windows.Input.CommandExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Windows.Input.ICommand"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Input.ICommand"/>
+        </member>
+        <member name="M:System.Windows.Input.CommandExtensions.ExecuteIfCan(System.Windows.Input.ICommand,System.Object)">
+            <summary>
+            Execute the specified command if it can be executed.
+            </summary>
+            <param name="this">The command.</param>
+            <param name="commandParameter">The command parameter.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
             <summary>

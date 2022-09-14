@@ -31,7 +31,7 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the technique metadata.
 	/// </summary>
-	private readonly ObservableCollection<MetadataItem> _techniqueMetadata = new();
+	private readonly ObservableCollection<MetadataSequenceItem> _techniqueMetadata = new();
 
 	/// <summary>
 	/// Indicates whether the page is the first loading. If false, we can skip some duplicate operations

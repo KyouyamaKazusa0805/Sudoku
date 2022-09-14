@@ -106,4 +106,38 @@ public static class TextBlockExtensions
 		@this.TextAlignment = textAlignment;
 		return @this;
 	}
+
+	/// <summary>
+	/// Sets the property <see cref="TextBlock.Inlines"/> with the specified value.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TextBlock AppendInline(this TextBlock @this, Inline inline)
+	{
+		@this.Inlines.Add(inline);
+		return @this;
+	}
+
+	/// <summary>
+	/// Sets the property <see cref="TextBlock.Inlines"/> with the specified value.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TextBlock AppendInlineIf(this TextBlock @this, Inline inline, Predicate<TextBlock> predicate)
+	{
+		if (predicate(@this))
+		{
+			@this.Inlines.Add(inline);
+		}
+
+		return @this;
+	}
+
+	/// <summary>
+	/// Clears the property <see cref="TextBlock.Inlines"/>.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TextBlock ClearInlines(this TextBlock @this)
+	{
+		@this.Inlines.Clear();
+		return @this;
+	}
 }

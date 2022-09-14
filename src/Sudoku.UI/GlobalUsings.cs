@@ -20,6 +20,7 @@ global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading;
 global using System.Threading.Tasks;
+global using System.Windows.Input;
 global using CommunityToolkit.WinUI.UI.Controls;
 global using Microsoft.Graphics.Canvas.Text;
 global using Microsoft.UI;
