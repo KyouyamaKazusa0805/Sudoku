@@ -3748,7 +3748,6 @@
             </summary>
             <param name="steps">The found steps.</param>
             <param name="conditionString">The condition.</param>
-            <returns>Filtered steps.</returns>
             <exception cref="T:Expressive.Exceptions.ExpressiveException">Throws when the expression being evaluated is invalid.</exception>
         </member>
         <member name="M:Sudoku.Filtering.TechniqueFiltering.Parse(System.String,Sudoku.Solving.Logics.Prototypes.IStep)">
@@ -3763,21 +3762,17 @@
             <remarks>
             Pattern explanation:<br/>
             <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 4 alternative expressions, atomically.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match a character in the set [Dd].<br/>
-                        ○ Optional (greedy).<br/>
-                            ○ 2nd capture group.<br/>
-                                ○ Match a character in the set [Ii\u0130] exactly 3 times.<br/>
-                                ○ Match a character in the set [Cc].<br/>
-                                ○ Match a character in the set [Uu].<br/>
-                                ○ Match a character in the set [Ll].<br/>
-                                ○ Match a character in the set [Tt].<br/>
-                                ○ Match a character in the set [Yy].<br/>
-                    ○ Match the string "&amp;&amp;".<br/>
-                    ○ Match the string "||".<br/>
-                    ○ Match '!'.<br/>
+            ○ Match a character in the set [Dd].<br/>
+            ○ Optional (greedy).<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a character in the set [Ii\u0130].<br/>
+                    ○ Match a character in the set [Ff] exactly 2 times.<br/>
+                    ○ Match a character in the set [Ii\u0130].<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [Uu].<br/>
+                    ○ Match a character in the set [Ll].<br/>
+                    ○ Match a character in the set [Tt].<br/>
+                    ○ Match a character in the set [Yy].<br/>
             </code>
             </remarks>
         </member>
@@ -11779,6 +11774,9 @@
         </member>
         <member name="P:Sudoku.Solving.Logics.Implementations.StepGatherers.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
             <inheritdoc/>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Logics.Implementations.StepGatherers.StepsGatherer.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>

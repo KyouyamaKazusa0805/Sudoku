@@ -64,9 +64,13 @@
 	<x:String x:Key="SudokuPage_AnalysisData">Analysis Data</x:String>
 	<x:String x:Key="SudokuPage_Summary">Summary</x:String>
 	<x:String x:Key="SudokuPage_StepDetails">Path</x:String>
+	<x:String x:Key="SudokuPage_StepGathering">Steps Gathered</x:String>
 	<x:String x:Key="SudokuPage_InfoBarBoard">Info</x:String>
 	<x:String x:Key="SudokuPage_TechniquesUsed">Technique used:</x:String>
 	<x:String x:Key="SudokuPage_TechniquesMetadata">Technique series</x:String>
+	<x:String x:Key="SudokuPage_SearchAllSteps">Search all steps!</x:String>
+	<x:String x:Key="SudokuPage_FilterGatheredSteps">Filter on filtering expression</x:String>
+	<x:String x:Key="SudokuPage_FilteringIsInProcess">Please wait...</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">Editing</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">Solving &amp; Analysis</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Displaying">Displaying &amp; Rendering</x:String>
@@ -380,4 +384,5 @@
 	<!--Emojis-->
 	<x:String x:Key="Emoji_RightArrow">➡</x:String>
 	<x:String x:Key="Emoji_Ring">⭕</x:String>
+	<x:String x:Key="Emoji_Search">🔍</x:String>
 </ResourceDictionary>

@@ -21,9 +21,12 @@ public interface IStep : IVisual
 	public sealed bool ShowDifficulty
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-			=> GetType().GetCustomAttribute<StepDisplayingFeatureAttribute>() is { Features: var f }
-			&& !f.Flags(StepDisplayingFeature.HideDifficultyRating);
+		get => GetType().GetCustomAttribute<StepDisplayingFeatureAttribute>() switch
+		{
+			{ Features: var f } => !f.Flags(StepDisplayingFeature.HideDifficultyRating),
+			null => true,
+			//_ => false
+		};
 	}
 
 	/// <summary>

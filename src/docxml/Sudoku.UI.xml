@@ -368,6 +368,11 @@
             Indicates the default solver.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Data.Configuration.Preference.StepsGatherer">
+            <summary>
+            Indicates the step gatherer.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._allowCollision">
             <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
         </member>
@@ -1414,6 +1419,22 @@
             Indicates the website which name is corresponding to.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Models.TechniqueGroup">
+            <summary>
+            Indicates a group of technique steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Models.TechniqueGroup.#ctor(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.TechniqueGroup"/> instance via the specified list of elements.
+            </summary>
+            <param name="elements">The elements.</param>
+        </member>
+        <member name="P:Sudoku.UI.Models.TechniqueGroup.Key">
+            <summary>
+            Indicates the key of the group.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Models.VersionTimelineGroupItem">
             <summary>
             Defines a version timeline group item.
@@ -2251,6 +2272,48 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Views.Controls.TechniqueGroupView">
+            <summary>
+            Provides a view that displays for technique groups found.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TechniqueGroupView.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Controls.TechniqueGroupView"/> instance.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.Views.Controls.TechniqueGroupView.StepChosen">
+            <summary>
+            Indicates the event that a step is chosen.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TechniqueGroupView.ClearView">
+            <summary>
+            Clears the view.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TechniqueGroupView.ListView_ItemClick(System.Object,Microsoft.UI.Xaml.Controls.ItemClickEventArgs)">
+            <summary>
+            Triggers when an item is clicked.
+            </summary>
+            <param name="sender">The object that triggers this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TechniqueGroupView.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TechniqueGroupView.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.TechniqueGroupView.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.TitleBar">
             <summary>
             Defines a customized title bar.
@@ -2802,6 +2865,11 @@
             Indicates the print document source.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Pages.SudokuPage._currentTechniqueGroups">
+            <summary>
+            Indicates the current group of techniques found in step gatherer.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/> instance.
@@ -3026,6 +3094,19 @@
             Sets the logical step.
             </summary>
             <param name="e">The logical step.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetTechniqueGroupsAsync">
+            <summary>
+            Try to fetch all possible steps.
+            </summary>
+            <returns>The list of technique groups.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetTechniqueGroups(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logics.Prototypes.IStep})">
+            <summary>
+            Try to group them up.
+            </summary>
+            <param name="collection">The technique steps found.</param>
+            <returns>The list of groups.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
@@ -3265,6 +3346,27 @@
             Triggers when the item is clicked.
             </summary>
             <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GatherStepsButton_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the button is clicked.
+            </summary>
+            <param name="sender">The object that triggers this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.TechniqueGroupView_StepChosen(System.Object,Sudoku.Solving.Logics.Prototypes.IStep)">
+            <summary>
+            Triggers when a step is chosen in the gatherer page.
+            </summary>
+            <param name="sender">The object that triggers this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.FilterGatheredStepsButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the steps filtering button is clicked.
+            </summary>
+            <param name="sender">The object that triggers this event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitializeComponent">

@@ -12,13 +12,12 @@ public static partial class TechniqueFiltering
 	/// </summary>
 	/// <param name="steps">The found steps.</param>
 	/// <param name="conditionString">The condition.</param>
-	/// <returns>Filtered steps.</returns>
 	/// <exception cref="ExpressiveException">Throws when the expression being evaluated is invalid.</exception>
 	public static IEnumerable<IStep> Filter(IEnumerable<IStep> steps, string conditionString)
-		=>
-		from step in steps
-		where Parse(conditionString, step).Evaluate<bool>()
-		select step;
+		=> string.IsNullOrWhiteSpace(conditionString)
+			// Special case: If the condition string is empty, just return.
+			? steps
+			: from step in steps where Parse(conditionString, step).Evaluate<bool>() select step;
 
 	/// <summary>
 	/// To parse a condition string, converting the string into a valid <see cref="Expression"/> instance.
@@ -27,22 +26,20 @@ public static partial class TechniqueFiltering
 	/// <param name="step">The step used.</param>
 	/// <returns>The <see cref="Expression"/> instance.</returns>
 	private static Expression Parse(string conditionString, IStep step)
-		=> new(
-			KeywordPattern()
-				.Replace(
-					conditionString,
-					match => match.Value.ToLower() switch
-					{
-						"&&" => " and ",
-						"||" => " or ",
-						"!" => "not ",
-						"d" or "difficulty" => step.Difficulty.ToString(),
-						var @default => @default
-					}
-				),
-			ExpressiveOptions.IgnoreCaseForParsing
-		);
+	{
+		var handledCondition = KeywordPattern()
+			.Replace(
+				conditionString,
+				match => match.Value.ToLower() switch
+				{
+					"d" or "difficulty" => step.Difficulty.ToString(),
+					_ => throw new NotSupportedException("The specified match is not supported to be replaced.")
+				}
+			);
 
-	[RegexGenerator("""(d(i{2}iculty)?|\&{2}|\|{2}|!)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+		return new(handledCondition, ExpressiveOptions.IgnoreCaseForParsing);
+	}
+
+	[RegexGenerator("""d(if{2}iculty)?""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex KeywordPattern();
 }

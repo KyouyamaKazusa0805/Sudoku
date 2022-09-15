@@ -6,7 +6,10 @@
 public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSearcherOptions
 {
 	/// <inheritdoc/>
-	public bool OnlyShowSameLevelTechniquesInFindAllSteps { get; set; }
+	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
+	public bool OnlyShowSameLevelTechniquesInFindAllSteps { get; set; } = true;
 
 
 	/// <inheritdoc/>

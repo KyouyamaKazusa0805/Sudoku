@@ -13,6 +13,12 @@ public sealed class Preference : IDrawingPreference
 	[JsonIgnore]
 	public static readonly LogicalSolver DefaultSolver = new();
 
+	/// <summary>
+	/// Indicates the step gatherer.
+	/// </summary>
+	[JsonIgnore]
+	public static readonly IStepGatherableSearcher StepsGatherer = new StepsGatherer();
+
 
 	/// <inheritdoc cref="IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
 	private bool _allowCollision = true;

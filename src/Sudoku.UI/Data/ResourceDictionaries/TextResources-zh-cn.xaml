@@ -63,9 +63,13 @@
 	<x:String x:Key="SudokuPage_AnalysisData">分析数据</x:String>
 	<x:String x:Key="SudokuPage_Summary">总表</x:String>
 	<x:String x:Key="SudokuPage_StepDetails">解题步骤</x:String>
+	<x:String x:Key="SudokuPage_StepGathering">当前盘面的所有步骤</x:String>
 	<x:String x:Key="SudokuPage_InfoBarBoard">信息</x:String>
 	<x:String x:Key="SudokuPage_TechniquesUsed">需要使用的解题技巧：</x:String>
 	<x:String x:Key="SudokuPage_TechniquesMetadata">技巧序列</x:String>
+	<x:String x:Key="SudokuPage_SearchAllSteps">搜索所有可能步骤！</x:String>
+	<x:String x:Key="SudokuPage_FilterGatheredSteps">按筛选表达式进行筛选</x:String>
+	<x:String x:Key="SudokuPage_FilteringIsInProcess">请稍候……</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">编辑</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">解题与分析</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Displaying">呈现与渲染</x:String>

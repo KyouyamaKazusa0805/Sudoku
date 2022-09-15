@@ -49,6 +49,11 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	private IPrintDocumentSource _printDocumentSource;
 
+	/// <summary>
+	/// Indicates the current group of techniques found in step gatherer.
+	/// </summary>
+	private IEnumerable<IStep>? _currentTechniqueGroups;
+
 
 	/// <summary>
 	/// Initializes a <see cref="SudokuPage"/> instance.
@@ -416,6 +421,8 @@ public sealed partial class SudokuPage : Page
 				_cPane.Grid = grid;
 				_cAnalysisDataGrid.ItemsSource = null;
 				_cAnalysisDataPath.ItemsSource = null;
+				_techniqueMetadata.Clear();
+				_cTechniqueGroupView.ClearView();
 				_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_FileOpenSuccessfully"]!);
 
 				break;
@@ -487,6 +494,7 @@ public sealed partial class SudokuPage : Page
 		_cAnalysisDataGrid.ItemsSource = null;
 		_cAnalysisDataPath.ItemsSource = null;
 		_techniqueMetadata.Clear();
+		_cTechniqueGroupView.ClearView();
 
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_PasteSuccessfully"]!);
 	}
@@ -503,6 +511,7 @@ public sealed partial class SudokuPage : Page
 		_cAnalysisDataGrid.ItemsSource = null;
 		_cAnalysisDataPath.ItemsSource = null;
 		_techniqueMetadata.Clear();
+		_cTechniqueGroupView.ClearView();
 
 		// Generate the puzzle.
 		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
@@ -581,6 +590,7 @@ public sealed partial class SudokuPage : Page
 				_cAnalysisDataGrid.ItemsSource = null;
 				_cAnalysisDataPath.ItemsSource = null;
 				_techniqueMetadata.Clear();
+				_cTechniqueGroupView.ClearView();
 
 				// Solve the puzzle using the logical solver.
 				var analysisResult = await Task.Run(analyze);
@@ -956,6 +966,52 @@ public sealed partial class SudokuPage : Page
 		}
 	}
 
+	/// <summary>
+	/// Try to fetch all possible steps.
+	/// </summary>
+	/// <returns>The list of technique groups.</returns>
+	private async Task<(IEnumerable<IStep> Steps, ObservableCollection<TechniqueGroup> GroupedSteps)> GetTechniqueGroupsAsync()
+	{
+		var gatherer = Preference.StepsGatherer;
+
+		_cSearchAllSteps.IsEnabled = false;
+		_cStepGatheringTextBox.Text = string.Empty;
+		_cFilteringProcessIsOnTextBlock.Visibility = Visibility.Visible;
+		_cStepGatheringTextBox.IsEnabled = false;
+
+		var collection = await Task.Run(() => { lock (SyncRoot) { return gatherer.Search(_cPane.Grid); } });
+
+		_cSearchAllSteps.IsEnabled = true;
+		_cStepGatheringTextBox.IsEnabled = true;
+		_cFilteringProcessIsOnTextBlock.Visibility = Visibility.Collapsed;
+
+		return (collection, GetTechniqueGroups(collection));
+	}
+
+	/// <summary>
+	/// Try to group them up.
+	/// </summary>
+	/// <param name="collection">The technique steps found.</param>
+	/// <returns>The list of groups.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private ObservableCollection<TechniqueGroup> GetTechniqueGroups(IEnumerable<IStep> collection)
+		=> new(
+			from step in collection
+			group step by step.Name into stepGroupGroupedByName
+			let showDifficultySteps =
+				from step in stepGroupGroupedByName
+				where step.ShowDifficulty
+				select step
+			let stepsDifficultyLevelIntegerGroup =
+				from step in stepGroupGroupedByName
+				select (decimal)step.DifficultyLevel
+			orderby
+				showDifficultySteps.Average(static step => step.Difficulty),
+				stepsDifficultyLevelIntegerGroup.Average(),
+				stepGroupGroupedByName.Key
+			select new TechniqueGroup(stepGroupGroupedByName) { Key = stepGroupGroupedByName.Key }
+		);
+
 
 	/// <summary>
 	/// Triggers when the current page is loaded.
@@ -1241,4 +1297,53 @@ public sealed partial class SudokuPage : Page
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
 	private void ListView_ItemClick(object sender, ItemClickEventArgs e) => SetLogicalStep((LogicalStep)e.ClickedItem);
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers this event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private async void GatherStepsButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (!_cPane.Grid.IsValid)
+		{
+			return;
+		}
+
+		(_currentTechniqueGroups, _cTechniqueGroupView._cTechniqueGroups.Source) = await GetTechniqueGroupsAsync();
+	}
+
+	/// <summary>
+	/// Triggers when a step is chosen in the gatherer page.
+	/// </summary>
+	/// <param name="sender">The object that triggers this event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void TechniqueGroupView_StepChosen(object sender, IStep e)
+	{
+		var logicalStep = new LogicalStep { Grid = _cPane.Grid, Step = e };
+		SetLogicalStep(logicalStep);
+	}
+
+	/// <summary>
+	/// Triggers when the steps filtering button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers this event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void FilterGatheredStepsButton_Click(object sender, RoutedEventArgs e)
+	{
+		if (this is not { _currentTechniqueGroups: not null, _cPane.Grid.IsValid: true })
+		{
+			return;
+		}
+
+		try
+		{
+			var filtered = TechniqueFiltering.Filter(_currentTechniqueGroups, _cStepGatheringTextBox.Text);
+			_cTechniqueGroupView._cTechniqueGroups.Source = GetTechniqueGroups(filtered);
+		}
+		catch (ExpressiveException)
+		{
+			// No nothing.
+		}
+	}
 }

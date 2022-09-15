@@ -237,6 +237,9 @@
 		<Page Update="Views\Controls\MetadataSequence.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Controls\TechniqueGroupView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 </Project>
