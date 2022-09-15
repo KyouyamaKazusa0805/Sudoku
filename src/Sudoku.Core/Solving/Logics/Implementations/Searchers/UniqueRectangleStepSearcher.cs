@@ -4043,20 +4043,20 @@ unsafe partial class UniqueRectangleStepSearcher
 				{
 					foreach (var als in alses)
 					{
-						if (als.House == connectedXDigitHouse)
+						var (alsHouse, alsMask, alsMap) = als;
+
+						if ((cells.Houses >> alsHouse & 1) != 0)
 						{
-							// The current ALS cannot lie in this house.
+							// The current ALS cannot lie in the house that UR cells covered.
 							continue;
 						}
 
-						var alsMask = als.DigitsMask;
 						if ((alsMask >> d1 & 1) == 0 || (alsMask >> d2 & 1) == 0)
 						{
 							// The ALS must uses both two digits.
 							continue;
 						}
 
-						var alsMap = als.Map;
 						var elimMap = (alsMap | zDigitGuardianCells) % CandidatesMap[zDigit];
 						if (!elimMap)
 						{
@@ -4115,11 +4115,11 @@ unsafe partial class UniqueRectangleStepSearcher
 								ImmutableArray.Create(
 									View.Empty
 										| candidateOffsets
-										| new HouseViewNode(DisplayColorKind.AlmostLockedSet1, als.House)
+										| new HouseViewNode(DisplayColorKind.AlmostLockedSet1, alsHouse)
 								),
 								d1,
 								d2,
-								(CellMap)urCells,
+								cells,
 								guardianCells,
 								als,
 								IsIncomplete(candidateOffsets),

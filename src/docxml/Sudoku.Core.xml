@@ -17303,11 +17303,6 @@
             Indicates the target step searcher collection.
             </summary>
         </member>
-        <member name="E:Sudoku.Solving.Logics.LogicalSolver.StepApplied">
-            <summary>
-            Indicates the event that a step or a list of steps is applied.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Logics.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
@@ -20225,34 +20220,6 @@
             Indicates the analysis result will show the steps.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Logics.StepAppliedEventArgs">
-            <summary>
-            Provides with data used by event handler type <see cref="T:Sudoku.Solving.Logics.StepAppliedEventHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logics.StepAppliedEventHandler"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.StepAppliedEventArgs.IsSingleStepApplied">
-            <summary>
-            Determines whether the current data structure stores a single step applied instead of a list of steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.StepAppliedEventArgs.Step">
-            <summary>
-            Indicates the applied step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.StepAppliedEventArgs.Steps">
-            <summary>
-            Indicates the applied list of steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Logics.StepAppliedEventHandler">
-            <summary>
-            Defines a delegate type that handles the event that a step is applied.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
         <member name="T:Sudoku.Solving.ConclusionType_EnumSwitchExpressionExtensions">
             <summary>
             Provides with extension methods for switching on the current type.
@@ -20390,6 +20357,88 @@
             <summary>
             Gets the possible cells that can store eliminations for the ALS.
             </summary>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Deconstruct(System.Int32@,System.Int16@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Deconstruct(System.Int32@,System.Int16@,Sudoku.Concepts.CellMap@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
         </member>
         <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.ContainsDigit(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>

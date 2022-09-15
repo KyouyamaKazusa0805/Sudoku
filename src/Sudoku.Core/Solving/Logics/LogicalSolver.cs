@@ -37,12 +37,6 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 	}
 
 
-	/// <summary>
-	/// Indicates the event that a step or a list of steps is applied.
-	/// </summary>
-	public event StepAppliedEventHandler? StepApplied;
-
-
 	/// <inheritdoc/>
 	public LogicalSolverResult Solve(scoped in Grid puzzle, CancellationToken cancellationToken = default)
 	{
@@ -59,6 +53,13 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 			}
 			catch (Exception ex)
 			{
+#if DEBUG
+				if (Debugger.IsAttached)
+				{
+					Debugger.Break();
+				}
+#endif
+
 				result = result with { IsSolved = false };
 				return ex switch
 				{
@@ -136,38 +137,23 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 						continue;
 					}
 
-					var appliedStepsCount = 0;
 					foreach (var foundStep in accumulator)
 					{
 						if (verifyConclusionValidity(solution, foundStep))
 						{
-							switch (
+							if (
 								recordStep(
 									recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
 									resultBase, cancellationToken, out var result)
 							)
 							{
-								case true:
-								{
-									return result;
-								}
-								case false:
-								{
-									appliedStepsCount++;
-									break;
-								}
+								return result;
 							}
 						}
 						else
 						{
 							throw new WrongStepException(playground, foundStep);
 						}
-					}
-
-					if (appliedStepsCount != 0)
-					{
-						// Now triggers the event.
-						StepApplied?.Invoke(this, new() { Steps = accumulator.ToArray() });
 					}
 
 					// The puzzle has not been finished, we should turn to the first step finder
@@ -187,22 +173,13 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 						{
 							if (verifyConclusionValidity(solution, foundStep))
 							{
-								switch (
+								if (
 									recordStep(
 										recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
 										resultBase, cancellationToken, out var result)
 								)
 								{
-									case true:
-									{
-										return result;
-									}
-									case false:
-									{
-										// Now triggers the event.
-										StepApplied?.Invoke(this, new() { Step = foundStep });
-										break;
-									}
+									return result;
 								}
 							}
 							else
@@ -232,7 +209,7 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 		};
 
 
-		static bool? recordStep(
+		static bool recordStep(
 			ICollection<IStep> steps,
 			IStep step,
 			scoped ref Grid playground,
@@ -279,12 +256,12 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 			else
 			{
 				// No steps are available.
-				result = null;
-				return null;
+				goto ReturnFalse;
 			}
 
 			cancellationToken.ThrowIfCancellationRequested();
 
+		ReturnFalse:
 			result = null;
 			return false;
 		}
