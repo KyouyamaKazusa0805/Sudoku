@@ -2,7 +2,7 @@
 
 [StepSearcher]
 [StepSearcherOptions(IsDirect = true, IsOptionsFixed = true)]
-internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
+internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 {
 	/// <inheritdoc/>
 	[StepSearcherProperty]
@@ -172,7 +172,7 @@ internal sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			var flag = true;
 			foreach (var cell in HousesMap[house])
 			{
-				if (grid.Exists(cell, digit) is true) // Don't replace here by 'CandidatesMap[digit].Contains(cell)'.
+				if (grid.Exists(cell, digit) is true)
 				{
 					resultCell = cell;
 					if (++count > 1)
