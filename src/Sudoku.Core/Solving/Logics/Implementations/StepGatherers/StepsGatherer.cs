@@ -60,6 +60,8 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 						}
 
 						bag.AddRange(tempBag);
+
+						// TODO: Check whether the bag is too large (e.g. more than 1000 steps stored). We should skip the case in order to avoid some special and troublesome cases.
 					}
 
 					break;
