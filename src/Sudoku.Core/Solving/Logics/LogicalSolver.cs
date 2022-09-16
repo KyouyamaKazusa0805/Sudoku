@@ -111,8 +111,6 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 		var playground = puzzle;
 
 		var totalCandidatesCount = playground.CandidatesCount;
-		var currentLastCandidatesCount = totalCandidatesCount;
-
 		var recordedSteps = new List<IStep>(100);
 		var stepGrids = new List<Grid>(100);
 		var stepSearchers = TargetSearcherCollection;
@@ -223,8 +221,7 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 		};
 
 	ReportStatusAndSkipToTryAgain:
-		currentLastCandidatesCount = playground.CandidatesCount;
-		progress?.Report((totalCandidatesCount - currentLastCandidatesCount) * 100 / totalCandidatesCount);
+		progress?.Report((totalCandidatesCount - playground.CandidatesCount) * 100 / totalCandidatesCount);
 		goto TryAgain;
 
 
