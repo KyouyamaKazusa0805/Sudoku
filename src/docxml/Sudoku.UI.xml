@@ -2878,6 +2878,11 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ClearTabViewItemData">
+            <summary>
+            Clears the data in tab view items.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.RegisterStepAppliedEventHandler">
             <summary>
             To register the event handler that applied a step.

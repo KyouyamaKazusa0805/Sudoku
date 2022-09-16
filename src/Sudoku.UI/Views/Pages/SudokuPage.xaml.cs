@@ -113,11 +113,22 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
+	/// Clears the data in tab view items.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void ClearTabViewItemData()
+	{
+		_cAnalysisDataGrid.ItemsSource = null;
+		_cAnalysisDataPath.ItemsSource = null;
+		_techniqueMetadata.Clear();
+		_cTechniqueGroupView.ClearView();
+	}
+
+	/// <summary>
 	/// To register the event handler that applied a step.
 	/// </summary>
 	private void RegisterStepAppliedEventHandler()
-		=> _techniqueMetadata.CollectionChanged +=
-			(_, _) => _cTechniqueMetadata.Visibility = _techniqueMetadata.Count != 0 ? Visibility.Visible : Visibility.Collapsed;
+		=> _techniqueMetadata.CollectionChanged += (_, _) => _cTechniqueMetadata.Visibility = _techniqueMetadata.Count != 0 ? Visibility.Visible : Visibility.Collapsed;
 
 	/// <summary>
 	/// To register the printing operation.
@@ -419,10 +430,7 @@ public sealed partial class SudokuPage : Page
 
 				// Loads the grid.
 				_cPane.Grid = grid;
-				_cAnalysisDataGrid.ItemsSource = null;
-				_cAnalysisDataPath.ItemsSource = null;
-				_techniqueMetadata.Clear();
-				_cTechniqueGroupView.ClearView();
+				ClearTabViewItemData();
 				_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_FileOpenSuccessfully"]!);
 
 				break;
@@ -491,10 +499,7 @@ public sealed partial class SudokuPage : Page
 
 		// Loads the grid.
 		_cPane.Grid = grid;
-		_cAnalysisDataGrid.ItemsSource = null;
-		_cAnalysisDataPath.ItemsSource = null;
-		_techniqueMetadata.Clear();
-		_cTechniqueGroupView.ClearView();
+		ClearTabViewItemData();
 
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, R["SudokuPage_InfoBar_PasteSuccessfully"]!);
 	}
@@ -508,10 +513,7 @@ public sealed partial class SudokuPage : Page
 	{
 		// Disable the control to prevent re-invocation.
 		button.IsEnabled = false;
-		_cAnalysisDataGrid.ItemsSource = null;
-		_cAnalysisDataPath.ItemsSource = null;
-		_techniqueMetadata.Clear();
-		_cTechniqueGroupView.ClearView();
+		ClearTabViewItemData();
 
 		// Generate the puzzle.
 		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
@@ -587,10 +589,7 @@ public sealed partial class SudokuPage : Page
 			{
 				// Disable the control to prevent re-invocation.
 				button.IsEnabled = false;
-				_cAnalysisDataGrid.ItemsSource = null;
-				_cAnalysisDataPath.ItemsSource = null;
-				_techniqueMetadata.Clear();
-				_cTechniqueGroupView.ClearView();
+				ClearTabViewItemData();
 
 				// Solve the puzzle using the logical solver.
 				var analysisResult = await Task.Run(analyze);
