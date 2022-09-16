@@ -451,13 +451,14 @@
 										x:Name="_cSearchAllSteps" Content="{StaticResource SudokuPage_SearchAllSteps}"
 										Click="GatherStepsButton_ClickAsync" />
 									<TextBlock
-										x:Name="_cFilteringProcessIsOnTextBlock" Visibility="Collapsed"
-										VerticalAlignment="Center"
+										x:Name="_cFilteringProcessIsOnTextBlock" VerticalAlignment="Center"
+										Visibility="{x:Bind data:SimpleConverters.IsEnabledToVisibilityReverse(_cSearchAllSteps.IsEnabled),Mode=OneWay}"
 										Text="{StaticResource SudokuPage_FilteringIsInProcess}" />
 								</StackPanel>
 								<StackPanel Orientation="Horizontal" Spacing="4">
 									<TextBox
 										x:Name="_cStepGatheringTextBox"
+										IsEnabled="{x:Bind _cSearchAllSteps.IsEnabled,Mode=OneWay}"
 										Width="300" PlaceholderText="{StaticResource Emoji_Search}" />
 									<Button
 										Content="{StaticResource SudokuPage_FilterGatheredSteps}"

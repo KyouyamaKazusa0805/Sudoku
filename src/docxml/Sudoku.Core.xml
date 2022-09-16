@@ -3738,7 +3738,7 @@
         <member name="T:Sudoku.Filtering.TechniqueFiltering">
             <summary>
             Defines a way that is used for filtering the gathered step after
-            <see cref="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)"/> invoked.
+            <see cref="!:IStepGatherableSearcher.Search(in Grid, CancellationToken)"/> invoked.
             </summary>
             <seealso cref="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher"/>
         </member>
@@ -11784,7 +11784,7 @@
             The default value is 1000.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.StepGatherers.StepsGatherer.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.Logics.Implementations.StepGatherers.StepsGatherer.Search(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logics.Implementations.Steps.AlmostLockedCandidatesStep">
@@ -19370,22 +19370,12 @@
             Indicates the maximum steps can be gathered.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.SearchAndGroupByName(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            Search for all possible steps in a grid, and group them up by its technique name.
-            </summary>
-            <param name="puzzle"><inheritdoc cref="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)" path="/param[@name='puzzle']"/></param>
-            <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
-            </param>
-            <returns>The result grouped by technique names.</returns>
-            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
-        </member>
-        <member name="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.Search(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <summary>
             Search for all possible steps in a grid.
             </summary>
             <param name="puzzle">The puzzle grid.</param>
+            <param name="progress">The progress instance that is used for reporting the status.</param>
             <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
             <returns>The result.</returns>
             <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>

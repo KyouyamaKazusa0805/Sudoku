@@ -19,7 +19,10 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 
 
 	/// <inheritdoc/>
-	public IEnumerable<IStep> Search(scoped in Grid puzzle, CancellationToken cancellationToken = default)
+	public IEnumerable<IStep> Search(
+		scoped in Grid puzzle,
+		IProgress<double>? progress = null,
+		CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var sukaku))
 		{
@@ -28,9 +31,12 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 
 		const SearcherDisplayingLevel defaultLevelValue = (SearcherDisplayingLevel)255;
 
+		var totalSearchersCount = (double)StepSearcherPool.Collection.Length;
+
 		InitializeMaps(puzzle);
 		var i = defaultLevelValue;
 		var bag = new List<IStep>();
+		var currentSearcherIndex = 0;
 		foreach (var searcher in StepSearcherPool.Collection)
 		{
 			switch (searcher)
@@ -76,6 +82,9 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 					break;
 				}
 			}
+
+			// Report the progress if worth.
+			progress?.Report(++currentSearcherIndex / totalSearchersCount);
 		}
 
 		// Return the result.

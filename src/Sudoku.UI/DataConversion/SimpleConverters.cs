@@ -137,6 +137,12 @@ internal static class SimpleConverters
 	/// <returns>The target <see cref="DateOnly"/> instance.</returns>
 	public static DateOnly GetDateWithFormat(string dateRawString, string format) => DateOnly.ParseExact(dateRawString, format);
 
+	public static Visibility IsEnabledToVisibility(bool isEnabled)
+		=> isEnabled ? Visibility.Visible : Visibility.Collapsed;
+
+	public static Visibility IsEnabledToVisibilityReverse(bool isEnabled)
+		=> isEnabled ? Visibility.Collapsed : Visibility.Visible;
+
 	public static Visibility StringToVisibility(string? s)
 		=> string.IsNullOrWhiteSpace(s) ? Visibility.Collapsed : Visibility.Visible;
 

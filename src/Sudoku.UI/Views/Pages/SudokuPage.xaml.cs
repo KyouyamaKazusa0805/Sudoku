@@ -975,14 +975,10 @@ public sealed partial class SudokuPage : Page
 
 		_cSearchAllSteps.IsEnabled = false;
 		_cStepGatheringTextBox.Text = string.Empty;
-		_cFilteringProcessIsOnTextBlock.Visibility = Visibility.Visible;
-		_cStepGatheringTextBox.IsEnabled = false;
 
 		var collection = await Task.Run(() => { lock (SyncRoot) { return gatherer.Search(_cPane.Grid); } });
 
 		_cSearchAllSteps.IsEnabled = true;
-		_cStepGatheringTextBox.IsEnabled = true;
-		_cFilteringProcessIsOnTextBlock.Visibility = Visibility.Collapsed;
 
 		return (collection, GetTechniqueGroups(collection));
 	}
