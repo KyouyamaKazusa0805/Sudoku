@@ -53,13 +53,6 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 			}
 			catch (Exception ex)
 			{
-#if DEBUG
-				if (Debugger.IsAttached)
-				{
-					Debugger.Break();
-				}
-#endif
-
 				result = result with { IsSolved = false };
 				return ex switch
 				{

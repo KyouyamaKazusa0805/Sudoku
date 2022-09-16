@@ -11778,6 +11778,12 @@
             The default value is <see langword="true"/>.
             </remarks>
         </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.StepGatherers.StepsGatherer.MaxStepsGathered">
+            <inheritdoc/>
+            <remarks>
+            The default value is 1000.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Solving.Logics.Implementations.StepGatherers.StepsGatherer.Search(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
@@ -19357,6 +19363,11 @@
         <member name="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher">
             <summary>
             Defines a special step searcher that can gather all possible steps of various techniques, in a step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.MaxStepsGathered">
+            <summary>
+            Indicates the maximum steps can be gathered.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.SearchAndGroupByName(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">

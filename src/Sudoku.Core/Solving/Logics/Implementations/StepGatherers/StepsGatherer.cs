@@ -11,6 +11,12 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 	/// </remarks>
 	public bool OnlyShowSameLevelTechniquesInFindAllSteps { get; set; } = true;
 
+	/// <inheritdoc/>
+	/// <remarks>
+	/// The default value is 1000.
+	/// </remarks>
+	public int MaxStepsGathered { get; set; } = 1000;
+
 
 	/// <inheritdoc/>
 	public IEnumerable<IStep> Search(scoped in Grid puzzle, CancellationToken cancellationToken = default)
@@ -20,8 +26,10 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 			return Array.Empty<IStep>();
 		}
 
+		const SearcherDisplayingLevel defaultLevelValue = (SearcherDisplayingLevel)255;
+
 		InitializeMaps(puzzle);
-		var i = (SearcherDisplayingLevel)255;
+		var i = defaultLevelValue;
 		var bag = new List<IStep>();
 		foreach (var searcher in StepSearcherPool.Collection)
 		{
@@ -34,15 +42,10 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 				}
 				case { Options.DisplayingLevel: var currentLevel }:
 				{
-					// Check the level of the searcher.
-					// If a searcher contains the upper level value than the current searcher holding,
-					// the searcher will be skipped to search steps.
-					if (OnlyShowSameLevelTechniquesInFindAllSteps)
+					// If a searcher contains the upper level, it will be skipped.
+					if (OnlyShowSameLevelTechniquesInFindAllSteps && i != defaultLevelValue && i != currentLevel)
 					{
-						if (i != (SearcherDisplayingLevel)255 && i != currentLevel)
-						{
-							continue;
-						}
+						continue;
 					}
 
 					cancellationToken.ThrowIfCancellationRequested();
@@ -51,17 +54,23 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 					var tempBag = new List<IStep>();
 					searcher.GetAll(tempBag, puzzle, false);
 
-					// Gather the technique steps, and record the current level of the searcher.
-					if (tempBag.Count != 0)
+					switch (tempBag.Count)
 					{
-						if (OnlyShowSameLevelTechniquesInFindAllSteps)
+						case 0:
 						{
-							i = currentLevel;
+							continue;
 						}
+						case var count:
+						{
+							if (OnlyShowSameLevelTechniquesInFindAllSteps)
+							{
+								i = currentLevel;
+							}
 
-						bag.AddRange(tempBag);
+							bag.AddRange(count > MaxStepsGathered ? tempBag.Slice(0, MaxStepsGathered) : tempBag);
 
-						// TODO: Check whether the bag is too large (e.g. more than 1000 steps stored). We should skip the case in order to avoid some special and troublesome cases.
+							break;
+						}
 					}
 
 					break;

@@ -6,6 +6,12 @@
 public interface IStepGatherableSearcher
 {
 	/// <summary>
+	/// Indicates the maximum steps can be gathered.
+	/// </summary>
+	public abstract int MaxStepsGathered { get; set; }
+
+
+	/// <summary>
 	/// Search for all possible steps in a grid, and group them up by its technique name.
 	/// </summary>
 	/// <param name="puzzle"><inheritdoc cref="Search(in Grid, CancellationToken)" path="/param[@name='puzzle']"/></param>

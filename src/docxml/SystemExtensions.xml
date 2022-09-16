@@ -767,6 +767,16 @@
             <typeparam name="T">The type of the element.</typeparam>
             <param name="this">The removed list.</param>
         </member>
+        <member name="M:System.Collections.Generic.ListExtensions.Slice``1(System.Collections.Generic.List{``0},System.Int32,System.Int32)">
+            <summary>
+            Slices the list.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="startIndex">The desired start index.</param>
+            <param name="count">The desired number of elements.</param>
+            <returns>The sliced list.</returns>
+        </member>
         <member name="T:System.Collections.BitArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.

@@ -18,4 +18,23 @@ public static class ListExtensions
 		@this.RemoveAt(@this.Count - 1);
 		return result;
 	}
+
+	/// <summary>
+	/// Slices the list.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The list.</param>
+	/// <param name="startIndex">The desired start index.</param>
+	/// <param name="count">The desired number of elements.</param>
+	/// <returns>The sliced list.</returns>
+	public static List<T> Slice<T>(this List<T> @this, int startIndex, int count)
+	{
+		var result = new List<T>(count);
+		for (int i = startIndex, j = 0; j < count; i++, j++)
+		{
+			result.Add(@this[i]);
+		}
+
+		return result;
+	}
 }
