@@ -454,6 +454,10 @@
 										x:Name="_cFilteringProcessIsOnTextBlock" VerticalAlignment="Center"
 										Visibility="{x:Bind data:SimpleConverters.IsEnabledToVisibilityReverse(_cSearchAllSteps.IsEnabled),Mode=OneWay}"
 										Text="{StaticResource SudokuPage_FilteringIsInProcess}" />
+									<ProgressBar
+										x:Name="_cSearchAllStepsProgress" Minimum="0" Maximum="100"
+										Value="0" VerticalAlignment="Center" Width="300"
+										Visibility="{x:Bind data:SimpleConverters.IsEnabledToVisibilityReverse(_cSearchAllSteps.IsEnabled),Mode=OneWay}" />
 								</StackPanel>
 								<StackPanel Orientation="Horizontal" Spacing="4">
 									<TextBox

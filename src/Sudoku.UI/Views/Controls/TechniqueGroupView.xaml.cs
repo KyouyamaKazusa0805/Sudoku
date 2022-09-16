@@ -21,7 +21,7 @@ public sealed partial class TechniqueGroupView : UserControl
 	/// <summary>
 	/// Clears the view.
 	/// </summary>
-	public void ClearView() => _cTechniqueGroups.View?.Clear();
+	public void ClearView() => _cTechniqueGroups.Source = null;
 
 
 	/// <summary>

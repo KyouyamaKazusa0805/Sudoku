@@ -971,12 +971,14 @@ public sealed partial class SudokuPage : Page
 	/// <returns>The list of technique groups.</returns>
 	private async Task<(IEnumerable<IStep> Steps, ObservableCollection<TechniqueGroup> GroupedSteps)> GetTechniqueGroupsAsync()
 	{
+		var progress = new Progress<double>(v => DispatcherQueue.TryEnqueue(() => _cSearchAllStepsProgress.Value = v));
+
 		var gatherer = Preference.StepsGatherer;
 
 		_cSearchAllSteps.IsEnabled = false;
 		_cStepGatheringTextBox.Text = string.Empty;
 
-		var collection = await Task.Run(() => { lock (SyncRoot) { return gatherer.Search(_cPane.Grid); } });
+		var collection = await Task.Run(() => { lock (SyncRoot) { return gatherer.Search(_cPane.Grid, progress); } });
 
 		_cSearchAllSteps.IsEnabled = true;
 

@@ -31,7 +31,7 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 
 		const SearcherDisplayingLevel defaultLevelValue = (SearcherDisplayingLevel)255;
 
-		var totalSearchersCount = (double)StepSearcherPool.Collection.Length;
+		var totalSearchersCount = StepSearcherPool.Collection.Length;
 
 		InitializeMaps(puzzle);
 		var i = defaultLevelValue;
@@ -44,14 +44,14 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 				case { Options.EnabledArea: var enabledArea } when !enabledArea.Flags(SearcherEnabledArea.Gathering):
 				case { IsNotSupportedForSukaku: true } when sukaku.Value:
 				{
-					continue;
+					goto ReportProgress;
 				}
 				case { Options.DisplayingLevel: var currentLevel }:
 				{
 					// If a searcher contains the upper level, it will be skipped.
 					if (OnlyShowSameLevelTechniquesInFindAllSteps && i != defaultLevelValue && i != currentLevel)
 					{
-						continue;
+						goto ReportProgress;
 					}
 
 					cancellationToken.ThrowIfCancellationRequested();
@@ -64,7 +64,7 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 					{
 						case 0:
 						{
-							continue;
+							goto ReportProgress;
 						}
 						case var count:
 						{
@@ -84,7 +84,8 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 			}
 
 			// Report the progress if worth.
-			progress?.Report(++currentSearcherIndex / totalSearchersCount);
+		ReportProgress:
+			progress?.Report(++currentSearcherIndex * 100D / totalSearchersCount);
 		}
 
 		// Return the result.
