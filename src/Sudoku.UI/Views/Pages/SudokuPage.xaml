@@ -289,7 +289,7 @@
 			<!--Analysis data-->
 			<!--Title="{StaticResource SudokuPage_AnalysisData}"-->
 			<TabView
-				Background="GhostWhite" TabWidthMode="Compact" IsAddTabButtonVisible="False"
+				Background="GhostWhite" TabWidthMode="SizeToContent" IsAddTabButtonVisible="False"
 				Grid.Row="1" Grid.Column="1" Margin="25" Width="750" Height="600"
 				HorizontalAlignment="Right" VerticalAlignment="Stretch">
 				<TabView.Resources>
