@@ -289,7 +289,7 @@
 			<!--Analysis data-->
 			<!--Title="{StaticResource SudokuPage_AnalysisData}"-->
 			<TabView
-				Background="GhostWhite" TabWidthMode="Equal" IsAddTabButtonVisible="False"
+				Background="GhostWhite" TabWidthMode="Compact" IsAddTabButtonVisible="False"
 				Grid.Row="1" Grid.Column="1" Margin="25" Width="750" Height="600"
 				HorizontalAlignment="Right" VerticalAlignment="Stretch">
 				<TabView.Resources>
@@ -297,7 +297,6 @@
 						<Setter Property="IsClosable" Value="False" />
 					</Style>
 				</TabView.Resources>
-
 				<TabView.TabItems>
 					<!--Info-->
 					<TabViewItem Header="{StaticResource SudokuPage_InfoBarBoard}">
