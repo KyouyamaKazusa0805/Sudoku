@@ -589,13 +589,18 @@ public sealed partial class SudokuPage : Page
 			{
 				// Disable the control to prevent re-invocation.
 				button.IsEnabled = false;
+				_cSummaryProcessIsOnTextBlock.Visibility = Visibility.Visible;
+
 				ClearTabViewItemData();
 
 				// Solve the puzzle using the logical solver.
-				var analysisResult = await Task.Run(analyze);
+				var solver = Preference.DefaultSolver;
+				var progress = new Progress<double>(v => DispatcherQueue.TryEnqueue(() => _cSummaryProgress.Value = v));
+				var analysisResult = await Task.Run(() => { lock (SyncRoot) { return solver.Solve(grid, progress); } });
 
 				// Enable the control.
 				button.IsEnabled = true;
+				_cSummaryProcessIsOnTextBlock.Visibility = Visibility.Collapsed;
 
 				// Displays the analysis result info.
 				switch (analysisResult)
@@ -666,15 +671,6 @@ public sealed partial class SudokuPage : Page
 				}
 
 				break;
-			}
-
-
-			LogicalSolverResult analyze()
-			{
-				lock (SyncRoot)
-				{
-					return Preference.DefaultSolver.Solve(grid);
-				}
 			}
 		}
 	}

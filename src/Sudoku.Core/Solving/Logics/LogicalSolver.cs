@@ -38,14 +38,17 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 
 
 	/// <inheritdoc/>
-	public LogicalSolverResult Solve(scoped in Grid puzzle, CancellationToken cancellationToken = default)
+	public LogicalSolverResult Solve(
+		scoped in Grid puzzle,
+		IProgress<double>? progress = null,
+		CancellationToken cancellationToken = default)
 	{
 		var result = new LogicalSolverResult(puzzle);
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } s)
 		{
 			try
 			{
-				return InternalSolve(puzzle, solution, s, result, cancellationToken);
+				return InternalSolve(puzzle, solution, s, result, progress, cancellationToken);
 			}
 			catch (OperationCanceledException ex) when (ex.CancellationToken != cancellationToken)
 			{
@@ -76,11 +79,24 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 	/// <summary>
 	/// The inner solving operation method.
 	/// </summary>
-	/// <param name="puzzle">The original puzzle to be solved.</param>
+	/// <param name="puzzle">
+	/// <inheritdoc
+	///     cref="Solve(in Grid, IProgress{double}?, CancellationToken)"
+	///     path="/param[@name='puzzle']"/>
+	/// </param>
 	/// <param name="solution">The solution of the puzzle. Some step searchers will use this value.</param>
 	/// <param name="isSukaku">A <see cref="bool"/> value indicating whether the puzzle is a sukaku.</param>
 	/// <param name="resultBase">The base solver result already included the base information.</param>
-	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+	/// <param name="progress">
+	/// <inheritdoc
+	///     cref="Solve(in Grid, IProgress{double}?, CancellationToken)"
+	///     path="/param[@name='progress']"/>
+	/// </param>
+	/// <param name="cancellationToken">
+	/// <inheritdoc
+	///     cref="Solve(in Grid, IProgress{double}?, CancellationToken)"
+	///     path="/param[@name='cancellationToken']"/>
+	/// </param>
 	/// <returns>The solver result.</returns>
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>
 	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
@@ -89,9 +105,14 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 		scoped in Grid solution,
 		bool isSukaku,
 		LogicalSolverResult resultBase,
+		IProgress<double>? progress = null,
 		CancellationToken cancellationToken = default)
 	{
 		var playground = puzzle;
+
+		var totalCandidatesCount = playground.CandidatesCount;
+		var currentLastCandidatesCount = totalCandidatesCount;
+
 		var recordedSteps = new List<IStep>(100);
 		var stepGrids = new List<Grid>(100);
 		var stepSearchers = TargetSearcherCollection;
@@ -151,7 +172,7 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 
 					// The puzzle has not been finished, we should turn to the first step finder
 					// to continue solving puzzle.
-					goto TryAgain;
+					goto ReportStatusAndSkipToTryAgain;
 				}
 				case (_, _, _) when searcher.GetAll(null!, playground, true) is var foundStep:
 				{
@@ -182,7 +203,7 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 
 							// The puzzle has not been finished, we should turn to the first step finder
 							// to continue solving puzzle.
-							goto TryAgain;
+							goto ReportStatusAndSkipToTryAgain;
 						}
 					}
 				}
@@ -200,6 +221,11 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 			Steps = ImmutableArray.CreateRange(recordedSteps),
 			StepGrids = ImmutableArray.CreateRange(stepGrids)
 		};
+
+	ReportStatusAndSkipToTryAgain:
+		currentLastCandidatesCount = playground.CandidatesCount;
+		progress?.Report((totalCandidatesCount - currentLastCandidatesCount) * 100 / totalCandidatesCount);
+		goto TryAgain;
 
 
 		static bool recordStep(

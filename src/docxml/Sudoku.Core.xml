@@ -17307,18 +17307,31 @@
             Indicates the target step searcher collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logics.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.Logics.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logics.LogicalSolver.InternalSolve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Logics.LogicalSolverResult,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.Logics.LogicalSolver.InternalSolve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Solving.Logics.LogicalSolverResult,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <summary>
             The inner solving operation method.
             </summary>
-            <param name="puzzle">The original puzzle to be solved.</param>
+            <param name="puzzle">
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logics.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"
+                path="/param[@name='puzzle']"/>
+            </param>
             <param name="solution">The solution of the puzzle. Some step searchers will use this value.</param>
             <param name="isSukaku">A <see cref="T:System.Boolean"/> value indicating whether the puzzle is a sukaku.</param>
             <param name="resultBase">The base solver result already included the base information.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <param name="progress">
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logics.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"
+                path="/param[@name='progress']"/>
+            </param>
+            <param name="cancellationToken">
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logics.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"
+                path="/param[@name='cancellationToken']"/>
+            </param>
             <returns>The solver result.</returns>
             <exception cref="T:Sudoku.Runtime.AnalysisServices.WrongStepException">Throws when found wrong steps to apply.</exception>
             <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
@@ -18180,22 +18193,23 @@
             <typeparam name="TSolver">The solver's type.</typeparam>
             <typeparam name="TSolverResult">The type of the target result.</typeparam>
         </member>
-        <member name="M:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <summary>
             To solve the specified puzzle.
             </summary>
             <param name="puzzle">The puzzle to be solved.</param>
+            <param name="progress">The progress instance that is used for reporting the status.</param>
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>The solver result that provides the information after solving.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logics.Prototypes.IComplexSolverResult`2">
             <summary>
             Defines an instance that describes the result after executed the method
-            <see cref="M:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)"/>.
+            <see cref="!:IComplexSolver&lt;TSolver, TSolverResult&gt;.Solve(in Grid, CancellationToken)"/>.
             </summary>
             <typeparam name="TSolver">The solver's type.</typeparam>
             <typeparam name="TSolverResult">The type of the target result.</typeparam>
-            <seealso cref="M:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)"/>
+            <seealso cref="!:IComplexSolver&lt;TSolver, TSolverResult&gt;.Solve(in Grid, CancellationToken)"/>
         </member>
         <member name="P:Sudoku.Solving.Logics.Prototypes.IComplexSolverResult`2.IsSolved">
             <summary>
