@@ -2,7 +2,7 @@
 
 [StepSearcher]
 [SukakuNotSupported]
-internal sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
+internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
 	/// <inheritdoc/>
 	[StepSearcherProperty]
