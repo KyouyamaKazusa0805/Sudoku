@@ -2,7 +2,7 @@
 
 /// <summary>
 /// Defines a way that is used for filtering the gathered step after
-/// <see cref="IStepGatherableSearcher.Search(in Grid, CancellationToken)"/> invoked.
+/// <see cref="IStepGatherableSearcher.Search(in Grid, IProgress{double}, CancellationToken)"/> invoked.
 /// </summary>
 /// <seealso cref="IStepGatherableSearcher"/>
 public static partial class TechniqueFiltering

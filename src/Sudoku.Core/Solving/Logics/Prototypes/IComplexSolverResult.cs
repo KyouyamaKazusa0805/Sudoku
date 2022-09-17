@@ -2,11 +2,11 @@
 
 /// <summary>
 /// Defines an instance that describes the result after executed the method
-/// <see cref="IComplexSolver{TSolver, TSolverResult}.Solve(in Grid, CancellationToken)"/>.
+/// <see cref="IComplexSolver{TSolver, TSolverResult}.Solve(in Grid, IProgress{double}, CancellationToken)"/>.
 /// </summary>
 /// <typeparam name="TSolver">The solver's type.</typeparam>
 /// <typeparam name="TSolverResult">The type of the target result.</typeparam>
-/// <seealso cref="IComplexSolver{TSolver, TSolverResult}.Solve(in Grid, CancellationToken)"/>
+/// <seealso cref="IComplexSolver{TSolver, TSolverResult}.Solve(in Grid, IProgress{double}, CancellationToken)"/>
 public interface IComplexSolverResult<in TSolver, out TSolverResult>
 	where TSolver : IComplexSolver<TSolver, TSolverResult>
 	where TSolverResult : IComplexSolverResult<TSolver, TSolverResult>

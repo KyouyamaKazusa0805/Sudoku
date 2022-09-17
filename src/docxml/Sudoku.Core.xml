@@ -3738,7 +3738,7 @@
         <member name="T:Sudoku.Filtering.TechniqueFiltering">
             <summary>
             Defines a way that is used for filtering the gathered step after
-            <see cref="!:IStepGatherableSearcher.Search(in Grid, CancellationToken)"/> invoked.
+            <see cref="M:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher.Search(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/> invoked.
             </summary>
             <seealso cref="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher"/>
         </member>
@@ -18210,11 +18210,11 @@
         <member name="T:Sudoku.Solving.Logics.Prototypes.IComplexSolverResult`2">
             <summary>
             Defines an instance that describes the result after executed the method
-            <see cref="!:IComplexSolver&lt;TSolver, TSolverResult&gt;.Solve(in Grid, CancellationToken)"/>.
+            <see cref="M:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>.
             </summary>
             <typeparam name="TSolver">The solver's type.</typeparam>
             <typeparam name="TSolverResult">The type of the target result.</typeparam>
-            <seealso cref="!:IComplexSolver&lt;TSolver, TSolverResult&gt;.Solve(in Grid, CancellationToken)"/>
+            <seealso cref="M:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>
         </member>
         <member name="P:Sudoku.Solving.Logics.Prototypes.IComplexSolverResult`2.IsSolved">
             <summary>
