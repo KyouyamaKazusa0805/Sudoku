@@ -1303,7 +1303,10 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		(_currentTechniqueGroups, _cTechniqueGroupView._cTechniqueGroups.Source) = await GetTechniqueGroupsAsync();
+		if (await GetTechniqueGroupsAsync() is { } gatheredSource)
+		{
+			(_currentTechniqueGroups, _cTechniqueGroupView._cTechniqueGroups.Source) = gatheredSource;
+		}
 	}
 
 	/// <summary>
@@ -1334,9 +1337,17 @@ public sealed partial class SudokuPage : Page
 			var filtered = TechniqueFiltering.Filter(_currentTechniqueGroups, _cStepGatheringTextBox.Text);
 			_cTechniqueGroupView._cTechniqueGroups.Source = GetTechniqueGroups(filtered);
 		}
-		catch (ExpressiveException)
+		catch (Exception ex) when (ex is ExpressiveException or InvalidOperationException or RegexParseException)
 		{
-			// No nothing.
+			_cFilteringExpressionInvalidHint.Visibility = Visibility.Visible;
 		}
 	}
+
+	/// <summary>
+	/// Triggers when filtering expression input box has been changed its inner text.
+	/// </summary>
+	/// <param name="sender">The object that triggers this event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void StepGatheringTextBox_TextChanged(object sender, TextChangedEventArgs e)
+		=> _cFilteringExpressionInvalidHint.Visibility = Visibility.Collapsed;
 }

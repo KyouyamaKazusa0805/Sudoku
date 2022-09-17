@@ -75,6 +75,7 @@
 	<x:String x:Key="SudokuPage_TechniquesMetadata">技巧序列</x:String>
 	<x:String x:Key="SudokuPage_SearchAllSteps">搜索所有可能步骤！</x:String>
 	<x:String x:Key="SudokuPage_FilterGatheredSteps">按筛选表达式进行筛选</x:String>
+	<x:String x:Key="SudokuPage_FilteringFailedDueToInvalidExpression">筛选表达式有误。请检查表达式正确性之后重试。</x:String>
 	<x:String x:Key="SudokuPage_FilteringIsInProcess">请稍候……</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">编辑</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">解题与分析</x:String>

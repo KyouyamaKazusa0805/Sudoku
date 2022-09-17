@@ -76,6 +76,7 @@
 	<x:String x:Key="SudokuPage_TechniquesMetadata">Technique series</x:String>
 	<x:String x:Key="SudokuPage_SearchAllSteps">Search all steps!</x:String>
 	<x:String x:Key="SudokuPage_FilterGatheredSteps">Filter on filtering expression</x:String>
+	<x:String x:Key="SudokuPage_FilteringFailedDueToInvalidExpression">Invalid expression. Please check its validity and try again.</x:String>
 	<x:String x:Key="SudokuPage_FilteringIsInProcess">Please wait...</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Editing">Editing</x:String>
 	<x:String x:Key="SudokuPage_ToolList_Analysis">Solving &amp; Analysis</x:String>

@@ -522,10 +522,15 @@
 										<TextBox
 											x:Name="_cStepGatheringTextBox"
 											IsEnabled="{x:Bind _cSearchAllSteps.IsEnabled,Mode=OneWay}"
-											Width="300" PlaceholderText="{StaticResource Emoji_Search}" />
+											Width="300" PlaceholderText="{StaticResource Emoji_Search}"
+											TextChanged="StepGatheringTextBox_TextChanged" />
 										<Button
 											Content="{StaticResource SudokuPage_FilterGatheredSteps}"
 											Click="FilterGatheredStepsButton_Click" />
+										<TextBlock
+											x:Name="_cFilteringExpressionInvalidHint"
+											Foreground="Red" Visibility="Collapsed" VerticalAlignment="Center"
+											Text="{StaticResource SudokuPage_FilteringFailedDueToInvalidExpression}" />
 									</StackPanel>
 									<c:TechniqueGroupView
 										x:Name="_cTechniqueGroupView"

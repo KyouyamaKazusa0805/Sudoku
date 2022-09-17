@@ -98,8 +98,15 @@ file sealed class NameLikeExpression : BinaryExpressionBase
 	/// <inheritdoc/>
 	protected override object EvaluateImpl(object lhsResult, IExpression rightHandSide, IDictionary<string, object> variables)
 	{
-		var left = (string)lhsResult;
-		var right = (string)rightHandSide.Evaluate(variables);
-		return Regex.IsMatch(left, right, RegexOptions.IgnoreCase);
+		try
+		{
+			var left = (string)lhsResult;
+			var right = (string)rightHandSide.Evaluate(variables);
+			return Regex.IsMatch(left, right, RegexOptions.IgnoreCase);
+		}
+		catch (RegexParseException ex)
+		{
+			throw new InvalidOperationException("The pattern is invalid.", ex);
+		}
 	}
 }

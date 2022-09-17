@@ -3386,6 +3386,13 @@
             <param name="sender">The object that triggers this event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.StepGatheringTextBox_TextChanged(System.Object,Microsoft.UI.Xaml.Controls.TextChangedEventArgs)">
+            <summary>
+            Triggers when filtering expression input box has been changed its inner text.
+            </summary>
+            <param name="sender">The object that triggers this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitializeComponent">
             <summary>
             InitializeComponent()
