@@ -50,21 +50,21 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 					{
 						foreach (var c in HousesMap[triple[2]])
 						{
-							if ((CellMap.Empty + a + b).InOneHouse && (CellMap.Empty + a + c).InOneHouse)
+							if ((CellsMap[a] + b).InOneHouse && (CellsMap[a] + c).InOneHouse)
 							{
-								Patterns[i++] = new(CellMap.Empty + a + b + c, a);
+								Patterns[i++] = new(CellsMap[a] + b + c, a);
 								continue;
 							}
 
-							if ((CellMap.Empty + a + b).InOneHouse && (CellMap.Empty + b + c).InOneHouse)
+							if ((CellsMap[a] + b).InOneHouse && (CellsMap[b] + c).InOneHouse)
 							{
-								Patterns[i++] = new(CellMap.Empty + a + b + c, b);
+								Patterns[i++] = new(CellsMap[a] + b + c, b);
 								continue;
 							}
 
-							if ((CellMap.Empty + a + c).InOneHouse && (CellMap.Empty + b + c).InOneHouse)
+							if ((CellsMap[a] + c).InOneHouse && (CellsMap[b] + c).InOneHouse)
 							{
-								Patterns[i++] = new(CellMap.Empty + a + b + c, c);
+								Patterns[i++] = new(CellsMap[a] + b + c, c);
 							}
 						}
 					}
@@ -80,13 +80,13 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 					{
 						foreach (var d in HousesMap[houseQuad[3]])
 						{
-							if (!(CellMap.Empty + a + b).InOneHouse || !(CellMap.Empty + a + c).InOneHouse
-								|| !(CellMap.Empty + b + d).InOneHouse || !(CellMap.Empty + c + d).InOneHouse)
+							if (!(CellsMap[a] + b).InOneHouse || !(CellsMap[a] + c).InOneHouse
+								|| !(CellsMap[b] + d).InOneHouse || !(CellsMap[c] + d).InOneHouse)
 							{
 								continue;
 							}
 
-							Patterns[i++] = new(CellMap.Empty + a + b + c + d, null);
+							Patterns[i++] = new(CellsMap[a] + b + c + d, null);
 						}
 					}
 				}
@@ -149,11 +149,11 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 		scoped out CellMap house1CellsExcluded, scoped out CellMap house2CellsExcluded)
 	{
 		var pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
-		var excluded1 = HousesMap[(CellMap.Empty + c1 + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
-		var excluded2 = HousesMap[(CellMap.Empty + c2 + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
+		var excluded1 = HousesMap[(CellsMap[c1] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
+		var excluded2 = HousesMap[(CellsMap[c2] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
 
 		short finalMask = 0;
-		foreach (var digit in grid.GetDigitsUnion(CellMap.Empty + c1 + c2 + pivot))
+		foreach (var digit in grid.GetDigitsUnion(CellsMap[c1] + c2 + pivot))
 		{
 			if (isFireworkFor(digit, excluded1, grid) && isFireworkFor(digit, excluded2, grid))
 			{

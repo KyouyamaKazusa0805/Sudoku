@@ -91,12 +91,12 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 		{
 			var currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
 			var cell1TheOtherLine = cell1.ToHouseIndex(
-				(CellMap.Empty + cell1 + pivot).CoveredLine.ToHouseType() == HouseType.Row
+				(CellsMap[cell1] + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
 			var cell2TheOtherLine = cell2.ToHouseIndex(
-				(CellMap.Empty + cell2 + pivot).CoveredLine.ToHouseType() == HouseType.Row
+				(CellsMap[cell2] + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
@@ -377,12 +377,12 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 		{
 			var currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
 			var cell1TheOtherLine = cell1.ToHouseIndex(
-				(CellMap.Empty + cell1 + pivot).CoveredLine.ToHouseType() == HouseType.Row
+				(CellsMap[cell1] + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
 			var cell2TheOtherLine = cell2.ToHouseIndex(
-				(CellMap.Empty + cell2 + pivot).CoveredLine.ToHouseType() == HouseType.Row
+				(CellsMap[cell2] + pivot).CoveredLine.ToHouseType() == HouseType.Row
 					? HouseType.Column
 					: HouseType.Row
 			);
@@ -409,8 +409,8 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 
 				// Firework pair type 3 found.
 				var elimMap = (HousesMap[pivot.ToHouseIndex(HouseType.Block)] & fullTwoDigitsMap)
-					- HousesMap[(CellMap.Empty + pivot + cell1).CoveredLine]
-					- HousesMap[(CellMap.Empty + pivot + cell2).CoveredLine];
+					- HousesMap[(CellsMap[pivot] + cell1).CoveredLine]
+					- HousesMap[(CellsMap[pivot] + cell2).CoveredLine];
 				if (!elimMap)
 				{
 					// No elimination cells found.
@@ -572,8 +572,8 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			}
 
 			var unknowns = new List<UnknownViewNode>(4);
-			var house1 = (CellMap.Empty + cell1 + pivot).CoveredLine;
-			var house2 = (CellMap.Empty + cell2 + pivot).CoveredLine;
+			var house1 = (CellsMap[cell1] + pivot).CoveredLine;
+			var house2 = (CellsMap[cell2] + pivot).CoveredLine;
 			foreach (var cell in (HousesMap[house1] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
 			{
 				unknowns.Add(new(DisplayColorKind.Normal, cell, (Utf8Char)'y', currentDigitsMask));

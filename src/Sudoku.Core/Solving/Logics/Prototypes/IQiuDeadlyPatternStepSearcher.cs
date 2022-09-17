@@ -44,7 +44,7 @@ public interface IQiuDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 				int c1 = StartCells[j, 0], c2 = StartCells[j, 1];
 				for (var k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
 				{
-					var pairMap = CellMap.Empty + c1 + c2;
+					var pairMap = CellsMap[c1] + c2;
 					if (baseLineMap && pairMap)
 					{
 						continue;

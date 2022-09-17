@@ -91,7 +91,7 @@ public sealed partial class RxCyNotation :
 	/// <param name="cell">The cell.</param>
 	/// <returns>The <see cref="string"/> representation of a cell.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCellString(int cell) => ToCellsString(CellMap.Empty + cell);
+	public static string ToCellString(int cell) => ToCellsString(CellsMap[cell]);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

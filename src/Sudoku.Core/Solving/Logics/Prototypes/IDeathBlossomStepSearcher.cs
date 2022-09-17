@@ -29,7 +29,7 @@ public interface IDeathBlossomStepSearcher : IAlmostLockedSetsStepSearcher
 		var result = new GatheredData();
 		foreach (var cell in BivalueCells)
 		{
-			var als = new AlmostLockedSet(grid.GetCandidates(cell), CellMap.Empty + cell, PeersMap[cell] & EmptyCells);
+			var als = new AlmostLockedSet(grid.GetCandidates(cell), CellsMap[cell], PeersMap[cell] & EmptyCells);
 			foreach (var peerCell in PeersMap[cell])
 			{
 				append(als, peerCell, result);

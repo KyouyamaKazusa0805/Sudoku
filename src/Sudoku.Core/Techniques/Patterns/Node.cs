@@ -11,7 +11,7 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node, b
 	/// <param name="digit">The digit used.</param>
 	/// <param name="cell">The cell used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(byte digit, int cell) : this(digit, CellMap.Empty + cell)
+	public Node(byte digit, int cell) : this(digit, CellsMap[cell])
 	{
 	}
 

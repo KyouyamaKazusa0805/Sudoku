@@ -41,9 +41,9 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 					}
 					case [var i, var j, var k]:
 					{
-						list.Add(CellMap.Empty + i + j);
-						list.Add(CellMap.Empty + j + k);
-						list.Add(CellMap.Empty + i + k);
+						list.Add(CellsMap[i] + j);
+						list.Add(CellsMap[j] + k);
+						list.Add(CellsMap[i] + k);
 						list.Add(emptyCellsInInterMap);
 
 						break;

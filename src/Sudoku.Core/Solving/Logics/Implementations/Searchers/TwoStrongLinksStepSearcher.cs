@@ -52,7 +52,7 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 						for (var j = 0; j < 2; j++)
 						{
 							var cell2 = cellsList2[j];
-							if ((CellMap.Empty + cell1 + cell2).AllSetsAreInOneHouse(out sameHouse))
+							if ((CellsMap[cell1] + cell2).AllSetsAreInOneHouse(out sameHouse))
 							{
 								(c1Index, c2Index) = (i, j);
 								(headIndex, tailIndex) = (i == 0 ? 1 : 0, j == 0 ? 1 : 0);

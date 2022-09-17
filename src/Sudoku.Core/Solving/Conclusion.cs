@@ -153,7 +153,7 @@ public readonly struct Conclusion :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{CellMap.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
+	public override string ToString() => $"{CellsMap[Cell]}{ConclusionType.GetNotation()}{Digit + 1}";
 
 
 	/// <summary>

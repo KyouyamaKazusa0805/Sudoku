@@ -19,7 +19,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 		var result = new List<GuardianDataInfo>();
 		foreach (var cell in CandidatesMap[digit])
 		{
-			DepthFirstSearching_Guardian(cell, cell, 0, CellMap.Empty + cell, CellMap.Empty, digit, condition, result);
+			DepthFirstSearching_Guardian(cell, cell, 0, CellsMap[cell], CellMap.Empty, digit, condition, result);
 		}
 
 		return result.Distinct().ToArray();
@@ -44,7 +44,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 		foreach (var cell in CandidatesMap[d1] & CandidatesMap[d2])
 		{
 			DepthFirstSearching_UniqueLoop(
-				cell, cell, 0, CellMap.Empty + cell, digitsMask,
+				cell, cell, 0, CellsMap[cell], digitsMask,
 				CandidatesMap[d1] & CandidatesMap[d2], condition, result);
 		}
 
@@ -70,7 +70,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 		foreach (var cell in CandidatesMap[d1] & CandidatesMap[d2])
 		{
 			DepthFirstSearching_BivalueOddagon(
-				cell, cell, 0, CellMap.Empty + cell, digitsMask,
+				cell, cell, 0, CellsMap[cell], digitsMask,
 				CandidatesMap[d1] & CandidatesMap[d2], condition, result);
 		}
 

@@ -99,7 +99,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 			var a = offsets[0] + currentOffset;
 			var b = offsets[1] + currentOffset;
 			var c = offsets[2] + currentOffset;
-			return CellMap.Empty + a + b + c;
+			return CellsMap[a] + b + c;
 		}
 	}
 
@@ -218,10 +218,10 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 
 				// XZ rule found.
 				var conclusions = new List<Conclusion>();
-				var condition = (CellMap.Empty + c1 + extraCell).InOneHouse;
+				var condition = (CellsMap[c1] + extraCell).InOneHouse;
 				var anotherCell = condition ? c2 : c1;
 				var anotherDigit = condition ? d1 : d2;
-				foreach (var peer in (CellMap.Empty + extraCell + anotherCell).PeerIntersection)
+				foreach (var peer in (CellsMap[extraCell] + anotherCell).PeerIntersection)
 				{
 					if (CandidatesMap[anotherDigit].Contains(peer))
 					{

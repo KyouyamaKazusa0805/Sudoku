@@ -72,8 +72,8 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 					continue;
 				}
 
-				var house1 = (CellMap.Empty + t1 + t2).CoveredLine;
-				var house2 = (CellMap.Empty + t1 + t3).CoveredLine;
+				var house1 = (CellsMap[t1] + t2).CoveredLine;
+				var house2 = (CellsMap[t1] + t3).CoveredLine;
 				int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 				var (incre1, incre2) = i switch
 				{
@@ -135,8 +135,8 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 				return;
 			}
 
-			var house1 = (CellMap.Empty + t1 + t2).CoveredLine;
-			var house2 = (CellMap.Empty + t1 + t3).CoveredLine;
+			var house1 = (CellsMap[t1] + t2).CoveredLine;
+			var house2 = (CellsMap[t1] + t3).CoveredLine;
 			int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 			var (incre1, incre2) = i switch
 			{

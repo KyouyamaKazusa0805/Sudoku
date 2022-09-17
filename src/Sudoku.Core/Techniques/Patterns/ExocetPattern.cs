@@ -80,7 +80,7 @@ public readonly record struct ExocetPattern(
 	public CellMap BaseCellsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CellMap.Empty + Base1 + Base2;
+		get => CellsMap[Base1] + Base2;
 	}
 
 	/// <summary>
@@ -89,7 +89,7 @@ public readonly record struct ExocetPattern(
 	public CellMap TargetCellsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CellMap.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2;
+		get => CellsMap[TargetQ1] + TargetQ2 + TargetR1 + TargetR2;
 	}
 
 
@@ -106,8 +106,8 @@ public readonly record struct ExocetPattern(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode()
 		=> HashCode.Combine(
-			CellMap.Empty + Base1 + Base2,
-			CellMap.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2,
+			CellsMap[Base1] + Base2,
+			CellsMap[TargetQ1] + TargetQ2 + TargetR1 + TargetR2,
 			MirrorQ1 | MirrorQ2 | MirrorR1 | MirrorR2,
 			BaseCellsMap | TargetCellsMap
 		);
@@ -116,8 +116,8 @@ public readonly record struct ExocetPattern(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		var baseCellsStr = (CellMap.Empty + Base1 + Base2).ToString();
-		var targetCellsStr = (CellMap.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2).ToString();
+		var baseCellsStr = (CellsMap[Base1] + Base2).ToString();
+		var targetCellsStr = (CellsMap[TargetQ1] + TargetQ2 + TargetR1 + TargetR2).ToString();
 		return $"Exocet: base {baseCellsStr}, target {targetCellsStr}";
 	}
 }

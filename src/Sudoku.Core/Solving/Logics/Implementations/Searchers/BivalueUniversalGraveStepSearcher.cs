@@ -484,10 +484,10 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 
 			// BUG-XZ found.
 			var conclusions = new List<Conclusion>();
-			var condition = (CellMap.Empty + c1 + cell).InOneHouse;
+			var condition = (CellsMap[c1] + cell).InOneHouse;
 			var anotherCell = condition ? c2 : c1;
 			var anotherDigit = condition ? d2 : d1;
-			foreach (var peer in (CellMap.Empty + cell + anotherCell).PeerIntersection)
+			foreach (var peer in (CellsMap[cell] + anotherCell).PeerIntersection)
 			{
 				if (CandidatesMap[anotherDigit].Contains(peer))
 				{
@@ -513,7 +513,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 						| candidateOffsets
 				),
 				mask,
-				CellMap.Empty + c1 + c2,
+				CellsMap[c1] + c2,
 				cell
 			);
 			if (onlyFindOne)

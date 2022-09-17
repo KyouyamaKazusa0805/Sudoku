@@ -1095,7 +1095,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 				}
 			}
 
-			var extraCells = CellMap.Empty + extraCell1 + extraCell2;
+			var extraCells = CellsMap[extraCell1] + extraCell2;
 			if (PopCount((uint)extraCells.CoveredHouses) != 2)
 			{
 				// They should be a locked candidates.

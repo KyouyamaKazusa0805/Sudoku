@@ -94,7 +94,7 @@ public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Con
 	public CellMap Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CellMap.Empty + From + To;
+		get => CellsMap[From] + To;
 	}
 
 
@@ -112,7 +112,7 @@ public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Con
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{CellMap.Empty + From} == {CellMap.Empty + To}({Digit + 1})";
+	public override string ToString() => $"{CellsMap[From]} == {RxCyNotation.ToCandidateString(To * 9 + Digit)}";
 
 
 	/// <inheritdoc/>

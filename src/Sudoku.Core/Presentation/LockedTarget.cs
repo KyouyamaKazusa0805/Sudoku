@@ -12,7 +12,7 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 	/// <param name="digit">Indicates the digit used.</param>
 	/// <param name="cell">Indicates the cell used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LockedTarget(int digit, int cell) : this(digit, CellMap.Empty + cell)
+	public LockedTarget(int digit, int cell) : this(digit, CellsMap[cell])
 	{
 	}
 

@@ -182,7 +182,7 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	protected internal static sealed bool IsSameHouseCell(int cell1, int cell2, out int houses)
 	{
-		var v = (CellMap.Empty + cell1 + cell2).CoveredHouses;
+		var v = (CellsMap[cell1] + cell2).CoveredHouses;
 		(var r, houses) = v != 0 ? (true, v) : (false, 0);
 		return r;
 	}

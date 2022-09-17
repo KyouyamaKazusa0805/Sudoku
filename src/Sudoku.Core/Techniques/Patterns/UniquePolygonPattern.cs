@@ -66,7 +66,7 @@ public readonly record struct UniquePolygonPattern(long Mask) : ITechniquePatter
 	public CellMap Pair1Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CellMap.Empty + Pair1.A + Pair1.B;
+		get => CellsMap[Pair1.A] + Pair1.B;
 	}
 
 	/// <summary>
@@ -75,7 +75,7 @@ public readonly record struct UniquePolygonPattern(long Mask) : ITechniquePatter
 	public CellMap Pair2Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CellMap.Empty + Pair2.A + Pair2.B;
+		get => CellsMap[Pair2.A] + Pair2.B;
 	}
 
 	/// <summary>
@@ -87,7 +87,7 @@ public readonly record struct UniquePolygonPattern(long Mask) : ITechniquePatter
 		get
 		{
 			var (a, b, c, d) = CenterCells;
-			return IsHeptagon ? CellMap.Empty + a + b + c : CellMap.Empty + a + b + c + d;
+			return IsHeptagon ? CellsMap[a] + b + c : CellsMap[a] + b + c + d;
 		}
 	}
 
