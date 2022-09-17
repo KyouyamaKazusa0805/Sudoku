@@ -66,7 +66,8 @@
 	<x:String x:Key="SudokuPage_StepGathering">当前盘面的所有步骤</x:String>
 	<x:String x:Key="SudokuPage_InfoBarBoard">信息</x:String>
 	<x:String x:Key="SudokuPage_PuzzleData">题目数据</x:String>
-	<x:String x:Key="SudokuPage_PuzzleCode">题目代码</x:String>
+	<x:String x:Key="SudokuPage_PuzzleCode">初盘题目代码</x:String>
+	<x:String x:Key="SudokuPage_CurrentPuzzleCode">当前盘面代码</x:String>
 	<x:String x:Key="SudokuPage_PuzzleEmptyCellsCount">空格数量：</x:String>
 	<x:String x:Key="SudokuPage_PuzzleCandidatesCount">候选数数量：</x:String>
 	<x:String x:Key="SudokuPage_InvalidGrid">（非唯一解的不正确盘面）</x:String>
