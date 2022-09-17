@@ -163,5 +163,5 @@ Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University. 
 
 [^3]: Because only type 2 contains a valid test example.
 
-[^4]: I'm sorry that those pages are written in Chinese. However, I may create pages written in other languages in the future.
+[^4]: I'm sorry that those pages are only written in Chinese. However, I may create pages written in other languages in the future.
 
