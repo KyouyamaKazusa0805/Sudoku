@@ -430,10 +430,10 @@
 														</Grid.ColumnDefinitions>
 
 														<Ellipse
-															Width="12" Height="12" Grid.Column="0" Stroke="White"
+															Width="12" Height="12" Grid.Column="0" StrokeThickness="1"
 															HorizontalAlignment="Center" VerticalAlignment="Center"
-															StrokeThickness="1" Visibility="{x:Bind ExtraFeatureBadgeVisibility}"
-															Fill="{x:Bind GetBadgeBackgroundBrush()}"
+															Stroke="White" Fill="{x:Bind GetBadgeBackgroundBrush()}"
+															Visibility="{x:Bind ExtraFeatureBadgeVisibility}"
 															ToolTipService.ToolTip="{x:Bind GetToolTipText()}" />
 														<TextBlock
 															Text="{x:Bind ToDisplayString()}"
