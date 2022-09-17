@@ -66,6 +66,11 @@
 	<x:String x:Key="SudokuPage_StepDetails">Path</x:String>
 	<x:String x:Key="SudokuPage_StepGathering">Steps Gathered</x:String>
 	<x:String x:Key="SudokuPage_InfoBarBoard">Info</x:String>
+	<x:String x:Key="SudokuPage_PuzzleData">Puzzle Data</x:String>
+	<x:String x:Key="SudokuPage_PuzzleCode">Puzzle Code</x:String>
+	<x:String x:Key="SudokuPage_PuzzleEmptyCellsCount">Empty cells Count:</x:String>
+	<x:String x:Key="SudokuPage_PuzzleCandidatesCount">Candidates Count:</x:String>
+	<x:String x:Key="SudokuPage_InvalidGrid">(Invalid)</x:String>
 	<x:String x:Key="SudokuPage_TechniquesUsed">Technique used:</x:String>
 	<x:String x:Key="SudokuPage_TechniquesMetadata">Technique series</x:String>
 	<x:String x:Key="SudokuPage_SearchAllSteps">Search all steps!</x:String>

@@ -19,6 +19,7 @@
 				<cvt:UndoOrRedoStackToIsEnabledConverter x:Key="_rUndoingOrRedoingConverter" />
 				<cvt:ExpanderIsExpandedToOpenCloseConverter x:Key="_rExpanderHeaderConverter" />
 				<cvt:ItemSourceNullabilityToVisibilityConverter x:Key="_rItemSourceNullabilityConverter" />
+				<cvt:GridStringConverter x:Key="_rGridStringConverter" />
 			</Grid.Resources>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
@@ -271,14 +272,15 @@
 			</xc:TabbedCommandBar>
 
 			<SplitView
-				Grid.Row="1" IsPaneOpen="True" Margin="25" OpenPaneLength="600" CompactPaneLength="600" DisplayMode="Inline"
-				PaneBackground="Transparent">
+				Grid.Row="1" IsPaneOpen="True" Margin="25" OpenPaneLength="600" CompactPaneLength="600"
+				DisplayMode="Inline" PaneBackground="Transparent">
 				<SplitView.Pane>
 					<!--Sudoku grid-->
 					<StackPanel x:Name="_cPaneParent" Orientation="Vertical" Margin="0,10,0,0">
 						<c:SudokuPane
 							x:Name="_cPane" x:FieldModifier="internal" Size="560" OutsideOffset="10"
-							GridRefreshed="Pane_GridRefreshed" FailedReceivedDroppedFile="Pane_FailedReceivedDroppedFile"
+							GridRefreshed="Pane_GridRefreshed"
+							FailedReceivedDroppedFile="Pane_FailedReceivedDroppedFile"
 							SuccessfullyReceivedDroppedFile="Pane_SuccessfullyReceivedDroppedFile" />
 						<PipsPager
 							x:Name="_cPipsPager" Margin="0,3,0,0" MaxVisiblePips="10" HorizontalAlignment="Center"
@@ -303,6 +305,43 @@
 							</TabViewItem.IconSource>
 
 							<c:InfoBarBoard x:Name="_cInfoBoard" x:FieldModifier="internal" CollectionChanged="InfoBoard_CollectionChanged" />
+						</TabViewItem>
+
+						<!--Puzzle Data-->
+						<TabViewItem Header="{StaticResource SudokuPage_PuzzleData}">
+							<TabViewItem.IconSource>
+								<SymbolIconSource Symbol="ViewAll" />
+							</TabViewItem.IconSource>
+
+							<TextBlock
+								Margin="0,12,0,0" LineHeight="30" TextWrapping="Wrap"
+								IsTextSelectionEnabled="True">
+								<TextBlock.Inlines>
+									<Run FontWeight="Bold" Text="{StaticResource SudokuPage_PuzzleCode}" />
+									<LineBreak />
+									<Run Text="{Binding
+										ElementName=_cPane,
+										Path=Grid,
+										Converter={StaticResource _rGridStringConverter},
+										ConverterParameter={x:Null},
+										UpdateSourceTrigger=PropertyChanged,
+										Mode=OneWay}" />
+									<LineBreak />
+									<Run FontWeight="Bold" Text="{StaticResource SudokuPage_PuzzleEmptyCellsCount}" />
+									<Run Text="{Binding
+										ElementName=_cPane,
+										Path=Grid.EmptiesCount,
+										Mode=OneWay,
+										UpdateSourceTrigger=PropertyChanged}" />
+									<LineBreak />
+									<Run FontWeight="Bold" Text="{StaticResource SudokuPage_PuzzleCandidatesCount}" />
+									<Run Text="{Binding
+										ElementName=_cPane,
+										Path=Grid.CandidatesCount,
+										Mode=OneWay,
+										UpdateSourceTrigger=PropertyChanged}" />
+								</TextBlock.Inlines>
+							</TextBlock>
 						</TabViewItem>
 
 						<!--Summary page-->
@@ -486,7 +525,7 @@
 						</TabViewItem>
 					</TabView.TabItems>
 				</TabView>
-			</SplitView>			
+			</SplitView>
 		</Grid>
 	</ScrollViewer>
 </Page>

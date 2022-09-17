@@ -166,6 +166,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			GetSudokuGridViewModel().Grid = value;
 
 			GridRefreshed?.Invoke(this, null);
+
+			PropertyChanged?.Invoke(this, new(nameof(Grid)));
 		}
 	}
 

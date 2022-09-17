@@ -218,6 +218,18 @@
             <inheritdoc/>
             <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
         </member>
+        <member name="T:Sudoku.UI.DataConversion.ValueConverters.GridStringConverter">
+            <summary>
+            Defines a value converter that converts a grid into its string representation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.GridStringConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.GridStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
+        </member>
         <member name="T:Sudoku.UI.DataConversion.ValueConverters.Int32ToStringConverter">
             <summary>
             Defines a converter that can convert an <see cref="T:System.Int32"/> value to a <see cref="T:System.String"/>.
