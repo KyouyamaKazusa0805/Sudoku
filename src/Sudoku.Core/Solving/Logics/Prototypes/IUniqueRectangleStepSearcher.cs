@@ -112,15 +112,23 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	protected internal static sealed bool CheckPreconditionsOnIncomplete(
-		scoped in Grid grid, int[] urCells, int d1, int d2)
+	protected internal static sealed bool CheckPreconditionsOnIncomplete(scoped in Grid grid, int[] urCells, int d1, int d2)
 	{
 		// Same-sided cells cannot contain only one digit of two digits 'd1' and 'd2'.
 		foreach (var (a, b) in stackalloc[] { (0, 1), (2, 3), (0, 2), (1, 3) })
 		{
-			var gatheredMask = (short)(grid.GetCandidates(urCells[a]) | grid.GetCandidates(urCells[b]));
+			var mask1 = grid.GetCandidates(urCells[a]);
+			var mask2 = grid.GetCandidates(urCells[b]);
+			var gatheredMask = (short)(mask1 | mask2);
+			var intersectedMask = (short)(mask1 & mask2);
 			if ((gatheredMask >> d1 & 1) == 0 || (gatheredMask >> d2 & 1) == 0)
 			{
+				return false;
+			}
+
+			if ((intersectedMask >> d1 & 1) == 0 && (intersectedMask >> d2 & 1) == 0)
+			{
+				// Two cells must contain both two digits.
 				return false;
 			}
 		}
