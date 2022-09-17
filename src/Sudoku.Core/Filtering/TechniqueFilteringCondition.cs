@@ -8,6 +8,17 @@
 public static partial class TechniqueFiltering
 {
 	/// <summary>
+	/// Indicates the difficulty keyword.
+	/// </summary>
+	private const string DifficultyKeyword = "difficulty";
+
+	/// <summary>
+	/// Indicates the name keyword.
+	/// </summary>
+	private const string NameKeyword = "name";
+
+
+	/// <summary>
 	/// Filters some invalid steps.
 	/// </summary>
 	/// <param name="steps">The found steps.</param>
@@ -27,19 +38,68 @@ public static partial class TechniqueFiltering
 	/// <returns>The <see cref="Expression"/> instance.</returns>
 	private static Expression Parse(string conditionString, IStep step)
 	{
-		var handledCondition = KeywordPattern()
-			.Replace(
-				conditionString,
-				match => match.Value.ToLower() switch
-				{
-					"d" or "difficulty" => step.Difficulty.ToString(),
-					_ => throw new NotSupportedException("The specified match is not supported to be replaced.")
-				}
-			);
+		var result = new Expression(
+			KeywordPattern()
+				.Replace(
+					conditionString,
+					match => match.Value.ToLower() switch
+					{
+						DifficultyKeyword => $"{step.Difficulty}",
+						NameKeyword => $"'{step.Name}'",
+						_ => throw new NotSupportedException("The specified match is not supported to be replaced.")
+					}
+				),
+			ExpressiveOptions.IgnoreCaseForParsing
+		);
 
-		return new(handledCondition, ExpressiveOptions.IgnoreCaseForParsing);
+		result.RegisterOperator(new NameLikeOperator());
+
+		return result;
 	}
 
-	[RegexGenerator("""d(if{2}iculty)?""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	[RegexGenerator("""(dif{2}iculty|name)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex KeywordPattern();
+}
+
+/// <summary>
+/// Indicates the name matching operator <c>like</c>.
+/// The expected usage is like <c>name like 'Unique\s+Rectangle.*'</c>.
+/// </summary>
+file sealed class NameLikeOperator : OperatorBase
+{
+	/// <inheritdoc/>
+	public override IEnumerable<string> Tags => new[] { "like" };
+
+
+	/// <inheritdoc/>
+	public override IExpression BuildExpression(Token previousToken, IExpression[] expressions, Context context)
+		=> new NameLikeExpression(expressions[0], expressions[1], context);
+
+	/// <inheritdoc/>
+	public override OperatorPrecedence GetPrecedence(Token previousToken) => OperatorPrecedence.Equal;
+}
+
+/// <summary>
+/// Defines the backing implementation of <c>like</c> operator.
+/// </summary>
+file sealed class NameLikeExpression : BinaryExpressionBase
+{
+	/// <summary>
+	/// Initializes a <see cref="NameLikeExpression"/> instance via two expressions, and the inner handling context.
+	/// </summary>
+	/// <param name="left">The left-side expression.</param>
+	/// <param name="right">The right-side expression.</param>
+	/// <param name="context">The inner handling context.</param>
+	public NameLikeExpression(IExpression left, IExpression right, Context context) : base(left, right, context)
+	{
+	}
+
+
+	/// <inheritdoc/>
+	protected override object EvaluateImpl(object lhsResult, IExpression rightHandSide, IDictionary<string, object> variables)
+	{
+		var left = (string)lhsResult;
+		var right = (string)rightHandSide.Evaluate(variables);
+		return Regex.IsMatch(left, right, RegexOptions.IgnoreCase);
+	}
 }

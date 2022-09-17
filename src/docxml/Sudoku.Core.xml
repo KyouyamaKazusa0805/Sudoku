@@ -3742,6 +3742,16 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.Logics.Prototypes.IStepGatherableSearcher"/>
         </member>
+        <member name="F:Sudoku.Filtering.TechniqueFiltering.DifficultyKeyword">
+            <summary>
+            Indicates the difficulty keyword.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Filtering.TechniqueFiltering.NameKeyword">
+            <summary>
+            Indicates the name keyword.
+            </summary>
+        </member>
         <member name="M:Sudoku.Filtering.TechniqueFiltering.Filter(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logics.Prototypes.IStep},System.String)">
             <summary>
             Filters some invalid steps.
@@ -3762,19 +3772,56 @@
             <remarks>
             Pattern explanation:<br/>
             <code>
-            ○ Match a character in the set [Dd].<br/>
-            ○ Optional (greedy).<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match a character in the set [Ii\u0130].<br/>
-                    ○ Match a character in the set [Ff] exactly 2 times.<br/>
-                    ○ Match a character in the set [Ii\u0130].<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [Uu].<br/>
-                    ○ Match a character in the set [Ll].<br/>
-                    ○ Match a character in the set [Tt].<br/>
-                    ○ Match a character in the set [Yy].<br/>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [Dd].<br/>
+                        ○ Match a character in the set [Ii\u0130].<br/>
+                        ○ Match a character in the set [Ff] exactly 2 times.<br/>
+                        ○ Match a character in the set [Ii\u0130].<br/>
+                        ○ Match a character in the set [Cc].<br/>
+                        ○ Match a character in the set [Uu].<br/>
+                        ○ Match a character in the set [Ll].<br/>
+                        ○ Match a character in the set [Tt].<br/>
+                        ○ Match a character in the set [Yy].<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [Nn].<br/>
+                        ○ Match a character in the set [Aa].<br/>
+                        ○ Match a character in the set [Mm].<br/>
+                        ○ Match a character in the set [Ee].<br/>
             </code>
             </remarks>
+        </member>
+        <member name="T:Sudoku.Filtering.NameLikeOperator">
+            <summary>
+            Indicates the name matching operator <c>like</c>.
+            The expected usage is like <c>name like 'Unique\s+Rectangle.*'</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Filtering.NameLikeOperator.Tags">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.NameLikeOperator.BuildExpression(Expressive.Token,Expressive.Expressions.IExpression[],Expressive.Context)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.NameLikeOperator.GetPrecedence(Expressive.Token)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Filtering.NameLikeExpression">
+            <summary>
+            Defines the backing implementation of <c>like</c> operator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.NameLikeExpression.#ctor(Expressive.Expressions.IExpression,Expressive.Expressions.IExpression,Expressive.Context)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.NameLikeExpression"/> instance via two expressions, and the inner handling context.
+            </summary>
+            <param name="left">The left-side expression.</param>
+            <param name="right">The right-side expression.</param>
+            <param name="context">The inner handling context.</param>
+        </member>
+        <member name="M:Sudoku.Filtering.NameLikeExpression.EvaluateImpl(System.Object,Expressive.Expressions.IExpression,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Generating.ExercisePuzzlers.ExerciseFactory">
             <summary>
