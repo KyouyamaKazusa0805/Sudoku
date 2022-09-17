@@ -4057,7 +4057,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							continue;
 						}
 
-						if (xDigitGuardianCells == (alsMap & CandidatesMap[xDigit])
+						if ((alsMap & xDigitGuardianCells) is not []
 							|| zDigitGuardianCells == (alsMap & CandidatesMap[zDigit]))
 						{
 							// The ALS cannot only use X or Z digits that all appears in guardian cells.
