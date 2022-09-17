@@ -1,4 +1,4 @@
-﻿#pragma warning disable IDE0055
+﻿#pragma warning disable format
 [assembly: SearcherConfiguration<                        SingleStepSearcher>(SearcherDisplayingLevel.A)]
 [assembly: SearcherConfiguration<              LockedCandidatesStepSearcher>(SearcherDisplayingLevel.A)]
 [assembly: SearcherConfiguration<                        SubsetStepSearcher>(SearcherDisplayingLevel.B)]

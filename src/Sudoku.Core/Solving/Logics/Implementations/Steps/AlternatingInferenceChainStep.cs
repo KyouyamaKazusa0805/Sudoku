@@ -211,7 +211,7 @@ internal sealed record AlternatingInferenceChainStep(
 		}
 	}
 
-#pragma warning disable IDE0055
+#pragma warning disable format
 	/// <summary>
 	/// Indicates whether the chain is W-Wing (<c>(x = y) - y = y - (y = x)</c>).
 	/// </summary>
@@ -337,7 +337,7 @@ internal sealed record AlternatingInferenceChainStep(
 		] when c2 == c3 && c4 == c5 && d1 == d2 && d3 == d4 && d5 == d6 => true,
 		_ => false
 	};
-#pragma warning restore IDE0055
+#pragma warning restore format
 
 	[ResourceTextFormatter]
 	internal string ChainStr() => Chain.ToString();

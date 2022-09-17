@@ -56,7 +56,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				var priorityValue = 0;
 				foreach (var attributeData in attributesData)
 				{
-#pragma warning disable IDE0055
+#pragma warning disable format
 					// Check validity.
 					if (attributeData is not
 						{
@@ -77,7 +77,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 							ConstructorArguments: [{ Type.TypeKind: Kind.Enum, Value: byte dl }],
 							NamedArguments: var namedArguments
 						})
-#pragma warning restore IDE0055
+#pragma warning restore format
 					{
 						continue;
 					}

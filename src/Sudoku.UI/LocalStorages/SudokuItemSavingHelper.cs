@@ -17,11 +17,11 @@ internal static class SudokuItemSavingHelper
 	public static async Task<bool> PlainTextSaveAsync(StorageFile file, SudokuPage page)
 	{
 		if ((file, page) is not (
-#pragma warning disable IDE0055
+#pragma warning disable format
 				{ Name: var fileName, Path: var filePath },
 				{ _cPane.Grid: var grid, _cInfoBoard: var board }
 			))
-#pragma warning restore IDE0055
+#pragma warning restore format
 		{
 			return false;
 		}

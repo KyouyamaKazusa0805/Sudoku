@@ -162,7 +162,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			// Checks whether the number of constructor arguments is 2.
 			// If so, check whether the validity of the first argument (must be 'System.Type')
 			// and the second argument (must be 'params string[]').
-#pragma warning disable IDE0055
+#pragma warning disable format
 			if (attributeData is not
 				{
 					ConstructorArguments:
@@ -172,7 +172,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 					],
 					NamedArguments: var namedArgs
 				})
-#pragma warning restore IDE0055
+#pragma warning restore format
 			{
 				// Invalid case.
 				continue;

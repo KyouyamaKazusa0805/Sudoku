@@ -73,7 +73,7 @@ public sealed class AlternatingInferenceChain : Chain
 	/// </summary>
 	public bool IsStrong { get; }
 
-#pragma warning disable IDE0055
+#pragma warning disable format
 	/// <summary>
 	/// Indicates whether the chain has a collision, encountered between start and end node.
 	/// This property should be satisfied at least the chain is a grouped chain, and at least one of
@@ -114,7 +114,7 @@ public sealed class AlternatingInferenceChain : Chain
 			// The continuous nice loop must starts with weak links due to the design of the current data structure.
 			_ => false
 		};
-#pragma warning restore IDE0055
+#pragma warning restore format
 
 	/// <summary>
 	/// Indicates whether the current chain is a grouped chain.

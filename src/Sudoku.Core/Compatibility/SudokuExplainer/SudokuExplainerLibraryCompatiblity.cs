@@ -81,7 +81,7 @@ public static class SudokuExplainerLibraryCompatiblity// : ICompatibilityProvide
 					IsAdvancedDefined: false
 				}
 			] => (new(min, max ?? min), null),
-#pragma warning disable IDE0055
+#pragma warning disable format
 			[
 				{
 					DifficultyRating: var min1,
@@ -106,7 +106,7 @@ public static class SudokuExplainerLibraryCompatiblity// : ICompatibilityProvide
 					IsAdvancedDefined: false
 				}
 			] => (new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
-#pragma warning restore IDE0055
+#pragma warning restore format
 			_ => throw new InvalidOperationException("The field has marked too much attributes.")
 		};
 	}

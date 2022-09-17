@@ -168,7 +168,7 @@ public sealed class Help : IExecutable
 
 						break;
 					}
-#pragma warning disable IDE0055
+#pragma warning disable format
 					case (
 						null,
 						{
@@ -178,7 +178,7 @@ public sealed class Help : IExecutable
 							IsRequired: var isRequired
 						}
 					):
-#pragma warning restore IDE0055
+#pragma warning restore format
 					{
 						// l2 is not null
 						var config = thisAssembly.GetCustomAttribute<GlobalConfigurationAttribute>() ?? new();

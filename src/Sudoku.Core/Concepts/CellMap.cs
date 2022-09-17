@@ -118,7 +118,7 @@ public struct CellMap :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-#pragma warning disable IDE0055
+#pragma warning disable format
 			if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) return true;
 			if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) return true;
 			if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) return true;
@@ -146,7 +146,7 @@ public struct CellMap :
 			if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) return true;
 			if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) return true;
 			if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) return true;
-#pragma warning restore IDE0055
+#pragma warning restore format
 
 			return false;
 		}
@@ -282,7 +282,7 @@ public struct CellMap :
 		{
 			var z = 0;
 
-#pragma warning disable IDE0055
+#pragma warning disable format
 			if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) z |=       0x1;
 			if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) z |=       0x2;
 			if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) z |=       0x4;
@@ -310,7 +310,7 @@ public struct CellMap :
 			if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) z |= 0x1000000;
 			if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) z |= 0x2000000;
 			if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) z |= 0x4000000;
-#pragma warning restore IDE0055
+#pragma warning restore format
 
 			return z;
 		}
@@ -540,7 +540,7 @@ public struct CellMap :
 	/// <seealso cref="InOneHouse"/>
 	public readonly bool AllSetsAreInOneHouse(out int houseIndex)
 	{
-#pragma warning disable IDE0055
+#pragma warning disable format
 		if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) { houseIndex =  0; return true; }
 		if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) { houseIndex =  1; return true; }
 		if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) { houseIndex =  2; return true; }
@@ -568,7 +568,7 @@ public struct CellMap :
 		if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) { houseIndex = 24; return true; }
 		if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) { houseIndex = 25; return true; }
 		if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) { houseIndex = 26; return true; }
-#pragma warning restore IDE0055
+#pragma warning restore format
 
 		houseIndex = -1;
 		return false;
