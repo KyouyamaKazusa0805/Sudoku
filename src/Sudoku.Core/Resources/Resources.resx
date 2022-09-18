@@ -1467,4 +1467,10 @@
   <data name="UniqueRectangleExternalAlmostLockedSetsXz" xml:space="preserve">
     <value>Unique Rectangle External Almost Locked Sets XZ Rule</value>
   </data>
+  <data name="TechniqueFormat_UniqueRectangleExternalXyWingStep" xml:space="preserve">
+    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external XY-Wing, with cell pair {CellPairStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="UniqueRectangleExternalXyWing" xml:space="preserve">
+    <value>Unique Rectangle External XY-Wing</value>
+  </data>
 </root>

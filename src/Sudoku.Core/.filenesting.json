@@ -151,6 +151,7 @@
           "UniqueRectangleWithGuardianSubsetStep.cs": [ "UniqueRectangleStep.cs" ],
           "UniqueRectangleWithGuardianConjugatePairStep.cs": [ "UniqueRectangleStep.cs" ],
           "UniqueRectangleExternalAlmostLockedSetsXZStep.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleExternalXyWingStep.cs": [ "UniqueRectangleStep.cs" ],
           "UniqueRectangle2DOr3XStep.cs": [ "UniqueRectangleStep.cs" ],
           "UniqueRectangleWithConjugatePairStep.cs": [ "UniqueRectangleStep.cs" ],
           "UniqueRectangleWithSueDeCoqStep.cs": [ "UniqueRectangleStep.cs" ],

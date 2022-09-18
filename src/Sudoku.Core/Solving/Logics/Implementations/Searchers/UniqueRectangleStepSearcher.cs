@@ -98,6 +98,7 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 						CheckExternalType1Or2(gathered, grid, urCells, d1, d2, index);
 						CheckExternalType3(gathered, grid, urCells, comparer, d1, d2, index);
 						CheckExternalType4(gathered, grid, urCells, comparer, d1, d2, index);
+						CheckExternalXyWing(gathered, grid, urCells, comparer, d1, d2, index);
 						CheckExternalAlmostLockedSetsXz(gathered, grid, urCells, alses, comparer, d1, d2, index);
 					}
 
@@ -249,6 +250,7 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 	partial void CheckExternalType1Or2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int index);
 	partial void CheckExternalType3(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
 	partial void CheckExternalType4(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
+	partial void CheckExternalXyWing(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
 	partial void CheckExternalAlmostLockedSetsXz(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, AlmostLockedSet[] alses, short comparer, int d1, int d2, int index);
 	partial void CheckHiddenSingleAvoidable(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
 }
@@ -3984,6 +3986,165 @@ unsafe partial class UniqueRectangleStepSearcher
 						);
 					}
 				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Check UR + Guardian, with external XY-Wing.
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="comparer">The comparer.</param>
+	/// <param name="d1">The digit 1 used in UR.</param>
+	/// <param name="d2">The digit 2 used in UR.</param>
+	/// <param name="index">The mask index.</param>
+	partial void CheckExternalXyWing(
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
+		short comparer, int d1, int d2, int index)
+	{
+		// There are two examples that the searcher cannot find:
+		// ...8+59+3.+1.3.+71+2+45...14638..4+85+6.+19.7.16...58.2.3.+8.6+14+3.21987..+16..7.+29....2.6+1..:712 931 732 355 589 991 492 493 893 399
+		// ..3+69+84...6+9+72+4.8+37+8+43+51..6..28.73..89.....54..15+498.+29..4.6..8.1..8..4...8.7.6..:218 641 572 777 581 591 592
+		// I'll fix it later.
+
+		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		{
+			return;
+		}
+
+		var cells = (CellMap)urCells;
+
+		// Iterate on two houses used.
+		foreach (var houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
+		{
+			var guardianMap = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
+			if ((guardianMap & cells) != cells)
+			{
+				// The houses must contain all 4 UR cells.
+				continue;
+			}
+
+			var guardianCells = guardianMap - cells & (CandidatesMap[d1] | CandidatesMap[d2]);
+			if (!(guardianCells & CandidatesMap[d1]) || !(guardianCells & CandidatesMap[d2]))
+			{
+				// Guardian cells must contain both two digits; otherwise, skip the current case.
+				// Please note that 'operator &' has the priority than 'operator &&'. Therefore we do not need
+				// to add brackets here.
+				continue;
+			}
+
+			var unionOfEachCellAppearedInGuardianCells = CellMap.Empty;
+			foreach (var cell in guardianCells)
+			{
+				unionOfEachCellAppearedInGuardianCells |= PeersMap[cell];
+			}
+			var cellsToEnumerate = unionOfEachCellAppearedInGuardianCells & (CandidatesMap[d1] | CandidatesMap[d2]);
+			if (cellsToEnumerate.Count < 2)
+			{
+				// No valid combinations.
+				continue;
+			}
+
+			foreach (var cellPair in cellsToEnumerate & 2)
+			{
+				var cell1 = cellPair[0];
+				var cell2 = cellPair[1];
+				if ((CellsMap[cell1] + cell2).InOneHouse)
+				{
+					// Two cells cannot lie in a same house.
+					continue;
+				}
+
+				if (((PeersMap[cell1] | PeersMap[cell2]) & guardianCells) != guardianCells)
+				{
+					// Two cells must cover all guardian cells.
+					continue;
+				}
+
+				var mask1 = grid.GetCandidates(cell1);
+				var mask2 = grid.GetCandidates(cell2);
+				var intersectionMask = (short)(mask1 & mask2);
+				if (!IsPow2(intersectionMask))
+				{
+					// No eliminations can be found in this structure.
+					continue;
+				}
+
+				var unionMask = (short)(mask1 | mask2);
+				if ((unionMask & comparer) != comparer)
+				{
+					// The two cells must contain both two digits.
+					continue;
+				}
+
+				if ((unionMask & ~(comparer | intersectionMask)) != 0)
+				{
+					// These two cells may contain extra cells, which is disallowed in this pattern.
+					continue;
+				}
+
+				// UR External XY-Wing found. Now check for eliminations.
+				var elimDigit = TrailingZeroCount(intersectionMask);
+				var elimMap = cellPair.PeerIntersection & CandidatesMap[elimDigit];
+				if (!elimMap)
+				{
+					// No elimination cell.
+					continue;
+				}
+
+				var candidateOffsets = new List<CandidateViewNode>();
+				foreach (var cell in urCells)
+				{
+					if (grid.GetStatus(cell) != CellStatus.Empty)
+					{
+						continue;
+					}
+
+					foreach (var digit in (short)(grid.GetCandidates(cell) & comparer))
+					{
+						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+					}
+				}
+				foreach (var cell in guardianCells)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						if (digit != d1 && digit != d2)
+						{
+							continue;
+						}
+
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
+					}
+				}
+				foreach (var cell in cellPair)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(
+							new(
+								digit != d1 && digit != d2 ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Auxiliary2,
+								cell * 9 + digit
+							)
+						);
+					}
+				}
+
+				accumulator.Add(
+					new UniqueRectangleExternalXyWingStep(
+						from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
+						ImmutableArray.Create(View.Empty | candidateOffsets),
+						d1,
+						d2,
+						cells,
+						guardianCells,
+						cellPair,
+						IsIncomplete(candidateOffsets),
+						index
+					)
+				);
 			}
 		}
 	}

@@ -3436,6 +3436,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external XY-Wing, with cell pair {CellPairStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueRectangleExternalXyWingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalXyWingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_UniqueRectangleType1Step {
@@ -3891,6 +3900,15 @@ namespace Sudoku.Resources {
         internal static string UniqueRectangleExternalType4 {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle External XY-Wing.
+        /// </summary>
+        internal static string UniqueRectangleExternalXyWing {
+            get {
+                return ResourceManager.GetString("UniqueRectangleExternalXyWing", resourceCulture);
             }
         }
         
