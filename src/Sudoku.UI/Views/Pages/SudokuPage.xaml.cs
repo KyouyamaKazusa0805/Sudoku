@@ -1333,7 +1333,7 @@ public sealed partial class SudokuPage : Page
 			var filtered = TechniqueFiltering.Filter(_currentTechniqueGroups, _cStepGatheringTextBox.Text);
 			_cTechniqueGroupView._cTechniqueGroups.Source = GetTechniqueGroups(filtered);
 		}
-		catch (ExpressiveException ex)
+		catch (ExpressiveException)
 		{
 			_cFilteringExpressionInvalidHint.Visibility = Visibility.Visible;
 		}
