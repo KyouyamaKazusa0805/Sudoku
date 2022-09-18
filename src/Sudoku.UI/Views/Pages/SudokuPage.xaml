@@ -522,16 +522,12 @@
 									<StackPanel Orientation="Horizontal" Spacing="4">
 										<TextBox
 											x:Name="_cStepGatheringTextBox"
-											IsEnabled="{Binding
-												ElementName=_cTechniqueGroupView._cTechniqueGroups,
-												Path=Source,
-												Converter={StaticResource _rSourceToIsEnabledConverter},
-												Mode=OneWay,
-												UpdateSourceTrigger=PropertyChanged}"
+											Visibility="{x:Bind data:SimpleConverters.IsEnabledToVisibility(_cSearchAllSteps.IsEnabled),Mode=OneWay}"
 											Width="300" PlaceholderText="{StaticResource Emoji_Search}"
 											TextChanged="StepGatheringTextBox_TextChanged" />
 										<Button
 											Content="{StaticResource SudokuPage_FilterGatheredSteps}"
+											Visibility="{x:Bind data:SimpleConverters.IsEnabledToVisibility(_cSearchAllSteps.IsEnabled),Mode=OneWay}"
 											Click="FilterGatheredStepsButton_Click" />
 										<TextBlock
 											x:Name="_cFilteringExpressionInvalidHint"
