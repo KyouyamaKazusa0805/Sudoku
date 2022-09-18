@@ -32,7 +32,7 @@ public sealed class Solve : IExecutable
 			throw new CommandLineRuntimeException((int)ErrorCode.ArgGridValueIsNotUnique);
 		}
 
-		string? methodNameUsed = null;
+		var methodNameUsed = (string?)null;
 		foreach (var type in
 			from type in typeof(ISimpleSolver).Assembly.GetTypes()
 			where type.IsClass && type.IsAssignableTo(typeof(ISimpleSolver))
