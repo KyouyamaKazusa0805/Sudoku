@@ -7,8 +7,10 @@
 /// Firework Pair:
 /// <list type="bullet">
 /// <item>Firework Pair Type 1 (Single Firework + 2 Bi-value cells)</item>
+/// <!--
 /// <item>Firework Pair Type 2 (Double Fireworks)</item>
 /// <item>Firework Pair Type 3 (Single Fireworks + Empty Rectangle)</item>
+/// -->
 /// </list>
 /// </item>
 /// <item>Firework Triple</item>
@@ -21,11 +23,6 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 	/// Indicates the patterns used.
 	/// </summary>
 	protected static readonly FireworkPattern[] Patterns = new FireworkPattern[FireworkSubsetCount];
-
-	/// <summary>
-	/// Indicates the pattern pairs. This field is used for checking the technique firework pair type 2.
-	/// </summary>
-	protected static readonly (FireworkPattern First, FireworkPattern Second, int MeetCell)[] PatternPairs = new (FireworkPattern, FireworkPattern, int)[PairFireworksCount];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -90,37 +87,6 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 						}
 					}
 				}
-			}
-		}
-
-		i = 0;
-		for (var firstIndex = 0; firstIndex < Patterns.Length - 1; firstIndex++)
-		{
-			for (var secondIndex = firstIndex + 1; secondIndex < Patterns.Length; secondIndex++)
-			{
-				scoped ref readonly var a = ref Patterns[firstIndex];
-				scoped ref readonly var b = ref Patterns[secondIndex];
-				if ((a, b) is not ((var aMap, { } aPivot), (var bMap, { } bPivot)))
-				{
-					continue;
-				}
-
-				if (aMap & bMap)
-				{
-					continue;
-				}
-
-				if (aPivot.ToHouseIndex(HouseType.Block) == bPivot.ToHouseIndex(HouseType.Block))
-				{
-					continue;
-				}
-
-				if (((aMap - aPivot).PeerIntersection & (bMap - bPivot).PeerIntersection) is not [var meetCell])
-				{
-					continue;
-				}
-
-				PatternPairs[i++] = (a, b, meetCell);
 			}
 		}
 	}
