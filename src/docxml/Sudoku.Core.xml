@@ -3798,6 +3798,16 @@
             The expected usage is like <c>name like 'Unique\s+Rectangle.*'</c>.
             </summary>
         </member>
+        <member name="F:Sudoku.Filtering.NameLikeOperator.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.NameLikeOperator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.NameLikeOperator"/> instance.
+            </summary>
+        </member>
         <member name="P:Sudoku.Filtering.NameLikeOperator.Tags">
             <inheritdoc/>
         </member>

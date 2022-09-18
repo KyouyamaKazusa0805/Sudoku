@@ -275,6 +275,21 @@
         <member name="M:Sudoku.UI.DataConversion.ValueConverters.NullToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.UI.DataConversion.ValueConverters.SourceToIsEnabledConverter">
+            <summary>
+            Defines a value converter that allows the one-way binding from <see cref="P:Microsoft.UI.Xaml.Data.CollectionViewSource.Source"/>
+            property to <see cref="P:Microsoft.UI.Xaml.Controls.Control.IsEnabled"/> property.
+            </summary>
+            <seealso cref="P:Microsoft.UI.Xaml.Data.CollectionViewSource.Source"/>
+            <seealso cref="P:Microsoft.UI.Xaml.Controls.Control.IsEnabled"/>
+        </member>
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.SourceToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.DataConversion.ValueConverters.SourceToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
+        </member>
         <member name="T:Sudoku.UI.DataConversion.ValueConverters.UndoOrRedoStackToIsEnabledConverter">
             <summary>
             Defines a value converter that allows the one-way binding from the undo-stack or redo-stack
@@ -3120,7 +3135,7 @@
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetTechniqueGroups(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logics.Prototypes.IStep})">
             <summary>
-            Try to group them up.
+            Try to group them up. The method will return <see langword="null"/> if any exceptions thrown here.
             </summary>
             <param name="collection">The technique steps found.</param>
             <returns>The list of groups.</returns>

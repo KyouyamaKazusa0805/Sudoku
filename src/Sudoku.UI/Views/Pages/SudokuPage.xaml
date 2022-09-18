@@ -20,6 +20,7 @@
 				<cvt:ExpanderIsExpandedToOpenCloseConverter x:Key="_rExpanderHeaderConverter" />
 				<cvt:ItemSourceNullabilityToVisibilityConverter x:Key="_rItemSourceNullabilityConverter" />
 				<cvt:GridStringConverter x:Key="_rGridStringConverter" />
+				<cvt:SourceToIsEnabledConverter x:Key="_rSourceToIsEnabledConverter" />
 			</Grid.Resources>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
@@ -521,7 +522,12 @@
 									<StackPanel Orientation="Horizontal" Spacing="4">
 										<TextBox
 											x:Name="_cStepGatheringTextBox"
-											IsEnabled="{x:Bind _cSearchAllSteps.IsEnabled,Mode=OneWay}"
+											IsEnabled="{Binding
+												ElementName=_cTechniqueGroupView._cTechniqueGroups,
+												Path=Source,
+												Converter={StaticResource _rSourceToIsEnabledConverter},
+												Mode=OneWay,
+												UpdateSourceTrigger=PropertyChanged}"
 											Width="300" PlaceholderText="{StaticResource Emoji_Search}"
 											TextChanged="StepGatheringTextBox_TextChanged" />
 										<Button

@@ -965,10 +965,9 @@ public sealed partial class SudokuPage : Page
 	/// Try to fetch all possible steps.
 	/// </summary>
 	/// <returns>The list of technique groups.</returns>
-	private async Task<(IEnumerable<IStep> Steps, ObservableCollection<TechniqueGroup> GroupedSteps)> GetTechniqueGroupsAsync()
+	private async Task<(IEnumerable<IStep>, ObservableCollection<TechniqueGroup>)> GetTechniqueGroupsAsync()
 	{
 		var progress = new Progress<double>(v => DispatcherQueue.TryEnqueue(() => _cSearchAllStepsProgress.Value = v));
-
 		var gatherer = Preference.StepsGatherer;
 
 		_cSearchAllSteps.IsEnabled = false;
@@ -982,7 +981,7 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
-	/// Try to group them up.
+	/// Try to group them up. The method will return <see langword="null"/> if any exceptions thrown here.
 	/// </summary>
 	/// <param name="collection">The technique steps found.</param>
 	/// <returns>The list of groups.</returns>
@@ -1303,10 +1302,7 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		if (await GetTechniqueGroupsAsync() is { } gatheredSource)
-		{
-			(_currentTechniqueGroups, _cTechniqueGroupView._cTechniqueGroups.Source) = gatheredSource;
-		}
+		(_currentTechniqueGroups, _cTechniqueGroupView._cTechniqueGroups.Source) = await GetTechniqueGroupsAsync();
 	}
 
 	/// <summary>
@@ -1337,7 +1333,7 @@ public sealed partial class SudokuPage : Page
 			var filtered = TechniqueFiltering.Filter(_currentTechniqueGroups, _cStepGatheringTextBox.Text);
 			_cTechniqueGroupView._cTechniqueGroups.Source = GetTechniqueGroups(filtered);
 		}
-		catch (Exception ex) when (ex is ExpressiveException or InvalidOperationException or RegexParseException)
+		catch (ExpressiveException ex)
 		{
 			_cFilteringExpressionInvalidHint.Visibility = Visibility.Visible;
 		}

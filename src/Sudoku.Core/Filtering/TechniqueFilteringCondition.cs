@@ -52,7 +52,7 @@ public static partial class TechniqueFiltering
 			ExpressiveOptions.IgnoreCaseForParsing
 		);
 
-		result.RegisterOperator(new NameLikeOperator());
+		result.RegisterOperator(NameLikeOperator.Instance);
 
 		return result;
 	}
@@ -67,6 +67,20 @@ public static partial class TechniqueFiltering
 /// </summary>
 file sealed class NameLikeOperator : OperatorBase
 {
+	/// <summary>
+	/// Indicates the singleton instance.
+	/// </summary>
+	public static readonly NameLikeOperator Instance = new();
+
+
+	/// <summary>
+	/// Initializes a <see cref="NameLikeOperator"/> instance.
+	/// </summary>
+	private NameLikeOperator()
+	{
+	}
+
+
 	/// <inheritdoc/>
 	public override IEnumerable<string> Tags => new[] { "like" };
 
@@ -90,7 +104,7 @@ file sealed class NameLikeExpression : BinaryExpressionBase
 	/// <param name="left">The left-side expression.</param>
 	/// <param name="right">The right-side expression.</param>
 	/// <param name="context">The inner handling context.</param>
-	public NameLikeExpression(IExpression left, IExpression right, Context context) : base(left, right, context)
+	internal NameLikeExpression(IExpression left, IExpression right, Context context) : base(left, right, context)
 	{
 	}
 
@@ -98,15 +112,8 @@ file sealed class NameLikeExpression : BinaryExpressionBase
 	/// <inheritdoc/>
 	protected override object EvaluateImpl(object lhsResult, IExpression rightHandSide, IDictionary<string, object> variables)
 	{
-		try
-		{
-			var left = (string)lhsResult;
-			var right = (string)rightHandSide.Evaluate(variables);
-			return Regex.IsMatch(left, right, RegexOptions.IgnoreCase);
-		}
-		catch (RegexParseException ex)
-		{
-			throw new InvalidOperationException("The pattern is invalid.", ex);
-		}
+		var left = (string)lhsResult;
+		var right = (string)rightHandSide.Evaluate(variables);
+		return right.IsRegexPattern() && Regex.IsMatch(left, right, RegexOptions.IgnoreCase);
 	}
 }
