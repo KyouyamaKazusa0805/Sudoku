@@ -1473,4 +1473,10 @@
   <data name="UniqueRectangleExternalXyWing" xml:space="preserve">
     <value>Unique Rectangle External XY-Wing</value>
   </data>
+  <data name="AvoidableRectangleExternalAlmostLockedSetsXz" xml:space="preserve">
+    <value>Avoidable Rectangle External Almost Locked Sets XZ Rule</value>
+  </data>
+  <data name="AvoidableRectangleExternalXyWing" xml:space="preserve">
+    <value>Avoidable Rectangle External XY-Wing</value>
+  </data>
 </root>

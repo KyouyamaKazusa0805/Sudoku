@@ -11,6 +11,7 @@
 /// <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
 /// <param name="AlmostLockedSet">The almost locked sets used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+/// <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable | StepDisplayingFeature.ConstructedTechnique)]
 internal sealed record UniqueRectangleExternalAlmostLockedSetsXzStep(
@@ -22,12 +23,15 @@ internal sealed record UniqueRectangleExternalAlmostLockedSetsXzStep(
 	scoped in CellMap GuardianCells,
 	AlmostLockedSet AlmostLockedSet,
 	bool IsIncomplete,
+	bool IsAvoidable,
 	int AbsoluteOffset
 ) :
 	UniqueRectangleStep(
 		Conclusions,
 		Views,
-		Technique.UniqueRectangleExternalAlmostLockedSetsXz,
+		IsAvoidable
+			? Technique.AvoidableRectangleExternalAlmostLockedSetsXz
+			: Technique.UniqueRectangleExternalAlmostLockedSetsXz,
 		Digit1,
 		Digit2,
 		Cells,
@@ -47,6 +51,7 @@ internal sealed record UniqueRectangleExternalAlmostLockedSetsXzStep(
 		=> new[]
 		{
 			(PhasedDifficultyRatingKinds.Guardian, A004526(GuardianCells.Count) * .1M),
+			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0),
 			(PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 

@@ -1776,4 +1776,12 @@
     <value>唯一矩形・外部 XY-Wing</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="AvoidableRectangleExternalAlmostLockedSetsXz" xml:space="preserve">
+    <value>可规避矩形・外部待定数组・双强链</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="AvoidableRectangleExternalXyWing" xml:space="preserve">
+    <value>可规避矩形・外部 XY-Wing</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

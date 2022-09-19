@@ -313,6 +313,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle External Almost Locked Sets XZ Rule.
+        /// </summary>
+        internal static string AvoidableRectangleExternalAlmostLockedSetsXz {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleExternalAlmostLockedSetsXz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle External XY-Wing.
+        /// </summary>
+        internal static string AvoidableRectangleExternalXyWing {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleExternalXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle Hidden Single in Block.
         /// </summary>
         internal static string AvoidableRectangleHiddenSingleBlock {

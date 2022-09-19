@@ -3991,7 +3991,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR + Guardian, with external XY-Wing.
+	/// Check UR/AR + Guardian, with external XY-Wing.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -4041,18 +4041,6 @@ unsafe partial class UniqueRectangleStepSearcher
 			{
 				var cell1 = cellPair[0];
 				var cell2 = cellPair[1];
-				var unionCellsOfCellPairOwnPeers = PeersMap[cell1] | PeersMap[cell2];
-				var cellsThatDigit1CanSee = unionCellsOfCellPairOwnPeers & CandidatesMap[d1];
-				var cellsThatDigit2CanSee = unionCellsOfCellPairOwnPeers & CandidatesMap[d2];
-				var guardianCellsThatContainsDigit1 = guardianCells & CandidatesMap[d1];
-				var guardianCellsThatContainsDigit2 = guardianCells & CandidatesMap[d2];
-				if ((cellsThatDigit1CanSee & guardianCellsThatContainsDigit1) != guardianCellsThatContainsDigit1
-					|| (cellsThatDigit2CanSee & guardianCellsThatContainsDigit2) != guardianCellsThatContainsDigit2)
-				{
-					// Two cells must see all guardian cells.
-					continue;
-				}
-
 				var mask1 = grid.GetCandidates(cell1);
 				var mask2 = grid.GetCandidates(cell2);
 				var intersectionMask = (short)(mask1 & mask2);
@@ -4075,6 +4063,17 @@ unsafe partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
+				var cell1UrDigit = TrailingZeroCount((short)(mask1 & ~intersectionMask));
+				var cell2UrDigit = TrailingZeroCount((short)(mask2 & ~intersectionMask));
+				var guardianCellsThatContainsDigit1 = guardianCells & CandidatesMap[cell1UrDigit];
+				var guardianCellsThatContainsDigit2 = guardianCells & CandidatesMap[cell2UrDigit];
+				if ((PeersMap[cell1] & guardianCellsThatContainsDigit1) != guardianCellsThatContainsDigit1
+					|| (PeersMap[cell2] & guardianCellsThatContainsDigit2) != guardianCellsThatContainsDigit2)
+				{
+					// Two cells must see all guardian cells.
+					continue;
+				}
+
 				// UR External XY-Wing found. Now check for eliminations.
 				var elimDigit = TrailingZeroCount(intersectionMask);
 				var elimMap = cellPair.PeerIntersection & CandidatesMap[elimDigit];
@@ -4085,16 +4084,26 @@ unsafe partial class UniqueRectangleStepSearcher
 				}
 
 				var candidateOffsets = new List<CandidateViewNode>();
+				var cellOffsets = new List<CellViewNode>();
 				foreach (var cell in urCells)
 				{
-					if (grid.GetStatus(cell) != CellStatus.Empty)
+					switch (grid.GetStatus(cell))
 					{
-						continue;
-					}
+						case CellStatus.Empty:
+						{
+							foreach (var digit in (short)(grid.GetCandidates(cell) & comparer))
+							{
+								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+							}
 
-					foreach (var digit in (short)(grid.GetCandidates(cell) & comparer))
-					{
-						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+							break;
+						}
+						case CellStatus.Modifiable:
+						{
+							cellOffsets.Add(new(DisplayColorKind.Normal, cell));
+
+							break;
+						}
 					}
 				}
 				foreach (var cell in guardianCells)
@@ -4125,13 +4134,14 @@ unsafe partial class UniqueRectangleStepSearcher
 				accumulator.Add(
 					new UniqueRectangleExternalXyWingStep(
 						from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
-						ImmutableArray.Create(View.Empty | candidateOffsets),
+						ImmutableArray.Create(View.Empty | cellOffsets | candidateOffsets),
 						d1,
 						d2,
 						cells,
 						guardianCells,
 						cellPair,
 						IsIncomplete(candidateOffsets),
+						cellOffsets.Count != 0,
 						index
 					)
 				);
@@ -4140,7 +4150,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR + Guardian, with external ALS-XZ rule.
+	/// Check UR/AR + Guardian, with external ALS-XZ rule.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -4231,16 +4241,27 @@ unsafe partial class UniqueRectangleStepSearcher
 
 						// ALS-XZ formed.
 						var candidateOffsets = new List<CandidateViewNode>();
+						var cellOffsets = new List<CellViewNode>();
 						foreach (var urCell in urCells)
 						{
-							if (grid.GetStatus(urCell) == CellStatus.Empty)
+							switch (grid.GetStatus(urCell))
 							{
-								foreach (var digit in comparer)
+								case CellStatus.Empty:
 								{
-									if (CandidatesMap[digit].Contains(urCell))
+									foreach (var digit in comparer)
 									{
-										candidateOffsets.Add(new(DisplayColorKind.Normal, urCell * 9 + digit));
+										if (CandidatesMap[digit].Contains(urCell))
+										{
+											candidateOffsets.Add(new(DisplayColorKind.Normal, urCell * 9 + digit));
+										}
 									}
+
+									break;
+								}
+								case CellStatus.Modifiable:
+								{
+									cellOffsets.Add(new(DisplayColorKind.Normal, urCell));
+									break;
 								}
 							}
 						}
@@ -4273,6 +4294,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								ImmutableArray.Create(
 									View.Empty
 										| candidateOffsets
+										| cellOffsets
 										| new HouseViewNode(DisplayColorKind.AlmostLockedSet1, alsHouse)
 								),
 								d1,
@@ -4281,6 +4303,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								guardianCells,
 								als,
 								IsIncomplete(candidateOffsets),
+								cellOffsets.Count != 0,
 								index
 							)
 						);

@@ -11,6 +11,7 @@
 /// <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
 /// <param name="CellPair">Indicates the cell pair.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+/// <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 internal sealed record UniqueRectangleExternalXyWingStep(
 	ConclusionList Conclusions,
@@ -21,12 +22,13 @@ internal sealed record UniqueRectangleExternalXyWingStep(
 	scoped in CellMap GuardianCells,
 	scoped in CellMap CellPair,
 	bool IsIncomplete,
+	bool IsAvoidable,
 	int AbsoluteOffset
 ) :
 	UniqueRectangleStep(
 		Conclusions,
 		Views,
-		Technique.UniqueRectangleExternalXyWing,
+		IsAvoidable ? Technique.AvoidableRectangleExternalXyWing : Technique.UniqueRectangleExternalXyWing,
 		Digit1,
 		Digit2,
 		Cells,
@@ -46,6 +48,7 @@ internal sealed record UniqueRectangleExternalXyWingStep(
 		=> new[]
 		{
 			(PhasedDifficultyRatingKinds.Guardian, A004526(GuardianCells.Count) * .1M),
+			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0),
 			(PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 

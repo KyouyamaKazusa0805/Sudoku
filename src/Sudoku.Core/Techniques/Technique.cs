@@ -1179,6 +1179,16 @@ public enum Technique : short
 	AvoidableRectangleHiddenSingleColumn,
 
 	/// <summary>
+	/// Indicates avoidable rectangle external XY-Wing.
+	/// </summary>
+	AvoidableRectangleExternalXyWing,
+
+	/// <summary>
+	/// Indicates avoidable rectangle external almost locked sets XZ rule.
+	/// </summary>
+	AvoidableRectangleExternalAlmostLockedSetsXz,
+
+	/// <summary>
 	/// Indicates unique loop type 1.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]

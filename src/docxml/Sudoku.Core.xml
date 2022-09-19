@@ -5825,6 +5825,16 @@
               Looks up a localized string similar to Avoidable Rectangle Guardian.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.AvoidableRectangleExternalAlmostLockedSetsXz">
+            <summary>
+              Looks up a localized string similar to Avoidable Rectangle External Almost Locked Sets XZ Rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.AvoidableRectangleExternalXyWing">
+            <summary>
+              Looks up a localized string similar to Avoidable Rectangle External XY-Wing.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.AvoidableRectangleHiddenSingleBlock">
             <summary>
               Looks up a localized string similar to Avoidable Rectangle Hidden Single in Block.
@@ -11785,7 +11795,7 @@
         </member>
         <member name="M:Sudoku.Solving.Logics.Implementations.Searchers.UniqueRectangleStepSearcher.CheckExternalXyWing(System.Collections.Generic.ICollection{Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Check UR + Guardian, with external XY-Wing.
+            Check UR/AR + Guardian, with external XY-Wing.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -11797,7 +11807,7 @@
         </member>
         <member name="M:Sudoku.Solving.Logics.Implementations.Searchers.UniqueRectangleStepSearcher.CheckExternalAlmostLockedSetsXz(System.Collections.Generic.ICollection{Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],Sudoku.Techniques.Patterns.AlmostLockedSet[],System.Int16,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Check UR + Guardian, with external ALS-XZ rule.
+            Check UR/AR + Guardian, with external ALS-XZ rule.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -16456,9 +16466,10 @@
             <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
             <param name="AlmostLockedSet">The almost locked sets used.</param>
             <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Techniques.Patterns.AlmostLockedSet,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Techniques.Patterns.AlmostLockedSet,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
             </summary>
@@ -16470,6 +16481,7 @@
             <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
             <param name="AlmostLockedSet">The almost locked sets used.</param>
             <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.GuardianCells">
@@ -16511,9 +16523,10 @@
             <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
             <param name="CellPair">Indicates the cell pair.</param>
             <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External XY-Wing</b> technique.
             </summary>
@@ -16525,6 +16538,7 @@
             <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
             <param name="CellPair">Indicates the cell pair.</param>
             <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalXyWingStep.GuardianCells">
@@ -22427,6 +22441,16 @@
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleHiddenSingleColumn">
             <summary>
             Indicates avoidable rectangle hidden single in column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleExternalXyWing">
+            <summary>
+            Indicates avoidable rectangle external XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleExternalAlmostLockedSetsXz">
+            <summary>
+            Indicates avoidable rectangle external almost locked sets XZ rule.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueLoopType1">
