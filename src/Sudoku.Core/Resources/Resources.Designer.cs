@@ -322,6 +322,33 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle External Skyscraper.
+        /// </summary>
+        internal static string AvoidableRectangleExternalSkyscraper {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleExternalSkyscraper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle External Turbot Fish.
+        /// </summary>
+        internal static string AvoidableRectangleExternalTurbotFish {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleExternalTurbotFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle External Two-String Kite.
+        /// </summary>
+        internal static string AvoidableRectangleExternalTwoStringKite {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleExternalTwoStringKite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Type 1.
         /// </summary>
         internal static string AvoidableRectangleExternalType1 {
@@ -3490,6 +3517,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian cells {GuardianCellsStr}, forming a turbot fish with cells {CellPairStr} of digit {TurbotFishDigitStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueRectangleExternalTurbotFishStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalTurbotFishStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_UniqueRectangleExternalType1Or2Step {
@@ -3918,6 +3954,33 @@ namespace Sudoku.Resources {
         internal static string UniqueRectangleExternalAlmostLockedSetsXz {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalAlmostLockedSetsXz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle External Skyscraper.
+        /// </summary>
+        internal static string UniqueRectangleExternalSkyscraper {
+            get {
+                return ResourceManager.GetString("UniqueRectangleExternalSkyscraper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle External Turbot Fish.
+        /// </summary>
+        internal static string UniqueRectangleExternalTurbotFish {
+            get {
+                return ResourceManager.GetString("UniqueRectangleExternalTurbotFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle External Two-String Kite.
+        /// </summary>
+        internal static string UniqueRectangleExternalTwoStringKite {
+            get {
+                return ResourceManager.GetString("UniqueRectangleExternalTwoStringKite", resourceCulture);
             }
         }
         

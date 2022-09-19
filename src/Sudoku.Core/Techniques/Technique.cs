@@ -1088,6 +1088,21 @@ public enum Technique : short
 	UniqueRectangleExternalType4,
 
 	/// <summary>
+	/// Indicates unique rectangle external skyscraper.
+	/// </summary>
+	UniqueRectangleExternalSkyscraper,
+
+	/// <summary>
+	/// Indicates unique rectangle external two-string kite.
+	/// </summary>
+	UniqueRectangleExternalTwoStringKite,
+
+	/// <summary>
+	/// Indicates unique rectangle external turbot fish.
+	/// </summary>
+	UniqueRectangleExternalTurbotFish,
+
+	/// <summary>
 	/// Indicates unique rectangle external XY-Wing.
 	/// </summary>
 	UniqueRectangleExternalXyWing,
@@ -1179,24 +1194,39 @@ public enum Technique : short
 	AvoidableRectangleHiddenSingleColumn,
 
 	/// <summary>
-	/// Indicates unique avoidable external type 1.
+	/// Indicates avoidable rectangle external type 1.
 	/// </summary>
 	AvoidableRectangleExternalType1,
 
 	/// <summary>
-	/// Indicates unique avoidable external type 2.
+	/// Indicates avoidable rectangle external type 2.
 	/// </summary>
 	AvoidableRectangleExternalType2,
 
 	/// <summary>
-	/// Indicates unique avoidable external type 3.
+	/// Indicates avoidable rectangle external type 3.
 	/// </summary>
 	AvoidableRectangleExternalType3,
 
 	/// <summary>
-	/// Indicates unique avoidable external type 4.
+	/// Indicates avoidable rectangle external type 4.
 	/// </summary>
 	AvoidableRectangleExternalType4,
+
+	/// <summary>
+	/// Indicates avoidable rectangle external skyscraper.
+	/// </summary>
+	AvoidableRectangleExternalSkyscraper,
+
+	/// <summary>
+	/// Indicates avoidable rectangle external two-string kite.
+	/// </summary>
+	AvoidableRectangleExternalTwoStringKite,
+
+	/// <summary>
+	/// Indicates avoidable rectangle external turbot fish.
+	/// </summary>
+	AvoidableRectangleExternalTurbotFish,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external XY-Wing.

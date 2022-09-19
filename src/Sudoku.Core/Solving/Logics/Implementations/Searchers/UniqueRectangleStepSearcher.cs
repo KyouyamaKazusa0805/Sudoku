@@ -46,11 +46,16 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 	/// <summary>
 	/// Get all possible hints from the grid.
 	/// </summary>
-	/// <param name="gathered">The list stored the result.</param>
-	/// <param name="grid">The grid.</param>
+	/// <param name="gathered">
+	/// <inheritdoc cref="GetAll(ICollection{IStep}, in Grid, bool)" path="/param[@name='accumulator']/para[1]"/>
+	/// </param>
+	/// <param name="grid">
+	/// <inheritdoc cref="GetAll(ICollection{IStep}, in Grid, bool)" path="/param[@name='grid']"/>
+	/// </param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
 	private void GetAll(ICollection<UniqueRectangleStep> gathered, scoped in Grid grid, bool arMode)
 	{
+		// Search for ALSes. This result will be used by UR External ALS-XZ structures.
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 
 		// Iterate on each possible UR structure.
@@ -98,6 +103,7 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 						CheckExternalType1Or2(gathered, grid, urCells, d1, d2, index);
 						CheckExternalType3(gathered, grid, urCells, comparer, d1, d2, index);
 						CheckExternalType4(gathered, grid, urCells, comparer, d1, d2, index);
+						CheckExternalTurbotFish(gathered, grid, urCells, comparer, d1, d2, index);
 						CheckExternalXyWing(gathered, grid, urCells, comparer, d1, d2, index);
 						CheckExternalAlmostLockedSetsXz(gathered, grid, urCells, alses, comparer, d1, d2, index);
 					}
@@ -250,6 +256,7 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 	partial void CheckExternalType1Or2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int index);
 	partial void CheckExternalType3(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
 	partial void CheckExternalType4(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
+	partial void CheckExternalTurbotFish(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
 	partial void CheckExternalXyWing(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
 	partial void CheckExternalAlmostLockedSetsXz(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, AlmostLockedSet[] alses, short comparer, int d1, int d2, int index);
 	partial void CheckHiddenSingleAvoidable(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
@@ -4016,6 +4023,160 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
+	/// Check UR/AR + Guardian, with external turbot fish.
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="comparer">The comparer.</param>
+	/// <param name="d1">The digit 1 used in UR.</param>
+	/// <param name="d2">The digit 2 used in UR.</param>
+	/// <param name="index">The mask index.</param>
+	partial void CheckExternalTurbotFish(
+		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
+		short comparer, int d1, int d2, int index)
+	{
+		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		{
+			return;
+		}
+
+		var cells = (CellMap)urCells;
+
+		// Iterate on two houses used.
+		foreach (var houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
+		{
+			var guardianMap = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
+			if ((guardianMap & cells) != cells)
+			{
+				// The houses must contain all 4 UR cells.
+				continue;
+			}
+
+			var guardianCells = guardianMap - cells & (CandidatesMap[d1] | CandidatesMap[d2]);
+			if (guardianCells is { Count: not 1, CoveredHouses: 0 })
+			{
+				// All guardian cells must lie in one house.
+				continue;
+			}
+
+			var digit1IntersectionMap = guardianCells & CandidatesMap[d1];
+			var digit2IntersectionMap = guardianCells & CandidatesMap[d2];
+			if (!(digit1IntersectionMap ^ digit2IntersectionMap))
+			{
+				// For this type guardian cells can only hold one digit appeared in UR.
+				continue;
+			}
+
+			var guardianDigit = digit1IntersectionMap ? d1 : d2;
+			guardianCells &= CandidatesMap[guardianDigit];
+			if (guardianCells.Count != 2)
+			{
+				continue;
+			}
+
+			foreach (var coveredHouse in guardianCells.CoveredHouses)
+			{
+				for (var house = 0; house < 27; house++)
+				{
+					if (house == coveredHouse)
+					{
+						continue;
+					}
+
+					if ((cells.Houses >> house & 1) != 0)
+					{
+						// It's unnecessary to construct another strong link on houses that UR has already covered.
+						continue;
+					}
+
+					var potentialConjugatePairMap = HousesMap[house] & CandidatesMap[guardianDigit];
+					if (potentialConjugatePairMap.Count != 2)
+					{
+						// There is no conjugate pairs in the house.
+						continue;
+					}
+
+					if ((potentialConjugatePairMap.ExpandedPeers & guardianCells) is not [var guardianConnectedCell])
+					{
+						// They cannot be connected.
+						continue;
+					}
+
+					// Possible external turbot fish found.
+					var anotherHead = (potentialConjugatePairMap - (PeersMap[guardianConnectedCell] & potentialConjugatePairMap)[0])[0];
+					var guardianHead = (guardianCells - guardianConnectedCell)[0];
+					var elimMap = PeersMap[guardianHead] & PeersMap[anotherHead] & CandidatesMap[guardianDigit];
+					if (!elimMap)
+					{
+						// No eliminations found.
+						continue;
+					}
+
+					var candidateOffsets = new List<CandidateViewNode>();
+					var cellOffsets = new List<CellViewNode>();
+					foreach (var cell in urCells)
+					{
+						switch (grid.GetStatus(cell))
+						{
+							case CellStatus.Empty:
+							{
+								foreach (var digit in (short)(grid.GetCandidates(cell) & comparer))
+								{
+									candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+								}
+
+								break;
+							}
+							case CellStatus.Modifiable:
+							{
+								cellOffsets.Add(new(DisplayColorKind.Normal, cell));
+								break;
+							}
+						}
+					}
+					foreach (var cell in guardianCells)
+					{
+						candidateOffsets.Add(
+							new(
+								cell == guardianHead ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Auxiliary2,
+								cell * 9 + guardianDigit
+							)
+						);
+					}
+					foreach (var cell in potentialConjugatePairMap)
+					{
+						candidateOffsets.Add(
+							new(
+								cell == anotherHead ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Auxiliary2,
+								cell * 9 + guardianDigit
+							)
+						);
+					}
+
+					accumulator.Add(
+						new UniqueRectangleExternalTurbotFishStep(
+							from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
+							ImmutableArray.Create(View.Empty | cellOffsets | candidateOffsets),
+							d1,
+							d2,
+							cells,
+							guardianCells,
+							potentialConjugatePairMap,
+							guardianDigit,
+							coveredHouse,
+							house,
+							IsIncomplete(candidateOffsets),
+							cellOffsets.Count != 0,
+							index
+						)
+					);
+				}
+			}
+		}
+	}
+
+	/// <summary>
 	/// Check UR/AR + Guardian, with external XY-Wing.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
@@ -4050,8 +4211,6 @@ unsafe partial class UniqueRectangleStepSearcher
 			if (!(guardianCells & CandidatesMap[d1]) || !(guardianCells & CandidatesMap[d2]))
 			{
 				// Guardian cells must contain both two digits; otherwise, skip the current case.
-				// Please note that 'operator &' has the priority than 'operator &&'. Therefore we do not need
-				// to add brackets here.
 				continue;
 			}
 
@@ -4216,8 +4375,6 @@ unsafe partial class UniqueRectangleStepSearcher
 			if (!(guardianCells & CandidatesMap[d1]) || !(guardianCells & CandidatesMap[d2]))
 			{
 				// Guardian cells must contain both two digits; otherwise, skip the current case.
-				// Please note that 'operator &' has the priority than 'operator &&'. Therefore we do not need
-				// to add brackets here.
 				continue;
 			}
 

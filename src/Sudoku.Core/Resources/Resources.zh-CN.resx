@@ -1800,4 +1800,31 @@
     <value>可规避矩形・外部类型 4</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="AvoidableRectangleExternalTurbotFish" xml:space="preserve">
+    <value>可规避矩形・外部多宝鱼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="UniqueRectangleExternalSkyscraper" xml:space="preserve">
+    <value>唯一矩形・外部摩天楼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="UniqueRectangleExternalTurbotFish" xml:space="preserve">
+    <value>唯一矩形・外部多宝鱼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="AvoidableRectangleExternalSkyscraper" xml:space="preserve">
+    <value>可规避矩形・外部摩天楼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="AvoidableRectangleExternalTwoStringKite" xml:space="preserve">
+    <value>可规避矩形・外部双线风筝</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_UniqueRectangleExternalTurbotFishStep" xml:space="preserve">
+    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并带有守护者位于单元格 {GuardianCellsStr} 之中，并和外侧单元格 {CellPairStr} 构成双强链结构，数字是 {TurbotFishDigitStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="UniqueRectangleExternalTwoStringKite" xml:space="preserve">
+    <value>唯一矩形・外部双线风筝</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

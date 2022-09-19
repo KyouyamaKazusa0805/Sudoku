@@ -1491,4 +1491,25 @@
   <data name="AvoidableRectangleExternalType4" xml:space="preserve">
     <value>Avoidable Rectangle External Type 4</value>
   </data>
+  <data name="AvoidableRectangleExternalSkyscraper" xml:space="preserve">
+    <value>Avoidable Rectangle External Skyscraper</value>
+  </data>
+  <data name="AvoidableRectangleExternalTurbotFish" xml:space="preserve">
+    <value>Avoidable Rectangle External Turbot Fish</value>
+  </data>
+  <data name="AvoidableRectangleExternalTwoStringKite" xml:space="preserve">
+    <value>Avoidable Rectangle External Two-String Kite</value>
+  </data>
+  <data name="TechniqueFormat_UniqueRectangleExternalTurbotFishStep" xml:space="preserve">
+    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian cells {GuardianCellsStr}, forming a turbot fish with cells {CellPairStr} of digit {TurbotFishDigitStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="UniqueRectangleExternalSkyscraper" xml:space="preserve">
+    <value>Unique Rectangle External Skyscraper</value>
+  </data>
+  <data name="UniqueRectangleExternalTurbotFish" xml:space="preserve">
+    <value>Unique Rectangle External Turbot Fish</value>
+  </data>
+  <data name="UniqueRectangleExternalTwoStringKite" xml:space="preserve">
+    <value>Unique Rectangle External Two-String Kite</value>
+  </data>
 </root>
