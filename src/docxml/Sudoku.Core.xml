@@ -19979,11 +19979,12 @@
             <item>Unique Rectangle External Type 2</item>
             <item>Unique Rectangle External Type 3</item>
             <item>Unique Rectangle External Type 4</item>
-            <!--<item>Unique Rectangle External Type with XY-Wing</item>-->
+            <item>Unique Rectangle External Type with XY-Wing</item>
             <item>Unique Rectangle External Type with ALS-XZ</item>
             <!--<item>Unique Rectangle External Type with Skyscraper</item>-->
             </list>
             </item>
+            <item>Avoidable Rectangle + Guardian (Sub-types are same like above)</item>
             </list>
             </item>
             <item>
