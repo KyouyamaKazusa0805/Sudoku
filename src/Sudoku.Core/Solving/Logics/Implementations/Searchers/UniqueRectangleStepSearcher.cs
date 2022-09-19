@@ -4004,11 +4004,6 @@ unsafe partial class UniqueRectangleStepSearcher
 		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
 		short comparer, int d1, int d2, int index)
 	{
-		// There are two examples that the searcher cannot find:
-		// ...8+59+3.+1.3.+71+2+45...14638..4+85+6.+19.7.16...58.2.3.+8.6+14+3.21987..+16..7.+29....2.6+1..:712 931 732 355 589 991 492 493 893 399
-		// ..3+69+84...6+9+72+4.8+37+8+43+51..6..28.73..89.....54..15+498.+29..4.6..8.1..8..4...8.7.6..:218 641 572 777 581 591 592
-		// I'll fix it later.
-
 		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
@@ -4051,15 +4046,15 @@ unsafe partial class UniqueRectangleStepSearcher
 			{
 				var cell1 = cellPair[0];
 				var cell2 = cellPair[1];
-				if ((CellsMap[cell1] + cell2).InOneHouse)
+				var unionCellsOfCellPairOwnPeers = PeersMap[cell1] | PeersMap[cell2];
+				var cellsThatDigit1CanSee = unionCellsOfCellPairOwnPeers & CandidatesMap[d1];
+				var cellsThatDigit2CanSee = unionCellsOfCellPairOwnPeers & CandidatesMap[d2];
+				var guardianCellsThatContainsDigit1 = guardianCells & CandidatesMap[d1];
+				var guardianCellsThatContainsDigit2 = guardianCells & CandidatesMap[d2];
+				if ((cellsThatDigit1CanSee & guardianCellsThatContainsDigit1) != guardianCellsThatContainsDigit1
+					|| (cellsThatDigit2CanSee & guardianCellsThatContainsDigit2) != guardianCellsThatContainsDigit2)
 				{
-					// Two cells cannot lie in a same house.
-					continue;
-				}
-
-				if (((PeersMap[cell1] | PeersMap[cell2]) & guardianCells) != guardianCells)
-				{
-					// Two cells must cover all guardian cells.
+					// Two cells must see all guardian cells.
 					continue;
 				}
 

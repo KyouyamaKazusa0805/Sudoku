@@ -125,10 +125,14 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 			{
 				return false;
 			}
+		}
 
-			if ((intersectedMask >> d1 & 1) == 0 && (intersectedMask >> d2 & 1) == 0)
+		// All four cells must contain at least one digit appeared in the UR.
+		var comparer = (short)(1 << d1 | 1 << d2);
+		foreach (var cell in urCells)
+		{
+			if ((grid.GetCandidates(cell) & comparer) == 0)
 			{
-				// Two cells must contain both two digits.
 				return false;
 			}
 		}
