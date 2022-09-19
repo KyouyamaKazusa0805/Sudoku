@@ -1431,13 +1431,6 @@
         <member name="M:Sudoku.Concepts.CellMap.Equals(Sudoku.Concepts.CellMap@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.GetSubviewMask(System.Int32)">
-            <summary>
-            Get the sub-view mask of this map.
-            </summary>
-            <param name="houseIndex">The house index.</param>
-            <returns>The mask.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.GetHashCode">
             <inheritdoc/>
         </member>
@@ -1723,6 +1716,9 @@
             </item>
             </list>
             </returns>
+            <exception cref="T:System.NotSupportedException">
+            Throws when both <paramref name="cells"/> count and <paramref name="subsetSize"/> are greater than 30.
+            </exception>
             <remarks>
             For example, if the argument <paramref name="cells"/> is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
             and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
@@ -16676,34 +16672,7 @@
         <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep.D1Str">
-            <summary>
-            Indicates the digit 1 string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep.D2Str">
-            <summary>
-            Indicates the digit 2 string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep.CellsStr">
-            <summary>
-            Indicates the cells string.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep.Equals(Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep,Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStepEqualityComparer">
-            <summary>
-            Defiles a way to filter duplicated items of type <see cref="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep"/>
-        </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStepEqualityComparer.Equals(Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep,Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStepEqualityComparer.GetHashCode(Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleType1Step">
@@ -17770,14 +17739,6 @@
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Solving.Logics.LogicalSolverResult.Steps"/>
         </member>
-        <member name="T:Sudoku.Solving.Logics.Prototypes.DistinctTypeAttribute`2">
-            <summary>
-            Defines an internal type that controls the customized equality comparing operation
-            of type <typeparamref name="TEqualityComparer"/> on elements of type <typeparamref name="TStep"/>.
-            </summary>
-            <typeparam name="TStep">The type of the step.</typeparam>
-            <typeparam name="TEqualityComparer">The equality comparer to filter duplicated items.</typeparam>
-        </member>
         <member name="T:Sudoku.Solving.Logics.Prototypes.IAlmostHiddenSetsStepSearcher">
             <summary>
             Provides with an <b>Almost Hidden Sets</b> step searcher.
@@ -18482,6 +18443,16 @@
             The internal comparer instance.
             </summary>
             <typeparam name="TStep">The type of the step.</typeparam>
+        </member>
+        <member name="F:Sudoku.Solving.Logics.Prototypes.DefaultComparer`1.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Prototypes.DefaultComparer`1.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logics.Prototypes.DefaultComparer`1"/> instance.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Logics.Prototypes.DefaultComparer`1.Equals(`0,`0)">
             <inheritdoc/>

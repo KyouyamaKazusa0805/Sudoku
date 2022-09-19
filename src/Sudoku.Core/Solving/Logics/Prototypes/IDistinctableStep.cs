@@ -57,16 +57,7 @@ internal interface IDistinctableStep<in TStep> : IStep where TStep : Step
 			[] => Array.Empty<TDistinctableStep>(),
 			[var firstElement] => new[] { firstElement },
 			[var a, var b] => TDistinctableStep.Equals(a, b) ? new[] { a } : new[] { a, b },
-			_ => new HashSet<TDistinctableStep>(
-				list,
-				typeof(TDistinctableStep).GetGenericAttributeTypeArguments(typeof(DistinctTypeAttribute<,>)) switch
-				{
-					[_, var equalityComparerType]
-						=> (IEqualityComparer<TDistinctableStep>)Activator.CreateInstance(equalityComparerType)!,
-					_
-						=> new DefaultComparer<TDistinctableStep>(),
-				}
-			)
+			_ => new HashSet<TDistinctableStep>(list, DefaultComparer<TDistinctableStep>.Instance)
 		};
 }
 
@@ -76,9 +67,22 @@ internal interface IDistinctableStep<in TStep> : IStep where TStep : Step
 /// <typeparam name="TStep">The type of the step.</typeparam>
 file sealed class DefaultComparer<TStep> : IEqualityComparer<TStep> where TStep : Step, IDistinctableStep<TStep>
 {
+	/// <summary>
+	/// Indicates the singleton instance.
+	/// </summary>
+	public static DefaultComparer<TStep> Instance = new();
+
+
+	/// <summary>
+	/// Initializes a <see cref="DefaultComparer{TStep}"/> instance.
+	/// </summary>
+	private DefaultComparer()
+	{
+	}
+
+
 	/// <inheritdoc/>
-	public bool Equals(TStep? x, TStep? y)
-		=> (x, y) switch { (null, null) => true, (not null, not null) => TStep.Equals(x, y), _ => false };
+	public bool Equals(TStep? x, TStep? y) => TStep.Equals(x!, y!);
 
 	/// <inheritdoc/>
 	public int GetHashCode(TStep obj) => 0;

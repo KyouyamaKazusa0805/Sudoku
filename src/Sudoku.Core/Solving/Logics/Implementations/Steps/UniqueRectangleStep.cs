@@ -35,7 +35,6 @@
 /// </para>
 /// </param>
 /// <seealso cref="Step.TechniqueCode"/>
-[DistinctType<UniqueRectangleStep, UniqueRectangleStepEqualityComparer>]
 internal abstract record UniqueRectangleStep(
 	ConclusionList Conclusions,
 	ViewList Views,
@@ -57,43 +56,19 @@ internal abstract record UniqueRectangleStep(
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectangle;
 
-	/// <summary>
-	/// Indicates the digit 1 string.
-	/// </summary>
+
 	[ResourceTextFormatter]
 	internal string D1Str() => (Digit1 + 1).ToString();
 
-	/// <summary>
-	/// Indicates the digit 2 string.
-	/// </summary>
 	[ResourceTextFormatter]
 	internal string D2Str() => (Digit2 + 1).ToString();
 
-	/// <summary>
-	/// Indicates the cells string.
-	/// </summary>
 	[ResourceTextFormatter]
 	internal string CellsStr() => Cells.ToString();
 
 
 	/// <inheritdoc/>
 	public static bool Equals(UniqueRectangleStep left, UniqueRectangleStep right)
-		=> left.GetType() == right.GetType() && left.TechniqueCode == right.TechniqueCode
-		&& left.AbsoluteOffset == right.AbsoluteOffset
+		=> left.TechniqueCode == right.TechniqueCode && left.AbsoluteOffset == right.AbsoluteOffset
 		&& left.Digit1 == right.Digit1 && left.Digit2 == right.Digit2;
-}
-
-/// <summary>
-/// Defiles a way to filter duplicated items of type <see cref="UniqueRectangleStep"/>.
-/// </summary>
-/// <seealso cref="UniqueRectangleStep"/>
-internal sealed class UniqueRectangleStepEqualityComparer : IEqualityComparer<UniqueRectangleStep>
-{
-	/// <inheritdoc/>
-	public bool Equals(UniqueRectangleStep? x, UniqueRectangleStep? y)
-		=> (x, y) switch { (null, null) => true, (not null, not null) => UniqueRectangleStep.Equals(x, y), _ => false };
-
-	/// <inheritdoc/>
-	public int GetHashCode(UniqueRectangleStep obj)
-		=> HashCode.Combine(obj.TechniqueCode, obj.AbsoluteOffset, obj.Digit1, obj.Digit2, obj.GetType());
 }

@@ -4031,7 +4031,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			}
 
 			var cellsToEnumerate = guardianCells.ExpandedPeers & (CandidatesMap[d1] | CandidatesMap[d2]);
-			if (cellsToEnumerate.Count < 2)
+			if (cellsToEnumerate.Count is < 2)
 			{
 				// No valid combinations.
 				continue;

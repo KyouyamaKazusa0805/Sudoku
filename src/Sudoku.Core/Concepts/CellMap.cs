@@ -1197,6 +1197,9 @@ public struct CellMap :
 	/// </item>
 	/// </list>
 	/// </returns>
+	/// <exception cref="NotSupportedException">
+	/// Throws when both <paramref name="cells"/> count and <paramref name="subsetSize"/> are greater than 30.
+	/// </exception>
 	/// <remarks>
 	/// For example, if the argument <paramref name="cells"/> is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
 	/// and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
@@ -1215,31 +1218,72 @@ public struct CellMap :
 			return new[] { cells };
 		}
 
-		int totalIndex = 0, n = cells._count;
+		var n = cells._count;
 		var buffer = stackalloc int[subsetSize];
-		var result = new CellMap[Combinatorials[n - 1, subsetSize - 1]];
-		f(subsetSize, n, subsetSize, cells.Offsets);
-		return result;
-
-
-		void f(int size, int last, int index, int[] offsets)
+		if (n <= 30 && subsetSize <= 30)
 		{
-			for (var i = last; i >= index; i--)
-			{
-				buffer[index - 1] = i - 1;
-				if (index > 1)
-				{
-					f(size, i - 1, index - 1, offsets);
-				}
-				else
-				{
-					var temp = new int[size];
-					for (var j = 0; j < size; j++)
-					{
-						temp[j] = offsets[buffer[j]];
-					}
+			// Optimization: Use table to get the total number of result elements.
+			var totalIndex = 0;
+			var result = new CellMap[Combinatorials[n - 1, subsetSize - 1]];
+			f(subsetSize, n, subsetSize, cells.Offsets);
+			return result;
 
-					result[totalIndex++] = (CellMap)temp;
+
+			void f(int size, int last, int index, int[] offsets)
+			{
+				for (var i = last; i >= index; i--)
+				{
+					buffer[index - 1] = i - 1;
+					if (index > 1)
+					{
+						f(size, i - 1, index - 1, offsets);
+					}
+					else
+					{
+						var temp = new int[size];
+						for (var j = 0; j < size; j++)
+						{
+							temp[j] = offsets[buffer[j]];
+						}
+
+						result[totalIndex++] = (CellMap)temp;
+					}
+				}
+			}
+		}
+		else if (n > 30 && subsetSize > 30)
+		{
+			throw new NotSupportedException(
+				"Both cells count and subset size is too large, which may cause potential out of memory exception. " +
+				"This operator will throw this exception to calculate the result, " +
+				"in order to prevent any possible exceptions thrown.");
+		}
+		else
+		{
+			var result = new List<CellMap>();
+			f(subsetSize, n, subsetSize, cells.Offsets);
+			return result.ToArray();
+
+
+			void f(int size, int last, int index, int[] offsets)
+			{
+				for (var i = last; i >= index; i--)
+				{
+					buffer[index - 1] = i - 1;
+					if (index > 1)
+					{
+						f(size, i - 1, index - 1, offsets);
+					}
+					else
+					{
+						var temp = new int[size];
+						for (var j = 0; j < size; j++)
+						{
+							temp[j] = offsets[buffer[j]];
+						}
+
+						result.Add((CellMap)temp);
+					}
 				}
 			}
 		}
