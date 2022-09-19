@@ -35,7 +35,7 @@ internal sealed record UniqueRectangleExternalAlmostLockedSetsXzStep(
 		Digit1,
 		Digit2,
 		Cells,
-		false,
+		IsAvoidable,
 		AbsoluteOffset
 	),
 	IStepWithPhasedDifficulty

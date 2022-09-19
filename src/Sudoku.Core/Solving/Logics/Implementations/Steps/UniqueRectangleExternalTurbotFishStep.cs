@@ -46,7 +46,7 @@ internal sealed record UniqueRectangleExternalTurbotFishStep(
 		Digit1,
 		Digit2,
 		Cells,
-		false,
+		IsAvoidable,
 		AbsoluteOffset
 	),
 	IStepWithPhasedDifficulty

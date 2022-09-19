@@ -33,7 +33,7 @@ internal sealed record UniqueRectangleExternalType4Step(
 		Digit1,
 		Digit2,
 		Cells,
-		false,
+		IsAvoidable,
 		AbsoluteOffset
 	),
 	IStepWithPhasedDifficulty

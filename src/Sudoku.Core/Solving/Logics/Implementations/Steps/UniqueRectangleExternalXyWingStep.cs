@@ -32,7 +32,7 @@ internal sealed record UniqueRectangleExternalXyWingStep(
 		Digit1,
 		Digit2,
 		Cells,
-		false,
+		IsAvoidable,
 		AbsoluteOffset
 	),
 	IStepWithPhasedDifficulty
