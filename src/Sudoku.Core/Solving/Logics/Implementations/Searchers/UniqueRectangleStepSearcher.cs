@@ -4030,12 +4030,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			var unionOfEachCellAppearedInGuardianCells = CellMap.Empty;
-			foreach (var cell in guardianCells)
-			{
-				unionOfEachCellAppearedInGuardianCells |= PeersMap[cell];
-			}
-			var cellsToEnumerate = unionOfEachCellAppearedInGuardianCells & (CandidatesMap[d1] | CandidatesMap[d2]);
+			var cellsToEnumerate = guardianCells.ExpandedPeers & (CandidatesMap[d1] | CandidatesMap[d2]);
 			if (cellsToEnumerate.Count < 2)
 			{
 				// No valid combinations.

@@ -329,6 +329,30 @@ public struct CellMap :
 	}
 
 	/// <summary>
+	/// Gets the expanded peers of the current map.
+	/// </summary>
+	/// <remarks>
+	/// An <b>Expanded Peers</b> is a list of cells that contains all peer cells of each cell
+	/// appeared in the current collection. For example, if a collection contains cells <c>r1c123</c>,
+	/// this collection will be the result of the expression <c>PeersMap[r1c1] | PeersMap[r1c2] | PeersMap[r1c3]</c>,
+	/// which uses the array <see cref="PeersMap"/>.
+	/// </remarks>
+	/// <seealso cref="PeersMap"/>
+	public readonly CellMap ExpandedPeers
+	{
+		get
+		{
+			var result = Empty;
+			foreach (var cell in Offsets)
+			{
+				result |= PeersMap[cell];
+			}
+
+			return result;
+		}
+	}
+
+	/// <summary>
 	/// Indicates the peer intersection of the current instance.
 	/// </summary>
 	/// <remarks>
@@ -589,14 +613,6 @@ public struct CellMap :
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped in CellMap other) => _low == other._low && _high == other._high;
-
-	/// <summary>
-	/// Get the sub-view mask of this map.
-	/// </summary>
-	/// <param name="houseIndex">The house index.</param>
-	/// <returns>The mask.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly short GetSubviewMask(int houseIndex) => this / houseIndex;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

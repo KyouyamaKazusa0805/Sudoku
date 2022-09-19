@@ -1335,6 +1335,18 @@
             and 19 (column 2).
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.CellMap.ExpandedPeers">
+            <summary>
+            Gets the expanded peers of the current map.
+            </summary>
+            <remarks>
+            An <b>Expanded Peers</b> is a list of cells that contains all peer cells of each cell
+            appeared in the current collection. For example, if a collection contains cells <c>r1c123</c>,
+            this collection will be the result of the expression <c>PeersMap[r1c1] | PeersMap[r1c2] | PeersMap[r1c3]</c>,
+            which uses the array <see cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.PeersMap"/>.
+            </remarks>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.PeersMap"/>
+        </member>
         <member name="P:Sudoku.Concepts.CellMap.PeerIntersection">
             <summary>
             Indicates the peer intersection of the current instance.
