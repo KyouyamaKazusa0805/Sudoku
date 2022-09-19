@@ -1,8 +1,8 @@
 ﻿namespace Sudoku.Solving.Logics.Implementations.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unique Rectangle with Guardians</b>
-/// (i.e. Unique Rectangle External Type 2) technique.
+/// Provides with a step that is a <b>Unique Rectangle External Type 1/2</b>
+/// or <b>Avoidable Rectangle External Type 1/2</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
@@ -12,9 +12,10 @@
 /// <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
 /// <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+/// <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable | StepDisplayingFeature.ConstructedTechnique)]
-internal sealed record UniqueRectangleWithGuardianStep(
+internal sealed record UniqueRectangleExternalType1Or2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -23,12 +24,19 @@ internal sealed record UniqueRectangleWithGuardianStep(
 	scoped in CellMap GuardianCells,
 	int GuardianDigit,
 	bool IsIncomplete,
+	bool IsAvoidable,
 	int AbsoluteOffset
 ) :
 	UniqueRectangleStep(
 		Conclusions,
 		Views,
-		GuardianCells.Count == 1 ? Technique.UniqueRectangleExternalType1 : Technique.UniqueRectangleExternalType2,
+		(IsAvoidable, GuardianCells.Count == 1) switch
+		{
+			(true, true) => Technique.AvoidableRectangleExternalType1,
+			(true, false) => Technique.AvoidableRectangleExternalType2,
+			(false, true) => Technique.UniqueRectangleExternalType1,
+			_ => Technique.UniqueRectangleExternalType2
+		},
 		Digit1,
 		Digit2,
 		Cells,
@@ -48,6 +56,7 @@ internal sealed record UniqueRectangleWithGuardianStep(
 		=> new[]
 		{
 			(PhasedDifficultyRatingKinds.Guardian, A004526(GuardianCells.Count) * .1M),
+			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0),
 			(PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 

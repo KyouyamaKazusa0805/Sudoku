@@ -468,7 +468,7 @@
   <data name="TechniqueFormat_UniqueRectangleWithConjugatePairStep" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with {Prefix}conjugate pair{Suffix} {ConjPairsStr} =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleWithGuardianStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleExternalType1Or2Step" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithSueDeCoqStep" xml:space="preserve">
@@ -1347,7 +1347,7 @@
   <data name="TechniqueFormat_JuniorExocetStep" xml:space="preserve">
     <value>{Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr}, digits {DigitsStr} =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleWithGuardianSubsetStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleExternalType3Step" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with cells {SubsetCellsStr} for digits {DigitsStr} as subset =&gt; {ElimStr}</value>
   </data>
   <data name="UniqueRectangleExternalType3" xml:space="preserve">
@@ -1383,7 +1383,7 @@
   <data name="TechniqueFormat_FireworkPairType3Step" xml:space="preserve">
     <value>{Name}: Cells {CellsStr} of digits {DigitsStr} is a firework, with empty rectangle in house {EmptyRectangleStr} =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleWithGuardianConjugatePairStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleExternalType4Step" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with conjugate pair {ConjugatePairStr} =&gt; {ElimStr}</value>
   </data>
   <data name="UniqueRectangleExternalType1" xml:space="preserve">
@@ -1478,5 +1478,17 @@
   </data>
   <data name="AvoidableRectangleExternalXyWing" xml:space="preserve">
     <value>Avoidable Rectangle External XY-Wing</value>
+  </data>
+  <data name="AvoidableRectangleExternalType1" xml:space="preserve">
+    <value>Avoidable Rectangle External Type 1</value>
+  </data>
+  <data name="AvoidableRectangleExternalType2" xml:space="preserve">
+    <value>Avoidable Rectangle External Type 2</value>
+  </data>
+  <data name="AvoidableRectangleExternalType3" xml:space="preserve">
+    <value>Avoidable Rectangle External Type 3</value>
+  </data>
+  <data name="AvoidableRectangleExternalType4" xml:space="preserve">
+    <value>Avoidable Rectangle External Type 4</value>
   </data>
 </root>

@@ -5830,6 +5830,26 @@
               Looks up a localized string similar to Avoidable Rectangle External Almost Locked Sets XZ Rule.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.AvoidableRectangleExternalType1">
+            <summary>
+              Looks up a localized string similar to Avoidable Rectangle External Type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.AvoidableRectangleExternalType2">
+            <summary>
+              Looks up a localized string similar to Avoidable Rectangle External Type 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.AvoidableRectangleExternalType3">
+            <summary>
+              Looks up a localized string similar to Avoidable Rectangle External Type 3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.AvoidableRectangleExternalType4">
+            <summary>
+              Looks up a localized string similar to Avoidable Rectangle External Type 4.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.AvoidableRectangleExternalXyWing">
             <summary>
               Looks up a localized string similar to Avoidable Rectangle External XY-Wing.
@@ -7570,6 +7590,21 @@
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external ALS {AnotherAlsStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleExternalType1Or2Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleExternalType3Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with cells {SubsetCellsStr} for digits {DigitsStr} as subset =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleExternalType4Step">
+            <summary>
+              Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with conjugate pair {ConjugatePairStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleExternalXyWingStep">
             <summary>
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external XY-Wing, with cell pair {CellPairStr} =&gt; {ElimStr}.
@@ -7593,21 +7628,6 @@
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithConjugatePairStep">
             <summary>
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with {Prefix}conjugate pair{Suffix} {ConjPairsStr} =&gt; {ElimStr}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithGuardianConjugatePairStep">
-            <summary>
-              Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with conjugate pair {ConjugatePairStr} =&gt; {ElimStr}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithGuardianStep">
-            <summary>
-              Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithGuardianSubsetStep">
-            <summary>
-              Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with cells {SubsetCellsStr} for digits {DigitsStr} as subset =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithSueDeCoqStep">
@@ -11757,7 +11777,7 @@
         </member>
         <member name="M:Sudoku.Solving.Logics.Implementations.Searchers.UniqueRectangleStepSearcher.CheckExternalType1Or2(System.Collections.Generic.ICollection{Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32)">
             <summary>
-            <para>Check UR + Guardian (i.e. UR External Type 2) and UR External Type 1.</para>
+            <para>Check UR/AR + Guardian (i.e. UR External Type 2) and UR External Type 1.</para>
             <para>
             A UR external type 1 is a special case for type 2, which means only one guardian cell will be used.
             </para>
@@ -11771,7 +11791,7 @@
         </member>
         <member name="M:Sudoku.Solving.Logics.Implementations.Searchers.UniqueRectangleStepSearcher.CheckExternalType3(System.Collections.Generic.ICollection{Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Check UR + Guardian, with external subset (i.e. UR External Type 3).
+            Check UR/AR + Guardian, with external subset (i.e. UR External Type 3).
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -11783,7 +11803,7 @@
         </member>
         <member name="M:Sudoku.Solving.Logics.Implementations.Searchers.UniqueRectangleStepSearcher.CheckExternalType4(System.Collections.Generic.ICollection{Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Check UR + Guardian, with external conjugate pair (i.e. UR External Type 4).
+            Check UR/AR + Guardian, with external conjugate pair (i.e. UR External Type 4).
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -16511,6 +16531,184 @@
         <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType1Or2Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 1/2</b>
+            or <b>Avoidable Rectangle External Type 1/2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType1Or2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 1/2</b>
+            or <b>Avoidable Rectangle External Type 1/2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType1Or2Step.GuardianCells">
+            <summary>Indicates the cells that the guardians lie in.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType1Or2Step.GuardianDigit">
+            <summary>Indicates the digit that the guardians are used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType1Or2Step.IsIncomplete">
+            <summary>Indicates whether the rectangle is incomplete.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType1Or2Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType1Or2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType1Or2Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType1Or2Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType1Or2Step.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType1Or2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="SubsetCells">The extra cells that forms the subset.</param>
+            <param name="SubsetDigitsMask">Indicates the digits that the subset are used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="SubsetCells">The extra cells that forms the subset.</param>
+            <param name="SubsetDigitsMask">Indicates the digits that the subset are used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step.GuardianCells">
+            <summary>Indicates the cells that the guardians lie in.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step.SubsetCells">
+            <summary>The extra cells that forms the subset.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step.SubsetDigitsMask">
+            <summary>Indicates the digits that the subset are used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step.IsIncomplete">
+            <summary>Indicates whether the rectangle is incomplete.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType4Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType4Step.GuardianCells">
+            <summary>Indicates the cells that the guardians lie in.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType4Step.ConjugatePair">
+            <summary>Indicates the conjugate pair used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType4Step.IsIncomplete">
+            <summary>Indicates whether the rectangle is incomplete.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType4Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType4Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType4Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType4Step.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalType4Step.Rarity">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleExternalXyWingStep">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External XY-Wing</b> technique.
@@ -16928,182 +17126,6 @@
             <summary>
             Indicates the conjugate pair string.
             </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianConjugatePairStep">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with Guardians (External Conjugate Pair)</b>
-            (i.e. Unique Rectangle External Type 4) technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Digit1"><inheritdoc/></param>
-            <param name="Digit2"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
-            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
-            <param name="AbsoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with Guardians (External Conjugate Pair)</b>
-            (i.e. Unique Rectangle External Type 4) technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Digit1"><inheritdoc/></param>
-            <param name="Digit2"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
-            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
-            <param name="AbsoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianConjugatePairStep.GuardianCells">
-            <summary>Indicates the cells that the guardians lie in.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianConjugatePairStep.ConjugatePair">
-            <summary>Indicates the conjugate pair used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianConjugatePairStep.IsIncomplete">
-            <summary>Indicates whether the rectangle is incomplete.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianConjugatePairStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianConjugatePairStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianConjugatePairStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianConjugatePairStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianConjugatePairStep.TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianConjugatePairStep.Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianStep">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with Guardians</b>
-            (i.e. Unique Rectangle External Type 2) technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Digit1"><inheritdoc/></param>
-            <param name="Digit2"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
-            <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
-            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
-            <param name="AbsoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with Guardians</b>
-            (i.e. Unique Rectangle External Type 2) technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Digit1"><inheritdoc/></param>
-            <param name="Digit2"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
-            <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
-            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
-            <param name="AbsoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianStep.GuardianCells">
-            <summary>Indicates the cells that the guardians lie in.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianStep.GuardianDigit">
-            <summary>Indicates the digit that the guardians are used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianStep.IsIncomplete">
-            <summary>Indicates whether the rectangle is incomplete.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianStep.TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianStep.Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with Guardians (External Subset)</b>
-            (i.e. Unique Rectangle External Type 3) technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Digit1"><inheritdoc/></param>
-            <param name="Digit2"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
-            <param name="SubsetCells">The extra cells that forms the subset.</param>
-            <param name="SubsetDigitsMask">Indicates the digits that the subset are used.</param>
-            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
-            <param name="AbsoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with Guardians (External Subset)</b>
-            (i.e. Unique Rectangle External Type 3) technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Digit1"><inheritdoc/></param>
-            <param name="Digit2"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
-            <param name="SubsetCells">The extra cells that forms the subset.</param>
-            <param name="SubsetDigitsMask">Indicates the digits that the subset are used.</param>
-            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
-            <param name="AbsoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep.GuardianCells">
-            <summary>Indicates the cells that the guardians lie in.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep.SubsetCells">
-            <summary>The extra cells that forms the subset.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep.SubsetDigitsMask">
-            <summary>Indicates the digits that the subset are used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep.IsIncomplete">
-            <summary>Indicates whether the rectangle is incomplete.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep.TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithGuardianSubsetStep.Rarity">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logics.Implementations.Steps.UniqueRectangleWithSueDeCoqStep">
             <summary>
@@ -22441,6 +22463,26 @@
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleHiddenSingleColumn">
             <summary>
             Indicates avoidable rectangle hidden single in column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleExternalType1">
+            <summary>
+            Indicates unique avoidable external type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleExternalType2">
+            <summary>
+            Indicates unique avoidable external type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleExternalType3">
+            <summary>
+            Indicates unique avoidable external type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleExternalType4">
+            <summary>
+            Indicates unique avoidable external type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleExternalXyWing">

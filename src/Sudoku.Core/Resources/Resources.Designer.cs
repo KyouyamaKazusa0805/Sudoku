@@ -322,6 +322,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle External Type 1.
+        /// </summary>
+        internal static string AvoidableRectangleExternalType1 {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleExternalType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle External Type 2.
+        /// </summary>
+        internal static string AvoidableRectangleExternalType2 {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleExternalType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle External Type 3.
+        /// </summary>
+        internal static string AvoidableRectangleExternalType3 {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleExternalType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle External Type 4.
+        /// </summary>
+        internal static string AvoidableRectangleExternalType4 {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleExternalType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External XY-Wing.
         /// </summary>
         internal static string AvoidableRectangleExternalXyWing {
@@ -3454,6 +3490,33 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueRectangleExternalType1Or2Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalType1Or2Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with cells {SubsetCellsStr} for digits {DigitsStr} as subset =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueRectangleExternalType3Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalType3Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with conjugate pair {ConjugatePairStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_UniqueRectangleExternalType4Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalType4Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external XY-Wing, with cell pair {CellPairStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_UniqueRectangleExternalXyWingStep {
@@ -3495,33 +3558,6 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_UniqueRectangleWithConjugatePairStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithConjugatePairStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with conjugate pair {ConjugatePairStr} =&gt; {ElimStr}.
-        /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleWithGuardianConjugatePairStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithGuardianConjugatePairStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}.
-        /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleWithGuardianStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithGuardianStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with cells {SubsetCellsStr} for digits {DigitsStr} as subset =&gt; {ElimStr}.
-        /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleWithGuardianSubsetStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithGuardianSubsetStep", resourceCulture);
             }
         }
         

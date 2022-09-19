@@ -3587,7 +3587,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// <para>Check UR + Guardian (i.e. UR External Type 2) and UR External Type 1.</para>
+	/// <para>Check UR/AR + Guardian (i.e. UR External Type 2) and UR External Type 1.</para>
 	/// <para>
 	/// A UR external type 1 is a special case for type 2, which means only one guardian cell will be used.
 	/// </para>
@@ -3624,7 +3624,8 @@ unsafe partial class UniqueRectangleStepSearcher
 			if (!guardian1 ^ !guardian2)
 			{
 				var guardianDigit = -1;
-				CellMap? targetElimMap = null, targetGuardianMap = null;
+				var targetElimMap = (CellMap?)null;
+				var targetGuardianMap = (CellMap?)null;
 				if (guardian1 is not [] && (guardian1.PeerIntersection & CandidatesMap[d1]) is var a and not [])
 				{
 					targetElimMap = a;
@@ -3644,6 +3645,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				}
 
 				var candidateOffsets = new List<CandidateViewNode>(16);
+				var cellOffsets = new List<CellViewNode>();
 				foreach (var cell in urCells)
 				{
 					if (CandidatesMap[d1].Contains(cell))
@@ -3654,6 +3656,11 @@ unsafe partial class UniqueRectangleStepSearcher
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
 					}
+
+					if (grid.GetStatus(cell) == CellStatus.Modifiable)
+					{
+						cellOffsets.Add(new(DisplayColorKind.Normal, cell));
+					}
 				}
 				foreach (var cell in guardianMap)
 				{
@@ -3661,10 +3668,11 @@ unsafe partial class UniqueRectangleStepSearcher
 				}
 
 				accumulator.Add(
-					new UniqueRectangleWithGuardianStep(
+					new UniqueRectangleExternalType1Or2Step(
 						from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
 						ImmutableArray.Create(
 							View.Empty
+								| cellOffsets
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
@@ -3678,6 +3686,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						guardianMap,
 						guardianDigit,
 						IsIncomplete(candidateOffsets),
+						cellOffsets.Count != 0,
 						index
 					)
 				);
@@ -3686,7 +3695,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR + Guardian, with external subset (i.e. UR External Type 3).
+	/// Check UR/AR + Guardian, with external subset (i.e. UR External Type 3).
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -3782,6 +3791,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							}
 
 							var candidateOffsets = new List<CandidateViewNode>();
+							var cellOffsets = new List<CellViewNode>();
 							foreach (var cell in urCells)
 							{
 								if (CandidatesMap[d1].Contains(cell))
@@ -3791,6 +3801,11 @@ unsafe partial class UniqueRectangleStepSearcher
 								if (CandidatesMap[d2].Contains(cell))
 								{
 									candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
+								}
+
+								if (grid.GetStatus(cell) == CellStatus.Modifiable)
+								{
+									cellOffsets.Add(new(DisplayColorKind.Normal, cell));
 								}
 							}
 							foreach (var cell in guardianCellPair)
@@ -3813,10 +3828,11 @@ unsafe partial class UniqueRectangleStepSearcher
 							}
 
 							accumulator.Add(
-								new UniqueRectangleWithGuardianSubsetStep(
+								new UniqueRectangleExternalType3Step(
 									conclusions.ToImmutableArray(),
 									ImmutableArray.Create(
 										View.Empty
+											| cellOffsets
 											| candidateOffsets
 											| new HouseViewNode[]
 											{
@@ -3832,6 +3848,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									otherCells,
 									subsetDigitsMask,
 									IsIncomplete(candidateOffsets),
+									cellOffsets.Count != 0,
 									index
 								)
 							);
@@ -3843,7 +3860,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
-	/// Check UR + Guardian, with external conjugate pair (i.e. UR External Type 4).
+	/// Check UR/AR + Guardian, with external conjugate pair (i.e. UR External Type 4).
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -3937,6 +3954,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						}
 
 						var candidateOffsets = new List<CandidateViewNode>();
+						var cellOffsets = new List<CellViewNode>();
 						foreach (var cell in urCells)
 						{
 							if (CandidatesMap[d1].Contains(cell))
@@ -3946,6 +3964,11 @@ unsafe partial class UniqueRectangleStepSearcher
 							if (CandidatesMap[d2].Contains(cell))
 							{
 								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + d2));
+							}
+
+							if (grid.GetStatus(cell) == CellStatus.Modifiable)
+							{
+								cellOffsets.Add(new(DisplayColorKind.Normal, cell));
 							}
 						}
 						foreach (var cell in guardianCellPair)
@@ -3963,10 +3986,11 @@ unsafe partial class UniqueRectangleStepSearcher
 						}
 
 						accumulator.Add(
-							new UniqueRectangleWithGuardianConjugatePairStep(
+							new UniqueRectangleExternalType4Step(
 								conclusions.ToImmutableArray(),
 								ImmutableArray.Create(
 									View.Empty
+										| cellOffsets
 										| candidateOffsets
 										| new HouseViewNode[]
 										{
@@ -3981,6 +4005,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								guardianCellPair,
 								new(guardianCellPair, conjugatePairDigit),
 								IsIncomplete(candidateOffsets),
+								cellOffsets.Count != 0,
 								index
 							)
 						);

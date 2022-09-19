@@ -1,8 +1,7 @@
 ﻿namespace Sudoku.Solving.Logics.Implementations.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unique Rectangle with Guardians (External Subset)</b>
-/// (i.e. Unique Rectangle External Type 3) technique.
+/// Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
@@ -10,27 +9,27 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
-/// <param name="SubsetCells">The extra cells that forms the subset.</param>
-/// <param name="SubsetDigitsMask">Indicates the digits that the subset are used.</param>
+/// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
+/// <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable | StepDisplayingFeature.ConstructedTechnique)]
-internal sealed record UniqueRectangleWithGuardianSubsetStep(
+internal sealed record UniqueRectangleExternalType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
 	int Digit2,
 	scoped in CellMap Cells,
 	scoped in CellMap GuardianCells,
-	scoped in CellMap SubsetCells,
-	short SubsetDigitsMask,
+	Conjugate ConjugatePair,
 	bool IsIncomplete,
+	bool IsAvoidable,
 	int AbsoluteOffset
 ) :
 	UniqueRectangleStep(
 		Conclusions,
 		Views,
-		Technique.UniqueRectangleExternalType3,
+		IsAvoidable ? Technique.AvoidableRectangleExternalType4 : Technique.UniqueRectangleExternalType4,
 		Digit1,
 		Digit2,
 		Cells,
@@ -43,13 +42,13 @@ internal sealed record UniqueRectangleWithGuardianSubsetStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty => 4.6M;
+	public decimal BaseDifficulty => 4.7M;
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[]
 		{
-			(PhasedDifficultyRatingKinds.ExtraDigit, PopCount((uint)SubsetDigitsMask) * .1M),
+			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0),
 			(PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 
@@ -63,8 +62,5 @@ internal sealed record UniqueRectangleWithGuardianSubsetStep(
 	public override Rarity Rarity => Rarity.HardlyEver;
 
 	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
-
-	[ResourceTextFormatter]
-	internal string SubsetCellsStr() => SubsetCells.ToString();
+	internal string ConjugatePairStr() => ConjugatePair.ToString();
 }

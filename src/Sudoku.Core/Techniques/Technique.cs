@@ -1179,6 +1179,26 @@ public enum Technique : short
 	AvoidableRectangleHiddenSingleColumn,
 
 	/// <summary>
+	/// Indicates unique avoidable external type 1.
+	/// </summary>
+	AvoidableRectangleExternalType1,
+
+	/// <summary>
+	/// Indicates unique avoidable external type 2.
+	/// </summary>
+	AvoidableRectangleExternalType2,
+
+	/// <summary>
+	/// Indicates unique avoidable external type 3.
+	/// </summary>
+	AvoidableRectangleExternalType3,
+
+	/// <summary>
+	/// Indicates unique avoidable external type 4.
+	/// </summary>
+	AvoidableRectangleExternalType4,
+
+	/// <summary>
 	/// Indicates avoidable rectangle external XY-Wing.
 	/// </summary>
 	AvoidableRectangleExternalXyWing,
