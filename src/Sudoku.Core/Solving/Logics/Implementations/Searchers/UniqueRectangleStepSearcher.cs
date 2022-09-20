@@ -100,12 +100,12 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 					if (SearchForExtendedUniqueRectangles)
 					{
 						CheckUnknownCoveringUnique(gathered, grid, urCells, comparer, d1, d2, index);
-						CheckExternalType1Or2(gathered, grid, urCells, d1, d2, index);
-						CheckExternalType3(gathered, grid, urCells, comparer, d1, d2, index);
-						CheckExternalType4(gathered, grid, urCells, comparer, d1, d2, index);
-						CheckExternalTurbotFish(gathered, grid, urCells, comparer, d1, d2, index);
-						CheckExternalXyWing(gathered, grid, urCells, comparer, d1, d2, index);
-						CheckExternalAlmostLockedSetsXz(gathered, grid, urCells, alses, comparer, d1, d2, index);
+						CheckExternalType1Or2(gathered, grid, urCells, d1, d2, index, arMode);
+						CheckExternalType3(gathered, grid, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalType4(gathered, grid, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalTurbotFish(gathered, grid, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalXyWing(gathered, grid, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalAlmostLockedSetsXz(gathered, grid, urCells, alses, comparer, d1, d2, index, arMode);
 					}
 
 					// Iterate on each corner of four cells.
@@ -253,12 +253,12 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 	partial void CheckRegularWing(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int size, int index);
 	partial void CheckSueDeCoq(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
 	partial void CheckUnknownCoveringUnique(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
-	partial void CheckExternalType1Or2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int index);
-	partial void CheckExternalType3(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
-	partial void CheckExternalType4(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
-	partial void CheckExternalTurbotFish(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
-	partial void CheckExternalXyWing(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
-	partial void CheckExternalAlmostLockedSetsXz(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, AlmostLockedSet[] alses, short comparer, int d1, int d2, int index);
+	partial void CheckExternalType1Or2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int index, bool arMode);
+	partial void CheckExternalType3(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index, bool arMode);
+	partial void CheckExternalType4(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index, bool arMode);
+	partial void CheckExternalTurbotFish(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index, bool arMode);
+	partial void CheckExternalXyWing(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index, bool arMode);
+	partial void CheckExternalAlmostLockedSetsXz(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, AlmostLockedSet[] alses, short comparer, int d1, int d2, int index, bool arMode);
 	partial void CheckHiddenSingleAvoidable(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
 }
 
@@ -3605,13 +3605,19 @@ unsafe partial class UniqueRectangleStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
+	/// <param name="arMode"></param>
 	partial void CheckExternalType1Or2(
 		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
-		int[] urCells, int d1, int d2, int index)
+		int[] urCells, int d1, int d2, int index, bool arMode)
 	{
 		var cells = (CellMap)urCells;
 
 		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		{
+			return;
+		}
+
+		if (!arMode && (EmptyCells & cells) != cells)
 		{
 			return;
 		}
@@ -3693,7 +3699,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						guardianMap,
 						guardianDigit,
 						IsIncomplete(candidateOffsets),
-						cellOffsets.Count != 0,
+						arMode,
 						index
 					)
 				);
@@ -3711,16 +3717,22 @@ unsafe partial class UniqueRectangleStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
+	/// <param name="arMode"></param>
 	partial void CheckExternalType3(
 		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid,
-		int[] urCells, short comparer, int d1, int d2, int index)
+		int[] urCells, short comparer, int d1, int d2, int index, bool arMode)
 	{
+		var cells = (CellMap)urCells;
+
 		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
 
-		var cells = (CellMap)urCells;
+		if (!arMode && (EmptyCells & cells) != cells)
+		{
+			return;
+		}
 
 		// Iterate on two houses used.
 		foreach (var houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
@@ -3855,7 +3867,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									otherCells,
 									subsetDigitsMask,
 									IsIncomplete(candidateOffsets),
-									cellOffsets.Count != 0,
+									arMode,
 									index
 								)
 							);
@@ -3876,16 +3888,22 @@ unsafe partial class UniqueRectangleStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
+	/// <param name="arMode"></param>
 	partial void CheckExternalType4(
 		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
-		short comparer, int d1, int d2, int index)
+		short comparer, int d1, int d2, int index, bool arMode)
 	{
+		var cells = (CellMap)urCells;
+
 		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
 
-		var cells = (CellMap)urCells;
+		if (!arMode && (EmptyCells & cells) != cells)
+		{
+			return;
+		}
 
 		// Iterate on two houses used.
 		foreach (var houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
@@ -4012,7 +4030,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								guardianCellPair,
 								new(guardianCellPair, conjugatePairDigit),
 								IsIncomplete(candidateOffsets),
-								cellOffsets.Count != 0,
+								arMode,
 								index
 							)
 						);
@@ -4032,16 +4050,22 @@ unsafe partial class UniqueRectangleStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The mask index.</param>
+	/// <param name="arMode"></param>
 	partial void CheckExternalTurbotFish(
 		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
-		short comparer, int d1, int d2, int index)
+		short comparer, int d1, int d2, int index, bool arMode)
 	{
+		var cells = (CellMap)urCells;
+
 		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
 
-		var cells = (CellMap)urCells;
+		if (!arMode && (EmptyCells & cells) != cells)
+		{
+			return;
+		}
 
 		// Iterate on two houses used.
 		foreach (var houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
@@ -4167,7 +4191,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							coveredHouse,
 							house,
 							IsIncomplete(candidateOffsets),
-							cellOffsets.Count != 0,
+							arMode,
 							index
 						)
 					);
@@ -4186,16 +4210,22 @@ unsafe partial class UniqueRectangleStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The mask index.</param>
+	/// <param name="arMode"></param>
 	partial void CheckExternalXyWing(
 		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells,
-		short comparer, int d1, int d2, int index)
+		short comparer, int d1, int d2, int index, bool arMode)
 	{
+		var cells = (CellMap)urCells;
+
 		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
 
-		var cells = (CellMap)urCells;
+		if (!arMode && (EmptyCells & cells) != cells)
+		{
+			return;
+		}
 
 		// Iterate on two houses used.
 		foreach (var houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
@@ -4325,7 +4355,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						guardianCells,
 						cellPair,
 						IsIncomplete(candidateOffsets),
-						cellOffsets.Count != 0,
+						arMode,
 						index
 					)
 				);
@@ -4344,16 +4374,22 @@ unsafe partial class UniqueRectangleStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The mask index.</param>
+	/// <param name="arMode"></param>
 	partial void CheckExternalAlmostLockedSetsXz(
 		ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, AlmostLockedSet[] alses,
-		short comparer, int d1, int d2, int index)
+		short comparer, int d1, int d2, int index, bool arMode)
 	{
+		var cells = (CellMap)urCells;
+
 		if (!IUniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
 
-		var cells = (CellMap)urCells;
+		if (!arMode && (EmptyCells & cells) != cells)
+		{
+			return;
+		}
 
 		// Iterate on two houses used.
 		foreach (var houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
@@ -4485,7 +4521,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								guardianCells,
 								als,
 								IsIncomplete(candidateOffsets),
-								cellOffsets.Count != 0,
+								arMode,
 								index
 							)
 						);
