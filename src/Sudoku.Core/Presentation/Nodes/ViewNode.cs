@@ -52,10 +52,10 @@ public abstract class ViewNode : ICloneable, IEquatable<ViewNode>, IEqualityOper
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(ViewNode left, ViewNode right) =>
+	public static bool operator ==(ViewNode? left, ViewNode? right) =>
 		(left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(ViewNode left, ViewNode right) => !(left == right);
+	public static bool operator !=(ViewNode? left, ViewNode? right) => !(left == right);
 }

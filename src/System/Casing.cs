@@ -63,6 +63,6 @@ public static partial class Casing
 	/// <summary>
 	/// Defines a regular expression pattern that matches for an identifier based on UTF-8 format.
 	/// </summary>
-	[RegexGenerator("""[A-Za-z_]\w*""", RegexOptions.Compiled, 5000)]
+	[GeneratedRegex("""[A-Za-z_]\w*""", RegexOptions.Compiled, 5000)]
 	private static partial Regex Utf8IdentifierRegex();
 }

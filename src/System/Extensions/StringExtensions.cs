@@ -303,6 +303,6 @@ public static unsafe partial class StringExtensions
 	/// <summary>
 	/// Indicates the regular expression to match all null lines and header spaces in their lines.
 	/// </summary>
-	[RegexGenerator("""(^\s*|(?<=\r\n)\s+)""", RegexOptions.Compiled, 5000)]
+	[GeneratedRegex("""(^\s*|(?<=\r\n)\s+)""", RegexOptions.Compiled, 5000)]
 	internal static partial Regex NullLinesOrHeaderSpacesRegex();
 }

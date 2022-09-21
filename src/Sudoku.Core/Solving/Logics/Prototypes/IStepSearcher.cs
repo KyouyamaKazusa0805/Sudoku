@@ -129,4 +129,9 @@ public interface IStepSearcher
 	/// </list>
 	/// </returns>
 	public abstract IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne);
+
+	/// <inheritdoc cref="GetAll(ICollection{IStep}, in Grid, bool)"/>
+	/// <param name="context">The analysis context.</param>
+	public sealed IStep? GetAll(LogicalAnalysisContext context)
+		=> GetAll(context.Accumulator!, context.Puzzle, context.OnlyFindOne);
 }

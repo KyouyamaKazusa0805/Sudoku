@@ -57,7 +57,7 @@ public static partial class TechniqueFiltering
 		return result;
 	}
 
-	[RegexGenerator("""(dif{2}iculty|name)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	[GeneratedRegex("""(dif{2}iculty|name)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex KeywordPattern();
 }
 

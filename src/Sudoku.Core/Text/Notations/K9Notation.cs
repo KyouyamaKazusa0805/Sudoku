@@ -211,6 +211,6 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 	/// <summary>
 	/// Indicates the regular expression for matching a cell or cell-list.
 	/// </summary>
-	[RegexGenerator("""[A-IKa-ik]{1,9}[1-9]{1,9}""", RegexOptions.Compiled, 5000)]
+	[GeneratedRegex("""[A-IKa-ik]{1,9}[1-9]{1,9}""", RegexOptions.Compiled, 5000)]
 	private static partial Regex CellOrCellListRegex();
 }
