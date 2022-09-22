@@ -1,6 +1,7 @@
 ﻿namespace Sudoku.Solving.Logics.Implementations.Searchers;
 
 [StepSearcher]
+[StepSearcherOptions(PuzzleNotRelying = true)]
 internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 {
 	/// <inheritdoc/>
@@ -12,7 +13,7 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		// Iterate on each digit.
 		var distributedMapsByDigit = Solution.ValuesMap;
@@ -39,12 +40,12 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 					ImmutableArray.Create(View.Empty | candidateOffsets),
 					false
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return templateSetStep;
 				}
 
-				accumulator.Add(templateSetStep);
+				context.Accumulator.Add(templateSetStep);
 			}
 
 			// Then check template deletes.
@@ -58,12 +59,12 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 				ViewList.Empty,
 				true
 			);
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return templateDeleteStep;
 			}
 
-			accumulator.Add(templateDeleteStep);
+			context.Accumulator.Add(templateDeleteStep);
 		}
 
 		return null;

@@ -143,7 +143,8 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 				case (_, not IBruteForceStepSearcher, { IsFullApplying: true }):
 				{
 					var accumulator = new List<IStep>();
-					searcher.GetAll(accumulator, playground, false);
+					scoped var context = new LogicalAnalysisContext(accumulator, playground, false);
+					searcher.GetAll(context);
 					if (accumulator.Count == 0)
 					{
 						continue;
@@ -172,8 +173,10 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 					// to continue solving puzzle.
 					goto ReportStatusAndSkipToTryAgain;
 				}
-				case (_, _, _) when searcher.GetAll(null!, playground, true) is var foundStep:
+				default:
 				{
+					var context = new LogicalAnalysisContext(null, playground, true);
+					var foundStep = searcher.GetAll(context);
 					switch (foundStep)
 					{
 						case null:

@@ -9,8 +9,9 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		var exocetPatterns = IExocetStepSearcher.Patterns;
 		foreach (/*scoped*/ ref readonly var currentJe in exocetPatterns.EnumerateRef())
 		{
@@ -96,12 +97,12 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 				baseCellsDigitsMask,
 				eliminations.ToImmutableArray()
 			);
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return step;
 			}
 
-			accumulator.Add(step);
+			context.Accumulator.Add(step);
 
 
 			void gatherEliminations(int targetCell, short baseCellsDigits, short otherDigits, scoped in Grid grid)

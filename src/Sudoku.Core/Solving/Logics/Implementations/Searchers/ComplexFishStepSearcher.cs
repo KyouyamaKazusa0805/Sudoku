@@ -3,14 +3,19 @@
 [StepSearcher]
 internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSearcher
 {
+	private static readonly PatternOverlayStepSearcher ElimsSearcher = new();
+
+
 	/// <inheritdoc/>
 	[StepSearcherProperty]
 	public int MaxSize { get; set; }
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
+
 		// Gather the POM eliminations to get all possible fish eliminations.
 		var pomElims = GetPomEliminationsFirstly(grid);
 
@@ -31,6 +36,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 		var firstPossibleStep = (IStep?)null;
 		var tempList = new List<ComplexFishStep>();
 		var searchingTasks = new Task[count];
+		var onlyFindOne = context.OnlyFindOne;
 		count = 0;
 		for (var digit = 0; digit < 9; digit++)
 		{
@@ -69,7 +75,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 		}
 
 		// Remove duplicate items.
-		accumulator.AddRange(IDistinctableStep<ComplexFishStep>.Distinct(tempList));
+		context.Accumulator!.AddRange(IDistinctableStep<ComplexFishStep>.Distinct(tempList));
 
 		return null;
 	}
@@ -456,7 +462,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 	private static IList<Conclusion>?[] GetPomEliminationsFirstly(scoped in Grid grid)
 	{
 		var tempList = new List<IStep>();
-		new PatternOverlayStepSearcher().GetAll(tempList, grid, false);
+		ElimsSearcher.GetAll(new(tempList, grid, false));
 
 		var result = new IList<Conclusion>?[9];
 		foreach (PatternOverlayStep step in tempList)

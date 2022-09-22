@@ -4,8 +4,11 @@
 internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
+		var accumulator = context.Accumulator!;
+		var onlyFindOne = context.OnlyFindOne;
 		foreach (var pattern in IFireworkStepSearcher.Patterns)
 		{
 			if ((EmptyCells & pattern.Map) != pattern.Map)

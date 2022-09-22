@@ -85,27 +85,13 @@ public interface IStepSearcher
 
 
 	/// <summary>
-	/// Accumulate all possible steps into the argument <paramref name="accumulator"/> if
-	/// the argument <paramref name="onlyFindOne"/> is <see langword="false"/>,
-	/// or return the first found step if the argument <paramref name="onlyFindOne"/>
+	/// Accumulate all possible steps into property <see cref="LogicalAnalysisContext.Accumulator"/>
+	/// of argument <paramref name="context"/> if property <see cref="LogicalAnalysisContext.OnlyFindOne"/>
+	/// is <see langword="false"/>, or return the first found step if <see cref="LogicalAnalysisContext.OnlyFindOne"/>
 	/// is <see langword="true"/>.
 	/// </summary>
-	/// <param name="accumulator">
-	/// <para>
-	/// <para>The accumulator to store each step.</para>
-	/// </para>
-	/// <para>
-	/// If <paramref name="onlyFindOne"/> is set to <see langword="true"/>,
-	/// this argument will become useless because we only finding one step is okay,
-	/// so we may not use the accumulator to store all possible steps, in order to optimize the performance.
-	/// Therefore, this argument can be <see langword="null"/>
-	/// (i.e. the expression <c><see langword="null"/>!</c>) when the argument
-	/// <paramref name="onlyFindOne"/> is <see langword="true"/>.
-	/// </para>
-	/// </param>
-	/// <param name="grid">The grid to search for techniques.</param>
-	/// <param name="onlyFindOne">
-	/// Indicates whether the method only searches for one <see cref="IStep"/> instance.
+	/// <param name="context">
+	/// The analysis context. This argument provides with the data that is used for analysis.
 	/// </param>
 	/// <returns>
 	/// Returns the first found step. The nullability of the return value are as belows:
@@ -113,25 +99,21 @@ public interface IStepSearcher
 	/// <item>
 	/// <see langword="null"/>:
 	/// <list type="bullet">
-	/// <item><c><paramref name="onlyFindOne"/> == <see langword="false"/></c>.</item>
-	/// <item><c><paramref name="onlyFindOne"/> == <see langword="true"/></c>, but <b>nothing</b> found.</item>
+	/// <item><c><see cref="LogicalAnalysisContext.OnlyFindOne"/> == <see langword="false"/></c>.</item>
+	/// <item><c><see cref="LogicalAnalysisContext.OnlyFindOne"/> == <see langword="true"/></c>, but nothing found.</item>
 	/// </list>
 	/// </item>
 	/// <item>
 	/// Not <see langword="null"/>:
 	/// <list type="bullet">
 	/// <item>
-	/// <c><paramref name="onlyFindOne"/> == <see langword="true"/></c>, and found <b>at least one step</b>.
-	/// In this case the return value is the first found step.
+	/// <c><see cref="LogicalAnalysisContext.OnlyFindOne"/> == <see langword="true"/></c>,
+	/// and found <b>at least one step</b>. In this case the return value is the first found step.
 	/// </item>
 	/// </list>
 	/// </item>
 	/// </list>
 	/// </returns>
-	public abstract IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne);
-
-	/// <inheritdoc cref="GetAll(ICollection{IStep}, in Grid, bool)"/>
-	/// <param name="context">The analysis context.</param>
-	public sealed IStep? GetAll(LogicalAnalysisContext context)
-		=> GetAll(context.Accumulator!, context.Puzzle, context.OnlyFindOne);
+	/// <seealso cref="LogicalAnalysisContext"/>
+	public abstract IStep? GetAll(scoped in LogicalAnalysisContext context);
 }

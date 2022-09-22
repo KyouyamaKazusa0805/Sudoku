@@ -4,7 +4,7 @@
 internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		if (EmptyCells.Count < 12)
 		{
@@ -27,6 +27,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 			return null;
 		}
 
+		scoped ref readonly var grid = ref context.Grid;
 		foreach (var blocks in satisfiedblocksMask.GetAllSets().GetSubsets(4))
 		{
 			short blocksMask = 0;
@@ -79,11 +80,11 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 				}
 
 				// Gather steps.
-				if (CheckType1(accumulator, grid, onlyFindOne, pattern, blocks) is { } type1Step)
+				if (CheckType1(context, pattern, blocks) is { } type1Step)
 				{
 					return type1Step;
 				}
-				if (CheckXz(accumulator, grid, onlyFindOne, pattern, blocks) is { } typeXzStep)
+				if (CheckXz(context, pattern, blocks) is { } typeXzStep)
 				{
 					return typeXzStep;
 				}
@@ -115,10 +116,9 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 	/// </item>
 	/// </list>
 	/// </summary>
-	private IStep? CheckType1(
-		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
-		scoped in CellMap pattern, int[] blocks)
+	private IStep? CheckType1(scoped in LogicalAnalysisContext context, scoped in CellMap pattern, int[] blocks)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		foreach (var extraCell in pattern)
 		{
 			var otherCells = pattern - extraCell;
@@ -162,12 +162,12 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 				extraCell,
 				digitsMask
 			);
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return step;
 			}
 
-			accumulator.Add(step);
+			context.Accumulator.Add(step);
 		}
 
 		return null;
@@ -184,10 +184,9 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 	/// </item>
 	/// </list>
 	/// </summary>
-	private IStep? CheckXz(
-		ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne,
-		scoped in CellMap pattern, int[] blocks)
+	private IStep? CheckXz(scoped in LogicalAnalysisContext context, scoped in CellMap pattern, int[] blocks)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		var allDigitsMask = grid.GetDigitsUnion(pattern);
 		if (PopCount((uint)allDigitsMask) != 5)
 		{
@@ -264,12 +263,12 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 					patternDigitsMask,
 					otherDigitsMask
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
 
-				accumulator.Add(step);
+				context.Accumulator.Add(step);
 			}
 		}
 

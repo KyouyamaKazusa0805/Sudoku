@@ -10,13 +10,13 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
-		if (CheckForTrueCandidateTypes(accumulator, grid, onlyFindOne) is { } trueCandidateTypeFirstFoundStep)
+		if (CheckForTrueCandidateTypes(context) is { } trueCandidateTypeFirstFoundStep)
 		{
 			return trueCandidateTypeFirstFoundStep;
 		}
-		if (CheckForFalseCandidateTypes(accumulator, grid, onlyFindOne) is { } falseCandidateTypeFirstFoundStep)
+		if (CheckForFalseCandidateTypes(context) is { } falseCandidateTypeFirstFoundStep)
 		{
 			return falseCandidateTypeFirstFoundStep;
 		}
@@ -24,8 +24,9 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckForTrueCandidateTypes(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	private IStep? CheckForTrueCandidateTypes(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		if (!IBivalueUniversalGraveStepSearcher.FindTrueCandidates(grid, out var trueCandidates))
 		{
 			return null;
@@ -42,22 +43,22 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 				// BUG + 1 found.
 				var step = new BivalueUniversalGraveType1Step(
 					ImmutableArray.Create(new Conclusion(Assignment, trueCandidate)),
-					ImmutableArray.Create(
-						View.Empty
-							| new CandidateViewNode(DisplayColorKind.Normal, trueCandidate)
-					)
+					ImmutableArray.Create(View.Empty | new CandidateViewNode(DisplayColorKind.Normal, trueCandidate))
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
 
-				accumulator.Add(step);
+				context.Accumulator.Add(step);
 
 				break;
 			}
 			default:
 			{
+				var onlyFindOne = context.OnlyFindOne;
+				var accumulator = context.Accumulator!;
+
 				if (CheckSingleDigit(trueCandidates))
 				{
 					if (CheckType2(accumulator, trueCandidates, onlyFindOne) is { } type2Step)
@@ -96,8 +97,9 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckForFalseCandidateTypes(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	private IStep? CheckForFalseCandidateTypes(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		var multivalueCells = EmptyCells - BivalueCells;
 		if ((multivalueCells.PeerIntersection & EmptyCells) is not (var falseCandidatePossibleCells and not []))
 		{
@@ -130,12 +132,12 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 					ImmutableArray.Create(View.Empty | cellOffsets),
 					cell * 9 + digit
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
 
-				accumulator.Add(step);
+				context.Accumulator.Add(step);
 			}
 		}
 

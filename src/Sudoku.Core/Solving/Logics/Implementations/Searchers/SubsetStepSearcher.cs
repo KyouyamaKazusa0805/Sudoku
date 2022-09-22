@@ -11,8 +11,9 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		for (var size = 2; size <= ((ISubsetStepSearcher)this).MaxSize; size++)
 		{
 			// Naked subsets.
@@ -73,12 +74,12 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 						isLocked
 					);
 
-					if (onlyFindOne)
+					if (context.OnlyFindOne)
 					{
 						return step;
 					}
 
-					accumulator.Add(step);
+					context.Accumulator.Add(step);
 				}
 			}
 
@@ -149,12 +150,12 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 						digitsMask
 					);
 
-					if (onlyFindOne)
+					if (context.OnlyFindOne)
 					{
 						return step;
 					}
 
-					accumulator.Add(step);
+					context.Accumulator.Add(step);
 				}
 			}
 		}

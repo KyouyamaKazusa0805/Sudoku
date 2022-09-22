@@ -4,8 +4,9 @@
 internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSetsWWingStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 
 		// Gather all conjugate pairs.
@@ -165,12 +166,12 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 								wDigitsMask,
 								x
 							);
-							if (onlyFindOne)
+							if (context.OnlyFindOne)
 							{
 								return step;
 							}
 
-							accumulator.Add(step);
+							context.Accumulator.Add(step);
 						}
 					}
 				}

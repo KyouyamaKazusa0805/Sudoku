@@ -128,7 +128,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 	/// TODO: We should record the relations for the advanced nodes, in order to create a good look.
 	/// </b></para>
 	/// </remarks>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		try
 		{
@@ -141,6 +141,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			_globalId = 0;
 
 			// Gather strong and weak links.
+			scoped ref readonly var grid = ref context.Grid;
 			GatherInferences_Sole(grid);
 			GatherInferences_LockedCandidates();
 			GatherInferences_LockedSet(grid);
@@ -184,12 +185,12 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 					),
 					aic
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
 
-				accumulator.Add(step);
+				context.Accumulator.Add(step);
 			}
 
 			return null;

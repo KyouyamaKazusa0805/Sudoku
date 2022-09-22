@@ -3,14 +3,18 @@
 [StepSearcher]
 internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 {
+	private static readonly PatternOverlayStepSearcher ElimsSearcher = new();
+
+
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		// Check POM eliminations first.
+		scoped ref readonly var grid = ref context.Grid;
 		scoped var eliminationMaps = (stackalloc CellMap[9]);
 		eliminationMaps.Fill(CellMap.Empty);
 		var pomSteps = new List<IStep>();
-		new PatternOverlayStepSearcher().GetAll(pomSteps, grid, onlyFindOne: false);
+		ElimsSearcher.GetAll(new(pomSteps, grid, false));
 		foreach (var step in pomSteps.Cast<PatternOverlayStep>())
 		{
 			scoped ref var currentMap = ref eliminationMaps[step.Digit];
@@ -82,12 +86,12 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 				select info
 			).ToList()
 		);
-		if (onlyFindOne)
+		if (context.OnlyFindOne)
 		{
 			return tempCollection.First();
 		}
 
-		accumulator.AddRange(tempCollection);
+		context.Accumulator.AddRange(tempCollection);
 
 		return null;
 	}

@@ -9,13 +9,14 @@ internal sealed unsafe partial class BruteForceStepSearcher : IBruteForceStepSea
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		if (Solution.IsUndefined)
 		{
 			goto ReturnNull;
 		}
 
+		scoped ref readonly var grid = ref context.Grid;
 		foreach (var offset in BruteForceTryAndErrorOrder)
 		{
 			if (grid.GetStatus(offset) == CellStatus.Empty)
@@ -25,12 +26,12 @@ internal sealed unsafe partial class BruteForceStepSearcher : IBruteForceStepSea
 					ImmutableArray.Create(new Conclusion(Assignment, cand)),
 					ImmutableArray.Create(View.Empty | new CandidateViewNode(DisplayColorKind.Normal, cand))
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
 
-				accumulator.Add(step);
+				context.Accumulator.Add(step);
 			}
 		}
 

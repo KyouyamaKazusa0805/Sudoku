@@ -11,12 +11,16 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
-		int** r = stackalloc int*[9], c = stackalloc int*[9];
+		var r = stackalloc int*[9];
+		var c = stackalloc int*[9];
 		Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
 		Unsafe.InitBlock(c, 0, (uint)sizeof(int*) * 9);
 
+		scoped ref readonly var grid = ref context.Grid;
+		var accumulator = context.Accumulator!;
+		var onlyFindOne = context.OnlyFindOne;
 		for (var digit = 0; digit < 9; digit++)
 		{
 			if (ValuesMap[digit].Count > 5)

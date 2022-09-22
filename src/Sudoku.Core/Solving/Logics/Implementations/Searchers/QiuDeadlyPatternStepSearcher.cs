@@ -5,8 +5,11 @@
 internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
+		var accumulator = context.Accumulator!;
+		var onlyFindOne = context.OnlyFindOne;
 		for (int i = 0, length = IQiuDeadlyPatternStepSearcher.Patterns.Length; i < length; i++)
 		{
 			var isRow = i < length >> 1;

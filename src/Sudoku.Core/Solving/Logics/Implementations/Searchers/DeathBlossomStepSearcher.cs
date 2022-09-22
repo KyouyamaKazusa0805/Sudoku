@@ -4,7 +4,7 @@
 internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 #if false
 		var dic = IDeathBlossomStepSearcher.GatherGroupedByCell(grid);

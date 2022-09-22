@@ -5,8 +5,9 @@
 internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		for (var digit = 0; digit < 9; digit++)
 		{
 			for (var h1 = 0; h1 < 26; h1++)
@@ -91,12 +92,12 @@ internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLink
 						h2
 					);
 
-					if (onlyFindOne)
+					if (context.OnlyFindOne)
 					{
 						return step;
 					}
 
-					accumulator.Add(step);
+					context.Accumulator.Add(step);
 				}
 			}
 		}

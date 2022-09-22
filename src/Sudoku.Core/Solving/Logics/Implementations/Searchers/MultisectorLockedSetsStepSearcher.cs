@@ -4,10 +4,11 @@
 internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisectorLockedSetsStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		var linkForEachHouse = stackalloc short[27];
 		var linkForEachDigit = stackalloc CellMap[9];
+		scoped ref readonly var grid = ref context.Grid;
 		foreach (var pattern in IMultisectorLockedSetsStepSearcher.Patterns)
 		{
 			var map = EmptyCells & pattern;
@@ -137,12 +138,12 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 					ImmutableArray.Create(View.Empty | candidateOffsets),
 					map
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
 
-				accumulator.Add(step);
+				context.Accumulator.Add(step);
 			}
 		}
 

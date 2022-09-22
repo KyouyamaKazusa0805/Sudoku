@@ -4,10 +4,12 @@
 internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
-		short* pairs = stackalloc short[8], tempLink = stackalloc short[8];
+		var pairs = stackalloc short[8];
+		var tempLink = stackalloc short[8];
 		var linkHouse = stackalloc int[8];
+		scoped ref readonly var grid = ref context.Grid;
 		foreach (var cells in IDominoLoopStepSearcher.SkLoopTable)
 		{
 			// Initialize the elements.
@@ -176,12 +178,12 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 					ImmutableArray.Create(View.Empty | candidateOffsets),
 					(CellMap)cells
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
 
-				accumulator.Add(step);
+				context.Accumulator.Add(step);
 			}
 		}
 

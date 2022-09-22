@@ -9,11 +9,12 @@ internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepS
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		// Iterate on the size.
 		// Note that the greatest size is determined by two factors: the size that you specified
 		// and the number of bi-value cells in the grid.
+		scoped ref readonly var grid = ref context.Grid;
 		for (int size = 3, count = Min(MaxSize, BivalueCells.Count); size <= count; size++)
 		{
 			// Iterate on each pivot cell.
@@ -133,12 +134,12 @@ internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepS
 						petals
 					);
 
-					if (onlyFindOne)
+					if (context.OnlyFindOne)
 					{
 						return step;
 					}
 
-					accumulator.Add(step);
+					context.Accumulator.Add(step);
 				}
 			}
 		}

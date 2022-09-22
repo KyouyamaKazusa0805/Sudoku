@@ -4,16 +4,16 @@
 internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
-		// The grid with possible W-Wing structure should contain
-		// at least two empty cells (start and end cell).
+		// The grid with possible W-Wing structure should contain at least two empty cells (start and end cell).
 		if (BivalueCells.Count < 2)
 		{
 			return null;
 		}
 
 		// Iterate on each cells.
+		scoped ref readonly var grid = ref context.Grid;
 		for (var c1 = 0; c1 < 72; c1++)
 		{
 			if (!BivalueCells.Contains(c1))
@@ -173,12 +173,12 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 							}
 						}
 
-						if (onlyFindOne)
+						if (context.OnlyFindOne)
 						{
 							return step;
 						}
 
-						accumulator.Add(step);
+						context.Accumulator.Add(step);
 					}
 				}
 			}

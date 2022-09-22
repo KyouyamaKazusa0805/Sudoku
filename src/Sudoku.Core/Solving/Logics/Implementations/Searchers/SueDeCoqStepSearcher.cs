@@ -4,7 +4,7 @@
 internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		// A valid SdC needs at least 4 cells like:
 		//
@@ -17,6 +17,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 
 		var cannibalModeCases = stackalloc[] { false, true };
 
+		scoped ref readonly var grid = ref context.Grid;
 		using scoped var list = new ValueList<CellMap>(4);
 		for (var caseIndex = 0; caseIndex < 2; caseIndex++)
 		{
@@ -228,12 +229,12 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 											currentLineMap,
 											currentInterMap
 										);
-										if (onlyFindOne)
+										if (context.OnlyFindOne)
 										{
 											return step;
 										}
 
-										accumulator.Add(step);
+										context.Accumulator.Add(step);
 									}
 								}
 							}

@@ -5,9 +5,9 @@
 internal sealed partial class PatternOverlayStepSearcher : IPatternOverlayStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
-		var templates = IPatternOverlayStepSearcher.GetInvalidPos(grid);
+		var templates = IPatternOverlayStepSearcher.GetInvalidPos(context.Grid);
 		for (var digit = 0; digit < 9; digit++)
 		{
 			if (templates[digit] is not (var template and not []))
@@ -16,12 +16,12 @@ internal sealed partial class PatternOverlayStepSearcher : IPatternOverlayStepSe
 			}
 
 			var step = new PatternOverlayStep(from cell in template select new Conclusion(Elimination, cell, digit));
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return step;
 			}
 
-			accumulator.Add(step);
+			context.Accumulator.Add(step);
 		}
 
 		return null;

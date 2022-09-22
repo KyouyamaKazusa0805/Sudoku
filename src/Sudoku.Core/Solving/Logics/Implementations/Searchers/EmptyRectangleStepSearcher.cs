@@ -4,8 +4,9 @@
 internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		for (var digit = 0; digit < 9; digit++)
 		{
 			for (var block = 0; block < 9; block++)
@@ -74,12 +75,12 @@ internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangl
 						new(cpCells[0], cpCells[1], digit)
 					);
 
-					if (onlyFindOne)
+					if (context.OnlyFindOne)
 					{
 						return step;
 					}
 
-					accumulator.Add(step);
+					context.Accumulator.Add(step);
 				}
 			}
 		}

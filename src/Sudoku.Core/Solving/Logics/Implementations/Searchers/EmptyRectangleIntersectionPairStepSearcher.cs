@@ -4,8 +4,9 @@
 internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher : IEmptyRectangleIntersectionPairStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		for (int i = 0, length = BivalueCells.Count, iterationLength = length - 1; i < iterationLength; i++)
 		{
 			var c1 = BivalueCells[i];
@@ -115,12 +116,12 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 						d1,
 						d2
 					);
-					if (onlyFindOne)
+					if (context.OnlyFindOne)
 					{
 						return step;
 					}
 
-					accumulator.Add(step);
+					context.Accumulator.Add(step);
 				}
 			}
 		}

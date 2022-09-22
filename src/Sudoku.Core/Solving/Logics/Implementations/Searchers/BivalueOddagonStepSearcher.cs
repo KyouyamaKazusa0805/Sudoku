@@ -4,7 +4,7 @@
 internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		if (BivalueCells.Count < 4)
 		{
@@ -15,7 +15,9 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
-		IOrderedEnumerable<BivalueOddagonStep> resultList = null!;
+		scoped ref readonly var grid = ref context.Grid;
+		var onlyFindOne = context.OnlyFindOne;
+		var resultList = (IOrderedEnumerable<BivalueOddagonStep>)null!;
 		foreach (var cell in BivalueCells)
 		{
 			var mask = grid.GetCandidates(cell);
@@ -69,12 +71,12 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 				orderby step.Loop.Count, step.TechniqueCode
 				select step;
 
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return resultList.First();
 			}
 
-			accumulator.AddRange(resultList);
+			context.Accumulator.AddRange(resultList);
 		}
 
 		return null;

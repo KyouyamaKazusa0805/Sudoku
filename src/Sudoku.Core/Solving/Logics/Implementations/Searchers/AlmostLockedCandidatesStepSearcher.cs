@@ -12,7 +12,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		for (int size = 2, maxSize = CheckAlmostLockedQuadruple ? 4 : 3; size <= maxSize; size++)
 		{
@@ -20,11 +20,11 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 			{
 				if (c && EmptyCells)
 				{
-					if (GetAll(accumulator, grid, size, baseSet, coverSet, a, b, c, onlyFindOne) is { } step1)
+					if (GetAll(context, size, baseSet, coverSet, a, b, c) is { } step1)
 					{
 						return step1;
 					}
-					if (GetAll(accumulator, grid, size, coverSet, baseSet, b, a, c, onlyFindOne) is { } step2)
+					if (GetAll(context, size, coverSet, baseSet, b, a, c) is { } step2)
 					{
 						return step2;
 					}
@@ -38,15 +38,13 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 	/// <summary>
 	/// Process the calculation.
 	/// </summary>
-	/// <param name="result">The result.</param>
-	/// <param name="grid">The grid.</param>
+	/// <param name="context"><inheritdoc cref="GetAll(in LogicalAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="size">The size.</param>
 	/// <param name="baseSet">The base set.</param>
 	/// <param name="coverSet">The cover set.</param>
 	/// <param name="a">The left grid map.</param>
 	/// <param name="b">The right grid map.</param>
 	/// <param name="c">The intersection.</param>
-	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <remarks>
 	/// <para>
 	/// The diagrams:
@@ -72,9 +70,11 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 	/// </para>
 	/// </remarks>
 	private static IStep? GetAll(
-		ICollection<IStep> result, scoped in Grid grid, int size, int baseSet, int coverSet,
-		scoped in CellMap a, scoped in CellMap b, scoped in CellMap c, bool onlyFindOne)
+		scoped in LogicalAnalysisContext context, int size, int baseSet, int coverSet,
+		scoped in CellMap a, scoped in CellMap b, scoped in CellMap c)
 	{
+		scoped ref readonly var grid = ref context.Grid;
+
 		// Iterate on each cell combination.
 		foreach (var cells in a & EmptyCells & size - 1)
 		{
@@ -197,12 +197,12 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 				hasValueCell
 			);
 
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return step;
 			}
 
-			result.Add(step);
+			context.Accumulator.Add(step);
 		}
 
 		return null;

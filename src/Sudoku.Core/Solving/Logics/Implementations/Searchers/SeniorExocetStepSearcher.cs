@@ -9,7 +9,7 @@ internal sealed partial class SeniorExocetStepSearcher : ISeniorExocetStepSearch
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		// TODO: Re-implement SE.
 		return null;

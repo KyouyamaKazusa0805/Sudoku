@@ -5,7 +5,7 @@
 internal sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : IGurthSymmetricalPlacementStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		var methods = stackalloc delegate*<in Grid, GurthSymmetricalPlacementStep?>[]
 		{
@@ -14,6 +14,7 @@ internal sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : IGu
 			&CheckCentral
 		};
 
+		scoped ref readonly var grid = ref context.Grid;
 		for (var i = 0; i < 3; i++)
 		{
 			if (methods[i](grid) is not { } step)
@@ -21,12 +22,12 @@ internal sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : IGu
 				continue;
 			}
 
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return step;
 			}
 
-			accumulator.Add(step);
+			context.Accumulator.Add(step);
 		}
 
 		return null;

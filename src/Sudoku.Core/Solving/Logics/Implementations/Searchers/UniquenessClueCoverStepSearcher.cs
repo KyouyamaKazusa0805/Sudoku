@@ -15,8 +15,11 @@ internal sealed partial class UniquenessClueCoverStepSearcher : IUniquenessClueC
 	/// </list>
 	/// </para>
 	/// </remarks>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
+		var accumulator = context.Accumulator!;
+		var onlyFindOne = context.OnlyFindOne;
 		if (CheckType2(accumulator, grid, onlyFindOne) is { } type2Step)
 		{
 			return type2Step;

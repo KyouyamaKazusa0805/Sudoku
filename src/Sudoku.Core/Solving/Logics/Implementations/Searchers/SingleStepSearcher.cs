@@ -18,8 +18,12 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
+		var onlyFindOne = context.OnlyFindOne;
+		var accumulator = context.Accumulator!;
+
 		if (!EnableFullHouse)
 		{
 			goto CheckHiddenSingle;

@@ -14,9 +14,11 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		var list = new List<UniqueRectangleStep>();
+
+		scoped ref readonly var grid = ref context.Grid;
 
 		// Iterate on mode (whether use AR or UR mode to search).
 		GetAll(list, grid, false);
@@ -32,12 +34,12 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 			from step in IDistinctableStep<UniqueRectangleStep>.Distinct(list)
 			orderby step.TechniqueCode, step.AbsoluteOffset
 			select step;
-		if (onlyFindOne)
+		if (context.OnlyFindOne)
 		{
 			goto ReturnFirst;
 		}
 
-		accumulator.AddRange(resultList);
+		context.Accumulator.AddRange(resultList);
 
 	ReturnFirst:
 		return resultList.FirstOrDefault();

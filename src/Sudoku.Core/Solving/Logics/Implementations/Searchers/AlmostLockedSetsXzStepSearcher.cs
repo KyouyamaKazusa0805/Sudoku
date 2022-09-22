@@ -22,8 +22,9 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 	/// will tell you what is it.
 	/// </para>
 	/// </remarks>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		var house = stackalloc int[2];
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 
@@ -230,13 +231,15 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					ImmutableArray.Create(
 						View.Empty
 							| candidateOffsets
-							| (
-								isEsp ? null : new HouseViewNode[]
+							| isEsp switch
+							{
+								true => null,
+								_ => new HouseViewNode[]
 								{
 									new(DisplayColorKind.Normal, house1),
 									new(DisplayColorKind.Auxiliary1, house2)
 								}
-							)
+							}
 					),
 					als1,
 					als2,
@@ -244,12 +247,12 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					finalZ,
 					isEsp ? null : isDoublyLinked
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
 
-				accumulator.Add(step);
+				context.Accumulator.Add(step);
 			}
 
 			i++;

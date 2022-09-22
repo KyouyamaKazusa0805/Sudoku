@@ -58,7 +58,8 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 
 					// Searching.
 					var tempBag = new List<IStep>();
-					searcher.GetAll(tempBag, puzzle, false);
+					scoped var context = new LogicalAnalysisContext(tempBag, puzzle, false);
+					searcher.GetAll(context);
 
 					switch (tempBag.Count)
 					{

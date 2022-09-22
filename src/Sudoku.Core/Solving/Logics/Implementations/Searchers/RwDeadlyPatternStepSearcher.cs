@@ -19,8 +19,9 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 	/// <see href="http://forum.enjoysudoku.com/yet-another-crazy-uniqueness-technique-t5589.html"/>
 	/// </para>
 	/// </remarks>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		for (var chuteIndex = 0; chuteIndex < 6; chuteIndex++)
 		{
 			var (chute, isRow, _) = Chutes[chuteIndex];
@@ -99,12 +100,12 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 				valueDigitsMask,
 				chuteIndex
 			);
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return step;
 			}
 
-			accumulator.Add(step);
+			context.Accumulator.Add(step);
 		}
 
 		return null;

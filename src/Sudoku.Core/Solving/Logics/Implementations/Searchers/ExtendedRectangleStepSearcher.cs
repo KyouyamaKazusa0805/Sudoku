@@ -5,8 +5,11 @@
 internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRectangleStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
+		var accumulator = context.Accumulator!;
+		var onlyFindOne = context.OnlyFindOne;
 		foreach (var (allCellsMap, pairs, size) in IExtendedRectangleStepSearcher.PatternInfos)
 		{
 			if ((EmptyCells & allCellsMap) != allCellsMap)

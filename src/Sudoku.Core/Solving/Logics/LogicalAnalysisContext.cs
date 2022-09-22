@@ -6,14 +6,34 @@
 public readonly ref struct LogicalAnalysisContext
 {
 	/// <summary>
-	/// Indicates whether the solver only find one possible step and exit the searcher.
-	/// </summary>
-	public readonly bool OnlyFindOne;
-
-	/// <summary>
 	/// Indicates the puzzle to be solved and analyzed.
 	/// </summary>
-	public readonly ref readonly Grid Puzzle;
+	/// <remarks>
+	/// This field is not encapsulated into a property because C# doesn't support auto read-only properties
+	/// returning <see langword="ref"/> or <see langword="ref readonly"/>.
+	/// </remarks>
+	public readonly ref readonly Grid Grid;
+
+
+	/// <summary>
+	/// Initializes a <see cref="LogicalAnalysisContext"/> instance via the specified.
+	/// </summary>
+	/// <param name="accumulator">The accumulator.</param>
+	/// <param name="grid">The reference to the puzzle.</param>
+	/// <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public LogicalAnalysisContext(ICollection<IStep>? accumulator, in Grid grid, bool onlyFindOne)
+	{
+		(Accumulator, OnlyFindOne) = (accumulator, onlyFindOne);
+		Grid = ref grid;
+	}
+
+
+	/// <summary>
+	/// Indicates whether the solver only find one possible step and exit the searcher.
+	/// </summary>
+	[MemberNotNullWhen(false, nameof(Accumulator))]
+	public bool OnlyFindOne { get; }
 
 	/// <summary>
 	/// <para>
@@ -27,19 +47,5 @@ public readonly ref struct LogicalAnalysisContext
 	/// </para>
 	/// </summary>
 	/// <seealso cref="OnlyFindOne"/>
-	public readonly ICollection<IStep>? Accumulator;
-
-
-	/// <summary>
-	/// Initializes a <see cref="LogicalAnalysisContext"/> instance via the specified.
-	/// </summary>
-	/// <param name="accumulator">The accumulator.</param>
-	/// <param name="puzzle">The reference to the puzzle.</param>
-	/// <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LogicalAnalysisContext(ICollection<IStep>? accumulator, in Grid puzzle, bool onlyFindOne)
-	{
-		(Accumulator, OnlyFindOne) = (accumulator, onlyFindOne);
-		Puzzle = ref puzzle;
-	}
+	public ICollection<IStep>? Accumulator { get; }
 }

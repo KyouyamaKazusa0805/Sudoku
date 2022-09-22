@@ -4,9 +4,10 @@
 internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		// Iterates on each digit.
+		scoped ref readonly var grid = ref context.Grid;
 		for (var digit1 = 0; digit1 < 8; digit1++)
 		{
 			for (var digit2 = digit1 + 1; digit2 < 9; digit2++)
@@ -121,12 +122,12 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 									emptyCellsInThisHouse,
 									emptyCellsInThisHouse.CoveredLine
 								);
-								if (onlyFindOne)
+								if (context.OnlyFindOne)
 								{
 									return step;
 								}
 
-								accumulator.Add(step);
+								context.Accumulator.Add(step);
 							}
 						}
 					}

@@ -36,9 +36,10 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 	/// all possible location where may form a locked candidate.
 	/// </para>
 	/// </remarks>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		var r = stackalloc int[2];
+		scoped ref readonly var grid = ref context.Grid;
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 		{
 			// If the cells C doesn't contain any empty cells,
@@ -97,12 +98,12 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 					r[1]
 				);
 
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
 
-				accumulator.Add(step);
+				context.Accumulator.Add(step);
 			}
 		}
 

@@ -6,12 +6,12 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 	/// <summary>
 	/// The singles searcher.
 	/// </summary>
-	private readonly ISingleStepSearcher _searcher = new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true };
+	private static readonly SingleStepSearcher SinglesSearcher = new() { EnableFullHouse = true, EnableLastDigit = true };
 
 	/// <summary>
 	/// All temporary conclusions.
 	/// </summary>
-	private readonly IList<Conclusion> _tempConclusions = new List<Conclusion>();
+	private readonly List<Conclusion> _tempConclusions = new();
 
 
 	/// <inheritdoc/>
@@ -20,9 +20,12 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		var tempAccumulator = new List<BowmanBingoStep>();
+		scoped ref readonly var grid = ref context.Grid;
+		var accumulator = context.Accumulator!;
+		var onlyFindOne = context.OnlyFindOne;
 		var tempGrid = grid;
 		for (var digit = 0; digit < 9; digit++)
 		{
@@ -75,7 +78,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 	private IStep? GetAll(
 		ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, int startCand, int length)
 	{
-		if (length == 0 || _searcher.GetAll(null!, grid, true) is not SingleStep singleInfo)
+		if (length == 0 || SinglesSearcher.GetAll(new(null, grid, true)) is not SingleStep singleInfo)
 		{
 			// Two cases we don't need to go on.
 			// Case 1: the variable 'length' is 0.
@@ -86,9 +89,8 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 		}
 
 		// Try to fill.
-		var conclusion = singleInfo.Conclusions[0];
+		_ = singleInfo.Conclusions[0] is { Cell: var c, Digit: var d } conclusion;
 		_tempConclusions.Add(conclusion);
-		_ = conclusion is { Cell: var c, Digit: var d };
 		var (candList, mask) = RecordUndoInfo(grid, c, d);
 
 		grid[c] = d;
@@ -130,7 +132,6 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 		return null;
 	}
 
-
 	/// <summary>
 	/// Get links.
 	/// </summary>
@@ -146,6 +147,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 
 		return result;
 	}
+
 
 	/// <summary>
 	/// Record all information to be used in undo grid.

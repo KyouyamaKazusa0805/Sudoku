@@ -4,8 +4,9 @@
 internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3DimensionStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(ICollection<IStep> accumulator, scoped in Grid grid, bool onlyFindOne)
+	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
+		scoped ref readonly var grid = ref context.Grid;
 		using scoped ValueList<CellMap> rbList = new(3), cbList = new(3);
 		foreach (var pivot in EmptyCells)
 		{
@@ -203,12 +204,12 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 													selectedColumnCells | cbCurrentMap,
 													selectedBlockCells | rbCurrentMap | cbCurrentMap
 												);
-												if (onlyFindOne)
+												if (context.OnlyFindOne)
 												{
 													return step;
 												}
 
-												accumulator.Add(step);
+												context.Accumulator.Add(step);
 											}
 										}
 									}
