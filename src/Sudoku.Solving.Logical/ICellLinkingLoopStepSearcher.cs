@@ -12,7 +12,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
 	/// </returns>
-	protected static sealed unsafe GuardianDataInfo[] GatherGuardianLoops(int digit)
+	protected internal static sealed unsafe GuardianDataInfo[] GatherGuardianLoops(int digit)
 	{
 		delegate*<in CellMap, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
 
@@ -33,7 +33,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
 	/// </returns>
-	protected static sealed unsafe UniqueLoopDataInfo[] GatherUniqueLoops(short digitsMask)
+	protected internal static sealed unsafe UniqueLoopDataInfo[] GatherUniqueLoops(short digitsMask)
 	{
 		delegate*<in CellMap, bool> condition = &UniqueLoopSatisfyingPredicate;
 
@@ -59,7 +59,7 @@ public partial interface ICellLinkingLoopStepSearcher : IStepSearcher
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
 	/// </returns>
-	protected static sealed unsafe BivalueOddagonDataInfo[] GatherBivalueOddagons(short digitsMask)
+	protected internal static sealed unsafe BivalueOddagonDataInfo[] GatherBivalueOddagons(short digitsMask)
 	{
 		delegate*<in CellMap, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
 

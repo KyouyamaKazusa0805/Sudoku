@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a backdoor searcher.
 /// </summary>
-public static class BackdoorSearcher
+internal static class BackdoorSearcher
 {
 	/// <summary>
 	/// Indicates the inner solver.

@@ -14,4 +14,9 @@ internal static class Projects
 	/// Indicates the sudoku core project.
 	/// </summary>
 	public const string SudokuCore = "Sudoku.Core";
+
+	/// <summary>
+	/// Indicates the solving logical project.
+	/// </summary>
+	public const string SolvingLogical = "Sudoku.Solving.Logical";
 }

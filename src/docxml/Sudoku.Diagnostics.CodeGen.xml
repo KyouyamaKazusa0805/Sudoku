@@ -261,6 +261,11 @@
             Indicates the sudoku core project.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Projects.SolvingLogical">
+            <summary>
+            Indicates the solving logical project.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Shortcuts">
             <summary>
             Defines the shortcuts of the source generators.

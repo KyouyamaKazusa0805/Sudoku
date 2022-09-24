@@ -1,10 +1,8 @@
 ﻿namespace Sudoku.Filtering;
 
 /// <summary>
-/// Defines a way that is used for filtering the gathered step after
-/// <see cref="IStepGatherableSearcher.Search(in Grid, IProgress{double}, CancellationToken)"/> invoked.
+/// Defines a way that is used for filtering the gathered step.
 /// </summary>
-/// <seealso cref="IStepGatherableSearcher"/>
 public static partial class TechniqueFiltering
 {
 	/// <summary>

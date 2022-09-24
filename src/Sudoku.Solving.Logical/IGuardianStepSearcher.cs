@@ -7,6 +7,6 @@
 /// <item>Guardian</item>
 /// </list>
 /// </summary>
-public interface IGuardianStepSearcher : INegativeRankStepSearcher, ICellLinkingLoopStepSearcher
+public interface IGuardianStepSearcher : INegativeRankStepSearcher
 {
 }

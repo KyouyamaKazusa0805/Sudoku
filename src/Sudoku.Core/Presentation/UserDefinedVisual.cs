@@ -97,10 +97,10 @@ public sealed class UserDefinedVisual :
 	}
 
 	/// <inheritdoc/>
-	ConclusionList IVisual.Conclusions => ConclusionList.Empty;
+	ImmutableArray<Conclusion> IVisual.Conclusions => ImmutableArray<Conclusion>.Empty;
 
 	/// <inheritdoc/>
-	ViewList IVisual.Views => ImmutableArray.Create(_view);
+	ImmutableArray<View> IVisual.Views => ImmutableArray.Create(_view);
 
 
 	/// <summary>

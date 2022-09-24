@@ -19,6 +19,6 @@
 /// </para>
 /// </summary>
 /// <seealso cref="IAlternatingInferenceChainStepSearcher"/>
-public interface IBivalueOddagonStepSearcher : INegativeRankStepSearcher, ICellLinkingLoopStepSearcher
+public interface IBivalueOddagonStepSearcher : INegativeRankStepSearcher
 {
 }

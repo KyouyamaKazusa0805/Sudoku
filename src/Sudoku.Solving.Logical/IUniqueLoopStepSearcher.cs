@@ -10,7 +10,7 @@
 /// <item>Unique Loop Type 4</item>
 /// </list>
 /// </summary>
-public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, ICellLinkingLoopStepSearcher
+public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher
 {
 	/// <summary>
 	/// Checks whether the specified loop of cells is a valid loop.

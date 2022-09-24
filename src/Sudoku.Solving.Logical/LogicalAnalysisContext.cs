@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logics;
+﻿namespace Sudoku.Runtime.AnalysisServices;
 
 /// <summary>
 /// Defines a context that is used by step searchers to check the details of the solving and analysis information.
