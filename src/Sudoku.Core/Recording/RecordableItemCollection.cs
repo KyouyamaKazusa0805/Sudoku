@@ -115,12 +115,12 @@ public readonly struct RecordableItemCollection :
 		=> ((IEnumerable<RecordableItem>)_recordables).GetEnumerator();
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(scoped in RecordableItemCollection left, scoped in RecordableItemCollection right)
 		=> left.Equals(right);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(scoped in RecordableItemCollection left, scoped in RecordableItemCollection right)
 		=> !(left == right);

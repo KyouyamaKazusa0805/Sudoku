@@ -1467,21 +1467,11 @@ public struct CellMap :
 		return map / houseIndex;
 	}
 
-	/// <summary>
-	/// Determines whether two <see cref="CellMap"/> instances are considered equal.
-	/// </summary>
-	/// <param name="left">The first instance to be compared.</param>
-	/// <param name="right">The second instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether they are equal.</returns>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(scoped in CellMap left, scoped in CellMap right) => left.Equals(right);
 
-	/// <summary>
-	/// Determines whether two <see cref="CellMap"/> instances are not totally equal.
-	/// </summary>
-	/// <param name="left">The first instance to be compared.</param>
-	/// <param name="right">The second instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether they are not equal.</returns>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(scoped in CellMap left, scoped in CellMap right) => !(left == right);
 
