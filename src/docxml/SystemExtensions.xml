@@ -1417,6 +1417,121 @@
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute">
+            <summary>
+            Telling the source generators to generate extension deconstruction methods for a specified type.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.#ctor(System.Type,System.String[])">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute"/> instance.
+            </summary>
+            <param name="type">The type of the extension method to be generated.</param>
+            <param name="memberExpressions">The member expressions to be generated.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.EmitsInKeyword">
+            <summary>
+            Indicates whether the source generators also emit for <see langword="in"/>
+            and <see langword="scoped"/> keywords if available on <see langword="struct"/> types.
+            </summary>
+            <remarks>The default value is <see langword="false"/>.</remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.Namespace">
+            <summary>
+            The namespace that the containing type of extension methods exists.
+            </summary>
+            <remarks>The default value is <see langword="null"/>.</remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.MemberExpressions">
+            <summary>
+            The member expressions to be converted.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.Type">
+            <summary>
+            The type to be generated.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute">
+            <summary>
+            Defines an <see langword="enum"/> field as an arm in <see langword="switch"/> expressions.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute"/> instance.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute.Key">
+            <summary>
+            Indicates the key.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute.Value">
+            <summary>
+            Indicates the value.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior">
+            <summary>
+            Represents a default behavior of generated file for default cases in <see langword="switch"/> expressions.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.ReturnIntegerValue">
+            <summary>
+            Indicates the source generator will emit a <see langword="default"/>(<see cref="T:System.Int32"/>) value as default cases.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.ReturnNull">
+            <summary>
+            Indicates the source generator will emit <see langword="null"/> as default cases.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.Throw">
+            <summary>
+            Indicates the source generator will throw <see cref="T:System.ArgumentOutOfRangeException"/> to report invalid values
+            as default cases.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute">
+            <summary>
+            Defines an <see langword="enum"/> field as a root in <see langword="switch"/> expression.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute"/> instance.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.MethodDescription">
+            <summary>
+            Indicates the method description that is used to be put into <c>summary</c> part in doc comments.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.ThisParameterDescription">
+            <summary>
+            Indicates the method description that is used to be put into <c>param name="@this"</c> part in doc comments.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.ReturnValueDescription">
+            <summary>
+            Indicates the method description that is used to be put into <c>returns</c> part in doc comments.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.Key">
+            <summary>
+            Indicates the key.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.DefaultBehavior">
+            <summary>
+            Indicates the default behavior for default cases.
+            </summary>
+        </member>
         <member name="T:System.Reflection.AssemblyExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Reflection.Assembly"/>.

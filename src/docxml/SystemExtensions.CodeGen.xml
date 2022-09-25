@@ -76,13 +76,5 @@
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.GeneratorAttributesGenerator">
-            <summary>
-            Defines a source generator that produces generator-related attributes.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratorAttributesGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
     </members>
 </doc>
