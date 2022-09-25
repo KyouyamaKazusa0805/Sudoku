@@ -5,7 +5,7 @@ using static SearcherFailedReason;
 /// <summary>
 /// Provides a solver that solves a sudoku puzzle using the human-friendly logics.
 /// </summary>
-public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, LogicalSolverResult>, IManualSolverOptions
+public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, LogicalSolverResult>, ILogicalSolverOptions
 {
 	/// <inheritdoc/>
 	/// <remarks>

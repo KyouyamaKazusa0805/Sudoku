@@ -4,16 +4,16 @@
 /// Defines an instance that stores the options that bound with a <see cref="LogicalSolver"/> instance.
 /// </summary>
 /// <seealso cref="LogicalSolver"/>
-public interface IManualSolverOptions
+public interface ILogicalSolverOptions
 {
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher,
 	/// in order to solve a puzzle faster. If the value is <see langword="true"/>,
-	/// the third argument of <see cref="IStepSearcher.GetAll(ICollection{IStep}, in Grid, bool)"/>
+	/// the third argument of <see cref="IStepSearcher.GetAll(in LogicalAnalysisContext)"/>
 	/// will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
 	/// and all steps will be applied at the same time.
 	/// </summary>
-	/// <seealso cref="IStepSearcher.GetAll(ICollection{IStep}, in Grid, bool)"/>
+	/// <seealso cref="IStepSearcher.GetAll(in LogicalAnalysisContext)"/>
 	public abstract bool IsFullApplying { get; set; }
 
 	/// <summary>
