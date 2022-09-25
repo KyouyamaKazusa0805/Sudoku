@@ -49,10 +49,10 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 	/// Get all possible hints from the grid.
 	/// </summary>
 	/// <param name="gathered">
-	/// <inheritdoc cref="GetAll(ICollection{IStep}, in Grid, bool)" path="/param[@name='accumulator']/para[1]"/>
+	/// <inheritdoc cref="GetAll(in LogicalAnalysisContext)" path="/param[@name='accumulator']/para[1]"/>
 	/// </param>
 	/// <param name="grid">
-	/// <inheritdoc cref="GetAll(ICollection{IStep}, in Grid, bool)" path="/param[@name='grid']"/>
+	/// <inheritdoc cref="GetAll(in LogicalAnalysisContext)" path="/param[@name='grid']"/>
 	/// </param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
 	private void GetAll(ICollection<UniqueRectangleStep> gathered, scoped in Grid grid, bool arMode)

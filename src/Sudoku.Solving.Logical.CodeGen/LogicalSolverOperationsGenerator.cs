@@ -12,7 +12,7 @@ public sealed class LogicalSolverOperationsGenerator : IIncrementalGenerator
 			context.CompilationProvider,
 			(spc, compilation) =>
 			{
-				if (compilation is not { Assembly: { Name: Projects.SolvingLogical, GlobalNamespace: var @namespace } assemblySymbol })
+				if (compilation is not { Assembly: { GlobalNamespace: var @namespace } assemblySymbol })
 				{
 					return;
 				}

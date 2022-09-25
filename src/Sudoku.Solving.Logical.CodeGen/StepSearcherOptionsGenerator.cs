@@ -24,10 +24,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 			context.CompilationProvider,
 			(spc, compilation) =>
 			{
-				if (compilation is not { Assembly: { Name: Projects.SolvingLogical } assemblySymbol })
-				{
-					return;
-				}
+				var assemblySymbol = compilation.Assembly;
 
 				// Checks whether the assembly has marked any attributes.
 				if (assemblySymbol.GetAttributes() is not { IsDefaultOrEmpty: false } attributesData)

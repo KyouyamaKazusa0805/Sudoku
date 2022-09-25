@@ -13,10 +13,12 @@ internal static class Projects
 	/// <summary>
 	/// Indicates the sudoku core project.
 	/// </summary>
+	[Obsolete("The field is now deprecated.")]
 	public const string SudokuCore = "Sudoku.Core";
 
 	/// <summary>
 	/// Indicates the solving logical project.
 	/// </summary>
+	[Obsolete("The field is now deprecated.")]
 	public const string SolvingLogical = "Sudoku.Solving.Logical";
 }
