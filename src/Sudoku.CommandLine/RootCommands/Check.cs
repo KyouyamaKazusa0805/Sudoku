@@ -34,7 +34,7 @@ public sealed class Check : IExecutable
 				Terminal.WriteLine(
 					$"""
 					Puzzle: '{Grid:#}'
-					The puzzle {(Grid.IsValid ? "has" : "doesn't have")} a unique solution.
+					The puzzle {(Grid.IsValid() ? "has" : "doesn't have")} a unique solution.
 					"""
 				);
 

@@ -27,7 +27,7 @@ public sealed class Solve : IExecutable
 	/// <inheritdoc/>
 	public void Execute()
 	{
-		if (Grid.Solution is not { IsUndefined: false } solution)
+		if (Grid.GetSolution() is not { IsUndefined: false } solution)
 		{
 			throw new CommandLineRuntimeException((int)ErrorCode.ArgGridValueIsNotUnique);
 		}

@@ -423,7 +423,7 @@ public sealed partial class SudokuPage : Page
 				}
 
 				// Checks the validity of the parsed grid.
-				if (!grid.IsValid)
+				if (!grid.IsValid())
 				{
 					_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["SudokuPage_InfoBar_FilePuzzleIsNotUnique"]!);
 				}
@@ -492,7 +492,7 @@ public sealed partial class SudokuPage : Page
 		}
 
 		// Checks the validity of the parsed grid.
-		if (!grid.IsValid)
+		if (!grid.IsValid())
 		{
 			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["SudokuPage_InfoBar_PastePuzzleIsNotUnique"]!);
 		}
@@ -552,7 +552,13 @@ public sealed partial class SudokuPage : Page
 	private void GetSolution()
 	{
 		// Gets the grid and its solution, then check it.
-		if (_cPane.Grid is not { IsValid: true, Solution: { IsUndefined: false } solution })
+		var grid = _cPane.Grid;
+		if (!grid.IsValid())
+		{
+			return;
+		}
+
+		if (_cPane.Grid.GetSolution() is not { IsUndefined: false } solution)
 		{
 			return;
 		}
@@ -578,7 +584,7 @@ public sealed partial class SudokuPage : Page
 				// Disallow user to analyze empty or undefined grid.
 				return;
 			}
-			case { IsValid: false }:
+			case var grid when !grid.IsValid():
 			{
 				// Disallow user to analyze non-unique solution.
 				_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["SudokuPage_InfoBar_AnalyzeFailedDueToInvalidPuzzle"]!);
@@ -710,7 +716,7 @@ public sealed partial class SudokuPage : Page
 
 		switch (_cPane.Grid)
 		{
-			case { IsValid: false }:
+			case var grid when !grid.IsValid():
 			{
 				f(InfoBarSeverity.Warning, R["CheckMinimalFalied_NotUniquePuzzle"]!);
 				break;
@@ -746,7 +752,7 @@ public sealed partial class SudokuPage : Page
 
 		switch (_cPane.Grid)
 		{
-			case { IsValid: false }:
+			case var grid when !grid.IsValid():
 			{
 				f(InfoBarSeverity.Warning, R["CheckIttouryuFailed_NotUniquePuzzle"]!);
 				break;
@@ -814,7 +820,7 @@ public sealed partial class SudokuPage : Page
 	private async Task FindTrueCandidatesAsync()
 	{
 		var grid = _cPane.Grid;
-		if (!grid.IsValid)
+		if (!grid.IsValid())
 		{
 			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, R["FindTrueCandidateFailed_NotUniquePuzzle"]!);
 			return;
@@ -860,7 +866,7 @@ public sealed partial class SudokuPage : Page
 		var linkDescription = R["Backdoor"]!;
 
 		var grid = _cPane.Grid;
-		if (!grid.IsValid)
+		if (!grid.IsValid())
 		{
 			f(InfoBarSeverity.Warning, R["FindBackdoorsFailed_NotUniquePuzzle"]!);
 			return;
@@ -1242,7 +1248,7 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the event trigger callback method that copies the solution grid.
 	/// </summary>
-	private void CopySolution_Click(object sender, RoutedEventArgs e) => CopySudokuCode(_cPane.Grid.Solution, null);
+	private void CopySolution_Click(object sender, RoutedEventArgs e) => CopySudokuCode(_cPane.Grid.GetSolution(), null);
 
 	/// <summary>
 	/// Indicates the event trigger callback method that copies the initial grid, with multiple-line format.
@@ -1254,7 +1260,7 @@ public sealed partial class SudokuPage : Page
 	/// Indicates the event trigger callback method that copies the solution grid, with multiple-line format.
 	/// </summary>
 	private void CopySolutionMultilined_Click(object sender, RoutedEventArgs e)
-		=> CopySudokuCode(_cPane.Grid.Solution, "@");
+		=> CopySudokuCode(_cPane.Grid.GetSolution(), "@");
 
 	/// <summary>
 	/// Indicates the event trigger callback method that copies the current pencil-marked grid.
@@ -1297,7 +1303,7 @@ public sealed partial class SudokuPage : Page
 	/// <param name="e">The event arguments provided.</param>
 	private async void GatherStepsButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		if (!_cPane.Grid.IsValid)
+		if (!_cPane.Grid.IsValid())
 		{
 			return;
 		}
@@ -1323,7 +1329,7 @@ public sealed partial class SudokuPage : Page
 	/// <param name="e">The event arguments provided.</param>
 	private void FilterGatheredStepsButton_Click(object sender, RoutedEventArgs e)
 	{
-		if (this is not { _currentTechniqueGroups: not null, _cPane.Grid.IsValid: true })
+		if (_currentTechniqueGroups is null || !_cPane.Grid.IsValid())
 		{
 			return;
 		}

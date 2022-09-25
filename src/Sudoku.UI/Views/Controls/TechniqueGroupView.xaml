@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:data="using:Sudoku.UI.DataConversion"
 	xmlns:m="using:Sudoku.UI.Models"
-	xmlns:prototypes="using:Sudoku.Solving.Logics.Prototypes"
+	xmlns:prototypes="using:Sudoku.Solving.Logical.Prototypes"
 	mc:Ignorable="d">
 	<UserControl.Resources>
 		<CollectionViewSource x:Name="_cTechniqueGroups" x:FieldModifier="internal" IsSourceGrouped="True" />

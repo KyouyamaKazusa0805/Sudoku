@@ -12,7 +12,7 @@ public sealed class TrueCandidatesSearcher
 	/// <exception cref="InvalidOperationException">Throws when the puzzle is invalid.</exception>
 	public TrueCandidatesSearcher(scoped in Grid grid)
 	{
-		Argument.ThrowIfInvalid(grid.IsValid, "The puzzle must contain unique solution before checking.");
+		Argument.ThrowIfInvalid(grid.IsValid(), "The puzzle must contain unique solution before checking.");
 
 		Puzzle = grid;
 	}

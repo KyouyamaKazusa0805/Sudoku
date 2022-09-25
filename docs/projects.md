@@ -10,6 +10,7 @@
 
 * [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core)：提供基本的数独相关的数据结构的实现，如数独盘面的实现 [`Grid`](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs) 类型等；
 * [`Sudoku.Drawing`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing)：提供一种简单、轻量级的数独绘图 API；
+* [`Sudoku.Solving.Algorithms`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Algorithms)：提供对于暴力破解的数独解题算法的 API，比如位运算、回溯递归算法等；
 * [`Sudoku.Solving.Logical`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Logical)：提供对于逻辑解题过程处理的 API；
 * [`Sudoku.UI.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI.Core)：用于为 `Sudoku.UI` 项目提供固定 API；
 * [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System)：为整个解决方案的别的项目提供关于 .NET 基本库 API 拓展 API 或功能代码。

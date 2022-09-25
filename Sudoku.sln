@@ -49,7 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving.Logical.Code
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemExtensions.CodeGen", "src\System.CodeGen\SystemExtensions.CodeGen.csproj", "{5E9E2D56-320A-4161-A6A8-A6A69630709E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Global.CodeGen", "src\Global.CodeGen\Global.CodeGen.csproj", "{C1C40889-5E10-43C7-9205-22562F22E843}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Global.CodeGen", "src\Global.CodeGen\Global.CodeGen.csproj", "{C1C40889-5E10-43C7-9205-22562F22E843}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Solving.Algorithms", "src\Sudoku.Solving.Algorithms\Sudoku.Solving.Algorithms.csproj", "{A7701438-7329-4543-830D-9CA315083002}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -413,6 +415,36 @@ Global
 		{C1C40889-5E10-43C7-9205-22562F22E843}.Release|x64.Build.0 = Release|Any CPU
 		{C1C40889-5E10-43C7-9205-22562F22E843}.Release|x86.ActiveCfg = Release|Any CPU
 		{C1C40889-5E10-43C7-9205-22562F22E843}.Release|x86.Build.0 = Release|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Build|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Build|Any CPU.Build.0 = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Build|ARM.ActiveCfg = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Build|ARM.Build.0 = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Build|ARM64.ActiveCfg = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Build|ARM64.Build.0 = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Build|x64.ActiveCfg = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Build|x64.Build.0 = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Build|x86.ActiveCfg = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Build|x86.Build.0 = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Debug|ARM.Build.0 = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Debug|x64.Build.0 = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Debug|x86.Build.0 = Debug|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Release|ARM.Build.0 = Release|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Release|ARM64.Build.0 = Release|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Release|x64.ActiveCfg = Release|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Release|x64.Build.0 = Release|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Release|x86.ActiveCfg = Release|Any CPU
+		{A7701438-7329-4543-830D-9CA315083002}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -423,8 +455,8 @@ Global
 		{382A5CF3-4638-4AEE-B0E3-36483B71924D} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal

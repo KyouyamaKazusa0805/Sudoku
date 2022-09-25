@@ -149,10 +149,8 @@ public sealed class DancingLinksSolver : ISimpleSolver
 		var idList = new List<int>(from k in answer select k.Id);
 		idList.Sort();
 		var gridArray = (from id in idList select id % 9 + 1).ToArray();
-
-		result = Grid.Create(gridArray, GridCreatingOption.MinusOne) is { IsValid: true } grid
-			? grid
-			: throw new InvalidOperationException("The puzzle has no possible solutions.");
+		var grid = Grid.Create(gridArray, GridCreatingOption.MinusOne);
+		result = grid.IsValid() ? grid : throw new InvalidOperationException("The puzzle has no possible solutions.");
 	}
 
 	/// <summary>

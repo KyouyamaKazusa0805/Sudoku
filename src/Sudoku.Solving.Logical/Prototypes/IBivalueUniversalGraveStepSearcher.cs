@@ -54,7 +54,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 		scoped in Grid grid, [NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
 		int maximumCellsToCheck = 20)
 	{
-		Argument.ThrowIfInvalid(grid.IsValid, "The puzzle must be valid (containing a unique solution).");
+		Argument.ThrowIfInvalid(grid.IsValid(), "The puzzle must be valid (containing a unique solution).");
 
 		InitializeMaps(grid);
 

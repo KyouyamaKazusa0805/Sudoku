@@ -401,46 +401,46 @@
             </summary>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._allowCollision">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._allowDoublyLinkedAls">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._checkAlq">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._searchBugExtendedTypes">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.IBivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IBivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._checkAdvancedJe">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.IExocetStepSearcher.CheckAdvanced"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IExocetStepSearcher.CheckAdvanced"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._checkAdvancedSe">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.IExocetStepSearcher.CheckAdvanced"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IExocetStepSearcher.CheckAdvanced"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._enableFullHouse">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.ISingleStepSearcher.EnableFullHouse"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ISingleStepSearcher.EnableFullHouse"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._enableLastDigit">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.ISingleStepSearcher.EnableLastDigit"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ISingleStepSearcher.EnableLastDigit"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._hiddenSingleHouseFirst">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.ISingleStepSearcher.HiddenSinglesInBlockFirst"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ISingleStepSearcher.HiddenSinglesInBlockFirst"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._templateDeleteOnly">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.ITemplateStepSearcher.TemplateDeleteOnly"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ITemplateStepSearcher.TemplateDeleteOnly"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._allowIncompleteUr">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._searcherUrExtendedTypes">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._regularWingMaxSize">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.IRegularWingStepSearcher.MaxSize"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IRegularWingStepSearcher.MaxSize"/>
         </member>
         <member name="F:Sudoku.UI.Data.Configuration.Preference._complexFishSize">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.Prototypes.IFishStepSearcher.MaxSize"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IFishStepSearcher.MaxSize"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.ShowCandidates">
             <inheritdoc/>
@@ -516,52 +516,52 @@
             </remarks>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.IsFullApplying">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.IsFullApplying"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IsFullApplying"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.IgnoreSlowTechniques">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.IgnoreSlowAlgorithms"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreSlowAlgorithms"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.AllowCollisionOnChainingAlsTechniques">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.AllowDoublyLinkedAls">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.CheckAlmostLockedQuadruple">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.SearchBivalueUniversalGraveExtendedTypes">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.CheckAdvancedJuniorExocets">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.JuniorExocetStepSearcher_CheckAdvanced"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.JuniorExocetStepSearcher_CheckAdvanced"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.CheckAdvancedSeniorExocets">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.SeniorExocetStepSearcher_CheckAdvanced"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SeniorExocetStepSearcher_CheckAdvanced"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.EnableFullHouse">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.SingleStepSearcher_EnableFullHouse"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableFullHouse"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.EnableLastDigit">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.SingleStepSearcher_EnableLastDigit"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableLastDigit"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.HiddenSinglesInBlockFirst">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.TemplateDeleteOnly">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.TemplateStepSearcher_TemplateDeleteOnly"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.TemplateStepSearcher_TemplateDeleteOnly"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.AllowIncompleteUniqueRectangles">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.SearchForExtendedUniqueRectangles">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.RegularWingMaxSize">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.RegularWingStepSearcher_MaxSize"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.RegularWingStepSearcher_MaxSize"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.ComplexFishMaxSize">
-            <inheritdoc cref="P:Sudoku.Solving.Logics.LogicalSolver.ComplexFishStepSearcher_MaxSize"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.ComplexFishStepSearcher_MaxSize"/>
         </member>
         <member name="P:Sudoku.UI.Data.Configuration.Preference.OutsideBorderWidth">
             <inheritdoc/>
@@ -1013,9 +1013,9 @@
         <member name="T:Sudoku.UI.Models.AnalysisResultRow">
             <summary>
             Defines a row that used for displaying the information about a technique,
-            whose inner data is from the <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/> instance.
+            whose inner data is from the <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>
+            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/>
         </member>
         <member name="P:Sudoku.UI.Models.AnalysisResultRow.TotalDifficulty">
             <summary>
@@ -1042,13 +1042,13 @@
             Indicates the difficulty level of the technique belonging to.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.AnalysisResultRow.CreateListFrom(Sudoku.Solving.Logics.LogicalSolverResult)">
+        <member name="M:Sudoku.UI.Models.AnalysisResultRow.CreateListFrom(Sudoku.Solving.Logical.LogicalSolverResult)">
             <summary>
             Creates the list of <see cref="T:Sudoku.UI.Models.AnalysisResultRow"/> as the result value,
-            via the specified <paramref name="analysisResult"/> instance of <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/> type.
+            via the specified <paramref name="analysisResult"/> instance of <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> type.
             </summary>
             <param name="analysisResult">
-            The <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/> instance that is used for creating the result value.
+            The <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance that is used for creating the result value.
             </param>
             <returns>The result list of <see cref="T:Sudoku.UI.Models.AnalysisResultRow"/>-typed elements.</returns>
         </member>
@@ -1221,7 +1221,7 @@
             Indicates the step.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Models.LogicalStep.Deconstruct(Sudoku.Concepts.Grid@,Sudoku.Solving.Logics.Prototypes.IStep@)">
+        <member name="M:Sudoku.UI.Models.LogicalStep.Deconstruct(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.Prototypes.IStep@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -1313,13 +1313,13 @@
         <member name="M:Sudoku.UI.Models.LogicalStepCollection.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Models.LogicalStepCollection.Create(Sudoku.Solving.Logics.LogicalSolverResult)">
+        <member name="M:Sudoku.UI.Models.LogicalStepCollection.Create(Sudoku.Solving.Logical.LogicalSolverResult)">
             <summary>
-            Creates a <see cref="T:Sudoku.UI.Models.LogicalStepCollection"/> instance via the specified <see cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>.
+            Creates a <see cref="T:Sudoku.UI.Models.LogicalStepCollection"/> instance via the specified <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/>.
             </summary>
             <param name="steps">The steps.</param>
             <returns>A <see cref="T:Sudoku.UI.Models.LogicalStepCollection"/> instance.</returns>
-            <seealso cref="T:Sudoku.Solving.Logics.LogicalSolverResult"/>
+            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/>
         </member>
         <member name="T:Sudoku.UI.Models.MenuItemHeaderTemplateData">
             <summary>
@@ -3133,7 +3133,7 @@
             </summary>
             <returns>The list of technique groups.</returns>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetTechniqueGroups(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logics.Prototypes.IStep})">
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetTechniqueGroups(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logical.Prototypes.IStep})">
             <summary>
             Try to group them up. The method will return <see langword="null"/> if any exceptions thrown here.
             </summary>
@@ -3387,7 +3387,7 @@
             <param name="sender">The object that triggers this event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.TechniqueGroupView_StepChosen(System.Object,Sudoku.Solving.Logics.Prototypes.IStep)">
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.TechniqueGroupView_StepChosen(System.Object,Sudoku.Solving.Logical.Prototypes.IStep)">
             <summary>
             Triggers when a step is chosen in the gatherer page.
             </summary>

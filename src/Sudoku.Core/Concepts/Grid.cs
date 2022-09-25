@@ -85,9 +85,8 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <remarks>
 	/// This value is found out via backtracking algorithm. For more information about backtracking
-	/// algorithm, please visit documentation comments of type <see cref="BacktrackingSolver"/>.
+	/// algorithm, please visit documentation comments in project <c>Sudoku.Solving.Algorithms</c>.
 	/// </remarks>
-	/// <seealso cref="BacktrackingSolver"/>
 	public static readonly Grid MinValue;
 
 	/// <summary>
@@ -95,15 +94,9 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <remarks>
 	/// This value is found out via backtracking algorithm. For more information about backtracking
-	/// algorithm, please visit documentation comments of type <see cref="BacktrackingSolver"/>.
+	/// algorithm, please visit documentation comments in project <c>Sudoku.Solving.Algorithms</c>.
 	/// </remarks>
-	/// <seealso cref="BacktrackingSolver"/>
 	public static readonly Grid MaxValue;
-
-	/// <summary>
-	/// Indicates the solver that uses the bitwise algorithm to solve a puzzle as fast as possible.
-	/// </summary>
-	private static readonly BitwiseSolver Solver = new();
 
 
 	/// <summary>
@@ -318,15 +311,6 @@ public unsafe partial struct Grid :
 
 			return true;
 		}
-	}
-
-	/// <summary>
-	/// Indicates whether the puzzle is valid, which means the puzzle contains a unique solution.
-	/// </summary>
-	public readonly bool IsValid
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Solver.CheckValidity(ToString());
 	}
 
 	/// <summary>
@@ -577,14 +561,6 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public readonly Grid ResetGrid => Preserve(GivenCells);
 
-	/// <summary>
-	/// Indicates the solution of the grid. If failed to solve (for example,
-	/// the puzzle contains multiple solutions), the property will return <see cref="Undefined"/>.
-	/// </summary>
-	/// <see cref="Undefined"/>
-	public readonly Grid Solution
-		=> Solver.Solve(this) is { IsUndefined: false } solution ? solution.UnfixSolution(GivenCells) : Undefined;
-
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<int>.Count => 81;
 
@@ -736,60 +712,6 @@ public unsafe partial struct Grid :
 			}
 
 			return true;
-		}
-	}
-
-	/// <summary>
-	/// <para>
-	/// Determines whether the current grid is valid, checking on both normal and sukaku cases
-	/// and returning a <see cref="bool"/>? value indicating whether the current sudoku grid is valid
-	/// only on sukaku case.
-	/// </para>
-	/// <para>
-	/// For more information, please see the introduction about the parameter
-	/// <paramref name="sukaku"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="solutionIfValid">
-	/// The solution if the puzzle is valid; otherwise, <see cref="Undefined"/>.
-	/// </param>
-	/// <param name="sukaku">Indicates whether the current mode is sukaku mode.<list type="table">
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>The puzzle is a sukaku puzzle.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="false"/></term>
-	/// <description>The puzzle is a normal sudoku puzzle.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>The puzzle is invalid.</description>
-	/// </item>
-	/// </list>
-	/// </param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	/// <seealso cref="Undefined"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool ExactlyValidate(out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
-	{
-		Unsafe.SkipInit(out solutionIfValid);
-		if (Solver.CheckValidity(ToString(null), out var solution))
-		{
-			solutionIfValid = Parse(solution);
-			sukaku = false;
-			return true;
-		}
-		else if (Solver.CheckValidity(ToString("~"), out solution))
-		{
-			solutionIfValid = Parse(solution);
-			sukaku = true;
-			return true;
-		}
-		else
-		{
-			sukaku = null;
-			return false;
 		}
 	}
 
@@ -1222,6 +1144,28 @@ public unsafe partial struct Grid :
 		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, m, -1);
 	}
 
+	/// <summary>
+	/// Gets a sudoku grid, replacing all digits with modifiable
+	/// if it doesn't appear in the specified <paramref name="pattern"/> from the solution of the current grid.
+	/// </summary>
+	/// <param name="pattern">The pattern.</param>
+	/// <returns>The result grid.</returns>
+	internal readonly Grid UnfixSolution(scoped in CellMap pattern)
+	{
+		Argument.ThrowIfFalse(IsSolved, "The current grid must be solved.");
+
+		var result = this;
+		foreach (var cell in ~pattern)
+		{
+			if (result.GetStatus(cell) == CellStatus.Given)
+			{
+				result.SetStatus(cell, CellStatus.Modifiable);
+			}
+		}
+
+		return result;
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly IEnumerator IEnumerable.GetEnumerator() => ToArray().GetEnumerator();
@@ -1260,7 +1204,6 @@ public unsafe partial struct Grid :
 
 		return result;
 	}
-
 
 	/// <summary>
 	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.
@@ -1320,28 +1263,6 @@ public unsafe partial struct Grid :
 		foreach (var cell in ~pattern)
 		{
 			result[cell] = -1;
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Gets a sudoku grid, replacing all digits with modifiable
-	/// if it doesn't appear in the specified <paramref name="pattern"/> from the solution of the current grid.
-	/// </summary>
-	/// <param name="pattern">The pattern.</param>
-	/// <returns>The result grid.</returns>
-	private readonly Grid UnfixSolution(scoped in CellMap pattern)
-	{
-		Argument.ThrowIfFalse(IsSolved, "The current grid must be solved.");
-
-		var result = this;
-		foreach (var cell in ~pattern)
-		{
-			if (result.GetStatus(cell) == CellStatus.Given)
-			{
-				result.SetStatus(cell, CellStatus.Modifiable);
-			}
 		}
 
 		return result;

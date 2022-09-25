@@ -44,6 +44,7 @@ global using Microsoft.UI.Xaml.Printing;
 global using Microsoft.Windows.AppLifecycle;
 global using Microsoft.Windows.System.Power;
 global using Sudoku.Checking;
+global using Sudoku.Concepts;
 global using Sudoku.Filtering;
 global using Sudoku.Generating.Puzzlers;
 global using Sudoku.Presentation;

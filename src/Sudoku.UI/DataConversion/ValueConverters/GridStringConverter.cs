@@ -10,8 +10,8 @@ public sealed class GridStringConverter : IValueConverter
 	{
 		return value switch
 		{
-			Grid { IsValid: false } => R["SudokuPage_InvalidGrid"]!,
-			Grid { IsValid: true } grid => parameter switch
+			Grid grid when !grid.IsValid() => R["SudokuPage_InvalidGrid"]!,
+			Grid grid when grid.IsValid() => parameter switch
 			{
 				null => grid.ToString(),
 				string format => grid.ToString(format),

@@ -28,7 +28,7 @@ public static class MinimalPuzzleChecker
 	{
 		switch (grid)
 		{
-			case { IsValid: false }:
+			case var _ when !grid.IsValid():
 			{
 				throw new ArgumentException("The puzzle is not unique.", nameof(grid));
 			}
@@ -50,7 +50,7 @@ public static class MinimalPuzzleChecker
 					newGrid[cell] = -1;
 					newGrid.Fix();
 
-					if (newGrid.IsValid)
+					if (newGrid.IsValid())
 					{
 						firstCandidateMakePuzzleNotMinimal = cell * 9 + grid[cell];
 						return false;

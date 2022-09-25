@@ -1046,7 +1046,7 @@ public sealed class SudokuGrid : DrawingElement
 					// If a certain digit has been wrongly removed from the grid, we should display it
 					// using a different color if enabled the delta view.
 					if (_preference.EnableDeltaValuesDisplaying
-						&& _grid.ResetGrid.Solution is { IsUndefined: false } solution)
+						&& _grid.ResetGrid.GetSolution() is { IsUndefined: false } solution)
 					{
 						// Checks the wrong digits.
 						// Wrong digits are the correct digits in the solution but they have been eliminated.
@@ -1071,7 +1071,7 @@ public sealed class SudokuGrid : DrawingElement
 					// if enabled the delta view.
 					if (_preference.EnableDeltaValuesDisplaying)
 					{
-						if (_grid.ResetGrid.Solution is { IsUndefined: false } solution)
+						if (_grid.ResetGrid.GetSolution() is { IsUndefined: false } solution)
 						{
 							// For unique-solution puzzle, we should check both duplicate digits
 							// and wrong digits different with the solution.
