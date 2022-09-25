@@ -1,5 +1,7 @@
 <Project>
-
+	<!--
+	BASIC CONFIGURATION
+	-->
 	<!--Basic information-->
 	<PropertyGroup>
 		<!--Project configuration-->
@@ -43,6 +45,14 @@
 		</When>
 		-->
 	</Choose>
+
+	<!--
+	SOURCE GENEARTOR PROJECTS CONFIGURATION
+	-->
+	<!--Set the root namespaces.-->
+	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
+		<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
+	</PropertyGroup>
 
 	<!--Import 'Microsoft.CodeAnalysis.*' packages if the project is a source generator project.-->
 	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
