@@ -44,4 +44,17 @@
 		-->
 	</Choose>
 
+	<!--Import 'Microsoft.CodeAnalysis.*' packages if the project is a source generator project.-->
+	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.2.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.2.0" />
+	</ItemGroup>
+
+	<!--Import 'Global.CodeGen' project into the source generator projects.-->
+	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' And '$(MSBuildProjectFile)'!='Global.CodeGen.csproj'">
+		<AdditionalFiles Include="..\..\Directory.Build.props" />
+		<ProjectReference Include="..\Global.CodeGen\Global.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+	</ItemGroup>
+
 </Project>

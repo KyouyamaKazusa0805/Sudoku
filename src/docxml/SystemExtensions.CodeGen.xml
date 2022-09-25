@@ -76,5 +76,10 @@
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
+        <member name="F:CodeGen.Constants.VersionValue">
+            <summary>
+            Indicates the version of this project.
+            </summary>
+        </member>
     </members>
 </doc>

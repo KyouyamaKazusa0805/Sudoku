@@ -26,7 +26,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 		// Due to the design of the source generator and the attribute, the attribute can only applied to an assembly,
 		// which cannot be fetched in the syntax context receiver gotten above.
 		var collection = new List<(INamedTypeSymbol, AttributeData AttributeData)>();
-		const string attributeFullNameExtension = $"{GeneratorAttributesNamespace}.{AutoExtensionDeconstructionAttribute}";
+		const string attributeFullNameExtension = "System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute";
 		var attributeTypeSymbolExtension = compilation.GetTypeByMetadataName(attributeFullNameExtension);
 		GatherAssemblyAttributes(attributeTypeSymbolExtension, assembly, collection);
 

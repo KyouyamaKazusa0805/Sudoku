@@ -1,17 +1,11 @@
 ﻿global using System;
-global using System.CodeDom.Compiler;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
-global using System.ComponentModel;
 global using System.Linq;
-global using System.Runtime.CompilerServices;
-global using System.Text;
 global using System.Text.RegularExpressions;
 global using System.Threading;
 global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
-global using Microsoft.CodeAnalysis.Text;
-global using Sudoku.Diagnostics.CodeGen;
-global using static Sudoku.Diagnostics.CodeGen.Constants;
 global using Kind = Microsoft.CodeAnalysis.TypeKind;
+global using static CodeGen.Constants;

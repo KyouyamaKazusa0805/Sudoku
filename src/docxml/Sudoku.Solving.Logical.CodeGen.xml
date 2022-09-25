@@ -77,5 +77,10 @@
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.FoundAttributeData.NamedArguments">
             <summary>The named arguments of that attribute.</summary>
         </member>
+        <member name="F:CodeGen.Constants.VersionValue">
+            <summary>
+            Indicates the version of this project.
+            </summary>
+        </member>
     </members>
 </doc>
