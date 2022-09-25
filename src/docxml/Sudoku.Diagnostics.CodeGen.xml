@@ -68,78 +68,6 @@
             <param name="type">The current emit type.</param>
             <returns>The collection of raw code parts for extension deconstruction methods.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator">
-            <summary>
-            Indicates the generator that generates the code about extended methods of type <c>BitOperations</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.LeadingText">
-            <summary>
-            Indicates the leading text.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.GenerateSource(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.Compilation)">
-            <summary>
-            Try to generate source.
-            </summary>
-            <param name="spc">The <see cref="T:Microsoft.CodeAnalysis.SourceProductionContext"/> instance that can generate files.</param>
-            <param name="compilation">
-            The compilation to check whether the current compilation should generate the files.
-            </param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_GlobalFile">
-            <summary>
-            Generates the global file.
-            </summary>
-            <returns>The string text of the code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_GetAllSets(System.String)">
-            <summary>
-            Generates the file of the method <c>GetAllSets</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_GetEnumerator(System.String)">
-            <summary>
-            Generates the file of the method <c>GetEnumerator</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_GetNextSet(System.String,System.Int32)">
-            <summary>
-            Generates the file of the method <c>GetNextSet</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <param name="size">The size of the type.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_ReverseBits(System.String,System.Int32)">
-            <summary>
-            Generates the file of the method <c>ReverseBits</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <param name="size">The size of the type.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_SetAt(System.String)">
-            <summary>
-            Generates the file of the method <c>SetAt</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_SkipSetBit(System.String)">
-            <summary>
-            Generates the file of the method <c>SkipSetBit</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator">
             <summary>
             Defines a source generator that generates the method and the corresponding values,
@@ -164,34 +92,6 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AttributeDataComparer.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.GeneratorAttributesGenerator">
-            <summary>
-            Defines a source generator that produces generator-related attributes.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratorAttributesGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Projects">
-            <summary>
-            Defines a list of project names to be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Projects.System">
-            <summary>
-            Indicates the system extensions project.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Projects.SudokuCore">
-            <summary>
-            Indicates the sudoku core project.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Projects.SolvingLogical">
-            <summary>
-            Indicates the solving logical project.
-            </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Shortcuts">
             <summary>

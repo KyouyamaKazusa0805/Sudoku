@@ -45,7 +45,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReadMe", "ReadMe", "{382A5C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving.Logical", "src\Sudoku.Solving.Logical\Sudoku.Solving.Logical.csproj", "{99E87A0A-BE98-453A-8608-4D425556A445}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Solving.Logical.CodeGen", "src\Sudoku.Solving.Logical.CodeGen\Sudoku.Solving.Logical.CodeGen.csproj", "{17312610-0DF3-44BA-AF80-28FB8075B777}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving.Logical.CodeGen", "src\Sudoku.Solving.Logical.CodeGen\Sudoku.Solving.Logical.CodeGen.csproj", "{17312610-0DF3-44BA-AF80-28FB8075B777}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemExtensions.CodeGen", "src\System.CodeGen\SystemExtensions.CodeGen.csproj", "{5E9E2D56-320A-4161-A6A8-A6A69630709E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -349,6 +351,36 @@ Global
 		{17312610-0DF3-44BA-AF80-28FB8075B777}.Release|x64.Build.0 = Release|Any CPU
 		{17312610-0DF3-44BA-AF80-28FB8075B777}.Release|x86.ActiveCfg = Release|Any CPU
 		{17312610-0DF3-44BA-AF80-28FB8075B777}.Release|x86.Build.0 = Release|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Build|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Build|Any CPU.Build.0 = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Build|ARM.ActiveCfg = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Build|ARM.Build.0 = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Build|ARM64.ActiveCfg = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Build|ARM64.Build.0 = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Build|x64.ActiveCfg = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Build|x64.Build.0 = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Build|x86.ActiveCfg = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Build|x86.Build.0 = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Debug|ARM.Build.0 = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Debug|x64.Build.0 = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Debug|x86.Build.0 = Debug|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Release|ARM.Build.0 = Release|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Release|ARM64.Build.0 = Release|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Release|x64.ActiveCfg = Release|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Release|x64.Build.0 = Release|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Release|x86.ActiveCfg = Release|Any CPU
+		{5E9E2D56-320A-4161-A6A8-A6A69630709E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -359,8 +391,8 @@ Global
 		{382A5CF3-4638-4AEE-B0E3-36483B71924D} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal

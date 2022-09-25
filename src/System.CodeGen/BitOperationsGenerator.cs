@@ -49,11 +49,6 @@ public sealed class BitOperationsGenerator : IIncrementalGenerator
 	/// </param>
 	private void GenerateSource(SourceProductionContext spc, Compilation compilation)
 	{
-		if (compilation.Assembly.Name != Projects.System)
-		{
-			return;
-		}
-
 		const string typeName = "System.Numerics.BitOperationsExtensions";
 
 		spc.AddSource($"{typeName}.g.cs", G_GlobalFile());
