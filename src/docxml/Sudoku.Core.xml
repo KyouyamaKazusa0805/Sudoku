@@ -8376,9 +8376,9 @@
             <summary>
             Defines an attribute that can be applied to a property in step searcher interface type,
             indicating the property is represented as a setting property, that can interact
-            with the <see cref="T:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2"/> type.
+            with the <see cref="T:Sudoku.Solving.IComplexSolver`2"/> type.
             </summary>
-            <seealso cref="T:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2"/>
+            <seealso cref="T:Sudoku.Solving.IComplexSolver`2"/>
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.SukakuNotSupportedAttribute">
             <summary>
@@ -8510,7 +8510,7 @@
             <param name="result">
             <para>The result of the grid.</para>
             <para>
-            Different with other methods whose containing type is <see cref="T:Sudoku.Solving.Logics.Prototypes.ISimpleSolver"/>,
+            Different with other methods whose containing type is <see cref="T:Sudoku.Solving.ISimpleSolver"/>,
             this argument can be used no matter what the result value will be.
             </para>
             </param>
@@ -9368,7 +9368,7 @@
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2">
+        <member name="T:Sudoku.Solving.IComplexSolver`2">
             <summary>
             Defines a complex solver, that uses complex algorithm to solve a puzzle, returning
             a complex result type instead of an only <see cref="T:System.Boolean"/> value
@@ -9377,7 +9377,7 @@
             <typeparam name="TSolver">The solver's type.</typeparam>
             <typeparam name="TSolverResult">The type of the target result.</typeparam>
         </member>
-        <member name="M:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <summary>
             To solve the specified puzzle.
             </summary>
@@ -9386,21 +9386,21 @@
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>The solver result that provides the information after solving.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Logics.Prototypes.IComplexSolverResult`2">
+        <member name="T:Sudoku.Solving.IComplexSolverResult`2">
             <summary>
             Defines an instance that describes the result after executed the method
-            <see cref="M:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>.
+            <see cref="M:Sudoku.Solving.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>.
             </summary>
             <typeparam name="TSolver">The solver's type.</typeparam>
             <typeparam name="TSolverResult">The type of the target result.</typeparam>
-            <seealso cref="M:Sudoku.Solving.Logics.Prototypes.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Solving.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Prototypes.IComplexSolverResult`2.IsSolved">
+        <member name="P:Sudoku.Solving.IComplexSolverResult`2.IsSolved">
             <summary>
             Indicates whether the solver has solved the puzzle.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Prototypes.IComplexSolverResult`2.ElapsedTime">
+        <member name="P:Sudoku.Solving.IComplexSolverResult`2.ElapsedTime">
             <summary>
             Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
             Some case if the puzzle doesn't contain a valid unique solution, the value may be
@@ -9408,29 +9408,29 @@
             </summary>
             <seealso cref="F:System.TimeSpan.Zero"/>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Prototypes.IComplexSolverResult`2.Puzzle">
+        <member name="P:Sudoku.Solving.IComplexSolverResult`2.Puzzle">
             <summary>
             Indicates the original puzzle to be solved.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Prototypes.IComplexSolverResult`2.Solution">
+        <member name="P:Sudoku.Solving.IComplexSolverResult`2.Solution">
             <summary>
             Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
             <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Prototypes.IComplexSolverResult`2.UnhandledException">
+        <member name="P:Sudoku.Solving.IComplexSolverResult`2.UnhandledException">
             <summary>
             Indicates the unhandled exception thrown.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Logics.Prototypes.ISimpleSolver">
+        <member name="T:Sudoku.Solving.ISimpleSolver">
             <summary>
             Defines a simple solver.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logics.Prototypes.ISimpleSolver.UriLink">
+        <member name="P:Sudoku.Solving.ISimpleSolver.UriLink">
             <summary>
             Indicates the URI link that links to the introduction of the algorithm.
             </summary>
@@ -9438,7 +9438,7 @@
             This property is reserved as information that is offered to the algorithm learners.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Logics.Prototypes.ISimpleSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Solving.ISimpleSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             To solve the specified grid.
             </summary>

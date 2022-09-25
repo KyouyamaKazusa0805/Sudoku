@@ -32,7 +32,6 @@ global using Sudoku.Solving;
 global using Sudoku.Solving.Algorithms.Backtracking;
 global using Sudoku.Solving.Algorithms.Bitwise;
 global using Sudoku.Solving.Algorithms.EnumerableQuery;
-global using Sudoku.Solving.Logics.Prototypes;
 global using Sudoku.Techniques;
 global using Sudoku.Text;
 global using Sudoku.Text.Formatting;
