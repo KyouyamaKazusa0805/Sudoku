@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Recording</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Recording.RecordableItem">
+            <summary>
+            Defines a recordable item. This type is used for recording a user's behavior on finishing a sudoku puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recording.RecordableItem._mask">
+            <summary>
+            Indicates the inner mask.
+            </summary>
+            <remarks>
+            This field only uses 11 bits. The lower 10 bits to describe the candidate the user operates,
+            and the 11th bit from lower means which kind of behavior that a user want to operate that candidate
+            (set or delete). Other bits is reserved for later use. The sketch is like:
+            <code>
+            16   1110        0
+             |xxxx||         |
+             |-------|-------|
+            16       8       0
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItem.#ctor(Sudoku.Recording.RecordableItemType,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Recording.RecordableItem"/> instance via the specified recordable type and candidate used.
+            </summary>
+            <param name="type">
+            The recordable type. Indicates which kind of behavior that user want to operate that candidate.
+            </param>
+            <param name="candidate">The candidate used.</param>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItem.#ctor(Sudoku.Recording.RecordableItemType,System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Recording.RecordableItem"/> instance via the specified recordable type, cell and digit used.
+            </summary>
+            <param name="type">
+            The recordable type. Indicates which kind of behavior that user want to operate that candidate.
+            </param>
+            <param name="cell">The cell used.</param>
+            <param name="digit">The digit used.</param>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItem.#ctor(System.Int16)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Recording.RecordableItem"/> instance via the mask.
+            </summary>
+            <param name="mask">The inner mask.</param>
+        </member>
+        <member name="P:Sudoku.Recording.RecordableItem.Type">
+            <summary>
+            Indicates the type of the recording item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recording.RecordableItem.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recording.RecordableItem.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recording.RecordableItem.Candidate">
+            <summary>
+            Indicates the candidate used. The property value is equivalent
+            to expression <c><see cref="P:Sudoku.Recording.RecordableItem.Cell"/> * 9 + <see cref="P:Sudoku.Recording.RecordableItem.Digit"/></c>.
+            </summary>
+            <seealso cref="P:Sudoku.Recording.RecordableItem.Cell"/>
+            <seealso cref="P:Sudoku.Recording.RecordableItem.Digit"/>
+        </member>
+        <member name="P:Sudoku.Recording.RecordableItem.Timestamp">
+            <summary>
+            Indicates the current timestamp.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItem.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItem.Equals(Sudoku.Recording.RecordableItem@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItem.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItem.System#IEquatable{Sudoku#Recording#RecordableItem}#Equals(Sudoku.Recording.RecordableItem)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItem.op_Equality(Sudoku.Recording.RecordableItem@,Sudoku.Recording.RecordableItem@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItem.op_Inequality(Sudoku.Recording.RecordableItem@,Sudoku.Recording.RecordableItem@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItem.System#Numerics#IEqualityOperators{Sudoku#Recording#RecordableItem,Sudoku#Recording#RecordableItem,System#Boolean}#op_Equality(Sudoku.Recording.RecordableItem,Sudoku.Recording.RecordableItem)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItem.System#Numerics#IEqualityOperators{Sudoku#Recording#RecordableItem,Sudoku#Recording#RecordableItem,System#Boolean}#op_Inequality(Sudoku.Recording.RecordableItem,Sudoku.Recording.RecordableItem)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Recording.RecordableItemCollection">
+            <summary>
+            Defines a collection of <see cref="T:Sudoku.Recording.RecordableItem"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Recording.RecordableItem"/>
+        </member>
+        <member name="F:Sudoku.Recording.RecordableItemCollection._recordables">
+            <summary>
+            Indicates the inner collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Recording.RecordableItem},Sudoku.Concepts.Grid@,System.Int64)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Recording.RecordableItemCollection"/> instance
+            via the specified collection of <see cref="T:Sudoku.Recording.RecordableItem"/> instances.
+            </summary>
+            <param name="recordables">The collection of <see cref="T:Sudoku.Recording.RecordableItem"/> instances.</param>
+            <param name="grid">Indicates the grid used.</param>
+            <param name="startTimestamp">Indicates the timestamp that starts the stopwatch to record steps.</param>
+        </member>
+        <member name="P:Sudoku.Recording.RecordableItemCollection.Count">
+            <summary>
+            Indicates the number of steps that the current collection being stored.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recording.RecordableItemCollection.StartTimestamp">
+            <summary>
+            Indicates the start timestamp. This value records the time information that is ahead of the first step recorded.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recording.RecordableItemCollection.ElapsedTime">
+            <summary>
+            Indicates the total elapsed time that starts the <see cref="P:Sudoku.Recording.RecordableItemCollection.StartTimestamp"/> and ends with the final step's
+            timestamp.
+            </summary>
+            <seealso cref="P:Sudoku.Recording.RecordableItemCollection.StartTimestamp"/>
+            <seealso cref="P:Sudoku.Recording.RecordableItem.Timestamp"/>
+        </member>
+        <member name="P:Sudoku.Recording.RecordableItemCollection.Grid">
+            <summary>
+            Indicates the current grid used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recording.RecordableItemCollection.Item(System.Int32)">
+            <summary>
+            Gets a read-only reference to the element at the specified <paramref name="index"/>
+            in the read-only collection.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>
+            A read-only reference to the element at the specified <paramref name="index"/> in the read-only collection.
+            </returns>
+        </member>
+        <member name="P:Sudoku.Recording.RecordableItemCollection.System#Collections#Generic#IReadOnlyList{Sudoku#Recording#RecordableItem}#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.Equals(Sudoku.Recording.RecordableItemCollection@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.System#IEquatable{Sudoku#Recording#RecordableItemCollection}#Equals(Sudoku.Recording.RecordableItemCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.System#Collections#Generic#IEnumerable{Sudoku#Recording#RecordableItem}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.op_Equality(Sudoku.Recording.RecordableItemCollection@,Sudoku.Recording.RecordableItemCollection@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.op_Inequality(Sudoku.Recording.RecordableItemCollection@,Sudoku.Recording.RecordableItemCollection@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.System#Numerics#IEqualityOperators{Sudoku#Recording#RecordableItemCollection,Sudoku#Recording#RecordableItemCollection,System#Boolean}#op_Equality(Sudoku.Recording.RecordableItemCollection,Sudoku.Recording.RecordableItemCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recording.RecordableItemCollection.System#Numerics#IEqualityOperators{Sudoku#Recording#RecordableItemCollection,Sudoku#Recording#RecordableItemCollection,System#Boolean}#op_Inequality(Sudoku.Recording.RecordableItemCollection,Sudoku.Recording.RecordableItemCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Recording.RecordableItemType">
+            <summary>
+            Indicates what kind of recordable item it is.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recording.RecordableItemType.SetDigit">
+            <summary>
+            Indicates the recordable item is to set a digit into a cell.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recording.RecordableItemType.DeleteDigit">
+            <summary>
+            Indicates the recordable item is to delete a digit from a cell.
+            </summary>
+        </member>
+    </members>
+</doc>
