@@ -13,14 +13,14 @@ public sealed class Generate : IExecutable
 	/// Indicates the range of givens that generated puzzle should be.
 	/// </summary>
 	[DoubleArgumentsCommand('c', "count", "The range of given cells that generated puzzle should be.")]
-	[CommandConverter(typeof(CellCountRangeConverter))]
+	[CommandConverter<CellCountRangeConverter>]
 	public (int Min, int Max) Range { get; set; } = (24, 30);
 
 	/// <summary>
 	/// Indicates the algorithm to generate the puzzle.
 	/// </summary>
 	[DoubleArgumentsCommand('m', "method", "The method that defines what algorithm used for generating a sudoku puzzle.")]
-	[CommandConverter(typeof(EnumTypeConverter<GenerateType>))]
+	[CommandConverter<EnumTypeConverter<GenerateType>>]
 	public GenerateType GenerateType { get; set; } = GenerateType.HardPatternLike;
 
 

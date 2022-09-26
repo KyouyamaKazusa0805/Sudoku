@@ -835,24 +835,16 @@
             <param name="this">The collection.</param>
             <param name="element">The element to be prepended.</param>
         </member>
-        <member name="T:System.CommandLine.Annotations.CommandConverterAttribute">
+        <member name="T:System.CommandLine.Annotations.CommandConverterAttribute`1">
             <summary>
             Represents an attribute that is applied to a property, indicating the property value should be converted
             through a <see cref="T:System.CommandLine.IValueConverter"/>.
             </summary>
+            <typeparam name="TConverter">
+            The type of the converter. The type must implement interface type <see cref="T:System.CommandLine.IValueConverter"/>,
+            and contains a parameterless constructor.
+            </typeparam>
             <seealso cref="T:System.CommandLine.IValueConverter"/>
-        </member>
-        <member name="M:System.CommandLine.Annotations.CommandConverterAttribute.#ctor(System.Type)">
-            <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.CommandConverterAttribute"/> instance.
-            </summary>
-            <param name="converterType">The converter type.</param>
-        </member>
-        <member name="P:System.CommandLine.Annotations.CommandConverterAttribute.ConverterType">
-            <summary>
-            Indicates the value converter type that allows the conversion
-            from <see cref="T:System.String"/> to the target type.
-            </summary>
         </member>
         <member name="T:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute">
             <summary>
@@ -1152,12 +1144,12 @@
         </member>
         <member name="M:System.CommandLine.CommandConverterException.#ctor">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.CommandConverterAttribute"/> instance.
+            Initializes a <see cref="!:CommandConverterAttribute"/> instance.
             </summary>
         </member>
         <member name="M:System.CommandLine.CommandConverterException.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.CommandConverterAttribute"/> instance via the specified error message.
+            Initializes a <see cref="!:CommandConverterAttribute"/> instance via the specified error message.
             </summary>
             <param name="message">The error message.</param>
         </member>
@@ -1300,7 +1292,7 @@
             </summary>
             <param name="value">The string value as the command line argument.</param>
             <returns>The target typed instance as the result.</returns>
-            <exception cref="T:System.CommandLine.Annotations.CommandConverterAttribute">
+            <exception cref="!:CommandConverterAttribute">
             Throws when the current method has encountered an unexpected error.
             </exception>
         </member>

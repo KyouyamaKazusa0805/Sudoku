@@ -163,8 +163,8 @@ public static class Parser
 
 				// Converts the real argument value into the target property typed instance.
 				var realValue = otherArgs[argPos];
-				var propertyConverterAttribute = property.GetCustomAttribute<CommandConverterAttribute>();
-				if (propertyConverterAttribute is { ConverterType: var converterType })
+				var converterTypes = property.GetGenericAttributeTypeArguments(typeof(CommandConverterAttribute<>));
+				if (converterTypes is [var converterType])
 				{
 					// Creates a converter instance.
 					var instance = (IValueConverter)Activator.CreateInstance(converterType)!;

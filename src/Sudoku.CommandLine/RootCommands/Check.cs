@@ -13,14 +13,14 @@ public sealed class Check : IExecutable
 	/// Indicates the check type.
 	/// </summary>
 	[DoubleArgumentsCommand('t', "type", "Indicates what kind of attribute will be checked.")]
-	[CommandConverter(typeof(EnumTypeConverter<CheckType>))]
+	[CommandConverter<EnumTypeConverter<CheckType>>]
 	public CheckType CheckType { get; set; } = CheckType.Validity;
 
 	/// <summary>
 	/// Indicates the grid used.
 	/// </summary>
 	[DoubleArgumentsCommand('g', "grid", "Indicates the sudoku grid as string representation.", IsRequired = true)]
-	[CommandConverter(typeof(GridConverter))]
+	[CommandConverter<GridConverter>]
 	public Grid Grid { get; set; }
 
 

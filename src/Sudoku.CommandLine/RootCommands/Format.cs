@@ -19,7 +19,7 @@ public sealed class Format : IExecutable
 	/// Indicates the grid used.
 	/// </summary>
 	[DoubleArgumentsCommand('g', "grid", "Indicates the grid to be formatted.", IsRequired = true)]
-	[CommandConverter(typeof(GridConverter))]
+	[CommandConverter<GridConverter>]
 	public Grid Grid { get; set; }
 
 

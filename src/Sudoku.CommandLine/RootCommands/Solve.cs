@@ -13,14 +13,14 @@ public sealed class Solve : IExecutable
 	/// Indicates the method to be used.
 	/// </summary>
 	[DoubleArgumentsCommand('m', "method", "Indicates the method to be used for solving a sudoku.")]
-	[CommandConverter(typeof(EnumTypeConverter<SolveAlgorithm>))]
+	[CommandConverter<EnumTypeConverter<SolveAlgorithm>>]
 	public SolveAlgorithm SolveMethod { get; set; } = SolveAlgorithm.Bitwise;
 
 	/// <summary>
 	/// Indicates the grid used.
 	/// </summary>
 	[DoubleArgumentsCommand('g', "grid", "Indicates the grid used for being solved.", IsRequired = true)]
-	[CommandConverter(typeof(GridConverter))]
+	[CommandConverter<GridConverter>]
 	public Grid Grid { get; set; }
 
 

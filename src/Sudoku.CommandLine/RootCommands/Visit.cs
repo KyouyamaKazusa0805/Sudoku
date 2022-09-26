@@ -15,7 +15,7 @@ public sealed class Visit : IExecutable
 	/// Indicates the link to visit.
 	/// </summary>
 	[DoubleArgumentsCommand('l', "link", "Indicates the link that outputs.")]
-	[CommandConverter(typeof(EnumTypeConverter<VisitLink>))]
+	[CommandConverter<EnumTypeConverter<VisitLink>>]
 	public VisitLink VisitLink { get; set; } = VisitLink.AuthorGitHub;
 
 
