@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Implementations.Data;
+﻿namespace Sudoku.Solving.Logical.PatternData;
 
 /// <summary>
 /// Represents for a data set that describes the complete information about a bi-value oddagon technique.

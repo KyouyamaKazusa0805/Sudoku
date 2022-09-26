@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Implementations.Data;
+﻿namespace Sudoku.Solving.Logical.PatternData;
 
 /// <summary>
 /// Indicates a shape modifier that is used for a complex fish structure.

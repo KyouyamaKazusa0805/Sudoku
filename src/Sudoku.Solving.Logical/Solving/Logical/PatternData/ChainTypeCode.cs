@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Implementations.Data;
+﻿namespace Sudoku.Solving.Logical.PatternData;
 
 /// <summary>
 /// Indicates a type code for a chain.

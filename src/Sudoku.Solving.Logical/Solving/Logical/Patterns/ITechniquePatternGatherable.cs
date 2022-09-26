@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Techniques.Patterns;
+﻿namespace Sudoku.Solving.Logical.Patterns;
 
 /// <summary>
 /// Describes a technique pattern that can be gather-able.

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Techniques.Patterns;
+﻿namespace Sudoku.Solving.Logical.Patterns;
 
 /// <summary>
 /// Defines a data structure that describes an ALS.
