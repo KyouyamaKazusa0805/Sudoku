@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.Steps.Specialized;
 
 /// <summary>
 /// Defines a step whose technique used is the elementary one.

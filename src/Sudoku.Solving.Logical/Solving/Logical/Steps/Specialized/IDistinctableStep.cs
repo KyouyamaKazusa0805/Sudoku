@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.Steps.Specialized;
 
 /// <summary>
 /// Defines a step that can be distinctable.

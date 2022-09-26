@@ -1,9 +1,9 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.ConceptGatherables;
 
 /// <summary>
-/// Defines a conjugate pair gatherer.
+/// Represents a type that can gather <see cref="Conjugate"/> instances that exists in a grid.
 /// </summary>
-internal interface IConjugatesGatherer : IStructureGatherer<Conjugate>
+internal interface IConjugatesGatherable : IConceptGatherable<Conjugate>
 {
 	/// <summary>
 	/// Gathers possible conjugate pairs of the specified digit.
@@ -55,5 +55,5 @@ internal interface IConjugatesGatherer : IStructureGatherer<Conjugate>
 	}
 
 	/// <inheritdoc/>
-	static ICollection<Conjugate>?[] IStructureGatherer<Conjugate>.Gather(scoped in Grid grid) => Gather();
+	static ICollection<Conjugate>?[] IConceptGatherable<Conjugate>.Gather(scoped in Grid grid) => Gather();
 }

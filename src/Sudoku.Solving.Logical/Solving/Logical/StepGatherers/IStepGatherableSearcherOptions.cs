@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.StepGatherers;
 
 /// <summary>
 /// Defines an instance that stores the options that bound with an <see cref="IStepGatherableSearcher"/> instance.

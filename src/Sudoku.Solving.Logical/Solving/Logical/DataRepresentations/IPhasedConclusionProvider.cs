@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.DataRepresentations;
 
 /// <summary>
 /// Defines a data structure that describes for a phased conclusion list.

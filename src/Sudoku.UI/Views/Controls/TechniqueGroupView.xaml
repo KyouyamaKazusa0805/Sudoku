@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:data="using:Sudoku.UI.DataConversion"
 	xmlns:m="using:Sudoku.UI.Models"
-	xmlns:prototypes="using:Sudoku.Solving.Logical.Prototypes"
+	xmlns:logical="using:Sudoku.Solving.Logical"
 	mc:Ignorable="d">
 	<UserControl.Resources>
 		<CollectionViewSource x:Name="_cTechniqueGroups" x:FieldModifier="internal" IsSourceGrouped="True" />
@@ -32,7 +32,7 @@
 			</GroupStyle>
 		</ListView.GroupStyle>
 		<ListView.ItemTemplate>
-			<DataTemplate x:DataType="prototypes:IStep">
+			<DataTemplate x:DataType="logical:IStep">
 				<ListViewItem
 					Tag="{x:Bind}"
 					Background="{x:Bind data:SimpleConverters.DifficultyLevelToBackground(DifficultyLevel)}">

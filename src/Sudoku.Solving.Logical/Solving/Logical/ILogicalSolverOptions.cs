@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical;
 
 /// <summary>
 /// Defines an instance that stores the options that bound with a <see cref="LogicalSolver"/> instance.

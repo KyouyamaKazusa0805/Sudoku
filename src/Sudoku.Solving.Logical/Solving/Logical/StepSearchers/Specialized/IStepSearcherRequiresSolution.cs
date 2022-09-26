@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.StepSearchers.Specialized;
 
 /// <summary>
 /// Indicates a step searcher that requires a solution grid for the technique searching usages.

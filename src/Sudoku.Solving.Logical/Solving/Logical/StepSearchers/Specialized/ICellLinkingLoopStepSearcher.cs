@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.StepSearchers.Specialized;
 
 /// <summary>
 /// Defines a steps searcher that searches for cell-linking loop steps.

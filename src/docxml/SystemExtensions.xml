@@ -1144,12 +1144,12 @@
         </member>
         <member name="M:System.CommandLine.CommandConverterException.#ctor">
             <summary>
-            Initializes a <see cref="!:CommandConverterAttribute"/> instance.
+            Initializes a <see cref="T:System.CommandLine.Annotations.CommandConverterAttribute`1"/> instance.
             </summary>
         </member>
         <member name="M:System.CommandLine.CommandConverterException.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="!:CommandConverterAttribute"/> instance via the specified error message.
+            Initializes a <see cref="T:System.CommandLine.Annotations.CommandConverterAttribute`1"/> instance via the specified error message.
             </summary>
             <param name="message">The error message.</param>
         </member>
@@ -1292,7 +1292,7 @@
             </summary>
             <param name="value">The string value as the command line argument.</param>
             <returns>The target typed instance as the result.</returns>
-            <exception cref="!:CommandConverterAttribute">
+            <exception cref="T:System.CommandLine.Annotations.CommandConverterAttribute`1">
             Throws when the current method has encountered an unexpected error.
             </exception>
         </member>

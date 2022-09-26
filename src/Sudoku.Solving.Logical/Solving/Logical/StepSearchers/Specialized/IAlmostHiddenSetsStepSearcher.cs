@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.StepSearchers.Specialized;
 
 /// <summary>
 /// Provides with an <b>Almost Hidden Sets</b> step searcher.

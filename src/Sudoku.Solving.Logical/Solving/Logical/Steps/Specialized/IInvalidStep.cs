@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Steps;
+﻿namespace Sudoku.Solving.Logical.Steps.Specialized;
 
 /// <summary>
 /// Provides with an invalid step instance that can be used for some cases that the technique should be skipped
