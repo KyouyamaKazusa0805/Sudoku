@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Runtime.AnalysisServices.Configuration;
+﻿namespace Sudoku.Solving.Logical.Annotations;
 
 /// <summary>
 /// Defines an attribute that can be applied to the solving assembly,

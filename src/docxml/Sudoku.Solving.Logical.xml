@@ -13,6 +13,139 @@
             This attribute can be ignored when a logical solver enables them regardless of execution speed.
             </remarks>
         </member>
+        <member name="T:Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute`1">
+            <summary>
+            Defines an attribute that can be applied to the solving assembly,
+            to tell the source generator that the searcher option instance will be generated in the specified type.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute`1.#ctor(Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute`1"/> instance
+            via the specified displaying level.
+            </summary>
+            <param name="displayingLevel">The displaying level.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute`1.Priority">
+            <summary>
+            Indicates the priority of the step searcher. The priority value must be unique,
+            which means that different step searchers must hold different priority values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute`1.DisplayingLevel">
+            <summary>
+            Indicates the level of the step searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute`1.EnabledArea">
+            <summary>
+            Indicates the area that the step searcher can be used and available.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute`1.DisabledReason">
+            <summary>
+            Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute`1.EnabledArea"/>
+            is <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute">
+            <summary>
+            Defines an attribute that applies to an instance having implemented <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>,
+            to create the options that will be used by the module initializer.
+            </summary>
+            <remarks>
+            Please note that the attribute is optional, which means you don't need to use the attribute
+            on all step searchers.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute.#ctor(System.Int32,System.Object[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/> instance via the specified array
+            of element type <see cref="T:System.Object"/>, indicating the property names and their values.
+            </summary>
+            <param name="priority">Indicates the priority that will be used for the ordering.</param>
+            <param name="propertyNamesAndValues">The array of property names and their values.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute.Priority">
+            <summary>
+            Indicates the priority value that will be used for the ordering.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute.PropertyNamesAndValues">
+            <summary>
+            Indicates the property names and the values.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Annotations.StepSearcherAttribute">
+            <summary>
+            To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute">
+            <summary>
+            Defines an attribute that applies to a step searcher, to define more options on UI configurations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsOptionsFixed">
+            <summary>
+            <para>Indicates whether the option is fixed that can't be modified in UI.</para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect">
+            <summary>
+            <para>
+            Indicates the technique searcher can or can't be used in some scenarios
+            where they aren't in traversing mode to call
+            <see cref="M:Sudoku.Solving.Logical.Prototypes.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>
+            in <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>s one by one.
+            </para>
+            <para>
+            If <see langword="true"/>, the searcher can't use those <see langword="static"/>
+            properties such as <see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/> in its method
+            <see cref="M:Sudoku.Solving.Logical.Prototypes.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>.
+            </para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+            <remarks>
+            <para>
+            All disallowed properties are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Buffers.FastProperties.DigitsMap"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.ValuesMap"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.BivalueCells"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.EmptyCells"/></item>
+            </list>
+            The disallowed method is:
+            <list type="bullet">
+            <item><see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/></item>
+            </list>
+            </para>
+            <para>
+            Those properties or methods can optimize the performance to analyze a sudoku grid, but
+            sometimes they may cause a potential bug that is hard to find and fix. The attribute
+            is created and used for solving the problem.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
+            <seealso cref="T:Sudoku.Buffers.FastProperties"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.PuzzleNotRelying">
+            <summary>
+            <para>Indicates whether the specified step searcher doesn't rely on the puzzle.</para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDeprecated">
+            <summary>
+            <para>Indicates whether the step searcher is deprecated.</para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Annotations.StepSearcherPropertyAttribute">
             <summary>
             Defines an attribute that can be applied to a property in step searcher interface type,
@@ -1755,9 +1888,9 @@
             </summary>
             <remarks>
             If you don't know what is a direct step searcher, please visit the property
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/> to learn more information.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Prototypes.IStepSearcher.IsOptionsFixed">
             <summary>
@@ -1766,9 +1899,9 @@
             </summary>
             <remarks>
             If you don't know what is a direct step searcher, please visit the property
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsOptionsFixed"/> to learn more information.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsOptionsFixed"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsOptionsFixed"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsOptionsFixed"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Prototypes.IStepSearcher.IsDeprecated">
             <summary>
@@ -1776,9 +1909,9 @@
             </summary>
             <remarks>
             If you don't know what is a direct step searcher, please visit the property
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDeprecated"/> to learn more information.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDeprecated"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDeprecated"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDeprecated"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Prototypes.IStepSearcher.IsNotSupportedForSukaku">
             <summary>
@@ -10144,6 +10277,57 @@
             <exception cref="T:Sudoku.Runtime.AnalysisServices.WrongStepException">Throws when found wrong steps to apply.</exception>
             <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
         </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXyWingStepSearcher_AllowCollision">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowCollision">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.AlternatingInferenceChainStepSearcher_MaxCapacity">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlternatingInferenceChainStepSearcher.MaxCapacity"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IBivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.BowmanBingoStepSearcher_MaxLength">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IBowmanBingoStepSearcher.MaxLength"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.ComplexFishStepSearcher_MaxSize">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IFishStepSearcher.MaxSize"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.JuniorExocetStepSearcher_CheckAdvanced">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IExocetStepSearcher.CheckAdvanced"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.RegularWingStepSearcher_MaxSize">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IRegularWingStepSearcher.MaxSize"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.SeniorExocetStepSearcher_CheckAdvanced">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IExocetStepSearcher.CheckAdvanced"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableFullHouse">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ISingleStepSearcher.EnableFullHouse"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableLastDigit">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ISingleStepSearcher.EnableLastDigit"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ISingleStepSearcher.HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.TemplateStepSearcher_TemplateDeleteOnly">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ITemplateStepSearcher.TemplateDeleteOnly"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.LogicalSolverResult">
             <summary>
             Provides the solver result after <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> solving a puzzle.
@@ -10538,207 +10722,6 @@
             <param name="this">The <see cref="T:Sudoku.Solving.Logical.Prototypes.IStep"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1">
-            <summary>
-            Defines an attribute that can be applied to the solving assembly,
-            to tell the source generator that the searcher option instance will be generated in the specified type.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.#ctor(Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1"/> instance
-            via the specified displaying level.
-            </summary>
-            <param name="displayingLevel">The displaying level.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.Priority">
-            <summary>
-            Indicates the priority of the step searcher. The priority value must be unique,
-            which means that different step searchers must hold different priority values.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.DisplayingLevel">
-            <summary>
-            Indicates the level of the step searcher.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.EnabledArea">
-            <summary>
-            Indicates the area that the step searcher can be used and available.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.DisabledReason">
-            <summary>
-            Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.EnabledArea"/>
-            is <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute">
-            <summary>
-            Defines an attribute that applies to an instance having implemented <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>,
-            to create the options that will be used by the module initializer.
-            </summary>
-            <remarks>
-            Please note that the attribute is optional, which means you don't need to use the attribute
-            on all step searchers.
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.#ctor(System.Int32,System.Object[])">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/> instance via the specified array
-            of element type <see cref="T:System.Object"/>, indicating the property names and their values.
-            </summary>
-            <param name="priority">Indicates the priority that will be used for the ordering.</param>
-            <param name="propertyNamesAndValues">The array of property names and their values.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.Priority">
-            <summary>
-            Indicates the priority value that will be used for the ordering.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.PropertyNamesAndValues">
-            <summary>
-            Indicates the property names and the values.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherAttribute">
-            <summary>
-            To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute">
-            <summary>
-            Defines an attribute that applies to a step searcher, to define more options on UI configurations.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsOptionsFixed">
-            <summary>
-            <para>Indicates whether the option is fixed that can't be modified in UI.</para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect">
-            <summary>
-            <para>
-            Indicates the technique searcher can or can't be used in some scenarios
-            where they aren't in traversing mode to call
-            <see cref="M:Sudoku.Solving.Logical.Prototypes.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>
-            in <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>s one by one.
-            </para>
-            <para>
-            If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-            properties such as <see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/> in its method
-            <see cref="M:Sudoku.Solving.Logical.Prototypes.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>.
-            </para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-            <remarks>
-            <para>
-            All disallowed properties are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Buffers.FastProperties.DigitsMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.ValuesMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.BivalueCells"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.EmptyCells"/></item>
-            </list>
-            The disallowed method is:
-            <list type="bullet">
-            <item><see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/></item>
-            </list>
-            </para>
-            <para>
-            Those properties or methods can optimize the performance to analyze a sudoku grid, but
-            sometimes they may cause a potential bug that is hard to find and fix. The attribute
-            is created and used for solving the problem.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
-            <seealso cref="T:Sudoku.Buffers.FastProperties"/>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.PuzzleNotRelying">
-            <summary>
-            <para>Indicates whether the specified step searcher doesn't rely on the puzzle.</para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDeprecated">
-            <summary>
-            <para>Indicates whether the step searcher is deprecated.</para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext">
-            <summary>
-            Defines a context that is used by step searchers to check the details of the solving and analysis information.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.Grid">
-            <summary>
-            Indicates the puzzle to be solved and analyzed.
-            </summary>
-            <remarks>
-            This field is not encapsulated into a property because C# doesn't support auto read-only properties
-            returning <see langword="ref"/> or <see langword="ref readonly"/>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.#ctor(System.Collections.Generic.ICollection{Sudoku.Solving.Logical.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext"/> instance via the specified.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The reference to the puzzle.</param>
-            <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne">
-            <summary>
-            Indicates whether the solver only find one possible step and exit the searcher.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.Accumulator">
-            <summary>
-            <para>
-            <para>The accumulator to store each step.</para>
-            </para>
-            <para>
-            If <see cref="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne"/> is set to <see langword="true"/>,
-            this argument will become useless because we only finding one step is okay,
-            so we may not use the accumulator to store all possible steps, in order to optimize the performance.
-            Therefore, this argument can be <see langword="null"/> in this case.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne"/>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.WrongStepException">
-            <summary>
-            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.Prototypes.IStep)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.WrongStepException"/> with the specified invalid grid and the wrong step.
-            </summary>
-            <param name="grid">The invalid sudoku grid.</param>
-            <param name="wrongStep">The wrong step.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.Message">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.CurrentInvalidGrid">
-            <summary>
-            Indicates the invalid sudoku grid. This property is also stored in the property
-            <see cref="P:System.Exception.Data"/>.
-            </summary>
-            <seealso cref="P:System.Exception.Data"/>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.WrongStep">
-            <summary>
-            Indicates the wrong step.
-            </summary>
-        </member>
         <member name="T:Sudoku.Buffers.FastProperties">
             <summary>
             Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
@@ -10756,7 +10739,7 @@
             </para>
             <para>
             If a step searcher doesn't rely on this class, it'll be <see langword="true"/> for the property named
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
             If you find that the step searcher marks that attribute,
             you can call it everywhere safely; however, if the searcher isn't marked that attribute, you
             can't call it everywhere unless you call the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
@@ -10776,7 +10759,7 @@
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
             <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.EmptyCells">
@@ -10786,10 +10769,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.BivalueCells">
             <summary>
@@ -10798,10 +10781,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.CandidatesMap">
             <summary>
@@ -10810,10 +10793,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.DigitsMap">
             <summary>
@@ -10822,10 +10805,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.ValuesMap">
             <summary>
@@ -10834,10 +10817,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)">
             <summary>
@@ -10869,10 +10852,10 @@
             <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
             <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
             <returns>
-            The found step searcher instance. If the type is marked <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>,
+            The found step searcher instance. If the type is marked <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>,
             the method will return the first found instance.
             </returns>
-            <seealso cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>
+            <seealso cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>
         </member>
         <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.Prototypes.IStepSearcher[],System.Boolean)">
             <summary>
@@ -10884,11 +10867,11 @@
             Indicates whether you want to fetch all possible instances at the same time.
             </param>
             <returns>
-            The found step searcher instances. If the type is marked <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>,
+            The found step searcher instances. If the type is marked <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>,
             the method will return all possible instances, whose behavior is different with the other method
             <see cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.Prototypes.IStepSearcher[])"/>.
             </returns>
-            <seealso cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>
+            <seealso cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>
             <seealso cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.Prototypes.IStepSearcher[])"/>
         </member>
         <member name="T:Sudoku.Checking.BackdoorSearcher">
@@ -11011,6 +10994,74 @@
         </member>
         <member name="M:Sudoku.Filtering.NameLikeExpression.EvaluateImpl(System.Object,Expressive.Expressions.IExpression,System.Collections.Generic.IDictionary{System.String,System.Object})">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext">
+            <summary>
+            Defines a context that is used by step searchers to check the details of the solving and analysis information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.Grid">
+            <summary>
+            Indicates the puzzle to be solved and analyzed.
+            </summary>
+            <remarks>
+            This field is not encapsulated into a property because C# doesn't support auto read-only properties
+            returning <see langword="ref"/> or <see langword="ref readonly"/>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.#ctor(System.Collections.Generic.ICollection{Sudoku.Solving.Logical.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext"/> instance via the specified.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The reference to the puzzle.</param>
+            <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne">
+            <summary>
+            Indicates whether the solver only find one possible step and exit the searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.Accumulator">
+            <summary>
+            <para>
+            <para>The accumulator to store each step.</para>
+            </para>
+            <para>
+            If <see cref="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne"/> is set to <see langword="true"/>,
+            this argument will become useless because we only finding one step is okay,
+            so we may not use the accumulator to store all possible steps, in order to optimize the performance.
+            Therefore, this argument can be <see langword="null"/> in this case.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne"/>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.WrongStepException">
+            <summary>
+            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.Prototypes.IStep)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.WrongStepException"/> with the specified invalid grid and the wrong step.
+            </summary>
+            <param name="grid">The invalid sudoku grid.</param>
+            <param name="wrongStep">The wrong step.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.CurrentInvalidGrid">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.WrongStep">
+            <summary>
+            Indicates the wrong step.
+            </summary>
         </member>
         <member name="T:Sudoku.Techniques.Patterns.AlmostHiddenSet">
             <summary>

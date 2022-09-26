@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Runtime.AnalysisServices;
+﻿namespace Sudoku.Solving.Logical;
 
 internal static class SearcherNodeTypeLevel
 {

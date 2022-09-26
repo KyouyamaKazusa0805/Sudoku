@@ -47,9 +47,9 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				}
 
 				// Gather the valid attributes data.
-				var foundAttributesData = new List<FoundAttributeData>();
+				var foundAttributesData = new List<StepSearcherData>();
 				const string comma = ", ";
-				const string attributeTypeName = $"global::Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute<>";
+				const string attributeTypeName = $"global::Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute<>";
 				var priorityValue = 0;
 				foreach (var attributeData in attributesData)
 				{
@@ -246,7 +246,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 /// The name of the interface type that is used for displaying for the doc comment.
 /// </param>
 /// <param name="NamedArguments">The named arguments of that attribute.</param>
-file readonly record struct FoundAttributeData(
+file readonly record struct StepSearcherData(
 	INamespaceSymbol Namespace,
 	int PriorityValue,
 	byte DifficultyLevel,

@@ -31,7 +31,7 @@ public sealed class LogicalSolverOperationsGenerator : IIncrementalGenerator
 					return;
 				}
 
-				var attributeType = compilation.GetTypeByMetadataName("Sudoku.Runtime.AnalysisServices.StepSearcherPropertyAttribute");
+				var attributeType = compilation.GetTypeByMetadataName("Sudoku.Solving.Logical.Annotations.StepSearcherPropertyAttribute");
 				if (attributeType is not { TypeKind: Kind.Class, IsSealed: true })
 				{
 					// Same reason as above.
