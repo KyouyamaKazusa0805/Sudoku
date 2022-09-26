@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Implementations.Searchers;
+﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
 internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher

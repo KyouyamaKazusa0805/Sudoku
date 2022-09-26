@@ -140,7 +140,6 @@
           //
           // Step nesting rules
           //
-          "IInvalidStep.cs": [ "IStep.cs" ],
           "Step.cs": [ "IStep.cs" ],
 
           "AlmostLockedSetsStep.cs": [ "Step.cs" ],

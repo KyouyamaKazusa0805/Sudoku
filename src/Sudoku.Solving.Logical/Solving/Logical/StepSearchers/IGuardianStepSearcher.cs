@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Guardian</b> step searcher.

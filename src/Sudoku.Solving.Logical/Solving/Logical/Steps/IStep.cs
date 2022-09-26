@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical;
 
 /// <summary>
 /// Provides a basic logical solving step.

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:

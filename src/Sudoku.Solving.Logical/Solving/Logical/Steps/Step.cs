@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Implementations.Steps;
+﻿namespace Sudoku.Solving.Logical.Steps;
 
 /// <summary>
 /// Provides with a logical solving step that is a technique usage, and contains the conclusions.

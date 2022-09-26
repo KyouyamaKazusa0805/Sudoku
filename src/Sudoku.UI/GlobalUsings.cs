@@ -54,7 +54,7 @@ global using Sudoku.Runtime.DisplayingServices;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Algorithms.Bitwise;
 global using Sudoku.Solving.Logical;
-global using Sudoku.Solving.Logical.Implementations.StepGatherers;
+global using Sudoku.Solving.Logical.StepGatherers;
 global using Sudoku.Solving.Logical.Prototypes;
 global using Sudoku.Text.Notations;
 global using Sudoku.UI.Data.AppLifecycle;

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 /// <summary>
 /// Provides with an <b>Alternating Inference Chain</b> step searcher.

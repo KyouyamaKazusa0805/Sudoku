@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Reverse Bi-value Universal Grave</b> step searcher.

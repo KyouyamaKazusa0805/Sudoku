@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>RW's Deadly Pattern</b> step searcher.

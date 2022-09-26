@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Implementations.StepGatherers;
+﻿namespace Sudoku.Solving.Logical.StepGatherers;
 
 /// <summary>
 /// Defines a steps gatherer.

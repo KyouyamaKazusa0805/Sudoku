@@ -24,7 +24,7 @@ public sealed class LogicalSolverOperationsGenerator : IIncrementalGenerator
 					return;
 				}
 
-				var stepSearcherType = compilation.GetTypeByMetadataName("Sudoku.Solving.Logical.Prototypes.IStepSearcher");
+				var stepSearcherType = compilation.GetTypeByMetadataName("Sudoku.Solving.Logical.IStepSearcher");
 				if (stepSearcherType is not { TypeKind: Kind.Interface })
 				{
 					// Same reason as above.
@@ -67,7 +67,7 @@ public sealed class LogicalSolverOperationsGenerator : IIncrementalGenerator
 							continue;
 						}
 
-						var searcherFullTypeName = $"Sudoku.Solving.Logical.Prototypes.I{searcherTypeName}";
+						var searcherFullTypeName = $"Sudoku.Solving.Logical.StepSearchers.I{searcherTypeName}";
 						var interfaceType = compilation.GetTypeByMetadataName(searcherFullTypeName);
 						if (interfaceType is not { AllInterfaces: var interfaceBaseInterfaces })
 						{

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Implementations.Steps;
+﻿namespace Sudoku.Solving.Logical.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.

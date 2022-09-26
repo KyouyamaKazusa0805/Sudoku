@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Prototypes;
+﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 using GatheredData = Dictionary</*Cell*/ int, Dictionary</*Digit*/ int, List<AlmostLockedSet>>>;
 
