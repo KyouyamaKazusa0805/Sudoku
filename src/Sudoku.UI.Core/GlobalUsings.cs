@@ -46,7 +46,7 @@ global using WinRT.Interop;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Resources.MergedResources;
-global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
+global using static Sudoku.SolutionWideReadOnlyFields;
 global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
 global using Grid = Sudoku.Concepts.Grid;
 global using Point = Windows.Foundation.Point;

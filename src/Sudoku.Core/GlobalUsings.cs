@@ -41,6 +41,6 @@ global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static System.Text.Json.JsonSerializer;
 global using static Sudoku.Resources.MergedResources;
-global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 global using static Sudoku.Runtime.MaskServices.MaskOperations;
+global using static Sudoku.SolutionWideReadOnlyFields;
 global using static Sudoku.Solving.ConclusionType;

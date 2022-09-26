@@ -19,5 +19,5 @@ global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
-global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 global using static Sudoku.Runtime.MaskServices.MaskOperations;
+global using static Sudoku.SolutionWideReadOnlyFields;

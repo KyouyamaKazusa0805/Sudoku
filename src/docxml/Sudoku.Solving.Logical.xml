@@ -11036,6 +11036,576 @@
             </summary>
             <seealso cref="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne"/>
         </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.CommonReadOnlies">
+            <summary>
+            Represents a type holding some common read-only fields used by runtime or compiling-time.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.UniqueSquareTemplatesCount">
+            <summary>
+            Indicates the total number of unique square patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.QiuDeadlyPatternTemplatesCount">
+            <summary>
+            Indicates the total number of Qiu's deadly patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.ExocetTemplatesCount">
+            <summary>
+            Indicates the total number of exocet patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.FireworkSubsetCount">
+            <summary>
+            Indicates the total number of firework subset patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.BdpTemplatesSize3Count">
+            <summary>
+            Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.BdpTemplatesSize4Count">
+            <summary>
+            Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.PairFireworksCount">
+            <summary>
+            Indicates the total number of pair fireworks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.MultisectorLockedSetsTemplatesCount">
+            <summary>
+            Indicates the total number of multi-sector locked sets possible templates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.UniqueRectanglePatterns">
+            <summary>
+            The table of all <b>Unique Rectangle</b> cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.EmptyRectangleLinkIds">
+            <summary>
+            Indicates all houses iterating on the specified block forming an empty rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.ChromaticPatternBlocksCombinations">
+            <summary>
+            All possible blocks combinations being reserved for chromatic pattern searcher's usages.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.BruteForceTryAndErrorOrder">
+            <summary>
+            The order of cell offsets to get values.
+            </summary>
+            <remarks>
+            For example, the first value is 40, which means the first cell to be tried to be filled
+            is the 40th cell in the grid (i.e. the cell <c>r5c5</c>).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.IntersectionMaps">
+            <summary>
+            <para>
+            Indicates all maps that forms the each intersection. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | C C C | A A A | A A A |
+            | B B B | . . . | . . . |
+            | B B B | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            </para>
+            <para>
+            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.IntersectionBlockTable">
+            <summary>
+            <para>The table of all blocks to iterate for each blocks.</para>
+            <para>
+            This field is only used for providing the data for another field <see cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.IntersectionMaps"/>.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.ValueTupleComparer">
+            <summary>
+            Represents a comparer instance that compares two tuples.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.DifficultyLevel">
+            <summary>
+            Provides a difficulty kind for a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Unknown">
+            <summary>
+            Indicates the difficulty level is unknown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Easy">
+            <summary>
+            Indicates the difficulty is easy.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Moderate">
+            <summary>
+            Indicates the difficulty is moderate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Hard">
+            <summary>
+            Indicates the difficulty is hard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Fiendish">
+            <summary>
+            Indicates the difficulty is fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Nightmare">
+            <summary>
+            Indicates the difficulty is nightmare.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.LastResort">
+            <summary>
+            Indicates the puzzle can't be solved
+            unless using last resort methods.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.Rarity">
+            <summary>
+            Indicates the rarity of the technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Rarity.Unknown">
+            <summary>
+            Indicates the technique can't be confirmed for its rarity.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Rarity.Always">
+            <summary>
+            Indicates the technique always appears, such as <b>Hidden Single</b>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Rarity.Often">
+            <summary>
+            Indicates the rarity is often appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Rarity.Sometimes">
+            <summary>
+            Indicates the rarity is sometimes appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Rarity.Seldom">
+            <summary>
+            Indicates the rarity is seldom appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Rarity.HardlyEver">
+            <summary>
+            Indicates the rarity is hardly ever appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Rarity.OnlyForSpecialPuzzles">
+            <summary>
+            Indicates the technique only appears in the special puzzles designed on purpose.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Rarity.ReplacedByOtherTechniques">
+            <summary>
+            Indicates the technique can't appear because the technique will be replaced with another technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.SearcherDisabledReason">
+            <summary>
+            Indicates a reason why the searcher is disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherDisabledReason.None">
+            <summary>
+            Indicates the searcher is normal one and isn't disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherDisabledReason.LastResort">
+            <summary>
+            Indicates the searcher searches for last resorts, which don't need to show.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherDisabledReason.HasBugs">
+            <summary>
+            Indicates the searcher has bugs while searching.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherDisabledReason.TooSlow">
+            <summary>
+            Indicates the searcher runs so slowly that the author himself can't stand to use it.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherDisabledReason.DeprecatedOrNotImplemented">
+            <summary>
+            Indicates the searcher has not been implemented, or has been deprecated.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel">
+            <summary>
+            Indicates the difficulty level of the step.
+            This enumeration type is used for the displaying of the step information list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.None">
+            <summary>
+            Indicates the level is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.A">
+            <summary>
+            Indicates the level is the elementary searchers, which means the techniques found
+            in the current step searcher is the elementary ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.B">
+            <summary>
+            Indicates the level is the moderate searchers, which means the techniques found
+            in the current step searcher is more difficult than the elementary ones,
+            but they aren't very difficult to comprehend the backing logic.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.C">
+            <summary>
+            Indicates the level is the hard searchers, which means the techniques found
+            in the current step searcher is more difficult than the moderate ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.D">
+            <summary>
+            Indicates the level is the fiendish searchers, which means the techniques found
+            in the current step searcher is more difficult than the hard ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.E">
+            <summary>
+            <para>
+            Indicates the level is the hidden searchers, which means the techniques found
+            in the current step searcher should be hidden no matter how easy the technique is.
+            </para>
+            <para>The well-known technique searcher of this level is Brute Force.</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea">
+            <summary>
+            Represents the data about where a step searcher can be enabled and used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None">
+            <summary>
+            Indicates all modes are disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Default">
+            <summary>
+            Indicates the default mode (Sudoku Explainer or Hodoku mode).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Gathering">
+            <summary>
+            Indicates the gathering mode (All steps will be found here).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Experimental">
+            <summary>
+            Indicates the experimental function can use the step searcher.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.SearcherFailedReason">
+            <summary>
+            Defines a reason why the puzzle is failed to be solved.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.Nothing">
+            <summary>
+            Indicates nothing goes wrong.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.PuzzleIsInvalid">
+            <summary>
+            <para>Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.</para>
+            <para>
+            Different with <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.PuzzleHasNoSolution"/>,
+            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
+            before solving, we should use this field.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.PuzzleHasNoSolution"/>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.PuzzleHasMultipleSolutions"/>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.PuzzleHasNoSolution">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.PuzzleHasMultipleSolutions">
+            <summary>
+            Indicates the failed reason is that the puzzle contains multiple valid solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.UserCancelled">
+            <summary>
+            Indicates the failed reason is that the user has canceled the task.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.NotImplemented">
+            <summary>
+            Indicates the failed reason is that the solver or some searching module isn't implemented.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.ExceptionThrown">
+            <summary>
+            Indicates the failed reason is that the solver has encountered an error and couldn't solve
+            that will cause an exception thrown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.WrongStep">
+            <summary>
+            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.PuzzleIsTooHard">
+            <summary>
+            Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
+            </summary>
+            <remarks><i>
+            This option becomes deprecated at present because we has already implemented a step searcher
+            that always produces a valid step, guaranteeing that the solver will never give up at all time.
+            </i></remarks>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions">
+            <summary>
+            Indicates the options for a step searcher used while searching.
+            </summary>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="EnabledArea">
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Default"/>
+            and <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Gathering"/>.
+            </param>
+            <param name="DisplayingLevel">
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on a step gatherer.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time.
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </param>
+            <param name="DisabledReason">
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherDisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Default"/>.
+            </para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions.#ctor(System.Int32,Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel,Sudoku.Runtime.AnalysisServices.SearcherEnabledArea,Sudoku.Runtime.AnalysisServices.SearcherDisabledReason)">
+            <summary>
+            Indicates the options for a step searcher used while searching.
+            </summary>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="EnabledArea">
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Default"/>
+            and <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Gathering"/>.
+            </param>
+            <param name="DisplayingLevel">
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on a step gatherer.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time.
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </param>
+            <param name="DisabledReason">
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherDisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Default"/>.
+            </para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions.Priority">
+            <summary>Indicates the priority of this technique.</summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions.DisplayingLevel">
+            <summary>
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on a step gatherer.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time.
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions.EnabledArea">
+            <summary>
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Default"/>
+            and <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Gathering"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions.DisabledReason">
+            <summary>
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherDisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.Default"/>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions.SeparatedStepSearcherPriority">
+            <summary>
+            Indicates the custom priority value. This property is used for a comparison between two step searchers
+            when they hold a same priority value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes">
+            <summary>
+            Defines a node type that provides with the choices for the chain node types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.None">
+            <summary>
+            Indicates the searcher doesn't search for any extended-typed nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.SoleDigit">
+            <summary>
+            Indicates the searcher can search on sole digit in the same house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.SoleCell">
+            <summary>
+            Indicates the searcher can search on candidates in a same cell.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.LockedCandidates">
+            <summary>
+            Indicates the searcher can search for locked candidate nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.LockedSet">
+            <summary>
+            Indicates the searcher can search for locked set nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.HiddenSet">
+            <summary>
+            Indicates the searcher can search for hidden set nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.UniqueRectangle">
+            <summary>
+            Indicates the searcher can search for almost rectangle nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.XyzWing">
+            <summary>
+            Indicates the searcher can search for almost XYZ-Wing nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.Kraken">
+            <summary>
+            Indicates the searcher can search for kraken fish nodes.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.Stableness">
+            <summary>
+            Defines a stableness of a technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Stableness.Unknown">
+            <summary>
+            Indicates the stableness is unknown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Stableness.Stable">
+            <summary>
+            Indicates the stableness is stable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Stableness.LessUnstable">
+            <summary>
+            Indicates the stableness is less unstable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Stableness.Unstable">
+            <summary>
+            Indicates the stableness is unstable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.Stableness.ExtremelyUnstable">
+            <summary>
+            Indicates the stableness is extremely unstable.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.WrongStepException">
             <summary>
             Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
@@ -11061,6 +11631,68 @@
         <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.WrongStep">
             <summary>
             Indicates the wrong step.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature">
+            <summary>
+            Defines one or more step displaying feature, which controls the extra information about target displaying control.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature.None">
+            <summary>
+            Indicates the feature is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature.HideDifficultyRating">
+            <summary>
+            Indicates the feature is to hide difficulty rating value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature.VeryRare">
+            <summary>
+            Indicates the feature is to display "very rare" information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature.DifficultyRatingNotStable">
+            <summary>
+            Indicates the difficulty rating is not stable, which means the rating value may be changed
+            if the pattern is changed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature.ConstructedTechnique">
+            <summary>
+            Indicates the current technique is constructed technique usage, which means it uses two or more techniques
+            to form a single technique usage. For example, UR + XY-Wing.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute">
+            <summary>
+            Represents an attribute that can modify step displaying features,
+            which can control the target displaying UI controls.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.#ctor(Sudoku.Runtime.DisplayingServices.StepDisplayingFeature)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute"/> instance via the specified runtime features.
+            </summary>
+            <param name="features">
+            The runtime features. If you want to apply multiple different kinds of features,
+            just use <c><see langword="operator"/> |</c>, such as the expression <c></c>.
+            </param>
+        </member>
+        <member name="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.Features">
+            <summary>
+            Indicates the features that can be used on rendering and displaying runtime UI controls.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.VerifyMemberName">
+            <summary>
+            Indicates the extra member to be verified.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.DisplayingServices.StepDisplayingFeatureAttribute.VerifyMemberValue">
+            <summary>
+            Indicates the value to the extra member to be verified.
             </summary>
         </member>
         <member name="T:Sudoku.Techniques.Patterns.AlmostHiddenSet">
