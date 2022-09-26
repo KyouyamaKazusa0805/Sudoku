@@ -7800,20 +7800,6 @@
             Indicates the stableness is extremely unstable.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.StepSearcherPropertyAttribute">
-            <summary>
-            Defines an attribute that can be applied to a property in step searcher interface type,
-            indicating the property is represented as a setting property, that can interact
-            with the <see cref="T:Sudoku.Solving.IComplexSolver`2"/> type.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.IComplexSolver`2"/>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.SukakuNotSupportedAttribute">
-            <summary>
-            Defines an attribute annotation that can be applied to a step searcher type,
-            indicating the step searcher instance is not supported in sukaku solving mode.
-            </summary>
-        </member>
         <member name="T:Sudoku.Runtime.DisplayingServices.StepDisplayingFeature">
             <summary>
             Defines one or more step displaying feature, which controls the extra information about target displaying control.

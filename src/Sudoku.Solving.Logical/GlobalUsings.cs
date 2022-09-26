@@ -32,6 +32,7 @@ global using Sudoku.Runtime.DisplayingServices;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Algorithms.Bitwise;
 global using Sudoku.Solving.Logical;
+global using Sudoku.Solving.Logical.Annotations;
 global using Sudoku.Solving.Logical.Implementations.Data;
 global using Sudoku.Solving.Logical.Implementations.Searchers;
 global using Sudoku.Solving.Logical.Implementations.Steps;

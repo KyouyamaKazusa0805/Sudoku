@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Runtime.AnalysisServices;
+﻿namespace Sudoku.Solving.Logical.Annotations;
 
 /// <summary>
 /// Defines an attribute annotation that can be applied to a step searcher type,

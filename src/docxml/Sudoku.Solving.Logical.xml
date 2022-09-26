@@ -4,7 +4,7 @@
         <name>Sudoku.Solving.Logical</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute">
+        <member name="T:Sudoku.Solving.Logical.Annotations.AlgorithmTooSlowAttribute">
             <summary>
             Defines an attribute annotation that can be applied to a step searcher type,
             indicating an algorithm chosen for a step searcher is too slow.
@@ -13,1586 +13,49 @@
             This attribute can be ignored when a logical solver enables them regardless of execution speed.
             </remarks>
         </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext">
+        <member name="T:Sudoku.Solving.Logical.Annotations.StepSearcherPropertyAttribute">
             <summary>
-            Defines a context that is used by step searchers to check the details of the solving and analysis information.
+            Defines an attribute that can be applied to a property in step searcher interface type,
+            indicating the property is represented as a setting property, that can interact
+            with the <see cref="T:Sudoku.Solving.IComplexSolver`2"/> type.
             </summary>
+            <seealso cref="T:Sudoku.Solving.IComplexSolver`2"/>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.Grid">
+        <member name="T:Sudoku.Solving.Logical.Annotations.SukakuNotSupportedAttribute">
             <summary>
-            Indicates the puzzle to be solved and analyzed.
+            Defines an attribute annotation that can be applied to a step searcher type,
+            indicating the step searcher instance is not supported in sukaku solving mode.
             </summary>
-            <remarks>
-            This field is not encapsulated into a property because C# doesn't support auto read-only properties
-            returning <see langword="ref"/> or <see langword="ref readonly"/>.
-            </remarks>
         </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.#ctor(System.Collections.Generic.ICollection{Sudoku.Solving.Logical.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext"/> instance via the specified.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The reference to the puzzle.</param>
-            <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne">
-            <summary>
-            Indicates whether the solver only find one possible step and exit the searcher.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.Accumulator">
-            <summary>
-            <para>
-            <para>The accumulator to store each step.</para>
-            </para>
-            <para>
-            If <see cref="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne"/> is set to <see langword="true"/>,
-            this argument will become useless because we only finding one step is okay,
-            so we may not use the accumulator to store all possible steps, in order to optimize the performance.
-            Therefore, this argument can be <see langword="null"/> in this case.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne"/>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1">
-            <summary>
-            Defines an attribute that can be applied to the solving assembly,
-            to tell the source generator that the searcher option instance will be generated in the specified type.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.#ctor(Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1"/> instance
-            via the specified displaying level.
-            </summary>
-            <param name="displayingLevel">The displaying level.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.Priority">
-            <summary>
-            Indicates the priority of the step searcher. The priority value must be unique,
-            which means that different step searchers must hold different priority values.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.DisplayingLevel">
-            <summary>
-            Indicates the level of the step searcher.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.EnabledArea">
-            <summary>
-            Indicates the area that the step searcher can be used and available.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.DisabledReason">
-            <summary>
-            Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.EnabledArea"/>
-            is <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute">
-            <summary>
-            Defines an attribute that applies to an instance having implemented <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>,
-            to create the options that will be used by the module initializer.
-            </summary>
-            <remarks>
-            Please note that the attribute is optional, which means you don't need to use the attribute
-            on all step searchers.
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.#ctor(System.Int32,System.Object[])">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/> instance via the specified array
-            of element type <see cref="T:System.Object"/>, indicating the property names and their values.
-            </summary>
-            <param name="priority">Indicates the priority that will be used for the ordering.</param>
-            <param name="propertyNamesAndValues">The array of property names and their values.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.Priority">
-            <summary>
-            Indicates the priority value that will be used for the ordering.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.PropertyNamesAndValues">
-            <summary>
-            Indicates the property names and the values.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherAttribute">
-            <summary>
-            To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute">
-            <summary>
-            Defines an attribute that applies to a step searcher, to define more options on UI configurations.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsOptionsFixed">
-            <summary>
-            <para>Indicates whether the option is fixed that can't be modified in UI.</para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect">
-            <summary>
-            <para>
-            Indicates the technique searcher can or can't be used in some scenarios
-            where they aren't in traversing mode to call
-            <see cref="M:Sudoku.Solving.Logical.Prototypes.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>
-            in <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>s one by one.
-            </para>
-            <para>
-            If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-            properties such as <see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/> in its method
-            <see cref="M:Sudoku.Solving.Logical.Prototypes.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>.
-            </para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-            <remarks>
-            <para>
-            All disallowed properties are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Buffers.FastProperties.DigitsMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.ValuesMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.BivalueCells"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.EmptyCells"/></item>
-            </list>
-            The disallowed method is:
-            <list type="bullet">
-            <item><see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/></item>
-            </list>
-            </para>
-            <para>
-            Those properties or methods can optimize the performance to analyze a sudoku grid, but
-            sometimes they may cause a potential bug that is hard to find and fix. The attribute
-            is created and used for solving the problem.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
-            <seealso cref="T:Sudoku.Buffers.FastProperties"/>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.PuzzleNotRelying">
-            <summary>
-            <para>Indicates whether the specified step searcher doesn't rely on the puzzle.</para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDeprecated">
-            <summary>
-            <para>Indicates whether the step searcher is deprecated.</para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-        </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.WrongStepException">
-            <summary>
-            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.Prototypes.IStep)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.WrongStepException"/> with the specified invalid grid and the wrong step.
-            </summary>
-            <param name="grid">The invalid sudoku grid.</param>
-            <param name="wrongStep">The wrong step.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.Message">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.CurrentInvalidGrid">
-            <summary>
-            Indicates the invalid sudoku grid. This property is also stored in the property
-            <see cref="P:System.Exception.Data"/>.
-            </summary>
-            <seealso cref="P:System.Exception.Data"/>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.WrongStep">
-            <summary>
-            Indicates the wrong step.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Buffers.FastProperties">
-            <summary>
-            Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
-            </summary>
-            <remarks>
-            <para>
-            The whole class is a <see langword="static"/> one, which means you can't use <see langword="new"/>
-            clause to create a new instance of this type. In contrast, the class is used for providing with
-            <see langword="static"/> properties used in a cyclic manually searching
-            (i.e. in <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>).
-            </para>
-            <para>
-            Some step searchers rely on this type. If you want to call them separately, you should ensure the method
-            <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> in this type must be called before using these properties.
-            </para>
-            <para>
-            If a step searcher doesn't rely on this class, it'll be <see langword="true"/> for the property named
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
-            If you find that the step searcher marks that attribute,
-            you can call it everywhere safely; however, if the searcher isn't marked that attribute, you
-            can't call it everywhere unless you call the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
-            </para>
-            <para>
-            Please note, all names of properties in this class can also be found in <see cref="T:Sudoku.Concepts.Grid"/>,
-            which means you can also call the property by <see cref="T:Sudoku.Concepts.Grid"/>. Of course, some of them
-            doesn't contain the same one in <see cref="T:Sudoku.Concepts.Grid"/>, but you can find a same property whose
-            execution logic (handling logic) is totally same.
-            For example, <see cref="P:Sudoku.Buffers.FastProperties.EmptyCells"/> is same as <see cref="P:Sudoku.Concepts.Grid.EmptyCells"/>. The difference
-            between them is that you shouldn't use <see cref="P:Sudoku.Buffers.FastProperties.EmptyCells"/> until you have called
-            <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>, while <see cref="P:Sudoku.Concepts.Grid.EmptyCells"/> can be used
-            everywhere, because it isn't an instant property (which means the calculation begins
-            when you called them, i.e. lazy ones; in contrast, some properties only store values directly,
-            so their values can be got instantly, i.e. instant ones).
-            </para>
-            </remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="P:Sudoku.Buffers.FastProperties.EmptyCells">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
-            not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
-        </member>
-        <member name="P:Sudoku.Buffers.FastProperties.BivalueCells">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
-            not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
-        </member>
-        <member name="P:Sudoku.Buffers.FastProperties.CandidatesMap">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
-            not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
-        </member>
-        <member name="P:Sudoku.Buffers.FastProperties.DigitsMap">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
-            not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
-        </member>
-        <member name="P:Sudoku.Buffers.FastProperties.ValuesMap">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
-            not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
-        </member>
-        <member name="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)">
-            <summary>
-            Initialize the maps that used later.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="T:Sudoku.Buffers.StepSearcherPool">
-            <summary>
-            Indicates a pool that stores the <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>s.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
-        </member>
-        <member name="F:Sudoku.Buffers.StepSearcherPool.Collection">
-            <summary>
-            The step searchers to find steps to apply to a certain puzzle.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Buffers.StepSearcherPoolingExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.Prototypes.IStepSearcher[])">
-            <summary>
-            Try to fetch a valid <typeparamref name="TStepSearcher"/> instance via the specified pool.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
-            <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
-            <returns>
-            The found step searcher instance. If the type is marked <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>,
-            the method will return the first found instance.
-            </returns>
-            <seealso cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>
-        </member>
-        <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.Prototypes.IStepSearcher[],System.Boolean)">
-            <summary>
-            Try to fetch a valid <typeparamref name="TStepSearcher"/> instances via the specified pool.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
-            <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
-            <param name="getAll">
-            Indicates whether you want to fetch all possible instances at the same time.
-            </param>
-            <returns>
-            The found step searcher instances. If the type is marked <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>,
-            the method will return all possible instances, whose behavior is different with the other method
-            <see cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.Prototypes.IStepSearcher[])"/>.
-            </returns>
-            <seealso cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>
-            <seealso cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.Prototypes.IStepSearcher[])"/>
-        </member>
-        <member name="T:Sudoku.Checking.BackdoorSearcher">
-            <summary>
-            Defines a backdoor searcher.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Checking.BackdoorSearcher.SstsSolver">
-            <summary>
-            Indicates the inner solver.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Checking.BackdoorSearcher.BitwiseSolver">
-            <summary>
-            Indicates the bitwise solver.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Checking.BackdoorSearcher.GetBackdoors(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to get all possible backdoors.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A list of backdoors.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the grid is not unique, or the puzzle is too easy.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Filtering.TechniqueFiltering">
-            <summary>
-            Defines a way that is used for filtering the gathered step.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Filtering.TechniqueFiltering.DifficultyKeyword">
-            <summary>
-            Indicates the difficulty keyword.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Filtering.TechniqueFiltering.NameKeyword">
-            <summary>
-            Indicates the name keyword.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Filtering.TechniqueFiltering.Filter(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logical.Prototypes.IStep},System.String)">
-            <summary>
-            Filters some invalid steps.
-            </summary>
-            <param name="steps">The found steps.</param>
-            <param name="conditionString">The condition.</param>
-            <exception cref="T:Expressive.Exceptions.ExpressiveException">Throws when the expression being evaluated is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Filtering.TechniqueFiltering.Parse(System.String,Sudoku.Solving.Logical.Prototypes.IStep)">
-            <summary>
-            To parse a condition string, converting the string into a valid <see cref="T:Expressive.Expression"/> instance.
-            </summary>
-            <param name="conditionString">The condition string.</param>
-            <param name="step">The step used.</param>
-            <returns>The <see cref="T:Expressive.Expression"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Filtering.TechniqueFiltering.KeywordPattern">
-            <remarks>
-            Pattern explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions, atomically.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match a character in the set [Dd].<br/>
-                        ○ Match a character in the set [Ii].<br/>
-                        ○ Match a character in the set [Ff] exactly 2 times.<br/>
-                        ○ Match a character in the set [Ii].<br/>
-                        ○ Match a character in the set [Cc].<br/>
-                        ○ Match a character in the set [Uu].<br/>
-                        ○ Match a character in the set [Ll].<br/>
-                        ○ Match a character in the set [Tt].<br/>
-                        ○ Match a character in the set [Yy].<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match a character in the set [Nn].<br/>
-                        ○ Match a character in the set [Aa].<br/>
-                        ○ Match a character in the set [Mm].<br/>
-                        ○ Match a character in the set [Ee].<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Filtering.NameLikeOperator">
-            <summary>
-            Indicates the name matching operator <c>like</c>.
-            The expected usage is like <c>name like 'Unique\s+Rectangle.*'</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Filtering.NameLikeOperator.Instance">
-            <summary>
-            Indicates the singleton instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Filtering.NameLikeOperator.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Filtering.NameLikeOperator"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Filtering.NameLikeOperator.Tags">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Filtering.NameLikeOperator.BuildExpression(Expressive.Token,Expressive.Expressions.IExpression[],Expressive.Context)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Filtering.NameLikeOperator.GetPrecedence(Expressive.Token)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Filtering.NameLikeExpression">
-            <summary>
-            Defines the backing implementation of <c>like</c> operator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Filtering.NameLikeExpression.#ctor(Expressive.Expressions.IExpression,Expressive.Expressions.IExpression,Expressive.Context)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Filtering.NameLikeExpression"/> instance via two expressions, and the inner handling context.
-            </summary>
-            <param name="left">The left-side expression.</param>
-            <param name="right">The right-side expression.</param>
-            <param name="context">The inner handling context.</param>
-        </member>
-        <member name="M:Sudoku.Filtering.NameLikeExpression.EvaluateImpl(System.Object,Expressive.Expressions.IExpression,System.Collections.Generic.IDictionary{System.String,System.Object})">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Techniques.Patterns.AlmostHiddenSet">
-            <summary>
-            Defines a data structure that describes an AHS.
-            </summary>
-            <remarks>
-            An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
-            only <c>n</c> digits can be filled into <c>n + 1</c> cells in a house.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.#ctor(System.Int16,System.Int16,Sudoku.Concepts.CellMap@,System.Nullable{Sudoku.Concepts.CellMap}[])">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Techniques.Patterns.AlmostHiddenSet"/> instance
-            via the specified digit mask and the map of cells.
-            </summary>
-            <param name="digitMask">The digit mask.</param>
-            <param name="allDigitsMask">All digits appearing in the AHS structure..</param>
-            <param name="map">The map.</param>
-            <param name="digitsMap">The digits' distribution maps.</param>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.House">
-            <summary>
-            Indicates the house used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.AllDigitsMask">
-            <summary>
-            Indicates the mask of all digits appeared in the AHS structure.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.DigitsMask">
-            <summary>
-            Indicates the mask of digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.Map">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.WeakLinks">
-            <summary>
-            Indicates all weak links in this AHS. The return value is described as an array of quadruples,
-            indicating two digits, and cells used in the weak link.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.DigitsMap">
-            <summary>
-            Indicates a dictionary of elements, indicating the cells of digits' own distribution.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.Equals(Sudoku.Techniques.Patterns.AlmostHiddenSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.op_Equality(Sudoku.Techniques.Patterns.AlmostHiddenSet,Sudoku.Techniques.Patterns.AlmostHiddenSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.op_Inequality(Sudoku.Techniques.Patterns.AlmostHiddenSet,Sudoku.Techniques.Patterns.AlmostHiddenSet)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Techniques.Patterns.AlmostLockedSet">
-            <summary>
-            Defines a data structure that describes an ALS.
-            </summary>
-            <remarks>
-            An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
-            <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
-            The special case is a bi-value cell.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Techniques.Patterns.AlmostLockedSet.StrongRelationsCount">
-            <summary>
-            Indicates an array of the total number of the strong relations in an ALS of the different size.
-            The field is only unused in the property <see cref="P:Sudoku.Techniques.Patterns.AlmostLockedSet.StrongLinks"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Techniques.Patterns.AlmostLockedSet.StrongLinks"/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Techniques.Patterns.AlmostLockedSet"/> instance
-            via the specified digit mask and the map of cells.
-            </summary>
-            <param name="digitMask">The digit mask.</param>
-            <param name="map">The map.</param>
-            <param name="possibleEliminationMap">
-            Indicates the possible cells that can be as the elimination.
-            </param>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.House">
-            <summary>
-            Indicates the house used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.IsBivalueCell">
-            <summary>
-            Indicates whether the ALS only uses a bi-value cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.DigitsMask">
-            <summary>
-            Indicates the mask of digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.StrongLinks">
-            <summary>
-            Indicates all strong links in this ALS.
-            The result will be represented as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.Map">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.PossibleEliminationMap">
-            <summary>
-            Gets the possible cells that can store eliminations for the ALS.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Deconstruct(System.Int32@,System.Int16@)">
-            <target name="method">
+        <member name="T:Sudoku.Solving.Logical.ModuleInitializer">
+            <target name="type">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
 				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
-						</code>
-						The following code will be legal.
-						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
-
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
-
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
-						</code>
-					</para>
-				</remarks>
 			</target>
         </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Deconstruct(System.Int32@,System.Int16@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.ModuleInitializer.Initialize">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
 				</summary>
 				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
-						</code>
-						The following code will be legal.
-						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
-
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
-
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
-						</code>
-					</para>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
 				</remarks>
 			</target>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.ContainsDigit(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Indicates whether the specified grid contains the digit.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="result">The result.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Equals(Sudoku.Techniques.Patterns.AlmostLockedSet)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Techniques.Patterns.AlmostLockedSet"/> instance holds the same
-            <see cref="P:Sudoku.Techniques.Patterns.AlmostLockedSet.DigitsMask"/> and <see cref="P:Sudoku.Techniques.Patterns.AlmostLockedSet.Map"/> property values as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.GetHashCode">
-            <inheritdoc/>
-            <remarks>
-            If you want to determine the equality of two instance, I recommend you
-            <b>should</b> use method <see cref="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Equals(Sudoku.Techniques.Patterns.AlmostLockedSet)"/> instead of this method.
-            </remarks>
-            <seealso cref="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Equals(Sudoku.Techniques.Patterns.AlmostLockedSet)"/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.op_Equality(Sudoku.Techniques.Patterns.AlmostLockedSet,Sudoku.Techniques.Patterns.AlmostLockedSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.op_Inequality(Sudoku.Techniques.Patterns.AlmostLockedSet,Sudoku.Techniques.Patterns.AlmostLockedSet)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Techniques.Patterns.AlternatingInferenceChain">
-            <summary>
-            Defines an alternating inference chain. The data structure can describe the following techniques:
-            <list type="bullet">
-            <item>
-            Normal chains:
-            <list type="bullet">
-            <item>
-            Irregular Wings
-            <list type="bullet">
-            <item>W-Wing</item>
-            <item>M-Wing</item>
-            <item>Split Wing</item>
-            <item>Local Wing</item>
-            <item>Hybrid Wing</item>
-            <item>Purple Cow</item>
-            </list>
-            </item>
-            <item>Discontinuous Nice Loop</item>
-            <item>Alternating Inference Chain</item>
-            <item>Continuous Nice Loop</item>
-            </list>
-            </item>
-            <item>
-            Grouped chains (which means the nodes are not limited in sole candidates):
-            <list type="bullet">
-            <item>Grouped Wings</item>
-            <item>Grouped Discontinuous Nice Loop</item>
-            <item>Grouped Alternating Inference Chain</item>
-            <item>Grouped Continuous Nice Loop</item>
-            </list>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.#ctor(Sudoku.Techniques.Patterns.Node[],System.Boolean)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Techniques.Patterns.AlternatingInferenceChain"/> instance via the specified nodes
-            and the <see cref="T:System.Boolean"/> value indicating whether the chain starts and ends
-            with strong inferences.
-            </summary>
-            <param name="nodes">The nodes used.</param>
-            <param name="isStrong">Indicates whether the chain starts and ends with strong inferences.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the length of the argument <paramref name="nodes"/> is less than or equals 3,
-            or the first and the last node aren't the same when the argument <paramref name="isStrong"/>
-            is <see langword="true"/>.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsStrong">
-            <summary>
-            Indicates whether the alternating inference chain starts with a strong inference,
-            and ends with another strong inference.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.HasNodeCollision">
-            <summary>
-            Indicates whether the chain has a collision, encountered between start and end node.
-            This property should be satisfied at least the chain is a grouped chain, and at least one of
-            the first and the last node is a grouped node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsContinuousNiceLoop">
-            <summary>
-            Indicates whether the current chain forms a continuous nice loop.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsGrouped">
-            <summary>
-            Indicates whether the current chain is a grouped chain.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsIrregularWing">
-            <summary>
-            Determines whether the current chain is an irregular wing (Chinese: Duan3 Lian4).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsAlmostLockedSetsOnly">
-            <summary>
-            Determines whether the chain only uses ALS grouped node as the strong inferences.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsAlmostHiddenSetsOnly">
-            <summary>
-            Determines whether the chain only uses AHS grouped node as the weak inferences.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.FullChainNodes">
-            <summary>
-            Indicates the full chain nodes, containing elimination nodes.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.RealChainNodes">
-            <summary>
-            <para>Indicates the nodes that represents the main chain node data for the current chain.</para>
-            <para>
-            The property value will be different if the property <see cref="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsStrong"/> is different.
-            <list type="table">
-            <listheader>
-            <term>The value of the property <see cref="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsStrong"/></term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>All nodes will be returned (i.e. <c>_nodes[..]</c>).</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>
-            Returns the sliced array from the nodes being stored in the current instance,
-            without the first and the last node (i.e. <c>_nodes[1..^1]</c>).
-            </description>
-            </item>
-            </list>
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsStrong"/>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.Item(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.Equals(Sudoku.Techniques.Patterns.Chain)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.GetConclusions(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.InitializeFieldNodeStatus(Sudoku.Techniques.Patterns.Node[],System.Boolean)">
-            <summary>
-            Try to initializes the field <see cref="F:Sudoku.Techniques.Patterns.Chain._nodesStatus"/>.
-            </summary>
-            <param name="nodes">The nodes.</param>
-            <param name="startsWithStrong">
-            Indicates whether the chain starts and ends with strong inferences.
-            </param>
-            <returns>The array of type <see cref="T:System.Boolean"/>[].</returns>
-            <seealso cref="F:Sudoku.Techniques.Patterns.Chain._nodesStatus"/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.GetEliminationsLoop(Sudoku.Concepts.Grid@,System.Collections.Immutable.ImmutableArray{Sudoku.Techniques.Patterns.Node})">
-            <summary>
-            Try to get eliminations, treating the current AIC as a continuous nice loop.
-            </summary>
-            <param name="grid">The grid as the candidate reference.</param>
-            <param name="nodes">The base nodes.</param>
-            <returns>The conclusions.</returns>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.GetEliminationsMultipleDigits(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Byte,System.Byte)">
-            <summary>
-            Try to get eliminations via different digits.
-            </summary>
-            <param name="grid">The grid as the candidate reference.</param>
-            <param name="c1">The only cell in the first node.</param>
-            <param name="c2">The only cell in the second node.</param>
-            <param name="d1">The digit 1.</param>
-            <param name="d2">The digit 2.</param>
-            <returns>The conclusions.</returns>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.GetEliminationsSingleDigit(Sudoku.Concepts.CellMap@,System.Byte)">
-            <summary>
-            Try to get eliminations via the digit and the elimination cells.
-            </summary>
-            <param name="elimMap">The elimination cells.</param>
-            <param name="digit">The digit.</param>
-            <returns>The conclusions.</returns>
-        </member>
-        <member name="T:Sudoku.Techniques.Patterns.Chain">
-            <summary>
-            Represents an abstract data structure "Chain".
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Patterns.Chain._nodesStatus">
-            <summary>
-            Indicates the status of those nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Patterns.Chain._nodes">
-            <summary>
-            Indicates the nodes that is used in the current chain.
-            Generally, the first element and the last element are same.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Chain.#ctor(Sudoku.Techniques.Patterns.Node[],System.Boolean[])">
-            <summary>
-            Initializes a instance whose type is derived from <see cref="T:Sudoku.Techniques.Patterns.Chain"/>,
-            using the specified nodes and their own status respectively.
-            </summary>
-            <param name="nodes">The nodes.</param>
-            <param name="nodesStatus">The nodes' status.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the arguments <paramref name="nodes"/> and <paramref name="nodesStatus"/>
-            don't hold the same number of elements.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.Chain.Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.Chain.Item(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Chain.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Chain.Equals(Sudoku.Techniques.Patterns.Chain)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Chain.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Chain.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Chain.GetConclusions(Sudoku.Concepts.Grid@)">
-            <summary>
-            Gets the conclusions of the current chain.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The conclusions of the current chain.</returns>
-            <remarks>
-            <para><b>TODO</b>: Append extra eliminations that requires the extended elimination rules.</para>
-            <para>
-            e.g.
-            <code>
-            a. 25 | d. 28
-            b. 25 | e. 38
-            c. 3+ | f. 5+
-            </code>
-            Chain: <c>a(5) == d(8) -- e(8 == 3) => b != 5</c>, where the cell <c>c</c> and <c>f</c>
-            are filled with modifiable values.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Chain.ToArray">
-            <summary>
-            Creates an array that stores the values with each element of a pair, where:
-            <list type="table">
-            <item>
-            <term>The first tuple element</term>
-            <description>The node itself.</description>
-            </item>
-            <item>
-            <term>The second tuple element</term>
-            <description>The status of the current node, indicating whether the node is on currently.</description>
-            </item>
-            </list>
-            </summary>
-            <returns>An array that stores the values with each element of a pair.</returns>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Chain.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Chain.System#Collections#Generic#IEnumerable{Sudoku#Techniques#Patterns#Node}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Chain.op_Equality(Sudoku.Techniques.Patterns.Chain,Sudoku.Techniques.Patterns.Chain)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Chain.op_Inequality(Sudoku.Techniques.Patterns.Chain,Sudoku.Techniques.Patterns.Chain)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Techniques.Patterns.ExocetPattern">
-            <summary>
-            <para>
-            Indicates an exocet pattern. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | B B E | E . . | E . . |
-            | . . E | Q . . | R . . |
-            | . . E | Q . . | R . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>B</term><description>Base Cells.</description></item>
-            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
-            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
-            <item><term>S</term><description>Cross-line Cells.</description></item>
-            <item><term>E</term><description>Escape Cells.</description></item>
-            </list>
-            </para>
-            <para>
-            In the data structure, all letters will be used as the same one in this exemplar.
-            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
-            and the lines of two target cells lying on can't contain any base digits.
-            </para>
-            </summary>
-            <param name="Base1">Indicates the first base cell.</param>
-            <param name="Base2">Indicates the second base cell.</param>
-            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
-            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
-            <param name="TargetR1">Indicates the first target cell in the R part.</param>
-            <param name="TargetR2">Indicates the second target cell in the R part.</param>
-            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
-            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
-            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
-            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
-            <param name="CrossLine">Indicates the cross-line cells.</param>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.ExocetPattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            <para>
-            Indicates an exocet pattern. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | B B E | E . . | E . . |
-            | . . E | Q . . | R . . |
-            | . . E | Q . . | R . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>B</term><description>Base Cells.</description></item>
-            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
-            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
-            <item><term>S</term><description>Cross-line Cells.</description></item>
-            <item><term>E</term><description>Escape Cells.</description></item>
-            </list>
-            </para>
-            <para>
-            In the data structure, all letters will be used as the same one in this exemplar.
-            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
-            and the lines of two target cells lying on can't contain any base digits.
-            </para>
-            </summary>
-            <param name="Base1">Indicates the first base cell.</param>
-            <param name="Base2">Indicates the second base cell.</param>
-            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
-            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
-            <param name="TargetR1">Indicates the first target cell in the R part.</param>
-            <param name="TargetR2">Indicates the second target cell in the R part.</param>
-            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
-            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
-            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
-            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
-            <param name="CrossLine">Indicates the cross-line cells.</param>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.Base1">
-            <summary>Indicates the first base cell.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.Base2">
-            <summary>Indicates the second base cell.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.TargetQ1">
-            <summary>Indicates the first target cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.TargetQ2">
-            <summary>Indicates the second target cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.TargetR1">
-            <summary>Indicates the first target cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.TargetR2">
-            <summary>Indicates the second target cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.CrossLine">
-            <summary>Indicates the cross-line cells.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.MirrorQ1">
-            <summary>Indicates the first mirror cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.MirrorQ2">
-            <summary>Indicates the second mirror cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.MirrorR1">
-            <summary>Indicates the first mirror cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.MirrorR2">
-            <summary>Indicates the second mirror cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.Map">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.MapWithMirrors">
-            <summary>
-            Indicates the full map, with mirror cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.BaseCellsMap">
-            <summary>
-            Indicates the base cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.TargetCellsMap">
-            <summary>
-            Indicates the target cells.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.ExocetPattern.Equals(Sudoku.Techniques.Patterns.ExocetPattern@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.ExocetPattern.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.ExocetPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Techniques.Patterns.FireworkPattern">
-            <summary>
-            Indicates a firework pattern. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | B . . | . C . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | A . . | .(D). |
-            '-------'-------'-------'
-            ]]></code>
-            </summary>
-            <param name="Map"><inheritdoc/></param>
-            <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.FireworkPattern.#ctor(Sudoku.Concepts.CellMap@,System.Nullable{System.Int32})">
-            <summary>
-            Indicates a firework pattern. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | B . . | . C . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | A . . | .(D). |
-            '-------'-------'-------'
-            ]]></code>
-            </summary>
-            <param name="Map"><inheritdoc/></param>
-            <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.FireworkPattern.Map">
-            <summary><inheritdoc/></summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.FireworkPattern.Pivot">
-            <summary>The pivot cell. This property can be <see langword="null"/> if four cells are used.</summary>
-        </member>
-        <member name="T:Sudoku.Techniques.Patterns.ITechniquePattern`1">
-            <summary>
-            Defines a pattern that is a technique.
-            </summary>
-            <typeparam name="TTechniquePattern">The type of the technique pattern.</typeparam>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.ITechniquePattern`1.Map">
-            <summary>
-            Indicates the whole map of cells that the technique used.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Techniques.Patterns.ITechniquePatternGatherable`1">
-            <summary>
-            Describes a technique pattern that can be gather-able.
-            </summary>
-            <typeparam name="TTechniquePattern">The type of the technique pattern.</typeparam>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.ITechniquePatternGatherable`1.Gather(Sudoku.Concepts.Grid@)">
-            <summary>
-            Gathers all possible <typeparamref name="TTechniquePattern"/>s in the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>All possible found <typeparamref name="TTechniquePattern"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Techniques.Patterns.Node">
-            <summary>
-            Defines a chain node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.#ctor(System.Byte,System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Techniques.Patterns.Node"/> instance via the basic data.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <param name="cell">The cell used.</param>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.#ctor(System.Byte,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Techniques.Patterns.Node"/> instance via the basic data.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <param name="cells">The cells used.</param>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.#ctor(System.Byte,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Techniques.Patterns.Node"/> instance via the basic data.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <param name="cells">The cells used.</param>
-            <param name="extraCells">The extra cells.</param>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.Node.Digit">
-            <summary>
-            Indicates the digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.Node.IsGrouped">
-            <summary>
-            Indicates whether the current node is a grouped node, which means it is not a sole candidate node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.Node.IsAdvanced">
-            <summary>
-            Indicates whether the node is advanced node (ALS, AHS, AUR nodes, etc.).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.Node.Cells">
-            <summary>
-            Indicates the cells used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.Node.FullCells">
-            <summary>
-            Indicates the full cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.Node.Sudoku#Techniques#Patterns#ITechniquePattern{Sudoku#Techniques#Patterns#Node}#Map">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.Equals(Sudoku.Techniques.Patterns.Node@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.ToSimpleString">
-            <summary>
-            Gets the simplified string value that only displays the important information.
-            </summary>
-            <returns>The string value.</returns>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.PotentialConclusionsWith(Sudoku.Concepts.Grid@,Sudoku.Techniques.Patterns.Node@)">
-            <summary>
-            Indicates the potential conclusions that cannot be directly applied, but can be applied when a loop is formed.
-            </summary>
-            <param name="grid">The base sudoku grid that provides with candidates' distribution.</param>
-            <param name="node">The node that connects with the current node.</param>
-            <returns>The possible conclusions found. In default, the property returns an empty array.</returns>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.System#IEquatable{Sudoku#Techniques#Patterns#Node}#Equals(Sudoku.Techniques.Patterns.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.op_Equality(Sudoku.Techniques.Patterns.Node@,Sudoku.Techniques.Patterns.Node@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.op_Inequality(Sudoku.Techniques.Patterns.Node@,Sudoku.Techniques.Patterns.Node@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.System#Numerics#IEqualityOperators{Sudoku#Techniques#Patterns#Node,Sudoku#Techniques#Patterns#Node,System#Boolean}#op_Equality(Sudoku.Techniques.Patterns.Node,Sudoku.Techniques.Patterns.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.Node.System#Numerics#IEqualityOperators{Sudoku#Techniques#Patterns#Node,Sudoku#Techniques#Patterns#Node,System#Boolean}#op_Inequality(Sudoku.Techniques.Patterns.Node,Sudoku.Techniques.Patterns.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Techniques.Patterns.QiuDeadlyPattern">
-            <summary>
-            Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | P P . | . . . | . . . |
-            :-------+-------+-------:
-            | S S B | B B B | B B B |
-            | S S B | B B B | B B B |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>Pair Cells.</description></item>
-            <item><term>S</term><description>Square Cells.</description></item>
-            <item><term>B</term><description>Base-line Cells.</description></item>
-            </list>
-            </summary>
-            <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
-            <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
-            <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.QiuDeadlyPattern.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | P P . | . . . | . . . |
-            :-------+-------+-------:
-            | S S B | B B B | B B B |
-            | S S B | B B B | B B B |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>Pair Cells.</description></item>
-            <item><term>S</term><description>Square Cells.</description></item>
-            <item><term>B</term><description>Base-line Cells.</description></item>
-            </list>
-            </summary>
-            <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
-            <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
-            <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.QiuDeadlyPattern.Square">
-            <summary>The square cells that is <c>S</c> in that sketch.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.QiuDeadlyPattern.BaseLine">
-            <summary>The base-line cells that is <c>B</c> in that sketch.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.QiuDeadlyPattern.Pair">
-            <summary>The pair cells that is <c>P</c> in that sketch.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.QiuDeadlyPattern.Map">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.QiuDeadlyPattern.Equals(Sudoku.Techniques.Patterns.QiuDeadlyPattern@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.QiuDeadlyPattern.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.QiuDeadlyPattern.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Techniques.Patterns.UniquePolygonPattern">
-            <summary>
-            Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | P P . |
-            :-------+-------+-------:
-            | . . . | . . Q | S S . |
-            | . . . | . . Q | S(S). |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>The first group of cells.</description></item>
-            <item><term>Q</term><description>The second group of cells.</description></item>
-            <item>
-            <term>S</term>
-            <description>
-            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
-            is optional.
-            </description>
-            </item>
-            </list>
-            </summary>
-            <param name="Mask">The mask that forms a structure.</param>
-            <remarks>
-            <para>
-            This <see cref="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Mask"/> is of type <see cref="T:System.Int64"/>,
-            where the distribution of each bit is as follows:
-            <code><![CDATA[
-            0      7     14     21     28     35     42     49     56
-            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
-            |-------|-------|-------|-------|-------|-------|-------|-------|
-            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
-            0       8      16      24      32      40      48      56      64
-            ]]></code>
-            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
-            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
-            </para>
-            <para>
-            Due to the rendering engine, you have to check this file rather than the tip window.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.UniquePolygonPattern.#ctor(System.Int64)">
-            <summary>
-            Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | P P . |
-            :-------+-------+-------:
-            | . . . | . . Q | S S . |
-            | . . . | . . Q | S(S). |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>The first group of cells.</description></item>
-            <item><term>Q</term><description>The second group of cells.</description></item>
-            <item>
-            <term>S</term>
-            <description>
-            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
-            is optional.
-            </description>
-            </item>
-            </list>
-            </summary>
-            <param name="Mask">The mask that forms a structure.</param>
-            <remarks>
-            <para>
-            This <see cref="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Mask"/> is of type <see cref="T:System.Int64"/>,
-            where the distribution of each bit is as follows:
-            <code><![CDATA[
-            0      7     14     21     28     35     42     49     56
-            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
-            |-------|-------|-------|-------|-------|-------|-------|-------|
-            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
-            0       8      16      24      32      40      48      56      64
-            ]]></code>
-            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
-            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
-            </para>
-            <para>
-            Due to the rendering engine, you have to check this file rather than the tip window.
-            </para>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Mask">
-            <summary>The mask that forms a structure.</summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.IsHeptagon">
-            <summary>
-            Indicates whether the specified pattern is a heptagon.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Pair1Map">
-            <summary>
-            Indicates the map of pair 1 cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Pair2Map">
-            <summary>
-            Indicates the map of pair 2 cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.CenterCellsMap">
-            <summary>
-            The map of other three (or four) cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Map">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Pair1">
-            <summary>
-            Indicates the pair 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Pair2">
-            <summary>
-            Indicates the pair 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.CenterCells">
-            <summary>
-            Indicates the other three (or four) cells.
-            </summary>
-            <remarks>
-            <b>If and only if</b> the fourth value in the returned quadruple is available.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.UniquePolygonPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
-						</code>
-						The following code will be legal.
-						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
-
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
-
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.UniquePolygonPattern.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Techniques.Patterns.UniquePolygonPattern.ToString">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Prototypes.IAlmostHiddenSetsStepSearcher">
             <summary>
@@ -2726,9 +1189,9 @@
         </member>
         <member name="P:Sudoku.Solving.Logical.Prototypes.ILogicalSolverOptions.IgnoreSlowAlgorithms">
             <summary>
-            Indicates whether the solver will ignore slow step searchers being marked <see cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>.
+            Indicates whether the solver will ignore slow step searchers being marked <see cref="T:Sudoku.Solving.Logical.Annotations.AlgorithmTooSlowAttribute"/>.
             </summary>
-            <seealso cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>
+            <seealso cref="T:Sudoku.Solving.Logical.Annotations.AlgorithmTooSlowAttribute"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Prototypes.ILogicalSolverOptions.CustomSearcherCollection">
             <summary>
@@ -3325,9 +1788,9 @@
         <member name="P:Sudoku.Solving.Logical.Prototypes.IStepSearcher.IsConfiguredSlow">
             <summary>
             Determines whether the current step searcher is too slow,
-            with being applied <see cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>.
+            with being applied <see cref="T:Sudoku.Solving.Logical.Annotations.AlgorithmTooSlowAttribute"/>.
             </summary>
-            <seealso cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmTooSlowAttribute"/>
+            <seealso cref="T:Sudoku.Solving.Logical.Annotations.AlgorithmTooSlowAttribute"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Prototypes.IStepSearcher.Options">
             <summary>
@@ -11681,57 +10144,6 @@
             <exception cref="T:Sudoku.Runtime.AnalysisServices.WrongStepException">Throws when found wrong steps to apply.</exception>
             <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
         </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXyWingStepSearcher_AllowCollision">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowCollision">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlmostLockedSetsXzStepSearcher.AllowCollision"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.AlternatingInferenceChainStepSearcher_MaxCapacity">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IAlternatingInferenceChainStepSearcher.MaxCapacity"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IBivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.BowmanBingoStepSearcher_MaxLength">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IBowmanBingoStepSearcher.MaxLength"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.ComplexFishStepSearcher_MaxSize">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IFishStepSearcher.MaxSize"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.JuniorExocetStepSearcher_CheckAdvanced">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IExocetStepSearcher.CheckAdvanced"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.RegularWingStepSearcher_MaxSize">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IRegularWingStepSearcher.MaxSize"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.SeniorExocetStepSearcher_CheckAdvanced">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IExocetStepSearcher.CheckAdvanced"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableFullHouse">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ISingleStepSearcher.EnableFullHouse"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableLastDigit">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ISingleStepSearcher.EnableLastDigit"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ISingleStepSearcher.HiddenSinglesInBlockFirst"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.TemplateStepSearcher_TemplateDeleteOnly">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.ITemplateStepSearcher.TemplateDeleteOnly"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Prototypes.IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
-        </member>
         <member name="T:Sudoku.Solving.Logical.LogicalSolverResult">
             <summary>
             Provides the solver result after <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> solving a puzzle.
@@ -11977,36 +10389,6 @@
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Solving.Logical.LogicalSolverResult.Steps"/>
         </member>
-        <member name="T:Sudoku.Solving.Logical.ModuleInitializer">
-            <target name="type">
-				<summary>
-					<para>
-						Provides with the type that contains a module initializer method, called automatically by the CLR
-						(Common Language Runtime) to initialize some values.
-					</para>
-					<para>
-						<i>
-							The type is called by the compiler and the CLR (Common Language Runtime),
-							which means you cannot use any members in this type manually.
-						</i>
-					</para>
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.ModuleInitializer.Initialize">
-            <target name="method">
-				<summary>
-					Called by the runtime automatically while booting on this solution to initialize the values,
-					data members or any other things that can or should be initialized here.
-				</summary>
-				<remarks>
-					The concept <b>module</b> is different with <b>assembly</b>.
-					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
-					However, due to the design of Visual Studio project file system, each assembly will only contain
-					one module by default.
-				</remarks>
-			</target>
-        </member>
         <member name="T:Sudoku.Solving.Logical.SolverResultFormattingOptions">
             <summary>
             Indicates the formatting options of <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.
@@ -12155,6 +10537,1587 @@
             <typeparam name="TStep">The type of the step.</typeparam>
             <param name="this">The <see cref="T:Sudoku.Solving.Logical.Prototypes.IStep"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1">
+            <summary>
+            Defines an attribute that can be applied to the solving assembly,
+            to tell the source generator that the searcher option instance will be generated in the specified type.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.#ctor(Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1"/> instance
+            via the specified displaying level.
+            </summary>
+            <param name="displayingLevel">The displaying level.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.Priority">
+            <summary>
+            Indicates the priority of the step searcher. The priority value must be unique,
+            which means that different step searchers must hold different priority values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.DisplayingLevel">
+            <summary>
+            Indicates the level of the step searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.EnabledArea">
+            <summary>
+            Indicates the area that the step searcher can be used and available.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.DisabledReason">
+            <summary>
+            Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.SearcherConfigurationAttribute`1.EnabledArea"/>
+            is <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.SearcherEnabledArea.None"/>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute">
+            <summary>
+            Defines an attribute that applies to an instance having implemented <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>,
+            to create the options that will be used by the module initializer.
+            </summary>
+            <remarks>
+            Please note that the attribute is optional, which means you don't need to use the attribute
+            on all step searchers.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.#ctor(System.Int32,System.Object[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/> instance via the specified array
+            of element type <see cref="T:System.Object"/>, indicating the property names and their values.
+            </summary>
+            <param name="priority">Indicates the priority that will be used for the ordering.</param>
+            <param name="propertyNamesAndValues">The array of property names and their values.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.Priority">
+            <summary>
+            Indicates the priority value that will be used for the ordering.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute.PropertyNamesAndValues">
+            <summary>
+            Indicates the property names and the values.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherAttribute">
+            <summary>
+            To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute">
+            <summary>
+            Defines an attribute that applies to a step searcher, to define more options on UI configurations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsOptionsFixed">
+            <summary>
+            <para>Indicates whether the option is fixed that can't be modified in UI.</para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect">
+            <summary>
+            <para>
+            Indicates the technique searcher can or can't be used in some scenarios
+            where they aren't in traversing mode to call
+            <see cref="M:Sudoku.Solving.Logical.Prototypes.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>
+            in <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>s one by one.
+            </para>
+            <para>
+            If <see langword="true"/>, the searcher can't use those <see langword="static"/>
+            properties such as <see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/> in its method
+            <see cref="M:Sudoku.Solving.Logical.Prototypes.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>.
+            </para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+            <remarks>
+            <para>
+            All disallowed properties are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Buffers.FastProperties.DigitsMap"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.ValuesMap"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.BivalueCells"/></item>
+            <item><see cref="P:Sudoku.Buffers.FastProperties.EmptyCells"/></item>
+            </list>
+            The disallowed method is:
+            <list type="bullet">
+            <item><see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/></item>
+            </list>
+            </para>
+            <para>
+            Those properties or methods can optimize the performance to analyze a sudoku grid, but
+            sometimes they may cause a potential bug that is hard to find and fix. The attribute
+            is created and used for solving the problem.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
+            <seealso cref="T:Sudoku.Buffers.FastProperties"/>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.PuzzleNotRelying">
+            <summary>
+            <para>Indicates whether the specified step searcher doesn't rely on the puzzle.</para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDeprecated">
+            <summary>
+            <para>Indicates whether the step searcher is deprecated.</para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext">
+            <summary>
+            Defines a context that is used by step searchers to check the details of the solving and analysis information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.Grid">
+            <summary>
+            Indicates the puzzle to be solved and analyzed.
+            </summary>
+            <remarks>
+            This field is not encapsulated into a property because C# doesn't support auto read-only properties
+            returning <see langword="ref"/> or <see langword="ref readonly"/>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.#ctor(System.Collections.Generic.ICollection{Sudoku.Solving.Logical.Prototypes.IStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext"/> instance via the specified.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The reference to the puzzle.</param>
+            <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne">
+            <summary>
+            Indicates whether the solver only find one possible step and exit the searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.Accumulator">
+            <summary>
+            <para>
+            <para>The accumulator to store each step.</para>
+            </para>
+            <para>
+            If <see cref="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne"/> is set to <see langword="true"/>,
+            this argument will become useless because we only finding one step is okay,
+            so we may not use the accumulator to store all possible steps, in order to optimize the performance.
+            Therefore, this argument can be <see langword="null"/> in this case.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne"/>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.WrongStepException">
+            <summary>
+            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.Prototypes.IStep)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.AnalysisServices.WrongStepException"/> with the specified invalid grid and the wrong step.
+            </summary>
+            <param name="grid">The invalid sudoku grid.</param>
+            <param name="wrongStep">The wrong step.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.CurrentInvalidGrid">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.WrongStepException.WrongStep">
+            <summary>
+            Indicates the wrong step.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Buffers.FastProperties">
+            <summary>
+            Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
+            </summary>
+            <remarks>
+            <para>
+            The whole class is a <see langword="static"/> one, which means you can't use <see langword="new"/>
+            clause to create a new instance of this type. In contrast, the class is used for providing with
+            <see langword="static"/> properties used in a cyclic manually searching
+            (i.e. in <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>).
+            </para>
+            <para>
+            Some step searchers rely on this type. If you want to call them separately, you should ensure the method
+            <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> in this type must be called before using these properties.
+            </para>
+            <para>
+            If a step searcher doesn't rely on this class, it'll be <see langword="true"/> for the property named
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            If you find that the step searcher marks that attribute,
+            you can call it everywhere safely; however, if the searcher isn't marked that attribute, you
+            can't call it everywhere unless you call the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
+            </para>
+            <para>
+            Please note, all names of properties in this class can also be found in <see cref="T:Sudoku.Concepts.Grid"/>,
+            which means you can also call the property by <see cref="T:Sudoku.Concepts.Grid"/>. Of course, some of them
+            doesn't contain the same one in <see cref="T:Sudoku.Concepts.Grid"/>, but you can find a same property whose
+            execution logic (handling logic) is totally same.
+            For example, <see cref="P:Sudoku.Buffers.FastProperties.EmptyCells"/> is same as <see cref="P:Sudoku.Concepts.Grid.EmptyCells"/>. The difference
+            between them is that you shouldn't use <see cref="P:Sudoku.Buffers.FastProperties.EmptyCells"/> until you have called
+            <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>, while <see cref="P:Sudoku.Concepts.Grid.EmptyCells"/> can be used
+            everywhere, because it isn't an instant property (which means the calculation begins
+            when you called them, i.e. lazy ones; in contrast, some properties only store values directly,
+            so their values can be got instantly, i.e. instant ones).
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="P:Sudoku.Buffers.FastProperties.EmptyCells">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are marked the attribute
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+        </member>
+        <member name="P:Sudoku.Buffers.FastProperties.BivalueCells">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are marked the attribute
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+        </member>
+        <member name="P:Sudoku.Buffers.FastProperties.CandidatesMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are marked the attribute
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+        </member>
+        <member name="P:Sudoku.Buffers.FastProperties.DigitsMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are marked the attribute
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+        </member>
+        <member name="P:Sudoku.Buffers.FastProperties.ValuesMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are marked the attribute
+            <see cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.Configuration.StepSearcherOptionsAttribute.IsDirect"/>
+        </member>
+        <member name="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)">
+            <summary>
+            Initialize the maps that used later.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="T:Sudoku.Buffers.StepSearcherPool">
+            <summary>
+            Indicates a pool that stores the <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
+        </member>
+        <member name="F:Sudoku.Buffers.StepSearcherPool.Collection">
+            <summary>
+            The step searchers to find steps to apply to a certain puzzle.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Buffers.StepSearcherPoolingExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.Prototypes.IStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.Prototypes.IStepSearcher[])">
+            <summary>
+            Try to fetch a valid <typeparamref name="TStepSearcher"/> instance via the specified pool.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
+            <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
+            <returns>
+            The found step searcher instance. If the type is marked <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>,
+            the method will return the first found instance.
+            </returns>
+            <seealso cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>
+        </member>
+        <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.Prototypes.IStepSearcher[],System.Boolean)">
+            <summary>
+            Try to fetch a valid <typeparamref name="TStepSearcher"/> instances via the specified pool.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
+            <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
+            <param name="getAll">
+            Indicates whether you want to fetch all possible instances at the same time.
+            </param>
+            <returns>
+            The found step searcher instances. If the type is marked <see cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>,
+            the method will return all possible instances, whose behavior is different with the other method
+            <see cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.Prototypes.IStepSearcher[])"/>.
+            </returns>
+            <seealso cref="T:Sudoku.Runtime.AnalysisServices.Configuration.SeparatedStepSearcherAttribute"/>
+            <seealso cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.Prototypes.IStepSearcher[])"/>
+        </member>
+        <member name="T:Sudoku.Checking.BackdoorSearcher">
+            <summary>
+            Defines a backdoor searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Checking.BackdoorSearcher.SstsSolver">
+            <summary>
+            Indicates the inner solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Checking.BackdoorSearcher.BitwiseSolver">
+            <summary>
+            Indicates the bitwise solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Checking.BackdoorSearcher.GetBackdoors(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get all possible backdoors.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of backdoors.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the grid is not unique, or the puzzle is too easy.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Filtering.TechniqueFiltering">
+            <summary>
+            Defines a way that is used for filtering the gathered step.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Filtering.TechniqueFiltering.DifficultyKeyword">
+            <summary>
+            Indicates the difficulty keyword.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Filtering.TechniqueFiltering.NameKeyword">
+            <summary>
+            Indicates the name keyword.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.TechniqueFiltering.Filter(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logical.Prototypes.IStep},System.String)">
+            <summary>
+            Filters some invalid steps.
+            </summary>
+            <param name="steps">The found steps.</param>
+            <param name="conditionString">The condition.</param>
+            <exception cref="T:Expressive.Exceptions.ExpressiveException">Throws when the expression being evaluated is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Filtering.TechniqueFiltering.Parse(System.String,Sudoku.Solving.Logical.Prototypes.IStep)">
+            <summary>
+            To parse a condition string, converting the string into a valid <see cref="T:Expressive.Expression"/> instance.
+            </summary>
+            <param name="conditionString">The condition string.</param>
+            <param name="step">The step used.</param>
+            <returns>The <see cref="T:Expressive.Expression"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Filtering.TechniqueFiltering.KeywordPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [Dd].<br/>
+                        ○ Match a character in the set [Ii].<br/>
+                        ○ Match a character in the set [Ff] exactly 2 times.<br/>
+                        ○ Match a character in the set [Ii].<br/>
+                        ○ Match a character in the set [Cc].<br/>
+                        ○ Match a character in the set [Uu].<br/>
+                        ○ Match a character in the set [Ll].<br/>
+                        ○ Match a character in the set [Tt].<br/>
+                        ○ Match a character in the set [Yy].<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [Nn].<br/>
+                        ○ Match a character in the set [Aa].<br/>
+                        ○ Match a character in the set [Mm].<br/>
+                        ○ Match a character in the set [Ee].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Filtering.NameLikeOperator">
+            <summary>
+            Indicates the name matching operator <c>like</c>.
+            The expected usage is like <c>name like 'Unique\s+Rectangle.*'</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Filtering.NameLikeOperator.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.NameLikeOperator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.NameLikeOperator"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Filtering.NameLikeOperator.Tags">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.NameLikeOperator.BuildExpression(Expressive.Token,Expressive.Expressions.IExpression[],Expressive.Context)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.NameLikeOperator.GetPrecedence(Expressive.Token)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Filtering.NameLikeExpression">
+            <summary>
+            Defines the backing implementation of <c>like</c> operator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.NameLikeExpression.#ctor(Expressive.Expressions.IExpression,Expressive.Expressions.IExpression,Expressive.Context)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.NameLikeExpression"/> instance via two expressions, and the inner handling context.
+            </summary>
+            <param name="left">The left-side expression.</param>
+            <param name="right">The right-side expression.</param>
+            <param name="context">The inner handling context.</param>
+        </member>
+        <member name="M:Sudoku.Filtering.NameLikeExpression.EvaluateImpl(System.Object,Expressive.Expressions.IExpression,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Techniques.Patterns.AlmostHiddenSet">
+            <summary>
+            Defines a data structure that describes an AHS.
+            </summary>
+            <remarks>
+            An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
+            only <c>n</c> digits can be filled into <c>n + 1</c> cells in a house.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.#ctor(System.Int16,System.Int16,Sudoku.Concepts.CellMap@,System.Nullable{Sudoku.Concepts.CellMap}[])">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Techniques.Patterns.AlmostHiddenSet"/> instance
+            via the specified digit mask and the map of cells.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="allDigitsMask">All digits appearing in the AHS structure..</param>
+            <param name="map">The map.</param>
+            <param name="digitsMap">The digits' distribution maps.</param>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.House">
+            <summary>
+            Indicates the house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.AllDigitsMask">
+            <summary>
+            Indicates the mask of all digits appeared in the AHS structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.DigitsMask">
+            <summary>
+            Indicates the mask of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.WeakLinks">
+            <summary>
+            Indicates all weak links in this AHS. The return value is described as an array of quadruples,
+            indicating two digits, and cells used in the weak link.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostHiddenSet.DigitsMap">
+            <summary>
+            Indicates a dictionary of elements, indicating the cells of digits' own distribution.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.Equals(Sudoku.Techniques.Patterns.AlmostHiddenSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.op_Equality(Sudoku.Techniques.Patterns.AlmostHiddenSet,Sudoku.Techniques.Patterns.AlmostHiddenSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostHiddenSet.op_Inequality(Sudoku.Techniques.Patterns.AlmostHiddenSet,Sudoku.Techniques.Patterns.AlmostHiddenSet)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Techniques.Patterns.AlmostLockedSet">
+            <summary>
+            Defines a data structure that describes an ALS.
+            </summary>
+            <remarks>
+            An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
+            The special case is a bi-value cell.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Techniques.Patterns.AlmostLockedSet.StrongRelationsCount">
+            <summary>
+            Indicates an array of the total number of the strong relations in an ALS of the different size.
+            The field is only unused in the property <see cref="P:Sudoku.Techniques.Patterns.AlmostLockedSet.StrongLinks"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Techniques.Patterns.AlmostLockedSet.StrongLinks"/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Techniques.Patterns.AlmostLockedSet"/> instance
+            via the specified digit mask and the map of cells.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="map">The map.</param>
+            <param name="possibleEliminationMap">
+            Indicates the possible cells that can be as the elimination.
+            </param>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.House">
+            <summary>
+            Indicates the house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.IsBivalueCell">
+            <summary>
+            Indicates whether the ALS only uses a bi-value cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.DigitsMask">
+            <summary>
+            Indicates the mask of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.StrongLinks">
+            <summary>
+            Indicates all strong links in this ALS.
+            The result will be represented as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlmostLockedSet.PossibleEliminationMap">
+            <summary>
+            Gets the possible cells that can store eliminations for the ALS.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Deconstruct(System.Int32@,System.Int16@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Deconstruct(System.Int32@,System.Int16@,Sudoku.Concepts.CellMap@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.ContainsDigit(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Indicates whether the specified grid contains the digit.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="result">The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Equals(Sudoku.Techniques.Patterns.AlmostLockedSet)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Techniques.Patterns.AlmostLockedSet"/> instance holds the same
+            <see cref="P:Sudoku.Techniques.Patterns.AlmostLockedSet.DigitsMask"/> and <see cref="P:Sudoku.Techniques.Patterns.AlmostLockedSet.Map"/> property values as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.GetHashCode">
+            <inheritdoc/>
+            <remarks>
+            If you want to determine the equality of two instance, I recommend you
+            <b>should</b> use method <see cref="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Equals(Sudoku.Techniques.Patterns.AlmostLockedSet)"/> instead of this method.
+            </remarks>
+            <seealso cref="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Equals(Sudoku.Techniques.Patterns.AlmostLockedSet)"/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.op_Equality(Sudoku.Techniques.Patterns.AlmostLockedSet,Sudoku.Techniques.Patterns.AlmostLockedSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlmostLockedSet.op_Inequality(Sudoku.Techniques.Patterns.AlmostLockedSet,Sudoku.Techniques.Patterns.AlmostLockedSet)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Techniques.Patterns.AlternatingInferenceChain">
+            <summary>
+            Defines an alternating inference chain. The data structure can describe the following techniques:
+            <list type="bullet">
+            <item>
+            Normal chains:
+            <list type="bullet">
+            <item>
+            Irregular Wings
+            <list type="bullet">
+            <item>W-Wing</item>
+            <item>M-Wing</item>
+            <item>Split Wing</item>
+            <item>Local Wing</item>
+            <item>Hybrid Wing</item>
+            <item>Purple Cow</item>
+            </list>
+            </item>
+            <item>Discontinuous Nice Loop</item>
+            <item>Alternating Inference Chain</item>
+            <item>Continuous Nice Loop</item>
+            </list>
+            </item>
+            <item>
+            Grouped chains (which means the nodes are not limited in sole candidates):
+            <list type="bullet">
+            <item>Grouped Wings</item>
+            <item>Grouped Discontinuous Nice Loop</item>
+            <item>Grouped Alternating Inference Chain</item>
+            <item>Grouped Continuous Nice Loop</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.#ctor(Sudoku.Techniques.Patterns.Node[],System.Boolean)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Techniques.Patterns.AlternatingInferenceChain"/> instance via the specified nodes
+            and the <see cref="T:System.Boolean"/> value indicating whether the chain starts and ends
+            with strong inferences.
+            </summary>
+            <param name="nodes">The nodes used.</param>
+            <param name="isStrong">Indicates whether the chain starts and ends with strong inferences.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the length of the argument <paramref name="nodes"/> is less than or equals 3,
+            or the first and the last node aren't the same when the argument <paramref name="isStrong"/>
+            is <see langword="true"/>.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsStrong">
+            <summary>
+            Indicates whether the alternating inference chain starts with a strong inference,
+            and ends with another strong inference.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.HasNodeCollision">
+            <summary>
+            Indicates whether the chain has a collision, encountered between start and end node.
+            This property should be satisfied at least the chain is a grouped chain, and at least one of
+            the first and the last node is a grouped node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsContinuousNiceLoop">
+            <summary>
+            Indicates whether the current chain forms a continuous nice loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsGrouped">
+            <summary>
+            Indicates whether the current chain is a grouped chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsIrregularWing">
+            <summary>
+            Determines whether the current chain is an irregular wing (Chinese: Duan3 Lian4).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsAlmostLockedSetsOnly">
+            <summary>
+            Determines whether the chain only uses ALS grouped node as the strong inferences.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsAlmostHiddenSetsOnly">
+            <summary>
+            Determines whether the chain only uses AHS grouped node as the weak inferences.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.FullChainNodes">
+            <summary>
+            Indicates the full chain nodes, containing elimination nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.RealChainNodes">
+            <summary>
+            <para>Indicates the nodes that represents the main chain node data for the current chain.</para>
+            <para>
+            The property value will be different if the property <see cref="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsStrong"/> is different.
+            <list type="table">
+            <listheader>
+            <term>The value of the property <see cref="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsStrong"/></term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>All nodes will be returned (i.e. <c>_nodes[..]</c>).</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>
+            Returns the sliced array from the nodes being stored in the current instance,
+            without the first and the last node (i.e. <c>_nodes[1..^1]</c>).
+            </description>
+            </item>
+            </list>
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.IsStrong"/>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.AlternatingInferenceChain.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.Equals(Sudoku.Techniques.Patterns.Chain)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.GetConclusions(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.InitializeFieldNodeStatus(Sudoku.Techniques.Patterns.Node[],System.Boolean)">
+            <summary>
+            Try to initializes the field <see cref="F:Sudoku.Techniques.Patterns.Chain._nodesStatus"/>.
+            </summary>
+            <param name="nodes">The nodes.</param>
+            <param name="startsWithStrong">
+            Indicates whether the chain starts and ends with strong inferences.
+            </param>
+            <returns>The array of type <see cref="T:System.Boolean"/>[].</returns>
+            <seealso cref="F:Sudoku.Techniques.Patterns.Chain._nodesStatus"/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.GetEliminationsLoop(Sudoku.Concepts.Grid@,System.Collections.Immutable.ImmutableArray{Sudoku.Techniques.Patterns.Node})">
+            <summary>
+            Try to get eliminations, treating the current AIC as a continuous nice loop.
+            </summary>
+            <param name="grid">The grid as the candidate reference.</param>
+            <param name="nodes">The base nodes.</param>
+            <returns>The conclusions.</returns>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.GetEliminationsMultipleDigits(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Byte,System.Byte)">
+            <summary>
+            Try to get eliminations via different digits.
+            </summary>
+            <param name="grid">The grid as the candidate reference.</param>
+            <param name="c1">The only cell in the first node.</param>
+            <param name="c2">The only cell in the second node.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <returns>The conclusions.</returns>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.AlternatingInferenceChain.GetEliminationsSingleDigit(Sudoku.Concepts.CellMap@,System.Byte)">
+            <summary>
+            Try to get eliminations via the digit and the elimination cells.
+            </summary>
+            <param name="elimMap">The elimination cells.</param>
+            <param name="digit">The digit.</param>
+            <returns>The conclusions.</returns>
+        </member>
+        <member name="T:Sudoku.Techniques.Patterns.Chain">
+            <summary>
+            Represents an abstract data structure "Chain".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Patterns.Chain._nodesStatus">
+            <summary>
+            Indicates the status of those nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.Patterns.Chain._nodes">
+            <summary>
+            Indicates the nodes that is used in the current chain.
+            Generally, the first element and the last element are same.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Chain.#ctor(Sudoku.Techniques.Patterns.Node[],System.Boolean[])">
+            <summary>
+            Initializes a instance whose type is derived from <see cref="T:Sudoku.Techniques.Patterns.Chain"/>,
+            using the specified nodes and their own status respectively.
+            </summary>
+            <param name="nodes">The nodes.</param>
+            <param name="nodesStatus">The nodes' status.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the arguments <paramref name="nodes"/> and <paramref name="nodesStatus"/>
+            don't hold the same number of elements.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.Chain.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.Chain.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Chain.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Chain.Equals(Sudoku.Techniques.Patterns.Chain)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Chain.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Chain.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Chain.GetConclusions(Sudoku.Concepts.Grid@)">
+            <summary>
+            Gets the conclusions of the current chain.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The conclusions of the current chain.</returns>
+            <remarks>
+            <para><b>TODO</b>: Append extra eliminations that requires the extended elimination rules.</para>
+            <para>
+            e.g.
+            <code>
+            a. 25 | d. 28
+            b. 25 | e. 38
+            c. 3+ | f. 5+
+            </code>
+            Chain: <c>a(5) == d(8) -- e(8 == 3) => b != 5</c>, where the cell <c>c</c> and <c>f</c>
+            are filled with modifiable values.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Chain.ToArray">
+            <summary>
+            Creates an array that stores the values with each element of a pair, where:
+            <list type="table">
+            <item>
+            <term>The first tuple element</term>
+            <description>The node itself.</description>
+            </item>
+            <item>
+            <term>The second tuple element</term>
+            <description>The status of the current node, indicating whether the node is on currently.</description>
+            </item>
+            </list>
+            </summary>
+            <returns>An array that stores the values with each element of a pair.</returns>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Chain.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Chain.System#Collections#Generic#IEnumerable{Sudoku#Techniques#Patterns#Node}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Chain.op_Equality(Sudoku.Techniques.Patterns.Chain,Sudoku.Techniques.Patterns.Chain)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Chain.op_Inequality(Sudoku.Techniques.Patterns.Chain,Sudoku.Techniques.Patterns.Chain)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Techniques.Patterns.ExocetPattern">
+            <summary>
+            <para>
+            Indicates an exocet pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | B B E | E . . | E . . |
+            | . . E | Q . . | R . . |
+            | . . E | Q . . | R . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>B</term><description>Base Cells.</description></item>
+            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
+            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>E</term><description>Escape Cells.</description></item>
+            </list>
+            </para>
+            <para>
+            In the data structure, all letters will be used as the same one in this exemplar.
+            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
+            and the lines of two target cells lying on can't contain any base digits.
+            </para>
+            </summary>
+            <param name="Base1">Indicates the first base cell.</param>
+            <param name="Base2">Indicates the second base cell.</param>
+            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
+            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
+            <param name="TargetR1">Indicates the first target cell in the R part.</param>
+            <param name="TargetR2">Indicates the second target cell in the R part.</param>
+            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
+            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
+            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
+            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
+            <param name="CrossLine">Indicates the cross-line cells.</param>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.ExocetPattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            <para>
+            Indicates an exocet pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | B B E | E . . | E . . |
+            | . . E | Q . . | R . . |
+            | . . E | Q . . | R . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>B</term><description>Base Cells.</description></item>
+            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
+            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>E</term><description>Escape Cells.</description></item>
+            </list>
+            </para>
+            <para>
+            In the data structure, all letters will be used as the same one in this exemplar.
+            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
+            and the lines of two target cells lying on can't contain any base digits.
+            </para>
+            </summary>
+            <param name="Base1">Indicates the first base cell.</param>
+            <param name="Base2">Indicates the second base cell.</param>
+            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
+            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
+            <param name="TargetR1">Indicates the first target cell in the R part.</param>
+            <param name="TargetR2">Indicates the second target cell in the R part.</param>
+            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
+            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
+            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
+            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
+            <param name="CrossLine">Indicates the cross-line cells.</param>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.Base1">
+            <summary>Indicates the first base cell.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.Base2">
+            <summary>Indicates the second base cell.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.TargetQ1">
+            <summary>Indicates the first target cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.TargetQ2">
+            <summary>Indicates the second target cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.TargetR1">
+            <summary>Indicates the first target cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.TargetR2">
+            <summary>Indicates the second target cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.CrossLine">
+            <summary>Indicates the cross-line cells.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.MirrorQ1">
+            <summary>Indicates the first mirror cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.MirrorQ2">
+            <summary>Indicates the second mirror cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.MirrorR1">
+            <summary>Indicates the first mirror cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.MirrorR2">
+            <summary>Indicates the second mirror cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.MapWithMirrors">
+            <summary>
+            Indicates the full map, with mirror cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.BaseCellsMap">
+            <summary>
+            Indicates the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ExocetPattern.TargetCellsMap">
+            <summary>
+            Indicates the target cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.ExocetPattern.Equals(Sudoku.Techniques.Patterns.ExocetPattern@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.ExocetPattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.ExocetPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Techniques.Patterns.FireworkPattern">
+            <summary>
+            Indicates a firework pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | B . . | . C . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | A . . | .(D). |
+            '-------'-------'-------'
+            ]]></code>
+            </summary>
+            <param name="Map"><inheritdoc/></param>
+            <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.FireworkPattern.#ctor(Sudoku.Concepts.CellMap@,System.Nullable{System.Int32})">
+            <summary>
+            Indicates a firework pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | B . . | . C . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | A . . | .(D). |
+            '-------'-------'-------'
+            ]]></code>
+            </summary>
+            <param name="Map"><inheritdoc/></param>
+            <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.FireworkPattern.Map">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.FireworkPattern.Pivot">
+            <summary>The pivot cell. This property can be <see langword="null"/> if four cells are used.</summary>
+        </member>
+        <member name="T:Sudoku.Techniques.Patterns.ITechniquePattern`1">
+            <summary>
+            Defines a pattern that is a technique.
+            </summary>
+            <typeparam name="TTechniquePattern">The type of the technique pattern.</typeparam>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.ITechniquePattern`1.Map">
+            <summary>
+            Indicates the whole map of cells that the technique used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Techniques.Patterns.ITechniquePatternGatherable`1">
+            <summary>
+            Describes a technique pattern that can be gather-able.
+            </summary>
+            <typeparam name="TTechniquePattern">The type of the technique pattern.</typeparam>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.ITechniquePatternGatherable`1.Gather(Sudoku.Concepts.Grid@)">
+            <summary>
+            Gathers all possible <typeparamref name="TTechniquePattern"/>s in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All possible found <typeparamref name="TTechniquePattern"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Techniques.Patterns.Node">
+            <summary>
+            Defines a chain node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.#ctor(System.Byte,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Techniques.Patterns.Node"/> instance via the basic data.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <param name="cell">The cell used.</param>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.#ctor(System.Byte,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Techniques.Patterns.Node"/> instance via the basic data.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <param name="cells">The cells used.</param>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.#ctor(System.Byte,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Techniques.Patterns.Node"/> instance via the basic data.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <param name="cells">The cells used.</param>
+            <param name="extraCells">The extra cells.</param>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.Node.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.Node.IsGrouped">
+            <summary>
+            Indicates whether the current node is a grouped node, which means it is not a sole candidate node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.Node.IsAdvanced">
+            <summary>
+            Indicates whether the node is advanced node (ALS, AHS, AUR nodes, etc.).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.Node.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.Node.FullCells">
+            <summary>
+            Indicates the full cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.Node.Sudoku#Techniques#Patterns#ITechniquePattern{Sudoku#Techniques#Patterns#Node}#Map">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.Equals(Sudoku.Techniques.Patterns.Node@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.ToSimpleString">
+            <summary>
+            Gets the simplified string value that only displays the important information.
+            </summary>
+            <returns>The string value.</returns>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.PotentialConclusionsWith(Sudoku.Concepts.Grid@,Sudoku.Techniques.Patterns.Node@)">
+            <summary>
+            Indicates the potential conclusions that cannot be directly applied, but can be applied when a loop is formed.
+            </summary>
+            <param name="grid">The base sudoku grid that provides with candidates' distribution.</param>
+            <param name="node">The node that connects with the current node.</param>
+            <returns>The possible conclusions found. In default, the property returns an empty array.</returns>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.System#IEquatable{Sudoku#Techniques#Patterns#Node}#Equals(Sudoku.Techniques.Patterns.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.op_Equality(Sudoku.Techniques.Patterns.Node@,Sudoku.Techniques.Patterns.Node@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.op_Inequality(Sudoku.Techniques.Patterns.Node@,Sudoku.Techniques.Patterns.Node@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.System#Numerics#IEqualityOperators{Sudoku#Techniques#Patterns#Node,Sudoku#Techniques#Patterns#Node,System#Boolean}#op_Equality(Sudoku.Techniques.Patterns.Node,Sudoku.Techniques.Patterns.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.Node.System#Numerics#IEqualityOperators{Sudoku#Techniques#Patterns#Node,Sudoku#Techniques#Patterns#Node,System#Boolean}#op_Inequality(Sudoku.Techniques.Patterns.Node,Sudoku.Techniques.Patterns.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Techniques.Patterns.QiuDeadlyPattern">
+            <summary>
+            Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | P P . | . . . | . . . |
+            :-------+-------+-------:
+            | S S B | B B B | B B B |
+            | S S B | B B B | B B B |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>Pair Cells.</description></item>
+            <item><term>S</term><description>Square Cells.</description></item>
+            <item><term>B</term><description>Base-line Cells.</description></item>
+            </list>
+            </summary>
+            <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
+            <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
+            <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.QiuDeadlyPattern.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | P P . | . . . | . . . |
+            :-------+-------+-------:
+            | S S B | B B B | B B B |
+            | S S B | B B B | B B B |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>Pair Cells.</description></item>
+            <item><term>S</term><description>Square Cells.</description></item>
+            <item><term>B</term><description>Base-line Cells.</description></item>
+            </list>
+            </summary>
+            <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
+            <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
+            <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.QiuDeadlyPattern.Square">
+            <summary>The square cells that is <c>S</c> in that sketch.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.QiuDeadlyPattern.BaseLine">
+            <summary>The base-line cells that is <c>B</c> in that sketch.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.QiuDeadlyPattern.Pair">
+            <summary>The pair cells that is <c>P</c> in that sketch.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.QiuDeadlyPattern.Map">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.QiuDeadlyPattern.Equals(Sudoku.Techniques.Patterns.QiuDeadlyPattern@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.QiuDeadlyPattern.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.QiuDeadlyPattern.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Techniques.Patterns.UniquePolygonPattern">
+            <summary>
+            Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | P P . |
+            :-------+-------+-------:
+            | . . . | . . Q | S S . |
+            | . . . | . . Q | S(S). |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>The first group of cells.</description></item>
+            <item><term>Q</term><description>The second group of cells.</description></item>
+            <item>
+            <term>S</term>
+            <description>
+            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
+            is optional.
+            </description>
+            </item>
+            </list>
+            </summary>
+            <param name="Mask">The mask that forms a structure.</param>
+            <remarks>
+            <para>
+            This <see cref="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Mask"/> is of type <see cref="T:System.Int64"/>,
+            where the distribution of each bit is as follows:
+            <code><![CDATA[
+            0      7     14     21     28     35     42     49     56
+            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
+            |-------|-------|-------|-------|-------|-------|-------|-------|
+            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
+            0       8      16      24      32      40      48      56      64
+            ]]></code>
+            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
+            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
+            </para>
+            <para>
+            Due to the rendering engine, you have to check this file rather than the tip window.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.UniquePolygonPattern.#ctor(System.Int64)">
+            <summary>
+            Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | P P . |
+            :-------+-------+-------:
+            | . . . | . . Q | S S . |
+            | . . . | . . Q | S(S). |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>The first group of cells.</description></item>
+            <item><term>Q</term><description>The second group of cells.</description></item>
+            <item>
+            <term>S</term>
+            <description>
+            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
+            is optional.
+            </description>
+            </item>
+            </list>
+            </summary>
+            <param name="Mask">The mask that forms a structure.</param>
+            <remarks>
+            <para>
+            This <see cref="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Mask"/> is of type <see cref="T:System.Int64"/>,
+            where the distribution of each bit is as follows:
+            <code><![CDATA[
+            0      7     14     21     28     35     42     49     56
+            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
+            |-------|-------|-------|-------|-------|-------|-------|-------|
+            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
+            0       8      16      24      32      40      48      56      64
+            ]]></code>
+            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
+            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
+            </para>
+            <para>
+            Due to the rendering engine, you have to check this file rather than the tip window.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Mask">
+            <summary>The mask that forms a structure.</summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.IsHeptagon">
+            <summary>
+            Indicates whether the specified pattern is a heptagon.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Pair1Map">
+            <summary>
+            Indicates the map of pair 1 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Pair2Map">
+            <summary>
+            Indicates the map of pair 2 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.CenterCellsMap">
+            <summary>
+            The map of other three (or four) cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Pair1">
+            <summary>
+            Indicates the pair 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.Pair2">
+            <summary>
+            Indicates the pair 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Techniques.Patterns.UniquePolygonPattern.CenterCells">
+            <summary>
+            Indicates the other three (or four) cells.
+            </summary>
+            <remarks>
+            <b>If and only if</b> the fourth value in the returned quadruple is available.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.UniquePolygonPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.UniquePolygonPattern.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Techniques.Patterns.UniquePolygonPattern.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.KeywordPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the KeywordPattern method.</summary>
