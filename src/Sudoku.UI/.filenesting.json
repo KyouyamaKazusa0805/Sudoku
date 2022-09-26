@@ -2,13 +2,8 @@
 // Visual Studio version 16.9+ supports custom file nesting.
 
 {
-  // The global name of the setting. You should configure the contents into it.
   "dependentFileProviders": {
-
-    // Sets the rules.
     "add": {
-
-      // File-to-file rule.
       "fileToFile": {
         "add": {
           "BasicOptionsPage.xaml": [ "PreferencePage.xaml" ],

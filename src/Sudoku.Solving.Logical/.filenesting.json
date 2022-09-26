@@ -2,12 +2,8 @@
 // Visual Studio version 16.9+ supports custom file nesting.
 
 {
-  // The global name of the setting. You should configure the contents into it.
   "dependentFileProviders": {
-
-    // Sets the rules.
     "add": {
-      // File-to-file rule.
       "fileToFile": {
         "add": {
           //
@@ -26,6 +22,10 @@
           "ISubsetStepSearcher.cs": [ "IStepSearcher.cs" ],
           "ISymmetryStepSearcher.cs": [ "IStepSearcher.cs" ],
           "IWingStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "IUniversalStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
+          "INegativeRankStepSearcher.cs": [ "IRankTheoryStepSearcher.cs" ],
+          "INonnegativeRankStepSearcher.cs": [ "IRankTheoryStepSearcher.cs" ],
+          "IIrregularWingStepSearcher.cs": [ "IWingStepSearcher.cs" ],
 
           "IDeathBlossomStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
           "IAlmostLockedSetsWWingStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
@@ -44,7 +44,6 @@
           "IQiuDeadlyPatternStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
           "IUniqueRectangleStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
           "IReverseBivalueUniversalGraveStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
-          "IUniversalStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
           "IReverseUniqueRectangleStepSearcher.cs": [ "IReverseBivalueUniversalGraveStepSearcher.cs" ],
           "IBivalueUniversalGraveStepSearcher.cs": [ "IUniversalStepSearcher.cs" ],
 
@@ -62,9 +61,7 @@
           "IBruteForceStepSearcher.cs": [ "ILastResortStepSearcher.cs" ],
           "IPatternOverlayStepSearcher.cs": [ "ILastResortStepSearcher.cs" ],
           "ITemplateStepSearcher.cs": [ "ILastResortStepSearcher.cs" ],
-
-          "INegativeRankStepSearcher.cs": [ "IRankTheoryStepSearcher.cs" ],
-          "INonnegativeRankStepSearcher.cs": [ "IRankTheoryStepSearcher.cs" ],
+          
           "IBivalueOddagonStepSearcher.cs": [ "INegativeRankStepSearcher.cs" ],
           "IChromaticPatternStepSearcher.cs": [ "INegativeRankStepSearcher.cs" ],
           "IGuardianStepSearcher.cs": [ "INegativeRankStepSearcher.cs" ],
@@ -73,20 +70,78 @@
           "ISueDeCoqStepSearcher.cs": [ "INonnegativeRankStepSearcher.cs" ],
           "ISueDeCoq3DimensionStepSearcher.cs": [ "INonnegativeRankStepSearcher.cs" ],
 
+          "SingleStepSearcher.cs": [ "ISingleStepSearcher.cs" ],
+          "SubsetStepSearcher.cs": [ "ISubsetStepSearcher.cs" ],
+
           "IEmptyRectangleStepSearcher.cs": [ "ISingleDigitPatternStepSearcher.cs" ],
           "ITwoStrongLinksStepSearcher.cs": [ "ISingleDigitPatternStepSearcher.cs" ],
 
           "IGurthSymmetricalPlacementStepSearcher.cs": [ "ISymmetryStepSearcher.cs" ],
 
           "IRegularWingStepSearcher.cs": [ "IWingStepSearcher.cs" ],
-          "IIrregularWingStepSearcher.cs": [ "IWingStepSearcher.cs" ],
           "IWWingStepSearcher.cs": [ "IIrregularWingStepSearcher.cs" ],
           "IMultiBranchWWingStepSearcher.cs": [ "IIrregularWingStepSearcher.cs" ],
+
+          //
+          // Step searcher implementation nesting rules
+          //
+          "DeathBlossomStepSearcher.cs": [ "IDeathBlossomStepSearcher.cs" ],
+          "AlmostLockedSetsWWingStepSearcher.cs": [ "IAlmostLockedSetsWWingStepSearcher.cs" ],
+          "AlmostLockedSetsXyWingStepSearcher.cs": [ "IAlmostLockedSetsXyWingStepSearcher.cs" ],
+          "AlmostLockedSetsXzStepSearcher.cs": [ "IAlmostLockedSetsXzStepSearcher.cs" ],
+          "EmptyRectangleIntersectionPairStepSearcher.cs": [ "IEmptyRectangleIntersectionPairStepSearcher.cs" ],
+
+          "AlternatingInferenceChainStepSearcher.cs": [ "IAlternatingInferenceChainStepSearcher.cs" ],
+
+          "UniquenessClueCoverStepSearcher.cs": [ "IUniquenessClueCoverStepSearcher.cs" ],
+          "ExtendedRectangleStepSearcher.cs": [ "IExtendedRectangleStepSearcher.cs" ],
+          "UniqueLoopStepSearcher.cs": [ "IUniqueLoopStepSearcher.cs" ],
+          "UniqueMatrixStepSearcher.cs": [ "IUniqueMatrixStepSearcher.cs" ],
+          "RwDeadlyPatternStepSearcher.cs": [ "IRwDeadlyPatternStepSearcher.cs" ],
+          "UniquePolygonStepSearcher.cs": [ "IUniquePolygonStepSearcher.cs" ],
+          "QiuDeadlyPatternStepSearcher.cs": [ "IQiuDeadlyPatternStepSearcher.cs" ],
+          "UniqueRectangleStepSearcher.cs": [ "IUniqueRectangleStepSearcher.cs" ],
+          "ReverseBivalueUniversalGraveStepSearcher.cs": [ "IReverseBivalueUniversalGraveStepSearcher.cs" ],
+          "ReverseUniqueRectangleStepSearcher.cs": [ "IReverseUniqueRectangleStepSearcher.cs" ],
+          "BivalueUniversalGraveStepSearcher.cs": [ "IBivalueUniversalGraveStepSearcher.cs" ],
+
+          "JuniorExocetStepSearcher.cs": [ "IJuniorExocetStepSearcher.cs" ],
+          "SeniorExocetStepSearcher.cs": [ "ISeniorExocetStepSearcher.cs" ],
+
+          "NormalFishStepSearcher.cs": [ "INormalFishStepSearcher.cs" ],
+          "ComplexFishStepSearcher.cs": [ "IComplexFishStepSearcher.cs" ],
+
+          "AlmostLockedCandidatesStepSearcher.cs": [ "IAlmostLockedCandidatesStepSearcher.cs" ],
+          "FireworkStepSearcher.cs": [ "IFireworkStepSearcher.cs" ],
+          "LockedCandidatesStepSearcher.cs": [ "ILockedCandidatesStepSearcher.cs" ],
+
+          "BowmanBingoStepSearcher.cs": [ "IBowmanBingoStepSearcher.cs" ],
+          "BruteForceStepSearcher.cs": [ "IBruteForceStepSearcher.cs" ],
+          "PatternOverlayStepSearcher.cs": [ "IPatternOverlayStepSearcher.cs" ],
+          "TemplateStepSearcher.cs": [ "ITemplateStepSearcher.cs" ],
+          
+          "BivalueOddagonStepSearcher.cs": [ "IBivalueOddagonStepSearcher.cs" ],
+          "ChromaticPatternStepSearcher.cs": [ "IChromaticPatternStepSearcher.cs" ],
+          "GuardianStepSearcher.cs": [ "IGuardianStepSearcher.cs" ],
+          "DominoLoopStepSearcher.cs": [ "IDominoLoopStepSearcher.cs" ],
+          "MultisectorLockedSetsStepSearcher.cs": [ "IMultisectorLockedSetsStepSearcher.cs" ],
+          "SueDeCoqStepSearcher.cs": [ "ISueDeCoqStepSearcher.cs" ],
+          "SueDeCoq3DimensionStepSearcher.cs": [ "ISueDeCoq3DimensionStepSearcher.cs" ],
+
+          "EmptyRectangleStepSearcher.cs": [ "IEmptyRectangleStepSearcher.cs" ],
+          "TwoStrongLinksStepSearcher.cs": [ "ITwoStrongLinksStepSearcher.cs" ],
+
+          "GurthSymmetricalPlacementStepSearcher.cs": [ "IGurthSymmetricalPlacementStepSearcher.cs" ],
+
+          "RegularWingStepSearcher.cs": [ "IRegularWingStepSearcher.cs" ],
+          "WWingStepSearcher.cs": [ "IWWingStepSearcher.cs" ],
+          "MultiBranchWWingStepSearcher.cs": [ "IMultiBranchWWingStepSearcher.cs" ],
 
           //
           // Step nesting rules
           //
           "IInvalidStep.cs": [ "IStep.cs" ],
+          "Step.cs": [ "IStep.cs" ],
 
           "AlmostLockedSetsStep.cs": [ "Step.cs" ],
           "ChainStep.cs": [ "Step.cs" ],
