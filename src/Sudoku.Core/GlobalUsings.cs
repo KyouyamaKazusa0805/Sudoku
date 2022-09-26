@@ -25,8 +25,6 @@ global using Sudoku.Compatibility.SudokuExplainer;
 global using Sudoku.Concepts;
 global using Sudoku.Enumerating;
 global using Sudoku.Linq;
-global using Sudoku.Presentation;
-global using Sudoku.Presentation.Nodes;
 global using Sudoku.Resources;
 global using Sudoku.Solving;
 global using Sudoku.Techniques;

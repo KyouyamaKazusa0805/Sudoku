@@ -1,0 +1,1214 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Presentation</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Presentation.DisplayColorKind">
+            <summary>
+            Defines a display color kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Normal">
+            <summary>
+            Indicates the normal color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Auxiliary1">
+            <summary>
+            Indicates the first auxiliary color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Auxiliary2">
+            <summary>
+            Indicates the second auxiliary color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Auxiliary3">
+            <summary>
+            Indicates the third auxiliary color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Assignment">
+            <summary>
+            Indicates the assignment color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Elimination">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Exofin">
+            <summary>
+            Indicates the exo-fin color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Endofin">
+            <summary>
+            Indicates the endo-fin color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Cannibalism">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Link">
+            <summary>
+            Indicates the link color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet1">
+            <summary>
+            Indicates the first ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet2">
+            <summary>
+            Indicates the second ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet3">
+            <summary>
+            Indicates the third ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet4">
+            <summary>
+            Indicates the fourth ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet5">
+            <summary>
+            Indicates the fifth ALS recorded.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Presentation.Identifier">
+            <summary>
+            Defines an identifier that can differ colors.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance.
+            </summary>
+            <remarks>
+            <b>This constructor is only used for creating a randomized instance. You cannot call this constructor.</b>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.#ctor(System.Int32)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the ID value.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the color value.
+            </summary>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.#ctor(Sudoku.Presentation.DisplayColorKind)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the specified displaying color kind as the named kind.
+            </summary>
+            <param name="namedKind">The color kind.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.A">
+            <summary>
+            Indicates the alpha value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.R">
+            <summary>
+            Indicates the red value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.G">
+            <summary>
+            Indicates the green value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.B">
+            <summary>
+            Indicates the blue value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.Id">
+            <summary>
+            Indicates the ID value used.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Id"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.ColorRawValue">
+            <summary>
+            Indicates the raw color value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.NamedKind">
+            <summary>
+            Indicates the kind of the identifier named.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Named"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.Mode">
+            <summary>
+            Indicates the mode.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.Equals(Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Throws when the specified mode is not supported.</exception>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromId(System.Int32)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the specified ID value.
+            </summary>
+            <param name="id">The ID value.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromColor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the color value.
+            </summary>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromColor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the color value.
+            </summary>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromNamedKind(Sudoku.Presentation.DisplayColorKind)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the named kind.
+            </summary>
+            <param name="namedKind">The named kind.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Equality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Inequality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.Int32">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to <see cref="T:System.Int32"/> indicating the ID value.
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~Sudoku.Presentation.DisplayColorKind">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to <see cref="T:Sudoku.Presentation.DisplayColorKind"/> indicating the named kind value.
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.ValueTuple{System.Byte,System.Byte,System.Byte}">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>,
+            <see cref="T:System.Byte"/>).
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.ValueTuple{System.Byte,System.Byte,System.Byte,System.Byte}">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>,
+            <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>).
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(System.ValueTuple{System.Byte,System.Byte,System.Byte,System.Byte})~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>)
+            to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="colorQuadruple">
+            The quadruple of element types <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>
+            and <see cref="T:System.Byte"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(System.ValueTuple{System.Byte,System.Byte,System.Byte})~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>)
+            to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="colorTriple">
+            The quadruple of element types <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/> and <see cref="T:System.Byte"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(System.Int32)~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from <see cref="T:System.Int32"/> indicating the ID value to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(Sudoku.Presentation.DisplayColorKind)~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Presentation.DisplayColorKind"/> indicating the displaying color kind as the named kind,
+            as the ID value to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="namedKind">The displaying color kind.</param>
+        </member>
+        <member name="T:Sudoku.Presentation.IdentifierColorMode">
+            <summary>
+            Indicates a mode to display a color used by type <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Identifier"/>
+        </member>
+        <member name="F:Sudoku.Presentation.IdentifierColorMode.Raw">
+            <summary>
+            Indicates the raw mode. The mode uses alpha, red, green and blue to represent a color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.IdentifierColorMode.Id">
+            <summary>
+            Indicates the ID mode. The mode uses an ID to represent a color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.IdentifierColorMode.Named">
+            <summary>
+            Indicates the named mode. The mode uses an enumeration field name to differ color.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Presentation.IVisual">
+            <summary>
+            Provides with a visual item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.IVisual.Conclusions">
+            <summary>
+            Indicates the conclusions that the step can be eliminated or assigned to.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.IVisual.Views">
+            <summary>
+            Indicates the views of the step that may be displayed onto the screen using pictures.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Presentation.LockedTarget">
+            <summary>
+            Defines the data structure that stores a set of cells and a digit, indicating the information
+            about the locked candidate node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.LockedTarget"/> instance via the specified cell and the specified digit used.
+            </summary>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="cell">Indicates the cell used.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.LockedTarget"/> instance via the specified cells and the specified digit used.
+            </summary>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="cells">Indicates the cells used.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.LockedTarget.IsSole">
+            <summary>
+            Indicates whether the number of cells is 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.LockedTarget.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.LockedTarget.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.Equals(Sudoku.Presentation.LockedTarget@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#IEquatable{Sudoku#Presentation#LockedTarget}#Equals(Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.op_Equality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.op_Inequality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget,System#Boolean}#op_Equality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget,System#Boolean}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.ViewNodeAddBehavior">
+            <summary>
+            Represents an enumeration type that stores some kinds of possible behaviors on adding a view node
+            into a view node collection such as <see cref="T:Sudoku.Presentation.UserDefinedVisual"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.UserDefinedVisual"/>
+        </member>
+        <member name="F:Sudoku.Presentation.ViewNodeAddBehavior.ForceAdd">
+            <summary>
+            Indicates the view node will be added without any reason.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.ViewNodeAddBehavior.ReplaceIfDuplicate">
+            <summary>
+            Indicates replace the view node if a new duplicate one should be added.
+            This option is used when the method <see cref="M:Sudoku.Presentation.View.Contains(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})"/> is called.
+            </summary>
+            <seealso cref="M:Sudoku.Presentation.View.Contains(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})"/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.CandidateViewNode">
+            <summary>
+            Defines a view node that highlights for a candidate.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/> instance via the identifier and the highlight candidate.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="candidate">The candidate.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CandidateViewNode.Candidate">
+            <summary>
+            Indicates the candidate highlighted.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CandidateViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.CellViewNode">
+            <summary>
+            Defines a view node that highlights for a cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/> instance via the identifier and the highlight cell.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CellViewNode.Cell">
+            <summary>
+            Indicates the cell highlighted.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CellViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Deconstruct(Sudoku.Presentation.Identifier@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.ChuteViewNode">
+            <summary>
+            Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/> instance via the identifier and the highlight chute.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="chuteIndex">The chute index.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.IsRow">
+            <summary>
+            Indicates whether the chute is in a row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.ChuteIndex">
+            <summary>
+            Indicates the chute index. The value can be between 0 and 5.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.HousesMask">
+            <summary>
+            <para>
+            Indicates a <see cref="T:System.Int16"/> mask that represents for the houses used.
+            The result mask is a 27-bit digit that represents every possible houses using cases.
+            </para>
+            <para>
+            Please note that the first 9-bit always keep the zero value because they is reserved bits
+            for block houses, but all chutes don't use them.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.HouseViewNode">
+            <summary>
+            Defines a view node that highlights for a house.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/> instance via the identifier and the highlight house.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="houseIndex">The house index.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.HouseViewNode.House">
+            <summary>
+            Indicates the house highlighted.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.HouseViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.LinkViewNode">
+            <summary>
+            Defines a view node that highlights for a link.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.Concepts.Inference)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instance via the specified identifier,
+            the specified start and end point, and the inference type.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="startPoint">The start point of the link.</param>
+            <param name="endPoint">The end point of the link.</param>
+            <param name="inference">The inference type.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.Start">
+            <summary>
+            Indicates the start point.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.End">
+            <summary>
+            Indicates the end point.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.Inference">
+            <summary>
+            Indicates the inference type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Deconstruct(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.Concepts.Inference@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.UnknownViewNode">
+            <summary>
+            Defines a view node that highlights for a unknown.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Utf8Char,System.Int16)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Nodes.UnknownViewNode"/> instance via the specified identifier,
+            the cell used, the unknown value character and the mask representing the digits used.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell used.</param>
+            <param name="unknownValueChar">The character that represents the range of the unknown.</param>
+            <param name="digitsMask">The mask representing digits used.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.DigitsMask">
+            <summary>
+            Indicates the digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.UnknownValueChar">
+            <summary>
+            Indicates the character that represents the unknown range.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.ViewNode">
+            <summary>
+            Defines a view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Assigns the <see cref="T:Sudoku.Presentation.Identifier"/> instance as the basic information.
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ViewNode.Identifier">
+            <summary>
+            Indicates the identifier used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ViewNode.TypeIdentifier">
+            <summary>
+            Indicates the inner identifier to distinct the different types that is derived from <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Nodes.ViewNode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.Clone">
+            <summary>
+            Creates a new instance whose inner data is totally same as the current instance.
+            </summary>
+            <returns>The result <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> as the copy.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.op_Equality(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.op_Inequality(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.UserDefinedVisual">
+            <summary>
+            Defines a visual item that is user-defined.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.UserDefinedVisual._view">
+            <summary>
+            Indicates the inner view.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.UserDefinedVisual._cellsUsedMap">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.UserDefinedVisual._candidatesUsedMap">
+            <summary>
+            Indicates the candidates used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance via the specified view nodes.
+            </summary>
+            <param name="viewNodes">A list of view nodes.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.Count">
+            <summary>
+            Indicates the number of elements stored in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.CellNodes">
+            <summary>
+            Indicates the cell nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.CandidateNodes">
+            <summary>
+            Indicates the candidate nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.Sudoku#Presentation#IVisual#Conclusions">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.Sudoku#Presentation#IVisual#Views">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Presentation.UserDefinedVisual.Item(System.Int32)">
+            <summary>
+            Gets the view node at the specified index stored in this collection.
+            </summary>
+            <param name="index">The index that you want to get.</param>
+            <returns>The view node at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.Add(Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Adds a view node into the current collection.
+            </summary>
+            <param name="viewNode">The view node to be added.</param>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the specified view node kind is invalid (Not a <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
+            or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>).
+            </exception>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.Remove(Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Removes a view node from the current collection.
+            </summary>
+            <param name="viewNode">The view node to be removed.</param>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the specified view node kind is invalid (Not a <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
+            or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>).
+            </exception>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.Clone">
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.op_Implicit(Sudoku.Presentation.UserDefinedVisual)~Sudoku.Presentation.View">
+            <summary>
+            Converts the <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance to the <see cref="T:Sudoku.Presentation.View"/> instance. 
+            </summary>
+            <param name="baseDisplayable">The base visual instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.UserDefinedVisual.op_Explicit(Sudoku.Presentation.View)~Sudoku.Presentation.UserDefinedVisual">
+            <summary>
+            Converts the <see cref="T:Sudoku.Presentation.View"/> instance to the <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance. 
+            </summary>
+            <param name="baseView">The base view instance.</param>
+        </member>
+        <member name="T:Sudoku.Presentation.View">
+            <summary>
+            Provides with a data structure that displays a view for basic information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.View._nodes">
+            <summary>
+            Indicates the inner dictionary.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.#ctor">
+            <summary>
+            Creates an empty <see cref="T:Sudoku.Presentation.View"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.#ctor(System.Collections.Generic.List{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.View"/> instance via the specified list as the raw value.
+            </summary>
+            <param name="nodes">The list as the raw value.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.View.Count">
+            <summary>
+            Indicates the number of elements stored in the current collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.CellNodes">
+            <summary>
+            Indicates the cell nodes that the current data type stored.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.CandidateNodes">
+            <summary>
+            Indicates the candidate nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.HouseNodes">
+            <summary>
+            Indicates the house nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.LinkNodes">
+            <summary>
+            Indicates the link nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.UnknownNodes">
+            <summary>
+            Indicates the unknown nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.Empty">
+            <summary>
+            Indicates the empty instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> at the specified position.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Add(Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Adds the specified <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> into the collection.
+            </summary>
+            <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Remove(Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Removes the specified <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> from the collection.
+            </summary>
+            <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Contains(Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Determines whether an element is in the current collection.
+            </summary>
+            <param name="node">The node.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Contains(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Determines whether an element satisfying the specified condition is in the current collection.
+            </summary>
+            <param name="predicate">The predicate.</param>
+            <returns>If found, the first found node will be returned; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.ConflictWith(System.Int32)">
+            <summary>
+            <para>Determines whether the current view contains a view node using the specified candidate value.</para>
+            <para>This method will be useful for cannibalism checking cases.</para>
+            </summary>
+            <param name="candidate">The candidate to be determined.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Clone">
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Adds a new node into the collection.
+            </summary>
+            <param name="originalView">The original view.</param>
+            <param name="newNode">The new item to be added.</param>
+            <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
+            <remarks>
+            Please note that the operator is mutable one, which means the appending operation
+            is based on the argument <paramref name="originalView"/>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,Sudoku.Presentation.Nodes.ViewNode[])">
+            <inheritdoc cref="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Adds a serial of view nodes into the collection.
+            </summary>
+            <param name="originalView">The original view.</param>
+            <param name="highlightedItems">The highlighted items.</param>
+            <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
+            <remarks>
+            Please note that the operator is mutable one, which means the appending operation
+            is based on the argument <paramref name="originalView"/>.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Presentation.ViewExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Presentation.View"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.View"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewExtensions.UnknownOverlaps(Sudoku.Presentation.View,System.Int32)">
+            <summary>
+            Determines whether the specified <see cref="T:Sudoku.Presentation.View"/> stores several <see cref="T:Sudoku.Presentation.Nodes.UnknownViewNode"/>s,
+            and at least one of it overlaps the specified cell.
+            </summary>
+            <param name="this">The view instance.</param>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.ColorInternal">
+            <summary>
+            The internal color structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternal.A">
+            <summary>
+            The alpha value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternal.R">
+            <summary>
+            The red value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternal.G">
+            <summary>
+            The green value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternal.B">
+            <summary>
+            The blue value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.ColorInternalSerializerContext">
+            <summary>
+            Provides with a serializer context that uses source generator to produce necessary code on serialization
+            or deserialization on type <see cref="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.ColorInternal"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.ColorInternal"/>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.Byte">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.ColorInternal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.ColorInternalSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.ColorInternalSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.ColorInternalSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.IdInternal">
+            <summary>
+            The internal ID structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.IdInternal.Id">
+            <summary>
+            The raw ID value of an identifier instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.IdInternalSerializerContext">
+            <summary>
+            Provides with a serializer context that uses source generator to produce necessary code on serialization
+            or deserialization on type <see cref="P:Sudoku.Text.Serialization.IdInternalSerializerContext.IdInternal"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Serialization.IdInternalSerializerContext.IdInternal"/>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.IdInternalSerializerContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.IdInternalSerializerContext.IdInternal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.IdInternalSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.IdInternalSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.IdInternalSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.IdInternalSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.IdInternalSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.NamedKindInternal">
+            <summary>
+            The internal named kind structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.NamedKindInternal.NamedKind">
+            <summary>
+            Indicates the named kind value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext">
+            <summary>
+            Provides with a serializer context that uses source generator to produce necessary code on serialization
+            or deserialization on type <see cref="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.NamedKindInternal"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.NamedKindInternal"/>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.NamedKindInternal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.Specialized.IdentifierJsonConverter">
+            <summary>
+            Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <remarks>
+            JSON Pattern:
+            <code>
+            {
+              "mode": "Raw",
+              "value": {
+                "a": 255,
+                "r": 0,
+                "g": 0,
+                "b": 0
+              }
+            }
+            </code>
+            </remarks>
+            <seealso cref="T:Sudoku.Presentation.Identifier"/>
+        </member>
+        <member name="F:Sudoku.Text.Serialization.Specialized.IdentifierJsonConverter.ValuePropertyName">
+            <summary>
+            Indicates the property name <c>"Value"</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.Specialized.IdentifierJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.Specialized.IdentifierJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Identifier,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.Specialized.IdentifierJsonConverter.ConvertName(System.String,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Try to convert the specified string value as the specified naming policy
+            specified in argument <paramref name="options"/>.
+            </summary>
+            <param name="base">The string to convert.</param>
+            <param name="options">The options.</param>
+            <returns>The value converted.</returns>
+        </member>
+    </members>
+</doc>

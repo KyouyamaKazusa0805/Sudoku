@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<RootNamespace>Sudoku</RootNamespace>
+		<Description>Provides with APIs that presents a data or data group for a sudoku grid or its related item.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Presentation.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
+</Project>
