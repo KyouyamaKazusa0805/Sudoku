@@ -1,7 +1,5 @@
 <center>Language switch to: <a href="README.md">English</a></center>
 
-我很抱歉我给你们在这里发通知信息。这些天我似乎得了病，肚子巨疼无比。我打算去医院查清楚具体原因（可能会住院）。所以这几天我打算停止更新。对不起了各位。
-
 # Sudoku Studio
 
 [![stars](https://img.shields.io/github/stars/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/stargazers)
