@@ -9,7 +9,7 @@ namespace Sudoku.Concepts;
 /// This type holds a <see langword="static readonly"/> field called <see cref="Empty"/>,
 /// it is the only field provided to be used as the entry to create or update collection.
 /// If you want to add elements into it, you can use <see cref="Add(int)"/>, <see cref="AddRange(IEnumerable{int})"/>
-/// or just <see cref="operator +(in CellMap, int)"/> or <see cref="operator +(in CellMap, IEnumerable{int})"/>:
+/// or just <see cref="op_Addition(in CellMap, int)"/> or <see cref="op_Addition(in CellMap, IEnumerable{int})"/>:
 /// <code><![CDATA[
 /// var cellMap = CellMap.Empty;
 /// cellMap += 0; // Adds 'r1c1' into the collection.
