@@ -6095,7 +6095,7 @@
         </member>
         <member name="T:Sudoku.Solving.Conclusion">
             <summary>
-            Encapsulates a conclusion representation while solving in logic.
+            Defines a type that can describe a candidate is the correct or wrong digit.
             </summary>
             <remarks>
             Two <see cref="T:Sudoku.Solving.Conclusion"/>s can be compared with each other. If one of those two is an elimination
@@ -6103,7 +6103,6 @@
             will be greater; if those two hold same conclusion type, but one of those two holds
             the global index of the candidate position is greater, it is greater.
             </remarks>
-            <seealso cref="F:Sudoku.Solving.ConclusionType.Elimination"/>
         </member>
         <member name="F:Sudoku.Solving.Conclusion._mask">
             <summary>
@@ -6273,15 +6272,19 @@
         </member>
         <member name="M:Sudoku.Solving.Conclusion.op_GreaterThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
             <inheritdoc/>
+            <remarks><inheritdoc cref="T:Sudoku.Solving.Conclusion" path="/remarks"/></remarks>
         </member>
         <member name="M:Sudoku.Solving.Conclusion.op_GreaterThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
             <inheritdoc/>
+            <remarks><inheritdoc cref="T:Sudoku.Solving.Conclusion" path="/remarks"/></remarks>
         </member>
         <member name="M:Sudoku.Solving.Conclusion.op_LessThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
             <inheritdoc/>
+            <remarks><inheritdoc cref="T:Sudoku.Solving.Conclusion" path="/remarks"/></remarks>
         </member>
         <member name="M:Sudoku.Solving.Conclusion.op_LessThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
             <inheritdoc/>
+            <remarks><inheritdoc cref="T:Sudoku.Solving.Conclusion" path="/remarks"/></remarks>
         </member>
         <member name="T:Sudoku.Solving.ConclusionType">
             <summary>

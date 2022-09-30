@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving;
 
 /// <summary>
-/// Encapsulates a conclusion representation while solving in logic.
+/// Defines a type that can describe a candidate is the correct or wrong digit.
 /// </summary>
 /// <remarks>
 /// Two <see cref="Conclusion"/>s can be compared with each other. If one of those two is an elimination
@@ -9,7 +9,6 @@
 /// will be greater; if those two hold same conclusion type, but one of those two holds
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
-/// <seealso cref="Elimination"/>
 public readonly struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion, bool>,
@@ -165,18 +164,22 @@ public readonly struct Conclusion :
 	public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
 
 	/// <inheritdoc/>
+	/// <remarks><inheritdoc cref="Conclusion" path="/remarks"/></remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator >(Conclusion left, Conclusion right) => left.CompareTo(right) > 0;
 
 	/// <inheritdoc/>
+	/// <remarks><inheritdoc cref="Conclusion" path="/remarks"/></remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator >=(Conclusion left, Conclusion right) => left.CompareTo(right) >= 0;
 
 	/// <inheritdoc/>
+	/// <remarks><inheritdoc cref="Conclusion" path="/remarks"/></remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <(Conclusion left, Conclusion right) => left.CompareTo(right) < 0;
 
 	/// <inheritdoc/>
+	/// <remarks><inheritdoc cref="Conclusion" path="/remarks"/></remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <=(Conclusion left, Conclusion right) => left.CompareTo(right) <= 0;
 }
