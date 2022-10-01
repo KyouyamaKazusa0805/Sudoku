@@ -20,9 +20,7 @@ public static class Terminal
 	/// </summary>
 	/// <param name="handler">The string handler that holds the interpolated string.</param>
 	/// <param name="foreground">The foreground color.</param>
-	public static void Write(
-		[InterpolatedStringHandlerArgument] scoped ref StringHandler handler,
-		ConsoleColor foreground)
+	public static void Write([InterpolatedStringHandlerArgument] scoped ref StringHandler handler, ConsoleColor foreground)
 	{
 		Console.ForegroundColor = foreground;
 		Console.Write(handler.ToStringAndClear());
@@ -121,8 +119,7 @@ public static class Terminal
 	/// </summary>
 	/// <param name="handler">The string handler that holds the interpolated string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine(
-		[InterpolatedStringHandlerArgument] scoped ref StringHandler handler)
+	public static void WriteLine([InterpolatedStringHandlerArgument] scoped ref StringHandler handler)
 		=> Console.WriteLine(handler.ToStringAndClear());
 
 	/// <summary>
@@ -132,9 +129,7 @@ public static class Terminal
 	/// <param name="handler">The string handler that holds the interpolated string.</param>
 	/// <param name="foreground">The foreground color.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine(
-		[InterpolatedStringHandlerArgument] scoped ref StringHandler handler,
-		ConsoleColor foreground)
+	public static void WriteLine([InterpolatedStringHandlerArgument] scoped ref StringHandler handler, ConsoleColor foreground)
 	{
 		Console.ForegroundColor = foreground;
 		Console.WriteLine(handler.ToStringAndClear());

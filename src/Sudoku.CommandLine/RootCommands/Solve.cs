@@ -32,10 +32,10 @@ public sealed class Solve : IExecutable
 			throw new CommandLineRuntimeException((int)ErrorCode.ArgGridValueIsNotUnique);
 		}
 
-		var methodNameUsed = (string?)null;
 		foreach (var type in
-			from type in typeof(ISimpleSolver).Assembly.GetTypes()
-			where type.IsClass && type.IsAssignableTo(typeof(ISimpleSolver))
+			from assembly in new[] { typeof(BacktrackingSolver).Assembly, typeof(LogicalSolver).Assembly }
+			from type in assembly.GetTypes()
+			where type.IsClass && (type.IsAssignableTo(typeof(ISimpleSolver)) || type.IsGenericAssignableTo(typeof(IComplexSolver<,>)))
 			let parameterlessConstructor = type.GetConstructor(Array.Empty<Type>())
 			where parameterlessConstructor is not null
 			select type)
@@ -47,7 +47,6 @@ public sealed class Solve : IExecutable
 				continue;
 			}
 
-			var uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))!.GetValue(null);
 			var name = fieldInfo.GetCustomAttribute<NameAttribute>()!.Name;
 			switch (Activator.CreateInstance(type))
 			{
@@ -65,11 +64,11 @@ public sealed class Solve : IExecutable
 					// to get the same result as 'grid.ToString("#")'; on contrast, 'grid.ToString("#")'
 					// as expected will be replaced with 'grid.ToString()'.
 					// Same reason for the below output case.
-					var uriLinkRealStr = uriLink is null ? string.Empty : $"\r\nURI link: '{uriLink}'";
+					var uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))?.GetValue(null);
 					Terminal.WriteLine(
 						$"""
 						Puzzle: {Grid:#}
-						Method name used: '{name}'{uriLinkRealStr}
+						Method name used: '{name}'{(uriLink is null ? string.Empty : $"\r\nURI link: '{uriLink}'")}
 						---
 						Solution: {solution:!}
 						"""
@@ -87,7 +86,7 @@ public sealed class Solve : IExecutable
 					Terminal.WriteLine(
 						$"""
 						Puzzle: {Grid:#}
-						Method name used: '{methodNameUsed}'
+						Method name used: '{name}'
 						---
 						Solution: {solution:!}
 						Solving details:
@@ -98,11 +97,6 @@ public sealed class Solve : IExecutable
 					break;
 				}
 			}
-		}
-
-		if (methodNameUsed is null)
-		{
-			throw new CommandLineRuntimeException((int)ErrorCode.ArgMethodIsInvalid);
 		}
 	}
 }

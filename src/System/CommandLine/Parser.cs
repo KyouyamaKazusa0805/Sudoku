@@ -133,59 +133,58 @@ public static class Parser
 					break;
 				}
 			}
-
-			// Checks whether all required properties are assigned explicitly.
-			// If not, an exception will be thrown.
-			if (listOfRequiredProperties.Count != 0)
-			{
-				var requiredPropertiesNotAssignedStr = string.Join(
-					$"\r\n{new string(' ', 4)}",
-					from propertyInfo in listOfRequiredProperties
-					let name = propertyInfo.Name
-					let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()!
-					let pair = (attribute.ShortName, attribute.FullName)
-					select $"Command {name} (short: {pair.ShortName}, long: {pair.FullName})"
-				);
-
-				throw new CommandLineParserException(
-					CommandLineInternalError.NotAllRequiredPropertiesAreAssigned,
-					$"Required properties not assigned: {requiredPropertiesNotAssignedStr}"
-				);
-			}
-
-
-			void assignPropertyValue(PropertyInfo property, Type propertyType, int argPos)
-			{
-				if (argPos >= otherArgs.Length)
-				{
-					throw new CommandLineParserException(CommandLineInternalError.ArgumentExpected);
-				}
-
-				// Converts the real argument value into the target property typed instance.
-				var realValue = otherArgs[argPos];
-				var converterTypes = property.GetGenericAttributeTypeArguments(typeof(CommandConverterAttribute<>));
-				if (converterTypes is [var converterType])
-				{
-					// Creates a converter instance.
-					var instance = (IValueConverter)Activator.CreateInstance(converterType)!;
-
-					// Set the value to the property.
-					property.SetValue(rootCommand, instance.Convert(realValue));
-				}
-				else
-				{
-					property.SetValue(
-						rootCommand,
-						propertyType == typeof(string)
-							? realValue
-							: throw new CommandLineParserException(CommandLineInternalError.ConvertedTypeMustBeString));
-				}
-
-				// Removes the value from the required property list.
-				listOfRequiredProperties.RemoveAll(p => p == property);
-			}
 		}
 
+		// Checks whether all required properties are assigned explicitly.
+		// If not, an exception will be thrown.
+		if (listOfRequiredProperties.Count != 0)
+		{
+			var requiredPropertiesNotAssignedStr = string.Join(
+				$"\r\n{new string(' ', 4)}",
+				from propertyInfo in listOfRequiredProperties
+				let name = propertyInfo.Name
+				let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()!
+				let pair = (attribute.ShortName, attribute.FullName)
+				select $"Command {name} (short: {pair.ShortName}, long: {pair.FullName})"
+			);
+
+			throw new CommandLineParserException(
+				CommandLineInternalError.NotAllRequiredPropertiesAreAssigned,
+				$"Required properties not assigned: {requiredPropertiesNotAssignedStr}"
+			);
+		}
+
+
+		void assignPropertyValue(PropertyInfo property, Type propertyType, int argPos)
+		{
+			if (argPos >= otherArgs.Length)
+			{
+				throw new CommandLineParserException(CommandLineInternalError.ArgumentExpected);
+			}
+
+			// Converts the real argument value into the target property typed instance.
+			var realValue = otherArgs[argPos];
+			var converterTypes = property.GetGenericAttributeTypeArguments(typeof(CommandConverterAttribute<>));
+			if (converterTypes is [var converterType])
+			{
+				// Creates a converter instance.
+				var instance = (IValueConverter)Activator.CreateInstance(converterType)!;
+
+				// Set the value to the property.
+				property.SetValue(rootCommand, instance.Convert(realValue));
+			}
+			else
+			{
+				property.SetValue(
+					rootCommand,
+					propertyType == typeof(string)
+						? realValue
+						: throw new CommandLineParserException(CommandLineInternalError.ConvertedTypeMustBeString));
+			}
+
+			// Removes the value from the required property list.
+			listOfRequiredProperties.RemoveAll(p => p == property);
+		}
 
 		bool rootCommandMatcher(string c, string e) => e.Equals(c, comparisonOption);
 
@@ -193,9 +192,7 @@ public static class Parser
 		static string[] getArgs(Type typeOfRootCommand, out StringComparison comparisonOption)
 		{
 			var attribute = typeOfRootCommand.GetCustomAttribute<SupportedArgumentsAttribute>()!;
-			comparisonOption = attribute.IgnoreCase
-				? StringComparison.OrdinalIgnoreCase
-				: StringComparison.Ordinal;
+			comparisonOption = attribute.IgnoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 
 			return attribute.SupportedArguments;
 		}

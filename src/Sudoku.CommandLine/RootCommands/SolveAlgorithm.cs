@@ -10,7 +10,7 @@ public enum SolveAlgorithm
 	/// </summary>
 	[SupportedArguments(new[] { "logical", "l" })]
 	[RouteToType(typeof(LogicalSolver))]
-	[Name("Logical")]
+	[Name(nameof(Logical))]
 	Logical,
 
 	/// <summary>
@@ -18,7 +18,7 @@ public enum SolveAlgorithm
 	/// </summary>
 	[SupportedArguments(new[] { "bitwise", "b" })]
 	[RouteToType(typeof(BitwiseSolver))]
-	[Name("Bitwise")]
+	[Name(nameof(Bitwise))]
 	Bitwise,
 
 	/// <summary>
@@ -26,7 +26,7 @@ public enum SolveAlgorithm
 	/// </summary>
 	[SupportedArguments(new[] { "backtracking", "t" })]
 	[RouteToType(typeof(BacktrackingSolver))]
-	[Name("Backtracking")]
+	[Name(nameof(Backtracking))]
 	Backtracking,
 
 	/// <summary>

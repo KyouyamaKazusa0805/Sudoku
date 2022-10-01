@@ -3249,6 +3249,21 @@
             </code>
             </remarks>
         </member>
+        <member name="T:System.TypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Type"/>.
+            </summary>
+            <seealso cref="T:System.Type"/>
+        </member>
+        <member name="M:System.TypeExtensions.IsGenericAssignableTo(System.Type,System.Type)">
+            <summary>
+            Determines whether the current type can be assigned to a variable of the specified
+            <paramref name="targetType"/>, although it is with generic parameters.
+            </summary>
+            <param name="this">The current type.</param>
+            <param name="targetType">The type to compare with the current type.</param>
+            <returns>Returns <see langword="true"/> if the target type is matched, without generic constraints.</returns>
+        </member>
         <member name="T:System.Utf8StringExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Utf8String"/>.
