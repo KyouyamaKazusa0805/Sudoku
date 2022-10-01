@@ -117,5 +117,5 @@ internal sealed record NormalFishStep(
 	internal string FinSnippet() => R["Fin"]!;
 
 	[ResourceTextFormatter]
-	internal string FinsStr() => Fins ? $"{FinSnippet}{Fins}" : string.Empty;
+	internal string FinsStr() => Fins ? $"{FinSnippet()}{Fins}" : string.Empty;
 }

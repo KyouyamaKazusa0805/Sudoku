@@ -51,10 +51,7 @@ internal sealed record BivalueUniversalGraveType3Step(
 	internal string SubsetTypeStr() => R[IsNaked ? "NakedKeyword" : "HiddenKeyword"]!;
 
 	[ResourceTextFormatter]
-	internal string SizeStr() => R[$"SubsetNames{Size}"]!;
-
-	[ResourceTextFormatter]
-	internal string SizeStrZhCn() => R[$"SubsetNames{Size}"]!;
+	internal string SizeStr() => R[$"SubsetNamesSize{Size}"]!;
 
 	[ResourceTextFormatter]
 	internal string ExtraDigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

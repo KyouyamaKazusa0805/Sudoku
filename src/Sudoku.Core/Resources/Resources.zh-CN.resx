@@ -319,7 +319,7 @@
     <value>{Name}：单元格 {CellsStr} 里包含额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_BivalueUniversalGraveType3Step" xml:space="preserve">
-    <value>{Name}：真数 {TrueCandidatesStr}，伴有{SubsetTypeStr}{SizeStrZhCn}于单元格 {CellsStr} 里，涉及数字 {ExtraDigitsStr} =&gt; {ElimStr}</value>
+    <value>{Name}：真数 {TrueCandidatesStr}，伴有{SubsetTypeStr}{SizeStr}于单元格 {CellsStr} 里，涉及数字 {ExtraDigitsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_BivalueUniversalGraveType4Step" xml:space="preserve">
     <value>{Name}：位于单元格 {CellsStr} 里的数字 {DigitsStr}，带有一个共轭对 {ConjStr} =&gt; {ElimStr}</value>

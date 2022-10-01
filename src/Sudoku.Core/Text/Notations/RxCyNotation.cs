@@ -139,7 +139,7 @@ public sealed partial class RxCyNotation :
 				sbRow.AppendRange(dic[row], &i);
 				sbRow.Append(separator);
 			}
-			sbRow.RemoveFromEnd(1);
+			sbRow.RemoveFromEnd(options.Separator.Length);
 
 			return sbRow.ToStringAndClear();
 		}
@@ -167,7 +167,7 @@ public sealed partial class RxCyNotation :
 				sbColumn.Append(column + 1);
 				sbColumn.Append(separator);
 			}
-			sbColumn.RemoveFromEnd(1);
+			sbColumn.RemoveFromEnd(options.Separator.Length);
 
 			return sbColumn.ToStringAndClear();
 		}
