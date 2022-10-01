@@ -952,18 +952,6 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
-            </summary>
-            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
-            <remarks>
-            The main idea of the parameterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            I want you to use <see cref="F:Sudoku.Concepts.CellMap.Empty"/> instead of the syntax <c>new CellMap()</c>,
-            in order to get a better experience on performance.
-            </remarks>
-        </member>
         <member name="P:Sudoku.Concepts.CellMap.InOneHouse">
             <summary>
             Same as the method <see cref="M:Sudoku.Concepts.CellMap.AllSetsAreInOneHouse(System.Int32@)"/>, but this property doesn't contain
@@ -1678,6 +1666,19 @@
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.#ctor">
+            <summary>
+            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
+            </summary>
+            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
+            <remarks>
+            The main idea of the parameterless constructor is to create a new instance
+            without any extra information, but the current type is special:
+            It will be very slow to be initialized.
+            I only suggest you use constant or static read-only field (or static read-only property)
+            instead of using this constructor.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Concepts.CellStatus">
             <summary>
             Represents a cell status.
@@ -1916,21 +1917,6 @@
             </list>
             </remarks>
             <seealso cref="T:Sudoku.Concepts.CellStatus"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>.
-            </summary>
-            <exception cref="T:System.NotSupportedException">
-            The exception will always be thrown.
-            </exception>
-            <remarks>
-            The main idea of the parameterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            the author wants to make you use another member instead of it to get a better experience.
-            Therefore, the parameterless constructor is disallowed to be invoked
-            no matter what kind of invocation, reflection or strongly reference.
-            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Grid.#ctor(System.Int32@,Sudoku.Concepts.GridCreatingOption)">
             <summary>
@@ -2703,6 +2689,19 @@
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
             <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
             <seealso cref="M:System.ISimpleParsable`1.Parse(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.#ctor">
+            <summary>
+            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
+            </summary>
+            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
+            <remarks>
+            The main idea of the parameterless constructor is to create a new instance
+            without any extra information, but the current type is special:
+            It will be very slow to be initialized.
+            I only suggest you use constant or static read-only field (or static read-only property)
+            instead of using this constructor.
+            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>

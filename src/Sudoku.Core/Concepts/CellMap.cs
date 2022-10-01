@@ -20,8 +20,9 @@ namespace Sudoku.Concepts;
 /// If you want to learn more information about this type, please visit
 /// <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
 /// </remarks>
+[DisallowParameterlessConstructor(SuggestedInstanceName = nameof(Empty))]
 [JsonConverter(typeof(CellMapJsonConverter))]
-public struct CellMap :
+public partial struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditiveIdentity<CellMap, CellMap>,
 	IBitwiseOperators<CellMap, CellMap, CellMap>,
@@ -91,21 +92,6 @@ public struct CellMap :
 	/// </list>
 	/// </summary>
 	private long _high, _low;
-
-
-	/// <summary>
-	/// Throws a <see cref="NotSupportedException"/>-typed instance.
-	/// </summary>
-	/// <exception cref="NotSupportedException">The exception will always be thrown.</exception>
-	/// <remarks>
-	/// The main idea of the parameterless constructor is to create a new instance
-	/// without any extra information, but the current type is special:
-	/// I want you to use <see cref="Empty"/> instead of the syntax <c>new CellMap()</c>,
-	/// in order to get a better experience on performance.
-	/// </remarks>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[Obsolete($"Please use the member '{nameof(Empty)}' instead.", true)]
-	public CellMap() => throw new NotSupportedException();
 
 
 	/// <summary>

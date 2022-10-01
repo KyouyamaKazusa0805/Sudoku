@@ -89,14 +89,6 @@
             Defines an identifier that can differ colors.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.Identifier.#ctor">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance.
-            </summary>
-            <remarks>
-            <b>This constructor is only used for creating a randomized instance. You cannot call this constructor.</b>
-            </remarks>
-        </member>
         <member name="M:Sudoku.Presentation.Identifier.#ctor(System.Int32)">
             <summary>
             Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the ID value.

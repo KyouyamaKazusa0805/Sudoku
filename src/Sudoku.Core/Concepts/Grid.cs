@@ -4,6 +4,7 @@
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
+[DisallowParameterlessConstructor(SuggestedInstanceName = nameof(Empty))]
 [JsonConverter(typeof(GridJsonConverter))]
 public unsafe partial struct Grid :
 	IEqualityOperators<Grid, Grid, bool>,
@@ -140,23 +141,6 @@ public unsafe partial struct Grid :
 	/// <seealso cref="CellStatus"/>
 	private fixed short _values[81];
 
-
-	/// <summary>
-	/// Throws a <see cref="NotSupportedException"/>.
-	/// </summary>
-	/// <exception cref="NotSupportedException">
-	/// The exception will always be thrown.
-	/// </exception>
-	/// <remarks>
-	/// The main idea of the parameterless constructor is to create a new instance
-	/// without any extra information, but the current type is special:
-	/// the author wants to make you use another member instead of it to get a better experience.
-	/// Therefore, the parameterless constructor is disallowed to be invoked
-	/// no matter what kind of invocation, reflection or strongly reference.
-	/// </remarks>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[Obsolete($"Please use the member '{nameof(Empty)}' or '{nameof(Undefined)}' instead.", true)]
-	public Grid() => throw new NotSupportedException();
 
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance via the pointer of the first element of the cell digit,

@@ -15,7 +15,6 @@ internal static class Shortcuts
 	public const string BitOperations_SetAt = "b.sa";
 	public const string BitOperations_SkipSetBit = "b.ssb";
 	public const string StepSearcherOptions = "sso";
-	public const string ManualSolverOptions = "mso";
-	public const string StepFormatterMethodAttributes = "sfma";
-	public const string GeneratorAttributes = "ga";
+	public const string LogicalSolverOptions = "lso";
+	public const string DisallowParameterlessConstructorInStruct = "dpc";
 }

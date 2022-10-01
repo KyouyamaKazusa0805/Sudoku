@@ -8,7 +8,8 @@ namespace System.Timers;
 /// Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/>
 /// to optimize the performance.
 /// </summary>
-public readonly ref struct ValueStopwatch
+[DisallowParameterlessConstructor]
+public readonly ref partial struct ValueStopwatch
 {
 	/// <summary>
 	/// The error information.
@@ -27,14 +28,6 @@ public readonly ref struct ValueStopwatch
 	/// </summary>
 	private readonly long _startTimestamp;
 
-
-	/// <summary>
-	/// Throws <see cref="NotSupportedException"/>.
-	/// </summary>
-	/// <exception cref="NotSupportedException">Always throws.</exception>
-	[Obsolete("You cannot use parameterless constructor of this type.", true)]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ValueStopwatch() => throw new NotSupportedException();
 
 	/// <summary>
 	/// Initializes a <see cref="ValueStopwatch"/> instance via the current timestamp.

@@ -261,8 +261,17 @@
         </member>
         <member name="M:System.Collections.Generic.Bag`1.#ctor">
             <summary>
-            Initializes a <see cref="T:System.Collections.Generic.Bag`1"/> instance via the default capacity 8.
+            Initializes a <see cref="T:System.Collections.Generic.Bag`1" /> instance via the default capacity 8.
             </summary>
+            <remarks>
+            <target name="constructor">
+				<i>
+					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
+					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
+					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
+				</i>
+			</target>
+            </remarks>
         </member>
         <member name="M:System.Collections.Generic.Bag`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
@@ -1443,6 +1452,16 @@
         <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.Type">
             <summary>
             The type to be generated.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.DisallowParameterlessConstructorAttribute">
+            <summary>
+            Indicates user cannot use parameterless constructor for this type.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.DisallowParameterlessConstructorAttribute.SuggestedInstanceName">
+            <summary>
+            Indicates the suggested instance that you want to suggest user use.
             </summary>
         </member>
         <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute">
@@ -3625,12 +3644,6 @@
             The inner timestamp.
             </summary>
         </member>
-        <member name="M:System.Timers.ValueStopwatch.#ctor">
-            <summary>
-            Throws <see cref="T:System.NotSupportedException"/>.
-            </summary>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="M:System.Timers.ValueStopwatch.#ctor(System.Int64)">
             <summary>
             Initializes a <see cref="T:System.Timers.ValueStopwatch"/> instance via the current timestamp.
@@ -3656,6 +3669,19 @@
             Try to get a new <see cref="T:System.Timers.ValueStopwatch"/> that is running now.
             </summary>
             <returns>An instance of type <see cref="T:System.Timers.ValueStopwatch"/> that is running now.</returns>
+        </member>
+        <member name="M:System.Timers.ValueStopwatch.#ctor">
+            <summary>
+            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
+            </summary>
+            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
+            <remarks>
+            The main idea of the parameterless constructor is to create a new instance
+            without any extra information, but the current type is special:
+            It will be very slow to be initialized.
+            I only suggest you use constant or static read-only field (or static read-only property)
+            instead of using this constructor.
+            </remarks>
         </member>
         <member name="T:System.Utf8Char">
             <summary>

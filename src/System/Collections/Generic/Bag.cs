@@ -32,6 +32,11 @@ public ref partial struct Bag<T>
 	/// <summary>
 	/// Initializes a <see cref="Bag{T}"/> instance via the default capacity 8.
 	/// </summary>
+	/// <remarks>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Bag()
 	{

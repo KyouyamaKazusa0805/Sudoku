@@ -4,18 +4,9 @@
 /// Defines an identifier that can differ colors.
 /// </summary>
 [JsonConverter(typeof(IdentifierJsonConverter))]
-public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier, bool>
+[DisallowParameterlessConstructor]
+public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier, bool>
 {
-	/// <summary>
-	/// Initializes an <see cref="Identifier"/> instance.
-	/// </summary>
-	/// <remarks>
-	/// <b>This constructor is only used for creating a randomized instance. You cannot call this constructor.</b>
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete("This constructor is only used for creating a randomized instance.", false)]
-	public Identifier() => Unsafe.SkipInit(out this);
-
 #pragma warning disable CS0618
 	/// <summary>
 	/// Initializes an <see cref="Identifier"/> instance via the ID value.
