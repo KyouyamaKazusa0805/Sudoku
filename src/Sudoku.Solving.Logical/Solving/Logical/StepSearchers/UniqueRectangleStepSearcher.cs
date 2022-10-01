@@ -48,12 +48,8 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 	/// <summary>
 	/// Get all possible hints from the grid.
 	/// </summary>
-	/// <param name="gathered">
-	/// <inheritdoc cref="GetAll(in LogicalAnalysisContext)" path="/param[@name='accumulator']/para[1]"/>
-	/// </param>
-	/// <param name="grid">
-	/// <inheritdoc cref="GetAll(in LogicalAnalysisContext)" path="/param[@name='grid']"/>
-	/// </param>
+	/// <param name="gathered"><inheritdoc cref="LogicalAnalysisContext.Accumulator" path="/summary"/></param>
+	/// <param name="grid"><inheritdoc cref="LogicalAnalysisContext.Grid" path="/summary"/></param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
 	private void GetAll(ICollection<UniqueRectangleStep> gathered, scoped in Grid grid, bool arMode)
 	{

@@ -5903,12 +5903,8 @@
             <summary>
             Get all possible hints from the grid.
             </summary>
-            <param name="gathered">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.UniqueRectangleStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)" path="/param[@name='accumulator']/para[1]"/>
-            </param>
-            <param name="grid">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.UniqueRectangleStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)" path="/param[@name='grid']"/>
-            </param>
+            <param name="gathered"><inheritdoc cref="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.Accumulator" path="/summary"/></param>
+            <param name="grid"><inheritdoc cref="F:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.Grid" path="/summary"/></param>
             <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.UniqueRectangleStepSearcher.IsIncomplete(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.CandidateViewNode})">
