@@ -48,9 +48,6 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.GenerateSource(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,Microsoft.CodeAnalysis.AttributeData,System.Collections.Generic.IEnumerable{System.ValueTuple{Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.AttributeData}}}[]}}})">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AttributeDataComparer">
             <summary>
             Represents a comparer instance that compares two <see cref="T:Microsoft.CodeAnalysis.AttributeData"/> instances
