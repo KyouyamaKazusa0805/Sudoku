@@ -10,14 +10,14 @@
 /// </param>
 /// <param name="Separator">
 /// Indicates the separator string value that inserts two coordinate elements, to combine them.
-/// For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the separator
-/// is <c>"|"</c>.
+/// For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1, R4C2</c> if the separator
+/// is <c>", "</c>.
 /// </param>
-public readonly record struct RxCyNotationOptions(bool UpperCasing = false, string Separator = "|") :
+public readonly record struct RxCyNotationOptions(bool UpperCasing = false, string Separator = ", ") :
 	INotationHandlerOptions<RxCyNotationOptions>
 {
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	public static readonly RxCyNotationOptions Default = new(false, "|");
+	public static readonly RxCyNotationOptions Default = new(false, ", ");
 }

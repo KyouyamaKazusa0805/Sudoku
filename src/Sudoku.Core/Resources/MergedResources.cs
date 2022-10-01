@@ -101,6 +101,14 @@ public sealed class MergedResources
 			: CultureInfo.GetCultureInfo(name);
 
 	/// <summary>
+	/// Registers a new assembly that can use and fetch resource via field <see cref="R"/>.
+	/// </summary>
+	/// <param name="assembly">The assembly.</param>
+	/// <seealso cref="R"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void RegisterAssembly(Assembly assembly) => AddExternalResourceFetecher(assembly, static key => R[key]);
+
+	/// <summary>
 	/// Adds an extra value selector into the current resource fetching instance.
 	/// </summary>
 	/// <param name="assembly">The assembly.</param>

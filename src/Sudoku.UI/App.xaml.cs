@@ -80,7 +80,7 @@ public partial class App : Application
 			i.FromPreferenceFile = true;
 
 			var content = await readAsync(file);
-			var up = Deserialize<Preference>(content, CommonSerializerOptions.CamelCasing);
+			var up = Deserialize<Preference>(content, CamelCasing);
 			r.UserPreference.CoverPreferenceBy(up);
 		}
 

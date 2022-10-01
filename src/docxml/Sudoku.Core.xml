@@ -3518,6 +3518,13 @@
             </summary>
             <param name="name">The culture string, such as <c>"en-US"</c> or <c>"zh-CN"</c>.</param>
         </member>
+        <member name="M:Sudoku.Resources.MergedResources.RegisterAssembly(System.Reflection.Assembly)">
+            <summary>
+            Registers a new assembly that can use and fetch resource via field <see cref="F:Sudoku.Resources.MergedResources.R"/>.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <seealso cref="F:Sudoku.Resources.MergedResources.R"/>
+        </member>
         <member name="M:Sudoku.Resources.MergedResources.AddExternalResourceFetecher(System.Reflection.Assembly,System.Func{System.String,System.String})">
             <summary>
             Adds an extra value selector into the current resource fetching instance.
@@ -9090,8 +9097,8 @@
             </param>
             <param name="Separator">
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the separator
-            is <c>"|"</c>.
+            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1, D2</c> if the separator
+            is <c>", "</c>.
             </param>
         </member>
         <member name="M:Sudoku.Text.Notations.K9NotationOptions.#ctor(System.Boolean,System.Boolean,System.String)">
@@ -9109,8 +9116,8 @@
             </param>
             <param name="Separator">
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the separator
-            is <c>"|"</c>.
+            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1, D2</c> if the separator
+            is <c>", "</c>.
             </param>
         </member>
         <member name="P:Sudoku.Text.Notations.K9NotationOptions.UpperCasing">
@@ -9129,8 +9136,8 @@
         <member name="P:Sudoku.Text.Notations.K9NotationOptions.Separator">
             <summary>
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the separator
-            is <c>"|"</c>.
+            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1, D2</c> if the separator
+            is <c>", "</c>.
             </summary>
         </member>
         <member name="F:Sudoku.Text.Notations.K9NotationOptions.Default">
@@ -9365,8 +9372,8 @@
             </param>
             <param name="Separator">
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the separator
-            is <c>"|"</c>.
+            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1, R4C2</c> if the separator
+            is <c>", "</c>.
             </param>
         </member>
         <member name="M:Sudoku.Text.Notations.RxCyNotationOptions.#ctor(System.Boolean,System.String)">
@@ -9380,8 +9387,8 @@
             </param>
             <param name="Separator">
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the separator
-            is <c>"|"</c>.
+            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1, R4C2</c> if the separator
+            is <c>", "</c>.
             </param>
         </member>
         <member name="P:Sudoku.Text.Notations.RxCyNotationOptions.UpperCasing">
@@ -9394,8 +9401,8 @@
         <member name="P:Sudoku.Text.Notations.RxCyNotationOptions.Separator">
             <summary>
             Indicates the separator string value that inserts two coordinate elements, to combine them.
-            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the separator
-            is <c>"|"</c>.
+            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1, R4C2</c> if the separator
+            is <c>", "</c>.
             </summary>
         </member>
         <member name="F:Sudoku.Text.Notations.RxCyNotationOptions.Default">
