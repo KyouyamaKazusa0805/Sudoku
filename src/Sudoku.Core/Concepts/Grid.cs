@@ -14,7 +14,7 @@ public unsafe partial struct Grid :
 	ISelectClauseProvider<short>,
 	ISelectClauseProvider<int>,
 	ISimpleFormattable,
-	ISimpleParseable<Grid>
+	ISimpleParsable<Grid>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -1498,11 +1498,11 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </remarks>
 	/// <exception cref="FormatException">
-	/// See exception thrown cases for method <see cref="ISimpleParseable{TSimpleParseable}.Parse(string)"/>.
+	/// See exception thrown cases for method <see cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>.
 	/// </exception>
 	/// <seealso cref="Undefined"/>
 	/// <seealso cref="Parse(string)"/>
-	/// <seealso cref="ISimpleParseable{TSimpleParseable}.Parse(string)"/>
+	/// <seealso cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator Grid(string? gridCode) => gridCode is null ? Undefined : Parse(gridCode);
 }

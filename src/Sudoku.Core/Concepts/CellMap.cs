@@ -43,7 +43,7 @@ public struct CellMap :
 	ISet<int>,
 	ISelectClauseProvider<int>,
 	ISimpleFormattable,
-	ISimpleParseable<CellMap>,
+	ISimpleParsable<CellMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
 	ISubtractionOperators<CellMap, CellMap, CellMap>
 {

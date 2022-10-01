@@ -3432,17 +3432,23 @@
             <returns>The value of the current instance in the specified format.</returns>
             <exception cref="T:System.FormatException">Throws when the format is invalid.</exception>
         </member>
-        <member name="T:System.ISimpleParseable`1">
+        <member name="T:System.ISimpleParsable`1">
             <summary>
             Defines an instance that allows the <see cref="T:System.String"/> value
-            to be parsed to the target type <typeparamref name="TSimpleParseable"/>.
+            to be parsed to the target type <typeparamref name="TSelf"/>.
             </summary>
-            <typeparam name="TSimpleParseable">The type of the target result.</typeparam>
+            <remarks>
+            Different with type <see cref="T:System.IParsable`1"/>, this type is not necessary to convert
+            instances into <see cref="T:System.IFormatProvider"/>.
+            </remarks>
+            <typeparam name="TSelf">The type of the target result.</typeparam>
+            <seealso cref="T:System.IParsable`1"/>
+            <seealso cref="T:System.IFormatProvider"/>
         </member>
-        <member name="M:System.ISimpleParseable`1.Parse(System.String)">
+        <member name="M:System.ISimpleParsable`1.Parse(System.String)">
             <summary>
             Parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSimpleParseable"/>.
+            of type <typeparamref name="TSelf"/>.
             </summary>
             <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
             <returns>The result parsed.</returns>
@@ -3451,15 +3457,15 @@
             Throws when the argument <paramref name="str"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="M:System.ISimpleParseable`1.TryParse(System.String,`0@)">
+        <member name="M:System.ISimpleParsable`1.TryParse(System.String,`0@)">
             <summary>
             Try to parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSimpleParseable"/>.
+            of type <typeparamref name="TSelf"/>.
             </summary>
             <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
             <param name="result">
             The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
-            i.e. <see langword="default"/>(<typeparamref name="TSimpleParseable"/>).
+            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
             </param>
             <returns>
             A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.

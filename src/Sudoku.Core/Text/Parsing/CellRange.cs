@@ -6,7 +6,7 @@
 public readonly struct CellRange :
 	IEquatable<CellRange>,
 	IEqualityOperators<CellRange, CellRange, bool>,
-	ISimpleParseable<CellRange>
+	ISimpleParsable<CellRange>
 {
 	/// <summary>
 	/// Indicates the inner mask.

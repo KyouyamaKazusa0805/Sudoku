@@ -2698,11 +2698,11 @@
             </para>
             </remarks>
             <exception cref="T:System.FormatException">
-            See exception thrown cases for method <see cref="M:System.ISimpleParseable`1.Parse(System.String)"/>.
+            See exception thrown cases for method <see cref="M:System.ISimpleParsable`1.Parse(System.String)"/>.
             </exception>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
             <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
-            <seealso cref="M:System.ISimpleParseable`1.Parse(System.String)"/>
+            <seealso cref="M:System.ISimpleParsable`1.Parse(System.String)"/>
         </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>
