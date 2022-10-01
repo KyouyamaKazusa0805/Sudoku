@@ -18,8 +18,8 @@ using DataTuple = ValueTuple<
 public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 {
 	private const string
-		SwitchExprRootFullName = $"System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute",
-		SwitchExprArmFullName = $"System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute";
+		SwitchExprRootFullName = "System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute",
+		SwitchExprArmFullName = "System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute";
 
 
 	/// <inheritdoc/>
