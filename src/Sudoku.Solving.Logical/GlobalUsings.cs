@@ -41,7 +41,7 @@ global using Sudoku.Solving.Logical.Steps;
 global using Sudoku.Solving.Logical.Steps.Specialized;
 global using Sudoku.Solving.Logical.StepSearchers;
 global using Sudoku.Solving.Logical.StepSearchers.Specialized;
-global using Sudoku.Techniques;
+global using Sudoku.Solving.Logical.Techniques;
 global using Sudoku.Text;
 global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;

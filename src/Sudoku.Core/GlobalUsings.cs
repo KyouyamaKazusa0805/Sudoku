@@ -27,7 +27,7 @@ global using Sudoku.Enumerating;
 global using Sudoku.Linq;
 global using Sudoku.Resources;
 global using Sudoku.Solving;
-global using Sudoku.Techniques;
+global using Sudoku.Solving.Logical.Techniques;
 global using Sudoku.Text;
 global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;
