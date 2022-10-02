@@ -13,7 +13,7 @@ public static class SolutionWideReadOnlyFields
 	/// </summary>
 	/// <remarks>
 	/// For more details you want to learn about, please visit
-	/// <see href="https://github.com/dotnet/runtime/blob/bff7c3d522cfd6845d8452544ef2d4b81d1e5fb4/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L555">this link</see>
+	/// <see href="https://github.com/dotnet/runtime/blob/fb5f07f9c580bdcd5d0726d1391c2a52a01030f8/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L555">this link</see>
 	/// to get the inner code.
 	/// </remarks>
 	/// <seealso cref="TrailingZeroCount(int)"/>
