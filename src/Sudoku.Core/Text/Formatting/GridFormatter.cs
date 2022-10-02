@@ -321,7 +321,7 @@ public readonly ref struct GridFormatter
 	/// <returns>The string.</returns>
 	private string ToExcelString(scoped in Grid grid)
 	{
-		scoped ReadOnlySpan<char> span = grid.ToString("0");
+		scoped var span = (ReadOnlySpan<char>)grid.ToString("0");
 		scoped var sb = new StringHandler(81 + 72 + 9);
 		for (var i = 0; i < 9; i++)
 		{
@@ -354,7 +354,7 @@ public readonly ref struct GridFormatter
 		const int length = 1 + (81 * 3 - 1 << 1);
 
 		// Creates a string instance as a buffer.
-		string result = new('\0', length);
+		var result = new string('\0', length);
 
 		// Modify the string value via pointers.
 		fixed (char* pResult = result)
