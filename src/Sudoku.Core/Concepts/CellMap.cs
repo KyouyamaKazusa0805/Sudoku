@@ -28,6 +28,9 @@ public partial struct CellMap :
 	IBitwiseOperators<CellMap, CellMap, CellMap>,
 	IBooleanOperators<CellMap>,
 	ICollection<int>,
+	IComparable,
+	IComparable<CellMap>,
+	IComparisonOperators<CellMap, CellMap, bool>,
 	IDivisionOperators<CellMap, int, short>,
 	IEnumerable,
 	IEnumerable<int>,
@@ -1103,6 +1106,21 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void ISet<int>.UnionWith(IEnumerable<int> other) => this |= Empty + other;
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	int IComparable.CompareTo(object? obj)
+	{
+		ArgumentNullException.ThrowIfNull(obj);
+
+		return obj is CellMap other
+			? ((IComparable<CellMap>)this).CompareTo(other)
+			: throw new ArgumentException($"The argument must be of type '{nameof(CellMap)}'.", nameof(obj));
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	int IComparable<CellMap>.CompareTo(CellMap other) => ((Int128)this).CompareTo(other);
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1189,7 +1207,7 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap ISpanParsable<CellMap>.Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString());
 
-	
+
 	/// <summary>
 	/// Determines whether the current collection is empty.
 	/// </summary>
@@ -1709,6 +1727,26 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IBooleanOperators<CellMap>.operator true(CellMap value) => value ? true : false;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >(CellMap left, CellMap right)
+		=> (Int128)left > right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >=(CellMap left, CellMap right)
+		=> (Int128)left >= right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <(CellMap left, CellMap right)
+		=> (Int128)left < right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <=(CellMap left, CellMap right)
+		=> (Int128)left <= right;
 
 
 	/// <summary>
