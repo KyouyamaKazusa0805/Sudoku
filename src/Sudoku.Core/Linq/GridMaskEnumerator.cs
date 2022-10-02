@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Enumerating;
+﻿namespace Sudoku.Linq;
 
 /// <summary>
 /// Defines the default enumerator that iterates the <see cref="Grid"/>

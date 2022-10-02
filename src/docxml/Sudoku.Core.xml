@@ -3093,144 +3093,6 @@
             <param name="this">The type.</param>
             <returns>The name.</returns>
         </member>
-        <member name="T:Sudoku.Enumerating.GridCandidateEnumerator">
-            <summary>
-            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/>
-            through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <see cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Enumerating.GridCandidateEnumerator._start">
-            <summary>
-            The pointer to the start value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Enumerating.GridCandidateEnumerator._refCurrent">
-            <summary>
-            The current pointer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Enumerating.GridCandidateEnumerator._currentMask">
-            <summary>
-            Indicates the current mask.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Enumerating.GridCandidateEnumerator._currentIndex">
-            <summary>
-            The current index.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Enumerating.GridCandidateEnumerator.#ctor(System.Int16@)">
-            <summary>
-            Initializes an instance with the specified reference to an array to iterate.
-            </summary>
-            <param name="arr">The reference to an array.</param>
-            <remarks>
-            Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
-            even though C# allows we passing a constant as an <see langword="in"/> argument.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Enumerating.GridCandidateEnumerator.Current">
-            <summary>
-            Gets the element in the collection at the current position of the enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Enumerating.GridCandidateEnumerator.MoveNext">
-            <summary>
-            Advances the enumerator to the next element of the collection.
-            </summary>
-            <returns>
-            <list type="table">
-            <listheader>
-            <term>Return value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>If the enumerator was successfully advanced to the next element.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>If the enumerator has passed the end of the collection.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Enumerating.GridCandidateEnumerator.Reset">
-            <summary>
-            Sets the enumerator to its initial position, which is before the first element
-            in the collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Enumerating.GridCandidateEnumerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="T:Sudoku.Enumerating.GridMaskEnumerator">
-            <summary>
-            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/>
-            through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <see cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Enumerating.GridMaskEnumerator._start">
-            <summary>
-            The pointer to the start value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Enumerating.GridMaskEnumerator._refCurrent">
-            <summary>
-            The current pointer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Enumerating.GridMaskEnumerator._currentIndex">
-            <summary>
-            The current index.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Enumerating.GridMaskEnumerator.#ctor(System.Int16@)">
-            <summary>
-            Initializes an instance with the specified pointer to an array to iterate.
-            </summary>
-            <param name="arr">The pointer to an array.</param>
-            <remarks>
-            Note here we should point at the one-unit-length memory before the array start.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Enumerating.GridMaskEnumerator.Current">
-            <summary>
-            Gets the element in the collection at the current position of the enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Enumerating.GridMaskEnumerator.MoveNext">
-            <summary>
-            Advances the enumerator to the next element of the collection.
-            </summary>
-            <returns>
-            <list type="table">
-            <listheader>
-            <term>Return value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>If the enumerator was successfully advanced to the next element.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>If the enumerator has passed the end of the collection.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Enumerating.GridMaskEnumerator.Reset">
-            <summary>
-            Sets the enumerator to its initial position, which is before the first element
-            in the collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Enumerating.GridMaskEnumerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
         <member name="T:Sudoku.Linq.CellEnumerable">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.CellMap"/> type, around LINQ.
@@ -3253,6 +3115,78 @@
             of invoking the transform function on each element of <paramref name="source"/>.
             </returns>
         </member>
+        <member name="T:Sudoku.Linq.GridCandidateEnumerator">
+            <summary>
+            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/>
+            through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <see cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Linq.GridCandidateEnumerator._start">
+            <summary>
+            The pointer to the start value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Linq.GridCandidateEnumerator._refCurrent">
+            <summary>
+            The current pointer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Linq.GridCandidateEnumerator._currentMask">
+            <summary>
+            Indicates the current mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Linq.GridCandidateEnumerator._currentIndex">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Linq.GridCandidateEnumerator.#ctor(System.Int16@)">
+            <summary>
+            Initializes an instance with the specified reference to an array to iterate.
+            </summary>
+            <param name="arr">The reference to an array.</param>
+            <remarks>
+            Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
+            even though C# allows we passing a constant as an <see langword="in"/> argument.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Linq.GridCandidateEnumerator.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Linq.GridCandidateEnumerator.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            <list type="table">
+            <listheader>
+            <term>Return value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>If the enumerator was successfully advanced to the next element.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>If the enumerator has passed the end of the collection.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Linq.GridCandidateEnumerator.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element
+            in the collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Linq.GridCandidateEnumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
         <member name="T:Sudoku.Linq.GridEnumerable">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> type, around LINQ.
@@ -3274,6 +3208,72 @@
             A <see cref="T:System.Collections.Immutable.ImmutableArray`1"/> of <typeparamref name="TResult"/> whose elements are the result
             of invoking the transform function on each element of <paramref name="source"/>.
             </returns>
+        </member>
+        <member name="T:Sudoku.Linq.GridMaskEnumerator">
+            <summary>
+            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/>
+            through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <see cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Linq.GridMaskEnumerator._start">
+            <summary>
+            The pointer to the start value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Linq.GridMaskEnumerator._refCurrent">
+            <summary>
+            The current pointer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Linq.GridMaskEnumerator._currentIndex">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Linq.GridMaskEnumerator.#ctor(System.Int16@)">
+            <summary>
+            Initializes an instance with the specified pointer to an array to iterate.
+            </summary>
+            <param name="arr">The pointer to an array.</param>
+            <remarks>
+            Note here we should point at the one-unit-length memory before the array start.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Linq.GridMaskEnumerator.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Linq.GridMaskEnumerator.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            <list type="table">
+            <listheader>
+            <term>Return value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>If the enumerator was successfully advanced to the next element.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>If the enumerator has passed the end of the collection.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Linq.GridMaskEnumerator.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element
+            in the collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Linq.GridMaskEnumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="T:Sudoku.Resources.MergedResources">
             <summary>
