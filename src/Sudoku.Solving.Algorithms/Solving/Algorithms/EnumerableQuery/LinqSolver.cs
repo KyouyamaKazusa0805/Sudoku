@@ -12,7 +12,7 @@ public sealed class LinqSolver : ISimpleSolver
 	/// <inheritdoc/>
 	public bool? Solve(scoped in Grid grid, out Grid result)
 	{
-		Unsafe.SkipInit(out result);
+		SkipInit(out result);
 		var (_, @return) = solve(grid.ToString("0")) switch
 		{
 			[] => (Grid.Undefined, default(bool?)),

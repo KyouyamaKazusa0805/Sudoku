@@ -54,7 +54,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 				var selectedType = allTypes[_random.Next(count)];
 				fixed (char* pTempSolution = tempSolution)
 				{
-					Unsafe.CopyBlock(pSolution, pTempSolution, sizeof(char) * 81);
+					CopyBlock(pSolution, pTempSolution, sizeof(char) * 81);
 				}
 
 				var totalMap = CellMap.Empty;

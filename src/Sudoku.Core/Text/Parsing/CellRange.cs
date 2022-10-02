@@ -128,7 +128,7 @@ public readonly struct CellRange :
 		}
 		catch (FormatException)
 		{
-			Unsafe.SkipInit(out result);
+			SkipInit(out result);
 			return false;
 		}
 	}

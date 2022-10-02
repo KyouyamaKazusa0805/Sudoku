@@ -202,7 +202,7 @@ public unsafe ref partial struct StringHandler
 	{
 		fixed (char* pChars = _chars, pInitialString = initialString)
 		{
-			Unsafe.CopyBlock(pChars, pInitialString, (uint)(sizeof(char) * initialString.Length));
+			CopyBlock(pChars, pInitialString, (uint)(sizeof(char) * initialString.Length));
 		}
 
 		_arrayToReturnToPool = null;
@@ -241,7 +241,7 @@ public unsafe ref partial struct StringHandler
 	{
 		fixed (char* old = _chars, @new = handler._chars)
 		{
-			Unsafe.CopyBlock(@new, old, (uint)(sizeof(char) * Length));
+			CopyBlock(@new, old, (uint)(sizeof(char) * Length));
 		}
 	}
 
@@ -362,9 +362,9 @@ public unsafe ref partial struct StringHandler
 				{
 					fixed (char* pFirstChar = value)
 					{
-						Unsafe.WriteUnaligned(
-							ref Unsafe.As<char, byte>(ref Unsafe.Add(ref MemoryMarshal.GetReference(chars), pos)),
-							Unsafe.ReadUnaligned<int>(ref Unsafe.As<char, byte>(ref *pFirstChar))
+						WriteUnaligned(
+							ref As<char, byte>(ref Add(ref MemoryMarshal.GetReference(chars), pos)),
+							ReadUnaligned<int>(ref As<char, byte>(ref *pFirstChar))
 						);
 					}
 

@@ -55,7 +55,7 @@ public static class GridSolvingExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool ExactlyValidate(this scoped in Grid @this, out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
 	{
-		Unsafe.SkipInit(out solutionIfValid);
+		SkipInit(out solutionIfValid);
 		if (Solver.CheckValidity(@this.ToString(null), out var solution))
 		{
 			solutionIfValid = Grid.Parse(solution);

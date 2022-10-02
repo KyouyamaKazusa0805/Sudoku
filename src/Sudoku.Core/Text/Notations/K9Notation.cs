@@ -203,7 +203,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 		}
 		catch (FormatException)
 		{
-			Unsafe.SkipInit(out result);
+			SkipInit(out result);
 			return false;
 		}
 	}

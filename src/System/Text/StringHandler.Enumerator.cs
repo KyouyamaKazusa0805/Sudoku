@@ -39,12 +39,12 @@ partial struct StringHandler
 			_index = -1;
 
 			ref var z = ref chars._chars.GetPinnableReference();
-			if (Unsafe.IsNullRef(ref z))
+			if (IsNullRef(ref z))
 			{
 				throw new NullReferenceException("The character series is a null reference.");
 			}
 
-			_ptr = ref Unsafe.SubtractByteOffset(ref z, 1);
+			_ptr = ref SubtractByteOffset(ref z, 1);
 		}
 
 
@@ -60,7 +60,7 @@ partial struct StringHandler
 				return false;
 			}
 
-			_ptr = Unsafe.AddByteOffset(ref _ptr, 1);
+			_ptr = AddByteOffset(ref _ptr, 1);
 			return true;
 		}
 	}

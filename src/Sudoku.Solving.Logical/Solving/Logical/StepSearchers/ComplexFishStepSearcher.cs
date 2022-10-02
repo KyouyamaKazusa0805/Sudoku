@@ -185,7 +185,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						}
 
 						// Get the mask for checking for mutant fish.
-						Unsafe.SkipInit(out HouseType baseHouseTypes);
+						SkipInit(out HouseType baseHouseTypes);
 						if (searchForMutant)
 						{
 							baseHouseTypes = HouseType.Block;
@@ -269,7 +269,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 
 								// Add the house into the cover sets, and check the cover house types.
 								usedInCoverSets |= 1 << houseIndex;
-								Unsafe.SkipInit(out HouseType coverHouseTypes);
+								SkipInit(out HouseType coverHouseTypes);
 								if (searchForMutant)
 								{
 									coverHouseTypes = HouseType.Block;

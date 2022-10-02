@@ -50,7 +50,7 @@ public readonly unsafe struct Utf8String :
 		_value = new Utf8Char[length];
 		fixed (Utf8Char* ptrValue = _value)
 		{
-			Unsafe.CopyBlock(ptrValue, value, (uint)(sizeof(Utf8Char) * length));
+			CopyBlock(ptrValue, value, (uint)(sizeof(Utf8Char) * length));
 		}
 	}
 
@@ -71,11 +71,7 @@ public readonly unsafe struct Utf8String :
 	private Utf8String(byte[] array)
 	{
 		_value = new Utf8Char[array.Length];
-		Unsafe.CopyBlock(
-			ref Unsafe.As<Utf8Char, byte>(ref _value[0]),
-			ref array[0],
-			(uint)(sizeof(byte) * array.Length)
-		);
+		CopyBlock(ref As<Utf8Char, byte>(ref _value[0]), ref array[0], (uint)(sizeof(byte) * array.Length));
 	}
 
 
@@ -294,7 +290,7 @@ public readonly unsafe struct Utf8String :
 		var array = new byte[_value.Length];
 		fixed (Utf8Char* a = _value)
 		{
-			Unsafe.CopyBlock(ref array[0], ref Unsafe.As<Utf8Char, byte>(ref *a), (uint)(sizeof(byte) * _value.Length));
+			CopyBlock(ref array[0], ref As<Utf8Char, byte>(ref *a), (uint)(sizeof(byte) * _value.Length));
 		}
 
 		return Encoding.UTF8.GetString(array);
@@ -349,7 +345,7 @@ public readonly unsafe struct Utf8String :
 	/// <returns>The final string.</returns>
 	public static Utf8String operator +(Utf8String left, Utf8String right)
 	{
-		Unsafe.SkipInit(out Utf8Char[] targetBuffer);
+		SkipInit(out Utf8Char[] targetBuffer);
 		try
 		{
 			var totalLength = left._value.Length + right._value.Length;
@@ -358,12 +354,12 @@ public readonly unsafe struct Utf8String :
 			{
 				fixed (Utf8Char* src = left._value)
 				{
-					Unsafe.CopyBlock(destination, src, (uint)(sizeof(byte) * left._value.Length));
+					CopyBlock(destination, src, (uint)(sizeof(byte) * left._value.Length));
 				}
 
 				fixed (Utf8Char* src = right._value)
 				{
-					Unsafe.CopyBlock(destination + left._value.Length, src, (uint)(sizeof(byte) * right._value.Length));
+					CopyBlock(destination + left._value.Length, src, (uint)(sizeof(byte) * right._value.Length));
 				}
 			}
 

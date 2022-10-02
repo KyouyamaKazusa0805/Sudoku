@@ -16,8 +16,8 @@ public static unsafe class EnumExtensions
 	public static bool IsFlag<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 		=> sizeof(TEnum) switch
 		{
-			1 or 2 or 4 when Unsafe.As<TEnum, int>(ref @this) is var l => (l & l - 1) == 0,
-			8 when Unsafe.As<TEnum, long>(ref @this) is var l => (l & l - 1) == 0,
+			1 or 2 or 4 when As<TEnum, int>(ref @this) is var l => (l & l - 1) == 0,
+			8 when As<TEnum, long>(ref @this) is var l => (l & l - 1) == 0,
 			_ => false
 		};
 
@@ -49,7 +49,7 @@ public static unsafe class EnumExtensions
 		var result = new TEnum[i];
 		fixed (TEnum* ptr = result)
 		{
-			Unsafe.CopyBlock(ptr, buffer, (uint)(sizeof(TEnum) * i));
+			CopyBlock(ptr, buffer, (uint)(sizeof(TEnum) * i));
 		}
 
 		// Returns the value.
@@ -71,10 +71,10 @@ public static unsafe class EnumExtensions
 	public static bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum
 		=> sizeof(TEnum) switch
 		{
-			1 or 2 or 4 when Unsafe.As<TEnum, int>(ref other) is var otherValue
-				=> (Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue,
-			8 when Unsafe.As<TEnum, long>(ref other) is var otherValue
-				=> (Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue,
+			1 or 2 or 4 when As<TEnum, int>(ref other) is var otherValue
+				=> (As<TEnum, int>(ref @this) & otherValue) == otherValue,
+			8 when As<TEnum, long>(ref other) is var otherValue
+				=> (As<TEnum, long>(ref @this) & otherValue) == otherValue,
 			_ => throw new ArgumentException("The parameter should be one of the values 1, 2, 4 or 8.", nameof(@this))
 		};
 

@@ -556,7 +556,7 @@ public readonly ref struct GridFormatter
 					// Can't find any simplifications.
 					fixed (char* p = resultSpan.Slice(i * 9, 9), q = sliced)
 					{
-						Unsafe.CopyBlock(p, q, sizeof(char) * 9);
+						CopyBlock(p, q, sizeof(char) * 9);
 					}
 
 					index += 9;
@@ -656,7 +656,7 @@ public readonly ref struct GridFormatter
 		// which is used for aligning by columns.
 		const int bufferLength = 9;
 		var maxLengths = stackalloc int[bufferLength];
-		Unsafe.InitBlock(maxLengths, 0, sizeof(int) * bufferLength);
+		InitBlock(maxLengths, 0, sizeof(int) * bufferLength);
 
 		foreach (var (i, _) in valuesByColumn)
 		{

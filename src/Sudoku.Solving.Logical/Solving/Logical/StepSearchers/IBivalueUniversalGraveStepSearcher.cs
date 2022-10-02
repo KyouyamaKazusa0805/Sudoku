@@ -103,7 +103,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 		// Store all multi-value cells.
 		// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
 		// The comments will help you to understand the processing.
-		Unsafe.SkipInit(out short mask);
+		SkipInit(out short mask);
 		var pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
 		var multivalueCells = (EmptyCells - BivalueCells).ToArray();
 		for (int i = 0, length = multivalueCells.Length; i < length; i++)

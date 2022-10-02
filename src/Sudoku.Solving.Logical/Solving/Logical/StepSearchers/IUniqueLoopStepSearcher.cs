@@ -22,7 +22,7 @@ public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher
 	{
 		int visitedOddHouses = 0, visitedEvenHouses = 0;
 
-		Unsafe.SkipInit(out bool isOdd);
+		SkipInit(out bool isOdd);
 		foreach (var cell in loopCells)
 		{
 			foreach (var houseType in HouseTypes)

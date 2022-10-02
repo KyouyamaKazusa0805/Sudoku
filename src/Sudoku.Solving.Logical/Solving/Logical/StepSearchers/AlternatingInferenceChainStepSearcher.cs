@@ -310,8 +310,8 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 	/// </summary>
 	private void Bfs()
 	{
-		Unsafe.SkipInit(out int[] onToOff);
-		Unsafe.SkipInit(out int[] offToOn);
+		SkipInit(out int[] onToOff);
+		SkipInit(out int[] offToOn);
 		try
 		{
 			// Rend the array as the light-weighted linked list, where the indices correspond to the node IDs.

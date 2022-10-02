@@ -33,7 +33,7 @@ public ref struct GridMaskEnumerator
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal GridMaskEnumerator(ref short arr)
 	{
-		_refCurrent = ref Unsafe.SubtractByteOffset(ref arr, 1);
+		_refCurrent = ref SubtractByteOffset(ref arr, 1);
 		_start = ref _refCurrent;
 	}
 
@@ -76,7 +76,7 @@ public ref struct GridMaskEnumerator
 		}
 		else
 		{
-			_refCurrent = ref Unsafe.AddByteOffset(ref _refCurrent, 1);
+			_refCurrent = ref AddByteOffset(ref _refCurrent, 1);
 			return true;
 		}
 	}

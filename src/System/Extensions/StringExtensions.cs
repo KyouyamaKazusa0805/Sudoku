@@ -96,7 +96,7 @@ public static unsafe partial class StringExtensions
 		resultPtr[@this.Length] = '\0';
 		fixed (char* pThis = @this)
 		{
-			Unsafe.CopyBlock(resultPtr, pThis, (uint)(sizeof(char) * @this.Length));
+			CopyBlock(resultPtr, pThis, (uint)(sizeof(char) * @this.Length));
 		}
 
 		resultPtr[index] = charToInsert;

@@ -1181,7 +1181,7 @@ public partial struct CellMap :
 		}
 
 	ReturnFalse:
-		Unsafe.SkipInit(out result);
+		SkipInit(out result);
 		return false;
 	}
 
@@ -1194,7 +1194,7 @@ public partial struct CellMap :
 		}
 		catch
 		{
-			Unsafe.SkipInit(out result);
+			SkipInit(out result);
 			return false;
 		}
 	}

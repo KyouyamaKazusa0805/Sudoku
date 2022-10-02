@@ -128,7 +128,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 				// Randomize a multiple-solution grid.
 				fixed (char* ptr = emptyChars, clonedPtr = solutionBuffer, fixedEmptyGridCharsPtr = EmptyGridCharArray)
 				{
-					Unsafe.CopyBlock(ptr, fixedEmptyGridCharsPtr, sizeof(char) * 81);
+					CopyBlock(ptr, fixedEmptyGridCharsPtr, sizeof(char) * 81);
 
 					if (_baseCandidates is null)
 					{
@@ -164,7 +164,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 					{
 						fixed (char* solutionPtr = solution.ToString("!"))
 						{
-							Unsafe.CopyBlock(clonedPtr, solutionPtr, sizeof(char) * 81);
+							CopyBlock(clonedPtr, solutionPtr, sizeof(char) * 81);
 						}
 
 						// Remove digits not being filled in the pattern.

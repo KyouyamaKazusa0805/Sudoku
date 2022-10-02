@@ -20,4 +20,5 @@ global using Sudoku.Solving.Algorithms.EnumerableQuery;
 global using Sudoku.Solving.Logical;
 global using Sudoku.Text.Parsing;
 global using static System.Math;
+global using static System.Runtime.CompilerServices.Unsafe;
 global using static Sudoku.CommandLine.CommonConstants;

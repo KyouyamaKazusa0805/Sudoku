@@ -19,13 +19,13 @@ public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unm
 
 		static bool viaName(string value, out TEnum result)
 		{
-			Unsafe.SkipInit(out result);
+			SkipInit(out result);
 			if (!int.TryParse(value, out var targetValue))
 			{
 				return false;
 			}
 
-			var checkType = Unsafe.As<int, TEnum>(ref targetValue);
+			var checkType = As<int, TEnum>(ref targetValue);
 			if (Enum.IsDefined(checkType))
 			{
 				result = checkType;
@@ -37,7 +37,7 @@ public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unm
 
 		static bool viaAttribute(string value, out TEnum result)
 		{
-			Unsafe.SkipInit(out result);
+			SkipInit(out result);
 			foreach (var fieldInfo in typeof(TEnum).GetFields())
 			{
 				var attr = fieldInfo.GetCustomAttribute<SupportedArgumentsAttribute>();

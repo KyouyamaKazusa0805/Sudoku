@@ -228,7 +228,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 		var result = new TUnmanaged[_length];
 		fixed (TUnmanaged* pResult = result)
 		{
-			Unsafe.CopyBlock(pResult, _startPtr, (uint)(sizeof(TUnmanaged) * _length));
+			CopyBlock(pResult, _startPtr, (uint)(sizeof(TUnmanaged) * _length));
 		}
 
 		return result;

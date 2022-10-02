@@ -51,12 +51,12 @@ public ref struct FlagsEnumTypeFieldEnumerator<TEnum> where TEnum : unmanaged, E
 			var field = _fields[index];
 			switch (sizeof(TEnum))
 			{
-				case 1 or 2 or 4 when IsPow2(Unsafe.As<TEnum, int>(ref field)) && _base.Flags(field):
+				case 1 or 2 or 4 when IsPow2(As<TEnum, int>(ref field)) && _base.Flags(field):
 				{
 					Current = _fields[_index = index];
 					return true;
 				}
-				case 8 when IsPow2(Unsafe.As<TEnum, long>(ref field)) && _base.Flags(field):
+				case 8 when IsPow2(As<TEnum, long>(ref field)) && _base.Flags(field):
 				{
 					Current = _fields[_index = index];
 					return true;

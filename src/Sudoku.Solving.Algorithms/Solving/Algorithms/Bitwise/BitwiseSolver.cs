@@ -82,7 +82,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 			solutions = InternalSolve(pPuzzleStr, solutionStr, 2);
 		}
 
-		Unsafe.SkipInit(out result);
+		SkipInit(out result);
 		(_, var @return) = solutions switch
 		{
 			0 => (Grid.Undefined, null),
@@ -114,7 +114,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 		var solutionsCount = InternalSolve(puzzle, solutionStr, limit);
 		if (solution != null)
 		{
-			Unsafe.CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
+			CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
 		}
 		return solutionsCount;
 	}
@@ -137,7 +137,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 			var result = InternalSolve(p, solutionStr, limit);
 			if (solution != null)
 			{
-				Unsafe.CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
+				CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
 			}
 			return result;
 		}
@@ -246,7 +246,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 #if true
 		=> Array.Clear(_stack);
 #else
-		=> Unsafe.InitBlock(Unsafe.AsPointer(ref _stack[0]), 0, (uint)(sizeof(State) * 50));
+		=> InitBlock(AsPointer(ref _stack[0]), 0, (uint)(sizeof(State) * 50));
 #endif
 
 	/// <summary>
@@ -341,7 +341,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 				g->Bands[band] = BitSet27;
 			}
 
-			Unsafe.InitBlock(g->PrevBands, 0, 27 * sizeof(uint));
+			InitBlock(g->PrevBands, 0, 27 * sizeof(uint));
 			g->UnsolvedCells[0] = g->UnsolvedCells[1] = g->UnsolvedCells[2] = BitSet27;
 			g->UnsolvedRows[0] = g->UnsolvedRows[1] = g->UnsolvedRows[2] = BitSet27;
 			g->Pairs[0] = g->Pairs[1] = g->Pairs[2] = 0;
@@ -858,7 +858,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 						if (--tries != 0)
 						{
 							// First of pair.
-							Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(State));
+							CopyBlock(_g + 1, _g, (uint)sizeof(State));
 							_g->Bands[band] ^= map;
 							_g++;
 							SetSolvedMask(band, map);
@@ -901,7 +901,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 				if ((_g->Bands[band] & cellMask) != 0)
 				{
 					// Eliminate option in the current stack entry.
-					Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(State));
+					CopyBlock(_g + 1, _g, (uint)sizeof(State));
 					_g->Bands[band] ^= cellMask;
 					_g++;
 					SetSolvedMask(band, cellMask); // And try it out in a nested stack entry.

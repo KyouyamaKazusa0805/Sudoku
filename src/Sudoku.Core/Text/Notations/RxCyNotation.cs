@@ -80,7 +80,7 @@ public sealed partial class RxCyNotation :
 		}
 		catch (FormatException)
 		{
-			Unsafe.SkipInit(out result);
+			SkipInit(out result);
 			return false;
 		}
 	}
@@ -241,7 +241,7 @@ public sealed partial class RxCyNotation :
 		}
 		catch (FormatException)
 		{
-			Unsafe.SkipInit(out result);
+			SkipInit(out result);
 			return false;
 		}
 	}

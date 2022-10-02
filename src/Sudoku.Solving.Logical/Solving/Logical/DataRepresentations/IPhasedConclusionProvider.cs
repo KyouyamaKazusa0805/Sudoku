@@ -39,10 +39,10 @@ public interface IPhasedConclusionProvider<TSelf, TReasonEnum> : IEquatable<TSel
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static int asInt(TReasonEnum e) => Unsafe.As<TReasonEnum, int>(ref e);
+		static int asInt(TReasonEnum e) => As<TReasonEnum, int>(ref e);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static long asLong(TReasonEnum e) => Unsafe.As<TReasonEnum, long>(ref e);
+		static long asLong(TReasonEnum e) => As<TReasonEnum, long>(ref e);
 	}
 
 	/// <inheritdoc cref="object.GetHashCode"/>

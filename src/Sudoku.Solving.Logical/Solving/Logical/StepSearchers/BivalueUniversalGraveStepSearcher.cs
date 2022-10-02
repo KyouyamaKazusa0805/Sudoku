@@ -538,7 +538,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 	private static bool CheckSingleDigit(IReadOnlyList<int> list)
 	{
 		var i = 0;
-		Unsafe.SkipInit(out int comparer);
+		SkipInit(out int comparer);
 		foreach (var cand in list)
 		{
 			if (i++ == 0)

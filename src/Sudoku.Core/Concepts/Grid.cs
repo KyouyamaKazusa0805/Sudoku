@@ -165,7 +165,7 @@ public unsafe partial struct Grid :
 	/// </exception>
 	private Grid(scoped in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
-		if (Unsafe.IsNullRef(ref Unsafe.AsRef(firstElement)))
+		if (IsNullRef(ref AsRef(firstElement)))
 		{
 			throw new ArgumentNullException(nameof(firstElement));
 		}
@@ -177,7 +177,7 @@ public unsafe partial struct Grid :
 		var minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
 		for (var i = 0; i < 81; i++)
 		{
-			var value = Unsafe.AddByteOffset(ref Unsafe.AsRef(firstElement), (nuint)(i * sizeof(int)));
+			var value = AddByteOffset(ref AsRef(firstElement), (nuint)(i * sizeof(int)));
 			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 			{
 				// Calls the indexer to trigger the event (Clear the candidates in peer cells).
@@ -198,7 +198,7 @@ public unsafe partial struct Grid :
 		scoped ref var firstElement = ref Empty._values[0];
 		for (var i = 0; i < 81; i++)
 		{
-			Unsafe.AddByteOffset(ref firstElement, (nuint)(i * sizeof(short))) = DefaultMask;
+			AddByteOffset(ref firstElement, (nuint)(i * sizeof(short))) = DefaultMask;
 		}
 
 		// Initializes events.
@@ -1033,7 +1033,7 @@ public unsafe partial struct Grid :
 	/// to iterate all possible candidates in the current grid.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly GridCandidateEnumerator EnumerateCandidates() => new(ref Unsafe.AsRef(_values[0]));
+	public readonly GridCandidateEnumerator EnumerateCandidates() => new(ref AsRef(_values[0]));
 
 	/// <summary>
 	/// Try to enumerate the mask table of the current grid.
@@ -1054,7 +1054,7 @@ public unsafe partial struct Grid :
 	/// </code>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly GridMaskEnumerator EnumerateMasks() => new(ref Unsafe.AsRef(_values[0]));
+	public readonly GridMaskEnumerator EnumerateMasks() => new(ref AsRef(_values[0]));
 
 	/// <summary>
 	/// Reset the sudoku grid, to set all modifiable values to empty ones.
@@ -1163,9 +1163,9 @@ public unsafe partial struct Grid :
 	readonly IEnumerator<short> IEnumerable<short>.GetEnumerator()
 	{
 		var maskArray = new short[81];
-		Unsafe.CopyBlock(
-			ref Unsafe.As<short, byte>(ref Unsafe.AsRef(_values[0])),
-			ref Unsafe.As<short, byte>(ref maskArray[0]),
+		CopyBlock(
+			ref As<short, byte>(ref AsRef(_values[0])),
+			ref As<short, byte>(ref maskArray[0]),
 			sizeof(short) * 81);
 
 		return ((IEnumerable<short>)maskArray).GetEnumerator();
@@ -1273,9 +1273,9 @@ public unsafe partial struct Grid :
 		Argument.ThrowIfNotEqual(masks.Length, 81, nameof(masks));
 
 		var result = Empty;
-		Unsafe.CopyBlock(
-			ref Unsafe.As<short, byte>(ref result._values[0]),
-			ref Unsafe.As<short, byte>(ref MemoryMarshal.GetArrayDataReference(masks)),
+		CopyBlock(
+			ref As<short, byte>(ref result._values[0]),
+			ref As<short, byte>(ref masks[0]),
 			sizeof(short) * 81);
 
 		return result;

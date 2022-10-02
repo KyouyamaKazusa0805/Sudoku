@@ -27,7 +27,7 @@ public sealed class EliminationNotation :
 		}
 		catch (FormatException)
 		{
-			Unsafe.SkipInit(out result);
+			SkipInit(out result);
 			return false;
 		}
 	}

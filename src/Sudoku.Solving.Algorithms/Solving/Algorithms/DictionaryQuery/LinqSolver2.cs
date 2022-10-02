@@ -103,7 +103,7 @@ public sealed class LinqSolver2 : ISimpleSolver
 	/// </returns>
 	public bool? Solve(scoped in Grid grid, out Grid result)
 	{
-		Unsafe.SkipInit(out result);
+		SkipInit(out result);
 
 		var rawResult = Search(ParseGrid(grid.ToString("0")));
 		if (rawResult is null)

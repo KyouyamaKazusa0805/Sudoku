@@ -39,7 +39,7 @@ public ref struct GridCandidateEnumerator
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal GridCandidateEnumerator(ref short arr)
 	{
-		_refCurrent = ref Unsafe.SubtractByteOffset(ref arr, 1);
+		_refCurrent = ref SubtractByteOffset(ref arr, 1);
 		_start = ref _refCurrent;
 	}
 
@@ -82,7 +82,7 @@ public ref struct GridCandidateEnumerator
 		while (_currentIndex < 81)
 		{
 			_currentIndex++;
-			if (MaskToStatus(Unsafe.AddByteOffset(ref _start, _currentIndex)) == CellStatus.Empty)
+			if (MaskToStatus(AddByteOffset(ref _start, _currentIndex)) == CellStatus.Empty)
 			{
 				break;
 			}
@@ -93,7 +93,7 @@ public ref struct GridCandidateEnumerator
 			return false;
 		}
 
-		_refCurrent = ref Unsafe.AddByteOffset(ref _start, _currentIndex + 1);
+		_refCurrent = ref AddByteOffset(ref _start, _currentIndex + 1);
 		_currentMask = (short)(_refCurrent & Grid.MaxCandidatesMask);
 
 		return true;

@@ -15,8 +15,8 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 	{
 		var r = stackalloc int*[9];
 		var c = stackalloc int*[9];
-		Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
-		Unsafe.InitBlock(c, 0, (uint)sizeof(int*) * 9);
+		InitBlock(r, 0, (uint)sizeof(int*) * 9);
+		InitBlock(c, 0, (uint)sizeof(int*) * 9);
 
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
@@ -39,7 +39,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 						if (r[digit] == null)
 						{
 							var ptr = stackalloc int[10];
-							Unsafe.InitBlock(ptr, 0, 10 * sizeof(int));
+							InitBlock(ptr, 0, 10 * sizeof(int));
 
 							r[digit] = ptr;
 						}
@@ -51,7 +51,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 						if (c[digit] == null)
 						{
 							var ptr = stackalloc int[10];
-							Unsafe.InitBlock(ptr, 0, 10 * sizeof(int));
+							InitBlock(ptr, 0, 10 * sizeof(int));
 
 							c[digit] = ptr;
 						}

@@ -97,7 +97,7 @@ public sealed class FileCounter
 		var (filesCount, resultLines, charactersCount, bytes) = default((int, int, long, long));
 		foreach (var fileName in FileList)
 		{
-			Unsafe.SkipInit(out StreamReader sr);
+			SkipInit(out StreamReader sr);
 			try
 			{
 				sr = new(fileName);

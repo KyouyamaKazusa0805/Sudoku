@@ -48,6 +48,7 @@ global using Sudoku.Text.Notations;
 global using static System.Algorithm.Sequences;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
+global using static System.Runtime.CompilerServices.Unsafe;
 global using static Sudoku.Buffers.FastProperties;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;

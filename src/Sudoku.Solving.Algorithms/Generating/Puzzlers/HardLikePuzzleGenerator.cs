@@ -42,13 +42,13 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 		{
 			fixed (char* pEmptyString = Grid.EmptyString)
 			{
-				Unsafe.CopyBlock(puzzle, pEmptyString, sizeof(char) * 81);
-				Unsafe.CopyBlock(solution, pEmptyString, sizeof(char) * 81);
+				CopyBlock(puzzle, pEmptyString, sizeof(char) * 81);
+				CopyBlock(solution, pEmptyString, sizeof(char) * 81);
 			}
 
 			GenerateAnswerGrid(puzzle, solution);
 
-			Unsafe.InitBlock(holeCells, 0, 81 * sizeof(int));
+			InitBlock(holeCells, 0, 81 * sizeof(int));
 			CreatePattern(holeCells);
 			for (var trial = 0; trial < 1000; trial++)
 			{
