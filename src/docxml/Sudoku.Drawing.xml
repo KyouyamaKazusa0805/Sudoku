@@ -101,35 +101,6 @@
             <paramref name="rectangle"/>.
             </exception>
         </member>
-        <member name="T:System.Drawing.PointExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Drawing.Point"/>.
-            </summary>
-            <seealso cref="T:System.Drawing.Point"/>
-        </member>
-        <member name="M:System.Drawing.PointExtensions.WithOffset(System.Drawing.Point@,System.Int32)">
-            <summary>
-            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
-            added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
-            </summary>
-            <param name="this">The point.</param>
-            <param name="offset">The offset.</param>
-            <returns>The result point.</returns>
-            <seealso cref="P:System.Drawing.PointF.X"/>
-            <seealso cref="P:System.Drawing.PointF.Y"/>
-        </member>
-        <member name="M:System.Drawing.PointExtensions.WithOffset(System.Drawing.Point@,System.Int32,System.Int32)">
-            <summary>
-            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
-            added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
-            </summary>
-            <param name="this">The point.</param>
-            <param name="xOffset">The X offset.</param>
-            <param name="yOffset">The Y offset.</param>
-            <returns>The result point.</returns>
-            <seealso cref="P:System.Drawing.PointF.X"/>
-            <seealso cref="P:System.Drawing.PointF.Y"/>
-        </member>
         <member name="T:System.Drawing.PointFExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.PointF"/>.
@@ -142,49 +113,6 @@
             </summary>
             <param name="this">The point to truncate.</param>
             <returns>The result.</returns>
-        </member>
-        <member name="M:System.Drawing.PointFExtensions.WithOffset(System.Drawing.PointF@,System.Single)">
-            <summary>
-            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
-            added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
-            </summary>
-            <param name="this">The point.</param>
-            <param name="offset">The offset.</param>
-            <returns>The result point.</returns>
-            <seealso cref="P:System.Drawing.PointF.X"/>
-            <seealso cref="P:System.Drawing.PointF.Y"/>
-        </member>
-        <member name="M:System.Drawing.PointFExtensions.WithOffset(System.Drawing.PointF@,System.Single,System.Single)">
-            <summary>
-            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
-            added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
-            </summary>
-            <param name="this">The point.</param>
-            <param name="xOffset">The X offset.</param>
-            <param name="yOffset">The Y offset.</param>
-            <returns>The result point.</returns>
-            <seealso cref="P:System.Drawing.PointF.X"/>
-            <seealso cref="P:System.Drawing.PointF.Y"/>
-        </member>
-        <member name="M:System.Drawing.PointFExtensions.WithX(System.Drawing.PointF@,System.Single)">
-            <summary>
-            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
-            added into the properties <see cref="P:System.Drawing.PointF.X"/>.
-            </summary>
-            <param name="this">The point.</param>
-            <param name="xOffset">The X offset.</param>
-            <returns>The result point.</returns>
-            <seealso cref="P:System.Drawing.PointF.X"/>
-        </member>
-        <member name="M:System.Drawing.PointFExtensions.WithY(System.Drawing.PointF@,System.Single)">
-            <summary>
-            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
-            added into the properties <see cref="P:System.Drawing.PointF.Y"/>.
-            </summary>
-            <param name="this">The point.</param>
-            <param name="yOffset">The Y offset.</param>
-            <returns>The result point.</returns>
-            <seealso cref="P:System.Drawing.PointF.Y"/>
         </member>
         <member name="T:System.Drawing.RectangleExtensions">
             <summary>

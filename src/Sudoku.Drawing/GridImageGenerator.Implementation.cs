@@ -43,7 +43,8 @@ partial record GridImageGenerator
 					var overlaps = View.UnknownOverlaps(cell);
 					foreach (var digit in (short)(mask & Grid.MaxCandidatesMask))
 					{
-						var point = Calculator.GetMousePointInCenter(cell, digit).WithY(vOffsetCandidate);
+						var originalPoint = Calculator.GetMousePointInCenter(cell, digit);
+						var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };
 						g.DrawValue(
 							digit + 1, fCandidate, overlaps ? bCandidateLighter : bCandidate,
 							point, DefaultStringFormat
@@ -55,7 +56,8 @@ partial record GridImageGenerator
 				case var status and (CellStatus.Modifiable or CellStatus.Given):
 				{
 					// Draw values.
-					var point = Calculator.GetMousePointInCenter(cell).WithY(vOffsetValue);
+					var originalPoint = Calculator.GetMousePointInCenter(cell);
+					var point = originalPoint with { Y = originalPoint.Y + vOffsetValue };
 					g.DrawValue(
 						Puzzle[cell] + 1, status == CellStatus.Given ? fGiven : fModifiable,
 						status == CellStatus.Given ? bGiven : bModifiable, point, DefaultStringFormat
@@ -307,7 +309,8 @@ partial record GridImageGenerator
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		void d(int cell, int digit, float vOffsetCandidate, Brush brush)
 		{
-			var point = Calculator.GetMousePointInCenter(cell, digit).WithY(vOffsetCandidate);
+			var originalPoint = Calculator.GetMousePointInCenter(cell, digit);
+			var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };
 			g.DrawValue(digit + 1, fCandidate, brush, point, DefaultStringFormat);
 		}
 	}
@@ -363,8 +366,8 @@ partial record GridImageGenerator
 						var (w, h) = Calculator.CellSize;
 						w /= 2;
 						h /= 2;
-						l = l.WithOffset(w, h);
-						r = r.WithOffset(-w, -h);
+						l = l with { X = l.X + w, Y = l.Y + h };
+						r = r with { X = r.X - w, Y = r.Y - h };
 
 						g.DrawLine(pen, l, r);
 
@@ -599,7 +602,8 @@ partial record GridImageGenerator
 			var character = unknownNode.UnknownValueChar;
 
 			// Draw values.
-			var point = Calculator.GetMousePointInCenter(cell).WithY(vOffsetValue);
+			var orginalPoint = Calculator.GetMousePointInCenter(cell);
+			var point = orginalPoint with { Y = orginalPoint.Y + vOffsetValue };
 			g.DrawString(character.ToString(), font, brush, point, DefaultStringFormat);
 		}
 	}

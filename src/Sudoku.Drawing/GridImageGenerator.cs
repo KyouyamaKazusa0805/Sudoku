@@ -14,11 +14,8 @@ using static IGridImageGenerator;
 /// that decides the drawing behavior.
 /// </param>
 /// <param name="Puzzle">Indicates the puzzle.</param>
-public partial record GridImageGenerator(
-	IPointCalculator Calculator,
-	IPreference Preferences,
-	scoped in Grid Puzzle
-) : IGridImageGenerator
+public partial record GridImageGenerator(IPointCalculator Calculator, IPreference Preferences, scoped in Grid Puzzle) :
+	IGridImageGenerator
 {
 	/// <inheritdoc/>
 	public float Width
