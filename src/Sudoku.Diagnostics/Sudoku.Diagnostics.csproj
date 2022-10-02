@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Description>Provides diagnostic APIs for the whole project, such as counter of solution files.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Diagnostics.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
+</Project>

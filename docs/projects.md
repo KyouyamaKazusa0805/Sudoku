@@ -10,7 +10,8 @@
 
 * [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core)：提供基本的数独相关的数据结构的实现，如数独盘面的实现 [`Grid`](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs) 类型等；
 * [`Sudoku.Drawing`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing)：提供一种简单、轻量级的数独绘图 API；
-* [`Sudoku.Presentation`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Presentation)：提供 API 用于专门呈现数独或数独有关的一些东西用在 UI 上，比如一个步骤（即 IStep 类型）的 UI 呈现视图的抽象数据结构；
+* [`Sudoku.Diagnostics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics)：提供诊断和分析代码内容的 API，例如计算和整理整个项目有多少个文件之类的；
+* [`Sudoku.Presentation`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Presentation)：提供 API 用于专门呈现数独或数独有关的一些东西用在 UI 上，比如一个步骤（即 `IStep` 类型）的 UI 呈现视图的抽象数据结构；
 * [`Sudoku.Solving.Algorithms`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Algorithms)：提供对于暴力破解的数独解题算法的 API，比如位运算、回溯递归算法等；
 * [`Sudoku.Solving.Logical`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Logical)：提供对于逻辑解题过程处理的 API；
 * [`Sudoku.UI.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI.Core)：用于为 `Sudoku.UI` 项目提供固定 API；
