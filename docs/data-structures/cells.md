@@ -20,6 +20,7 @@ public struct CellMap :
 	IMinMaxValue<CellMap>,
 	IModulusOperators<CellMap, CellMap, CellMap>,
 	IMultiplyOperators<CellMap, int, Candidates>,
+    IParsable<CellMap>,
 	IReadOnlyCollection<int>,
 	IReadOnlyList<int>,
 	IReadOnlySet<int>,
@@ -27,6 +28,7 @@ public struct CellMap :
 	ISimpleFormattable,
 	ISimpleParseable<CellMap>,
     ISpanFormattable,
+    ISpanParsable<CellMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
 	ISubtractionOperators<CellMap, CellMap, CellMap>
 {

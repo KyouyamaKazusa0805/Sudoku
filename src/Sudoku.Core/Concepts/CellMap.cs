@@ -39,6 +39,7 @@ public partial struct CellMap :
 	IMinMaxValue<CellMap>,
 	IModulusOperators<CellMap, CellMap, CellMap>,
 	IMultiplyOperators<CellMap, int, Candidates>,
+	IParsable<CellMap>,
 	IReadOnlyCollection<int>,
 	IReadOnlyList<int>,
 	IReadOnlySet<int>,
@@ -47,6 +48,7 @@ public partial struct CellMap :
 	ISimpleFormattable,
 	ISimpleParsable<CellMap>,
 	ISpanFormattable,
+	ISpanParsable<CellMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
 	ISubtractionOperators<CellMap, CellMap, CellMap>
 {
@@ -1144,7 +1146,50 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap Parse(string str) => RxCyNotation.ParseCells(str);
 
+	/// <inheritdoc/>
+	static bool IParsable<CellMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CellMap result)
+	{
+		try
+		{
+			if (s is null)
+			{
+				goto ReturnFalse;
+			}
 
+			return TryParse(s, out result);
+		}
+		catch
+		{
+		}
+
+	ReturnFalse:
+		Unsafe.SkipInit(out result);
+		return false;
+	}
+
+	/// <inheritdoc/>
+	static bool ISpanParsable<CellMap>.TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out CellMap result)
+	{
+		try
+		{
+			return TryParse(s.ToString(), out result);
+		}
+		catch
+		{
+			Unsafe.SkipInit(out result);
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CellMap IParsable<CellMap>.Parse(string s, IFormatProvider? provider) => Parse(s);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CellMap ISpanParsable<CellMap>.Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString());
+
+	
 	/// <summary>
 	/// Determines whether the current collection is empty.
 	/// </summary>
