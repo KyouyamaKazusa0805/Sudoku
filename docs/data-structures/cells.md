@@ -14,6 +14,7 @@ public struct CellMap :
 	IEnumerable<int>,
 	IEquatable<CellMap>,
 	IEqualityOperators<CellMap, CellMap, bool>,
+    IFormattable,
 	ILogicalNotOperators<CellMap, bool>,
 	ILogicalOperators<CellMap, CellMap, CellMap>,
 	IMinMaxValue<CellMap>,
@@ -25,6 +26,7 @@ public struct CellMap :
 	ISet<int>,
 	ISimpleFormattable,
 	ISimpleParseable<CellMap>,
+    ISpanFormattable,
 	ISubtractionOperators<CellMap, int, CellMap>,
 	ISubtractionOperators<CellMap, CellMap, CellMap>
 {
@@ -58,14 +60,16 @@ public struct CellMap :
     public readonly bool Contains(int offset);
     public readonly void CopyTo(int* arr, int length);
     public readonly void CopyTo(scoped ref Span<int> span);
-    public override bool Equals([NotNullWhen(true)] object? obj);
+    public override readonly bool Equals([NotNullWhen(true)] object? obj);
     public readonly bool Equals(scoped in CellMap other);
+    public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider);
     public readonly OneDimensionalArrayEnumerator<int> GetEnumerator();
-    public readonly override int GetHashCode();
+    public override readonly int GetHashCode();
     public void Remove(int offset);
     public readonly int[] ToArray();
-    public readonly override string ToString();
+    public override readonly string ToString();
     public readonly string ToString(string? format);
+    public readonly string ToString(string? format, IFormatProvider? formatProvider);
 
     public static bool operator !(scoped in CellMap offsets);
     public static bool operator true(scoped in CellMap offsets);

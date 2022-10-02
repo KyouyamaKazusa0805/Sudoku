@@ -1123,6 +1123,9 @@
         <member name="M:Sudoku.Concepts.CellMap.Equals(Sudoku.Concepts.CellMap@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.GetHashCode">
             <inheritdoc/>
         </member>
@@ -1136,6 +1139,9 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.ToString(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.GetEnumerator">
@@ -1656,7 +1662,7 @@
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Explicit(Sudoku.Concepts.CellMap@)~System.Span{System.Int32}">
             <summary>
-            Explicit cast from <see cref="T:Sudoku.Concepts.CellMap"/> to <see cref="T:System.Span`1"/>.
+            Explicit cast from <see cref="T:Sudoku.Concepts.CellMap"/> to <see cref="T:System.Span`1"/> of element type <see cref="T:System.Int32"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
