@@ -323,6 +323,9 @@ dotnet_naming_style.start_with__t_.capitalization = pascal_case
 # Diagnostic results
 #
 
+# CS0078: The 'l' suffix is easily confused with the digit '1'
+dotnet_diagnostic.CS0078.severity = none
+
 # CS0184: 'is' expression's given expression is never of the provided type
 dotnet_diagnostic.CS0184.severity = error
 
