@@ -321,7 +321,7 @@ public readonly ref struct GridFormatter
 	/// <returns>The string.</returns>
 	private string ToExcelString(scoped in Grid grid)
 	{
-		scoped var span = (ReadOnlySpan<char>)grid.ToString("0");
+		scoped var span = grid.ToString("0").AsSpan();
 		scoped var sb = new StringHandler(81 + 72 + 9);
 		for (var i = 0; i < 9; i++)
 		{
