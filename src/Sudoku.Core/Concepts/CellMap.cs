@@ -725,6 +725,44 @@ public partial struct CellMap :
 	public override readonly int GetHashCode() => HashCode.Combine(_low, _high);
 
 	/// <summary>
+	/// <inheritdoc cref="IComparable{T}.CompareTo(T)" path="/summary"/>
+	/// </summary>
+	/// <param name="other">
+	/// <inheritdoc cref="IComparable{T}.CompareTo(T)" path="/param[@name='other']"/>
+	/// </param>
+	/// <returns>
+	/// An indicating the result. The result value only contains 3 possible values: 1, 0 and -1.
+	/// The comparison rule is:
+	/// <list type="number">
+	/// <item>
+	/// If <see langword="this"/> holds more cells than <paramref name="other"/>, then return 1
+	/// indicating <see langword="this"/> is greater.
+	/// </item>
+	/// <item>
+	/// If <see langword="this"/> holds less cells than <paramref name="other"/>, then return -1
+	/// indicating <paramref name="other"/> is greater.
+	/// </item>
+	/// <item>
+	/// If They are same length, then checks for indices held:
+	/// <list type="bullet">
+	/// <item>
+	/// If <see langword="this"/> holds a cell whose index is greater than all cells appeared in <paramref name="other"/>,
+	/// then return 1 indicating <see langword="this"/> is greater.
+	/// </item>
+	/// <item>
+	/// If <paramref name="other"/> holds a cell whose index is greater than all cells
+	/// appeared in <paramref name="other"/>, then return -1 indicating <paramref name="other"/> is greater.
+	/// </item>
+	/// </list>
+	/// </item>
+	/// </list>
+	/// If all rules are compared, but they are still considered equal, then return 0.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly int CompareTo(scoped in CellMap other)
+		=> Count > other.Count ? 1 : Count < other.Count ? -1 : Sign($"{this:b}".CompareTo($"{other:b}"));
+
+	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
 	/// </summary>
 	/// <returns>An array of offsets.</returns>
@@ -1038,6 +1076,21 @@ public partial struct CellMap :
 	readonly bool ISet<int>.SetEquals(IEnumerable<int> other) => ((IReadOnlySet<int>)this).SetEquals(other);
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly int IComparable.CompareTo([NotNull] object? obj)
+	{
+		ArgumentNullException.ThrowIfNull(obj);
+
+		return obj is CellMap other
+			? CompareTo(other)
+			: throw new ArgumentException($"The argument must be of type '{nameof(CellMap)}'.", nameof(obj));
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly int IComparable<CellMap>.CompareTo(CellMap other) => CompareTo(other);
+
+	/// <inheritdoc/>
 	readonly IEnumerable<TResult> ISelectClauseProvider<int>.Select<TResult>(Func<int, TResult> selector)
 	{
 		var result = new TResult[_count];
@@ -1105,21 +1158,6 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void ISet<int>.UnionWith(IEnumerable<int> other) => this |= Empty + other;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable.CompareTo(object? obj)
-	{
-		ArgumentNullException.ThrowIfNull(obj);
-
-		return obj is CellMap other
-			? ((IComparable<CellMap>)this).CompareTo(other)
-			: throw new ArgumentException($"The argument must be of type '{nameof(CellMap)}'.", nameof(obj));
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable<CellMap>.CompareTo(CellMap other) => ((Int128)this).CompareTo(other);
 
 
 	/// <inheritdoc/>
@@ -1640,6 +1678,22 @@ public partial struct CellMap :
 		return map / houseIndex;
 	}
 
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) > 0;
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >=(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) >= 0;
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) < 0;
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <=(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) <= 0;
+
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(scoped in CellMap left, scoped in CellMap right) => left.Equals(right);
@@ -1730,23 +1784,19 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >(CellMap left, CellMap right)
-		=> (Int128)left > right;
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >(CellMap left, CellMap right) => left > right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >=(CellMap left, CellMap right)
-		=> (Int128)left >= right;
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >=(CellMap left, CellMap right) => left >= right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <(CellMap left, CellMap right)
-		=> (Int128)left < right;
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <(CellMap left, CellMap right) => left < right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <=(CellMap left, CellMap right)
-		=> (Int128)left <= right;
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <=(CellMap left, CellMap right) => left <= right;
 
 
 	/// <summary>
@@ -1755,13 +1805,6 @@ public partial struct CellMap :
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator int[](scoped in CellMap offsets) => offsets.ToArray();
-
-	/// <summary>
-	/// Implicit cast from <see cref="CellMap"/> to <see cref="Int128"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Int128(scoped in CellMap offsets) => new((ulong)offsets._high, (ulong)offsets._low);
 
 	/// <summary>
 	/// Implicit cast from <see cref="Span{T}"/> to <see cref="CellMap"/>.
@@ -1826,6 +1869,13 @@ public partial struct CellMap :
 
 		return result;
 	}
+
+	/// <summary>
+	/// Implicit cast from <see cref="CellMap"/> to <see cref="Int128"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator Int128(scoped in CellMap offsets) => new((ulong)offsets._high, (ulong)offsets._low);
 
 	/// <summary>
 	/// Explicit cast from <see cref="Int128"/> to <see cref="CellMap"/>.

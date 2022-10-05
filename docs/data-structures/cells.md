@@ -68,6 +68,7 @@ public struct CellMap :
     public override readonly bool Equals([NotNullWhen(true)] object? obj);
     public readonly bool Equals(scoped in CellMap other);
     public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider);
+    public readonly int CompareTo(scoped in CellMap other);
     public readonly OneDimensionalArrayEnumerator<int> GetEnumerator();
     public override readonly int GetHashCode();
     public void Remove(int offset);
@@ -81,6 +82,10 @@ public struct CellMap :
     public static bool operator false(scoped in CellMap offsets);
     public static bool operator ==(scoped in CellMap left, scoped in CellMap right);
     public static bool operator !=(scoped in CellMap left, scoped in CellMap right);
+    public static bool operator >(scoped in CellMap left, scoped in CellMap right);
+    public static bool operator >=(scoped in CellMap left, scoped in CellMap right);
+    public static bool operator <(scoped in CellMap left, scoped in CellMap right);
+    public static bool operator <=(scoped in CellMap left, scoped in CellMap right);
     public static short operator /(scoped in CellMap map, int house);
     public static short operator checked /(scoped in CellMap map, int house);
     public static CellMap operator +(scoped in CellMap collection, int offset);
@@ -107,6 +112,9 @@ public struct CellMap :
     public static explicit operator CellMap(int[] offsets);
     public static explicit operator Span<int>(scoped in CellMap offsets);
     public static explicit operator ReadOnlySpan<int>(scoped in CellMap offsets);
+    public static explicit operator Int128(scoped in CellMap offsets);
+    public static explicit operator CellMap(scoped in Int128 int128);
+    public static explicit operator checked CellMap(scoped in Int128 int128);
 }
 ```
 
