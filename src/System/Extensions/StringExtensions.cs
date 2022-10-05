@@ -56,8 +56,7 @@ public static unsafe partial class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool SatisfyPattern(
-		this string @this, [StringSyntax(StringSyntaxAttribute.Regex), NotNullWhen(true)] string? pattern)
+	public static bool SatisfyPattern(this string @this, [StringSyntax(StringSyntaxAttribute.Regex), NotNullWhen(true)] string? pattern)
 		=> pattern?.IsRegexPattern() ?? false ? @this.Match(pattern) == @this : throw InvalidOperation;
 
 	/// <summary>
@@ -158,7 +157,8 @@ public static unsafe partial class StringExtensions
 	/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? Match(
-		this string @this, [StringSyntax(StringSyntaxAttribute.Regex, "regexOption")] string pattern, RegexOptions regexOption)
+		this string @this,
+		[StringSyntax(StringSyntaxAttribute.Regex, "regexOption")] string pattern, RegexOptions regexOption)
 		=> pattern.IsRegexPattern()
 			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value }
 				? value
@@ -211,7 +211,8 @@ public static unsafe partial class StringExtensions
 	/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(
-		this string @this, [StringSyntax(StringSyntaxAttribute.Regex, "regexOption")] string pattern,
+		this string @this,
+		[StringSyntax(StringSyntaxAttribute.Regex, "regexOption")] string pattern,
 		RegexOptions regexOption)
 		=> pattern.IsRegexPattern()
 			? from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value
