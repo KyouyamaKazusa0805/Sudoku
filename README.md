@@ -136,11 +136,15 @@ Please visit [this link](https://github.com/users/SunnieShine/projects/2) for mo
 
 ### Codes
 
-The codes in this repository uses MIT license, which means you should mention the copyright of the author of the repository if you want to use code snippet in this repository.
+The codes in this repository uses **MIT license**, which means you should mention the copyright of the author of the repository if you want to use code snippet in this repository.
+
+### Special project: `Sudoku.Recognition`
+
+This project uses some APIs and source code from repo [EmguCV](https://github.com/emgucv/emgucv). Therefore, the project uses a standalone open-source license. For more information please visit the file `LICENSE` in that project in source code.
 
 ### Wiki pages
 
-The repository also lists many wiki pages, being stored in the folder `docs`. In addition, files `README.md` and `README-zh-cn.md` (as Chinese translation version) are also included as wiki pages. Those pages uses CC-BY-4.0 license to constraint your usage and copyright statements on this repository. You should mention the copyright of the author in this repository and give the state changes after modified the content in the copied one if you want to use the Wiki pages.
+The repository also lists many wiki pages, being stored in the folder `docs`. In addition, files `README.md` and `README-zh-cn.md` (as Chinese translation version) are also included as wiki pages. Those pages uses **CC-BY-4.0 license** to constraint your usage and copyright statements on this repository. You should mention the copyright of the author in this repository and give the state changes after modified the content in the copied one if you want to use the Wiki pages.
 
 ## Code of Conduct
 
