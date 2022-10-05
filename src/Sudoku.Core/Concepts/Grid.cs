@@ -548,6 +548,15 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<int>.Count => 81;
 
+
+	/// <summary>
+	/// Indicates the event handler property, to be triggered when a value in the current grid is modified.
+	/// This customized handler will be triggered on same time with field <see cref="ValueChanged"/> being executed.
+	/// </summary>
+	/// <seealso cref="ValueChanged"/>
+	[DisallowNull]
+	public static delegate*<in GridValueChangedEventArgs, void> UserValueChanged { get; set; }
+
 	/// <inheritdoc/>
 	static Grid IMinMaxValue<Grid>.MinValue => MinValue;
 
@@ -623,8 +632,14 @@ public unsafe partial struct Grid :
 					result = (short)(ModifiableMask | 1 << value);
 
 					// To trigger the event, which is used for eliminate all same candidates in peer cells.
-					var f = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
-					f(ref this, cell, copied, result, value);
+					((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, result, value);
+
+#pragma warning disable IDE1005
+					if (UserValueChanged != null)
+					{
+						UserValueChanged(new(in this, cell, value, copied, result));
+					}
+#pragma warning restore IDE1005
 
 					break;
 				}
@@ -663,8 +678,14 @@ public unsafe partial struct Grid :
 				}
 
 				// To trigger the event.
-				var f = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
-				f(ref this, cell, copied, _values[cell], -1);
+				((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, _values[cell], -1);
+
+#pragma warning disable IDE1005
+				if (UserValueChanged != null)
+				{
+					UserValueChanged(new(in this, cell, -1, copied, _values[cell]));
+				}
+#pragma warning restore IDE1005
 			}
 		}
 	}
@@ -703,38 +724,8 @@ public unsafe partial struct Grid :
 	/// Indicates whether the current grid contains the specified candidate offset.
 	/// </summary>
 	/// <param name="candidate">The candidate offset.</param>
-	/// <returns>
-	/// The method will return a <see cref="bool"/>? value (contains three possible cases:
-	/// <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
-	/// All values corresponding to the cases are below:
-	/// <list type="table">
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>
-	/// The cell that the candidate specified is an empty cell <b>and</b> contains the specified digit
-	/// that the candidate specified.
-	/// </description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="false"/></term>
-	/// <description>
-	/// The cell that the candidate specified is an empty cell <b>but doesn't</b> contain the specified digit
-	/// that the candidate specified.
-	/// </description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>
-	/// The cell that the candidate specified is <b>not</b> an empty cell that the candidate specified.
-	/// </description>
-	/// </item>
-	/// </list>
-	/// </returns>
-	/// <remarks>
-	/// Note that the method will return a <see cref="bool"/>?, so you should use the code
-	/// '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
-	/// to decide whether a condition is true.
-	/// </remarks>
+	/// <returns><inheritdoc cref="Exists(int, int)" path="/returns"/></returns>
+	/// <remarks><inheritdoc cref="Exists(int, int)" path="/remarks"/></remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool? Exists(int candidate) => Exists(candidate / 9, candidate % 9);
 
@@ -791,8 +782,7 @@ public unsafe partial struct Grid :
 	/// Serializes this instance to an array, where all digit value will be stored.
 	/// </summary>
 	/// <returns>
-	/// This array. All elements are between 0 to 9, where 0 means the
-	/// cell is <see cref="CellStatus.Empty"/> now.
+	/// This array. All elements are between 0 and 9, where 0 means the cell is <see cref="CellStatus.Empty"/> now.
 	/// </returns>
 	public readonly int[] ToArray()
 	{
@@ -841,12 +831,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetCandidates(int cell) => (short)(_values[cell] & MaxCandidatesMask);
 
-	/// <summary>
-	/// Creates a mask of type <see cref="short"/> that represents the usages of digits 1 to 9,
-	/// ranged in a specified list of cells in the current sudoku grid.
-	/// </summary>
-	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
-	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
+	/// <inheritdoc cref="GetDigitsUnion(in CellMap)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetDigitsUnion(int[] cells)
 	{
@@ -878,15 +863,14 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// Creates a mask of type <see cref="short"/> that represents the usages of digits 1 to 9,
-	/// ranged in a specified list of cells in the current sudoku grid.
+	/// <inheritdoc cref="GetDigitsUnion(in CellMap)" path="/summary"/>
 	/// </summary>
-	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
+	/// <param name="cells"><inheritdoc cref="GetDigitsUnion(in CellMap)" path="/param[@name='cells']"/></param>
 	/// <param name="withValueCells">
 	/// Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
 	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
 	/// </param>
-	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
+	/// <returns><inheritdoc cref="GetDigitsUnion(in CellMap)" path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetDigitsUnion(scoped in CellMap cells, bool withValueCells)
 	{
@@ -1111,6 +1095,13 @@ public unsafe partial struct Grid :
 		mask = (short)((int)status << 9 | mask & MaxCandidatesMask);
 
 		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, mask, -1);
+
+#pragma warning disable IDE1005
+		if (UserValueChanged != null)
+		{
+			UserValueChanged(new(in this, cell, -1, copied, mask));
+		}
+#pragma warning restore IDE1005
 	}
 
 	/// <summary>
@@ -1126,6 +1117,13 @@ public unsafe partial struct Grid :
 		m = mask;
 
 		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, m, -1);
+
+#pragma warning disable IDE1005
+		if (UserValueChanged != null)
+		{
+			UserValueChanged(new(in this, cell, -1, copied, m));
+		}
+#pragma warning restore IDE1005
 	}
 
 	/// <summary>
