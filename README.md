@@ -148,7 +148,7 @@ The repository also lists many wiki pages, being stored in the folder `docs`. In
 
 ## Code of Conduct
 
-Please see the file [CODE_OF_CONDUCT](CODE_OF_CONDUCT).
+Please see file [CODE_OF_CONDUCT](CODE_OF_CONDUCT).
 
 ## Sudoku Technique References
 
@@ -160,6 +160,8 @@ Here we list some websites about sudoku techniques that I used and referenced. T
 ## Author
 
 Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University. I mean, a normal university (Pun)
+
+Please visit file [CONTACTS](CONTACTS) to contact me if you want.
 
 [^1]: The old name of the repository is "Sunnie's Sudoku Solution".
 
