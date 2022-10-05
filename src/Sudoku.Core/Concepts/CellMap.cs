@@ -884,7 +884,7 @@ public partial struct CellMap :
 		var offsets = Offsets;
 		for (int i = start, end = start + count; i < end; i++)
 		{
-			result += offsets[i];
+			result.Add(offsets[i]);
 		}
 
 		return result;

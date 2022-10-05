@@ -47,7 +47,7 @@ public interface IExocetStepSearcher : IStepSearcher
 			{ 3, 6 }, { 0, 6 }, { 0, 3 }, { 4, 7 }, { 1, 7 }, { 1, 4 }, { 5, 8 }, { 2, 8 }, { 2, 5 }
 		};
 
-		var t = (stackalloc int[3]);
+		scoped var t = (stackalloc int[3]);
 		scoped var crossline = (stackalloc int[25]); // Only use [7..24].
 		var n = 0;
 		for (var i = 0; i < 18; i++)
@@ -89,10 +89,10 @@ public interface IExocetStepSearcher : IStepSearcher
 							tr1,
 							bb[bc[i, 1]] + rq[l, 1],
 							(CellMap)crossline[7..],
-							CellMap.Empty + (bb[bc[i, 1]] + m[l, 2]) + (bb[bc[i, 1]] + m[l, 3]),
-							CellMap.Empty + (bb[bc[i, 1]] + m[l, 0]) + (bb[bc[i, 1]] + m[l, 1]),
-							CellMap.Empty + (bb[bc[i, 0]] + m[k, 2]) + (bb[bc[i, 0]] + m[k, 3]),
-							CellMap.Empty + (bb[bc[i, 0]] + m[k, 0]) + (bb[bc[i, 0]] + m[k, 1])
+							CellsMap[bb[bc[i, 1]] + m[l, 2]] + (bb[bc[i, 1]] + m[l, 3]),
+							CellsMap[bb[bc[i, 1]] + m[l, 0]] + (bb[bc[i, 1]] + m[l, 1]),
+							CellsMap[bb[bc[i, 0]] + m[k, 2]] + (bb[bc[i, 0]] + m[k, 3]),
+							CellsMap[bb[bc[i, 0]] + m[k, 0]] + (bb[bc[i, 0]] + m[k, 1])
 						);
 
 						n++;
