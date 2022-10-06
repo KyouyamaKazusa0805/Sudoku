@@ -555,7 +555,16 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <seealso cref="ValueChanged"/>
 	[DisallowNull]
-	public static delegate*<in GridValueChangedEventArgs, void> UserValueChanged { get; set; }
+	public static delegate*</*scoped*/ in GridValueChangedEventArgs, void> UserValueChanged { get; set; }
+
+	/// <summary>
+	/// Indicates the event handler property, to be triggered when the candidates are refreshed.
+	/// This customized handler will be triggered on same time with field <see cref="RefreshingCandidates"/>
+	/// being executed.
+	/// </summary>
+	/// <seealso cref="RefreshingCandidates"/>
+	[DisallowNull]
+	public static delegate*</*scoped*/ in GridRefreshingCandidatesEventArgs, void> UserRefreshingCandidates { get; set; }
 
 	/// <inheritdoc/>
 	static Grid IMinMaxValue<Grid>.MinValue => MinValue;
@@ -620,6 +629,13 @@ public unsafe partial struct Grid :
 					_values[cell] = DefaultMask;
 
 					((delegate*<ref Grid, void>)RefreshingCandidates)(ref this);
+
+#pragma warning disable IDE1005
+					if (UserRefreshingCandidates != null)
+					{
+						UserRefreshingCandidates(new(in this));
+					}
+#pragma warning restore IDE1005
 
 					break;
 				}

@@ -2305,6 +2305,14 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.UserRefreshingCandidates">
+            <summary>
+            Indicates the event handler property, to be triggered when the candidates are refreshed.
+            This customized handler will be triggered on same time with field <see cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
+            being executed.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MinValue">
             <inheritdoc/>
         </member>
@@ -2892,6 +2900,40 @@
             <summary>
             Indicates each value should minus one before creation.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs">
+            <summary>
+            Defines a type that is triggered when the candidates are refreshed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridRefreshingCandidatesEventArgs._gridRef">
+            <summary>
+            The backing field of property <see cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs"/> instance via the specified grid to be updated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef">
+            <summary>
+            Indicates the reference to the grid whose candidates are refreshed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor">
+            <summary>
+            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
+            </summary>
+            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
+            <remarks>
+            The main idea of the parameterless constructor is to create a new instance
+            without any extra information, but the current type is special:
+            It will be very slow to be initialized.
+            I only suggest you use constant or static read-only field (or static read-only property)
+            instead of using this constructor.
+            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.GridTransformations">
             <summary>
