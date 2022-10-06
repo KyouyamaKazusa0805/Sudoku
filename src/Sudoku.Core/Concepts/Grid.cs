@@ -8,6 +8,7 @@
 [JsonConverter(typeof(GridJsonConverter))]
 public unsafe partial struct Grid :
 	IEqualityOperators<Grid, Grid, bool>,
+	IFixable<Grid, short>,
 	IMinMaxValue<Grid>,
 	IEnumerable<int>,
 	IReadOnlyCollection<int>,
@@ -548,6 +549,9 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<int>.Count => 81;
 
+	/// <inheritdoc/>
+	readonly ref readonly short IFixable<Grid, short>.BlockReference => ref _values[0];
+
 
 	/// <summary>
 	/// Indicates the event handler property, to be triggered when a value in the current grid is modified.
@@ -921,9 +925,7 @@ public unsafe partial struct Grid :
 		return result;
 	}
 
-	/// <include
-	///	    file="../../global-doc-comments.xml"
-	///	    path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
+	/// <inheritdoc cref="IFixable{TSelf, TFixedVariable}.GetPinnableReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public readonly ref readonly short GetPinnableReference() => ref _values[0];
@@ -1202,6 +1204,10 @@ public unsafe partial struct Grid :
 
 		return result;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	ref short IFixable<Grid, short>.GetPinnableReference() => ref _values[0];
 
 	/// <summary>
 	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.

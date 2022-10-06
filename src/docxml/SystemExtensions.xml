@@ -2355,37 +2355,7 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:System.Text.StringHandler.GetPinnableReference">
-            <target name="method">
-				<summary>
-					Returns a reference as the fixed position of the current instance.
-					For example, the return value will be the pointer value that points to the zero-indexed
-					place in an array.
-				</summary>
-				<returns>A reference as the fixed position of the current instance.</returns>
-				<remarks>
-					Beginning with C# 7, we can customize the return value type of a <see langword="fixed" /> variable
-					if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
-					<see langword="ref" /> or <see langword="ref readonly" />. For example, if we hold a fixed buffer
-					of element type:
-					<code>
-					class ExampleType
-					{
-					    private fixed short _maskList[100];
-
-					    public ref readonly short GetPinnableReference() =&gt; ref _maskList[0];
-					}
-					</code>
-					We can use <see langword="fixed" /> statement to define a variable of type <see langword="short" />*
-					as the left-value.
-					<code>
-					var instance = new ExampleType();
-					fixed (short* ptr = instance)
-					{
-					    // Operation here.
-					}
-					</code>
-				</remarks>
-			</target>
+            <inheritdoc cref="M:System.IFixable`2.GetPinnableReference"/>
         </member>
         <member name="M:System.Text.StringHandler.GetPinnableReference(System.Boolean)">
             <summary>
@@ -3437,6 +3407,80 @@
             <param name="value">The value of type <typeparamref name="TSelf"/>.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="T:System.IFixable`2">
+            <summary>
+            Provides with a mechanism to allow the type <typeparamref name="TFixedVariable"/>
+            using <see langword="fixed"/> statements.
+            </summary>
+            <typeparam name="TSelf">The type of an instance that supports <see langword="fixed"/> statements.</typeparam>
+            <typeparam name="TFixedVariable">The type of the fixed variable.</typeparam>
+            <remarks>
+            If a type implements this interface type, we can use <see langword="fixed"/> statements on that type:
+            <code><![CDATA[
+            fixed (TFixedVariable* pBlockStart = fixable)
+            {
+                // ...
+            }
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="P:System.IFixable`2.BlockReference">
+            <summary>
+            <para>Indicates the reference to the block that references to the inner fixed buffer or the block used.</para>
+            <para>
+            The value can be <see langword="null"/> reference if the target type does not use fixed buffer
+            to bind with pinnable references. Therefore you should check for the nullability of the property
+            using both methods <see cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)"/> and <see cref="M:System.Runtime.CompilerServices.Unsafe.AsRef``1(``0@)"/>:
+            <code><![CDATA[
+            scoped ref readonly var @ref = ref instance.BlockRef;
+            if (Unsafe.IsNullRef(ref Unsafe.AsRef(in @ref)))
+            {
+                // Here '@ref' is null reference. If we use it ignoring it being null,
+                // we'll get a NullReferenceException.
+            }
+            else
+            {
+                // Not null. You can use it here.
+            }
+            ]]></code>
+            </para>
+            </summary>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)"/>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.AsRef``1(``0@)"/>
+        </member>
+        <member name="M:System.IFixable`2.GetPinnableReference">
+            <target name="method">
+				<summary>
+					Returns a reference as the fixed position of the current instance.
+					For example, the return value will be the pointer value that points to the zero-indexed
+					place in an array.
+				</summary>
+				<returns>A reference as the fixed position of the current instance.</returns>
+				<remarks>
+					Beginning with C# 7, we can customize the return value type of a <see langword="fixed" /> variable
+					if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
+					<see langword="ref" /> or <see langword="ref readonly" />. For example, if we hold a fixed buffer
+					of element type:
+					<code>
+					class ExampleType
+					{
+					    private fixed short _maskList[100];
+
+					    public ref readonly short GetPinnableReference() =&gt; ref _maskList[0];
+					}
+					</code>
+					We can use <see langword="fixed" /> statement to define a variable of type <see langword="short" />*
+					as the left-value.
+					<code>
+					var instance = new ExampleType();
+					fixed (short* ptr = instance)
+					{
+					    // Operation here.
+					}
+					</code>
+				</remarks>
+			</target>
+        </member>
         <member name="T:System.ILogicalNotOperators`2">
             <summary>
             Represents a type that supports logical not operators.
@@ -3939,6 +3983,9 @@
         <member name="P:System.Utf8String.System#Collections#Generic#IReadOnlyCollection{System#Utf8Char}#Count">
             <inheritdoc/>
         </member>
+        <member name="P:System.Utf8String.System#IFixable{System#Utf8String,System#Utf8Char}#BlockReference">
+            <inheritdoc/>
+        </member>
         <member name="P:System.Utf8String.Item(System.Int32)">
             <summary>
             Gets the reference of a character at the specified index in the current string.
@@ -3970,37 +4017,7 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:System.Utf8String.GetPinnableReference">
-            <target name="method">
-				<summary>
-					Returns a reference as the fixed position of the current instance.
-					For example, the return value will be the pointer value that points to the zero-indexed
-					place in an array.
-				</summary>
-				<returns>A reference as the fixed position of the current instance.</returns>
-				<remarks>
-					Beginning with C# 7, we can customize the return value type of a <see langword="fixed" /> variable
-					if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
-					<see langword="ref" /> or <see langword="ref readonly" />. For example, if we hold a fixed buffer
-					of element type:
-					<code>
-					class ExampleType
-					{
-					    private fixed short _maskList[100];
-
-					    public ref readonly short GetPinnableReference() =&gt; ref _maskList[0];
-					}
-					</code>
-					We can use <see langword="fixed" /> statement to define a variable of type <see langword="short" />*
-					as the left-value.
-					<code>
-					var instance = new ExampleType();
-					fixed (short* ptr = instance)
-					{
-					    // Operation here.
-					}
-					</code>
-				</remarks>
-			</target>
+            <inheritdoc cref="M:System.IFixable`2.GetPinnableReference"/>
         </member>
         <member name="M:System.Utf8String.GetHashCode">
             <inheritdoc/>
