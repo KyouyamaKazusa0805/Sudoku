@@ -555,7 +555,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <seealso cref="ValueChanged"/>
 	[DisallowNull]
-	public static delegate*</*scoped*/ in GridValueChangedEventArgs, void> UserValueChanged { get; set; }
+	public static delegate*<in GridValueChangedEventArgs, void> UserValueChanged { get; set; }
 
 	/// <summary>
 	/// Indicates the event handler property, to be triggered when the candidates are refreshed.
@@ -564,7 +564,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <seealso cref="RefreshingCandidates"/>
 	[DisallowNull]
-	public static delegate*</*scoped*/ in GridRefreshingCandidatesEventArgs, void> UserRefreshingCandidates { get; set; }
+	public static delegate*<in GridRefreshingCandidatesEventArgs, void> UserRefreshingCandidates { get; set; }
 
 	/// <inheritdoc/>
 	static Grid IMinMaxValue<Grid>.MinValue => MinValue;
