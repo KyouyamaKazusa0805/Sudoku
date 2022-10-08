@@ -89,7 +89,7 @@ public unsafe partial struct Grid :
 	/// This value is found out via backtracking algorithm. For more information about backtracking
 	/// algorithm, please visit documentation comments in project <c>Sudoku.Solving.Algorithms</c>.
 	/// </remarks>
-	public static readonly Grid MinValue;
+	public static readonly Grid MinValue = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
 
 	/// <summary>
 	/// Indicates the maximum possible grid value that the current type can reach.
@@ -98,7 +98,7 @@ public unsafe partial struct Grid :
 	/// This value is found out via backtracking algorithm. For more information about backtracking
 	/// algorithm, please visit documentation comments in project <c>Sudoku.Solving.Algorithms</c>.
 	/// </remarks>
-	public static readonly Grid MaxValue;
+	public static readonly Grid MaxValue = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
 
 
 	/// <summary>
@@ -203,52 +203,11 @@ public unsafe partial struct Grid :
 		}
 
 		// Initializes events.
-		ValueChanged = (delegate*<ref Grid, int, short, short, int, void>)&onValueChanged;
-		RefreshingCandidates = (delegate*<ref Grid, void>)&onRefreshingCandidates;
-
-		MinValue = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
-		MaxValue = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
-
-		static void onValueChanged(ref Grid @this, int cell, short oldMask, short newMask, int setValue)
-		{
-			if (setValue != -1)
-			{
-				foreach (var peerCell in PeersMap[cell])
-				{
-					if (@this.GetStatus(peerCell) == CellStatus.Empty)
-					{
-						// You can't do this because of being invoked recursively.
-						//@this[peerCell, setValue] = false;
-
-						@this._values[peerCell] &= (short)~(1 << setValue);
-					}
-				}
-			}
-		}
-
-		static void onRefreshingCandidates(ref Grid @this)
-		{
-			for (var i = 0; i < 81; i++)
-			{
-				if (@this.GetStatus(i) == CellStatus.Empty)
-				{
-					// Remove all appeared digits.
-					var mask = MaxCandidatesMask;
-					foreach (var cell in PeersMap[i])
-					{
-						if (@this[cell] is var digit and not -1)
-						{
-							mask &= (short)~(1 << digit);
-						}
-					}
-
-					@this._values[i] = (short)(EmptyMask | mask);
-				}
-			}
-		}
+		ValueChanged = (delegate*<ref Grid, int, short, short, int, void>)&EventHandlerOnValueChanged;
+		RefreshingCandidates = (delegate*<ref Grid, void>)&EventHandlerOnRefreshingCandidates;
 	}
 
-
+	
 	/// <summary>
 	/// Indicates the grid has already solved. If the value is <see langword="true"/>,
 	/// the grid is solved; otherwise, <see langword="false"/>.
@@ -1467,6 +1426,58 @@ public unsafe partial struct Grid :
 
 	[GeneratedRegex("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]
 	internal static partial Regex ExtendedSusserEliminationsPattern();
+
+	/// <summary>
+	/// The method that is invoked by event handler field <see cref="RefreshingCandidates"/>.
+	/// </summary>
+	/// <param name="this">The <see cref="Grid"/> instance.</param>
+	/// <seealso cref="RefreshingCandidates"/>
+	private static void EventHandlerOnRefreshingCandidates(ref Grid @this)
+	{
+		for (var i = 0; i < 81; i++)
+		{
+			if (@this.GetStatus(i) == CellStatus.Empty)
+			{
+				// Remove all appeared digits.
+				var mask = MaxCandidatesMask;
+				foreach (var cell in PeersMap[i])
+				{
+					if (@this[cell] is var digit and not -1)
+					{
+						mask &= (short)~(1 << digit);
+					}
+				}
+
+				@this._values[i] = (short)(EmptyMask | mask);
+			}
+		}
+	}
+
+	/// <summary>
+	/// The method that is invoked by event handler field <see cref="ValueChanged"/>.
+	/// </summary>
+	/// <param name="this">The <see cref="Grid"/> instance.</param>
+	/// <param name="cell">The cell.</param>
+	/// <param name="oldMask">The old and original mask.</param>
+	/// <param name="newMask">The new mask.</param>
+	/// <param name="setValue">The set value. Assign -1 if the cell should be set empty.</param>
+	/// <seealso cref="ValueChanged"/>
+	private static void EventHandlerOnValueChanged(ref Grid @this, int cell, short oldMask, short newMask, int setValue)
+	{
+		if (setValue != -1)
+		{
+			foreach (var peerCell in PeersMap[cell])
+			{
+				if (@this.GetStatus(peerCell) == CellStatus.Empty)
+				{
+					// You can't do this because of being invoked recursively.
+					//@this[peerCell, setValue] = false;
+
+					@this._values[peerCell] &= (short)~(1 << setValue);
+				}
+			}
+		}
+	}
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
