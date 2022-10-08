@@ -1570,37 +1570,14 @@
             </para>
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the specified digit, start and end cell.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="from">The start cell.</param>
-            <param name="to">The end cell.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the specified digit, start cell and end cells.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="from">The start cell.</param>
-            <param name="to">The end cells.</param>
-        </member>
         <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.Int32,Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
-            <inheritdoc cref="M:Sudoku.Concepts.Crosshatch.#ctor(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)"/>
+            <inheritdoc cref="M:Sudoku.Concepts.Crosshatch.Create(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.UInt64)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the specified digit, start and end cells.
+            Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the mask.
             </summary>
-            <param name="digit">The digit.</param>
-            <param name="from">The start cells.</param>
-            <param name="to">The end cells.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="from"/> or <paramref name="to"/> does not contain at most 3 cells,
-            or it is empty, or it is not an intersection, or the specified digit value <paramref name="digit"/>
-            is less than 0 or greater than 9.
-            </exception>
+            <param name="value">The mask value.</param>
         </member>
         <member name="P:Sudoku.Concepts.Crosshatch.Digit">
             <summary>
@@ -1628,6 +1605,35 @@
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Crosshatch.Create(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the specified digit, start and end cell.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="from">The start cell.</param>
+            <param name="to">The end cell.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Crosshatch.Create(System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the specified digit, start cell and end cells.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="from">The start cell.</param>
+            <param name="to">The end cells.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Crosshatch.Create(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the specified digit, start and end cells.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="from">The start cells.</param>
+            <param name="to">The end cells.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="from"/> or <paramref name="to"/> does not contain at most 3 cells,
+            or it is empty, or it is not an intersection, or the specified digit value <paramref name="digit"/>
+            is less than 0 or greater than 9.
+            </exception>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.GetCrosshatches(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32@)">
             <summary>

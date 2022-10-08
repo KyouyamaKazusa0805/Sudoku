@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using static Sudoku.SolutionWideReadOnlyFields;
 
-var crosshatch = new Crosshatch(3, in CellsMap[9], HousesMap[3] & HousesMap[18]);
+var crosshatch = Crosshatch.Create(3, in CellsMap[9], HousesMap[3] & HousesMap[18]);
 Console.WriteLine(crosshatch.ToString());
 
 var json = JsonSerializer.Serialize(crosshatch, new JsonSerializerOptions { WriteIndented = true });

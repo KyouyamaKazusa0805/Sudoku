@@ -46,67 +46,21 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 	private readonly ulong _value;
 
 
-	/// <summary>
-	/// Initializes a <see cref="Crosshatch"/> instance via the specified digit, start and end cell.
-	/// </summary>
-	/// <param name="digit">The digit.</param>
-	/// <param name="from">The start cell.</param>
-	/// <param name="to">The end cell.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Crosshatch(int digit, int from, int to) : this(digit, in CellsMap[from], in CellsMap[to])
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="Crosshatch"/> instance via the specified digit, start cell and end cells.
-	/// </summary>
-	/// <param name="digit">The digit.</param>
-	/// <param name="from">The start cell.</param>
-	/// <param name="to">The end cells.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Crosshatch(int digit, int from, scoped in CellMap to) : this(digit, in CellsMap[from], in to)
-	{
-	}
-
-	/// <inheritdoc cref="Crosshatch(int, in CellMap, in CellMap)"/>
+	/// <inheritdoc cref="Create(int, in CellMap, in CellMap)"/>
 	[DebuggerHidden]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[JsonConstructor]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
 	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
-	public Crosshatch(int digit, CellMap from, CellMap to) : this(digit, in from, in to)
-	{
-	}
+	public Crosshatch(int digit, CellMap from, CellMap to) => this = Create(digit, from, to);
 
 	/// <summary>
-	/// Initializes a <see cref="Crosshatch"/> instance via the specified digit, start and end cells.
+	/// Initializes a <see cref="Crosshatch"/> instance via the mask.
 	/// </summary>
-	/// <param name="digit">The digit.</param>
-	/// <param name="from">The start cells.</param>
-	/// <param name="to">The end cells.</param>
-	/// <exception cref="ArgumentException">
-	/// Throws when the argument <paramref name="from"/> or <paramref name="to"/> does not contain at most 3 cells,
-	/// or it is empty, or it is not an intersection, or the specified digit value <paramref name="digit"/>
-	/// is less than 0 or greater than 9.
-	/// </exception>
+	/// <param name="value">The mask value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Crosshatch(int digit, scoped in CellMap from, scoped in CellMap to)
-	{
-		Argument.ThrowIfFalse(from is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
-		Argument.ThrowIfFalse(to is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
-		Argument.ThrowIfFalse(digit is >= 0 and < 9);
-
-		_value = f2(from[0]) | f1(from[1], 7) | f1(from[2], 14) | f1(to[0], 21) | f1(to[1], 28) | f1(to[2], 35)
-			| (ulong)digit << 42;
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static ulong f1(int cell, int shiftiing) => (cell != -1 ? (ulong)cell : PerCellMaxMask) << shiftiing;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static ulong f2(int cell) => cell != -1 ? (ulong)cell : PerCellMaxMask;
-	}
+	private Crosshatch(ulong value) => _value = value;
 
 
 	/// <summary>
@@ -206,6 +160,56 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 
 
 	/// <summary>
+	/// Initializes a <see cref="Crosshatch"/> instance via the specified digit, start and end cell.
+	/// </summary>
+	/// <param name="digit">The digit.</param>
+	/// <param name="from">The start cell.</param>
+	/// <param name="to">The end cell.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Crosshatch Create(int digit, int from, int to) => Create(digit, CellsMap[from], CellsMap[to]);
+
+	/// <summary>
+	/// Initializes a <see cref="Crosshatch"/> instance via the specified digit, start cell and end cells.
+	/// </summary>
+	/// <param name="digit">The digit.</param>
+	/// <param name="from">The start cell.</param>
+	/// <param name="to">The end cells.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Crosshatch Create(int digit, int from, scoped in CellMap to) => Create(digit, CellsMap[from], to);
+
+	/// <summary>
+	/// Initializes a <see cref="Crosshatch"/> instance via the specified digit, start and end cells.
+	/// </summary>
+	/// <param name="digit">The digit.</param>
+	/// <param name="from">The start cells.</param>
+	/// <param name="to">The end cells.</param>
+	/// <exception cref="ArgumentException">
+	/// Throws when the argument <paramref name="from"/> or <paramref name="to"/> does not contain at most 3 cells,
+	/// or it is empty, or it is not an intersection, or the specified digit value <paramref name="digit"/>
+	/// is less than 0 or greater than 9.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Crosshatch Create(int digit, scoped in CellMap from, scoped in CellMap to)
+	{
+		Argument.ThrowIfFalse(from is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
+		Argument.ThrowIfFalse(to is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
+		Argument.ThrowIfFalse(digit is >= 0 and < 9);
+
+		return new(
+			f2(from[0]) | f1(from[1], 7) | f1(from[2], 14)
+				| f1(to[0], 21) | f1(to[1], 28) | f1(to[2], 35)
+				| (ulong)digit << 42
+		);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static ulong f1(int cell, int shiftiing) => (cell != -1 ? (ulong)cell : PerCellMaxMask) << shiftiing;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static ulong f2(int cell) => cell != -1 ? (ulong)cell : PerCellMaxMask;
+	}
+
+	/// <summary>
 	/// Try to get all crosshatches for a single candidate.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
@@ -273,7 +277,7 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 			using scoped var list = new ValueList<Crosshatch>(4);
 			foreach (var cell in targetCombination)
 			{
-				list.Add(new(digit, cell, PeersMap[cell] & grid.EmptyCells & houseCells));
+				list.Add(Create(digit, cell, PeersMap[cell] & grid.EmptyCells & houseCells));
 			}
 
 			return list.ToArray();
