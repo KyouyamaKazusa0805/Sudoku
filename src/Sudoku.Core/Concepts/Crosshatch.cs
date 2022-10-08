@@ -94,7 +94,7 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 		static ulong f1(int cell, int shiftiing) => (cell != -1 ? (ulong)cell : PerCellMaxMask) << shiftiing;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static ulong f2(int cell) => (cell != -1 ? (ulong)cell : PerCellMaxMask);
+		static ulong f2(int cell) => cell != -1 ? (ulong)cell : PerCellMaxMask;
 	}
 
 
