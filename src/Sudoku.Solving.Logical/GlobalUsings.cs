@@ -22,6 +22,8 @@ global using Expressive.Expressions;
 global using Expressive.Expressions.Binary;
 global using Expressive.Operators;
 global using Sudoku.Buffers;
+global using Sudoku.Compatibility.Hodoku;
+global using Sudoku.Compatibility.SudokuExplainer;
 global using Sudoku.Concepts;
 global using Sudoku.Linq;
 global using Sudoku.Presentation;

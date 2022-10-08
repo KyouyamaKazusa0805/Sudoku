@@ -133,12 +133,4 @@ public sealed class MergedResources
 	/// <returns>The string that represents the punctuation mark.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string EmitPunctuation(Punctuation punctuation) => R[punctuation.ToString()]!;
-
-	/// <summary>
-	/// Emits a string value represented as the technique name.
-	/// </summary>
-	/// <param name="technique">The technique name.</param>
-	/// <returns>The string that represents the technique name.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string EmitTechniqueName(Technique technique) => R[technique.ToString()]!;
 }
