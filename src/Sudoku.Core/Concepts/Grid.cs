@@ -212,7 +212,7 @@ public unsafe partial struct Grid :
 		MaxValue = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
 	}
 
-	
+
 	/// <summary>
 	/// Indicates the grid has already solved. If the value is <see langword="true"/>,
 	/// the grid is solved; otherwise, <see langword="false"/>.
@@ -677,8 +677,7 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly bool Equals([NotNullWhen(true)] object? obj)
-		=> obj is Grid comparer && Equals(comparer);
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Grid comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values
@@ -816,7 +815,6 @@ public unsafe partial struct Grid :
 	public readonly short GetCandidates(int cell) => (short)(_values[cell] & MaxCandidatesMask);
 
 	/// <inheritdoc cref="GetDigitsUnion(in CellMap)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetDigitsUnion(int[] cells)
 	{
 		short result = 0;
@@ -834,7 +832,6 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
 	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetDigitsUnion(scoped in CellMap cells)
 	{
 		short result = 0;
@@ -855,7 +852,6 @@ public unsafe partial struct Grid :
 	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
 	/// </param>
 	/// <returns><inheritdoc cref="GetDigitsUnion(in CellMap)" path="/returns"/></returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetDigitsUnion(scoped in CellMap cells, bool withValueCells)
 	{
 		short result = 0;
@@ -1143,10 +1139,7 @@ public unsafe partial struct Grid :
 	readonly IEnumerator<short> IEnumerable<short>.GetEnumerator()
 	{
 		var maskArray = new short[81];
-		CopyBlock(
-			ref As<short, byte>(ref AsRef(_values[0])),
-			ref As<short, byte>(ref maskArray[0]),
-			sizeof(short) * 81);
+		CopyBlock(ref As<short, byte>(ref AsRef(_values[0])), ref As<short, byte>(ref maskArray[0]), sizeof(short) * 81);
 
 		return ((IEnumerable<short>)maskArray).GetEnumerator();
 	}
@@ -1257,10 +1250,7 @@ public unsafe partial struct Grid :
 		Argument.ThrowIfNotEqual(masks.Length, 81, nameof(masks));
 
 		var result = Empty;
-		CopyBlock(
-			ref As<short, byte>(ref result._values[0]),
-			ref As<short, byte>(ref masks[0]),
-			sizeof(short) * 81);
+		CopyBlock(ref As<short, byte>(ref result._values[0]), ref As<short, byte>(ref masks[0]), sizeof(short) * 81);
 
 		return result;
 	}
@@ -1316,8 +1306,7 @@ public unsafe partial struct Grid :
 	/// <param name="gridParsingOption">The grid parsing type.</param>
 	/// <returns>The result instance had converted.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(string str, GridParsingOption gridParsingOption)
-		=> new GridParser(str).Parse(gridParsingOption);
+	public static Grid Parse(string str, GridParsingOption gridParsingOption) => new GridParser(str).Parse(gridParsingOption);
 
 	/// <inheritdoc cref="Parse(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1329,8 +1318,7 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc cref="Parse(string, GridParsingOption)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(Utf8String str, GridParsingOption gridParsingOption)
-		=> new Utf8GridParser(str).Parse(gridParsingOption);
+	public static Grid Parse(Utf8String str, GridParsingOption gridParsingOption) => new Utf8GridParser(str).Parse(gridParsingOption);
 
 	/// <summary>
 	/// <para>Parses a string value and converts to this type.</para>
