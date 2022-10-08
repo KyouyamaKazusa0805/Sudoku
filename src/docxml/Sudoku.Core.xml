@@ -620,6 +620,17 @@
             </list>
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.#ctor(System.Int32[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.CellMap"/> instance via a list of cell offsets.
+            </summary>
+            <param name="cellOffsets">The cell offsets.</param>
+        </member>
         <member name="P:Sudoku.Concepts.CellMap.InOneHouse">
             <summary>
             Same as the method <see cref="M:Sudoku.Concepts.CellMap.AllSetsAreInOneHouse(System.Int32@)"/>, but this property doesn't contain
@@ -1409,19 +1420,6 @@
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
-            </summary>
-            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
-            <remarks>
-            The main idea of the parameterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            It will be very slow to be initialized.
-            I only suggest you use constant or static read-only field (or static read-only property)
-            instead of using this constructor.
-            </remarks>
-        </member>
         <member name="T:Sudoku.Concepts.CellStatus">
             <summary>
             Represents a cell status.
@@ -1577,26 +1575,29 @@
             Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the specified digit, start and end cell.
             </summary>
             <param name="digit">The digit.</param>
-            <param name="start">The start cell.</param>
-            <param name="end">The end cell.</param>
+            <param name="from">The start cell.</param>
+            <param name="to">The end cell.</param>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the specified digit, start cell and end cells.
             </summary>
             <param name="digit">The digit.</param>
-            <param name="start">The start cell.</param>
-            <param name="end">The end cells.</param>
+            <param name="from">The start cell.</param>
+            <param name="to">The end cells.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.Int32,Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc cref="M:Sudoku.Concepts.Crosshatch.#ctor(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)"/>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the specified digit, start and end cells.
             </summary>
             <param name="digit">The digit.</param>
-            <param name="start">The start cells.</param>
-            <param name="end">The end cells.</param>
+            <param name="from">The start cells.</param>
+            <param name="to">The end cells.</param>
             <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="start"/> or <paramref name="end"/> does not contain at most 3 cells,
+            Throws when the argument <paramref name="from"/> or <paramref name="to"/> does not contain at most 3 cells,
             or it is empty, or it is not an intersection, or the specified digit value <paramref name="digit"/>
             is less than 0 or greater than 9.
             </exception>
@@ -1606,12 +1607,12 @@
             Indicates the digit used.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Crosshatch.Start">
+        <member name="P:Sudoku.Concepts.Crosshatch.From">
             <summary>
             Indicates what cells the current crosshatch start.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Crosshatch.End">
+        <member name="P:Sudoku.Concepts.Crosshatch.To">
             <summary>
             Indicates what cells the current crosshatch end.
             </summary>
@@ -7853,28 +7854,6 @@
             <item>The method can only be invoked by reflection.</item>
             </list>
             </summary>
-        </member>
-        <member name="T:Sudoku.Text.Serialization.Specialized.CellMapJsonConverter">
-            <summary>
-            Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Concepts.CellMap"/>.
-            </summary>
-            <remarks>
-            JSON Pattern:
-            <code>
-            [
-              "r1c1",
-              "r1c2",
-              "r1c3"
-            ]
-            </code>
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.CellMap"/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.CellMapJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.CellMapJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Serialization.Specialized.GridJsonConverter">
             <summary>

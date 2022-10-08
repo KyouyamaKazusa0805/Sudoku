@@ -3697,6 +3697,17 @@
             which is not able to be a target converted type for a <see langword="ref struct"/> instance.
             </summary>
         </member>
+        <member name="T:System.Runtime.CompilerServices.RequiresJsonSerializerDynamicInvocationMessage">
+            <summary>
+            Provides with a message that is represented as deprecated message in JSON serialization dynamic invocation.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.CompilerServices.RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly">
+            <summary>
+            Indicates the message that reports an error that user cannot use this constructor because of requirements on dynamic invocation
+            by JSON serializer handling.
+            </summary>
+        </member>
         <member name="T:System.Timers.ValueStopwatch">
             <summary>
             Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/>

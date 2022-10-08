@@ -1,4 +1,18 @@
-﻿try
+﻿using System.Text.Json;
+using static Sudoku.SolutionWideReadOnlyFields;
+
+var crosshatch = new Crosshatch(3, in CellsMap[9], HousesMap[3] & HousesMap[18]);
+Console.WriteLine(crosshatch.ToString());
+
+var json = JsonSerializer.Serialize(crosshatch, new JsonSerializerOptions { WriteIndented = true });
+Console.WriteLine(json);
+
+var newInstance = JsonSerializer.Deserialize<Crosshatch>(json);
+Console.WriteLine(newInstance.ToString());
+Console.WriteLine(crosshatch == newInstance);
+
+#if false
+try
 {
 	// Routes the command line arguments to the target root command to be executed.
 	RootCommand.Route(args);
@@ -32,3 +46,5 @@ catch (Exception ex)
 
 	return -(int)ErrorCode.OtherRuntimeError;
 }
+
+#endif

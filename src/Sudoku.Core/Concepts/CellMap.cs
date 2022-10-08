@@ -20,9 +20,7 @@ namespace Sudoku.Concepts;
 /// If you want to learn more information about this type, please visit
 /// <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
 /// </remarks>
-[DisallowParameterlessConstructor(SuggestedInstanceName = nameof(Empty))]
-[JsonConverter(typeof(CellMapJsonConverter))]
-public partial struct CellMap :
+public struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditiveIdentity<CellMap, CellMap>,
 	IBitwiseOperators<CellMap, CellMap, CellMap>,
@@ -97,6 +95,29 @@ public partial struct CellMap :
 	/// </list>
 	/// </summary>
 	private long _high, _low;
+
+
+	/// <summary>
+	/// Initializes a <see cref="CellMap"/> instance.
+	/// </summary>
+	[DebuggerHidden]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
+	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
+	public CellMap() => this = default;
+
+	/// <summary>
+	/// Initializes a <see cref="CellMap"/> instance via a list of cell offsets.
+	/// </summary>
+	/// <param name="cellOffsets">The cell offsets.</param>
+	[DebuggerHidden]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[JsonConstructor]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
+	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
+	public CellMap(int[] cellOffsets) => this = Empty + cellOffsets;
 
 
 	/// <summary>
@@ -386,6 +407,7 @@ public partial struct CellMap :
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
+	[JsonInclude]
 	private readonly int[] Offsets
 	{
 		get

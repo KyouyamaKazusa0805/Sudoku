@@ -11,12 +11,12 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 	/// Indicates the mask that is used for getting and checking the cells in the mask <see cref="_value"/>.
 	/// </summary>
 	/// <seealso cref="_value"/>
-	private const ulong CellsGroupMask = (1UL << 30) - 1;
+	private const ulong CellsGroupMask = (1UL << 21) - 1;
 
 	/// <summary>
 	/// Indicates the mask that is used for separating multiple cells in a group.
 	/// </summary>
-	private const ulong PerCellMaxMask = (1UL << 10) - 1;
+	private const ulong PerCellMaxMask = (1UL << 7) - 1;
 
 
 	/// <summary>
@@ -50,10 +50,10 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 	/// Initializes a <see cref="Crosshatch"/> instance via the specified digit, start and end cell.
 	/// </summary>
 	/// <param name="digit">The digit.</param>
-	/// <param name="start">The start cell.</param>
-	/// <param name="end">The end cell.</param>
+	/// <param name="from">The start cell.</param>
+	/// <param name="to">The end cell.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Crosshatch(int digit, int start, int end) : this(digit, CellsMap[start], CellsMap[end])
+	public Crosshatch(int digit, int from, int to) : this(digit, in CellsMap[from], in CellsMap[to])
 	{
 	}
 
@@ -61,10 +61,21 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 	/// Initializes a <see cref="Crosshatch"/> instance via the specified digit, start cell and end cells.
 	/// </summary>
 	/// <param name="digit">The digit.</param>
-	/// <param name="start">The start cell.</param>
-	/// <param name="end">The end cells.</param>
+	/// <param name="from">The start cell.</param>
+	/// <param name="to">The end cells.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Crosshatch(int digit, int start, scoped in CellMap end) : this(digit, CellsMap[start], end)
+	public Crosshatch(int digit, int from, scoped in CellMap to) : this(digit, in CellsMap[from], in to)
+	{
+	}
+
+	/// <inheritdoc cref="Crosshatch(int, in CellMap, in CellMap)"/>
+	[DebuggerHidden]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[JsonConstructor]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
+	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
+	public Crosshatch(int digit, CellMap from, CellMap to) : this(digit, in from, in to)
 	{
 	}
 
@@ -72,21 +83,21 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 	/// Initializes a <see cref="Crosshatch"/> instance via the specified digit, start and end cells.
 	/// </summary>
 	/// <param name="digit">The digit.</param>
-	/// <param name="start">The start cells.</param>
-	/// <param name="end">The end cells.</param>
+	/// <param name="from">The start cells.</param>
+	/// <param name="to">The end cells.</param>
 	/// <exception cref="ArgumentException">
-	/// Throws when the argument <paramref name="start"/> or <paramref name="end"/> does not contain at most 3 cells,
+	/// Throws when the argument <paramref name="from"/> or <paramref name="to"/> does not contain at most 3 cells,
 	/// or it is empty, or it is not an intersection, or the specified digit value <paramref name="digit"/>
 	/// is less than 0 or greater than 9.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Crosshatch(int digit, scoped in CellMap start, scoped in CellMap end)
+	public Crosshatch(int digit, scoped in CellMap from, scoped in CellMap to)
 	{
-		Argument.ThrowIfFalse(start is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
-		Argument.ThrowIfFalse(end is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
+		Argument.ThrowIfFalse(from is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
+		Argument.ThrowIfFalse(to is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
 		Argument.ThrowIfFalse(digit is >= 0 and < 9);
 
-		_value = f1(start[0], 21) | f1(start[1], 28) | f1(start[2], 35) | f2(end[0]) | f1(end[1], 7) | f1(end[2], 14)
+		_value = f2(from[0]) | f1(from[1], 7) | f1(from[2], 14) | f1(to[0], 21) | f1(to[1], 28) | f1(to[2], 35)
 			| (ulong)digit << 42;
 
 
@@ -101,6 +112,7 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
+	[JsonInclude]
 	public int Digit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -110,26 +122,27 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 	/// <summary>
 	/// Indicates what cells the current crosshatch start.
 	/// </summary>
-	public CellMap Start
+	[JsonInclude]
+	public CellMap From
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			var mask = _value >> 21 & CellsGroupMask;
-			var cell1 = (uint)(mask >> 14 & PerCellMaxMask);
-			var cell2 = (uint)(mask >> 7 & PerCellMaxMask);
-			var cell3 = (uint)(mask & PerCellMaxMask);
+			var mask = _value & CellsGroupMask;
+			var cell1 = mask & PerCellMaxMask;
+			var cell2 = mask >> 7 & PerCellMaxMask;
+			var cell3 = mask >> 14 & PerCellMaxMask;
 
 			var result = CellMap.Empty;
-			if (cell1 != uint.MaxValue) // Same as 'unchecked((uint)-1)'
+			if (cell1 != PerCellMaxMask)
 			{
 				result.Add((int)cell1);
 			}
-			if (cell2 != uint.MaxValue)
+			if (cell2 != PerCellMaxMask)
 			{
 				result.Add((int)cell2);
 			}
-			if (cell3 != uint.MaxValue)
+			if (cell3 != PerCellMaxMask)
 			{
 				result.Add((int)cell3);
 			}
@@ -141,25 +154,27 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 	/// <summary>
 	/// Indicates what cells the current crosshatch end.
 	/// </summary>
-	public CellMap End
+	[JsonInclude]
+	public CellMap To
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			var mask = _value & CellsGroupMask;
-			var cell1 = (uint)(mask >> 14 & PerCellMaxMask);
-			var cell2 = (uint)(mask >> 7 & PerCellMaxMask);
-			var cell3 = (uint)(mask & PerCellMaxMask);
+			var mask = _value >> 21 & CellsGroupMask;
+			var cell1 = mask & PerCellMaxMask;
+			var cell2 = mask >> 7 & PerCellMaxMask;
+			var cell3 = mask >> 14 & PerCellMaxMask;
+
 			var result = CellMap.Empty;
-			if (cell1 != uint.MaxValue) // Same as 'unchecked((uint)-1)'
+			if (cell1 != PerCellMaxMask)
 			{
 				result.Add((int)cell1);
 			}
-			if (cell2 != uint.MaxValue)
+			if (cell2 != PerCellMaxMask)
 			{
 				result.Add((int)cell2);
 			}
-			if (cell3 != uint.MaxValue)
+			if (cell3 != PerCellMaxMask)
 			{
 				result.Add((int)cell3);
 			}
@@ -179,14 +194,14 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Digit, Start, End);
+	public override int GetHashCode() => HashCode.Combine(Digit, From, To);
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
 		var digitStr = (Digit + 1).ToString();
-		return $"{Start}({digitStr}) -> {End}({digitStr})";
+		return $"{From}({digitStr}) -> {To}({digitStr})";
 	}
 
 

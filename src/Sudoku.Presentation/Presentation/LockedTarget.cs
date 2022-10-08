@@ -39,7 +39,6 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
-	[JsonConverter(typeof(CellMapJsonConverter))]
 	public CellMap Cells { get; init; }
 
 
