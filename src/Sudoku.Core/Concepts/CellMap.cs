@@ -50,8 +50,6 @@ public partial struct CellMap :
 	ISelectClauseProvider<int>,
 	ISimpleFormattable,
 	ISimpleParsable<CellMap>,
-	ISpanFormattable,
-	ISpanParsable<CellMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
 	ISubtractionOperators<CellMap, CellMap, CellMap>
 {
@@ -607,120 +605,6 @@ public partial struct CellMap :
 	public readonly bool Equals(scoped in CellMap other) => _low == other._low && _high == other._high;
 
 	/// <inheritdoc/>
-	public readonly bool TryFormat(
-		Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
-	{
-		var newLineStr = Environment.NewLine;
-		switch (format)
-		{
-			case { IsEmpty: true }:
-			case "B+" or "b+" when destination.Length < 83:
-			case "B" or "b" when destination.Length < 81:
-			case "T" or "t" when destination.Length < (3 * 7 + newLineStr.Length) * 13 - newLineStr.Length:
-			default:
-			{
-				charsWritten = 0;
-				return false;
-			}
-			case "B+" or "b+":
-			{
-				charsWritten = 83;
-
-				binaryFormat(this, true, destination);
-
-				return true;
-			}
-			case "B" or "b":
-			{
-				charsWritten = 81;
-
-				binaryFormat(this, false, destination);
-
-				return true;
-			}
-			case "T" or "t":
-			{
-				tableFormat(this, destination, newLineStr, out charsWritten);
-
-				return true;
-			}
-		}
-
-
-		static void tableFormat(scoped in CellMap @this, scoped Span<char> destination, string newLine, out int charsIndex)
-		{
-			charsIndex = 0;
-			for (var i = 0; i < 3; i++)
-			{
-				for (var bandLn = 0; bandLn < 3; bandLn++)
-				{
-					for (var j = 0; j < 3; j++)
-					{
-						for (var columnLn = 0; columnLn < 3; columnLn++)
-						{
-							destination[charsIndex++] = @this.Contains((i * 3 + bandLn) * 9 + j * 3 + columnLn) ? '*' : '.';
-							destination[charsIndex++] = ' ';
-						}
-
-						if (j != 2)
-						{
-							destination[charsIndex++] = '|';
-							destination[charsIndex++] = ' ';
-						}
-						else
-						{
-							destination[charsIndex++].Covers(newLine);
-							charsIndex += newLine.Length;
-						}
-					}
-				}
-
-				if (i != 2)
-				{
-					const string lineSeparator = "------+-------+------";
-					destination[charsIndex++].Covers(lineSeparator);
-					charsIndex += lineSeparator.Length;
-
-					destination[charsIndex++].Covers(newLine);
-					charsIndex += newLine.Length;
-				}
-			}
-		}
-
-		static void binaryFormat(scoped in CellMap @this, bool withSeparator, scoped Span<char> destination)
-		{
-			int i, charsIndex = 0;
-			long value;
-			for (i = 0, value = @this._low; i < 27; i++, value >>= 1)
-			{
-				destination[charsIndex++] = (char)((int)(value & 1) + '0');
-			}
-			if (withSeparator)
-			{
-				destination[charsIndex++] = ' ';
-			}
-			for (; i < 41; i++, value >>= 1)
-			{
-				destination[charsIndex++] = (char)((int)(value & 1) + '0');
-			}
-			for (value = @this._high; i < 54; i++, value >>= 1)
-			{
-				destination[charsIndex++] = (char)((int)(value & 1) + '0');
-			}
-			if (withSeparator)
-			{
-				destination[charsIndex++] = ' ';
-			}
-			for (; i < 81; i++, value >>= 1)
-			{
-				destination[charsIndex++] = (char)((int)(value & 1) + '0');
-			}
-
-			destination.Reverse();
-		}
-	}
-
-	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly int GetHashCode() => HashCode.Combine(_low, _high);
 
@@ -782,7 +666,7 @@ public partial struct CellMap :
 	{
 		return (format?.ToLower(), formatProvider) switch
 		{
-			("n", _) or (null, null) => RxCyNotation.ToCellsString(this),
+			("n", _) or (null or [], null) => RxCyNotation.ToCellsString(this),
 			("b+", _) => binaryToString(this, true),
 			("b", _) => binaryToString(this, false),
 			("t", _) => tableToString(this),
@@ -1224,26 +1108,8 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	static bool ISpanParsable<CellMap>.TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out CellMap result)
-	{
-		try
-		{
-			return TryParse(s.ToString(), out result);
-		}
-		catch
-		{
-			SkipInit(out result);
-			return false;
-		}
-	}
-
-	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap IParsable<CellMap>.Parse(string s, IFormatProvider? provider) => Parse(s);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap ISpanParsable<CellMap>.Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString());
 
 
 	/// <summary>

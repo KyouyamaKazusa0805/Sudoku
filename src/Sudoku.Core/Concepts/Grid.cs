@@ -89,7 +89,7 @@ public unsafe partial struct Grid :
 	/// This value is found out via backtracking algorithm. For more information about backtracking
 	/// algorithm, please visit documentation comments in project <c>Sudoku.Solving.Algorithms</c>.
 	/// </remarks>
-	public static readonly Grid MinValue = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
+	public static readonly Grid MinValue;
 
 	/// <summary>
 	/// Indicates the maximum possible grid value that the current type can reach.
@@ -98,7 +98,7 @@ public unsafe partial struct Grid :
 	/// This value is found out via backtracking algorithm. For more information about backtracking
 	/// algorithm, please visit documentation comments in project <c>Sudoku.Solving.Algorithms</c>.
 	/// </remarks>
-	public static readonly Grid MaxValue = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
+	public static readonly Grid MaxValue;
 
 
 	/// <summary>
@@ -196,7 +196,7 @@ public unsafe partial struct Grid :
 	{
 		// Initializes the empty grid.
 		Empty = default;
-		scoped ref var firstElement = ref Empty._values[0];
+		scoped ref var firstElement = ref Empty.GetMaskRefAt(0);
 		for (var i = 0; i < 81; i++)
 		{
 			AddByteOffset(ref firstElement, (nuint)(i * sizeof(short))) = DefaultMask;
@@ -205,6 +205,11 @@ public unsafe partial struct Grid :
 		// Initializes events.
 		ValueChanged = (delegate*<ref Grid, int, short, short, int, void>)&EventHandlerOnValueChanged;
 		RefreshingCandidates = (delegate*<ref Grid, void>)&EventHandlerOnRefreshingCandidates;
+
+		// Initializes special fields.
+		Undefined = default; // This field must be initialized after parsing the following two special fields.
+		MinValue = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
+		MaxValue = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
 	}
 
 	
