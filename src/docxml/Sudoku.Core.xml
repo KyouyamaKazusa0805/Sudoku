@@ -537,7 +537,7 @@
             Throws when the capacity isn't enough to store all values.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.CopyTo(System.Span{System.Int32}@)">
+        <member name="M:Sudoku.Concepts.Candidates.CopyTo(System.Span{System.Int32})">
             <summary>
             Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
             </summary>
@@ -1087,7 +1087,7 @@
             Throws when the capacity isn't enough to store all values.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.CopyTo(System.Span{System.Int32}@)">
+        <member name="M:Sudoku.Concepts.CellMap.CopyTo(System.Span{System.Int32})">
             <summary>
             Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
             </summary>

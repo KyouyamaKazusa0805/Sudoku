@@ -531,7 +531,7 @@ public partial struct CellMap :
 	/// The target <see cref="Span{T}"/> instance.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe void CopyTo(scoped ref Span<int> span)
+	public readonly unsafe void CopyTo(scoped Span<int> span)
 	{
 		fixed (int* arr = span)
 		{
