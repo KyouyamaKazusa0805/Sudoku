@@ -9,8 +9,10 @@
 public unsafe partial struct Grid :
 	IEqualityOperators<Grid, Grid, bool>,
 	IFixable<Grid, short>,
+	IFormattable,
 	IMinMaxValue<Grid>,
 	IEnumerable<int>,
+	IParsable<Grid>,
 	IReadOnlyCollection<int>,
 	IReadOnlyList<int>,
 	ISelectClauseProvider<short>,
@@ -972,6 +974,25 @@ public unsafe partial struct Grid :
 			}
 		};
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(string? format, IFormatProvider? formatProvider)
+	{
+		return (format, formatProvider) switch
+		{
+			(null, null) => ToString(null),
+			(not null, _) => ToString(format),
+			(_, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
+			(_, CultureInfo { Name: var name }) when e(name, "zh-cn") => ToString("#"),
+			(_, CultureInfo { Name: var name }) when e(name[..2], "en") => ToString("@"),
+			_ => ToString(null)
+		};
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static bool e(string n, string c) => n.Equals(c, StringComparison.OrdinalIgnoreCase);
+	}
+
 	/// <summary>
 	/// Get the cell status at the specified cell.
 	/// </summary>
@@ -1419,6 +1440,15 @@ public unsafe partial struct Grid :
 
 	[GeneratedRegex("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]
 	internal static partial Regex ExtendedSusserEliminationsPattern();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Grid IParsable<Grid>.Parse(string s, IFormatProvider? provider) => Parse(s);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IParsable<Grid>.TryParse(string? s, IFormatProvider? provider, out Grid result)
+		=> s is not null && TryParse(s, out result);
 
 	/// <summary>
 	/// The method that is invoked by event handler field <see cref="RefreshingCandidates"/>.

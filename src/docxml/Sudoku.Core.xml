@@ -2218,6 +2218,9 @@
         <member name="M:Sudoku.Concepts.Grid.ToString(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.GetStatus(System.Int32)">
             <summary>
             Get the cell status at the specified cell.
@@ -2472,6 +2475,12 @@
             ○ Match a Unicode digit exactly 3 times.<br/>
             </code>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.EventHandlerOnRefreshingCandidates(Sudoku.Concepts.Grid@)">
             <summary>
