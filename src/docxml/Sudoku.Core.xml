@@ -729,6 +729,12 @@
             For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
             </remarks>
         </member>
+        <member name="P:Sudoku.Concepts.CellMap.StringChunks">
+            <summary>
+            Gets all chunks of the current collection. That means, the list of <see cref="T:System.String"/> representations
+            that describes all cell indices, grouped and collapsed with same row/column.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.CellMap.System#Collections#Generic#ICollection{System#Int32}#IsReadOnly">
             <inheritdoc/>
         </member>

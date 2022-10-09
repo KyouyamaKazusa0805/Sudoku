@@ -410,6 +410,18 @@ public struct CellMap :
 		}
 	}
 
+	/// <summary>
+	/// Gets all chunks of the current collection. That means, the list of <see cref="string"/> representations
+	/// that describes all cell indices, grouped and collapsed with same row/column.
+	/// </summary>
+	[DebuggerHidden]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	internal readonly string[] StringChunks
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+	}
+
 	/// <inheritdoc/>
 	readonly bool ICollection<int>.IsReadOnly => false;
 
@@ -1891,5 +1903,5 @@ file sealed class Converter : JsonConverter<CellMap>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override void Write(Utf8JsonWriter writer, CellMap value, JsonSerializerOptions options)
-		=> writer.WriteArray(value.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries), options);
+		=> writer.WriteArray(value.StringChunks, options);
 }
