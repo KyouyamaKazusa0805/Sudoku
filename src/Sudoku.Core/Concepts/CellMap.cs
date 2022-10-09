@@ -105,19 +105,28 @@ public struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
 	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
-	public CellMap() => this = default;
+	public CellMap() => this = Empty;
 
 	/// <summary>
-	/// Initializes a <see cref="CellMap"/> instance via a list of cell offsets.
+	/// Initializes a <see cref="CellMap"/> instance via a list of cell offsets, represented as a RxCy notation
+	/// that is defined by <see cref="RxCyNotation"/>.
 	/// </summary>
-	/// <param name="cellOffsets">The cell offsets.</param>
+	/// <param name="cellOffsetsSegments">The cell offsets, represented as a RxCy notation.</param>
+	/// <seealso cref="RxCyNotation"/>
 	[DebuggerHidden]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[JsonConstructor]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
 	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
-	public CellMap(int[] cellOffsets) => this = Empty + cellOffsets;
+	public CellMap(string[] cellOffsetsSegments)
+	{
+		this = Empty;
+		foreach (var cellOffsetSegment in cellOffsetsSegments)
+		{
+			this |= RxCyNotation.ParseCells(cellOffsetSegment);
+		}
+	}
 
 
 	/// <summary>
@@ -407,7 +416,6 @@ public struct CellMap :
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
-	[JsonInclude]
 	private readonly int[] Offsets
 	{
 		get
@@ -444,6 +452,13 @@ public struct CellMap :
 			return arr;
 		}
 	}
+
+	/// <summary>
+	/// Indicates the cell offsets in this collection.
+	/// </summary>
+	[JsonInclude]
+	private readonly string[] NotationSegments
+		=> this ? ToString("n").Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries) : Array.Empty<string>();
 
 
 	/// <inheritdoc/>

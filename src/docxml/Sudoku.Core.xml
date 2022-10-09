@@ -625,11 +625,13 @@
             Initializes a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.#ctor(System.Int32[])">
+        <member name="M:Sudoku.Concepts.CellMap.#ctor(System.String[])">
             <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.CellMap"/> instance via a list of cell offsets.
+            Initializes a <see cref="T:Sudoku.Concepts.CellMap"/> instance via a list of cell offsets, represented as a RxCy notation
+            that is defined by <see cref="T:Sudoku.Text.Notations.RxCyNotation"/>.
             </summary>
-            <param name="cellOffsets">The cell offsets.</param>
+            <param name="cellOffsetsSegments">The cell offsets, represented as a RxCy notation.</param>
+            <seealso cref="T:Sudoku.Text.Notations.RxCyNotation"/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.InOneHouse">
             <summary>
@@ -731,6 +733,11 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Offsets">
+            <summary>
+            Indicates the cell offsets in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.NotationSegments">
             <summary>
             Indicates the cell offsets in this collection.
             </summary>
