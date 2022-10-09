@@ -4,7 +4,7 @@
 public sealed class SCA0101_LargeStructTypeAnalyzer : DiagnosticAnalyzer
 {
 	/// <inheritdoc/>
-	public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(SCA0101, SCA0001);
+	public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(SCA0001, SCA0101);
 
 
 	/// <inheritdoc/>
@@ -32,10 +32,10 @@ public sealed class SCA0101_LargeStructTypeAnalyzer : DiagnosticAnalyzer
 				}
 
 				var nodeLocation = node.GetLocation();
-				var largeStruct = compilation.GetTypeByMetadataName(SpecialFullTypeNames.LargeStructAttribute);
-				if (largeStruct is null)
+				var attributeTYpe = compilation.GetTypeByMetadataName(SpecialFullTypeNames.IsLargeStructAttribute);
+				if (attributeTYpe is null)
 				{
-					oac.ReportDiagnostic(Diagnostic.Create(SCA0001, nodeLocation, messageArgs: SpecialFullTypeNames.LargeStructAttribute));
+					oac.ReportDiagnostic(Diagnostic.Create(SCA0001, nodeLocation, messageArgs: SpecialFullTypeNames.IsLargeStructAttribute));
 					return;
 				}
 
@@ -45,7 +45,8 @@ public sealed class SCA0101_LargeStructTypeAnalyzer : DiagnosticAnalyzer
 					return;
 				}
 
-				if (attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, largeStruct)) is not { } a)
+				var a = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTYpe));
+				if (a is null)
 				{
 					return;
 				}

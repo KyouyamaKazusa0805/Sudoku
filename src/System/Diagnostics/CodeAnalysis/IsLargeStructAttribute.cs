@@ -4,7 +4,7 @@
 /// Indicates the type is a large structure.
 /// </summary>
 [AttributeUsage(AttributeTargets.Struct, Inherited = false)]
-public sealed class LargeStructAttribute : Attribute
+public sealed class IsLargeStructAttribute : Attribute
 {
 	/// <summary>
 	/// Indicates the suggested member name.

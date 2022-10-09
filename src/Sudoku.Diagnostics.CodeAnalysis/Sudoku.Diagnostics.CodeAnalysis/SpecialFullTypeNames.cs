@@ -5,5 +5,5 @@
 /// </summary>
 internal static class SpecialFullTypeNames
 {
-	public const string LargeStructAttribute = $"System.Diagnostics.CodeAnalysis.{nameof(LargeStructAttribute)}";
+	public const string IsLargeStructAttribute = $"System.Diagnostics.CodeAnalysis.{nameof(IsLargeStructAttribute)}";
 }

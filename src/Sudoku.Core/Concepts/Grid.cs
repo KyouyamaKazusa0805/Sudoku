@@ -5,7 +5,7 @@
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [JsonConverter(typeof(Converter))]
-[LargeStruct(SuggestedMemberName = nameof(Empty))]
+[IsLargeStruct(SuggestedMemberName = nameof(Empty))]
 public unsafe partial struct Grid :
 	IEqualityOperators<Grid, Grid, bool>,
 	IFixable<Grid, short>,
