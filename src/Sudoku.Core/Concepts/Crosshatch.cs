@@ -230,61 +230,83 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 	/// </exception>
 	public static Crosshatch[] GetCrosshatches(scoped in Grid grid, int digit, int house, out int targetCell)
 	{
+		const string error_TargetHouseNotContainHiddenSingle = "The target house does not contain a valid hidden single of the current digit.";
+		const string error_ArgHouseIsInvalid = $"The argument '{nameof(house)}' is invalid.";
+		const string error_ArgGridIsInvalid = "The grid is invalid: The crosshatching operation is failed to be checked.";
+
 		var houseCells = HousesMap[house];
-		var methodGetByBlock = getByBlock;
-		var methodGetByLine = getByLine;
-		return house switch
+		var valueCellsOfDigit = (house, grid) switch
 		{
-			>= 0 and < 27 => (grid.CandidatesMap[digit] & houseCells) switch
+			(>= 0 and < 27, { CandidatesMap: var cMap, ValuesMap: var vMap }) => (cMap[digit] & houseCells) switch
 			{
-				[var c] => (house is >= 0 and < 9 ? methodGetByBlock : methodGetByLine)(grid, targetCell = c),
-				_ => throw new InvalidOperationException("The target house does not contain a valid hidden single of the current digit.")
+				[var c] when (targetCell = c) is var _ => house switch
+				{
+					>= 0 and < 9 => getByBlock(vMap, digit, house),
+					_ => getByLine(vMap, targetCell, digit)
+				},
+				_ => throw new InvalidOperationException(error_TargetHouseNotContainHiddenSingle)
 			},
-			_ => throw new ArgumentOutOfRangeException($"The argument '{nameof(house)}' is invalid.", nameof(house))
+			_ => throw new ArgumentOutOfRangeException(error_ArgHouseIsInvalid, nameof(house))
 		};
 
-
-		Crosshatch[] getByBlock(scoped in Grid grid, int targetCell)
+		var cellsShouldBeEliminated = houseCells - targetCell;
+		var tempTargetCombination = (CellMap?)null;
+		foreach (var combination in valueCellsOfDigit | valueCellsOfDigit.Count)
 		{
-			var cellsShouldBeEliminated = houseCells - targetCell;
-			var valueCellsOfDigit = CellMap.Empty;
+			if ((combination.ExpandedPeers & houseCells) == cellsShouldBeEliminated)
+			{
+				tempTargetCombination = combination;
+				break;
+			}
+		}
+		if (tempTargetCombination is not { } targetCombination)
+		{
+			throw new ArgumentException(error_ArgGridIsInvalid, nameof(grid));
+		}
+
+		using scoped var list = new ValueList<Crosshatch>(6);
+		foreach (var cell in targetCombination)
+		{
+			list.Add(Create(digit, cell, PeersMap[cell] & grid.EmptyCells & houseCells));
+		}
+
+		return list.ToArray();
+
+
+		static CellMap getByBlock(CellMap[] valuesMap, int digit, int house)
+		{
+			var result = CellMap.Empty;
 			var crosshatchingHouses = CrosshatchingHousesList[house];
 			foreach (var crosshatchingHouse in crosshatchingHouses)
 			{
-				if ((HousesMap[crosshatchingHouse] & grid.ValuesMap[digit]) is [var cell])
+				if ((HousesMap[crosshatchingHouse] & valuesMap[digit]) is [var cell])
 				{
-					valueCellsOfDigit.Add(cell);
+					result.Add(cell);
 				}
 			}
 
-			var tempTargetCombination = (CellMap?)null;
-			foreach (var combination in valueCellsOfDigit | valueCellsOfDigit.Count)
-			{
-				if ((combination.ExpandedPeers & houseCells) == cellsShouldBeEliminated)
-				{
-					tempTargetCombination = combination;
-					break;
-				}
-			}
-			if (tempTargetCombination is not { } targetCombination)
-			{
-				throw new ArgumentException(
-					"The grid is invalid: The crosshatching operation is failed to be checked.",
-					nameof(grid)
-				);
-			}
-
-			using scoped var list = new ValueList<Crosshatch>(4);
-			foreach (var cell in targetCombination)
-			{
-				list.Add(Create(digit, cell, PeersMap[cell] & grid.EmptyCells & houseCells));
-			}
-
-			return list.ToArray();
+			return result;
 		}
 
-		Crosshatch[] getByLine(scoped in Grid grid, int targetCell)
-			=> throw new NotImplementedException("The method will be implemented later.");
+		static CellMap getByLine(CellMap[] valuesMap, int targetCell, int digit)
+		{
+			var result = CellMap.Empty;
+			var block = targetCell.ToHouseIndex(HouseType.Block);
+			for (var i = 0; i < 9; i++)
+			{
+				if (block == i)
+				{
+					continue;
+				}
+
+				if ((HousesMap[i] & valuesMap[digit]) is [var cell])
+				{
+					result.Add(cell);
+				}
+			}
+
+			return result;
+		}
 	}
 
 
