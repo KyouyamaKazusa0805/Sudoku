@@ -955,8 +955,8 @@ public unsafe partial struct Grid :
 	public readonly string ToString(string? format)
 		=> this switch
 		{
-			{ IsEmpty: true } => "<Empty>",
-			{ IsUndefined: true } => "<Undefined>",
+			{ IsEmpty: true } => $"<{nameof(Empty)}>",
+			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
 			_ => GridFormatterFactory.Create(format) switch
 			{
 				var f => format switch
@@ -1298,7 +1298,13 @@ public unsafe partial struct Grid :
 	/// </remarks>
 	/// <seealso cref="op_Explicit(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(string str) => new GridParser(str).Parse();
+	public static Grid Parse(string str)
+		=> str switch
+		{
+			$"<{nameof(Empty)}>" => Empty,
+			$"<{nameof(Undefined)}>" => Undefined,
+			_ => new GridParser(str).Parse()
+		};
 
 	/// <summary>
 	/// <para>
@@ -1555,13 +1561,10 @@ file sealed class Converter : JsonConverter<Grid>
 
 
 	/// <inheritdoc/>
-	/// <exception cref="JsonException">Throws while reading <see langword="null"/>.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		=> Grid.Parse(reader.GetString() ?? throw new JsonException("Value cannot be null."));
+	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => (Grid)reader.GetString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString("#"));
+	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options) => writer.WriteStringValue($"{value:#}");
 }
