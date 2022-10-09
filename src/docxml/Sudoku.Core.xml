@@ -2965,6 +2965,15 @@
             Indicates the inference is the default case that doesn't belong to above.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Converter">
+            <inheritdoc cref="T:Sudoku.Concepts.Converter"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Inference,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.SymmetryType">
             <summary>
             Define a symmetry type.
@@ -7895,24 +7904,6 @@
             <item>The method can only be invoked by reflection.</item>
             </list>
             </summary>
-        </member>
-        <member name="T:Sudoku.Text.Serialization.Specialized.InferenceJsonConverter">
-            <summary>
-            Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Concepts.Inference"/>.
-            </summary>
-            <remarks>
-            JSON Pattern:
-            <code>
-            "Strong"
-            </code>
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Inference"/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.InferenceJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.InferenceJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Inference,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ExtendedSusserEliminationsPattern method.</summary>

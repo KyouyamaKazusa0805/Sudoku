@@ -26,7 +26,6 @@ global using Sudoku.Text;
 global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;
 global using Sudoku.Text.Parsing;
-global using Sudoku.Text.Serialization.Specialized;
 global using static System.Algorithm.Sequences;
 global using static System.Algorithm.Sorting;
 global using static System.Math;

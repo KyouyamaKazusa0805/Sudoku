@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines an inference.
 /// </summary>
-[JsonConverter(typeof(InferenceJsonConverter))]
+[JsonConverter(typeof(Converter))]
 [EnumSwitchExpressionRoot("GetIdentifier", MethodDescription = "Gets the identifier of the inference.", ThisParameterDescription = "The inference.", ReturnValueDescription = "The identifier value.")]
 public enum Inference : byte
 {
@@ -42,4 +42,20 @@ public enum Inference : byte
 	/// </summary>
 	[EnumSwitchExpressionArm("GetIdentifier", " -- ")]
 	Default
+}
+
+/// <inheritdoc cref="Converter"/>
+file sealed class Converter : JsonConverter<Inference>
+{
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override Inference Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		=> reader.Read() && reader.TokenType == JsonTokenType.String && reader.GetString() is { } value
+			? Enum.Parse<Inference>(value)
+			: throw new JsonException();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override void Write(Utf8JsonWriter writer, Inference value, JsonSerializerOptions options)
+		=> writer.WriteStringValue(value.ToString());
 }
