@@ -102,7 +102,7 @@ public readonly ref struct GridFormatter
 	public char Placeholder
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (_flags >> 10 & 1) != 0 ? '.' : '0';
+		get => (_flags >> 10 & 1) == 0 ? '.' : '0';
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		init => _flags = value switch

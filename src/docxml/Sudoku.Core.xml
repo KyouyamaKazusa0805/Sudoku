@@ -1427,6 +1427,20 @@
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
+        <member name="T:Sudoku.Concepts.Converter">
+            <summary>
+            Indicates the JSON converter of the current type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Converter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.CellStatus">
             <summary>
             Represents a cell status.
@@ -2561,6 +2575,21 @@
             I only suggest you use constant or static read-only field (or static read-only property)
             instead of using this constructor.
             </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Converter">
+            <summary>
+            Indicates the JSON converter of the current type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Converter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+            <exception cref="T:System.Text.Json.JsonException">Throws while reading <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>
@@ -7867,24 +7896,6 @@
             <item>The method can only be invoked by reflection.</item>
             </list>
             </summary>
-        </member>
-        <member name="T:Sudoku.Text.Serialization.Specialized.GridJsonConverter">
-            <summary>
-            Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <remarks>
-            JSON Pattern:
-            <code>
-            "4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997"
-            </code>
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.GridJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.GridJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Serialization.Specialized.InferenceJsonConverter">
             <summary>

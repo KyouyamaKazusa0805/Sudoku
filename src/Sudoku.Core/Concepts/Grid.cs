@@ -4,8 +4,8 @@
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
+[JsonConverter(typeof(Converter))]
 [DisallowParameterlessConstructor(SuggestedInstanceName = nameof(Empty))]
-[JsonConverter(typeof(GridJsonConverter))]
 public unsafe partial struct Grid :
 	IEqualityOperators<Grid, Grid, bool>,
 	IFixable<Grid, short>,
@@ -1543,4 +1543,25 @@ public unsafe partial struct Grid :
 	/// <seealso cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator Grid(string? gridCode) => gridCode is null ? Undefined : Parse(gridCode);
+}
+
+/// <summary>
+/// Indicates the JSON converter of the current type.
+/// </summary>
+file sealed class Converter : JsonConverter<Grid>
+{
+	/// <inheritdoc/>
+	public override bool HandleNull => true;
+
+
+	/// <inheritdoc/>
+	/// <exception cref="JsonException">Throws while reading <see langword="null"/>.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		=> Grid.Parse(reader.GetString() ?? throw new JsonException("Value cannot be null."));
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
+		=> writer.WriteStringValue(value.ToString("#"));
 }

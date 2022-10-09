@@ -20,6 +20,7 @@ namespace Sudoku.Concepts;
 /// If you want to learn more information about this type, please visit
 /// <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
 /// </remarks>
+[JsonConverter(typeof(Converter))]
 public struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditiveIdentity<CellMap, CellMap>,
@@ -116,7 +117,6 @@ public struct CellMap :
 	[DebuggerHidden]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[JsonConstructor]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
 	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
 	public CellMap(string[] cellOffsetsSegments)
@@ -972,13 +972,11 @@ public struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool ISet<int>.IsProperSubsetOf(IEnumerable<int> other)
-		=> ((IReadOnlySet<int>)this).IsProperSubsetOf(other);
+	readonly bool ISet<int>.IsProperSubsetOf(IEnumerable<int> other) => ((IReadOnlySet<int>)this).IsProperSubsetOf(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool ISet<int>.IsProperSupersetOf(IEnumerable<int> other)
-		=> ((IReadOnlySet<int>)this).IsProperSupersetOf(other);
+	readonly bool ISet<int>.IsProperSupersetOf(IEnumerable<int> other) => ((IReadOnlySet<int>)this).IsProperSupersetOf(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1817,4 +1815,32 @@ public struct CellMap :
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator ReadOnlySpan<int>(scoped in CellMap offsets) => offsets.Offsets;
+}
+
+/// <summary>
+/// Indicates the JSON converter of the current type.
+/// </summary>
+file sealed class Converter : JsonConverter<CellMap>
+{
+	/// <inheritdoc/>
+	public override bool HandleNull => false;
+
+
+	/// <inheritdoc/>
+	public override CellMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	{
+		var result = CellMap.Empty;
+		var parts = JsonSerializer.Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
+		foreach (var part in parts)
+		{
+			result |= RxCyNotation.ParseCells(part);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override void Write(Utf8JsonWriter writer, CellMap value, JsonSerializerOptions options)
+		=> writer.WriteArray(value.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries), options);
 }

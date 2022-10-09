@@ -2000,6 +2000,15 @@
             <param name="instance">The instance to be serialized.</param>
             <param name="options">The options.</param>
         </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteArray``1(System.Text.Json.Utf8JsonWriter,``0[],System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            To write an array of element type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The <see cref="T:System.Text.Json.Utf8JsonWriter"/> instance.</param>
+            <param name="array">The array.</param>
+            <param name="options">The options.</param>
+        </member>
         <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteStringValue(System.Text.Json.Utf8JsonWriter,System.Text.StringHandler@)">
             <summary>
             Writes a string text value specified as a <see cref="T:System.Text.StringHandler"/> instance as an element
