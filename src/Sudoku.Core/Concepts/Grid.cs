@@ -4,8 +4,9 @@
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
-[JsonConverter(typeof(Converter))]
 [DisallowParameterlessConstructor(SuggestedInstanceName = nameof(Empty))]
+[JsonConverter(typeof(Converter))]
+[LargeStruct(SuggestedMemberName = nameof(Empty))]
 public unsafe partial struct Grid :
 	IEqualityOperators<Grid, Grid, bool>,
 	IFixable<Grid, short>,

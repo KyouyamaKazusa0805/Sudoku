@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>preview</LangVersion>
+		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
+
+		<!-- Avoid ID conflicts with the package project. -->
+		<PackageId>*$(MSBuildProjectFile)*</PackageId>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\..\Global.CodeGen\SystemExtensions\Index.cs" Link="SystemExtensions\Index.cs" />
+		<Compile Include="..\..\Global.CodeGen\SystemExtensions\IsExternalInit.cs" Link="SystemExtensions\IsExternalInit.cs" />
+		<Compile Include="..\..\Global.CodeGen\SystemExtensions\Range.cs" Link="SystemExtensions\Range.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4-beta1.22403.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0-2.final" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="SystemExtensions\" />
+	</ItemGroup>
+
+</Project>

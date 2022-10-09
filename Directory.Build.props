@@ -19,7 +19,7 @@
 	</PropertyGroup>
 
 	<!--Enables the preview features if the project is not the source generators.-->
-	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='false' And '$(LangVersion)'=='preview'">
+	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='false' And '$(MSBuildProjectFile.StartsWith(`Sudoku.Diagnostics.CodeAnalysis`))'=='false' And '$(LangVersion)'=='preview'">
 		<EnablePreviewFeatures>true</EnablePreviewFeatures>
 		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
 	</PropertyGroup>

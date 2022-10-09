@@ -1,0 +1,10 @@
+﻿global using System.Collections.Generic;
+global using System.Collections.Immutable;
+global using System.Linq;
+global using System.Runtime.CompilerServices;
+global using Microsoft.CodeAnalysis;
+global using Microsoft.CodeAnalysis.CSharp.Syntax;
+global using Microsoft.CodeAnalysis.Diagnostics;
+global using Microsoft.CodeAnalysis.Operations;
+global using static Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors;
+global using NamedArguments = System.Collections.Immutable.ImmutableArray<System.Collections.Generic.KeyValuePair<string, Microsoft.CodeAnalysis.TypedConstant>>;
