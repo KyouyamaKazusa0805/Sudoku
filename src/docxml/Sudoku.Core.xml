@@ -2245,36 +2245,6 @@
         <member name="M:Sudoku.Concepts.Grid.GetPinnableReference">
             <inheritdoc cref="M:System.IFixable`2.GetPinnableReference"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GetMaskRefAt(System.Int32)">
-            <summary>
-            Gets the mask at the specified position. This method returns the reference of the mask.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>The reference to the mask that you want to get.</returns>
-            <remarks>
-            <para>
-            This method returns the reference, which means you can use this method as an lvalue.
-            For example, if you want to use bitwise-or operator to update the value, you can use:
-            <code><![CDATA[
-            // Update the mask.
-            short mask = ...;
-            grid.GetMaskRefAt(0) |= mask;
-            ]]></code>
-            The expression <c>grid.GetMaskRefAt(0) |= mask</c> is equivalent to
-            <c>grid.GetMaskRefAt(0) = grid.GetMaskRefAt(0) | mask</c>, and it can be replaced
-            with the expression <c>grid._values[0] = grid._values[0] | mask</c>,
-            meaning we update the mask at the first place (i.e. <c>r1c1</c>).
-            </para>
-            <para>
-            This method is a little bit different with <see cref="M:Sudoku.Concepts.Grid.GetPinnableReference"/>.
-            This method returns an modifiable reference, therefore the return value is
-            <see langword="ref"/> <see cref="T:System.Int16"/> instead of <see langword="ref readonly"/> <see cref="T:System.Int16"/>
-            being used by that method, which means you cannot use it as an lvalue to update the mask.
-            In addition, that method always returns the reference to the <b>first</b> element.
-            </para>
-            </remarks>
-            <seealso cref="M:Sudoku.Concepts.Grid.GetPinnableReference"/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.ToMaskString">
             <summary>
             Get all masks and print them.
@@ -2367,6 +2337,36 @@
             </summary>
             <param name="cell">The cell.</param>
             <param name="mask">The mask to set.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.GetMaskRefAt(System.Int32)">
+            <summary>
+            Gets the mask at the specified position. This method returns the reference of the mask.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The reference to the mask that you want to get.</returns>
+            <remarks>
+            <para>
+            This method returns the reference, which means you can use this method as an lvalue.
+            For example, if you want to use bitwise-or operator to update the value, you can use:
+            <code><![CDATA[
+            // Update the mask.
+            short mask = ...;
+            grid.GetMaskRefAt(0) |= mask;
+            ]]></code>
+            The expression <c>grid.GetMaskRefAt(0) |= mask</c> is equivalent to
+            <c>grid.GetMaskRefAt(0) = grid.GetMaskRefAt(0) | mask</c>, and it can be replaced
+            with the expression <c>grid._values[0] = grid._values[0] | mask</c>,
+            meaning we update the mask at the first place (i.e. <c>r1c1</c>).
+            </para>
+            <para>
+            This method is a little bit different with <see cref="M:Sudoku.Concepts.Grid.GetPinnableReference"/>.
+            This method returns an modifiable reference, therefore the return value is
+            <see langword="ref"/> <see cref="T:System.Int16"/> instead of <see langword="ref readonly"/> <see cref="T:System.Int16"/>
+            being used by that method, which means you cannot use it as an lvalue to update the mask.
+            In addition, that method always returns the reference to the <b>first</b> element.
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.Grid.GetPinnableReference"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.UnfixSolution(Sudoku.Concepts.CellMap@)">
             <summary>
