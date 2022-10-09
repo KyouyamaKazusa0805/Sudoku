@@ -4,12 +4,18 @@
 /// Defines a type that can convert a <see cref="Candidates"/> instance into a result <see cref="string"/>
 /// representation to describe the candidate collection.
 /// </summary>
-/// <typeparam name="TBaseType">The base type that applies the interface.</typeparam>
+/// <typeparam name="TSelf">The base type that applies the interface.</typeparam>
 /// <typeparam name="TOptions">The type that is used as the provider for extra options.</typeparam>
-public interface ICandidateNotation<TBaseType, TOptions>
-	where TBaseType : class, INotationHandler, ICandidateNotation<TBaseType, TOptions>
-	where TOptions : struct, INotationHandlerOptions<TOptions>
+public interface ICandidateNotation<TSelf, TOptions>
+	where TSelf : class, ICandidateNotation<TSelf, TOptions>
+	where TOptions : struct, INotationOptions<TOptions>
 {
+	/// <summary>
+	/// Indicates the candidate notation kind that the current type supports.
+	/// </summary>
+	public static abstract CandidateNotation CandidateNotation { get; }
+
+
 	/// <summary>
 	/// <para>
 	/// Try to parse the specified <see cref="string"/> value, and convert it into the <see cref="Candidates"/>

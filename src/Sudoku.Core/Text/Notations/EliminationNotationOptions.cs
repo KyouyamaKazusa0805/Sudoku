@@ -12,10 +12,10 @@
 /// <para>The default value is <c>" "</c>.</para>
 /// </param>
 public readonly record struct EliminationNotationOptions(bool DigitFirst = true, string Separator = " ") :
-	INotationHandlerOptions<EliminationNotationOptions>
+	INotationOptions<EliminationNotationOptions>
 {
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	public static readonly EliminationNotationOptions Default = new(true, " ");
+	public static EliminationNotationOptions Default => new(true, " ");
 }

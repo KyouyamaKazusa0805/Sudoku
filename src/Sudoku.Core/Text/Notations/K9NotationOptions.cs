@@ -21,10 +21,10 @@ public readonly record struct K9NotationOptions(
 	bool UpperCasing = false,
 	bool AvoidConfusionOnRowLetters = false,
 	string Separator = ", "
-) : INotationHandlerOptions<K9NotationOptions>
+) : INotationOptions<K9NotationOptions>
 {
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	public static readonly K9NotationOptions Default = new(false, false, ", ");
+	public static K9NotationOptions Default => new(false, false, ", ");
 }

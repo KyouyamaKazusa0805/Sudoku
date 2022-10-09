@@ -23,7 +23,6 @@
 /// </para>
 /// </remarks>
 public sealed partial class RxCyNotation :
-	INotationHandler,
 	ICellNotation<RxCyNotation, RxCyNotationOptions>,
 	ICandidateNotation<RxCyNotation, RxCyNotationOptions>
 {
@@ -45,7 +44,10 @@ public sealed partial class RxCyNotation :
 
 
 	/// <inheritdoc/>
-	public Notation Notation => Notation.RxCy;
+	public static CellNotation CellNotation => CellNotation.RxCy;
+
+	/// <inheritdoc/>
+	public static CandidateNotation CandidateNotation => CandidateNotation.RxCy;
 
 
 	/// <summary>

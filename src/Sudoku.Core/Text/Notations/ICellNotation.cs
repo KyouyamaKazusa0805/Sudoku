@@ -4,12 +4,18 @@
 /// Defines a type that can convert a <see cref="CellMap"/> instance into a result <see cref="string"/>
 /// representation to describe the cell collection.
 /// </summary>
-/// <typeparam name="TBaseType">The base type that applies the interface.</typeparam>
+/// <typeparam name="TSelf">The base type that applies the interface.</typeparam>
 /// <typeparam name="TOptions">The type that is used as the provider for extra options.</typeparam>
-public interface ICellNotation<TBaseType, TOptions>
-	where TBaseType : class, INotationHandler, ICellNotation<TBaseType, TOptions>
-	where TOptions : struct, INotationHandlerOptions<TOptions>
+public interface ICellNotation<TSelf, TOptions>
+	where TSelf : class, ICellNotation<TSelf, TOptions>
+	where TOptions : struct, INotationOptions<TOptions>
 {
+	/// <summary>
+	/// Indicates the cell notation kind that the current type supports.
+	/// </summary>
+	public static abstract CellNotation CellNotation { get; }
+
+
 	/// <summary>
 	/// <para>
 	/// Try to parse the specified <see cref="string"/> value, and convert it into the <see cref="CellMap"/>

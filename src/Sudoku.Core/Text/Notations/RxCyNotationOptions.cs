@@ -14,10 +14,10 @@
 /// is <c>", "</c>.
 /// </param>
 public readonly record struct RxCyNotationOptions(bool UpperCasing = false, string Separator = ", ") :
-	INotationHandlerOptions<RxCyNotationOptions>
+	INotationOptions<RxCyNotationOptions>
 {
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	public static readonly RxCyNotationOptions Default = new(false, ", ");
+	public static RxCyNotationOptions Default => new(false, ", ");
 }

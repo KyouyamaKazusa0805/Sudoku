@@ -24,7 +24,7 @@
 /// a <see langword="private"/> instance constructor, which disallows you deriving any types.
 /// </para>
 /// </remarks>
-public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notation, K9NotationOptions>
+public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOptions>
 {
 	/// <summary>
 	/// Indicates all possible letters that used in the row notation.
@@ -37,7 +37,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 
 
 	/// <inheritdoc/>
-	public Notation Notation => Notation.K9;
+	public static CellNotation CellNotation => CellNotation.K9;
 
 
 	/// <inheritdoc/>

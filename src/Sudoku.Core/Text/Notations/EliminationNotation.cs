@@ -5,16 +5,14 @@
 /// to output the <see cref="string"/> representation, or parse a <see cref="string"/> value to convert
 /// it to the suitable-typed instance.
 /// </summary>
-public sealed class EliminationNotation :
-	INotationHandler,
-	ICandidateNotation<EliminationNotation, EliminationNotationOptions>
+public sealed class EliminationNotation : ICandidateNotation<EliminationNotation, EliminationNotationOptions>
 {
 	[Obsolete("Please don't call this constructor.", true)]
 	private EliminationNotation() => throw new NotSupportedException();
 
 
 	/// <inheritdoc/>
-	public Notation Notation => Notation.HodokuElimination;
+	public static CandidateNotation CandidateNotation => CandidateNotation.SusserElimination;
 
 
 	/// <inheritdoc/>

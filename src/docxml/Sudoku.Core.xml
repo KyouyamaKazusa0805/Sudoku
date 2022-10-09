@@ -859,9 +859,51 @@
         </member>
         <member name="M:Sudoku.Concepts.CellMap.ToString(System.String)">
             <inheritdoc/>
+            <remarks>
+            Supported format strings:
+            <list type="table">
+            <item>
+            <term><c>"N"</c> or <c>"n"</c></term>
+            <description>
+            Gets the normal representation of the cells, i.e. An <b>RxCy notation</b>.
+            For more information please visit the XML documentation comments of type <see cref="T:Sudoku.Text.Notations.RxCyNotation"/>.
+            </description>
+            </item>
+            <item>
+            <term><c>"B"</c> or <c>"b"</c></term>
+            <description>
+            Converts the current instance into a binary representation, using bit 0 to indicate
+            a certain cell not containing in the collection; otherwise bit 1.
+            </description>
+            </item>
+            <item>
+            <term><c>"B+"</c> or <c>"b+"</c></term>
+            <description>
+            Same as format <c>"B"</c> (or <c>"b"</c>), but with whitespace after each 27 bits.
+            </description>
+            </item>
+            <item>
+            <term><c>"T"</c> or <c>"t"</c></term>
+            <description>Converts the current instance into a table representation.</description>
+            </item>
+            </list>
+            If <paramref name="format"/> is <see langword="null"/> or empty string <c>""</c>, the result string will be same as the case
+            that <paramref name="format"/> is <c>"N"</c> or <c>"n"</c>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Text.Notations.CellNotation)">
+            <summary>
+            Gets the <see cref="T:System.String"/> representation that can describe the current instance,
+            with the specified kind of notation.
+            </summary>
+            <param name="notation">Indicates the notation kind.</param>
+            <returns>The result string converted.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="notation"/> is not defined in enumeration type.
+            </exception>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.GetEnumerator">
             <summary>
@@ -6744,6 +6786,41 @@
             </param>
             <returns>A <see cref="T:System.String"/> result.</returns>
         </member>
+        <member name="T:Sudoku.Text.Notations.CandidateNotation">
+            <summary>
+            Represents a notation kind that describe a candidate list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notations.CandidateNotation.RxCy">
+            <summary>
+            Indicates the notation kind is <b>RxCy</b>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notations.CandidateNotation.K9">
+            <summary>
+            Indicates the notation kind is <b>K9</b>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notations.CandidateNotation.SusserElimination">
+            <summary>
+            Indicates the notation kind is <b>Susser Elimination Format</b>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Notations.CellNotation">
+            <summary>
+            Represents a notation kind that describe a cell list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notations.CellNotation.RxCy">
+            <summary>
+            Indicates the notation kind is <b>RxCy</b>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notations.CellNotation.K9">
+            <summary>
+            Indicates the notation kind is <b>K9</b>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Text.Notations.EliminationNotation">
             <summary>
             Encapsulates a set of methods that handles a variety of instances, using Hodoku elimination notation
@@ -6751,7 +6828,7 @@
             it to the suitable-typed instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Notations.EliminationNotation.Notation">
+        <member name="P:Sudoku.Text.Notations.EliminationNotation.CandidateNotation">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.EliminationNotation.TryParseCandidates(System.String,Sudoku.Concepts.Candidates@)">
@@ -6804,7 +6881,7 @@
             <para>The default value is <c>" "</c>.</para>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.Notations.EliminationNotationOptions.Default">
+        <member name="P:Sudoku.Text.Notations.EliminationNotationOptions.Default">
             <summary>
             Indicates the default instance.
             </summary>
@@ -6814,8 +6891,13 @@
             Defines a type that can convert a <see cref="T:Sudoku.Concepts.Candidates"/> instance into a result <see cref="T:System.String"/>
             representation to describe the candidate collection.
             </summary>
-            <typeparam name="TBaseType">The base type that applies the interface.</typeparam>
+            <typeparam name="TSelf">The base type that applies the interface.</typeparam>
             <typeparam name="TOptions">The type that is used as the provider for extra options.</typeparam>
+        </member>
+        <member name="P:Sudoku.Text.Notations.ICandidateNotation`2.CandidateNotation">
+            <summary>
+            Indicates the candidate notation kind that the current type supports.
+            </summary>
         </member>
         <member name="M:Sudoku.Text.Notations.ICandidateNotation`2.TryParseCandidates(System.String,Sudoku.Concepts.Candidates@)">
             <summary>
@@ -6868,8 +6950,13 @@
             Defines a type that can convert a <see cref="T:Sudoku.Concepts.CellMap"/> instance into a result <see cref="T:System.String"/>
             representation to describe the cell collection.
             </summary>
-            <typeparam name="TBaseType">The base type that applies the interface.</typeparam>
+            <typeparam name="TSelf">The base type that applies the interface.</typeparam>
             <typeparam name="TOptions">The type that is used as the provider for extra options.</typeparam>
+        </member>
+        <member name="P:Sudoku.Text.Notations.ICellNotation`2.CellNotation">
+            <summary>
+            Indicates the cell notation kind that the current type supports.
+            </summary>
         </member>
         <member name="M:Sudoku.Text.Notations.ICellNotation`2.TryParseCells(System.String,Sudoku.Concepts.CellMap@)">
             <summary>
@@ -6917,21 +7004,19 @@
             Throws when the parsing operation is failed due to invalid characters or invalid operation.
             </exception>
         </member>
-        <member name="T:Sudoku.Text.Notations.INotationHandler">
+        <member name="T:Sudoku.Text.Notations.INotationOptions`1">
             <summary>
-            Defines a type that handles using the current notation.
+            Defines a type that provides the extra options that is used by
+            <see cref="T:Sudoku.Text.Notations.ICellNotation`2"/> or <see cref="T:Sudoku.Text.Notations.ICandidateNotation`2"/> instances.
             </summary>
+            <typeparam name="TSelf">The type of the handler.</typeparam>
+            <seealso cref="T:Sudoku.Text.Notations.ICellNotation`2"/>
+            <seealso cref="T:Sudoku.Text.Notations.ICandidateNotation`2"/>
         </member>
-        <member name="P:Sudoku.Text.Notations.INotationHandler.Notation">
+        <member name="P:Sudoku.Text.Notations.INotationOptions`1.Default">
             <summary>
-            Indicates the notation of the current provider type.
+            Indicates the default instance.
             </summary>
-        </member>
-        <member name="T:Sudoku.Text.Notations.INotationHandlerOptions`1">
-            <summary>
-            Defines a type that provides the extra options that is used by the <see cref="T:Sudoku.Text.Notations.INotationHandler"/> instance.
-            </summary>
-            <typeparam name="T">The type of the handler.</typeparam>
         </member>
         <member name="T:Sudoku.Text.Notations.K9Notation">
             <summary>
@@ -6964,7 +7049,7 @@
             Indicates all possible letters that used in the row notation.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Notations.K9Notation.Notation">
+        <member name="P:Sudoku.Text.Notations.K9Notation.CellNotation">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.K9Notation.ToCellsString(Sudoku.Concepts.CellMap@)">
@@ -7046,29 +7131,9 @@
             is <c>", "</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.Notations.K9NotationOptions.Default">
+        <member name="P:Sudoku.Text.Notations.K9NotationOptions.Default">
             <summary>
             Indicates the default instance.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Text.Notations.Notation">
-            <summary>
-            Represents a notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Notations.Notation.RxCy">
-            <summary>
-            Indicates the RxCy notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Notations.Notation.K9">
-            <summary>
-            Indicates the K9 notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Notations.Notation.HodokuElimination">
-            <summary>
-            Indicates the notation that is used by the program called Hodoku, as the eliminations.
             </summary>
         </member>
         <member name="T:Sudoku.Text.Notations.RxCyNotation">
@@ -7105,7 +7170,10 @@
             Indicates a pattern that matches for a post-positional formed candidate list.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Notations.RxCyNotation.Notation">
+        <member name="P:Sudoku.Text.Notations.RxCyNotation.CellNotation">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Notations.RxCyNotation.CandidateNotation">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.RxCyNotation.TryParseCell(System.String,System.Int32@)">
@@ -7311,7 +7379,7 @@
             is <c>", "</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.Notations.RxCyNotationOptions.Default">
+        <member name="P:Sudoku.Text.Notations.RxCyNotationOptions.Default">
             <summary>
             Indicates the default instance.
             </summary>

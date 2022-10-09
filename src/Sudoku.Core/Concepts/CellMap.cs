@@ -694,6 +694,37 @@ public struct CellMap :
 	public override readonly string ToString() => ToString(null);
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// Supported format strings:
+	/// <list type="table">
+	/// <item>
+	/// <term><c>"N"</c> or <c>"n"</c></term>
+	/// <description>
+	/// Gets the normal representation of the cells, i.e. An <b>RxCy notation</b>.
+	/// For more information please visit the XML documentation comments of type <see cref="RxCyNotation"/>.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><c>"B"</c> or <c>"b"</c></term>
+	/// <description>
+	/// Converts the current instance into a binary representation, using bit 0 to indicate
+	/// a certain cell not containing in the collection; otherwise bit 1.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><c>"B+"</c> or <c>"b+"</c></term>
+	/// <description>
+	/// Same as format <c>"B"</c> (or <c>"b"</c>), but with whitespace after each 27 bits.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><c>"T"</c> or <c>"t"</c></term>
+	/// <description>Converts the current instance into a table representation.</description>
+	/// </item>
+	/// </list>
+	/// If <paramref name="format"/> is <see langword="null"/> or empty string <c>""</c>, the result string will be same as the case
+	/// that <paramref name="format"/> is <c>"N"</c> or <c>"n"</c>.
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format) => ToString(format, null);
 
@@ -785,6 +816,24 @@ public struct CellMap :
 			return sb.ToStringAndClear();
 		}
 	}
+
+	/// <summary>
+	/// Gets the <see cref="string"/> representation that can describe the current instance,
+	/// with the specified kind of notation.
+	/// </summary>
+	/// <param name="notation">Indicates the notation kind.</param>
+	/// <returns>The result string converted.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="notation"/> is not defined in enumeration type.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(CellNotation notation)
+		=> notation switch
+		{
+			CellNotation.RxCy => RxCyNotation.ToCellsString(this),
+			CellNotation.K9 => K9Notation.ToCellsString(this),
+			_ => throw new ArgumentOutOfRangeException(nameof(notation))
+		};
 
 	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
