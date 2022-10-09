@@ -2966,7 +2966,9 @@
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.Converter">
-            <inheritdoc cref="T:Sudoku.Concepts.Converter"/>
+            <summary>
+            Indicates the JSON converter of the current type.
+            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>

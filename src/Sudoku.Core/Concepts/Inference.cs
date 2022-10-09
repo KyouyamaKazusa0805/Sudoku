@@ -44,7 +44,9 @@ public enum Inference : byte
 	Default
 }
 
-/// <inheritdoc cref="Converter"/>
+/// <summary>
+/// Indicates the JSON converter of the current type.
+/// </summary>
 file sealed class Converter : JsonConverter<Inference>
 {
 	/// <inheritdoc/>
