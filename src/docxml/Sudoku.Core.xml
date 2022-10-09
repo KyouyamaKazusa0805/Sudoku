@@ -2611,19 +2611,6 @@
             <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
             <seealso cref="M:System.ISimpleParsable`1.Parse(System.String)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
-            </summary>
-            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
-            <remarks>
-            The main idea of the parameterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            It will be very slow to be initialized.
-            I only suggest you use constant or static read-only field (or static read-only property)
-            instead of using this constructor.
-            </remarks>
-        </member>
         <member name="T:Sudoku.Concepts.Converter">
             <summary>
             Indicates the JSON converter of the current type.

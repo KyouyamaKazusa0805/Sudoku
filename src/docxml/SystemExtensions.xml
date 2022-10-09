@@ -1418,6 +1418,16 @@
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.LargeStructAttribute">
+            <summary>
+            Indicates the type is a large structure.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.LargeStructAttribute.SuggestedMemberName">
+            <summary>
+            Indicates the suggested member name.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute">
             <summary>
             Telling the source generators to generate extension deconstruction methods for a specified type.

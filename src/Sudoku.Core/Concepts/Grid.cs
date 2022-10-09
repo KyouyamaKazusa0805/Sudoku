@@ -4,7 +4,6 @@
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
-[DisallowParameterlessConstructor(SuggestedInstanceName = nameof(Empty))]
 [JsonConverter(typeof(Converter))]
 [LargeStruct(SuggestedMemberName = nameof(Empty))]
 public unsafe partial struct Grid :
