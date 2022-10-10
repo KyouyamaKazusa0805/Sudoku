@@ -32,8 +32,8 @@ public sealed class SCA0101_LargeStructTypeAnalyzer : DiagnosticAnalyzer
 				}
 
 				var nodeLocation = node.GetLocation();
-				var attributeTYpe = compilation.GetTypeByMetadataName(SpecialFullTypeNames.IsLargeStructAttribute);
-				if (attributeTYpe is null)
+				var attributeType = compilation.GetTypeByMetadataName(SpecialFullTypeNames.IsLargeStructAttribute);
+				if (attributeType is null)
 				{
 					oac.ReportDiagnostic(Diagnostic.Create(SCA0001, nodeLocation, messageArgs: SpecialFullTypeNames.IsLargeStructAttribute));
 					return;
@@ -45,7 +45,7 @@ public sealed class SCA0101_LargeStructTypeAnalyzer : DiagnosticAnalyzer
 					return;
 				}
 
-				var a = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTYpe));
+				var a = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType));
 				if (a is null)
 				{
 					return;
