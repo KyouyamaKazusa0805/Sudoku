@@ -6,5 +6,4 @@
 internal static class SpecialNamedArgumentNames
 {
 	public const string SuggestedMemberName = nameof(SuggestedMemberName);
-	public const string TypeName = nameof(TypeName);
 }

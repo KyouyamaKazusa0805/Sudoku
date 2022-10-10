@@ -1,8 +1,26 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis;
 
+/// <summary>
+/// Indicates the analyzer that can provide the following diagnostic results:
+/// <list type="bullet">
+/// <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
+/// <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0101">SCA0101</see> (Don't initialize large structure)</item>
+/// </list>
+/// </summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class SCA0101_LargeStructTypeAnalyzer : DiagnosticAnalyzer
 {
+	/// <summary>
+	/// Indicates the property name <c>SuggestedMemberName</c>.
+	/// </summary>
+	public const string PropertyName_SuggestedMemberName = "SuggestedMemberName";
+
+	/// <summary>
+	/// Indicates the property name <c>TypeName</c>.
+	/// </summary>
+	public const string PropertyName_TypeName = "TypeName";
+
+
 	/// <inheritdoc/>
 	public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(SCA0001, SCA0101);
 
@@ -59,9 +77,9 @@ public sealed class SCA0101_LargeStructTypeAnalyzer : DiagnosticAnalyzer
 						ImmutableDictionary.CreateRange(
 							new KeyValuePair<string, string?>[]
 							{
-								new(SpecialNamedArgumentNames.TypeName, name),
+								new(PropertyName_TypeName, name),
 								new(
-									SpecialNamedArgumentNames.SuggestedMemberName,
+									PropertyName_SuggestedMemberName,
 									a switch
 									{
 										{ NamedArguments: var l and not [] } when f(l) is { Value: string value } => value,

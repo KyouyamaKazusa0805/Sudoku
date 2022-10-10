@@ -4,8 +4,8 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<IsPackable>false</IsPackable>
 		<RootNamespace>Sudoku.Diagnostics.CodeAnalysis</RootNamespace>
-		<LangVersion>preview</LangVersion>
-		<Nullable>enable</Nullable>
+		<Description>Provides diagnostic APIs that provides with code fixes on C# files in the whole sudoku solution.</Description>
+		<DocumentationFile>..\..\docxml\Sudoku.Diagnostics.CodeAnalysis.CodeFixes.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

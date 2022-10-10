@@ -1,8 +1,12 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis;
 
-[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SCA0101CodeFixProvider))]
+/// <summary>
+/// Indicates the code fixer that fixes for <see cref="SCA0101_LargeStructTypeAnalyzer">SCA0101</see> diagnostic result.
+/// </summary>
+/// <seealso cref="SCA0101_LargeStructTypeAnalyzer"/>
+[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SCA0101CodeFixer))]
 [Shared]
-public sealed class SCA0101CodeFixProvider : CodeFixProvider
+public sealed class SCA0101CodeFixer : CodeFixProvider
 {
 	/// <inheritdoc/>
 	public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(nameof(SCA0101));
@@ -32,13 +36,13 @@ public sealed class SCA0101CodeFixProvider : CodeFixProvider
 			return;
 		}
 
-		var suggestedMemberName = properties[SpecialNamedArgumentNames.SuggestedMemberName];
+		var suggestedMemberName = properties[SCA0101_LargeStructTypeAnalyzer.PropertyName_SuggestedMemberName];
 		if (suggestedMemberName is null)
 		{
 			return;
 		}
 
-		var typeName = properties[SpecialNamedArgumentNames.TypeName]!;
+		var typeName = properties[SCA0101_LargeStructTypeAnalyzer.PropertyName_TypeName]!;
 		context.RegisterCodeFix(
 			CodeAction.Create(
 				"Use suggested member instead",
@@ -61,6 +65,7 @@ public sealed class SCA0101CodeFixProvider : CodeFixProvider
 				},
 				nameof(SCA0101)
 			),
-			diagnostic);
+			diagnostic
+		);
 	}
 }

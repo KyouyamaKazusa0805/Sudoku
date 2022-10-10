@@ -2,9 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<LangVersion>preview</LangVersion>
-		<Nullable>enable</Nullable>
 		<IsPackable>false</IsPackable>
+		<Description>Provides diagnostic APIs that can analyze the C# files in the whole sudoku solution.</Description>
+		<DocumentationFile>..\..\docxml\Sudoku.Diagnostics.CodeAnalysis.xml</DocumentationFile>
 
 		<!-- Avoid ID conflicts with the package project. -->
 		<PackageId>*$(MSBuildProjectFile)*</PackageId>
