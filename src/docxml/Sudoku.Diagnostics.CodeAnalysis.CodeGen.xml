@@ -79,12 +79,42 @@
             The custom property names. The default value is <see langword="null"/>.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.DiagnosticDescriptorSerializer">
+            <summary>
+            The internal serializer that checks and deserializes the file, parsing it into a valid <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.DiagnosticDescriptorSerializer.GetDiagnosticDescriptorsFromFile(System.String)">
+            <summary>
+            Try to deserialize from file, and parse it, then convert it into valid <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instances.
+            </summary>
+            <param name="fileName">The file name.</param>
+            <returns>The <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instances.</returns>
+            <exception cref="T:System.NotSupportedException">
+            Throws when parser encountered quote token <c>"</c> in a line while parsing.
+            </exception>
+            <exception cref="T:System.FormatException">
+            Throws when a line does not contain enough data, or the current line contains some invalid data.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when title or severity part is <see langword="null"/> or empty spaces.
+            </exception>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.CodeAnalyzerGenerator">
             <summary>
             Defines a source generator that generates the source code for code analyzer.
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.CodeAnalyzerGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DiagnosticDescriptorListGenerator">
+            <summary>
+            Defines a source generator that generates the diagnostic descriptor list
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DiagnosticDescriptorListGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Microsoft.CodeAnalysis.CSharpAccessibility">

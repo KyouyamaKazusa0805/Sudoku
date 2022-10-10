@@ -29,6 +29,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<AdditionalFiles Include="CodeAnalysisDetailList.csv" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\..\Sudoku.Diagnostics.CodeAnalysis.CodeGen\Sudoku.Diagnostics.CodeAnalysis.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 

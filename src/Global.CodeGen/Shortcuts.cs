@@ -18,4 +18,5 @@ internal static class Shortcuts
 	public const string LogicalSolverOptions = "lso";
 	public const string DisallowParameterlessConstructorInStruct = "dpc";
 	public const string CodeAnalyzer = "ca";
+	public const string DiagnosticDescriptorList = "ddl";
 }
