@@ -37,9 +37,19 @@
             <summary>
             Indicates the analyzer that can provide the following diagnostic results:
             <list type="bullet">
-            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
-            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0101">SCA0101</see> (Don't initialize large structure)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see></item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0101">SCA0101</see></item>
             </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.PropertyName_SuggestedMemberName">
+            <summary>
+            The extra property fields. Such fields will be used while reporting diagnostics.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.PropertyName_TypeName">
+            <summary>
+            The extra property fields. Such fields will be used while reporting diagnostics.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.SupportedDiagnostics">
@@ -66,6 +76,16 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors">
             <summary>
             Represents with the well-known diagnostic descriptors.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0001">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/code-analysis/SCA0001">SCA0001</see> diagnostic descriptor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0101">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/code-analysis/SCA0101">SCA0101</see> diagnostic descriptor.
             </summary>
         </member>
         <member name="T:System.Index">

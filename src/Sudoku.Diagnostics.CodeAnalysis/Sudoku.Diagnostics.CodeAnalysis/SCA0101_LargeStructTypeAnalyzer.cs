@@ -1,12 +1,5 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis;
 
-/// <summary>
-/// Indicates the analyzer that can provide the following diagnostic results:
-/// <list type="bullet">
-/// <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
-/// <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0101">SCA0101</see> (Don't initialize large structure)</item>
-/// </list>
-/// </summary>
 [SupportedDiagnostics("SCA0001", "SCA0101")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterOperationAction), typeof(OperationKind), nameof(OperationKind.ObjectCreation))]
 [RegisteredPropertyNames(Internal, "SuggestedMemberName", "TypeName")]

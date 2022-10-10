@@ -23,9 +23,13 @@ public sealed class DiagnosticDescriptorListGenerator : IIncrementalGenerator
 				var text = string.Join(
 					"\r\n\r\n\t",
 					from descriptor in descriptors
+					let helpLinkUrl = $"https://sunnieshine.github.io/Sudoku/code-analysis/{descriptor.Id}"
 					select
 						$$"""
-						public static readonly global::Microsoft.CodeAnalysis.DiagnosticDescriptor {{descriptor.Id}} =
+						/// <summary>
+							/// Indicates the <see href="{{helpLinkUrl}}">{{descriptor.Id}}</see> diagnostic descriptor.
+							/// </summary>
+							public static readonly global::Microsoft.CodeAnalysis.DiagnosticDescriptor {{descriptor.Id}} =
 								new(
 									nameof({{descriptor.Id}}),
 									"{{descriptor.Title}}",
@@ -34,7 +38,7 @@ public sealed class DiagnosticDescriptorListGenerator : IIncrementalGenerator
 									global::Microsoft.CodeAnalysis.DiagnosticSeverity.{{descriptor.DefaultSeverity}},
 									true,
 									"{{descriptor.Description}}",
-									"https://sunnieshine.github.io/Sudoku/code-analysis/{{descriptor.Id}}"
+									"{{helpLinkUrl}}"
 								);
 						"""
 				);
