@@ -42,21 +42,16 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.PropertyName_SuggestedMemberName">
-            <summary>
-            Indicates the property name <c>SuggestedMemberName</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.PropertyName_TypeName">
-            <summary>
-            Indicates the property name <c>TypeName</c>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.OperationAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.SpecialFullTypeNames">
             <summary>
@@ -72,53 +67,6 @@
             <summary>
             Represents with the well-known diagnostic descriptors.
             </summary>
-        </member>
-        <member name="T:System.Collections.Generic.KeyValuePairExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.KeyValuePair`2"/>
-        </member>
-        <member name="M:System.Collections.Generic.KeyValuePairExtensions.Deconstruct``2(System.Collections.Generic.KeyValuePair{``0,``1},``0@,``1@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
-						</code>
-						The following code will be legal.
-						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
-
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
-
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
-						</code>
-					</para>
-				</remarks>
-			</target>
         </member>
         <member name="T:System.Index">
             <summary>

@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Diagnostics.CodeAnalysis.CodeGen</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Annotations.RegisteredPropertyNamesAttribute">
+            <summary>
+            The Registered property names attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Annotations.RegisteredPropertyNamesAttribute.#ctor(Microsoft.CodeAnalysis.CSharpAccessibility,System.String[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeGen.Annotations.RegisteredPropertyNamesAttribute"/> instance via the specified registered property names.
+            </summary>
+            <param name="accessibility">The accessibility.</param>
+            <param name="registeredPropertyNames">Registered property names.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Annotations.RegisteredPropertyNamesAttribute.RegisteredPropertyNames">
+            <summary>
+            Indicates the registered property names.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Annotations.RegisteredPropertyNamesAttribute.Accessibility">
+            <summary>
+            The accessibility.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute">
+            <summary>
+            The registered operation attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute.#ctor(System.String,System.Type,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute"/> instance via the specified registered action name.
+            </summary>
+            <param name="registeredActionName">The action name.</param>
+            <param name="registeredKindType">The registered kind type.</param>
+            <param name="rawRegisteredKindExpression">The registered kind expression.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute.RegisteredActionName">
+            <summary>
+            Indicates the registered action name. The name references to method names in type <see cref="T:Microsoft.CodeAnalysis.Diagnostics.AnalysisContext"/>.
+            For example, if you want to execute the method
+            <see cref="M:Microsoft.CodeAnalysis.Diagnostics.AnalysisContext.RegisterOperationAction(System.Action{Microsoft.CodeAnalysis.Diagnostics.OperationAnalysisContext},Microsoft.CodeAnalysis.OperationKind[])"/>,
+            the property value should be <c>"RegisterOperationAction"</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute.RegisteredKindExpression">
+            <summary>
+            The registered kind expression.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute.RegisteredKindType">
+            <summary>
+            The registered kind type. For example, <see langword="typeof"/>(<see cref="T:Microsoft.CodeAnalysis.OperationKind"/>).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Annotations.SupportedDiagnosticsAttribute">
+            <summary>
+            Indicates an attribute type that can be applied to a code analyzer type, telling the source generators
+            that the analyzer supports the specified diagnostics.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Annotations.SupportedDiagnosticsAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeGen.Annotations.SupportedDiagnosticsAttribute"/> instance via the specified supported diagnostic IDs.
+            </summary>
+            <param name="supportedDiagnosticIds">Supported diagnostic IDs.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Annotations.SupportedDiagnosticsAttribute.SupportedDiagnosticIds">
+            <summary>
+            Indicates the supported diagnostic IDs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Annotations.SupportedDiagnosticsAttribute.CustomPropertyNames">
+            <summary>
+            The custom property names. The default value is <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.CodeAnalyzerGenerator">
+            <summary>
+            Defines a source generator that generates the source code for code analyzer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.CodeAnalyzerGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.CSharpAccessibility">
+            <summary>
+            Defines a C# accessibility.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.CSharpAccessibility.None">
+            <summary>
+            The accessibility is not applicable.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.CSharpAccessibility.File">
+            <summary>
+            The <see langword="file"/> accessibility.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.CSharpAccessibility.Private">
+            <summary>
+            The <see langword="private"/> accessibility.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.CSharpAccessibility.Protected">
+            <summary>
+            The <see langword="protected"/> accessibility.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.CSharpAccessibility.PrivateProtected">
+            <summary>
+            The <see langword="private protected"/> accessibility.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.CSharpAccessibility.Internal">
+            <summary>
+            The <see langword="internal"/> accessibility.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.CSharpAccessibility.ProtectedInternal">
+            <summary>
+            The <see langword="protected internal"/> accessibility.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.CSharpAccessibility.Public">
+            <summary>
+            The <see langword="public"/> accessibility.
+            </summary>
+        </member>
+        <member name="F:CodeGen.Constants.VersionValue">
+            <summary>
+            Indicates the version of this project.
+            </summary>
+        </member>
+    </members>
+</doc>

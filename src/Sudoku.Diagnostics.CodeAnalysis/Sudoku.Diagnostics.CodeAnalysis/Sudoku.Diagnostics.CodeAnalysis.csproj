@@ -28,4 +28,8 @@
 		<Folder Include="SystemExtensions\" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\..\Sudoku.Diagnostics.CodeAnalysis.CodeGen\Sudoku.Diagnostics.CodeAnalysis.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+	</ItemGroup>
+
 </Project>

@@ -46,6 +46,7 @@
 
 * [`Global.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Global.CodeGen)：为高阶的源代码生成器。它生成一些东西，专门提供给其它的源代码生成器项目使用，也提供一些 API；
 * [`Sudoku.Diagnostics.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeGen)：为解决方案提供一些基本的、不必手写的源代码的功能性扩展；
+* [`Sudoku.Diagnostics.CodeAnalysis.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis.CodeGen)：提供对  [`Sudoku.Diagnostics.CodeAnalysis`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis/Sudoku.Diagnostics.CodeAnalysis) 项目进行代码生成服务；
 * [`Sudoku.Solving.Logical.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Logical.CodeGen)：提供对 [`Sudoku.Solving.Logical`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Logical) 项目的源代码生成服务；
 * [`System.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/System.CodeGen)：提供对 [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System) 项目的源代码生成服务。
 

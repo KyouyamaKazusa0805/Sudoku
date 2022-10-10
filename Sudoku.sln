@@ -69,15 +69,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contacts", "Contacts", "{18
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Test", "src\Sudoku.Test\Sudoku.Test.csproj", "{730341DC-2EAD-433E-AF1A-E750172B69C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Diagnostics.CodeAnalysis", "src\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj", "{0E1EAB93-42FA-4E83-943E-E93F698AAA0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Diagnostics.CodeAnalysis", "src\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj", "{0E1EAB93-42FA-4E83-943E-E93F698AAA0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Diagnostics.CodeAnalysis.CodeFixes", "src\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.CodeFixes\Sudoku.Diagnostics.CodeAnalysis.CodeFixes.csproj", "{93191A4E-9108-4F9E-8283-04BCE50EB614}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Diagnostics.CodeAnalysis.CodeFixes", "src\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.CodeFixes\Sudoku.Diagnostics.CodeAnalysis.CodeFixes.csproj", "{93191A4E-9108-4F9E-8283-04BCE50EB614}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Diagnostics.CodeAnalysis.Package", "src\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.Package\Sudoku.Diagnostics.CodeAnalysis.Package.csproj", "{C4A18A99-29A3-4B1E-9738-8D4933C844DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Diagnostics.CodeAnalysis.Package", "src\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.Package\Sudoku.Diagnostics.CodeAnalysis.Package.csproj", "{C4A18A99-29A3-4B1E-9738-8D4933C844DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Diagnostics.CodeAnalysis.Test", "src\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.Test\Sudoku.Diagnostics.CodeAnalysis.Test.csproj", "{604F7123-092C-4322-BB23-4449E5032F43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Diagnostics.CodeAnalysis.Test", "src\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.Test\Sudoku.Diagnostics.CodeAnalysis.Test.csproj", "{604F7123-092C-4322-BB23-4449E5032F43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Diagnostics.CodeAnalysis.Vsix", "src\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.Vsix\Sudoku.Diagnostics.CodeAnalysis.Vsix.csproj", "{16B1B06C-2FBC-44F1-B36E-12A940DC8E9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Diagnostics.CodeAnalysis.Vsix", "src\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.Vsix\Sudoku.Diagnostics.CodeAnalysis.Vsix.csproj", "{16B1B06C-2FBC-44F1-B36E-12A940DC8E9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Diagnostics.CodeAnalysis.CodeGen", "src\Sudoku.Diagnostics.CodeAnalysis.CodeGen\Sudoku.Diagnostics.CodeAnalysis.CodeGen.csproj", "{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -771,6 +773,36 @@ Global
 		{16B1B06C-2FBC-44F1-B36E-12A940DC8E9F}.Release|x64.Build.0 = Release|Any CPU
 		{16B1B06C-2FBC-44F1-B36E-12A940DC8E9F}.Release|x86.ActiveCfg = Release|Any CPU
 		{16B1B06C-2FBC-44F1-B36E-12A940DC8E9F}.Release|x86.Build.0 = Release|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Build|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Build|Any CPU.Build.0 = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Build|ARM.ActiveCfg = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Build|ARM.Build.0 = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Build|ARM64.ActiveCfg = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Build|ARM64.Build.0 = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Build|x64.ActiveCfg = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Build|x64.Build.0 = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Build|x86.ActiveCfg = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Build|x86.Build.0 = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Debug|ARM.Build.0 = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Debug|x64.Build.0 = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Debug|x86.Build.0 = Debug|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Release|ARM.ActiveCfg = Release|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Release|ARM.Build.0 = Release|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Release|ARM64.Build.0 = Release|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Release|x64.ActiveCfg = Release|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Release|x64.Build.0 = Release|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Release|x86.ActiveCfg = Release|Any CPU
+		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -782,8 +814,8 @@ Global
 		{18A31D32-6FC6-4380-891E-F783C04BF2CD} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal

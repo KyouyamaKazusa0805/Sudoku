@@ -6,5 +6,7 @@ global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
 global using Microsoft.CodeAnalysis.Diagnostics;
 global using Microsoft.CodeAnalysis.Operations;
+global using Sudoku.Diagnostics.CodeGen.Annotations;
+global using static Microsoft.CodeAnalysis.CSharpAccessibility;
 global using static Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors;
 global using NamedArguments = System.Collections.Immutable.ImmutableArray<System.Collections.Generic.KeyValuePair<string, Microsoft.CodeAnalysis.TypedConstant>>;

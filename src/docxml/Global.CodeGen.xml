@@ -54,6 +54,14 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>
         </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.IsDerivedFrom(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Determines whether the current type is derived from the specified type (a <see langword="class"/>, not <see langword="interface"/>).
+            </summary>
+            <param name="this">The current type.</param>
+            <param name="baseType">The base type to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.GetAllMembers(Microsoft.CodeAnalysis.INamedTypeSymbol)">
             <summary>
             Gets all possible members in a type, even including its base type members.
@@ -316,6 +324,16 @@
             <param name="path">The path to load.</param>
             <returns>The current reference to the XML document.</returns>
         </member>
+        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
+            <summary>
+            Declare this to get init properties.
+            </summary>
+            <remarks>
+            Please see
+            <see href="https://github.com/dotnet/roslyn/issues/45510#issuecomment-694977239">this link</see>
+            to learn more details about this type.
+            </remarks>
+        </member>
         <member name="T:System.Index">
             <summary>
             Represent a type can be used to index a collection either from the start or the end.
@@ -385,16 +403,6 @@
         </member>
         <member name="M:System.Index.op_Implicit(System.Int32)~System.Index">
             <summary>Converts integer number to an Index.</summary>
-        </member>
-        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
-            <summary>
-            Declare this to get init properties.
-            </summary>
-            <remarks>
-            Please see
-            <see href="https://github.com/dotnet/roslyn/issues/45510#issuecomment-694977239">this link</see>
-            to learn more details about this type.
-            </remarks>
         </member>
         <member name="T:System.Range">
             <summary>Represent a range has start and end indexes.</summary>

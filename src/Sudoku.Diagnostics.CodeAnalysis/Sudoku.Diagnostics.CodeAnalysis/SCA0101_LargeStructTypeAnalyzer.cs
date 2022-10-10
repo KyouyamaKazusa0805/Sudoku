@@ -8,90 +8,64 @@
 /// </list>
 /// </summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class SCA0101_LargeStructTypeAnalyzer : DiagnosticAnalyzer
+[SupportedDiagnostics("SCA0001", "SCA0101")]
+[RegisterOperationAction(nameof(AnalysisContext.RegisterOperationAction), typeof(OperationKind), nameof(OperationKind.ObjectCreation))]
+[RegisteredPropertyNames(Internal, "SuggestedMemberName", "TypeName")]
+public sealed partial class SCA0101_LargeStructTypeAnalyzer : DiagnosticAnalyzer
 {
-	/// <summary>
-	/// Indicates the property name <c>SuggestedMemberName</c>.
-	/// </summary>
-	public const string PropertyName_SuggestedMemberName = "SuggestedMemberName";
-
-	/// <summary>
-	/// Indicates the property name <c>TypeName</c>.
-	/// </summary>
-	public const string PropertyName_TypeName = "TypeName";
-
-
-	/// <inheritdoc/>
-	public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(SCA0001, SCA0101);
-
-
-	/// <inheritdoc/>
-	public override void Initialize(AnalysisContext context)
+	private static partial void AnalyzeCore(OperationAnalysisContext context)
 	{
-		context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-		context.EnableConcurrentExecution();
-
-		context.RegisterOperationAction(
-			static oac =>
+		if (context is not
 			{
-				if (oac is not
+				CancellationToken: var ct,
+				Compilation: var compilation,
+				Operation: IObjectCreationOperation
+				{
+					Type: { TypeKind: TypeKind.Struct, Name: var name and not [] } type,
+					Arguments: [],
+					Syntax: ObjectCreationExpressionSyntax node
+				}
+			})
+		{
+			return;
+		}
+
+		var nodeLocation = node.GetLocation();
+		var attributeType = compilation.GetTypeByMetadataName(SpecialFullTypeNames.IsLargeStructAttribute);
+		if (attributeType is null)
+		{
+			context.ReportDiagnostic(Diagnostic.Create(SCA0001, nodeLocation, messageArgs: SpecialFullTypeNames.IsLargeStructAttribute));
+			return;
+		}
+
+		var attributesData = type.GetAttributes();
+		if (attributesData.Length == 0)
+		{
+			return;
+		}
+
+		var a = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType));
+		if (a is null)
+		{
+			return;
+		}
+
+		static TypedConstant? f(NamedArguments l) => l.GetValueByName(SpecialNamedArgumentNames.SuggestedMemberName);
+		context.ReportDiagnostic(
+			Diagnostic.Create(
+				SCA0101,
+				nodeLocation,
+				ImmutableDictionary.CreateRange(
+					new KeyValuePair<string, string?>[]
 					{
-						CancellationToken: var ct,
-						Compilation: var compilation,
-						Operation: IObjectCreationOperation
-						{
-							Type: { TypeKind: TypeKind.Struct, Name: var name and not [] } type,
-							Arguments: [],
-							Syntax: ObjectCreationExpressionSyntax node,
-						}
-					})
-				{
-					return;
-				}
-
-				var nodeLocation = node.GetLocation();
-				var attributeType = compilation.GetTypeByMetadataName(SpecialFullTypeNames.IsLargeStructAttribute);
-				if (attributeType is null)
-				{
-					oac.ReportDiagnostic(Diagnostic.Create(SCA0001, nodeLocation, messageArgs: SpecialFullTypeNames.IsLargeStructAttribute));
-					return;
-				}
-
-				var attributesData = type.GetAttributes();
-				if (attributesData.Length == 0)
-				{
-					return;
-				}
-
-				var a = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType));
-				if (a is null)
-				{
-					return;
-				}
-
-				static TypedConstant? f(NamedArguments l) => l.GetValueByName(SpecialNamedArgumentNames.SuggestedMemberName);
-				oac.ReportDiagnostic(
-					Diagnostic.Create(
-						SCA0101,
-						nodeLocation,
-						ImmutableDictionary.CreateRange(
-							new KeyValuePair<string, string?>[]
-							{
-								new(PropertyName_TypeName, name),
-								new(
-									PropertyName_SuggestedMemberName,
-									a switch
-									{
-										{ NamedArguments: var l and not [] } when f(l) is { Value: string value } => value,
-										_ => null
-									}
-								)
-							}
+						new(PropertyName_TypeName, name),
+						new(
+							PropertyName_SuggestedMemberName,
+							a switch { { NamedArguments: var l and not [] } when f(l) is { Value: string value } => value, _ => null }
 						)
-					)
-				);
-			},
-			new[] { OperationKind.ObjectCreation }
+					}
+				)
+			)
 		);
 	}
 }
