@@ -13,7 +13,7 @@ internal static class WellKnownDiagnosticDescriptors
 			CategoryKind.CodeAnalysis,
 			DiagnosticSeverity.Error,
 			true,
-			description: "Special type is missing; please check the code analysis project and change the namespace."
+			"Special type is missing; please check the code analysis project and change the namespace."
 		);
 
 	public static readonly DiagnosticDescriptor SCA0101 =
