@@ -17,4 +17,5 @@ internal static class Shortcuts
 	public const string StepSearcherOptions = "sso";
 	public const string LogicalSolverOptions = "lso";
 	public const string DisallowParameterlessConstructorInStruct = "dpc";
+	public const string CodeAnalyzer = "ca";
 }

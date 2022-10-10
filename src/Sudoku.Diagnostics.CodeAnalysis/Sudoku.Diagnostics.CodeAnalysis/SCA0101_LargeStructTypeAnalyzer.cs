@@ -7,7 +7,6 @@
 /// <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0101">SCA0101</see> (Don't initialize large structure)</item>
 /// </list>
 /// </summary>
-[DiagnosticAnalyzer(LanguageNames.CSharp)]
 [SupportedDiagnostics("SCA0001", "SCA0101")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterOperationAction), typeof(OperationKind), nameof(OperationKind.ObjectCreation))]
 [RegisteredPropertyNames(Internal, "SuggestedMemberName", "TypeName")]
