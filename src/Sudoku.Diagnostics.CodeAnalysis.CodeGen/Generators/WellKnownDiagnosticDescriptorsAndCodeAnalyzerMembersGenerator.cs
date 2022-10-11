@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
-/// Defines a source generator that generates the diagnostic descriptor list
+/// Defines a source generator that generates the well-known diagnostic descriptor list and last code analyzer members.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
 public sealed class WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerator : IIncrementalGenerator
