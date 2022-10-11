@@ -78,7 +78,7 @@ public sealed class DiagnosticDescriptorListGenerator : IIncrementalGenerator
 		var text = string.Join(
 			"\r\n\r\n\t",
 			from descriptor in _foundDescriptors
-			let helpLinkUrl = $"https://sunnieshine.github.io/Sudoku/code-analysis/{descriptor.Id}"
+			let helpLinkUrl = $"https://sunnieshine.github.io/Sudoku/code-analysis/{descriptor.Id.ToLower()}"
 			select
 				$$"""
 				/// <summary>
