@@ -44,7 +44,16 @@ public sealed partial class SCA0201_UseArgumentAnalyzer : DiagnosticAnalyzer
 
 		switch (condition)
 		{
-			case IIsPatternOperation { Pattern: IConstantPatternOperation { Syntax: var syntax } } when isNullLiteral(syntax):
+			case IIsPatternOperation
+			{
+				Pattern: IConstantPatternOperation
+				{
+					Syntax: ConstantPatternSyntax
+					{
+						Expression: LiteralExpressionSyntax { RawKind: (int)SyntaxKind.NullLiteralExpression }
+					}
+				}
+			}:
 			case IBinaryOperation
 			{
 				OperatorKind: BinaryOperatorKind.Equals,
@@ -121,8 +130,5 @@ public sealed partial class SCA0201_UseArgumentAnalyzer : DiagnosticAnalyzer
 
 			context.ReportDiagnostic(Diagnostic.Create(SCA0201, node.GetLocation()));
 		}
-
-		static bool isNullLiteral(SyntaxNode node)
-			=> node is ConstantPatternSyntax { Expression: LiteralExpressionSyntax { RawKind: (int)SyntaxKind.NullLiteralExpression } };
 	}
 }
