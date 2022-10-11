@@ -100,17 +100,35 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0001">
             <summary>
-            Indicates the <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> diagnostic descriptor.
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Special type missing</item>
+            <item><b>Description</b>: Special type is missing; please check the code analysis project and change the namespace.</item>
+            <item><b>Category</b>: CodeAnalysis</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Error"/></item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0101">
             <summary>
-            Indicates the <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0101">SCA0101</see> diagnostic descriptor.
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0101">SCA0101</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Don't initialize large structure</item>
+            <item><b>Description</b>: Don't initialize large structure; please use expected fields or 'Create' methods instead if available.</item>
+            <item><b>Category</b>: Usage</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0102">
             <summary>
-            Indicates the <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0102">SCA0102</see> diagnostic descriptor.
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0102">SCA0102</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Large structures should pass by reference</item>
+            <item><b>Description</b>: Large structure should pass by reference in order to optimize performance.</item>
+            <item><b>Category</b>: Usage</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
+            </list>
             </summary>
         </member>
         <member name="T:System.Index">

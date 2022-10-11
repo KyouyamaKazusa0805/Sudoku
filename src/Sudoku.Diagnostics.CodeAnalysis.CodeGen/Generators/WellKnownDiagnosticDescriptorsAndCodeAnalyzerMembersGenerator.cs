@@ -82,7 +82,13 @@ public sealed class WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerato
 			select
 				$$"""
 				/// <summary>
-					/// Indicates the <see href="{{helpLinkUrl}}">{{descriptor.Id}}</see> diagnostic descriptor.
+					/// Indicates the diagnostic result <see href="{{helpLinkUrl}}">{{descriptor.Id}}</see>:
+					/// <list type="bullet">
+					/// <item><b>Title</b>: {{descriptor.Title}}</item>
+					/// <item><b>Description</b>: {{descriptor.Description}}</item>
+					/// <item><b>Category</b>: {{descriptor.Category}}</item>
+					/// <item><b>Severity</b>: <see cref="global::Microsoft.CodeAnalysis.DiagnosticSeverity.{{descriptor.DefaultSeverity}}"/></item>
+					/// </list>
 					/// </summary>
 					public static readonly global::Microsoft.CodeAnalysis.DiagnosticDescriptor {{descriptor.Id}} =
 						new(
