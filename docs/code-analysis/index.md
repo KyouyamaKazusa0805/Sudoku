@@ -11,4 +11,5 @@
 | SCA0003  | 代码生成（CodeGen）      | ⚠    | `RegisteredPropertyNamesAttribute` 的第二个参数必须至少有一个值 |
 | SCA0004  | 代码生成（CodeGen）      | ⚠    | 代码分析器类型应用 `sealed` 修饰，并且不能用 `abstract` 修饰 |
 | SCA0101  | 使用（Usage）            | ⚠    | 请勿对大结构类型进行无参实例化                               |
+| SCA0102  | 使用（Usage）            | ⚠    | 大结构类型的参数需要按引用传递                               |
 

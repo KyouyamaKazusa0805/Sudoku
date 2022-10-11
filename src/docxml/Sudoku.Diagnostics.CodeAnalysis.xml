@@ -63,6 +63,26 @@
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SCA0102_LargeStructureShouldPassByRefAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0102">SCA0102</see> (Large structures should pass by reference)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SCA0102_LargeStructureShouldPassByRefAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SCA0102_LargeStructureShouldPassByRefAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SCA0102_LargeStructureShouldPassByRefAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.SpecialFullTypeNames">
             <summary>
             The special full type names.
@@ -86,6 +106,11 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0101">
             <summary>
             Indicates the <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0101">SCA0101</see> diagnostic descriptor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0102">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0102">SCA0102</see> diagnostic descriptor.
             </summary>
         </member>
         <member name="T:System.Index">

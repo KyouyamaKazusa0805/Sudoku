@@ -1,3 +1,4 @@
 ﻿ID,Title,Format,Category,Severity,Description
 SCA0001,Special type missing,Special type missing: '{0}',CodeAnalysis,Error,Special type is missing; please check the code analysis project and change the namespace.
 SCA0101,Don't initialize large structure,,Usage,Warning,Don't initialize large structure; please use expected fields or 'Create' methods instead if available.
+SCA0102,Large structures should pass by reference,,Usage,Warning,Large structure should pass by reference in order to optimize performance.
