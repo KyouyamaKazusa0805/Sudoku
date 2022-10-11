@@ -54,18 +54,8 @@ public sealed partial class SCA0201_UseArgumentAnalyzer : DiagnosticAnalyzer
 					}
 				}
 			}:
-			case IBinaryOperation
-			{
-				OperatorKind: BinaryOperatorKind.Equals,
-				LeftOperand: IConversionOperation { Operand: ILiteralOperation { ConstantValue: { HasValue: true, Value: null } } },
-				RightOperand: not IConversionOperation { Operand: ILiteralOperation { ConstantValue: { HasValue: true, Value: null } } }
-			}:
-			case IBinaryOperation
-			{
-				OperatorKind: BinaryOperatorKind.Equals,
-				LeftOperand: not IConversionOperation { Operand: ILiteralOperation { ConstantValue: { HasValue: true, Value: null } } },
-				RightOperand: IConversionOperation { Operand: ILiteralOperation { ConstantValue: { HasValue: true, Value: null } } }
-			}:
+			case IBinaryOperation { OperatorKind: BinaryOperatorKind.Equals, LeftOperand: var l, RightOperand: var r }
+			when verifyOperand(l) ^ verifyOperand(r):
 			{
 				break;
 			}
@@ -73,43 +63,21 @@ public sealed partial class SCA0201_UseArgumentAnalyzer : DiagnosticAnalyzer
 			{
 				return;
 			}
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static bool verifyOperand(IOperation operation)
+				=> operation is IConversionOperation { Operand: ILiteralOperation { ConstantValue: { HasValue: true, Value: null } } };
 		}
 
 		switch (whenTrueOperation)
 		{
-			case IThrowOperation
-			{
-				Exception: IConversionOperation
-				{
-					Operand: IObjectCreationOperation
-					{
-						Constructor:
-						{
-							Parameters: [{ Type.SpecialType: SpecialType.System_String } firstParameterSymbol],
-							ContainingType: var exceptionType
-						}
-					}
-				}
-			}:
+			case var _ when throwOperationVerifier(whenTrueOperation, out var exceptionType):
 			{
 				check(exceptionType);
 				break;
 			}
-			case IBlockOperation { ChildOperations: { Count: 1 } c }
-			when c.First() is IThrowOperation
-			{
-				Exception: IConversionOperation
-				{
-					Operand: IObjectCreationOperation
-					{
-						Constructor:
-						{
-							Parameters: [{ Type.SpecialType: SpecialType.System_String } firstParameterSymbol],
-							ContainingType: var exceptionType
-						}
-					}
-				}
-			}:
+			case IBlockOperation { ChildOperations: { Count: 1 } c } when throwOperationVerifier(c.First(), out var exceptionType):
 			{
 				check(exceptionType);
 				break;
@@ -117,6 +85,35 @@ public sealed partial class SCA0201_UseArgumentAnalyzer : DiagnosticAnalyzer
 			default:
 			{
 				return;
+			}
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static bool throwOperationVerifier(IOperation operation, out INamedTypeSymbol? exceptionType)
+			{
+				if (operation is IThrowOperation
+					{
+						Exception: IConversionOperation
+						{
+							Operand: IObjectCreationOperation
+							{
+								Constructor:
+								{
+									Parameters: [{ Type.SpecialType: SpecialType.System_String }],
+									ContainingType: var e
+								}
+							}
+						}
+					})
+				{
+					exceptionType = e;
+					return true;
+				}
+				else
+				{
+					exceptionType = null;
+					return false;
+				}
 			}
 		}
 
