@@ -1,5 +1,5 @@
 ﻿using VerifyCS = Sudoku.Diagnostics.CodeAnalysis.Test.CSharpAnalyzerVerifier<
-	Sudoku.Diagnostics.CodeAnalysis.SCA0102_LargeStructureShouldPassByRefAnalyzer
+	Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0102_LargeStructureShouldPassByRefAnalyzer
 >;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Test;

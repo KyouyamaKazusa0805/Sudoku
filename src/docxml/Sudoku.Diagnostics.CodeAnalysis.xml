@@ -4,6 +4,75 @@
         <name>Sudoku.Diagnostics.CodeAnalysis</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0101">SCA0101</see> (Don't initialize large structure)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer.PropertyName_SuggestedMemberName">
+            <summary>
+            The extra property fields. Such fields will be used while reporting diagnostics.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer.PropertyName_TypeName">
+            <summary>
+            The extra property fields. Such fields will be used while reporting diagnostics.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.OperationAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0102_LargeStructureShouldPassByRefAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0102">SCA0102</see> (Large structures should pass by reference)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0102_LargeStructureShouldPassByRefAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0102_LargeStructureShouldPassByRefAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0102_LargeStructureShouldPassByRefAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0201_UseArgumentAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0201">SCA0201</see> (Use type 'Argument' instead)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0201_UseArgumentAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0201_UseArgumentAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0201_UseArgumentAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CategoryKind">
             <summary>
             Represents with a category kind.
@@ -32,56 +101,6 @@
             <param name="this">A list of key-value pair to be checked.</param>
             <param name="namedArgumentName">The named argument name to be checked.</param>
             <returns>The found <see cref="T:Microsoft.CodeAnalysis.TypedConstant"/> value; otherwise, <see langword="null"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer">
-            <summary>
-            Indicates the analyzer that can provide the following diagnostic results:
-            <list type="bullet">
-            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
-            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0101">SCA0101</see> (Don't initialize large structure)</item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.PropertyName_SuggestedMemberName">
-            <summary>
-            The extra property fields. Such fields will be used while reporting diagnostics.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.PropertyName_TypeName">
-            <summary>
-            The extra property fields. Such fields will be used while reporting diagnostics.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.OperationAnalysisContext)">
-            <summary>
-            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SCA0102_LargeStructureShouldPassByRefAnalyzer">
-            <summary>
-            Indicates the analyzer that can provide the following diagnostic results:
-            <list type="bullet">
-            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
-            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0102">SCA0102</see> (Large structures should pass by reference)</item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SCA0102_LargeStructureShouldPassByRefAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SCA0102_LargeStructureShouldPassByRefAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SCA0102_LargeStructureShouldPassByRefAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
-            <summary>
-            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
-            </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.SpecialFullTypeNames">
             <summary>
@@ -128,6 +147,17 @@
             <item><b>Description</b>: Large structure should pass by reference in order to optimize performance.</item>
             <item><b>Category</b>: Usage</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0201">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0201">SCA0201</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Use type 'Argument' instead</item>
+            <item><b>Description</b>: The current 'if' statement can be converted into 'Argument' method invocation; use 'Argument' instead to simplify the code.</item>
+            <item><b>Category</b>: Usage</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
             </list>
             </summary>
         </member>

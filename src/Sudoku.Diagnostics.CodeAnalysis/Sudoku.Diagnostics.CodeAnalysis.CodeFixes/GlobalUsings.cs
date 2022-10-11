@@ -6,4 +6,5 @@ global using Microsoft.CodeAnalysis.CodeActions;
 global using Microsoft.CodeAnalysis.CodeFixes;
 global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
+global using Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 global using static Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors;

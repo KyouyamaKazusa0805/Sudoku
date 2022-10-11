@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [SupportedDiagnostics("SCA0001", "SCA0101")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterOperationAction), typeof(OperationKind), nameof(OperationKind.ObjectCreation))]

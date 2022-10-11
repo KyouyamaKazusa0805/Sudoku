@@ -264,7 +264,7 @@ public sealed class WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerato
 						
 				#nullable enable
 
-				namespace Sudoku.Diagnostics.CodeAnalysis;
+				namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 				/// <summary>
 				/// Indicates the analyzer that can provide the following diagnostic results:

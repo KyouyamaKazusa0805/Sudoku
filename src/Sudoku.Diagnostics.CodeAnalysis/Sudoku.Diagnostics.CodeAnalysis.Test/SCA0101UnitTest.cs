@@ -1,6 +1,6 @@
 ﻿using VerifyCS = Sudoku.Diagnostics.CodeAnalysis.Test.CSharpCodeFixVerifier<
-	Sudoku.Diagnostics.CodeAnalysis.SCA0101_LargeStructTypeAnalyzer,
-	Sudoku.Diagnostics.CodeAnalysis.SCA0101CodeFixer
+	Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer,
+	Sudoku.Diagnostics.CodeAnalysis.CodeFixProviders.SCA0101CodeFixer
 >;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Test;

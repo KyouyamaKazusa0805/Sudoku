@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixProviders;
 
 /// <summary>
 /// Indicates the code fixer that fixes for <see cref="SCA0101_LargeStructTypeAnalyzer">SCA0101</see> diagnostic result.
