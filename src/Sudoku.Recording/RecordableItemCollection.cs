@@ -4,6 +4,7 @@
 /// Defines a collection of <see cref="RecordableItem"/>s.
 /// </summary>
 /// <seealso cref="RecordableItem"/>
+[IsLargeStruct]
 public readonly struct RecordableItemCollection :
 	IReadOnlyCollection<RecordableItem>,
 	IReadOnlyList<RecordableItem>,

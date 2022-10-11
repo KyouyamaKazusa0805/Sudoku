@@ -3,6 +3,7 @@
 /// <summary>
 /// Defines a chain node.
 /// </summary>
+[IsLargeStruct]
 public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node, bool>, ITechniquePattern<Node>
 {
 	/// <summary>

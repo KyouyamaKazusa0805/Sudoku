@@ -12,6 +12,39 @@ public sealed class SCA0101UnitTest
 	public async Task TestCase_EmptyCode() => await VerifyCS.VerifyAnalyzerAsync(@"");
 
 	[TestMethod]
+	public async Task TestCase_WithoutArgument()
+		=> await VerifyCS.VerifyAnalyzerAsync(
+			"""
+			#nullable enable
+
+			using System.Diagnostics.CodeAnalysis;
+
+			file sealed class Program
+			{
+				private static void Main()
+				{
+					var field = {|#0:new Grid()|};
+				}
+			}
+
+			[IsLargeStruct]
+			file struct Grid
+			{
+				public static readonly Grid Empty = default;
+			}
+
+			namespace System.Diagnostics.CodeAnalysis
+			{
+				file sealed class IsLargeStructAttribute : Attribute
+				{
+					public string? SuggestedMemberName { get; set; }
+				}
+			}
+			""",
+			VerifyCS.Diagnostic(nameof(SCA0101)).WithLocation(0)
+		);
+
+	[TestMethod]
 	public async Task TestCase_Normal()
 		=> await VerifyCS.VerifyCodeFixAsync(
 			"""
@@ -27,7 +60,7 @@ public sealed class SCA0101UnitTest
 				}
 			}
 
-			[LargeStruct(SuggestedMemberName = nameof(Empty))]
+			[IsLargeStruct(SuggestedMemberName = nameof(Empty))]
 			file struct Grid
 			{
 				public static readonly Grid Empty = default;
@@ -35,7 +68,7 @@ public sealed class SCA0101UnitTest
 
 			namespace System.Diagnostics.CodeAnalysis
 			{
-				file sealed class LargeStructAttribute : Attribute
+				file sealed class IsLargeStructAttribute : Attribute
 				{
 					public string? SuggestedMemberName { get; set; }
 				}
@@ -55,7 +88,7 @@ public sealed class SCA0101UnitTest
 				}
 			}
 			
-			[LargeStruct(SuggestedMemberName = nameof(Empty))]
+			[IsLargeStruct(SuggestedMemberName = nameof(Empty))]
 			file struct Grid
 			{
 				public static readonly Grid Empty = default;
@@ -63,7 +96,7 @@ public sealed class SCA0101UnitTest
 			
 			namespace System.Diagnostics.CodeAnalysis
 			{
-				file sealed class LargeStructAttribute : Attribute
+				file sealed class IsLargeStructAttribute : Attribute
 				{
 					public string? SuggestedMemberName { get; set; }
 				}

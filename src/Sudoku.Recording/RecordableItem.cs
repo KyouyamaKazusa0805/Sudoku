@@ -3,6 +3,7 @@
 /// <summary>
 /// Defines a recordable item. This type is used for recording a user's behavior on finishing a sudoku puzzle.
 /// </summary>
+[IsLargeStruct]
 public readonly struct RecordableItem :
 	IEquatable<RecordableItem>,
 	IEqualityOperators<RecordableItem, RecordableItem, bool>
