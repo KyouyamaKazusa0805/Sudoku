@@ -223,9 +223,9 @@ public sealed class DiagnosticDescriptorListGenerator : IIncrementalGenerator
 								var content
 									=> $"""
 									/// <summary>
-									/// The extra property fields. Such fields will be used while reporting diagnostics.
-									/// </summary>
-									{a(accessibility)} const string
+										/// The extra property fields. Such fields will be used while reporting diagnostics.
+										/// </summary>
+										{a(accessibility)} const string
 											{content};
 									"""
 							}
