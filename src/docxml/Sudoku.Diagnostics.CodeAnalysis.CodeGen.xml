@@ -101,17 +101,17 @@
             Throws when title or severity part is <see langword="null"/> or empty spaces.
             </exception>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DiagnosticDescriptorListGenerator">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerator">
             <summary>
             Defines a source generator that generates the diagnostic descriptor list
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.DiagnosticDescriptorListGenerator._foundDescriptors">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerator._foundDescriptors">
             <summary>
             The found descriptors.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DiagnosticDescriptorListGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Microsoft.CodeAnalysis.CSharpAccessibility">

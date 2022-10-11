@@ -4,7 +4,7 @@
 /// Defines a source generator that generates the diagnostic descriptor list
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class DiagnosticDescriptorListGenerator : IIncrementalGenerator
+public sealed class WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerator : IIncrementalGenerator
 {
 	private static readonly DiagnosticDescriptor SCA0002 = new(
 		nameof(SCA0002),
