@@ -1154,6 +1154,25 @@
             <param name="offset">The offset to be removed.</param>
             <returns>The result collection.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_Subtraction(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get a <see cref="T:Sudoku.Concepts.CellMap"/> that contains all <paramref name="collection"/> instance
+            but not in <paramref name="offsets"/> instance.
+            </summary>
+            <param name="collection">The left instance.</param>
+            <param name="offsets">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_CheckedSubtraction(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get a <see cref="T:Sudoku.Concepts.CellMap"/> that contains all <paramref name="collection"/> instance
+            but not in <paramref name="offsets"/> instance.
+            This operator will check the validity of each element in the argument <paramref name="offsets"/>.
+            </summary>
+            <param name="collection">The left instance.</param>
+            <param name="offsets">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Subtraction(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Get a <see cref="T:Sudoku.Concepts.CellMap"/> that contains all <paramref name="left"/> instance
@@ -1356,10 +1375,16 @@
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IAdditionOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_Addition(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IAdditionOperators{Sudoku#Concepts#CellMap,System#Collections#Generic#IEnumerable{System#Int32},Sudoku#Concepts#CellMap}#op_Addition(Sudoku.Concepts.CellMap,System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_Subtraction(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Subtraction(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CellMap,System#Collections#Generic#IEnumerable{System#Int32},Sudoku#Concepts#CellMap}#op_Subtraction(Sudoku.Concepts.CellMap,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#Candidates}#op_Multiply(Sudoku.Concepts.CellMap,System.Int32)">

@@ -1418,12 +1418,12 @@
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.LargeStructAttribute">
+        <member name="T:System.Diagnostics.CodeAnalysis.IsLargeStructAttribute">
             <summary>
             Indicates the type is a large structure.
             </summary>
         </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.LargeStructAttribute.SuggestedMemberName">
+        <member name="P:System.Diagnostics.CodeAnalysis.IsLargeStructAttribute.SuggestedMemberName">
             <summary>
             Indicates the suggested member name.
             </summary>

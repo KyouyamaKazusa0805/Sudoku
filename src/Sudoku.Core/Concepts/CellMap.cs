@@ -23,6 +23,7 @@ namespace Sudoku.Concepts;
 [JsonConverter(typeof(Converter))]
 public struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
+	IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,
 	IAdditiveIdentity<CellMap, CellMap>,
 	IBitwiseOperators<CellMap, CellMap, CellMap>,
 	IBooleanOperators<CellMap>,
@@ -50,7 +51,8 @@ public struct CellMap :
 	ISimpleFormattable,
 	ISimpleParsable<CellMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
-	ISubtractionOperators<CellMap, CellMap, CellMap>
+	ISubtractionOperators<CellMap, CellMap, CellMap>,
+	ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>
 {
 	/// <summary>
 	/// The value used for shifting.
@@ -1332,6 +1334,43 @@ public struct CellMap :
 	}
 
 	/// <summary>
+	/// Get a <see cref="CellMap"/> that contains all <paramref name="collection"/> instance
+	/// but not in <paramref name="offsets"/> instance.
+	/// </summary>
+	/// <param name="collection">The left instance.</param>
+	/// <param name="offsets">The right instance.</param>
+	/// <returns>The result.</returns>
+	public static CellMap operator -(scoped in CellMap collection, IEnumerable<int> offsets)
+	{
+		var result = collection;
+		foreach (var offset in offsets)
+		{
+			result.Remove(offset);
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Get a <see cref="CellMap"/> that contains all <paramref name="collection"/> instance
+	/// but not in <paramref name="offsets"/> instance.
+	/// This operator will check the validity of each element in the argument <paramref name="offsets"/>.
+	/// </summary>
+	/// <param name="collection">The left instance.</param>
+	/// <param name="offsets">The right instance.</param>
+	/// <returns>The result.</returns>
+	public static CellMap operator checked -(scoped in CellMap collection, IEnumerable<int> offsets)
+	{
+		var result = collection;
+		foreach (var offset in offsets)
+		{
+			result = checked(result - offset);
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// Get a <see cref="CellMap"/> that contains all <paramref name="left"/> instance
 	/// but not in <paramref name="right"/> instance.
 	/// </summary>
@@ -1697,11 +1736,19 @@ public struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CellMap IAdditionOperators<CellMap, IEnumerable<int>, CellMap>.operator +(CellMap left, IEnumerable<int> right) => left + right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap ISubtractionOperators<CellMap, int, CellMap>.operator -(CellMap left, int right) => left - right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap ISubtractionOperators<CellMap, CellMap, CellMap>.operator -(CellMap left, CellMap right) => left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CellMap ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>.operator -(CellMap left, IEnumerable<int> right) => left - right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

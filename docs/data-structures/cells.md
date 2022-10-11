@@ -5,6 +5,7 @@
 ```csharp
 public struct CellMap :
     IAdditionOperators<CellMap, int, CellMap>,
+    IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,
 	IAdditiveIdentity<CellMap, CellMap>,
 	IBitwiseOperators<CellMap, CellMap, CellMap>,
 	IBooleanOperators<CellMap>,
@@ -33,7 +34,8 @@ public struct CellMap :
     ISpanFormattable,
     ISpanParsable<CellMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
-	ISubtractionOperators<CellMap, CellMap, CellMap>
+	ISubtractionOperators<CellMap, CellMap, CellMap>,
+    ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>
 {
     public static readonly CellMap Empty;
 
@@ -87,13 +89,10 @@ public struct CellMap :
     public static bool operator <(scoped in CellMap left, scoped in CellMap right);
     public static bool operator <=(scoped in CellMap left, scoped in CellMap right);
     public static short operator /(scoped in CellMap map, int house);
-    public static short operator checked /(scoped in CellMap map, int house);
     public static CellMap operator +(scoped in CellMap collection, int offset);
-    public static CellMap operator checked +(scoped in CellMap collection, int offset);
     public static CellMap operator +(scoped in CellMap collection, IEnumerable<int> offsets);
-    public static CellMap operator checked +(scoped in CellMap collection, IEnumerable<int> offsets);
     public static CellMap operator -(scoped in CellMap collection, int offset);
-    public static CellMap operator checked -(scoped in CellMap collection, int offset);
+    public static CellMap operator -(scoped in CellMap collection, IEnumerable<int> offset);
     public static CellMap operator -(scoped in CellMap left, scoped in CellMap right);
     public static CellMap operator ~(scoped in CellMap offsets);
     public static CellMap operator %(scoped in CellMap @base, scoped in CellMap template);
@@ -104,7 +103,12 @@ public struct CellMap :
     public static CellMap[] operator &(scoped in CellMap cell, int subsetSize);
     public static CellMap[] operator |(scoped in CellMap cell, int subsetSize);
     public static Candidates operator *(in CellMap @base, int digit);
+    public static CellMap operator checked +(scoped in CellMap collection, int offset);
+    public static CellMap operator checked +(scoped in CellMap collection, IEnumerable<int> offsets);
+    public static CellMap operator checked -(scoped in CellMap collection, int offset);
+    public static CellMap operator checked -(scoped in CellMap collection, IEnumerable<int> offsets);
     public static Candidates operator checked *(in CellMap @base, int digit);
+    public static short operator checked /(scoped in CellMap map, int house);
 
     public static implicit operator int[](scoped in CellMap offsets);
     public static implicit operator CellMap(scoped in ReadOnlySpan<int> offsets);
