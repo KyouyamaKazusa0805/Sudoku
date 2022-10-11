@@ -50,6 +50,7 @@ public struct CellMap :
 	ISelectClauseProvider<int>,
 	ISimpleFormattable,
 	ISimpleParsable<CellMap>,
+	ISlicable<CellMap, int>,
 	ISubtractionOperators<CellMap, int, CellMap>,
 	ISubtractionOperators<CellMap, CellMap, CellMap>,
 	ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>
@@ -427,6 +428,9 @@ public struct CellMap :
 	/// <inheritdoc/>
 	readonly bool ICollection<int>.IsReadOnly => false;
 
+	/// <inheritdoc/>
+	readonly int ISlicable<CellMap, int>.Length => Count;
+
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
@@ -471,8 +475,7 @@ public struct CellMap :
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
 	[JsonInclude]
-	private readonly string[] NotationSegments
-		=> this ? ToString("n").Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries) : Array.Empty<string>();
+	private readonly string[] NotationSegments => this ? StringChunks : Array.Empty<string>();
 
 
 	/// <inheritdoc/>
@@ -856,12 +859,7 @@ public struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly OneDimensionalArrayEnumerator<int> GetEnumerator() => Offsets.EnumerateImmutable();
 
-	/// <summary>
-	/// Gets the <see cref="CellMap"/> instance that starts with the specified index.
-	/// </summary>
-	/// <param name="start">The start index.</param>
-	/// <param name="count">The desired number of offsets.</param>
-	/// <returns>The <see cref="CellMap"/> result.</returns>
+	/// <inheritdoc/>
 	public readonly CellMap Slice(int start, int count)
 	{
 		var result = Empty;
