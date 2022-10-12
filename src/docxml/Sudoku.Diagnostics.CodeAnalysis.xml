@@ -93,21 +93,6 @@
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CategoryKind">
-            <summary>
-            Represents with a category kind.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CategoryKind.Usage">
-            <summary>
-            Indicates the category kind is for usage.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CategoryKind.CodeAnalysis">
-            <summary>
-            Indicates the category kind is for code analysis.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.NamedArgumentsExtensions">
             <summary>
             Provides extension methods on named arguments list type <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
@@ -187,7 +172,7 @@
             <list type="bullet">
             <item><b>Title</b>: Use 'Add' instead of plus operator</item>
             <item><b>Description</b>: Use 'Add' instead of plus operator</item>
-            <item><b>Category</b>: Usage</item>
+            <item><b>Category</b>: Performance</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
             </list>
             </summary>
