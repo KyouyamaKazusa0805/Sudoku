@@ -5,3 +5,4 @@ SCA0102,Large structures should pass by reference,,Usage,Warning,Large structure
 SCA0201,Use type 'Argument' instead,,Usage,Info,The current 'if' statement can be converted into 'Argument' method invocation; use 'Argument' instead to simplify the code.
 SCA0202,Use 'Add' instead of plus operator,,Performance,Info,Use 'Add' instead of plus operator.
 SCA0203,Use 'Remove' instead of subtraction operator,,Performance,Info,Use 'Remove' instead of subtraction operator.
+SCA0301,Missing 'SelfAttribute',,Usage,Hidden,Missing 'SelfAttribute'; Don't you infer the self generic argument?

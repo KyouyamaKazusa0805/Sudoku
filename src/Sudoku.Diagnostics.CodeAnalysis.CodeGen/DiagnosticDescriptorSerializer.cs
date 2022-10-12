@@ -60,7 +60,7 @@ internal static class DiagnosticDescriptorSerializer
 						? $"{title.Trim()}."
 						: description.Trim() switch
 						{
-							[.., '.'] formattedDescription => formattedDescription,
+							[.., '.' or '?'] formattedDescription => formattedDescription,
 							[.., >= 'A' and <= 'Z' or >= 'a' and <= 'z'] formattedDescription => formattedDescription,
 							[.. var slice, var last] when char.IsPunctuation(last) => $"{slice}."
 						},

@@ -1428,6 +1428,11 @@
             Indicates the suggested member name.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.SelfAttribute">
+            <summary>
+            Indicates the generic argument is a self type.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute">
             <summary>
             Telling the source generators to generate extension deconstruction methods for a specified type.
