@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="TSelf">The type of the value.</typeparam>
 /// <typeparam name="TResult">The result of the negation.</typeparam>
-public interface ILogicalNotOperators<in TSelf, out TResult> where TSelf : ILogicalNotOperators<TSelf, TResult>
+public interface ILogicalNotOperators<[Self] in TSelf, out TResult> where TSelf : ILogicalNotOperators<TSelf, TResult>
 {
 	/// <summary>
 	/// Negates an instance of type <typeparamref name="TSelf"/>

@@ -15,7 +15,7 @@
 /// }
 /// ]]></code>
 /// </remarks>
-public interface IFixable<TSelf, TFixedVariable> : IEnumerable<TFixedVariable>
+public interface IFixable<[Self] TSelf, TFixedVariable> : IEnumerable<TFixedVariable>
 	where TSelf : notnull, IFixable<TSelf, TFixedVariable>
 	where TFixedVariable : unmanaged
 {

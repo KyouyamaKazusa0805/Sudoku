@@ -7,7 +7,7 @@
 /// <typeparam name="TSelf">The type of the value.</typeparam>
 /// <typeparam name="TOther">The other value to be used for computing the result.</typeparam>
 /// <typeparam name="TResult">The result of the value.</typeparam>
-public interface ILogicalOperators<in TSelf, in TOther, out TResult>
+public interface ILogicalOperators<[Self] in TSelf, in TOther, out TResult>
 	where TSelf : IBooleanOperators<TSelf>, ILogicalOperators<TSelf, TOther, TResult>
 {
 	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_BitwiseAnd(TSelf, TOther)"/>

@@ -4,7 +4,7 @@
 /// Represents a type whose instance of this type can be used as a predicate-like expression.
 /// </summary>
 /// <typeparam name="TSelf">The type of the </typeparam>
-public interface IBooleanOperators<in TSelf> where TSelf : IBooleanOperators<TSelf>
+public interface IBooleanOperators<[Self] in TSelf> where TSelf : IBooleanOperators<TSelf>
 {
 	/// <summary>
 	/// Indicates whether the specified value of type <typeparamref name="TSelf"/> satisfies a fixed condition.

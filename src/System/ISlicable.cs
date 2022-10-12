@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="TSelf">The type of the instance.</typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
-public interface ISlicable<TSelf, TElement> where TSelf : ISlicable<TSelf, TElement>?
+public interface ISlicable<[Self] TSelf, TElement> where TSelf : ISlicable<TSelf, TElement>?
 {
 	/// <summary>
 	/// Indicates the cardinality of the collection.
