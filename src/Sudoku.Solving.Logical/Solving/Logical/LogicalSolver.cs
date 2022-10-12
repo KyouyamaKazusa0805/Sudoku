@@ -175,7 +175,7 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 				}
 				default:
 				{
-					var context = new LogicalAnalysisContext(null, playground, true);
+					scoped var context = new LogicalAnalysisContext(null, playground, true);
 					var foundStep = searcher.GetAll(context);
 					switch (foundStep)
 					{
