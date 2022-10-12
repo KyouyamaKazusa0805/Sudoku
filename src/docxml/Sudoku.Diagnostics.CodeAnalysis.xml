@@ -189,7 +189,7 @@
             <list type="bullet">
             <item><b>Title</b>: Large structures should pass by reference</item>
             <item><b>Description</b>: Large structure should pass by reference in order to optimize performance.</item>
-            <item><b>Category</b>: Usage</item>
+            <item><b>Category</b>: Performance</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
             </list>
             </summary>
