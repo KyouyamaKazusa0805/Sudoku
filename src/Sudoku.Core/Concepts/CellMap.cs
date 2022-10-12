@@ -102,16 +102,6 @@ public struct CellMap :
 
 
 	/// <summary>
-	/// Initializes a <see cref="CellMap"/> instance.
-	/// </summary>
-	[DebuggerHidden]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
-	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
-	public CellMap() => this = Empty;
-
-	/// <summary>
 	/// Initializes a <see cref="CellMap"/> instance via a list of cell offsets, represented as a RxCy notation
 	/// that is defined by <see cref="RxCyNotation"/>.
 	/// </summary>

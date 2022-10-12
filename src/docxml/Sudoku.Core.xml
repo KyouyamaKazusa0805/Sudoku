@@ -620,11 +620,6 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.#ctor(System.String[])">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.CellMap"/> instance via a list of cell offsets, represented as a RxCy notation
