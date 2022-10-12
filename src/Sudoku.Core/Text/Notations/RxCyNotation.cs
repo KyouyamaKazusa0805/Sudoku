@@ -64,8 +64,7 @@ public sealed partial class RxCyNotation :
 	{
 		(result, var @return) = str.Trim() switch
 		{
-			['R' or 'r', var r and >= '1' and <= '9', 'C' or 'c', var c and >= '1' and <= '9']
-				=> ((r - '1') * 9 + (c - '1'), true),
+			['R' or 'r', var r and >= '1' and <= '9', 'C' or 'c', var c and >= '1' and <= '9'] => ((r - '1') * 9 + (c - '1'), true),
 			_ => (0, false)
 		};
 
