@@ -110,7 +110,7 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 	/// </summary>
 	/// <param name="houses">The houses.</param>
 	/// <returns>The <see cref="string"/> result.</returns>
-	public static string Format(scoped in ReadOnlySpan<int> houses)
+	public static string Format(scoped ReadOnlySpan<int> houses)
 	{
 		short targetMask = 0;
 		foreach (var house in houses)

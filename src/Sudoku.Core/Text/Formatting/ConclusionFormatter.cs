@@ -31,7 +31,7 @@ public abstract class ConclusionFormatter : ICollectionFormatter<Conclusion>
 		};
 
 
-		string f(scoped in Span<Conclusion> c)
+		string f(scoped Span<Conclusion> c)
 		{
 			var conclusions = c.ToArray(); // This operation will copy the inner data.
 			scoped var sb = new StringHandler(50);

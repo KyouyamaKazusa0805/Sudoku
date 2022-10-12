@@ -933,17 +933,17 @@
             Throws when the specified cell offset is invalid.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.AddRange(System.ReadOnlySpan{System.Int32}@)">
+        <member name="M:Sudoku.Concepts.CellMap.AddRange(System.ReadOnlySpan{System.Int32})">
             <summary>
             Set the specified offsets as <see langword="true"/> value.
             </summary>
             <param name="offsets">The offsets to add.</param>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMap.AddRange(System.ReadOnlySpan{System.Int32}@)"/>
+            <inheritdoc cref="M:Sudoku.Concepts.CellMap.AddRange(System.ReadOnlySpan{System.Int32})"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMap.AddRange(System.ReadOnlySpan{System.Int32}@)"/>
+            <inheritdoc cref="M:Sudoku.Concepts.CellMap.AddRange(System.ReadOnlySpan{System.Int32})"/>
             <remarks>
             Different with the method <see cref="M:Sudoku.Concepts.CellMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
             also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
@@ -6742,7 +6742,7 @@
             Throws when the argument <paramref name="formattingMode"/> is not defined.
             </exception>
         </member>
-        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Format(System.ReadOnlySpan{System.Int32}@)">
+        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Format(System.ReadOnlySpan{System.Int32})">
             <summary>
             <para>
             Gets a <see cref="T:System.String"/> value that can describes for a list of houses that is represented

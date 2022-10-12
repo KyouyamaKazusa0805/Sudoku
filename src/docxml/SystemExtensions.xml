@@ -9,7 +9,7 @@
             Provides operations on Combinatorics.
             </summary>
         </member>
-        <member name="M:System.Algorithm.Combinatorics.GetSubsets``1(System.Span{``0}@,System.Int32)">
+        <member name="M:System.Algorithm.Combinatorics.GetSubsets``1(System.Span{``0},System.Int32)">
             <summary>
             Get all subsets from the specified number of the values to take.
             </summary>
@@ -17,7 +17,7 @@
             <param name="count">The number of elements you want to take.</param>
             <returns>All subsets.</returns>
         </member>
-        <member name="M:System.Algorithm.Combinatorics.GetSubsets``1(System.ReadOnlySpan{``0}@,System.Int32)">
+        <member name="M:System.Algorithm.Combinatorics.GetSubsets``1(System.ReadOnlySpan{``0},System.Int32)">
             <summary>
             Get all subsets from the specified number of the values to take.
             </summary>
@@ -1860,7 +1860,7 @@
             <seealso cref="T:System.Span`1"/>
             <seealso cref="T:System.ReadOnlySpan`1"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Select``2(System.Span{``0}@,System.Func{``0,``1})">
+        <member name="M:System.Linq.SpanEnumerable.Select``2(System.Span{``0},System.Func{``0,``1})">
             <summary>
             The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
             clause.
@@ -1871,7 +1871,7 @@
             <param name="selector">The selector that is used for conversion.</param>
             <returns>The array of target result elements.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0}@,System.Func{``0,``1})">
+        <member name="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <summary>
             The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
             clause.

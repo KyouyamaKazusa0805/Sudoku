@@ -906,7 +906,7 @@ public struct CellMap :
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>
-	public void AddRange(scoped in ReadOnlySpan<int> offsets)
+	public void AddRange(scoped ReadOnlySpan<int> offsets)
 	{
 		foreach (var cell in offsets)
 		{
@@ -914,7 +914,7 @@ public struct CellMap :
 		}
 	}
 
-	/// <inheritdoc cref="AddRange(in ReadOnlySpan{int})"/>
+	/// <inheritdoc cref="AddRange(ReadOnlySpan{int})"/>
 	public void AddRange(IEnumerable<int> offsets)
 	{
 		foreach (var cell in offsets)
@@ -923,7 +923,7 @@ public struct CellMap :
 		}
 	}
 
-	/// <inheritdoc cref="AddRange(in ReadOnlySpan{int})"/>
+	/// <inheritdoc cref="AddRange(ReadOnlySpan{int})"/>
 	/// <remarks>
 	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
 	/// also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
