@@ -21,9 +21,7 @@ public sealed partial class SCA0301_SelfAttributeMissingAnalyzer : DiagnosticAna
 			{
 				TypeParameterKind: TypeParameterKind.Type,
 				ConstraintTypes: var constraintTypes and not [],
-				HasUnmanagedTypeConstraint: false,
-				HasValueTypeConstraint: false,
-				DeclaringType: var declaringType,
+				DeclaringType: { } declaringType,
 				Locations: [var location]
 			} symbol)
 		{

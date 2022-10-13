@@ -18,6 +18,7 @@
 | [SCA0202](sca0202)     | 性能（Performance）      | ℹ        | 请使用 `Add` 方法代替 `operator +` 运算符                    |
 | [SCA0203](sca0203)     | 性能（Performance）      | ℹ        | 请使用 `Remove` 方法代替 `operator -` 运算符                 |
 | [SCA0301](sca0301)     | 使用（Usage）            | 💡        | 该泛型参数缺少 `SelfAttribute` 特性                          |
+| [SCA0302](sca0302)     | 使用（Usage）            | ⚠        | 该泛型参数必须限制自身约束                                   |
 
 ## 注解
 
