@@ -151,6 +151,25 @@
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0303">SCA0303</see> (Self type parameter should be named 'TSelf')</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.NamedArgumentsExtensions">
             <summary>
             Provides extension methods on named arguments list type <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
@@ -265,6 +284,17 @@
             <item><b>Description</b>: Specified type parameter must be derived from the containing type itself.</item>
             <item><b>Category</b>: Usage</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0303">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0303">SCA0303</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Self type parameter should be named 'TSelf'</item>
+            <item><b>Description</b>: Self type parameter should be named 'TSelf'.</item>
+            <item><b>Category</b>: Naming</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
             </list>
             </summary>
         </member>
