@@ -967,15 +967,17 @@ public struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly unsafe void ICollection<int>.CopyTo(int[] array, int arrayIndex)
+	{
+		fixed (int* pArray = array)
+		{
+			CopyTo(pArray + arrayIndex, _count - arrayIndex);
+		}
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly bool IEquatable<CellMap>.Equals(CellMap other) => Equals(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator IEnumerable.GetEnumerator() => Offsets.GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1015,16 +1017,6 @@ public struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly unsafe void ICollection<int>.CopyTo(int[] array, int arrayIndex)
-	{
-		fixed (int* pArray = array)
-		{
-			CopyTo(pArray + arrayIndex, _count - arrayIndex);
-		}
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly bool ISet<int>.IsProperSubsetOf(IEnumerable<int> other) => ((IReadOnlySet<int>)this).IsProperSubsetOf(other);
 
 	/// <inheritdoc/>
@@ -1049,6 +1041,10 @@ public struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly int IComparable<CellMap>.CompareTo(CellMap other) => CompareTo(other);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly int IComparable.CompareTo([NotNull] object? obj)
 	{
 		ArgumentNullException.ThrowIfNull(obj);
@@ -1060,7 +1056,11 @@ public struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly int IComparable<CellMap>.CompareTo(CellMap other) => CompareTo(other);
+	readonly IEnumerator IEnumerable.GetEnumerator() => Offsets.GetEnumerator();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
 
 	/// <inheritdoc/>
 	readonly IEnumerable<TResult> ISelectClauseProvider<int>.Select<TResult>(Func<int, TResult> selector)
@@ -1074,6 +1074,26 @@ public struct CellMap :
 
 		return ImmutableArray.Create(result);
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void ISet<int>.ExceptWith(IEnumerable<int> other) => this -= Empty + other;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void ISet<int>.IntersectWith(IEnumerable<int> other) => this &= Empty + other;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void ISet<int>.SymmetricExceptWith(IEnumerable<int> other)
+	{
+		Clear();
+		this |= (this - (Empty + other)) | (Empty + other - this);
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void ISet<int>.UnionWith(IEnumerable<int> other) => this |= Empty + other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1110,26 +1130,6 @@ public struct CellMap :
 			return false;
 		}
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.ExceptWith(IEnumerable<int> other) => this -= Empty + other;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.IntersectWith(IEnumerable<int> other) => this &= Empty + other;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.SymmetricExceptWith(IEnumerable<int> other)
-	{
-		Clear();
-		this |= (this - (Empty + other)) | (Empty + other - this);
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.UnionWith(IEnumerable<int> other) => this |= Empty + other;
 
 
 	/// <inheritdoc/>
@@ -1603,8 +1603,7 @@ public struct CellMap :
 	/// </para>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator %(scoped in CellMap @base, scoped in CellMap template)
-		=> (@base & template).PeerIntersection & template;
+	public static CellMap operator %(scoped in CellMap @base, scoped in CellMap template) => (@base & template).PeerIntersection & template;
 
 	/// <summary>
 	/// Expands via the specified digit.

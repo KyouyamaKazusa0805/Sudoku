@@ -964,13 +964,10 @@
             Clear all bits.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ICollection{System#Int32}#CopyTo(System.Int32[],System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IEquatable{Sudoku#Concepts#CellMap}#Equals(Sudoku.Concepts.CellMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
@@ -991,9 +988,6 @@
         <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#IReadOnlySet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ICollection{System#Int32}#CopyTo(System.Int32[],System.Int32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ISet{System#Int32}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
@@ -1012,19 +1006,19 @@
         <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ISet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IComparable#CompareTo(System.Object)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IComparable{Sudoku#Concepts#CellMap}#CompareTo(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#IComparable#CompareTo(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Linq#ISelectClauseProvider{System#Int32}#Select``1(System.Func{System.Int32,``0})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ISet{System#Int32}#Add(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ICollection{System#Int32}#Remove(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ISet{System#Int32}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
@@ -1037,6 +1031,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ISet{System#Int32}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ISet{System#Int32}#Add(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Collections#Generic#ICollection{System#Int32}#Remove(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.CellMap@)">
