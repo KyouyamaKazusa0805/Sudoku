@@ -246,7 +246,7 @@ public unsafe ref partial struct StringHandler
 	}
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
-	[Obsolete(RefStructDefaultImplementationMessage.OverriddenEqualsMethod, true)]
+	[Obsolete(RefStructDefaultImplementationMessage.OverriddenEqualsMethod, false, DiagnosticId = "SCA0104", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0104")]
 	public override readonly bool Equals([NotNullWhen(true)] object? obj) => false;
 
 	/// <summary>
@@ -256,7 +256,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(scoped in StringHandler other) => Equals(this, other);
+	public readonly bool Equals(scoped StringHandler other) => Equals(this, other);
 
 	/// <inheritdoc cref="IFixable{TSelf, TFixedVariable}.GetPinnableReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -284,7 +284,7 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[DoesNotReturn]
-	[Obsolete(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod, true)]
+	[Obsolete(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod, false, DiagnosticId = "SCA0105", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0105")]
 	public override readonly int GetHashCode()
 		=> throw new NotSupportedException(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod);
 
@@ -476,10 +476,9 @@ public unsafe ref partial struct StringHandler
 	public void Append(scoped ReadOnlySpan<char> value, int alignment, string? format = null)
 		=> AppendFormatted(value, alignment, format);
 
-	/// <inheritdoc cref="AppendFormatted(in StringHandler)"/>
+	/// <inheritdoc cref="AppendFormatted(StringHandler)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append([InterpolatedStringHandlerArgument] scoped in StringHandler handler)
-		=> AppendFormatted(handler);
+	public void Append([InterpolatedStringHandlerArgument] scoped StringHandler handler) => AppendFormatted(handler);
 
 	/// <summary>
 	/// Writes the specified interpolated string with the specified format provider into the handler.
@@ -519,8 +518,7 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc cref="AppendFormatted{T}(T, int, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append<T>(T value, int alignment, string? format = null)
-		=> AppendFormatted(value, alignment, format);
+	public void Append<T>(T value, int alignment, string? format = null) => AppendFormatted(value, alignment, format);
 
 	/// <summary>
 	/// Append a new line string <see cref="Environment.NewLine"/>.
@@ -662,8 +660,7 @@ public unsafe ref partial struct StringHandler
 	/// Throws when the argument <paramref name="list"/> or <paramref name="converter"/>
 	/// is <see langword="null"/>.
 	/// </exception>
-	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter, string separator)
+	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter, string separator)
 		where TUnmanaged : unmanaged
 	{
 		ArgumentNullException.ThrowIfNull(list);
@@ -693,8 +690,7 @@ public unsafe ref partial struct StringHandler
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="list"/> is <see langword="null"/>.
 	/// </exception>
-	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		TUnmanaged* list, int length, Func<TUnmanaged, string?> converter, string separator)
+	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(TUnmanaged* list, int length, Func<TUnmanaged, string?> converter, string separator)
 		where TUnmanaged : unmanaged
 	{
 		ArgumentNullException.ThrowIfNull(list);
@@ -973,7 +969,7 @@ public unsafe ref partial struct StringHandler
 	/// Writes the specified interpolated string into the handler.
 	/// </summary>
 	/// <param name="handler">The handler that creates the interpolated string as this argument.</param>
-	public void AppendFormatted([InterpolatedStringHandlerArgument] scoped in StringHandler handler)
+	public void AppendFormatted([InterpolatedStringHandlerArgument] scoped StringHandler handler)
 	{
 		var result = handler.ToStringAndClear();
 		if (result.TryCopyTo(_chars[Length..]))
@@ -1437,7 +1433,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool Equals(scoped in StringHandler left, scoped in StringHandler right)
+	public static bool Equals(scoped StringHandler left, scoped StringHandler right)
 	{
 		if (left.Length != right.Length)
 		{
@@ -1488,11 +1484,9 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(scoped in StringHandler left, scoped in StringHandler right)
-		=> left.Equals(right);
+	public static bool operator ==(scoped StringHandler left, scoped StringHandler right) => left.Equals(right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(scoped in StringHandler left, scoped in StringHandler right)
-		=> !(left == right);
+	public static bool operator !=(scoped StringHandler left, scoped StringHandler right) => !(left == right);
 }

@@ -11,6 +11,7 @@ global using System.Numerics;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
 global using System.Runtime.InteropServices.WindowsRuntime;
+global using System.Runtime.Messages;
 global using System.Text;
 global using System.Threading.Tasks;
 global using Microsoft.UI.Input;

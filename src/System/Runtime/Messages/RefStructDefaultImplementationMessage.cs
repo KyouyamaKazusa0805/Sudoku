@@ -1,4 +1,4 @@
-﻿namespace System.Runtime.CompilerServices;
+﻿namespace System.Runtime.Messages;
 
 /// <summary>
 /// Provides with a message that is represented as deprecated message in default-overridden methods

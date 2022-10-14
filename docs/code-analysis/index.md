@@ -14,6 +14,9 @@
 | [SCA0006](sca0006)     | 代码生成（CodeGen）      | ⚠        | 代码分析器名称命名不规范                                     |
 | [SCA0101](sca0101)     | 使用（Usage）            | ⚠        | 请勿对大结构类型进行无参实例化                               |
 | [SCA0102](sca0102)     | 性能（Performance）      | ⚠        | 大结构类型的参数需要按引用传递                               |
+| [SCA0103](sca0103)     | 使用（Usage）            | ❌        | 该构造器预留给编译器和运行时调用，用户不应调用此成员         |
+| [SCA0104](sca0104)     | 使用（Usage）            | ⚠        | `Equals` 方法位于 `ref struct` 类型的重写，无论如何都无法成立；调用此成员无意义 |
+| [SCA0105](sca0105)     | 使用（Usage）            | ⚠        | `GetHashCode` 方法位于 `ref struct` 类型尚未正确重写，无论如何都无法得到正确结果；调用此成员无意义 |
 | SCA0201                | 使用（Usage）            | ℹ        | 请使用 `Argument` 类型代替 `if` 判断                         |
 | [SCA0202](sca0202)     | 性能（Performance）      | ℹ        | 请使用 `Add` 方法代替 `operator +` 运算符                    |
 | [SCA0203](sca0203)     | 性能（Performance）      | ℹ        | 请使用 `Remove` 方法代替 `operator -` 运算符                 |

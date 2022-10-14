@@ -51,8 +51,8 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[JsonConstructor]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
-	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
+	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true, DiagnosticId = "SCA0103", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103")]
+	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, Url = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103")]
 	public Crosshatch(int digit, CellMap from, CellMap to) => this = Create(digit, from, to);
 
 	/// <summary>

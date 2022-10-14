@@ -12,6 +12,7 @@ global using System.Numerics;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
+global using System.Runtime.Messages;
 global using System.Text;
 global using System.Text.Encodings.Web;
 global using System.Text.Json.Serialization;

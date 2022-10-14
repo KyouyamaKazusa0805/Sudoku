@@ -2370,7 +2370,7 @@
         <member name="M:System.Text.StringHandler.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:System.Text.StringHandler.Equals(System.Text.StringHandler@)">
+        <member name="M:System.Text.StringHandler.Equals(System.Text.StringHandler)">
             <summary>
             Determine whether the specified <see cref="T:System.Text.StringHandler"/> instance hold a same character set
             as the current instance.
@@ -2464,8 +2464,8 @@
         <member name="M:System.Text.StringHandler.Append(System.ReadOnlySpan{System.Char},System.Int32,System.String)">
             <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.ReadOnlySpan{System.Char},System.Int32,System.String)"/>
         </member>
-        <member name="M:System.Text.StringHandler.Append(System.Text.StringHandler@)">
-            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.Text.StringHandler@)"/>
+        <member name="M:System.Text.StringHandler.Append(System.Text.StringHandler)">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.Text.StringHandler)"/>
         </member>
         <member name="M:System.Text.StringHandler.Append(System.IFormatProvider,System.Runtime.CompilerServices.DefaultInterpolatedStringHandler@)">
             <summary>
@@ -2710,7 +2710,7 @@
             </param>
             <param name="format">The format string.</param>
         </member>
-        <member name="M:System.Text.StringHandler.AppendFormatted(System.Text.StringHandler@)">
+        <member name="M:System.Text.StringHandler.AppendFormatted(System.Text.StringHandler)">
             <summary>
             Writes the specified interpolated string into the handler.
             </summary>
@@ -2918,7 +2918,7 @@
             </para>
             </remarks>
         </member>
-        <member name="M:System.Text.StringHandler.Equals(System.Text.StringHandler@,System.Text.StringHandler@)">
+        <member name="M:System.Text.StringHandler.Equals(System.Text.StringHandler,System.Text.StringHandler)">
             <summary>
             Determines whether two instances has same values with the other instance.
             </summary>
@@ -2946,10 +2946,10 @@
             <seealso cref="!:AppendRangeWithSeparatorUnsafe&lt;TUnmanaged&gt;(TUnmanaged*, int, delegate*&lt;TUnmanaged, string?&gt;, string)"/>
             <seealso cref="M:System.Text.StringHandler.AppendRangeWithSeparatorUnsafe``1(``0*,System.Int32,System.Func{``0,System.String},System.String)"/>
         </member>
-        <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler@,System.Text.StringHandler@)">
+        <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler,System.Text.StringHandler)">
             <inheritdoc/>
         </member>
-        <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler@,System.Text.StringHandler@)">
+        <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler,System.Text.StringHandler)">
             <inheritdoc/>
         </member>
         <member name="T:System.Text.StringHandler.Enumerator">
@@ -3724,32 +3724,32 @@
             <c><see langword="ref throw new"/> <see cref="T:System.Exception"/>()</c>.
             </remarks>
         </member>
-        <member name="T:System.Runtime.CompilerServices.RefStructDefaultImplementationMessage">
+        <member name="T:System.Runtime.Messages.RefStructDefaultImplementationMessage">
             <summary>
             Provides with a message that is represented as deprecated message in default-overridden methods
             of <see langword="ref struct"/>-typed instances.
             </summary>
         </member>
-        <member name="F:System.Runtime.CompilerServices.RefStructDefaultImplementationMessage.OverriddenEqualsMethod">
+        <member name="F:System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenEqualsMethod">
             <summary>
             Indicates the message is telling user that the method <c>Equals</c> will become invalid
             in <see langword="ref struct"/> because the argument type is <see cref="T:System.Object"/>,
             which is not able to be a target converted type for a <see langword="ref struct"/> instance.
             </summary>
         </member>
-        <member name="F:System.Runtime.CompilerServices.RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod">
+        <member name="F:System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod">
             <summary>
             Indicates the message is telling user that the method <c>GetHashCode</c> will become invalid
             in <see langword="ref struct"/> because the argument type is <see cref="T:System.Object"/>,
             which is not able to be a target converted type for a <see langword="ref struct"/> instance.
             </summary>
         </member>
-        <member name="T:System.Runtime.CompilerServices.RequiresJsonSerializerDynamicInvocationMessage">
+        <member name="T:System.Runtime.Messages.RequiresJsonSerializerDynamicInvocationMessage">
             <summary>
             Provides with a message that is represented as deprecated message in JSON serialization dynamic invocation.
             </summary>
         </member>
-        <member name="F:System.Runtime.CompilerServices.RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly">
+        <member name="F:System.Runtime.Messages.RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly">
             <summary>
             Indicates the message that reports an error that user cannot use this constructor because of requirements on dynamic invocation
             by JSON serializer handling.

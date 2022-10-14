@@ -23,7 +23,7 @@ public ref struct PropertyPathBuilder
 
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
-	[Obsolete(RefStructDefaultImplementationMessage.OverriddenEqualsMethod, true)]
+	[Obsolete(RefStructDefaultImplementationMessage.OverriddenEqualsMethod, false, DiagnosticId = "SCA0104", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0104")]
 	public override readonly bool Equals([NotNullWhen(true)] object? obj) => false;
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
@@ -107,11 +107,9 @@ public ref struct PropertyPathBuilder
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(scoped PropertyPathBuilder left, scoped PropertyPathBuilder right)
-		=> left.Equals(right);
+	public static bool operator ==(scoped PropertyPathBuilder left, scoped PropertyPathBuilder right) => left.Equals(right);
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(scoped PropertyPathBuilder left, scoped PropertyPathBuilder right)
-		=> !(left == right);
+	public static bool operator !=(scoped PropertyPathBuilder left, scoped PropertyPathBuilder right) => !(left == right);
 }
