@@ -907,10 +907,7 @@ public unsafe partial struct Grid :
 	{
 		const string separator = ", ";
 		scoped var sb = new StringHandler(400);
-		fixed (short* pGrid = this)
-		{
-			sb.AppendRangeWithSeparatorUnsafe(pGrid, 81, &StringHandler.ElementToStringConverter, separator);
-		}
+		sb.AppendRangeWithSeparatorRef(GetPinnableReference(), 81, &StringHandler.ElementToStringConverter, separator);
 
 		return sb.ToStringAndClear();
 	}

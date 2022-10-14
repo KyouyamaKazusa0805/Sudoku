@@ -660,7 +660,8 @@ public unsafe ref partial struct StringHandler
 	/// Throws when the argument <paramref name="list"/> or <paramref name="converter"/>
 	/// is <see langword="null"/>.
 	/// </exception>
-	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter, string separator)
+	public void AppendRangeWithSeparatorRef<TUnmanaged>(
+		TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter, string separator)
 		where TUnmanaged : unmanaged
 	{
 		ArgumentNullException.ThrowIfNull(list);
@@ -688,9 +689,49 @@ public unsafe ref partial struct StringHandler
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
 	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="list"/> or <paramref name="converter"/>
+	/// is <see langword="null"/>.
+	/// </exception>
+	public void AppendRangeWithSeparatorRef<TUnmanaged>(
+		scoped in TUnmanaged list,
+		int length,
+		delegate*<in TUnmanaged, string?> converter,
+		string separator)
+		where TUnmanaged : unmanaged
+	{
+		if (IsNullRef(ref AsRef(list)))
+		{
+			throw new ArgumentNullException(nameof(list));
+		}
+
+		ArgumentNullException.ThrowIfNull(converter);
+
+		for (var i = 0; i < length; i++)
+		{
+			scoped ref readonly var element = ref AddByteOffset(ref AsRef(list), i);
+			AppendFormatted(converter(in element));
+			AppendFormatted(separator);
+		}
+
+		Length -= separator.Length;
+	}
+
+	/// <summary>
+	/// Append a serial of strings converted from a serial of elements.
+	/// </summary>
+	/// <typeparam name="TUnmanaged">The type of each element.</typeparam>
+	/// <param name="list">The list of elements that is represented as a pointer.</param>
+	/// <param name="length">The length of the list.</param>
+	/// <param name="converter">
+	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
+	/// whose the rule is defined as a method specified as the delegate instance as this argument.
+	/// </param>
+	/// <param name="separator">The separator to append when an element is finished to append.</param>
+	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="list"/> is <see langword="null"/>.
 	/// </exception>
-	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(TUnmanaged* list, int length, Func<TUnmanaged, string?> converter, string separator)
+	public void AppendRangeWithSeparatorRef<TUnmanaged>(
+		TUnmanaged* list, int length, Func<TUnmanaged, string?> converter, string separator)
 		where TUnmanaged : unmanaged
 	{
 		ArgumentNullException.ThrowIfNull(list);
@@ -699,6 +740,39 @@ public unsafe ref partial struct StringHandler
 		{
 			var element = list[i];
 			AppendFormatted(converter(element));
+			AppendFormatted(separator);
+		}
+
+		Length -= separator.Length;
+	}
+
+	/// <summary>
+	/// Append a serial of strings converted from a serial of elements.
+	/// </summary>
+	/// <typeparam name="TUnmanaged">The type of each element.</typeparam>
+	/// <param name="list">The list of elements that is represented as a pointer.</param>
+	/// <param name="length">The length of the list.</param>
+	/// <param name="converter">
+	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
+	/// whose the rule is defined as a method specified as the delegate instance as this argument.
+	/// </param>
+	/// <param name="separator">The separator to append when an element is finished to append.</param>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="list"/> is <see langword="null"/>.
+	/// </exception>
+	public void AppendRangeWithSeparatorRef<TUnmanaged>(
+		scoped in TUnmanaged list, int length, StringHandlerRefAppender<TUnmanaged> converter, string separator)
+		where TUnmanaged : unmanaged
+	{
+		if (IsNullRef(ref AsRef(list)))
+		{
+			throw new ArgumentNullException(nameof(list));
+		}
+
+		for (var i = 0; i < length; i++)
+		{
+			scoped ref readonly var element = ref AddByteOffset(ref AsRef(list), i);
+			AppendFormatted(converter(in element));
 			AppendFormatted(separator);
 		}
 
@@ -1472,13 +1546,37 @@ public unsafe ref partial struct StringHandler
 	/// <remarks>
 	/// You can put this method as the argument into the method invocation
 	/// <see cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(TUnmanaged*, int, delegate*{TUnmanaged, string?}, string)"/>
-	/// or <see cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(TUnmanaged*, int, Func{TUnmanaged, string?}, string)"/>.
+	/// or <see cref="AppendRangeWithSeparatorRef{TUnmanaged}(TUnmanaged*, int, Func{TUnmanaged, string?}, string)"/>.
 	/// </remarks>
 	/// <seealso cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(TUnmanaged*, int, delegate*{TUnmanaged, string?}, string)"/>
-	/// <seealso cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(TUnmanaged*, int, Func{TUnmanaged, string?}, string)"/>
+	/// <seealso cref="AppendRangeWithSeparatorRef{TUnmanaged}(TUnmanaged*, int, Func{TUnmanaged, string?}, string)"/>
 #pragma warning restore CS1584, CS1658
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ElementToStringConverter<TNotNull>(TNotNull @this) where TNotNull : notnull
+		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
+
+#pragma warning disable CS1584, CS1658
+	/// <summary>
+	/// Provides with the default way to convert the specified instance of type <see cref="short"/>
+	/// into a <see cref="string"/> value.
+	/// </summary>
+	/// <typeparam name="TNotNull">The type of the argument.</typeparam>
+	/// <param name="this">The instance.</param>
+	/// <returns>The <see cref="string"/> value.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the argument <paramref name="this"/> return <see langword="null"/>
+	/// as the <c>ToString</c> method result.
+	/// </exception>
+	/// <remarks>
+	/// You can put this method as the argument into the method invocation
+	/// <see cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(in TUnmanaged, int, delegate*{in TUnmanaged, string?}, string)"/>
+	/// or <see cref="AppendRangeWithSeparatorRef{TUnmanaged}(in TUnmanaged, int, StringHandlerRefAppender{TUnmanaged}, string)"/>.
+	/// </remarks>
+	/// <seealso cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(in TUnmanaged, int, delegate*{in TUnmanaged, string?}, string)"/>
+	/// <seealso cref="AppendRangeWithSeparatorRef{TUnmanaged}(in TUnmanaged, int, StringHandlerRefAppender{TUnmanaged}, string)"/>
+#pragma warning restore CS1584, CS1658
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ElementToStringConverter<TNotNull>(scoped in TNotNull @this) where TNotNull : notnull
 		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
 
 
