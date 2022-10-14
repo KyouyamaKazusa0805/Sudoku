@@ -1299,12 +1299,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="op_Explicit(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(string str)
-		=> str switch
-		{
-			$"<{nameof(Empty)}>" => Empty,
-			$"<{nameof(Undefined)}>" => Undefined,
-			_ => new GridParser(str).Parse()
-		};
+		=> str switch { $"<{nameof(Empty)}>" => Empty, $"<{nameof(Undefined)}>" => Undefined, _ => new GridParser(str).Parse() };
 
 	/// <summary>
 	/// <para>
@@ -1453,8 +1448,7 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IParsable<Grid>.TryParse(string? s, IFormatProvider? provider, out Grid result)
-		=> s is not null && TryParse(s, out result);
+	static bool IParsable<Grid>.TryParse(string? s, IFormatProvider? provider, out Grid result) => s is not null && TryParse(s, out result);
 
 	/// <summary>
 	/// The method that is invoked by event handler field <see cref="RefreshingCandidates"/>.
