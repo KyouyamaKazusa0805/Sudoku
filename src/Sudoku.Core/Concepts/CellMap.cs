@@ -377,11 +377,13 @@ public struct CellMap :
 	{
 		get
 		{
-			long lowerBits = 0, higherBits = 0;
+			var lowerBits = 0L;
+			var higherBits = 0L;
 			var i = 0;
 			foreach (var offset in Offsets)
 			{
-				long low = 0, high = 0;
+				var low = 0L;
+				var high = 0L;
 				foreach (var peer in Peers[offset])
 				{
 					(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
