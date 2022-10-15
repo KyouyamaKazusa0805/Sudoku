@@ -21,6 +21,7 @@ namespace Sudoku.Concepts;
 /// <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
 /// </remarks>
 [JsonConverter(typeof(Converter))]
+[IsLargeStruct(SuggestedMemberName = nameof(Empty))]
 public struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,
