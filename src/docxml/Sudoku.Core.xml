@@ -1544,11 +1544,6 @@
             two position can fill this candidate.
             </remarks>
         </member>
-        <member name="F:Sudoku.Concepts.Conjugate.Default">
-            <summary>
-            Indicates the default instance.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.Conjugate._mask">
             <summary>
             Indicates the mask.

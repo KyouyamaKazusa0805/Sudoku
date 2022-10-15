@@ -10,12 +10,6 @@
 public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate, bool>
 {
 	/// <summary>
-	/// Indicates the default instance.
-	/// </summary>
-	public static readonly Conjugate Default = new(-1, -1, -1);
-
-
-	/// <summary>
 	/// Indicates the mask.
 	/// </summary>
 	private readonly int _mask;
