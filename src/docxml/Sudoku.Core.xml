@@ -1788,19 +1788,11 @@
             <summary>
             Indicates the event triggered when the value is changed.
             </summary>
-            <remarks><b>
-            The field is set to <see langword="void"/>* instead of an accurate function pointer type,
-            because the field avoids user to invoke the backing callback function.
-            </b></remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.RefreshingCandidates">
             <summary>
             Indicates the event triggered when should re-compute candidates.
             </summary>
-            <remarks><b>
-            The field is set to <see langword="void"/>* instead of an accurate function pointer type,
-            because the field avoids user to invoke the backing callback function.
-            </b></remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Empty">
             <summary>
@@ -2312,12 +2304,13 @@
             Try to enumerate the mask table of the current grid.
             </summary>
             <returns>
-            An enumerator that allows us using <see langword="foreach"/> statement
+            An enumerator that allows us using <see langword="foreach" /> statement
             to iterate all masks in the current grid. The mask list must contain 81 masks.
             </returns>
             <remarks>
+            <para>
             Please note that the iterator will iterate all masks by reference, which means
-            you can apply <see langword="ref"/> and <see langword="ref readonly"/> modifier
+            you can apply <see langword="ref" /> and <see langword="ref readonly" /> modifier
             onto the iteration variable:
             <code>
             foreach (ref readonly short mask in grid)
@@ -2325,6 +2318,17 @@
                 // Do something.
             }
             </code>
+            </para>
+            <para>
+            <target name="foreach-variables">
+				<para>
+					<i>
+						Iteration variable are implicitly <see langword="scoped" />, which means you cannot return it outside the method
+						or other members that can return.
+					</i>
+				</para>
+			</target>
+            </para>
             </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Reset">

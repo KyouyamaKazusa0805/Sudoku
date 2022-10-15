@@ -218,4 +218,16 @@ Then you can reference the doc here.
 			</target>
 		</feature>
 	</csharp9>
+	<csharp11>
+		<feature name="scoped-ref">
+			<target name="foreach-variables">
+				<para>
+					<i>
+						Iteration variable are implicitly <see langword="scoped"/>, which means you cannot return it outside the method
+						or other members that can return.
+					</i>
+				</para>
+			</target>
+		</feature>
+	</csharp11>
 </g>

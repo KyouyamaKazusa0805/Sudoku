@@ -986,6 +986,7 @@ public unsafe partial struct Grid :
 	/// to iterate all masks in the current grid. The mask list must contain 81 masks.
 	/// </returns>
 	/// <remarks>
+	/// <para>
 	/// Please note that the iterator will iterate all masks by reference, which means
 	/// you can apply <see langword="ref"/> and <see langword="ref readonly"/> modifier
 	/// onto the iteration variable:
@@ -995,6 +996,12 @@ public unsafe partial struct Grid :
 	///     // Do something.
 	/// }
 	/// </code>
+	/// </para>
+	/// <para>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp11/feature[@name="scoped-ref"]/target[@name="foreach-variables"]'/>
+	/// </para>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly GridMaskEnumerator EnumerateMasks() => new(ref AsRef(_values[0]));
