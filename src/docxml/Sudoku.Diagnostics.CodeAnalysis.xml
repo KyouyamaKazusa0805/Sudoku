@@ -59,7 +59,7 @@
             Indicates the analyzer that can provide the following diagnostic results:
             <list type="bullet">
             <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
-            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0106">SCA0106</see> (Special member cannot be invoked)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0106">SCA0106</see> (Specified field cannot be invoked)</item>
             </list>
             </summary>
         </member>
@@ -70,6 +70,26 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0106_DisallowInvocationOnFunctionPointerMemberAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.OperationAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0107_FieldMustBeFunctionPointerTypeAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0107">SCA0107</see> (Specified field is not function pointer type)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0107_FieldMustBeFunctionPointerTypeAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0107_FieldMustBeFunctionPointerTypeAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0107_FieldMustBeFunctionPointerTypeAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SymbolAnalysisContext)">
             <summary>
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
@@ -256,10 +276,21 @@
             <summary>
             Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0106">SCA0106</see>:
             <list type="bullet">
-            <item><b>Title</b>: Special member cannot be invoked</item>
-            <item><b>Description</b>: Special member of function pointer type cannot be invoked.</item>
+            <item><b>Title</b>: Specified field cannot be invoked</item>
+            <item><b>Description</b>: Specified field of function pointer type cannot be invoked.</item>
             <item><b>Category</b>: Usage</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Error"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0107">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0107">SCA0107</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Specified field is not function pointer type</item>
+            <item><b>Description</b>: Specified field marked 'DisallowFunctionPointerInvocationAttribute' is not function pointer type.</item>
+            <item><b>Category</b>: Usage</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
             </list>
             </summary>
         </member>

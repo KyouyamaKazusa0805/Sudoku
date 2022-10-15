@@ -2,7 +2,8 @@
 SCA0001,Special type missing,Special type missing: '{0}',CodeAnalysis,Error,Special type is missing; please check the code analysis project and change the namespace.
 SCA0101,Don't initialize large structure,,Usage,Warning,Don't initialize large structure; please use expected fields or 'Create' methods instead if available.
 SCA0102,Large structures should pass by reference,,Performance,Warning,Large structure should pass by reference in order to optimize performance.
-SCA0106,Special member cannot be invoked,,Usage,Error,Special member of function pointer type cannot be invoked.
+SCA0106,Specified field cannot be invoked,,Usage,Error,Specified field of function pointer type cannot be invoked.
+SCA0107,Specified field is not function pointer type,,Usage,Warning,Specified field marked 'DisallowFunctionPointerInvocationAttribute' is not function pointer type.
 SCA0201,Use type 'Argument' instead,,Usage,Info,The current 'if' statement can be converted into 'Argument' method invocation; use 'Argument' instead to simplify the code.
 SCA0202,Use 'Add' instead of plus operator,,Performance,Info,Use 'Add' instead of plus operator.
 SCA0203,Use 'Remove' instead of subtraction operator,,Performance,Info,Use 'Remove' instead of subtraction operator.
