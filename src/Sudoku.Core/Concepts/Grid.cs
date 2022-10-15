@@ -54,20 +54,14 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
-	/// <remarks><b>
-	/// The field is set to <see langword="void"/>* instead of an accurate function pointer type,
-	/// because the field avoids user to invoke the backing callback function.
-	/// </b></remarks>
-	public static readonly void* ValueChanged;
+	[DisallowFunctionPointerInvocation]
+	public static readonly delegate*<ref Grid, int, short, short, int, void> ValueChanged;
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
-	/// <remarks><b>
-	/// The field is set to <see langword="void"/>* instead of an accurate function pointer type,
-	/// because the field avoids user to invoke the backing callback function.
-	/// </b></remarks>
-	public static readonly void* RefreshingCandidates;
+	[DisallowFunctionPointerInvocation]
+	public static readonly delegate*<ref Grid, void> RefreshingCandidates;
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program
@@ -205,8 +199,8 @@ public unsafe partial struct Grid :
 		}
 
 		// Initializes events.
-		ValueChanged = (delegate*<ref Grid, int, short, short, int, void>)&EventHandlerOnValueChanged;
-		RefreshingCandidates = (delegate*<ref Grid, void>)&EventHandlerOnRefreshingCandidates;
+		ValueChanged = &EventHandlerOnValueChanged;
+		RefreshingCandidates = &EventHandlerOnRefreshingCandidates;
 
 		// Initializes special fields.
 		Undefined = default; // This field must be initialized after parsing the following two special fields.
@@ -598,7 +592,7 @@ public unsafe partial struct Grid :
 					// Note that reset candidates may not trigger the event.
 					_values[cell] = DefaultMask;
 
-					((delegate*<ref Grid, void>)RefreshingCandidates)(ref this);
+					RefreshingCandidates(ref this);
 
 #pragma warning disable IDE1005
 					if (UserRefreshingCandidates != null)
@@ -618,7 +612,7 @@ public unsafe partial struct Grid :
 					result = (short)(ModifiableMask | 1 << value);
 
 					// To trigger the event, which is used for eliminate all same candidates in peer cells.
-					((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, result, value);
+					ValueChanged(ref this, cell, copied, result, value);
 
 #pragma warning disable IDE1005
 					if (UserValueChanged != null)
@@ -664,7 +658,7 @@ public unsafe partial struct Grid :
 				}
 
 				// To trigger the event.
-				((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, _values[cell], -1);
+				ValueChanged(ref this, cell, copied, _values[cell], -1);
 
 #pragma warning disable IDE1005
 				if (UserValueChanged != null)
@@ -1059,7 +1053,7 @@ public unsafe partial struct Grid :
 		var copied = mask;
 		mask = (short)((int)status << 9 | mask & MaxCandidatesMask);
 
-		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, mask, -1);
+		ValueChanged(ref this, cell, copied, mask, -1);
 
 #pragma warning disable IDE1005
 		if (UserValueChanged != null)
@@ -1081,7 +1075,7 @@ public unsafe partial struct Grid :
 		var copied = m;
 		m = mask;
 
-		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, m, -1);
+		ValueChanged(ref this, cell, copied, m, -1);
 
 #pragma warning disable IDE1005
 		if (UserValueChanged != null)

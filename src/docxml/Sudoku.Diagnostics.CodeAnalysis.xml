@@ -54,6 +54,26 @@
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0106_DisallowInvocationOnFunctionPointerMemberAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0106">SCA0106</see> (Special member cannot be invoked)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0106_DisallowInvocationOnFunctionPointerMemberAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0106_DisallowInvocationOnFunctionPointerMemberAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0106_DisallowInvocationOnFunctionPointerMemberAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.OperationAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0201_UseArgumentAnalyzer">
             <summary>
             Indicates the analyzer that can provide the following diagnostic results:
@@ -229,6 +249,17 @@
             <item><b>Description</b>: Large structure should pass by reference in order to optimize performance.</item>
             <item><b>Category</b>: Performance</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0106">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0106">SCA0106</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Special member cannot be invoked</item>
+            <item><b>Description</b>: Special member of function pointer type cannot be invoked.</item>
+            <item><b>Category</b>: Usage</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Error"/></item>
             </list>
             </summary>
         </member>
