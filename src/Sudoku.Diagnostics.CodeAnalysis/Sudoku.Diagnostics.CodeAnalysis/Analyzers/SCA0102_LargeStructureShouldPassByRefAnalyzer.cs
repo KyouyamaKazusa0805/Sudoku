@@ -17,8 +17,12 @@ public sealed partial class SCA0102_LargeStructureShouldPassByRefAnalyzer : Diag
 			return;
 		}
 
-		var parameterSymbol = semanticModel.GetDeclaredSymbol(node, ct);
-		if (parameterSymbol is not IParameterSymbol { Type: var parameterType, RefKind: RefKind.None })
+		if (semanticModel.GetDeclaredSymbol(node, ct) is not IParameterSymbol
+			{
+				ContainingSymbol: IMethodSymbol { ExplicitInterfaceImplementations: [] },
+				Type: var parameterType,
+				RefKind: RefKind.None
+			} parameterSymbol)
 		{
 			return;
 		}

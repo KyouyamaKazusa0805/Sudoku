@@ -51,4 +51,37 @@ public sealed class SCA0102UnitTest
 			""",
 			VerifyCS.Diagnostic(nameof(SCA0102)).WithLocation(0)
 		);
+
+	[TestMethod]
+	public async Task TestCase_IgnoreExplicitInterface()
+		=> await VerifyCS.VerifyAnalyzerAsync(
+			"""
+			#nullable enable
+
+			using System.Diagnostics.CodeAnalysis;
+
+			file sealed class C : I<Grid>
+			{
+				void I<Grid>.M(Grid element) { }
+			}
+
+			[IsLargeStruct]
+			file struct Grid
+			{
+			}
+
+			file interface I<T>
+			{
+				void M(T element);
+			}
+
+			namespace System.Diagnostics.CodeAnalysis
+			{
+				file sealed class IsLargeStructAttribute : Attribute
+				{
+					public string? SuggestedMemberName { get; set; }
+				}
+			}
+			"""
+		);
 }
