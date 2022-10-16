@@ -38,8 +38,7 @@ public sealed class EliminationNotation : ICandidateNotation<EliminationNotation
 	/// <inheritdoc/>
 	public static string ToCandidatesString(scoped in Candidates candidates, scoped in EliminationNotationOptions options)
 	{
-		var digitFirst = options.DigitFirst;
-		var separator = options.Separator;
+		_ = options is { DigitFirst: var digitFirst, Separator: var separator };
 
 		scoped var sb = new StringHandler();
 		foreach (var candidate in candidates)
@@ -84,8 +83,7 @@ public sealed class EliminationNotation : ICandidateNotation<EliminationNotation
 				throw new FormatException("Each candidate segment contains invalid character.");
 			}
 
-			int digit = digitChar - '1', cell = (rowChar - '1') * 9 + columnChar - '1';
-			result.AddAnyway(cell * 9 + digit);
+			result.AddAnyway(((rowChar - '1') * 9 + columnChar - '1') * 9 + digitChar - '1');
 		}
 
 		return result;
