@@ -4,7 +4,7 @@
 /// Defines the default enumerator that iterates the <see cref="Grid"/>
 /// through the masks in the current <see cref="Grid"/> instance.
 /// </summary>
-/// <see cref="Grid"/>
+/// <seealso cref="Grid"/>
 public ref struct GridMaskEnumerator
 {
 	/// <summary>

@@ -3223,7 +3223,7 @@
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/>
             through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
-            <see cref="T:Sudoku.Concepts.Grid"/>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="F:Sudoku.Linq.GridMaskEnumerator._start">
             <summary>
