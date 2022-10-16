@@ -7,7 +7,7 @@
 /// </summary>
 public sealed class EliminationNotation : ICandidateNotation<EliminationNotation, EliminationNotationOptions>
 {
-	[Obsolete("Please don't call this constructor.", true)]
+	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false, DiagnosticId = "SCA0108", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0108")]
 	private EliminationNotation() => throw new NotSupportedException();
 
 

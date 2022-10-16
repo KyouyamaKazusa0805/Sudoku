@@ -39,7 +39,7 @@ public sealed partial class RxCyNotation :
 	private const string PostpositionalFormCandidateList = """\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\)""";
 
 
-	[Obsolete("Please don't call this constructor.", true)]
+	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false, DiagnosticId = "SCA0108", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0108")]
 	private RxCyNotation() => throw new NotSupportedException();
 
 

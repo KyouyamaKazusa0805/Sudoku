@@ -19,6 +19,7 @@
 | [SCA0105](sca0105)     | 使用（Usage）            | ⚠        | `GetHashCode` 方法位于 `ref struct` 类型尚未正确重写，无论如何都无法得到正确结果；调用此成员无意义 |
 | [SCA0106](sca0106)     | 使用（Usage）            | ❌        | 该函数指针类型字段不可被调用                                 |
 | [SCA0107](sca0107)     | 使用（Usage）            | ⚠        | `DisallowFunctionPointerInvocationAttribute` 特性不应标记到非函数指针类型的字段上；没有意义 |
+| [SCA0108](sca0108)     | 使用（Usage）            | ⚠        | 该构造器不应用户调用；没有意义                               |
 | SCA0201                | 使用（Usage）            | ℹ        | 请使用 `Argument` 类型代替 `if` 判断                         |
 | [SCA0202](sca0202)     | 性能（Performance）      | ℹ        | 请使用 `Add` 方法代替 `operator +` 运算符                    |
 | [SCA0203](sca0203)     | 性能（Performance）      | ℹ        | 请使用 `Remove` 方法代替 `operator -` 运算符                 |
