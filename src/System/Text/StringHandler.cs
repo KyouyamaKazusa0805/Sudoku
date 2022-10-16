@@ -200,10 +200,10 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StringHandler(string initialString)
 	{
-		fixed (char* pChars = _chars, pInitialString = initialString)
-		{
-			CopyBlock(pChars, pInitialString, (uint)(sizeof(char) * initialString.Length));
-		}
+		CopyBlock(
+			ref As<char, byte>(ref AsRef(_chars[0])),
+			ref As<char, byte>(ref AsRef(initialString[0])),
+			(uint)(sizeof(char) * initialString.Length));
 
 		_arrayToReturnToPool = null;
 	}
