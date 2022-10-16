@@ -10,7 +10,7 @@ public interface IValueConverter
 	/// </summary>
 	/// <param name="value">The string value as the command line argument.</param>
 	/// <returns>The target typed instance as the result.</returns>
-	/// <exception cref="CommandConverterAttribute{TConverter}">
+	/// <exception cref="CommandConverterException">
 	/// Throws when the current method has encountered an unexpected error.
 	/// </exception>
 	public abstract object Convert(string value);
