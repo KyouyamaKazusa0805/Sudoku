@@ -94,18 +94,13 @@ public sealed class AlmostLockedSet :
 	public CellMap PossibleEliminationMap { get; }
 
 
-	/// <include
-	///     file="../../global-doc-comments.xml"
-	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out int house, out short digitsMask) => (house, digitsMask) = (House, DigitsMask);
 
-	/// <include
-	///     file="../../global-doc-comments.xml"
-	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out int house, out short digitsMask, out CellMap map)
-		=> ((house, digitsMask), map) = (this, Map);
+	public void Deconstruct(out int house, out short digitsMask, out CellMap map) => ((house, digitsMask), map) = (this, Map);
 
 	/// <summary>
 	/// Indicates whether the specified grid contains the digit.

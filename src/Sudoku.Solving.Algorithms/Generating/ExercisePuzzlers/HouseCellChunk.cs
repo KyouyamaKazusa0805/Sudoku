@@ -106,9 +106,7 @@ public readonly struct HouseCellChunk :
 	}
 
 
-	/// <include
-	///     file="../../global-doc-comments.xml"
-	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out CellMap cells, out int[] digits) => (cells, digits) = (Cells, Digits);
 

@@ -41,9 +41,7 @@ public sealed class LinkViewNode : ViewNode
 	protected override string TypeIdentifier => nameof(LinkViewNode);
 
 
-	/// <include
-	///     file="../../global-doc-comments.xml"
-	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out LockedTarget start, out LockedTarget end, out Inference inference)
 		=> (start, end, inference) = (Start, End, Inference);

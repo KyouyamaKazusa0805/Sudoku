@@ -44,8 +44,6 @@ public interface IFixable<[Self] TSelf, TFixedVariable> : IEnumerable<TFixedVari
 	public abstract ref readonly TFixedVariable BlockReference { get; }
 
 
-	/// <include
-	///	    file="../../global-doc-comments.xml"
-	///	    path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
 	public abstract ref TFixedVariable GetPinnableReference();
 }

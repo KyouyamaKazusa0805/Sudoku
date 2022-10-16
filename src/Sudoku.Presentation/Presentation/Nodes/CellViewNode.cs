@@ -24,9 +24,7 @@ public sealed class CellViewNode : ViewNode
 	protected override string TypeIdentifier => nameof(CellViewNode);
 
 
-	/// <include
-	///     file="../../global-doc-comments.xml"
-	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out Identifier identifier, out int cell) => (identifier, cell) = (Identifier, Cell);
 

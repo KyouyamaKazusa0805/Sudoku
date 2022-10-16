@@ -257,9 +257,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			result.Add(
 				// Here we should insert an extra indentation, on purpose.
 				$$"""
-				/// <include
-					///     file="../../global-doc-comments.xml"
-					///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+				/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 					[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]

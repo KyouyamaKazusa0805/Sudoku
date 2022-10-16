@@ -93,9 +93,7 @@ public sealed class LogicalStep
 	public required IStep Step { get; set; }
 
 
-	/// <include
-	///     file="../../global-doc-comments.xml"
-	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out Grid grid, out IStep step) => (grid, step) = (Grid, Step);
 

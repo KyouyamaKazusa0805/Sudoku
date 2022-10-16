@@ -129,9 +129,7 @@ public readonly record struct UniquePolygonPattern(long Mask) : ITechniquePatter
 	}
 
 
-	/// <include
-	///     file="../../global-doc-comments.xml"
-	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out (int A, int B) pair1, out (int A, int B) pair2, out (int A, int B, int C, int D) centerCells)
 		=> (pair1, pair2, centerCells) = (Pair1, Pair2, CenterCells);
