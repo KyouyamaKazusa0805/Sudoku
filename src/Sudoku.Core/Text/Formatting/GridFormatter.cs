@@ -759,9 +759,7 @@ public readonly ref struct GridFormatter
 								var status = MaskToStatus(value);
 
 								value &= Grid.MaxCandidatesMask;
-								var d = value == 0
-									? -1
-									: (status != CellStatus.Empty ? TrailingZeroCount(value) : -1) + 1;
+								var d = value == 0 ? -1 : (status != CellStatus.Empty ? TrailingZeroCount(value) : -1) + 1;
 								string s;
 								switch (status)
 								{
