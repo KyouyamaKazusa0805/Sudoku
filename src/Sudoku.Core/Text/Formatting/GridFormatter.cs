@@ -72,12 +72,7 @@ public readonly ref struct GridFormatter
 		bool treatValueAsGiven, bool subtleGridLines, bool hodokuCompatible,
 		bool sukaku, bool excel, bool openSudoku, bool shortenSusser)
 	{
-		_flags = placeholder switch
-		{
-			'.' => 0,
-			'0' => 1024,
-			_ => throw new ArgumentOutOfRangeException(nameof(placeholder))
-		};
+		_flags = placeholder switch { '.' => 0, '0' => 1024, _ => throw new ArgumentOutOfRangeException(nameof(placeholder)) };
 		_flags |= (short)(multiline ? 512 : 0);
 		_flags |= (short)(withModifiables ? 256 : 0);
 		_flags |= (short)(withCandidates ? 128 : 0);
@@ -291,19 +286,16 @@ public readonly ref struct GridFormatter
 	/// <returns>The string.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(scoped in Grid grid)
-		=> Sukaku
-			? ToSukakuString(grid)
-			: Multiline
-				? WithCandidates
-					? ToMultiLineStringCore(grid)
-					: Excel
-						? ToExcelString(grid)
-						: ToMultiLineSimpleGridCore(grid)
-				: HodokuCompatible
-					? ToHodokuLibraryFormatString(grid)
-					: OpenSudoku
-						? ToOpenSudokuString(grid)
-						: ToSingleLineStringCore(grid);
+		=> (Sukaku, Multiline, WithCandidates, Excel, HodokuCompatible, OpenSudoku) switch
+		{
+			(true, _, _, _, _, _) => ToSukakuString(grid),
+			(_, true, true, _, _, _) => ToMultiLineStringCore(grid),
+			(_, true, false, true, _, _) => ToExcelString(grid),
+			(_, true, false, false, _, _) => ToMultiLineSimpleGridCore(grid),
+			(_, false, _, _, true, _) => ToHodokuLibraryFormatString(grid),
+			(_, false, _, _, false, true) => ToOpenSudokuString(grid),
+			(_, false, _, _, false, false) => ToSingleLineStringCore(grid)
+		};
 
 	/// <summary>
 	/// Represents a string value indicating this instance, with the specified format string.
@@ -538,9 +530,7 @@ public readonly ref struct GridFormatter
 
 		var elimsStr = EliminationNotation.ToCandidatesString(eliminatedCandidates);
 		var @base = sb.ToStringAndClear();
-		return ShortenSusser
-			? shorten(@base, Placeholder)
-			: $"{@base}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
+		return ShortenSusser ? shorten(@base, Placeholder) : $"{@base}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
 
 
 		static unsafe string shorten(string @base, char placeholder)
