@@ -20,8 +20,7 @@ public static class CellEnumerable
 	/// A <see cref="ImmutableArray{T}"/> of <typeparamref name="TResult"/> whose elements are the result
 	/// of invoking the transform function on each element of <paramref name="source"/>.
 	/// </returns>
-	public static ImmutableArray<TResult> Select<TResult>(this scoped in CellMap source, Func<int, TResult> selector)
-		where TResult : unmanaged
+	public static ImmutableArray<TResult> Select<TResult>(this scoped in CellMap source, Func<int, TResult> selector) where TResult : unmanaged
 	{
 		var result = new TResult[source.Count];
 		var i = 0;
