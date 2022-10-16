@@ -33,7 +33,7 @@ partial struct StringHandler
 		/// </exception>
 		/// <seealso cref="Span{T}"/>
 		/// <seealso cref="Span{T}.GetPinnableReference()"/>
-		internal Enumerator(scoped in StringHandler chars) : this()
+		internal Enumerator(StringHandler chars) : this()
 		{
 			_length = chars.Length;
 			_index = -1;
@@ -60,7 +60,7 @@ partial struct StringHandler
 				return false;
 			}
 
-			_ptr = AddByteOffset(ref _ptr, 1);
+			RefMoveNext(ref _ptr);
 			return true;
 		}
 	}

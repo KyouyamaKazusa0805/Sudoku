@@ -3030,7 +3030,7 @@
             Indicates the pointer that points to the current character.
             </summary>
         </member>
-        <member name="M:System.Text.StringHandler.Enumerator.#ctor(System.Text.StringHandler@)">
+        <member name="M:System.Text.StringHandler.Enumerator.#ctor(System.Text.StringHandler)">
             <summary>
             Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
             </summary>
@@ -3789,6 +3789,30 @@
             This method is used for the inlining, in order to achieve the same but invalid syntax meaning of
             <c><see langword="ref throw new"/> <see cref="T:System.Exception"/>()</c>.
             </remarks>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.Unsafe2">
+            <summary>
+            Provides extra methods that is an extension of type <see cref="T:System.Runtime.CompilerServices.Unsafe"/>.
+            </summary>
+            <seealso cref="T:System.Runtime.CompilerServices.Unsafe"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.Unsafe2.RefMoveNext``1(``0@)">
+            <summary>
+            Moves the reference to the next position. Simply calls <see cref="M:System.Runtime.CompilerServices.Unsafe.AddByteOffset``1(``0@,System.IntPtr)"/> with arguments
+            <paramref name="ref"/> and 1.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="ref">The reference.</param>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.AddByteOffset``1(``0@,System.IntPtr)"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.Unsafe2.RefMovePrevious``1(``0@)">
+            <summary>
+            Moves the reference to the previous position. Simply calls <see cref="M:System.Runtime.CompilerServices.Unsafe.SubtractByteOffset``1(``0@,System.IntPtr)"/> with arguments
+            <paramref name="ref"/> and 1.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="ref">The reference.</param>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.SubtractByteOffset``1(``0@,System.IntPtr)"/>
         </member>
         <member name="T:System.Runtime.Messages.DeprecatedConstructorsMessage">
             <summary>

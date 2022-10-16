@@ -21,4 +21,5 @@ global using static System.Math;
 global using static System.MathF;
 global using static System.Numerics.BitOperations;
 global using static System.Runtime.CompilerServices.Unsafe;
+global using static System.Runtime.CompilerServices.Unsafe2;
 global using static System.Text.Json.JsonSerializer;

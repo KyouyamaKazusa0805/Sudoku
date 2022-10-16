@@ -76,7 +76,7 @@ public ref struct GridMaskEnumerator
 		}
 		else
 		{
-			_refCurrent = ref AddByteOffset(ref _refCurrent, 1);
+			RefMoveNext(ref _refCurrent);
 			return true;
 		}
 	}
