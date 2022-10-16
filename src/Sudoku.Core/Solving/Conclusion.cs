@@ -102,8 +102,7 @@ public readonly struct Conclusion :
 	///     file="../../global-doc-comments.xml"
 	///     path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out ConclusionType conclusionType, out int candidate)
-		=> (conclusionType, candidate) = (ConclusionType, Candidate);
+	public void Deconstruct(out ConclusionType conclusionType, out int candidate) => (conclusionType, candidate) = (ConclusionType, Candidate);
 
 	/// <include
 	///     file="../../global-doc-comments.xml"
