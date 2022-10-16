@@ -69,8 +69,7 @@ public static class Argument
 	{
 		if (!condition)
 		{
-			throw new InvalidOperationException(
-				message ?? $"Cannot operate due to the condition failed to be checked: '{conditionStr}'.");
+			throw new InvalidOperationException(message ?? $"Cannot operate due to the condition failed to be checked: '{conditionStr}'.");
 		}
 	}
 }
