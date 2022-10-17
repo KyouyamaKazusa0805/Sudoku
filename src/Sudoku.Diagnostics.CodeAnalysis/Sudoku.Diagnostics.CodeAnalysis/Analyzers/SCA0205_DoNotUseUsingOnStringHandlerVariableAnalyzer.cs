@@ -21,6 +21,11 @@ public sealed partial class SCA0205_DoNotUseUsingOnStringHandlerVariableAnalyzer
 			return;
 		}
 
+		if (!modifiers.Any(SyntaxKind.UsingKeyword))
+		{
+			return;
+		}
+
 		if (semanticModel.GetOperation(node, ct) is not IVariableDeclaratorOperation { Symbol.Type: var localType })
 		{
 			return;
