@@ -1812,7 +1812,7 @@ public struct CellMap :
 	/// Implicit cast from <see cref="Span{T}"/> to <see cref="CellMap"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	public static implicit operator CellMap(scoped in Span<int> offsets)
+	public static implicit operator CellMap(scoped Span<int> offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -1827,7 +1827,7 @@ public struct CellMap :
 	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="CellMap"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	public static implicit operator CellMap(scoped in ReadOnlySpan<int> offsets)
+	public static implicit operator CellMap(scoped ReadOnlySpan<int> offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
