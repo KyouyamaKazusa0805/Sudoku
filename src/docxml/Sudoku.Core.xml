@@ -2115,8 +2115,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)">
             <summary>
-            Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values
-            as the current instance.
+            Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance.
             </summary>
             <param name="other">The instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
@@ -2641,6 +2640,29 @@
         </member>
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.InternalHelper">
+            <summary>
+            The helper method used by type <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.InternalHelper.SequenceEqual(System.Byte@,System.Byte@,System.UIntPtr)">
+            <summary>
+            Determines whether two sequences are considered equal on respective bits.
+            </summary>
+            <param name="first">The first sequence.</param>
+            <param name="second">The second sequence.</param>
+            <param name="length">
+            The total bits of the sequence to be compared. Please note that two sequences
+            <paramref name="first"/> and <paramref name="second"/> must hold a same length.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether they are considered equal.</returns>
+            <remarks>
+            Optimized byte-based <c>SequenceEquals</c>.
+            The <paramref name="length"/> parameter for this one is declared a <see langword="nuint"/> rather than <see cref="T:System.Int32"/>
+            as we also use it for types other than <see cref="T:System.Byte"/> where the length can exceed 2Gb once scaled by <see langword="sizeof"/>(T).
+            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>
