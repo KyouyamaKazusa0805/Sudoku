@@ -7,6 +7,8 @@ SCA0107,Specified field is not function pointer type,,Usage,Warning,Specified fi
 SCA0201,Use type 'Argument' instead,,Usage,Info,The current 'if' statement can be converted into 'Argument' method invocation; use 'Argument' instead to simplify the code.
 SCA0202,Use 'Add' instead of plus operator,,Performance,Info,Use 'Add' instead of plus operator.
 SCA0203,Use 'Remove' instead of subtraction operator,,Performance,Info,Use 'Remove' instead of subtraction operator.
+SCA0204,Please don't use variable having called 'ToStringAndClear',,Design,Warning,Please don't use variable having called 'ToStringAndClear'.
+SCA0205,Don't use 'using' keyword on 'StringHandler' type,,Design,Info,Don't use 'using' keyword on 'StringHandler' type; please use 'ToStringAndClear' to release memory.
 SCA0301,Missing 'SelfAttribute',,Usage,Hidden,Missing 'SelfAttribute'; Don't you infer the self generic argument?
 SCA0302,Specified type parameter must be derived from the containing type itself,,Usage,Warning,Specified type parameter must be derived from the containing type itself.
 SCA0303,Self type parameter should be named 'TSelf',,Naming,Info,Self type parameter should be named 'TSelf'.

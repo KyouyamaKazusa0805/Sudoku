@@ -23,6 +23,8 @@
 | SCA0201                | 使用（Usage）            | ℹ        | 请使用 `Argument` 类型代替 `if` 判断                         |
 | [SCA0202](sca0202)     | 性能（Performance）      | ℹ        | 请使用 `Add` 方法代替 `operator +` 运算符                    |
 | [SCA0203](sca0203)     | 性能（Performance）      | ℹ        | 请使用 `Remove` 方法代替 `operator -` 运算符                 |
+| [SCA0204](sca0204)     | 设计（Design）           | ⚠        | 请不要在调用了 `ToStringAndClear` 之后仍使用同一对象         |
+| [SCA0205](sca0205)     | 设计（Design）           | ℹ        | 请使用 `ToStringAndClear` 释放内存；请勿使用 `using` 关键字对该对象使用默认的释放行为 |
 | [SCA0301](sca0301)     | 使用（Usage）            | 💡        | 该泛型参数缺少 `SelfAttribute` 特性                          |
 | [SCA0302](sca0302)     | 使用（Usage）            | ⚠        | 该泛型参数必须限制自身约束                                   |
 | [SCA0303](sca0303)     | 命名（Naming）           | ℹ        | Self 泛型参数应命名为 `TSelf`                                |

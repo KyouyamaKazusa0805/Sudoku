@@ -153,6 +153,26 @@
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0205_DoNotUseUsingOnStringHandlerVariableAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0205">SCA0205</see> (Don't use 'using' keyword on 'StringHandler' type)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0205_DoNotUseUsingOnStringHandlerVariableAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0205_DoNotUseUsingOnStringHandlerVariableAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0205_DoNotUseUsingOnStringHandlerVariableAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0301_SelfAttributeMissingAnalyzer">
             <summary>
             Indicates the analyzer that can provide the following diagnostic results:
@@ -323,6 +343,28 @@
             <item><b>Title</b>: Use 'Remove' instead of subtraction operator</item>
             <item><b>Description</b>: Use 'Remove' instead of subtraction operator.</item>
             <item><b>Category</b>: Performance</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0204">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0204">SCA0204</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Please don't use variable having called 'ToStringAndClear'</item>
+            <item><b>Description</b>: Please don't use variable having called 'ToStringAndClear'.</item>
+            <item><b>Category</b>: Design</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0205">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0205">SCA0205</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Don't use 'using' keyword on 'StringHandler' type</item>
+            <item><b>Description</b>: Don't use 'using' keyword on 'StringHandler' type; please use 'ToStringAndClear' to release memory.</item>
+            <item><b>Category</b>: Design</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
             </list>
             </summary>
