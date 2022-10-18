@@ -76,6 +76,27 @@
             <param name="renderingCandidates">The <see cref="T:System.Boolean"/> value indicating that.</param>
             <returns>The target painter.</returns>
         </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainter.WithValueFont(System.String)">
+            <summary>
+            Sets a font name that is used for rendering text of value digits in a sudoku grid.
+            </summary>
+            <param name="fontName">The font name.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainter.WithFontScale(System.Decimal)">
+            <summary>
+            Sets a font scale that is used for rendering text of digits (values and candidates) in a sudoku grid.
+            </summary>
+            <param name="fontScale">The font scale.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainter.WithCandidateFont(System.String)">
+            <summary>
+            Sets a font name that is used for rendering text of candidate digits in a sudoku grid.
+            </summary>
+            <param name="fontName">The font name.</param>
+            <returns>The target painter.</returns>
+        </member>
         <member name="M:Sudoku.Drawing.ISudokuPainter.CreatePainter(System.Int32,System.Int32)">
             <summary>
             The default singleton instance that you can get.
@@ -110,6 +131,15 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithRenderingCandidates(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithValueFont(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithCandidateFont(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithFontScale(System.Decimal)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Gdip.IGridImageGenerator">

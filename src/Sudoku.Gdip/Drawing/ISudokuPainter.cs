@@ -105,6 +105,27 @@ public interface ISudokuPainter
 	/// <returns>The target painter.</returns>
 	public abstract ISudokuPainter WithRenderingCandidates(bool renderingCandidates);
 
+	/// <summary>
+	/// Sets a font name that is used for rendering text of value digits in a sudoku grid.
+	/// </summary>
+	/// <param name="fontName">The font name.</param>
+	/// <returns>The target painter.</returns>
+	public abstract ISudokuPainter WithValueFont(string fontName);
+
+	/// <summary>
+	/// Sets a font scale that is used for rendering text of digits (values and candidates) in a sudoku grid.
+	/// </summary>
+	/// <param name="fontScale">The font scale.</param>
+	/// <returns>The target painter.</returns>
+	public abstract ISudokuPainter WithFontScale(decimal fontScale);
+
+	/// <summary>
+	/// Sets a font name that is used for rendering text of candidate digits in a sudoku grid.
+	/// </summary>
+	/// <param name="fontName">The font name.</param>
+	/// <returns>The target painter.</returns>
+	public abstract ISudokuPainter WithCandidateFont(string fontName);
+
 
 	/// <summary>
 	/// The default singleton instance that you can get.
@@ -167,6 +188,34 @@ file sealed class SudokuPainter : ISudokuPainter
 	public ISudokuPainter WithRenderingCandidates(bool renderingCandidates)
 	{
 		_generator.Preferences.ShowCandidates = renderingCandidates;
+		return this;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ISudokuPainter WithValueFont(string fontName)
+	{
+		_generator.Preferences.GivenFontName = fontName;
+		_generator.Preferences.ModifiableFontName = fontName;
+		return this;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ISudokuPainter WithCandidateFont(string fontName)
+	{
+		_generator.Preferences.CandidateFontName = fontName;
+		return this;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ISudokuPainter WithFontScale(decimal fontScale)
+	{
+		fontScale *= 1.5M;
+
+		_generator.Preferences.ValueScale = fontScale;
+		_generator.Preferences.CandidateScale = fontScale / 3;
 		return this;
 	}
 }

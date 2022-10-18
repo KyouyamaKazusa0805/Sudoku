@@ -183,8 +183,8 @@ file partial record GridImageGenerator : IGridImageGenerator
 		DrawBackground(g);
 		DrawGridAndBlockLines(g);
 
-		g.SmoothingMode = SmoothingMode.AntiAlias;
-		g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+		g.SmoothingMode = SmoothingMode.HighQuality;
+		g.TextRenderingHint = TextRenderingHint.AntiAlias;
 		g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 		g.CompositingQuality = CompositingQuality.HighQuality;
 
