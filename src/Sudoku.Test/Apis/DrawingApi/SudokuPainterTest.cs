@@ -13,7 +13,7 @@ public sealed class SudokuPainterTest
 			.WithRenderingCandidates(true)
 			.WithValueFont("Tahoma")
 			.WithCandidateFont("Tahoma")
-			.WithFontScale(0.75M);
+			.WithFontScale(1M);
 
 		const string fileName = "test.png";
 		Assert.IsTrue(sudokuPainter.TrySaveTo($@"{GetFolderPath(SpecialFolder.Desktop)}\{fileName}"));

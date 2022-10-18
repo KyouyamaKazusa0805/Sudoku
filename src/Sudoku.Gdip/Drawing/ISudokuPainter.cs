@@ -212,8 +212,6 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithFontScale(decimal fontScale)
 	{
-		fontScale *= 1.5M;
-
 		_generator.Preferences.ValueScale = fontScale;
 		_generator.Preferences.CandidateScale = fontScale / 3;
 		return this;
