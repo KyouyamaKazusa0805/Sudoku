@@ -119,7 +119,7 @@
             Indicates the analyzer that can provide the following diagnostic results:
             <list type="bullet">
             <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
-            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0110">SCA0110</see> (Specified field marked cannot be private)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0110">SCA0110</see> (Specified field cannot be private)</item>
             </list>
             </summary>
         </member>
@@ -369,7 +369,7 @@
             <summary>
             Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0110">SCA0110</see>:
             <list type="bullet">
-            <item><b>Title</b>: Specified field marked cannot be private</item>
+            <item><b>Title</b>: Specified field cannot be private</item>
             <item><b>Description</b>: Specified field marked 'FileAccessOnlyAttribute' cannot be private.</item>
             <item><b>Category</b>: Design</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>

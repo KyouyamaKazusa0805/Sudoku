@@ -8,10 +8,7 @@ public sealed partial class SCA0110_FileAccessOnlyAttributePrivateFieldsAnalyzer
 	{
 		if (context is not
 			{
-				Node: FieldDeclarationSyntax
-				{
-
-				} node,
+				Node: FieldDeclarationSyntax { Declaration.Variables: var declarations and not [] },
 				SemanticModel: var semanticModel,
 				Compilation: var compilation,
 				CancellationToken: var ct
@@ -20,7 +17,6 @@ public sealed partial class SCA0110_FileAccessOnlyAttributePrivateFieldsAnalyzer
 			return;
 		}
 
-		var location = node.GetLocation();
 		var attribute = compilation.GetTypeByMetadataName(SpecialFullTypeNames.FileAccessOnlyAttribute);
 		if (attribute is null)
 		{
@@ -28,17 +24,24 @@ public sealed partial class SCA0110_FileAccessOnlyAttributePrivateFieldsAnalyzer
 			return;
 		}
 
-		var symbol = semanticModel.GetDeclaredSymbol(node, ct);
-		if (symbol is not IFieldSymbol { DeclaredAccessibility: Accessibility.Private })
+		foreach (var declaration in declarations)
 		{
-			return;
-		}
+			if (declaration is not { Identifier: { ValueText: var name } identifier })
+			{
+				continue;
+			}
 
-		if (symbol.GetAttributes().All(a => !SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute)))
-		{
-			return;
-		}
+			if (semanticModel.GetDeclaredSymbol(declaration, ct) is not IFieldSymbol { DeclaredAccessibility: Accessibility.Private } symbol)
+			{
+				continue;
+			}
 
-		context.ReportDiagnostic(Diagnostic.Create(SCA0110, location));
+			if (symbol.GetAttributes().All(a => !SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute)))
+			{
+				continue;
+			}
+
+			context.ReportDiagnostic(Diagnostic.Create(SCA0110, identifier.GetLocation(), messageArgs: new[] { name }));
+		}
 	}
 }
