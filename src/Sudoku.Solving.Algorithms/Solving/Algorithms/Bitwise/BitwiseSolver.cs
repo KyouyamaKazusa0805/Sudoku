@@ -1238,10 +1238,7 @@ file static class LocalConstants
 	/// <summary>
 	/// Rows where single found: <c>000</c> to <c>111</c>.
 	/// </summary>
-	public static readonly uint[] TblRowMask =
-	{
-		0x7FFFFFF, 0x7FFFE00, 0x7FC01FF, 0x7FC0000, 0x3FFFF, 0x3FE00, 0x1FF, 0x0,
-	};
+	public static readonly uint[] TblRowMask = { 0x7FFFFFF, 0x7FFFE00, 0x7FC01FF, 0x7FC0000, 0x3FFFF, 0x3FE00, 0x1FF, 0x0 };
 
 	public static readonly byte[] CellToSubBand =
 	{
@@ -1330,12 +1327,7 @@ file static class LocalConstants
 		8, 8, 8, 8, 8, 8, 8, 8, 8,
 	};
 
-	public static readonly byte[] Mod3 =
-	{
-		0, 1, 2, 0, 1, 2, 0, 1, 2,
-		0, 1, 2, 0, 1, 2, 0, 1, 2,
-		0, 1, 2, 0, 1, 2, 0, 1, 2,
-	};
+	public static readonly byte[] Mod3 = { 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2 };
 
 	public static readonly byte[] Mod27 =
 	{

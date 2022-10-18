@@ -135,8 +135,4 @@ public sealed class LogicalSolverOperationsGenerator : IIncrementalGenerator
 		);
 }
 
-file readonly record struct FoundResultInfo(
-	IPropertySymbol Property,
-	INamedTypeSymbol DerivedInterfaceType,
-	INamedTypeSymbol PropertyContainedInterfaceType
-);
+file readonly record struct FoundResultInfo(IPropertySymbol Property, INamedTypeSymbol DerivedInterfaceType, INamedTypeSymbol PropertyContainedInterfaceType);

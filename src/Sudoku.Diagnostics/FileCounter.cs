@@ -141,10 +141,7 @@ public sealed class FileCounter
 			foreach (var d in
 				from dir in directory.GetDirectories()
 				let name = dir.Name
-				where name is [>= 'A' and <= 'Z', ..] && (
-					!WithBinOrObjDirectory && name is not ("bin" or "Bin" or "obj" or "Obj")
-					|| WithBinOrObjDirectory
-				)
+				where name is [>= 'A' and <= 'Z', ..] && (!WithBinOrObjDirectory && name.ToLower() is not ("bin" or "obj") || WithBinOrObjDirectory)
 				select dir)
 			{
 				g(d);
