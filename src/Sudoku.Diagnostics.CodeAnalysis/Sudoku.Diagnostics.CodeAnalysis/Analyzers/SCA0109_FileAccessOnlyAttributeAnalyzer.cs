@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0109", "SCA0110")]
+[SupportedDiagnostics("SCA0001", "SCA0109")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterOperationAction), typeof(OperationKind), nameof(OperationKind.FieldReference))]
 public sealed partial class SCA0109_FileAccessOnlyAttributeAnalyzer : DiagnosticAnalyzer
 {
@@ -10,10 +10,12 @@ public sealed partial class SCA0109_FileAccessOnlyAttributeAnalyzer : Diagnostic
 			{
 				Operation: IFieldReferenceOperation
 				{
-					Field.DeclaringSyntaxReferences: [{ SyntaxTree.FilePath: var declaraingFilePath }],
-					Syntax: { SyntaxTree.FilePath: var referencingFilePath } syntax
+					Field.DeclaringSyntaxReferences: [{ SyntaxTree.FilePath: var declaraingFilePath } syntaxRef],
+					Syntax: { SyntaxTree.FilePath: var referencingFilePath } syntax,
+					SemanticModel: { } semanticModel
 				},
-				Compilation: var compilation
+				Compilation: var compilation,
+				CancellationToken: var ct
 			})
 		{
 			return;
@@ -28,6 +30,13 @@ public sealed partial class SCA0109_FileAccessOnlyAttributeAnalyzer : Diagnostic
 		}
 
 		if (declaraingFilePath == referencingFilePath)
+		{
+			return;
+		}
+
+		var fieldDeclarationSyntax = (FieldDeclarationSyntax)syntaxRef.GetSyntax(ct);
+		var fieldSymbol = semanticModel.GetDeclaredSymbol(fieldDeclarationSyntax, ct)!;
+		if (fieldSymbol.GetAttributes().All(a => !SymbolEqualityComparer.Default.Equals(a.AttributeClass, fileAccessOnlyAttribute)))
 		{
 			return;
 		}
