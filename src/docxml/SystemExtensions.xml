@@ -1423,6 +1423,11 @@
             Indicates a field of function pointer type that cannot be invokable outside the scope of the type declaring that field.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.FileAccessOnlyAttribute">
+            <summary>
+            Indicates the specified field can be accessed only in the current file where the field is declared.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.IsLargeStructAttribute">
             <summary>
             Indicates the type is a large structure.

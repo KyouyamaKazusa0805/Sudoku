@@ -386,11 +386,12 @@ partial record GridImageGenerator
 					}
 					case { Mode: var mode and (IdentifierColorMode.Id or IdentifierColorMode.Named) }:
 					{
-						var color = mode == IdentifierColorMode.Id && Preferences.TryGetColor(id, out var c)
-							? c
-							: mode == IdentifierColorMode.Named
-								? GetColor(id)
-								: throw new InvalidOperationException();
+						var color = mode switch
+						{
+							IdentifierColorMode.Id when Preferences.TryGetColor(id, out var c) => c,
+							IdentifierColorMode.Named => GetColor(id),
+							_ => throw new InvalidOperationException()
+						};
 
 						// In the normal case, I'll draw these circles.
 						using var brush = new SolidBrush(overlaps ? Color.FromArgb(color.A >> 2, color) : color);
