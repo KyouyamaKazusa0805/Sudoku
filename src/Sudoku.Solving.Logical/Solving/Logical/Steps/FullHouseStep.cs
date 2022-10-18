@@ -7,8 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
-internal sealed record FullHouseStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) :
-	SingleStep(Conclusions, Views, Cell, Digit)
+internal sealed record FullHouseStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) : SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 1.0M;
@@ -18,6 +17,7 @@ internal sealed record FullHouseStep(ConclusionList Conclusions, ViewList Views,
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Always;
+
 
 	[ResourceTextFormatter]
 	internal string CellStr() => RxCyNotation.ToCellString(Cell);

@@ -5,8 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal sealed record BruteForceStep(ConclusionList Conclusions, ViewList Views) :
-	LastResortStep(Conclusions, Views)
+internal sealed record BruteForceStep(ConclusionList Conclusions, ViewList Views) : LastResortStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 20.0M;

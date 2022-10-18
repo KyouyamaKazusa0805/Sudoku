@@ -7,8 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cell"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
-internal sealed record NakedSingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) :
-	SingleStep(Conclusions, Views, Cell, Digit)
+internal sealed record NakedSingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) : SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 2.3M;
