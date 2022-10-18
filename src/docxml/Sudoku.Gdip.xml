@@ -19,6 +19,19 @@
             <param name="newHeight">The new height.</param>
             <returns>The new bitmap instance that has been zoomed.</returns>
         </member>
+        <member name="T:System.Drawing.ColorExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Drawing.Color"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Color"/>
+        </member>
+        <member name="M:System.Drawing.ColorExtensions.QuarterAlpha(System.Drawing.Color)">
+            <summary>
+            Gets a target <see cref="T:System.Drawing.Color"/> whose <see cref="P:System.Drawing.Color.A"/> value is a quarter of the original one.
+            </summary>
+            <param name="this">The original color value.</param>
+            <returns>The target result.</returns>
+        </member>
         <member name="T:System.Drawing.GraphicsExtensions">
             <summary>
             Provides extension methods for <see cref="T:System.Drawing.Graphics"/>.

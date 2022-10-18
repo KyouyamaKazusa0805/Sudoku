@@ -119,7 +119,7 @@ partial record GridImageGenerator
 				{
 					GivenColor: var gColor,
 					ModifiableColor: var mColor,
-					CandidateColor: { A: var cColorAlpha } cColor,
+					CandidateColor: var cColor,
 					GivenFontName: var gFontName,
 					ModifiableFontName: var mFontName,
 					CandidateFontName: var cFontName,
@@ -142,7 +142,7 @@ partial record GridImageGenerator
 		using var bGiven = new SolidBrush(gColor);
 		using var bModifiable = new SolidBrush(mColor);
 		using var bCandidate = new SolidBrush(cColor);
-		using var bCandidateLighter = new SolidBrush(Color.FromArgb(cColorAlpha >> 2, cColor));
+		using var bCandidateLighter = new SolidBrush(cColor.QuarterAlpha());
 		using var fGiven = GetFont(gFontName, halfWidth, vScale, gFontStyle);
 		using var fModifiable = GetFont(mFontName, halfWidth, vScale, mFontStyle);
 		using var fCandidate = GetFont(cFontName, halfWidth, cScale, cFontStyle);
@@ -257,7 +257,7 @@ partial record GridImageGenerator
 		if (this is not
 			{
 				Conclusions: { } conclusions,
-				Preferences: { EliminationColor: { A: var eColorAlpha } eColor, CannibalismColor: { A: var cColorAlpha } cColor },
+				Preferences: { EliminationColor: var eColor, CannibalismColor: var cColor },
 				View: var view
 			} || !conclusions.Any())
 		{
@@ -266,8 +266,8 @@ partial record GridImageGenerator
 
 		using var elimBrush = new SolidBrush(eColor);
 		using var cannibalBrush = new SolidBrush(cColor);
-		using var elimBrushLighter = new SolidBrush(Color.FromArgb(eColorAlpha >> 2, eColor));
-		using var canniBrushLighter = new SolidBrush(Color.FromArgb(cColorAlpha >> 2, cColor));
+		using var elimBrushLighter = new SolidBrush(eColor.QuarterAlpha());
+		using var canniBrushLighter = new SolidBrush(cColor.QuarterAlpha());
 		foreach (var (t, c, d) in Conclusions)
 		{
 			if (t != ConclusionType.Elimination)
@@ -334,7 +334,7 @@ partial record GridImageGenerator
 				Conclusions: var conclusions,
 				Preferences:
 				{
-					CandidateColor: { A: var cColorAlpha } cColor,
+					CandidateColor: var cColor,
 					CandidateFontName: var cFontName,
 					CandidateScale: var cScale,
 					CandidateFontStyle: var cFontStyle,
@@ -348,7 +348,7 @@ partial record GridImageGenerator
 		var vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 
 		using var bCandidate = new SolidBrush(cColor);
-		using var bCandidateLighter = new SolidBrush(Color.FromArgb(cColorAlpha >> 2, cColor));
+		using var bCandidateLighter = new SolidBrush(cColor.QuarterAlpha());
 		using var fCandidate = GetFont(cFontName, cellWidth / 2F, cScale, cFontStyle);
 
 		foreach (var candidateNode in candidateNodes)
@@ -403,7 +403,7 @@ partial record GridImageGenerator
 						};
 
 						// In the normal case, I'll draw these circles.
-						using var brush = new SolidBrush(overlaps ? Color.FromArgb(color.A >> 2, color) : color);
+						using var brush = new SolidBrush(overlaps ? color.QuarterAlpha() : color);
 						g.FillEllipse(brush, Calculator.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 						// In direct view, candidates should be drawn also.
