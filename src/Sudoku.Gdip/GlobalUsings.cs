@@ -15,6 +15,6 @@ global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Solving;
 global using static System.Math;
-global using static Sudoku.Drawing.IGridImageGenerator;
-global using static Sudoku.Drawing.IPointCalculator;
+global using static Sudoku.Gdip.IGridImageGenerator;
+global using static Sudoku.Gdip.IPointCalculator;
 global using static Sudoku.Runtime.MaskServices.MaskOperations;

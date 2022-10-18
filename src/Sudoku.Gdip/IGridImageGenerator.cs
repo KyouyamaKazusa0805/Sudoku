@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing;
+﻿namespace Sudoku.Gdip;
 
 /// <summary>
 /// Defines a grid image generator that parses a sudoku grid and converts it to an image

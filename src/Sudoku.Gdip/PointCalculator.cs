@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing;
+﻿namespace Sudoku.Gdip;
 
 /// <summary>
 /// Defines a point calculator that interacts with the UI projects.

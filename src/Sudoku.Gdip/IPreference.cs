@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing;
+﻿namespace Sudoku.Gdip;
 
 /// <summary>
 /// Defines the basic preferences.
