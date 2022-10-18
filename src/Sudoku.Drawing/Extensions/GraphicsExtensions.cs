@@ -5,6 +5,14 @@
 /// </summary>
 internal static class GraphicsExtensions
 {
+	public static void DrawImage(
+		this Graphics @this,
+		Bitmap bitmap,
+		int destX, int destY, int destWidth, int destHeight,
+		int srcX, int srcY, int srcWidth, int srcHeight,
+		GraphicsUnit srcUnit
+	) => @this.DrawImage(bitmap, new Rectangle(destX, destY, destWidth, destHeight), new Rectangle(srcX, srcY, srcWidth, srcHeight), srcUnit);
+
 	/// <summary>
 	/// Draw the string representation an instance onto the current <see cref="Graphics"/> instance.
 	/// </summary>
@@ -15,8 +23,7 @@ internal static class GraphicsExtensions
 	/// <param name="brush">The brush.</param>
 	/// <param name="point">The point.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void DrawValue<TNotNull>(
-		this Graphics @this, TNotNull value, Font font, Brush brush, scoped in PointF point)
+	public static void DrawValue<TNotNull>(this Graphics @this, TNotNull value, Font font, Brush brush, scoped in PointF point)
 		where TNotNull : notnull
 		=> @this.DrawString(value.ToString(), font, brush, point);
 
@@ -31,8 +38,7 @@ internal static class GraphicsExtensions
 	/// <param name="point">The point.</param>
 	/// <param name="stringFormat">The string format instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void DrawValue<TNotNull>(
-		this Graphics @this, TNotNull value, Font font, Brush brush, scoped in PointF point, StringFormat stringFormat)
+	public static void DrawValue<TNotNull>(this Graphics @this, TNotNull value, Font font, Brush brush, scoped in PointF point, StringFormat stringFormat)
 		where TNotNull : notnull
 		=> @this.DrawString(value.ToString(), font, brush, point, stringFormat);
 
