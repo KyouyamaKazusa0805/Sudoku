@@ -11,8 +11,6 @@ public sealed class SudokuPainterTest
 		var sudokuPainter = ISudokuPainter.CreatePainter(1498, 20)
 			.WithGrid(grid)
 			.WithRenderingCandidates(true)
-			.WithValueFont("Tahoma")
-			.WithCandidateFont("Tahoma")
 			.WithFontScale(1M);
 
 		const string fileName = "test.png";

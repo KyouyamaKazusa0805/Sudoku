@@ -16,11 +16,6 @@ public interface IGridImageGenerator
 	/// </summary>
 	protected const float RotateAngle = MathF.PI / 4;
 
-	/// <summary>
-	/// The text offset that corrects the pixel of the text output.
-	/// </summary>
-	protected const float TextOffset = 6F;
-
 
 	/// <summary>
 	/// Indicates the default string format.
@@ -188,8 +183,8 @@ file partial record GridImageGenerator : IGridImageGenerator
 		g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 		g.CompositingQuality = CompositingQuality.HighQuality;
 
-		DrawView(g, TextOffset);
-		DrawEliminations(g, TextOffset);
+		DrawView(g);
+		DrawEliminations(g);
 		DrawValue(g);
 
 		return bitmap;
@@ -225,13 +220,13 @@ file partial record GridImageGenerator : IGridImageGenerator
 	partial void DrawGridAndBlockLines(Graphics g);
 	partial void DrawBackground(Graphics g);
 	partial void DrawValue(Graphics g);
-	partial void DrawView(Graphics g, float offset);
-	partial void DrawEliminations(Graphics g, float offset);
+	partial void DrawView(Graphics g);
+	partial void DrawEliminations(Graphics g);
 	partial void DrawCells(Graphics g);
-	partial void DrawCandidates(Graphics g, float offset);
-	partial void DrawHouses(Graphics g, float offset);
-	partial void DrawLinks(Graphics g, float offset);
-	partial void DrawDirectLines(Graphics g, float offset);
+	partial void DrawCandidates(Graphics g);
+	partial void DrawHouses(Graphics g);
+	partial void DrawLinks(Graphics g);
+	partial void DrawDirectLines(Graphics g);
 	partial void DrawUnknownValue(Graphics g);
 }
 
@@ -317,20 +312,19 @@ partial record GridImageGenerator
 	/// Draw custom view if <see cref="View"/> is not <see langword="null"/>.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="offset">The drawing offset.</param>
 	/// <seealso cref="View"/>
-	partial void DrawView(Graphics g, float offset)
+	partial void DrawView(Graphics g)
 	{
 		if (View is null)
 		{
 			return;
 		}
 
-		DrawHouses(g, offset);
+		DrawHouses(g);
 		DrawCells(g);
-		DrawCandidates(g, offset);
-		DrawLinks(g, offset);
-		DrawDirectLines(g, offset);
+		DrawCandidates(g);
+		DrawLinks(g);
+		DrawDirectLines(g);
 		DrawUnknownValue(g);
 	}
 
@@ -383,8 +377,7 @@ partial record GridImageGenerator
 	/// Draw eliminations.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="offset">The drawing offset.</param>
-	partial void DrawEliminations(Graphics g, float offset)
+	partial void DrawEliminations(Graphics g)
 	{
 		if (this is not
 			{
@@ -427,7 +420,7 @@ partial record GridImageGenerator
 			var overlaps = view.UnknownOverlaps(c);
 			g.FillEllipse(
 				isCanni ? overlaps ? canniBrushLighter : cannibalBrush : overlaps ? elimBrushLighter : elimBrush,
-				Calculator.GetMouseRectangle(c, d).Zoom(-offset / 3));
+				Calculator.GetMouseRectangle(c, d));
 		}
 	}
 
@@ -456,8 +449,7 @@ partial record GridImageGenerator
 	/// Draw candidates.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="offset">The drawing offsets.</param>
-	partial void DrawCandidates(Graphics g, float offset)
+	partial void DrawCandidates(Graphics g)
 	{
 		if (this is not
 			{
@@ -515,7 +507,7 @@ partial record GridImageGenerator
 					case { Mode: IdentifierColorMode.Raw, A: var alpha, R: var red, G: var green, B: var blue }:
 					{
 						using var brush = new SolidBrush(Color.FromArgb(overlaps ? alpha : alpha >> 2, red, green, blue));
-						g.FillEllipse(brush, calc.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+						g.FillEllipse(brush, calc.GetMouseRectangle(cell, digit));
 
 						// In direct view, candidates should be drawn also.
 						if (!showCandidates)
@@ -536,7 +528,7 @@ partial record GridImageGenerator
 
 						// In the normal case, I'll draw these circles.
 						using var brush = new SolidBrush(overlaps ? color.QuarterAlpha() : color);
-						g.FillEllipse(brush, calc.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+						g.FillEllipse(brush, calc.GetMouseRectangle(cell, digit));
 
 						// In direct view, candidates should be drawn also.
 						if (!showCandidates)
@@ -576,9 +568,7 @@ partial record GridImageGenerator
 	/// Draw houses.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="offset">The drawing offset.</param>
-	/// <remarks>This method is simply implemented, using cell filling.</remarks>
-	partial void DrawHouses(Graphics g, float offset)
+	partial void DrawHouses(Graphics g)
 	{
 		if (View is not { HouseNodes: var houseNodes })
 		{
@@ -606,14 +596,14 @@ partial record GridImageGenerator
 
 			if (Preferences.ShowLightHouse)
 			{
-				using var pen = new Pen(color, offset / 3 * 2);
+				using var pen = new Pen(color, 4F);
 				switch (house)
 				{
 					case >= 0 and < 9:
 					{
 						// Block.
-						var rect = Calculator.GetMouseRectangleViaHouse(house).Zoom(-offset);
-						g.DrawRoundedRectangle(pen, rect, offset);
+						var rect = Calculator.GetMouseRectangleViaHouse(house);
+						g.DrawRoundedRectangle(pen, rect, 6);
 
 						break;
 					}
@@ -634,7 +624,7 @@ partial record GridImageGenerator
 			}
 			else
 			{
-				var rect = Calculator.GetMouseRectangleViaHouse(house).Zoom(-offset / 3);
+				var rect = Calculator.GetMouseRectangleViaHouse(house);
 				using var brush = new SolidBrush(Color.FromArgb(64, color));
 				g.FillRectangle(brush, rect);
 			}
@@ -645,8 +635,7 @@ partial record GridImageGenerator
 	/// Draw links.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="offset">The offset.</param>
-	partial void DrawLinks(Graphics g, float offset)
+	partial void DrawLinks(Graphics g)
 	{
 		if (this is not
 			{
@@ -702,7 +691,7 @@ partial record GridImageGenerator
 				// If the distance of two points is lower than the one of two adjacent candidates,
 				// the link will be emitted to draw because of too narrow.
 				var distance = Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
-				if (distance <= cw * SqrtOf2 + offset || distance <= ch * SqrtOf2 + offset)
+				if (distance <= cw * SqrtOf2 || distance <= ch * SqrtOf2)
 				{
 					continue;
 				}
@@ -712,7 +701,7 @@ partial record GridImageGenerator
 				var alpha = Atan2(deltaY, deltaX);
 				double dx1 = deltaX, dy1 = deltaY;
 				var through = false;
-				adjust(pt1, pt2, out var p1, out _, alpha, cw, offset);
+				adjust(pt1, pt2, out var p1, out _, alpha, cw);
 				foreach (var point in points)
 				{
 					if (point == pt1 || point == pt2)
@@ -732,7 +721,7 @@ partial record GridImageGenerator
 				}
 
 				// Now cut the link.
-				cut(ref pt1, ref pt2, offset, cw, ch, pt1x, pt1y, pt2x, pt2y);
+				cut(ref pt1, ref pt2, cw, ch, pt1x, pt1y, pt2x, pt2y);
 
 				if (through)
 				{
@@ -784,12 +773,11 @@ partial record GridImageGenerator
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void adjust(
-			scoped in PointF pt1, scoped in PointF pt2, out PointF p1, out PointF p2, double alpha, double candidateSize, float offset)
+		static void adjust(scoped in PointF pt1, scoped in PointF pt2, out PointF p1, out PointF p2, double alpha, double candidateSize)
 		{
 			p1 = pt1;
 			p2 = pt2;
-			var tempDelta = candidateSize / 2 + offset;
+			var tempDelta = candidateSize / 2;
 			var px = (int)(tempDelta * Cos(alpha));
 			var py = (int)(tempDelta * Sin(alpha));
 
@@ -800,22 +788,20 @@ partial record GridImageGenerator
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void cut(
-			scoped ref PointF pt1, scoped ref PointF pt2, float offset, float cw, float ch, float pt1x, float pt1y, float pt2x, float pt2y)
+		static void cut(scoped ref PointF pt1, scoped ref PointF pt2, float cw, float ch, float pt1x, float pt1y, float pt2x, float pt2y)
 		{
 			var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
 			var x = cw / (float)Sqrt(1 + slope * slope);
 			var y = ch * (float)Sqrt(slope * slope / (1 + slope * slope));
 
-			var o = offset / 8;
-			if (pt1y > pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y -= ch / 2 - o; pt2.Y += ch / 2 - o; }
-			else if (pt1y < pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y += ch / 2 - o; pt2.Y -= ch / 2 - o; }
-			else if (pt1y.NearlyEquals(pt2y) && pt1x > pt2x) { pt1.X -= cw / 2 - o; pt2.X += cw / 2 - o; }
-			else if (pt1y.NearlyEquals(pt2y) && pt1x < pt2x) { pt1.X += cw / 2 - o; pt2.X -= cw / 2 - o; }
-			else if (pt1y > pt2y && pt1x > pt2x) { pt1.X -= x / 2 - o; pt1.Y -= y / 2 - o; pt2.X += x / 2 - o; pt2.Y += y / 2 - o; }
-			else if (pt1y > pt2y && pt1x < pt2x) { pt1.X += x / 2 - o; pt1.Y -= y / 2 - o; pt2.X -= x / 2 - o; pt2.Y += y / 2 - o; }
-			else if (pt1y < pt2y && pt1x > pt2x) { pt1.X -= x / 2 - o; pt1.Y += y / 2 - o; pt2.X += x / 2 - o; pt2.Y -= y / 2 - o; }
-			else if (pt1y < pt2y && pt1x < pt2x) { pt1.X += x / 2 - o; pt1.Y += y / 2 - o; pt2.X -= x / 2 - o; pt2.Y -= y / 2 - o; }
+			if (pt1y > pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y -= ch / 2; pt2.Y += ch / 2; }
+			else if (pt1y < pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y += ch / 2; pt2.Y -= ch / 2; }
+			else if (pt1y.NearlyEquals(pt2y) && pt1x > pt2x) { pt1.X -= cw / 2; pt2.X += cw / 2; }
+			else if (pt1y.NearlyEquals(pt2y) && pt1x < pt2x) { pt1.X += cw / 2; pt2.X -= cw / 2; }
+			else if (pt1y > pt2y && pt1x > pt2x) { pt1.X -= x / 2; pt1.Y -= y / 2; pt2.X += x / 2; pt2.Y += y / 2; }
+			else if (pt1y > pt2y && pt1x < pt2x) { pt1.X += x / 2; pt1.Y -= y / 2; pt2.X -= x / 2; pt2.Y += y / 2; }
+			else if (pt1y < pt2y && pt1x > pt2x) { pt1.X -= x / 2; pt1.Y += y / 2; pt2.X += x / 2; pt2.Y -= y / 2; }
+			else if (pt1y < pt2y && pt1x < pt2x) { pt1.X += x / 2; pt1.Y += y / 2; pt2.X -= x / 2; pt2.Y -= y / 2; }
 		}
 	}
 
