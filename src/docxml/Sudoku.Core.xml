@@ -2609,6 +2609,239 @@
             <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
             <seealso cref="M:System.ISimpleParsable`1.Parse(System.String)"/>
         </member>
+        <member name="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs">
+            <summary>
+            Defines a type that is triggered when the candidates are refreshed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridRefreshingCandidatesEventArgs._gridRef">
+            <summary>
+            The backing field of property <see cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs"/> instance via the specified grid to be updated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef">
+            <summary>
+            Indicates the reference to the grid whose candidates are refreshed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor">
+            <summary>
+            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
+            </summary>
+            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
+            <remarks>
+            The main idea of the parameterless constructor is to create a new instance
+            without any extra information, but the current type is special:
+            It will be very slow to be initialized.
+            I only suggest you use constant or static read-only field (or static read-only property)
+            instead of using this constructor.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.GridValueChangedEventArgs">
+            <summary>
+            Defines a type that is triggered when the specified value in a grid has been changed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridValueChangedEventArgs._gridRef">
+            <summary>
+            The backing field of property <see cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridValueChangedEventArgs.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int16,System.Int16)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.GridValueChangedEventArgs"/> instance via the specified grid to be updated,
+            the cell, old and new mask information to be updated.
+            </summary>
+            <param name="gridRef">The reference to the grid.</param>
+            <param name="appliedDigit">The applied digit. -1 is for empty.</param>
+            <param name="cell">The cell used.</param>
+            <param name="oldMaskValue">The old and original mask value in the grid.</param>
+            <param name="newMaskValue">The new value to be replaced with.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.Cell">
+            <summary>
+            Indicates the cell to be updated and changed its value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.SetDigit">
+            <summary>
+            Indicates applied digit. -1 is for clear the cell, changed its status to <see cref="F:Sudoku.Concepts.CellStatus.Empty"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellStatus"/>
+        </member>
+        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.OldMaskValue">
+            <summary>
+            Indicates the mask value that is the old and original value in the current grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.NewMaskValue">
+            <summary>
+            Indicates the mask value as replacer to update the old value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef">
+            <summary>
+            Indicates the reference to the grid whose inner value has been changed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridValueChangedEventArgs.#ctor">
+            <summary>
+            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
+            </summary>
+            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
+            <remarks>
+            The main idea of the parameterless constructor is to create a new instance
+            without any extra information, but the current type is special:
+            It will be very slow to be initialized.
+            I only suggest you use constant or static read-only field (or static read-only property)
+            instead of using this constructor.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.GridCandidateEnumerator">
+            <summary>
+            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/>
+            through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <see cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Concepts.GridCandidateEnumerator._start">
+            <summary>
+            The pointer to the start value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridCandidateEnumerator._refCurrent">
+            <summary>
+            The current pointer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridCandidateEnumerator._currentMask">
+            <summary>
+            Indicates the current mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridCandidateEnumerator._currentIndex">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCandidateEnumerator.#ctor(System.Int16@)">
+            <summary>
+            Initializes an instance with the specified reference to an array to iterate.
+            </summary>
+            <param name="arr">The reference to an array.</param>
+            <remarks>
+            Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
+            even though C# allows we passing a constant as an <see langword="in"/> argument.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.GridCandidateEnumerator.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCandidateEnumerator.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            <list type="table">
+            <listheader>
+            <term>Return value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>If the enumerator was successfully advanced to the next element.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>If the enumerator has passed the end of the collection.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCandidateEnumerator.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element
+            in the collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCandidateEnumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:Sudoku.Concepts.GridMaskEnumerator">
+            <summary>
+            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/>
+            through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Concepts.GridMaskEnumerator._start">
+            <summary>
+            The pointer to the start value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridMaskEnumerator._refCurrent">
+            <summary>
+            The current pointer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridMaskEnumerator._currentIndex">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridMaskEnumerator.#ctor(System.Int16@)">
+            <summary>
+            Initializes an instance with the specified pointer to an array to iterate.
+            </summary>
+            <param name="arr">The pointer to an array.</param>
+            <remarks>
+            Note here we should point at the one-unit-length memory before the array start.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.GridMaskEnumerator.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridMaskEnumerator.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            <list type="table">
+            <listheader>
+            <term>Return value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>If the enumerator was successfully advanced to the next element.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>If the enumerator has passed the end of the collection.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridMaskEnumerator.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element
+            in the collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridMaskEnumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
         <member name="T:Sudoku.Concepts.Converter">
             <summary>
             Indicates the JSON converter of the current type.
@@ -2683,40 +2916,6 @@
             <summary>
             Indicates each value should minus one before creation.
             </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs">
-            <summary>
-            Defines a type that is triggered when the candidates are refreshed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridRefreshingCandidatesEventArgs._gridRef">
-            <summary>
-            The backing field of property <see cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor(Sudoku.Concepts.Grid@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs"/> instance via the specified grid to be updated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef">
-            <summary>
-            Indicates the reference to the grid whose candidates are refreshed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
-            </summary>
-            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
-            <remarks>
-            The main idea of the parameterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            It will be very slow to be initialized.
-            I only suggest you use constant or static read-only field (or static read-only property)
-            instead of using this constructor.
-            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.GridTransformations">
             <summary>
@@ -2847,67 +3046,6 @@
             <remarks>
             This method will return the reference that is same as the argument <paramref name="this"/>,
             in order to inline multiple transformation operations.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.GridValueChangedEventArgs">
-            <summary>
-            Defines a type that is triggered when the specified value in a grid has been changed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridValueChangedEventArgs._gridRef">
-            <summary>
-            The backing field of property <see cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridValueChangedEventArgs.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int16,System.Int16)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.GridValueChangedEventArgs"/> instance via the specified grid to be updated,
-            the cell, old and new mask information to be updated.
-            </summary>
-            <param name="gridRef">The reference to the grid.</param>
-            <param name="appliedDigit">The applied digit. -1 is for empty.</param>
-            <param name="cell">The cell used.</param>
-            <param name="oldMaskValue">The old and original mask value in the grid.</param>
-            <param name="newMaskValue">The new value to be replaced with.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.Cell">
-            <summary>
-            Indicates the cell to be updated and changed its value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.SetDigit">
-            <summary>
-            Indicates applied digit. -1 is for clear the cell, changed its status to <see cref="F:Sudoku.Concepts.CellStatus.Empty"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CellStatus"/>
-        </member>
-        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.OldMaskValue">
-            <summary>
-            Indicates the mask value that is the old and original value in the current grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.NewMaskValue">
-            <summary>
-            Indicates the mask value as replacer to update the old value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef">
-            <summary>
-            Indicates the reference to the grid whose inner value has been changed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridValueChangedEventArgs.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
-            </summary>
-            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
-            <remarks>
-            The main idea of the parameterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            It will be very slow to be initialized.
-            I only suggest you use constant or static read-only field (or static read-only property)
-            instead of using this constructor.
             </remarks>
         </member>
         <member name="T:Sudoku.Concepts.HouseType">
@@ -3151,78 +3289,6 @@
             of invoking the transform function on each element of <paramref name="source"/>.
             </returns>
         </member>
-        <member name="T:Sudoku.Linq.GridCandidateEnumerator">
-            <summary>
-            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/>
-            through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <see cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Linq.GridCandidateEnumerator._start">
-            <summary>
-            The pointer to the start value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Linq.GridCandidateEnumerator._refCurrent">
-            <summary>
-            The current pointer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Linq.GridCandidateEnumerator._currentMask">
-            <summary>
-            Indicates the current mask.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Linq.GridCandidateEnumerator._currentIndex">
-            <summary>
-            The current index.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Linq.GridCandidateEnumerator.#ctor(System.Int16@)">
-            <summary>
-            Initializes an instance with the specified reference to an array to iterate.
-            </summary>
-            <param name="arr">The reference to an array.</param>
-            <remarks>
-            Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
-            even though C# allows we passing a constant as an <see langword="in"/> argument.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Linq.GridCandidateEnumerator.Current">
-            <summary>
-            Gets the element in the collection at the current position of the enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Linq.GridCandidateEnumerator.MoveNext">
-            <summary>
-            Advances the enumerator to the next element of the collection.
-            </summary>
-            <returns>
-            <list type="table">
-            <listheader>
-            <term>Return value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>If the enumerator was successfully advanced to the next element.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>If the enumerator has passed the end of the collection.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Linq.GridCandidateEnumerator.Reset">
-            <summary>
-            Sets the enumerator to its initial position, which is before the first element
-            in the collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Linq.GridCandidateEnumerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
         <member name="T:Sudoku.Linq.GridEnumerable">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> type, around LINQ.
@@ -3244,72 +3310,6 @@
             A <see cref="T:System.Collections.Immutable.ImmutableArray`1"/> of <typeparamref name="TResult"/> whose elements are the result
             of invoking the transform function on each element of <paramref name="source"/>.
             </returns>
-        </member>
-        <member name="T:Sudoku.Linq.GridMaskEnumerator">
-            <summary>
-            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/>
-            through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Linq.GridMaskEnumerator._start">
-            <summary>
-            The pointer to the start value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Linq.GridMaskEnumerator._refCurrent">
-            <summary>
-            The current pointer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Linq.GridMaskEnumerator._currentIndex">
-            <summary>
-            The current index.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Linq.GridMaskEnumerator.#ctor(System.Int16@)">
-            <summary>
-            Initializes an instance with the specified pointer to an array to iterate.
-            </summary>
-            <param name="arr">The pointer to an array.</param>
-            <remarks>
-            Note here we should point at the one-unit-length memory before the array start.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Linq.GridMaskEnumerator.Current">
-            <summary>
-            Gets the element in the collection at the current position of the enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Linq.GridMaskEnumerator.MoveNext">
-            <summary>
-            Advances the enumerator to the next element of the collection.
-            </summary>
-            <returns>
-            <list type="table">
-            <listheader>
-            <term>Return value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>If the enumerator was successfully advanced to the next element.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>If the enumerator has passed the end of the collection.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Linq.GridMaskEnumerator.Reset">
-            <summary>
-            Sets the enumerator to its initial position, which is before the first element
-            in the collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Linq.GridMaskEnumerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="T:Sudoku.Resources.MergedResources">
             <summary>

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Test.SudokuGrid;
+﻿namespace Sudoku.Test.Apis.GridApi;
 
 [TestClass]
 public sealed class GridApiTest
