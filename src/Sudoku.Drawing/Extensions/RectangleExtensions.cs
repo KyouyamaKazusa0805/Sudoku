@@ -15,19 +15,9 @@ internal static class RectangleExtensions
 	/// <returns>The new rectangle.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Rectangle Zoom(this scoped in Rectangle @this, int offset)
-	{
-		var result = @this;
-		result.X -= offset;
-		result.Y -= offset;
-		result.Width += offset * 2;
-		result.Height += offset * 2;
-		return result;
-	}
+		=> @this with { X = @this.X - offset, Y = @this.Y - offset, Width = @this.Width + offset * 2, Height = @this.Height + offset * 2 };
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Deconstruct(this scoped in Rectangle @this, out Point point, out Size size)
-	{
-		point = new(@this.X, @this.Y);
-		size = @this.Size;
-	}
+		=> (point, size) = (new(@this.X, @this.Y), @this.Size);
 }

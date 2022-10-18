@@ -13,8 +13,8 @@ internal static class RectangleMarshal
 	/// <param name="rightDown">The right down point.</param>
 	/// <returns>The rectangle.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Rectangle CreateInstance(scoped in Point leftUp, scoped in Point rightDown) =>
-		new(leftUp.X, leftUp.Y, rightDown.X - leftUp.X, rightDown.Y - leftUp.Y);
+	public static Rectangle CreateInstance(scoped in Point leftUp, scoped in Point rightDown)
+		=> new(leftUp.X, leftUp.Y, rightDown.X - leftUp.X, rightDown.Y - leftUp.Y);
 
 	/// <summary>
 	/// Create an instance with two points.
@@ -23,6 +23,6 @@ internal static class RectangleMarshal
 	/// <param name="rightDown">The right down point.</param>
 	/// <returns>The rectangle.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static RectangleF CreateInstance(scoped in PointF leftUp, scoped in PointF rightDown) =>
-		new(leftUp.X, leftUp.Y, rightDown.X - leftUp.X, rightDown.Y - leftUp.Y);
+	public static RectangleF CreateInstance(scoped in PointF leftUp, scoped in PointF rightDown)
+		=> new(leftUp.X, leftUp.Y, rightDown.X - leftUp.X, rightDown.Y - leftUp.Y);
 }

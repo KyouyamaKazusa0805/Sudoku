@@ -30,8 +30,7 @@ internal static class RectangleFExtensions
 	/// <param name="this">The rectangle.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Rectangle Truncate(this scoped in RectangleF @this) =>
-		new((int)@this.X, (int)@this.Y, (int)@this.Width, (int)@this.Height);
+	public static Rectangle Truncate(this scoped in RectangleF @this) => new((int)@this.X, (int)@this.Y, (int)@this.Width, (int)@this.Height);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Deconstruct(this scoped in RectangleF @this, out PointF point, out SizeF size)
