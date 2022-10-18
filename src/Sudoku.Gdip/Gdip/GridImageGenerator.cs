@@ -330,7 +330,7 @@ partial record GridImageGenerator
 		if (this is not
 			{
 				View: { CandidateNodes: var candidateNodes } view,
-				Calculator: { CellSize.Width: var cellWidth, CandidateSize.Width: var candidateWidth },
+				Calculator: { CellSize.Width: var cellWidth, CandidateSize.Width: var candidateWidth } calc,
 				Conclusions: var conclusions,
 				Preferences:
 				{
@@ -383,7 +383,7 @@ partial record GridImageGenerator
 					case { Mode: IdentifierColorMode.Raw, A: var alpha, R: var red, G: var green, B: var blue }:
 					{
 						using var brush = new SolidBrush(Color.FromArgb(overlaps ? alpha : alpha >> 2, red, green, blue));
-						g.FillEllipse(brush, Calculator.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+						g.FillEllipse(brush, calc.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 						// In direct view, candidates should be drawn also.
 						if (!showCandidates)
@@ -404,7 +404,7 @@ partial record GridImageGenerator
 
 						// In the normal case, I'll draw these circles.
 						using var brush = new SolidBrush(overlaps ? color.QuarterAlpha() : color);
-						g.FillEllipse(brush, Calculator.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
+						g.FillEllipse(brush, calc.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 						// In direct view, candidates should be drawn also.
 						if (!showCandidates)
