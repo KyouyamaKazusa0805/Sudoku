@@ -434,7 +434,7 @@ partial record GridImageGenerator
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		void d(int cell, int digit, float vOffsetCandidate, Brush brush)
 		{
-			var originalPoint = Calculator.GetMousePointInCenter(cell, digit);
+			var originalPoint = calc.GetMousePointInCenter(cell, digit);
 			var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };
 			g.DrawValue(digit + 1, fCandidate, brush, point, DefaultStringFormat);
 		}
