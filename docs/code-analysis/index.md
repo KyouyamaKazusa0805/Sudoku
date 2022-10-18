@@ -23,6 +23,7 @@
 | [SCA0109](sca0109)     | 设计（Design）           | ❌        | 标记了 `FileAccessOnlyAttribute` 的字段只能在当前文件内可用  |
 | [SCA0110](sca0110)     | 设计（Design）           | ⚠        | 标记了 `FileAccessOnlyAttribute` 的字段不能是 `private` 的   |
 | [SCA0111](sca0111)     | 设计（Design）           | ❌        | 标记了 `FileAccessOnlyAttribute` 的构造器只能在当前文件内可用 |
+| [SCA0112](sca0112)     | 设计（Design）           | ℹ        | 无需为 `file` 修饰符修饰的类型的成员使用 `FileAccessOnlyAttribute` 特性 |
 | SCA0201                | 使用（Usage）            | ℹ        | 请使用 `Argument` 类型代替 `if` 判断                         |
 | [SCA0202](sca0202)     | 性能（Performance）      | ℹ        | 请使用 `Add` 方法代替 `operator +` 运算符                    |
 | [SCA0203](sca0203)     | 性能（Performance）      | ℹ        | 请使用 `Remove` 方法代替 `operator -` 运算符                 |

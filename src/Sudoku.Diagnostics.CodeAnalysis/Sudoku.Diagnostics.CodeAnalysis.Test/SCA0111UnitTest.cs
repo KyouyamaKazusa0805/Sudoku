@@ -19,7 +19,7 @@ public sealed class SCA0111UnitTest
 			using System;
 			using System.Diagnostics.CodeAnalysis;
 
-			file sealed class TestType
+			public sealed class TestType
 			{
 				[FileAccessOnly]
 				internal TestType()

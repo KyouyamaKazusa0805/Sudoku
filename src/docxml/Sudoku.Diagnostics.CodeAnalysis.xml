@@ -154,6 +154,26 @@
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0112_NoNeedFileAccessOnlyAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0112">SCA0112</see> (There's no need to apply 'FileAccessOnlyAttribute' on members whose containing type has already been a file local type)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0112_NoNeedFileAccessOnlyAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0112_NoNeedFileAccessOnlyAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0112_NoNeedFileAccessOnlyAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SymbolAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0201_UseArgumentAnalyzer">
             <summary>
             Indicates the analyzer that can provide the following diagnostic results:
@@ -404,6 +424,17 @@
             <item><b>Description</b>: Specified constructor can only be accessed in a same file where the constructor is declared.</item>
             <item><b>Category</b>: Design</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Error"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0112">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0112">SCA0112</see>:
+            <list type="bullet">
+            <item><b>Title</b>: There's no need to apply 'FileAccessOnlyAttribute' on members whose containing type has already been a file local type</item>
+            <item><b>Description</b>: There's no need to apply 'FileAccessOnlyAttribute' on members whose containing type has already been a file local type.</item>
+            <item><b>Category</b>: Design</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
             </list>
             </summary>
         </member>

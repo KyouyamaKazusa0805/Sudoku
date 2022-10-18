@@ -1,11 +1,11 @@
 ﻿using VerifyCS = Sudoku.Diagnostics.CodeAnalysis.Test.CSharpAnalyzerVerifier<
-	Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0109_FileAccessOnlyAttributeAnalyzer
+	Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0112_NoNeedFileAccessOnlyAnalyzer
 >;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Test;
 
 [TestClass]
-public sealed class SCA0109UnitTest
+public sealed class SCA0112UnitTest
 {
 	[TestMethod]
 	public async Task TestCase_EmptyCode() => await VerifyCS.VerifyAnalyzerAsync(@"");
@@ -19,27 +19,26 @@ public sealed class SCA0109UnitTest
 			using System;
 			using System.Diagnostics.CodeAnalysis;
 
-			public sealed class TestType
+			file sealed class TestType
 			{
 				[FileAccessOnly]
-				internal static readonly int ReadOnlyVariable = 42;
-			}
+				internal const string {|#0:Field|} = "";
 
-			file sealed class AnotherType
-			{
-				public void Method()
+				[FileAccessOnly]
+				internal {|#1:TestType|}()
 				{
-					int variable = TestType.ReadOnlyVariable;
 				}
 			}
 
 			namespace System.Diagnostics.CodeAnalysis
 			{
-				[AttributeUsage(AttributeTargets.Field, Inherited = false)]
+				[AttributeUsage(AttributeTargets.Field | AttributeTargets.Constructor, Inherited = false)]
 				file sealed class FileAccessOnlyAttribute : Attribute
 				{
 				}
 			}
-			"""
+			""",
+			VerifyCS.Diagnostic(SCA0112).WithLocation(0),
+			VerifyCS.Diagnostic(SCA0112).WithLocation(1)
 		);
 }

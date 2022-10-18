@@ -7,6 +7,7 @@ SCA0107,Specified field is not function pointer type,,Usage,Warning,Specified fi
 SCA0109,Specified field can only be accessed in a same file,,Design,Error,Specified field can only be accessed in a same file where the field is declared.
 SCA0110,Specified field cannot be private,Specified field '{0}' cannot be private,Design,Warning,Specified field marked 'FileAccessOnlyAttribute' cannot be private.
 SCA0111,Specified constructor can only be accessed in a same file,,Design,Error,Specified constructor can only be accessed in a same file where the constructor is declared.
+SCA0112,There's no need to apply 'FileAccessOnlyAttribute' on members whose containing type has already been a file local type,,Design,Info,There's no need to apply 'FileAccessOnlyAttribute' on members whose containing type has already been a file local type.
 SCA0201,Use type 'Argument' instead,,Usage,Info,The current 'if' statement can be converted into 'Argument' method invocation; use 'Argument' instead to simplify the code.
 SCA0202,Use 'Add' instead of plus operator,,Performance,Info,Use 'Add' instead of plus operator.
 SCA0203,Use 'Remove' instead of subtraction operator,,Performance,Info,Use 'Remove' instead of subtraction operator.
