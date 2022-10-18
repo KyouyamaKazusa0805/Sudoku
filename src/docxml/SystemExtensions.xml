@@ -1667,6 +1667,17 @@
             <param name="this">The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:System.Linq.EnumerableExtensions.CastToArray``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Try to treat the current instance as an array and convert it. If it is not an array,
+            call <see cref="M:System.Linq.Enumerable.ToArray``1(System.Collections.Generic.IEnumerable{``0})"/>
+            to convert it into the valid array instance. This method will not throw exceptions or return <see langword="null"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>The final array converted.</returns>
+            <seealso cref="M:System.Linq.Enumerable.ToArray``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
         <member name="T:System.Linq.ArrayEnumerable">
             <summary>
             Provides with the LINQ-related methods on type <see cref="T:System.Array"/>, especially for the one-dimensional array.
