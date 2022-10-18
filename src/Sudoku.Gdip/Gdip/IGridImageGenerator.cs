@@ -43,11 +43,6 @@ public interface IGridImageGenerator
 	public abstract float Height { get; }
 
 	/// <summary>
-	/// Indicates the focused cells.
-	/// </summary>
-	public abstract CellMap FocusedCells { get; set; }
-
-	/// <summary>
 	/// Indicates the view.
 	/// </summary>
 	public abstract View? View { get; set; }
@@ -80,6 +75,6 @@ public interface IGridImageGenerator
 	/// Throws when <paramref name="fontName"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected static sealed Font GetFont(string? fontName, float size, decimal scale, FontStyle style) =>
-		new(fontName ?? throw new ArgumentNullException(nameof(size)), size * (float)scale, style);
+	protected static sealed Font GetFont(string? fontName, float size, decimal scale, FontStyle style)
+		=> new(fontName ?? throw new ArgumentNullException(nameof(size)), size * (float)scale, style);
 }

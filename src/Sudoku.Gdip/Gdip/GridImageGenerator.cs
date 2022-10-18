@@ -29,9 +29,6 @@ public partial record GridImageGenerator(IPointCalculator Calculator, IPreferenc
 	}
 
 	/// <inheritdoc/>
-	public CellMap FocusedCells { get; set; }
-
-	/// <inheritdoc/>
 	public View? View { get; set; }
 
 	/// <inheritdoc/>
@@ -68,7 +65,6 @@ public partial record GridImageGenerator(IPointCalculator Calculator, IPreferenc
 		g.CompositingQuality = CompositingQuality.HighQuality;
 
 		DrawView(g, TextOffset);
-		DrawFocusedCells(g);
 		DrawEliminations(g, TextOffset);
 		DrawValue(g);
 
@@ -107,7 +103,6 @@ public partial record GridImageGenerator(IPointCalculator Calculator, IPreferenc
 	partial void DrawGridAndBlockLines(Graphics g);
 	partial void DrawBackground(Graphics g);
 	partial void DrawValue(Graphics g);
-	partial void DrawFocusedCells(Graphics g);
 	partial void DrawView(Graphics g, float offset);
 	partial void DrawEliminations(Graphics g, float offset);
 	partial void DrawCells(Graphics g);
@@ -203,24 +198,6 @@ partial record GridImageGenerator
 		DrawLinks(g, offset);
 		DrawDirectLines(g, offset);
 		DrawUnknownValue(g);
-	}
-
-	/// <summary>
-	/// Draw focused cells.
-	/// </summary>
-	/// <param name="g">The graphics.</param>
-	partial void DrawFocusedCells(Graphics g)
-	{
-		if (!FocusedCells)
-		{
-			return;
-		}
-
-		using var b = new SolidBrush(Preferences.FocusedCellColor);
-		foreach (var cell in FocusedCells)
-		{
-			g.FillRectangle(b, Calculator.GetMouseRectangleViaCell(cell));
-		}
 	}
 
 	/// <summary>

@@ -511,9 +511,6 @@
         <member name="P:Sudoku.Gdip.GridImageGenerator.Height">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Gdip.GridImageGenerator.FocusedCells">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Gdip.GridImageGenerator.View">
             <inheritdoc/>
         </member>
@@ -558,12 +555,6 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawValue(System.Drawing.Graphics)">
             <summary>
             Draw givens, modifiables and candidates, where the values are specified as a grid.
-            </summary>
-            <param name="g">The graphics.</param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFocusedCells(System.Drawing.Graphics)">
-            <summary>
-            Draw focused cells.
             </summary>
             <param name="g">The graphics.</param>
         </member>
@@ -650,11 +641,6 @@
         <member name="P:Sudoku.Gdip.IGridImageGenerator.Height">
             <summary>
             Indicates the drawing height.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IGridImageGenerator.FocusedCells">
-            <summary>
-            Indicates the focused cells.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.IGridImageGenerator.View">
