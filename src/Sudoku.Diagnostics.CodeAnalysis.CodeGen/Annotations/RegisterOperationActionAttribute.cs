@@ -11,9 +11,9 @@ public sealed class RegisterOperationActionAttribute : Attribute
 	/// </summary>
 	/// <param name="registeredActionName">The action name.</param>
 	/// <param name="registeredKindType">The registered kind type.</param>
-	/// <param name="rawRegisteredKindExpression">The registered kind expression.</param>
-	public RegisterOperationActionAttribute(string registeredActionName, Type registeredKindType, string rawRegisteredKindExpression)
-		=> (RegisteredActionName, RegisteredKindType, RegisteredKindExpression) = (registeredActionName, registeredKindType, rawRegisteredKindExpression);
+	/// <param name="rawRegisteredKindExpressions">The registered kind expressions.</param>
+	public RegisterOperationActionAttribute(string registeredActionName, Type registeredKindType, params string[] rawRegisteredKindExpressions)
+		=> (RegisteredActionName, RegisteredKindType, RegisteredKindExpressions) = (registeredActionName, registeredKindType, rawRegisteredKindExpressions);
 
 
 	/// <summary>
@@ -25,9 +25,9 @@ public sealed class RegisterOperationActionAttribute : Attribute
 	public string RegisteredActionName { get; }
 
 	/// <summary>
-	/// The registered kind expression.
+	/// The registered kind expressions.
 	/// </summary>
-	public string RegisteredKindExpression { get; }
+	public string[] RegisteredKindExpressions { get; }
 
 	/// <summary>
 	/// The registered kind type. For example, <see langword="typeof"/>(<see cref="OperationKind"/>).

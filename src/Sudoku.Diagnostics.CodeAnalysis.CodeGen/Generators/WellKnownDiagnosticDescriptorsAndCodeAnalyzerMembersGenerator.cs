@@ -225,7 +225,7 @@ public sealed class WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerato
 								ContainingNamespace: var operationKindTypeNamespace
 							}
 						},
-						{ Value: string kindStr }
+						{ Values: var kindsStr }
 					]
 				})
 			{
@@ -283,7 +283,9 @@ public sealed class WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerato
 				let title = _foundDescriptors.FirstOrDefault(e => e.Id == id)?.Title
 				where title is not null
 				let idLower = id.ToLower()
-				select $"<item><see href=\"https://sunnieshine.github.io/Sudoku/code-analysis/{idLower}\">{id}</see> ({title})</item>"
+				select
+					// lang = xml
+					$"""<item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/{idLower}">{id}</see> ({title})</item>"""
 			);
 			var rawTypeNameAsFile = type.ToFileName();
 			var finalTypeFileName = (rawTypeNameAsFile.IndexOf("SCA"), rawTypeNameAsFile.IndexOf('_')) switch
@@ -298,6 +300,7 @@ public sealed class WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerato
 				rrr(SCA0006, spc, identifier, finalTypeFileName);
 			}
 
+			var kindsArrayStr = string.Join(", ", from element in kindsStr select $"{operationKindName}.{(string)element.Value!}");
 			spc.AddSource(
 				$"{finalTypeFileName}.g.{Shortcuts.CodeAnalyzer}.cs",
 				$$"""
@@ -334,7 +337,7 @@ public sealed class WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerato
 						context.ConfigureGeneratedCodeAnalysis(global::Microsoft.CodeAnalysis.Diagnostics.GeneratedCodeAnalysisFlags.None);
 						context.EnableConcurrentExecution();
 
-						context.{{operationName}}(AnalyzeCore, new[] { {{operationKindName}}.{{kindStr}} });
+						context.{{operationName}}(AnalyzeCore, new[] { {{kindsArrayStr}} });
 					}
 
 

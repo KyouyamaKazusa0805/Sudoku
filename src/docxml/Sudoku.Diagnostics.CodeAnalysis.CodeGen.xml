@@ -31,13 +31,13 @@
             The registered operation attribute.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute.#ctor(System.String,System.Type,System.String)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute.#ctor(System.String,System.Type,System.String[])">
             <summary>
             Initializes a <see cref="T:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute"/> instance via the specified registered action name.
             </summary>
             <param name="registeredActionName">The action name.</param>
             <param name="registeredKindType">The registered kind type.</param>
-            <param name="rawRegisteredKindExpression">The registered kind expression.</param>
+            <param name="rawRegisteredKindExpressions">The registered kind expressions.</param>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute.RegisteredActionName">
             <summary>
@@ -47,9 +47,9 @@
             the property value should be <c>"RegisterOperationAction"</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute.RegisteredKindExpression">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute.RegisteredKindExpressions">
             <summary>
-            The registered kind expression.
+            The registered kind expressions.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Annotations.RegisterOperationActionAttribute.RegisteredKindType">

@@ -1479,6 +1479,308 @@ public unsafe partial struct Grid :
 }
 
 /// <summary>
+/// Defines a type that is triggered when the candidates are refreshed.
+/// </summary>
+[DisallowParameterlessConstructor]
+public readonly ref partial struct GridRefreshingCandidatesEventArgs
+{
+	/// <summary>
+	/// The backing field of property <see cref="GridRef"/>.
+	/// </summary>
+	/// <seealso cref="GridRef"/>
+	private readonly ref readonly Grid _gridRef;
+
+
+	/// <summary>
+	/// Initializes a <see cref="GridRefreshingCandidatesEventArgs"/> instance via the specified grid to be updated.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[FileAccessOnly]
+	internal GridRefreshingCandidatesEventArgs(in Grid gridRef) => _gridRef = ref gridRef;
+
+
+	/// <summary>
+	/// Indicates the reference to the grid whose candidates are refreshed.
+	/// </summary>
+	public ref readonly Grid GridRef => ref _gridRef;
+}
+
+/// <summary>
+/// Defines a type that is triggered when the specified value in a grid has been changed.
+/// </summary>
+[DisallowParameterlessConstructor]
+public readonly ref partial struct GridValueChangedEventArgs
+{
+	/// <summary>
+	/// The backing field of property <see cref="GridRef"/>.
+	/// </summary>
+	/// <seealso cref="GridRef"/>
+	private readonly ref readonly Grid _gridRef;
+
+
+	/// <summary>
+	/// Initializes a <see cref="GridValueChangedEventArgs"/> instance via the specified grid to be updated,
+	/// the cell, old and new mask information to be updated.
+	/// </summary>
+	/// <param name="gridRef">The reference to the grid.</param>
+	/// <param name="appliedDigit">The applied digit. -1 is for empty.</param>
+	/// <param name="cell">The cell used.</param>
+	/// <param name="oldMaskValue">The old and original mask value in the grid.</param>
+	/// <param name="newMaskValue">The new value to be replaced with.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[FileAccessOnly]
+	internal GridValueChangedEventArgs(in Grid gridRef, int cell, int appliedDigit, short oldMaskValue, short newMaskValue)
+	{
+		_gridRef = ref gridRef;
+		(Cell, SetDigit, OldMaskValue, NewMaskValue) = (cell, appliedDigit, oldMaskValue, newMaskValue);
+	}
+
+
+	/// <summary>
+	/// Indicates the cell to be updated and changed its value.
+	/// </summary>
+	public int Cell { get; }
+
+	/// <summary>
+	/// Indicates applied digit. -1 is for clear the cell, changed its status to <see cref="CellStatus.Empty"/>.
+	/// </summary>
+	/// <seealso cref="CellStatus"/>
+	public int SetDigit { get; }
+
+	/// <summary>
+	/// Indicates the mask value that is the old and original value in the current grid.
+	/// </summary>
+	public short OldMaskValue { get; }
+
+	/// <summary>
+	/// Indicates the mask value as replacer to update the old value.
+	/// </summary>
+	public short NewMaskValue { get; }
+
+	/// <summary>
+	/// Indicates the reference to the grid whose inner value has been changed.
+	/// </summary>
+	public ref readonly Grid GridRef => ref _gridRef;
+}
+
+
+/// <summary>
+/// Defines the default enumerator that iterates the <see cref="Grid"/>
+/// through the candidates in the current <see cref="Grid"/> instance.
+/// </summary>
+/// <see cref="Grid"/>
+public ref struct GridCandidateEnumerator
+{
+	/// <summary>
+	/// The pointer to the start value.
+	/// </summary>
+	private readonly ref short _start;
+
+	/// <summary>
+	/// The current pointer.
+	/// </summary>
+	private ref short _refCurrent;
+
+	/// <summary>
+	/// Indicates the current mask.
+	/// </summary>
+	private short _currentMask;
+
+	/// <summary>
+	/// The current index.
+	/// </summary>
+	private int _currentIndex = -1;
+
+
+	/// <summary>
+	/// Initializes an instance with the specified reference to an array to iterate.
+	/// </summary>
+	/// <param name="arr">The reference to an array.</param>
+	/// <remarks>
+	/// Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
+	/// even though C# allows we passing a constant as an <see langword="in"/> argument.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[FileAccessOnly]
+	internal GridCandidateEnumerator(ref short arr)
+	{
+		_refCurrent = ref SubtractByteOffset(ref arr, 1);
+		_start = ref _refCurrent;
+	}
+
+
+	/// <summary>
+	/// Gets the element in the collection at the current position of the enumerator.
+	/// </summary>
+	public readonly int Current
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _currentIndex * 9 + TrailingZeroCount(_currentMask);
+	}
+
+	/// <summary>
+	/// Advances the enumerator to the next element of the collection.
+	/// </summary>
+	/// <returns>
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Return value</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>If the enumerator was successfully advanced to the next element.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>If the enumerator has passed the end of the collection.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	public bool MoveNext()
+	{
+		if (_currentMask != 0 && (_currentMask &= (short)~(1 << TrailingZeroCount(_currentMask))) != 0)
+		{
+			return true;
+		}
+
+		while (_currentIndex < 81)
+		{
+			_currentIndex++;
+			if (MaskToStatus(AddByteOffset(ref _start, _currentIndex)) == CellStatus.Empty)
+			{
+				break;
+			}
+		}
+
+		if (_currentIndex == 81)
+		{
+			return false;
+		}
+
+		_refCurrent = ref AddByteOffset(ref _start, _currentIndex + 1);
+		_currentMask = (short)(_refCurrent & Grid.MaxCandidatesMask);
+
+		return true;
+	}
+
+	/// <summary>
+	/// Sets the enumerator to its initial position, which is before the first element
+	/// in the collection.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Reset()
+	{
+		_refCurrent = ref _start;
+		_currentIndex = -1;
+		_currentMask = default;
+	}
+
+	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly GridCandidateEnumerator GetEnumerator() => this;
+}
+
+
+/// <summary>
+/// Defines the default enumerator that iterates the <see cref="Grid"/>
+/// through the masks in the current <see cref="Grid"/> instance.
+/// </summary>
+/// <seealso cref="Grid"/>
+public ref struct GridMaskEnumerator
+{
+	/// <summary>
+	/// The pointer to the start value.
+	/// </summary>
+	private readonly ref short _start;
+
+	/// <summary>
+	/// The current pointer.
+	/// </summary>
+	private ref short _refCurrent;
+
+	/// <summary>
+	/// The current index.
+	/// </summary>
+	private int _currentIndex = -1;
+
+
+	/// <summary>
+	/// Initializes an instance with the specified pointer to an array to iterate.
+	/// </summary>
+	/// <param name="arr">The pointer to an array.</param>
+	/// <remarks>
+	/// Note here we should point at the one-unit-length memory before the array start.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[FileAccessOnly]
+	internal GridMaskEnumerator(ref short arr)
+	{
+		_refCurrent = ref SubtractByteOffset(ref arr, 1);
+		_start = ref _refCurrent;
+	}
+
+
+	/// <summary>
+	/// Gets the element in the collection at the current position of the enumerator.
+	/// </summary>
+	public readonly ref short Current
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ref _refCurrent;
+	}
+
+
+	/// <summary>
+	/// Advances the enumerator to the next element of the collection.
+	/// </summary>
+	/// <returns>
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Return value</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>If the enumerator was successfully advanced to the next element.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>If the enumerator has passed the end of the collection.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool MoveNext()
+	{
+		if (++_currentIndex >= 81)
+		{
+			return false;
+		}
+		else
+		{
+			RefMoveNext(ref _refCurrent);
+			return true;
+		}
+	}
+
+	/// <summary>
+	/// Sets the enumerator to its initial position, which is before the first element
+	/// in the collection.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Reset()
+	{
+		_refCurrent = ref _start;
+		_currentIndex = -1;
+	}
+
+	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly GridMaskEnumerator GetEnumerator() => this;
+}
+
+/// <summary>
 /// Indicates the JSON converter of the current type.
 /// </summary>
 file sealed class Converter : JsonConverter<Grid>

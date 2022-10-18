@@ -4,8 +4,9 @@ SCA0101,Don't initialize large structure,,Usage,Warning,Don't initialize large s
 SCA0102,Large structures should pass by reference,,Performance,Warning,Large structure should pass by reference in order to optimize performance.
 SCA0106,Specified field cannot be invoked,,Usage,Error,Specified field of function pointer type cannot be invoked.
 SCA0107,Specified field is not function pointer type,,Usage,Warning,Specified field marked 'DisallowFunctionPointerInvocationAttribute' is not function pointer type.
-SCA0109,Specified field can only be accessed in file,,Design,Error,Specified field can only be accessed in file where the field is declared.
+SCA0109,Specified field can only be accessed in a same file,,Design,Error,Specified field can only be accessed in a same file where the field is declared.
 SCA0110,Specified field cannot be private,Specified field '{0}' cannot be private,Design,Warning,Specified field marked 'FileAccessOnlyAttribute' cannot be private.
+SCA0111,Specified constructor can only be accessed in a same file,,Design,Error,Specified constructor can only be accessed in a same file where the constructor is declared.
 SCA0201,Use type 'Argument' instead,,Usage,Info,The current 'if' statement can be converted into 'Argument' method invocation; use 'Argument' instead to simplify the code.
 SCA0202,Use 'Add' instead of plus operator,,Performance,Info,Use 'Add' instead of plus operator.
 SCA0203,Use 'Remove' instead of subtraction operator,,Performance,Info,Use 'Remove' instead of subtraction operator.
