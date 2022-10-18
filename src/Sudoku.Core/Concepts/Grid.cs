@@ -2,6 +2,7 @@
 
 namespace Sudoku.Concepts;
 
+using static InternalEventHandlers;
 using static InternalHelper;
 
 /// <summary>
@@ -140,7 +141,7 @@ public unsafe partial struct Grid :
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="CellStatus"/>
-	private fixed short _values[81];
+	internal fixed short _values[81];
 
 
 	/// <summary>
@@ -1437,58 +1438,6 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IParsable<Grid>.TryParse(string? s, IFormatProvider? provider, out Grid result) => s is not null && TryParse(s, out result);
 
-	/// <summary>
-	/// The method that is invoked by event handler field <see cref="RefreshingCandidates"/>.
-	/// </summary>
-	/// <param name="this">The <see cref="Grid"/> instance.</param>
-	/// <seealso cref="RefreshingCandidates"/>
-	private static void EventHandlerOnRefreshingCandidates(ref Grid @this)
-	{
-		for (var i = 0; i < 81; i++)
-		{
-			if (@this.GetStatus(i) == CellStatus.Empty)
-			{
-				// Remove all appeared digits.
-				var mask = MaxCandidatesMask;
-				foreach (var cell in PeersMap[i])
-				{
-					if (@this[cell] is var digit and not -1)
-					{
-						mask &= (short)~(1 << digit);
-					}
-				}
-
-				@this._values[i] = (short)(EmptyMask | mask);
-			}
-		}
-	}
-
-	/// <summary>
-	/// The method that is invoked by event handler field <see cref="ValueChanged"/>.
-	/// </summary>
-	/// <param name="this">The <see cref="Grid"/> instance.</param>
-	/// <param name="cell">The cell.</param>
-	/// <param name="oldMask">The old and original mask.</param>
-	/// <param name="newMask">The new mask.</param>
-	/// <param name="setValue">The set value. Assign -1 if the cell should be set empty.</param>
-	/// <seealso cref="ValueChanged"/>
-	private static void EventHandlerOnValueChanged(ref Grid @this, int cell, short oldMask, short newMask, int setValue)
-	{
-		if (setValue != -1)
-		{
-			foreach (var peerCell in PeersMap[cell])
-			{
-				if (@this.GetStatus(peerCell) == CellStatus.Empty)
-				{
-					// You can't do this because of being invoked recursively.
-					//@this[peerCell, setValue] = false;
-
-					@this._values[peerCell] &= (short)~(1 << setValue);
-				}
-			}
-		}
-	}
-
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1548,6 +1497,64 @@ file sealed class Converter : JsonConverter<Grid>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options) => writer.WriteStringValue($"{value:#}");
+}
+
+/// <summary>
+/// Internal event handlers.
+/// </summary>
+file static unsafe class InternalEventHandlers
+{
+	/// <summary>
+	/// The method that is invoked by event handler field <see cref="Grid.RefreshingCandidates"/>.
+	/// </summary>
+	/// <param name="this">The <see cref="Grid"/> instance.</param>
+	/// <seealso cref="Grid.RefreshingCandidates"/>
+	public static void EventHandlerOnRefreshingCandidates(ref Grid @this)
+	{
+		for (var i = 0; i < 81; i++)
+		{
+			if (@this.GetStatus(i) == CellStatus.Empty)
+			{
+				// Remove all appeared digits.
+				var mask = Grid.MaxCandidatesMask;
+				foreach (var cell in PeersMap[i])
+				{
+					if (@this[cell] is var digit and not -1)
+					{
+						mask &= (short)~(1 << digit);
+					}
+				}
+
+				@this._values[i] = (short)(Grid.EmptyMask | mask);
+			}
+		}
+	}
+
+	/// <summary>
+	/// The method that is invoked by event handler field <see cref="Grid.ValueChanged"/>.
+	/// </summary>
+	/// <param name="this">The <see cref="Grid"/> instance.</param>
+	/// <param name="cell">The cell.</param>
+	/// <param name="oldMask">The old and original mask.</param>
+	/// <param name="newMask">The new mask.</param>
+	/// <param name="setValue">The set value. Assign -1 if the cell should be set empty.</param>
+	/// <seealso cref="Grid.ValueChanged"/>
+	public static void EventHandlerOnValueChanged(ref Grid @this, int cell, short oldMask, short newMask, int setValue)
+	{
+		if (setValue != -1)
+		{
+			foreach (var peerCell in PeersMap[cell])
+			{
+				if (@this.GetStatus(peerCell) == CellStatus.Empty)
+				{
+					// You can't do this because of being invoked recursively.
+					//@this[peerCell, setValue] = false;
+
+					@this._values[peerCell] &= (short)~(1 << setValue);
+				}
+			}
+		}
+	}
 }
 
 // Licensed to the .NET Foundation under one or more agreements.
