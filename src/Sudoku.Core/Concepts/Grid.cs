@@ -141,6 +141,7 @@ public unsafe partial struct Grid :
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="CellStatus"/>
+	[FileAccessOnly]
 	internal fixed short _values[81];
 
 
@@ -151,16 +152,12 @@ public unsafe partial struct Grid :
 	/// <param name="firstElement">
 	/// <para>The reference of the first element.</para>
 	/// <para>
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="in-parameter"]'/>
+	/// <include file='../../global-doc-comments.xml' path='g/csharp7/feature[@name="ref-returns"]/target[@name="in-parameter"]'/>
 	/// </para>
 	/// </param>
 	/// <param name="creatingOption">The creating option.</param>
 	/// <remarks>
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="method"]'/>
+	/// <include file='../../global-doc-comments.xml' path='g/csharp7/feature[@name="ref-returns"]/target[@name="method"]'/>
 	/// </remarks>
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.

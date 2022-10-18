@@ -94,6 +94,27 @@
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0109_FileAccessOnlyAttributeAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0109">SCA0109</see> (Specified field can only be accessed in file)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0110">SCA0110</see> (Specified field marked cannot be private)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0109_FileAccessOnlyAttributeAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0109_FileAccessOnlyAttributeAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0109_FileAccessOnlyAttributeAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.OperationAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0201_UseArgumentAnalyzer">
             <summary>
             Indicates the analyzer that can provide the following diagnostic results:
@@ -310,6 +331,28 @@
             <item><b>Title</b>: Specified field is not function pointer type</item>
             <item><b>Description</b>: Specified field marked 'DisallowFunctionPointerInvocationAttribute' is not function pointer type.</item>
             <item><b>Category</b>: Usage</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0109">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0109">SCA0109</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Specified field can only be accessed in file</item>
+            <item><b>Description</b>: Specified field can only be accessed in file where the field is declared.</item>
+            <item><b>Category</b>: Design</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Error"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0110">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0110">SCA0110</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Specified field marked cannot be private</item>
+            <item><b>Description</b>: Specified field marked 'FileAccessOnlyAttribute' cannot be private.</item>
+            <item><b>Category</b>: Design</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
             </list>
             </summary>

@@ -20,6 +20,8 @@
 | [SCA0106](sca0106)     | 使用（Usage）            | ❌        | 该函数指针类型字段不可被调用                                 |
 | [SCA0107](sca0107)     | 使用（Usage）            | ⚠        | `DisallowFunctionPointerInvocationAttribute` 特性不应标记到非函数指针类型的字段上；没有意义 |
 | [SCA0108](sca0108)     | 使用（Usage）            | ⚠        | 该构造器不应用户调用；没有意义                               |
+| [SCA0109](sca0109)     | 设计（Design）           | ❌        | 标记了 `FileAccessOnlyAttribute` 的字段只能在当前文件内可用  |
+| [SCA0110](sca0110)     | 设计（Design）           | ⚠        | 标记了 `FileAccessOnlyAttribute` 的字段不能是 `private` 的   |
 | SCA0201                | 使用（Usage）            | ℹ        | 请使用 `Argument` 类型代替 `if` 判断                         |
 | [SCA0202](sca0202)     | 性能（Performance）      | ℹ        | 请使用 `Add` 方法代替 `operator +` 运算符                    |
 | [SCA0203](sca0203)     | 性能（Performance）      | ℹ        | 请使用 `Remove` 方法代替 `operator -` 运算符                 |
