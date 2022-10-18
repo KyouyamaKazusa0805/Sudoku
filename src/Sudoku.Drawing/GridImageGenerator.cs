@@ -1,8 +1,5 @@
 ﻿namespace Sudoku.Drawing;
 
-using static IGridImageGenerator;
-using static IPointCalculator;
-
 /// <summary>
 /// Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
 /// </summary>
