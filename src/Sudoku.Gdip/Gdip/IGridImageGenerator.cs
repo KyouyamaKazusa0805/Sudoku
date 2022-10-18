@@ -25,11 +25,7 @@ public interface IGridImageGenerator
 	/// <summary>
 	/// Indicates the default string format.
 	/// </summary>
-	protected static readonly StringFormat DefaultStringFormat = new()
-	{
-		Alignment = StringAlignment.Center,
-		LineAlignment = StringAlignment.Center
-	};
+	protected static readonly StringFormat DefaultStringFormat = new() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
 
 
 	/// <summary>

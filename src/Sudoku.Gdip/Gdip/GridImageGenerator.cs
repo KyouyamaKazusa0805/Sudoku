@@ -31,6 +31,7 @@ public partial record GridImageGenerator(IPointCalculator Calculator, IPreferenc
 	public Image DrawManually()
 	{
 		var result = new Bitmap((int)Width, (int)Height);
+
 		using var g = Graphics.FromImage(result);
 		return Draw(result, g);
 	}
@@ -653,8 +654,7 @@ partial record GridImageGenerator
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void adjust(
-			scoped in PointF pt1, scoped in PointF pt2, out PointF p1, out PointF p2,
-			double alpha, double candidateSize, float offset)
+			scoped in PointF pt1, scoped in PointF pt2, out PointF p1, out PointF p2, double alpha, double candidateSize, float offset)
 		{
 			p1 = pt1;
 			p2 = pt2;
@@ -670,8 +670,7 @@ partial record GridImageGenerator
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void cut(
-			scoped ref PointF pt1, scoped ref PointF pt2, float offset, float cw, float ch,
-			float pt1x, float pt1y, float pt2x, float pt2y)
+			scoped ref PointF pt1, scoped ref PointF pt2, float offset, float cw, float ch, float pt1x, float pt1y, float pt2x, float pt2y)
 		{
 			var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
 			var x = cw / (float)Sqrt(1 + slope * slope);
