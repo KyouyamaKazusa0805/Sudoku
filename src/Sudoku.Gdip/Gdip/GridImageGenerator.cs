@@ -115,7 +115,7 @@ partial record GridImageGenerator
 		if (this is not
 			{
 				Puzzle: { IsUndefined: false } puzzle,
-				Calculator: { CellSize.Width: var cellWidth, CandidateSize.Width: var candidateWidth },
+				Calculator: { CellSize.Width: var cellWidth, CandidateSize.Width: var candidateWidth } calc,
 				Preferences:
 				{
 					GivenColor: var gColor,
@@ -159,7 +159,7 @@ partial record GridImageGenerator
 					var overlaps = View.UnknownOverlaps(cell);
 					foreach (var digit in (short)(mask & Grid.MaxCandidatesMask))
 					{
-						var originalPoint = Calculator.GetMousePointInCenter(cell, digit);
+						var originalPoint = calc.GetMousePointInCenter(cell, digit);
 						var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };
 						g.DrawValue(digit + 1, fCandidate, overlaps ? bCandidateLighter : bCandidate, point, DefaultStringFormat);
 					}
@@ -169,7 +169,7 @@ partial record GridImageGenerator
 				case var status and (CellStatus.Modifiable or CellStatus.Given):
 				{
 					// Draw values.
-					var originalPoint = Calculator.GetMousePointInCenter(cell);
+					var originalPoint = calc.GetMousePointInCenter(cell);
 					var point = originalPoint with { Y = originalPoint.Y + vOffsetValue };
 					g.DrawValue(
 						puzzle[cell] + 1, status == CellStatus.Given ? fGiven : fModifiable,
