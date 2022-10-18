@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
+		<RootNamespace>Sudoku</RootNamespace>
 		<Description>Provides APIs that is used for recognition, loading a picture and parse it into a valid sudoku grid.</Description>
 		<DocumentationFile>..\docxml\Sudoku.Recognition.xml</DocumentationFile>
 	</PropertyGroup>
