@@ -38,12 +38,7 @@ public static class SolutionWideReadOnlyFields
 	/// <summary>
 	/// Indicates the first cell offset for each house.
 	/// </summary>
-	public static readonly int[] HouseFirst =
-	{
-		0,  3,  6, 27, 30, 33, 54, 57, 60,
-		0,  9, 18, 27, 36, 45, 54, 63, 72,
-		0,  1,  2,  3,  4,  5,  6,  7,  8
-	};
+	public static readonly int[] HouseFirst = { 0, 3, 6, 27, 30, 33, 54, 57, 60, 0, 9, 18, 27, 36, 45, 54, 63, 72, 0, 1, 2, 3, 4, 5, 6, 7, 8 };
 
 	/// <summary>
 	/// <para>Indicates a table for each cell's peers.</para>
@@ -133,7 +128,7 @@ public static class SolutionWideReadOnlyFields
 		new[] { 57, 58, 59, 66, 67, 68, 75, 76, 72, 73, 74, 78, 79, 80,  5, 14, 23, 32, 41, 50, },
 		new[] { 60, 61, 62, 69, 70, 71, 79, 80, 72, 73, 74, 75, 76, 77,  6, 15, 24, 33, 42, 51, },
 		new[] { 60, 61, 62, 69, 70, 71, 78, 80, 72, 73, 74, 75, 76, 77,  7, 16, 25, 34, 43, 52, },
-		new[] { 60, 61, 62, 69, 70, 71, 78, 79, 72, 73, 74, 75, 76, 77,  8, 17, 26, 35, 44, 53, },
+		new[] { 60, 61, 62, 69, 70, 71, 78, 79, 72, 73, 74, 75, 76, 77,  8, 17, 26, 35, 44, 53, }
 	};
 
 	/// <summary>
@@ -187,21 +182,13 @@ public static class SolutionWideReadOnlyFields
 		new[] {  5, 14, 23, 32, 41, 50, 59, 68, 77, },
 		new[] {  6, 15, 24, 33, 42, 51, 60, 69, 78, },
 		new[] {  7, 16, 25, 34, 43, 52, 61, 70, 79, },
-		new[] {  8, 17, 26, 35, 44, 53, 62, 71, 80, },
+		new[] {  8, 17, 26, 35, 44, 53, 62, 71, 80, }
 	};
 
 	/// <summary>
 	/// Indicates the chute houses.
 	/// </summary>
-	public static readonly (int First, int Second, int Third)[] ChuteHouses =
-	{
-		(9, 10, 11),
-		(12, 13, 14),
-		(15, 16, 17),
-		(18, 19, 20),
-		(21, 22, 23),
-		(24, 25, 26)
-	};
+	public static readonly (int, int, int)[] ChuteHouses = { (9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19, 20), (21, 22, 23), (24, 25, 26) };
 
 	/// <summary>
 	/// Indicates all grid maps that a grid contains.
