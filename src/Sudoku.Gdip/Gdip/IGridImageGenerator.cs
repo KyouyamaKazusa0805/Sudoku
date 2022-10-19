@@ -140,7 +140,7 @@ public interface IGridImageGenerator
 /// <summary>
 /// Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
 /// </summary>
-internal partial record GridImageGenerator : IGridImageGenerator
+internal sealed class GridImageGenerator : IGridImageGenerator
 {
 	/// <summary>
 	/// Initializes a <see cref="GridImageGenerator"/> instance.
@@ -239,26 +239,11 @@ internal partial record GridImageGenerator : IGridImageGenerator
 		};
 
 
-	partial void DrawGridAndBlockLines(Graphics g);
-	partial void DrawBackground(Graphics g);
-	partial void DrawValue(Graphics g);
-	partial void DrawView(Graphics g);
-	partial void DrawEliminations(Graphics g);
-	partial void DrawCells(Graphics g);
-	partial void DrawCandidates(Graphics g);
-	partial void DrawHouses(Graphics g);
-	partial void DrawLinks(Graphics g);
-	partial void DrawDirectLines(Graphics g);
-	partial void DrawUnknownValue(Graphics g);
-}
-
-partial record GridImageGenerator
-{
 	/// <summary>
 	/// Draw givens, modifiables and candidates, where the values are specified as a grid.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	partial void DrawValue(Graphics g)
+	private void DrawValue(Graphics g)
 	{
 		if (this is not
 			{
@@ -335,7 +320,7 @@ partial record GridImageGenerator
 	/// </summary>
 	/// <param name="g">The graphics.</param>
 	/// <seealso cref="View"/>
-	partial void DrawView(Graphics g)
+	private void DrawView(Graphics g)
 	{
 		if (View is null)
 		{
@@ -346,7 +331,6 @@ partial record GridImageGenerator
 		DrawCells(g);
 		DrawCandidates(g);
 		DrawLinks(g);
-		DrawDirectLines(g);
 		DrawUnknownValue(g);
 	}
 
@@ -355,13 +339,13 @@ partial record GridImageGenerator
 	/// </summary>
 	/// <param name="g">The graphics.</param>
 	/// <seealso cref="IPreference.BackgroundColor"/>
-	partial void DrawBackground(Graphics g) => g.Clear(Preferences.BackgroundColor);
+	private void DrawBackground(Graphics g) => g.Clear(Preferences.BackgroundColor);
 
 	/// <summary>
 	/// Draw grid lines and block lines.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	partial void DrawGridAndBlockLines(Graphics g)
+	private void DrawGridAndBlockLines(Graphics g)
 	{
 		if (this is not
 			{
@@ -399,7 +383,7 @@ partial record GridImageGenerator
 	/// Draw eliminations.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	partial void DrawEliminations(Graphics g)
+	private void DrawEliminations(Graphics g)
 	{
 		if (this is not
 			{
@@ -422,7 +406,7 @@ partial record GridImageGenerator
 				continue;
 			}
 
-			var isCanni = false;
+			var cannibalism = false;
 			if (view is not { CandidateNodes: var candidateNodes })
 			{
 				goto Drawing;
@@ -433,15 +417,20 @@ partial record GridImageGenerator
 				var value = candidateNode.Candidate;
 				if (value == c * 9 + d)
 				{
-					isCanni = true;
+					cannibalism = true;
 					break;
 				}
 			}
 
 		Drawing:
-			var overlaps = view.UnknownOverlaps(c);
 			g.FillEllipse(
-				isCanni ? overlaps ? canniBrushLighter : cannibalBrush : overlaps ? elimBrushLighter : elimBrush,
+				(cannibalism, view.UnknownOverlaps(c)) switch
+				{
+					(true, true) => canniBrushLighter,
+					(true, false) => cannibalBrush,
+					(false, true) => elimBrushLighter,
+					_ => elimBrush
+				},
 				Calculator.GetMouseRectangle(c, d));
 		}
 	}
@@ -450,7 +439,7 @@ partial record GridImageGenerator
 	/// Draw cells.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	partial void DrawCells(Graphics g)
+	private void DrawCells(Graphics g)
 	{
 		if (View is not { CellNodes: var cellNodes })
 		{
@@ -471,7 +460,7 @@ partial record GridImageGenerator
 	/// Draw candidates.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	partial void DrawCandidates(Graphics g)
+	private void DrawCandidates(Graphics g)
 	{
 		if (this is not
 			{
@@ -590,7 +579,7 @@ partial record GridImageGenerator
 	/// Draw houses.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	partial void DrawHouses(Graphics g)
+	private void DrawHouses(Graphics g)
 	{
 		if (View is not { HouseNodes: var houseNodes })
 		{
@@ -657,7 +646,7 @@ partial record GridImageGenerator
 	/// Draw links.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	partial void DrawLinks(Graphics g)
+	private void DrawLinks(Graphics g)
 	{
 		if (this is not
 			{
@@ -831,7 +820,7 @@ partial record GridImageGenerator
 	/// Draw unknown values.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	partial void DrawUnknownValue(Graphics g)
+	private void DrawUnknownValue(Graphics g)
 	{
 		if (this is not
 			{

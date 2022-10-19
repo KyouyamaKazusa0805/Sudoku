@@ -296,6 +296,11 @@
             Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
             </summary>
         </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.GridImageGenerator.Width">
             <inheritdoc/>
         </member>
@@ -341,19 +346,6 @@
             <returns></returns>
             <exception cref="T:System.InvalidOperationException">Throws when the specified value is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawGridAndBlockLines(System.Drawing.Graphics)">
-            <summary>
-            Draw grid lines and block lines.
-            </summary>
-            <param name="g">The graphics.</param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBackground(System.Drawing.Graphics)">
-            <summary>
-            Draw the background, where the color is specified in <see cref="P:Sudoku.Gdip.IPreference.BackgroundColor"/>.
-            </summary>
-            <param name="g">The graphics.</param>
-            <seealso cref="P:Sudoku.Gdip.IPreference.BackgroundColor"/>
-        </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawValue(System.Drawing.Graphics)">
             <summary>
             Draw givens, modifiables and candidates, where the values are specified as a grid.
@@ -366,6 +358,19 @@
             </summary>
             <param name="g">The graphics.</param>
             <seealso cref="P:Sudoku.Gdip.GridImageGenerator.View"/>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBackground(System.Drawing.Graphics)">
+            <summary>
+            Draw the background, where the color is specified in <see cref="P:Sudoku.Gdip.IPreference.BackgroundColor"/>.
+            </summary>
+            <param name="g">The graphics.</param>
+            <seealso cref="P:Sudoku.Gdip.IPreference.BackgroundColor"/>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawGridAndBlockLines(System.Drawing.Graphics)">
+            <summary>
+            Draw grid lines and block lines.
+            </summary>
+            <param name="g">The graphics.</param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawEliminations(System.Drawing.Graphics)">
             <summary>
