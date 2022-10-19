@@ -6,6 +6,22 @@
 public interface ISudokuPainter
 {
 	/// <summary>
+	/// The width.
+	/// </summary>
+	public abstract float Width { get; }
+
+	/// <summary>
+	/// The height.
+	/// </summary>
+	public abstract float Height { get; }
+
+	/// <summary>
+	/// The grid image generator.
+	/// </summary>
+	protected internal abstract IGridImageGenerator GridImageGenerator { get; }
+
+
+	/// <summary>
 	/// Render the image with the current configuration, and save the image to the local path,
 	/// and automatically release the memory while rendering and image creating.
 	/// </summary>
@@ -26,7 +42,8 @@ public interface ISudokuPainter
 	{
 		return Path.GetExtension(path) switch
 		{
-			{ Length: >= 4 } commonExtensions and (".jpg" or ".jpeg" or ".png" or ".bmp" or ".gif" or ".wmf") => s(this, commonExtensions),
+			".wmf" => w(this),
+			{ Length: >= 4 } commonExtensions and (".jpg" or ".jpeg" or ".png" or ".bmp" or ".gif") => s(this, commonExtensions),
 			_ => false
 		};
 
@@ -43,8 +60,7 @@ public interface ISudokuPainter
 						".jpg" or ".jpeg" => ImageFormat.Jpeg,
 						".png" => ImageFormat.Png,
 						".bmp" => ImageFormat.Bmp,
-						".gif" => ImageFormat.Gif,
-						".wmf" => ImageFormat.Wmf
+						".gif" => ImageFormat.Gif
 					}
 				);
 
@@ -55,7 +71,33 @@ public interface ISudokuPainter
 				return false;
 			}
 		}
+
+		bool w(ISudokuPainter @this)
+		{
+			try
+			{
+				using var bitmap = new Bitmap((int)Width, (int)Height);
+				using var g = Graphics.FromImage(bitmap);
+				using var metaFile = new Metafile(path, g.GetHdc());
+				using var ig = Graphics.FromImage(metaFile);
+				((GridImageGenerator)@this.GridImageGenerator).Draw(metaFile, ig);
+
+				g.ReleaseHdc();
+
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
 	}
+
+	/// <summary>
+	/// Render to the specified image with the current configuration.
+	/// </summary>
+	/// <param name="image">The target image you want to be rendered to.</param>
+	public abstract void RenderToImage(Image image);
 
 	/// <summary>
 	/// Render the image with the current configuration.
@@ -156,8 +198,22 @@ file sealed class SudokuPainter : ISudokuPainter
 
 
 	/// <inheritdoc/>
+	public float Width => _generator.Width;
+
+	/// <inheritdoc/>
+	public float Height => _generator.Height;
+
+	/// <inheritdoc/>
+	IGridImageGenerator ISudokuPainter.GridImageGenerator => _generator;
+
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Image Render() => _generator.DrawManually();
+	public void RenderToImage(Image image) => _generator.Draw(image);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Image Render() => _generator.Draw();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

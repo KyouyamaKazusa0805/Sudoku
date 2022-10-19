@@ -62,13 +62,26 @@ public interface IGridImageGenerator
 
 
 	/// <summary>
-	/// To draw the image manually.
+	/// Draw the image.
 	/// </summary>
-	/// <returns>The result image.</returns>
+	/// <param name="image">The image to be drawn.</param>
 	/// <remarks>
-	/// The method may be called manually, because we can't control whether the value is modified.
+	/// The method should be called manually, because we can't control whether the value is modified.
 	/// </remarks>
-	public abstract Image DrawManually();
+	public abstract void Draw(Image image);
+
+	/// <summary>
+	/// Draw the image, and return the image instance.
+	/// </summary>
+	/// <returns>The defualt generated image instance.</returns>
+	public sealed Image Draw()
+	{
+		var defaultImage = new Bitmap((int)Width, (int)Height);
+
+		Draw(defaultImage);
+
+		return defaultImage;
+	}
 
 
 	/// <summary>
@@ -127,8 +140,18 @@ public interface IGridImageGenerator
 /// <summary>
 /// Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
 /// </summary>
-file partial record GridImageGenerator : IGridImageGenerator
+internal partial record GridImageGenerator : IGridImageGenerator
 {
+	/// <summary>
+	/// Initializes a <see cref="GridImageGenerator"/> instance.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[FileAccessOnly]
+	public GridImageGenerator()
+	{
+	}
+
+
 	/// <inheritdoc/>
 	public float Width => Calculator.Width;
 
@@ -154,12 +177,11 @@ file partial record GridImageGenerator : IGridImageGenerator
 
 
 	/// <inheritdoc/>
-	public Image DrawManually()
+	public void Draw(Image image)
 	{
-		var result = new Bitmap((int)Width, (int)Height);
+		using var g = Graphics.FromImage(image);
 
-		using var g = Graphics.FromImage(result);
-		return Draw(result, g);
+		Draw(image, g);
 	}
 
 	/// <summary>

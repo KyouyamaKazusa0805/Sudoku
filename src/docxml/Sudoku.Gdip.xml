@@ -9,6 +9,21 @@
             Defines a sudoku painter instance.
             </summary>
         </member>
+        <member name="P:Sudoku.Drawing.ISudokuPainter.Width">
+            <summary>
+            The width.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.ISudokuPainter.Height">
+            <summary>
+            The height.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.ISudokuPainter.GridImageGenerator">
+            <summary>
+            The grid image generator.
+            </summary>
+        </member>
         <member name="M:Sudoku.Drawing.ISudokuPainter.TrySaveTo(System.String)">
             <summary>
             Render the image with the current configuration, and save the image to the local path,
@@ -27,6 +42,12 @@
             </list>
             Other formats are not supported. This method will return <see langword="false"/> for not being supported.
             </returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainter.RenderToImage(System.Drawing.Image)">
+            <summary>
+            Render to the specified image with the current configuration.
+            </summary>
+            <param name="image">The target image you want to be rendered to.</param>
         </member>
         <member name="M:Sudoku.Drawing.ISudokuPainter.Render">
             <summary>
@@ -118,6 +139,18 @@
             Initializes a <see cref="T:Sudoku.Drawing.SudokuPainter"/> instance.
             </summary>
         </member>
+        <member name="P:Sudoku.Drawing.SudokuPainter.Width">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.SudokuPainter.Height">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.SudokuPainter.Sudoku#Drawing#ISudokuPainter#GridImageGenerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.RenderToImage(System.Drawing.Image)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.Render">
             <inheritdoc/>
         </member>
@@ -200,14 +233,20 @@
             that decides the drawing behavior.
             </summary>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.DrawManually">
+        <member name="M:Sudoku.Gdip.IGridImageGenerator.Draw(System.Drawing.Image)">
             <summary>
-            To draw the image manually.
+            Draw the image.
             </summary>
-            <returns>The result image.</returns>
+            <param name="image">The image to be drawn.</param>
             <remarks>
-            The method may be called manually, because we can't control whether the value is modified.
+            The method should be called manually, because we can't control whether the value is modified.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Gdip.IGridImageGenerator.Draw">
+            <summary>
+            Draw the image, and return the image instance.
+            </summary>
+            <returns>The defualt generated image instance.</returns>
         </member>
         <member name="M:Sudoku.Gdip.IGridImageGenerator.CreateInstance(System.Int32,System.Int32)">
             <summary>
@@ -280,7 +319,7 @@
         <member name="P:Sudoku.Gdip.GridImageGenerator.Preferences">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawManually">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.Draw(System.Drawing.Image)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.Draw(System.Drawing.Image,System.Drawing.Graphics)">

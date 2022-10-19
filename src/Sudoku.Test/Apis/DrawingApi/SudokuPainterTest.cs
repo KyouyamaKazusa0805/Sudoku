@@ -13,7 +13,7 @@ public sealed class SudokuPainterTest
 			.WithRenderingCandidates(true)
 			.WithFontScale(1M);
 
-		const string fileName = "test.png";
+		const string fileName = "test.wmf";
 		Assert.IsTrue(sudokuPainter.TrySaveTo($@"{GetFolderPath(SpecialFolder.Desktop)}\{fileName}"));
 	}
 }
