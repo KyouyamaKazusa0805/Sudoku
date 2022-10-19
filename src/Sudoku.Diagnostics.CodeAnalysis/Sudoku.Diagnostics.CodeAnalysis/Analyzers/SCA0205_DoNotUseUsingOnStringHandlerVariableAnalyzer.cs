@@ -8,20 +8,15 @@ public sealed partial class SCA0205_DoNotUseUsingOnStringHandlerVariableAnalyzer
 	{
 		if (context is not
 			{
-				Compilation: var compilation,
-				CancellationToken: var ct,
-				SemanticModel: var semanticModel,
 				Node: VariableDeclaratorSyntax
 				{
 					Identifier: var identifier,
-					Parent: VariableDeclarationSyntax { Parent: LocalDeclarationStatementSyntax { Modifiers: var modifiers and not [] } }
-				} node
+					Parent/*VariableDeclarationSyntax*/.Parent: LocalDeclarationStatementSyntax { UsingKeyword.RawKind: not 0 }
+				} node,
+				Compilation: var compilation,
+				CancellationToken: var ct,
+				SemanticModel: var semanticModel
 			})
-		{
-			return;
-		}
-
-		if (!modifiers.Any(SyntaxKind.UsingKeyword))
 		{
 			return;
 		}
