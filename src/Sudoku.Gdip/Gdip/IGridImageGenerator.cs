@@ -190,8 +190,7 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 	/// <param name="bitmap">The bitmap result.</param>
 	/// <param name="g">The graphics instance.</param>
 	/// <returns>
-	/// The return value is the same as the parameter <paramref name="bitmap"/> when
-	/// this parameter is not <see langword="null"/>.
+	/// The return value is the same as the parameter <paramref name="bitmap"/> when it is not <see langword="null"/>.
 	/// </returns>
 	public Image Draw([AllowNull] Image bitmap, Graphics g)
 	{
