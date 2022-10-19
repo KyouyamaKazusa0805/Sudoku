@@ -720,7 +720,8 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 						continue;
 					}
 
-					double dx2 = point.X - p1.X, dy2 = point.Y - p1.Y;
+					var dx2 = point.X - p1.X;
+					var dy2 = point.Y - p1.Y;
 					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
 						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
 						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
@@ -735,14 +736,12 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 
 				if (through)
 				{
-					double bezierLength = 20;
+					var bezierLength = 20D;
 
 					// The end points are rotated 45 degrees
 					// (counterclockwise for the start point, clockwise for the end point).
-					var oldPt1 = new PointF(pt1x, pt1y);
-					var oldPt2 = new PointF(pt2x, pt2y);
-					rotate(oldPt1, ref pt1, -RotateAngle);
-					rotate(oldPt2, ref pt2, RotateAngle);
+					rotate(new(pt1x, pt1y), ref pt1, -RotateAngle);
+					rotate(new(pt2x, pt2y), ref pt2, RotateAngle);
 
 					var aAlpha = alpha - RotateAngle;
 					var bx1 = pt1.X + bezierLength * Cos(aAlpha);
@@ -764,7 +763,7 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void rotate(scoped in PointF pt1, scoped ref PointF pt2, double angle)
+		static void rotate(PointF pt1, scoped ref PointF pt2, double angle)
 		{
 			// Translate 'pt2' to (0, 0).
 			pt2.X -= pt1.X;
@@ -783,7 +782,7 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void adjust(scoped in PointF pt1, scoped in PointF pt2, out PointF p1, out PointF p2, double alpha, double candidateSize)
+		static void adjust(PointF pt1, PointF pt2, out PointF p1, out PointF p2, double alpha, double candidateSize)
 		{
 			p1 = pt1;
 			p2 = pt2;
