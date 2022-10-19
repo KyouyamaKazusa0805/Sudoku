@@ -1,8 +1,8 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0303")]
+[SupportedDiagnostics("SCA0114")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSyntaxNodeAction), typeof(SyntaxKind), nameof(SyntaxKind.TypeParameter))]
-public sealed partial class SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer : DiagnosticAnalyzer
+public sealed partial class SCA0114_SelfTypeParameterMustBeDerivedFromItselfAnalyzer : DiagnosticAnalyzer
 {
 	private static partial void AnalyzeCore(SyntaxNodeAnalysisContext context)
 	{
@@ -20,7 +20,6 @@ public sealed partial class SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer : D
 		if (semanticModel.GetDeclaredSymbol(node, ct) is not ITypeParameterSymbol
 			{
 				TypeParameterKind: TypeParameterKind.Type,
-				Name: var name,
 				ConstraintTypes: var constraintTypes,
 				DeclaringType: { } declaringType,
 				Locations: [var location]
@@ -39,11 +38,11 @@ public sealed partial class SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer : D
 			return;
 		}
 
-		if (name == "TSelf")
+		if (constraintTypes.Any(a => SymbolEqualityComparer.Default.Equals(a, declaringType)))
 		{
 			return;
 		}
 
-		context.ReportDiagnostic(Diagnostic.Create(SCA0303, node.GetLocation()));
+		context.ReportDiagnostic(Diagnostic.Create(SCA0114, node.GetLocation()));
 	}
 }

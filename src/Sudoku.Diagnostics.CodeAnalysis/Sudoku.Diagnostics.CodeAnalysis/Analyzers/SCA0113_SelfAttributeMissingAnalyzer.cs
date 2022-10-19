@@ -1,8 +1,8 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0301")]
+[SupportedDiagnostics("SCA0113")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSyntaxNodeAction), typeof(SyntaxKind), nameof(SyntaxKind.TypeParameter))]
-public sealed partial class SCA0301_SelfAttributeMissingAnalyzer : DiagnosticAnalyzer
+public sealed partial class SCA0113_SelfAttributeMissingAnalyzer : DiagnosticAnalyzer
 {
 	private static partial void AnalyzeCore(SyntaxNodeAnalysisContext context)
 	{
@@ -45,6 +45,6 @@ public sealed partial class SCA0301_SelfAttributeMissingAnalyzer : DiagnosticAna
 			return;
 		}
 
-		context.ReportDiagnostic(Diagnostic.Create(SCA0301, location));
+		context.ReportDiagnostic(Diagnostic.Create(SCA0113, location));
 	}
 }

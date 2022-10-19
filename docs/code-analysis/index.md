@@ -24,6 +24,9 @@
 | [SCA0110](sca0110)     | 设计（Design）           | ⚠        | 标记了 `FileAccessOnlyAttribute` 的字段不能是 `private` 的   |
 | [SCA0111](sca0111)     | 设计（Design）           | ❌        | 标记了 `FileAccessOnlyAttribute` 的构造器只能在当前文件内可用 |
 | [SCA0112](sca0112)     | 设计（Design）           | ℹ        | 无需为 `file` 修饰符修饰的类型的成员使用 `FileAccessOnlyAttribute` 特性 |
+| [SCA0113](sca0113)     | 使用（Usage）            | 💡        | 该泛型参数缺少 `SelfAttribute` 特性                          |
+| [SCA0114](sca0114)     | 使用（Usage）            | ⚠        | 该泛型参数必须限制自身约束                                   |
+| [SCA0115](sca0115)     | 命名（Naming）           | ℹ        | Self 泛型参数应命名为 `TSelf`                                |
 | SCA0201                | 使用（Usage）            | ℹ        | 请使用 `Argument` 类型代替 `if` 判断                         |
 | [SCA0202](sca0202)     | 性能（Performance）      | ℹ        | 请使用 `Add` 方法代替 `operator +` 运算符                    |
 | [SCA0203](sca0203)     | 性能（Performance）      | ℹ        | 请使用 `Remove` 方法代替 `operator -` 运算符                 |
@@ -31,9 +34,6 @@
 | [SCA0205](sca0205)     | 设计（Design）           | ℹ        | 请使用 `ToStringAndClear` 释放内存；请勿使用 `using` 关键字对该对象使用默认的释放行为 |
 | [SCA0206](sca0206)     | 使用（Usage）            | ℹ        | 请使用强制转换代替 `Grid.Parse` 方法                         |
 | [SCA0207](sca0207)     | 使用（Usage）            | ℹ        | 请使用 `Grid.Parse` 方法代替强制转换                         |
-| [SCA0301](sca0301)     | 使用（Usage）            | 💡        | 该泛型参数缺少 `SelfAttribute` 特性                          |
-| [SCA0302](sca0302)     | 使用（Usage）            | ⚠        | 该泛型参数必须限制自身约束                                   |
-| [SCA0303](sca0303)     | 命名（Naming）           | ℹ        | Self 泛型参数应命名为 `TSelf`                                |
 
 ## 注解
 

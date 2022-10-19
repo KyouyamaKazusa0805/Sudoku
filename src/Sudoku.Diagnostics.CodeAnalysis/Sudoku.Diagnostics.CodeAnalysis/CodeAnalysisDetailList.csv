@@ -8,6 +8,9 @@ SCA0109,Specified field can only be accessed in a same file,,Design,Error,Specif
 SCA0110,Specified field cannot be private,Specified field '{0}' cannot be private,Design,Warning,Specified field marked 'FileAccessOnlyAttribute' cannot be private.
 SCA0111,Specified constructor can only be accessed in a same file,,Design,Error,Specified constructor can only be accessed in a same file where the constructor is declared.
 SCA0112,There's no need to apply 'FileAccessOnlyAttribute' on members whose containing type has already been a file local type,,Design,Info,There's no need to apply 'FileAccessOnlyAttribute' on members whose containing type has already been a file local type.
+SCA0113,Missing 'SelfAttribute',,Usage,Hidden,Missing 'SelfAttribute'; Don't you infer the self generic argument?
+SCA0114,Specified type parameter must be derived from the containing type itself,,Usage,Warning,Specified type parameter must be derived from the containing type itself.
+SCA0115,Self type parameter should be named 'TSelf',,Naming,Info,Self type parameter should be named 'TSelf'.
 SCA0201,Use type 'Argument' instead,,Usage,Info,The current 'if' statement can be converted into 'Argument' method invocation; use 'Argument' instead to simplify the code.
 SCA0202,Use 'Add' instead of plus operator,,Performance,Info,Use 'Add' instead of plus operator.
 SCA0203,Use 'Remove' instead of subtraction operator,,Performance,Info,Use 'Remove' instead of subtraction operator.
@@ -15,6 +18,3 @@ SCA0204,Please don't use variable having called 'ToStringAndClear',,Design,Warni
 SCA0205,Don't use 'using' keyword on 'StringHandler' type,,Design,Info,Don't use 'using' keyword on 'StringHandler' type; please use 'ToStringAndClear' to release memory.
 SCA0206,Use explicit cast instead of 'Grid.Parse' method invocation,,Usage,Info,Use explicit cast instead of 'Grid.Parse' method invocation.
 SCA0207,Use 'Grid.Parse' method invocation instead of explicit operator,,Usage,Info,Use 'Grid.Parse' method invocation instead of explicit operator.
-SCA0301,Missing 'SelfAttribute',,Usage,Hidden,Missing 'SelfAttribute'; Don't you infer the self generic argument?
-SCA0302,Specified type parameter must be derived from the containing type itself,,Usage,Warning,Specified type parameter must be derived from the containing type itself.
-SCA0303,Self type parameter should be named 'TSelf',,Naming,Info,Self type parameter should be named 'TSelf'.

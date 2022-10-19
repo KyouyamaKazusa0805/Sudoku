@@ -1,11 +1,11 @@
 ﻿using VerifyCS = Sudoku.Diagnostics.CodeAnalysis.Test.CSharpAnalyzerVerifier<
-	Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer
+	Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0115_SelfTypeParameterShouldNameTSelfAnalyzer
 >;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Test;
 
 [TestClass]
-public sealed class SCA0303UnitTest
+public sealed class SCA0115UnitTest
 {
 	[TestMethod]
 	public async Task TestCase_EmptyCode() => await VerifyCS.VerifyAnalyzerAsync(@"");
@@ -29,6 +29,6 @@ public sealed class SCA0303UnitTest
 				file sealed class SelfAttribute : Attribute { }
 			}
 			""",
-			VerifyCS.Diagnostic(nameof(SCA0303)).WithLocation(0)
+			VerifyCS.Diagnostic(nameof(SCA0115)).WithLocation(0)
 		);
 }

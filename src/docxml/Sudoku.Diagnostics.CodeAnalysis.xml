@@ -174,6 +174,63 @@
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0113_SelfAttributeMissingAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0113">SCA0113</see> (Missing 'SelfAttribute')</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0113_SelfAttributeMissingAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0113_SelfAttributeMissingAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0113_SelfAttributeMissingAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0114_SelfTypeParameterMustBeDerivedFromItselfAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0114">SCA0114</see> (Specified type parameter must be derived from the containing type itself)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0114_SelfTypeParameterMustBeDerivedFromItselfAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0114_SelfTypeParameterMustBeDerivedFromItselfAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0114_SelfTypeParameterMustBeDerivedFromItselfAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0115_SelfTypeParameterShouldNameTSelfAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0115">SCA0115</see> (Self type parameter should be named 'TSelf')</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0115_SelfTypeParameterShouldNameTSelfAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0115_SelfTypeParameterShouldNameTSelfAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0115_SelfTypeParameterShouldNameTSelfAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0201_UseArgumentAnalyzer">
             <summary>
             Indicates the analyzer that can provide the following diagnostic results:
@@ -289,63 +346,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0207_UseParseMethodInvocationAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
-            <summary>
-            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0301_SelfAttributeMissingAnalyzer">
-            <summary>
-            Indicates the analyzer that can provide the following diagnostic results:
-            <list type="bullet">
-            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0301">SCA0301</see> (Missing 'SelfAttribute')</item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0301_SelfAttributeMissingAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0301_SelfAttributeMissingAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0301_SelfAttributeMissingAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
-            <summary>
-            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0302_SelfTypeParameterMustBeDerivedFromItselfAnalyzer">
-            <summary>
-            Indicates the analyzer that can provide the following diagnostic results:
-            <list type="bullet">
-            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0302">SCA0302</see> (Specified type parameter must be derived from the containing type itself)</item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0302_SelfTypeParameterMustBeDerivedFromItselfAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0302_SelfTypeParameterMustBeDerivedFromItselfAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0302_SelfTypeParameterMustBeDerivedFromItselfAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
-            <summary>
-            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer">
-            <summary>
-            Indicates the analyzer that can provide the following diagnostic results:
-            <list type="bullet">
-            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0303">SCA0303</see> (Self type parameter should be named 'TSelf')</item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0303_SelfTypeParameterShouldNameTSelfAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
             <summary>
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
@@ -478,6 +478,39 @@
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0113">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0113">SCA0113</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Missing 'SelfAttribute'</item>
+            <item><b>Description</b>: Missing 'SelfAttribute'; Don't you infer the self generic argument?</item>
+            <item><b>Category</b>: Usage</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Hidden"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0114">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0114">SCA0114</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Specified type parameter must be derived from the containing type itself</item>
+            <item><b>Description</b>: Specified type parameter must be derived from the containing type itself.</item>
+            <item><b>Category</b>: Usage</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0115">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0115">SCA0115</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Self type parameter should be named 'TSelf'</item>
+            <item><b>Description</b>: Self type parameter should be named 'TSelf'.</item>
+            <item><b>Category</b>: Naming</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
+            </list>
+            </summary>
+        </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0201">
             <summary>
             Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0201">SCA0201</see>:
@@ -551,39 +584,6 @@
             <item><b>Title</b>: Use 'Grid.Parse' method invocation instead of explicit operator</item>
             <item><b>Description</b>: Use 'Grid.Parse' method invocation instead of explicit operator.</item>
             <item><b>Category</b>: Usage</item>
-            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0301">
-            <summary>
-            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0301">SCA0301</see>:
-            <list type="bullet">
-            <item><b>Title</b>: Missing 'SelfAttribute'</item>
-            <item><b>Description</b>: Missing 'SelfAttribute'; Don't you infer the self generic argument?</item>
-            <item><b>Category</b>: Usage</item>
-            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Hidden"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0302">
-            <summary>
-            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0302">SCA0302</see>:
-            <list type="bullet">
-            <item><b>Title</b>: Specified type parameter must be derived from the containing type itself</item>
-            <item><b>Description</b>: Specified type parameter must be derived from the containing type itself.</item>
-            <item><b>Category</b>: Usage</item>
-            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0303">
-            <summary>
-            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0303">SCA0303</see>:
-            <list type="bullet">
-            <item><b>Title</b>: Self type parameter should be named 'TSelf'</item>
-            <item><b>Description</b>: Self type parameter should be named 'TSelf'.</item>
-            <item><b>Category</b>: Naming</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
             </list>
             </summary>
