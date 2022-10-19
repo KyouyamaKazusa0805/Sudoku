@@ -10,4 +10,5 @@ internal static class SpecialFullTypeNames
 	public const string DisallowFunctionPointerInvocationAttribute = $"System.Diagnostics.CodeAnalysis.{nameof(DisallowFunctionPointerInvocationAttribute)}";
 	public const string StringHandler = $"System.Text.{nameof(StringHandler)}";
 	public const string FileAccessOnlyAttribute = $"System.Diagnostics.CodeAnalysis.{nameof(FileAccessOnlyAttribute)}";
+	public const string Grid = $"Sudoku.Concepts.{nameof(Grid)}";
 }
