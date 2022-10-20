@@ -51,7 +51,15 @@ public interface ISudokuPainterFactory
 	/// <summary>
 	/// Sets a font scale that is used for rendering text of digits (values and candidates) in a sudoku grid.
 	/// </summary>
-	/// <param name="fontScale">The font scale.</param>
+	/// <param name="fontScale">
+	/// <para>Indicates the desired font scale.</para>
+	/// <para>
+	/// The value is surrounded with 1. If you want to make the rendered digits become greater, you can set the value greater;
+	/// otherwise, just set the value less. Generally the value should be less than 1.
+	/// However, you can also assign a value greater than 1.
+	/// </para>
+	/// <para>We recommend you assign the value with the range (0, 1], with the boundary value 1, but not containing 0.</para>
+	/// </param>
 	/// <returns>The target painter.</returns>
 	public abstract ISudokuPainter WithFontScale(decimal fontScale);
 
