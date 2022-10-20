@@ -36,6 +36,11 @@ public interface IPreference : ICloneable<IPreference>
 	public abstract float BlockLineWidth { get; set; }
 
 	/// <summary>
+	/// Indicates the footer text font size.
+	/// </summary>
+	public abstract float FooterTextFontSize { get; set; }
+
+	/// <summary>
 	/// Indicates the font of given digits to render.
 	/// </summary>
 	public abstract string? GivenFontName { get; set; }
@@ -56,6 +61,11 @@ public interface IPreference : ICloneable<IPreference>
 	public abstract string? UnknownFontName { get; set; }
 
 	/// <summary>
+	/// Indicates the font of footer text.
+	/// </summary>
+	public abstract string FooterTextFontName { get; set; }
+
+	/// <summary>
 	/// Indicates the font style of the givens.
 	/// </summary>
 	public abstract FontStyle GivenFontStyle { get; set; }
@@ -74,6 +84,11 @@ public interface IPreference : ICloneable<IPreference>
 	/// Indicates the font style of an unknown.
 	/// </summary>
 	public abstract FontStyle UnknownFontStyle { get; set; }
+
+	/// <summary>
+	/// Indicates the font style of footer text.
+	/// </summary>
+	public abstract FontStyle FooterTextFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the given digits to render.
@@ -288,6 +303,9 @@ file sealed class Preference : IPreference
 	public float BlockLineWidth { get; set; } = 3F;
 
 	/// <inheritdoc/>
+	public float FooterTextFontSize { get; set; } = 24;
+
+	/// <inheritdoc/>
 	public string? GivenFontName { get; set; } = "MiSans";
 
 	/// <inheritdoc/>
@@ -300,6 +318,9 @@ file sealed class Preference : IPreference
 	public string? UnknownFontName { get; set; } = "Times New Roman";
 
 	/// <inheritdoc/>
+	public string FooterTextFontName { get; set; } = "MiSans";
+
+	/// <inheritdoc/>
 	public FontStyle GivenFontStyle { get; set; } = FontStyle.Regular;
 
 	/// <inheritdoc/>
@@ -310,6 +331,9 @@ file sealed class Preference : IPreference
 
 	/// <inheritdoc/>
 	public FontStyle UnknownFontStyle { get; set; } = FontStyle.Regular;
+
+	/// <inheritdoc/>
+	public FontStyle FooterTextFontStyle { get; set; } = FontStyle.Bold;
 
 	/// <inheritdoc/>
 	public Color GivenColor { get; set; } = Color.Black;

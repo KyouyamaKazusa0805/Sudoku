@@ -107,11 +107,26 @@ public interface IGridImageGenerator
 	/// <returns>Rendering data.</returns>
 	internal sealed TextRenderingData GetFooterTextRenderingData()
 	{
+		if (this is not
+			{
+				FooterTextAlignment: var footerAlignment,
+				FooterText: var footer,
+				Preferences:
+				{
+					FooterTextFontName: var fontName,
+					FooterTextFontSize: var fontSize,
+					FooterTextFontStyle: var fontStyle
+				}
+			})
+		{
+			throw new();
+		}
+
 		using var tempBitmap = new Bitmap((int)Width, (int)Height);
 		using var tempGraphics = Graphics.FromImage(tempBitmap);
-		var footerFont = new Font("MiSans", 24, FontStyle.Bold);
-		var (_, footerHeight) = FooterText is not null ? tempGraphics.MeasureString(FooterText, footerFont) : default;
-		return new(footerFont, footerHeight, new() { Alignment = FooterTextAlignment });
+		var footerFont = new Font(fontName, fontSize, fontStyle);
+		var (_, footerHeight) = footer is not null ? tempGraphics.MeasureString(footer, footerFont) : default;
+		return new(footerFont, footerHeight, new() { Alignment = footerAlignment });
 	}
 
 

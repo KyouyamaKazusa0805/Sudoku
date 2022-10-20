@@ -223,6 +223,14 @@ file sealed class SudokuPainter : ISudokuPainter
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ISudokuPainter WithFooterTextFont(string fontName)
+	{
+		_generator.Preferences.FooterTextFontName = fontName;
+		return this;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithFontScale(decimal fontScale)
 	{
 		_generator.Preferences.ValueScale = fontScale;

@@ -72,6 +72,13 @@ public interface ISudokuPainterFactory
 	public abstract ISudokuPainter WithCandidateFont(string fontName);
 
 	/// <summary>
+	/// Sets a font name that is used for rendering footer text.
+	/// </summary>
+	/// <param name="fontName">The font name.</param>
+	/// <returns>The target painter.</returns>
+	public abstract ISudokuPainter WithFooterTextFont(string fontName);
+
+	/// <summary>
 	/// Sets the footer text that can be rendered below the picture.
 	/// </summary>
 	/// <param name="footerText">The footer text.</param>

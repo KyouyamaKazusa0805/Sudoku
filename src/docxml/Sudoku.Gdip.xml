@@ -127,6 +127,9 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.WithCandidateFont(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterTextFont(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithFontScale(System.Decimal)">
             <inheritdoc/>
         </member>
@@ -205,6 +208,13 @@
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithCandidateFont(System.String)">
             <summary>
             Sets a font name that is used for rendering text of candidate digits in a sudoku grid.
+            </summary>
+            <param name="fontName">The font name.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithFooterTextFont(System.String)">
+            <summary>
+            Sets a font name that is used for rendering footer text.
             </summary>
             <param name="fontName">The font name.</param>
             <returns>The target painter.</returns>
@@ -764,6 +774,11 @@
             Indicates the block line width of the sudoku grid to render.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.IPreference.FooterTextFontSize">
+            <summary>
+            Indicates the footer text font size.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.IPreference.GivenFontName">
             <summary>
             Indicates the font of given digits to render.
@@ -784,6 +799,11 @@
             Indicates the font of unknown values to render.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.IPreference.FooterTextFontName">
+            <summary>
+            Indicates the font of footer text.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.IPreference.GivenFontStyle">
             <summary>
             Indicates the font style of the givens.
@@ -802,6 +822,11 @@
         <member name="P:Sudoku.Gdip.IPreference.UnknownFontStyle">
             <summary>
             Indicates the font style of an unknown.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.IPreference.FooterTextFontStyle">
+            <summary>
+            Indicates the font style of footer text.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.IPreference.GivenColor">
@@ -997,6 +1022,9 @@
         <member name="P:Sudoku.Gdip.Preference.BlockLineWidth">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Gdip.Preference.FooterTextFontSize">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Gdip.Preference.GivenFontName">
             <inheritdoc/>
         </member>
@@ -1009,6 +1037,9 @@
         <member name="P:Sudoku.Gdip.Preference.UnknownFontName">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Gdip.Preference.FooterTextFontName">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Gdip.Preference.GivenFontStyle">
             <inheritdoc/>
         </member>
@@ -1019,6 +1050,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Gdip.Preference.UnknownFontStyle">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Gdip.Preference.FooterTextFontStyle">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Gdip.Preference.GivenColor">
