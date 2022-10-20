@@ -139,6 +139,12 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.WithFontScale(System.Decimal)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithConclusions(Sudoku.Solving.Conclusion[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithNodes(Sudoku.Presentation.Nodes.ViewNode[])">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterFactory">
             <summary>
             Defines the factory methods that can append custom configurations for <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instances.
@@ -199,6 +205,20 @@
             Sets a font name that is used for rendering text of candidate digits in a sudoku grid.
             </summary>
             <param name="fontName">The font name.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithConclusions(Sudoku.Solving.Conclusion[])">
+            <summary>
+            Sets the conclusions used for rendering.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithNodes(Sudoku.Presentation.Nodes.ViewNode[])">
+            <summary>
+            Sets the view nodes used for rendering.
+            </summary>
+            <param name="nodes">The nodes.</param>
             <returns>The target painter.</returns>
         </member>
         <member name="T:Sudoku.Gdip.IGridImageGenerator">

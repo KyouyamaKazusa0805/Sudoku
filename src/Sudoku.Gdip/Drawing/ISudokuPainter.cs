@@ -239,4 +239,20 @@ file sealed class SudokuPainter : ISudokuPainter
 		_generator.Preferences.CandidateScale = fontScale / 3;
 		return this;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ISudokuPainter WithConclusions(params Conclusion[] conclusions)
+	{
+		_generator.Conclusions = conclusions;
+		return this;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ISudokuPainter WithNodes(params ViewNode[] nodes)
+	{
+		(_generator.View ??= View.Empty | nodes).AddRange(nodes);
+		return this;
+	}
 }

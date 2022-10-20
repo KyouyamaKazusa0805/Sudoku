@@ -924,6 +924,12 @@
             </summary>
             <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
         </member>
+        <member name="M:Sudoku.Presentation.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Adds a list of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s into the collection.
+            </summary>
+            <param name="nodes">A list of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
+        </member>
         <member name="M:Sudoku.Presentation.View.Remove(Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
             Removes the specified <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> from the collection.

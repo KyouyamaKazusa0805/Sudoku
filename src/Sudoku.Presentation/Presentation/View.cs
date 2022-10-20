@@ -90,6 +90,18 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	}
 
 	/// <summary>
+	/// Adds a list of <see cref="ViewNode"/>s into the collection.
+	/// </summary>
+	/// <param name="nodes">A list of <see cref="ViewNode"/> instance.</param>
+	public void AddRange(IEnumerable<ViewNode> nodes)
+	{
+		foreach (var node in nodes)
+		{
+			Add(node);
+		}
+	}
+
+	/// <summary>
 	/// Removes the specified <see cref="ViewNode"/> from the collection.
 	/// </summary>
 	/// <param name="node">The <see cref="ViewNode"/> instance.</param>

@@ -61,4 +61,18 @@ public interface ISudokuPainterFactory
 	/// <param name="fontName">The font name.</param>
 	/// <returns>The target painter.</returns>
 	public abstract ISudokuPainter WithCandidateFont(string fontName);
+
+	/// <summary>
+	/// Sets the conclusions used for rendering.
+	/// </summary>
+	/// <param name="conclusions">The conclusions.</param>
+	/// <returns>The target painter.</returns>
+	public abstract ISudokuPainter WithConclusions(params Conclusion[] conclusions);
+
+	/// <summary>
+	/// Sets the view nodes used for rendering.
+	/// </summary>
+	/// <param name="nodes">The nodes.</param>
+	/// <returns>The target painter.</returns>
+	public abstract ISudokuPainter WithNodes(params ViewNode[] nodes);
 }

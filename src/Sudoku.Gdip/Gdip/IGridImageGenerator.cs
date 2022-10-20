@@ -1,5 +1,8 @@
 ﻿namespace Sudoku.Gdip;
 
+using static MathF;
+using Alignment = StringAlignment;
+
 /// <summary>
 /// Defines a grid image generator that parses a sudoku grid and converts it to an image
 /// as the result representation.
@@ -14,13 +17,13 @@ public interface IGridImageGenerator
 	/// <summary>
 	/// The rotate angle (45 degrees). This field is used for rotate the chains if some of them are overlapped.
 	/// </summary>
-	protected const float RotateAngle = MathF.PI / 4;
+	protected const float RotateAngle = PI / 4;
 
 
 	/// <summary>
 	/// Indicates the default string format.
 	/// </summary>
-	protected static readonly StringFormat DefaultStringFormat = new() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+	protected static readonly StringFormat DefaultStringFormat = new() { Alignment = Alignment.Center, LineAlignment = Alignment.Center };
 
 
 	/// <summary>
@@ -707,9 +710,11 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 				}
 
 				// Check if another candidate lies in the direct line.
-				double deltaX = pt2x - pt1x, deltaY = pt2y - pt1y;
+				var deltaX = pt2x - pt1x;
+				var deltaY = pt2y - pt1y;
 				var alpha = Atan2(deltaY, deltaX);
-				double dx1 = deltaX, dy1 = deltaY;
+				var dx1 = deltaX;
+				var dy1 = deltaY;
 				var through = false;
 				adjust(pt1, pt2, out var p1, out _, alpha, cw);
 				foreach (var point in points)
@@ -724,7 +729,7 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 					var dy2 = point.Y - p1.Y;
 					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
 						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
+						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1F)))
 					{
 						through = true;
 						break;
@@ -763,7 +768,7 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void rotate(PointF pt1, scoped ref PointF pt2, double angle)
+		static void rotate(PointF pt1, scoped ref PointF pt2, float angle)
 		{
 			// Translate 'pt2' to (0, 0).
 			pt2.X -= pt1.X;
@@ -782,7 +787,7 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void adjust(PointF pt1, PointF pt2, out PointF p1, out PointF p2, double alpha, double candidateSize)
+		static void adjust(PointF pt1, PointF pt2, out PointF p1, out PointF p2, float alpha, float candidateSize)
 		{
 			p1 = pt1;
 			p2 = pt2;
