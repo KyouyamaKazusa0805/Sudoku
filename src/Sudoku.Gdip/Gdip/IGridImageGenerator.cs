@@ -80,10 +80,7 @@ public interface IGridImageGenerator
 	/// </summary>
 	/// <param name="bitmap">The bitmap result.</param>
 	/// <param name="g">The graphics instance.</param>
-	/// <returns>
-	/// The return value is the same as the parameter <paramref name="bitmap"/> when it is not <see langword="null"/>.
-	/// </returns>
-	public abstract Image Render(Image bitmap, Graphics g);
+	public abstract void Render(Image bitmap, Graphics g);
 
 	/// <summary>
 	/// Render the image, with automatically calculation to get the target <see cref="Image"/> instance, and then return it.
@@ -99,8 +96,11 @@ public interface IGridImageGenerator
 		// However, I don't want to handle on this case. If the text is too long, it will be overflown, as default case to be kept;
 		// otherwise, the picture drawn will be aligned as left, which is not the expected result.
 		var bitmap = new Bitmap((int)Width, (int)(FooterText is not null ? Height + extraHeight : Height));
+
 		using var g = Graphics.FromImage(bitmap);
-		return Render(bitmap, g);
+		Render(bitmap, g);
+
+		return bitmap;
 	}
 
 	/// <summary>
@@ -205,7 +205,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 
 
 	/// <inheritdoc/>
-	public Image Render(Image bitmap, Graphics g)
+	public void Render(Image bitmap, Graphics g)
 	{
 		DrawBackground(g);
 		DrawGridAndBlockLines(g);
@@ -219,8 +219,6 @@ file sealed class GridImageGenerator : IGridImageGenerator
 		DrawEliminations(g);
 		DrawValue(g);
 		DrawFooterText(g);
-
-		return bitmap;
 	}
 
 	/// <summary>
