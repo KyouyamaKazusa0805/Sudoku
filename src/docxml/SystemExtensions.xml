@@ -3513,6 +3513,18 @@
             <param name="value">The value of type <typeparamref name="TSelf"/>.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="T:System.ICloneable`1">
+            <summary>
+            <inheritdoc cref="T:System.ICloneable" path="/summary"/>
+            </summary>
+            <typeparam name="TSelf">The type of the instance.</typeparam>
+        </member>
+        <member name="M:System.ICloneable`1.Clone">
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+        </member>
+        <member name="M:System.ICloneable`1.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:System.IFixable`2">
             <summary>
             Provides with a mechanism to allow the type <typeparamref name="TFixedVariable"/>

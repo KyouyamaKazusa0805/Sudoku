@@ -4,7 +4,7 @@
 /// Defines a visual item that is user-defined.
 /// </summary>
 public sealed class UserDefinedVisual :
-	ICloneable,
+	ICloneable<UserDefinedVisual>,
 	IVisual,
 	IEnumerable<ViewNode>,
 	IReadOnlyCollection<ViewNode>,
@@ -223,17 +223,13 @@ public sealed class UserDefinedVisual :
 		}
 	}
 
-	/// <inheritdoc cref="ICloneable.Clone"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public UserDefinedVisual Clone() => new(_view);
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public List<ViewNode>.Enumerator GetEnumerator() => _view.GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	object ICloneable.Clone() => Clone();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

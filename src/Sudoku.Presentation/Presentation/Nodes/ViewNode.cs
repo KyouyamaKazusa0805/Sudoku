@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node.
 /// </summary>
-public abstract class ViewNode : ICloneable, IEquatable<ViewNode>, IEqualityOperators<ViewNode, ViewNode, bool>
+public abstract class ViewNode : ICloneable<ViewNode>, IEquatable<ViewNode>, IEqualityOperators<ViewNode, ViewNode, bool>
 {
 	/// <summary>
 	/// Assigns the <see cref="Presentation.Identifier"/> instance as the basic information.
@@ -39,15 +39,8 @@ public abstract class ViewNode : ICloneable, IEquatable<ViewNode>, IEqualityOper
 	/// <inheritdoc/>
 	public abstract override string ToString();
 
-	/// <summary>
-	/// Creates a new instance whose inner data is totally same as the current instance.
-	/// </summary>
-	/// <returns>The result <see cref="ViewNode"/> as the copy.</returns>
-	public abstract ViewNode Clone();
-
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	object ICloneable.Clone() => Clone();
+	public abstract ViewNode Clone();
 
 
 	/// <inheritdoc/>

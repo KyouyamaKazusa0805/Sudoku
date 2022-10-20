@@ -735,12 +735,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ViewNode.Clone">
-            <summary>
-            Creates a new instance whose inner data is totally same as the current instance.
-            </summary>
-            <returns>The result <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> as the copy.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.ViewNode.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ViewNode.op_Equality(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.Nodes.ViewNode)">
@@ -829,13 +823,10 @@
             </exception>
         </member>
         <member name="M:Sudoku.Presentation.UserDefinedVisual.Clone">
-            <inheritdoc cref="M:System.ICloneable.Clone"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.UserDefinedVisual.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedVisual.System#ICloneable#Clone">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.UserDefinedVisual.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -959,13 +950,10 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Presentation.View.Clone">
-            <inheritdoc cref="M:System.ICloneable.Clone"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.View.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Presentation.View.System#ICloneable#Clone">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.View.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>

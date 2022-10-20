@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides with a data structure that displays a view for basic information.
 /// </summary>
-public sealed class View : ICloneable, IEnumerable<ViewNode>
+public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 {
 	/// <summary>
 	/// Indicates the inner dictionary.
@@ -150,17 +150,13 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool ConflictWith(int candidate) => CandidateNodes.Any(n => n.Candidate == candidate);
 
-	/// <inheritdoc cref="ICloneable.Clone"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public View Clone() => Count == 0 ? Empty : new(new(from node in _nodes select node.Clone()));
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public List<ViewNode>.Enumerator GetEnumerator() => _nodes.GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	object ICloneable.Clone() => Clone();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

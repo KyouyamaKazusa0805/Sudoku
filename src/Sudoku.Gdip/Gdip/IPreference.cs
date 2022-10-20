@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines the basic preferences.
 /// </summary>
-public interface IPreference : ICloneable
+public interface IPreference : ICloneable<IPreference>
 {
 	/// <summary>
 	/// Indicates whether the form shows candidates.
@@ -419,7 +419,7 @@ file sealed class Preference : IPreference
 
 
 	/// <inheritdoc/>
-	public object Clone()
+	public IPreference Clone()
 	{
 		var instance = IPreference.Default;
 		foreach (var propertyInfo in typeof(Preference).GetProperties(BindingFlags.Instance | BindingFlags.Public))
