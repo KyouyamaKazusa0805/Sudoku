@@ -40,57 +40,44 @@ public interface ISudokuPainter
 	/// </returns>
 	public sealed bool TrySaveTo(string path)
 	{
-		return Path.GetExtension(path) switch
+		try
 		{
-			".wmf" => w(this),
-			{ Length: >= 4 } commonExtensions and (".jpg" or ".jpeg" or ".png" or ".bmp" or ".gif") => s(this, commonExtensions),
-			_ => false
-		};
-
-
-		bool s(ISudokuPainter @this, string commonExtensions)
-		{
-			using var imageRendered = @this.Render();
-			try
+			switch (Path.GetExtension(path))
 			{
-				imageRendered.Save(
-					path,
-					commonExtensions switch
-					{
-						".jpg" or ".jpeg" => ImageFormat.Jpeg,
-						".png" => ImageFormat.Png,
-						".bmp" => ImageFormat.Bmp,
-						".gif" => ImageFormat.Gif
-					}
-				);
+				case ".wmf":
+				{
+					using var tempBitmap = new Bitmap((int)Width, (int)Height);
+					using var tempGraphics = Graphics.FromImage(tempBitmap);
+					using var metaFile = new Metafile(path, tempGraphics.GetHdc());
+					using var g = Graphics.FromImage(metaFile);
+					((GridImageGenerator)GridImageGenerator).Draw(metaFile, g);
 
-				return true;
-			}
-			catch
-			{
-				return false;
+					tempGraphics.ReleaseHdc();
+
+					return true;
+				}
+				case { Length: >= 4 } e and (".jpg" or ".jpeg" or ".png" or ".bmp" or ".gif"):
+				{
+					using var imageRendered = Render();
+					imageRendered.Save(
+						path,
+						e switch
+						{
+							".jpg" or ".jpeg" => ImageFormat.Jpeg,
+							".png" => ImageFormat.Png,
+							".bmp" => ImageFormat.Bmp,
+							".gif" => ImageFormat.Gif
+						}
+					);
+					return true;
+				}
 			}
 		}
-
-		bool w(ISudokuPainter @this)
+		catch
 		{
-			try
-			{
-				using var bitmap = new Bitmap((int)Width, (int)Height);
-				using var g = Graphics.FromImage(bitmap);
-				using var metaFile = new Metafile(path, g.GetHdc());
-				using var ig = Graphics.FromImage(metaFile);
-				((GridImageGenerator)@this.GridImageGenerator).Draw(metaFile, ig);
-
-				g.ReleaseHdc();
-
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
 		}
+
+		return false;
 	}
 
 	/// <summary>

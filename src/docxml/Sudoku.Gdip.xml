@@ -34,11 +34,11 @@
             A <see cref="T:System.Boolean"/> result indicating whether the file is successfully saved or not.
             All supported formats are:
             <list type="bullet">
-            <item><see cref="P:System.Drawing.Imaging.ImageFormat.Jpeg"/></item>
-            <item><see cref="P:System.Drawing.Imaging.ImageFormat.Png"/></item>
-            <item><see cref="P:System.Drawing.Imaging.ImageFormat.Bmp"/></item>
-            <item><see cref="P:System.Drawing.Imaging.ImageFormat.Gif"/></item>
-            <item><see cref="P:System.Drawing.Imaging.ImageFormat.Wmf"/></item>
+            <item><c>*.jpg</c> and <c>*.jpeg</c></item>
+            <item><c>*.png</c></item>
+            <item><c>*.bmp</c></item>
+            <item><c>*.gif</c></item>
+            <item><c>*.wmf</c></item>
             </list>
             Other formats are not supported. This method will return <see langword="false"/> for not being supported.
             </returns>
