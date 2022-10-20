@@ -112,9 +112,8 @@ public interface IGridImageGenerator
 		using var tempBitmap = new Bitmap((int)Width, (int)Height);
 		using var tempGraphics = Graphics.FromImage(tempBitmap);
 		var footerFont = new Font("MiSans", 24, FontStyle.Bold);
-		var alignment = new StringFormat { Alignment = FooterTextAlignment };
-		var (_, footerHeight) = FooterText is not null ? tempGraphics.MeasureString(FooterText, footerFont, (int)Width, alignment) : default;
-		return (footerFont, footerHeight + 40, alignment);
+		var (_, footerHeight) = FooterText is not null ? tempGraphics.MeasureString(FooterText, footerFont) : default;
+		return (footerFont, footerHeight, new() { Alignment = FooterTextAlignment });
 	}
 
 
