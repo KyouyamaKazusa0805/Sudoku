@@ -1,7 +1,6 @@
 ﻿namespace Sudoku.Gdip;
 
 using static MathF;
-using Alignment = StringAlignment;
 
 /// <summary>
 /// Defines a grid image generator that parses a sudoku grid and converts it to an image
@@ -23,7 +22,7 @@ public interface IGridImageGenerator
 	/// <summary>
 	/// Indicates the default string format.
 	/// </summary>
-	protected static readonly StringFormat DefaultStringFormat = new() { Alignment = Alignment.Center, LineAlignment = Alignment.Center };
+	protected static readonly StringFormat DefaultStringFormat = new() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
 
 
 	/// <summary>
@@ -50,7 +49,7 @@ public interface IGridImageGenerator
 	/// <summary>
 	/// Indicates the footer text alignment.
 	/// </summary>
-	public abstract Alignment FooterTextAlignment { get; set; }
+	public abstract StringAlignment FooterTextAlignment { get; set; }
 
 	/// <summary>
 	/// Indicates the puzzle.
@@ -187,7 +186,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	public required Grid Puzzle { get; set; }
 
 	/// <inheritdoc/>
-	public Alignment FooterTextAlignment { get; set; }
+	public StringAlignment FooterTextAlignment { get; set; }
 
 	/// <inheritdoc/>
 	public View? View { get; set; }
