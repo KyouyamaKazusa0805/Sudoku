@@ -244,27 +244,8 @@ public interface IPreference : ICloneable<IPreference>
 	{
 		if (colorIdentifier is { Mode: IdentifierColorMode.Id, Id: var id })
 		{
-			result = id switch
-			{
-				1 => Color1,
-				2 => Color2,
-				3 => Color3,
-				4 => Color4,
-				5 => Color5,
-				6 => Color6,
-				7 => Color7,
-				8 => Color8,
-				9 => Color9,
-				10 => Color10,
-				11 => Color11,
-				12 => Color12,
-				13 => Color13,
-				14 => Color14,
-				15 => Color15,
-				_ => throw new InvalidOperationException("The specified ID is invalid.")
-			};
-
-			return true;
+			result = (Color?)typeof(IPreference).GetProperty($"Color{id}")?.GetValue(this) ?? Color.Transparent;
+			return result != Color.Transparent;
 		}
 		else
 		{
