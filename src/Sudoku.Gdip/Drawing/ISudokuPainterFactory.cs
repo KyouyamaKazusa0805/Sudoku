@@ -32,6 +32,7 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="gridCode">The new grid string code.</param>
 	/// <returns>The target painter.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public sealed ISudokuPainter WithGridCode(string gridCode) => WithGrid(Grid.Parse(gridCode));
 
 	/// <summary>
@@ -75,7 +76,17 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="footerText">The footer text.</param>
 	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter WithFooterText(string footerText);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public sealed ISudokuPainter WithFooterText(string footerText) => WithFooterText(footerText, TextAlignmentType.Center);
+
+	/// <summary>
+	/// Sets the footer text that can be rendered below the picture, with the specified alignment.
+	/// </summary>
+	/// <param name="footerText">The footer text.</param>
+	/// <param name="alignment">The alignment.</param>
+	/// <returns>The target painter.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="alignment"/> is not defined.</exception>
+	public abstract ISudokuPainter WithFooterText(string footerText, TextAlignmentType alignment);
 
 	/// <summary>
 	/// Sets the conclusions used for rendering.

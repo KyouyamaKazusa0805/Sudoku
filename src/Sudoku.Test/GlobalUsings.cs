@@ -5,5 +5,6 @@ global using System.Text.Json;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using Sudoku.Concepts;
 global using Sudoku.Drawing;
+global using Sudoku.Drawing.TextRendering;
 global using static System.Environment;
 global using static Sudoku.SolutionWideReadOnlyFields;

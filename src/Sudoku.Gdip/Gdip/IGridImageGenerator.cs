@@ -48,6 +48,11 @@ public interface IGridImageGenerator
 	public abstract View? View { get; set; }
 
 	/// <summary>
+	/// Indicates the footer text alignment.
+	/// </summary>
+	public abstract Alignment FooterTextAlignment { get; set; }
+
+	/// <summary>
 	/// Indicates the puzzle.
 	/// </summary>
 	public abstract Grid Puzzle { get; set; }
@@ -71,25 +76,45 @@ public interface IGridImageGenerator
 
 
 	/// <summary>
-	/// Draw the image.
+	/// To render the image.
 	/// </summary>
-	/// <param name="image">The image to be drawn.</param>
-	/// <remarks>
-	/// The method should be called manually, because we can't control whether the value is modified.
-	/// </remarks>
-	public abstract void Draw(Image image);
+	/// <param name="bitmap">The bitmap result.</param>
+	/// <param name="g">The graphics instance.</param>
+	/// <returns>
+	/// The return value is the same as the parameter <paramref name="bitmap"/> when it is not <see langword="null"/>.
+	/// </returns>
+	public abstract Image Render(Image bitmap, Graphics g);
 
 	/// <summary>
-	/// Draw the image, and return the image instance.
+	/// Render the image, with automatically calculation to get the target <see cref="Image"/> instance, and then return it.
 	/// </summary>
-	/// <returns>The defualt generated image instance.</returns>
-	public sealed Image Draw()
+	/// <returns>The default-generated <see cref="Image"/> instance.</returns>
+	public sealed Image Render()
 	{
-		var defaultImage = new Bitmap((int)Width, (int)Height);
+		var (font, extraHeight, alignment) = GetFooterTextRenderingData();
+		using var _ = font;
+		using var __ = alignment;
 
-		Draw(defaultImage);
+		// There is a little bug that this method ignores the case when the text is too long.
+		// However, I don't want to handle on this case. If the text is too long, it will be overflown, as default case to be kept;
+		// otherwise, the picture drawn will be aligned as left, which is not the expected result.
+		var bitmap = new Bitmap((int)Width, (int)(FooterText is not null ? Height + extraHeight : Height));
+		using var g = Graphics.FromImage(bitmap);
+		return Render(bitmap, g);
+	}
 
-		return defaultImage;
+	/// <summary>
+	/// Gets the rendering data.
+	/// </summary>
+	/// <returns>Rendering data.</returns>
+	protected internal sealed (Font Font, float ExtraHeight, StringFormat StringFormat) GetFooterTextRenderingData()
+	{
+		using var tempBitmap = new Bitmap((int)Width, (int)Height);
+		using var tempGraphics = Graphics.FromImage(tempBitmap);
+		var footerFont = new Font("MiSans", 24, FontStyle.Bold);
+		var alignment = new StringFormat { Alignment = FooterTextAlignment };
+		var (_, footerHeight) = FooterText is not null ? tempGraphics.MeasureString(FooterText, footerFont, (int)Width, alignment) : default;
+		return (footerFont, footerHeight + 40, alignment);
 	}
 
 
@@ -149,18 +174,8 @@ public interface IGridImageGenerator
 /// <summary>
 /// Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
 /// </summary>
-internal sealed class GridImageGenerator : IGridImageGenerator
+file sealed class GridImageGenerator : IGridImageGenerator
 {
-	/// <summary>
-	/// Initializes a <see cref="GridImageGenerator"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[FileAccessOnly]
-	public GridImageGenerator()
-	{
-	}
-
-
 	/// <inheritdoc/>
 	public float Width => Calculator.Width;
 
@@ -172,6 +187,9 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 
 	/// <inheritdoc/>
 	public required Grid Puzzle { get; set; }
+
+	/// <inheritdoc/>
+	public Alignment FooterTextAlignment { get; set; }
 
 	/// <inheritdoc/>
 	public View? View { get; set; }
@@ -187,35 +205,8 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 
 
 	/// <inheritdoc/>
-	public void Draw(Image image)
+	public Image Render(Image bitmap, Graphics g)
 	{
-		using var g = Graphics.FromImage(image);
-
-		Draw(image, g);
-	}
-
-	/// <summary>
-	/// To draw the image.
-	/// </summary>
-	/// <param name="bitmap">The bitmap result.</param>
-	/// <param name="g">The graphics instance.</param>
-	/// <returns>
-	/// The return value is the same as the parameter <paramref name="bitmap"/> when it is not <see langword="null"/>.
-	/// </returns>
-	public Image Draw([AllowNull] Image bitmap, Graphics g)
-	{
-		using var footerFont = new Font("MiSans", 24, FontStyle.Bold);
-		var (_, footerHeight) = FooterText is not null ? g.MeasureString(FooterText, footerFont) : default;
-		var extraHeight = footerHeight + 40;
-
-		bitmap ??= new Bitmap(
-			// There is a little bug that this method ignores the case when the text is too long.
-			// However, I don't want to handle on this case. If the text is too long, it will be overflown, as default case to be kept;
-			// otherwise, the picture drawn will be aligned as left, which is not the expected result.
-			(int)Width,
-			(int)(FooterText is not null ? Height + extraHeight : Height)
-		);
-
 		DrawBackground(g);
 		DrawGridAndBlockLines(g);
 
@@ -227,7 +218,7 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 		DrawView(g);
 		DrawEliminations(g);
 		DrawValue(g);
-		DrawFooterText(g, footerFont, extraHeight);
+		DrawFooterText(g);
 
 		return bitmap;
 	}
@@ -263,16 +254,17 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 	/// Draw footer text.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="font">The footer font.</param>
-	/// <param name="extraHeight">The extra height of the drawing area.</param>
-	private void DrawFooterText(Graphics g, Font font, float extraHeight)
+	private void DrawFooterText(Graphics g)
 	{
 		if (FooterText is null)
 		{
 			return;
 		}
 
-		g.DrawString(FooterText, font, Brushes.Black, new RectangleF(0, Width, Width, extraHeight), DefaultStringFormat);
+		var (font, extraHeight, alignment) = ((IGridImageGenerator)this).GetFooterTextRenderingData();
+		using var _ = font;
+		using var __ = alignment;
+		g.DrawString(FooterText, font, Brushes.Black, new RectangleF(0, Width, Width, extraHeight), alignment);
 	}
 
 	/// <summary>

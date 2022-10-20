@@ -130,7 +130,7 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.WithFontScale(System.Decimal)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterText(System.String)">
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterText(System.String,Sudoku.Drawing.TextRendering.TextAlignmentType)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithConclusions(Sudoku.Solving.Conclusion[])">
@@ -216,6 +216,15 @@
             <param name="footerText">The footer text.</param>
             <returns>The target painter.</returns>
         </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithFooterText(System.String,Sudoku.Drawing.TextRendering.TextAlignmentType)">
+            <summary>
+            Sets the footer text that can be rendered below the picture, with the specified alignment.
+            </summary>
+            <param name="footerText">The footer text.</param>
+            <param name="alignment">The alignment.</param>
+            <returns>The target painter.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="alignment"/> is not defined.</exception>
+        </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithConclusions(Sudoku.Solving.Conclusion[])">
             <summary>
             Sets the conclusions used for rendering.
@@ -229,6 +238,26 @@
             </summary>
             <param name="nodes">The nodes.</param>
             <returns>The target painter.</returns>
+        </member>
+        <member name="T:Sudoku.Drawing.TextRendering.TextAlignmentType">
+            <summary>
+            Defines an alignment type that can be used for rendering a string text in a picture.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.TextRendering.TextAlignmentType.Center">
+            <summary>
+            Indicates the alignment is as center. This value is the default value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.TextRendering.TextAlignmentType.Left">
+            <summary>
+            Indicates the alignment is as left.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.TextRendering.TextAlignmentType.Right">
+            <summary>
+            Indicates the alignment is as right.
+            </summary>
         </member>
         <member name="T:Sudoku.Gdip.IGridImageGenerator">
             <summary>
@@ -272,6 +301,11 @@
             Indicates the view.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.IGridImageGenerator.FooterTextAlignment">
+            <summary>
+            Indicates the footer text alignment.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.IGridImageGenerator.Puzzle">
             <summary>
             Indicates the puzzle.
@@ -294,20 +328,27 @@
             that decides the drawing behavior.
             </summary>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.Draw(System.Drawing.Image)">
+        <member name="M:Sudoku.Gdip.IGridImageGenerator.Render(System.Drawing.Image,System.Drawing.Graphics)">
             <summary>
-            Draw the image.
+            To render the image.
             </summary>
-            <param name="image">The image to be drawn.</param>
-            <remarks>
-            The method should be called manually, because we can't control whether the value is modified.
-            </remarks>
+            <param name="bitmap">The bitmap result.</param>
+            <param name="g">The graphics instance.</param>
+            <returns>
+            The return value is the same as the parameter <paramref name="bitmap"/> when it is not <see langword="null"/>.
+            </returns>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.Draw">
+        <member name="M:Sudoku.Gdip.IGridImageGenerator.Render">
             <summary>
-            Draw the image, and return the image instance.
+            Render the image, with automatically calculation to get the target <see cref="T:System.Drawing.Image"/> instance, and then return it.
             </summary>
-            <returns>The defualt generated image instance.</returns>
+            <returns>The default-generated <see cref="T:System.Drawing.Image"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Gdip.IGridImageGenerator.GetFooterTextRenderingData">
+            <summary>
+            Gets the rendering data.
+            </summary>
+            <returns>Rendering data.</returns>
         </member>
         <member name="M:Sudoku.Gdip.IGridImageGenerator.Create(System.Int32,System.Int32)">
             <summary>
@@ -357,11 +398,6 @@
             Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
             </summary>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance.
-            </summary>
-        </member>
         <member name="P:Sudoku.Gdip.GridImageGenerator.Width">
             <inheritdoc/>
         </member>
@@ -372,6 +408,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Gdip.GridImageGenerator.Puzzle">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Gdip.GridImageGenerator.FooterTextAlignment">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Gdip.GridImageGenerator.View">
@@ -386,18 +425,8 @@
         <member name="P:Sudoku.Gdip.GridImageGenerator.Preferences">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.Draw(System.Drawing.Image)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.Render(System.Drawing.Image,System.Drawing.Graphics)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.Draw(System.Drawing.Image,System.Drawing.Graphics)">
-            <summary>
-            To draw the image.
-            </summary>
-            <param name="bitmap">The bitmap result.</param>
-            <param name="g">The graphics instance.</param>
-            <returns>
-            The return value is the same as the parameter <paramref name="bitmap"/> when it is not <see langword="null"/>.
-            </returns>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.GetColor(Sudoku.Presentation.Identifier)">
             <summary>
@@ -407,13 +436,11 @@
             <returns></returns>
             <exception cref="T:System.InvalidOperationException">Throws when the specified value is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFooterText(System.Drawing.Graphics,System.Drawing.Font,System.Single)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFooterText(System.Drawing.Graphics)">
             <summary>
             Draw footer text.
             </summary>
             <param name="g">The graphics.</param>
-            <param name="font">The footer font.</param>
-            <param name="extraHeight">The extra height of the drawing area.</param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawValue(System.Drawing.Graphics)">
             <summary>

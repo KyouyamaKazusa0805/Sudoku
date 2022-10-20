@@ -46,7 +46,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 				using var tempGraphics = Graphics.FromImage(tempBitmap);
 				using var metaFile = new Metafile(path, tempGraphics.GetHdc());
 				using var g = Graphics.FromImage(metaFile);
-				((GridImageGenerator)GridImageGenerator).Draw(metaFile, g);
+				GridImageGenerator.Render(metaFile, g);
 
 				tempGraphics.ReleaseHdc();
 
@@ -171,7 +171,7 @@ file sealed class SudokuPainter : ISudokuPainter
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Image Render() => _generator.Draw();
+	public Image Render() => _generator.Render();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -232,9 +232,17 @@ file sealed class SudokuPainter : ISudokuPainter
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithFooterText(string footerText)
+	public ISudokuPainter WithFooterText(string footerText, TextAlignmentType alignment)
 	{
 		_generator.FooterText = footerText;
+		_generator.FooterTextAlignment = alignment switch
+		{
+			TextAlignmentType.Left => StringAlignment.Near,
+			TextAlignmentType.Center => StringAlignment.Center,
+			TextAlignmentType.Right => StringAlignment.Far,
+			_ => throw new ArgumentOutOfRangeException(nameof(alignment))
+		};
+
 		return this;
 	}
 
