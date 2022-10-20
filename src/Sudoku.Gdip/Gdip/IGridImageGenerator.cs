@@ -828,20 +828,19 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 				{
 					UnknownIdentifierColor: var uColor,
 					ValueScale: var vScale,
-					UnknownFontStyle: var uFontStyle
+					UnknownFontStyle: var uFontStyle,
+					UnknownFontName: var uFontName
 				}
 			})
 		{
 			return;
 		}
 
-		const string defaultFontName = "Times New Roman";
-
 		var vOffsetValue = cellWidth / (AnchorsCount / 3); // The vertical offset of rendering each value.
 		var halfWidth = cellWidth / 2F;
 
 		using var brush = new SolidBrush(uColor);
-		using var font = GetFont(defaultFontName, halfWidth, vScale, uFontStyle);
+		using var font = GetFont(uFontName, halfWidth, vScale, uFontStyle);
 
 		foreach (var unknownNode in unknownNodes)
 		{
@@ -851,7 +850,7 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 			// Draw values.
 			var orginalPoint = calc.GetMousePointInCenter(cell);
 			var point = orginalPoint with { Y = orginalPoint.Y + vOffsetValue };
-			g.DrawString(character.ToString(), font, brush, point, DefaultStringFormat);
+			g.DrawValue(character, font, brush, point, DefaultStringFormat);
 		}
 	}
 }

@@ -90,6 +90,13 @@
             <param name="grid">The new grid.</param>
             <returns>The target painter.</returns>
         </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainter.WithGridCode(System.String)">
+            <summary>
+            Sets the grid of the canvas, with the string representation.
+            </summary>
+            <param name="gridCode">The new grid string code.</param>
+            <returns>The target painter.</returns>
+        </member>
         <member name="M:Sudoku.Drawing.ISudokuPainter.WithRenderingCandidates(System.Boolean)">
             <summary>
             Sets whether the candidates in the grid will also be rendered.
@@ -118,7 +125,7 @@
             <param name="fontName">The font name.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainter.CreatePainter(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Drawing.ISudokuPainter.Create(System.Int32,System.Int32)">
             <summary>
             The default singleton instance that you can get.
             </summary>
@@ -685,6 +692,11 @@
             Indicates the font of candidate digits to render.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.IPreference.UnknownFontName">
+            <summary>
+            Indicates the font of unknown values to render.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.IPreference.GivenFontStyle">
             <summary>
             Indicates the font style of the givens.
@@ -905,6 +917,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Gdip.Preference.CandidateFontName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Gdip.Preference.UnknownFontName">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Gdip.Preference.GivenFontStyle">

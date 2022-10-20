@@ -51,6 +51,11 @@ public interface IPreference : ICloneable
 	public abstract string? CandidateFontName { get; set; }
 
 	/// <summary>
+	/// Indicates the font of unknown values to render.
+	/// </summary>
+	public abstract string? UnknownFontName { get; set; }
+
+	/// <summary>
 	/// Indicates the font style of the givens.
 	/// </summary>
 	public abstract FontStyle GivenFontStyle { get; set; }
@@ -309,6 +314,9 @@ file sealed class Preference : IPreference
 
 	/// <inheritdoc/>
 	public string? CandidateFontName { get; set; } = "MiSans";
+
+	/// <inheritdoc/>
+	public string? UnknownFontName { get; set; } = "Times New Roman";
 
 	/// <inheritdoc/>
 	public FontStyle GivenFontStyle { get; set; } = FontStyle.Regular;

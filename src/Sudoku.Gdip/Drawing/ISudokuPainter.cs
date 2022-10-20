@@ -141,6 +141,13 @@ public interface ISudokuPainter
 	public abstract ISudokuPainter WithGrid(scoped in Grid grid);
 
 	/// <summary>
+	/// Sets the grid of the canvas, with the string representation.
+	/// </summary>
+	/// <param name="gridCode">The new grid string code.</param>
+	/// <returns>The target painter.</returns>
+	public sealed ISudokuPainter WithGridCode(string gridCode) => WithGrid(Grid.Parse(gridCode));
+
+	/// <summary>
 	/// Sets whether the candidates in the grid will also be rendered.
 	/// </summary>
 	/// <param name="renderingCandidates">The <see cref="bool"/> value indicating that.</param>
@@ -173,8 +180,7 @@ public interface ISudokuPainter
 	/// The default singleton instance that you can get.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static sealed ISudokuPainter CreatePainter(int canvasDefaultSize, int canvasOffset = 10)
-		=> new SudokuPainter(canvasDefaultSize, canvasOffset);
+	public static sealed ISudokuPainter Create(int canvasDefaultSize, int canvasOffset = 10) => new SudokuPainter(canvasDefaultSize, canvasOffset);
 }
 
 /// <summary>
