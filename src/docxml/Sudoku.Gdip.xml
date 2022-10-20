@@ -1114,6 +1114,34 @@
         <member name="M:Sudoku.Gdip.Preference.CoverBy(Sudoku.Gdip.IPreference)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Gdip.TextRenderingData">
+            <summary>
+            The inner text rendering data.
+            </summary>
+            <param name="Font">The font used.</param>
+            <param name="ExtraHeight">The extra height.</param>
+            <param name="StringFormat">The string format.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.TextRenderingData.#ctor(System.Drawing.Font,System.Single,System.Drawing.StringFormat)">
+            <summary>
+            The inner text rendering data.
+            </summary>
+            <param name="Font">The font used.</param>
+            <param name="ExtraHeight">The extra height.</param>
+            <param name="StringFormat">The string format.</param>
+        </member>
+        <member name="P:Sudoku.Gdip.TextRenderingData.Font">
+            <summary>The font used.</summary>
+        </member>
+        <member name="P:Sudoku.Gdip.TextRenderingData.ExtraHeight">
+            <summary>The extra height.</summary>
+        </member>
+        <member name="P:Sudoku.Gdip.TextRenderingData.StringFormat">
+            <summary>The string format.</summary>
+        </member>
+        <member name="M:Sudoku.Gdip.TextRenderingData.Dispose">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Drawing.BitmapExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.

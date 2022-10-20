@@ -88,9 +88,8 @@ public interface IGridImageGenerator
 	/// <returns>The default-generated <see cref="Image"/> instance.</returns>
 	public sealed Image Render()
 	{
-		var (font, extraHeight, alignment) = GetFooterTextRenderingData();
-		using var _ = font;
-		using var __ = alignment;
+		using var data = GetFooterTextRenderingData();
+		var (font, extraHeight, alignment) = data;
 
 		// There is a little bug that this method ignores the case when the text is too long.
 		// However, I don't want to handle on this case. If the text is too long, it will be overflown, as default case to be kept;
@@ -107,13 +106,13 @@ public interface IGridImageGenerator
 	/// Gets the rendering data.
 	/// </summary>
 	/// <returns>Rendering data.</returns>
-	protected internal sealed (Font Font, float ExtraHeight, StringFormat StringFormat) GetFooterTextRenderingData()
+	internal sealed TextRenderingData GetFooterTextRenderingData()
 	{
 		using var tempBitmap = new Bitmap((int)Width, (int)Height);
 		using var tempGraphics = Graphics.FromImage(tempBitmap);
 		var footerFont = new Font("MiSans", 24, FontStyle.Bold);
 		var (_, footerHeight) = FooterText is not null ? tempGraphics.MeasureString(FooterText, footerFont) : default;
-		return (footerFont, footerHeight, new() { Alignment = FooterTextAlignment });
+		return new(footerFont, footerHeight, new() { Alignment = FooterTextAlignment });
 	}
 
 
@@ -258,9 +257,8 @@ file sealed class GridImageGenerator : IGridImageGenerator
 			return;
 		}
 
-		var (font, extraHeight, alignment) = ((IGridImageGenerator)this).GetFooterTextRenderingData();
-		using var _ = font;
-		using var __ = alignment;
+		using var data = ((IGridImageGenerator)this).GetFooterTextRenderingData();
+		var (font, extraHeight, alignment) = data;
 		g.DrawString(FooterText, font, Brushes.Black, new RectangleF(0, Width, Width, extraHeight), alignment);
 	}
 
