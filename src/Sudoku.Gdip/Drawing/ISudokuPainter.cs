@@ -111,12 +111,6 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	}
 
 	/// <summary>
-	/// Render to the specified image with the current configuration.
-	/// </summary>
-	/// <param name="image">The target image you want to be rendered to.</param>
-	public abstract void RenderToImage(Image image);
-
-	/// <summary>
 	/// Render the image with the current configuration.
 	/// </summary>
 	/// <returns>
@@ -177,10 +171,6 @@ file sealed class SudokuPainter : ISudokuPainter
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void RenderToImage(Image image) => _generator.Draw(image);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Image Render() => _generator.Draw();
 
 	/// <inheritdoc/>
@@ -237,6 +227,14 @@ file sealed class SudokuPainter : ISudokuPainter
 	{
 		_generator.Preferences.ValueScale = fontScale;
 		_generator.Preferences.CandidateScale = fontScale / 3;
+		return this;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ISudokuPainter WithFooterText(string footerText)
+	{
+		_generator.FooterText = footerText;
 		return this;
 	}
 

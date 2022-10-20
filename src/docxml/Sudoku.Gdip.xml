@@ -56,12 +56,6 @@
             Other formats are not supported. This method will return <see langword="false"/> for not being supported.
             </returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainter.RenderToImage(System.Drawing.Image)">
-            <summary>
-            Render to the specified image with the current configuration.
-            </summary>
-            <param name="image">The target image you want to be rendered to.</param>
-        </member>
         <member name="M:Sudoku.Drawing.ISudokuPainter.Render">
             <summary>
             Render the image with the current configuration.
@@ -112,9 +106,6 @@
         <member name="P:Sudoku.Drawing.SudokuPainter.Sudoku#Drawing#ISudokuPainter#GridImageGenerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.RenderToImage(System.Drawing.Image)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.Render">
             <inheritdoc/>
         </member>
@@ -137,6 +128,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithFontScale(System.Decimal)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterText(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithConclusions(Sudoku.Solving.Conclusion[])">
@@ -215,6 +209,13 @@
             <param name="fontName">The font name.</param>
             <returns>The target painter.</returns>
         </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithFooterText(System.String)">
+            <summary>
+            Sets the footer text that can be rendered below the picture.
+            </summary>
+            <param name="footerText">The footer text.</param>
+            <returns>The target painter.</returns>
+        </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithConclusions(Sudoku.Solving.Conclusion[])">
             <summary>
             Sets the conclusions used for rendering.
@@ -258,6 +259,12 @@
         <member name="P:Sudoku.Gdip.IGridImageGenerator.Height">
             <summary>
             Indicates the drawing height.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.IGridImageGenerator.FooterText">
+            <summary>
+            Indicate the footer text. This property is optional, and you can keep this with <see langword="null"/> value
+            if you don't want to make any footers on a picture.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.IGridImageGenerator.View">
@@ -361,10 +368,11 @@
         <member name="P:Sudoku.Gdip.GridImageGenerator.Height">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Gdip.GridImageGenerator.FooterText">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Gdip.GridImageGenerator.Puzzle">
-            <summary>
-            Indicates the puzzle.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Gdip.GridImageGenerator.View">
             <inheritdoc/>
@@ -398,6 +406,14 @@
             <param name="id">The identifier instance.</param>
             <returns></returns>
             <exception cref="T:System.InvalidOperationException">Throws when the specified value is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFooterText(System.Drawing.Graphics,System.Drawing.Font,System.Single)">
+            <summary>
+            Draw footer text.
+            </summary>
+            <param name="g">The graphics.</param>
+            <param name="font">The footer font.</param>
+            <param name="extraHeight">The extra height of the drawing area.</param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawValue(System.Drawing.Graphics)">
             <summary>

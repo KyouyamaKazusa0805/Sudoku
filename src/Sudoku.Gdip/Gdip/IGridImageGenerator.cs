@@ -37,6 +37,12 @@ public interface IGridImageGenerator
 	public abstract float Height { get; }
 
 	/// <summary>
+	/// Indicate the footer text. This property is optional, and you can keep this with <see langword="null"/> value
+	/// if you don't want to make any footers on a picture.
+	/// </summary>
+	public abstract string? FooterText { get; set; }
+
+	/// <summary>
 	/// Indicates the view.
 	/// </summary>
 	public abstract View? View { get; set; }
@@ -161,9 +167,10 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 	/// <inheritdoc/>
 	public float Height => Calculator.Height;
 
-	/// <summary>
-	/// Indicates the puzzle.
-	/// </summary>
+	/// <inheritdoc/>
+	public string? FooterText { get; set; }
+
+	/// <inheritdoc/>
 	public required Grid Puzzle { get; set; }
 
 	/// <inheritdoc/>
@@ -197,7 +204,17 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 	/// </returns>
 	public Image Draw([AllowNull] Image bitmap, Graphics g)
 	{
-		bitmap ??= new Bitmap((int)Width, (int)Height);
+		using var footerFont = new Font("MiSans", 24, FontStyle.Bold);
+		var (_, footerHeight) = FooterText is not null ? g.MeasureString(FooterText, footerFont) : default;
+		var extraHeight = footerHeight + 40;
+
+		bitmap ??= new Bitmap(
+			// There is a little bug that this method ignores the case when the text is too long.
+			// However, I don't want to handle on this case. If the text is too long, it will be overflown, as default case to be kept;
+			// otherwise, the picture drawn will be aligned as left, which is not the expected result.
+			(int)Width,
+			(int)(FooterText is not null ? Height + extraHeight : Height)
+		);
 
 		DrawBackground(g);
 		DrawGridAndBlockLines(g);
@@ -210,6 +227,7 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 		DrawView(g);
 		DrawEliminations(g);
 		DrawValue(g);
+		DrawFooterText(g, footerFont, extraHeight);
 
 		return bitmap;
 	}
@@ -240,6 +258,22 @@ internal sealed class GridImageGenerator : IGridImageGenerator
 			_ => throw new InvalidOperationException("Such identifier instance contains invalid value.")
 		};
 
+
+	/// <summary>
+	/// Draw footer text.
+	/// </summary>
+	/// <param name="g">The graphics.</param>
+	/// <param name="font">The footer font.</param>
+	/// <param name="extraHeight">The extra height of the drawing area.</param>
+	private void DrawFooterText(Graphics g, Font font, float extraHeight)
+	{
+		if (FooterText is null)
+		{
+			return;
+		}
+
+		g.DrawString(FooterText, font, Brushes.Black, new RectangleF(0, Width, Width, extraHeight), DefaultStringFormat);
+	}
 
 	/// <summary>
 	/// Draw givens, modifiables and candidates, where the values are specified as a grid.
