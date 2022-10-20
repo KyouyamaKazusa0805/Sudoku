@@ -30,11 +30,11 @@ public interface ISudokuPainter
 	/// A <see cref="bool"/> result indicating whether the file is successfully saved or not.
 	/// All supported formats are:
 	/// <list type="bullet">
-	/// <item><see cref="ImageFormat.Jpeg"/></item>
-	/// <item><see cref="ImageFormat.Png"/></item>
-	/// <item><see cref="ImageFormat.Bmp"/></item>
-	/// <item><see cref="ImageFormat.Gif"/></item>
-	/// <item><see cref="ImageFormat.Wmf"/></item>
+	/// <item><c>*.jpg</c> and <c>*.jpeg</c></item>
+	/// <item><c>*.png</c></item>
+	/// <item><c>*.bmp</c></item>
+	/// <item><c>*.gif</c></item>
+	/// <item><c>*.wmf</c></item>
 	/// </list>
 	/// Other formats are not supported. This method will return <see langword="false"/> for not being supported.
 	/// </returns>
@@ -257,8 +257,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithValueFont(string fontName)
 	{
-		_generator.Preferences.GivenFontName = fontName;
-		_generator.Preferences.ModifiableFontName = fontName;
+		_generator.Preferences.GivenFontName = _generator.Preferences.ModifiableFontName = fontName;
 		return this;
 	}
 
