@@ -24,6 +24,19 @@
             The grid image generator.
             </summary>
         </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainter.SaveTo(System.String)">
+            <summary>
+            Render the image with the current configuration, and save the image to the local path,
+            and automatically release the memory while rendering and image creating.
+            </summary>
+            <param name="path">The local path.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified file format specified in the argument <paramref name="path"/> is <see langword="null"/>.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the specified file format specified in the argument <paramref name="path"/> is not supported.
+            </exception>
+        </member>
         <member name="M:Sudoku.Drawing.ISudokuPainter.TrySaveTo(System.String)">
             <summary>
             Render the image with the current configuration, and save the image to the local path,
@@ -68,62 +81,6 @@
             </returns>
             <seealso cref="T:System.Drawing.Image"/>
             <seealso cref="T:System.IDisposable"/>
-        </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainter.WithCanvasSize(System.Int32)">
-            <summary>
-            Sets the size of the canvas.
-            </summary>
-            <param name="size">The new size of the canvas.</param>
-            <returns>The target painter.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainter.WithCanvasOffset(System.Int32)">
-            <summary>
-            Sets the offset of the canvas.
-            </summary>
-            <param name="offset">The new offset of the canvas.</param>
-            <returns>The target painter.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainter.WithGrid(Sudoku.Concepts.Grid@)">
-            <summary>
-            Sets the grid of the canvas.
-            </summary>
-            <param name="grid">The new grid.</param>
-            <returns>The target painter.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainter.WithGridCode(System.String)">
-            <summary>
-            Sets the grid of the canvas, with the string representation.
-            </summary>
-            <param name="gridCode">The new grid string code.</param>
-            <returns>The target painter.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainter.WithRenderingCandidates(System.Boolean)">
-            <summary>
-            Sets whether the candidates in the grid will also be rendered.
-            </summary>
-            <param name="renderingCandidates">The <see cref="T:System.Boolean"/> value indicating that.</param>
-            <returns>The target painter.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainter.WithValueFont(System.String)">
-            <summary>
-            Sets a font name that is used for rendering text of value digits in a sudoku grid.
-            </summary>
-            <param name="fontName">The font name.</param>
-            <returns>The target painter.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainter.WithFontScale(System.Decimal)">
-            <summary>
-            Sets a font scale that is used for rendering text of digits (values and candidates) in a sudoku grid.
-            </summary>
-            <param name="fontScale">The font scale.</param>
-            <returns>The target painter.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainter.WithCandidateFont(System.String)">
-            <summary>
-            Sets a font name that is used for rendering text of candidate digits in a sudoku grid.
-            </summary>
-            <param name="fontName">The font name.</param>
-            <returns>The target painter.</returns>
         </member>
         <member name="M:Sudoku.Drawing.ISudokuPainter.Create(System.Int32,System.Int32)">
             <summary>
@@ -181,6 +138,68 @@
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithFontScale(System.Decimal)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.ISudokuPainterFactory">
+            <summary>
+            Defines the factory methods that can append custom configurations for <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithCanvasSize(System.Int32)">
+            <summary>
+            Sets the size of the canvas.
+            </summary>
+            <param name="size">The new size of the canvas.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithCanvasOffset(System.Int32)">
+            <summary>
+            Sets the offset of the canvas.
+            </summary>
+            <param name="offset">The new offset of the canvas.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithGrid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Sets the grid of the canvas.
+            </summary>
+            <param name="grid">The new grid.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithGridCode(System.String)">
+            <summary>
+            Sets the grid of the canvas, with the string representation.
+            </summary>
+            <param name="gridCode">The new grid string code.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithRenderingCandidates(System.Boolean)">
+            <summary>
+            Sets whether the candidates in the grid will also be rendered.
+            </summary>
+            <param name="renderingCandidates">The <see cref="T:System.Boolean"/> value indicating that.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithValueFont(System.String)">
+            <summary>
+            Sets a font name that is used for rendering text of value digits in a sudoku grid.
+            </summary>
+            <param name="fontName">The font name.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)">
+            <summary>
+            Sets a font scale that is used for rendering text of digits (values and candidates) in a sudoku grid.
+            </summary>
+            <param name="fontScale">The font scale.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithCandidateFont(System.String)">
+            <summary>
+            Sets a font name that is used for rendering text of candidate digits in a sudoku grid.
+            </summary>
+            <param name="fontName">The font name.</param>
+            <returns>The target painter.</returns>
         </member>
         <member name="T:Sudoku.Gdip.IGridImageGenerator">
             <summary>
@@ -255,7 +274,7 @@
             </summary>
             <returns>The defualt generated image instance.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.CreateInstance(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Gdip.IGridImageGenerator.Create(System.Int32,System.Int32)">
             <summary>
             Creates an <see cref="T:Sudoku.Gdip.IGridImageGenerator"/> instance via the specified values.
             </summary>
@@ -263,14 +282,14 @@
             <param name="canvasOffset">The canvas offset.</param>
             <returns>The target result.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.CreateInstance(Sudoku.Gdip.IPointCalculator)">
+        <member name="M:Sudoku.Gdip.IGridImageGenerator.Create(Sudoku.Gdip.IPointCalculator)">
             <summary>
             Creates an <see cref="T:Sudoku.Gdip.IGridImageGenerator"/> instance via the specified values.
             </summary>
             <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
             <returns>The target result.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.CreateInstance(Sudoku.Gdip.IPointCalculator,Sudoku.Gdip.IPreference)">
+        <member name="M:Sudoku.Gdip.IGridImageGenerator.Create(Sudoku.Gdip.IPointCalculator,Sudoku.Gdip.IPreference)">
             <summary>
             Creates an <see cref="T:Sudoku.Gdip.IGridImageGenerator"/> instance via the specified values.
             </summary>
@@ -278,7 +297,7 @@
             <param name="preferences">The user-defined preferences.</param>
             <returns>The target result.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.CreateInstance(Sudoku.Gdip.IPointCalculator,Sudoku.Gdip.IPreference,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Gdip.IGridImageGenerator.Create(Sudoku.Gdip.IPointCalculator,Sudoku.Gdip.IPreference,Sudoku.Concepts.Grid@)">
             <summary>
             Creates an <see cref="T:Sudoku.Gdip.IGridImageGenerator"/> instance via the specified values.
             </summary>
@@ -558,7 +577,7 @@
             <param name="house">The house.</param>
             <returns>The anchor points.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.CreateConverter(System.Single,System.Single)">
+        <member name="M:Sudoku.Gdip.IPointCalculator.Create(System.Single,System.Single)">
             <summary>
             Creates a <see cref="T:Sudoku.Gdip.IPointCalculator"/> instance with the specified size, and the offset.
             </summary>

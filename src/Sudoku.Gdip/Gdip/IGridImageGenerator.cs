@@ -91,8 +91,8 @@ public interface IGridImageGenerator
 	/// <param name="canvasOffset">The canvas offset.</param>
 	/// <returns>The target result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IGridImageGenerator CreateInstance(int canvasSize, int canvasOffset)
-		=> CreateInstance(CreateConverter(canvasSize, canvasOffset), IPreference.Default, Grid.Empty);
+	public static IGridImageGenerator Create(int canvasSize, int canvasOffset)
+		=> Create(IPointCalculator.Create(canvasSize, canvasOffset), IPreference.Default, Grid.Empty);
 
 	/// <summary>
 	/// Creates an <see cref="IGridImageGenerator"/> instance via the specified values.
@@ -100,7 +100,7 @@ public interface IGridImageGenerator
 	/// <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
 	/// <returns>The target result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IGridImageGenerator CreateInstance(IPointCalculator calculator) => CreateInstance(calculator, IPreference.Default, Grid.Empty);
+	public static IGridImageGenerator Create(IPointCalculator calculator) => Create(calculator, IPreference.Default, Grid.Empty);
 
 	/// <summary>
 	/// Creates an <see cref="IGridImageGenerator"/> instance via the specified values.
@@ -109,8 +109,8 @@ public interface IGridImageGenerator
 	/// <param name="preferences">The user-defined preferences.</param>
 	/// <returns>The target result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IGridImageGenerator CreateInstance(IPointCalculator calculator, IPreference preferences)
-		=> CreateInstance(calculator, preferences, Grid.Empty);
+	public static IGridImageGenerator Create(IPointCalculator calculator, IPreference preferences)
+		=> Create(calculator, preferences, Grid.Empty);
 
 	/// <summary>
 	/// Creates an <see cref="IGridImageGenerator"/> instance via the specified values.
@@ -120,7 +120,7 @@ public interface IGridImageGenerator
 	/// <param name="puzzle">The puzzle.</param>
 	/// <returns>The target result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IGridImageGenerator CreateInstance(IPointCalculator calculator, IPreference preferences, scoped in Grid puzzle)
+	public static IGridImageGenerator Create(IPointCalculator calculator, IPreference preferences, scoped in Grid puzzle)
 		=> new GridImageGenerator { Calculator = calculator, Preferences = preferences, Puzzle = puzzle };
 
 	/// <summary>

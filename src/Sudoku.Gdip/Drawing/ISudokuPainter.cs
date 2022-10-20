@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a sudoku painter instance.
 /// </summary>
-public interface ISudokuPainter
+public interface ISudokuPainter : ISudokuPainterFactory
 {
 	/// <summary>
 	/// The width.
@@ -26,6 +26,60 @@ public interface ISudokuPainter
 	/// and automatically release the memory while rendering and image creating.
 	/// </summary>
 	/// <param name="path">The local path.</param>
+	/// <exception cref="ArgumentException">
+	/// Throws when the specified file format specified in the argument <paramref name="path"/> is <see langword="null"/>.
+	/// </exception>
+	/// <exception cref="NotSupportedException">
+	/// Throws when the specified file format specified in the argument <paramref name="path"/> is not supported.
+	/// </exception>
+	public sealed void SaveTo(string path)
+	{
+		switch (Path.GetExtension(path)?.ToLower())
+		{
+			case null or []:
+			{
+				throw new ArgumentException("The specified file format is unknown (null), which is not allowed in this method.", nameof(path));
+			}
+			case ".wmf":
+			{
+				using var tempBitmap = new Bitmap((int)Width, (int)Height);
+				using var tempGraphics = Graphics.FromImage(tempBitmap);
+				using var metaFile = new Metafile(path, tempGraphics.GetHdc());
+				using var g = Graphics.FromImage(metaFile);
+				((GridImageGenerator)GridImageGenerator).Draw(metaFile, g);
+
+				tempGraphics.ReleaseHdc();
+
+				break;
+			}
+			case { Length: >= 4 } e and (".jpg" or ".jpeg" or ".png" or ".bmp" or ".gif"):
+			{
+				using var imageRendered = Render();
+				imageRendered.Save(
+					path,
+					e switch
+					{
+						".jpg" or ".jpeg" => ImageFormat.Jpeg,
+						".png" => ImageFormat.Png,
+						".bmp" => ImageFormat.Bmp,
+						".gif" => ImageFormat.Gif
+					}
+				);
+
+				break;
+			}
+			default:
+			{
+				throw new NotSupportedException("The specified file format is not supported.");
+			}
+		}
+	}
+
+	/// <summary>
+	/// Render the image with the current configuration, and save the image to the local path,
+	/// and automatically release the memory while rendering and image creating.
+	/// </summary>
+	/// <param name="path">The local path.</param>
 	/// <returns>
 	/// A <see cref="bool"/> result indicating whether the file is successfully saved or not.
 	/// All supported formats are:
@@ -42,42 +96,18 @@ public interface ISudokuPainter
 	{
 		try
 		{
-			switch (Path.GetExtension(path))
-			{
-				case ".wmf":
-				{
-					using var tempBitmap = new Bitmap((int)Width, (int)Height);
-					using var tempGraphics = Graphics.FromImage(tempBitmap);
-					using var metaFile = new Metafile(path, tempGraphics.GetHdc());
-					using var g = Graphics.FromImage(metaFile);
-					((GridImageGenerator)GridImageGenerator).Draw(metaFile, g);
+			SaveTo(path);
 
-					tempGraphics.ReleaseHdc();
-
-					return true;
-				}
-				case { Length: >= 4 } e and (".jpg" or ".jpeg" or ".png" or ".bmp" or ".gif"):
-				{
-					using var imageRendered = Render();
-					imageRendered.Save(
-						path,
-						e switch
-						{
-							".jpg" or ".jpeg" => ImageFormat.Jpeg,
-							".png" => ImageFormat.Png,
-							".bmp" => ImageFormat.Bmp,
-							".gif" => ImageFormat.Gif
-						}
-					);
-					return true;
-				}
-			}
+			return true;
+		}
+		catch (Exception ex) when (ex is NotSupportedException or ArgumentException)
+		{
+			return false;
 		}
 		catch
 		{
+			throw;
 		}
-
-		return false;
 	}
 
 	/// <summary>
@@ -106,68 +136,13 @@ public interface ISudokuPainter
 	/// <seealso cref="IDisposable"/>
 	public abstract Image Render();
 
-	/// <summary>
-	/// Sets the size of the canvas.
-	/// </summary>
-	/// <param name="size">The new size of the canvas.</param>
-	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter WithCanvasSize(int size);
-
-	/// <summary>
-	/// Sets the offset of the canvas.
-	/// </summary>
-	/// <param name="offset">The new offset of the canvas.</param>
-	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter WithCanvasOffset(int offset);
-
-	/// <summary>
-	/// Sets the grid of the canvas.
-	/// </summary>
-	/// <param name="grid">The new grid.</param>
-	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter WithGrid(scoped in Grid grid);
-
-	/// <summary>
-	/// Sets the grid of the canvas, with the string representation.
-	/// </summary>
-	/// <param name="gridCode">The new grid string code.</param>
-	/// <returns>The target painter.</returns>
-	public sealed ISudokuPainter WithGridCode(string gridCode) => WithGrid(Grid.Parse(gridCode));
-
-	/// <summary>
-	/// Sets whether the candidates in the grid will also be rendered.
-	/// </summary>
-	/// <param name="renderingCandidates">The <see cref="bool"/> value indicating that.</param>
-	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter WithRenderingCandidates(bool renderingCandidates);
-
-	/// <summary>
-	/// Sets a font name that is used for rendering text of value digits in a sudoku grid.
-	/// </summary>
-	/// <param name="fontName">The font name.</param>
-	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter WithValueFont(string fontName);
-
-	/// <summary>
-	/// Sets a font scale that is used for rendering text of digits (values and candidates) in a sudoku grid.
-	/// </summary>
-	/// <param name="fontScale">The font scale.</param>
-	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter WithFontScale(decimal fontScale);
-
-	/// <summary>
-	/// Sets a font name that is used for rendering text of candidate digits in a sudoku grid.
-	/// </summary>
-	/// <param name="fontName">The font name.</param>
-	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter WithCandidateFont(string fontName);
-
 
 	/// <summary>
 	/// The default singleton instance that you can get.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static sealed ISudokuPainter Create(int canvasDefaultSize, int canvasOffset = 10) => new SudokuPainter(canvasDefaultSize, canvasOffset);
+	public static sealed ISudokuPainter Create(int canvasDefaultSize, int canvasOffset = 10)
+		=> new SudokuPainter(canvasDefaultSize, canvasOffset);
 }
 
 /// <summary>
@@ -187,7 +162,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SudokuPainter(int defaultSize, int defaultOffset)
-		=> _generator = CreateInstance(CreateConverter(defaultSize, defaultOffset), IPreference.Default, Grid.Empty);
+		=> _generator = Create(Create(defaultSize, (float)defaultOffset), IPreference.Default, Grid.Empty);
 
 
 	/// <inheritdoc/>
@@ -212,7 +187,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithCanvasSize(int size)
 	{
-		_generator.Calculator = CreateConverter(size);
+		_generator.Calculator = Create(size);
 		return this;
 	}
 
@@ -220,7 +195,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithCanvasOffset(int offset)
 	{
-		_generator.Calculator = CreateConverter(_generator.Width, offset);
+		_generator.Calculator = Create(_generator.Width, offset);
 		return this;
 	}
 
