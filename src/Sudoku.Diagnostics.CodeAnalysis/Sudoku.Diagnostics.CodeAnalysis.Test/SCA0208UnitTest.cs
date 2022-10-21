@@ -16,8 +16,6 @@ public sealed class SCA0208UnitTest
 			"""
 			#nullable enable
 
-			using System;
-
 			namespace System;
 
 			file static class Int32Extensions

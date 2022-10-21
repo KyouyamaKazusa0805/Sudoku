@@ -1,11 +1,11 @@
 ﻿using VerifyCS = Sudoku.Diagnostics.CodeAnalysis.Test.CSharpAnalyzerVerifier<
-	Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0209_ExtensionMethodTypesShouldBeSameAnalyzer
+	Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0210_ExtensionMethodContainingTypeNameAnalyzer
 >;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Test;
 
 [TestClass]
-public sealed class SCA0209UnitTest
+public sealed class SCA0210UnitTest
 {
 	[TestMethod]
 	public async Task TestCase_EmptyCode() => await VerifyCS.VerifyAnalyzerAsync(@"");
@@ -18,12 +18,18 @@ public sealed class SCA0209UnitTest
 
 			namespace System;
 
-			file static class {|#0:Int32Extensions|}
+			file static class {|#0:Hello|}
 			{
 				public static void E(this int @this) { }
-				public static void F(this double @this) { }
+				public static void F(this int @this) { }
+			}
+
+			file static class AnotherExtensions
+			{
+				public static void E(this int @this) { }
+				public static void F(this int @this) { }
 			}
 			""",
-			VerifyCS.Diagnostic(nameof(SCA0209)).WithLocation(0)
+			VerifyCS.Diagnostic(nameof(SCA0210)).WithLocation(0)
 		);
 }
