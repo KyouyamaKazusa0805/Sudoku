@@ -1887,13 +1887,12 @@ file static class InternalHelper
 		if (length >= (nuint)sizeof(nuint))
 		{
 			// Conditional jmp forward to favor shorter lengths. (See comment at "Equal:" label)
-			// The longer lengths can make back the time due to branch misprediction
-			// better than shorter lengths.
+			// The longer lengths can make back the time due to branch misprediction better than shorter lengths.
 			goto Longer;
 		}
 
 #if TARGET_64BIT
-		// On 32-bit, this will always be true since sizeof(nuint) == 4
+		// On 32-bit, this will always be true since sizeof(nuint) == 4.
 		if (length < sizeof(uint))
 #endif
 		{
@@ -1925,8 +1924,7 @@ file static class InternalHelper
 		}
 #endif
 	Longer:
-		// Only check that the ref is the same if buffers are large,
-		// and hence its worth avoiding doing unnecessary comparisons
+		// Only check that the ref is the same if buffers are large, and hence its worth avoiding doing unnecessary comparisons.
 		if (!AreSame(ref first, ref second))
 		{
 			// C# compiler inverts this test, making the outer goto the conditional jmp.
@@ -1938,9 +1936,10 @@ file static class InternalHelper
 
 	Result:
 		return result;
-	// When the sequence is equal; which is the longest execution, we want it to determine that
-	// as fast as possible so we do not want the early outs to be "predicted not taken" branches.
+	
 	Equal:
+		// When the sequence is equal; which is the longest execution, we want it to determine that
+		// as fast as possible so we do not want the early outs to be "predicted not taken" branches.
 		return true;
 
 	Vector:
@@ -1966,7 +1965,7 @@ file static class InternalHelper
 					} while (lengthToExamine > offset);
 				}
 
-				// Do final compare as Vector256<byte>.Count from end rather than start
+				// Do final compare as Vector256<byte>.Count from end rather than start.
 				if (Vector256.LoadUnsafe(ref first, lengthToExamine) == Vector256.LoadUnsafe(ref second, lengthToExamine))
 				{
 					// C# compiler inverts this test, making the outer goto the conditional jmp.
@@ -1996,7 +1995,7 @@ file static class InternalHelper
 					} while (lengthToExamine > offset);
 				}
 
-				// Do final compare as Vector128<byte>.Count from end rather than start
+				// Do final compare as Vector128<byte>.Count from end rather than start.
 				if (Vector128.LoadUnsafe(ref first, lengthToExamine) == Vector128.LoadUnsafe(ref second, lengthToExamine))
 				{
 					// C# compiler inverts this test, making the outer goto the conditional jmp.
@@ -2027,7 +2026,7 @@ file static class InternalHelper
 				} while (lengthToExamine > offset);
 			}
 
-			// Do final compare as Vector<byte>.Count from end rather than start
+			// Do final compare as Vector<byte>.Count from end rather than start.
 			if (LoadVector(ref first, lengthToExamine) == LoadVector(ref second, lengthToExamine))
 			{
 				// C# compiler inverts this test, making the outer goto the conditional jmp.
@@ -2056,13 +2055,13 @@ file static class InternalHelper
 
 			var offset = (nuint)0;
 			var lengthToExamine = length - (nuint)sizeof(nuint);
-			// Unsigned, so it shouldn't have overflowed larger than length (rather than negative)
+			// Unsigned, so it shouldn't have overflowed larger than length (rather than negative).
 			Debug.Assert(lengthToExamine < length);
 			if (lengthToExamine > 0)
 			{
 				do
 				{
-					// Compare unsigned so not do a sign extend mov on 64 bit
+					// Compare unsigned so not do a sign extend mov on 64 bit.
 					if (LoadNUInt(ref first, offset) != LoadNUInt(ref second, offset))
 					{
 						goto NotEqual;
@@ -2071,7 +2070,7 @@ file static class InternalHelper
 				} while (lengthToExamine > offset);
 			}
 
-			// Do final compare as sizeof(nuint) from end rather than start
+			// Do final compare as sizeof(nuint) from end rather than start.
 			result = LoadNUInt(ref first, lengthToExamine) == LoadNUInt(ref second, lengthToExamine);
 			goto Result;
 		}
@@ -2079,8 +2078,8 @@ file static class InternalHelper
 	// As there are so many true/false exit points the Jit will coalesce them to one location.
 	// We want them at the end so the conditional early exit jmps are all jmp forwards so the
 	// branch predictor in a uninitialized state will not take them e.g.
-	// - loops are conditional jmps backwards and predicted
-	// - exceptions are conditional forwards jmps and not predicted
+	// - loops are conditional jmps backwards and predicted.
+	// - exceptions are conditional forwards jmps and not predicted.
 	NotEqual:
 		return false;
 	}
