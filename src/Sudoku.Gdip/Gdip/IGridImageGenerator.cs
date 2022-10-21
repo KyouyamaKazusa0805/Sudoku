@@ -777,7 +777,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 
 				if (through)
 				{
-					var bezierLength = 20D;
+					var bezierLength = 20F;
 
 					// The end points are rotated 45 degrees
 					// (counterclockwise for the start point, clockwise for the end point).
@@ -792,7 +792,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 					var bx2 = pt2.X - bezierLength * Cos(aAlpha);
 					var by2 = pt2.Y - bezierLength * Sin(aAlpha);
 
-					g.DrawBezier(penToDraw, pt1.X, pt1.Y, (float)bx1, (float)by1, (float)bx2, (float)by2, pt2.X, pt2.Y);
+					g.DrawBezier(penToDraw, pt1.X, pt1.Y, bx1, by1, bx2, by2, pt2.X, pt2.Y);
 				}
 				else
 				{
