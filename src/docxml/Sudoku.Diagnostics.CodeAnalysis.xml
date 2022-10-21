@@ -369,6 +369,25 @@
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0209_ExtensionMethodTypesShouldBeSameAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0209">SCA0209</see> (This parameters should be same type)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0209_ExtensionMethodTypesShouldBeSameAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0209_ExtensionMethodTypesShouldBeSameAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0209_ExtensionMethodTypesShouldBeSameAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SymbolAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.NamedArgumentsExtensions">
             <summary>
             Provides extension methods on named arguments list type <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
@@ -614,6 +633,39 @@
             <item><b>Title</b>: Please name this parameter '@this' instead</item>
             <item><b>Description</b>: Please name this parameter '@this' instead.</item>
             <item><b>Category</b>: Naming</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0209">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0209">SCA0209</see>:
+            <list type="bullet">
+            <item><b>Title</b>: This parameters should be same type</item>
+            <item><b>Description</b>: This parameters should be same type.</item>
+            <item><b>Category</b>: Style</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0210">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0210">SCA0210</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Containing type of extension methods should be name as 'TypeExtensions'</item>
+            <item><b>Description</b>: Containing type of extension methods should be name as 'TypeExtensions'.</item>
+            <item><b>Category</b>: Naming</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0211">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0211">SCA0211</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Containing namespace of containing type of extension methods should be same as the type of this parameters</item>
+            <item><b>Description</b>: Containing namespace of containing type of extension methods should be same as the type of this parameters.</item>
+            <item><b>Category</b>: Style</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
             </list>
             </summary>

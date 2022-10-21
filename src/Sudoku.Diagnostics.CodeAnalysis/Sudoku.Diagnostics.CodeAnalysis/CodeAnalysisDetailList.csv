@@ -19,3 +19,6 @@ SCA0205,Don't use 'using' keyword on 'StringHandler' type,,Design,Info,Don't use
 SCA0206,Use explicit cast instead of 'Grid.Parse' method invocation,,Usage,Info,Use explicit cast instead of 'Grid.Parse' method invocation.
 SCA0207,Use 'Grid.Parse' method invocation instead of explicit operator,,Usage,Info,Use 'Grid.Parse' method invocation instead of explicit operator.
 SCA0208,Please name this parameter '@this' instead,,Naming,Info,Please name this parameter '@this' instead.
+SCA0209,This parameters should be same type,,Style,Info,This parameters should be same type.
+SCA0210,Containing type of extension methods should be name as 'TypeExtensions',,Naming,Info,Containing type of extension methods should be name as 'TypeExtensions'.
+SCA0211,Containing namespace of containing type of extension methods should be same as the type of this parameters,,Style,Info,Containing namespace of containing type of extension methods should be same as the type of this parameters.
