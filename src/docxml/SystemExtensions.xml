@@ -3524,6 +3524,8 @@
         </member>
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when method <see cref="M:System.ICloneable`1.Clone"/> returns <see langword="null"/>.</exception>
+            <seealso cref="M:System.ICloneable`1.Clone"/>
         </member>
         <member name="T:System.IFixable`2">
             <summary>
