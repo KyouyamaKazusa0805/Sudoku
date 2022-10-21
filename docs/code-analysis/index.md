@@ -34,6 +34,7 @@
 | [SCA0205](sca0205)     | 设计（Design）           | ℹ        | 请使用 `ToStringAndClear` 释放内存；请勿使用 `using` 关键字对该对象使用默认的释放行为 |
 | [SCA0206](sca0206)     | 使用（Usage）            | ℹ        | 请使用强制转换代替 `Grid.Parse` 方法                         |
 | [SCA0207](sca0207)     | 使用（Usage）            | ℹ        | 请使用 `Grid.Parse` 方法代替强制转换                         |
+| [SCA0208](sca0208)     | 命名（Naming）           | ℹ        | 扩展方法的 `this` 参数请使用 `@this` 命名                    |
 
 ## 注解
 

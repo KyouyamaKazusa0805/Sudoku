@@ -350,6 +350,25 @@
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0208_ThisParameterNameAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0208">SCA0208</see> (Please name this parameter '@this' instead)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0208_ThisParameterNameAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0208_ThisParameterNameAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0208_ThisParameterNameAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.NamedArgumentsExtensions">
             <summary>
             Provides extension methods on named arguments list type <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
@@ -584,6 +603,17 @@
             <item><b>Title</b>: Use 'Grid.Parse' method invocation instead of explicit operator</item>
             <item><b>Description</b>: Use 'Grid.Parse' method invocation instead of explicit operator.</item>
             <item><b>Category</b>: Usage</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0208">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0208">SCA0208</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Please name this parameter '@this' instead</item>
+            <item><b>Description</b>: Please name this parameter '@this' instead.</item>
+            <item><b>Category</b>: Naming</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
             </list>
             </summary>

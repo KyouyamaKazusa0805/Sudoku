@@ -18,3 +18,4 @@ SCA0204,Please don't use variable having called 'ToStringAndClear',,Design,Warni
 SCA0205,Don't use 'using' keyword on 'StringHandler' type,,Design,Info,Don't use 'using' keyword on 'StringHandler' type; please use 'ToStringAndClear' to release memory.
 SCA0206,Use explicit cast instead of 'Grid.Parse' method invocation,,Usage,Info,Use explicit cast instead of 'Grid.Parse' method invocation.
 SCA0207,Use 'Grid.Parse' method invocation instead of explicit operator,,Usage,Info,Use 'Grid.Parse' method invocation instead of explicit operator.
+SCA0208,Please name this parameter '@this' instead,,Naming,Info,Please name this parameter '@this' instead.
