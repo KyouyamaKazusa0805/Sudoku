@@ -96,6 +96,14 @@ public interface ISudokuPainterFactory
 	public abstract ISudokuPainter WithFooterText(string footerText, TextAlignmentType alignment);
 
 	/// <summary>
+	/// Sets the footer text color that is used by rendering the text.
+	/// </summary>
+	/// <param name="color">The color to set. We do not recommend you use hard-reading colors such as <see cref="Color.Transparent"/>.</param>
+	/// <returns>The target painter.</returns>
+	/// <seealso cref="Color.Transparent"/>
+	public abstract ISudokuPainter WithFooterTextColor(Color color);
+
+	/// <summary>
 	/// Sets the conclusions used for rendering.
 	/// </summary>
 	/// <param name="conclusions">The conclusions.</param>

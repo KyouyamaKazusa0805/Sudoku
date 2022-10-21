@@ -136,6 +136,9 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterText(System.String,Sudoku.Drawing.TextRendering.TextAlignmentType)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterTextColor(System.Drawing.Color)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithConclusions(Sudoku.Solving.Conclusion[])">
             <inheritdoc/>
         </member>
@@ -234,6 +237,14 @@
             <param name="alignment">The alignment.</param>
             <returns>The target painter.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="alignment"/> is not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithFooterTextColor(System.Drawing.Color)">
+            <summary>
+            Sets the footer text color that is used by rendering the text.
+            </summary>
+            <param name="color">The color to set. We do not recommend you use hard-reading colors such as <see cref="P:System.Drawing.Color.Transparent"/>.</param>
+            <returns>The target painter.</returns>
+            <seealso cref="P:System.Drawing.Color.Transparent"/>
         </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithConclusions(Sudoku.Solving.Conclusion[])">
             <summary>
@@ -899,6 +910,11 @@
             Indicates the color of the cross sign.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.IPreference.FooterTextColor">
+            <summary>
+            Indicates footer text color.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.IPreference.Color1">
             <summary>
             Indicates the color 1.
@@ -1095,6 +1111,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Gdip.Preference.CrossSignColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Gdip.Preference.FooterTextColor">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Gdip.Preference.Color1">

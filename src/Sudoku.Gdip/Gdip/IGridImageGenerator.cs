@@ -266,14 +266,15 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// <param name="g">The graphics.</param>
 	private void DrawFooterText(Graphics g)
 	{
-		if (FooterText is null)
+		if (this is not { Width: var w, FooterText: { } text, Preferences.FooterTextColor: var color })
 		{
 			return;
 		}
 
+		using var brush = new SolidBrush(color);
 		using var data = ((IGridImageGenerator)this).GetFooterTextRenderingData();
 		var (font, extraHeight, alignment) = data;
-		g.DrawString(FooterText, font, Brushes.Black, new RectangleF(0, Width, Width, extraHeight), alignment);
+		g.DrawString(text, font, brush, new RectangleF(0, w, w, extraHeight), alignment);
 	}
 
 	/// <summary>

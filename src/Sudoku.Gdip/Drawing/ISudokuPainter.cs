@@ -256,6 +256,14 @@ file sealed class SudokuPainter : ISudokuPainter
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ISudokuPainter WithFooterTextColor(Color color)
+	{
+		_generator.Preferences.FooterTextColor = color;
+		return this;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithConclusions(params Conclusion[] conclusions)
 	{
 		_generator.Conclusions = conclusions;

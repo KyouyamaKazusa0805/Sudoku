@@ -161,6 +161,11 @@ public interface IPreference : ICloneable<IPreference>
 	public abstract Color CrossSignColor { get; set; }
 
 	/// <summary>
+	/// Indicates footer text color.
+	/// </summary>
+	public abstract Color FooterTextColor { get; set; }
+
+	/// <summary>
 	/// Indicates the color 1.
 	/// </summary>
 	public abstract Color Color1 { get; set; }
@@ -376,6 +381,9 @@ file sealed class Preference : IPreference
 
 	/// <inheritdoc/>
 	public Color CrossSignColor { get; set; } = Color.FromArgb(192, Color.Black);
+
+	/// <inheritdoc/>
+	public Color FooterTextColor { get; set; } = Color.Black;
 
 	/// <inheritdoc/>
 	public Color Color1 { get; set; } = Color.FromArgb(63, 218, 101);
