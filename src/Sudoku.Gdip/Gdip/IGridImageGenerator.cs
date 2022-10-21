@@ -437,7 +437,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 		using var cannibalBrush = new SolidBrush(cColor);
 		using var elimBrushLighter = new SolidBrush(eColor.QuarterAlpha());
 		using var canniBrushLighter = new SolidBrush(cColor.QuarterAlpha());
-		foreach (var (t, c, d) in Conclusions)
+		foreach (var (t, c, d) in conclusions)
 		{
 			if (t != ConclusionType.Elimination)
 			{
