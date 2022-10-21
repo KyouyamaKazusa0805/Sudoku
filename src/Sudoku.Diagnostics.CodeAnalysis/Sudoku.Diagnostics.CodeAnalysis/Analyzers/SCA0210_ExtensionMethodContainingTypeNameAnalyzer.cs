@@ -22,7 +22,8 @@ public sealed partial class SCA0210_ExtensionMethodContainingTypeNameAnalyzer : 
 			if (method is not
 				{
 					DeclaredAccessibility: not Accessibility.Private, // We intend to ignore private methods.
-					Parameters: [{ IsThis: true, Type.Name: var typeName }, ..]
+					IsExtensionMethod: true,
+					Parameters: [{ Type.Name: var typeName }, ..]
 				})
 			{
 				continue;

@@ -407,6 +407,25 @@
             The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0211_NamespaceShouldMatchExtensionMethodThisParameterTypeAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0211">SCA0211</see> (Containing namespace of containing type of extension methods should be same as the type of this parameters)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0211_NamespaceShouldMatchExtensionMethodThisParameterTypeAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0211_NamespaceShouldMatchExtensionMethodThisParameterTypeAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0211_NamespaceShouldMatchExtensionMethodThisParameterTypeAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SymbolAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.NamedArgumentsExtensions">
             <summary>
             Provides extension methods on named arguments list type <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
