@@ -618,7 +618,12 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// <param name="g">The graphics.</param>
 	private void DrawHouses(Graphics g)
 	{
-		if (View is not { HouseNodes: var houseNodes })
+		if (this is not
+			{
+				Calculator: { CellSize: var (w, h) } calc,
+				View.HouseNodes: var houseNodes,
+				Preferences.ShowLightHouse: var showLightHouse
+			})
 		{
 			return;
 		}
@@ -642,23 +647,20 @@ file sealed class GridImageGenerator : IGridImageGenerator
 				continue;
 			}
 
-			if (Preferences.ShowLightHouse)
+			if (showLightHouse)
 			{
 				using var pen = new Pen(color, 4F);
 				switch (house)
 				{
 					case >= 0 and < 9:
 					{
-						// Block.
-						var rect = Calculator.GetMouseRectangleViaHouse(house);
-						g.DrawRoundedRectangle(pen, rect, 6);
+						g.DrawRoundedRectangle(pen, calc.GetMouseRectangleViaHouse(house), 6);
 
 						break;
 					}
 					case >= 9 and < 27:
 					{
-						var (l, r) = Calculator.GetAnchorsViaHouse(house);
-						var (w, h) = Calculator.CellSize;
+						var (l, r) = calc.GetAnchorsViaHouse(house);
 						w /= 2;
 						h /= 2;
 						l = l with { X = l.X + w, Y = l.Y + h };
@@ -672,9 +674,8 @@ file sealed class GridImageGenerator : IGridImageGenerator
 			}
 			else
 			{
-				var rect = Calculator.GetMouseRectangleViaHouse(house);
 				using var brush = new SolidBrush(Color.FromArgb(64, color));
-				g.FillRectangle(brush, rect);
+				g.FillRectangle(brush, calc.GetMouseRectangleViaHouse(house));
 			}
 		}
 	}
