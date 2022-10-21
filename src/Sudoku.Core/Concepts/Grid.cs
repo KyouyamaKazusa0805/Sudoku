@@ -1563,7 +1563,6 @@ public readonly ref partial struct GridValueChangedEventArgs
 	public ref readonly Grid GridRef => ref _gridRef;
 }
 
-
 /// <summary>
 /// Defines the default enumerator that iterates the <see cref="Grid"/>
 /// through the candidates in the current <see cref="Grid"/> instance.
@@ -1680,7 +1679,6 @@ public ref struct GridCandidateEnumerator
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly GridCandidateEnumerator GetEnumerator() => this;
 }
-
 
 /// <summary>
 /// Defines the default enumerator that iterates the <see cref="Grid"/>
