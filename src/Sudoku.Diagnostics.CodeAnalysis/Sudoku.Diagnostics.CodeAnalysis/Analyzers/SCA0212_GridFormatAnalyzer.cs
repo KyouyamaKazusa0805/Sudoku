@@ -2,7 +2,7 @@
 
 using static LocalConstant;
 
-[SupportedDiagnostics("SCA0001", "SCA0212")]
+[SupportedDiagnostics("SCA0001", "SCA0212", "SCA0213")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSyntaxNodeAction), typeof(SyntaxKind), nameof(SyntaxKind.InvocationExpression))]
 public sealed partial class SCA0212_GridFormatAnalyzer : DiagnosticAnalyzer
 {
@@ -47,12 +47,16 @@ public sealed partial class SCA0212_GridFormatAnalyzer : DiagnosticAnalyzer
 		}
 
 		var realFormat = (string?)format;
-		if (realFormat is null || Array.IndexOf(SupportedFormats, realFormat) != -1)
+		if (realFormat is not null && Array.IndexOf(SupportedFormats, realFormat) == -1)
 		{
+			context.ReportDiagnostic(Diagnostic.Create(SCA0212, location));
 			return;
 		}
 
-		context.ReportDiagnostic(Diagnostic.Create(SCA0212, location));
+		if (realFormat is "#." or "+:" or [.. ".+" or "+." or "0+" or "+0", ':'])
+		{
+			context.ReportDiagnostic(Diagnostic.Create(SCA0213, location));
+		}
 	}
 }
 

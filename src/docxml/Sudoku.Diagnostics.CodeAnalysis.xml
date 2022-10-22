@@ -432,6 +432,7 @@
             <list type="bullet">
             <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
             <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0212">SCA0212</see> (Wrong format for formatting 'Grid' instances)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0213">SCA0213</see> (Specified format can be simplied)</item>
             </list>
             </summary>
         </member>
@@ -741,6 +742,17 @@
             <item><b>Description</b>: Wrong format for formatting 'Grid' instances.</item>
             <item><b>Category</b>: Usage</item>
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0213">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0213">SCA0213</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Specified format can be simplied</item>
+            <item><b>Description</b>: Specified format can be simplied: '.+:' -> '#' and '0+:' -> '#0'.</item>
+            <item><b>Category</b>: Usage</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
             </list>
             </summary>
         </member>
