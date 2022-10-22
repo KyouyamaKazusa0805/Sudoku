@@ -1899,7 +1899,7 @@
 				</i>
 			</target>
             </remarks>
-            <exception cref="T:System.ArgumentNullException">
+            <exception cref="T:System.ArgumentNullRefException">
             Throws when the argument <paramref name="firstElement" /> is <see langword="null" /> reference.
             </exception>
         </member>

@@ -2646,9 +2646,11 @@
             whose the rule is defined as a method specified as the delegate instance as this argument.
             </param>
             <param name="separator">The separator to append when an element is finished to append.</param>
+            <exception cref="T:System.ArgumentNullRefException">
+            Throws when the argument <paramref name="list"/> is <see langword="null"/>.
+            </exception>
             <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="list"/> or <paramref name="converter"/>
-            is <see langword="null"/>.
+            Throws when the argument <paramref name="converter"/> is <see langword="null"/>.
             </exception>
         </member>
         <member name="M:System.Text.StringHandler.AppendRangeWithSeparatorRef``1(``0*,System.Int32,System.Func{``0,System.String},System.String)">
@@ -2679,7 +2681,7 @@
             whose the rule is defined as a method specified as the delegate instance as this argument.
             </param>
             <param name="separator">The separator to append when an element is finished to append.</param>
-            <exception cref="T:System.ArgumentNullException">
+            <exception cref="T:System.ArgumentNullRefException">
             Throws when the argument <paramref name="list"/> is <see langword="null"/>.
             </exception>
         </member>

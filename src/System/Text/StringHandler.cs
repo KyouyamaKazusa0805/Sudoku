@@ -683,9 +683,11 @@ public unsafe ref partial struct StringHandler
 	/// whose the rule is defined as a method specified as the delegate instance as this argument.
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
+	/// <exception cref="ArgumentNullRefException">
+	/// Throws when the argument <paramref name="list"/> is <see langword="null"/>.
+	/// </exception>
 	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="list"/> or <paramref name="converter"/>
-	/// is <see langword="null"/>.
+	/// Throws when the argument <paramref name="converter"/> is <see langword="null"/>.
 	/// </exception>
 	public void AppendRangeWithSeparatorRef<TUnmanaged>(
 		scoped in TUnmanaged list,
@@ -747,7 +749,7 @@ public unsafe ref partial struct StringHandler
 	/// whose the rule is defined as a method specified as the delegate instance as this argument.
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
-	/// <exception cref="ArgumentNullException">
+	/// <exception cref="ArgumentNullRefException">
 	/// Throws when the argument <paramref name="list"/> is <see langword="null"/>.
 	/// </exception>
 	public void AppendRangeWithSeparatorRef<TUnmanaged>(
@@ -1613,7 +1615,10 @@ public unsafe ref partial struct StringHandler
 			_index = -1;
 
 			ref var z = ref chars._chars.GetPinnableReference();
-			ArgumentNullRefException.ThrowIfNullRef(ref z);
+			if (IsNullRef(ref z))
+			{
+				throw new NullReferenceException("The character block references to null.");
+			}
 
 			_ptr = ref SubtractByteOffset(ref z, 1);
 		}

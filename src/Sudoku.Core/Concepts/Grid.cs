@@ -153,7 +153,7 @@ public unsafe partial struct Grid :
 	/// <remarks>
 	/// <include file='../../global-doc-comments.xml' path='g/csharp7/feature[@name="ref-returns"]/target[@name="method"]'/>
 	/// </remarks>
-	/// <exception cref="ArgumentNullException">
+	/// <exception cref="ArgumentNullRefException">
 	/// Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
 	/// </exception>
 	private Grid(scoped in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
