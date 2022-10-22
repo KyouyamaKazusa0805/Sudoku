@@ -22,3 +22,4 @@ SCA0208,Please name this parameter '@this' instead,,Naming,Info,Please name this
 SCA0209,This parameters should be same type,,Style,Info,This parameters should be same type.
 SCA0210,Containing type of extension methods should be name as 'TypeExtensions',,Naming,Info,Containing type of extension methods should be name as 'TypeExtensions'.
 SCA0211,Containing namespace of containing type of extension methods should be same as the type of this parameters,,Style,Info,Containing namespace of containing type of extension methods should be same as the type of this parameters.
+SCA0212,Wrong format for formatting 'Grid' instances,,Usage,Warning,Wrong format for formatting 'Grid' instances.
