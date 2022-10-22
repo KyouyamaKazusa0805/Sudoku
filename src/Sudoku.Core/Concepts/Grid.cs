@@ -895,20 +895,17 @@ public unsafe partial struct Grid :
 		{
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
-			_ => GridFormatterFactory.Create(format) switch
+			_ when GridFormatterFactory.Create(format) is var f => format switch
 			{
-				var f => format switch
+				":" => ExtendedSusserEliminationsPattern().Match(f.ToString(this)) switch
 				{
-					":" => ExtendedSusserEliminationsPattern().Match(f.ToString(this)) switch
-					{
-						{ Success: true, Value: var value } => value,
-						_ => string.Empty
-					},
-					"!" => f.ToString(this).RemoveAll('+'),
-					".!" or "!." or "0!" or "!0" => f.ToString(this).RemoveAll('+'),
-					".!:" or "!.:" or "0!:" => f.ToString(this).RemoveAll('+'),
-					_ => f.ToString(this)
-				}
+					{ Success: true, Value: var value } => value,
+					_ => string.Empty
+				},
+				"!" => f.ToString(this).RemoveAll('+'),
+				".!" or "!." or "0!" or "!0" => f.ToString(this).RemoveAll('+'),
+				".!:" or "!.:" or "0!:" => f.ToString(this).RemoveAll('+'),
+				_ => f.ToString(this)
 			}
 		};
 
