@@ -2075,12 +2075,12 @@ file static class InternalHelper
 			goto Result;
 		}
 
-	// As there are so many true/false exit points the Jit will coalesce them to one location.
-	// We want them at the end so the conditional early exit jmps are all jmp forwards so the
-	// branch predictor in a uninitialized state will not take them e.g.
-	// - loops are conditional jmps backwards and predicted.
-	// - exceptions are conditional forwards jmps and not predicted.
 	NotEqual:
+		// As there are so many true/false exit points the Jit will coalesce them to one location.
+		// We want them at the end so the conditional early exit jmps are all jmp forwards so the
+		// branch predictor in a uninitialized state will not take them e.g.
+		// - loops are conditional jmps backwards and predicted.
+		// - exceptions are conditional forwards jmps and not predicted.
 		return false;
 	}
 
