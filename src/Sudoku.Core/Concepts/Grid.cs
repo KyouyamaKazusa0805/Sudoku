@@ -69,8 +69,7 @@ public unsafe partial struct Grid :
 	public static readonly delegate*<ref Grid, void> RefreshingCandidates;
 
 	/// <summary>
-	/// The empty grid that is valid during implementation or running the program
-	/// (all values are <see cref="DefaultMask"/>, i.e. empty cells).
+	/// The empty grid that is valid during implementation or running the program (all values are <see cref="DefaultMask"/>, i.e. empty cells).
 	/// </summary>
 	/// <remarks>
 	/// This field is initialized by the static constructor of this structure.
@@ -103,8 +102,7 @@ public unsafe partial struct Grid :
 
 
 	/// <summary>
-	/// Indicates the inner array that stores the masks of the sudoku grid, which
-	/// stores the in-time sudoku grid inner information.
+	/// Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
 	/// </summary>
 	/// <remarks>
 	/// The field uses the mask table of length 81 to indicate the status and all possible candidates
@@ -128,15 +126,11 @@ public unsafe partial struct Grid :
 	/// </item>
 	/// <item>
 	/// <term>Modifiable cell (i.e. <see cref="CellStatus.Modifiable"/>)</term>
-	/// <description>
-	/// The cell is filled by a digit, but the digit isn't the given by the initial grid.
-	/// </description>
+	/// <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
 	/// </item>
 	/// <item>
 	/// <term>Given cell (i.e. <see cref="CellStatus.Given"/>)</term>
-	/// <description>
-	/// The cell is filled by a digit, which is given by the initial grid and can't be modified.
-	/// </description>
+	/// <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
 	/// </item>
 	/// </list>
 	/// </remarks>
