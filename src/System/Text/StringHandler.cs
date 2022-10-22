@@ -694,11 +694,7 @@ public unsafe ref partial struct StringHandler
 		string separator)
 		where TUnmanaged : unmanaged
 	{
-		if (IsNullRef(ref AsRef(list)))
-		{
-			throw new ArgumentNullException(nameof(list));
-		}
-
+		ArgumentNullRefException.ThrowIfNullRef(ref AsRef(list));
 		ArgumentNullException.ThrowIfNull(converter);
 
 		for (var i = 0; i < length; i++)
@@ -758,10 +754,7 @@ public unsafe ref partial struct StringHandler
 		scoped in TUnmanaged list, int length, StringHandlerRefAppender<TUnmanaged> converter, string separator)
 		where TUnmanaged : unmanaged
 	{
-		if (IsNullRef(ref AsRef(list)))
-		{
-			throw new ArgumentNullException(nameof(list));
-		}
+		ArgumentNullRefException.ThrowIfNullRef(ref AsRef(list));
 
 		for (var i = 0; i < length; i++)
 		{

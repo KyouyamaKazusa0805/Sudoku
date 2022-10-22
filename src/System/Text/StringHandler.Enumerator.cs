@@ -39,10 +39,7 @@ partial struct StringHandler
 			_index = -1;
 
 			ref var z = ref chars._chars.GetPinnableReference();
-			if (IsNullRef(ref z))
-			{
-				throw new NullReferenceException("The character series is a null reference.");
-			}
+			ArgumentNullRefException.ThrowIfNullRef(ref z);
 
 			_ptr = ref SubtractByteOffset(ref z, 1);
 		}
