@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="string"/>.
 /// </summary>
 /// <seealso cref="string"/>
-public static unsafe partial class StringExtensions
+internal static class StringExtensions
 {
 	/// <summary>
 	/// Indicates the time span that is used for matching.
@@ -23,7 +23,7 @@ public static unsafe partial class StringExtensions
 	/// <param name="this">The current string.</param>
 	/// <param name="character">The character to count.</param>
 	/// <returns>The number of characters found.</returns>
-	public static int CountOf(this string @this, char character)
+	public static unsafe int CountOf(this string @this, char character)
 	{
 		var count = 0;
 		fixed (char* pThis = @this)
@@ -55,7 +55,7 @@ public static unsafe partial class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool SatisfyPattern(this string @this, [StringSyntax(StringSyntaxAttribute.Regex), NotNullWhen(true)] string? pattern)
+	public static bool SatisfyPattern(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string? pattern)
 		=> pattern?.IsRegexPattern() ?? false ? @this.Match(pattern) == @this : throw InvalidOperation;
 
 	/// <summary>
@@ -88,13 +88,13 @@ public static unsafe partial class StringExtensions
 	/// <param name="charToInsert">The string to insert.</param>
 	/// <returns>The result string.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ReplaceAt(this string @this, int index, char charToInsert)
+	public static unsafe string ReplaceAt(this string @this, int index, char charToInsert)
 	{
 		var resultPtr = stackalloc char[@this.Length + 1];
 		resultPtr[@this.Length] = '\0';
 		fixed (char* pThis = @this)
 		{
-			CopyBlock(resultPtr, pThis, (uint)(sizeof(char) * @this.Length));
+			Unsafe.CopyBlock(resultPtr, pThis, (uint)(sizeof(char) * @this.Length));
 		}
 
 		resultPtr[index] = charToInsert;
@@ -210,7 +210,9 @@ public static unsafe partial class StringExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(
 		this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
-		=> pattern.IsRegexPattern() ? from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value : throw InvalidOperation;
+		=> pattern.IsRegexPattern()
+			? (from Match m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value).ToArray()
+			: throw InvalidOperation;
 
 	/// <summary>
 	/// Reserve all characters that satisfy the specified pattern.
@@ -243,7 +245,7 @@ public static unsafe partial class StringExtensions
 	/// Throws when the <paramref name="reservePattern"/> is invalid.
 	/// All possible patterns are shown in the tip for the parameter <paramref name="reservePattern"/>.
 	/// </exception>
-	public static string Reserve(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string reservePattern)
+	public static unsafe string Reserve(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string reservePattern)
 	{
 		delegate*<char, bool> predicate = reservePattern switch
 		{
@@ -294,10 +296,4 @@ public static unsafe partial class StringExtensions
 			return false;
 		}
 	}
-
-	/// <summary>
-	/// Indicates the regular expression to match all null lines and header spaces in their lines.
-	/// </summary>
-	[GeneratedRegex("""(^\s*|(?<=\r\n)\s+)""", RegexOptions.Compiled, 5000)]
-	internal static partial Regex NullLinesOrHeaderSpacesRegex();
 }

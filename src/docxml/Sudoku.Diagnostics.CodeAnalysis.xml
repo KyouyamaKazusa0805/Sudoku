@@ -452,6 +452,138 @@
             Stores the local constants.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0214_GridCodeParsingAnalyzer">
+            <summary>
+            Indicates the analyzer that can provide the following diagnostic results:
+            <list type="bullet">
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see> (Special type missing)</item>
+            <item><see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0214">SCA0214</see> (Specified text code cannot be parsed as a valid grid)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0214_GridCodeParsingAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0214_GridCodeParsingAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0214_GridCodeParsingAnalyzer.AnalyzeCore(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
+            <summary>
+            The core method to analyze the symbol, syntax node, operation or something else that can be analyzed.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier">
+            <summary>
+            Encapsulates a grid parser that can parse and verify a string value and convert it into a valid grid instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.ParseFunctions">
+            <summary>
+            The list of all methods to parse.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.MultilineParseFunctions">
+            <summary>
+            The list of all methods to parse multiple-line grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.#ctor(System.String)">
+            <summary>
+            Initializes an instance with parsing data.
+            </summary>
+            <param name="parsingValue">The string to parse.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.ParsingValue">
+            <summary>
+            The string value to parse.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.CompatibleFirst">
+            <summary>
+            Indicates whether the parser will change the execution order of PM grid.
+            If the value is <see langword="true"/>, the parser will check compatible one
+            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.ShortenSusserFormat">
+            <summary>
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.Parse">
+            <summary>
+            To parse the value.
+            </summary>
+            <returns>The grid.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.OnParsingSimpleMultilineGrid(Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier@)">
+            <summary>
+            Parse the value using multi-line simple grid (without any candidates).
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.OnParsingExcel(Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier@)">
+            <summary>
+            Parse the Excel format.
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.OnParsingOpenSudoku(Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier@)">
+            <summary>
+            Parse the open sudoku format grid.
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.OnParsingPencilMarked(Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier@)">
+            <summary>
+            Parse the PM grid.
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.OnParsingSimpleTable(Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier@)">
+            <summary>
+            Parse the simple table format string (Sudoku explainer format).
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The grid.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.OnParsingSusser(Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier@,System.Boolean)">
+            <summary>
+            Parse the susser format string.
+            </summary>
+            <param name="parser">The parser.</param>
+            <param name="shortenSusser">Indicates whether the parser will shorten the susser format.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier.OnParsingSukaku(Sudoku.Diagnostics.CodeAnalysis.Analyzers.SimpleGridCodeVerifier@,System.Boolean)">
+            <summary>
+            Parse the sukaku format string.
+            </summary>
+            <param name="parser">The parser.</param>
+            <param name="compatibleFirst">
+            Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
+            </param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.NamedArgumentsExtensions">
             <summary>
             Provides extension methods on named arguments list type <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
@@ -755,6 +887,220 @@
             <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Info"/></item>
             </list>
             </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0214">
+            <summary>
+            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0214">SCA0214</see>:
+            <list type="bullet">
+            <item><b>Title</b>: Specified text code cannot be parsed as a valid grid</item>
+            <item><b>Description</b>: Specified text code cannot be parsed as a valid grid.</item>
+            <item><b>Category</b>: Usage</item>
+            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Warning"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="T:System.StringExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.String"/>.
+            </summary>
+            <seealso cref="T:System.String"/>
+        </member>
+        <member name="F:System.StringExtensions.MatchingTimeSpan">
+            <summary>
+            Indicates the time span that is used for matching.
+            </summary>
+        </member>
+        <member name="F:System.StringExtensions.InvalidOperation">
+            <summary>
+            Indicates the exception that will be thrown when a certain regular expression is invalid.
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.CountOf(System.String,System.Char)">
+            <summary>
+            Count how many specified characters are in the current string.
+            </summary>
+            <param name="this">The current string.</param>
+            <param name="character">The character to count.</param>
+            <returns>The number of characters found.</returns>
+        </member>
+        <member name="M:System.StringExtensions.SatisfyPattern(System.String,System.String)">
+            <summary>
+            Check whether the specified string instance is satisfied
+            the specified regular expression pattern or not.
+            </summary>
+            <param name="this">The value to check.</param>
+            <param name="pattern">
+            The regular expression pattern. If the value is <see langword="null"/>,
+            the return value is always <see langword="false"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+        </member>
+        <member name="M:System.StringExtensions.IsMatch(System.String,System.String)">
+            <summary>
+            Check whether the specified string instance can match the value
+            using the specified regular expression pattern or not.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+        </member>
+        <member name="M:System.StringExtensions.ReplaceAt(System.String,System.Int32,System.Char)">
+            <summary>
+            Replace the character at the specified index with the new value.
+            </summary>
+            <param name="this">The current string.</param>
+            <param name="index">The index.</param>
+            <param name="charToInsert">The string to insert.</param>
+            <returns>The result string.</returns>
+        </member>
+        <member name="M:System.StringExtensions.RemoveAll(System.String,System.Char)">
+            <summary>
+            Removes all specified characters.
+            </summary>
+            <param name="this">The string value.</param>
+            <param name="character">The character to be removed from the base string.</param>
+            <returns>The result string value after removal.</returns>
+        </member>
+        <member name="M:System.StringExtensions.Match(System.String,System.String)">
+            <summary>
+            Searches the specified input string for the first occurrence of
+            the specified regular expression pattern.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>
+            The value after matching. If failed to match,
+            the value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+        </member>
+        <member name="M:System.StringExtensions.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Searches the input string for the first occurrence of the specified regular
+            expression, using the specified matching options.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <param name="regexOption">The matching options.</param>
+            <returns>
+            The matched string value. If failed to match,
+            the value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
+        </member>
+        <member name="M:System.StringExtensions.MatchAll(System.String,System.String)">
+            <summary>
+            Searches the specified input string for all occurrences of a
+            specified regular expression pattern.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>
+            The result after matching. If failed to match,
+            the returning array will be an empty string array (has no elements).
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>
+        </member>
+        <member name="M:System.StringExtensions.MatchAll(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Searches the specified input string for all occurrences of a
+            specified regular expression pattern, using the specified matching
+            options.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <param name="regexOption">The matching options.</param>
+            <returns>
+            The result after matching. If failed to match,
+            the returning array will be an empty string array (has no elements).
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
+        </member>
+        <member name="M:System.StringExtensions.Reserve(System.String,System.String)">
+            <summary>
+            Reserve all characters that satisfy the specified pattern.
+            </summary>
+            <param name="this">The string.</param>
+            <param name="reservePattern">
+            The pattern that reserved characters satisfied. All supported patterns are:
+            <list type="table">
+            <item>
+            <term><c>@"\d"</c></term>
+            <description>To match a digit.</description>
+            </item>
+            <item>
+            <term><c>@"\t"</c></term>
+            <description>To match a tab.</description>
+            </item>
+            <item>
+            <term><c>@"\w"</c></term>
+            <description>To match a letter, digit or underscore character <c>'_'</c>.</description>
+            </item>
+            </list>
+            </param>
+            <returns>The result string.</returns>
+            <remarks>
+            For example, if code is <c>"Hello, world!".Reserve(@"\w")</c>, the return value
+            will only contain the letters, digits or the underscore character '<c>_</c>'
+            (i.e. <c>"Helloworld"</c> as the result of this example).
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the <paramref name="reservePattern"/> is invalid.
+            All possible patterns are shown in the tip for the parameter <paramref name="reservePattern"/>.
+            </exception>
+        </member>
+        <member name="M:System.StringExtensions.IsRegexPattern(System.String)">
+            <summary>
+            To check if the current string value is a valid regular
+            expression pattern or not.
+            </summary>
+            <param name="this">The value to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
         <member name="T:System.Index">
             <summary>

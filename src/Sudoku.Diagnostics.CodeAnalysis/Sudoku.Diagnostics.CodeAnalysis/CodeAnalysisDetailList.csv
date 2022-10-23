@@ -24,3 +24,4 @@ SCA0210,Containing type of extension methods should be name as 'TypeExtensions',
 SCA0211,Containing namespace of containing type of extension methods should be same as the type of this parameters,,Style,Info,Containing namespace of containing type of extension methods should be same as the type of this parameters.
 SCA0212,Wrong format for formatting 'Grid' instances,,Usage,Warning,Wrong format for formatting 'Grid' instances.
 SCA0213,Specified format can be simplied,,Usage,Info,Specified format can be simplied: '.+:' -> '#' and '0+:' -> '#0'.
+SCA0214,Specified text code cannot be parsed as a valid grid,,Usage,Warning,Specified text code cannot be parsed as a valid grid.
