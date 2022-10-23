@@ -76,11 +76,7 @@ public unsafe ref struct GridParser
 		// Array slicing on pointer type cannot be available for AnyCPU.
 		MultilineParseFunctions = ParseFunctions[1..3];
 #else
-		MultilineParseFunctions = new delegate*<ref GridParser, Grid>[]
-		{
-			&OnParsingSimpleMultilineGrid,
-			&OnParsingPencilMarked
-		};
+		MultilineParseFunctions = new delegate*<ref GridParser, Grid>[] { &OnParsingSimpleMultilineGrid, &OnParsingPencilMarked };
 #endif
 
 		static Grid onParsingSukaku_1(ref GridParser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
