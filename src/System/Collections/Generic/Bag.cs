@@ -123,7 +123,7 @@ public ref partial struct Bag<T>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Bag<T> ImmutelyAdd(T element)
 	{
-		var result = new Bag<T>(_values[0..Count]);
+		var result = new Bag<T>(_values[..Count]);
 		result.Add(element);
 
 		return result;
