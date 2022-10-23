@@ -72,7 +72,7 @@ public readonly ref struct GridFormatter
 		bool treatValueAsGiven, bool subtleGridLines, bool hodokuCompatible,
 		bool sukaku, bool excel, bool openSudoku, bool shortenSusser)
 	{
-		_flags = placeholder switch { '.' => 0, '0' => 1024, _ => throw new ArgumentOutOfRangeException(nameof(placeholder)) };
+		_flags = placeholder switch { '0' => 1024, '.' => 0, _ => throw new ArgumentOutOfRangeException(nameof(placeholder)) };
 		_flags |= (short)(multiline ? 512 : 0);
 		_flags |= (short)(withModifiables ? 256 : 0);
 		_flags |= (short)(withCandidates ? 128 : 0);
