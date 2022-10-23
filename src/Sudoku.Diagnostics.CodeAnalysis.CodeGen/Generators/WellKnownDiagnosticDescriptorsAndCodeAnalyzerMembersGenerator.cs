@@ -269,6 +269,13 @@ public sealed class WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerato
 				nameof(OperationKind) => nameof(OperationAnalysisContext),
 				nameof(SymbolKind) => nameof(SymbolAnalysisContext),
 				nameof(SyntaxKind) => nameof(SyntaxNodeAnalysisContext),
+#if false
+				nameof(Compilation) => nameof(CompilationAnalysisContext),
+				nameof(SyntaxTree) => nameof(SyntaxTreeAnalysisContext),
+				nameof(BlockSyntax) => nameof(CodeBlockAnalysisContext),
+				nameof(SemanticModel) => nameof(SemanticModelAnalysisContext),
+				nameof(AdditionalText) => nameof(AdditionalFileAnalysisContext),
+#endif
 				_ => null
 			};
 			if (contextType is null)
