@@ -101,8 +101,7 @@ public static unsafe class PointerOperations
 	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
 	/// 5 elements in this case.
 	/// </remarks>
-	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>(TUnmanaged* ptr, int length, int index)
-		where TUnmanaged : unmanaged
+	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>(TUnmanaged* ptr, int length, int index) where TUnmanaged : unmanaged
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 
