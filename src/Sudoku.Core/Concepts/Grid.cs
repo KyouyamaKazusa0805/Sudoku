@@ -333,16 +333,16 @@ public unsafe partial struct Grid :
 	{
 		get
 		{
-			var maskResult = 0;
-			for (var houseIndex = 0; houseIndex < 27; houseIndex++)
+			var result = 0;
+			for (var (houseIndex, valueCells) = (0, ~EmptyCells); houseIndex < 27; houseIndex++)
 			{
-				if ((EmptyCells & HousesMap[houseIndex]).Count == 9)
+				if (valueCells / houseIndex == 0)
 				{
-					maskResult |= 1 << houseIndex;
+					result |= 1 << houseIndex;
 				}
 			}
 
-			return maskResult;
+			return result;
 		}
 	}
 
@@ -1924,7 +1924,7 @@ file static class InternalHelper
 
 	Result:
 		return result;
-	
+
 	Equal:
 		// When the sequence is equal; which is the longest execution, we want it to determine that
 		// as fast as possible so we do not want the early outs to be "predicted not taken" branches.
