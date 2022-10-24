@@ -7,7 +7,7 @@
 public static class GridSolvingExtensions
 {
 	/// <summary>
-	/// Indicates the 
+	/// Indicates the internal solver instance.
 	/// </summary>
 	private static readonly BitwiseSolver Solver = new();
 

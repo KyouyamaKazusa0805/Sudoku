@@ -114,7 +114,7 @@
         </member>
         <member name="F:Sudoku.Concepts.GridSolvingExtensions.Solver">
             <summary>
-            Indicates the 
+            Indicates the internal solver instance.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.GridSolvingExtensions.IsValid(Sudoku.Concepts.Grid@)">
