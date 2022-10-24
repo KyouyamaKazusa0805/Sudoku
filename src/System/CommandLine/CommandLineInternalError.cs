@@ -58,6 +58,12 @@ public enum CommandLineInternalError
 	NotAllRequiredPropertiesAreAssigned,
 
 	/// <summary>
+	/// Indicates the error that both single and double command attributes are marked.
+	/// </summary>
+	[Description("Both single and double command attributes are marked at the same time.")]
+	BothSingleAndDoubleCommandAttributesAreMarked,
+
+	/// <summary>
 	/// Indicates the error that the command converter cannot convert the specified text into the target type
 	/// due to invalid text.
 	/// </summary>

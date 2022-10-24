@@ -43,6 +43,21 @@ public enum ErrorCode
 	ArgAttributeNameIsInvalid = 301,
 
 	/// <summary>
+	/// Indicates the error case that the numeric argument is below 0.
+	/// </summary>
+	ArgNumericValueBelowZero,
+
+	/// <summary>
+	/// Indicates the error case that the output path is invalid.
+	/// </summary>
+	ArgOutputPathIsInvalid,
+
+	/// <summary>
+	/// Indicates the error case that the extension of output path is not supported.
+	/// </summary>
+	ArgOutputPathExtensionNotSupported,
+
+	/// <summary>
 	/// Indicates the error case that the range pattern is invalid.
 	/// </summary>
 	RangePatternIsInvalid = 401,

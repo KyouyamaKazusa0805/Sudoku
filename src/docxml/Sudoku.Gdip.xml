@@ -76,6 +76,13 @@
             <seealso cref="T:System.Drawing.Image"/>
             <seealso cref="T:System.IDisposable"/>
         </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainter.WithFooterTextIfNotNull(System.String)">
+            <summary>
+            Sets the footer text that can be rendered below the picture.
+            </summary>
+            <param name="footerText">The footer text.</param>
+            <returns>The target painter.</returns>
+        </member>
         <member name="M:Sudoku.Drawing.ISudokuPainter.Create(System.Int32,System.Int32)">
             <summary>
             The default singleton instance that you can get.

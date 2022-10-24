@@ -130,6 +130,14 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// <seealso cref="IDisposable"/>
 	public abstract Image Render();
 
+	/// <summary>
+	/// Sets the footer text that can be rendered below the picture.
+	/// </summary>
+	/// <param name="footerText">The footer text.</param>
+	/// <returns>The target painter.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public sealed ISudokuPainter WithFooterTextIfNotNull(string? footerText) => footerText is not null ? WithFooterText(footerText) : this;
+
 
 	/// <summary>
 	/// The default singleton instance that you can get.

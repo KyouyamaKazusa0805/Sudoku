@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+		<ProjectReference Include="..\Sudoku.Gdip\Sudoku.Gdip.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving.Algorithms\Sudoku.Solving.Algorithms.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving.Logical\Sudoku.Solving.Logical.csproj" />
 	</ItemGroup>

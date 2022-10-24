@@ -1264,6 +1264,11 @@
             Indicates the error that not all required properties are assigned.
             </summary>
         </member>
+        <member name="F:System.CommandLine.CommandLineInternalError.BothSingleAndDoubleCommandAttributesAreMarked">
+            <summary>
+            Indicates the error that both single and double command attributes are marked.
+            </summary>
+        </member>
         <member name="F:System.CommandLine.CommandLineInternalError.ConverterError">
             <summary>
             Indicates the error that the command converter cannot convert the specified text into the target type

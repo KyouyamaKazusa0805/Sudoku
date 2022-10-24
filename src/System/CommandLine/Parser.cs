@@ -28,6 +28,13 @@ public static class Parser
 		var listOfRequiredProperties = (
 			from property in typeOfRootCommand.GetProperties(BindingFlags.Instance | BindingFlags.Public)
 			where property is { CanRead: true, CanWrite: true }
+			where (c<SingleArgumentCommandAttribute>(property), c<DoubleArgumentsCommandAttribute>(property)) switch
+			{
+				({ IsRequired: true }, null) => true,
+				(null, { IsRequired: true }) => true,
+				(not null, not null) => throw new CommandLineParserException(CommandLineInternalError.BothSingleAndDoubleCommandAttributesAreMarked),
+				_ => false
+			}
 			select property
 		).ToList();
 
@@ -187,6 +194,9 @@ public static class Parser
 		}
 
 		bool rootCommandMatcher(string c, string e) => e.Equals(c, comparisonOption);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static TAttribute? c<TAttribute>(MemberInfo member) where TAttribute : Attribute => member.GetCustomAttribute<TAttribute>();
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static string[] getArgs(Type typeOfRootCommand, out StringComparison comparisonOption)
