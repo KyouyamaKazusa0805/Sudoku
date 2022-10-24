@@ -1365,27 +1365,24 @@
             Provides with the operations for the terminal.
             </summary>
         </member>
-        <member name="M:System.CommandLine.Terminal.Write(System.Text.StringHandler@)">
+        <member name="M:System.CommandLine.Terminal.Write(System.String)">
             <summary>
-            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
-            followed by the current line terminator to the standard output stream.
+            Writes the string value, followed by the current line terminator to the standard output stream.
             </summary>
-            <param name="handler">The string handler that holds the interpolated string.</param>
+            <param name="s">The string.</param>
         </member>
-        <member name="M:System.CommandLine.Terminal.Write(System.Text.StringHandler@,System.ConsoleColor)">
+        <member name="M:System.CommandLine.Terminal.Write(System.String,System.ConsoleColor)">
             <summary>
-            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
-            followed by the current line terminator to the standard output stream.
+            Writes the string value, followed by the current line terminator to the standard output stream.
             </summary>
-            <param name="handler">The string handler that holds the interpolated string.</param>
+            <param name="s">The string.</param>
             <param name="foreground">The foreground color.</param>
         </member>
-        <member name="M:System.CommandLine.Terminal.Write(System.Text.StringHandler@,System.ConsoleColor,System.ConsoleColor)">
+        <member name="M:System.CommandLine.Terminal.Write(System.String,System.ConsoleColor,System.ConsoleColor)">
             <summary>
-            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
-            followed by the current line terminator to the standard output stream.
+            Writes the string value, followed by the current line terminator to the standard output stream.
             </summary>
-            <param name="handler">The string handler that holds the interpolated string.</param>
+            <param name="s">The string.</param>
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
         </member>
@@ -1428,27 +1425,24 @@
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
         </member>
-        <member name="M:System.CommandLine.Terminal.WriteLine(System.Text.StringHandler@)">
+        <member name="M:System.CommandLine.Terminal.WriteLine(System.String)">
             <summary>
-            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
-            followed by the current line terminator to the standard output stream.
+            Writes the string value, followed by the current line terminator to the standard output stream.
             </summary>
-            <param name="handler">The string handler that holds the interpolated string.</param>
+            <param name="s">The string.</param>
         </member>
-        <member name="M:System.CommandLine.Terminal.WriteLine(System.Text.StringHandler@,System.ConsoleColor)">
+        <member name="M:System.CommandLine.Terminal.WriteLine(System.String,System.ConsoleColor)">
             <summary>
-            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
-            followed by the current line terminator to the standard output stream.
+            Writes the string value, followed by the current line terminator to the standard output stream.
             </summary>
-            <param name="handler">The string handler that holds the interpolated string.</param>
+            <param name="s">The string.</param>
             <param name="foreground">The foreground color.</param>
         </member>
-        <member name="M:System.CommandLine.Terminal.WriteLine(System.Text.StringHandler@,System.ConsoleColor,System.ConsoleColor)">
+        <member name="M:System.CommandLine.Terminal.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)">
             <summary>
-            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
-            followed by the current line terminator to the standard output stream.
+            Writes the string value, followed by the current line terminator to the standard output stream.
             </summary>
-            <param name="handler">The string handler that holds the interpolated string.</param>
+            <param name="s">The string.</param>
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
         </member>

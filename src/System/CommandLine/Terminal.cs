@@ -6,42 +6,35 @@
 public static class Terminal
 {
 	/// <summary>
-	/// Writes the string value specified the <see cref="StringHandler"/> as an interpolated string,
-	/// followed by the current line terminator to the standard output stream.
+	/// Writes the string value, followed by the current line terminator to the standard output stream.
 	/// </summary>
-	/// <param name="handler">The string handler that holds the interpolated string.</param>
+	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Write([InterpolatedStringHandlerArgument] scoped ref StringHandler handler)
-		=> Console.Write(handler.ToStringAndClear());
+	public static void Write(string s) => Console.Write(s);
 
 	/// <summary>
-	/// Writes the string value specified the <see cref="StringHandler"/> as an interpolated string,
-	/// followed by the current line terminator to the standard output stream.
+	/// Writes the string value, followed by the current line terminator to the standard output stream.
 	/// </summary>
-	/// <param name="handler">The string handler that holds the interpolated string.</param>
+	/// <param name="s">The string.</param>
 	/// <param name="foreground">The foreground color.</param>
-	public static void Write([InterpolatedStringHandlerArgument] scoped ref StringHandler handler, ConsoleColor foreground)
+	public static void Write(string s, ConsoleColor foreground)
 	{
 		Console.ForegroundColor = foreground;
-		Console.Write(handler.ToStringAndClear());
+		Console.Write(s);
 		Console.ResetColor();
 	}
 
 	/// <summary>
-	/// Writes the string value specified the <see cref="StringHandler"/> as an interpolated string,
-	/// followed by the current line terminator to the standard output stream.
+	/// Writes the string value, followed by the current line terminator to the standard output stream.
 	/// </summary>
-	/// <param name="handler">The string handler that holds the interpolated string.</param>
+	/// <param name="s">The string.</param>
 	/// <param name="foreground">The foreground color.</param>
 	/// <param name="background">The background color.</param>
-	public static void Write(
-		[InterpolatedStringHandlerArgument] scoped ref StringHandler handler,
-		ConsoleColor foreground,
-		ConsoleColor background)
+	public static void Write(string s, ConsoleColor foreground, ConsoleColor background)
 	{
 		Console.ForegroundColor = foreground;
 		Console.BackgroundColor = background;
-		Console.Write(handler.ToStringAndClear());
+		Console.Write(s);
 		Console.ResetColor();
 	}
 
@@ -114,44 +107,37 @@ public static class Terminal
 	}
 
 	/// <summary>
-	/// Writes the string value specified the <see cref="StringHandler"/> as an interpolated string,
-	/// followed by the current line terminator to the standard output stream.
+	/// Writes the string value, followed by the current line terminator to the standard output stream.
 	/// </summary>
-	/// <param name="handler">The string handler that holds the interpolated string.</param>
+	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine([InterpolatedStringHandlerArgument] scoped ref StringHandler handler)
-		=> Console.WriteLine(handler.ToStringAndClear());
+	public static void WriteLine(string s) => Console.WriteLine(s);
 
 	/// <summary>
-	/// Writes the string value specified the <see cref="StringHandler"/> as an interpolated string,
-	/// followed by the current line terminator to the standard output stream.
+	/// Writes the string value, followed by the current line terminator to the standard output stream.
 	/// </summary>
-	/// <param name="handler">The string handler that holds the interpolated string.</param>
+	/// <param name="s">The string.</param>
 	/// <param name="foreground">The foreground color.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine([InterpolatedStringHandlerArgument] scoped ref StringHandler handler, ConsoleColor foreground)
+	public static void WriteLine(string s, ConsoleColor foreground)
 	{
 		Console.ForegroundColor = foreground;
-		Console.WriteLine(handler.ToStringAndClear());
+		Console.WriteLine(s);
 		Console.ResetColor();
 	}
 
 	/// <summary>
-	/// Writes the string value specified the <see cref="StringHandler"/> as an interpolated string,
-	/// followed by the current line terminator to the standard output stream.
+	/// Writes the string value, followed by the current line terminator to the standard output stream.
 	/// </summary>
-	/// <param name="handler">The string handler that holds the interpolated string.</param>
+	/// <param name="s">The string.</param>
 	/// <param name="foreground">The foreground color.</param>
 	/// <param name="background">The background color.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine(
-		[InterpolatedStringHandlerArgument] scoped ref StringHandler handler,
-		ConsoleColor foreground,
-		ConsoleColor background)
+	public static void WriteLine(string s, ConsoleColor foreground, ConsoleColor background)
 	{
 		Console.ForegroundColor = foreground;
 		Console.BackgroundColor = background;
-		Console.WriteLine(handler.ToStringAndClear());
+		Console.WriteLine(s);
 		Console.ResetColor();
 	}
 }
