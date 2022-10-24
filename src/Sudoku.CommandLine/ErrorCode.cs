@@ -33,6 +33,12 @@ public enum ErrorCode
 	ArgGridValueIsNotUnique,
 
 	/// <summary>
+	/// Indicates the error case that the argument parsed into type <see cref="Grid"/> is undefined <see cref="Grid.Undefined"/>.
+	/// </summary>
+	/// <seealso cref="Grid"/>
+	ArgGridIsUndefined,
+
+	/// <summary>
 	/// Indicates the error case that the solving method is invalid.
 	/// </summary>
 	ArgMethodIsInvalid,

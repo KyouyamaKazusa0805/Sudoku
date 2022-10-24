@@ -51,9 +51,9 @@ public sealed class Draw : IExecutable
 			throw new CommandLineRuntimeException((int)ErrorCode.ArgNumericValueBelowZero);
 		}
 
-		if (!Grid.IsValid())
+		if (Grid.IsUndefined)
 		{
-			throw new CommandLineRuntimeException((int)ErrorCode.ArgGridValueIsNotUnique);
+			throw new CommandLineRuntimeException((int)ErrorCode.ArgGridIsUndefined);
 		}
 
 		var sudokuPainter = ISudokuPainter.Create((int)Size, (int)OutsideOffset)
