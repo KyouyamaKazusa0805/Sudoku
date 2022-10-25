@@ -27,6 +27,7 @@
 | [SCA0113](sca0113)     | 使用（Usage）            | 💡        | 该泛型参数缺少 `SelfAttribute` 特性                          |
 | [SCA0114](sca0114)     | 使用（Usage）            | ⚠        | 该泛型参数必须限制自身约束                                   |
 | [SCA0115](sca0115)     | 命名（Naming）           | ℹ        | Self 泛型参数应命名为 `TSelf`                                |
+| SCA0116                | 设计（Design）           | ⚠        | 该构造器保留给编译器调用，它有特殊用途                       |
 | SCA0201                | 使用（Usage）            | ℹ        | 请使用 `Argument` 类型代替 `if` 判断                         |
 | [SCA0202](sca0202)     | 性能（Performance）      | ℹ        | 请使用 `Add` 方法代替 `operator +` 运算符                    |
 | [SCA0203](sca0203)     | 性能（Performance）      | ℹ        | 请使用 `Remove` 方法代替 `operator -` 运算符                 |

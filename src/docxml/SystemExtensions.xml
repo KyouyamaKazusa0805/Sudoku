@@ -2273,7 +2273,6 @@
             You can use this type like this:
             <code><![CDATA[
             scoped var sb = new StringHandler(initialCapacity: 100);
-            
             sb.Append("Hello");
             sb.Append(',');
             sb.Append("World");
@@ -2343,9 +2342,7 @@
             <summary>
             Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>.
             </summary>
-            <param name="initialCapacity">
-            The number of constant characters as the default memory to initialize.
-            </param>
+            <param name="initialCapacity">The number of constant characters as the default memory to initialize.</param>
         </member>
         <member name="M:System.Text.StringHandler.#ctor(System.Int32,System.Int32)">
             <summary>
@@ -3902,6 +3899,16 @@
             Indicates the message is telling user that the method <c>GetHashCode</c> will become invalid
             in <see langword="ref struct"/> because the argument type is <see cref="T:System.Object"/>,
             which is not able to be a target converted type for a <see langword="ref struct"/> instance.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.Messages.RequiresCompilerInvocationMessage">
+            <summary>
+            Provides with a message that is represented as deprecated message for compiler invocation.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.Messages.RequiresCompilerInvocationMessage.CompilerInvocationOnly">
+            <summary>
+            Indicates the message that reports an error that user cannot use this constructor because of requirements on compiler invocation.
             </summary>
         </member>
         <member name="T:System.Runtime.Messages.RequiresJsonSerializerDynamicInvocationMessage">

@@ -27,7 +27,6 @@ namespace System.Text;
 /// You can use this type like this:
 /// <code><![CDATA[
 /// scoped var sb = new StringHandler(initialCapacity: 100);
-/// 
 /// sb.Append("Hello");
 /// sb.Append(',');
 /// sb.Append("World");
@@ -136,9 +135,7 @@ public unsafe ref struct StringHandler
 	/// <summary>
 	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>.
 	/// </summary>
-	/// <param name="initialCapacity">
-	/// The number of constant characters as the default memory to initialize.
-	/// </param>
+	/// <param name="initialCapacity">The number of constant characters as the default memory to initialize.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StringHandler(int initialCapacity) => _chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(initialCapacity);
 
@@ -155,6 +152,7 @@ public unsafe ref struct StringHandler
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[Obsolete(RequiresCompilerInvocationMessage.CompilerInvocationOnly, false, DiagnosticId = "SCA0116")]
 	public StringHandler(int literalLength, int holeCount)
 		=> _chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(
 #if DECREASE_INITIALIZATION_MEMORY_ALLOCATION
@@ -181,6 +179,7 @@ public unsafe ref struct StringHandler
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[Obsolete(RequiresCompilerInvocationMessage.CompilerInvocationOnly, false, DiagnosticId = "SCA0116")]
 	public StringHandler(int literalLength, int holeCount, Span<char> initialBuffer)
 	{
 #if !DISCARD_INTERPOLATION_INFO
@@ -225,9 +224,7 @@ public unsafe ref struct StringHandler
 	/// <param name="index">The index.</param>
 	/// <returns>The reference of the character.</returns>
 	/// <remarks>
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="indexer-return"]' />
+	/// <include file='../../global-doc-comments.xml' path='g/csharp7/feature[@name="ref-returns"]/target[@name="indexer-return"]' />
 	/// </remarks>
 	public readonly ref char this[int index] => ref _chars[index];
 
@@ -237,12 +234,7 @@ public unsafe ref struct StringHandler
 	/// </summary>
 	/// <param name="handler">The collection.</param>
 	public readonly void CopyTo(scoped ref StringHandler handler)
-	{
-		fixed (char* old = _chars, @new = handler._chars)
-		{
-			CopyBlock(@new, old, (uint)(sizeof(char) * Length));
-		}
-	}
+		=> CopyBlock(ref As<char, byte>(ref handler._chars[0]), ref As<char, byte>(ref _chars[0]), (uint)(sizeof(char) * Length));
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[Obsolete(RefStructDefaultImplementationMessage.OverriddenEqualsMethod, false, DiagnosticId = "SCA0104", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0104")]
@@ -357,13 +349,9 @@ public unsafe ref struct StringHandler
 				var pos = Length;
 				if ((uint)pos < chars.Length - 1)
 				{
-					fixed (char* pFirstChar = value)
-					{
-						WriteUnaligned(
-							ref As<char, byte>(ref Add(ref MemoryMarshal.GetReference(chars), pos)),
-							ReadUnaligned<int>(ref As<char, byte>(ref *pFirstChar))
-						);
-					}
+					WriteUnaligned(
+						ref As<char, byte>(ref Add(ref MemoryMarshal.GetReference(chars), pos)),
+						ReadUnaligned<int>(ref As<char, byte>(ref AsRef(value[0]))));
 
 					Length = pos + 2;
 				}
@@ -482,10 +470,8 @@ public unsafe ref struct StringHandler
 	/// <param name="provider">The format provider used.</param>
 	/// <param name="handler">The handler that holds the interpolated string processings.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(
-		IFormatProvider? provider,
-		[InterpolatedStringHandlerArgument(nameof(provider))] scoped ref DefaultInterpolatedStringHandler handler
-	) => AppendFormatted(string.Create(provider, ref handler));
+	public void Append(IFormatProvider? provider, [InterpolatedStringHandlerArgument(nameof(provider))] scoped ref DefaultInterpolatedStringHandler handler)
+		=> AppendFormatted(string.Create(provider, ref handler));
 
 	/// <summary>
 	/// Writes the specified interpolated string with the specified format provider into the handler.
@@ -494,11 +480,8 @@ public unsafe ref struct StringHandler
 	/// <param name="initialBuffer">The initial buffer used.</param>
 	/// <param name="handler">The handler that holds the interpolated string processings.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(
-		IFormatProvider? provider,
-		Span<char> initialBuffer,
-		[InterpolatedStringHandlerArgument(nameof(provider), nameof(initialBuffer))] scoped ref DefaultInterpolatedStringHandler handler
-	) => AppendFormatted(string.Create(provider, initialBuffer, ref handler));
+	public void Append(IFormatProvider? provider, Span<char> initialBuffer, [InterpolatedStringHandlerArgument(nameof(provider), nameof(initialBuffer))] scoped ref DefaultInterpolatedStringHandler handler)
+		=> AppendFormatted(string.Create(provider, initialBuffer, ref handler));
 
 	/// <inheritdoc cref="AppendFormatted{T}(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -752,8 +735,7 @@ public unsafe ref struct StringHandler
 	/// <exception cref="ArgumentNullRefException">
 	/// Throws when the argument <paramref name="list"/> is <see langword="null"/>.
 	/// </exception>
-	public void AppendRangeWithSeparatorRef<TUnmanaged>(
-		scoped in TUnmanaged list, int length, StringHandlerRefAppender<TUnmanaged> converter, string separator)
+	public void AppendRangeWithSeparatorRef<TUnmanaged>(scoped in TUnmanaged list, int length, StringHandlerRefAppender<TUnmanaged> converter, string separator)
 		where TUnmanaged : unmanaged
 	{
 		ArgumentNullRefException.ThrowIfNullRef(ref AsRef(list));
@@ -1307,7 +1289,7 @@ public unsafe ref struct StringHandler
 	/// Writes the specified string to the handler.
 	/// </summary>
 	/// <param name="value">The string to write.</param>
-	internal void AppendStringDirect(string value)
+	private void AppendStringDirect(string value)
 	{
 		if (value.TryCopyTo(_chars[Length..]))
 		{
@@ -1471,8 +1453,7 @@ public unsafe ref struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void GrowCore(uint requiredMinCapacity)
 	{
-		// 0x3FFFFFDF: string.MaxLength
-		var newCapacity = Max(requiredMinCapacity, Min((uint)_chars.Length * 2, 0x3FFFFFDF));
+		var newCapacity = Max(requiredMinCapacity, Min((uint)_chars.Length * 2, 0x3FFFFFDF)); // 0x3FFFFFDF: string.MaxLength
 		var arraySize = (int)Clamp(newCapacity, MinimumArrayPoolLength, int.MaxValue);
 
 		var newArray = ArrayPool<char>.Shared.Rent(arraySize);
@@ -1494,28 +1475,7 @@ public unsafe ref struct StringHandler
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool Equals(scoped StringHandler left, scoped StringHandler right)
-	{
-		if (left.Length != right.Length)
-		{
-			return false;
-		}
-
-		fixed (char* pThis = left._chars, pOther = right._chars)
-		{
-			var i = 0;
-			char* p = pThis, q = pOther;
-			for (var length = left.Length; i < length; i++)
-			{
-				if (*p++ != *q++)
-				{
-					return false;
-				}
-			}
-		}
-
-		return true;
-	}
+	public static bool Equals(scoped StringHandler left, scoped StringHandler right) => left._chars.SequenceEqual(right._chars);
 
 
 #pragma warning disable CS1584, CS1658
