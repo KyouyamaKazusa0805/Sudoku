@@ -39,7 +39,7 @@ namespace System.Text;
 /// <seealso cref="DefaultInterpolatedStringHandler"/>
 /// <seealso cref="IFormatProvider"/>
 [InterpolatedStringHandler]
-public unsafe ref partial struct StringHandler
+public unsafe ref struct StringHandler
 {
 #if USE_NEWER_CONSTANT_VALUES
 	/// <summary>
