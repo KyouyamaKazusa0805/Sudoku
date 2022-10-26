@@ -26,3 +26,4 @@ SCA0212,Wrong format for formatting 'Grid' instances,,Usage,Warning,Wrong format
 SCA0213,Specified format can be simplied,,Usage,Info,Specified format can be simplied: '.+:' -> '#' and '0+:' -> '#0'.
 SCA0214,Specified text code cannot be parsed as a valid grid,,Usage,Warning,Specified text code cannot be parsed as a valid grid.
 SCA0215,Expression can be simplified,Expression can be simplified: '{0}.Count != 0' -> '{0}',Usage,Info,Expression can be simplified: 'cellMap.Count != 0' -> 'cellMap'.
+SCA0301,Missing 'SupportedArgumentsAttribute',,Usage,Warning,Missing 'SupportedArgumentsAttribute' for executable commands.

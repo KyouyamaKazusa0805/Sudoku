@@ -43,6 +43,7 @@
 | [SCA0213](sca0213)     | 使用（Usage）            | ℹ        | 可简化的 `Grid` 格式化字符串：`+:` 可简化为 `#`              |
 | [SCA0214](sca0214)     | 使用（Usage）            | ⚠        | 当前 `Grid` 的字符串代码格式不合法                           |
 | [SCA0215](sca0215)     | 使用（Usage）            | ℹ        | `CellMap` 类型的判别表达式可简化：`cellMap.Count != 0` -> `cellMap` |
+| [SCA0301](sca0301)     | 使用（Usage）            | ⚠        | 可执行的命令尚未标记 `SupportedArgumentsAttribute` 特性      |
 
 ## 注解
 
