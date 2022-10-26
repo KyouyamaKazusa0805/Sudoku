@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0207")]
+[SupportedDiagnostics("SCA0207")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSyntaxNodeAction), typeof(SyntaxKind), nameof(SyntaxKind.CastExpression))]
 public sealed partial class SCA0207_UseParseMethodInvocationAnalyzer : DiagnosticAnalyzer
 {
@@ -35,7 +35,6 @@ public sealed partial class SCA0207_UseParseMethodInvocationAnalyzer : Diagnosti
 		var gridType = compilation.GetTypeByMetadataName(SpecialFullTypeNames.Grid);
 		if (gridType is null)
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, location, messageArgs: new[] { SpecialFullTypeNames.Grid }));
 			return;
 		}
 

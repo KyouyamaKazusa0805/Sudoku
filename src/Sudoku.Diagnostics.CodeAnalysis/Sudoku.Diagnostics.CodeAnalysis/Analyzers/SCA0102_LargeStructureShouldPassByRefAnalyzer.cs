@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0102")]
+[SupportedDiagnostics("SCA0102")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSyntaxNodeAction), typeof(SyntaxKind), nameof(SyntaxKind.Parameter))]
 public sealed partial class SCA0102_LargeStructureShouldPassByRefAnalyzer : DiagnosticAnalyzer
 {
@@ -31,17 +31,10 @@ public sealed partial class SCA0102_LargeStructureShouldPassByRefAnalyzer : Diag
 		var attributeType = compilation.GetTypeByMetadataName(SpecialFullTypeNames.IsLargeStructAttribute);
 		if (attributeType is null)
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, nodeLocation, messageArgs: SpecialFullTypeNames.IsLargeStructAttribute));
 			return;
 		}
 
-		var attributesData = parameterType.GetAttributes();
-		if (attributesData.Length == 0)
-		{
-			return;
-		}
-
-		var a = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType));
+		var a = parameterType.GetAttributes().FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType));
 		if (a is null)
 		{
 			return;

@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0106")]
+[SupportedDiagnostics("SCA0106")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterOperationAction), typeof(OperationKind), nameof(OperationKind.FunctionPointerInvocation))]
 public sealed partial class SCA0106_DisallowInvocationOnFunctionPointerMemberAnalyzer : DiagnosticAnalyzer
 {
@@ -24,7 +24,6 @@ public sealed partial class SCA0106_DisallowInvocationOnFunctionPointerMemberAna
 		var attribute = compilation.GetTypeByMetadataName(SpecialFullTypeNames.DisallowFunctionPointerInvocationAttribute);
 		if (attribute is null)
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, location));
 			return;
 		}
 

@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0101")]
+[SupportedDiagnostics("SCA0101")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterOperationAction), typeof(OperationKind), nameof(OperationKind.ObjectCreation))]
 [RegisteredPropertyNames(Internal, "SuggestedMemberName", "TypeName")]
 public sealed partial class SCA0101_LargeStructTypeAnalyzer : DiagnosticAnalyzer
@@ -23,21 +23,12 @@ public sealed partial class SCA0101_LargeStructTypeAnalyzer : DiagnosticAnalyzer
 		}
 
 		var nodeLocation = node.GetLocation();
-		var attributeType = compilation.GetTypeByMetadataName(SpecialFullTypeNames.IsLargeStructAttribute);
-		if (attributeType is null)
-		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, nodeLocation, messageArgs: SpecialFullTypeNames.IsLargeStructAttribute));
-			return;
-		}
-
-		var attributesData = type.GetAttributes();
-		if (attributesData.Length == 0)
+		if (compilation.GetTypeByMetadataName(SpecialFullTypeNames.IsLargeStructAttribute) is not { } attributeType)
 		{
 			return;
 		}
 
-		var a = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType));
-		if (a is null)
+		if (type.GetAttributes().FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType)) is not { } a)
 		{
 			return;
 		}

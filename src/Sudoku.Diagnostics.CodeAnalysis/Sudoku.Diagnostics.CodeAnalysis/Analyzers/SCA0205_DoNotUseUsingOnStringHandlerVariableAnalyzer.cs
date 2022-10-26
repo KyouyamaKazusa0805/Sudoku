@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0205")]
+[SupportedDiagnostics("SCA0205")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSyntaxNodeAction), typeof(SyntaxKind), nameof(SyntaxKind.VariableDeclarator))]
 public sealed partial class SCA0205_DoNotUseUsingOnStringHandlerVariableAnalyzer : DiagnosticAnalyzer
 {
@@ -30,7 +30,6 @@ public sealed partial class SCA0205_DoNotUseUsingOnStringHandlerVariableAnalyzer
 		var stringHandlerType = compilation.GetTypeByMetadataName(SpecialFullTypeNames.StringHandler);
 		if (stringHandlerType is null)
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, location, messageArgs: new[] { SpecialFullTypeNames.StringHandler }));
 			return;
 		}
 

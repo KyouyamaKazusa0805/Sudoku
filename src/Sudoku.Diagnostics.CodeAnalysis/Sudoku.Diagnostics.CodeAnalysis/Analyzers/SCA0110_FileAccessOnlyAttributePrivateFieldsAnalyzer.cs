@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0110")]
+[SupportedDiagnostics("SCA0110")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSyntaxNodeAction), typeof(SyntaxKind), nameof(SyntaxKind.FieldDeclaration))]
 public sealed partial class SCA0110_FileAccessOnlyAttributePrivateFieldsAnalyzer : DiagnosticAnalyzer
 {
@@ -20,7 +20,6 @@ public sealed partial class SCA0110_FileAccessOnlyAttributePrivateFieldsAnalyzer
 		var attribute = compilation.GetTypeByMetadataName(SpecialFullTypeNames.FileAccessOnlyAttribute);
 		if (attribute is null)
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, null, messageArgs: new[] { SpecialFullTypeNames.FileAccessOnlyAttribute }));
 			return;
 		}
 

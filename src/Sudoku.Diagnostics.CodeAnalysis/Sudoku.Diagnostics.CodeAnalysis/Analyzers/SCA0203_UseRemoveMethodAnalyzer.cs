@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0203")]
+[SupportedDiagnostics("SCA0203")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterOperationAction), typeof(OperationKind), nameof(OperationKind.CompoundAssignment))]
 public sealed partial class SCA0203_UseRemoveMethodAnalyzer : DiagnosticAnalyzer
 {
@@ -26,10 +26,9 @@ public sealed partial class SCA0203_UseRemoveMethodAnalyzer : DiagnosticAnalyzer
 		}
 
 		var nodeLocation = syntax.GetLocation();
-		var cellMapType = compilation.GetTypeByMetadataName("Sudoku.Concepts.CellMap");
+		var cellMapType = compilation.GetTypeByMetadataName(SpecialFullTypeNames.CellMap);
 		if (cellMapType is null)
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, nodeLocation, messageArgs: new[] { "CellMap" }));
 			return;
 		}
 

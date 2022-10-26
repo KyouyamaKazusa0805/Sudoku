@@ -36,7 +36,6 @@ public sealed partial class SCA0113_SelfAttributeMissingAnalyzer : DiagnosticAna
 		var selfAttributeType = compilation.GetTypeByMetadataName(SpecialFullTypeNames.SelfAttribute);
 		if (selfAttributeType is null)
 		{
-			//context.ReportDiagnostic(Diagnostic.Create(SCA0001, location));
 			return;
 		}
 

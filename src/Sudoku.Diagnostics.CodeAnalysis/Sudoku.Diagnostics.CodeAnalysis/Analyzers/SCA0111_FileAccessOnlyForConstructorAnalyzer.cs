@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0111")]
+[SupportedDiagnostics("SCA0111")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSyntaxNodeAction), typeof(SyntaxKind), new[] { nameof(SyntaxKind.ObjectCreationExpression), nameof(SyntaxKind.ImplicitObjectCreationExpression) })]
 public sealed partial class SCA0111_FileAccessOnlyForConstructorAnalyzer : DiagnosticAnalyzer
 {
@@ -19,10 +19,7 @@ public sealed partial class SCA0111_FileAccessOnlyForConstructorAnalyzer : Diagn
 
 		if (semanticModel.GetOperation(node, ct) is not IObjectCreationOperation
 			{
-				Constructor:
-				{
-					DeclaringSyntaxReferences: [{ SyntaxTree.FilePath: var declaringFilePath }]
-				} constructorSymbol
+				Constructor: { DeclaringSyntaxReferences: [{ SyntaxTree.FilePath: var declaringFilePath }] } constructorSymbol
 			})
 		{
 			return;
@@ -32,7 +29,6 @@ public sealed partial class SCA0111_FileAccessOnlyForConstructorAnalyzer : Diagn
 		var attribute = compilation.GetTypeByMetadataName(SpecialFullTypeNames.FileAccessOnlyAttribute);
 		if (attribute is null)
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, location, messageArgs: new[] { SpecialFullTypeNames.FileAccessOnlyAttribute }));
 			return;
 		}
 

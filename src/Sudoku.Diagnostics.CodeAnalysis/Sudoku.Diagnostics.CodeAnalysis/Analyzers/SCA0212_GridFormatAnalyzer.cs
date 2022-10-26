@@ -1,11 +1,20 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-using static LocalConstant;
-
-[SupportedDiagnostics("SCA0001", "SCA0212", "SCA0213")]
+[SupportedDiagnostics("SCA0212", "SCA0213")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSyntaxNodeAction), typeof(SyntaxKind), nameof(SyntaxKind.InvocationExpression))]
 public sealed partial class SCA0212_GridFormatAnalyzer : DiagnosticAnalyzer
 {
+	private static readonly string[] SupportedFormats = new[]
+	{
+		".", "+", ".+", "+.", "0", ":", "!", ".!", "!.", "0!", "!0", ".:", "0:",
+		"0+", "+0", "+:", "+.:", ".+:", "#", "#.", "0+:", "+0:", "#0",
+		".!:", "!.:", "0!:", "!0:", ".*", "*.", "0*", "*0", "@", "@.", "@0", "@!", "@.!", "@!.", "@0!", "@!0",
+		"@*", "@.*", "@*.", "@0*", "@*0", "@!*", "@*!", "@:", "@:!", "@!:", "@*:", "@:*",
+		"@!*:", "@*!:", "@!:*", "@*:!", "@:!*", "@:*!", "~", "~0", "~.", "@~", "~@", "@~0", "@0~", "~@0", "~0@",
+		"@~.", "@.~", "~@.", "~.@", "%", "^"
+	};
+
+
 	private static partial void AnalyzeCore(SyntaxNodeAnalysisContext context)
 	{
 		if (context is not
@@ -37,7 +46,6 @@ public sealed partial class SCA0212_GridFormatAnalyzer : DiagnosticAnalyzer
 		var location = node.GetLocation();
 		if (compilation.GetTypeByMetadataName(SpecialFullTypeNames.Grid) is not { } gridType)
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, location, messageArgs: new[] { SpecialFullTypeNames.Grid }));
 			return;
 		}
 
@@ -58,20 +66,4 @@ public sealed partial class SCA0212_GridFormatAnalyzer : DiagnosticAnalyzer
 			context.ReportDiagnostic(Diagnostic.Create(SCA0213, location));
 		}
 	}
-}
-
-/// <summary>
-/// Stores the local constants.
-/// </summary>
-file static class LocalConstant
-{
-	public static readonly string[] SupportedFormats = new[]
-	{
-		".", "+", ".+", "+.", "0", ":", "!", ".!", "!.", "0!", "!0", ".:", "0:",
-		"0+", "+0", "+:", "+.:", ".+:", "#", "#.", "0+:", "+0:", "#0",
-		".!:", "!.:", "0!:", "!0:", ".*", "*.", "0*", "*0", "@", "@.", "@0", "@!", "@.!", "@!.", "@0!", "@!0",
-		"@*", "@.*", "@*.", "@0*", "@*0", "@!*", "@*!", "@:", "@:!", "@!:", "@*:", "@:*",
-		"@!*:", "@*!:", "@!:*", "@*:!", "@:!*", "@:*!", "~", "~0", "~.", "@~", "~@", "@~0", "@0~", "~@0", "~0@",
-		"@~.", "@.~", "~@.", "~.@", "%", "^"
-	};
 }

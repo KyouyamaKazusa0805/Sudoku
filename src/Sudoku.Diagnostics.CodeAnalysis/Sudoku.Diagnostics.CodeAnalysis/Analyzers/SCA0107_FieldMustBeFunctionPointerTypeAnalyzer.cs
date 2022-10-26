@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0107")]
+[SupportedDiagnostics("SCA0107")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSymbolAction), typeof(SymbolKind), nameof(SymbolKind.Field))]
 public sealed partial class SCA0107_FieldMustBeFunctionPointerTypeAnalyzer : DiagnosticAnalyzer
 {
@@ -25,7 +25,6 @@ public sealed partial class SCA0107_FieldMustBeFunctionPointerTypeAnalyzer : Dia
 		var attribute = compilation.GetTypeByMetadataName(SpecialFullTypeNames.DisallowFunctionPointerInvocationAttribute);
 		if (attribute is null)
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, location));
 			return;
 		}
 

@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0214")]
+[SupportedDiagnostics("SCA0214")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSyntaxNodeAction), typeof(SyntaxKind), nameof(SyntaxKind.InvocationExpression))]
 public sealed partial class SCA0214_GridCodeParsingAnalyzer : DiagnosticAnalyzer
 {
@@ -19,11 +19,7 @@ public sealed partial class SCA0214_GridCodeParsingAnalyzer : DiagnosticAnalyzer
 
 		if (semanticModel.GetOperation(node, ct) is not IInvocationOperation
 			{
-				TargetMethod:
-				{
-					ContainingType: var type,
-					IsStatic: true
-				} targetMethod,
+				TargetMethod: { ContainingType: var type, IsStatic: true } targetMethod,
 				Arguments: [{ Value.ConstantValue: { HasValue: true, Value: string code } }, ..]
 			})
 		{
@@ -33,7 +29,6 @@ public sealed partial class SCA0214_GridCodeParsingAnalyzer : DiagnosticAnalyzer
 		var location = node.GetLocation();
 		if (compilation.GetTypeByMetadataName(SpecialFullTypeNames.Grid) is not { } gridType)
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, location, messageArgs: new[] { SpecialFullTypeNames.Grid }));
 			return;
 		}
 

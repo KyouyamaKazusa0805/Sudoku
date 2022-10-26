@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[SupportedDiagnostics("SCA0001", "SCA0215")]
+[SupportedDiagnostics("SCA0215")]
 [RegisterOperationAction(nameof(AnalysisContext.RegisterSyntaxNodeAction), typeof(SyntaxKind), nameof(SyntaxKind.NotEqualsExpression))]
 public sealed partial class SCA0215_ExpressionSimplifyAnalyzer : DiagnosticAnalyzer
 {
@@ -31,7 +31,6 @@ public sealed partial class SCA0215_ExpressionSimplifyAnalyzer : DiagnosticAnaly
 		var cellMapType = compilation.GetTypeByMetadataName(SpecialFullTypeNames.CellMap);
 		if (cellMapType is null)
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0001, location, messageArgs: new[] { SpecialFullTypeNames.CellMap }));
 			return;
 		}
 
