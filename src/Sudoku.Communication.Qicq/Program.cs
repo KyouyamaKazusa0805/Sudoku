@@ -9,13 +9,8 @@ bot.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(onGroupMessageRecei
 bot.EventReceived.OfType<MemberJoinedEvent>().Subscribe(onMemberJoined);
 
 // Blocks the main thread, in order to prevent the main thread exits too fast.
-#if true
 Console.WriteLine(X("BootingSuccessMessage"));
 Console.ReadKey();
-#else
-var signal = new ManualResetEvent(false);
-signal.WaitOne();
-#endif
 
 
 static async void onMemberJoined(MemberJoinedEvent e)
