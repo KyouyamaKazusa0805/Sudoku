@@ -40,6 +40,15 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 		case ['!' or '\uff01', .. var slice]: // User commands.
 		{
 			//
+			// Help
+			//
+			if (isCommand(slice, "_Command_Help"))
+			{
+				await e.SendMessageAsync(X("_HelpMessage"));
+				return;
+			}
+
+			//
 			// Check-in
 			//
 			if (isCommand(slice, "_Command_CheckIn"))
@@ -102,6 +111,15 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 				var json = JsonSerializer.Serialize(userData);
 				await File.WriteAllTextAsync(userDataPath, json);
 
+				return;
+			}
+
+			//
+			// Check-in manual
+			//
+			if (isCommand(slice, "_Command_CheckInIntro"))
+			{
+				await e.SendMessageAsync(X("_MessageFormat_CheckInIntro"));
 				return;
 			}
 

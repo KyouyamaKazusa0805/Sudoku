@@ -119,15 +119,19 @@
   </resheader>
   <data name="AdminQQ" xml:space="preserve">
     <value>747507738</value>
+    <comment>My QQ number. Congrats! You found my QQ number!</comment>
   </data>
   <data name="BotQQ" xml:space="preserve">
     <value>979329690</value>
+    <comment>This is the test bot number. You can change it to your bot number. This number should be logged-in on Mirai platform.</comment>
   </data>
   <data name="BotSettingsFolderName" xml:space="preserve">
     <value>BotData</value>
+    <comment>The folder names that stores your bot data. The code suggests the output JSON path be "My Documents" folder, so you should check that folder in "My Documents" folder as base one.</comment>
   </data>
   <data name="HostPort" xml:space="preserve">
     <value>localhost:8080</value>
+    <comment>The Mirai host and port. This configuration can be found in your configuration file.</comment>
   </data>
   <data name="SudokuGroupQQ" xml:space="preserve">
     <value>924849321</value>
@@ -135,6 +139,7 @@
   </data>
   <data name="UserSettingsFolderName" xml:space="preserve">
     <value>Users</value>
+    <comment>User settings folder name.</comment>
   </data>
   <data name="VerifyKey" xml:space="preserve">
     <value>helloworld</value>
