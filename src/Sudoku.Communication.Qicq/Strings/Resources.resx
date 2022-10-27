@@ -131,6 +131,7 @@
   </data>
   <data name="SudokuGroupQQ" xml:space="preserve">
     <value>924849321</value>
+    <comment>My sudoku group QQ number (Chinese name: 摇曳数独)</comment>
   </data>
   <data name="VerifyKey" xml:space="preserve">
     <value>helloworld</value>
