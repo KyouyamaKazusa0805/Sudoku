@@ -181,6 +181,9 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 		}
 		case ['%' or '\uff05', .. var slice] when isMe(sender) || permission is Permissions.Owner or Permissions.Administrator: // Manager commands.
 		{
+			//
+			// Lookup score
+			//
 			if (isComplexCommand(slice, "_Command_ComplexLookupScore", out var lookupArguments))
 			{
 				if (lookupArguments is not [var nameOrId])
