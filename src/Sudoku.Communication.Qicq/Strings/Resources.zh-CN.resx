@@ -121,10 +121,10 @@
     <value>机器人启动成功！退出请按任意键……</value>
   </data>
   <data name="SampleMemberJoinedMessage" xml:space="preserve">
-    <value>【机器人消息】欢迎新成员~ 这里是 B 站 up 主 SunnieShine 的数独交流群~</value>
+    <value>欢迎新成员~ 这里是 B 站 up 主 SunnieShine 的数独交流群~</value>
   </data>
   <data name="SampleReplyMessage" xml:space="preserve">
-    <value>【机器人消息回复】Hello, world!</value>
+    <value>Hello, world!</value>
   </data>
   <data name="_Command_CheckIn" xml:space="preserve">
     <value>签到</value>
@@ -132,16 +132,24 @@
   <data name="_Command_CheckInIntro" xml:space="preserve">
     <value>签到说明</value>
   </data>
+  <data name="_Command_ComplexLookupScore" xml:space="preserve">
+    <value>详细查询</value>
+  </data>
   <data name="_Command_Help" xml:space="preserve">
     <value>帮助</value>
   </data>
+  <data name="_Command_LookupScore" xml:space="preserve">
+    <value>查询</value>
+  </data>
   <data name="_HelpMessage" xml:space="preserve">
     <value>欢迎使用机器人！该机器人提供如下功能：
+【基本功能】——使用感叹号❗开头
 ・签到：签到可以获得经验值~
-・签到说明：查看“签到”指令的详细说明。
+・签到说明：查看“签到”指令的详细说明~
+・查询：查询发出该指令的当前用户的经验值数据~
 ・帮助：查看该帮助文档~
-使用机器人的时候请使用感叹号❗开头~
-所有功能均在灰度测试中~</value>
+【管理员限定】——使用百分号 % 开头
+・详细查询，&lt;用户&gt;：查询指定用户的经验值数据~</value>
   </data>
   <data name="_MessageFormat_CheckInFailedDueToMultipleInSameDay" xml:space="preserve">
     <value>签到失败~ 你今天已经签过到了，明天再来试试吧~</value>
@@ -156,5 +164,17 @@
   </data>
   <data name="_MessageFormat_CheckInSuccessfulAndContinuous" xml:space="preserve">
     <value>签到成功！已连续签到 {0} 天~ 恭喜你获得 {1} 经验值。一天只能签到一次哦~</value>
+  </data>
+  <data name="_MessageFormat_LookupNameOrIdAmbiguous" xml:space="preserve">
+    <value>待搜索用户名称或 QQ 号码匹配到多个用户。请修改搜索条件或提醒用户更换名称并重试。</value>
+  </data>
+  <data name="_MessageFormat_LookupNameOrIdInvalid" xml:space="preserve">
+    <value>待搜索用户名称或 QQ 号码错误，请检查。</value>
+  </data>
+  <data name="_MessageFormat_UserScoreIs" xml:space="preserve">
+    <value>用户 {0}（{2}）当前经验值为 {1}。</value>
+  </data>
+  <data name="_MessageFormat_UserScoreNotFound" xml:space="preserve">
+    <value>用户 {0}（{1}）尚未使用过机器人，本地没有数据。</value>
   </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿global using System;
 global using System.Diagnostics.CodeAnalysis;
 global using System.IO;
+global using System.Linq;
 global using System.Reactive.Linq;
 global using System.Resources;
 global using System.Runtime.CompilerServices;

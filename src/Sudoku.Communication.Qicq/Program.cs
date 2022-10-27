@@ -28,7 +28,18 @@ static async void onMemberJoined(MemberJoinedEvent e)
 
 static async void onGroupMessageReceiving(GroupMessageReceiver e)
 {
-	if (e is not { Sender: { Id: var senderId, Permission: var permission } sender, MessageChain: var message })
+	if (e is not
+		{
+			Sender:
+			{
+				Id: var senderId,
+				Name: var senderName,
+				Permission: var permission,
+				MmeberProfile.NickName: var senderOriginalName,
+				Group: var group
+			} sender,
+			MessageChain: var message
+		})
 	{
 		return;
 	}
@@ -84,7 +95,7 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 					await e.SendMessageAsync(X("_MessageFormat_CheckInFailedDueToMultipleInSameDay")!);
 					return;
 				}
-				
+
 				if ((DateTime.Today - userData.LastCheckIn).Days == 1)
 				{
 					// Continuous.
@@ -123,10 +134,121 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 				return;
 			}
 
+			//
+			// Lookup score
+			//
+			if (isCommand(slice, "_Command_LookupScore"))
+			{
+				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+				if (!Directory.Exists(folder))
+				{
+					// Error. The computer does not contain "My Documents" folder.
+					// This folder is special; if the computer does not contain the folder, we should return directly.
+					goto DirectlyReturn;
+				}
+
+				var botDataFolder = $"""{folder}\{X("BotSettingsFolderName")}""";
+				if (!Directory.Exists(botDataFolder))
+				{
+					goto SpecialCase_UserDataFileNotFound;
+				}
+
+				var botUsersDataFolder = $"""{botDataFolder}\{X("UserSettingsFolderName")}""";
+				if (!Directory.Exists(botUsersDataFolder))
+				{
+					goto SpecialCase_UserDataFileNotFound;
+				}
+
+				var userDataPath = $"""{botUsersDataFolder}\{senderId}.json""";
+				if (!File.Exists(userDataPath))
+				{
+					goto SpecialCase_UserDataFileNotFound;
+				}
+
+				var userData = JsonSerializer.Deserialize<UserData>(await File.ReadAllTextAsync(userDataPath))!;
+				await e.SendMessageAsync(string.Format(X("_MessageFormat_UserScoreIs")!, senderName, userData.Score, senderOriginalName));
+
+				goto DirectlyReturn;
+
+			SpecialCase_UserDataFileNotFound:
+				await e.SendMessageAsync(string.Format(X("_MessageFormat_UserScoreNotFound")!, senderName, senderOriginalName));
+
+			DirectlyReturn:
+				return;
+			}
+
 			break;
 		}
-		case ['%' or '\uff05', ..] when isMe(sender) || permission is Permissions.Owner or Permissions.Administrator: // Manager commands.
+		case ['%' or '\uff05', .. var slice] when isMe(sender) || permission is Permissions.Owner or Permissions.Administrator: // Manager commands.
 		{
+			if (isComplexCommand(slice, "_Command_ComplexLookupScore", out var lookupArguments))
+			{
+				if (lookupArguments is not [var nameOrId])
+				{
+					return;
+				}
+
+				var satisfiedMembers = (
+					from member in await @group.GetGroupMembersAsync()
+					where member.Id == nameOrId || member.Name == nameOrId
+					select member
+				).ToArray();
+				switch (satisfiedMembers)
+				{
+					case []:
+					{
+						await e.SendMessageAsync(X("_MessageFormat_LookupNameOrIdInvalid"));
+						break;
+					}
+					case { Length: >= 2 }:
+					{
+						await e.SendMessageAsync(X("_MessageFormat_LookupNameOrIdAmbiguous"));
+						break;
+					}
+					case [{ Id: var foundMemberId }]:
+					{
+						var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+						if (!Directory.Exists(folder))
+						{
+							// Error. The computer does not contain "My Documents" folder.
+							// This folder is special; if the computer does not contain the folder, we should return directly.
+							goto DirectlyReturn;
+						}
+
+						var botDataFolder = $"""{folder}\{X("BotSettingsFolderName")}""";
+						if (!Directory.Exists(botDataFolder))
+						{
+							goto SpecialCase_UserDataFileNotFound;
+						}
+
+						var botUsersDataFolder = $"""{botDataFolder}\{X("UserSettingsFolderName")}""";
+						if (!Directory.Exists(botUsersDataFolder))
+						{
+							goto SpecialCase_UserDataFileNotFound;
+						}
+
+						var userDataPath = $"""{botUsersDataFolder}\{foundMemberId}.json""";
+						if (!File.Exists(userDataPath))
+						{
+							goto SpecialCase_UserDataFileNotFound;
+						}
+
+						var userData = JsonSerializer.Deserialize<UserData>(await File.ReadAllTextAsync(userDataPath))!;
+						await e.SendMessageAsync(string.Format(X("_MessageFormat_UserScoreIs")!, senderName, userData.Score, senderOriginalName));
+
+						goto DirectlyReturn;
+
+					SpecialCase_UserDataFileNotFound:
+						await e.SendMessageAsync(string.Format(X("_MessageFormat_UserScoreNotFound")!, senderName, senderOriginalName));
+
+					DirectlyReturn:
+						return;
+					}
+				}
+
+				return;
+			}
+
 			break;
 		}
 		case [':' or '\uff1a', ..] when isMe(sender): // Admin commands.
@@ -148,6 +270,43 @@ static bool isMe(Member member) => member.Id == X("AdminQQ");
 
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
 static bool isCommand([NotNullWhen(true)] string? slice, string commandKey) => slice == X(commandKey);
+
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
+static bool isComplexCommand([NotNullWhen(true)] string? slice, string commandKey, [NotNullWhen(true)] out string[]? arguments)
+{
+	if (slice is null)
+	{
+		goto InvalidReturn;
+	}
+
+	if (!slice.Contains(',') && !slice.Contains('\uff0c'))
+	{
+		goto InvalidReturn;
+	}
+
+	var baseArguments = slice.Split(new[] { ',', '\uff0c' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+	if (baseArguments.Any(static a => a is []))
+	{
+		goto InvalidReturn;
+	}
+
+	if (baseArguments is not [var commandName, .. var otherArguments])
+	{
+		goto InvalidReturn;
+	}
+
+	if (X(commandKey) != commandName)
+	{
+		goto InvalidReturn;
+	}
+
+	arguments = otherArguments;
+	return true;
+
+InvalidReturn:
+	arguments = null;
+	return false;
+}
 
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
 static int generateCheckInExp(Random random)
