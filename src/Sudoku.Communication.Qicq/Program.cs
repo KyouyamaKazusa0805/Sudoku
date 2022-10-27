@@ -1,17 +1,66 @@
 ﻿using static LocalResourceFetcher;
 
 // Creates and initializes a bot.
-using var bot = new MiraiBot { Address = X("HostPort"), QQ = X("BotQQ"), VerifyKey = X("VerifyKey") };
+using var bot = new MiraiBot { Address = X("HostPort"), QQ = X("BotQQ")!, VerifyKey = X("VerifyKey") };
 await bot.LaunchAsync();
 
 // Registers some necessary events.
 bot.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(onGroupMessageReceiving);
 bot.EventReceived.OfType<MemberJoinedEvent>().Subscribe(onMemberJoined);
+bot.EventReceived.OfType<NewMemberRequestedEvent>().Subscribe(onNewMemberRequested);
+bot.EventReceived.OfType<NewInvitationRequestedEvent>().Subscribe(onInvitationRequested);
 
 // Blocks the main thread, in order to prevent the main thread exits too fast.
 Console.WriteLine(X("BootingSuccessMessage"));
 Console.ReadKey();
 
+
+async void onNewMemberRequested(NewMemberRequestedEvent e)
+{
+	if (e is not { GroupId: var groupId, Message: var message })
+	{
+		return;
+	}
+
+	if (!isMyGroupId(groupId))
+	{
+		return;
+	}
+
+	if (!await bot.CanHandleInvitationOrJoinRequestAsync(groupId))
+	{
+		return;
+	}
+
+	var bilibiliPattern = X("BilibiliNameRegexPattern")!;
+	if (!message.Trim().IsMatch(bilibiliPattern))
+	{
+		await e.RejectAsync(X("_MessageFormat_RejectJoiningGroup")!);
+		return;
+	}
+
+	await e.ApproveAsync();
+}
+
+async void onInvitationRequested(NewInvitationRequestedEvent e)
+{
+	if (e is not { GroupId: var groupId })
+	{
+		return;
+	}
+
+	if (!isMyGroupId(groupId))
+	{
+		return;
+	}
+
+	if (!await bot.CanHandleInvitationOrJoinRequestAsync(groupId))
+	{
+		return;
+	}
+
+	await e.ApproveAsync();
+}
 
 static async void onMemberJoined(MemberJoinedEvent e)
 {
@@ -337,4 +386,28 @@ file static class LocalResourceFetcher
 	/// <returns>The string value.</returns>
 	/// <seealso cref="ResourceManager"/>
 	public static string? X(string key) => Resources.ResourceManager.GetString(key);
+}
+
+/// <summary>
+/// Provides with internal extension methods.
+/// </summary>
+file static class InternalExtensions
+{
+	/// <summary>
+	/// Determines whether the specified <see cref="MiraiBot"/> instance supports permission on handling requests
+	/// of adding or inviting message about the specified group.
+	/// </summary>
+	/// <param name="this">The <see cref="MiraiBot"/> instance.</param>
+	/// <param name="groupId">The group ID.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public static async Task<bool> CanHandleInvitationOrJoinRequestAsync(this MiraiBot @this, string groupId)
+	{
+		if (@this is not { Groups: { IsValueCreated: true, Value: var groups }, QQ: var botId })
+		{
+			return false;
+		}
+
+		var foundMember = (await groups.First(g => g.Id == groupId).GetGroupMembersAsync()).FirstOrDefault(m => m.Id == botId);
+		return foundMember is { Permission: Permissions.Administrator or Permissions.Owner };
+	}
 }

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BilibiliNameRegexPattern" xml:space="preserve">
+    <value>((哔哩)\2|[Bb]\s{0,3}站|[Bb]i(li)bi\3)</value>
+  </data>
   <data name="BootingSuccessMessage" xml:space="preserve">
     <value>机器人启动成功！退出请按任意键……</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="_MessageFormat_LookupNameOrIdInvalid" xml:space="preserve">
     <value>待搜索用户名称或 QQ 号码错误，请检查。</value>
+  </data>
+  <data name="_MessageFormat_RejectJoiningGroup" xml:space="preserve">
+    <value>机器人拒绝添加您到本群之中。请联系此群的管理员。</value>
   </data>
   <data name="_MessageFormat_UserScoreIs" xml:space="preserve">
     <value>用户 {0}（{2}）当前经验值为 {1}。</value>

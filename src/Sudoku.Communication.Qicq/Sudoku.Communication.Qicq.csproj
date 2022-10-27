@@ -12,6 +12,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Update="Strings\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>

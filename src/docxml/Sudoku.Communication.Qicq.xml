@@ -93,5 +93,19 @@
             <returns>The string value.</returns>
             <seealso cref="T:System.Resources.ResourceManager"/>
         </member>
+        <member name="T:InternalExtensions">
+            <summary>
+            Provides with internal extension methods.
+            </summary>
+        </member>
+        <member name="M:InternalExtensions.CanHandleInvitationOrJoinRequestAsync(Mirai.Net.Sessions.MiraiBot,System.String)">
+            <summary>
+            Determines whether the specified <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance supports permission on handling requests
+            of adding or inviting message about the specified group.
+            </summary>
+            <param name="this">The <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.</param>
+            <param name="groupId">The group ID.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
     </members>
 </doc>
