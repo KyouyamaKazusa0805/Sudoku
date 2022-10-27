@@ -28,12 +28,7 @@ static async void onMemberJoined(MemberJoinedEvent e)
 
 static async void onGroupMessageReceiving(GroupMessageReceiver e)
 {
-	if (e is not { Sender: { Id: var senderId, Permission: var permission } sender, GroupId: var groupId, MessageChain: var message })
-	{
-		return;
-	}
-
-	if (!isMyGroupId(groupId))
+	if (e is not { Sender: { Id: var senderId, Permission: var permission } sender, MessageChain: var message })
 	{
 		return;
 	}

@@ -6,7 +6,6 @@ global using System.Resources;
 global using System.Runtime.CompilerServices;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
-global using System.Threading;
 global using Mirai.Net.Data.Events.Concretes.Group;
 global using Mirai.Net.Data.Messages.Receivers;
 global using Mirai.Net.Data.Shared;
