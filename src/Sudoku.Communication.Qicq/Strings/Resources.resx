@@ -123,15 +123,18 @@
   <data name="BotQQ" xml:space="preserve">
     <value>979329690</value>
   </data>
+  <data name="BotSettingsFolderName" xml:space="preserve">
+    <value>BotData</value>
+  </data>
   <data name="HostPort" xml:space="preserve">
     <value>localhost:8080</value>
-  </data>
-  <data name="SampleReplyMessage" xml:space="preserve">
-    <value>[Bot Reply] Hello, world!</value>
   </data>
   <data name="SudokuGroupQQ" xml:space="preserve">
     <value>924849321</value>
     <comment>My sudoku group QQ number (Chinese name: 摇曳数独)</comment>
+  </data>
+  <data name="UserSettingsFolderName" xml:space="preserve">
+    <value>Users</value>
   </data>
   <data name="VerifyKey" xml:space="preserve">
     <value>helloworld</value>

@@ -456,6 +456,9 @@ dotnet_diagnostic.CS8777.severity = error
 # CS8794: The input always matches the provided pattern.
 dotnet_diagnostic.CS8794.severity = silent
 
+# CS8825: Return value must be non-null because parameter is non-null.
+dotnet_diagnostic.CS8825.severity = error
+
 # CS8826: Partial method declarations have signature differences.
 dotnet_diagnostic.CS8826.severity = error
 

@@ -123,4 +123,16 @@
   <data name="SampleReplyMessage" xml:space="preserve">
     <value>【机器人消息回复】Hello, world!</value>
   </data>
+  <data name="_Command_CheckIn" xml:space="preserve">
+    <value>签到</value>
+  </data>
+  <data name="_MessageFormat_CheckInFailedDueToMultipleInSameDay" xml:space="preserve">
+    <value>签到失败~ 你今天已经签过到了，明天再来试试吧~</value>
+  </data>
+  <data name="_MessageFormat_CheckInSuccessful" xml:space="preserve">
+    <value>签到成功！恭喜你获得 {0} 经验值。一天只能签到一次哦~</value>
+  </data>
+  <data name="_MessageFormat_CheckInSuccessfulAndContinuous" xml:space="preserve">
+    <value>签到成功！已连续签到 {0} 天~ 恭喜你获得 {1} 经验值。一天只能签到一次哦~</value>
+  </data>
 </root>
