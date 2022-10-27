@@ -3,6 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<OutputType>Exe</OutputType>
+		<Description>Provides implementations that uses Mirai to interact with users on QICQ platform.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Communication.Qicq.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
