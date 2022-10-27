@@ -120,6 +120,12 @@
   <data name="BilibiliNameRegexPattern" xml:space="preserve">
     <value>((哔哩)\2|[Bb]\s{0,3}站|[Bb]i(li)bi\3)</value>
   </data>
+  <data name="BootingFailedDueToHttp" xml:space="preserve">
+    <value>机器人启动失败，原因为 HTTP 导致的框架直接执行错误。请检查账号是否可以正常通过 Mirai 登录。</value>
+  </data>
+  <data name="BootingFailedDueToMirai" xml:space="preserve">
+    <value>机器人启动失败，原因为 Mirai 尚未启动导致的执行错误。请检查 Mirai 的 Module Loader 是否正确启动。</value>
+  </data>
   <data name="BootingSuccessMessage" xml:space="preserve">
     <value>机器人启动成功！退出请按任意键……</value>
   </data>

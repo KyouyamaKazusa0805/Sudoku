@@ -2,17 +2,29 @@
 
 // Creates and initializes a bot.
 using var bot = new MiraiBot { Address = X("HostPort"), QQ = X("BotQQ")!, VerifyKey = X("VerifyKey") };
-await bot.LaunchAsync();
 
-// Registers some necessary events.
-bot.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(onGroupMessageReceiving);
-bot.EventReceived.OfType<MemberJoinedEvent>().Subscribe(onMemberJoined);
-bot.EventReceived.OfType<NewMemberRequestedEvent>().Subscribe(onNewMemberRequested);
-bot.EventReceived.OfType<NewInvitationRequestedEvent>().Subscribe(onInvitationRequested);
+try
+{
+	await bot.LaunchAsync();
 
-// Blocks the main thread, in order to prevent the main thread exits too fast.
-Console.WriteLine(X("BootingSuccessMessage"));
-Console.ReadKey();
+	// Registers some necessary events.
+	bot.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(onGroupMessageReceiving);
+	bot.EventReceived.OfType<MemberJoinedEvent>().Subscribe(onMemberJoined);
+	bot.EventReceived.OfType<NewMemberRequestedEvent>().Subscribe(onNewMemberRequested);
+	bot.EventReceived.OfType<NewInvitationRequestedEvent>().Subscribe(onInvitationRequested);
+
+	// Blocks the main thread, in order to prevent the main thread exits too fast.
+	Console.WriteLine(X("BootingSuccessMessage"));
+	Console.ReadKey();
+}
+catch (FlurlHttpException)
+{
+	Console.WriteLine(X("BootingFailedDueToMirai"));
+}
+catch (InvalidResponseException)
+{
+	Console.WriteLine(X("BootingFailedDueToHttp"));
+}
 
 
 async void onNewMemberRequested(NewMemberRequestedEvent e)
