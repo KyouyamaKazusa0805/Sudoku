@@ -178,7 +178,7 @@ public sealed partial class RxCyNotation :
 	public static unsafe CellMap ParseCells(string str)
 	{
 		// Check whether the match is successful.
-		if (CellOrCellListRegex().Matches(str) is not { Count: not 0 } matches)
+		if (CellOrCellListPattern().Matches(str) is not { Count: not 0 } matches)
 		{
 			throw new FormatException("The specified string can't match any cell instance.");
 		}
@@ -257,8 +257,7 @@ public sealed partial class RxCyNotation :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCandidatesString(scoped in Candidates candidates)
-		=> ToCandidatesString(candidates, RxCyNotationOptions.Default);
+	public static string ToCandidatesString(scoped in Candidates candidates) => ToCandidatesString(candidates, RxCyNotationOptions.Default);
 
 	/// <inheritdoc/>
 	public static string ToCandidatesString(scoped in Candidates candidates, scoped in RxCyNotationOptions options)
@@ -394,7 +393,7 @@ public sealed partial class RxCyNotation :
 			}
 
 			var cells = CellMap.Empty;
-			foreach (var match in CellOrCellListRegex().Matches(s).Cast<Match>())
+			foreach (var match in CellOrCellListPattern().Matches(s).Cast<Match>())
 			{
 				cells |= ParseCells(match.Value);
 			}
@@ -425,7 +424,7 @@ public sealed partial class RxCyNotation :
 			}
 
 			var cells = CellMap.Empty;
-			foreach (var match in CellOrCellListRegex().Matches(s).Cast<Match>())
+			foreach (var match in CellOrCellListPattern().Matches(s).Cast<Match>())
 			{
 				cells |= ParseCells(match.Value);
 			}
@@ -450,7 +449,7 @@ public sealed partial class RxCyNotation :
 	}
 
 	[GeneratedRegex("""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.Compiled, 5000)]
-	private static partial Regex CellOrCellListRegex();
+	private static partial Regex CellOrCellListPattern();
 
 	[GeneratedRegex("""[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.Compiled, 5000)]
 	private static partial Regex Candidates_PrepositionalFormPattern();
