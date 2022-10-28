@@ -268,10 +268,20 @@
     <value>签到成功！已连续签到 {0} 天~ 恭喜你获得 {1} 经验值。一天只能签到一次哦~</value>
   </data>
   <data name="_MessageFormat_DrawStartMessage" xml:space="preserve">
-    <value>开始绘图。支持如下指令：
-・涂 &lt;单元格&gt; &lt;颜色&gt;：给单元格上色
-・涂 &lt;候选数&gt; &lt;颜色&gt;：给候选数上色
-・涂 &lt;区域&gt; &lt;颜色&gt;：给区域上色</value>
+    <value>绘图说明📖
+绘图支持如下指令：
+・涂 &lt;单元格&gt;，&lt;颜色表达式&gt;：给单元格上色
+・涂 &lt;候选数&gt;，&lt;颜色表达式&gt;：给候选数上色
+・涂 &lt;区域&gt;，&lt;颜色表达式&gt;：给区域上色
+【颜色表达式】
+机器人支持识别一些简化后的表达式：
+・#1-15：使用自带的 15 种配色涂色；
+・%@1-3：三种辅助配色；
+・%=：用于候选数，表示填数结论；
+・%!：用于候选数，表示删数结论；
+・%*1-5：使用 Hodoku 对 ALS 的 5 种配色；
+・#RRGGBB：RGB 配色代码；
+・#AARRGGBB：ARGB 配色代码。</value>
   </data>
   <data name="_MessageFormat_EndOkay" xml:space="preserve">
     <value>退出成功。现可继续使用其他功能~</value>

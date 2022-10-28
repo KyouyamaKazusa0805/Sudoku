@@ -523,7 +523,7 @@ static Identifier? getIdentifier(string name)
 		return Identifier.FromId(int.Parse(rawId) - 1);
 	}
 
-	if (name.Match("""#?[\dA-Fa-f]{6}([\dA-Fa-f]{2})?""") is { } colorHtml)
+	if (name.Match("""#[\dA-Fa-f]{6}([\dA-Fa-f]{2})?""") is { } colorHtml)
 	{
 		return f(ColorTranslator.FromHtml(colorHtml));
 	}
@@ -551,6 +551,7 @@ static (CellMap? Cell, Candidates? Candidate, int? House)? getCoordinate(string 
 	{
 		return (cells1, null, null);
 	}
+
 
 	if (rawCoordinate.Match("""[\u884c\u5217\u5bab]\s*[1-9]""") is { } parts)
 	{
