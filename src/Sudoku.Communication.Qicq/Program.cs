@@ -669,7 +669,6 @@ static (CellMap? Cell, Candidates? Candidate, int? House)? getCoordinate(string 
 		return (cells1, null, null);
 	}
 
-
 	if (rawCoordinate.Match("""[\u884c\u5217\u5bab]\s*[1-9]""") is { } parts)
 	{
 		if (parts.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) is [ [var houseNotation], [var label]])
