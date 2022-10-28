@@ -147,6 +147,48 @@
   <data name="ColorGreen" xml:space="preserve">
     <value>绿</value>
   </data>
+  <data name="ColorKind_Als1" xml:space="preserve">
+    <value>*1</value>
+  </data>
+  <data name="ColorKind_Als2" xml:space="preserve">
+    <value>*2</value>
+  </data>
+  <data name="ColorKind_Als3" xml:space="preserve">
+    <value>*3</value>
+  </data>
+  <data name="ColorKind_Als4" xml:space="preserve">
+    <value>*4</value>
+  </data>
+  <data name="ColorKind_Als5" xml:space="preserve">
+    <value>*5</value>
+  </data>
+  <data name="ColorKind_Assignment" xml:space="preserve">
+    <value>=</value>
+  </data>
+  <data name="ColorKind_Aux1" xml:space="preserve">
+    <value>@1</value>
+  </data>
+  <data name="ColorKind_Aux2" xml:space="preserve">
+    <value>@2</value>
+  </data>
+  <data name="ColorKind_Aux3" xml:space="preserve">
+    <value>@3</value>
+  </data>
+  <data name="ColorKind_Cannibalism" xml:space="preserve">
+    <value>自噬</value>
+  </data>
+  <data name="ColorKind_Elimination" xml:space="preserve">
+    <value>!</value>
+  </data>
+  <data name="ColorKind_Endofin" xml:space="preserve">
+    <value>内鱼鳍</value>
+  </data>
+  <data name="ColorKind_Exofin" xml:space="preserve">
+    <value>鳍</value>
+  </data>
+  <data name="ColorKnd_Normal" xml:space="preserve">
+    <value>普通</value>
+  </data>
   <data name="ColorOrange1" xml:space="preserve">
     <value>橙</value>
   </data>

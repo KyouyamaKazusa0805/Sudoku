@@ -251,13 +251,13 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			if (isCommandStart(slice, "_Command_DrawSub", out var drawSubArgument) && EnvironmentCommandExecuting == R["_Command_Draw"])
 			{
-				var split = drawSubArgument.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-				if (split is not [var rawCoordinate, var rawColor])
+				var split = drawSubArgument.Split(new[] { ',', '\uff0c' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+				if (split is not [var rawCoordinate, var rawIdentifier])
 				{
 					return;
 				}
 
-				if (getColorByName(rawColor) is not { A: var a, R: var r, G: var g, B: var b } color)
+				if (getIdentifier(rawIdentifier) is not { } identifier)
 				{
 					return;
 				}
@@ -274,22 +274,19 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 				{
 					case ({ } cells, _, _):
 					{
-						cells.ForEach(cell => DrawNodes.Add(new CellViewNode(f(), cell)));
+						cells.ForEach(cell => DrawNodes.Add(new CellViewNode(identifier, cell)));
 						break;
 					}
 					case (_, { } candidates, _):
 					{
-						candidates.ForEach(candidate => DrawNodes.Add(new CandidateViewNode(f(), candidate)));
+						candidates.ForEach(candidate => DrawNodes.Add(new CandidateViewNode(identifier, candidate)));
 						break;
 					}
 					case (_, _, { } house):
 					{
-						DrawNodes.Add(new HouseViewNode(f(), house));
+						DrawNodes.Add(new HouseViewNode(identifier, house));
 						break;
 					}
-
-
-					Identifier f() => Identifier.FromColor(a, r, g, b);
 				}
 
 				Painter.WithNodes(DrawNodes.ToArray());
@@ -504,34 +501,42 @@ static int generateCheckInExpContinuous(Random random, int continuousDaysCount)
 }
 
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-static Color? getColorByName(string name)
+static Identifier? getIdentifier(string name)
 {
 	if (Enum.TryParse<KnownColor>(name, out var knownColor))
 	{
-		return Color.FromKnownColor(knownColor);
+		return f(Color.FromKnownColor(knownColor));
 	}
 
 	if (KnownColors.TryGetValue(name, out var dicColor))
 	{
-		return dicColor;
+		return f(dicColor);
 	}
 
-	if (name.Match("""#?[\dA-Fa-f]{6}([\dA-Fa-f]{2})?""") is { } colorStr1)
+	if (name is ['%', .. var rawColorKind] && KnownKinds.TryGetValue(rawColorKind, out var colorKind))
 	{
-		return ColorTranslator.FromHtml(colorStr1);
+		return Identifier.FromNamedKind(colorKind);
+	}
+
+	if (name.Match("""#([1-9]|1[0-5])""") is [_, .. var rawId] colorLabel)
+	{
+		return Identifier.FromId(int.Parse(rawId) - 1);
+	}
+
+	if (name.Match("""#?[\dA-Fa-f]{6}([\dA-Fa-f]{2})?""") is { } colorHtml)
+	{
+		return f(ColorTranslator.FromHtml(colorHtml));
 	}
 
 	return null;
+
+
+	static Identifier f(Color c) => Identifier.FromColor(c.A, c.R, c.G, c.B);
 }
 
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
 static (CellMap? Cell, Candidates? Candidate, int? House)? getCoordinate(string rawCoordinate)
 {
-	if (K9Notation.TryParseCells(rawCoordinate, out var cells1))
-	{
-		return (cells1, null, null);
-	}
-
 	if (RxCyNotation.TryParseCandidates(rawCoordinate, out var candidates1))
 	{
 		return (null, candidates1, null);
@@ -540,6 +545,11 @@ static (CellMap? Cell, Candidates? Candidate, int? House)? getCoordinate(string 
 	if (RxCyNotation.TryParseCells(rawCoordinate, out var cells2))
 	{
 		return (cells2, null, null);
+	}
+
+	if (K9Notation.TryParseCells(rawCoordinate, out var cells1))
+	{
+		return (cells1, null, null);
 	}
 
 	if (rawCoordinate.Match("""[\u884c\u5217\u5bab]\s*[1-9]""") is { } parts)
@@ -570,6 +580,24 @@ file static partial class Program
 		{ R["ColorOrange1"]!, Color.Orange },
 		{ R["ColorOrange2"]!, Color.Orange },
 		{ R["ColorGray"]!, Color.Gray }
+	};
+
+	private static readonly Dictionary<string, DisplayColorKind> KnownKinds = new()
+	{
+		{ R["ColorKnd_Normal"]!, DisplayColorKind.Normal },
+		{ R["ColorKind_Aux1"]!, DisplayColorKind.Auxiliary1 },
+		{ R["ColorKind_Aux2"]!, DisplayColorKind.Auxiliary2 },
+		{ R["ColorKind_Aux3"]!, DisplayColorKind.Auxiliary3 },
+		{ R["ColorKind_Assignment"]!, DisplayColorKind.Assignment },
+		{ R["ColorKind_Elimination"]!, DisplayColorKind.Elimination },
+		{ R["ColorKind_Exofin"]!, DisplayColorKind.Exofin },
+		{ R["ColorKind_Endofin"]!, DisplayColorKind.Endofin },
+		{ R["ColorKind_Cannibalism"]!, DisplayColorKind.Cannibalism },
+		{ R["ColorKind_Als1"]!, DisplayColorKind.AlmostLockedSet1 },
+		{ R["ColorKind_Als2"]!, DisplayColorKind.AlmostLockedSet2 },
+		{ R["ColorKind_Als3"]!, DisplayColorKind.AlmostLockedSet3 },
+		{ R["ColorKind_Als4"]!, DisplayColorKind.AlmostLockedSet4 },
+		{ R["ColorKind_Als5"]!, DisplayColorKind.AlmostLockedSet5 }
 	};
 }
 

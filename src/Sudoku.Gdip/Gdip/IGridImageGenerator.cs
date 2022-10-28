@@ -249,6 +249,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 				=> namedKind switch
 				{
 					DisplayColorKind.Normal => Preferences.Color1,
+					DisplayColorKind.Assignment => Preferences.Color1,
 					DisplayColorKind.Elimination => Preferences.EliminationColor,
 					DisplayColorKind.Exofin => Preferences.Color2,
 					DisplayColorKind.Endofin => Preferences.Color3,
