@@ -643,7 +643,7 @@ static int? getCell(string rawCoordinate)
 		return cell2;
 	}
 
-	if (K9Notation.TryParseCells(rawCoordinate, out var z) && z is [var cell1])
+	if (K9Notation.TryParseCell(rawCoordinate, out var cell1))
 	{
 		return cell1;
 	}

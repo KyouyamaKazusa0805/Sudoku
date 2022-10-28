@@ -7101,8 +7101,18 @@
         <member name="M:Sudoku.Text.Notations.K9Notation.ToCellsString(Sudoku.Concepts.CellMap@,Sudoku.Text.Notations.K9NotationOptions@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Text.Notations.K9Notation.ParseCell(System.String)">
+            <summary>
+            Try to parse the string and convert it into a single cell index.
+            </summary>
+            <param name="str">The string.</param>
+            <returns>The valid cell index.</returns>
+        </member>
         <member name="M:Sudoku.Text.Notations.K9Notation.ParseCells(System.String)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Notations.K9Notation.TryParseCell(System.String,System.Int32@)">
+            <inheritdoc cref="M:Sudoku.Text.Notations.RxCyNotation.TryParseCell(System.String,System.Int32@)"/>
         </member>
         <member name="M:Sudoku.Text.Notations.K9Notation.TryParseCells(System.String,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>

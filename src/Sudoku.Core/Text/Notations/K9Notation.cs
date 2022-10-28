@@ -133,6 +133,14 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 		}
 	}
 
+	/// <summary>
+	/// Try to parse the string and convert it into a single cell index.
+	/// </summary>
+	/// <param name="str">The string.</param>
+	/// <returns>The valid cell index.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int ParseCell(string str) => ParseCells(str)[0];
+
 	/// <inheritdoc/>
 	public static unsafe CellMap ParseCells(string str)
 	{
@@ -191,6 +199,21 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 
 		// Returns the result.
 		return result;
+	}
+
+	/// <inheritdoc cref="RxCyNotation.TryParseCell(string, out int)"/>
+	public static bool TryParseCell(string str, out int cell)
+	{
+		try
+		{
+			cell = ParseCell(str);
+			return true;
+		}
+		catch (FormatException)
+		{
+			SkipInit(out cell);
+			return false;
+		}
 	}
 
 	/// <inheritdoc/>
