@@ -222,6 +222,9 @@
   <data name="_Command_CheckInIntro" xml:space="preserve">
     <value>签到说明</value>
   </data>
+  <data name="_Command_Clear" xml:space="preserve">
+    <value>清</value>
+  </data>
   <data name="_Command_ComplexLookupScore" xml:space="preserve">
     <value>详细查询</value>
   </data>
@@ -276,9 +279,8 @@
   <data name="_MessageFormat_DrawStartMessage" xml:space="preserve">
     <value>绘图说明📖
 绘图支持如下指令：
-・涂 &lt;单元格&gt;，&lt;颜色&gt;：给单元格涂色；
-・涂 &lt;候选数&gt;，&lt;颜色&gt;：给候选数涂色；
-・涂 &lt;区域&gt;，&lt;颜色&gt;：给区域涂色；
+・涂 &lt;单元格|候选数|区域&gt;，&lt;颜色&gt;：给它们进行涂色；
+・清 &lt;单元格|候选数|区域&gt;：清除它们已有的涂色；
 ・填 &lt;单元格&gt;，&lt;数&gt;：往单元格填入数字；
 ・删 &lt;单元格&gt;，&lt;数&gt;：往单元格删除候选数。
 【颜色表达式】

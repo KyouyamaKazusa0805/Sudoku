@@ -324,6 +324,67 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 			}
 
 			//
+			// Clear
+			//
+			if (isCommandStart(slice, "_Command_Clear", out var clearSubArgument) && EnvironmentCommandExecuting == R["_Command_Draw"])
+			{
+				if (getCoordinate(clearSubArgument) is not { } triplet)
+				{
+					return;
+				}
+
+				switch (triplet)
+				{
+					case ({ } cells, _, _):
+					{
+						cells.ForEach(cell => DrawNodes!.RemoveAll(r => r is CellViewNode { Cell: var c } && c == cell));
+						break;
+					}
+					case (_, { } candidates, _):
+					{
+						candidates.ForEach(candidate => DrawNodes!.RemoveAll(r => r is CandidateViewNode { Candidate: var c } && c == candidate));
+						break;
+					}
+					case (_, _, { } house):
+					{
+						DrawNodes!.RemoveAll(r => r is HouseViewNode { House: var h } && h == house);
+						break;
+					}
+				}
+
+				Painter!.WithNodes(DrawNodes!.ToArray());
+
+				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+				if (!Directory.Exists(folder))
+				{
+					// Error. The computer does not contain "My Documents" folder.
+					// This folder is special; if the computer does not contain the folder, we should return directly.
+					return;
+				}
+
+				var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+				if (!Directory.Exists(botDataFolder))
+				{
+					Directory.CreateDirectory(botDataFolder);
+				}
+
+				var botUsersDataFolder = $"""{botDataFolder}\{R["CachedPictureFolderName"]}""";
+				if (!Directory.Exists(botUsersDataFolder))
+				{
+					Directory.CreateDirectory(botUsersDataFolder);
+				}
+
+				var picturePath = $"""{botUsersDataFolder}\temp.png""";
+				Painter.SaveTo(picturePath);
+
+				await e.SendMessageAsync(new ImageMessage { Path = picturePath });
+
+				File.Delete(picturePath);
+
+				return;
+			}
+
+			//
 			// Set
 			//
 			if (isCommandStart(slice, "_Command_Set", out var setArgument) && EnvironmentCommandExecuting == R["_Command_Draw"])
