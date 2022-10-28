@@ -213,6 +213,12 @@
             The target <see cref="T:System.Span`1"/> instance.
             </param>
         </member>
+        <member name="M:Sudoku.Concepts.Candidates.ForEach(System.Action{System.Int32})">
+            <summary>
+            Iterates on each element in this collection.
+            </summary>
+            <param name="action">The visitor that handles for each element in this collection.</param>
+        </member>
         <member name="M:Sudoku.Concepts.Candidates.Equals(System.Object)">
             <inheritdoc/>
         </member>
@@ -784,6 +790,12 @@
             <param name="span">
             The target <see cref="T:System.Span`1"/> instance.
             </param>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.ForEach(System.Action{System.Int32})">
+            <summary>
+            Iterates on each element in this collection.
+            </summary>
+            <param name="action">The visitor that handles for each element in this collection.</param>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.AllSetsAreInOneHouse(System.Int32@)">
             <summary>

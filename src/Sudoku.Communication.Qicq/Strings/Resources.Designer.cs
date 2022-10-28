@@ -88,6 +88,15 @@ namespace Sudoku.Communication.Qicq.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TempPictures.
+        /// </summary>
+        internal static string CachedPictureFolderName {
+            get {
+                return ResourceManager.GetString("CachedPictureFolderName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to localhost:8080.
         /// </summary>
         internal static string HostPort {

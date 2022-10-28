@@ -129,6 +129,10 @@
     <value>BotData</value>
     <comment>The folder names that stores your bot data. The code suggests the output JSON path be "My Documents" folder, so you should check that folder in "My Documents" folder as base one.</comment>
   </data>
+  <data name="CachedPictureFolderName" xml:space="preserve">
+    <value>TempPictures</value>
+    <comment>The folder that temporary pictures are generated and stored to.</comment>
+  </data>
   <data name="HostPort" xml:space="preserve">
     <value>localhost:8080</value>
     <comment>The Mirai host and port. This configuration can be found in your configuration file.</comment>

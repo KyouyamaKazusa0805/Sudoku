@@ -587,6 +587,18 @@ public struct CellMap :
 	}
 
 	/// <summary>
+	/// Iterates on each element in this collection.
+	/// </summary>
+	/// <param name="action">The visitor that handles for each element in this collection.</param>
+	public readonly void ForEach(Action<int> action)
+	{
+		foreach (var cell in this)
+		{
+			action(cell);
+		}
+	}
+
+	/// <summary>
 	/// Indicates whether all cells in this instance are in one house.
 	/// </summary>
 	/// <param name="houseIndex">

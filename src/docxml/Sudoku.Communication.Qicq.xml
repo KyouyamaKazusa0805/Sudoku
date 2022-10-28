@@ -74,6 +74,11 @@
               Looks up a localized string similar to BotData.
             </summary>
         </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.CachedPictureFolderName">
+            <summary>
+              Looks up a localized string similar to TempPictures.
+            </summary>
+        </member>
         <member name="P:Sudoku.Communication.Qicq.Strings.Resources.HostPort">
             <summary>
               Looks up a localized string similar to localhost:8080.

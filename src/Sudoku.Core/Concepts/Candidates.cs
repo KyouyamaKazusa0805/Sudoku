@@ -346,6 +346,18 @@ public unsafe struct Candidates :
 		}
 	}
 
+	/// <summary>
+	/// Iterates on each element in this collection.
+	/// </summary>
+	/// <param name="action">The visitor that handles for each element in this collection.</param>
+	public readonly void ForEach(Action<int> action)
+	{
+		foreach (var candidate in this)
+		{
+			action(candidate);
+		}
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Candidates comparer && Equals(comparer);

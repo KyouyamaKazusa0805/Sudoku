@@ -129,6 +129,45 @@
   <data name="BootingSuccessMessage" xml:space="preserve">
     <value>机器人启动成功！退出请按任意键……</value>
   </data>
+  <data name="ColorBlack" xml:space="preserve">
+    <value>黑</value>
+  </data>
+  <data name="ColorBlue" xml:space="preserve">
+    <value>蓝</value>
+  </data>
+  <data name="ColorDarkGreen" xml:space="preserve">
+    <value>深绿</value>
+  </data>
+  <data name="ColorDarkYellow" xml:space="preserve">
+    <value>深黄</value>
+  </data>
+  <data name="ColorGray" xml:space="preserve">
+    <value>灰</value>
+  </data>
+  <data name="ColorGreen" xml:space="preserve">
+    <value>绿</value>
+  </data>
+  <data name="ColorOrange1" xml:space="preserve">
+    <value>橙</value>
+  </data>
+  <data name="ColorOrange2" xml:space="preserve">
+    <value>橘</value>
+  </data>
+  <data name="ColorPink" xml:space="preserve">
+    <value>粉红</value>
+  </data>
+  <data name="ColorPurple" xml:space="preserve">
+    <value>紫</value>
+  </data>
+  <data name="ColorRed" xml:space="preserve">
+    <value>红</value>
+  </data>
+  <data name="ColorSkyblue" xml:space="preserve">
+    <value>天蓝</value>
+  </data>
+  <data name="ColorYellow" xml:space="preserve">
+    <value>黄</value>
+  </data>
   <data name="SampleMemberJoinedMessage" xml:space="preserve">
     <value>欢迎新成员~ 这里是 B 站 up 主 SunnieShine 的数独交流群~</value>
   </data>
@@ -144,6 +183,15 @@
   <data name="_Command_ComplexLookupScore" xml:space="preserve">
     <value>详细查询</value>
   </data>
+  <data name="_Command_Draw" xml:space="preserve">
+    <value>绘图</value>
+  </data>
+  <data name="_Command_DrawSub" xml:space="preserve">
+    <value>涂</value>
+  </data>
+  <data name="_Command_End" xml:space="preserve">
+    <value>退出</value>
+  </data>
   <data name="_Command_Help" xml:space="preserve">
     <value>帮助</value>
   </data>
@@ -152,13 +200,16 @@
   </data>
   <data name="_HelpMessage" xml:space="preserve">
     <value>欢迎使用机器人！该机器人提供如下功能：
-【基本功能】——使用感叹号❗开头
-・签到：签到可以获得经验值~
-・签到说明：查看“签到”指令的详细说明~
-・查询：查询发出该指令的当前用户的经验值数据~
-・帮助：查看该帮助文档~
-【管理员限定】——使用百分号 % 开头
-・详细查询，&lt;用户&gt;：查询指定用户的经验值数据~</value>
+【基本功能】——使用“！”开头
+・签到：签到可以获得经验值；
+・签到说明：查看“签到”指令的详细说明；
+・查询：查询当前用户的经验值数据；
+・帮助：查看帮助文档；
+・绘图：启动绘图功能；
+・涂：给某个盘面指定位置上色；
+・退出：退出一些长时间执行的功能，如“绘图”。
+【管理员限定】——使用“%”开头
+・详细查询，&lt;用户&gt;：查询指定用户的经验值数据。</value>
   </data>
   <data name="_MessageFormat_CheckInFailedDueToMultipleInSameDay" xml:space="preserve">
     <value>签到失败~ 你今天已经签过到了，明天再来试试吧~</value>
@@ -173,6 +224,15 @@
   </data>
   <data name="_MessageFormat_CheckInSuccessfulAndContinuous" xml:space="preserve">
     <value>签到成功！已连续签到 {0} 天~ 恭喜你获得 {1} 经验值。一天只能签到一次哦~</value>
+  </data>
+  <data name="_MessageFormat_DrawStartMessage" xml:space="preserve">
+    <value>开始绘图。支持如下指令：
+・涂 &lt;单元格&gt; &lt;颜色&gt;：给单元格上色
+・涂 &lt;候选数&gt; &lt;颜色&gt;：给候选数上色
+・涂 &lt;区域&gt; &lt;颜色&gt;：给区域上色</value>
+  </data>
+  <data name="_MessageFormat_EndOkay" xml:space="preserve">
+    <value>退出成功。现可继续使用其他功能~</value>
   </data>
   <data name="_MessageFormat_LookupNameOrIdAmbiguous" xml:space="preserve">
     <value>待搜索用户名称或 QQ 号码匹配到多个用户。请修改搜索条件或提醒用户更换名称并重试。</value>

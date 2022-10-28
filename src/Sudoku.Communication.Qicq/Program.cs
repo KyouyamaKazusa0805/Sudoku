@@ -1,4 +1,6 @@
-﻿// Add resource router.
+﻿using static EnvironmentData;
+
+// Add resource router.
 R.AddExternalResourceFetecher(typeof(Program).Assembly, Resources.ResourceManager.GetString);
 
 // Creates and initializes a bot.
@@ -83,7 +85,7 @@ static async void onMemberJoined(MemberJoinedEvent e)
 	}
 }
 
-static async void onGroupMessageReceiving(GroupMessageReceiver e)
+async void onGroupMessageReceiving(GroupMessageReceiver e)
 {
 	if (e is not
 		{
@@ -110,7 +112,7 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			// Help
 			//
-			if (isCommand(slice, "_Command_Help"))
+			if (isCommand(slice, "_Command_Help") && EnvironmentCommandExecuting is null)
 			{
 				await e.SendMessageAsync(R["_HelpMessage"]);
 				return;
@@ -119,7 +121,7 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			// Check-in
 			//
-			if (isCommand(slice, "_Command_CheckIn"))
+			if (isCommand(slice, "_Command_CheckIn") && EnvironmentCommandExecuting is null)
 			{
 				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 				if (!Directory.Exists(folder))
@@ -185,7 +187,7 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			// Check-in manual
 			//
-			if (isCommand(slice, "_Command_CheckInIntro"))
+			if (isCommand(slice, "_Command_CheckInIntro") && EnvironmentCommandExecuting is null)
 			{
 				await e.SendMessageAsync(R["_MessageFormat_CheckInIntro"]);
 				return;
@@ -194,7 +196,7 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			// Lookup score
 			//
-			if (isCommand(slice, "_Command_LookupScore"))
+			if (isCommand(slice, "_Command_LookupScore") && EnvironmentCommandExecuting is null)
 			{
 				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 				if (!Directory.Exists(folder))
@@ -234,6 +236,107 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 				return;
 			}
 
+			//
+			// Draw
+			//
+			if (isCommand(slice, "_Command_Draw") && EnvironmentCommandExecuting is null)
+			{
+				EnvironmentCommandExecuting = R["_Command_Draw"]!;
+				await e.SendMessageAsync(R["_MessageFormat_DrawStartMessage"]!);
+				return;
+			}
+
+			//
+			// Draw (Subprocedure)
+			//
+			if (isCommandStart(slice, "_Command_DrawSub", out var drawSubArgument) && EnvironmentCommandExecuting == R["_Command_Draw"])
+			{
+				var split = drawSubArgument.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+				if (split is not [var rawCoordinate, var rawColor])
+				{
+					return;
+				}
+
+				if (getColorByName(rawColor) is not { A: var a, R: var r, G: var g, B: var b } color)
+				{
+					return;
+				}
+
+				if (getCoordinate(rawCoordinate) is not { } triplet)
+				{
+					return;
+				}
+
+				Painter ??= ISudokuPainter.Create(800, 10).WithRenderingCandidates(false);
+				DrawNodes ??= new List<ViewNode>();
+
+				switch (triplet)
+				{
+					case ({ } cells, _, _):
+					{
+						cells.ForEach(cell => DrawNodes.Add(new CellViewNode(f(), cell)));
+						break;
+					}
+					case (_, { } candidates, _):
+					{
+						candidates.ForEach(candidate => DrawNodes.Add(new CandidateViewNode(f(), candidate)));
+						break;
+					}
+					case (_, _, { } house):
+					{
+						DrawNodes.Add(new HouseViewNode(f(), house));
+						break;
+					}
+
+
+					Identifier f() => Identifier.FromColor(a, r, g, b);
+				}
+
+				Painter.WithNodes(DrawNodes.ToArray());
+
+				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+				if (!Directory.Exists(folder))
+				{
+					// Error. The computer does not contain "My Documents" folder.
+					// This folder is special; if the computer does not contain the folder, we should return directly.
+					return;
+				}
+
+				var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+				if (!Directory.Exists(botDataFolder))
+				{
+					Directory.CreateDirectory(botDataFolder);
+				}
+
+				var botUsersDataFolder = $"""{botDataFolder}\{R["CachedPictureFolderName"]}""";
+				if (!Directory.Exists(botUsersDataFolder))
+				{
+					Directory.CreateDirectory(botUsersDataFolder);
+				}
+
+				var picturePath = $"""{botUsersDataFolder}\temp.png""";
+				Painter.SaveTo(picturePath);
+
+				await e.SendMessageAsync(new ImageMessage { Path = picturePath });
+
+				File.Delete(picturePath);
+
+				return;
+			}
+
+			//
+			// End
+			//
+			if (isCommand(slice, "_Command_End") && EnvironmentCommandExecuting is not null)
+			{
+				EnvironmentCommandExecuting = null;
+				DrawNodes = null;
+				Painter = null;
+
+				await e.SendMessageAsync(R["_MessageFormat_EndOkay"]!);
+				return;
+			}
+
 			break;
 		}
 		case ['%' or '\uff05', .. var slice] when isMe(sender) || permission is Permissions.Owner or Permissions.Administrator: // Manager commands.
@@ -241,7 +344,7 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			// Lookup score
 			//
-			if (isComplexCommand(slice, "_Command_ComplexLookupScore", out var lookupArguments))
+			if (isComplexCommand(slice, "_Command_ComplexLookupScore", out var lookupArguments) && EnvironmentCommandExecuting is null)
 			{
 				if (lookupArguments is not [var nameOrId])
 				{
@@ -332,6 +435,20 @@ static bool isMe(Member member) => member.Id == R["AdminQQ"];
 static bool isCommand([NotNullWhen(true)] string? slice, string commandKey) => slice == R[commandKey];
 
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
+static bool isCommandStart([NotNullWhen(true)] string? slice, string commandKey, [NotNullWhen(true)] out string? stringArgument)
+{
+	var realCommand = R[commandKey]!;
+	if (!(slice?.StartsWith(realCommand) ?? false))
+	{
+		stringArgument = null;
+		return false;
+	}
+
+	stringArgument = slice[realCommand.Length..].Trim();
+	return true;
+}
+
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
 static bool isComplexCommand([NotNullWhen(true)] string? slice, string commandKey, [NotNullWhen(true)] out string[]? arguments)
 {
 	if (slice is null)
@@ -384,4 +501,81 @@ static int generateCheckInExpContinuous(Random random, int continuousDaysCount)
 	var earned = generateCheckInExp(random);
 	var level = continuousDaysCount / 7;
 	return (int)Round(earned * (level * .2 + 1));
+}
+
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
+static Color? getColorByName(string name)
+{
+	if (Enum.TryParse<KnownColor>(name, out var knownColor))
+	{
+		return Color.FromKnownColor(knownColor);
+	}
+
+	if (KnownColors.TryGetValue(name, out var dicColor))
+	{
+		return dicColor;
+	}
+
+	if (name.Match("""#?[\dA-Fa-f]{6}([\dA-Fa-f]{2})?""") is { } colorStr1)
+	{
+		return ColorTranslator.FromHtml(colorStr1);
+	}
+
+	return null;
+}
+
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
+static (CellMap? Cell, Candidates? Candidate, int? House)? getCoordinate(string rawCoordinate)
+{
+	if (K9Notation.TryParseCells(rawCoordinate, out var cells1))
+	{
+		return (cells1, null, null);
+	}
+
+	if (RxCyNotation.TryParseCandidates(rawCoordinate, out var candidates1))
+	{
+		return (null, candidates1, null);
+	}
+
+	if (RxCyNotation.TryParseCells(rawCoordinate, out var cells2))
+	{
+		return (cells2, null, null);
+	}
+
+	if (rawCoordinate.Match("""[\u884c\u5217\u5bab]\s*[1-9]""") is { } parts)
+	{
+		if (parts.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) is [[var houseNotation], [var label]])
+		{
+			return (null, null, houseNotation switch { '\u884c' => 9, '\u5217' => 18, _ => 0 } + (label - '1'));
+		}
+	}
+
+	return null;
+}
+
+file static partial class Program
+{
+	private static readonly Dictionary<string, Color> KnownColors = new()
+	{
+		{ R["ColorRed"]!, Color.Red },
+		{ R["ColorGreen"]!, Color.Green },
+		{ R["ColorBlue"]!, Color.Blue },
+		{ R["ColorYellow"]!, Color.Yellow },
+		{ R["ColorBlack"]!, Color.Black },
+		{ R["ColorPurple"]!, Color.Purple },
+		{ R["ColorSkyblue"]!, Color.SkyBlue },
+		{ R["ColorDarkYellow"]!, Color.Gold },
+		{ R["ColorDarkGreen"]!, Color.DarkGreen },
+		{ R["ColorPink"]!, Color.Pink },
+		{ R["ColorOrange1"]!, Color.Orange },
+		{ R["ColorOrange2"]!, Color.Orange },
+		{ R["ColorGray"]!, Color.Gray }
+	};
+}
+
+file static class EnvironmentData
+{
+	public static string? EnvironmentCommandExecuting = null;
+	public static List<ViewNode>? DrawNodes = null;
+	public static ISudokuPainter? Painter = null;
 }

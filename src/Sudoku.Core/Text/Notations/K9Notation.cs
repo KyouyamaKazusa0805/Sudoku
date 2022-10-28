@@ -165,7 +165,7 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 
 			// Stores the possible values into the buffer.
 			int rIndex = 0, cIndex = 0;
-			for (var p = anchorR + 1; !char.IsDigit(*p); p++, rIndex++)
+			for (var p = anchorR; !char.IsDigit(*p); p++, rIndex++)
 			{
 				bufferRows[rIndex] = *p switch
 				{
@@ -174,7 +174,7 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 					_ => *p - 'a'
 				};
 			}
-			for (var p = anchorC + 1; *p != '\0'; p++, cIndex++)
+			for (var p = anchorC; *p != '\0'; p++, cIndex++)
 			{
 				bufferColumns[cIndex] = *p - '1';
 			}
