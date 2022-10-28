@@ -413,13 +413,7 @@ file static class InternalExtensions
 	/// <param name="groupId">The group ID.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	public static async Task<bool> CanHandleInvitationOrJoinRequestAsync(this MiraiBot @this, string groupId)
-	{
-		if (@this is not { Groups: { IsValueCreated: true, Value: var groups }, QQ: var botId })
-		{
-			return false;
-		}
-
-		var foundMember = (await groups.First(g => g.Id == groupId).GetGroupMembersAsync()).FirstOrDefault(m => m.Id == botId);
-		return foundMember is { Permission: Permissions.Administrator or Permissions.Owner };
-	}
+		=> @this is { Groups: { IsValueCreated: true, Value: var groups }, QQ: var botId }
+		&& (await groups.First(g => g.Id == groupId).GetGroupMembersAsync()).FirstOrDefault(m => m.Id == botId) is var foundMember
+		&& foundMember is { Permission: Permissions.Administrator or Permissions.Owner };
 }
