@@ -225,6 +225,9 @@
   <data name="_Command_ComplexLookupScore" xml:space="preserve">
     <value>详细查询</value>
   </data>
+  <data name="_Command_Delete" xml:space="preserve">
+    <value>删</value>
+  </data>
   <data name="_Command_Draw" xml:space="preserve">
     <value>绘图</value>
   </data>
@@ -239,6 +242,9 @@
   </data>
   <data name="_Command_LookupScore" xml:space="preserve">
     <value>查询</value>
+  </data>
+  <data name="_Command_Set" xml:space="preserve">
+    <value>填</value>
   </data>
   <data name="_HelpMessage" xml:space="preserve">
     <value>欢迎使用机器人！该机器人提供如下功能：
@@ -270,9 +276,11 @@
   <data name="_MessageFormat_DrawStartMessage" xml:space="preserve">
     <value>绘图说明📖
 绘图支持如下指令：
-・涂 &lt;单元格&gt;，&lt;颜色表达式&gt;：给单元格上色
-・涂 &lt;候选数&gt;，&lt;颜色表达式&gt;：给候选数上色
-・涂 &lt;区域&gt;，&lt;颜色表达式&gt;：给区域上色
+・涂 &lt;单元格&gt;，&lt;颜色&gt;：给单元格涂色；
+・涂 &lt;候选数&gt;，&lt;颜色&gt;：给候选数涂色；
+・涂 &lt;区域&gt;，&lt;颜色&gt;：给区域涂色；
+・填 &lt;单元格&gt;，&lt;数&gt;：往单元格填入数字；
+・删 &lt;单元格&gt;，&lt;数&gt;：往单元格删除候选数。
 【颜色表达式】
 机器人支持识别一些简化后的表达式：
 ・#1-15：使用自带的 15 种配色涂色；

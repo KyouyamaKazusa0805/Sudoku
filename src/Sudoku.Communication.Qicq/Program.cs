@@ -241,8 +241,13 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			if (isCommand(slice, "_Command_Draw") && EnvironmentCommandExecuting is null)
 			{
-				EnvironmentCommandExecuting = R["_Command_Draw"]!;
 				await e.SendMessageAsync(R["_MessageFormat_DrawStartMessage"]!);
+
+				EnvironmentCommandExecuting = R["_Command_Draw"]!;
+				Puzzle = Grid.Empty;
+				Painter = ISudokuPainter.Create(800, 10).WithGrid(Puzzle).WithRenderingCandidates(false);
+				DrawNodes = new List<ViewNode>();
+
 				return;
 			}
 
@@ -267,29 +272,124 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 					return;
 				}
 
-				Painter ??= ISudokuPainter.Create(800, 10).WithRenderingCandidates(false);
-				DrawNodes ??= new List<ViewNode>();
-
 				switch (triplet)
 				{
 					case ({ } cells, _, _):
 					{
-						cells.ForEach(cell => DrawNodes.Add(new CellViewNode(identifier, cell)));
+						cells.ForEach(cell => DrawNodes!.Add(new CellViewNode(identifier, cell)));
 						break;
 					}
 					case (_, { } candidates, _):
 					{
-						candidates.ForEach(candidate => DrawNodes.Add(new CandidateViewNode(identifier, candidate)));
+						candidates.ForEach(candidate => DrawNodes!.Add(new CandidateViewNode(identifier, candidate)));
 						break;
 					}
 					case (_, _, { } house):
 					{
-						DrawNodes.Add(new HouseViewNode(identifier, house));
+						DrawNodes!.Add(new HouseViewNode(identifier, house));
 						break;
 					}
 				}
 
-				Painter.WithNodes(DrawNodes.ToArray());
+				Painter!.WithNodes(DrawNodes!.ToArray());
+
+				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+				if (!Directory.Exists(folder))
+				{
+					// Error. The computer does not contain "My Documents" folder.
+					// This folder is special; if the computer does not contain the folder, we should return directly.
+					return;
+				}
+
+				var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+				if (!Directory.Exists(botDataFolder))
+				{
+					Directory.CreateDirectory(botDataFolder);
+				}
+
+				var botUsersDataFolder = $"""{botDataFolder}\{R["CachedPictureFolderName"]}""";
+				if (!Directory.Exists(botUsersDataFolder))
+				{
+					Directory.CreateDirectory(botUsersDataFolder);
+				}
+
+				var picturePath = $"""{botUsersDataFolder}\temp.png""";
+				Painter.SaveTo(picturePath);
+
+				await e.SendMessageAsync(new ImageMessage { Path = picturePath });
+
+				File.Delete(picturePath);
+
+				return;
+			}
+
+			//
+			// Set
+			//
+			if (isCommandStart(slice, "_Command_Set", out var setArgument) && EnvironmentCommandExecuting == R["_Command_Draw"])
+			{
+				var split = setArgument.Split(new[] { ',', '\uff0c' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+				if (split is not [var rawCoordinate, [var rawDigit and >= '0' and <= '9']])
+				{
+					return;
+				}
+
+				if (getCell(rawCoordinate) is not { } cell)
+				{
+					return;
+				}
+
+				Puzzle[cell] = rawDigit - '1';
+				Painter!.WithGrid(Puzzle);
+
+				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+				if (!Directory.Exists(folder))
+				{
+					// Error. The computer does not contain "My Documents" folder.
+					// This folder is special; if the computer does not contain the folder, we should return directly.
+					return;
+				}
+
+				var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+				if (!Directory.Exists(botDataFolder))
+				{
+					Directory.CreateDirectory(botDataFolder);
+				}
+
+				var botUsersDataFolder = $"""{botDataFolder}\{R["CachedPictureFolderName"]}""";
+				if (!Directory.Exists(botUsersDataFolder))
+				{
+					Directory.CreateDirectory(botUsersDataFolder);
+				}
+
+				var picturePath = $"""{botUsersDataFolder}\temp.png""";
+				Painter.SaveTo(picturePath);
+
+				await e.SendMessageAsync(new ImageMessage { Path = picturePath });
+
+				File.Delete(picturePath);
+
+				return;
+			}
+
+			//
+			// Delete
+			//
+			if (isCommandStart(slice, "_Command_Delete", out var deleteArgument) && EnvironmentCommandExecuting == R["_Command_Draw"])
+			{
+				var split = deleteArgument.Split(new[] { ',', '\uff0c' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+				if (split is not [var rawCoordinate, [var rawDigit and >= '0' and <= '9']])
+				{
+					return;
+				}
+
+				if (getCell(rawCoordinate) is not { } cell)
+				{
+					return;
+				}
+
+				Puzzle[cell, rawDigit - '1'] = false;
+				Painter!.WithGrid(Puzzle);
 
 				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 				if (!Directory.Exists(folder))
@@ -329,6 +429,7 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 				EnvironmentCommandExecuting = null;
 				DrawNodes = null;
 				Painter = null;
+				Puzzle = Grid.Empty;
 
 				await e.SendMessageAsync(R["_MessageFormat_EndOkay"]!);
 				return;
@@ -535,6 +636,22 @@ static Identifier? getIdentifier(string name)
 }
 
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
+static int? getCell(string rawCoordinate)
+{
+	if (RxCyNotation.TryParseCell(rawCoordinate, out var cell2))
+	{
+		return cell2;
+	}
+
+	if (K9Notation.TryParseCells(rawCoordinate, out var z) && z is [var cell1])
+	{
+		return cell1;
+	}
+
+	return null;
+}
+
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
 static (CellMap? Cell, Candidates? Candidate, int? House)? getCoordinate(string rawCoordinate)
 {
 	if (RxCyNotation.TryParseCandidates(rawCoordinate, out var candidates1))
@@ -555,7 +672,7 @@ static (CellMap? Cell, Candidates? Candidate, int? House)? getCoordinate(string 
 
 	if (rawCoordinate.Match("""[\u884c\u5217\u5bab]\s*[1-9]""") is { } parts)
 	{
-		if (parts.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) is [[var houseNotation], [var label]])
+		if (parts.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) is [ [var houseNotation], [var label]])
 		{
 			return (null, null, houseNotation switch { '\u884c' => 9, '\u5217' => 18, _ => 0 } + (label - '1'));
 		}
@@ -605,6 +722,7 @@ file static partial class Program
 file static class EnvironmentData
 {
 	public static string? EnvironmentCommandExecuting = null;
+	public static Grid Puzzle = Grid.Empty;
 	public static List<ViewNode>? DrawNodes = null;
 	public static ISudokuPainter? Painter = null;
 }
