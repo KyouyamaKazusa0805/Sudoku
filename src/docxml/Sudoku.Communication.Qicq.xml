@@ -29,6 +29,20 @@
             Indicates the last time checked in of the current user.
             </summary>
         </member>
+        <member name="T:Sudoku.Communication.Qicq.Permission.InternalExtensions">
+            <summary>
+            Provides with internal extension methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Permission.InternalExtensions.CanHandleInvitationOrJoinRequestAsync(Mirai.Net.Sessions.MiraiBot,System.String)">
+            <summary>
+            Determines whether the specified <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance supports permission on handling requests
+            of adding or inviting message about the specified group.
+            </summary>
+            <param name="this">The <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.</param>
+            <param name="groupId">The group ID.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Communication.Qicq.Strings.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -79,33 +93,6 @@
             <summary>
               Looks up a localized string similar to helloworld.
             </summary>
-        </member>
-        <member name="T:LocalResourceFetcher">
-            <summary>
-            Defines a local common resource fetcher.
-            </summary>
-        </member>
-        <member name="M:LocalResourceFetcher.X(System.String)">
-            <summary>
-            Fetches the resource via the key. This method simply calls <see cref="M:System.Resources.ResourceManager.GetString(System.String)"/>.
-            </summary>
-            <param name="key">The resource key.</param>
-            <returns>The string value.</returns>
-            <seealso cref="T:System.Resources.ResourceManager"/>
-        </member>
-        <member name="T:InternalExtensions">
-            <summary>
-            Provides with internal extension methods.
-            </summary>
-        </member>
-        <member name="M:InternalExtensions.CanHandleInvitationOrJoinRequestAsync(Mirai.Net.Sessions.MiraiBot,System.String)">
-            <summary>
-            Determines whether the specified <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance supports permission on handling requests
-            of adding or inviting message about the specified group.
-            </summary>
-            <param name="this">The <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.</param>
-            <param name="groupId">The group ID.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
     </members>
 </doc>

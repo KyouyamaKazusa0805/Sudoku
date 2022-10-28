@@ -1,7 +1,8 @@
-﻿using static LocalResourceFetcher;
+﻿// Add resource router.
+R.AddExternalResourceFetecher(typeof(Program).Assembly, Resources.ResourceManager.GetString);
 
 // Creates and initializes a bot.
-using var bot = new MiraiBot { Address = X("HostPort"), QQ = X("BotQQ")!, VerifyKey = X("VerifyKey") };
+using var bot = new MiraiBot { Address = R["HostPort"], QQ = R["BotQQ"]!, VerifyKey = R["VerifyKey"] };
 
 try
 {
@@ -14,16 +15,16 @@ try
 	bot.EventReceived.OfType<NewInvitationRequestedEvent>().Subscribe(onInvitationRequested);
 
 	// Blocks the main thread, in order to prevent the main thread exits too fast.
-	Console.WriteLine(X("BootingSuccessMessage"));
+	Console.WriteLine(R["BootingSuccessMessage"]);
 	Console.ReadKey();
 }
 catch (FlurlHttpException)
 {
-	Console.WriteLine(X("BootingFailedDueToMirai"));
+	Console.WriteLine(R["BootingFailedDueToMirai"]);
 }
 catch (InvalidResponseException)
 {
-	Console.WriteLine(X("BootingFailedDueToHttp"));
+	Console.WriteLine(R["BootingFailedDueToHttp"]);
 }
 
 
@@ -44,10 +45,10 @@ async void onNewMemberRequested(NewMemberRequestedEvent e)
 		return;
 	}
 
-	var bilibiliPattern = X("BilibiliNameRegexPattern")!;
+	var bilibiliPattern = R["BilibiliNameRegexPattern"]!;
 	if (!message.Trim().IsMatch(bilibiliPattern))
 	{
-		await e.RejectAsync(X("_MessageFormat_RejectJoiningGroup")!);
+		await e.RejectAsync(R["_MessageFormat_RejectJoiningGroup"]!);
 		return;
 	}
 
@@ -78,7 +79,7 @@ static async void onMemberJoined(MemberJoinedEvent e)
 {
 	if (e.Member.Group is { Id: var id } group && isMyGroupId(id))
 	{
-		await group.SendGroupMessageAsync(X("SampleMemberJoinedMessage"));
+		await group.SendGroupMessageAsync(R["SampleMemberJoinedMessage"]);
 	}
 }
 
@@ -111,7 +112,7 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			if (isCommand(slice, "_Command_Help"))
 			{
-				await e.SendMessageAsync(X("_HelpMessage"));
+				await e.SendMessageAsync(R["_HelpMessage"]);
 				return;
 			}
 
@@ -128,13 +129,13 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 					return;
 				}
 
-				var botDataFolder = $"""{folder}\{X("BotSettingsFolderName")}""";
+				var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
 				if (!Directory.Exists(botDataFolder))
 				{
 					Directory.CreateDirectory(botDataFolder);
 				}
 
-				var botUsersDataFolder = $"""{botDataFolder}\{X("UserSettingsFolderName")}""";
+				var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
 				if (!Directory.Exists(botUsersDataFolder))
 				{
 					Directory.CreateDirectory(botUsersDataFolder);
@@ -148,7 +149,7 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 				if (userData.LastCheckIn == DateTime.Today)
 				{
 					// Disallow user checking in multiple times in a same day.
-					await e.SendMessageAsync(X("_MessageFormat_CheckInFailedDueToMultipleInSameDay")!);
+					await e.SendMessageAsync(R["_MessageFormat_CheckInFailedDueToMultipleInSameDay"]!);
 					return;
 				}
 
@@ -161,7 +162,7 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 					userData.Score += expEarned;
 					userData.LastCheckIn = DateTime.Today;
 
-					await e.SendMessageAsync(string.Format(X("_MessageFormat_CheckInSuccessfulAndContinuous")!, userData.ComboCheckedIn, expEarned));
+					await e.SendMessageAsync(string.Format(R["_MessageFormat_CheckInSuccessfulAndContinuous"]!, userData.ComboCheckedIn, expEarned));
 				}
 				else
 				{
@@ -172,7 +173,7 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 					userData.Score += expEarned;
 					userData.LastCheckIn = DateTime.Today;
 
-					await e.SendMessageAsync(string.Format(X("_MessageFormat_CheckInSuccessful")!, expEarned));
+					await e.SendMessageAsync(string.Format(R["_MessageFormat_CheckInSuccessful"]!, expEarned));
 				}
 
 				var json = JsonSerializer.Serialize(userData);
@@ -186,7 +187,7 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			if (isCommand(slice, "_Command_CheckInIntro"))
 			{
-				await e.SendMessageAsync(X("_MessageFormat_CheckInIntro"));
+				await e.SendMessageAsync(R["_MessageFormat_CheckInIntro"]);
 				return;
 			}
 
@@ -203,13 +204,13 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 					goto DirectlyReturn;
 				}
 
-				var botDataFolder = $"""{folder}\{X("BotSettingsFolderName")}""";
+				var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
 				if (!Directory.Exists(botDataFolder))
 				{
 					goto SpecialCase_UserDataFileNotFound;
 				}
 
-				var botUsersDataFolder = $"""{botDataFolder}\{X("UserSettingsFolderName")}""";
+				var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
 				if (!Directory.Exists(botUsersDataFolder))
 				{
 					goto SpecialCase_UserDataFileNotFound;
@@ -222,12 +223,12 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 				}
 
 				var userData = JsonSerializer.Deserialize<UserData>(await File.ReadAllTextAsync(userDataPath))!;
-				await e.SendMessageAsync(string.Format(X("_MessageFormat_UserScoreIs")!, senderName, userData.Score, senderOriginalName));
+				await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreIs"]!, senderName, userData.Score, senderOriginalName));
 
 				goto DirectlyReturn;
 
 			SpecialCase_UserDataFileNotFound:
-				await e.SendMessageAsync(string.Format(X("_MessageFormat_UserScoreNotFound")!, senderName, senderOriginalName));
+				await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreNotFound"]!, senderName, senderOriginalName));
 
 			DirectlyReturn:
 				return;
@@ -256,12 +257,12 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 				{
 					case []:
 					{
-						await e.SendMessageAsync(X("_MessageFormat_LookupNameOrIdInvalid"));
+						await e.SendMessageAsync(R["_MessageFormat_LookupNameOrIdInvalid"]);
 						break;
 					}
 					case { Length: >= 2 }:
 					{
-						await e.SendMessageAsync(X("_MessageFormat_LookupNameOrIdAmbiguous"));
+						await e.SendMessageAsync(R["_MessageFormat_LookupNameOrIdAmbiguous"]);
 						break;
 					}
 					case [{ Id: var foundMemberId }]:
@@ -274,13 +275,13 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 							goto DirectlyReturn;
 						}
 
-						var botDataFolder = $"""{folder}\{X("BotSettingsFolderName")}""";
+						var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
 						if (!Directory.Exists(botDataFolder))
 						{
 							goto SpecialCase_UserDataFileNotFound;
 						}
 
-						var botUsersDataFolder = $"""{botDataFolder}\{X("UserSettingsFolderName")}""";
+						var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
 						if (!Directory.Exists(botUsersDataFolder))
 						{
 							goto SpecialCase_UserDataFileNotFound;
@@ -293,12 +294,12 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 						}
 
 						var userData = JsonSerializer.Deserialize<UserData>(await File.ReadAllTextAsync(userDataPath))!;
-						await e.SendMessageAsync(string.Format(X("_MessageFormat_UserScoreIs")!, senderName, userData.Score, senderOriginalName));
+						await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreIs"]!, senderName, userData.Score, senderOriginalName));
 
 						goto DirectlyReturn;
 
 					SpecialCase_UserDataFileNotFound:
-						await e.SendMessageAsync(string.Format(X("_MessageFormat_UserScoreNotFound")!, senderName, senderOriginalName));
+						await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreNotFound"]!, senderName, senderOriginalName));
 
 					DirectlyReturn:
 						return;
@@ -322,13 +323,13 @@ static async void onGroupMessageReceiving(GroupMessageReceiver e)
 }
 
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-static bool isMyGroupId(string s) => s == X("SudokuGroupQQ");
+static bool isMyGroupId(string s) => s == R["SudokuGroupQQ"];
 
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-static bool isMe(Member member) => member.Id == X("AdminQQ");
+static bool isMe(Member member) => member.Id == R["AdminQQ"];
 
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-static bool isCommand([NotNullWhen(true)] string? slice, string commandKey) => slice == X(commandKey);
+static bool isCommand([NotNullWhen(true)] string? slice, string commandKey) => slice == R[commandKey];
 
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
 static bool isComplexCommand([NotNullWhen(true)] string? slice, string commandKey, [NotNullWhen(true)] out string[]? arguments)
@@ -354,7 +355,7 @@ static bool isComplexCommand([NotNullWhen(true)] string? slice, string commandKe
 		goto InvalidReturn;
 	}
 
-	if (X(commandKey) != commandName)
+	if (R[commandKey] != commandName)
 	{
 		goto InvalidReturn;
 	}
@@ -383,37 +384,4 @@ static int generateCheckInExpContinuous(Random random, int continuousDaysCount)
 	var earned = generateCheckInExp(random);
 	var level = continuousDaysCount / 7;
 	return (int)Round(earned * (level * .2 + 1));
-}
-
-
-/// <summary>
-/// Defines a local common resource fetcher.
-/// </summary>
-file static class LocalResourceFetcher
-{
-	/// <summary>
-	/// Fetches the resource via the key. This method simply calls <see cref="ResourceManager.GetString(string)"/>.
-	/// </summary>
-	/// <param name="key">The resource key.</param>
-	/// <returns>The string value.</returns>
-	/// <seealso cref="ResourceManager"/>
-	public static string? X(string key) => Resources.ResourceManager.GetString(key);
-}
-
-/// <summary>
-/// Provides with internal extension methods.
-/// </summary>
-file static class InternalExtensions
-{
-	/// <summary>
-	/// Determines whether the specified <see cref="MiraiBot"/> instance supports permission on handling requests
-	/// of adding or inviting message about the specified group.
-	/// </summary>
-	/// <param name="this">The <see cref="MiraiBot"/> instance.</param>
-	/// <param name="groupId">The group ID.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	public static async Task<bool> CanHandleInvitationOrJoinRequestAsync(this MiraiBot @this, string groupId)
-		=> @this is { Groups: { IsValueCreated: true, Value: var groups }, QQ: var botId }
-		&& (await groups.First(g => g.Id == groupId).GetGroupMembersAsync()).FirstOrDefault(m => m.Id == botId) is var foundMember
-		&& foundMember is { Permission: Permissions.Administrator or Permissions.Owner };
 }
