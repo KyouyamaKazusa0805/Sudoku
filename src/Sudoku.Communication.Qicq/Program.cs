@@ -560,7 +560,7 @@ static bool isComplexCommand([NotNullWhen(true)] string? slice, string commandKe
 	}
 
 	var baseArguments = slice.Split(new[] { ',', '\uff0c' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-	if (baseArguments.Any(static a => a is []))
+	if (!Array.TrueForAll(baseArguments, static a => a.Length != 0))
 	{
 		goto InvalidReturn;
 	}
