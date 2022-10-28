@@ -300,73 +300,167 @@ public sealed partial class RxCyNotation :
 	}
 
 	/// <inheritdoc/>
-	public static unsafe Candidates ParseCandidates(string str)
+	public static Candidates ParseCandidates(string str)
 	{
-		// Check whether the match is successful.
-		var matches = CandidateOrCandidateListRegex().Matches(str);
-		if (matches.Count == 0)
+		if (prepositionalForm(str, out var r))
 		{
-			throw new FormatException("The specified string can't match any candidate instance.");
+			return r;
+		}
+		if (postpositionalForm(str, out r))
+		{
+			return r;
+		}
+		if (complexPrepositionalForm(str, out r))
+		{
+			return r;
+		}
+		if (complexPostpositionalForm(str, out r))
+		{
+			return r;
 		}
 
-		var result = Candidates.Empty;
+		throw new FormatException("The target string cannot be parsed as a valid candidates collection.");
 
-		// Iterate on each match item.
-		var bufferDigits = stackalloc int[9];
-		foreach (var match in matches.Cast<Match>())
+
+		static bool prepositionalForm(string str, out Candidates result)
 		{
-			var value = match.Value;
-			if (value.SatisfyPattern(PrepositionalFormCandidateList))
+			if (Candidates_PrepositionalFormPattern().Match(str) is not { Success: true, Value: var s })
 			{
-				var cells = CellMap.Parse(value);
-				var digitsCount = 0;
-				fixed (char* pValue = value)
-				{
-					for (var ptr = pValue; *ptr is not ('{' or 'R' or 'r'); ptr++)
-					{
-						bufferDigits[digitsCount++] = *ptr - '1';
-					}
-				}
+				goto ReturnInvalid;
+			}
 
-				foreach (var cell in cells)
+			if (s.Split(new[] { 'R', 'r', 'C', 'c' }) is not [var digits, var rows, var columns])
+			{
+				goto ReturnInvalid;
+			}
+
+			var r = Candidates.Empty;
+			foreach (var row in rows)
+			{
+				foreach (var column in columns)
 				{
-					for (var i = 0; i < digitsCount; i++)
+					foreach (var digit in digits)
 					{
-						result.AddAnyway(cell * 9 + bufferDigits[i]);
+						r.Add(((row - '1') * 9 + (column - '1')) * 9 + (digit - '1'));
 					}
 				}
 			}
-			else if (value.SatisfyPattern(PostpositionalFormCandidateList))
-			{
-				var cells = CellMap.Parse(value);
-				var digitsCount = 0;
-				for (int i = value.IndexOf('(') + 1, length = value.Length; i < length; i++)
-				{
-					bufferDigits[digitsCount++] = value[i] - '1';
-				}
 
-				foreach (var cell in cells)
+			result = r;
+			return true;
+
+		ReturnInvalid:
+			SkipInit(out result);
+			return false;
+		}
+
+		static bool postpositionalForm(string str, out Candidates result)
+		{
+			if (Candidates_PostpositionalFormPattern().Match(str) is not { Success: true, Value: [_, .. var s, _] })
+			{
+				goto ReturnInvalid;
+			}
+
+			if (s.Split(new[] { 'C', 'c', '(' }) is not [var rows, var columns, var digits])
+			{
+				goto ReturnInvalid;
+			}
+
+			var r = Candidates.Empty;
+			foreach (var row in rows)
+			{
+				foreach (var column in columns)
 				{
-					for (var i = 0; i < digitsCount; i++)
+					foreach (var digit in digits)
 					{
-						result.AddAnyway(cell * 9 + bufferDigits[i]);
+						r.Add(((row - '1') * 9 + (column - '1')) * 9 + (digit - '1'));
 					}
 				}
 			}
+
+			result = r;
+			return true;
+
+		ReturnInvalid:
+			SkipInit(out result);
+			return false;
 		}
 
-		return result;
+		static bool complexPrepositionalForm(string str, out Candidates result)
+		{
+			if (Candidates_ComplexPrepositionalFormPattern().Match(str) is not { Success: true, Value: var s })
+			{
+				goto ReturnInvalid;
+			}
+
+			var cells = CellMap.Empty;
+			foreach (var match in CellOrCellListRegex().Matches(s).Cast<Match>())
+			{
+				cells |= ParseCells(match.Value);
+			}
+
+			var digits = s[..s.IndexOf('{')];
+			var r = Candidates.Empty;
+			foreach (var cell in cells)
+			{
+				foreach (var digit in digits)
+				{
+					r.Add(cell * 9 + (digit - '1'));
+				}
+			}
+
+			result = r;
+			return true;
+
+		ReturnInvalid:
+			SkipInit(out result);
+			return false;
+		}
+
+		static bool complexPostpositionalForm(string str, out Candidates result)
+		{
+			if (Candidates_ComplexPostpositionalFormPattern().Match(str) is not { Success: true, Value: var s })
+			{
+				goto ReturnInvalid;
+			}
+
+			var cells = CellMap.Empty;
+			foreach (var match in CellOrCellListRegex().Matches(s).Cast<Match>())
+			{
+				cells |= ParseCells(match.Value);
+			}
+
+			var digits = s[(s.IndexOf('(') + 1)..s.IndexOf(')')];
+			var r = Candidates.Empty;
+			foreach (var cell in cells)
+			{
+				foreach (var digit in digits)
+				{
+					r.Add(cell * 9 + (digit - '1'));
+				}
+			}
+
+			result = r;
+			return true;
+
+		ReturnInvalid:
+			SkipInit(out result);
+			return false;
+		}
 	}
 
-	/// <summary>
-	/// Indicates the regular expression matching a cell or cell-list.
-	/// </summary>
 	[GeneratedRegex("""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.Compiled, 5000)]
 	private static partial Regex CellOrCellListRegex();
 
-	/// <summary>
-	/// Indicates the regular expression matching a candidate or candidate-list.
-	/// </summary>
-	[GeneratedRegex("""([1-9]{3}|[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\))""", RegexOptions.Compiled, 5000)]
-	private static partial Regex CandidateOrCandidateListRegex();
+	[GeneratedRegex("""[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.Compiled, 5000)]
+	private static partial Regex Candidates_PrepositionalFormPattern();
+
+	[GeneratedRegex("""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})\([1-9]{1,9}\)""", RegexOptions.Compiled, 5000)]
+	private static partial Regex Candidates_PostpositionalFormPattern();
+
+	[GeneratedRegex("""[1-9]{1,9}\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})(,\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}))?\s*\}""", RegexOptions.Compiled, 5000)]
+	private static partial Regex Candidates_ComplexPrepositionalFormPattern();
+
+	[GeneratedRegex("""\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})(,\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}))?\s*\}\([1-9]{1,9}\)""", RegexOptions.Compiled, 5000)]
+	private static partial Regex Candidates_ComplexPostpositionalFormPattern();
 }
