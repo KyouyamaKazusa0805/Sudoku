@@ -6,6 +6,12 @@
 public static class Terminal
 {
 	/// <summary>
+	/// Pauses the command line, and wait for user pressing a key to continue.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void Pause() => Console.ReadKey();
+
+	/// <summary>
 	/// Writes the string value, followed by the current line terminator to the standard output stream.
 	/// </summary>
 	/// <param name="s">The string.</param>

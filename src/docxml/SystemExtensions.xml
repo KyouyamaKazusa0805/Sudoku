@@ -1365,6 +1365,11 @@
             Provides with the operations for the terminal.
             </summary>
         </member>
+        <member name="M:System.CommandLine.Terminal.Pause">
+            <summary>
+            Pauses the command line, and wait for user pressing a key to continue.
+            </summary>
+        </member>
         <member name="M:System.CommandLine.Terminal.Write(System.String)">
             <summary>
             Writes the string value, followed by the current line terminator to the standard output stream.

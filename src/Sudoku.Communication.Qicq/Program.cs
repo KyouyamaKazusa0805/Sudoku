@@ -15,16 +15,16 @@ try
 	bot.EventReceived.OfType<NewInvitationRequestedEvent>().Subscribe(onInvitationRequested);
 
 	// Blocks the main thread, in order to prevent the main thread exits too fast.
-	Console.WriteLine(R["BootingSuccessMessage"]);
-	Console.ReadKey();
+	Terminal.WriteLine(R["BootingSuccessMessage"]!, ConsoleColor.DarkGreen);
+	Terminal.Pause();
 }
 catch (FlurlHttpException)
 {
-	Console.WriteLine(R["BootingFailedDueToMirai"]);
+	Terminal.WriteLine(R["BootingFailedDueToMirai"]!, ConsoleColor.DarkRed);
 }
 catch (InvalidResponseException)
 {
-	Console.WriteLine(R["BootingFailedDueToHttp"]);
+	Terminal.WriteLine(R["BootingFailedDueToHttp"]!, ConsoleColor.DarkRed);
 }
 
 
