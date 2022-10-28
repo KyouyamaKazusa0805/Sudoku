@@ -701,7 +701,7 @@ file static partial class Program
 
 	private static readonly Dictionary<string, DisplayColorKind> KnownKinds = new()
 	{
-		{ R["ColorKnd_Normal"]!, DisplayColorKind.Normal },
+		{ R["ColorKind_Normal"]!, DisplayColorKind.Normal },
 		{ R["ColorKind_Aux1"]!, DisplayColorKind.Auxiliary1 },
 		{ R["ColorKind_Aux2"]!, DisplayColorKind.Auxiliary2 },
 		{ R["ColorKind_Aux3"]!, DisplayColorKind.Auxiliary3 },
