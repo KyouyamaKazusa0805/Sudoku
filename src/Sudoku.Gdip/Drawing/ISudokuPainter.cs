@@ -282,7 +282,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithNodes(params ViewNode[] nodes)
 	{
-		(_generator.View ??= View.Empty | nodes).AddRange(nodes);
+		_generator.View = View.Empty | nodes;
 		return this;
 	}
 }
