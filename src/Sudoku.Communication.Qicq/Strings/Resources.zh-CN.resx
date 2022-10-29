@@ -210,6 +210,9 @@
   <data name="ColorYellow" xml:space="preserve">
     <value>黄</value>
   </data>
+  <data name="ExpString" xml:space="preserve">
+    <value>积分</value>
+  </data>
   <data name="SampleMemberJoinedMessage" xml:space="preserve">
     <value>欢迎新成员~ 这里是 B 站 up 主 SunnieShine 的数独交流群~</value>
   </data>
@@ -246,6 +249,9 @@
   <data name="_Command_LookupScore" xml:space="preserve">
     <value>查询</value>
   </data>
+  <data name="_Command_Ranking" xml:space="preserve">
+    <value>排名</value>
+  </data>
   <data name="_Command_Set" xml:space="preserve">
     <value>填</value>
   </data>
@@ -254,27 +260,28 @@
 【基本功能】——使用“！”开头
 ・签到：签到可以获得经验值；
 ・签到说明：查看“签到”指令的详细说明；
-・查询：查询当前用户的经验值数据；
+・查询：查询当前用户的积分数据；
 ・帮助：查看帮助文档；
 ・绘图：启动绘图功能；
 ・涂：给某个盘面指定位置上色；
 ・退出：退出一些长时间执行的功能，如“绘图”。
 【管理员限定】——使用“%”开头
-・详细查询，&lt;用户&gt;：查询指定用户的经验值数据。</value>
+・详细查询，&lt;用户&gt;：查询指定用户的积分；
+・排名：查询所有记录了的该群成员的积分，并排名。</value>
   </data>
   <data name="_MessageFormat_CheckInFailedDueToMultipleInSameDay" xml:space="preserve">
     <value>签到失败~ 你今天已经签过到了，明天再来试试吧~</value>
   </data>
   <data name="_MessageFormat_CheckInIntro" xml:space="preserve">
     <value>签到说明📖
-请使用“！签到”进行签到。每日签到都将随机获得 1 到 4 经验值，其中 40% 几率获得 1 经验，30% 几率为 2 经验，20% 几率为 3 经验，10% 几率为 4 经验。
-如果连续签到一周，签到所得经验值将会加成。加成即签到获得经验乘以该数值，最后得到的结果（四舍五入为整数）之后为你当天获得的真正经验值。连续签到一周将获得一次加成倍率增大的机会。加成倍率一次增大 0.2，初始加成倍率为 1.0（即初始值）。</value>
+请使用“！签到”进行签到。每日签到都将随机获得 1 到 4 积分，具有随机性。
+如果连续签到一周，签到所得积分将会加成。加成即签到获得积分乘以该数值，最后得到的结果（四舍五入为整数）之后为你当天获得的真正积分。连续签到一周将获得一次加成倍率增大的机会。加成倍率一次增大 0.2，初始加成倍率为 1.0（即初始值）。</value>
   </data>
   <data name="_MessageFormat_CheckInSuccessful" xml:space="preserve">
-    <value>签到成功！恭喜你获得 {0} 经验值。一天只能签到一次哦~</value>
+    <value>签到成功！恭喜你获得 {0} 积分。一天只能签到一次哦~</value>
   </data>
   <data name="_MessageFormat_CheckInSuccessfulAndContinuous" xml:space="preserve">
-    <value>签到成功！已连续签到 {0} 天~ 恭喜你获得 {1} 经验值。一天只能签到一次哦~</value>
+    <value>签到成功！已连续签到 {0} 天~ 恭喜你获得 {1} 积分。一天只能签到一次哦~</value>
   </data>
   <data name="_MessageFormat_DrawStartMessage" xml:space="preserve">
     <value>绘图说明📖
@@ -285,13 +292,13 @@
 ・删 &lt;单元格&gt;，&lt;数&gt;：往单元格删除候选数。
 【颜色表达式】
 机器人支持识别一些简化后的表达式：
-・#1-15：使用自带的 15 种配色涂色；
+・%#1-15：使用自带的 15 种配色涂色；
 ・%@1-3：三种辅助配色；
 ・%=：用于候选数，表示填数结论；
 ・%!：用于候选数，表示删数结论；
 ・%*1-5：使用 Hodoku 对 ALS 的 5 种配色；
-・#RRGGBB：RGB 配色代码；
-・#AARRGGBB：ARGB 配色代码。</value>
+・%#RRGGBB：RGB 配色代码；
+・%#AARRGGBB：ARGB 配色代码。</value>
   </data>
   <data name="_MessageFormat_EndOkay" xml:space="preserve">
     <value>退出成功。现可继续使用其他功能~</value>
@@ -302,13 +309,31 @@
   <data name="_MessageFormat_LookupNameOrIdInvalid" xml:space="preserve">
     <value>待搜索用户名称或 QQ 号码错误，请检查。</value>
   </data>
+  <data name="_MessageFormat_RankingListIsEmpty" xml:space="preserve">
+    <value>用户尚未加入进来~ 排名里没有人~</value>
+  </data>
+  <data name="_MessageFormat_RankingResult" xml:space="preserve">
+    <value>用户排名：</value>
+  </data>
   <data name="_MessageFormat_RejectJoiningGroup" xml:space="preserve">
     <value>机器人拒绝添加您到本群之中。请联系此群的管理员。</value>
   </data>
   <data name="_MessageFormat_UserScoreIs" xml:space="preserve">
-    <value>用户 {0}（{2}）当前经验值为 {1}。</value>
+    <value>用户 {0}（{2}）当前积分为 {1}。</value>
   </data>
   <data name="_MessageFormat_UserScoreNotFound" xml:space="preserve">
     <value>用户 {0}（{1}）尚未使用过机器人，本地没有数据。</value>
+  </data>
+  <data name="_Token_ClosedBrace" xml:space="preserve">
+    <value>）</value>
+  </data>
+  <data name="_Token_Colon" xml:space="preserve">
+    <value>：</value>
+  </data>
+  <data name="_Token_Comma" xml:space="preserve">
+    <value>，</value>
+  </data>
+  <data name="_Token_OpenBrace" xml:space="preserve">
+    <value>（</value>
   </data>
 </root>

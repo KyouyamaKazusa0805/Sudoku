@@ -571,6 +571,75 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 				return;
 			}
 
+			//
+			// Ranking
+			//
+			if (isCommandStart(slice, "_Command_Ranking", out var rankingArguments) && EnvironmentCommandExecuting is null)
+			{
+				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+				if (!Directory.Exists(folder))
+				{
+					// Error. The computer does not contain "My Documents" folder.
+					// This folder is special; if the computer does not contain the folder, we should return directly.
+					return;
+				}
+
+				var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+				if (!Directory.Exists(botDataFolder))
+				{
+					await e.SendMessageAsync(R["_MessageFormat_RankingListIsEmpty"]!);
+					return;
+				}
+
+				var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
+				if (!Directory.Exists(botUsersDataFolder))
+				{
+					await e.SendMessageAsync(R["_MessageFormat_RankingListIsEmpty"]!);
+					return;
+				}
+
+				var usersData = (
+					from file in Directory.GetFiles(botUsersDataFolder, "*.json")
+					let ud = JsonSerializer.Deserialize<UserData>(File.ReadAllText(file))
+					where ud is not null
+					let qq = ud.QQ
+					let nickname = g(qq, @group).Result?.Name
+					where nickname is not null
+					orderby ud.Score descending, qq
+					select (Name: nickname, Data: ud)
+				).Take(10); // If the number of members are too large, we should only iterate top 10 elements.
+
+				var rankingStr = string.Join(
+					"\r\n",
+					usersData.Select(
+						static (pair, i) =>
+						{
+							if (pair is not (var name, { QQ: var qq, Score: var score }))
+							{
+								throw new();
+							}
+
+							var openBrace = R["_Token_OpenBrace"]!;
+							var closedBrace = R["_Token_ClosedBrace"]!;
+							var colon = R["_Token_Colon"]!;
+							var comma = R["_Token_Comma"]!;
+							var scoreSuffix = R["ExpString"]!;
+							return $"#{i + 1}{colon}{name}{openBrace}{qq}{closedBrace}{comma}{score} {scoreSuffix}";
+						}
+					)
+				);
+
+				var result =
+					$"""
+					{R["_MessageFormat_RankingResult"]}
+					---
+					{rankingStr}
+					""";
+
+				await e.SendMessageAsync(result);
+				return;
+			}
+
 			break;
 		}
 		case [':' or '\uff1a', ..] when isMe(sender): // Admin commands.
@@ -581,6 +650,10 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 		{
 			return;
 		}
+
+
+		static async Task<Member?> g(string qq, Group group)
+			=> (from member in await @group.GetGroupMembersAsync() where member.Id == qq select member).FirstOrDefault();
 	}
 }
 
