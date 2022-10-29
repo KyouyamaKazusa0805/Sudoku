@@ -498,8 +498,14 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 
 			break;
 		}
-		case ['%' or '\uff05', .. var slice] when isMe(sender) || permission is Permissions.Owner or Permissions.Administrator: // Manager commands.
+		case ['%' or '\uff05', .. var slice]: // Manager commands.
 		{
+			if (!isMe(sender) && permission is not (Permissions.Owner or Permissions.Administrator))
+			{
+				await e.SendMessageAsync(R["_MessageFormat_PermissionRequired"]!);
+				return;
+			}
+
 			//
 			// Lookup score
 			//
@@ -642,8 +648,14 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 
 			break;
 		}
-		case [':' or '\uff1a', ..] when isMe(sender): // Admin commands.
+		case [':' or '\uff1a', ..]: // Admin commands.
 		{
+			if (!isMe(sender))
+			{
+				await e.SendMessageAsync(R["_MessageFormat_PermissionRequired2"]!);
+				return;
+			}
+
 			break;
 		}
 		default: // Other unrecognized commands, or higher-permission commands visiting.

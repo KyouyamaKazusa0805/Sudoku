@@ -309,6 +309,12 @@
   <data name="_MessageFormat_LookupNameOrIdInvalid" xml:space="preserve">
     <value>待搜索用户名称或 QQ 号码错误，请检查。</value>
   </data>
+  <data name="_MessageFormat_PermissionRequired" xml:space="preserve">
+    <value>该功能仅限群管理员可用~</value>
+  </data>
+  <data name="_MessageFormat_PermissionRequired2" xml:space="preserve">
+    <value>该功能仅限群主可用~</value>
+  </data>
   <data name="_MessageFormat_RankingListIsEmpty" xml:space="preserve">
     <value>用户尚未加入进来~ 排名里没有人~</value>
   </data>
