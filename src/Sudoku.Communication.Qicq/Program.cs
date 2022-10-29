@@ -682,7 +682,7 @@ static Identifier? getIdentifier(string name)
 
 	if (name.Match("""#([1-9]|1[0-5])""") is [_, .. var rawId] colorLabel)
 	{
-		return Identifier.FromId(int.Parse(rawId) - 1);
+		return Identifier.FromId(int.Parse(rawId));
 	}
 
 	if (name.Match("""#[\dA-Fa-f]{6}([\dA-Fa-f]{2})?""") is { } colorHtml)
