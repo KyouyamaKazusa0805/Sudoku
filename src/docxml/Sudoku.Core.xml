@@ -7213,16 +7213,6 @@
             </para>
             </remarks>
         </member>
-        <member name="F:Sudoku.Text.Notations.RxCyNotation.PrepositionalFormCandidateList">
-            <summary>
-            Indicates a pattern that matches for a pre-positional formed candidate list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Notations.RxCyNotation.PostpositionalFormCandidateList">
-            <summary>
-            Indicates a pattern that matches for a post-positional formed candidate list.
-            </summary>
-        </member>
         <member name="P:Sudoku.Text.Notations.RxCyNotation.CellNotation">
             <inheritdoc/>
         </member>
@@ -7295,6 +7285,45 @@
                         ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
                         ○ Match 'c'.<br/>
                         ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Notations.RxCyNotation.ComplexCellOrCellListPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match '{'.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'R'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'C'.<br/>
+                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'r'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'c'.<br/>
+                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ 2nd capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a whitespace character atomically any number of times.<br/>
+                    ○ 3rd capture group.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match 'R'.<br/>
+                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                ○ Match 'C'.<br/>
+                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match 'r'.<br/>
+                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                ○ Match 'c'.<br/>
+                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match '}'.<br/>
             </code>
             </remarks>
         </member>
@@ -8157,130 +8186,162 @@
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_3">
+        <member name="T:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_3">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ComplexCellOrCellListPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_3.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_3.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_3.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_3.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_3.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_3.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_3.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_3.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_4">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the Candidates_PrepositionalFormPattern method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_3.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_4.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_3.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_4.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_3.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_4.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_3.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_4.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_3.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_4.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_3.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_4.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_3.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_4.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_3.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PrepositionalFormPattern_4.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_4">
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_5">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the Candidates_PostpositionalFormPattern method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_4.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_5.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_4.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_5.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_4.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_5.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_4.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_5.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_4.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_5.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_4.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_5.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_4.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_5.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_4.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_PostpositionalFormPattern_5.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_5">
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_6">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the Candidates_ComplexPrepositionalFormPattern method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_5.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_6.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_5.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_6.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_5.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_6.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_5.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_6.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_5.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_6.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_5.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_6.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_5.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_6.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_5.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPrepositionalFormPattern_6.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_6">
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_7">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the Candidates_ComplexPostpositionalFormPattern method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_6.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_7.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_6.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_7.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_6.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_7.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_6.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_7.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_6.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_7.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_6.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_7.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_6.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_7.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_6.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_7.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>

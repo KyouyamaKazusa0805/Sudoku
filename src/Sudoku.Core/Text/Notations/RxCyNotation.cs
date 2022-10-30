@@ -26,19 +26,6 @@ public sealed partial class RxCyNotation :
 	ICellNotation<RxCyNotation, RxCyNotationOptions>,
 	ICandidateNotation<RxCyNotation, RxCyNotationOptions>
 {
-	/// <summary>
-	/// Indicates a pattern that matches for a pre-positional formed candidate list.
-	/// </summary>
-	[StringSyntax(StringSyntaxAttribute.Regex)]
-	private const string PrepositionalFormCandidateList = """[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})""";
-
-	/// <summary>
-	/// Indicates a pattern that matches for a post-positional formed candidate list.
-	/// </summary>
-	[StringSyntax(StringSyntaxAttribute.Regex)]
-	private const string PostpositionalFormCandidateList = """\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\)""";
-
-
 	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false, DiagnosticId = "SCA0108", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0108")]
 	private RxCyNotation() => throw new NotSupportedException();
 
@@ -175,61 +162,101 @@ public sealed partial class RxCyNotation :
 	}
 
 	/// <inheritdoc/>
-	public static unsafe CellMap ParseCells(string str)
+	public static CellMap ParseCells(string str)
 	{
-		// Check whether the match is successful.
-		if (CellOrCellListPattern().Matches(str) is not { Count: not 0 } matches)
+		if (simpleForm(str, out var r))
 		{
-			throw new FormatException("The specified string can't match any cell instance.");
+			return r;
+		}
+		if (complexForm(str, out r))
+		{
+			return r;
 		}
 
-		// Declare the buffer.
-		scoped Span<int> bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
+		throw new FormatException($"The specified cannot be parsed as a valid '{nameof(CellMap)}' instance.");
 
-		// Declare the result variable.
-		var result = CellMap.Empty;
 
-		// Iterate on each match instance.
-		foreach (var match in matches.Cast<Match>())
+		static unsafe bool simpleForm(string s, out CellMap result)
 		{
-			var value = match.Value;
-			char* anchorR, anchorC;
-			fixed (char* pValue = value)
+			if (CellOrCellListPattern().Matches(s) is not { Count: not 0 } matches)
 			{
-				anchorR = anchorC = pValue;
+				SkipInit(out result);
+				return false;
+			}
 
-				// Find the index of the character 'C'.
-				// The regular expression guaranteed the string must contain the character 'C' or 'c',
-				// so we don't need to check '*p != '\0''.
-				while (*anchorC is not ('C' or 'c'))
+			scoped var bufferRows = (stackalloc int[9]);
+			scoped var bufferColumns = (stackalloc int[9]);
+			result = CellMap.Empty;
+
+			foreach (var match in matches.Cast<Match>())
+			{
+				var value = match.Value;
+				char* anchorR, anchorC;
+				fixed (char* pValue = value)
 				{
-					anchorC++;
+					anchorR = anchorC = pValue;
+
+					// Find the index of the character 'C'.
+					// The regular expression guaranteed the string must contain the character 'C' or 'c',
+					// so we don't need to check '*p != '\0''.
+					while (*anchorC is not ('C' or 'c'))
+					{
+						anchorC++;
+					}
+				}
+
+				// Stores the possible values into the buffer.
+				int rIndex = 0, cIndex = 0;
+				for (var p = anchorR + 1; *p is not ('C' or 'c'); p++, rIndex++)
+				{
+					bufferRows[rIndex] = *p - '1';
+				}
+				for (var p = anchorC + 1; *p != '\0'; p++, cIndex++)
+				{
+					bufferColumns[cIndex] = *p - '1';
+				}
+
+				for (var i = 0; i < rIndex; i++)
+				{
+					for (var j = 0; j < cIndex; j++)
+					{
+						result.Add(bufferRows[i] * 9 + bufferColumns[j]);
+					}
 				}
 			}
 
-			// Stores the possible values into the buffer.
-			int rIndex = 0, cIndex = 0;
-			for (var p = anchorR + 1; *p is not ('C' or 'c'); p++, rIndex++)
-			{
-				bufferRows[rIndex] = *p - '1';
-			}
-			for (var p = anchorC + 1; *p != '\0'; p++, cIndex++)
-			{
-				bufferColumns[cIndex] = *p - '1';
-			}
-
-			// Now combine two buffers.
-			for (var i = 0; i < rIndex; i++)
-			{
-				for (var j = 0; j < cIndex; j++)
-				{
-					result.Add(bufferRows[i] * 9 + bufferColumns[j]);
-				}
-			}
+			return true;
 		}
 
-		// Returns the result.
-		return result;
+		static bool complexForm(string s, out CellMap result)
+		{
+			if (ComplexCellOrCellListPattern().Match(s) is not { Success: true, Value: [_, .. var str, _] })
+			{
+				goto ReturnInvalid;
+			}
+
+			result = CellMap.Empty;
+			foreach (var part in str.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+			{
+				var cCharacterIndex = part.IndexOf('C', StringComparison.OrdinalIgnoreCase);
+				var rows = part[1..cCharacterIndex];
+				var columns = part[(cCharacterIndex + 1)..];
+
+				foreach (var row in rows)
+				{
+					foreach (var column in columns)
+					{
+						result.Add((row - '1') * 9 + column - '1');
+					}
+				}
+			}
+
+			return true;
+
+		ReturnInvalid:
+			SkipInit(out result);
+			return false;
+		}
 	}
 
 	/// <inheritdoc/>
@@ -450,6 +477,9 @@ public sealed partial class RxCyNotation :
 
 	[GeneratedRegex("""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.Compiled, 5000)]
 	private static partial Regex CellOrCellListPattern();
+
+	[GeneratedRegex("""\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})(,\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}))?\s*\}""", RegexOptions.Compiled, 5000)]
+	private static partial Regex ComplexCellOrCellListPattern();
 
 	[GeneratedRegex("""[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.Compiled, 5000)]
 	private static partial Regex Candidates_PrepositionalFormPattern();
