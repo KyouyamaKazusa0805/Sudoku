@@ -22,6 +22,7 @@ global using Mirai.Net.Data.Shared;
 global using Mirai.Net.Sessions;
 global using Mirai.Net.Sessions.Http.Managers;
 global using Mirai.Net.Utils.Scaffolds;
+global using OneOf;
 global using Sudoku.Communication.Qicq.Models;
 global using Sudoku.Communication.Qicq.Permission;
 global using Sudoku.Communication.Qicq.Strings;

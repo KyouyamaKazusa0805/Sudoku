@@ -267,29 +267,17 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 					return;
 				}
 
-				if (getCoordinate(rawCoordinate) is not { } triplet)
+				var triplet = getCoordinate(rawCoordinate);
+				if (triplet is (false, false, false))
 				{
 					return;
 				}
 
-				switch (triplet)
-				{
-					case ({ } cells, _, _):
-					{
-						cells.ForEach(cell => DrawNodes!.Add(new CellViewNode(identifier, cell)));
-						break;
-					}
-					case (_, { } candidates, _):
-					{
-						candidates.ForEach(candidate => DrawNodes!.Add(new CandidateViewNode(identifier, candidate)));
-						break;
-					}
-					case (_, _, { } house):
-					{
-						DrawNodes!.Add(new HouseViewNode(identifier, house));
-						break;
-					}
-				}
+				triplet.Switch(
+					cells => cells.ForEach(cell => DrawNodes!.Add(new CellViewNode(identifier, cell))),
+					candidates => candidates.ForEach(candidate => DrawNodes!.Add(new CandidateViewNode(identifier, candidate))),
+					house => DrawNodes!.Add(new HouseViewNode(identifier, house))
+				);
 
 				Painter!.WithNodes(DrawNodes!.ToArray());
 
@@ -328,29 +316,17 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			if (isCommandStart(slice, "_Command_Clear", out var clearSubArgument) && EnvironmentCommandExecuting == R["_Command_Draw"])
 			{
-				if (getCoordinate(clearSubArgument) is not { } triplet)
+				var triplet = getCoordinate(clearSubArgument);
+				if (triplet is (false, false, false))
 				{
 					return;
 				}
 
-				switch (triplet)
-				{
-					case ({ } cells, _, _):
-					{
-						cells.ForEach(cell => DrawNodes!.RemoveAll(r => r is CellViewNode { Cell: var c } && c == cell));
-						break;
-					}
-					case (_, { } candidates, _):
-					{
-						candidates.ForEach(candidate => DrawNodes!.RemoveAll(r => r is CandidateViewNode { Candidate: var c } && c == candidate));
-						break;
-					}
-					case (_, _, { } house):
-					{
-						DrawNodes!.RemoveAll(r => r is HouseViewNode { House: var h } && h == house);
-						break;
-					}
-				}
+				triplet.Switch(
+					cells => cells.ForEach(cell => DrawNodes!.RemoveAll(r => r is CellViewNode { Cell: var c } && c == cell)),
+					candidates => candidates.ForEach(candidate => DrawNodes!.RemoveAll(r => r is CandidateViewNode { Candidate: var c } && c == candidate)),
+					house => DrawNodes!.RemoveAll(r => r is HouseViewNode { House: var h } && h == house)
+				);
 
 				Painter!.WithNodes(DrawNodes!.ToArray());
 
@@ -859,21 +835,21 @@ static int? getCell(string rawCoordinate)
 }
 
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-static (CellMap? Cell, Candidates? Candidate, int? House)? getCoordinate(string rawCoordinate)
+static OneOf<CellMap, Candidates, int> getCoordinate(string rawCoordinate)
 {
 	if (RxCyNotation.TryParseCandidates(rawCoordinate, out var candidates1))
 	{
-		return (null, candidates1, null);
+		return candidates1;
 	}
 
 	if (RxCyNotation.TryParseCells(rawCoordinate, out var cells2))
 	{
-		return (cells2, null, null);
+		return cells2;
 	}
 
 	if (K9Notation.TryParseCells(rawCoordinate, out var cells1))
 	{
-		return (cells1, null, null);
+		return cells1;
 	}
 
 #pragma warning disable IDE0055
@@ -881,10 +857,10 @@ static (CellMap? Cell, Candidates? Candidate, int? House)? getCoordinate(string 
 		&& parts.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) is [[var houseNotation], [var label]])
 #pragma warning restore IDE0055
 	{
-		return (null, null, houseNotation switch { '\u884c' => 9, '\u5217' => 18, _ => 0 } + (label - '1'));
+		return houseNotation switch { '\u884c' => 9, '\u5217' => 18, _ => 0 } + (label - '1');
 	}
 
-	return null;
+	return default;
 }
 
 file static partial class Program
@@ -931,4 +907,11 @@ file static class EnvironmentData
 	public static Grid Puzzle = Grid.Empty;
 	public static List<ViewNode>? DrawNodes = null;
 	public static ISudokuPainter? Painter = null;
+}
+
+file static class Extensions
+{
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void Deconstruct<T1, T2, T3>(this OneOf<T1, T2, T3> @this, out bool isT0, out bool isT1, out bool isT2)
+		=> (isT0, isT1, isT2) = (@this.IsT0, @this.IsT1, @this.IsT2);
 }
