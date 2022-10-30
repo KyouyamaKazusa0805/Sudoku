@@ -45,6 +45,10 @@ UI：
 
 ![](docs/pic/win-ui.png)
 
+群机器人：
+
+<img src="docs/pic/bot.jpg" style="zoom:40%" />
+
 程序还在完成之中！
 
 ## 支持的技巧
