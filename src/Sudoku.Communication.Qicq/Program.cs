@@ -648,11 +648,64 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 
 			break;
 		}
-		case [':' or '\uff1a', ..]: // Admin commands.
+		case [':' or '\uff1a', .. var slice]: // Admin commands.
 		{
 			if (!isMe(sender))
 			{
 				await e.SendMessageAsync(R["_MessageFormat_PermissionRequired2"]!);
+				return;
+			}
+
+			if (isCommandStart(slice, "_Command_UpdateScore", out var updateScoreArguments) && EnvironmentCommandExecuting is null)
+			{
+				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+				if (!Directory.Exists(folder))
+				{
+					// Error. The computer does not contain "My Documents" folder.
+					// This folder is special; if the computer does not contain the folder, we should return directly.
+					return;
+				}
+
+				var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+				if (!Directory.Exists(botDataFolder))
+				{
+					await e.SendMessageAsync(R["_MessageFormat_RankingListIsEmpty"]!);
+					return;
+				}
+
+				var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
+				if (!Directory.Exists(botUsersDataFolder))
+				{
+					await e.SendMessageAsync(R["_MessageFormat_RankingListIsEmpty"]!);
+					return;
+				}
+
+				var split = updateScoreArguments.Split(new[] { ',', '\uff0c' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+				if (split is not [var nameOrId, var scoreAppending])
+				{
+					return;
+				}
+
+				if (!int.TryParse(scoreAppending, out var value))
+				{
+					return;
+				}
+
+				if (await g2(nameOrId, group) is not { Id: var targetId, Name: var targetName } target)
+				{
+					return;
+				}
+
+				var fileName = $"""{botUsersDataFolder}\{targetId}.json""";
+				var userData = File.Exists(fileName)
+					? JsonSerializer.Deserialize<UserData>(await File.ReadAllTextAsync(fileName))!
+					: new() { QQ = targetId, ComboCheckedIn = 0, LastCheckIn = DateTime.MinValue, Score = 0 };
+
+				userData.Score += value;
+
+				await File.WriteAllTextAsync(fileName, JsonSerializer.Serialize(userData));
+
+				await e.SendMessageAsync(string.Format(R["_MessageFormat_ScoreAppending"]!, targetName, value));
 				return;
 			}
 
@@ -666,6 +719,13 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 
 		static async Task<Member?> g(string qq, Group group)
 			=> (from member in await @group.GetGroupMembersAsync() where member.Id == qq select member).FirstOrDefault();
+
+		static async Task<Member?> g2(string nameOrId, Group group)
+			=> (
+				from member in await @group.GetGroupMembersAsync()
+				where member.Id == nameOrId || member.Name == nameOrId
+				select member
+			).FirstOrDefault();
 	}
 }
 

@@ -255,6 +255,9 @@
   <data name="_Command_Set" xml:space="preserve">
     <value>填</value>
   </data>
+  <data name="_Command_UpdateScore" xml:space="preserve">
+    <value>加分</value>
+  </data>
   <data name="_HelpMessage" xml:space="preserve">
     <value>欢迎使用机器人！该机器人提供如下功能：
 【基本功能】——使用“！”开头
@@ -323,6 +326,9 @@
   </data>
   <data name="_MessageFormat_RejectJoiningGroup" xml:space="preserve">
     <value>机器人拒绝添加您到本群之中。请联系此群的管理员。</value>
+  </data>
+  <data name="_MessageFormat_ScoreAppending" xml:space="preserve">
+    <value>恭喜群友 {0} 获得 {1} 积分！</value>
   </data>
   <data name="_MessageFormat_UserScoreIs" xml:space="preserve">
     <value>用户 {0}（{2}）当前积分为 {1}。</value>
