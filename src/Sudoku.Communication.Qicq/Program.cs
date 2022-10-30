@@ -778,6 +778,7 @@ static Identifier? getIdentifier(string name)
 	return null;
 
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static Identifier f(Color c) => Identifier.FromColor(c.A, c.R, c.G, c.B);
 }
 
