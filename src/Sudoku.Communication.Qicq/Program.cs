@@ -102,8 +102,7 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 	}
 
 	var random = new Random();
-	var plainMessage = message.GetPlainMessage()?.Trim();
-	switch (plainMessage)
+	switch (message.GetPlainMessage()?.Trim())
 	{
 		case ['!' or '\uff01', .. var slice]: // User commands.
 		{
