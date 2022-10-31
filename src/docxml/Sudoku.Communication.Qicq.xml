@@ -27,6 +27,135 @@
             <param name="qq">The QQ number.</param>
             <returns>The target member returned. If none found, <see langword="null"/>.</returns>
         </member>
+        <member name="T:OneOf.OneOfExtensions">
+            <summary>
+            Provides extension methods on <see cref="N:OneOf"/> types.
+            </summary>
+            <seealso cref="N:OneOf"/>
+        </member>
+        <member name="M:OneOf.OneOfExtensions.Deconstruct``2(OneOf.OneOf{``0,``1},System.Boolean@,System.Boolean@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:OneOf.OneOfExtensions.Deconstruct``3(OneOf.OneOf{``0,``1,``2},System.Boolean@,System.Boolean@,System.Boolean@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:OneOf.OneOfExtensions.Deconstruct``4(OneOf.OneOf{``0,``1,``2,``3},System.Boolean@,System.Boolean@,System.Boolean@,System.Boolean@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="T:Sudoku.Communication.Qicq.Models.UserData">
             <summary>
             Defines a user data.
@@ -160,16 +289,6 @@
         <member name="F:EnvironmentData.Painter">
             <summary>
             The painter.
-            </summary>
-        </member>
-        <member name="T:Extensions">
-            <summary>
-            The extensions.
-            </summary>
-        </member>
-        <member name="M:Extensions.Deconstruct``3(OneOf.OneOf{``0,``1,``2},System.Boolean@,System.Boolean@,System.Boolean@)">
-            <summary>
-            Deconstruct the type <see cref="T:OneOf.OneOf`3"/> into multiple elements.
             </summary>
         </member>
     </members>

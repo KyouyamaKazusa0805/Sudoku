@@ -925,16 +925,3 @@ file static class EnvironmentData
 	/// </summary>
 	public static ISudokuPainter? Painter = null;
 }
-
-/// <summary>
-/// The extensions.
-/// </summary>
-file static class Extensions
-{
-	/// <summary>
-	/// Deconstruct the type <see cref="OneOf{T0, T1, T2}"/> into multiple elements.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Deconstruct<T1, T2, T3>(this OneOf<T1, T2, T3> @this, out bool isT0, out bool isT1, out bool isT2)
-		=> (isT0, isT1, isT2) = (@this.IsT0, @this.IsT1, @this.IsT2);
-}
