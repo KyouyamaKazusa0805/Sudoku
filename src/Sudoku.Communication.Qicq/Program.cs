@@ -585,7 +585,7 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 					let ud = JsonSerializer.Deserialize<UserData>(File.ReadAllText(file))
 					where ud is not null
 					let qq = ud.QQ
-					let nickname = g(qq, @group).Result?.Name
+					let nickname = @group.GetMemberFromQQAsync(qq).Result?.Name
 					where nickname is not null
 					orderby ud.Score descending, qq
 					select (Name: nickname, Data: ud)
@@ -667,7 +667,7 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 					return;
 				}
 
-				if (await g2(nameOrId, group) is not { Id: var targetId, Name: var targetName } target)
+				if (await group.GetMemberAsync(nameOrId) is not { Id: var targetId, Name: var targetName } target)
 				{
 					return;
 				}
@@ -691,17 +691,6 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 		{
 			return;
 		}
-
-
-		static async Task<Member?> g(string qq, Group group)
-			=> (from member in await @group.GetGroupMembersAsync() where member.Id == qq select member).FirstOrDefault();
-
-		static async Task<Member?> g2(string nameOrId, Group group)
-			=> (
-				from member in await @group.GetGroupMembersAsync()
-				where member.Id == nameOrId || member.Name == nameOrId
-				select member
-			).FirstOrDefault();
 	}
 }
 
@@ -863,8 +852,15 @@ static OneOf<CellMap, Candidates, int> getCoordinate(string rawCoordinate)
 	return default;
 }
 
+
+/// <summary>
+/// The program class, the provider of entry point.
+/// </summary>
 file static partial class Program
 {
+	/// <summary>
+	/// The table of known colors.
+	/// </summary>
 	private static readonly Dictionary<string, Color> KnownColors = new()
 	{
 		{ R["ColorRed"]!, Color.Red },
@@ -882,6 +878,9 @@ file static partial class Program
 		{ R["ColorGray"]!, Color.Gray }
 	};
 
+	/// <summary>
+	/// The table of known kinds.
+	/// </summary>
 	private static readonly Dictionary<string, DisplayColorKind> KnownKinds = new()
 	{
 		{ R["ColorKind_Normal"]!, DisplayColorKind.Normal },
@@ -901,16 +900,40 @@ file static partial class Program
 	};
 }
 
+/// <summary>
+/// The environment data.
+/// </summary>
 file static class EnvironmentData
 {
+	/// <summary>
+	/// The current executing command.
+	/// </summary>
 	public static string? EnvironmentCommandExecuting = null;
+
+	/// <summary>
+	/// The puzzle.
+	/// </summary>
 	public static Grid Puzzle = Grid.Empty;
+
+	/// <summary>
+	/// The draw nodes.
+	/// </summary>
 	public static List<ViewNode>? DrawNodes = null;
+
+	/// <summary>
+	/// The painter.
+	/// </summary>
 	public static ISudokuPainter? Painter = null;
 }
 
+/// <summary>
+/// The extensions.
+/// </summary>
 file static class Extensions
 {
+	/// <summary>
+	/// Deconstruct the type <see cref="OneOf{T0, T1, T2}"/> into multiple elements.
+	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Deconstruct<T1, T2, T3>(this OneOf<T1, T2, T3> @this, out bool isT0, out bool isT1, out bool isT2)
 		=> (isT0, isT1, isT2) = (@this.IsT0, @this.IsT1, @this.IsT2);

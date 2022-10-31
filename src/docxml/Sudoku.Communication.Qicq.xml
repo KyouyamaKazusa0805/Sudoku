@@ -4,6 +4,29 @@
         <name>Sudoku.Communication.Qicq</name>
     </assembly>
     <members>
+        <member name="T:Mirai.Net.Data.Shared.GroupExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Mirai.Net.Data.Shared.Group"/>.
+            </summary>
+            <seealso cref="T:Mirai.Net.Data.Shared.Group"/>
+        </member>
+        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMemberAsync(Mirai.Net.Data.Shared.Group,System.String)">
+            <summary>
+            Gets the member whose QQ or name is specified one.
+            </summary>
+            <param name="this">The group.</param>
+            <param name="nameOrId">The QQ number or target member's name.</param>
+            <returns>The target member returned. If none found, <see langword="null"/>.</returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMemberFromQQAsync(Mirai.Net.Data.Shared.Group,System.String)">
+            <summary>
+            Gets the member whose QQ number is the specified one.
+            </summary>
+            <param name="this">The group.</param>
+            <param name="qq">The QQ number.</param>
+            <returns>The target member returned. If none found, <see langword="null"/>.</returns>
+        </member>
         <member name="T:Sudoku.Communication.Qicq.Models.UserData">
             <summary>
             Defines a user data.
@@ -97,6 +120,56 @@
         <member name="P:Sudoku.Communication.Qicq.Strings.Resources.VerifyKey">
             <summary>
               Looks up a localized string similar to helloworld.
+            </summary>
+        </member>
+        <member name="T:Program">
+            <summary>
+            The program class, the provider of entry point.
+            </summary>
+        </member>
+        <member name="F:Program.KnownColors">
+            <summary>
+            The table of known colors.
+            </summary>
+        </member>
+        <member name="F:Program.KnownKinds">
+            <summary>
+            The table of known kinds.
+            </summary>
+        </member>
+        <member name="T:EnvironmentData">
+            <summary>
+            The environment data.
+            </summary>
+        </member>
+        <member name="F:EnvironmentData.EnvironmentCommandExecuting">
+            <summary>
+            The current executing command.
+            </summary>
+        </member>
+        <member name="F:EnvironmentData.Puzzle">
+            <summary>
+            The puzzle.
+            </summary>
+        </member>
+        <member name="F:EnvironmentData.DrawNodes">
+            <summary>
+            The draw nodes.
+            </summary>
+        </member>
+        <member name="F:EnvironmentData.Painter">
+            <summary>
+            The painter.
+            </summary>
+        </member>
+        <member name="T:Extensions">
+            <summary>
+            The extensions.
+            </summary>
+        </member>
+        <member name="M:Extensions.Deconstruct``3(OneOf.OneOf{``0,``1,``2},System.Boolean@,System.Boolean@,System.Boolean@)">
+            <summary>
+            Deconstruct the type <see cref="T:OneOf.OneOf`3"/> into multiple elements.
             </summary>
         </member>
     </members>
