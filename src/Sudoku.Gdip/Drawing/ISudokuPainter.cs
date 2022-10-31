@@ -280,9 +280,57 @@ file sealed class SudokuPainter : ISudokuPainter
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithNodes(params ViewNode[] nodes)
+	public ISudokuPainter WithNodes(IEnumerable<ViewNode> nodes)
 	{
 		_generator.View = View.Empty | nodes;
+		return this;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ISudokuPainter AddNodes(IEnumerable<ViewNode> nodes)
+	{
+		_generator.View ??= View.Empty;
+		_generator.View.AddRange(nodes);
+
+		return this;
+	}
+
+	/// <inheritdoc/>
+	public ISudokuPainter RemoveNodes(IEnumerable<ViewNode> nodes)
+	{
+		if (_generator.View is not { } view)
+		{
+			goto ReturnThis;
+		}
+
+		foreach (var node in nodes)
+		{
+			view.Remove(node);
+		}
+
+	ReturnThis:
+		return this;
+	}
+
+	/// <inheritdoc/>
+	public ISudokuPainter RemoveNodesWhen(Predicate<ViewNode> predicate)
+	{
+		if (_generator.View is not { } view)
+		{
+			goto ReturnThis;
+		}
+
+		var nodes = view.ToArray();
+		foreach (var node in nodes)
+		{
+			if (predicate(node))
+			{
+				view.Remove(node);
+			}
+		}
+
+	ReturnThis:
 		return this;
 	}
 }

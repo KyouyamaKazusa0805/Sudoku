@@ -1,6 +1,4 @@
-﻿using static EnvironmentData;
-
-// Add resource router.
+﻿// Add resource router.
 R.AddExternalResourceFetecher(typeof(Program).Assembly, Resources.ResourceManager.GetString);
 
 // Creates and initializes a bot.
@@ -246,7 +244,6 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 				EnvironmentCommandExecuting = R["_Command_Draw"]!;
 				Puzzle = Grid.Empty;
 				Painter = ISudokuPainter.Create(800, 10).WithGrid(Puzzle).WithRenderingCandidates(false);
-				DrawNodes = new List<ViewNode>();
 
 				return;
 			}
@@ -254,7 +251,7 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			// Draw (Subprocedure)
 			//
-			if (isCommandStart(slice, "_Command_DrawSub", out var drawSubArgument) && EnvironmentCommandExecuting == R["_Command_Draw"])
+			if (isCommandStart(slice, "_Command_DrawSub", out var drawSubArgument) && IsDrawingEnvironment)
 			{
 				var split = drawSubArgument.Split(new[] { ',', '\uff0c' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 				if (split is not [var rawCoordinate, var rawIdentifier])
@@ -273,13 +270,14 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 					return;
 				}
 
+				var tempNodes = new List<ViewNode>();
 				triplet.Switch(
-					cells => cells.ForEach(cell => DrawNodes!.Add(new CellViewNode(identifier, cell))),
-					candidates => candidates.ForEach(candidate => DrawNodes!.Add(new CandidateViewNode(identifier, candidate))),
-					house => DrawNodes!.Add(new HouseViewNode(identifier, house))
+					cells => cells.ForEach(cell => tempNodes.Add(new CellViewNode(identifier, cell))),
+					candidates => candidates.ForEach(candidate => tempNodes.Add(new CandidateViewNode(identifier, candidate))),
+					house => tempNodes.Add(new HouseViewNode(identifier, house))
 				);
 
-				Painter!.WithNodes(DrawNodes!.ToArray());
+				Painter.AddNodes(tempNodes);
 
 				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 				if (!Directory.Exists(folder))
@@ -314,7 +312,7 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			// Clear
 			//
-			if (isCommandStart(slice, "_Command_Clear", out var clearSubArgument) && EnvironmentCommandExecuting == R["_Command_Draw"])
+			if (isCommandStart(slice, "_Command_Clear", out var clearSubArgument) && IsDrawingEnvironment)
 			{
 				var triplet = getCoordinate(clearSubArgument);
 				if (triplet is (false, false, false))
@@ -323,12 +321,10 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 				}
 
 				triplet.Switch(
-					cells => cells.ForEach(cell => DrawNodes!.RemoveAll(r => r is CellViewNode { Cell: var c } && c == cell)),
-					candidates => candidates.ForEach(candidate => DrawNodes!.RemoveAll(r => r is CandidateViewNode { Candidate: var c } && c == candidate)),
-					house => DrawNodes!.RemoveAll(r => r is HouseViewNode { House: var h } && h == house)
+					cells => cells.ForEach(cell => Painter.RemoveNodesWhen(r => r is CellViewNode { Cell: var c } && c == cell)),
+					candidates => candidates.ForEach(candidate => Painter.RemoveNodesWhen(r => r is CandidateViewNode { Candidate: var c } && c == candidate)),
+					house => Painter.RemoveNodesWhen(r => r is HouseViewNode { House: var h } && h == house)
 				);
-
-				Painter!.WithNodes(DrawNodes!.ToArray());
 
 				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 				if (!Directory.Exists(folder))
@@ -363,7 +359,7 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			// Set
 			//
-			if (isCommandStart(slice, "_Command_Set", out var setArgument) && EnvironmentCommandExecuting == R["_Command_Draw"])
+			if (isCommandStart(slice, "_Command_Set", out var setArgument) && IsDrawingEnvironment)
 			{
 				var split = setArgument.Split(new[] { ',', '\uff0c' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 				if (split is not [var rawCoordinate, [var rawDigit and >= '0' and <= '9']])
@@ -377,7 +373,7 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 				}
 
 				Puzzle[cell] = rawDigit - '1';
-				Painter!.WithGrid(Puzzle);
+				Painter.WithGrid(Puzzle);
 
 				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 				if (!Directory.Exists(folder))
@@ -412,7 +408,7 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			// Delete
 			//
-			if (isCommandStart(slice, "_Command_Delete", out var deleteArgument) && EnvironmentCommandExecuting == R["_Command_Draw"])
+			if (isCommandStart(slice, "_Command_Delete", out var deleteArgument) && IsDrawingEnvironment)
 			{
 				var split = deleteArgument.Split(new[] { ',', '\uff0c' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 				if (split is not [var rawCoordinate, [var rawDigit and >= '0' and <= '9']])
@@ -426,7 +422,7 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 				}
 
 				Puzzle[cell, rawDigit - '1'] = false;
-				Painter!.WithGrid(Puzzle);
+				Painter.WithGrid(Puzzle);
 
 				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 				if (!Directory.Exists(folder))
@@ -461,10 +457,9 @@ async void onGroupMessageReceiving(GroupMessageReceiver e)
 			//
 			// End
 			//
-			if (isCommand(slice, "_Command_End") && EnvironmentCommandExecuting is not null)
+			if (isCommand(slice, "_Command_End") && IsDrawingEnvironment)
 			{
 				EnvironmentCommandExecuting = null;
-				DrawNodes = null;
 				Painter = null;
 				Puzzle = Grid.Empty;
 
@@ -898,30 +893,4 @@ file static partial class Program
 		{ R["ColorKind_Als4"]!, DisplayColorKind.AlmostLockedSet4 },
 		{ R["ColorKind_Als5"]!, DisplayColorKind.AlmostLockedSet5 }
 	};
-}
-
-/// <summary>
-/// The environment data.
-/// </summary>
-file static class EnvironmentData
-{
-	/// <summary>
-	/// The current executing command.
-	/// </summary>
-	public static string? EnvironmentCommandExecuting = null;
-
-	/// <summary>
-	/// The puzzle.
-	/// </summary>
-	public static Grid Puzzle = Grid.Empty;
-
-	/// <summary>
-	/// The draw nodes.
-	/// </summary>
-	public static List<ViewNode>? DrawNodes = null;
-
-	/// <summary>
-	/// The painter.
-	/// </summary>
-	public static ISudokuPainter? Painter = null;
 }

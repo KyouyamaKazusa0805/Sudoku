@@ -149,7 +149,16 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.WithConclusions(Sudoku.Solving.Conclusion[])">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithNodes(Sudoku.Presentation.Nodes.ViewNode[])">
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithNodes(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.AddNodes(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodesWhen(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterFactory">
@@ -260,11 +269,32 @@
             <param name="conclusions">The conclusions.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithNodes(Sudoku.Presentation.Nodes.ViewNode[])">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithNodes(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
             <summary>
             Sets the view nodes used for rendering.
             </summary>
             <param name="nodes">The nodes.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.AddNodes(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Append extra nodes.
+            </summary>
+            <param name="nodes">Extra nodes.</param>
+            <returns>The target instance.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Remove nodes.
+            </summary>
+            <param name="nodes">Nodes.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.RemoveNodesWhen(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Remove nodes if the target node satisfies the specified condition.
+            </summary>
+            <param name="predicate">The predicate.</param>
             <returns>The target painter.</returns>
         </member>
         <member name="T:Sudoku.Drawing.TextRendering.TextAlignmentType">

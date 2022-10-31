@@ -32,6 +32,7 @@ global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Text.Notations;
 global using static System.Math;
+global using static Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData;
 global using static Sudoku.Resources.MergedResources;
 global using SpecialFolder = System.Environment.SpecialFolder;
 global using File = System.IO.File;

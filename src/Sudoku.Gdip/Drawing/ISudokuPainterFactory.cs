@@ -115,5 +115,26 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="nodes">The nodes.</param>
 	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter WithNodes(params ViewNode[] nodes);
+	public abstract ISudokuPainter WithNodes(IEnumerable<ViewNode> nodes);
+
+	/// <summary>
+	/// Append extra nodes.
+	/// </summary>
+	/// <param name="nodes">Extra nodes.</param>
+	/// <returns>The target instance.</returns>
+	public abstract ISudokuPainter AddNodes(IEnumerable<ViewNode> nodes);
+
+	/// <summary>
+	/// Remove nodes.
+	/// </summary>
+	/// <param name="nodes">Nodes.</param>
+	/// <returns>The target painter.</returns>
+	public abstract ISudokuPainter RemoveNodes(IEnumerable<ViewNode> nodes);
+
+	/// <summary>
+	/// Remove nodes if the target node satisfies the specified condition.
+	/// </summary>
+	/// <param name="predicate">The predicate.</param>
+	/// <returns>The target painter.</returns>
+	public abstract ISudokuPainter RemoveNodesWhen(Predicate<ViewNode> predicate);
 }

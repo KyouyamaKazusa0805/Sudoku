@@ -4,6 +4,126 @@
         <name>Sudoku.Communication.Qicq</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData">
+            <summary>
+            Provides with environment data.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData.EnvironmentCommandExecuting">
+            <summary>
+            The current executing command.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData.Puzzle">
+            <summary>
+            The puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData.Painter">
+            <summary>
+            The painter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData.IsDrawingEnvironment">
+            <summary>
+            Determines whether the current command environment is being drawing.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Models.UserData">
+            <summary>
+            Defines a user data.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Models.UserData.QQ">
+            <summary>
+            The user's QQ number.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Models.UserData.Score">
+            <summary>
+            Indicates the user's score.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Models.UserData.ComboCheckedIn">
+            <summary>
+            Indicates the number of continuous days that the user has checked in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Models.UserData.LastCheckIn">
+            <summary>
+            Indicates the last time checked in of the current user.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Permission.InternalExtensions">
+            <summary>
+            Provides with internal extension methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Permission.InternalExtensions.CanHandleInvitationOrJoinRequestAsync(Mirai.Net.Sessions.MiraiBot,System.String)">
+            <summary>
+            Determines whether the specified <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance supports permission on handling requests
+            of adding or inviting message about the specified group.
+            </summary>
+            <param name="this">The <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.</param>
+            <param name="groupId">The group ID.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Strings.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.AdminQQ">
+            <summary>
+              Looks up a localized string similar to 747507738.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.BotQQ">
+            <summary>
+              Looks up a localized string similar to 979329690.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.BotSettingsFolderName">
+            <summary>
+              Looks up a localized string similar to BotData.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.CachedPictureFolderName">
+            <summary>
+              Looks up a localized string similar to TempPictures.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.HostPort">
+            <summary>
+              Looks up a localized string similar to localhost:8080.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.SudokuGroupQQ">
+            <summary>
+              Looks up a localized string similar to 924849321.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.UserSettingsFolderName">
+            <summary>
+              Looks up a localized string similar to Users.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.VerifyKey">
+            <summary>
+              Looks up a localized string similar to helloworld.
+            </summary>
+        </member>
         <member name="T:Mirai.Net.Data.Shared.GroupExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Mirai.Net.Data.Shared.Group"/>.
@@ -156,101 +276,6 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Sudoku.Communication.Qicq.Models.UserData">
-            <summary>
-            Defines a user data.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Models.UserData.QQ">
-            <summary>
-            The user's QQ number.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Models.UserData.Score">
-            <summary>
-            Indicates the user's score.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Models.UserData.ComboCheckedIn">
-            <summary>
-            Indicates the number of continuous days that the user has checked in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Models.UserData.LastCheckIn">
-            <summary>
-            Indicates the last time checked in of the current user.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Communication.Qicq.Permission.InternalExtensions">
-            <summary>
-            Provides with internal extension methods.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Communication.Qicq.Permission.InternalExtensions.CanHandleInvitationOrJoinRequestAsync(Mirai.Net.Sessions.MiraiBot,System.String)">
-            <summary>
-            Determines whether the specified <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance supports permission on handling requests
-            of adding or inviting message about the specified group.
-            </summary>
-            <param name="this">The <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.</param>
-            <param name="groupId">The group ID.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Communication.Qicq.Strings.Resources">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.AdminQQ">
-            <summary>
-              Looks up a localized string similar to 747507738.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.BotQQ">
-            <summary>
-              Looks up a localized string similar to 979329690.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.BotSettingsFolderName">
-            <summary>
-              Looks up a localized string similar to BotData.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.CachedPictureFolderName">
-            <summary>
-              Looks up a localized string similar to TempPictures.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.HostPort">
-            <summary>
-              Looks up a localized string similar to localhost:8080.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.SudokuGroupQQ">
-            <summary>
-              Looks up a localized string similar to 924849321.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.UserSettingsFolderName">
-            <summary>
-              Looks up a localized string similar to Users.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.VerifyKey">
-            <summary>
-              Looks up a localized string similar to helloworld.
-            </summary>
-        </member>
         <member name="T:Program">
             <summary>
             The program class, the provider of entry point.
@@ -264,31 +289,6 @@
         <member name="F:Program.KnownKinds">
             <summary>
             The table of known kinds.
-            </summary>
-        </member>
-        <member name="T:EnvironmentData">
-            <summary>
-            The environment data.
-            </summary>
-        </member>
-        <member name="F:EnvironmentData.EnvironmentCommandExecuting">
-            <summary>
-            The current executing command.
-            </summary>
-        </member>
-        <member name="F:EnvironmentData.Puzzle">
-            <summary>
-            The puzzle.
-            </summary>
-        </member>
-        <member name="F:EnvironmentData.DrawNodes">
-            <summary>
-            The draw nodes.
-            </summary>
-        </member>
-        <member name="F:EnvironmentData.Painter">
-            <summary>
-            The painter.
             </summary>
         </member>
     </members>
