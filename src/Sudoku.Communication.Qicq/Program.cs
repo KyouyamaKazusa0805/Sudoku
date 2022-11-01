@@ -19,18 +19,17 @@ try
 				{
 					if (type.GetConstructor(Array.Empty<Type>()) is null)
 					{
-						continue;
+						continue; // No accessible parameterless constructors.
 					}
 
 					if (type.GetCustomAttribute<CommandAttribute>() is not { AllowedPermissions: var allowPermissions })
 					{
-						continue;
+						continue; // No attribute data.
 					}
 
 					if (Array.IndexOf(allowPermissions, permission) == -1)
 					{
-						await e.SendMessageAsync(R["_MessageFormat_PermissionRequired"]!);
-						continue;
+						continue; // Higher permission required.
 					}
 
 					if (await ((Command)Activator.CreateInstance(type)!).ExecuteAsync(messageTrimmed, e))

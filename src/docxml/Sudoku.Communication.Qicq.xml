@@ -29,11 +29,6 @@
             The painter.
             </summary>
         </member>
-        <member name="P:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData.IsDrawingEnvironment">
-            <summary>
-            Determines whether the current command environment is being drawing.
-            </summary>
-        </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.CheckInCommand">
             <summary>
             Indicates the check-in command.

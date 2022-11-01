@@ -25,11 +25,4 @@ internal static class EnvironmentData
 	/// The painter.
 	/// </summary>
 	public static ISudokuPainter? Painter = null;
-
-
-	/// <summary>
-	/// Determines whether the current command environment is being drawing.
-	/// </summary>
-	[MemberNotNullWhen(true, nameof(Painter))]
-	public static bool IsDrawingEnvironment => EnvironmentCommandExecuting == R["_Command_Draw"];
 }
