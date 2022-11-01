@@ -44,7 +44,7 @@ try
 	bot.EventReceived.OfType<MemberJoinedEvent>().Subscribe(
 		static async e =>
 		{
-			if (e.Member.Group is { Id: var id } group && isMyGroupId(id))
+			if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
 			{
 				await group.SendGroupMessageAsync(R["SampleMemberJoinedMessage"]);
 			}
@@ -53,7 +53,7 @@ try
 	bot.EventReceived.OfType<NewMemberRequestedEvent>().Subscribe(
 		async e =>
 		{
-			if (e is { GroupId: var groupId, Message: var message } && isMyGroupId(groupId)
+			if (e is { GroupId: var groupId, Message: var message } && groupId == R["SudokuGroupQQ"]
 				&& await bot.CanHandleInvitationOrJoinRequestAsync(groupId))
 			{
 				await (
@@ -67,7 +67,7 @@ try
 	bot.EventReceived.OfType<NewInvitationRequestedEvent>().Subscribe(
 		async e =>
 		{
-			if (e is { GroupId: var groupId } && isMyGroupId(groupId) && await bot.CanHandleInvitationOrJoinRequestAsync(groupId))
+			if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"] && await bot.CanHandleInvitationOrJoinRequestAsync(groupId))
 			{
 				await e.ApproveAsync();
 			}
@@ -87,7 +87,3 @@ catch (InvalidResponseException)
 }
 
 Terminal.Pause();
-
-
-[MethodImpl(MethodImplOptions.AggressiveInlining)]
-static bool isMyGroupId(string s) => s == R["SudokuGroupQQ"];
