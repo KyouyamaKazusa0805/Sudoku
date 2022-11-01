@@ -70,7 +70,7 @@ internal abstract class Command
 	{
 		var otherArgs = Prefixes.FirstOrDefault(args.StartsWith) switch
 		{
-			{ } prefix when args.IndexOf(prefix) + 1 is var i && i < args.Length => args[i..],
+			{ } prefix when args.IndexOf(prefix) is var i && i < args.Length => args[(i + 1)..],
 			_ => null
 		};
 
