@@ -9,6 +9,11 @@
             Provides with environment data.
             </summary>
         </member>
+        <member name="F:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData.Rng">
+            <summary>
+            The random number generator.
+            </summary>
+        </member>
         <member name="F:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData.EnvironmentCommandExecuting">
             <summary>
             The current executing command.
@@ -28,6 +33,209 @@
             <summary>
             Determines whether the current command environment is being drawing.
             </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.CheckInCommand">
+            <summary>
+            Indicates the check-in command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.CheckInCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.EarningExperiencePointGenerator">
+            <summary>
+            The earning experience point generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.EarningExperiencePointGenerator.GenerateOriginalValue">
+            <summary>
+            Generates a value that describes the experience point that the current user can be earned.
+            </summary>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.EarningExperiencePointGenerator.GenerateValue(System.Int32)">
+            <summary>
+            Generates a value that describes the experience point that the current user can be earned.
+            </summary>
+            <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.CheckInIntroCommand">
+            <summary>
+            Indicates check-in introduction command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.CheckInIntroCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.ClearCommand">
+            <summary>
+            Indicates the clear command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.ClearCommand.EnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ClearCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.Command">
+            <summary>
+            Defines a command.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.Commands.Command.KnownColors">
+            <summary>
+            The table of known colors.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.Commands.Command.KnownKinds">
+            <summary>
+            The table of known kinds.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.Command.EnvironmentCommand">
+            <summary>
+            Indicates the environment command that the current command relies on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.Command.Prefixes">
+            <summary>
+            Indicates the prefix.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.Command.ExecuteAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="args">The arguments.</param>
+            <param name="e">The event arguments.</param>
+            <returns>
+            Returns a task instance that returns a <see cref="T:System.Boolean"/> value indicating whether the operation executed successfully.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.Command.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc cref="M:Sudoku.Communication.Qicq.Commands.Command.ExecuteAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)"/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.Command.GetIdentifier(System.String)">
+            <summary>
+            Try to fetch the identifier name via the color name.
+            </summary>
+            <param name="name">The name of the color.</param>
+            <returns>The identifier instance.</returns>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.ComplexLookupScoreCommand">
+            <summary>
+            Indicates the complex lookup score command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ComplexLookupScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.CommandAttribute">
+            <summary>
+            Declares the command and its permission.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.CommandAttribute.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Communication.Qicq.Commands.CommandAttribute"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.CommandAttribute.#ctor(Mirai.Net.Data.Shared.Permissions[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Communication.Qicq.Commands.CommandAttribute"/> instance.
+            </summary>
+            <param name="permission">The permission.</param>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.CommandAttribute.AllowedPermissions">
+            <summary>
+            Indicates the permission.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.DeleteDigitCommand">
+            <summary>
+            Indicates the delete command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DeleteDigitCommand.EnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.DeleteDigitCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.DrawCommand">
+            <summary>
+            Indicates draw command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DrawCommand.EnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.DrawCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.DrawEndCommand">
+            <summary>
+            Indicates the draw end command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DrawEndCommand.EnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.DrawEndCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.DrawStartCommand">
+            <summary>
+            Indicates the draw start command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.DrawStartCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.HelpCommand">
+            <summary>
+            Indicates the help command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.HelpCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.LookupScoreCommand">
+            <summary>
+            The lookup score command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.LookupScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.RankingCommand">
+            <summary>
+            Indicates the ranking command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.RankingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.SetDigitCommand">
+            <summary>
+            Indicates the set digit command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.SetDigitCommand.EnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.SetDigitCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.UpdateScoreCommand">
+            <summary>
+            Indicates the update score command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.UpdateScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Communication.Qicq.Models.UserData">
             <summary>
@@ -146,6 +354,53 @@
             <param name="this">The group.</param>
             <param name="qq">The QQ number.</param>
             <returns>The target member returned. If none found, <see langword="null"/>.</returns>
+        </member>
+        <member name="T:Mirai.Net.Data.Messages.MessageChainExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Mirai.Net.Data.Messages.MessageChain"/>.
+            </summary>
+            <seealso cref="T:Mirai.Net.Data.Messages.MessageChain"/>
+        </member>
+        <member name="M:Mirai.Net.Data.Messages.MessageChainExtensions.Deconstruct(Mirai.Net.Data.Messages.MessageChain,System.String@,System.String@,System.String[]@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
         </member>
         <member name="T:OneOf.OneOfExtensions">
             <summary>
@@ -275,21 +530,6 @@
 					</para>
 				</remarks>
 			</target>
-        </member>
-        <member name="T:Program">
-            <summary>
-            The program class, the provider of entry point.
-            </summary>
-        </member>
-        <member name="F:Program.KnownColors">
-            <summary>
-            The table of known colors.
-            </summary>
-        </member>
-        <member name="F:Program.KnownKinds">
-            <summary>
-            The table of known kinds.
-            </summary>
         </member>
     </members>
 </doc>

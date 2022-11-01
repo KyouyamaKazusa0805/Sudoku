@@ -87,7 +87,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source Generator", "Source 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{56502A84-6F23-4CA0-BA01-714103650CE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Communication.Qicq", "src\Sudoku.Communication.Qicq\Sudoku.Communication.Qicq.csproj", "{54B18358-6606-49C9-A1F1-7BA002CEA85E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Communication.Qicq", "src\Sudoku.Communication.Qicq\Sudoku.Communication.Qicq.csproj", "{54B18358-6606-49C9-A1F1-7BA002CEA85E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -862,8 +862,8 @@ Global
 		{7FC83592-94E2-4FC7-A3CC-5FDA45FA02CE} = {B51CCBF8-BAC4-4AB9-8BE4-9CF324D825D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal

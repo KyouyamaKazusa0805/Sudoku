@@ -6,6 +6,12 @@
 internal static class EnvironmentData
 {
 	/// <summary>
+	/// The random number generator.
+	/// </summary>
+	public static readonly Random Rng = new();
+
+
+	/// <summary>
 	/// The current executing command.
 	/// </summary>
 	public static string? EnvironmentCommandExecuting = null;
