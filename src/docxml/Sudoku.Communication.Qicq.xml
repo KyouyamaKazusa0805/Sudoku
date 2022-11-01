@@ -124,14 +124,6 @@
             <param name="name">The name of the color.</param>
             <returns>The identifier instance.</returns>
         </member>
-        <member name="T:Sudoku.Communication.Qicq.Commands.ComplexLookupScoreCommand">
-            <summary>
-            Indicates the complex lookup score command.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Communication.Qicq.Commands.ComplexLookupScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.CommandAttribute">
             <summary>
             Declares the command and its permission.
@@ -152,6 +144,14 @@
             <summary>
             Indicates the permission.
             </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.ComplexLookupScoreCommand">
+            <summary>
+            Indicates the complex lookup score command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ComplexLookupScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.DeleteDigitCommand">
             <summary>
