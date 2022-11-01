@@ -397,6 +397,11 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:Mirai.Net.Sessions.MiraiBotSubscribingExtensions">
+            <summary>
+            Provides with extenions methods on subscribing events for a <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.
+            </summary>
+        </member>
         <member name="T:OneOf.OneOfExtensions">
             <summary>
             Provides extension methods on <see cref="N:OneOf"/> types.

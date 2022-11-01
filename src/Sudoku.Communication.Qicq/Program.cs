@@ -10,68 +10,60 @@ try
 	await bot.LaunchAsync();
 
 	// Registers some necessary events.
-	bot.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(
-		async e =>
+	bot.SubscribeGroupMessageReceived(async e =>
+	{
+		if (e is { Sender.Permission: var permission, MessageChain: (_, { } messageTrimmed, _) })
 		{
-			if (e is { Sender.Permission: var permission, MessageChain: (_, { } messageTrimmed, _) })
+			foreach (var type in currentAssembly.GetDerivedTypes<Command>())
 			{
-				foreach (var type in currentAssembly.GetDerivedTypes<Command>())
+				if (type.GetConstructor(Array.Empty<Type>()) is null)
 				{
-					if (type.GetConstructor(Array.Empty<Type>()) is null)
-					{
-						continue; // No accessible parameterless constructors.
-					}
+					continue; // No accessible parameterless constructors.
+				}
 
-					if (type.GetCustomAttribute<CommandAttribute>() is not { AllowedPermissions: var allowPermissions })
-					{
-						continue; // No attribute data.
-					}
+				if (type.GetCustomAttribute<CommandAttribute>() is not { AllowedPermissions: var allowPermissions })
+				{
+					continue; // No attribute data.
+				}
 
-					if (Array.IndexOf(allowPermissions, permission) == -1)
-					{
-						continue; // Higher permission required.
-					}
+				if (Array.IndexOf(allowPermissions, permission) == -1)
+				{
+					continue; // Higher permission required.
+				}
 
-					if (await ((Command)Activator.CreateInstance(type)!).ExecuteAsync(messageTrimmed, e))
-					{
-						return;
-					}
+				if (await ((Command)Activator.CreateInstance(type)!).ExecuteAsync(messageTrimmed, e))
+				{
+					return;
 				}
 			}
 		}
-	);
-	bot.EventReceived.OfType<MemberJoinedEvent>().Subscribe(
-		static async e =>
+	});
+	bot.SubscribeMemberJoined(static async e =>
+	{
+		if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
 		{
-			if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
-			{
-				await group.SendGroupMessageAsync(R["SampleMemberJoinedMessage"]);
-			}
+			await group.SendGroupMessageAsync(R["SampleMemberJoinedMessage"]);
 		}
-	);
-	bot.EventReceived.OfType<NewMemberRequestedEvent>().Subscribe(
-		async e =>
+	});
+	bot.SubscribeNewMemberRequested(async e =>
+	{
+		if (e is { GroupId: var groupId, Message: var message } && groupId == R["SudokuGroupQQ"]
+			&& await bot.CanHandleInvitationOrJoinRequestAsync(groupId))
 		{
-			if (e is { GroupId: var groupId, Message: var message } && groupId == R["SudokuGroupQQ"]
-				&& await bot.CanHandleInvitationOrJoinRequestAsync(groupId))
-			{
-				await (
-					message.Trim().IsMatch("""((\u54d4\u54e9)\2|[Bb]\s{0,3}\u7ad9|[Bb]i(li)bi\3)""")
-						? e.ApproveAsync()
-						: e.RejectAsync(R["_MessageFormat_RejectJoiningGroup"]!)
-				);
-			}
+			await (
+				message.Trim().IsMatch("""((\u54d4\u54e9)\2|[Bb]\s{0,3}\u7ad9|[Bb]i(li)bi\3)""")
+					? e.ApproveAsync()
+					: e.RejectAsync(R["_MessageFormat_RejectJoiningGroup"]!)
+			);
 		}
-	);
-	bot.EventReceived.OfType<NewInvitationRequestedEvent>().Subscribe(
-		async e =>
+	});
+	bot.SubscribeNewInvitationRequested(async e =>
+	{
+		if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"] && await bot.CanHandleInvitationOrJoinRequestAsync(groupId))
 		{
-			if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"] && await bot.CanHandleInvitationOrJoinRequestAsync(groupId))
-			{
-				await e.ApproveAsync();
-			}
+			await e.ApproveAsync();
 		}
-	);
+	});
 
 	// Blocks the main thread, in order to prevent the main thread exits too fast.
 	Terminal.WriteLine(R["BootingSuccessMessage"]!, ConsoleColor.DarkGreen);
