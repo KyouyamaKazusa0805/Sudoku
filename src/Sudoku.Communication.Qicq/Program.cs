@@ -16,22 +16,10 @@ try
 		{
 			foreach (var type in currentAssembly.GetDerivedTypes<Command>())
 			{
-				if (type.GetConstructor(Array.Empty<Type>()) is null)
-				{
-					continue; // No accessible parameterless constructors.
-				}
-
-				if (type.GetCustomAttribute<CommandAttribute>() is not { AllowedPermissions: var allowPermissions })
-				{
-					continue; // No attribute data.
-				}
-
-				if (Array.IndexOf(allowPermissions, permission) == -1)
-				{
-					continue; // Higher permission required.
-				}
-
-				if (await ((Command)Activator.CreateInstance(type)!).ExecuteAsync(messageTrimmed, e))
+				if (type.GetConstructor(Array.Empty<Type>()) is not null
+					&& type.GetCustomAttribute<CommandAttribute>() is { AllowedPermissions: var allowPermissions }
+					&& Array.IndexOf(allowPermissions, permission) != -1
+					&& await ((Command)Activator.CreateInstance(type)!).ExecuteAsync(messageTrimmed, e))
 				{
 					return;
 				}
