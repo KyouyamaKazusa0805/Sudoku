@@ -198,10 +198,7 @@ public unsafe ref struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StringHandler(string initialString)
 	{
-		CopyBlock(
-			ref As<char, byte>(ref AsRef(_chars[0])),
-			ref As<char, byte>(ref AsRef(initialString[0])),
-			(uint)(sizeof(char) * initialString.Length));
+		CopyBlock(ref AsByteRef(ref AsRef(_chars[0])), ref AsByteRef(ref AsRef(initialString[0])), (uint)(sizeof(char) * initialString.Length));
 
 		_arrayToReturnToPool = null;
 	}
@@ -234,7 +231,7 @@ public unsafe ref struct StringHandler
 	/// </summary>
 	/// <param name="handler">The collection.</param>
 	public readonly void CopyTo(scoped ref StringHandler handler)
-		=> CopyBlock(ref As<char, byte>(ref handler._chars[0]), ref As<char, byte>(ref _chars[0]), (uint)(sizeof(char) * Length));
+		=> CopyBlock(ref AsByteRef(ref handler._chars[0]), ref AsByteRef(ref _chars[0]), (uint)(sizeof(char) * Length));
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[Obsolete(RefStructDefaultImplementationMessage.OverriddenEqualsMethod, false, DiagnosticId = "SCA0104", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0104")]
@@ -350,8 +347,8 @@ public unsafe ref struct StringHandler
 				if ((uint)pos < chars.Length - 1)
 				{
 					WriteUnaligned(
-						ref As<char, byte>(ref Add(ref MemoryMarshal.GetReference(chars), pos)),
-						ReadUnaligned<int>(ref As<char, byte>(ref AsRef(value[0]))));
+						ref AsByteRef(ref Add(ref MemoryMarshal.GetReference(chars), pos)),
+						ReadUnaligned<int>(ref AsByteRef(ref AsRef(value[0]))));
 
 					Length = pos + 2;
 				}

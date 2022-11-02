@@ -3876,6 +3876,16 @@
             <param name="ref">The reference.</param>
             <seealso cref="M:System.Runtime.CompilerServices.Unsafe.SubtractByteOffset``1(``0@,System.IntPtr)"/>
         </member>
+        <member name="M:System.Runtime.CompilerServices.Unsafe2.AsByteRef``1(``0@)">
+            <summary>
+            Simply invokes the method <see cref="M:System.Runtime.CompilerServices.Unsafe.As``2(``0@)"/>, but with target generic type being fixed type <see cref="T:System.Byte"/>.
+            </summary>
+            <typeparam name="T">The base type that is converted from.</typeparam>
+            <param name="ref">
+            The reference to the value. Generally speaking the value should be a <see langword="ref readonly"/> parameter, but C# disallows it,
+            using <see langword="ref readonly"/> as a combined parameter modifier.
+            </param>
+        </member>
         <member name="T:System.Runtime.Messages.DeprecatedConstructorsMessage">
             <summary>
             Provides with a message that is represented as deprecated message for deprecated constructors.

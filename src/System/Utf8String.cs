@@ -72,7 +72,7 @@ public readonly unsafe struct Utf8String :
 	private Utf8String(byte[] array)
 	{
 		_value = new Utf8Char[array.Length];
-		CopyBlock(ref As<Utf8Char, byte>(ref _value[0]), ref array[0], (uint)(sizeof(byte) * array.Length));
+		CopyBlock(ref AsByteRef(ref _value[0]), ref array[0], (uint)(sizeof(byte) * array.Length));
 	}
 
 
@@ -290,10 +290,7 @@ public readonly unsafe struct Utf8String :
 	public override string ToString()
 	{
 		var array = new byte[_value.Length];
-		fixed (Utf8Char* a = _value)
-		{
-			CopyBlock(ref array[0], ref As<Utf8Char, byte>(ref *a), (uint)(sizeof(byte) * _value.Length));
-		}
+		CopyBlock(ref array[0], ref AsByteRef(ref _value[0]), (uint)(sizeof(byte) * _value.Length));
 
 		return Encoding.UTF8.GetString(array);
 	}

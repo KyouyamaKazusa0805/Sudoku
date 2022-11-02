@@ -15,9 +15,5 @@ public static class GenericExtensions
 	/// <param name="s">The string to cover.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Covers<TStruct>(this scoped ref TStruct start, string s) where TStruct : struct
-		=> CopyBlock(
-			ref As<TStruct, byte>(ref start),
-			ref As<char, byte>(ref AsRef(s[0])),
-			(uint)(sizeof(char) * s.Length)
-		);
+		=> CopyBlock(ref AsByteRef(ref start), ref AsByteRef(ref AsRef(s[0])), (uint)(sizeof(char) * s.Length));
 }

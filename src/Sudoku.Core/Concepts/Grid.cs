@@ -675,7 +675,7 @@ public unsafe partial struct Grid :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped in Grid other)
-		=> SequenceEqual(ref As<short, byte>(ref AsRef(_values[0])), ref As<short, byte>(ref AsRef(other._values[0])), sizeof(short) * 81);
+		=> SequenceEqual(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref AsRef(other._values[0])), sizeof(short) * 81);
 
 	/// <summary>
 	/// Indicates whether the current grid contains the specified candidate offset.
@@ -1133,7 +1133,7 @@ public unsafe partial struct Grid :
 	readonly IEnumerator<short> IEnumerable<short>.GetEnumerator()
 	{
 		var maskArray = new short[81];
-		CopyBlock(ref As<short, byte>(ref AsRef(_values[0])), ref As<short, byte>(ref maskArray[0]), sizeof(short) * 81);
+		CopyBlock(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref maskArray[0]), sizeof(short) * 81);
 
 		return ((IEnumerable<short>)maskArray).GetEnumerator();
 	}
@@ -1244,7 +1244,7 @@ public unsafe partial struct Grid :
 		Argument.ThrowIfNotEqual(masks.Length, 81, nameof(masks));
 
 		var result = Empty;
-		CopyBlock(ref As<short, byte>(ref result._values[0]), ref As<short, byte>(ref masks[0]), sizeof(short) * 81);
+		CopyBlock(ref AsByteRef(ref result._values[0]), ref AsByteRef(ref masks[0]), sizeof(short) * 81);
 
 		return result;
 	}

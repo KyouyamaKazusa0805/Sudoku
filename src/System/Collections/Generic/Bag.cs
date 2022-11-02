@@ -93,8 +93,8 @@ public ref partial struct Bag<T>
 			var areSame = true;
 			for (nuint j = 0; j < size; j++)
 			{
-				var v1 = As<T, byte>(ref AddByteOffset(ref _values[i], j));
-				var v2 = As<T, byte>(ref AddByteOffset(ref element, j));
+				var v1 = AsByteRef(ref AddByteOffset(ref _values[i], j));
+				var v2 = AsByteRef(ref AddByteOffset(ref element, j));
 				if (v1 != v2)
 				{
 					areSame = false;
@@ -143,7 +143,7 @@ public ref partial struct Bag<T>
 	public readonly T[] ToArray()
 	{
 		var result = new T[Count];
-		CopyBlock(ref As<T, byte>(ref result[0]), ref As<T, byte>(ref _values[0]), (uint)(Marshal.SizeOf<T>() * Count));
+		CopyBlock(ref AsByteRef(ref result[0]), ref AsByteRef(ref _values[0]), (uint)(Marshal.SizeOf<T>() * Count));
 
 		return result;
 	}
@@ -160,7 +160,7 @@ public ref partial struct Bag<T>
 			_capacity <<= 1;
 
 			var newer = ArrayPool<T>.Shared.Rent(_capacity);
-			CopyBlock(ref As<T, byte>(ref newer[0]), ref As<T, byte>(ref _values[0]), (uint)(Marshal.SizeOf<T>() * Count));
+			CopyBlock(ref AsByteRef(ref newer[0]), ref AsByteRef(ref _values[0]), (uint)(Marshal.SizeOf<T>() * Count));
 
 			ArrayPool<T>.Shared.Return(_values);
 

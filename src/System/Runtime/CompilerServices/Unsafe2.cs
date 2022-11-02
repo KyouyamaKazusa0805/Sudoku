@@ -25,4 +25,15 @@ public static class Unsafe2
 	/// <seealso cref="SubtractByteOffset{T}(ref T, nint)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void RefMovePrevious<T>(ref T @ref) => SubtractByteOffset(ref @ref, 1);
+
+	/// <summary>
+	/// Simply invokes the method <see cref="As{TFrom, TTo}(ref TFrom)"/>, but with target generic type being fixed type <see cref="byte"/>.
+	/// </summary>
+	/// <typeparam name="T">The base type that is converted from.</typeparam>
+	/// <param name="ref">
+	/// The reference to the value. Generally speaking the value should be a <see langword="ref readonly"/> parameter, but C# disallows it,
+	/// using <see langword="ref readonly"/> as a combined parameter modifier.
+	/// </param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref byte AsByteRef<T>(ref T @ref) => ref As<T, byte>(ref @ref);
 }
