@@ -12,7 +12,7 @@ public static partial class Casing
 	/// <param name="str">The string to check.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsValidIdentifier(string str) => Utf8IdentifierRegex().IsMatch(str);
+	public static bool IsValidIdentifier(string str) => Utf8IdentifierPattern().IsMatch(str);
 
 	/// <summary>
 	/// Converts the current string identifier into the camel-casing (like <c>camelCasingVariable</c>).
@@ -60,9 +60,6 @@ public static partial class Casing
 			}
 			: throw new ArgumentException("The specified string is not an identifier.", nameof(str));
 
-	/// <summary>
-	/// Defines a regular expression pattern that matches for an identifier based on UTF-8 format.
-	/// </summary>
 	[GeneratedRegex("""[A-Za-z_]\w*""", RegexOptions.Compiled, 5000)]
-	private static partial Regex Utf8IdentifierRegex();
+	private static partial Regex Utf8IdentifierPattern();
 }

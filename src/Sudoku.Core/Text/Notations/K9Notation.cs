@@ -145,7 +145,7 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 	public static unsafe CellMap ParseCells(string str)
 	{
 		// Check whether the match is successful.
-		if (CellOrCellListRegex().Matches(str) is not { Count: not 0 } matches)
+		if (CellOrCellListPattern().Matches(str) is not { Count: not 0 } matches)
 		{
 			throw new FormatException("The specified string can't match any cell instance.");
 		}
@@ -231,9 +231,6 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 		}
 	}
 
-	/// <summary>
-	/// Indicates the regular expression for matching a cell or cell-list.
-	/// </summary>
 	[GeneratedRegex("""[A-IKa-ik]{1,9}[1-9]{1,9}""", RegexOptions.Compiled, 5000)]
-	private static partial Regex CellOrCellListRegex();
+	private static partial Regex CellOrCellListPattern();
 }

@@ -76,9 +76,7 @@ public static unsafe partial class StringExtensions
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsMatch(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
-		=> pattern.IsRegexPattern()
-			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan)
-			: throw InvalidOperation;
+		=> pattern.IsRegexPattern() ? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan) : throw InvalidOperation;
 
 	/// <summary>
 	/// Replace the character at the specified index with the new value.
@@ -158,9 +156,7 @@ public static unsafe partial class StringExtensions
 	public static string? Match(
 		this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
 		=> pattern.IsRegexPattern()
-			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value }
-				? value
-				: null
+			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value } ? value : null
 			: throw InvalidOperation;
 
 	/// <summary>
@@ -295,9 +291,6 @@ public static unsafe partial class StringExtensions
 		}
 	}
 
-	/// <summary>
-	/// Indicates the regular expression to match all null lines and header spaces in their lines.
-	/// </summary>
 	[GeneratedRegex("""(^\s*|(?<=\r\n)\s+)""", RegexOptions.Compiled, 5000)]
-	internal static partial Regex NullLinesOrHeaderSpacesRegex();
+	internal static partial Regex NullLinesOrHeaderSpacesPattern();
 }
