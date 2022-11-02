@@ -100,16 +100,6 @@
             Defines a command.
             </summary>
         </member>
-        <member name="F:Sudoku.Communication.Qicq.Commands.Command.KnownColors">
-            <summary>
-            The table of known colors.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Communication.Qicq.Commands.Command.KnownKinds">
-            <summary>
-            The table of known kinds.
-            </summary>
-        </member>
         <member name="P:Sudoku.Communication.Qicq.Commands.Command.CommandName">
             <summary>
             Indicates the command name that will be used as comparison.
@@ -142,13 +132,6 @@
         </member>
         <member name="M:Sudoku.Communication.Qicq.Commands.Command.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc cref="M:Sudoku.Communication.Qicq.Commands.Command.ExecuteAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)"/>
-        </member>
-        <member name="M:Sudoku.Communication.Qicq.Commands.Command.GetIdentifier(System.String)">
-            <summary>
-            Try to fetch the identifier name via the color name.
-            </summary>
-            <param name="name">The name of the color.</param>
-            <returns>The identifier instance.</returns>
         </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.CommandAttribute">
             <summary>
@@ -263,6 +246,28 @@
         </member>
         <member name="M:Sudoku.Communication.Qicq.Commands.HelpCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.ICommandDataProvider">
+            <summary>
+            Extracts a type that creates data used by commands.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.KnownColors">
+            <summary>
+            The table of known colors.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.KnownKinds">
+            <summary>
+            The table of known kinds.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GetIdentifier(System.String)">
+            <summary>
+            Try to fetch the identifier name via the color name.
+            </summary>
+            <param name="name">The name of the color.</param>
+            <returns>The identifier instance.</returns>
         </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.LookupScoreCommand">
             <summary>

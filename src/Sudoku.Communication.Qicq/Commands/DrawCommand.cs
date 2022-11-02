@@ -25,12 +25,12 @@ internal sealed class DrawCommand : Command
 			return false;
 		}
 
-		if (GetIdentifier(rawIdentifier) is not { } identifier)
+		if (ICommandDataProvider.GetIdentifier(rawIdentifier) is not { } identifier)
 		{
 			return false;
 		}
 
-		var triplet = GetCoordinate(rawCoordinate);
+		var triplet = ICommandDataProvider.GetCoordinate(rawCoordinate);
 		if (triplet is (false, false, false))
 		{
 			return false;

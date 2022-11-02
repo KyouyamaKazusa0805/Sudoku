@@ -25,7 +25,7 @@ internal sealed class SetDigitCommand : Command
 			return false;
 		}
 
-		if (GetCell(rawCoordinate) is not { } cell)
+		if (ICommandDataProvider.GetCell(rawCoordinate) is not { } cell)
 		{
 			return false;
 		}

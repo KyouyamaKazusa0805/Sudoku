@@ -19,7 +19,7 @@ internal sealed class ClearCommand : Command
 	/// <inheritdoc/>
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
-		var triplet = GetCoordinate(args);
+		var triplet = ICommandDataProvider.GetCoordinate(args);
 		if (triplet is (false, false, false))
 		{
 			return false;
