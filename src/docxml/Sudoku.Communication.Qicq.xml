@@ -60,24 +60,6 @@
         <member name="M:Sudoku.Communication.Qicq.Commands.CheckInCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Communication.Qicq.Commands.EarningExperiencePointGenerator">
-            <summary>
-            The earning experience point generator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Communication.Qicq.Commands.EarningExperiencePointGenerator.GenerateOriginalValue">
-            <summary>
-            Generates a value that describes the experience point that the current user can be earned.
-            </summary>
-            <returns>The value.</returns>
-        </member>
-        <member name="M:Sudoku.Communication.Qicq.Commands.EarningExperiencePointGenerator.GenerateValue(System.Int32)">
-            <summary>
-            Generates a value that describes the experience point that the current user can be earned.
-            </summary>
-            <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
-            <returns>The value.</returns>
-        </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.ClearCommand">
             <summary>
             Indicates the clear command.
@@ -268,6 +250,49 @@
             </summary>
             <param name="name">The name of the color.</param>
             <returns>The identifier instance.</returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GetCoordinate(System.String)">
+            <summary>
+            Try to fetch the coordinate value.
+            </summary>
+            <param name="rawCoordinate">The coordinate string value.</param>
+            <returns>
+            Returns a value that can be <see cref="T:Sudoku.Concepts.CellMap"/>, <see cref="T:Sudoku.Concepts.Candidates"/> and <see cref="T:System.Int32"/> value, where:
+            <list type="table">
+            <item>
+            <term><see cref="T:Sudoku.Concepts.CellMap"/></term>
+            <description>The cells parsed if the string value can be parsed as <see cref="T:Sudoku.Concepts.CellMap"/>.</description>
+            </item>
+            <item>
+            <term><see cref="T:Sudoku.Concepts.Candidates"/></term>
+            <description>The candidates parsed if the string value can be parsed as <see cref="T:Sudoku.Concepts.Candidates"/>.</description>
+            </item>
+            <item>
+            <term><see cref="T:System.Int32"/></term>
+            <description>The house parsed if the string value can be parsed as house index.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GetCell(System.String)">
+            <summary>
+            Try to fetch the coordinate value.
+            </summary>
+            <param name="rawCoordinate">The coordinate string value.</param>
+            <returns>The cell index parsed. If failed to be parsed, <see langword="null"/> will be returned.</returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GenerateOriginalValueEarned">
+            <summary>
+            Generates a value that describes the experience point that the current user can be earned.
+            </summary>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GenerateValueEarned(System.Int32)">
+            <summary>
+            Generates a value that describes the experience point that the current user can be earned.
+            </summary>
+            <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
+            <returns>The value.</returns>
         </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.LookupScoreCommand">
             <summary>

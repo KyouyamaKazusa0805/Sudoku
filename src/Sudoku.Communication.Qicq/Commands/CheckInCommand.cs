@@ -56,7 +56,7 @@ internal sealed class CheckInCommand : Command
 			// Continuous.
 			userData.ComboCheckedIn++;
 
-			var expEarned = EarningExperiencePointGenerator.GenerateValue(userData.ComboCheckedIn);
+			var expEarned = ICommandDataProvider.GenerateValueEarned(userData.ComboCheckedIn);
 			userData.Score += expEarned;
 			userData.LastCheckIn = DateTime.Today;
 
@@ -67,7 +67,7 @@ internal sealed class CheckInCommand : Command
 			// Normal case.
 			userData.ComboCheckedIn = 1;
 
-			var expEarned = EarningExperiencePointGenerator.GenerateOriginalValue();
+			var expEarned = ICommandDataProvider.GenerateOriginalValueEarned();
 			userData.Score += expEarned;
 			userData.LastCheckIn = DateTime.Today;
 
@@ -78,39 +78,5 @@ internal sealed class CheckInCommand : Command
 		await File.WriteAllTextAsync(userDataPath, json);
 
 		return true;
-	}
-}
-
-/// <summary>
-/// The earning experience point generator.
-/// </summary>
-file static class EarningExperiencePointGenerator
-{
-	/// <summary>
-	/// Generates a value that describes the experience point that the current user can be earned.
-	/// </summary>
-	/// <returns>The value.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GenerateOriginalValue()
-		=> Rng.Next(0, 10000) switch
-		{
-			< 5000 => 2,
-			>= 5000 and < 7500 => 3,
-			>= 7500 and < 8750 => 4,
-			>= 8750 and < 9375 => 6,
-			_ => 12
-		};
-
-	/// <summary>
-	/// Generates a value that describes the experience point that the current user can be earned.
-	/// </summary>
-	/// <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
-	/// <returns>The value.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GenerateValue(int continuousDaysCount)
-	{
-		var earned = GenerateOriginalValue();
-		var level = continuousDaysCount / 7;
-		return (int)Round(earned * (level * .2 + 1));
 	}
 }

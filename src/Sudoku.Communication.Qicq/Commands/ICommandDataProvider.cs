@@ -87,6 +87,27 @@ internal interface ICommandDataProvider
 		static Identifier f(Color c) => Identifier.FromColor(c.A, c.R, c.G, c.B);
 	}
 
+	/// <summary>
+	/// Try to fetch the coordinate value.
+	/// </summary>
+	/// <param name="rawCoordinate">The coordinate string value.</param>
+	/// <returns>
+	/// Returns a value that can be <see cref="CellMap"/>, <see cref="Candidates"/> and <see cref="int"/> value, where:
+	/// <list type="table">
+	/// <item>
+	/// <term><see cref="CellMap"/></term>
+	/// <description>The cells parsed if the string value can be parsed as <see cref="CellMap"/>.</description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="Candidates"/></term>
+	/// <description>The candidates parsed if the string value can be parsed as <see cref="Candidates"/>.</description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="int"/></term>
+	/// <description>The house parsed if the string value can be parsed as house index.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static sealed OneOf<CellMap, Candidates, int> GetCoordinate(string rawCoordinate)
 	{
@@ -116,6 +137,11 @@ internal interface ICommandDataProvider
 		return default;
 	}
 
+	/// <summary>
+	/// Try to fetch the coordinate value.
+	/// </summary>
+	/// <param name="rawCoordinate">The coordinate string value.</param>
+	/// <returns>The cell index parsed. If failed to be parsed, <see langword="null"/> will be returned.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static sealed int? GetCell(string rawCoordinate)
 	{
@@ -130,5 +156,33 @@ internal interface ICommandDataProvider
 		}
 
 		return null;
+	}
+
+	/// <summary>
+	/// Generates a value that describes the experience point that the current user can be earned.
+	/// </summary>
+	/// <returns>The value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static sealed int GenerateOriginalValueEarned()
+		=> Rng.Next(0, 10000) switch
+		{
+			< 5000 => 2,
+			>= 5000 and < 7500 => 3,
+			>= 7500 and < 8750 => 4,
+			>= 8750 and < 9375 => 6,
+			_ => 12
+		};
+
+	/// <summary>
+	/// Generates a value that describes the experience point that the current user can be earned.
+	/// </summary>
+	/// <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
+	/// <returns>The value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static sealed int GenerateValueEarned(int continuousDaysCount)
+	{
+		var earned = GenerateOriginalValueEarned();
+		var level = continuousDaysCount / 7;
+		return (int)Round(earned * (level * .2 + 1));
 	}
 }
