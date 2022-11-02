@@ -2,8 +2,8 @@
 
 namespace Sudoku.Concepts;
 
-using static InternalEventHandlers;
-using static InternalHelper;
+using static FileScopedEventHandlers;
+using static FileScopedHelper;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -1785,9 +1785,13 @@ file sealed class Converter : JsonConverter<Grid>
 }
 
 /// <summary>
-/// Internal event handlers.
+/// Represents event handlers used by <see cref="Grid"/> instances, especially for fields
+/// <see cref="Grid.RefreshingCandidates"/> and <see cref="Grid.ValueChanged"/>.
 /// </summary>
-file static unsafe class InternalEventHandlers
+/// <seealso cref="Grid"/>
+/// <seealso cref="Grid.RefreshingCandidates"/>
+/// <seealso cref="Grid.ValueChanged"/>
+file static unsafe class FileScopedEventHandlers
 {
 	/// <summary>
 	/// The method that is invoked by event handler field <see cref="Grid.RefreshingCandidates"/>.
@@ -1847,10 +1851,11 @@ file static unsafe class InternalEventHandlers
 // https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
 
 /// <summary>
-/// The helper method used by type <see cref="Grid"/>.
+/// Represents a helper method used by <see cref="Grid"/> instances, especially for equality checking method <see cref="Grid.Equals(in Grid)"/>.
 /// </summary>
 /// <seealso cref="Grid"/>
-file static class InternalHelper
+/// <seealso cref="Grid.Equals(in Grid)"/>
+file static class FileScopedHelper
 {
 	/// <summary>
 	/// Determines whether two sequences are considered equal on respective bits.

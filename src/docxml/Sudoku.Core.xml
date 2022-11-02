@@ -2862,19 +2862,23 @@
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.InternalEventHandlers">
+        <member name="T:Sudoku.Concepts.FileScopedEventHandlers">
             <summary>
-            Internal event handlers.
+            Represents event handlers used by <see cref="T:Sudoku.Concepts.Grid"/> instances, especially for fields
+            <see cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/> and <see cref="F:Sudoku.Concepts.Grid.ValueChanged"/>.
             </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+            <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
+            <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
         </member>
-        <member name="M:Sudoku.Concepts.InternalEventHandlers.EventHandlerOnRefreshingCandidates(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Concepts.FileScopedEventHandlers.EventHandlerOnRefreshingCandidates(Sudoku.Concepts.Grid@)">
             <summary>
             The method that is invoked by event handler field <see cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Concepts.Grid"/> instance.</param>
             <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
         </member>
-        <member name="M:Sudoku.Concepts.InternalEventHandlers.EventHandlerOnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Concepts.FileScopedEventHandlers.EventHandlerOnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
             <summary>
             The method that is invoked by event handler field <see cref="F:Sudoku.Concepts.Grid.ValueChanged"/>.
             </summary>
@@ -2885,13 +2889,14 @@
             <param name="setValue">The set value. Assign -1 if the cell should be set empty.</param>
             <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
         </member>
-        <member name="T:Sudoku.Concepts.InternalHelper">
+        <member name="T:Sudoku.Concepts.FileScopedHelper">
             <summary>
-            The helper method used by type <see cref="T:Sudoku.Concepts.Grid"/>.
+            Represents a helper method used by <see cref="T:Sudoku.Concepts.Grid"/> instances, especially for equality checking method <see cref="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.InternalHelper.SequenceEqual(System.Byte@,System.Byte@,System.UIntPtr)">
+        <member name="M:Sudoku.Concepts.FileScopedHelper.SequenceEqual(System.Byte@,System.Byte@,System.UIntPtr)">
             <summary>
             Determines whether two sequences are considered equal on respective bits.
             </summary>
