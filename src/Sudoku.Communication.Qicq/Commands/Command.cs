@@ -18,7 +18,7 @@ internal abstract class Command
 	/// <summary>
 	/// Indicates the prefix.
 	/// </summary>
-	public virtual string[] Prefixes { get; } = new[] { "!", "\uff01" };
+	public virtual string[] Prefixes { get; } = { "!", "\uff01" };
 
 	/// <summary>
 	/// Indicates the comparison mode that will be used as check commands.
