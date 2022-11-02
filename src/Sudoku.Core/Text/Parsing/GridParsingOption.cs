@@ -7,46 +7,50 @@ public enum GridParsingOption : byte
 {
 	/// <summary>
 	/// <para>
-	/// Indicates the susser format, which means all grid values
-	/// will be displayed in one line with empty cell character
-	/// <c>'0'</c> or <c>'.'</c>.
+	/// Indicates the susser format, which means all grid values will be displayed in one line with empty cell character <c>'0'</c>
+	/// or <c>'.'</c>.
 	/// </para>
 	/// <para>
 	/// For example:
-	/// </para>
-	/// <para>
-	/// 1) <c>080630040200085009090000081000300800000020000006001000970000030400850007010094050</c>
-	/// </para>
-	/// <para>
-	/// 2) <c>4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997</c>
+	/// <list type="number">
+	/// <item>
+	/// <code><![CDATA[
+	/// 080630040200085009090000081000300800000020000006001000970000030400850007010094050
+	/// ]]></code>
+	/// </item>
+	/// <item>
+	/// <code><![CDATA[
+	/// 4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997
+	/// ]]></code>
+	/// </item>
+	/// </list>
 	/// </para>
 	/// </summary>
 	Susser,
 
 	/// <summary>
 	/// <para>
-	/// Indicates the shorten susser format, which means all grid values
-	/// will be displayed in one line with empty cell character <c>'0'</c> or <c>'.'</c>.
-	/// Different with the option <see cref="Susser"/>, this option will continue
-	/// shortening the code. The option will omit the continuous empty cells to a <c>*</c>
-	/// in a single line. For example, the code
-	/// <code>
+	/// Indicates the shorten susser format, which means all grid values will be displayed in one line
+	/// with empty cell character <c>'0'</c> or <c>'.'</c>.
+	/// Different with the option <see cref="Susser"/>, this option will continue shortening the code.
+	/// The option will omit the continuous empty cells to a <c>*</c> in a single line.
+	/// For example, the code
+	/// <code><![CDATA[
 	/// 080630040200085009090000081000300800000020000006001000970000030400850007010094050
-	/// </code>
+	/// ]]></code>
 	/// will be displayed as
-	/// <code>
+	/// <code><![CDATA[
 	/// 08063*40,2*85009,09*81,*300800,*2*,006001*,97*30,40085*7,01*94050
-	/// </code>
-	/// via this option. We use the colon <c>,</c> to separate each line of 9 numbers,
-	/// and then omit the most continuous empty cells to a <c>*</c>.
+	/// ]]></code>
+	/// via this option.
+	/// We use the colon <c>,</c> to separate each line of 9 numbers, and then omit the most continuous empty cells to a <c>*</c>.
 	/// </para>
 	/// </summary>
 	ShortenSusser,
 
 	/// <summary>
 	/// <para>
-	/// Indicates the pencil marked grid (PM grid), which means all
-	/// grid candidates will be displayed using a table.
+	/// Indicates the pencil marked grid (PM grid), which means all grid candidates will be displayed using a table.
 	/// </para>
 	/// <para>
 	/// For example:
@@ -71,8 +75,7 @@ public enum GridParsingOption : byte
 
 	/// <summary>
 	/// <para>
-	/// Indicates the table format, which means all grid values
-	/// will be displayed using a table with empty cell character
+	/// Indicates the table format, which means all grid values will be displayed using a table with empty cell character
 	/// <c>'0'</c> or <c>'.'</c>.
 	/// </para>
 	/// <para>
@@ -142,7 +145,9 @@ public enum GridParsingOption : byte
 	/// <para>Sukaku single line format, which uses '0' to be a placeholder.</para>
 	/// <para>
 	/// For example:
-	/// <code><![CDATA[023406789123456700003050780120050789003006009123456009100056089023456080123000789003456789023006700023006700120056780100006789120400780000406789103000080020450000003406089020056709120050080100000700120056780120000709123056000123050080000450089123050709100456089003400780100450009003400009120400009123056709003000700023406000000406009123006000000056709003406700120050009103056089103456709003056009120456009123456780023400000103406709003056789020406700100050009020400000100006789020006789020456780123056080120400700000406789120400080023456789003006080020456789103450709123400009123400080023406700123406709103400080123456009120456789023406709023450080100406080103056009100400009123000789100400709100406780123050700000050080023406009]]></code>
+	/// <code><![CDATA[
+	/// 023406789123456700003050780120050789003006009123456009100056089023456080123000789003456789023006700023006700120056780100006789120400780000406789103000080020450000003406089020056709120050080100000700120056780120000709123056000123050080000450089123050709100456089003400780100450009003400009120400009123056709003000700023406000000406009123006000000056709003406700120050009103056089103456709003056009120456009123456780023400000103406709003056789020406700100050009020400000100006789020006789020456780123056080120400700000406789120400080023456789003006080020456789103450709123400009123400080023406700123406709103400080123456009120456789023406709023450080100406080103056009100400009123000789100400709100406780123050700000050080023406009
+	/// ]]></code>
 	/// </para>
 	/// </summary>
 	SukakuSingleLine,
@@ -174,8 +179,10 @@ public enum GridParsingOption : byte
 	/// </para>
 	/// <para>
 	/// For example:
-	/// <code><![CDATA[0|0|1|1|0|0|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|9|0|0|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|2|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|9|0|0|2|0|0|6|0|0|0|0|1|0|0|1|8|0|0|0|0|1|0|0|1|7|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|5|0|0|0|0|1|6|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|1|0|0|0|0|1|0|0|1|1|0|0|7|0|0|0|0|1|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|6|0|0|0|0|1|0|0|1|3|0|0|0|0|1|9|0|0|0|0|1|0|0|1|7|0|0]]></code>
+	/// <code><![CDATA[
+	/// 0|0|1|1|0|0|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|9|0|0|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|2|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|9|0|0|2|0|0|6|0|0|0|0|1|0|0|1|8|0|0|0|0|1|0|0|1|7|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|5|0|0|0|0|1|6|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|1|0|0|0|0|1|0|0|1|1|0|0|7|0|0|0|0|1|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|6|0|0|0|0|1|0|0|1|3|0|0|0|0|1|9|0|0|0|0|1|0|0|1|7|0|0
+	/// ]]></code>
 	/// </para>
 	/// </summary>
-	OpenSudoku,
+	OpenSudoku
 }
