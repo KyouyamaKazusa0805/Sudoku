@@ -7,19 +7,20 @@
 internal sealed class DrawStartCommand : Command
 {
 	/// <inheritdoc/>
+	public override string CommandName => R["_Command_Draw"]!;
+
+	/// <inheritdoc/>
+	public override CommandComparison ComparisonMode => CommandComparison.Strict;
+
+
+	/// <inheritdoc/>
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
-		if (args != R["_Command_Draw"])
-		{
-			return false;
-		}
-
 		EnvironmentCommandExecuting = R["_Command_Draw"]!;
 		Puzzle = Grid.Empty;
 		Painter = ISudokuPainter.Create(800, 10).WithGrid(Puzzle).WithRenderingCandidates(false);
 
 		await e.SendMessageAsync(R["_MessageFormat_DrawStartMessage"]!);
-
 		return true;
 	}
 }

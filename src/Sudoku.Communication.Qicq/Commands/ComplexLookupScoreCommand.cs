@@ -7,27 +7,28 @@
 internal sealed class ComplexLookupScoreCommand : Command
 {
 	/// <inheritdoc/>
+	public override string CommandName => R["_Command_ComplexLookupScore"]!;
+
+	/// <inheritdoc/>
+	public override CommandComparison ComparisonMode => CommandComparison.Prefix;
+
+
+	/// <inheritdoc/>
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
-		var command = R["_Command_ComplexLookupScore"]!;
-		if (!args.StartsWith(command))
-		{
-			return false;
-		}
-
 		if (e.Sender is not { Name: var senderName, MmeberProfile.NickName: var senderOriginalName, Group: var group })
 		{
 			return false;
 		}
 
-		if (args[command.Length..].Trim() is not (var nameOrId and not []))
+		if (args is [])
 		{
 			return false;
 		}
 
 		var satisfiedMembers = (
 			from member in await @group.GetGroupMembersAsync()
-			where member.Id == nameOrId || member.Name == nameOrId
+			where member.Id == args || member.Name == args
 			select member
 		).ToArray();
 		switch (satisfiedMembers)

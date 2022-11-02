@@ -277,11 +277,6 @@
   <data name="_MessageFormat_CheckInFailedDueToMultipleInSameDay" xml:space="preserve">
     <value>签到失败~ 你今天已经签过到了，明天再来试试吧~</value>
   </data>
-  <data name="_MessageFormat_CheckInIntro" xml:space="preserve">
-    <value>签到说明📖
-请使用“！签到”进行签到。每日签到都将随机获得 1 到 4 积分，具有随机性。
-如果连续签到一周，签到所得积分将会加成。加成即签到获得积分乘以该数值，最后得到的结果（四舍五入为整数）之后为你当天获得的真正积分。连续签到一周将获得一次加成倍率增大的机会。加成倍率一次增大 0.2，初始加成倍率为 1.0（即初始值）。</value>
-  </data>
   <data name="_MessageFormat_CheckInSuccessful" xml:space="preserve">
     <value>签到成功！恭喜你获得 {0} 积分。一天只能签到一次哦~</value>
   </data>

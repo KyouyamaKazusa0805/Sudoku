@@ -7,19 +7,18 @@
 internal sealed class ClearCommand : Command
 {
 	/// <inheritdoc/>
+	public override string CommandName => R["_Command_Clear"]!;
+
+	/// <inheritdoc/>
 	public override string? EnvironmentCommand => R["_Command_Draw"];
+
+	/// <inheritdoc/>
+	public override CommandComparison ComparisonMode => CommandComparison.Prefix;
 
 
 	/// <inheritdoc/>
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
-		var command = R["_Command_Clear"]!;
-		if (!args.StartsWith(command))
-		{
-			return false;
-		}
-
-		args = args[command.Length..].Trim();
 		var triplet = GetCoordinate(args);
 		if (triplet is (false, false, false))
 		{

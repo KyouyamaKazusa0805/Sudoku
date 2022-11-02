@@ -7,15 +7,15 @@
 internal sealed class UpdateScoreCommand : Command
 {
 	/// <inheritdoc/>
+	public override string CommandName => R["_Command_UpdateScore"]!;
+
+	/// <inheritdoc/>
+	public override CommandComparison ComparisonMode => CommandComparison.Prefix;
+
+
+	/// <inheritdoc/>
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
-		var command = R["_Command_UpdateScore"]!;
-		if (!args.StartsWith(command))
-		{
-			return false;
-		}
-
-		args = args[command.Length..];
 		if (e is not { Sender.Group: var group })
 		{
 			return false;

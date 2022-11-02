@@ -48,6 +48,11 @@ internal abstract class Command
 
 
 	/// <summary>
+	/// Indicates the command name that will be used as comparison.
+	/// </summary>
+	public abstract string CommandName { get; }
+
+	/// <summary>
 	/// Indicates the environment command that the current command relies on.
 	/// </summary>
 	public virtual string? EnvironmentCommand { get; } = null;
@@ -56,6 +61,11 @@ internal abstract class Command
 	/// Indicates the prefix.
 	/// </summary>
 	public virtual string[] Prefixes { get; } = new[] { "!", "\uff01" };
+
+	/// <summary>
+	/// Indicates the comparison mode that will be used as check commands.
+	/// </summary>
+	public abstract CommandComparison ComparisonMode { get; }
 
 
 	/// <summary>
@@ -68,13 +78,13 @@ internal abstract class Command
 	/// </returns>
 	public async Task<bool> ExecuteAsync(string args, GroupMessageReceiver e)
 	{
-		var otherArgs = Prefixes.FirstOrDefault(args.StartsWith) switch
+		var a = Prefixes.FirstOrDefault(args.StartsWith) switch
 		{
 			{ } prefix when args.IndexOf(prefix) is var i && i < args.Length => args[(i + 1)..],
 			_ => null
 		};
 
-		if (otherArgs is null)
+		if (a is null)
 		{
 			return false;
 		}
@@ -84,7 +94,22 @@ internal abstract class Command
 			return false;
 		}
 
-		return await ExecuteCoreAsync(otherArgs, e);
+#pragma warning disable format
+		if (ComparisonMode switch
+			{
+				CommandComparison.Strict => CommandName != a,
+				CommandComparison.Prefix => !a.StartsWith(CommandName),
+				_ => throw new ArgumentOutOfRangeException(nameof(ComparisonMode))
+			})
+#pragma warning restore format
+		{
+			return false;
+		}
+
+		return await ExecuteCoreAsync(
+			ComparisonMode switch { CommandComparison.Strict => a, CommandComparison.Prefix => a[CommandName.Length..].Trim() },
+			e
+		);
 	}
 
 	/// <inheritdoc cref="ExecuteAsync(string, GroupMessageReceiver)"/>
@@ -149,10 +174,10 @@ internal abstract class Command
 			return cells1;
 		}
 
-#pragma warning disable IDE0055
+#pragma warning disable format
 		if (rawCoordinate.Match("""[\u884c\u5217\u5bab]\s*[1-9]""") is { } parts
 			&& parts.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) is [[var houseNotation], [var label]])
-#pragma warning restore IDE0055
+#pragma warning restore format
 		{
 			return houseNotation switch { '\u884c' => 9, '\u5217' => 18, _ => 0 } + (label - '1');
 		}

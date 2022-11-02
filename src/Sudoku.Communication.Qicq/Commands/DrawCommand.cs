@@ -7,19 +7,18 @@
 internal sealed class DrawCommand : Command
 {
 	/// <inheritdoc/>
-	public override string? EnvironmentCommand => R["_Command_Draw"];
+	public override string CommandName => R["_Command_DrawSub"]!;
+
+	/// <inheritdoc/>
+	public override string EnvironmentCommand => R["_Command_Draw"]!;
+
+	/// <inheritdoc/>
+	public override CommandComparison ComparisonMode => CommandComparison.Prefix;
 
 
 	/// <inheritdoc/>
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
-		var command = R["_Command_DrawSub"]!;
-		if (!args.StartsWith(command))
-		{
-			return false;
-		}
-
-		args = args[command.Length..].Trim();
 		var split = args.Split(new[] { ',', '\uff0c' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 		if (split is not [var rawCoordinate, var rawIdentifier])
 		{
