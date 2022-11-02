@@ -89,7 +89,15 @@ file static class EarningExperiencePointGenerator
 	/// </summary>
 	/// <returns>The value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GenerateOriginalValue() => Rng.Next(0, 10000) switch { < 4000 => 1, >= 4000 and < 7000 => 2, >= 7000 and < 9000 => 3, _ => 4 };
+	public static int GenerateOriginalValue()
+		=> Rng.Next(0, 10000) switch
+		{
+			< 5000 => 2,
+			>= 5000 and < 7500 => 3,
+			>= 7500 and < 8750 => 4,
+			>= 8750 and < 9375 => 6,
+			_ => 12
+		};
 
 	/// <summary>
 	/// Generates a value that describes the experience point that the current user can be earned.
