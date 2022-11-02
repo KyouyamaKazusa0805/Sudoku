@@ -2,8 +2,8 @@
 
 namespace Sudoku.Concepts;
 
-using static FileScopedEventHandlers;
-using static FileScopedHelper;
+using static EventHandlers;
+using static Helper;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -1791,7 +1791,7 @@ file sealed class Converter : JsonConverter<Grid>
 /// <seealso cref="Grid"/>
 /// <seealso cref="Grid.RefreshingCandidates"/>
 /// <seealso cref="Grid.ValueChanged"/>
-file static unsafe class FileScopedEventHandlers
+file static unsafe class EventHandlers
 {
 	/// <summary>
 	/// The method that is invoked by event handler field <see cref="Grid.RefreshingCandidates"/>.
@@ -1855,7 +1855,7 @@ file static unsafe class FileScopedEventHandlers
 /// </summary>
 /// <seealso cref="Grid"/>
 /// <seealso cref="Grid.Equals(in Grid)"/>
-file static class FileScopedHelper
+file static class Helper
 {
 	/// <summary>
 	/// Determines whether two sequences are considered equal on respective bits.
