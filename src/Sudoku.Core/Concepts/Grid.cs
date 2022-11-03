@@ -968,22 +968,16 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
-	{
-		return (format, formatProvider) switch
+		=> (format, formatProvider) switch
 		{
 			(null, null) => ToString((string?)null),
 			(not null, _) => ToString(format),
 			(_, IGridFormatter formatter) => formatter.ToString(this),
 			(_, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
-			(_, CultureInfo { Name: var name }) when e(name, "zh-cn") => ToString("#"),
-			(_, CultureInfo { Name: var name }) when e(name[..2], "en") => ToString("@"),
+			(_, CultureInfo { Name: "ZH-CN" or "zh-CN" or "zh-cn" }) => ToString("#"),
+			(_, CultureInfo { Name: [.. "EN" or "en", '-', _, _] }) => ToString("@"),
 			_ => ToString((string?)null)
 		};
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool e(string n, string c) => n.Equals(c, StringComparison.OrdinalIgnoreCase);
-	}
 
 	/// <summary>
 	/// Get the cell status at the specified cell.
