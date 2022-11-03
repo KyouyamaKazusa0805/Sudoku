@@ -4,6 +4,7 @@
 /// Provides a grid format option.
 /// </summary>
 [Flags]
+[Obsolete($"The type is being deprecated. Please use type '{nameof(IGridFormatter)}' instead.", false)]
 public enum GridFormattingOptions : short
 {
 	/// <summary>

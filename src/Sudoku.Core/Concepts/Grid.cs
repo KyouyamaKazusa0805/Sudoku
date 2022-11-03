@@ -11,7 +11,7 @@ using static Helper;
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [JsonConverter(typeof(Converter))]
 [IsLargeStruct(SuggestedMemberName = nameof(Empty))]
-public unsafe partial struct Grid :
+public unsafe struct Grid :
 	IEnumerable<int>,
 	IEqualityOperators<Grid, Grid, bool>,
 	IFixable<Grid, short>,
@@ -895,18 +895,7 @@ public unsafe partial struct Grid :
 		{
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
-			_ when GridFormatterFactory.Create(format) is var f => format switch
-			{
-				":" => ExtendedSusserEliminationsPattern().Match(f.ToString(this)) switch
-				{
-					{ Success: true, Value: var value } => value,
-					_ => string.Empty
-				},
-				"!" => f.ToString(this).RemoveAll('+'),
-				".!" or "!." or "0!" or "!0" => f.ToString(this).RemoveAll('+'),
-				".!:" or "!.:" or "0!:" => f.ToString(this).RemoveAll('+'),
-				_ => f.ToString(this)
-			}
+			_ => GridFormatterFactory.CreateFormatter(format).ToString(this)
 		};
 
 	/// <summary>
@@ -974,8 +963,8 @@ public unsafe partial struct Grid :
 			(not null, _) => ToString(format),
 			(_, IGridFormatter formatter) => formatter.ToString(this),
 			(_, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
-			(_, CultureInfo { Name: "ZH-CN" or "zh-CN" or "zh-cn" }) => ToString("#"),
-			(_, CultureInfo { Name: [.. "EN" or "en", '-', _, _] }) => ToString("@"),
+			(_, CultureInfo { Name: "zh-CN" }) => ToString("#"),
+			(_, CultureInfo { Name: ['e', 'n', '-', .. { Length: 2 }] }) => ToString("@"),
 			_ => ToString((string?)null)
 		};
 
@@ -1460,9 +1449,6 @@ public unsafe partial struct Grid :
 			return false;
 		}
 	}
-
-	[GeneratedRegex("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]
-	internal static partial Regex ExtendedSusserEliminationsPattern();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -2615,20 +2615,6 @@
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.Utf8String,Sudoku.Text.Parsing.GridParsingOption,Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Text.Parsing.GridParsingOption,Sudoku.Concepts.Grid@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.ExtendedSusserEliminationsPattern">
-            <remarks>
-            Pattern explanation:<br/>
-            <code>
-            ○ Zero-width positive lookbehind.<br/>
-                ○ Match ':' right-to-left.<br/>
-            ○ Loop greedily any number of times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match a Unicode digit exactly 3 times.<br/>
-                    ○ Match a whitespace character atomically at least once.<br/>
-            ○ Match a Unicode digit exactly 3 times.<br/>
-            </code>
-            </remarks>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
@@ -6737,6 +6723,14 @@
             <returns>The grid formatter.</returns>
             <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
         </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatterFactory.CreateFormatter(System.String)">
+            <summary>
+            Create a <see cref="T:Sudoku.Text.Formatting.IGridFormatter"/> according to the specified format.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The grid formatter.</returns>
+            <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
+        </member>
         <member name="T:Sudoku.Text.Formatting.GridFormattingOptions">
             <summary>
             Provides a grid format option.
@@ -6944,10 +6938,15 @@
         </member>
         <member name="T:Sudoku.Text.Formatting.IGridFormatter">
             <summary>
+            <para>
             Defines a grid formatter that can convert the current <see cref="T:Sudoku.Concepts.Grid"/> instance into a valid and parsable <see cref="T:System.String"/> text value
             representing this instance. This type is used as arguments being passed in method <see cref="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.Formatting.IGridFormatter)"/>.
             The built-in derived types are:
             <list type="table">
+            <listheader>
+            <term>Formatter type</term>
+            <description>Description about this type</description>
+            </listheader>
             <item>
             <term><see cref="T:Sudoku.Text.Formatting.SusserFormat"/> (Recommend)</term>
             <description>
@@ -6959,6 +6958,14 @@
             <description>
             Represents with a formatter using Susser formatting rule. Different with <see cref="T:Sudoku.Text.Formatting.SusserFormat"/>,
             this formatter will remove all modifiable tokens.
+            </description>
+            </item>
+            <item>
+            <term><see cref="T:Sudoku.Text.Formatting.SusserFormatEliminationsOnly"/></term>
+            <description>
+            Represents with a formatter using Susser formatting rule. Different with <see cref="T:Sudoku.Text.Formatting.SusserFormat"/>,
+            this formatter only contains pre-eliminations. The so-called <b>pre-eliminations</b> means the eliminations
+            that had already been eliminated before the current grid formed.
             </description>
             </item>
             <item>
@@ -7005,6 +7012,28 @@
             For more information about this type and its derived (implemented) types, please visit the documentation comments
             of members <see cref="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.Formatting.IGridFormatter)"/> and <see cref="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)"/>,
             specially for arguments in those members.
+            </para>
+            <para>
+            In addition, you can also define your own formatter, by using this type, you can just implement this interface:
+            <code><![CDATA[
+            // We suggest you use record types instead of classes, in order to define a default-implemented type by compiler.
+            public sealed record CustomFormatter : IGridFormatter // Implements this interface type.
+            {
+                // Define a singleton instance that is the only way to visit the type.
+                public static readonly CustomFormatter Default = new();
+            
+                // Hides the interface implementation by using explicit interface implementation of static members.
+                // This kind of usage is based on a new C# syntax feature called "DIM of Static Members", introduced by C# 11.
+                static IGridFormatter IGridFormatter.Instance => Default;
+            
+                // Here we should implement this method, as the default way to create a string representation describing the grid.
+                public string ToString(scoped in Grid grid)
+                {
+                    // Define your own logic here.
+                }
+            }
+            ]]></code>
+            </para>
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
             <seealso cref="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.Formatting.IGridFormatter)"/>
@@ -7487,6 +7516,42 @@
         </member>
         <member name="M:Sudoku.Text.Formatting.MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.SusserFormatEliminationsOnly">
+            <summary>
+            Represents with a Susser format, but only extracts for pre-eliminations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormatEliminationsOnly.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.SusserFormatEliminationsOnly.Sudoku#Text#Formatting#IGridFormatter#Instance">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.SusserFormatEliminationsOnly.ToString(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.SusserFormatEliminationsOnly.EliminationPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Zero-width positive lookbehind.<br/>
+                ○ Match ':' right-to-left.<br/>
+            ○ Loop greedily any number of times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a Unicode digit exactly 3 times.<br/>
+                    ○ Match a whitespace character atomically at least once.<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="T:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens">
             <summary>
@@ -8778,34 +8843,34 @@
             </list>
             </summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsPattern_0">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ExtendedSusserEliminationsPattern method.</summary>
+        <member name="T:System.Text.RegularExpressions.Generated.EliminationPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the EliminationPattern method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsPattern_0.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.EliminationPattern_0.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsPattern_0.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.EliminationPattern_0.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsPattern_0.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.EliminationPattern_0.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsPattern_0.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.EliminationPattern_0.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsPattern_0.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.EliminationPattern_0.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.EliminationPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.EliminationPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.ExtendedSusserEliminationsPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.EliminationPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>

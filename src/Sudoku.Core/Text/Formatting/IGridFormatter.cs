@@ -1,10 +1,15 @@
 ﻿namespace Sudoku.Text.Formatting;
 
 /// <summary>
+/// <para>
 /// Defines a grid formatter that can convert the current <see cref="Grid"/> instance into a valid and parsable <see cref="string"/> text value
 /// representing this instance. This type is used as arguments being passed in method <see cref="Grid.ToString(IGridFormatter)"/>.
 /// The built-in derived types are:
 /// <list type="table">
+/// <listheader>
+/// <term>Formatter type</term>
+/// <description>Description about this type</description>
+/// </listheader>
 /// <item>
 /// <term><see cref="SusserFormat"/> (Recommend)</term>
 /// <description>
@@ -16,6 +21,14 @@
 /// <description>
 /// Represents with a formatter using Susser formatting rule. Different with <see cref="SusserFormat"/>,
 /// this formatter will remove all modifiable tokens.
+/// </description>
+/// </item>
+/// <item>
+/// <term><see cref="SusserFormatEliminationsOnly"/></term>
+/// <description>
+/// Represents with a formatter using Susser formatting rule. Different with <see cref="SusserFormat"/>,
+/// this formatter only contains pre-eliminations. The so-called <b>pre-eliminations</b> means the eliminations
+/// that had already been eliminated before the current grid formed.
 /// </description>
 /// </item>
 /// <item>
@@ -62,6 +75,28 @@
 /// For more information about this type and its derived (implemented) types, please visit the documentation comments
 /// of members <see cref="Grid.ToString(IGridFormatter)"/> and <see cref="Grid.ToString(string?, IFormatProvider?)"/>,
 /// specially for arguments in those members.
+/// </para>
+/// <para>
+/// In addition, you can also define your own formatter, by using this type, you can just implement this interface:
+/// <code><![CDATA[
+/// // We suggest you use record types instead of classes, in order to define a default-implemented type by compiler.
+/// public sealed record CustomFormatter : IGridFormatter // Implements this interface type.
+/// {
+///     // Define a singleton instance that is the only way to visit the type.
+///     public static readonly CustomFormatter Default = new();
+/// 
+///     // Hides the interface implementation by using explicit interface implementation of static members.
+///     // This kind of usage is based on a new C# syntax feature called "DIM of Static Members", introduced by C# 11.
+///	    static IGridFormatter IGridFormatter.Instance => Default;
+///	
+///     // Here we should implement this method, as the default way to create a string representation describing the grid.
+///     public string ToString(scoped in Grid grid)
+///     {
+///         // Define your own logic here.
+///     }
+/// }
+/// ]]></code>
+/// </para>
 /// </summary>
 /// <seealso cref="Grid"/>
 /// <seealso cref="Grid.ToString(IGridFormatter)"/>
