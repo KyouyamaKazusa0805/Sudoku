@@ -6,6 +6,7 @@ global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using Sudoku.Concepts;
 global using Sudoku.Drawing;
 global using Sudoku.Drawing.TextRendering;
+global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;
 global using static System.Environment;
 global using static Sudoku.SolutionWideReadOnlyFields;

@@ -136,6 +136,7 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool TreatVal
 		}
 
 		// The last step: returns the value.
+		sb.RemoveFromEnd(Environment.NewLine.Length);
 		return sb.ToString();
 	}
 

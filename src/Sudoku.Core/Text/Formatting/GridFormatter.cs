@@ -331,6 +331,7 @@ public readonly ref struct GridFormatter
 			sb.AppendLine();
 		}
 
+		sb.RemoveFromEnd(Environment.NewLine.Length);
 		return sb.ToStringAndClear();
 	}
 
@@ -396,7 +397,8 @@ public readonly ref struct GridFormatter
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The string.</returns>
-	private string ToHodokuLibraryFormatString(scoped in Grid grid) => $":0000:x:{ToSingleLineStringCore(grid)}:::";
+	private string ToHodokuLibraryFormatString(scoped in Grid grid)
+		=> $":0000:x:{ToSingleLineStringCore(grid)}{new string(':', WithCandidates ? 2 : 3)}";
 
 	/// <summary>
 	/// To string with the sukaku format.
@@ -798,6 +800,7 @@ public readonly ref struct GridFormatter
 		}
 
 		// The last step: returns the value.
+		sb.RemoveFromEnd(Environment.NewLine.Length);
 		return sb.ToString();
 
 
@@ -823,7 +826,7 @@ public readonly ref struct GridFormatter
 	{
 		var t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
 		return new StringBuilder()
-			.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+")
+			.AppendLine(SubtleGridLines ? ".-------.-------.-------." : "+-------+-------+-------+")
 			.Append("| ").Append(t[0]).Append(' ').Append(t[1]).Append(' ').Append(t[2])
 			.Append(" | ").Append(t[3]).Append(' ').Append(t[4]).Append(' ').Append(t[5])
 			.Append(" | ").Append(t[6]).Append(' ').Append(t[7]).Append(' ').Append(t[8])
@@ -862,7 +865,7 @@ public readonly ref struct GridFormatter
 			.Append(" | ").Append(t[75]).Append(' ').Append(t[76]).Append(' ').Append(t[77])
 			.Append(" | ").Append(t[78]).Append(' ').Append(t[79]).Append(' ').Append(t[80])
 			.AppendLine(" |")
-			.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+")
+			.Append(SubtleGridLines ? "'-------'-------'-------'" : "+-------+-------+-------+")
 			.ToString();
 	}
 

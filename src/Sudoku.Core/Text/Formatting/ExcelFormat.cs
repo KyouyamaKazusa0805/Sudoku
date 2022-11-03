@@ -47,6 +47,7 @@ public sealed record ExcelFormat : IGridFormatter
 			sb.AppendLine();
 		}
 
+		sb.RemoveFromEnd(Environment.NewLine.Length);
 		return sb.ToStringAndClear();
 	}
 }

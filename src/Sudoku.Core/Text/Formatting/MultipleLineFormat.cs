@@ -64,7 +64,7 @@ public sealed record MultipleLineFormat(bool SubtleGridLines = true, bool TreatV
 	{
 		var t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
 		return new StringBuilder()
-			.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+")
+			.AppendLine(SubtleGridLines ? ".-------.-------.-------." : "+-------+-------+-------+")
 			.Append("| ").Append(t[0]).Append(' ').Append(t[1]).Append(' ').Append(t[2])
 			.Append(" | ").Append(t[3]).Append(' ').Append(t[4]).Append(' ').Append(t[5])
 			.Append(" | ").Append(t[6]).Append(' ').Append(t[7]).Append(' ').Append(t[8])
@@ -103,7 +103,7 @@ public sealed record MultipleLineFormat(bool SubtleGridLines = true, bool TreatV
 			.Append(" | ").Append(t[75]).Append(' ').Append(t[76]).Append(' ').Append(t[77])
 			.Append(" | ").Append(t[78]).Append(' ').Append(t[79]).Append(' ').Append(t[80])
 			.AppendLine(" |")
-			.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+")
+			.Append(SubtleGridLines ? "'-------'-------'-------'" : "+-------+-------+-------+")
 			.ToString();
 	}
 }
