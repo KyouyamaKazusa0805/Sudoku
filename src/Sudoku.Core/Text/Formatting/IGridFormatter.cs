@@ -4,6 +4,10 @@
 /// <para>
 /// Defines a grid formatter that can convert the current <see cref="Grid"/> instance into a valid and parsable <see cref="string"/> text value
 /// representing this instance. This type is used as arguments being passed in method <see cref="Grid.ToString(IGridFormatter)"/>.
+/// </para>
+/// <!--THE FOLLOWING COMMENT BLOCK IS TEMPORARILY DISABLED! THE TEXT ARE TOO LONG TO BE DISPLAYED ONTO TOOLTIP IN VISUAL STUDIO!-->
+/// <!--
+/// <para>
 /// The built-in derived types are:
 /// <list type="table">
 /// <listheader>
@@ -57,6 +61,13 @@
 /// </description>
 /// </item>
 /// <item>
+/// <term><see cref="GridMaskFormat"/></term>
+/// <description>
+/// Represents with a formatter using masks formatting rule, treating the current grid as 81 <see cref="short"/> masks
+/// as the inner raw value. For more information about the data structure of type <see cref="Grid"/>, please visit that type.
+/// </description>
+/// </item>
+/// <item>
 /// <term><see cref="ExcelFormat"/></term>
 /// <description>
 /// Represents with a formatter using Excel formatting rule, using multiple lines to distinct sudoku lines
@@ -71,6 +82,9 @@
 /// </description>
 /// </item>
 /// </list>
+/// </para>
+/// -->
+/// <para>
 /// If you want to control the customized formatting on <see cref="Grid"/> instances, this type will be very useful.
 /// For more information about this type and its derived (implemented) types, please visit the documentation comments
 /// of members <see cref="Grid.ToString(IGridFormatter)"/> and <see cref="Grid.ToString(string?, IFormatProvider?)"/>,

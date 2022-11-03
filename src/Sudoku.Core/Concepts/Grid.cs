@@ -865,26 +865,6 @@ public unsafe struct Grid :
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public readonly ref readonly short GetPinnableReference() => ref _values[0];
 
-	/// <summary>
-	/// Get all masks and print them.
-	/// </summary>
-	/// <returns>The result.</returns>
-	/// <remarks>
-	/// Please note that the method cannot be called with a correct behavior using
-	/// <see cref="DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
-	/// doesn't print correct values when indices of this grid aren't 0. In other words,
-	/// when we call this method using <see cref="DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
-	/// can be output correctly, and other values will be incorrect: they're always 0.
-	/// </remarks>
-	public readonly string ToMaskString()
-	{
-		const string separator = ", ";
-		scoped var sb = new StringHandler(400);
-		sb.AppendRangeWithSeparatorRef(GetPinnableReference(), 81, &StringHandler.ElementToStringConverter, separator);
-
-		return sb.ToStringAndClear();
-	}
-
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly string ToString() => ToString((string?)null);

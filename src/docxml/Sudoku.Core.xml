@@ -2255,19 +2255,6 @@
         <member name="M:Sudoku.Concepts.Grid.GetPinnableReference">
             <inheritdoc cref="M:System.IFixable`2.GetPinnableReference"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.ToMaskString">
-            <summary>
-            Get all masks and print them.
-            </summary>
-            <returns>The result.</returns>
-            <remarks>
-            Please note that the method cannot be called with a correct behavior using
-            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
-            doesn't print correct values when indices of this grid aren't 0. In other words,
-            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
-            can be output correctly, and other values will be incorrect: they're always 0.
-            </remarks>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -6471,6 +6458,58 @@
             Indicates the formatting mode is full, which means all possible data will be displayed.
             </summary>
         </member>
+        <member name="T:Sudoku.Text.Formatting.GridMaskFormat">
+            <summary>
+            Represents with a grid mask formatter.
+            </summary>
+            <param name="Separator">
+            <para>Indicates the mask separator.</para>
+            <para>The default value is a comma followed by a space: <c>", "</c>.</para>
+            </param>
+            <remarks>
+            Please note that the method cannot be called with a correct behavior using
+            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
+            doesn't print correct values when indices of this grid aren't 0. In other words,
+            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
+            can be output correctly, and other values will be incorrect: they're always 0.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridMaskFormat.#ctor(System.String)">
+            <summary>
+            Represents with a grid mask formatter.
+            </summary>
+            <param name="Separator">
+            <para>Indicates the mask separator.</para>
+            <para>The default value is a comma followed by a space: <c>", "</c>.</para>
+            </param>
+            <remarks>
+            Please note that the method cannot be called with a correct behavior using
+            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
+            doesn't print correct values when indices of this grid aren't 0. In other words,
+            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
+            can be output correctly, and other values will be incorrect: they're always 0.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridMaskFormat.Separator">
+            <summary>
+            <para>Indicates the mask separator.</para>
+            <para>The default value is a comma followed by a space: <c>", "</c>.</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.GridMaskFormat.Default">
+            <summary>
+            Indicates the default instance. The properties set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Formatting.GridMaskFormat.Separator"/>: <c>", "</c></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.GridMaskFormat.Sudoku#Text#Formatting#IGridFormatter#Instance">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridMaskFormat.ToString(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Text.Formatting.HodokuLibraryFormat">
             <summary>
             Provides with a formatter that allows a <see cref="T:Sudoku.Concepts.Grid"/> instance being formatted as Hodoku library format.
@@ -6586,6 +6625,10 @@
             <para>
             Defines a grid formatter that can convert the current <see cref="T:Sudoku.Concepts.Grid"/> instance into a valid and parsable <see cref="T:System.String"/> text value
             representing this instance. This type is used as arguments being passed in method <see cref="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.Formatting.IGridFormatter)"/>.
+            </para>
+            <!--THE FOLLOWING COMMENT BLOCK IS TEMPORARILY DISABLED! THE TEXT ARE TOO LONG TO BE DISPLAYED ONTO TOOLTIP IN VISUAL STUDIO!-->
+            <!--
+            <para>
             The built-in derived types are:
             <list type="table">
             <listheader>
@@ -6593,66 +6636,76 @@
             <description>Description about this type</description>
             </listheader>
             <item>
-            <term><see cref="T:Sudoku.Text.Formatting.SusserFormat"/> (Recommend)</term>
+            <term><see cref="SusserFormat"/> (Recommend)</term>
             <description>
             Represents with a formatter using Susser formatting rule.
             </description>
             </item>
             <item>
-            <term><see cref="T:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens"/></term>
+            <term><see cref="SusserFormatTreatingValuesAsGivens"/></term>
             <description>
-            Represents with a formatter using Susser formatting rule. Different with <see cref="T:Sudoku.Text.Formatting.SusserFormat"/>,
+            Represents with a formatter using Susser formatting rule. Different with <see cref="SusserFormat"/>,
             this formatter will remove all modifiable tokens.
             </description>
             </item>
             <item>
-            <term><see cref="T:Sudoku.Text.Formatting.SusserFormatEliminationsOnly"/></term>
+            <term><see cref="SusserFormatEliminationsOnly"/></term>
             <description>
-            Represents with a formatter using Susser formatting rule. Different with <see cref="T:Sudoku.Text.Formatting.SusserFormat"/>,
+            Represents with a formatter using Susser formatting rule. Different with <see cref="SusserFormat"/>,
             this formatter only contains pre-eliminations. The so-called <b>pre-eliminations</b> means the eliminations
             that had already been eliminated before the current grid formed.
             </description>
             </item>
             <item>
-            <term><see cref="T:Sudoku.Text.Formatting.PencilMarkFormat"/> (Recommend)</term>
+            <term><see cref="PencilMarkFormat"/> (Recommend)</term>
             <description>
             Represents with a formatter using a multiple-line formatting rule, displaying candidates as a list of digits.
             This formatter is useful on globalized Sudoku BBS.
             </description>
             </item>
             <item>
-            <term><see cref="T:Sudoku.Text.Formatting.HodokuLibraryFormat"/></term>
+            <term><see cref="HodokuLibraryFormat"/></term>
             <description>
             Represents with a formatter using Hodoku Library formatting rule.
             </description>
             </item>
             <item>
-            <term><see cref="T:Sudoku.Text.Formatting.MultipleLineFormat"/></term>
+            <term><see cref="MultipleLineFormat"/></term>
             <description>
             Represents with a formatter using multiple-line formatting rule, without displaying candidates.
             </description>
             </item>
             <item>
-            <term><see cref="T:Sudoku.Text.Formatting.SukakuFormat"/></term>
+            <term><see cref="SukakuFormat"/></term>
             <description>
             Represents with a formatter using Sukaku game formatting rule, treating all cells (no matter what kind of the cell it is) as candidate lists.
             </description>
             </item>
             <item>
-            <term><see cref="T:Sudoku.Text.Formatting.ExcelFormat"/></term>
+            <term><see cref="GridMaskFormat"/></term>
+            <description>
+            Represents with a formatter using masks formatting rule, treating the current grid as 81 <see cref="short"/> masks
+            as the inner raw value. For more information about the data structure of type <see cref="Grid"/>, please visit that type.
+            </description>
+            </item>
+            <item>
+            <term><see cref="ExcelFormat"/></term>
             <description>
             Represents with a formatter using Excel formatting rule, using multiple lines to distinct sudoku lines
             and using tab characters <c>'\t'</c> as separators inserted into a pair of adjacent cells.
             </description>
             </item>
             <item>
-            <term><see cref="T:Sudoku.Text.Formatting.OpenSudokuFormat"/></term>
+            <term><see cref="OpenSudokuFormat"/></term>
             <description>
             Represents with a formatter using OpenSudoku formatting rule, using a triplet to display the detail of a cell,
             separated by pipe operator <c>'|'</c>.
             </description>
             </item>
             </list>
+            </para>
+            -->
+            <para>
             If you want to control the customized formatting on <see cref="T:Sudoku.Concepts.Grid"/> instances, this type will be very useful.
             For more information about this type and its derived (implemented) types, please visit the documentation comments
             of members <see cref="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.Formatting.IGridFormatter)"/> and <see cref="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)"/>,
