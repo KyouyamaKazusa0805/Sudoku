@@ -14,9 +14,31 @@
 /// If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
 /// of '<c>*digit*</c>'.
 /// </para>
+/// <para>
+/// The value has 3 possible cases:
+/// <list type="table">
+/// <item>
+/// <term><see langword="true"/></term>
+/// <description>
+/// The formatter will treat all value cells as given one, no matter what kind of value cell it is, given or modifiable.
+/// </description>
+/// </item>
+/// <item>
+/// <term><see langword="false"/></term>
+/// <description>The formatter will tell with givens and modifiables.</description>
+/// </item>
+/// <item>
+/// <term><see langword="null"/></term>
+/// <description>
+/// The formatter will <b>not</b> check its value states. It will be displayed and handled as candidate cells,
+/// using a single digit to display the cell.
+/// </description>
+/// </item>
+/// </list>
+/// </para>
 /// <para>The default value is <see langword="false"/>.</para>
 /// </param>
-public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool TreatValueAsGiven = false) : IGridFormatter
+public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatValueAsGiven = false) : IGridFormatter
 {
 	/// <summary>
 	/// Indicates the default instance. The property set are:
@@ -46,8 +68,7 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool TreatVal
 			valuesByColumn[i % 9].Add(value);
 		}
 
-		// Step 2: gets the maximal number of candidates in a cell,
-		// which is used for aligning by columns.
+		// Step 2: gets the maximal number of candidates in a cell, used for aligning by columns.
 		const int bufferLength = 9;
 		var maxLengths = stackalloc int[bufferLength];
 		InitBlock(maxLengths, 0, sizeof(int) * bufferLength);
@@ -72,9 +93,14 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool TreatVal
 					candidatesCount,
 					MaskToStatus(value) switch
 					{
-						CellStatus.Given => Max(candidatesCount, 3), // The output will be '<digit>' and consist of 3 characters.
-						CellStatus.Modifiable => Max(candidatesCount, 3), // The output will be '*digit*' and consist of 3 characters.
-						_ => candidatesCount, // Normal output: 'series' (at least 1 character).
+						// The output will be '<digit>' and consist of 3 characters.
+						CellStatus.Given => Max(candidatesCount, TreatValueAsGiven is null ? 1 : 3),
+
+						// The output will be '*digit*' and consist of 3 characters.
+						CellStatus.Modifiable => Max(candidatesCount, TreatValueAsGiven is null ? 1 : 3),
+
+						// Normal output: 'series' (at least 1 character).
+						_ => candidatesCount
 					}
 				);
 				if (comparer > *maxLength)
@@ -169,36 +195,28 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool TreatVal
 
 			value &= Grid.MaxCandidatesMask;
 			var d = value == 0 ? -1 : (status != CellStatus.Empty ? TrailingZeroCount(value) : -1) + 1;
-			string s;
-			switch (status)
+			var s = (status, TreatValueAsGiven) switch
 			{
-				case CellStatus.Given:
-				case CellStatus.Modifiable when TreatValueAsGiven:
-				{
-					s = $"<{d}>";
-					break;
-				}
-				case CellStatus.Modifiable:
-				{
-					s = $"*{d}*";
-					break;
-				}
-				default:
-				{
-					scoped var innerSb = new StringHandler(9);
-					foreach (var z in value)
-					{
-						innerSb.Append(z + 1);
-					}
-
-					s = innerSb.ToStringAndClear();
-
-					break;
-				}
-			}
+				(CellStatus.Given, not null) or (CellStatus.Modifiable, true) => $"<{d}>",
+				(CellStatus.Modifiable, false) => $"*{d}*",
+				(CellStatus.Given or CellStatus.Modifiable, null) => d.ToString(),
+				_ => appendingMask(value)
+			};
 
 			sb.Append(s.PadRight(maxLengths[i]));
 			sb.Append(i != end ? "  " : " ");
+		}
+
+
+		static string appendingMask(short value)
+		{
+			scoped var innerSb = new StringHandler(9);
+			foreach (var z in value)
+			{
+				innerSb.Append(z + 1);
+			}
+
+			return innerSb.ToStringAndClear();
 		}
 	}
 

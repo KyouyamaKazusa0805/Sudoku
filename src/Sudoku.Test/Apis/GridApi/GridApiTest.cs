@@ -18,7 +18,26 @@ public sealed class GridApiTest
 		var grid = (Grid)"6...8..4..+4.....862..4.67+5.+1+5397+486+2.7...+3+51+4+462+5183+9+7..61.2+4+7572+4+8...+3..1..4+7.+28:314 916 921 325 925 932 933 371 985 991";
 
 		Assert.AreEqual(grid.ToString(SusserFormat.Default), "6...8..4........862..4.67....397.86..7.....1..62.183....61.2..572........1..4...8", false);
-		Assert.AreEqual(grid.ToString(HodokuLibraryFormat.Default), ":0000:x:6...8..4........862..4.67....397.86..7.....1..62.183....61.2..572........1..4...8:::");
+		Assert.AreEqual(grid.ToString(HodokuLibraryFormat.Default), ":0000:x:6...8..4........862..4.67....397.86..7.....1..62.183....61.2..572........1..4...8:::", false);
+		Assert.AreEqual(
+			grid.ToString(PencilMarkFormat.Default with { TreatValueAsGiven = null }),
+			"""
+			.------------------.-----------------.----------------.
+			| 6    39    1579  | 27    8    15   | 129   4   139  |
+			| 35   4     1579  | 237   25   159  | 129   8   6    |
+			| 2    38    18    | 4     39   6    | 7     5   139  |
+			:------------------+-----------------+----------------:
+			| 1    5     3     | 9     7    4    | 8     6   2    |
+			| 89   7     89    | 26    26   3    | 5     1   4    |
+			| 4    6     2     | 5     1    8    | 3     9   7    |
+			:------------------+-----------------+----------------:
+			| 89   389   6     | 1     39   2    | 4     7   5    |
+			| 7    2     4     | 8     56   59   | 169   3   19   |
+			| 35   1     59    | 36    4    7    | 69    2   8    |
+			'------------------'-----------------'----------------'
+			""",
+			false
+		);
 		Assert.AreEqual(
 			grid.ToString(PencilMarkFormat.Default),
 			"""
@@ -35,7 +54,8 @@ public sealed class GridApiTest
 			| <7>  <2>   *4*   | *8*   56   59   | 169   *3*  19   |
 			| 35   <1>   59    | 36    <4>  *7*  | 69    *2*  <8>  |
 			'------------------'-----------------'-----------------'
-			"""
+			""",
+			false
 		);
 		Assert.AreEqual(
 			grid.ToString(MultipleLineFormat.Default),
@@ -53,7 +73,8 @@ public sealed class GridApiTest
 			| 7 2 . | . . . | . . . |
 			| . 1 . | . 4 . | . . 8 |
 			'-------'-------'-------'
-			"""
+			""",
+			false
 		);
 
 		Assert.AreEqual(
@@ -68,7 +89,8 @@ public sealed class GridApiTest
 			.......89..3....89.....6...1..........3.....9.2..........4...........7......5....
 			......7...2..........4............8.....56.......5...91....6..9..3......1.......9
 			..3.5....1............5...9..3..6......4...........7.......6..9.2..............8.
-			""".ReplaceLineEndings(string.Empty)
+			""".ReplaceLineEndings(string.Empty),
+			false
 		);
 
 		Assert.AreEqual(
@@ -83,7 +105,8 @@ public sealed class GridApiTest
 					6	1		2			5
 			7	2							
 				1			4				8
-			"""
+			""",
+			false
 		);
 
 		Assert.AreEqual(
@@ -98,7 +121,8 @@ public sealed class GridApiTest
 			0|0|1|0|0|1|6|0|0|1|0|0|0|0|1|2|0|0|4|0|0|7|0|0|5|0|0|
 			7|0|0|2|0|0|4|0|0|8|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|
 			0|0|1|1|0|0|0|0|1|0|0|1|4|0|0|7|0|0|0|0|1|2|0|0|8|0|0
-			""".ReplaceLineEndings(string.Empty)
+			""".ReplaceLineEndings(string.Empty),
+			false
 		);
 	}
 }

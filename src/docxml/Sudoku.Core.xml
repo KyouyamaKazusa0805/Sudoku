@@ -7135,10 +7135,32 @@
             If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
             of '<c>*digit*</c>'.
             </para>
+            <para>
+            The value has 3 possible cases:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The formatter will treat all value cells as given one, no matter what kind of value cell it is, given or modifiable.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The formatter will tell with givens and modifiables.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            The formatter will <b>not</b> check its value states. It will be displayed and handled as candidate cells,
+            using a single digit to display the cell.
+            </description>
+            </item>
+            </list>
+            </para>
             <para>The default value is <see langword="false"/>.</para>
             </param>
         </member>
-        <member name="M:Sudoku.Text.Formatting.PencilMarkFormat.#ctor(System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Text.Formatting.PencilMarkFormat.#ctor(System.Boolean,System.Nullable{System.Boolean})">
             <summary>
             Represents with a pencil-marked formatter.
             </summary>
@@ -7152,6 +7174,28 @@
             If the output is single line, the output will remove all plus marks '+'.
             If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
             of '<c>*digit*</c>'.
+            </para>
+            <para>
+            The value has 3 possible cases:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The formatter will treat all value cells as given one, no matter what kind of value cell it is, given or modifiable.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The formatter will tell with givens and modifiables.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            The formatter will <b>not</b> check its value states. It will be displayed and handled as candidate cells,
+            using a single digit to display the cell.
+            </description>
+            </item>
+            </list>
             </para>
             <para>The default value is <see langword="false"/>.</para>
             </param>
@@ -7169,6 +7213,28 @@
             If the output is single line, the output will remove all plus marks '+'.
             If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
             of '<c>*digit*</c>'.
+            </para>
+            <para>
+            The value has 3 possible cases:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The formatter will treat all value cells as given one, no matter what kind of value cell it is, given or modifiable.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The formatter will tell with givens and modifiables.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            The formatter will <b>not</b> check its value states. It will be displayed and handled as candidate cells,
+            using a single digit to display the cell.
+            </description>
+            </item>
+            </list>
             </para>
             <para>The default value is <see langword="false"/>.</para>
             </summary>
