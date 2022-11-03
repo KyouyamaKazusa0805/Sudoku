@@ -64,6 +64,28 @@ public record SusserFormat(bool WithCandidates = false, bool WithModifiables = f
 	/// </summary>
 	public static readonly SusserFormat Default = new() { Placeholder = Dot };
 
+	/// <summary>
+	/// Indicates the instance whose inner properties are:
+	/// <list type="bullet">
+	/// <item><see cref="Placeholder"/>: <c>'.'</c></item>
+	/// <item><see cref="WithCandidates"/>: <see langword="true"/></item>
+	/// <item><see cref="WithModifiables"/>: <see langword="true"/></item>
+	/// <item><see cref="ShortenSusser"/>: <see langword="false"/></item>
+	/// </list>
+	/// </summary>
+	public static readonly SusserFormat Full = new() { Placeholder = Dot, WithCandidates = true, WithModifiables = true };
+
+	/// <summary>
+	/// Indicates the instance whose inner properties are:
+	/// <list type="bullet">
+	/// <item><see cref="Placeholder"/>: <c>'0'</c></item>
+	/// <item><see cref="WithCandidates"/>: <see langword="true"/></item>
+	/// <item><see cref="WithModifiables"/>: <see langword="true"/></item>
+	/// <item><see cref="ShortenSusser"/>: <see langword="false"/></item>
+	/// </list>
+	/// </summary>
+	public static readonly SusserFormat FullZero = new() { Placeholder = Zero, WithCandidates = true, WithModifiables = true };
+
 
 	/// <summary>
 	/// The backing field of property <see cref="Placeholder"/>.

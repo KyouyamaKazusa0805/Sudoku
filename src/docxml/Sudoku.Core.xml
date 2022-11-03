@@ -7139,6 +7139,28 @@
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat.Full">
+            <summary>
+            Indicates the instance whose inner properties are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat.FullZero">
+            <summary>
+            Indicates the instance whose inner properties are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>: <c>'0'</c></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
         <member name="F:Sudoku.Text.Formatting.SusserFormat._placeholder">
             <summary>
             The backing field of property <see cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>.

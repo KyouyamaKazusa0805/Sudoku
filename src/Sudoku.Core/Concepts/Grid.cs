@@ -960,13 +960,13 @@ public unsafe struct Grid :
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
 		=> (format, formatProvider) switch
 		{
-			(null, null) => ToString((string?)null),
+			(null, null) => ToString(SusserFormat.Default),
 			(not null, _) => ToString(format),
 			(_, IGridFormatter formatter) => formatter.ToString(this),
 			(_, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
-			(_, CultureInfo { Name: "zh-CN" }) => ToString("#"),
-			(_, CultureInfo { Name: ['e', 'n', '-', .. { Length: 2 }] }) => ToString("@"),
-			_ => ToString((string?)null)
+			(_, CultureInfo { Name: "zh-CN" }) => ToString(SusserFormat.Full),
+			(_, CultureInfo { Name: ['e', 'n', '-', >= 'A' and <= 'Z', >= 'A' and <= 'Z'] }) => ToString(MultipleLineFormat.Default),
+			_ => ToString(SusserFormat.Default)
 		};
 
 	/// <summary>
@@ -2152,9 +2152,9 @@ file static class GridFormatterFactory
 			null or "."													=> SusserFormat.Default,
 			"0"															=> SusserFormat.Default with { Placeholder = '0' },
 			"0+" or "+0"												=> SusserFormat.Default with { Placeholder = '0', WithModifiables = true },
-			"0+:" or "+0:" or "#0"										=> SusserFormat.Default with { Placeholder = '0', WithModifiables = true, WithCandidates = true },
 			"+" or ".+" or "+."											=> SusserFormat.Default with { WithModifiables = true },
-			"+:" or "+.:" or ".+:" or "#" or "#."						=> SusserFormat.Default with { WithModifiables = true, WithCandidates = true },
+			"+:" or "+.:" or ".+:" or "#" or "#."						=> SusserFormat.Full,
+			"0+:" or "+0:" or "#0"										=> SusserFormat.FullZero,
 			":" or ".:"													=> SusserFormatEliminationsOnly.Default,
 			"0:"														=> SusserFormatEliminationsOnly.Default with { Placeholder = '0' },
 			"!" or ".!" or "!."											=> SusserFormatTreatingValuesAsGivens.Default,
@@ -2163,17 +2163,17 @@ file static class GridFormatterFactory
 			"0!:" or "!0:"												=> SusserFormatTreatingValuesAsGivens.Default with { Placeholder = '0', WithCandidates = true },
 			".*" or "*."												=> SusserFormat.Default with { Placeholder = '.', ShortenSusser = true },
 			"0*" or "*0"												=> SusserFormat.Default with { Placeholder = '0', ShortenSusser = true },
-			"@*" or "@.*" or "@*."										=> MultipleLineFormat.Default,
-			"@" or "@."													=> MultipleLineFormat.Default with { SubtleGridLines = true },
-			"@0"														=> MultipleLineFormat.Default with { Placeholder = '0', SubtleGridLines = true },
-			"@!" or "@.!" or "@!."										=> MultipleLineFormat.Default with { TreatValueAsGiven = true, SubtleGridLines = true },
-			"@0!" or "@!0"												=> MultipleLineFormat.Default with { Placeholder = '0', TreatValueAsGiven = true, SubtleGridLines = true },
-			"@0*" or "@*0"												=> MultipleLineFormat.Default with { Placeholder = '0' },
-			"@!*" or "@*!"												=> MultipleLineFormat.Default with { TreatValueAsGiven = true },
-			"@*:" or "@:*"												=> PencilMarkFormat.Default,
-			"@:"														=> PencilMarkFormat.Default with { SubtleGridLines = true },
-			"@:!" or "@!:"												=> PencilMarkFormat.Default with { TreatValueAsGiven = true, SubtleGridLines = true },
-			"@!*:" or "@*!:" or "@!:*" or "@*:!" or "@:!*" or "@:*!"	=> PencilMarkFormat.Default with { TreatValueAsGiven = true },
+			"@" or "@."													=> MultipleLineFormat.Default,
+			"@*" or "@.*" or "@*."										=> MultipleLineFormat.Default with { SubtleGridLines = false },
+			"@0"														=> MultipleLineFormat.Default with { Placeholder = '0' },
+			"@0!" or "@!0"												=> MultipleLineFormat.Default with { Placeholder = '0', TreatValueAsGiven = true },
+			"@0*" or "@*0"												=> MultipleLineFormat.Default with { Placeholder = '0', SubtleGridLines = false },
+			"@!" or "@.!" or "@!."										=> MultipleLineFormat.Default with { TreatValueAsGiven = true },
+			"@!*" or "@*!"												=> MultipleLineFormat.Default with { TreatValueAsGiven = true, SubtleGridLines = false },
+			"@:"														=> PencilMarkFormat.Default,
+			"@*:" or "@:*"												=> PencilMarkFormat.Default with { SubtleGridLines = false },
+			"@:!" or "@!:"												=> PencilMarkFormat.Default with { TreatValueAsGiven = true },
+			"@!*:" or "@*!:" or "@!:*" or "@*:!" or "@:!*" or "@:*!"	=> PencilMarkFormat.Default with { TreatValueAsGiven = true, SubtleGridLines = false },
 			"~."														=> SukakuFormat.Default,
 			"~" or "~0"													=> SukakuFormat.Default with { Placeholder = '0' },
 			"@~" or "~@" or "@~." or "@.~" or "~@." or "~.@"			=> SukakuFormat.Default with { Multiline = true },
