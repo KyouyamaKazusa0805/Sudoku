@@ -23,6 +23,11 @@
 public record SusserFormat(bool WithCandidates = false, bool WithModifiables = false, bool ShortenSusser = false) : IGridFormatter
 {
 	/// <summary>
+	/// Indicates the modifiable prefix character.
+	/// </summary>
+	protected const char ModifiablePrefix = '+';
+
+	/// <summary>
 	/// Indicates the line limitator character used by shortening Susser format.
 	/// </summary>
 	private const char LineLimit = ',';
@@ -43,15 +48,9 @@ public record SusserFormat(bool WithCandidates = false, bool WithModifiables = f
 	private const char Zero = '0';
 
 	/// <summary>
-	/// Indicates the modifiable prefix character.
-	/// </summary>
-	private const char ModifiablePrefix = '+';
-
-	/// <summary>
 	/// Indicates the pre-elimination prefix character.
 	/// </summary>
 	private const char PreeliminationPrefix = ':';
-
 
 
 	/// <summary>

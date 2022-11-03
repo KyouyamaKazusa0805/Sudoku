@@ -1,57 +1,60 @@
 ﻿namespace Sudoku.Text.Formatting;
 
 /// <summary>
-/// Defines a grid formatter. This type is used as arguments being passed in method <see cref="Grid.ToString(IGridFormatter)"/>.
+/// Defines a grid formatter that can convert the current <see cref="Grid"/> instance into a valid and parsable <see cref="string"/> text value
+/// representing this instance. This type is used as arguments being passed in method <see cref="Grid.ToString(IGridFormatter)"/>.
 /// The built-in derived types are:
 /// <list type="table">
 /// <item>
 /// <term><see cref="SusserFormat"/> (Recommend)</term>
 /// <description>
-/// Represents with a formatter that can format a <see cref="Grid"/>, converting it into a <see cref="string"/> representation
-/// using Susser formatting rule.
+/// Represents with a formatter using Susser formatting rule.
+/// </description>
+/// </item>
+/// <item>
+/// <term><see cref="SusserFormatTreatingValuesAsGivens"/></term>
+/// <description>
+/// Represents with a formatter using Susser formatting rule. Different with <see cref="SusserFormat"/>,
+/// this formatter will remove all modifiable tokens.
 /// </description>
 /// </item>
 /// <item>
 /// <term><see cref="PencilMarkFormat"/> (Recommend)</term>
 /// <description>
-/// Represents with a formatter that can format a <see cref="Grid"/>, converting it into a <see cref="string"/> representation
-/// using a multiple-line formatting rule, displaying candidates as a list of digits. This formatter is useful on globalized Sudoku BBS.
+/// Represents with a formatter using a multiple-line formatting rule, displaying candidates as a list of digits.
+/// This formatter is useful on globalized Sudoku BBS.
 /// </description>
 /// </item>
 /// <item>
 /// <term><see cref="HodokuLibraryFormat"/></term>
 /// <description>
-/// Represents with a formatter that can format a <see cref="Grid"/>, converting it into a <see cref="string"/> representation
-/// using Hodoku Library formatting rule.
+/// Represents with a formatter using Hodoku Library formatting rule.
 /// </description>
 /// </item>
 /// <item>
 /// <term><see cref="MultipleLineFormat"/></term>
 /// <description>
-/// Represents with a formatter that can format a <see cref="Grid"/>, converting it into a <see cref="string"/> represnetation
-/// using multiple-line formatting rule, without displaying candidates.
+/// Represents with a formatter using multiple-line formatting rule, without displaying candidates.
 /// </description>
 /// </item>
 /// <item>
 /// <term><see cref="SukakuFormat"/></term>
 /// <description>
-/// Represents with a formatter that can format a <see cref="Grid"/>, converting it into a <see cref="string"/> represnetation
-/// using Sukaku game formatting rule, treating all cells (no matter what kind of the cell it is) as candidate lists.
+/// Represents with a formatter using Sukaku game formatting rule, treating all cells (no matter what kind of the cell it is) as candidate lists.
 /// </description>
 /// </item>
 /// <item>
 /// <term><see cref="ExcelFormat"/></term>
 /// <description>
-/// Represents with a formatter that can format a <see cref="Grid"/>, converting it into a <see cref="string"/> represnetation
-/// using Excel formatting rule, using multiple lines to distinct sudoku lines and using tab characters <c>'\t'</c> as separators
-/// inserted into a pair of adjacent cells.
+/// Represents with a formatter using Excel formatting rule, using multiple lines to distinct sudoku lines
+/// and using tab characters <c>'\t'</c> as separators inserted into a pair of adjacent cells.
 /// </description>
 /// </item>
 /// <item>
 /// <term><see cref="OpenSudokuFormat"/></term>
 /// <description>
-/// Represents with a formatter that can format a <see cref="Grid"/>, converting it into a <see cref="string"/> represnetation
-/// using OpenSudoku formatting rule, using a triplet to display the detail of a cell, separated by pipe operator <c>'|'</c>.
+/// Represents with a formatter using OpenSudoku formatting rule, using a triplet to display the detail of a cell,
+/// separated by pipe operator <c>'|'</c>.
 /// </description>
 /// </item>
 /// </list>

@@ -17,8 +17,18 @@ public sealed class GridApiTest
 	{
 		var grid = (Grid)"6...8..4..+4.....862..4.67+5.+1+5397+486+2.7...+3+51+4+462+5183+9+7..61.2+4+7572+4+8...+3..1..4+7.+28:314 916 921 325 925 932 933 371 985 991";
 
-		Assert.AreEqual(grid.ToString(SusserFormat.Default), "6...8..4........862..4.67....397.86..7.....1..62.183....61.2..572........1..4...8", false);
-		Assert.AreEqual(grid.ToString(HodokuLibraryFormat.Default), ":0000:x:6...8..4........862..4.67....397.86..7.....1..62.183....61.2..572........1..4...8:::", false);
+		Assert.AreEqual(
+			grid.ToString(SusserFormat.Default),
+			"6...8..4........862..4.67....397.86..7.....1..62.183....61.2..572........1..4...8",
+			false
+		);
+
+		Assert.AreEqual(
+			grid.ToString(HodokuLibraryFormat.Default),
+			":0000:x:6...8..4........862..4.67....397.86..7.....1..62.183....61.2..572........1..4...8:::",
+			false
+		);
+
 		Assert.AreEqual(
 			grid.ToString(PencilMarkFormat.Default with { TreatValueAsGiven = null }),
 			"""
@@ -38,6 +48,7 @@ public sealed class GridApiTest
 			""",
 			false
 		);
+
 		Assert.AreEqual(
 			grid.ToString(PencilMarkFormat.Default),
 			"""
@@ -57,6 +68,7 @@ public sealed class GridApiTest
 			""",
 			false
 		);
+
 		Assert.AreEqual(
 			grid.ToString(MultipleLineFormat.Default),
 			"""

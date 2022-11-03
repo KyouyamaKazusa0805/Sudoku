@@ -4,6 +4,7 @@
 /// Provides a formatter that gathers the main information for a <see cref="Grid"/> instance,
 /// and convert it to a <see cref="string"/> value as the result.
 /// </summary>
+//[Obsolete($"This type is being deprecated because I have implemented a new type '{nameof(IGridFormatter)}'. Please use that type instead.", false)]
 public readonly ref struct GridFormatter
 {
 	/// <summary>

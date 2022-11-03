@@ -6944,57 +6944,60 @@
         </member>
         <member name="T:Sudoku.Text.Formatting.IGridFormatter">
             <summary>
-            Defines a grid formatter. This type is used as arguments being passed in method <see cref="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.Formatting.IGridFormatter)"/>.
+            Defines a grid formatter that can convert the current <see cref="T:Sudoku.Concepts.Grid"/> instance into a valid and parsable <see cref="T:System.String"/> text value
+            representing this instance. This type is used as arguments being passed in method <see cref="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.Formatting.IGridFormatter)"/>.
             The built-in derived types are:
             <list type="table">
             <item>
             <term><see cref="T:Sudoku.Text.Formatting.SusserFormat"/> (Recommend)</term>
             <description>
-            Represents with a formatter that can format a <see cref="T:Sudoku.Concepts.Grid"/>, converting it into a <see cref="T:System.String"/> representation
-            using Susser formatting rule.
+            Represents with a formatter using Susser formatting rule.
+            </description>
+            </item>
+            <item>
+            <term><see cref="T:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens"/></term>
+            <description>
+            Represents with a formatter using Susser formatting rule. Different with <see cref="T:Sudoku.Text.Formatting.SusserFormat"/>,
+            this formatter will remove all modifiable tokens.
             </description>
             </item>
             <item>
             <term><see cref="T:Sudoku.Text.Formatting.PencilMarkFormat"/> (Recommend)</term>
             <description>
-            Represents with a formatter that can format a <see cref="T:Sudoku.Concepts.Grid"/>, converting it into a <see cref="T:System.String"/> representation
-            using a multiple-line formatting rule, displaying candidates as a list of digits. This formatter is useful on globalized Sudoku BBS.
+            Represents with a formatter using a multiple-line formatting rule, displaying candidates as a list of digits.
+            This formatter is useful on globalized Sudoku BBS.
             </description>
             </item>
             <item>
             <term><see cref="T:Sudoku.Text.Formatting.HodokuLibraryFormat"/></term>
             <description>
-            Represents with a formatter that can format a <see cref="T:Sudoku.Concepts.Grid"/>, converting it into a <see cref="T:System.String"/> representation
-            using Hodoku Library formatting rule.
+            Represents with a formatter using Hodoku Library formatting rule.
             </description>
             </item>
             <item>
             <term><see cref="T:Sudoku.Text.Formatting.MultipleLineFormat"/></term>
             <description>
-            Represents with a formatter that can format a <see cref="T:Sudoku.Concepts.Grid"/>, converting it into a <see cref="T:System.String"/> represnetation
-            using multiple-line formatting rule, without displaying candidates.
+            Represents with a formatter using multiple-line formatting rule, without displaying candidates.
             </description>
             </item>
             <item>
             <term><see cref="T:Sudoku.Text.Formatting.SukakuFormat"/></term>
             <description>
-            Represents with a formatter that can format a <see cref="T:Sudoku.Concepts.Grid"/>, converting it into a <see cref="T:System.String"/> represnetation
-            using Sukaku game formatting rule, treating all cells (no matter what kind of the cell it is) as candidate lists.
+            Represents with a formatter using Sukaku game formatting rule, treating all cells (no matter what kind of the cell it is) as candidate lists.
             </description>
             </item>
             <item>
             <term><see cref="T:Sudoku.Text.Formatting.ExcelFormat"/></term>
             <description>
-            Represents with a formatter that can format a <see cref="T:Sudoku.Concepts.Grid"/>, converting it into a <see cref="T:System.String"/> represnetation
-            using Excel formatting rule, using multiple lines to distinct sudoku lines and using tab characters <c>'\t'</c> as separators
-            inserted into a pair of adjacent cells.
+            Represents with a formatter using Excel formatting rule, using multiple lines to distinct sudoku lines
+            and using tab characters <c>'\t'</c> as separators inserted into a pair of adjacent cells.
             </description>
             </item>
             <item>
             <term><see cref="T:Sudoku.Text.Formatting.OpenSudokuFormat"/></term>
             <description>
-            Represents with a formatter that can format a <see cref="T:Sudoku.Concepts.Grid"/>, converting it into a <see cref="T:System.String"/> represnetation
-            using OpenSudoku formatting rule, using a triplet to display the detail of a cell, separated by pipe operator <c>'|'</c>.
+            Represents with a formatter using OpenSudoku formatting rule, using a triplet to display the detail of a cell,
+            separated by pipe operator <c>'|'</c>.
             </description>
             </item>
             </list>
@@ -7403,6 +7406,11 @@
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat.ModifiablePrefix">
+            <summary>
+            Indicates the modifiable prefix character.
+            </summary>
+        </member>
         <member name="F:Sudoku.Text.Formatting.SusserFormat.LineLimit">
             <summary>
             Indicates the line limitator character used by shortening Susser format.
@@ -7421,11 +7429,6 @@
         <member name="F:Sudoku.Text.Formatting.SusserFormat.Zero">
             <summary>
             Indicates the zero character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.SusserFormat.ModifiablePrefix">
-            <summary>
-            Indicates the modifiable prefix character.
             </summary>
         </member>
         <member name="F:Sudoku.Text.Formatting.SusserFormat.PreeliminationPrefix">
@@ -7483,6 +7486,28 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Formatting.MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens">
+            <summary>
+            Represents with a Susser formatter, removing all plus mark <c>'+'</c> as modifiable distinction tokens.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.WithCandidates"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens.Sudoku#Text#Formatting#IGridFormatter#Instance">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Notations.CandidateNotation">
