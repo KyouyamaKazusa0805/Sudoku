@@ -2274,6 +2274,61 @@
         <member name="M:Sudoku.Concepts.Grid.ToString(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.Formatting.IGridFormatter)">
+            <summary>
+            Gets <see cref="T:System.String"/> representation of the current grid, using pre-defined grid formatters.
+            </summary>
+            <param name="gridFormatter">
+            The grid formatter instance to format the current grid.
+            </param>
+            <returns>The <see cref="T:System.String"/> result.</returns>
+            <remarks>
+            <para>
+            The target and supported types are stored in namespace <see cref="N:Sudoku.Text.Formatting"/>.
+            If you don't remember the full format strings, you can try this method instead by passing
+            actual <see cref="T:Sudoku.Text.Formatting.IGridFormatter"/> instances.
+            </para>
+            <para>
+            For example, by using Susser formatter <see cref="T:Sudoku.Text.Formatting.SusserFormat"/> instances:
+            <code><![CDATA[
+            // Suppose the variable is of type 'Grid'.
+            var grid = ...;
+            
+            // Creates a Susser-based formatter, with placeholder text as '0',
+            // missing candidates output and modifiable distinction.
+            var formatter = SusserFormat.Default with
+            {
+                Placeholder = '0',
+                WithCandidates = true,
+                WithModifiables = true
+            };
+            
+            // Using this method to get the target string representation.
+            string targetStr = grid.ToString(formatter);
+            
+            // Output the result.
+            Console.WriteLine(targetStr);
+            ]]></code>
+            </para>
+            <para>
+            In some cases we suggest you use this method instead of calling <see cref="M:Sudoku.Concepts.Grid.ToString(System.String)"/>
+            and <see cref="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)"/> because you may not remember all possible string formats.
+            </para>
+            <para>
+            In addition, the method <see cref="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)"/> is also compatible with this method.
+            If you forget to call this one, you can also use that method to get the same target result by passing first argument
+            named <c>format</c> with <see langword="null"/> value:
+            <code><![CDATA[
+            string targetStr = grid.ToString(null, formatter);
+            ]]></code>
+            </para>
+            </remarks>
+            <seealso cref="N:Sudoku.Text.Formatting"/>
+            <seealso cref="T:Sudoku.Text.Formatting.IGridFormatter"/>
+            <seealso cref="T:Sudoku.Text.Formatting.SusserFormat"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.ToString(System.String)"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)"/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
@@ -6369,6 +6424,32 @@
         <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.Sudoku#Text#Formatting#ICollectionFormatter{System#Int32}#Format(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Text.Formatting.FormattingMode)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Text.Formatting.ExcelFormat">
+            <summary>
+            Represents with Excel formatter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.ExcelFormat.Tab">
+            <summary>
+            Indicates the tab character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.ExcelFormat.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.ExcelFormat.Default">
+            <summary>
+            Indicates the default instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.ExcelFormat.Sudoku#Text#Formatting#IGridFormatter#Instance">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.ExcelFormat.ToString(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Text.Formatting.FormattingMode">
             <summary>
             Represents for a formatting mode (simple, normal or full). The modes will correspond to the methods
@@ -6751,6 +6832,33 @@
             Indicates the shorten susser format.
             </summary>
         </member>
+        <member name="T:Sudoku.Text.Formatting.HodokuLibraryFormat">
+            <summary>
+            Provides with a formatter that allows a <see cref="T:Sudoku.Concepts.Grid"/> instance being formatted as Hodoku library format.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.HodokuLibraryFormat.FormatPrefix">
+            <summary>
+            Indicates the format prefix.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.HodokuLibraryFormat.Default">
+            <summary>
+            Indicates the default instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.HodokuLibraryFormat.FormatSuffix">
+            <summary>
+            Indicates the format suffix.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.HodokuLibraryFormat.Sudoku#Text#Formatting#IGridFormatter#Instance">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.HodokuLibraryFormat.ToString(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Text.Formatting.HouseFormatter">
             <summary>
             Provides with a formatter that can format a mask that represents for a list of houses.
@@ -6833,6 +6941,423 @@
             The formatting mode. The default value is <see cref="F:Sudoku.Text.Formatting.FormattingMode.Simple"/>.
             </param>
             <returns>A <see cref="T:System.String"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.IGridFormatter">
+            <summary>
+            Defines a grid formatter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.IGridFormatter.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.IGridFormatter.ToString(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to format a <see cref="T:Sudoku.Concepts.Grid"/> instance into the specified target-formatted <see cref="T:System.String"/> representation.
+            </summary>
+            <param name="grid">A <see cref="T:Sudoku.Concepts.Grid"/> instance to be formatted.</param>
+            <returns>A <see cref="T:System.String"/> representation as result.</returns>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.IGridFormatter.System#IFormatProvider#GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.IGridFormatter.System#ICustomFormatter#Format(System.String,System.Object,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.MultipleLineFormat">
+            <summary>
+            Represents with a multiple-line formatter.
+            </summary>
+            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.Formatting.PencilMarkFormat.SubtleGridLines" path="/summary"/></param>
+            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.Formatting.PencilMarkFormat.TreatValueAsGiven" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.MultipleLineFormat.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Represents with a multiple-line formatter.
+            </summary>
+            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.Formatting.PencilMarkFormat.SubtleGridLines" path="/summary"/></param>
+            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.Formatting.PencilMarkFormat.TreatValueAsGiven" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.MultipleLineFormat.SubtleGridLines">
+            <summary><inheritdoc cref="P:Sudoku.Text.Formatting.PencilMarkFormat.SubtleGridLines" path="/summary"/></summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.MultipleLineFormat.TreatValueAsGiven">
+            <summary><inheritdoc cref="P:Sudoku.Text.Formatting.PencilMarkFormat.TreatValueAsGiven" path="/summary"/></summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.MultipleLineFormat.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.MultipleLineFormat.Dot">
+            <summary>
+            Indicates the dot character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.MultipleLineFormat.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Formatting.MultipleLineFormat.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Formatting.MultipleLineFormat.SubtleGridLines"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.MultipleLineFormat.TreatValueAsGiven"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.MultipleLineFormat._placeholder">
+            <summary>
+            The backing field of property <see cref="P:Sudoku.Text.Formatting.MultipleLineFormat.Placeholder"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Formatting.MultipleLineFormat.Placeholder"/>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.MultipleLineFormat.Placeholder">
+            <summary>
+            Indicates the placeholder of the grid text formatter.
+            </summary>
+            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
+            <returns>The placeholder text.</returns>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.MultipleLineFormat.Sudoku#Text#Formatting#IGridFormatter#Instance">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.MultipleLineFormat.ToString(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.OpenSudokuFormat">
+            <summary>
+            Represents with OpenSudoku formatter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.OpenSudokuFormat.Terminator">
+            <summary>
+            Indicates the string terminator character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.OpenSudokuFormat.Separator">
+            <summary>
+            Indicates the separator character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.OpenSudokuFormat.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.OpenSudokuFormat.One">
+            <summary>
+            Indicates the one character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.OpenSudokuFormat.Default">
+            <summary>
+            Indicates the default instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.OpenSudokuFormat.Sudoku#Text#Formatting#IGridFormatter#Instance">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.OpenSudokuFormat.ToString(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.PencilMarkFormat">
+            <summary>
+            Represents with a pencil-marked formatter.
+            </summary>
+            <param name="SubtleGridLines">
+            <para>Indicates whether need to handle all grid outlines while outputting.</para>
+            <para>The default value is <see langword="true"/>.</para>
+            </param>
+            <param name="TreatValueAsGiven">
+            <para>
+            Indicates the output will treat modifiable values as given ones.
+            If the output is single line, the output will remove all plus marks '+'.
+            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
+            of '<c>*digit*</c>'.
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.PencilMarkFormat.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Represents with a pencil-marked formatter.
+            </summary>
+            <param name="SubtleGridLines">
+            <para>Indicates whether need to handle all grid outlines while outputting.</para>
+            <para>The default value is <see langword="true"/>.</para>
+            </param>
+            <param name="TreatValueAsGiven">
+            <para>
+            Indicates the output will treat modifiable values as given ones.
+            If the output is single line, the output will remove all plus marks '+'.
+            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
+            of '<c>*digit*</c>'.
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.PencilMarkFormat.SubtleGridLines">
+            <summary>
+            <para>Indicates whether need to handle all grid outlines while outputting.</para>
+            <para>The default value is <see langword="true"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.PencilMarkFormat.TreatValueAsGiven">
+            <summary>
+            <para>
+            Indicates the output will treat modifiable values as given ones.
+            If the output is single line, the output will remove all plus marks '+'.
+            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
+            of '<c>*digit*</c>'.
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.PencilMarkFormat.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Formatting.PencilMarkFormat.SubtleGridLines"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.PencilMarkFormat.TreatValueAsGiven"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.PencilMarkFormat.Sudoku#Text#Formatting#IGridFormatter#Instance">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.PencilMarkFormat.ToString(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.PencilMarkFormat.DefaultPrinting(System.Text.StringHandler@,System.Collections.Generic.IList{System.Int16},System.Char,System.Char,System.Int32*)">
+            <summary>
+            Default printing method.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.PencilMarkFormat.PrintValues(System.Text.StringHandler@,System.Collections.Generic.IList{System.Int16},System.Int32,System.Int32,System.Int32*)">
+            <summary>
+            Print values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.PencilMarkFormat.PrintTabLines(System.Text.StringHandler@,System.Char,System.Char,System.Char,System.Int32*)">
+            <summary>
+            Print tab lines.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.PencilMarkFormat.CreateTempDictionary">
+            <summary>
+            Creates a dictionary.
+            </summary>
+            <returns>The dictionary instance.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.SukakuFormat">
+            <summary>
+            Defines a Sukaku format.
+            </summary>
+            <param name="Multiline">
+            <para>Indicates whether the output should be multi-line.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.SukakuFormat.#ctor(System.Boolean)">
+            <summary>
+            Defines a Sukaku format.
+            </summary>
+            <param name="Multiline">
+            <para>Indicates whether the output should be multi-line.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.SukakuFormat.Multiline">
+            <summary>
+            <para>Indicates whether the output should be multi-line.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SukakuFormat.Dot">
+            <summary>
+            Indicates the dot character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SukakuFormat.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SukakuFormat.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Formatting.SukakuFormat.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SukakuFormat.Multiline"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SukakuFormat._placeholder">
+            <summary>
+            The backing field of property <see cref="P:Sudoku.Text.Formatting.SukakuFormat.Placeholder"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Formatting.SukakuFormat.Placeholder"/>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.SukakuFormat.Placeholder">
+            <summary>
+            Indicates the placeholder of the grid text formatter.
+            </summary>
+            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
+            <returns>The placeholder text.</returns>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.SukakuFormat.Sudoku#Text#Formatting#IGridFormatter#Instance">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.SukakuFormat.ToString(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.SusserFormat">
+            <summary>
+            Provides with a formatter that allows a <see cref="T:Sudoku.Concepts.Grid"/> instance being formatted as Susser format.
+            </summary>
+            <param name="WithCandidates">
+            <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="WithModifiables">
+            <para>
+            Indicates whether the formatter will output and distinct modifiable and given digits.
+            If so, the modifiable digits will be displayed as <c>+digit</c>, where <c>digit</c> will be replaced
+            with the real digit number (from 1 to 9).
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="ShortenSusser">
+            <para>Indicates whether the formatter will shorten the final text.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.SusserFormat.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Provides with a formatter that allows a <see cref="T:Sudoku.Concepts.Grid"/> instance being formatted as Susser format.
+            </summary>
+            <param name="WithCandidates">
+            <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="WithModifiables">
+            <para>
+            Indicates whether the formatter will output and distinct modifiable and given digits.
+            If so, the modifiable digits will be displayed as <c>+digit</c>, where <c>digit</c> will be replaced
+            with the real digit number (from 1 to 9).
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="ShortenSusser">
+            <para>Indicates whether the formatter will shorten the final text.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.SusserFormat.WithCandidates">
+            <summary>
+            <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.SusserFormat.WithModifiables">
+            <summary>
+            <para>
+            Indicates whether the formatter will output and distinct modifiable and given digits.
+            If so, the modifiable digits will be displayed as <c>+digit</c>, where <c>digit</c> will be replaced
+            with the real digit number (from 1 to 9).
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.SusserFormat.ShortenSusser">
+            <summary>
+            <para>Indicates whether the formatter will shorten the final text.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat.LineLimit">
+            <summary>
+            Indicates the line limitator character used by shortening Susser format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat.Star">
+            <summary>
+            Indicates the star character used by shortening Susser format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat.Dot">
+            <summary>
+            Indicates the dot character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat.ModifiablePrefix">
+            <summary>
+            Indicates the modifiable prefix character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat.PreeliminationPrefix">
+            <summary>
+            Indicates the pre-elimination prefix character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.WithCandidates"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.WithModifiables"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Formatting.SusserFormat.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat._placeholder">
+            <summary>
+            The backing field of property <see cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.SusserFormat.Placeholder">
+            <summary>
+            Indicates the placeholder of the grid text formatter.
+            </summary>
+            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
+            <returns>The placeholder text.</returns>
+        </member>
+        <member name="P:Sudoku.Text.Formatting.SusserFormat.Sudoku#Text#Formatting#IGridFormatter#Instance">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.SusserFormat.ToString(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.MatchLengthComparer">
+            <summary>
+            Represents a comparer instance that compares two <see cref="T:System.Text.RegularExpressions.Match"/> instances via their length.
+            </summary>
+            <seealso cref="T:System.Text.RegularExpressions.Match"/>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.MatchLengthComparer.Instance">
+            <summary>
+            The singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.MatchLengthComparer.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Text.Formatting.MatchLengthComparer"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.MatchLengthComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Notations.CandidateNotation">
             <summary>

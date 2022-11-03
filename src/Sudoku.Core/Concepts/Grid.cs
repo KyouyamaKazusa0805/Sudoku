@@ -12,11 +12,11 @@ using static Helper;
 [JsonConverter(typeof(Converter))]
 [IsLargeStruct(SuggestedMemberName = nameof(Empty))]
 public unsafe partial struct Grid :
+	IEnumerable<int>,
 	IEqualityOperators<Grid, Grid, bool>,
 	IFixable<Grid, short>,
 	IFormattable,
 	IMinMaxValue<Grid>,
-	IEnumerable<int>,
 	IParsable<Grid>,
 	IReadOnlyCollection<int>,
 	IReadOnlyList<int>,
@@ -886,7 +886,7 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => ToString(null);
+	public override readonly string ToString() => ToString((string?)null);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -909,18 +909,75 @@ public unsafe partial struct Grid :
 			}
 		};
 
+	/// <summary>
+	/// Gets <see cref="string"/> representation of the current grid, using pre-defined grid formatters.
+	/// </summary>
+	/// <param name="gridFormatter">
+	/// The grid formatter instance to format the current grid.
+	/// </param>
+	/// <returns>The <see cref="string"/> result.</returns>
+	/// <remarks>
+	/// <para>
+	/// The target and supported types are stored in namespace <see cref="Text.Formatting"/>.
+	/// If you don't remember the full format strings, you can try this method instead by passing
+	/// actual <see cref="IGridFormatter"/> instances.
+	/// </para>
+	/// <para>
+	/// For example, by using Susser formatter <see cref="SusserFormat"/> instances:
+	/// <code><![CDATA[
+	/// // Suppose the variable is of type 'Grid'.
+	/// var grid = ...;
+	/// 
+	/// // Creates a Susser-based formatter, with placeholder text as '0',
+	/// // missing candidates output and modifiable distinction.
+	/// var formatter = SusserFormat.Default with
+	/// {
+	///     Placeholder = '0',
+	///     WithCandidates = true,
+	///     WithModifiables = true
+	/// };
+	/// 
+	/// // Using this method to get the target string representation.
+	/// string targetStr = grid.ToString(formatter);
+	/// 
+	/// // Output the result.
+	/// Console.WriteLine(targetStr);
+	/// ]]></code>
+	/// </para>
+	/// <para>
+	/// In some cases we suggest you use this method instead of calling <see cref="ToString(string?)"/>
+	/// and <see cref="ToString(string?, IFormatProvider?)"/> because you may not remember all possible string formats.
+	/// </para>
+	/// <para>
+	/// In addition, the method <see cref="ToString(string?, IFormatProvider?)"/> is also compatible with this method.
+	/// If you forget to call this one, you can also use that method to get the same target result by passing first argument
+	/// named <c>format</c> with <see langword="null"/> value:
+	/// <code><![CDATA[
+	/// string targetStr = grid.ToString(null, formatter);
+	/// ]]></code>
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="Text.Formatting"/>
+	/// <seealso cref="IGridFormatter"/>
+	/// <seealso cref="SusserFormat"/>
+	/// <seealso cref="ToString(string?)"/>
+	/// <seealso cref="ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(IGridFormatter gridFormatter) => gridFormatter.ToString(this);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
 	{
 		return (format, formatProvider) switch
 		{
-			(null, null) => ToString(null),
+			(null, null) => ToString((string?)null),
 			(not null, _) => ToString(format),
+			(_, IGridFormatter formatter) => formatter.ToString(this),
 			(_, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
 			(_, CultureInfo { Name: var name }) when e(name, "zh-cn") => ToString("#"),
 			(_, CultureInfo { Name: var name }) when e(name[..2], "en") => ToString("@"),
-			_ => ToString(null)
+			_ => ToString((string?)null)
 		};
 
 
@@ -973,9 +1030,7 @@ public unsafe partial struct Grid :
 	/// </code>
 	/// </para>
 	/// <para>
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp11/feature[@name="scoped-ref"]/target[@name="foreach-variables"]'/>
+	/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="scoped-ref"]/target[@name="foreach-variables"]'/>
 	/// </para>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

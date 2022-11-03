@@ -1,0 +1,123 @@
+﻿namespace Sudoku.Text.Formatting;
+
+/// <summary>
+/// Defines a Sukaku format.
+/// </summary>
+/// <param name="Multiline">
+/// <para>Indicates whether the output should be multi-line.</para>
+/// <para>The default value is <see langword="false"/>.</para>
+/// </param>
+public sealed record SukakuFormat(bool Multiline = false) : IGridFormatter
+{
+	/// <summary>
+	/// Indicates the dot character.
+	/// </summary>
+	private const char Dot = '.';
+
+	/// <summary>
+	/// Indicates the zero character.
+	/// </summary>
+	private const char Zero = '0';
+
+
+	/// <summary>
+	/// Indicates the default instance. The property set are:
+	/// <list type="bullet">
+	/// <item><see cref="Placeholder"/>: <c>'.'</c></item>
+	/// <item><see cref="Multiline"/>: <see langword="false"/></item>
+	/// </list>
+	/// </summary>
+	public static readonly SukakuFormat Default = new() { Placeholder = '.' };
+
+
+	/// <summary>
+	/// The backing field of property <see cref="Placeholder"/>.
+	/// </summary>
+	/// <seealso cref="Placeholder"/>
+	private readonly char _placeholder;
+
+
+	/// <summary>
+	/// Indicates the placeholder of the grid text formatter.
+	/// </summary>
+	/// <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
+	/// <returns>The placeholder text.</returns>
+	public required char Placeholder
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _placeholder;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		init => _placeholder = value switch
+		{
+			Zero or Dot => value,
+			_ => throw new InvalidOperationException($"The placeholder character invalid; expected: '{Zero}' or '{Dot}'.")
+		};
+	}
+
+
+	/// <inheritdoc/>
+	static IGridFormatter IGridFormatter.Instance => Default;
+
+
+	/// <inheritdoc/>
+	public string ToString(scoped in Grid grid)
+	{
+		if (Multiline)
+		{
+			// Append all digits.
+			var builders = new StringBuilder[81];
+			for (var i = 0; i < 81; i++)
+			{
+				builders[i] = new();
+				foreach (var digit in grid.GetCandidates(i))
+				{
+					builders[i].Append(digit + 1);
+				}
+			}
+
+			// Now consider the alignment for each column of output text.
+			var sb = new StringBuilder();
+			scoped var span = (stackalloc int[9]);
+			for (var column = 0; column < 9; column++)
+			{
+				var maxLength = 0;
+				for (var p = 0; p < 9; p++)
+				{
+					maxLength = Max(maxLength, builders[p * 9 + column].Length);
+				}
+
+				span[column] = maxLength;
+			}
+			for (var row = 0; row < 9; row++)
+			{
+				for (var column = 0; column < 9; column++)
+				{
+					var cell = row * 9 + column;
+					sb.Append(builders[cell].ToString().PadLeft(span[column])).Append(' ');
+				}
+				sb.RemoveFrom(^1).AppendLine(); // Remove last whitespace.
+			}
+
+			return sb.ToString();
+		}
+		else
+		{
+			var sb = new StringBuilder();
+			for (var i = 0; i < 81; i++)
+			{
+				sb.Append("123456789");
+			}
+
+			for (var i = 0; i < 729; i++)
+			{
+				if (!grid[i / 9, i % 9])
+				{
+					sb[i] = Placeholder;
+				}
+			}
+
+			return sb.ToString();
+		}
+	}
+}
