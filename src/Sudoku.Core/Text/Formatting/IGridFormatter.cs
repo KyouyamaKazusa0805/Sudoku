@@ -80,6 +80,15 @@
 /// In addition, you can also define your own formatter, by using this type, you can just implement this interface:
 /// <code><![CDATA[
 /// // We suggest you use record types instead of classes, in order to define a default-implemented type by compiler.
+/// // In addition, using record types can also help you define more properties, especially for initialization-only properties,
+/// // by adding your own properties followed by the type name, just like defining a parameter list:
+/// //
+/// //     public sealed record Record(int Property1, double Property2, string Property3);
+/// //                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/// //                                         Initialization-only Properties
+/// //
+/// // This syntax feature is called "Record", introduced by C# 9; such properties are called "Initialization-only Properties"
+/// // (or "Init-only Properties" as its abbreviation), introduced by C# 9.
 /// public sealed record CustomFormatter : IGridFormatter // Implements this interface type.
 /// {
 ///     // Define a singleton instance that is the only way to visit the type.
@@ -90,6 +99,10 @@
 ///	    static IGridFormatter IGridFormatter.Instance => Default;
 ///	
 ///     // Here we should implement this method, as the default way to create a string representation describing the grid.
+///     // Keyword 'scoped' is limited the reference only being scoped inside the method, which means you cannot
+///     // assign the reference (no matter whether the reference is read-only or not) outside the method, e.g. as return value,
+///     // or assigning it to the field if the type is a ref struct.
+///     // This kind of usage is based on a new C# syntax feature called "Ref Fields and Scoping", introduced by C# 11.
 ///     public string ToString(scoped in Grid grid)
 ///     {
 ///         // Define your own logic here.
@@ -106,6 +119,11 @@ public interface IGridFormatter : IFormatProvider, ICustomFormatter
 	/// <summary>
 	/// Indicates the singleton instance.
 	/// </summary>
+	/// <remarks>
+	/// The main idea of this property is to tell you the impelmentation type should disallow
+	/// users calling parameterless constructors. Although C# does not restrict with it, you should disallow it,
+	/// in order to provide users with better utility experience.
+	/// </remarks>
 	public static abstract IGridFormatter Instance { get; }
 
 
