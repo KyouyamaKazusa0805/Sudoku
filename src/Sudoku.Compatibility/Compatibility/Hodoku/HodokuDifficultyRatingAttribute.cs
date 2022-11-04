@@ -1,11 +1,10 @@
 ﻿namespace Sudoku.Compatibility.Hodoku;
 
 /// <summary>
-/// Defines an attribute that is applied to a field in type <see cref="Technique"/>,
-/// indicating difficulty rating value defined by Hodoku.
+/// Defines an attribute that is applied to a field in technique, indicating difficulty rating value defined by Hodoku.
 /// </summary>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-internal sealed class HodokuDifficultyRatingAttribute : Attribute
+public sealed class HodokuDifficultyRatingAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="HodokuDifficultyRatingAttribute"/> via the specified difficulty rating value

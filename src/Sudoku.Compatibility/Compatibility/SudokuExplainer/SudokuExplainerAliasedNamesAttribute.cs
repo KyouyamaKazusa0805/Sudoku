@@ -1,11 +1,11 @@
 ﻿namespace Sudoku.Compatibility.SudokuExplainer;
 
 /// <summary>
-/// Defines an attribute that is applied to a field of type <see cref="Technique"/>,
+/// Defines an attribute that is applied to a field of technique,
 /// indicating the aliased name (or names) of specified technique that is defined by Sudoku Explainer.
 /// </summary>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-internal sealed class SudokuExplainerAliasedNamesAttribute : Attribute
+public sealed class SudokuExplainerAliasedNamesAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="SudokuExplainerAliasedNamesAttribute"/> instance

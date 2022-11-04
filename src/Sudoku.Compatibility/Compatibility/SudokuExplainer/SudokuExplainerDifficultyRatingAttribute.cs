@@ -1,11 +1,10 @@
 ﻿namespace Sudoku.Compatibility.SudokuExplainer;
 
 /// <summary>
-/// Defines an attribute that is applied to a field in type <see cref="Technique"/>,
-/// indicating difficulty rating value defined by Sudoku Explainer.
+/// Defines an attribute that is applied to a field in technique, indicating difficulty rating value defined by Sudoku Explainer.
 /// </summary>
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
-internal sealed class SudokuExplainerDifficultyRatingAttribute : Attribute
+public sealed class SudokuExplainerDifficultyRatingAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="SudokuExplainerDifficultyRatingAttribute"/> via the specified difficulty rating value.
@@ -13,8 +12,7 @@ internal sealed class SudokuExplainerDifficultyRatingAttribute : Attribute
 	/// <param name="difficultyRating">
 	/// The difficulty rating value. Assign <see cref="double.NaN"/> if you don't know the real value.
 	/// </param>
-	public SudokuExplainerDifficultyRatingAttribute(double difficultyRating)
-		=> DifficultyRating = (Half)difficultyRating;
+	public SudokuExplainerDifficultyRatingAttribute(double difficultyRating) => DifficultyRating = (Half)difficultyRating;
 
 	/// <summary>
 	/// Initializes a <see cref="SudokuExplainerDifficultyRatingAttribute"/> via the specified difficulty rating values

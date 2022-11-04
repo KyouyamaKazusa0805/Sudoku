@@ -1,11 +1,11 @@
 ﻿namespace Sudoku.Compatibility.Hodoku;
 
 /// <summary>
-/// Defines an attribute that is applied to a field of type <see cref="Technique"/>,
+/// Defines an attribute that is applied to a field of technique,
 /// indicating the aliased name (or names) of specified technique that is defined by Hodoku.
 /// </summary>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-internal sealed class HodokuAliasedNamesAttribute : Attribute
+public sealed class HodokuAliasedNamesAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="HodokuAliasedNamesAttribute"/> instance
