@@ -10,8 +10,7 @@ using DataTuple = ValueTuple<
 			/*FieldAttributeData*/ AttributeData>>>;
 
 /// <summary>
-/// Defines a source generator that generates the method and the corresponding values,
-/// forming a <see langword="switch"/> expression.
+/// Defines a source generator that generates the method and the corresponding values, forming a <see langword="switch"/> expression.
 /// </summary>
 /// <remarks>This source generator does not support generic types.</remarks>
 [Generator(LanguageNames.CSharp)]
