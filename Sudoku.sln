@@ -91,7 +91,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Communication.Qicq",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Compatibility", "src\Sudoku.Compatibility\Sudoku.Compatibility.csproj", "{520EE357-6036-4A9D-8150-22599D824B43}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[Deprecated] UI Project", "[Deprecated] UI Project", "{8E40911E-50AC-4F8B-9AB0-289812FAA4FF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deprecated", "Deprecated", "{8E40911E-50AC-4F8B-9AB0-289812FAA4FF}"
+	ProjectSection(SolutionItems) = preProject
+		README_DEPRECATED_PROJECTS.md = README_DEPRECATED_PROJECTS.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
