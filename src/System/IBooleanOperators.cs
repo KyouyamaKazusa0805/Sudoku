@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a type whose instance of this type can be used as a predicate-like expression.
 /// </summary>
-/// <typeparam name="TSelf">The type of the </typeparam>
+/// <typeparam name="TSelf">The type of the target value.</typeparam>
 public interface IBooleanOperators<[Self] in TSelf> where TSelf : IBooleanOperators<TSelf>
 {
 	/// <summary>

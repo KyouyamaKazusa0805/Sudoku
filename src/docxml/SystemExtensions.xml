@@ -3510,7 +3510,7 @@
             <summary>
             Represents a type whose instance of this type can be used as a predicate-like expression.
             </summary>
-            <typeparam name="TSelf">The type of the </typeparam>
+            <typeparam name="TSelf">The type of the target value.</typeparam>
         </member>
         <member name="M:System.IBooleanOperators`1.op_True(`0)">
             <summary>
