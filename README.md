@@ -49,8 +49,6 @@ UI:
 
 ![](docs/pic/win-ui.png)
 
-The program is being under construction now!
-
 ## Technique Supports
 
 This solution supports many kinds of human-friendly techniques. Here I will list them.
