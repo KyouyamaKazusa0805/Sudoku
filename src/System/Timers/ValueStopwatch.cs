@@ -66,7 +66,7 @@ public readonly ref struct ValueStopwatch
 				$"""
 				An uninitialized, or 'default({nameof(ValueStopwatch)})', 
 				{nameof(ValueStopwatch)} cannot be used to get elapsed time.
-				""".ReplaceLineEndings(string.Empty)
+				""".RemoveLineEndings()
 			);
 
 

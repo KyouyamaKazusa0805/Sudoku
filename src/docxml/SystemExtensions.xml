@@ -3287,6 +3287,15 @@
             </exception>
             <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
         </member>
+        <member name="M:System.StringExtensions.RemoveLineEndings(System.String)">
+            <summary>
+            Remove all new-line sequences in the current string.
+            </summary>
+            <param name="this">The current string.</param>
+            <returns>
+            A string whose contents match the current string, but with all new-line sequences replaced with <see cref="F:System.String.Empty"/>.
+            </returns>
+        </member>
         <member name="M:System.StringExtensions.Reserve(System.String,System.String)">
             <summary>
             Reserve all characters that satisfy the specified pattern.

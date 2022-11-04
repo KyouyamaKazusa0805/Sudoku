@@ -90,10 +90,7 @@ public static unsafe partial class StringExtensions
 	{
 		var resultPtr = stackalloc char[@this.Length + 1];
 		resultPtr[@this.Length] = '\0';
-		fixed (char* pThis = @this)
-		{
-			CopyBlock(resultPtr, pThis, (uint)(sizeof(char) * @this.Length));
-		}
+		CopyBlock(ref AsByteRef(ref resultPtr[0]), ref AsByteRef(ref AsRef(@this[0])), (uint)(sizeof(char) * @this.Length));
 
 		resultPtr[index] = charToInsert;
 
@@ -153,8 +150,7 @@ public static unsafe partial class StringExtensions
 	/// </exception>
 	/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? Match(
-		this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
+	public static string? Match(this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
 		=> pattern.IsRegexPattern()
 			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value } ? value : null
 			: throw InvalidOperation;
@@ -204,9 +200,18 @@ public static unsafe partial class StringExtensions
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] MatchAll(
-		this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
+	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
 		=> pattern.IsRegexPattern() ? from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value : throw InvalidOperation;
+
+	/// <summary>
+	/// Remove all new-line sequences in the current string.
+	/// </summary>
+	/// <param name="this">The current string.</param>
+	/// <returns>
+	/// A string whose contents match the current string, but with all new-line sequences replaced with <see cref="string.Empty"/>.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string RemoveLineEndings(this string @this) => @this.ReplaceLineEndings(string.Empty);
 
 	/// <summary>
 	/// Reserve all characters that satisfy the specified pattern.

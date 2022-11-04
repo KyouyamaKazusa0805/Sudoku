@@ -1473,7 +1473,7 @@ public struct CellMap :
 				Both cells count and subset size is too large, which may cause potential out of memory exception. 
 				This operator will throw this exception to calculate the result, 
 				in order to prevent any possible exceptions thrown.
-				""".ReplaceLineEndings(string.Empty)
+				""".RemoveLineEndings()
 			);
 		}
 		else
