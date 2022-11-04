@@ -1485,8 +1485,7 @@ public unsafe struct Grid :
 /// <summary>
 /// Defines a type that is triggered when the candidates are refreshed.
 /// </summary>
-[DisallowParameterlessConstructor]
-public readonly ref partial struct GridRefreshingCandidatesEventArgs
+public readonly ref struct GridRefreshingCandidatesEventArgs
 {
 	/// <summary>
 	/// The backing field of property <see cref="GridRef"/>.
@@ -1496,10 +1495,19 @@ public readonly ref partial struct GridRefreshingCandidatesEventArgs
 
 
 	/// <summary>
+	/// Initializes a <see cref="GridRefreshingCandidatesEventArgs"/> instance.
+	/// </summary>
+	[FileAccessOnly]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public GridRefreshingCandidatesEventArgs()
+	{
+	}
+
+	/// <summary>
 	/// Initializes a <see cref="GridRefreshingCandidatesEventArgs"/> instance via the specified grid to be updated.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[FileAccessOnly]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal GridRefreshingCandidatesEventArgs(in Grid gridRef) => _gridRef = ref gridRef;
 
 
@@ -1512,8 +1520,7 @@ public readonly ref partial struct GridRefreshingCandidatesEventArgs
 /// <summary>
 /// Defines a type that is triggered when the specified value in a grid has been changed.
 /// </summary>
-[DisallowParameterlessConstructor]
-public readonly ref partial struct GridValueChangedEventArgs
+public readonly ref struct GridValueChangedEventArgs
 {
 	/// <summary>
 	/// The backing field of property <see cref="GridRef"/>.
@@ -1521,6 +1528,15 @@ public readonly ref partial struct GridValueChangedEventArgs
 	/// <seealso cref="GridRef"/>
 	private readonly ref readonly Grid _gridRef;
 
+
+	/// <summary>
+	/// Initializes a <see cref="GridValueChangedEventArgs"/> instance.
+	/// </summary>
+	[FileAccessOnly]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public GridValueChangedEventArgs()
+	{
+	}
 
 	/// <summary>
 	/// Initializes a <see cref="GridValueChangedEventArgs"/> instance via the specified grid to be updated,
@@ -1531,8 +1547,8 @@ public readonly ref partial struct GridValueChangedEventArgs
 	/// <param name="cell">The cell used.</param>
 	/// <param name="oldMaskValue">The old and original mask value in the grid.</param>
 	/// <param name="newMaskValue">The new value to be replaced with.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[FileAccessOnly]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal GridValueChangedEventArgs(in Grid gridRef, int cell, int appliedDigit, short oldMaskValue, short newMaskValue)
 	{
 		_gridRef = ref gridRef;
@@ -1668,8 +1684,7 @@ public ref struct GridCandidateEnumerator
 	}
 
 	/// <summary>
-	/// Sets the enumerator to its initial position, which is before the first element
-	/// in the collection.
+	/// Sets the enumerator to its initial position, which is before the first element in the collection.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Reset()
@@ -1767,8 +1782,7 @@ public ref struct GridMaskEnumerator
 	}
 
 	/// <summary>
-	/// Sets the enumerator to its initial position, which is before the first element
-	/// in the collection.
+	/// Sets the enumerator to its initial position, which is before the first element in the collection.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Reset()
@@ -1797,7 +1811,8 @@ file sealed class Converter : JsonConverter<Grid>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options) => writer.WriteStringValue($"{value:#}");
+	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
+		=> writer.WriteStringValue(value.ToString(SusserFormat.Full));
 }
 
 /// <summary>

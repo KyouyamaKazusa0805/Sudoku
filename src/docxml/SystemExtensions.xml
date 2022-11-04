@@ -1512,16 +1512,6 @@
             The type to be generated.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeGen.DisallowParameterlessConstructorAttribute">
-            <summary>
-            Indicates user cannot use parameterless constructor for this type.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.DisallowParameterlessConstructorAttribute.SuggestedInstanceName">
-            <summary>
-            Indicates the suggested instance that you want to suggest user use.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute">
             <summary>
             Defines an <see langword="enum"/> field as an arm in <see langword="switch"/> expressions.
@@ -2514,24 +2504,6 @@
         </member>
         <member name="M:System.Text.StringHandler.Append(System.ReadOnlySpan{System.Char},System.Int32,System.String)">
             <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.ReadOnlySpan{System.Char},System.Int32,System.String)"/>
-        </member>
-        <member name="M:System.Text.StringHandler.Append(System.Text.StringHandler)">
-            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.Text.StringHandler)"/>
-        </member>
-        <member name="M:System.Text.StringHandler.Append(System.IFormatProvider,System.Runtime.CompilerServices.DefaultInterpolatedStringHandler@)">
-            <summary>
-            Writes the specified interpolated string with the specified format provider into the handler.
-            </summary>
-            <param name="provider">The format provider used.</param>
-            <param name="handler">The handler that holds the interpolated string processings.</param>
-        </member>
-        <member name="M:System.Text.StringHandler.Append(System.IFormatProvider,System.Span{System.Char},System.Runtime.CompilerServices.DefaultInterpolatedStringHandler@)">
-            <summary>
-            Writes the specified interpolated string with the specified format provider into the handler.
-            </summary>
-            <param name="provider">The format provider used.</param>
-            <param name="initialBuffer">The initial buffer used.</param>
-            <param name="handler">The handler that holds the interpolated string processings.</param>
         </member>
         <member name="M:System.Text.StringHandler.Append``1(``0)">
             <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted``1(``0)"/>
@@ -3939,13 +3911,7 @@
         </member>
         <member name="T:System.Timers.ValueStopwatch">
             <summary>
-            Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/>
-            to optimize the performance.
-            </summary>
-        </member>
-        <member name="F:System.Timers.ValueStopwatch.ErrorInfo">
-            <summary>
-            The error information.
+            Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/> to optimize the performance.
             </summary>
         </member>
         <member name="F:System.Timers.ValueStopwatch.TimestampToTicks">
@@ -3956,6 +3922,11 @@
         <member name="F:System.Timers.ValueStopwatch._startTimestamp">
             <summary>
             The inner timestamp.
+            </summary>
+        </member>
+        <member name="M:System.Timers.ValueStopwatch.#ctor">
+            <summary>
+            Initializes a <see cref="T:System.Timers.ValueStopwatch"/> instance.
             </summary>
         </member>
         <member name="M:System.Timers.ValueStopwatch.#ctor(System.Int64)">
@@ -3983,19 +3954,6 @@
             Try to get a new <see cref="T:System.Timers.ValueStopwatch"/> that is running now.
             </summary>
             <returns>An instance of type <see cref="T:System.Timers.ValueStopwatch"/> that is running now.</returns>
-        </member>
-        <member name="M:System.Timers.ValueStopwatch.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
-            </summary>
-            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
-            <remarks>
-            The main idea of the parameterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            It will be very slow to be initialized.
-            I only suggest you use constant or static read-only field (or static read-only property)
-            instead of using this constructor.
-            </remarks>
         </member>
         <member name="T:System.Utf8Char">
             <summary>

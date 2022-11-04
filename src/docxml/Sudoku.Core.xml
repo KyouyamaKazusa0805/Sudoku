@@ -2654,6 +2654,11 @@
             </summary>
             <seealso cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>
         </member>
+        <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs"/> instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs"/> instance via the specified grid to be updated.
@@ -2663,19 +2668,6 @@
             <summary>
             Indicates the reference to the grid whose candidates are refreshed.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
-            </summary>
-            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
-            <remarks>
-            The main idea of the parameterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            It will be very slow to be initialized.
-            I only suggest you use constant or static read-only field (or static read-only property)
-            instead of using this constructor.
-            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.GridValueChangedEventArgs">
             <summary>
@@ -2687,6 +2679,11 @@
             The backing field of property <see cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>.
             </summary>
             <seealso cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridValueChangedEventArgs.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.GridValueChangedEventArgs"/> instance.
+            </summary>
         </member>
         <member name="M:Sudoku.Concepts.GridValueChangedEventArgs.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int16,System.Int16)">
             <summary>
@@ -2724,19 +2721,6 @@
             <summary>
             Indicates the reference to the grid whose inner value has been changed.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridValueChangedEventArgs.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>-typed instance.
-            </summary>
-            <exception cref="T:System.NotSupportedException">The exception will always be thrown.</exception>
-            <remarks>
-            The main idea of the parameterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            It will be very slow to be initialized.
-            I only suggest you use constant or static read-only field (or static read-only property)
-            instead of using this constructor.
-            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.GridCandidateEnumerator">
             <summary>
@@ -2803,8 +2787,7 @@
         </member>
         <member name="M:Sudoku.Concepts.GridCandidateEnumerator.Reset">
             <summary>
-            Sets the enumerator to its initial position, which is before the first element
-            in the collection.
+            Sets the enumerator to its initial position, which is before the first element in the collection.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.GridCandidateEnumerator.GetEnumerator">
@@ -2869,8 +2852,7 @@
         </member>
         <member name="M:Sudoku.Concepts.GridMaskEnumerator.Reset">
             <summary>
-            Sets the enumerator to its initial position, which is before the first element
-            in the collection.
+            Sets the enumerator to its initial position, which is before the first element in the collection.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.GridMaskEnumerator.GetEnumerator">

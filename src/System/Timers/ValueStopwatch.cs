@@ -5,18 +5,10 @@
 namespace System.Timers;
 
 /// <summary>
-/// Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/>
-/// to optimize the performance.
+/// Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/> to optimize the performance.
 /// </summary>
-[DisallowParameterlessConstructor]
-public readonly ref partial struct ValueStopwatch
+public readonly ref struct ValueStopwatch
 {
-	/// <summary>
-	/// The error information.
-	/// </summary>
-	private const string ErrorInfo = $"An uninitialized, or 'default({nameof(ValueStopwatch)})', {nameof(ValueStopwatch)} cannot be used to get elapsed time.";
-
-
 	/// <summary>
 	/// The read-only value that indicates the formula converting from timestamp to ticks.
 	/// </summary>
@@ -28,6 +20,15 @@ public readonly ref partial struct ValueStopwatch
 	/// </summary>
 	private readonly long _startTimestamp;
 
+
+	/// <summary>
+	/// Initializes a <see cref="ValueStopwatch"/> instance.
+	/// </summary>
+	[FileAccessOnly]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ValueStopwatch()
+	{
+	}
 
 	/// <summary>
 	/// Initializes a <see cref="ValueStopwatch"/> instance via the current timestamp.
@@ -56,15 +57,17 @@ public readonly ref partial struct ValueStopwatch
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public TimeSpan GetElapsedTime()
-		=> IsActive switch
-		{
-			true => new((long)(TimestampToTicks * (Stopwatch.GetTimestamp() - _startTimestamp))),
-
+		=> IsActive
+			? new((long)(TimestampToTicks * (Stopwatch.GetTimestamp() - _startTimestamp)))
 			// Start timestamp can't be zero in an initialized ValueStopwatch.
 			// It would have to be literally the first thing executed when the machine boots to be 0.
 			// So it being 0 is a clear indication of default(ValueStopwatch).
-			_ => throw new InvalidOperationException(ErrorInfo)
-		};
+			: throw new InvalidOperationException(
+				$"""
+				An uninitialized, or 'default({nameof(ValueStopwatch)})', 
+				{nameof(ValueStopwatch)} cannot be used to get elapsed time.
+				""".ReplaceLineEndings(string.Empty)
+			);
 
 
 	/// <summary>

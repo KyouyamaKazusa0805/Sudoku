@@ -4,10 +4,18 @@
 /// Defines an identifier that can differ colors.
 /// </summary>
 [JsonConverter(typeof(IdentifierJsonConverter))]
-[DisallowParameterlessConstructor]
-public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier, bool>
+public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier, bool>
 {
 #pragma warning disable CS0618
+	/// <summary>
+	/// Initializes an <see cref="Identifier"/> instance.
+	/// </summary>
+	[FileAccessOnly]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Identifier()
+	{
+	}
+
 	/// <summary>
 	/// Initializes an <see cref="Identifier"/> instance via the ID value.
 	/// </summary>

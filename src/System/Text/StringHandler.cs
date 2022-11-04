@@ -457,29 +457,6 @@ public unsafe ref struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append(scoped ReadOnlySpan<char> value, int alignment, string? format = null) => AppendFormatted(value, alignment, format);
 
-	/// <inheritdoc cref="AppendFormatted(StringHandler)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append([InterpolatedStringHandlerArgument] scoped StringHandler handler) => AppendFormatted(handler);
-
-	/// <summary>
-	/// Writes the specified interpolated string with the specified format provider into the handler.
-	/// </summary>
-	/// <param name="provider">The format provider used.</param>
-	/// <param name="handler">The handler that holds the interpolated string processings.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(IFormatProvider? provider, [InterpolatedStringHandlerArgument(nameof(provider))] scoped ref DefaultInterpolatedStringHandler handler)
-		=> AppendFormatted(string.Create(provider, ref handler));
-
-	/// <summary>
-	/// Writes the specified interpolated string with the specified format provider into the handler.
-	/// </summary>
-	/// <param name="provider">The format provider used.</param>
-	/// <param name="initialBuffer">The initial buffer used.</param>
-	/// <param name="handler">The handler that holds the interpolated string processings.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(IFormatProvider? provider, Span<char> initialBuffer, [InterpolatedStringHandlerArgument(nameof(provider), nameof(initialBuffer))] scoped ref DefaultInterpolatedStringHandler handler)
-		=> AppendFormatted(string.Create(provider, initialBuffer, ref handler));
-
 	/// <inheritdoc cref="AppendFormatted{T}(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append<T>(T value) => AppendFormatted(value);

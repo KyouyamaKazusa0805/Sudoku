@@ -38,16 +38,6 @@
             <param name="type">The current emit type.</param>
             <returns>The collection of raw code parts for extension deconstruction methods.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DisallowParameterlessNewInStructGenerator">
-            <summary>
-            Defines a source generator that generates the source code that will disallow user using
-            <see langword="new"/> clauses to initialize an instance of <see langword="struct"/> types
-            without any parameters in constructor.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DisallowParameterlessNewInStructGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator">
             <summary>
             Defines a source generator that generates the method and the corresponding values,
