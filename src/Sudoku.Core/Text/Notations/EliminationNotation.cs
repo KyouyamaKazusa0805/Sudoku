@@ -44,12 +44,7 @@ public sealed class EliminationNotation : ICandidateNotation<EliminationNotation
 		foreach (var candidate in candidates)
 		{
 			int cell = candidate / 9, digit = candidate % 9;
-			sb.Append(
-				digitFirst
-					? $"{digit + 1}{cell / 9 + 1}{cell % 9 + 1}"
-					: $"{cell / 9 + 1}{cell % 9 + 1}{digit + 1}"
-			);
-
+			sb.Append(digitFirst ? $"{digit + 1}{cell / 9 + 1}{cell % 9 + 1}" : $"{cell / 9 + 1}{cell % 9 + 1}{digit + 1}");
 			sb.Append(separator);
 		}
 
