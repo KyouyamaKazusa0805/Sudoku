@@ -446,21 +446,23 @@ public readonly unsafe struct Utf8String :
 	/// </summary>
 	/// <param name="underlyingArray">The underlying array.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if true
 	public static implicit operator Utf8String(Utf8Char[] underlyingArray) => new(underlyingArray);
+#else
+	public static implicit operator Utf8String(Utf8Char[]? underlyingArray) => new(underlyingArray ?? Array.Empty<Utf8Char>());
+#endif
 
 	/// <summary>
 	/// Implicitly cast from <see cref="byte"/>[] to <see cref="Utf8String"/>.
 	/// </summary>
 	/// <param name="underlyingArray">The underlying array.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Utf8String(byte[] underlyingArray)
-		=> (Utf8String)Encoding.UTF8.GetString(underlyingArray);
+	public static implicit operator Utf8String(byte[] underlyingArray) => (Utf8String)Encoding.UTF8.GetString(underlyingArray);
 
 	/// <summary>
 	/// Implicitly cast from <see cref="ReadOnlySpan{T}"/> of <see cref="byte"/> to <see cref="Utf8String"/>.
 	/// </summary>
 	/// <param name="underlyingArray">The underlying array.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Utf8String(scoped ReadOnlySpan<byte> underlyingArray)
-		=> (Utf8String)Encoding.UTF8.GetString(underlyingArray);
+	public static implicit operator Utf8String(scoped ReadOnlySpan<byte> underlyingArray) => (Utf8String)Encoding.UTF8.GetString(underlyingArray);
 }
