@@ -5,6 +5,7 @@
 /// </summary>
 public sealed class NumericConverter<TNumber> : IValueConverter where TNumber : unmanaged, INumber<TNumber>
 {
+	/// <inheritdoc/>
 	public object Convert(string value)
 	{
 		var type = typeof(TNumber);
