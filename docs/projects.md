@@ -8,6 +8,7 @@
 
 属于该类型的项目有：
 
+* [`Sudoku.Compatibility`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Compatibility)：提供一些跟其他程序交互的兼容性处理 API，诸如 Hodoku 软件的难度系数对应技巧的分数的信息、Sudoku Explainer 软件对技巧提供的名字信息等；
 * [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core)：提供基本的数独相关的数据结构的实现，如数独盘面的实现 [`Grid`](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs) 类型等；
 * [`Sudoku.Diagnostics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics)：提供诊断和分析代码内容的 API，例如计算和整理整个项目有多少个文件之类的；
 * [`Sudoku.Gdip`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Gdip)：提供一种简单、轻量级的数独绘图 API；

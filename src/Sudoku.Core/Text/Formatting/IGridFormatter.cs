@@ -156,10 +156,23 @@ public interface IGridFormatter : IFormatProvider, ICustomFormatter
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	string ICustomFormatter.Format(string? format, object? arg, IFormatProvider? formatProvider)
-		=> (arg, formatProvider) switch
+		=> (format, arg, formatProvider) switch
 		{
-			(Grid targetGrid, IGridFormatter targetFormatter) => targetFormatter.ToString(targetGrid),
-			(not Grid, _) => throw new FormatException($"The argument '{nameof(arg)}' must be of type '{nameof(Grid)}'."),
-			_ => throw new FormatException($"The argument '{nameof(formatProvider)}' must be of type '{nameof(IGridFormatter)}'.")
+			(null, Grid targetGrid, IGridFormatter targetFormatter) => targetFormatter.ToString(targetGrid),
+			(_, Grid targetGrid, { } targetFormatter) => targetFormatter.GetFormat(GetType()) switch
+			{
+				IGridFormatter gridFormatter => gridFormatter.ToString(targetGrid),
+				_ => throw new FormatException("Unexpected error has been encountered due to not awared of target formatter type instance."),
+			},
+			(_, Grid targetGrid, null) => GridFormatterFactory.GetBuiltInFormatter(format) switch
+			{
+				{ } formatter => formatter.ToString(targetGrid),
+				_ => GetType().GetCustomAttribute<ExtendedGridFormatAttribute>() switch
+				{
+					{ Format: var f } when f == format => ToString(targetGrid),
+					_ => throw new FormatException($"The target format '{nameof(format)}' is invalid.")
+				}
+			},
+			(_, not Grid, _) => throw new FormatException($"The argument '{nameof(arg)}' must be of type '{nameof(Grid)}'.")
 		};
 }

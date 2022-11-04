@@ -2923,19 +2923,6 @@
             as we also use it for types other than <see cref="T:System.Byte"/> where the length can exceed 2Gb once scaled by <see langword="sizeof"/>(T).
             </remarks>
         </member>
-        <member name="T:Sudoku.Concepts.GridFormatterFactory">
-            <summary>
-            Indicates the factory that creates the grid formatter.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridFormatterFactory.CreateGridFormatter(System.String)">
-            <summary>
-            Create a <see cref="T:Sudoku.Text.Formatting.IGridFormatter"/> according to the specified format.
-            </summary>
-            <param name="format">The format.</param>
-            <returns>The grid formatter.</returns>
-            <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
-        </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>
             Indicates the grid creating option.
@@ -6392,31 +6379,21 @@
         <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.Sudoku#Text#Formatting#ICollectionFormatter{System#Int32}#Format(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Text.Formatting.FormattingMode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.Formatting.ExcelFormat">
+        <member name="T:Sudoku.Text.Formatting.ExtendedGridFormatAttribute">
             <summary>
-            Represents with Excel formatter.
+            Indicates the extended grid format.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.Formatting.ExcelFormat.Tab">
+        <member name="M:Sudoku.Text.Formatting.ExtendedGridFormatAttribute.#ctor(System.String)">
             <summary>
-            Indicates the tab character.
+            Initializes an <see cref="T:Sudoku.Text.Formatting.ExtendedGridFormatAttribute"/> instance.
             </summary>
+            <param name="format">The format.</param>
         </member>
-        <member name="F:Sudoku.Text.Formatting.ExcelFormat.Zero">
+        <member name="P:Sudoku.Text.Formatting.ExtendedGridFormatAttribute.Format">
             <summary>
-            Indicates the zero character.
+            Indicates the extended format.
             </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.ExcelFormat.Default">
-            <summary>
-            Indicates the default instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.ExcelFormat.Sudoku#Text#Formatting#IGridFormatter#Instance">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.ExcelFormat.ToString(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Formatting.FormattingMode">
             <summary>
@@ -6439,6 +6416,19 @@
             <summary>
             Indicates the formatting mode is full, which means all possible data will be displayed.
             </summary>
+        </member>
+        <member name="T:Sudoku.Text.Formatting.GridFormatterFactory">
+            <summary>
+            Indicates the factory that creates the grid formatter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Formatting.GridFormatterFactory.GetBuiltInFormatter(System.String)">
+            <summary>
+            Get a built-in <see cref="T:Sudoku.Text.Formatting.IGridFormatter"/> instance according to the specified format.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The grid formatter.</returns>
+            <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
         </member>
         <member name="T:Sudoku.Text.Formatting.GridMaskFormat">
             <summary>
@@ -6490,33 +6480,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Formatting.GridMaskFormat.ToString(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Formatting.HodokuLibraryFormat">
-            <summary>
-            Provides with a formatter that allows a <see cref="T:Sudoku.Concepts.Grid"/> instance being formatted as Hodoku library format.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.HodokuLibraryFormat.FormatPrefix">
-            <summary>
-            Indicates the format prefix.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.HodokuLibraryFormat.Default">
-            <summary>
-            Indicates the default instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.HodokuLibraryFormat.FormatSuffix">
-            <summary>
-            Indicates the format suffix.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.HodokuLibraryFormat.Sudoku#Text#Formatting#IGridFormatter#Instance">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.HodokuLibraryFormat.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Formatting.HouseFormatter">
@@ -6812,42 +6775,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Formatting.MultipleLineFormat.ToString(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Formatting.OpenSudokuFormat">
-            <summary>
-            Represents with OpenSudoku formatter.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.OpenSudokuFormat.Terminator">
-            <summary>
-            Indicates the string terminator character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.OpenSudokuFormat.Separator">
-            <summary>
-            Indicates the separator character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.OpenSudokuFormat.Zero">
-            <summary>
-            Indicates the zero character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.OpenSudokuFormat.One">
-            <summary>
-            Indicates the one character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.OpenSudokuFormat.Default">
-            <summary>
-            Indicates the default instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.OpenSudokuFormat.Sudoku#Text#Formatting#IGridFormatter#Instance">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.OpenSudokuFormat.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Formatting.PencilMarkFormat">
