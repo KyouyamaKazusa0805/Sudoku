@@ -468,6 +468,7 @@ public struct CellMap :
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
 	[JsonInclude]
+	[DebuggerHidden]
 	private readonly string[] NotationSegments => this ? StringChunks : Array.Empty<string>();
 
 
@@ -597,6 +598,10 @@ public struct CellMap :
 			action(cell);
 		}
 	}
+
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly void Deconstruct(out long low, out long high) => (low, high) = (_low, _high);
 
 	/// <summary>
 	/// Indicates whether all cells in this instance are in one house.

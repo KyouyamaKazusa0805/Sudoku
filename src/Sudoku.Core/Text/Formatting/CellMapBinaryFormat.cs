@@ -23,8 +23,7 @@ public sealed record CellMapBinaryFormat(bool WithSeparator = true) : ICellMapFo
 	{
 		scoped var sb = new StringHandler(81);
 		int i;
-		var tempInteger = (Int128)cellMap;
-		var (low, high) = ((ulong)(tempInteger >> 64 & ulong.MaxValue), (ulong)(tempInteger & ulong.MaxValue));
+		var (low, high) = cellMap;
 
 		var value = low;
 		for (i = 0; i < 27; i++, value >>= 1)
