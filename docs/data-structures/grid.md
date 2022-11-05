@@ -4,13 +4,18 @@
 
 ```csharp
 public struct Grid :
-    IEqualityOperators<Grid, Grid, bool>,
-    IMinMaxValue<Grid>,
     IEnumerable<int>,
+    IEqualityOperators<Grid, Grid, bool>,
+    IFixable<Grid, short>,
+    IFormattable,
+    IMinMaxValue<Grid>,
+    IParsable<Grid>,
     IReadOnlyCollection<int>,
     IReadOnlyList<int>,
+    ISelectClauseProvider<short>,
+    ISelectClauseProvider<int>,
     ISimpleFormattable,
-    ISimpleParseable<Grid>
+    ISimpleParsable<Grid>
 {
     public const short DefaultMask = 1023;
     public const short MaxCandidatesMask = 511;
@@ -18,8 +23,8 @@ public struct Grid :
     public const short ModifiableMask = 1024;
     public const short GivenMask = 2048;
     public static readonly string EmptyString;
-    public static readonly void* ValueChanged;
-    public static readonly void* RefreshingCandidates;
+    public static readonly delegate*<ref Grid, int, short, short, int, void> ValueChanged;
+    public static readonly delegate*<ref Grid, void> RefreshingCandidates;
     public static readonly Grid Undefined;
     public static readonly Grid Empty;
     public static readonly Grid MinValue;
@@ -56,19 +61,18 @@ public struct Grid :
     public static Grid Parse(string str, bool compatibleFirst);
     public static Grid Parse(ReadOnlySpan<char> str);
     public static Grid Parse(string str);
-    public static Grid Parse([InterpolatedStringHandlerArgument] StringHandler str);
     public static bool TryParse(string str, GridParsingOption option, out Grid result);
     public static bool TryParse(string str, out Grid result);
     public readonly CandidateCollectionEnumerator EnumerateCandidates();
     public readonly MaskCollectionEnumerator EnumerateMasks();
-    public override bool Equals([NotNullWhen(true)] object? obj);
+    public override readonly bool Equals([NotNullWhen(true)] object? obj);
     public bool Equals(in Grid other);
     public readonly bool? Exists(int candidate);
     public readonly bool? Exists(int cell, int digit);
     public void Fix();
     public readonly short GetCandidates(int cell);
     public readonly CandidateCollectionEnumerator GetEnumerator();
-    public readonly override int GetHashCode();
+    public override readonly int GetHashCode();
     public readonly short GetMask(int offset);
     public readonly ref readonly short GetPinnableReference();
     public readonly CellStatus GetStatus(int cell);
@@ -78,8 +82,10 @@ public struct Grid :
     public readonly bool SimplyValidate();
     public readonly int[] ToArray();
     public readonly string ToMaskString();
-    public readonly override string ToString();
+    public override readonly string ToString();
     public readonly string ToString(string? format);
+    public readonly string ToString(string? format, IGridFormatter formatter);
+    public readonly string ToString(string? format, IFormatProvider? formatProvider);
     public void Unfix();
 
     public static bool operator ==(scoped in Grid left, scoped in Grid right);
@@ -103,8 +109,7 @@ public struct Grid :
         public void Reset();
     }
 
-    // Here we have hidden some inner types or members that is not helpful
-    // for the current passage.
+    // Here we have hidden some inner types or members that is not helpful for the current passage.
 }
 ```
 
