@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents with OpenSudoku formatter.
 /// </summary>
-[ExtendedGridFormat("^")]
+[ExtendedFormat("^")]
 public sealed record OpenSudokuFormat : IGridFormatter
 {
 	/// <summary>

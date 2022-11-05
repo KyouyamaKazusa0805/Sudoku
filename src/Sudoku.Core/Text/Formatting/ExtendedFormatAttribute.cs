@@ -1,16 +1,16 @@
 ﻿namespace Sudoku.Text.Formatting;
 
 /// <summary>
-/// Indicates the extended grid format.
+/// Indicates the extended format.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class ExtendedGridFormatAttribute : Attribute
+public sealed class ExtendedFormatAttribute : Attribute
 {
 	/// <summary>
-	/// Initializes an <see cref="ExtendedGridFormatAttribute"/> instance.
+	/// Initializes an <see cref="ExtendedFormatAttribute"/> instance via the format.
 	/// </summary>
 	/// <param name="format">The format.</param>
-	public ExtendedGridFormatAttribute(string format) => Format = format;
+	public ExtendedFormatAttribute(string format) => Format = format;
 
 
 	/// <summary>

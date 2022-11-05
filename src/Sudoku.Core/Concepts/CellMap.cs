@@ -713,7 +713,7 @@ public struct CellMap :
 	public readonly int[] ToArray() => Offsets;
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override readonly string ToString() => ToString(null);
+	public override readonly string ToString() => ToString((string?)null);
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -750,94 +750,68 @@ public struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format) => ToString(format, null);
 
+	/// <summary>
+	/// Gets <see cref="string"/> representation of the current <see cref="CellMap"/> instance, using pre-defined formatters.
+	/// </summary>
+	/// <param name="cellMapFormatter">
+	/// The <see cref="CellMap"/> formatter instance to format the current instance.
+	/// </param>
+	/// <returns>The <see cref="string"/> result.</returns>
+	/// <remarks>
+	/// <para>
+	/// The target and supported types are stored in namespace <see cref="Text.Formatting"/>.
+	/// If you don't remember the full format strings, you can try this method instead by passing
+	/// actual <see cref="ICellMapFormatter"/> instances.
+	/// </para>
+	/// <para>
+	/// For example, by using Susser formatter <see cref="RxCyFormat"/> instances:
+	/// <code><![CDATA[
+	/// // Suppose the variable is of type 'CellMap'.
+	/// var cells = ...;
+	/// 
+	/// // Creates a RxCyFormat-based formatter.
+	/// var formatter = RxCyFormat.Default;
+	/// 
+	/// // Using this method to get the target string representation.
+	/// string targetStr = cells.ToString(formatter);
+	/// 
+	/// // Output the result.
+	/// Console.WriteLine(targetStr);
+	/// ]]></code>
+	/// </para>
+	/// <para>
+	/// In some cases we suggest you use this method instead of calling <see cref="ToString(string?)"/>
+	/// and <see cref="ToString(string?, IFormatProvider?)"/> because you may not remember all possible string formats.
+	/// </para>
+	/// <para>
+	/// In addition, the method <see cref="ToString(string?, IFormatProvider?)"/> is also compatible with this method.
+	/// If you forget to call this one, you can also use that method to get the same target result by passing first argument
+	/// named <c>format</c> with <see langword="null"/> value:
+	/// <code><![CDATA[
+	/// string targetStr = cells.ToString(null, formatter);
+	/// ]]></code>
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="Text.Formatting"/>
+	/// <seealso cref="ICellMapFormatter"/>
+	/// <seealso cref="RxCyFormat"/>
+	/// <seealso cref="ToString(string?)"/>
+	/// <seealso cref="ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(ICellMapFormatter cellMapFormatter) => cellMapFormatter.ToString(this);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
-	{
-		return (format?.ToLower(), formatProvider) switch
+		=> (format, formatProvider) switch
 		{
-			("n", _) or (null or [], null) => RxCyNotation.ToCellsString(this),
-			("b+", _) => binaryToString(this, true),
-			("b", _) => binaryToString(this, false),
-			("t", _) => tableToString(this),
-			(null, ICustomFormatter customFormatter) => customFormatter.Format(format, this, formatProvider),
-			(null, CultureInfo { Name: ['Z' or 'z', 'H' or 'h', ..] }) => K9Notation.ToCellsString(this),
-			_ => throw new FormatException("The specified format is invalid.")
+			(null, null) => ToString(RxCyFormat.Default),
+			(not null, _) => ToString(format),
+			(_, ICellMapFormatter formatter) => formatter.ToString(this),
+			(_, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
+			(_, CultureInfo { Name: ['Z' or 'z', 'H' or 'h', ..] }) => K9Notation.ToCellsString(this),
+			_ => ToString(RxCyFormat.Default)
 		};
-
-
-		static string tableToString(scoped in CellMap @this)
-		{
-			var newLine = Environment.NewLine;
-			scoped var sb = new StringHandler((3 * 7 + newLine.Length) * 13 - newLine.Length);
-			for (var i = 0; i < 3; i++)
-			{
-				for (var bandLn = 0; bandLn < 3; bandLn++)
-				{
-					for (var j = 0; j < 3; j++)
-					{
-						for (var columnLn = 0; columnLn < 3; columnLn++)
-						{
-							sb.Append(@this.Contains((i * 3 + bandLn) * 9 + j * 3 + columnLn) ? '*' : '.');
-							sb.Append(' ');
-						}
-
-						if (j != 2)
-						{
-							sb.Append("| ");
-						}
-						else
-						{
-							sb.AppendLine();
-						}
-					}
-				}
-
-				if (i != 2)
-				{
-					sb.Append("------+-------+------");
-					sb.AppendLine();
-				}
-			}
-
-			sb.RemoveFromEnd(newLine.Length);
-			return sb.ToStringAndClear();
-		}
-
-		static string binaryToString(scoped in CellMap @this, bool withSeparator)
-		{
-			scoped var sb = new StringHandler(81);
-			int i;
-			var value = @this._low;
-			for (i = 0; i < 27; i++, value >>= 1)
-			{
-				sb.Append(value & 1);
-			}
-			if (withSeparator)
-			{
-				sb.Append(' ');
-			}
-			for (; i < 41; i++, value >>= 1)
-			{
-				sb.Append(value & 1);
-			}
-			for (value = @this._high; i < 54; i++, value >>= 1)
-			{
-				sb.Append(value & 1);
-			}
-			if (withSeparator)
-			{
-				sb.Append(' ');
-			}
-			for (; i < 81; i++, value >>= 1)
-			{
-				sb.Append(value & 1);
-			}
-
-			sb.Reverse();
-			return sb.ToStringAndClear();
-		}
-	}
 
 	/// <summary>
 	/// Gets the <see cref="string"/> representation that can describe the current instance,

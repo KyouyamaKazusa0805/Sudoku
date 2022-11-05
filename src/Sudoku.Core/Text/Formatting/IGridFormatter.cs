@@ -167,7 +167,7 @@ public interface IGridFormatter : IFormatProvider, ICustomFormatter
 			(_, Grid targetGrid, null) => GridFormatterFactory.GetBuiltInFormatter(format) switch
 			{
 				{ } formatter => formatter.ToString(targetGrid),
-				_ => GetType().GetCustomAttribute<ExtendedGridFormatAttribute>() switch
+				_ => GetType().GetCustomAttribute<ExtendedFormatAttribute>() switch
 				{
 					{ Format: var f } when f == format => ToString(targetGrid),
 					_ => throw new FormatException($"The target format '{nameof(format)}' is invalid.")

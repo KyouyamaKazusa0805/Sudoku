@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents with Excel formatter.
 /// </summary>
-[ExtendedGridFormat("%")]
+[ExtendedFormat("%")]
 public sealed record ExcelFormat : IGridFormatter
 {
 	/// <summary>

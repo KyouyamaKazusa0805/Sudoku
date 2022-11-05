@@ -77,6 +77,7 @@ public struct CellMap :
     public readonly int[] ToArray();
     public override readonly string ToString();
     public readonly string ToString(string? format);
+    public readonly string ToString(ICellMapFormatter cellMapFormatter);
     public readonly string ToString(string? format, IFormatProvider? formatProvider);
 
     public static bool operator !(scoped in CellMap offsets);
