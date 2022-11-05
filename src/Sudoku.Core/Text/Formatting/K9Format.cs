@@ -3,6 +3,9 @@
 /// <summary>
 /// Defines a formatter that uses <b>K9</b> rule to format a <see cref="CellMap"/> instance.
 /// </summary>
+/// <remarks>
+/// <inheritdoc cref="K9Notation" path="/remarks"/>
+/// </remarks>
 public sealed record K9Format : ICellMapFormatter
 {
 	/// <inheritdoc cref="ICellMapFormatter.Instance"/>

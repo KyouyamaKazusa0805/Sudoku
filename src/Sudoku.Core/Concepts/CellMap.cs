@@ -783,24 +783,6 @@ public struct CellMap :
 		};
 
 	/// <summary>
-	/// Gets the <see cref="string"/> representation that can describe the current instance,
-	/// with the specified kind of notation.
-	/// </summary>
-	/// <param name="notation">Indicates the notation kind.</param>
-	/// <returns>The result string converted.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="notation"/> is not defined in enumeration type.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CellNotation notation)
-		=> notation switch
-		{
-			CellNotation.RxCy => RxCyNotation.ToCellsString(this),
-			CellNotation.K9 => K9Notation.ToCellsString(this),
-			_ => throw new ArgumentOutOfRangeException(nameof(notation))
-		};
-
-	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>

@@ -18,11 +18,6 @@
 /// For more information about this concept, please visit
 /// <see href="http://sudopedia.enjoysudoku.com/K9.html">this link</see>.
 /// </para>
-/// <para>
-/// Please note that the type is an <see langword="abstract"/> type,
-/// which means you cannot instantiate any objects. In addition, the type contains
-/// a <see langword="private"/> instance constructor, which disallows you deriving any types.
-/// </para>
 /// </remarks>
 public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOptions>
 {

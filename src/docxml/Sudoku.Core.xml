@@ -928,17 +928,6 @@
         <member name="M:Sudoku.Concepts.CellMap.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Text.Notations.CellNotation)">
-            <summary>
-            Gets the <see cref="T:System.String"/> representation that can describe the current instance,
-            with the specified kind of notation.
-            </summary>
-            <param name="notation">Indicates the notation kind.</param>
-            <returns>The result string converted.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="notation"/> is not defined in enumeration type.
-            </exception>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.GetEnumerator">
             <summary>
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
@@ -6824,6 +6813,9 @@
             <summary>
             Defines a formatter that uses <b>K9</b> rule to format a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
+            <remarks>
+            <inheritdoc cref="T:Sudoku.Text.Notations.K9Notation" path="/remarks"/>
+            </remarks>
         </member>
         <member name="F:Sudoku.Text.Formatting.K9Format.Default">
             <inheritdoc cref="P:Sudoku.Text.Formatting.ICellMapFormatter.Instance"/>
@@ -7052,6 +7044,9 @@
             <summary>
             Defines a formatter that uses <b>RxCy</b> rule to format a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
+            <remarks>
+            <inheritdoc cref="T:Sudoku.Text.Notations.RxCyNotation" path="/remarks"/>
+            </remarks>
         </member>
         <member name="F:Sudoku.Text.Formatting.RxCyFormat.Default">
             <inheritdoc cref="P:Sudoku.Text.Formatting.ICellMapFormatter.Instance"/>
@@ -7603,11 +7598,6 @@
             For more information about this concept, please visit
             <see href="http://sudopedia.enjoysudoku.com/K9.html">this link</see>.
             </para>
-            <para>
-            Please note that the type is an <see langword="abstract"/> type,
-            which means you cannot instantiate any objects. In addition, the type contains
-            a <see langword="private"/> instance constructor, which disallows you deriving any types.
-            </para>
             </remarks>
         </member>
         <member name="F:Sudoku.Text.Notations.K9Notation.Letters">
@@ -7728,11 +7718,6 @@
             <para>
             For more information about this concept, please visit
             <see href="http://sudopedia.enjoysudoku.com/Rncn.html">this link</see>.
-            </para>
-            <para>
-            Please note that the type is an <see langword="abstract"/> type,
-            which means you cannot instantiate any objects. In addition, the type contains
-            a <see langword="private"/> instance constructor, which disallows you deriving any types.
             </para>
             </remarks>
         </member>
