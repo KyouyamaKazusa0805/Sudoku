@@ -716,37 +716,6 @@ public struct CellMap :
 	public override readonly string ToString() => ToString((string?)null);
 
 	/// <inheritdoc/>
-	/// <remarks>
-	/// Supported format strings:
-	/// <list type="table">
-	/// <item>
-	/// <term><c>"N"</c> or <c>"n"</c></term>
-	/// <description>
-	/// Gets the normal representation of the cells, i.e. An <b>RxCy notation</b>.
-	/// For more information please visit the XML documentation comments of type <see cref="RxCyNotation"/>.
-	/// </description>
-	/// </item>
-	/// <item>
-	/// <term><c>"B"</c> or <c>"b"</c></term>
-	/// <description>
-	/// Converts the current instance into a binary representation, using bit 0 to indicate
-	/// a certain cell not containing in the collection; otherwise bit 1.
-	/// </description>
-	/// </item>
-	/// <item>
-	/// <term><c>"B+"</c> or <c>"b+"</c></term>
-	/// <description>
-	/// Same as format <c>"B"</c> (or <c>"b"</c>), but with whitespace after each 27 bits.
-	/// </description>
-	/// </item>
-	/// <item>
-	/// <term><c>"T"</c> or <c>"t"</c></term>
-	/// <description>Converts the current instance into a table representation.</description>
-	/// </item>
-	/// </list>
-	/// If <paramref name="format"/> is <see langword="null"/> or empty string <c>""</c>, the result string will be same as the case
-	/// that <paramref name="format"/> is <c>"N"</c> or <c>"n"</c>.
-	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format) => ToString(format, null);
 
