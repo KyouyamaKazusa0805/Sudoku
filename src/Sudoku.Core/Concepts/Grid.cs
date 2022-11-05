@@ -1754,8 +1754,8 @@ public ref struct GridMaskEnumerator
 	/// <remarks>
 	/// Note here we should point at the one-unit-length memory before the array start.
 	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[FileAccessOnly]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal GridMaskEnumerator(ref short arr)
 	{
 		_refCurrent = ref SubtractByteOffset(ref arr, 1);
