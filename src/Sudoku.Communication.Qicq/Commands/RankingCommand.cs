@@ -43,6 +43,7 @@ internal sealed class RankingCommand : Command
 			return true;
 		}
 
+		// If the number of members are too large, we should only iterate top 10 elements.
 		var usersData = (
 			from file in Directory.GetFiles(botUsersDataFolder, "*.json")
 			let ud = Deserialize<UserData>(File.ReadAllText(file))
@@ -50,9 +51,10 @@ internal sealed class RankingCommand : Command
 			let qq = ud.QQ
 			let nickname = @group.GetMemberFromQQAsync(qq).Result?.Name
 			where nickname is not null
-			orderby ud.Score descending, qq
+			let numericQQ = int.TryParse(qq, out var result) ? result : 0
+			orderby ud.Score descending, numericQQ
 			select (Name: nickname, Data: ud)
-		).Take(10); // If the number of members are too large, we should only iterate top 10 elements.
+		).Take(10);
 
 		var rankingStr = string.Join(
 			"\r\n",
