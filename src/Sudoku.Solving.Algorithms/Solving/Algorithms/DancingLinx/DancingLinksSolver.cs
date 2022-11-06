@@ -37,7 +37,7 @@ public sealed class DancingLinksSolver : ISimpleSolver
 		SkipInit(out result);
 
 		var gridValue = grid.ToArray();
-		var dlx = new DancingLink(new ColumnNode(-1));
+		var dlx = new DancingLink(new(-1));
 		_root = dlx.CreateLinkedList(gridValue);
 
 		try
@@ -178,7 +178,6 @@ public sealed class DancingLinksSolver : ISimpleSolver
 		return nextColumn;
 	}
 }
-
 
 /// <summary>
 /// Represents as a dancing link.
