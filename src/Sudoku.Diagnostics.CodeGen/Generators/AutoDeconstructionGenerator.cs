@@ -44,8 +44,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 				continue;
 			}
 
-			var (_, _, namespaceName, _, genericParameterListWithoutConstraint, _, _, _, _, _) =
-				SymbolOutputInfo.FromSymbol(type);
+			var (_, _, namespaceName, _, genericParameterListWithoutConstraint, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
 			// Gets the namespace applied to.
 			// If multiple attributes use different namespace, we will only use the first one as the result case.
