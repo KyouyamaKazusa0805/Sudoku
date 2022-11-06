@@ -1584,15 +1584,12 @@
         </member>
         <member name="F:Sudoku.Concepts.CellStatus.Modifiable">
             <summary>
-            Indicates that the cell has already filled a value,
-            but the value doesn't exist when the puzzle begins.
+            Indicates the current cell has been filled a value that is not given from initial grid.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.CellStatus.Given">
             <summary>
-            Indicates that the cell has already filled a value,
-            and the value does exist when the puzzle begins. In
-            other words, the value is a given (or a hint, clue, etc.).
+            Indicates the current cell has been filled a value that cannot be modified because it exists in initial grid.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.Conjugate">

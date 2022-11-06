@@ -18,15 +18,12 @@ public enum CellStatus : byte
 	Empty = 1,
 
 	/// <summary>
-	/// Indicates that the cell has already filled a value,
-	/// but the value doesn't exist when the puzzle begins.
+	/// Indicates the current cell has been filled a value that is not given from initial grid.
 	/// </summary>
 	Modifiable = 1 << 1,
 
 	/// <summary>
-	/// Indicates that the cell has already filled a value,
-	/// and the value does exist when the puzzle begins. In
-	/// other words, the value is a given (or a hint, clue, etc.).
+	/// Indicates the current cell has been filled a value that cannot be modified because it exists in initial grid.
 	/// </summary>
 	Given = 1 << 2
 }
