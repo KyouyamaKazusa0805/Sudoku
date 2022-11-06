@@ -12,6 +12,7 @@ public sealed class GeneratedDeconstructionArgumentAttribute : Attribute
 	/// <param name="targetPropertyExpression">The target property expression.</param>
 	public GeneratedDeconstructionArgumentAttribute(string targetPropertyExpression) => TargetPropertyExpression = targetPropertyExpression;
 
+
 	/// <summary>
 	/// Indicates the target property expression used. This property specifies and controls the target behavior
 	/// that output what final deconstruction assignment expression should be.
