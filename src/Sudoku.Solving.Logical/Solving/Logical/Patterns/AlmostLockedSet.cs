@@ -97,9 +97,8 @@ public sealed partial class AlmostLockedSet :
 	[GeneratedDeconstruction]
 	public partial void Deconstruct(out int house, out short digitsMask);
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out int house, out short digitsMask, out CellMap map) => ((house, digitsMask), map) = (this, Map);
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out int house, out short digitsMask, out CellMap map);
 
 	/// <summary>
 	/// Indicates whether the specified grid contains the digit.
@@ -133,8 +132,7 @@ public sealed partial class AlmostLockedSet :
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] AlmostLockedSet? other)
-		=> other is not null && DigitsMask == other.DigitsMask && Map == other.Map;
+	public bool Equals([NotNullWhen(true)] AlmostLockedSet? other) => other is not null && DigitsMask == other.DigitsMask && Map == other.Map;
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -144,7 +142,7 @@ public sealed partial class AlmostLockedSet :
 	/// <seealso cref="Equals(AlmostLockedSet?)"/>
 	public override int GetHashCode()
 	{
-		short mask = 0;
+		var mask = (short)0;
 		var i = 0;
 		foreach (var cell in HouseCells[House])
 		{
@@ -202,11 +200,7 @@ public sealed partial class AlmostLockedSet :
 					}
 
 					// Get all candidates in these cells.
-					short digitsMask = 0;
-					foreach (var cell in map)
-					{
-						digitsMask |= grid.GetCandidates(cell);
-					}
+					var digitsMask = grid.GetDigitsUnion(map);
 					if (PopCount((uint)digitsMask) - 1 != size)
 					{
 						continue;
