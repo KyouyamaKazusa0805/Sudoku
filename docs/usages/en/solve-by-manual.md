@@ -2,7 +2,7 @@
 
 Goal: Using APIs to solve a sudoku puzzle
 
-The method is simple. You should firstly get an encapsulated data of type `Grid`, and then pass it into the `ManualSolver` instance to solve it.
+The method is simple. You should firstly get an encapsulated data of type `Grid`, and then pass it into the `LogicalSolver` instance to solve it.
 
 ```csharp
 using System;
