@@ -9,7 +9,7 @@
 /// will be greater; if those two hold same conclusion type, but one of those two holds
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
-public readonly struct Conclusion :
+public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion, bool>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
@@ -98,14 +98,11 @@ public readonly struct Conclusion :
 	}
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out ConclusionType conclusionType, out int candidate) => (conclusionType, candidate) = (ConclusionType, Candidate);
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out ConclusionType conclusionType, out int candidate);
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit)
-		=> (conclusionType, cell, digit) = (ConclusionType, Cell, Digit);
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit);
 
 	/// <summary>
 	/// Put this instance into the specified grid.

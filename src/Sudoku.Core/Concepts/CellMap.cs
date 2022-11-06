@@ -22,7 +22,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [IsLargeStruct(SuggestedMemberName = nameof(Empty))]
-public struct CellMap :
+public partial struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,
 	IAdditiveIdentity<CellMap, CellMap>,
@@ -599,9 +599,8 @@ public struct CellMap :
 		}
 	}
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly void Deconstruct(out long low, out long high) => (low, high) = (_low, _high);
+	[GeneratedDeconstruction]
+	public readonly partial void Deconstruct(out long low, out long high);
 
 	/// <summary>
 	/// Indicates whether all cells in this instance are in one house.

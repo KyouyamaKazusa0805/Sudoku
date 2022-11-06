@@ -59,6 +59,51 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AttributeDataComparer.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator">
+            <summary>
+            Defines a source generator that generates the source code for deconstruction methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator.StandardizeIdentifierName(System.String)">
+            <summary>
+            To standardize the identifier name, converting it into <c>PascalCase</c>.
+            </summary>
+            <param name="name">The identifier name.</param>
+            <returns>The converted name. The return value must be <c>PascalCase</c>.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
+            <summary>
+            The internal transformed data.
+            </summary>
+            <param name="ContainingType">The containing type.</param>
+            <param name="Method">The deconstruction method declaration part.</param>
+            <param name="Parameters">The parameters of the method.</param>
+            <param name="Modifiers">The modifiers of this method.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol},Microsoft.CodeAnalysis.SyntaxTokenList)">
+            <summary>
+            The internal transformed data.
+            </summary>
+            <param name="ContainingType">The containing type.</param>
+            <param name="Method">The deconstruction method declaration part.</param>
+            <param name="Parameters">The parameters of the method.</param>
+            <param name="Modifiers">The modifiers of this method.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.ContainingType">
+            <summary>The containing type.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Method">
+            <summary>The deconstruction method declaration part.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Parameters">
+            <summary>The parameters of the method.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Modifiers">
+            <summary>The modifiers of this method.</summary>
+        </member>
         <member name="F:CodeGen.Constants.VersionValue">
             <summary>
             Indicates the version of this project.

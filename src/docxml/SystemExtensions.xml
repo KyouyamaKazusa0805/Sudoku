@@ -856,6 +856,22 @@
             </param>
             <returns>The sum of the projected values.</returns>
         </member>
+        <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.CastToNotNull``1(System.Collections.Immutable.ImmutableArray{System.Nullable{``0}})">
+            <summary>
+            Casts the current array elements into target typed values.
+            </summary>
+            <typeparam name="TStruct">The type of each element.</typeparam>
+            <param name="this">The array to be casted.</param>
+            <returns>The casted array.</returns>
+        </member>
+        <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.CastToNotNull``1(System.Collections.Immutable.ImmutableArray{``0})">
+            <summary>
+            Casts the current array elements into target typed values.
+            </summary>
+            <typeparam name="TClass">The type of each element.</typeparam>
+            <param name="this">The array to be casted.</param>
+            <returns>The casted array.</returns>
+        </member>
         <member name="T:System.Collections.ObjectModel.CollectionExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
@@ -1589,6 +1605,28 @@
         <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.DefaultBehavior">
             <summary>
             Indicates the default behavior for default cases.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute">
+            <summary>
+            Defines an attribute that is used as a parameter mark that tells source generators to route to the specified target expression.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute"/> instance via the specified target property.
+            </summary>
+            <param name="targetPropertyExpression">The target property expression.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute.TargetPropertyExpression">
+            <summary>
+            Indicates the target property expression used. This property specifies and controls the target behavior
+            that output what final deconstruction assignment expression should be.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.GeneratedDeconstructionAttribute">
+            <summary>
+            Defines an attribute that is used as a mark that tells source generators to generate deconstruction methods of this type.
             </summary>
         </member>
         <member name="T:System.Reflection.AssemblyExtensions">

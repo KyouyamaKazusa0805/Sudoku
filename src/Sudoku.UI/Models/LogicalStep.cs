@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a logical step.
 /// </summary>
-public sealed class LogicalStep
+public sealed partial class LogicalStep
 {
 	/// <summary>
 	/// Indicates a <see cref="BindingFlags"/> instance that binds with all possible members stored in a type.
@@ -92,10 +92,8 @@ public sealed class LogicalStep
 	/// </summary>
 	public required IStep Step { get; set; }
 
-
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out Grid grid, out IStep step) => (grid, step) = (Grid, Step);
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out Grid grid, out IStep step);
 
 	/// <summary>
 	/// Gets the display string value that can describe the main information of the current step.

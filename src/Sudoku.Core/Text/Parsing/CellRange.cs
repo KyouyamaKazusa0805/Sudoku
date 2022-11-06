@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a range of cells.
 /// </summary>
-public readonly struct CellRange :
+public readonly partial struct CellRange :
 	IEquatable<CellRange>,
 	IEqualityOperators<CellRange, CellRange, bool>,
 	ISimpleParsable<CellRange>
@@ -57,9 +57,8 @@ public readonly struct CellRange :
 	}
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out int minValue, out int maxValue) => (minValue, maxValue) = (MinValue, MaxValue);
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out int minValue, out int maxValue);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

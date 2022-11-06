@@ -8,7 +8,7 @@
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
 /// The special case is a bi-value cell.
 /// </remarks>
-public sealed class AlmostLockedSet :
+public sealed partial class AlmostLockedSet :
 	IEquatable<AlmostLockedSet>,
 	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>,
 	ITechniquePattern<AlmostLockedSet>,
@@ -94,9 +94,8 @@ public sealed class AlmostLockedSet :
 	public CellMap PossibleEliminationMap { get; }
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out int house, out short digitsMask) => (house, digitsMask) = (House, DigitsMask);
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out int house, out short digitsMask);
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

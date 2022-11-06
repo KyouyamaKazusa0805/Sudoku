@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a link.
 /// </summary>
-public sealed class LinkViewNode : ViewNode
+public sealed partial class LinkViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="LinkViewNode"/> instance via the specified identifier,
@@ -14,12 +14,8 @@ public sealed class LinkViewNode : ViewNode
 	/// <param name="endPoint">The end point of the link.</param>
 	/// <param name="inference">The inference type.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LinkViewNode(
-		Identifier identifier,
-		scoped in LockedTarget startPoint,
-		scoped in LockedTarget endPoint,
-		Inference inference
-	) : base(identifier) => (Start, End, Inference) = (startPoint, endPoint, inference);
+	public LinkViewNode(Identifier identifier, scoped in LockedTarget startPoint, scoped in LockedTarget endPoint, Inference inference) :
+		base(identifier) => (Start, End, Inference) = (startPoint, endPoint, inference);
 
 
 	/// <summary>
@@ -41,10 +37,8 @@ public sealed class LinkViewNode : ViewNode
 	protected override string TypeIdentifier => nameof(LinkViewNode);
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out LockedTarget start, out LockedTarget end, out Inference inference)
-		=> (start, end, inference) = (Start, End, Inference);
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out LockedTarget start, out LockedTarget end, out Inference inference);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

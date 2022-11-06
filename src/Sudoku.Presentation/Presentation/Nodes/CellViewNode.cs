@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a cell.
 /// </summary>
-public sealed class CellViewNode : ViewNode
+public sealed partial class CellViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="CellViewNode"/> instance via the identifier and the highlight cell.
@@ -24,9 +24,8 @@ public sealed class CellViewNode : ViewNode
 	protected override string TypeIdentifier => nameof(CellViewNode);
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out Identifier identifier, out int cell) => (identifier, cell) = (Identifier, Cell);
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out Identifier identifier, out int cell);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

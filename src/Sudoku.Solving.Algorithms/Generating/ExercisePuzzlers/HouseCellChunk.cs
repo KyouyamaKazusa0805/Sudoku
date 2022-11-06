@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a chunk that stores the cells in a house.
 /// </summary>
-public readonly struct HouseCellChunk :
+public readonly partial struct HouseCellChunk :
 	IComparable<HouseCellChunk>,
 	IComparisonOperators<HouseCellChunk, HouseCellChunk, bool>,
 	IEquatable<HouseCellChunk>,
@@ -106,9 +106,8 @@ public readonly struct HouseCellChunk :
 	}
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out CellMap cells, out int[] digits) => (cells, digits) = (Cells, Digits);
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out CellMap cells, out int[] digits);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

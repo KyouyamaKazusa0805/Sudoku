@@ -310,6 +310,28 @@
             <typeparam name="TKey">The type of the key.</typeparam>
             <typeparam name="TValue">The type of the value.</typeparam>
         </member>
+        <member name="T:System.Collections.Immutable.ImmutableArrayExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Immutable.ImmutableArray`1"/>
+        </member>
+        <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.CastToNotNull``1(System.Collections.Immutable.ImmutableArray{System.Nullable{``0}})">
+            <summary>
+            Casts the current array elements into target typed values.
+            </summary>
+            <typeparam name="TStruct">The type of each element.</typeparam>
+            <param name="this">The array to be casted.</param>
+            <returns>The casted array.</returns>
+        </member>
+        <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.CastToNotNull``1(System.Collections.Immutable.ImmutableArray{``0})">
+            <summary>
+            Casts the current array elements into target typed values.
+            </summary>
+            <typeparam name="TClass">The type of each element.</typeparam>
+            <param name="this">The array to be casted.</param>
+            <returns>The casted array.</returns>
+        </member>
         <member name="T:System.Xml.XmlDocumentExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Xml.XmlDocument"/>.
