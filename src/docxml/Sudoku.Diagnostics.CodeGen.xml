@@ -67,26 +67,9 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator.OutputAction(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol},Microsoft.CodeAnalysis.SyntaxTokenList}}})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator.OutputAction(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol},Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol}}})">
             <summary>
             Output action.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator.NodePredicate(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
-            <summary>
-            Node predicate.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator.StandardizeIdentifierName(System.String)">
-            <summary>
-            To standardize the identifier name, converting it into <c>PascalCase</c>.
-            </summary>
-            <param name="name">The identifier name.</param>
-            <returns>The converted name. The return value must be <c>PascalCase</c>.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <summary>
-            The transforming method.
             </summary>
         </member>
         <member name="F:CodeGen.Constants.VersionValue">

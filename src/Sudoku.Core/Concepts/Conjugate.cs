@@ -7,7 +7,7 @@
 /// A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
 /// two position can fill this candidate.
 /// </remarks>
-public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate, bool>
+public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate, bool>
 {
 	/// <summary>
 	/// Indicates the mask.
@@ -91,6 +91,15 @@ public readonly struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Con
 		get => CellsMap[From] + To;
 	}
 
+	private int FromCandidate => From * 9 + Digit;
+
+	private int ToCandidate => To * 9 + Digit;
+
+
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(
+		[GeneratedDeconstructionArgument(nameof(FromCandidate))] out int fromCand,
+		[GeneratedDeconstructionArgument(nameof(ToCandidate))] out int toCand);
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

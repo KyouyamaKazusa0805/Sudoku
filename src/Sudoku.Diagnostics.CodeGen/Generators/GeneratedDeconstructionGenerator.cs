@@ -4,7 +4,8 @@ using Data = ValueTuple<
 	INamedTypeSymbol /*ContainingType*/,
 	IMethodSymbol /*Method*/,
 	ImmutableArray<IParameterSymbol> /*Parameters*/,
-	SyntaxTokenList /*Modifiers*/
+	SyntaxTokenList /*Modifiers*/,
+	INamedTypeSymbol /*AttributeType*/
 >;
 
 /// <summary>
@@ -15,19 +16,62 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
-		=> context.RegisterSourceOutput(
+	{
+		context.RegisterSourceOutput(
 			context.SyntaxProvider
-				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.GeneratedDeconstructionAttribute", NodePredicate, Transform)
+				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.GeneratedDeconstructionAttribute", nodePredicate, transform)
 				.Where(static d => d is not null)
 				.Collect(),
 			OutputAction
 		);
+
+
+		static bool nodePredicate(SyntaxNode node, CancellationToken _) => node is MethodDeclarationSyntax;
+
+		static Data? transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
+		{
+			switch (gasc)
+			{
+				case
+				{
+					Attributes.Length: 1,
+					TargetNode: MethodDeclarationSyntax { Modifiers: var modifiers } node,
+					TargetSymbol: IMethodSymbol
+					{
+						Name: "Deconstruct",
+						TypeParameters: [],
+						Parameters: var parameters and not [],
+						IsStatic: false,
+						ReturnsVoid: true,
+						ContainingType: { ContainingType: null, IsFileLocal: false } type
+					} symbol,
+					SemanticModel: { Compilation: var compilation } semanticModel
+				}
+				when parameters.All(static p => p.RefKind == RefKind.Out):
+				{
+					var attributeType = compilation.GetTypeByMetadataName("System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute");
+					if (attributeType is null)
+					{
+						goto default;
+					}
+
+					return new(type, symbol, parameters, modifiers, attributeType);
+				}
+				default:
+				{
+					return null;
+				}
+			}
+		}
+	}
 
 	/// <summary>
 	/// Output action.
 	/// </summary>
 	private void OutputAction(SourceProductionContext spc, ImmutableArray<Data?> data)
 	{
+		_ = spc is { CancellationToken: var ct };
+
 		foreach (var tuple in data.CastToNotNull())
 		{
 #pragma warning disable format
@@ -35,14 +79,15 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 					{ ContainingNamespace: var @namespace, Name: var typeName } containingType,
 					{ DeclaredAccessibility: var methodAccessibility } method,
 					{ Length: var parameterLength } parameters,
-					var modifiers
+					var modifiers,
+					var attributeType
 				))
 #pragma warning restore format
 			{
 				continue;
 			}
 
-			var membersData =
+			var membersData = (
 				from m in containingType.GetAllMembers()
 				where m switch
 				{
@@ -51,14 +96,19 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 					IMethodSymbol { ReturnsVoid: false, Parameters: [] } => true,
 					_ => false
 				}
-				let name = StandardizeIdentifierName(m.Name)
-				select (CheckId: true, Member: m, Name: name);
+				let name = standardizeIdentifierName(m.Name)
+				select (CheckId: true, Member: m, Name: name)
+			).ToArray();
 
 			var selection = (
 				from parameter in parameters
-				let correspondingData = membersData.FirstOrDefault(member => member.Name == StandardizeIdentifierName(parameter.Name))
+				let index = Array.FindIndex(membersData, member => memberDataSelector(member, parameter, attributeType))
+				where index != -1
+				let correspondingData = membersData[index]
 				where correspondingData.CheckId // If none found, this field will be set 'false' by default because of 'default(T)'.
-				select (correspondingData.Member, correspondingData.Member.Name, ParameterName: parameter.Name)
+				let parameterName = parameter.Name
+				let isDirect = standardizeIdentifierName(parameterName) == correspondingData.Name
+				select (IsDirect: isDirect, correspondingData.Member, correspondingData.Member.Name, ParameterName: parameterName)
 			).ToArray();
 
 			if (selection.Length != parameterLength)
@@ -67,16 +117,7 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 				continue;
 			}
 
-			var assignmentsCode = string.Join(
-				"\r\n\t\t",
-				from t in selection
-				select t.Member switch
-				{
-					IFieldSymbol => $"{t.ParameterName} = {t.Name};",
-					IPropertySymbol => $"{t.ParameterName} = {t.Name};",
-					IMethodSymbol => $"{t.ParameterName} = {t.Name}();"
-				}
-			);
+			var assignmentsCode = string.Join("\r\n\t\t", from t in selection select getAssignmentStatementCode(t, ct));
 
 			var argsStr = string.Join(
 				", ",
@@ -114,48 +155,70 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 				"""
 			);
 		}
-	}
 
 
-	/// <summary>
-	/// Node predicate.
-	/// </summary>
-	private static bool NodePredicate(SyntaxNode node, CancellationToken _) => node is MethodDeclarationSyntax;
-
-	/// <summary>
-	/// To standardize the identifier name, converting it into <c>PascalCase</c>.
-	/// </summary>
-	/// <param name="name">The identifier name.</param>
-	/// <returns>The converted name. The return value must be <c>PascalCase</c>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string StandardizeIdentifierName(string name)
-		=> name switch
-		{
-			['_', .. var slice] => StandardizeIdentifierName(slice),
-			[>= 'A' and <= 'Z', ..] => name,
-			[var ch and >= 'a' and <= 'z', .. var slice] => $"{char.ToUpper(ch)}{slice}",
-			_ => name
-		};
-
-	/// <summary>
-	/// The transforming method.
-	/// </summary>
-	private static Data? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
-		=> gasc switch
-		{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string standardizeIdentifierName(string name)
+			=> name switch
 			{
-				Attributes.Length: 1,
-				TargetNode: MethodDeclarationSyntax { Modifiers: var modifiers } node,
-				TargetSymbol: IMethodSymbol
+				['_', .. var slice] => standardizeIdentifierName(slice),
+				[>= 'A' and <= 'Z', ..] => name,
+				[var ch and >= 'a' and <= 'z', .. var slice] => $"{char.ToUpper(ch)}{slice}",
+				_ => name
+			};
+
+		static bool memberDataSelector(
+			(bool, ISymbol, string) memberData,
+			IParameterSymbol parameter,
+			INamedTypeSymbol attributeType)
+		{
+			if (memberData is not (_, { Name: var rawName }, var name))
+			{
+				return false;
+			}
+
+			if (name == standardizeIdentifierName(parameter.Name))
+			{
+				return true;
+			}
+
+			// If cannot corresponds to the target, route to indirect member using attributes.
+			if (parameter.GetAttributes() is not (var attributes and not []))
+			{
+				return false;
+			}
+
+			if (attributes.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType)) is not
 				{
-					Name: "Deconstruct",
-					TypeParameters: [],
-					Parameters: var parameters and not [],
-					IsStatic: false,
-					ReturnsVoid: true,
-					ContainingType: { ContainingType: null, IsFileLocal: false } type
-				} symbol
-			} when parameters.All(static p => p.RefKind == RefKind.Out) => new(type, symbol, parameters, modifiers),
-			_ => null
-		};
+					ConstructorArguments: [{ Value: string targetPropertyExpression }]
+				})
+			{
+				return false;
+			}
+
+			return targetPropertyExpression == rawName;
+		}
+
+		static string getAssignmentStatementCode((bool IsDirect, ISymbol Member, string Name, string ParameterName) t, CancellationToken ct)
+			=> t switch
+			{
+				(_, IFieldSymbol, var name, var parameterName) => $"{t.ParameterName} = {t.Name};",
+				(var isDirect, IPropertySymbol { DeclaringSyntaxReferences: [var syntaxRef] }, var name, var parameterName)
+					when syntaxRef.GetSyntax(ct) is PropertyDeclarationSyntax node
+					=> node switch
+					{
+						{ AccessorList.Accessors: [{ Keyword.RawKind: (int)SyntaxKind.GetKeyword, ExpressionBody.Expression: var expr }] }
+							when !isDirect => $"{parameterName} = {expr};",
+						{ ExpressionBody.Expression: var expr } when !isDirect => $"{parameterName} = {expr};",
+						_ => $"{parameterName} = {name};"
+					},
+				(var isDirect, IMethodSymbol { DeclaringSyntaxReferences: [var syntaxRef] }, var name, var parameterName)
+					when syntaxRef.GetSyntax(ct) is MethodDeclarationSyntax node
+					=> node switch
+					{
+						{ ExpressionBody.Expression: var expr } when !isDirect => $"{parameterName} = {expr};",
+						_ => $"{parameterName} = {name}();"
+					}
+			};
+	}
 }
